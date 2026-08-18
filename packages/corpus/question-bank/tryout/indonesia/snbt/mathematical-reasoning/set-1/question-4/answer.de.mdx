@@ -1,0 +1,30 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir müssen den Mindestanzahlungsbetrag ermitteln, der es Jeje ermöglicht, den niedrigsten Zinssatz zu erhalten.
+
+#### Zinsanalyse
+
+Der anfängliche Zinssatz beträgt <InlineMath math="6\%" /> pro Jahr mit einer Mindestanzahlung von <InlineMath math="10\%" />. Jedes weitere Vielfache der Mindestanzahlung (d. h. Vielfache von <InlineMath math="10\%" />) führt zu einer Zinsreduzierung von <InlineMath math="1\%" /> pro Jahr, mit einer maximalen Reduzierung von <InlineMath math="2\%" />.
+
+- **<InlineMath math="10\%" /> Anzahlung**: Zinsen <InlineMath math="6\%" /> (Basis).
+- **<InlineMath math="20\%" /> Anzahlung**: Zinsen <InlineMath math="6\% - 1\% = 5\%" />.
+- **<InlineMath math="30\%" /> Anzahlung**: Zinsen <InlineMath math="6\% - 2\% = 4\%" />.
+- **<InlineMath math="40\%" /> Anzahlung und höher**: Die Zinsen bleiben <InlineMath math="4\%" /> (da die maximale Reduzierung <InlineMath math="2\%" /> beträgt).
+
+Um den niedrigsten Zinssatz (<InlineMath math="4\%" />) zu erhalten, muss Jeje daher eine Mindestanzahlung von **<InlineMath math="30\%" />** leisten.
+
+#### Anzahlungsbetrag berechnen
+
+Der Preis des Laptops beträgt <InlineMath math="\text{Rp}12{.}000{.}000{,}00" />. Wir berechnen <InlineMath math="30\%" /> dieses Preises:
+
+<MathContainer>
+  <BlockMath math="\text{Anzahlung} = 30\% \times 12{.}000{.}000" />
+  <BlockMath math="\text{Anzahlung} = \frac{30}{100} \times 12{.}000{.}000" />
+  <BlockMath math="\text{Anzahlung} = 3{.}600{.}000" />
+</MathContainer>
+
+Die Anzahlung, die Jeje leisten muss, beträgt also <InlineMath math="\text{Rp}3{.}600{.}000{,}00" />.

@@ -1,6 +1,9 @@
 import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import {
+  ActiveAppLocaleSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectQuestionContent } from "#corpus/question-bank/content";
@@ -99,5 +102,32 @@ describe("tryout placement", () => {
     );
 
     expect(error).toMatchObject({ reason: "choices" });
+  });
+
+  it("builds a German candidate placement without changing active rows", async () => {
+    const fixture = await loadPlacementFixture();
+    const placement = await Effect.runPromise(
+      makeTryoutPlacement(
+        fixture.context,
+        {
+          ...fixture.question,
+          choices: {
+            ...fixture.question.choices,
+            de: [
+              { label: "Antwort A", value: true },
+              { label: "Antwort B", value: false },
+            ],
+          },
+        },
+        AppLocaleSchema.make("de")
+      )
+    );
+
+    expect(placement).toMatchObject({
+      answerArtifactLocale: "de",
+      appLocale: "de",
+      deliveryLanguage: "de",
+      questionArtifactLocale: "de",
+    });
   });
 });

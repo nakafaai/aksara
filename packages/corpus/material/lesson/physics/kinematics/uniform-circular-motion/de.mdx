@@ -1,0 +1,106 @@
+
+export const metadata = {
+  title: "Gleichförmige Kreisbewegung",
+  description:
+    "Untersuche die gleichförmige Kreisbewegung mithilfe von Winkelverschiebung, Umlaufzeit, Frequenz, tangentialem Geschwindigkeitsbetrag und Zentripetalbeschleunigung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-06-01",
+  subject: "Kinematik",
+};
+
+## Bei konstantem Geschwindigkeitsbetrag ändert sich die Richtung
+
+Bei einer gleichförmigen Kreisbewegung bewegt sich ein Objekt mit konstantem Geschwindigkeitsbetrag auf einer Kreisbahn. „Gleichförmig“ bedeutet nicht, dass alle Bewegungsgrößen unverändert bleiben. Der Betrag der Geschwindigkeit bleibt gleich, ihre Richtung ändert sich jedoch fortlaufend entlang der gekrümmten Bahn.
+
+Stell dir ein kleines Auto auf einer Rundstrecke vor. Es kann in jeder Sekunde dieselbe Strecke zurücklegen. Trotzdem zeigt seine Geschwindigkeit am rechten Rand der Strecke in eine andere Richtung als am oberen Rand.
+
+> Bei einer gleichförmigen Kreisbewegung bleibt der Geschwindigkeitsbetrag konstant. Die Geschwindigkeit ändert sich dennoch, weil sich ihre Richtung ändert.
+
+Der Geschwindigkeitsbetrag beschreibt nur, wie schnell sich das Objekt entlang der Bahn bewegt. Die Geschwindigkeit enthält zusätzlich die Bewegungsrichtung.
+
+<UniformCircularMotionLab
+  title={<>Auto auf einer kreisförmigen Strecke</>}
+  description={
+    <>
+      Verändere die Umlaufzeit und beobachte, wie das Auto jede Runde mit einem
+      anderen Geschwindigkeitsbetrag zurücklegt.
+  </>
+  }
+  labels={{
+    choosePeriod: "Umlaufzeit wählen",
+    period: <>Umlaufzeit</>,
+    radius: <>Radius</>,
+    speed: <>Geschwindigkeitsbetrag</>,
+    acceleration: <>Zentripetalbeschleunigung</>,
+    viewLabel: "Auto in gleichförmiger Kreisbewegung",
+  }}
+/>
+
+## Die Winkelverschiebung beschreibt die Position auf dem Kreis
+
+Bei geradliniger Bewegung wird die Position oft als Abstand vom Nullpunkt gelesen. Bei kreisförmiger Bewegung lässt sich die Position anhand eines Winkels leichter ablesen. Der vom Objekt überstrichene Winkel wird als Winkelverschiebung bezeichnet.
+
+Wenn sich ein Objekt von einer Referenzlinie aus bewegt und in der Zeit <InlineMath math="\Delta t" /> einen vorzeichenbehafteten Winkel <InlineMath math="\Delta\theta" /> überstreicht, beträgt seine mittlere Winkelgeschwindigkeit:
+
+<BlockMath math="\omega_{\text{mittel}}=\frac{\Delta\theta}{\Delta t}" />
+
+Das Symbol <InlineMath math="\omega" /> wird Omega gelesen. Bei einer gleichförmigen Kreisbewegung ist die Winkelgeschwindigkeit konstant und entspricht deshalb dem Mittelwert in jedem Zeitintervall. Ihre Einheit ist Radiant pro Sekunde, geschrieben als <InlineMath math="\text{rad/s}" />. Das Bogenmaß eignet sich hier besonders gut, weil eine volle Umdrehung <InlineMath math="2\pi" /> Radiant entspricht.
+
+## Umlaufzeit und Frequenz beschreiben dieselbe Runde
+
+Eine volle Umdrehung lässt sich auf zwei Arten beschreiben. Die Umlaufzeit <InlineMath math="T" /> ist die Zeit für eine Umdrehung. Die Frequenz <InlineMath math="f" /> gibt die Anzahl der Umdrehungen pro Sekunde an.
+
+Beide Größen sind Kehrwerte voneinander:
+
+<MathContainer>
+  <BlockMath math="f=\frac{1}{T}" />
+  <BlockMath math="\lvert\omega\rvert=\frac{2\pi}{T}=2\pi f" />
+</MathContainer>
+
+Wenn die Umlaufzeit kleiner ist, vollendet das Objekt eine Umdrehung schneller. Dadurch sind seine Frequenz und sein Winkelgeschwindigkeitsbetrag <InlineMath math="\lvert\omega\rvert" /> größer. Das Vorzeichen von <InlineMath math="\omega" /> erfasst getrennt davon die Drehrichtung.
+
+## Geschwindigkeit und Beschleunigung zeigen in verschiedene Richtungen
+
+An jedem Punkt der Kreisbahn zeigt die Geschwindigkeit tangential zum Kreis. Die Zentripetalbeschleunigung ist dagegen zum Mittelpunkt gerichtet. Beide Richtungen stehen senkrecht aufeinander. Deshalb kann sich ein Objekt mit konstantem Geschwindigkeitsbetrag bewegen und dennoch beschleunigt sein.
+
+Stell dir ein kleines Objekt auf der rechten Seite des Kreises vor, das sich gegen den Uhrzeigersinn bewegt. Seine Geschwindigkeit zeigt entlang der Bahn nach oben, während seine Beschleunigung nach links zum Mittelpunkt zeigt. Dieses Richtungspaar unterscheidet eine Kreisbewegung von einer gewöhnlichen geradlinigen Bewegung.
+
+## Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
+
+Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt entlang der Kreisbahn bewegt. Bei einem Radius <InlineMath math="r" /> hat eine volle Runde die Länge <InlineMath math="2\pi r" />. Da eine Umdrehung die Zeit <InlineMath math="T" /> benötigt, gilt:
+
+<MathContainer>
+  <BlockMath math="v=\frac{2\pi r}{T}" />
+  <BlockMath math="v=\lvert\omega\rvert r" />
+</MathContainer>
+
+Die Formel <InlineMath math="v=\lvert\omega\rvert r" /> zeigt, dass zwei Objekte mit demselben Winkelgeschwindigkeitsbetrag nicht unbedingt denselben tangentialen Geschwindigkeitsbetrag besitzen. Das weiter vom Mittelpunkt entfernte Objekt legt in derselben Zeit einen längeren Weg zurück und bewegt sich deshalb schneller.
+
+## Zentripetalbeschleunigung zeigt immer nach innen
+
+Auch bei konstantem Geschwindigkeitsbetrag dreht sich der Geschwindigkeitsvektor fortlaufend. Jede Änderung seiner Richtung erfordert eine Beschleunigung. Bei der gleichförmigen Kreisbewegung heißt sie Zentripetalbeschleunigung.
+
+<MathContainer>
+  <BlockMath math="a_c=\frac{v^2}{r}" />
+  <BlockMath math="a_c=\omega^2 r" />
+</MathContainer>
+
+Die Zentripetalbeschleunigung zeigt stets zum Mittelpunkt des Kreises. Sie wirkt also nicht entlang der Bewegungsbahn: Die Geschwindigkeit verläuft tangential, die Zentripetalbeschleunigung weist nach innen.
+
+## Eine volle Umdrehung eines Kleinwagens
+
+Angenommen, ein Kleinwagen bewegt sich auf einer Strecke mit dem Radius <InlineMath math="4\text{ m}" /> und macht eine Umdrehung in <InlineMath math="6\text{ s}" />.
+
+Seine Winkelgeschwindigkeit beträgt:
+
+<BlockMath math="\lvert\omega\rvert=\frac{2\pi}{T}=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />
+
+Sein tangentialer Geschwindigkeitsbetrag ist:
+
+<BlockMath math="v=\lvert\omega\rvert r=\frac{\pi}{3}(4)=\frac{4\pi}{3}\text{ m/s}\approx4{,}19\text{ m/s}" />
+
+Seine Zentripetalbeschleunigung beträgt:
+
+<BlockMath math="a_c=\frac{v^2}{r}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4{,}39\text{ m/s}^2" />
+
+Das Auto bewegt sich also mit einem konstanten Geschwindigkeitsbetrag von etwa <InlineMath math="4{,}19\text{ m/s}" />. Trotzdem beträgt seine Beschleunigung ungefähr <InlineMath math="4{,}39\text{ m/s}^2" />, weil sich die Richtung seiner Geschwindigkeit fortlaufend ändert.

@@ -1,0 +1,82 @@
+export const metadata = {
+  title: "Physikalische Größen",
+  description:
+    "Verstehe physikalische Größen, unterscheide Grundgrößen von abgeleiteten Größen und verbinde sie mit SI-Einheiten und Dimensionen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-25",
+  subject: "Messen in der Naturwissenschaft",
+};
+
+## Größen aus Messungen lesen
+
+Ein Größenwert wie <InlineMath math="0{,}60 \text{m}" /> besteht aus <InlineMath math="2" /> Teilen.
+
+<BlockMath math="\text{Größenwert} = \text{Zahlenwert} \times \text{Einheit}" />
+
+Der Zahlenwert <InlineMath math="0{,}60" /> sagt, *wie viel* gemessen wurde. Die Einheit <InlineMath math="\text{m}" /> nennt den *Vergleichsmaßstab*. Die physikalische Größe beschreibt die gemessene Eigenschaft eines Objekts oder Vorgangs, etwa Länge, Masse, Zeit, Temperatur oder Geschwindigkeit. Ein vollständiges Messergebnis kann außerdem die Messunsicherheit und weitere relevante Informationen enthalten.
+
+> Ohne benannte Größe hat eine Zahl keine physikalische Bedeutung. Ohne Einheit lässt sich ihr Maßstab nicht vergleichen.
+
+## Basis- und abgeleitete Größen
+
+Das **Internationale Einheitensystem**, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. Weitere Größen entstehen durch Kombinationen dieser Grundgrößen.
+
+| Grundgröße | Typisches Symbol | SI-Einheit | Dimension |
+| :------------ | :------------- | :------ | :-------- |
+| Länge | <InlineMath math="\ell,\ x,\ r" /> | <InlineMath math="\text{m}" /> | <InlineMath math="\mathrm{L}" /> |
+| Masse | <InlineMath math="m" /> | <InlineMath math="\text{kg}" /> | <InlineMath math="\mathrm{M}" /> |
+| Zeit | <InlineMath math="t" /> | <InlineMath math="\text{s}" /> | <InlineMath math="\mathrm{T}" /> |
+| Elektrischer Strom | <InlineMath math="I" /> | <InlineMath math="\text{A}" /> | <InlineMath math="\mathrm{I}" /> |
+| Thermodynamische Temperatur | <InlineMath math="T" /> | <InlineMath math="\text{K}" /> | <InlineMath math="\Theta" /> |
+| Stoffmenge | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
+| Lichtstärke | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
+
+Eine abgeleitete Größe entsteht, wenn Grundgrößen miteinander verknüpft werden. Eine Fläche ergibt sich zum Beispiel aus Länge mal Breite.
+
+<BlockMath math="\begin{aligned}
+A &= l \times w \\
+\text{Einheit von} A &= \text{m} \times \text{m} = \text{m}^2 \\
+\dim A &= \mathrm{L} \times \mathrm{L} = \mathrm{L}^2
+\end{aligned}" />
+
+Auch die Geschwindigkeit ist abgeleitet, denn sie verbindet einen Weg mit der dafür benötigten Zeit.
+
+<BlockMath math="\begin{aligned}
+v &= \frac{s}{t} \\
+\text{Einheit von} v &= \frac{\text{m}}{\text{s}} = \text{m s}^{-1} \\
+\dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
+\end{aligned}" />
+
+## Dimension als Code
+
+Eine Dimension zeigt in kompakter Form, aus welchen Grundgrößen eine Größe aufgebaut ist. Sie ersetzt keine Einheit, hilft aber dabei, Formeln auf Plausibilität zu prüfen.
+
+<Mermaid
+  title="Eine physikalische Größe prüfen"
+  description="Gehe von der gemessenen Größe aus und verbinde ihre Grundgrößen anschließend mit SI-Einheit und Dimension."
+  chart={`flowchart TD
+    A["Größe auswählen"] --> B["Grundgrößen bestimmen"]
+    B --> C["SI-Einheit notieren"]
+    B --> D["Dimension notieren"]
+    C --> E["Ergebnis prüfen"]
+    D --> E`}/>
+
+Die Fläche eines Schreibtisches und die eines Papierblatts können unterschiedliche Werte besitzen und gehören dennoch zur gleichen Größenart. Beide werden in der SI-Einheit <InlineMath math="\text{m}^2" /> angegeben und haben die Dimension <InlineMath math="\mathrm{L}^2" />.
+
+Ebenso können Länge, Breite, Höhe, Durchmesser, Radius, Abstand und Verschiebung alle in Längeneinheiten gemessen werden. Ihre gemeinsame Dimension ist <InlineMath math="\mathrm{L}" />.
+
+## Eine Fläche berechnen
+
+Ein Blatt Papier ist <InlineMath math="0{,}30 \text{m}" /> lang und <InlineMath math="0{,}20 \text{m}" /> breit. Seine Fläche beträgt:
+
+<BlockMath math="\begin{aligned}
+A &= l \times w \\
+&= 0{,}30 \text{m} \times 0{,}20 \text{m} \\
+&= 0{,}060 \text{m}^2
+\end{aligned}" />
+
+Der Wert <InlineMath math="0{,}060 \text{m}^2" /> ist der Größenwert der Fläche. Weil die Fläche aus <InlineMath math="2" /> Längengrößen aufgebaut ist, gehört sie zu den abgeleiteten Größen.
+
+Das Muster ist entscheidend: Sobald eine Einheit durch Rechenoperationen aus anderen Einheiten entsteht, gehört die zugehörige Größe nicht mehr zu den Grundgrößen. Wer Wert, Einheit und Dimension gemeinsam liest, erkennt leichter, ob eine Formel in sich stimmig ist.
+
+Die Begriffe folgen der JCGM-Definition des [Größenwerts](https://jcgm.bipm.org/vim/en/1.19.html) im International Vocabulary of Metrology.

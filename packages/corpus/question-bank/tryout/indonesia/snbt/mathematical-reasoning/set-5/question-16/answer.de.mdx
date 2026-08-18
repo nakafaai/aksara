@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-09",
+};
+
+Gesucht sind die Tage im April <InlineMath math="2024" />, an denen weder Lieferant B noch Lieferant C kommt.
+
+Der April hat insgesamt <InlineMath math="30\text{ Tage}" />.
+
+Ab dem <InlineMath math="1" />. April ergeben sich diese Liefertermine:
+
+<MathContainer>
+  <BlockMath math="B = \{1, 5, 9, 13, 17, 21, 25, 29\}" />
+  <BlockMath math="C = \{1, 8, 15, 22, 29\}" />
+</MathContainer>
+
+Die Vereinigung der Mengen <InlineMath math="B" /> und <InlineMath math="C" /> enthält alle Tage, an denen mindestens einer der beiden Lieferanten kommt:
+
+<MathContainer>
+  <BlockMath math="B \cup C = \{1, 5, 8, 9, 13, 15, 17, 21, 22, 25, 29\}" />
+</MathContainer>
+
+Damit gibt es an <InlineMath math="11\text{ Tagen}" /> mindestens eine Lieferung.
+
+Die Tage ohne Lieferung erhalten wir, indem wir diese elf Tage von allen Apriltagen abziehen:
+
+<MathContainer>
+  <BlockMath math="\text{Tage ohne Lieferung} = \text{Apriltage} - |B \cup C|" />
+  <BlockMath math="= 30 - 11" />
+  <BlockMath math="= 19 \text{ Tage}" />
+</MathContainer>
+
+An <InlineMath math="19\text{ Tagen}" /> erhält Pak Saiful somit weder von B noch von C eine Lieferung.

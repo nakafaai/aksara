@@ -1,0 +1,459 @@
+
+
+export const metadata = {
+  title: "Polynomgraph",
+  description: "Skizziere Polynomgraphen mit Wertetabellen und leite ihr Endverhalten aus Grad und Leitkoeffizient ab.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-04",
+  subject: "Polynom",
+};
+
+## Graphische Darstellung von Polynomfunktionen
+
+Der Graph einer Polynomfunktion zeigt, wie sich der Funktionswert verändert, wenn sich der Eingabewert <InlineMath math="x" /> ändert. Seine Form hängt vom Grad und von den Koeffizienten der Funktion ab.
+
+## Punktdarstellungsmethode
+
+Ein möglicher Einstieg besteht darin, mehrere Punkte <InlineMath math="(x,y)" /> zu berechnen, die auf dem Graphen liegen. Diese Punkte helfen beim Skizzieren, doch eine kleine Wertetabelle allein bestimmt noch nicht alle Eigenschaften des Graphen. Nullstellen, Extrempunkte und das Endverhalten liefern zusätzliche Kontrollen.
+
+**Schritte:**
+
+1.  Wähle mehrere unterschiedliche Werte für <InlineMath math="x" />.
+2.  Berechne zu jedem ausgewählten <InlineMath math="x" />-Wert den Funktionswert <InlineMath math="y = P(x)" />.
+3.  Trage die Wertepaare <InlineMath math="(x, y)" /> in eine Tabelle ein.
+4.  Markiere die Punkte im Koordinatensystem.
+5.  Verbinde sie mit einer glatten, stetigen Kurve.
+
+### Lineare Funktion Grad Eins
+
+Skizziere den Graphen der Funktion <InlineMath math="f(x) = 2x + 5" />.
+
+Wir wählen mehrere <InlineMath math="x" />-Werte und berechnen <InlineMath math="y" />:
+
+| <InlineMath math="x" /> | <InlineMath math="y = f(x)" /> | <InlineMath math="(x, y)" /> |
+| :-------- | :-------------- | :-------------- |
+| <InlineMath math="-3" /> | <InlineMath math="-1" /> | <InlineMath math="(-3, -1)" /> |
+| <InlineMath math="-2" /> | <InlineMath math="1" /> | <InlineMath math="(-2, 1)" /> |
+| <InlineMath math="-1" /> | <InlineMath math="3" /> | <InlineMath math="(-1, 3)" /> |
+| <InlineMath math="0" /> | <InlineMath math="5" /> | <InlineMath math="(0, 5)" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="(1, 7)" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="(2, 9)" /> |
+| <InlineMath math="3" /> | <InlineMath math="11" /> | <InlineMath math="(3, 11)" /> |
+
+Trage die Punkte ein und verbinde sie:
+
+<LineEquation
+  title={
+    <>
+      Diagramm von <InlineMath math="f(x) = 2x + 5" />
+    </>
+  }
+  description={<>Graph einer linearen Funktion vom Grad <InlineMath math="1" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 15]}
+  data={[
+    {
+      points: Array.from({ length: 7 }, (_, i) => {
+        const x = -3 + i;
+        return { x, y: 2 * x + 5, z: 0 };
+      }),
+      color: "#ca8a04",
+    },
+  ]}
+/>
+
+### Quadratische Funktion Grad Zwei
+
+Skizziere den Graphen der Funktion <InlineMath math="g(x) = x^2 - 2x - 3" />.
+
+Wertetabelle:
+
+| <InlineMath math="x" /> | <InlineMath math="y = g(x)" /> | <InlineMath math="(x, y)" /> |
+| :-------- | :-------------- | :-------------- |
+| <InlineMath math="-2" /> | <InlineMath math="5" /> | <InlineMath math="(-2, 5)" /> |
+| <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="(-1, 0)" /> |
+| <InlineMath math="0" /> | <InlineMath math="-3" /> | <InlineMath math="(0, -3)" /> |
+| <InlineMath math="1" /> | <InlineMath math="-4" /> | <InlineMath math="(1, -4)" /> |
+| <InlineMath math="2" /> | <InlineMath math="-3" /> | <InlineMath math="(2, -3)" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="(3, 0)" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="(4, 5)" /> |
+
+Trage die Punkte ein und verbinde sie zu einer glatten Parabel:
+
+<LineEquation
+  title={
+    <>
+      Diagramm von <InlineMath math="g(x) = x^2 - 2x - 3" />
+    </>
+  }
+  description={<>Graph einer quadratischen Funktion vom Grad <InlineMath math="2" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+  data={[
+    {
+      points: Array.from({ length: 7 }, (_, i) => {
+        const x = -2 + i;
+        return { x, y: x * x - 2 * x - 3, z: 0 };
+      }),
+      color: "#0891b2",
+    },
+  ]}
+/>
+
+### Kubische Funktion Grad Drei
+
+Skizziere den Graphen der Funktion <InlineMath math="h(x) = x^3 + 3x^2 - 4" />.
+
+Wertetabelle:
+
+| <InlineMath math="x" /> | <InlineMath math="y = h(x)" /> | <InlineMath math="(x, y)" /> |
+| :-------- | :-------------- | :--------------- |
+| <InlineMath math="-4" /> | <InlineMath math="-20" /> | <InlineMath math="(-4, -20)" /> |
+| <InlineMath math="-3" /> | <InlineMath math="-4" /> | <InlineMath math="(-3, -4)" /> |
+| <InlineMath math="-2" /> | <InlineMath math="0" /> | <InlineMath math="(-2, 0)" /> |
+| <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="(-1, -2)" /> |
+| <InlineMath math="0" /> | <InlineMath math="-4" /> | <InlineMath math="(0, -4)" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="(1, 0)" /> |
+| <InlineMath math="2" /> | <InlineMath math="16" /> | <InlineMath math="(2, 16)" /> |
+
+Trage die Punkte ein und verbinde sie mit einer glatten Kurve:
+
+<LineEquation
+  title={
+    <>
+      Diagramm von <InlineMath math="h(x) = x^3 + 3x^2 - 4" />
+    </>
+  }
+  description={<>Graph einer kubischen Funktion vom Grad <InlineMath math="3" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 12]}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        // Mehr Punkte für eine glatte Kurve
+        const x = -4 + i * 0.1;
+        return { x, y: x * x * x + 3 * x * x - 4, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+  ]}
+/>
+
+## Allgemeine Eigenschaften von Polynomgraphen
+
+Graphen von Polynomfunktionen sind **glatt**, haben also keine scharfen Ecken, und **stetig**, besitzen also keine Sprünge oder Lücken. Ihre grobe Form wird stark vom **Grad** des Polynoms beeinflusst.
+
+- **Grad** <InlineMath math="0" />: <InlineMath math="P(x) = c" />. Der Graph ist eine horizontale Gerade.
+- **Grad** <InlineMath math="1" />: <InlineMath math="P(x) = ax + b" />. Der Graph ist eine Gerade.
+- **Grad** <InlineMath math="2" />: <InlineMath math="P(x) = ax^2 + bx + c" />. Der Graph ist eine Parabel.
+- **Grad** <InlineMath math="3" />: <InlineMath math="P(x) = ax^3 + \dots" />. Seine beiden Enden zeigen in entgegengesetzte vertikale Richtungen, und er kann höchstens zwei Extrempunkte besitzen.
+- **Grad** <InlineMath math="4" />: Der Graph kann bis zu drei Extrempunkte besitzen.
+- **Grad** <InlineMath math="5" />: Der Graph kann bis zu vier Extrempunkte besitzen.
+
+Im Allgemeinen kann der Graph einer Polynomfunktion vom Grad <InlineMath math="n" /> die <InlineMath math="x" />-Achse **höchstens** <InlineMath math="n\text{-mal}" /> schneiden und besitzt **höchstens** <InlineMath math="n-1" /> Extrempunkte (Hoch- oder Tiefpunkte).
+
+## Endverhalten
+
+Das **Endverhalten** beschreibt, in welche Richtung der Graph für sehr große positive und negative Werte von <InlineMath math="x" /> verläuft, also für <InlineMath math="x \to \infty" /> und <InlineMath math="x \to -\infty" />.
+
+Das Endverhalten wird **ausschließlich** durch den **Leitterm** <InlineMath math="a_n x^n" /> bestimmt:
+
+1.  **Grad <InlineMath math="n" /> (gerade oder ungerade)**
+2.  **Vorzeichen des führenden Koeffizienten <InlineMath math="a_n" /> (positiv oder negativ)**
+
+Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
+
+1.  **<InlineMath math="n" /> gerade, <InlineMath math="a_n > 0" />:**
+
+    - Für <InlineMath math="x \to \infty" /> gilt <InlineMath math="y \to \infty" /> (steigt nach rechts <InlineMath math="\nearrow" />)
+    - Für <InlineMath math="x \to -\infty" /> gilt <InlineMath math="y \to \infty" /> (steigt nach links <InlineMath math="\nwarrow" />)
+    - Beispiele: <InlineMath math="y = x^2" />, <InlineMath math="y = x^4" />
+
+      <LineEquation
+        title={
+          <>
+            Diagramm von <InlineMath math="y = x^2" /> (Gerade, Positiv)
+          </>
+        }
+        description="Die Grafik steigt nach links und rechts."
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 7 }, (_, i) => {
+              const x = -3 + i;
+              return { x, y: x * x, z: 0 };
+            }),
+            color: "#65a30d",
+          },
+        ]}
+      />
+
+2.  **<InlineMath math="n" /> gerade, <InlineMath math="a_n < 0" />:**
+
+    - Für <InlineMath math="x \to \infty" /> gilt <InlineMath math="y \to -\infty" /> (fällt nach rechts <InlineMath math="\searrow" />)
+    - Für <InlineMath math="x \to -\infty" /> gilt <InlineMath math="y \to -\infty" /> (fällt nach links <InlineMath math="\swarrow" />)
+    - Beispiele: <InlineMath math="y = -x^2" />, <InlineMath math="y = -x^6" />
+
+      <LineEquation
+        title={
+          <>
+            Diagramm von <InlineMath math="y = -x^2" /> (Gerade, negativ)
+          </>
+        }
+        description="Die Grafik fällt nach links und rechts."
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 7 }, (_, i) => {
+              const x = -3 + i;
+              return { x, y: -(x * x), z: 0 };
+            }),
+            color: "#e11d48",
+          },
+        ]}
+      />
+
+3.  **<InlineMath math="n" /> ungerade, <InlineMath math="a_n > 0" />:**
+
+    - Für <InlineMath math="x \to \infty" /> gilt <InlineMath math="y \to \infty" /> (steigt nach rechts <InlineMath math="\nearrow" />)
+    - Für <InlineMath math="x \to -\infty" /> gilt <InlineMath math="y \to -\infty" /> (fällt nach links <InlineMath math="\swarrow" />)
+    - Beispiele: <InlineMath math="y = x" />, <InlineMath math="y = x^3" />, <InlineMath math="y = x^5" />
+
+      <LineEquation
+        title={
+          <>
+            Graph von <InlineMath math="y = x^3" /> (ungerade, positiver Leitkoeffizient)
+          </>
+        }
+        description="Die Grafik fällt nach links und steigt nach rechts."
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 41 }, (_, i) => {
+              const x = -3 + i * 0.15;
+              return { x, y: x * x * x, z: 0 };
+            }),
+            color: "#0284c7",
+            showPoints: false,
+          },
+        ]}
+      />
+
+4.  **<InlineMath math="n" /> ungerade, <InlineMath math="a_n < 0" />:**
+
+    - Für <InlineMath math="x \to \infty" /> gilt <InlineMath math="y \to -\infty" /> (fällt nach rechts <InlineMath math="\searrow" />)
+    - Für <InlineMath math="x \to -\infty" /> gilt <InlineMath math="y \to \infty" /> (steigt nach links <InlineMath math="\nwarrow" />)
+    - Beispiele: <InlineMath math="y = -x" />, <InlineMath math="y = -x^3" />
+
+      <LineEquation
+        title={
+          <>
+            Graph von <InlineMath math="y = -x^3" /> (ungerade, negativer Leitkoeffizient)
+          </>
+        }
+        description="Die Grafik steigt nach links und fällt nach rechts."
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 41 }, (_, i) => {
+              const x = -3 + i * 0.15;
+              return { x, y: -(x * x * x), z: 0 };
+            }),
+            color: "#d97706",
+            showPoints: false,
+          },
+        ]}
+      />
+
+### Das Endverhalten nutzen
+
+Am Endverhalten lässt sich die grobe Form eines Polynomgraphen erkennen, ohne ihn vollständig zeichnen zu müssen.
+
+**Anwendungsbeispiel:**
+
+Bestimme das Endverhalten der folgenden Funktionen:
+
+1.  <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
+
+    - Leitterm: <InlineMath math="x^4" />
+    - Grad <InlineMath math="n=4" /> (Gerade)
+    - Führender Koeffizient <InlineMath math="a_n=1" /> (Positiv)
+    - Endverhalten: Steigt nach links (<InlineMath math="\nwarrow" />), Steigt nach rechts (<InlineMath math="\nearrow" />)
+
+    <ContentBlock>
+      <LineEquation
+        title={
+          <>
+            Diagramm von <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
+          </>
+        }
+        description={
+          <>
+            Endverhalten: <InlineMath math="\nwarrow" />{" "}
+            <InlineMath math="\nearrow" />
+          </>
+        }
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 51 }, (_, i) => {
+              const x = -2.5 + i * (4.3 / 50);
+              const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
+              return { x, y, z: 0 };
+            }),
+            color: "#0d9488",
+            showPoints: false,
+          },
+        ]}
+      />
+    </ContentBlock>
+
+2.  <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
+
+    - Leitterm: <InlineMath math="-x^3" />
+    - Grad <InlineMath math="n=3" /> (ungerade)
+    - Führender Koeffizient <InlineMath math="a_n=-1" /> (negativ)
+    - Endverhalten: Steigt nach links (<InlineMath math="\nwarrow" />), fällt nach rechts (<InlineMath math="\searrow" />)
+
+    <ContentBlock>
+      <LineEquation
+        title={
+          <>
+            Diagramm von <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
+          </>
+        }
+        description={
+          <>
+            Endverhalten: <InlineMath math="\nwarrow" />{" "}
+            <InlineMath math="\searrow" />
+          </>
+        }
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 51 }, (_, i) => {
+              const x = -2.5 + i * 0.1;
+              const y = -(x ** 3) + 2 * x ** 2 - x + 1;
+              return { x, y, z: 0 };
+            }),
+            color: "#ea580c",
+            showPoints: false,
+          },
+        ]}
+      />
+    </ContentBlock>
+
+3.  <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
+
+    - Leitterm: <InlineMath math="-x^6" />
+    - Grad <InlineMath math="n=6" /> (Gerade)
+    - Führender Koeffizient <InlineMath math="a_n=-1" /> (negativ)
+    - Endverhalten: Fällt nach links (<InlineMath math="\swarrow" />), Fällt nach rechts (<InlineMath math="\searrow" />)
+
+    <ContentBlock>
+      <LineEquation
+        title={
+          <>
+            Diagramm von{" "}
+            <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
+          </>
+        }
+        description={
+          <>
+            Endverhalten: <InlineMath math="\swarrow" />{" "}
+            <InlineMath math="\searrow" />
+          </>
+        }
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 111 }, (_, i) => {
+              const x = -2.5 + i * (4.1 / 110);
+              const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
+              return { x, y, z: 0 };
+            }),
+            color: "#c026d3",
+            showPoints: false,
+          },
+        ]}
+      />
+    </ContentBlock>
+
+4.  <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
+
+    - Leitterm: <InlineMath math="25x^5" />
+    - Grad <InlineMath math="n=5" /> (ungerade)
+    - Führender Koeffizient <InlineMath math="a_n=25" /> (Positiv)
+    - Endverhalten: Fällt nach links (<InlineMath math="\swarrow" />), Steigt nach rechts (<InlineMath math="\nearrow" />)
+
+    <ContentBlock>
+      <LineEquation
+        title={
+          <>
+            Diagramm von{" "}
+            <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
+          </>
+        }
+        description={
+          <>
+            Endverhalten: <InlineMath math="\swarrow" />{" "}
+            <InlineMath math="\nearrow" />
+          </>
+        }
+        showZAxis={false}
+        cameraPosition={[0, 0, 15]}
+        data={[
+          {
+            points: Array.from({ length: 71 }, (_, i) => {
+              const x = -1.2 + i * 0.035;
+              const y =
+                25 * x ** 5 -
+                20 * x ** 4 -
+                26 * x ** 3 +
+                12 * x ** 2 +
+                9 * x -
+                1;
+              return { x, y, z: 0 };
+            }),
+            color: "#4f46e5",
+            showPoints: false,
+          },
+        ]}
+      />
+    </ContentBlock>
+
+Der Leitterm reicht also aus, um den Verlauf des Graphen an beiden Enden vorherzusagen.
+
+## Übung
+
+Betrachte die Funktion
+
+<BlockMath math="p(x)=-(x-2)^2(x+1)" />
+
+Bestimme Grad, Leitkoeffizient, reelle Nullstellen, das Verhalten an jeder Nullstelle und das Endverhalten. Beschreibe anschließend die Merkmale, die eine korrekte Skizze zeigen muss.
+
+### Ausführliche Lösung
+
+Das Produkt der Leitterme ist <InlineMath math="-x^3" />. Daher hat das Polynom den Grad <InlineMath math="3" /> und den Leitkoeffizienten <InlineMath math="-1" />.
+
+Aus der Faktorform lassen sich die Nullstellen direkt ablesen:
+
+- <InlineMath math="x=-1" /> hat die Vielfachheit <InlineMath math="1" />. Dort schneidet der Graph die <InlineMath math="x" />-Achse.
+- <InlineMath math="x=2" /> hat die Vielfachheit <InlineMath math="2" />. Dort berührt der Graph die <InlineMath math="x" />-Achse und kehrt um.
+
+Da der Grad ungerade und der Leitkoeffizient negativ ist, gilt
+
+<MathContainer>
+  <BlockMath math="x\to-\infty \implies p(x)\to\infty" />
+  <BlockMath math="x\to\infty \implies p(x)\to-\infty" />
+</MathContainer>
+
+Als weiterer Kontrollpunkt gilt <InlineMath math="p(0)=-4" />. Eine korrekte Skizze steigt also ganz links, schneidet die Achse bei <InlineMath math="(-1,0)" />, verläuft durch <InlineMath math="(0,-4)" />, berührt die Achse bei <InlineMath math="(2,0)" /> und fällt ganz rechts.

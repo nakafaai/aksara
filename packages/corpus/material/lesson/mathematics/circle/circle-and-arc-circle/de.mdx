@@ -1,0 +1,585 @@
+export const metadata = {
+  title: "Kreis und Kreisbogen",
+  description:
+    "Kreise aus ihrem festen Abstand aufbauen und Kreisbögen, Mittelpunkt- und Umfangswinkel, Bogenlänge sowie Sektorfläche an Abbildungen und vollständig gerechneten Aufgaben verknüpfen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Kreis",
+};
+
+
+
+## Was ist ein Kreis?
+
+Ein Kreis ist die Menge aller Punkte einer Ebene, die von einem Punkt den gleichen festen Abstand haben. Dieser Punkt ist der **Kreismittelpunkt**, der feste Abstand ist der **Radius**.
+
+Liegt der Mittelpunkt bei <InlineMath math="O(a,b)" /> und beträgt der Radius <InlineMath math="r" />, folgt aus der Abstandsformel die Kreisgleichung:
+
+<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+
+### Bestandteile eines Kreises
+
+Die folgende Abbildung ordnet Mittelpunkt, Radius, Durchmesser und Sehne ein:
+
+<LineEquation
+  title="Bestandteile eines Kreises"
+  description="Mittelpunkt, Radius, Durchmesser und Sehne in einem Kreis."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: "Kreis", at: 0, offset: [1.5, -1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] },
+        { text: <InlineMath math="r" />, at: 0, offset: [1.5, 0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      labels: [{ text: "Durchmesser", at: 0, offset: [1.25, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 2.12, y: 2.12, z: 0 },
+        { x: -2.12, y: 2.12, z: 0 },
+      ],
+      color: "#d97706",
+      labels: [{ text: "Sehne", at: 0, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+**Diese vier Bestandteile sollten zuerst erkannt werden:**
+
+- **Mittelpunkt (<InlineMath math="O" />)**: fester Bezugspunkt für jeden Radius
+- **Radius (<InlineMath math="r" />)**: Strecke vom Mittelpunkt zu einem Punkt auf dem Kreis
+- **Durchmesser (<InlineMath math="d" />)**: Sehne durch den Mittelpunkt, daher <InlineMath math="d = 2r" />
+- **Sehne**: Strecke zwischen zwei Punkten auf dem Kreis
+
+## Kreisbögen
+
+Ein Kreisbogen ist ein Teil des Kreisumfangs, der durch zwei Punkte auf dem Kreis begrenzt wird. Ein Bogen wird mit einem gebogenen Symbol über den Buchstaben gekennzeichnet, zum Beispiel <InlineMath math="\overset{\frown}{AB}" />.
+
+### Arten von Bögen
+
+<LineEquation
+  title="Kleiner und großer Bogen"
+  description="Visualisierung des Unterschieds zwischen kleinem und großem Kreisbogen."
+  data={[
+    {
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: "Kleiner Bogen", at: 45, offset: [1, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 3, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: true,
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = ((i + 90) * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [
+        {
+          text: "Großer Bogen",
+          at: 135,
+          offset: [-1, -1, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 3, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+**Bogenarten nach ihrer Länge:**
+
+- **Kleiner Bogen**: Bogen, dessen Länge weniger als die Hälfte des Kreisumfangs beträgt
+- **Großer Bogen**: Bogen, dessen Länge mehr als die Hälfte des Kreisumfangs beträgt
+- **Halbkreis**: Bogen, dessen Länge genau der Hälfte des Kreisumfangs entspricht
+
+## Mittelpunktswinkel und Umfangswinkel
+
+### Mittelpunktswinkel
+
+Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beiden Schenkel sind Radien.
+
+<LineEquation
+  title={
+    <>
+      Mittelpunktswinkel <InlineMath math="\angle AOB" />
+    </>
+  }
+  description="Zwei Radien bilden einen Winkel mit Scheitelpunkt im Kreismittelpunkt."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2.12, y: 2.12, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 0.8 * Math.cos(angle),
+          y: 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+**Eigenschaften des Mittelpunktswinkels:**
+
+- Das Maß des Mittelpunktswinkels entspricht dem Maß des Bogens, den er umfasst
+- Hat der Mittelpunktswinkel das Maß <InlineMath math="\alpha" />, dann besitzt der zugehörige Bogen ebenfalls das Gradmaß <InlineMath math="\alpha" />.
+
+### Umfangswinkel
+
+Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf dem Kreis. Seine beiden Schenkel sind Sehnen.
+
+<LineEquation
+  title={
+    <>
+      Umfangswinkel <InlineMath math="\angle ACB" />
+    </>
+  }
+  description="Der Scheitelpunkt liegt auf der Kreislinie, die Schenkel sind Sehnen."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: -2.12, y: -2.12, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 2.12, y: 2.12, z: 0 },
+        { x: -2.12, y: -2.12, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2.12, y: 2.12, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [1, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+## Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel
+
+<MathContainer>
+  <BlockMath math="\text{Umfangswinkel} = \frac{1}{2} \times \text{Mittelpunktswinkel}" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+</MathContainer>
+
+Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, ist der Umfangswinkel halb so groß wie der Mittelpunktswinkel.
+
+**Beispielanwendung:**
+
+<LineEquation
+  title="Mittelpunktswinkel und Umfangswinkel"
+  description={
+    <>
+      Wenn <InlineMath math="\angle AOB = 80^\circ" />, dann{" "}
+      <InlineMath math="\angle ACB = 40^\circ" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: -2.12, y: -2.12, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
+        { x: -2.12, y: -2.12, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 81 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const angle = (i * 4 * Math.PI) / 180;
+        return {
+          x: 0.8 * Math.cos(angle),
+          y: 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+## Bogenlänge und Sektorfläche
+
+### Bogenlänge
+
+Ein Bogen umfasst denselben Anteil des Kreisumfangs wie sein Mittelpunktswinkel von einer vollen Drehung. Für einen Mittelpunktswinkel von <InlineMath math="\alpha" /> Grad gilt:
+
+<MathContainer>
+  <BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+  <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
+</MathContainer>
+
+Dabei gilt:
+
+- <InlineMath math="l" /> = Bogenlänge
+- <InlineMath math="\alpha" /> = Maß des Mittelpunktswinkels in Grad
+- <InlineMath math="r" /> = Kreisradius
+
+### Sektorfläche
+
+Ein Kreissektor ist die von zwei Radien und dem dazwischenliegenden Bogen begrenzte Fläche. Sein Flächenanteil entspricht dem Anteil des Mittelpunktswinkels an einer vollen Drehung.
+
+<MathContainer>
+  <BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+  <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
+</MathContainer>
+
+Die Abbildung zeigt die beiden Radien, den zugehörigen Bogen und den von ihnen eingeschlossenen Sektor.
+
+<LineEquation
+  title="Kreissektor"
+  description="Von zwei Radien und einem Bogen begrenzter Bereich."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1.5, y: 2.6, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        ...Array.from({ length: 61 }, (_, i) => {
+          const angle = (i * Math.PI) / 180;
+          return {
+            x: 3 * Math.cos(angle),
+            y: 3 * Math.sin(angle),
+            z: 0,
+          };
+        }),
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: "Sektor", at: 30, offset: [0, 0, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+## Berechnung der Bogenlänge und der Sektorfläche
+
+Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Der zugehörige Mittelpunktswinkel beträgt <InlineMath math="90^\circ" />. Berechne:
+
+1. Bogenlänge
+2. Sektorfläche
+
+**Lösung:**
+
+Gegeben: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
+
+1. Bogenlänge:
+
+   <MathContainer>
+     <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
+     <BlockMath math="l = \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
+     <BlockMath math="l = \frac{1}{4} \times 28\pi" />
+     <BlockMath math="l = 7\pi \text{ cm} \approx 21{,}99 \text{ cm}" />
+   </MathContainer>
+
+2. Sektorfläche:
+
+   <MathContainer>
+     <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
+     <BlockMath math="L = \frac{90^\circ}{360^\circ} \times \pi \times 14^2" />
+     <BlockMath math="L = \frac{1}{4} \times 196\pi" />
+     <BlockMath math="L = 49\pi \text{ cm}^2 \approx 153{,}94 \text{ cm}^2" />
+   </MathContainer>
+
+## Übungsaufgaben
+
+1. Ein Kreis hat den Durchmesser <InlineMath math="20 \text{ cm}" />. Ein Umfangswinkel über einem Bogen misst <InlineMath math="30^\circ" />. Bestimme den Mittelpunktswinkel über demselben Bogen.
+
+2. In einem Kreis mit Mittelpunkt <InlineMath math="O" /> und Radius <InlineMath math="21 \text{ cm}" /> gehört zum Bogen <InlineMath math="AB" /> der Mittelpunktswinkel <InlineMath math="120^\circ" />. Berechne:
+
+   - Bogenlänge <InlineMath math="AB" />
+   - Sektorfläche <InlineMath math="AOB" />
+
+3. Zwei Umfangswinkel stehen über demselben Bogen. Einer misst <InlineMath math="45^\circ" />. Wie groß ist der andere?
+
+### Ausführliche Lösungen
+
+#### 1. Den Mittelpunktswinkel bestimmen
+
+Der Durchmesser wird für diese Aufgabe nicht benötigt. Entscheidend ist, dass beide Winkel über demselben Bogen liegen. Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel:
+
+<BlockMath math="\text{Mittelpunktswinkel}=2(30^\circ)=60^\circ" />
+
+Der Mittelpunktswinkel beträgt also <InlineMath math="60^\circ" />.
+
+#### 2. Bogenlänge und Sektorfläche bestimmen
+
+Der Winkel <InlineMath math="120^\circ" /> entspricht einem Drittel der vollen Drehung, denn <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Dieser Anteil wird zuerst auf den Umfang und danach auf die Kreisfläche angewendet.
+
+<MathContainer>
+  <BlockMath math="l=\frac{120^\circ}{360^\circ}(2\pi)(21)=14\pi\text{ cm}\approx43{,}98\text{ cm}" />
+  <BlockMath math="L=\frac{120^\circ}{360^\circ}\pi(21)^2=147\pi\text{ cm}^2\approx461{,}81\text{ cm}^2" />
+</MathContainer>
+
+Damit beträgt die Bogenlänge <InlineMath math="14\pi\text{ cm}" /> und die Sektorfläche <InlineMath math="147\pi\text{ cm}^2" />.
+
+#### 3. Zwei Umfangswinkel vergleichen
+
+Umfangswinkel über demselben Bogen sind gleich groß. Da der erste Winkel <InlineMath math="45^\circ" /> misst, beträgt auch der zweite <InlineMath math="45^\circ" />.
+
+## Quellen
+
+- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)
+- [OpenStax Precalculus 2e: Key Equations](https://openstax.org/books/precalculus-2e/pages/5-key-equations)
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)

@@ -1,0 +1,98 @@
+
+export const metadata = {
+  title: "Gleichförmige geradlinige Bewegung",
+  description:
+    "Untersuche eine geradlinige Bewegung mit konstanter Geschwindigkeit anhand von Positionsmarken, Diagrammen und Rechnungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Bewegung ohne Änderung der Geschwindigkeit
+
+Bei einer gleichförmigen geradlinigen Bewegung bewegt sich ein Objekt auf einer geraden Bahn mit konstanter Geschwindigkeit. Sowohl der Betrag als auch die Richtung der Geschwindigkeit bleiben unverändert.
+
+Stelle dir einen kleinen Schienenwagen auf einem geraden Gleis vor. Legt er in jeder Zeitspanne von <InlineMath math="1\text{ s}" /> genau <InlineMath math="2\text{ m}" /> zurück und in der folgenden Sekunde wieder <InlineMath math="2\text{ m}" />, bewegt er sich gleichförmig und geradlinig.
+
+> Bei einer gleichförmigen geradlinigen Bewegung bewegt sich das Objekt weiter. Unverändert bleibt seine Geschwindigkeit.
+
+<BlockMath math="\begin{aligned}
+\Delta x &= v\Delta t \\
+x(t) &= x(t_0)+v(t-t_0)
+\end{aligned}" />
+
+Die Symbole <InlineMath math="x(t_0)" /> und <InlineMath math="x(t)" /> bezeichnen die Positionen zum Anfangs- und Endzeitpunkt, <InlineMath math="v" /> die konstante Geschwindigkeit, <InlineMath math="\Delta t=t-t_0" /> die verstrichene Zeit und <InlineMath math="\Delta x" /> die Verschiebung.
+
+## Positionsmarkierungen mit gleichem Abstand
+
+Wird die Position eines Objekts in gleichen Zeitabständen aufgezeichnet, entstehen bei gleichförmiger geradliniger Bewegung gleichmäßig verteilte Marken. Ihre Abstände zeigen unmittelbar, wie weit sich das Objekt in jedem Zeitintervall bewegt.
+
+Angenommen, die Anfangsposition ist <InlineMath math="x_0=1\text{ m}" /> und die Geschwindigkeit ist <InlineMath math="+2\text{ m/s}" />. Das bedeutet, dass die Position jede Sekunde um <InlineMath math="2\text{ m}" /> zunimmt.
+
+| Zeit | Position |
+| --- | --- |
+| <InlineMath math="0\text{ s}" /> | <InlineMath math="1\text{ m}" /> |
+| <InlineMath math="1\text{ s}" /> | <InlineMath math="3\text{ m}" /> |
+| <InlineMath math="2\text{ s}" /> | <InlineMath math="5\text{ m}" /> |
+| <InlineMath math="3\text{ s}" /> | <InlineMath math="7\text{ m}" /> |
+| <InlineMath math="4\text{ s}" /> | <InlineMath math="9\text{ m}" /> |
+| <InlineMath math="5\text{ s}" /> | <InlineMath math="11\text{ m}" /> |
+
+Gleich bleibt die Differenz zwischen aufeinanderfolgenden Positionen, nicht der Positionswert selbst. Von <InlineMath math="1" /> bis <InlineMath math="3" />, von <InlineMath math="3" /> bis <InlineMath math="5" /> und so weiter beträgt der Unterschied stets <InlineMath math="2\text{ m}" />.
+
+<UniformLinearMotionLab
+  title={<>Positionsmarken bei gleichförmiger Bewegung</>}
+  description={
+    <>
+    Verändere die konstante Geschwindigkeit und beobachte, dass die Abstände
+    zwischen aufeinanderfolgenden Sekunden jeweils gleich bleiben.
+  </>
+  }
+  labels={{
+    chooseSpeed: "Konstante Geschwindigkeit wählen",
+    speed: <>Konstante Geschwindigkeit</>,
+    positionStep: <>Zeitabstand der Marken</>,
+    stepDistance: <>Abstand zwischen Markierungen</>,
+    duration: <>Dauer der Bewegung</>,
+    viewLabel: "Positionsmarken einer gleichförmigen geradlinigen Bewegung",
+  }}
+/>
+
+## Die Endposition ohne Raten berechnen
+
+Angenommen, ein Objekt startet bei <InlineMath math="x_0=1\text{ m}" /> und bewegt sich mit konstanter Geschwindigkeit <InlineMath math="v=2\text{ m/s}" /> für <InlineMath math="5\text{ s}" /> nach rechts. Seine Verschiebung beträgt:
+
+<BlockMath math="\begin{aligned}
+\Delta x &= v\Delta t \\
+&= 2(5) \\
+&= 10\text{ m}
+\end{aligned}" />
+
+Seine endgültige Position ist:
+
+<BlockMath math="\begin{aligned}
+x_t &= x_0+\Delta x \\
+&= 1+10 \\
+&= 11\text{ m}
+\end{aligned}" />
+
+Diese Berechnung funktioniert, weil sich die Geschwindigkeit nicht ändert. Wenn sich die Geschwindigkeit ändert, können wir nicht einen festen Wert von <InlineMath math="v" /> für die gesamte Bewegung verwenden.
+
+## Gleichförmige Bewegung in Diagrammen erkennen
+
+Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagrammen erkennen. Das Geschwindigkeits-Zeit-Diagramm zeigt, ob sich die Geschwindigkeit ändert. Das Positions-Zeit-Diagramm zeigt, wie sich die Position mit der Zeit entwickelt.
+
+| Diagramm | Form in gleichmäßiger linearer Bewegung | Bedeutung |
+| --- | --- | --- |
+| Geschwindigkeit über der Zeit | Waagerechte Linie | Geschwindigkeit ist konstant |
+| Position über der Zeit | Geneigte Gerade | Position ändert sich gleichmäßig |
+
+Die vorzeichenbehaftete Fläche zwischen dem Geschwindigkeits-Zeit-Diagramm und der Zeitachse entspricht der Verschiebung. Bei konstanter Geschwindigkeit ist diese Fläche ein Rechteck, also <InlineMath math="\Delta x=v\Delta t" />. Eine Fläche unterhalb der Zeitachse trägt eine negative Verschiebung bei.
+
+In einem Positions-Zeit-Diagramm entspricht die Steigung der Geschwindigkeit. Ihr Vorzeichen gibt die Richtung an, während eine größere absolute Steilheit einen größeren Geschwindigkeitsbetrag bedeutet. Bei gleichförmiger geradliniger Bewegung bleibt die Linie gerade, weil sich ihre Steigung vom Anfang bis zum Ende nicht ändert.
+
+## Ein konstanter Geschwindigkeitsbetrag ist nicht immer eine konstante Geschwindigkeit
+
+Eine gleichförmige geradlinige Bewegung verlangt eine konstante Geschwindigkeit, nicht nur einen konstanten Geschwindigkeitsbetrag. Der Betrag beschreibt lediglich, wie schnell sich das Objekt bewegt. Die Geschwindigkeit enthält zusätzlich die Bewegungsrichtung.
+
+Ein Auto, das mit konstantem Geschwindigkeitsbetrag auf einer Kreisstraße fährt, führt keine gleichförmige geradlinige Bewegung aus, denn die Richtung seiner Geschwindigkeit ändert sich fortlaufend. Ein Schienenwagen, der sich mit konstantem Betrag und konstanter Richtung geradeaus bewegt, erfüllt beide Bedingungen.

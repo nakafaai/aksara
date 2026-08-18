@@ -13,14 +13,6 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         id: "aplikasi-limit-fungsi",
       },
       slug: "application-of-limit-function",
-      translations: {
-        en: {
-          title: "Application of Limit Function",
-        },
-        id: {
-          title: "Aplikasi Limit Fungsi",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -28,14 +20,6 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         id: "konsep-limit-fungsi",
       },
       slug: "concept-of-limit-function",
-      translations: {
-        en: {
-          title: "Concept of Limit Function",
-        },
-        id: {
-          title: "Konsep Limit Fungsi",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -43,14 +27,6 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         id: "limit-fungsi-aljabar",
       },
       slug: "limit-of-algebraic-function",
-      translations: {
-        en: {
-          title: "Limit of Algebraic Function",
-        },
-        id: {
-          title: "Limit Fungsi Aljabar",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -58,14 +34,6 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         id: "limit-fungsi-trigonometri",
       },
       slug: "limit-of-trigonometric-function",
-      translations: {
-        en: {
-          title: "Limit of Trigonometric Function",
-        },
-        id: {
-          title: "Limit Fungsi Trigonometri",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -73,14 +41,6 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         id: "sifat-limit-fungsi",
       },
       slug: "properties-of-limit-function",
-      translations: {
-        en: {
-          title: "Properties of Limit Function",
-        },
-        id: {
-          title: "Sifat Limit Fungsi",
-        },
-      },
     },
   ],
   slug: "limit",

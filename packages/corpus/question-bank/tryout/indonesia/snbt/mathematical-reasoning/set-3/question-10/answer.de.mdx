@@ -1,0 +1,42 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+**Berechnung der Gesamtzahl der Bälle**
+
+Der Beutel enthält <InlineMath math="4" /> grüne Bälle und <InlineMath math="5" /> schwarze Bälle.
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtzahl der Bälle} = 4 + 5 = 9" />
+</MathContainer>
+
+**Wahrscheinlichkeit für eine grüne Kugel beim ersten Zug**
+
+Die Wahrscheinlichkeit für eine grüne Kugel beim ersten Zug ist die Anzahl der grünen Kugeln geteilt durch die Gesamtzahl aller Kugeln.
+
+<MathContainer>
+  <BlockMath math="P(G_1) = \frac{4}{9}" />
+</MathContainer>
+
+**Wahrscheinlichkeit für eine grüne Kugel beim zweiten Zug**
+
+Da **ohne Zurücklegen** gezogen wird, bleiben nach einer zuerst gezogenen grünen Kugel noch <InlineMath math="3" /> grüne von insgesamt <InlineMath math="8" /> Kugeln übrig.
+
+<MathContainer>
+  <BlockMath math="P(G_2 \mid G_1) = \frac{3}{8}" />
+</MathContainer>
+
+**Berechnung der Gesamtwahrscheinlichkeit**
+
+Die Wahrscheinlichkeit, dass beide Kugeln grün sind, ist das Produkt aus der Wahrscheinlichkeit des ersten Zuges und der bedingten Wahrscheinlichkeit des zweiten Zuges:
+
+<MathContainer>
+  <BlockMath math="P(G_1 \cap G_2) = P(G_1) \times P(G_2 \mid G_1)" />
+  <BlockMath math="P(G_1 \cap G_2) = \frac{4}{9} \times \frac{3}{8}" />
+  <BlockMath math="P(G_1 \cap G_2) = \frac{12}{72}" />
+  <BlockMath math="P(G_1 \cap G_2) = \frac{1}{6}" />
+</MathContainer>
+
+Damit beträgt die Wahrscheinlichkeit, zwei grüne Kugeln zu ziehen, <InlineMath math="\frac{1}{6}" />.

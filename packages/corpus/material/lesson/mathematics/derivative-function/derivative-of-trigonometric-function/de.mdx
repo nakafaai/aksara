@@ -1,0 +1,152 @@
+export const metadata = {
+    title: "Ableitungen trigonometrischer Funktionen",
+    description: "Die sechs grundlegenden trigonometrischen Funktionen im Bogenmaß ableiten und Summen-, Produkt- sowie Quotientenregel in Beispielen anwenden.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Ableitungsfunktionen",
+};
+
+## Ableitungsregeln für trigonometrische Funktionen
+
+Für trigonometrische Funktionen gelten dieselben Summen-, Produkt-, Quotienten- und Kettenregeln wie für algebraische Funktionen. Neu sind lediglich die grundlegenden Ableitungen, von denen wir ausgehen.
+
+Alle folgenden Formeln setzen voraus, dass Winkel im **Bogenmaß** angegeben sind. Im Gradmaß käme ein zusätzlicher konstanter Faktor hinzu.
+
+## Grundlegende trigonometrische Ableitungen
+
+Die Formeln für Sinus und Kosinus folgen direkt aus der Grenzwertdefinition der Ableitung. Die übrigen vier lassen sich anschließend mit trigonometrischen Identitäten sowie der Produkt- oder Quotientenregel herleiten.
+
+Dies sind die Ableitungen der sechs grundlegenden trigonometrischen Funktionen:
+
+1.  **Ableitung des Sinus**:
+
+    <BlockMath math="f(x) = \sin x \implies f'(x) = \cos x" />
+
+2.  **Ableitung des Kosinus**:
+
+    <BlockMath math="f(x) = \cos x \implies f'(x) = -\sin x" />
+
+3.  **Ableitung des Tangens**:
+
+    <BlockMath math="f(x) = \tan x \implies f'(x) = \sec^2 x" />
+
+4.  **Ableitung des Kotangens**:
+
+    <BlockMath math="f(x) = \cot x \implies f'(x) = -\csc^2 x" />
+
+5.  **Ableitung des Sekans**:
+
+    <BlockMath math="f(x) = \sec x \implies f'(x) = \sec x \tan x" />
+
+6.  **Ableitung des Kosekans**:
+
+    <BlockMath math="f(x) = \csc x \implies f'(x) = -\csc x \cot x" />
+
+## Anwenden der Regeln auf trigonometrische Funktionen
+
+Die folgenden Beispiele verbinden diese Formeln mit den bekannten Ableitungsregeln.
+
+### Kombination aus Algebra und Trigonometrie
+
+Bestimme die Ableitung von <InlineMath math="y = 2 \sin x + 5x" />.
+
+**Lösung:**
+
+Mithilfe der Summenregel können wir diese Funktion Term für Term differenzieren.
+
+<MathContainer>
+    <BlockMath math="y' = \frac{d}{dx}(2 \sin x) + \frac{d}{dx}(5x)" />
+    <BlockMath math="y' = 2(\cos x) + 5(1)" />
+    <BlockMath math="y' = 2 \cos x + 5" />
+</MathContainer>
+
+### Verwendung der Produktregel
+
+Bestimme die Ableitung von <InlineMath math="y = 2 \sin x \tan x" />.
+
+**Lösung:**
+
+Verwende die Produktregel <InlineMath math="y' = u'v + uv'" />.
+
+Seien <InlineMath math="u = 2 \sin x" /> und <InlineMath math="v = \tan x" />.
+
+Dann <InlineMath math="u' = 2 \cos x" /> und <InlineMath math="v' = \sec^2 x" />.
+
+<MathContainer>
+    <BlockMath math="y' = (2 \cos x)(\tan x) + (2 \sin x)(\sec^2 x)" />
+    <BlockMath math="y' = (2 \cos x)\left(\frac{\sin x}{\cos x}\right) + (2 \sin x)(\sec^2 x)" />
+    <BlockMath math="y' = 2 \sin x + 2 \sin x \sec^2 x" />
+</MathContainer>
+
+### Verwendung der Quotientenregel
+
+Bestimme auf dem Definitionsbereich <InlineMath math="\sin x \ne 0" /> die Ableitung von <InlineMath math="y = \frac{1 + \cos x}{\sin x}" />.
+
+**Lösung:**
+
+Verwende die Quotientenregel <InlineMath math="y' = \frac{u'v - uv'}{v^2}" />.
+
+Seien <InlineMath math="u = 1 + \cos x" /> und <InlineMath math="v = \sin x" />.
+
+Dann <InlineMath math="u' = -\sin x" /> und <InlineMath math="v' = \cos x" />.
+
+<MathContainer>
+    <BlockMath math="y' = \frac{(-\sin x)(\sin x) - (1 + \cos x)(\cos x)}{(\sin x)^2}" />
+    <BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
+    <BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
+    <BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x} \quad (\text{Pythagoräische Identität})" />
+    <BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)} \quad (\text{Faktorisierung})" />
+    <BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
+</MathContainer>
+
+Die vereinfachte Formel gilt weiterhin nur auf dem ursprünglichen Definitionsbereich. Werte mit <InlineMath math="\sin x=0" /> bleiben ausgeschlossen, auch wenn der letzte Ausdruck dort definiert zu sein scheint.
+
+## Übungen
+
+1. Bestimme die erste Ableitung von <InlineMath math="f(x) = 4x^3 - 5 \cos x" />.
+2. Bestimme die erste Ableitung von <InlineMath math="f(x) = \sin x \cos x" />.
+
+### Ausführliche Lösungen
+
+1.  **Lösung:**
+
+    Verwende die Differenzregel und leite beide Terme einzeln ab.
+
+    **Schritt** <InlineMath math="1" />: Ersten Term ableiten
+
+    Die Ableitung von <InlineMath math="4x^3" /> nach der Potenzregel ist <InlineMath math="3 \cdot 4x^{3-1} = 12x^2" />.
+
+    **Schritt** <InlineMath math="2" />: Zweiten Term ableiten
+
+    Die Ableitung von <InlineMath math="-5 \cos x" /> ist <InlineMath math="-5(-\sin x) = 5 \sin x" />.
+
+    **Schritt** <InlineMath math="3" />: Ergebnisse zusammenführen
+
+    <BlockMath math="f'(x) = 12x^2 + 5 \sin x" />
+
+    Die Ableitung der Funktion ist also <InlineMath math="12x^2 + 5 \sin x" />.
+
+2.  **Lösung:**
+
+    Verwende die Produktregel <InlineMath math="f'(x) = u'v + uv'" />.
+
+    **Schritt** <InlineMath math="1" />: <InlineMath math="u" />, <InlineMath math="v" />, <InlineMath math="u'" /> und <InlineMath math="v'" /> bestimmen
+
+    Seien <InlineMath math="u = \sin x" /> und <InlineMath math="v = \cos x" />.
+
+    Dann <InlineMath math="u' = \cos x" /> und <InlineMath math="v' = -\sin x" />.
+
+    **Schritt** <InlineMath math="2" />: Produktregel anwenden
+
+    <MathContainer>
+        <BlockMath math="f'(x) = (\cos x)(\cos x) + (\sin x)(-\sin x)" />
+        <BlockMath math="f'(x) = \cos^2 x - \sin^2 x" />
+    </MathContainer>
+
+    **Schritt** <InlineMath math="3" />: Eine trigonometrische Identität verwenden (optional)
+
+    Das Ergebnis kann auch mit der doppelten Winkelidentität <InlineMath math="\cos(2x) = \cos^2 x - \sin^2 x" /> vereinfacht werden.
+
+    <BlockMath math="f'(x) = \cos(2x)" />
+
+    Die Ableitung der Funktion ist also <InlineMath math="\cos(2x)" />.

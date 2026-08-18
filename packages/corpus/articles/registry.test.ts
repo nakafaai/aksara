@@ -1,36 +1,18 @@
 import { globSync } from "node:fs";
 import { resolve } from "node:path";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-
+import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
 import { decodeArticleRegistry } from "#corpus/articles/registry";
+import { articleSource, germanArticleCatalog } from "#corpus/test/article";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-
-/** Builds one reviewed source so failure tests vary only one identity. */
-function articleSource() {
-  return {
-    category: {
-      key: "politics",
-      rendererDomain: "politics",
-      routeSlugs: { en: "politics", id: "politik" },
-      titles: { en: "Politics", id: "Politik" },
-    },
-    references: [
-      {
-        authors: "Reviewed Author",
-        title: "Reviewed Reference",
-        year: 2024,
-      },
-    ],
-    routeSlugs: {
-      en: "dynastic-politics-asian-values",
-      id: "politik-dinasti-dan-nilai-asia",
-    },
-    slug: "dynastic-politics-asian-values",
-    sourceRoot: "articles/politics/dynastic-politics/asian-values",
-  };
-}
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
@@ -42,7 +24,13 @@ describe("article registry", () => {
     const entries = await Effect.runPromise(decodeArticleRegistry());
     const authoredPaths = globSync("packages/corpus/articles/**/*.mdx", {
       cwd: corpusRoot,
-    }).sort();
+    })
+      .filter((sourcePath) =>
+        ACTIVE_APP_LOCALES.some((locale) =>
+          sourcePath.endsWith(`/${locale}.mdx`)
+        )
+      )
+      .sort();
 
     expect(entries).toHaveLength(14);
     expect(
@@ -95,6 +83,25 @@ describe("article registry", () => {
     );
   });
 
+  it("projects permanent German overlays through the activation-equivalent seam", async () => {
+    const entries = await Effect.runPromise(
+      decodeArticleRegistry(
+        [articleSource()],
+        germanArticleCatalog(),
+        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+      )
+    );
+
+    expect(entries).toHaveLength(1);
+    expect(entries[0]).toMatchObject({
+      categoryTitle: "Politik",
+      route: {
+        appLocale: "de",
+        publicPath: "articles/politik/dynastische-politik-und-asiatische-werte",
+      },
+    });
+  });
+
   it("expands a second test category with its source-owned renderer", async () => {
     const entries = await Effect.runPromise(
       decodeArticleRegistry([
@@ -129,18 +136,26 @@ describe("article registry", () => {
 
   it("maps malformed catalogs and invalid projected paths to typed failures", async () => {
     const malformed = await rejectRegistry(null);
-    const group = "a".repeat(300);
-    const name = "b".repeat(300);
-    const invalidPath = await rejectRegistry([
-      {
-        ...articleSource(),
-        slug: `${group}-${name}`,
-        sourceRoot: `articles/politics/${group}/${name}`,
-      },
+    const invalidSource = {
+      ...articleSource(),
+      slug: `${"a".repeat(300)}-${"b".repeat(300)}`,
+      sourceRoot: `articles/politics/${"a".repeat(300)}/${"b".repeat(300)}`,
+    };
+    const [invalidPath, invalidPreview] = await Promise.all([
+      rejectRegistry([invalidSource]),
+      Effect.runPromise(
+        decodeArticlePreviewEntry(
+          CorpusSourcePathSchema.make(
+            `packages/corpus/${invalidSource.sourceRoot}/en.mdx`
+          ),
+          [invalidSource]
+        ).pipe(Effect.flip)
+      ),
     ]);
 
     expect(malformed._tag).toBe("ArticleCatalogError");
     expect(invalidPath._tag).toBe("ArticleRegistryError");
+    expect(invalidPreview._tag).toBe("ArticleRegistryError");
   });
 
   it("rejects duplicate canonical slugs across distinct pair groupings", async () => {
@@ -228,7 +243,7 @@ describe("article registry", () => {
   });
 
   it("rejects locale route collisions across stable article identities", async () => {
-    const error = await rejectRegistry([
+    const active = await rejectRegistry([
       articleSource(),
       {
         ...articleSource(),
@@ -237,8 +252,7 @@ describe("article registry", () => {
         sourceRoot: "articles/politics/second-test/article",
       },
     ]);
-
-    expect(error).toMatchObject({
+    expect(active).toMatchObject({
       _tag: "ArticleRouteCollisionError",
       appLocale: "en",
       conflictingContentKey: "articles/politics/dynastic-politics-asian-values",

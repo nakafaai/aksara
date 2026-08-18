@@ -1,0 +1,254 @@
+
+
+export const metadata = {
+  title: "Dreidimensionaler Vektor",
+  description: "Lerne dreidimensionale Vektoren mithilfe interaktiver Darstellungen kennen und untersuche ihre Komponenten, ihren Betrag und ihre wichtigsten Operationen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-12",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Dreidimensionale Vektoren verstehen
+
+Ein dreidimensionaler Vektor besitzt im Raum einen Betrag und eine Richtung. Während ein zweidimensionaler Vektor in einer Ebene mit <InlineMath math="x" />- und <InlineMath math="y" />-Achse liegt, hat ein räumlicher Vektor Komponenten entlang der drei Koordinatenachsen <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" />.
+
+<Vector3d
+  title="Vektor im dreidimensionalen Raum"
+  description={
+    <>
+      Darstellung eines Vektors im Raum mit den Komponenten{" "}
+      <InlineMath math="x" />, <InlineMath math="y" />, und{" "}
+      <InlineMath math="z" />.
+    </>
+  }
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [3, 4, 2],
+      color: "#7c3aed",
+      label: <InlineMath math="v" />,
+    },
+  ]}
+  cameraPosition={[8, 6, 8]}
+/>
+
+## Darstellung dreidimensionaler Vektoren
+
+### Notation dreidimensionaler Vektoren
+
+Dreidimensionale Vektoren lassen sich auf verschiedene Arten schreiben:
+
+1. Buchstabennotation mit einem Pfeil darüber: <InlineMath math="\vec{a}" /> oder <InlineMath math="\overrightarrow{PQ}" />
+2. Komponentennotation: <InlineMath math="(a_x, a_y, a_z)" /> oder <InlineMath math="(a_1, a_2, a_3)" />
+3. Basisnotation: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
+
+### Komponenten dreidimensionaler Vektoren
+
+Ein Vektor im Raum besitzt drei skalare Koordinatenkomponenten. Multiplizieren wir jeden Skalar mit dem Einheitsvektor seiner Achse, erhalten wir die zugehörige Vektorprojektion:
+
+<BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
+
+dabei gilt:
+
+- <InlineMath math="a_x" /> ist die skalare Komponente entlang der <InlineMath math="x" />-Achse, <InlineMath math="a_x\vec{i}" /> die zugehörige Vektorprojektion
+- <InlineMath math="a_y" /> ist die skalare Komponente entlang der <InlineMath math="y" />-Achse, <InlineMath math="a_y\vec{j}" /> die zugehörige Vektorprojektion
+- <InlineMath math="a_z" /> ist die skalare Komponente entlang der <InlineMath math="z" />-Achse, <InlineMath math="a_z\vec{k}" /> die zugehörige Vektorprojektion
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> sind die Einheitsvektoren auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse
+
+<ContentBlock>
+  <Vector3d
+    title="Komponenten eines dreidimensionalen Vektors"
+    description={
+      <>
+        Dreidimensionaler Vektor mit Komponenten auf der <InlineMath math="x" />-,
+        <InlineMath math="y" />- und <InlineMath math="z" />-Achse.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [4, 0, 0],
+        color: "#9333ea",
+        label: <InlineMath math="a_x" />,
+      },
+      {
+        from: [0, 0, 0],
+        to: [0, 3, 0],
+        color: "#0d9488",
+        label: <InlineMath math="a_y" />,
+      },
+      {
+        from: [0, 0, 0],
+        to: [0, 0, 2],
+        color: "#d97706",
+        label: <InlineMath math="a_z" />,
+      },
+      {
+        from: [0, 0, 0],
+        to: [4, 3, 2],
+        color: "#db2777",
+        label: <InlineMath math="a" />,
+      },
+    ]}
+    cameraPosition={[8, 6, 8]}
+  />
+</ContentBlock>
+
+## Betrag dreidimensionaler Vektoren
+
+Der Betrag oder die Länge eines dreidimensionalen Vektors <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> wird mit folgender Formel berechnet:
+
+<BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
+
+**Beispiel**:
+
+Für <InlineMath math="\vec{a} = (3, 4, 5)" /> ergibt sich der Betrag von <InlineMath math="\vec{a}" /> zu:
+
+<BlockMath math="|\vec{a}| = \sqrt{3^2 + 4^2 + 5^2} = \sqrt{9 + 16 + 25} = \sqrt{50} = 5\sqrt{2}" />
+
+## Operationen auf dreidimensionalen Vektoren
+
+### Addition und Subtraktion von Vektoren
+
+Die Addition und Subtraktion dreidimensionaler Vektoren erfolgt durch Addition oder Subtraktion der entsprechenden Komponenten.
+
+Für <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> und <InlineMath math="\vec{b} = (b_x, b_y, b_z)" /> gilt:
+
+<MathContainer>
+  <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
+  <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
+</MathContainer>
+
+<ContentBlock>
+  <Vector3d
+    title="Vektoraddition in drei Dimensionen"
+    description={
+      <>
+        Die Addition der Vektoren <InlineMath math="a" /> und{" "}
+        <InlineMath math="b" /> ergibt den Vektor{" "}
+        <InlineMath math="c = a + b" />.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [2, 3, 1],
+        color: "#0d9488",
+        label: <InlineMath math="a" />,
+        labelPosition: "middle",
+      },
+      {
+        from: [2, 3, 1],
+        to: [5, 4, 3],
+        color: "#ea580c",
+        label: <InlineMath math="b" />,
+        labelPosition: "middle",
+      },
+      {
+        from: [0, 0, 0],
+        to: [5, 4, 3],
+        color: "#ca8a04",
+        label: <InlineMath math="c=a + b" />,
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Skalare Multiplikation von Vektoren
+
+Die Multiplikation eines Skalars <InlineMath math="k" /> mit einem Vektor <InlineMath math="\vec{a}" /> vervielfacht dessen Betrag mit <InlineMath math="|k|" />. Ist <InlineMath math="\vec{a}" /> nicht null, bleibt die Richtung für <InlineMath math="k > 0" /> gleich und kehrt sich für <InlineMath math="k < 0" /> um.
+
+<BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+<ContentBlock>
+  <Vector3d
+    title="Skalare Multiplikation eines Vektors"
+    description={
+      <>
+        Darstellung der Skalarmultiplikation mit <InlineMath math="k" /> für den
+        Vektor <InlineMath math="a" />, wobei <InlineMath math="k = 2" /> gilt.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [2, 1, 2],
+        color: "#059669",
+        label: <InlineMath math="a" />,
+      },
+      {
+        from: [0, 0, 0],
+        to: [4, 2, 4],
+        color: "#c026d3",
+        label: <InlineMath math="2a" />,
+      },
+    ]}
+    cameraPosition={[2, 4, 10]}
+  />
+</ContentBlock>
+
+### Skalarprodukt
+
+Das Skalarprodukt zweier Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> ist eine Zahl und wird so berechnet:
+
+<BlockMath math="\vec{a} \cdot \vec{b} = a_x b_x + a_y b_y + a_z b_z = |\vec{a}||\vec{b}|\cos\theta" />
+
+wobei <InlineMath math="\theta" /> der Winkel zwischen den beiden Vektoren ist.
+
+Das Skalarprodukt hat folgende Eigenschaften:
+
+1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (kommutativ)
+2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> genau dann, wenn <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> orthogonal sind; sind beide nicht null, stehen ihre geometrischen Richtungen senkrecht aufeinander
+3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+
+### Kreuzprodukt
+
+Das Kreuzprodukt zweier Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> ist ein Vektor, dessen Skalarprodukt mit jedem Faktor null ist:
+
+<BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
+
+<BlockMath math="\vec{a} \times \vec{b} = (a_y b_z - a_z b_y, a_z b_x - a_x b_z, a_x b_y - a_y b_x)" />
+
+Der Betrag des Kreuzprodukts beträgt:
+
+<BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
+
+wobei <InlineMath math="\theta" /> der Winkel zwischen den beiden Vektoren ist.
+
+Wenn <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" /> gilt, steht seine Richtung senkrecht auf beiden Faktoren und folgt der Rechte-Hand-Regel von <InlineMath math="\vec{a}" /> zu <InlineMath math="\vec{b}" />. Ist einer der Faktoren der Nullvektor oder sind beide Faktoren parallel, ist das Kreuzprodukt <InlineMath math="\vec{0}" /> und besitzt deshalb keine geometrische Richtung.
+
+<Vector3d
+  title="Kreuzprodukt von Vektoren"
+  description={<>Die Rechte-Hand-Richtung von <InlineMath math="\vec{a}\times\vec{b}" />, senkrecht zu beiden nicht parallelen Vektoren.</>}
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [2, 0, 0],
+      color: "#0d9488",
+      label: <InlineMath math="a" />,
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 2, 0],
+      color: "#e11d48",
+      label: <InlineMath math="b" />,
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 0, 4],
+      color: "#65a30d",
+      label: <InlineMath math="a \times b" />,
+    },
+  ]}
+  cameraPosition={[2, 6, 8]}
+/>
+
+## Anwendungen dreidimensionaler Vektoren
+
+Dreidimensionale Vektoren haben viele Anwendungen in verschiedenen Bereichen:
+
+1. **Physik**: Zur Darstellung von Kraft, Geschwindigkeit, Beschleunigung und Impuls im dreidimensionalen Raum
+2. **Computergrafik**: Zur Darstellung der Position und Bewegung von Objekten im dreidimensionalen Raum
+3. **Robotik**: Zur Steuerung von Robotern in ihrem dreidimensionalen Arbeitsraum
+4. **Navigation**: Zur Bestimmung von Richtung und Entfernung im dreidimensionalen Raum
+5. **Maschinenbau**: Für Strukturanalyse und Strömungsmechanik

@@ -1,0 +1,280 @@
+export const metadata = {
+    title: "String-Objekte",
+    description: "Lerne, wie Python-Strings Text darstellen, über Quellcodezeilen verteilt und als Literale oder Variablen verknüpft werden.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-16",
+    subject: "KI-Programmierung",
+};
+
+## String-Objekte definieren
+
+In Python ist ein String eine unveränderliche Folge von Unicode-Zeichen. Ihre Reihenfolge ist wichtig: Jedes Zeichen hat eine Position, die etwa beim Indizieren und Slicen verwendet wird.
+
+Strings haben drei wichtige Merkmale:
+
+1. **Geordnete Zeichenfolge:** Jedes Zeichen hat eine feste Position.
+2. **Als Literal geschrieben:** Einfache oder doppelte Anführungszeichen begrenzen den Text im Quellcode.
+3. **Typ `str`:** Python speichert den entstandenen Wert als String.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_definition.py",
+      code: `# Beispielzeichenfolge mit einfachen Anführungszeichen
+>>> 'hello'
+'hello'
+
+# Beispielzeichenfolge mit doppelten Anführungszeichen
+>>> "hello"
+'hello'
+
+# String mit print() ausgeben
+>>> print("hello")
+hello
+
+# Zeichenfolge in einer Variablen speichern
+>>> text = 'hello'
+>>> text
+'hello'`
+    }
+  ]}
+/>
+
+Die interaktive Eingabe zeigt die Repräsentation eines Strings. Python kann dafür einfache oder doppelte Anführungszeichen wählen, damit sie gut lesbar bleibt. `print()` gibt dagegen den Stringwert selbst ohne die Begrenzungszeichen des Literals aus.
+
+## Leere Strings und str()-Funktion
+
+Python kann leere Strings erzeugen und Werte anderer Datentypen in Strings umwandeln.
+
+### Leere Strings
+
+Ein leerer String enthält kein Zeichen und hat die Länge null. Du schreibst ihn als ein Paar Anführungszeichen ohne Inhalt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "empty_string.py",
+      code: `# Leeren String erstellen
+>>> empty_text = ""
+>>> empty_text
+''`
+    }
+  ]}
+/>
+
+### str() Funktion
+
+Die Funktion `str()` fragt die gut lesbare Stringdarstellung eines Werts ab. Verwende sie, wenn ein Text eine Zahl oder einen anderen Wert enthalten soll, der noch kein String ist.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "str_function.py",
+      code: `# Zahl in Zeichenfolge umwandeln
+>>> str(5)
+'5'
+
+# Gleitkommazahl in einen String umwandeln
+>>> xstr = str(3.4)
+>>> print(xstr)
+3.4`
+    }
+  ]}
+/>
+
+## Mehrzeilige Zeichenfolgen
+
+Python unterscheidet zwischen Quellcode, der über mehrere Zeilen verteilt ist, und tatsächlichen Zeilenumbrüchen in einem String.
+
+### Zeilenfortsetzungszeichen
+
+Ein Backslash am Ende einer physischen Quellcodezeile setzt die Anweisung ausdrücklich fort. Im Beispiel enthält die fortgesetzte Anweisung zwei benachbarte Literale, die Python ohne Zeilenumbruch im Wert verbindet.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "line_continuation.py",
+      code: `# Anweisung mit einem Backslash fortsetzen
+>>> text = 'xxx' \\
+...     'yyy'
+
+>>> text
+'xxxyyy'
+
+>>> print(text)
+xxxyyy`
+    }
+  ]}
+/>
+
+### Zeilenfortsetzung mit Klammern
+
+Innerhalb von Klammern setzt Python die Anweisung implizit fort. Das ist meist leichter zu lesen und sicherer zu bearbeiten als ein ausdrücklicher Backslash.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "parentheses_continuation.py",
+      code: `# Anweisung innerhalb von Klammern fortsetzen
+>>> text = (
+...     'xxx'
+...     'yyy'
+... )
+
+>>> text
+'xxxyyy'
+
+>>> print(text)
+xxxyyy`
+    }
+  ]}
+/>
+
+### Dreifache Anführungszeichen
+
+Literale mit drei Anführungszeichen können tatsächliche Zeilenumbrüche speichern. Diese erscheinen als `\n`-Zeichen im Stringwert.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "triple_quotes.py",
+      code: `# String mit drei Anführungszeichen und echten Zeilenumbrüchen
+>>> text = '''xxx
+... yyy
+... zzz'''
+
+>>> text
+'xxx\\nyyy\\nzzz'
+
+>>> print(text)
+xxx
+yyy
+zzz`
+    }
+  ]}
+/>
+
+Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, mit der sich der enthaltene Text am klarsten und mit möglichst wenigen Escape-Zeichen schreiben lässt.
+
+## String-Literal-Verkettung
+
+Python kann Stringliterale bereits beim Lesen des Quellcodes oder Stringwerte während der Programmausführung verbinden.
+
+### Angrenzende Literalverkettung
+
+Benachbarte Stringliterale werden verbunden, während Python den Quellcode liest. Diese Schreibweise funktioniert nur mit Literalen, nicht mit Variablen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "literal_concatenation.py",
+      code: `# Benachbarte Zeichenfolgenliterale werden automatisch kombiniert
+>>> 'hello ' 'world'
+'hello world'
+
+# Mehrere Strings gleichzeitig kombinieren
+>>> "hel" 'lo' " world" '!'
+'hello world!'`
+    }
+  ]}
+/>
+
+### Plus-Operator
+
+Der Operator `+` verkettet zwei Stringwerte zur Laufzeit.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "plus_operator.py",
+      code: `# Verwendung des +-Operators zur Verkettung
+>>> 'hello ' + 'world'
+'hello world'`
+    }
+  ]}
+/>
+
+### Multiplikationsoperator
+
+Der Operator `*` wiederholt einen String so oft, wie es die angegebene ganze Zahl bestimmt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "multiplication_operator.py",
+      code: `# String mit dem *-Operator wiederholen
+>>> 3 * '+o+'
+'+o++o++o+'`
+    }
+  ]}
+/>
+
+## String-Variablenverkettung
+
+Variablen enthalten Werte und keine Literaltoken. Deshalb brauchen sie beim Verknüpfen einen Operator.
+
+### Operatoren verwenden
+
+Verwende `+`, um Stringwerte zu verketten, und `*` mit einer ganzen Zahl, um einen String zu wiederholen. Variablennamen ohne Operator nebeneinander zu schreiben, ist ungültige Syntax.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_concatenation.py",
+      code: `# String-Variablen definieren
+>>> text1 = 'hello'
+>>> text2 = 'world!'
+>>> text3 = '+o+'
+>>> a = 3
+
+# Kombination mit +-Operator
+>>> text1 + ' world!'
+'hello world!'
+
+>>> 'hello ' + text2
+'hello world!'
+
+>>> text1 + ' ' + text2
+'hello world!'
+
+# Wiederholen mit *-Operator
+>>> a * text3
+'+o++o++o+'
+
+>>> text3 * a
+'+o++o++o+'`
+    }
+  ]}
+/>
+
+### Häufige Fehler
+
+Die folgenden Formen scheitern schon beim Einlesen des Codes, weil zwischen der Variablen und dem nächsten Ausdruck kein Operator steht.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "concatenation_errors.py",
+      code: `# FEHLER: Variablen können nicht ohne Operatoren kombiniert werden
+>>> text1 'world'
+SyntaxError ...
+
+>>> 'hello ' text2
+SyntaxError ...
+
+>>> text1 text2
+SyntaxError ...`
+    }
+  ]}
+/>

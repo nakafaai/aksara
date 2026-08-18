@@ -1,0 +1,212 @@
+
+export const metadata = {
+  title: "Zentrische Streckung",
+  description: "Konstruiere zentrische Streckungen aus Zentrum und Streckfaktor und überprüfe Vergrößerungen und Verkleinerungen anhand von Grafiken und ausgearbeiteten Aufgaben.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Zentrische Streckung verstehen
+
+Eine zentrische Streckung verändert die Größe eines geometrischen Objekts, ohne seine Form zu verändern. Die Lage jedes Bildpunktes wird durch das Streckzentrum und den Streckfaktor bestimmt.
+
+### Formale Definition der zentrischen Streckung
+
+Gegeben seien ein Punkt <InlineMath math="C" /> als Streckzentrum und ein Streckfaktor <InlineMath math="k \neq 0" />. Die zentrische Streckung eines Punktes <InlineMath math="A" /> bezüglich des Zentrums <InlineMath math="C" /> mit dem Faktor <InlineMath math="k" />, bezeichnet durch <InlineMath math="D_{(C,k)}" />, bildet <InlineMath math="A" /> auf den Bildpunkt <InlineMath math="A' = D_{(C,k)}(A)" /> ab. Dabei gilt <InlineMath math="\vec{CA'} = k \cdot \vec{CA}" />.
+
+Das bedeutet: Der Vektor vom Streckzentrum zum Bildpunkt ist das <InlineMath math="k\text{-Fache}" /> des Vektors vom Streckzentrum zum ursprünglichen Punkt.
+
+- Wenn <InlineMath math="|k| > 1" />, handelt es sich um eine Vergrößerung.
+- Wenn <InlineMath math="0 < |k| < 1" />, handelt es sich um eine Verkleinerung.
+- Wenn <InlineMath math="k > 0" />, liegen Ausgangspunkt und Bildpunkt auf derselben Seite des Streckzentrums.
+- Wenn <InlineMath math="k < 0" />, liegen der Ausgangspunkt und sein Bild auf gegenüberliegenden Seiten des Streckzentrums. Die Richtung vom Zentrum kehrt sich dabei um.
+
+## Zentrische Streckung mit dem Ursprung als Zentrum
+
+Wenn das Streckzentrum der Ursprung <InlineMath math="O(0,0)" /> ist und der Streckfaktor <InlineMath math="k" /> ist, dann ist für einen Punkt <InlineMath math="A(x,y)" /> sein Bild <InlineMath math="A'(x',y')" /> gegeben durch:
+
+<MathContainer>
+  <BlockMath math="x' = kx" />
+  <BlockMath math="y' = ky" />
+</MathContainer>
+
+### Einen Punkt vom Ursprung aus strecken
+
+Der Punkt <InlineMath math="A(1,2)" /> wird mit dem Zentrum <InlineMath math="(0,0)" /> und dem Streckfaktor <InlineMath math="2" /> gestreckt. Bestimme seinen Bildpunkt.
+
+Hier: <InlineMath math="x=1" />, <InlineMath math="y=2" /> und <InlineMath math="k=2" />.
+
+Das Streckzentrum liegt bei <InlineMath math="O(0,0)" />.
+
+<MathContainer>
+  <BlockMath math="x' = 2 \cdot 1 = 2" />
+  <BlockMath math="y' = 2 \cdot 2 = 4" />
+</MathContainer>
+
+Somit ist das Bild <InlineMath math="A'(2,4)" />.
+
+<LineEquation
+  title={
+    <>
+      Streckung von <InlineMath math="A(1,2)" /> vom Ursprung aus mit{" "}
+      <InlineMath math="k=2" />
+    </>
+  }
+  description={
+    <>
+      Die zentrische Streckung mit dem Zentrum <InlineMath math="O(0,0)" /> und dem
+      Streckfaktor <InlineMath math="2" /> bildet <InlineMath math="A(1,2)" /> auf{" "}
+      <InlineMath math="A'(2,4)" /> ab.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.3, -0.3, 0] }],
+    }, // Streckzentrum
+    {
+      points: [{ x: 1, y: 2, z: 0 }],
+      color: "#0284c7",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="A(1,2)" /> - Ausgangspunkt</>, at: 0, offset: [1, 0.2, 0] }],
+    }, // Ausgangspunkt
+    {
+      points: [{ x: 2, y: 4, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="A'(2,4)" /> - Bild</>, at: 0, offset: [0.3, 0.3, 0] }],
+    }, // Bildpunkt
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1, y: 2, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke OA
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 4, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke OA'
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 15]}
+/>
+
+## Zentrische Streckung mit einem beliebigen Zentrum
+
+Wenn das Streckzentrum ein beliebiger Punkt <InlineMath math="C(a,b)" /> ist und der Streckfaktor <InlineMath math="k" /> ist, dann ist für einen Punkt <InlineMath math="A(x,y)" /> sein Bild <InlineMath math="A'(x',y')" /> gegeben durch:
+
+<MathContainer>
+  <BlockMath math="x' = a + k(x - a)" />
+  <BlockMath math="y' = b + k(y - b)" />
+</MathContainer>
+
+Die Formel lässt sich in drei Schritten verstehen: Wir verschieben das Streckzentrum <InlineMath math="C" /> in den Ursprung, strecken dort mit dem Faktor <InlineMath math="k" /> und verschieben das Ergebnis anschließend zurück.
+
+### Einen Punkt von einem beliebigen Zentrum aus strecken
+
+Der Punkt <InlineMath math="C(5,2)" /> wird mit dem Zentrum <InlineMath math="P(2,3)" /> und dem Streckfaktor <InlineMath math="2" /> gestreckt. Bestimme seinen Bildpunkt.
+
+Für den Ausgangspunkt <InlineMath math="C(5,2)" /> gilt <InlineMath math="x=5, y=2" />.
+
+Das Streckzentrum ist <InlineMath math="P(2,3)" />, also <InlineMath math="a=2, b=3" />.
+
+Der Streckfaktor ist <InlineMath math="k=2" />.
+
+<MathContainer>
+  <BlockMath math="x' = 2 + 2(5 - 2) = 2 + 2(3) = 2 + 6 = 8" />
+  <BlockMath math="y' = 3 + 2(2 - 3) = 3 + 2(-1) = 3 - 2 = 1" />
+</MathContainer>
+
+Somit ist das Bild <InlineMath math="C'(8,1)" />.
+
+<LineEquation
+  title={
+    <>
+      Streckung von <InlineMath math="C(5,2)" /> mit dem Zentrum{" "}
+      <InlineMath math="P(2,3)" />, Faktor <InlineMath math="k=2" />
+    </>
+  }
+  description={
+    <>
+      Die zentrische Streckung mit dem Zentrum <InlineMath math="P(2,3)" /> und dem
+      Streckfaktor <InlineMath math="2" /> bildet <InlineMath math="C(5,2)" /> auf{" "}
+      <InlineMath math="C'(8,1)" /> ab.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 2, y: 3, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="P(2,3)" /> - Streckzentrum</>, at: 0, offset: [1, 0.5, 0] }],
+    }, // Streckzentrum
+    {
+      points: [{ x: 5, y: 2, z: 0 }],
+      color: "#0284c7",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="C(5,2)" /> - Ausgangspunkt</>, at: 0, offset: [0.3, -0.3, 0] }],
+    }, // Ausgangspunkt
+    {
+      points: [{ x: 8, y: 1, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="C'(8,1)" /> - Bild</>, at: 0, offset: [0.5, -0.5, 0] }],
+    }, // Bildpunkt
+    {
+      points: [
+        { x: 2, y: 3, z: 0 },
+        { x: 5, y: 2, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke PC
+    {
+      points: [
+        { x: 2, y: 3, z: 0 },
+        { x: 8, y: 1, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke PC'
+  ]}
+  showZAxis={false}
+/>
+
+## Übungen
+
+1.  Bestimme das Bild von <InlineMath math="B(2,5)" /> unter der zentrischen Streckung <InlineMath math="D_{(O,3)}" /> mit dem Zentrum <InlineMath math="O(0,0)" /> und dem Streckfaktor <InlineMath math="3" />.
+2.  Bestimme das Bild von <InlineMath math="B(2,5)" /> unter der zentrischen Streckung mit dem Zentrum <InlineMath math="P(1,3)" /> und dem Streckfaktor <InlineMath math="3" />.
+3.  Ein Dreieck mit den Eckpunkten <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" /> und <InlineMath math="C(1,4)" /> wird mit dem Zentrum <InlineMath math="O(0,0)" /> und dem Streckfaktor <InlineMath math="k=-2" /> gestreckt. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" />.
+
+### Lösungen
+
+1.  Ausgangspunkt <InlineMath math="B(2,5)" />, Streckzentrum <InlineMath math="O(0,0)" />, <InlineMath math="k=3" />.
+
+    <MathContainer>
+      <BlockMath math="x' = 3 \cdot 2 = 6" />
+      <BlockMath math="y' = 3 \cdot 5 = 15" />
+    </MathContainer>
+
+    Somit ist das Bild <InlineMath math="B'(6,15)" />.
+
+2.  Ausgangspunkt <InlineMath math="B(2,5)" />, Streckzentrum <InlineMath math="P(1,3)" />, <InlineMath math="k=3" />. Damit gilt <InlineMath math="x=2, y=5, a=1, b=3" />.
+
+    <MathContainer>
+      <BlockMath math="x' = 1 + 3(2 - 1) = 1 + 3(1) = 1 + 3 = 4" />
+      <BlockMath math="y' = 3 + 3(5 - 3) = 3 + 3(2) = 3 + 6 = 9" />
+    </MathContainer>
+
+    Somit ist das Bild <InlineMath math="B'(4,9)" />.
+
+3.  Streckzentrum <InlineMath math="O(0,0)" />, <InlineMath math="k=-2" />.
+
+    - Für <InlineMath math="A(1,1)" />: <InlineMath math="A'(-2 \cdot 1, -2 \cdot 1) = A'(-2,-2)" />.
+    - Für <InlineMath math="B(3,1)" />: <InlineMath math="B'(-2 \cdot 3, -2 \cdot 1) = B'(-6,-2)" />.
+    - Für <InlineMath math="C(1,4)" />: <InlineMath math="C'(-2 \cdot 1, -2 \cdot 4) = C'(-2,-8)" />.
+
+    Die Koordinaten des Bilddreiecks sind: <InlineMath math="A'(-2,-2)" />, <InlineMath math="B'(-6,-2)" />, <InlineMath math="C'(-2,-8)" />.

@@ -1,0 +1,177 @@
+
+export const metadata = {
+  title: "Gesetz der konstanten Zusammensetzung",
+  description:
+    "Warum eine reine Verbindung ihre Elemente unabhängig von der Probenmenge immer im selben Massenverhältnis enthält.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-01",
+  subject: "Grundgesetze der Chemie",
+};
+
+## Verbindungen behalten ihr Massenverhältnis
+
+Das Gesetz der konstanten Zusammensetzung besagt, dass jede reine Verbindung ihre Bestandteile in einem festen Massenverhältnis enthält. Es wird auch das Gesetz der bestimmten Proportionen oder das Proustsche Gesetz genannt.
+
+OpenStax Chemistry: Atoms First 2e erklärt, dass Joseph-Louis Proust in [Early Ideas in Atomic Theory](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-1-early-ideas-in-atomic-theory) gezeigt hat, dass Proben einer reinen Verbindung dieselben Elemente im gleichen Massenverhältnis enthalten. Britannica fasst das Gesetz als die Aussage zusammen, dass eine chemische Verbindung feste Massenanteile der Elemente im [Gesetz bestimmter Anteile](https://www.britannica.com/science/law-of-definite-proportions) aufweist.
+
+Der Ausdruck **reine Verbindung** ist entscheidend. Zuckerwasser lässt sich süßer oder stärker verdünnen, weil es ein Gemisch ist. Reines Wasser enthält Wasserstoff und Sauerstoff dagegen stets im selben Verhältnis. Auch die Definition einer [chemischen Substanz](https://goldbook.iupac.org/terms/view/C01039/plain) im IUPAC Gold Book greift diese konstante Zusammensetzung auf.
+
+## Wasser behält das gleiche Verhältnis bei
+
+Die Formel für Wasser lautet <InlineMath math="\mathrm{H_2O}" />. Das bedeutet, dass jedes Wassermolekül <InlineMath math="2" /> Wasserstoffatome und <InlineMath math="1" /> Sauerstoffatom enthält. Unter Verwendung der einfachen relativen Atommassen <InlineMath math="A_r\mathrm{(H)} = 1" /> und <InlineMath math="A_r\mathrm{(O)} = 16" /> beträgt das Wasserstoff-Sauerstoff-Massenverhältnis in Wasser:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{H}} : m_{\mathrm{O}}
+  &= (2 \times 1) : (1 \times 16) \\
+  &= 2 : 16 \\
+  &= 1 : 8
+\end{aligned}" />
+
+Auch bei unterschiedlichen Wassermengen bleibt das Massenverhältnis des tatsächlich gebundenen Wasserstoffs zum Sauerstoff mit den gerundeten Unterrichtswerten <InlineMath math="1:8" />. PubChem führt die Formel <InlineMath math="\mathrm{H_2O}" /> im [Stoffdatensatz für Wasser](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON). Die [verkürzten Standardatomgewichte der CIAAW von 2024](https://www.ciaaw.org/abridged-atomic-weights.htm), <InlineMath math="A_r\mathrm{(H)}=1{,}0080" /> und <InlineMath math="A_r\mathrm{(O)}=15{,}999" />, ergeben die genauere molare Masse:
+
+<BlockMath math="M(\mathrm{H_2O})=2(1{,}0080)+15{,}999=18{,}015\ \mathrm{g\,mol^{-1}}" />
+
+## Überschüssiger Reaktant bleibt übrig
+
+Verändere im Modell die Ausgangsmassen. Je nach Mischung bleibt Wasserstoff oder Sauerstoff übrig. Das Massenverhältnis der Atome, die tatsächlich Wasser bilden, bleibt jedoch unverändert.
+
+Das Modell dient der Massenbilanz und bildet keinen molekularen Mechanismus wörtlich ab. Die Bezeichnungen <InlineMath math="\mathrm{H}" /> und <InlineMath math="\mathrm{O}" /> stehen für die jeweils gezählten Elementmassen. In der ausgeglichenen Bildungsgleichung werden elementarer Wasserstoff und Sauerstoff als <InlineMath math="\mathrm{H_2}" /> und <InlineMath math="\mathrm{O_2}" /> geschrieben:
+
+<BlockMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow 2\mathrm{H_2O}" />
+
+<ConstantCompositionLab
+  title={<>Das feste Massenverhältnis von Wasser</>}
+  description={
+    <>
+      Beobachte, dass nur der Reaktantenanteil Wasser bildet, der dem
+      Massenverhältnis <InlineMath math="1:8" /> entspricht.
+    </>
+  }
+  labels={{
+    chooseMode: "Ausgangsmassen auswählen",
+    before: "Ausgang",
+    after: "Nach der Reaktion",
+    reactionView: "Konstantes Zusammensetzungsmodell für die Wasserbildung",
+    ratioLabel: "Reaktionsverhältnis",
+    leftoverLabel: "Nach der Reaktion übrig",
+    modes: {
+      exact: {
+        tab: "Genau",
+        tabLabel: "Genau",
+        helperCaption: (
+          <>
+            Sämtlicher Wasserstoff und Sauerstoff kann reagieren, weil die
+            Ausgangsmassen bereits dem Verhältnis <InlineMath math="1:8" />
+            entsprechen.
+          </>
+        ),
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}" />,
+        ratio: (
+          <>
+            <InlineMath math="2:16 = 1:8" />, das Wassermassenverhältnis.
+          </>
+        ),
+        leftover: <>Es bleibt keine überschüssige Substanz zurück.</>,
+      },
+      "hydrogen-excess": {
+        tab: (
+          <>
+            Überschuss <InlineMath math="\mathrm{H}" />
+          </>
+        ),
+        tabLabel: "Wasserstoffüberschuss",
+        helperCaption: (
+          <>
+            Wasser entsteht weiterhin im Verhältnis <InlineMath math="1:8" />.
+            Der zusätzliche Wasserstoff bleibt übrig.
+          </>
+        ),
+        readoutBefore: <InlineMath math="3\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+1\,\mathrm{g}\,\mathrm{H}" />,
+        ratio: (
+          <>
+            Nur <InlineMath math="2:16 = 1:8" /> reagiert.
+          </>
+        ),
+        leftover: (
+          <>
+            <InlineMath math="1\ \mathrm{g}" /> Wasserstoff wird nicht zu Wasser.
+          </>
+        ),
+      },
+      "oxygen-excess": {
+        tab: (
+          <>
+            Überschuss <InlineMath math="\mathrm{O}" />
+          </>
+        ),
+        tabLabel: "Sauerstoffüberschuss",
+        helperCaption: (
+          <>
+            Wasser entsteht weiterhin im Verhältnis <InlineMath math="1:8" />.
+            Der zusätzliche Sauerstoff bleibt übrig.
+          </>
+        ),
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+20\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+4\,\mathrm{g}\,\mathrm{O}" />,
+        ratio: (
+          <>
+            Der reagierende Anteil bleibt <InlineMath math="2:16 = 1:8" />.
+          </>
+        ),
+        leftover: (
+          <>
+            <InlineMath math="4\ \mathrm{g}" /> Sauerstoff wird nicht zu Wasser.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Ein verbreitetes Missverständnis lautet, dass immer das gesamte Ausgangsmaterial verbraucht werden müsse. Das stimmt nicht. Passen die Ausgangsmassen nicht zum Verhältnis der Verbindung, reagiert nur der passende Anteil. Der Rest bleibt als überschüssiger Reaktant zurück.
+
+## Messdaten zu Calciumoxid prüfen
+
+Jetzt werden Messdaten geprüft. PubChem führt Calciumoxid als <InlineMath math="\mathrm{CaO}" /> im [Stoffdatensatz für Calciumoxid](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula/JSON). Die CIAAW-Werte <InlineMath math="A_r\mathrm{(Ca)}=40{,}078" /> und <InlineMath math="A_r\mathrm{(O)}=15{,}999" /> ergeben <InlineMath math="M(\mathrm{CaO})=56{,}077\ \mathrm{g\,mol^{-1}}" />, gerundet <InlineMath math="56{,}08\ \mathrm{g\,mol^{-1}}" />.
+
+Angenommen, zwei Experimente liefern die folgenden Daten.
+
+| Versuch | Masse von <InlineMath math="\mathrm{CaO}" /> | Masse von <InlineMath math="\mathrm{O}" /> | Masse von <InlineMath math="\mathrm{Ca}" /> | Verhältnis <InlineMath math="\mathrm{Ca:O}" /> |
+| :---- | :-------------------------- | :----------------------- | :------------------------ | :-------------------------- |
+| <InlineMath math="1" /> | <InlineMath math="2{,}8\ \mathrm{g}" /> | <InlineMath math="0{,}8\ \mathrm{g}" /> | <InlineMath math="2{,}0\ \mathrm{g}" /> | <InlineMath math="2{,}0:0{,}8 = 2{,}5:1" /> |
+| <InlineMath math="2" /> | <InlineMath math="3{,}5\ \mathrm{g}" /> | <InlineMath math="1{,}0\ \mathrm{g}" /> | <InlineMath math="2{,}5\ \mathrm{g}" /> | <InlineMath math="2{,}5:1{,}0 = 2{,}5:1" /> |
+
+Die Calciummasse ergibt sich aus der Masse der Verbindung minus der Sauerstoffmasse.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Ca,1}} &= 2{,}8 - 0{,}8 = 2{,}0\ \mathrm{g} \\
+m_{\mathrm{Ca,2}} &= 3{,}5 - 1{,}0 = 2{,}5\ \mathrm{g}
+\end{aligned}" />
+
+In beiden Versuchen entstehen unterschiedliche Verbindungsmassen, doch das Massenverhältnis von Calcium zu Sauerstoff ist jeweils <InlineMath math="2{,}5:1" />. Die Messwerte stimmen damit mit dem Gesetz der konstanten Zusammensetzung überein.
+
+## Teilmassen aus der Formel berechnen
+
+Eisen(III)-oxid besitzt die Formel <InlineMath math="\mathrm{Fe_2O_3}" />. PubChem bestätigt <InlineMath math="\mathrm{Fe_2O_3}" /> im [Stoffdatensatz für Eisen(III)-oxid](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula/JSON).
+
+Unter Verwendung von <InlineMath math="A_r\mathrm{(Fe)} = 56" /> und <InlineMath math="A_r\mathrm{(O)} = 16" /> beträgt das Massenverhältnis von Eisen zu Sauerstoff:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Fe}} : m_{\mathrm{O}}
+  &= (2 \times 56) : (3 \times 16) \\
+  &= 112 : 48 \\
+  &= 7 : 3
+\end{aligned}" />
+
+Wenn die Masse von <InlineMath math="\mathrm{Fe_2O_3}" /> <InlineMath math="64\ \mathrm{g}" /> ist, sind die gesamten Verhältnisteile <InlineMath math="7 + 3 = 10" />.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Fe}} &= \frac{7}{10} \times 64 = 44{,}8\ \mathrm{g} \\
+m_{\mathrm{O}} &= \frac{3}{10} \times 64 = 19{,}2\ \mathrm{g}
+\end{aligned}" />
+
+Damit enthalten <InlineMath math="64\ \mathrm{g}" /> Eisen(III)-oxid <InlineMath math="44{,}8\ \mathrm{g}" /> gebundenes Eisen und <InlineMath math="19{,}2\ \mathrm{g}" /> gebundenen Sauerstoff.
+
+Sobald eine Verbindung ein festes Verhältnis hat, ist die nächste Frage, was passiert, wenn dieselben zwei Elemente mehr als eine Verbindung bilden können. Hier beginnt das Gesetz der multiplen Proportionen.

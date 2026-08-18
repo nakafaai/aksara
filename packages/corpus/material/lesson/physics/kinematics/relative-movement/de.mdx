@@ -1,0 +1,92 @@
+
+export const metadata = {
+  title: "Relative Bewegung",
+  description:
+    "Verstehe, warum dieselbe Bewegung aus verschiedenen Bezugssystemen unterschiedlich erscheint.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Bewegung hängt vom Beobachter ab
+
+Bewegung wird immer relativ zu einem Bezugssystem beschrieben. Ein Objekt, das für jemanden am Straßenrand schnell erscheint, kann für eine mitfahrende Person langsam, unbewegt oder sogar rückwärts erscheinen.
+
+Für alltägliche Fahrzeuggeschwindigkeiten mit parallelen, nicht rotierenden Achsen verwenden wir die galileische Geschwindigkeitsregel. Werden beide Geschwindigkeiten zunächst im selben Bodenbezugssystem <InlineMath math="G" /> gemessen, gilt für die Geschwindigkeit des Objekts <InlineMath math="X" /> relativ zum Beobachter <InlineMath math="Y" />:
+
+<BlockMath math="\vec{v}_{X/Y}=\vec{v}_{X/G}-\vec{v}_{Y/G}" />
+
+Positive und negative Vorzeichen sind weiterhin wichtig, da sie die Richtung entlang der gewählten Achse anzeigen.
+
+> Relative Bewegung erzeugt keine neue Bewegung. Sie beschreibt dieselbe Bewegung aus der Sicht eines anderen Beobachters.
+
+<RelativeMovementLab
+  title={<>Relativbewegung zweier Autos</>}
+  description={
+    <>
+    Wähle die Richtung von Auto B und beobachte seine Bewegung aus der Sicht von Auto A.
+  </>
+  }
+  labels={{
+    chooseCase: "Richtung wählen",
+    modeLabels: {
+      "same-direction": <>Gleiche Richtung</>,
+      "opposite-direction": <>Entgegengesetzte Richtung</>,
+    },
+    factLabels: {
+      observer: <>Auto A</>,
+      target: <>Auto B</>,
+      relativeVelocity: <>Relativgeschwindigkeit von B zu A</>,
+      visibleDirection: <>Aus Sicht von A</>,
+    },
+    directionLabels: {
+      left: <>B scheint sich relativ zu A nach links zu bewegen.</>,
+      right: <>B scheint sich relativ zu A nach rechts zu bewegen.</>,
+    },
+    viewLabel: "Relative Bewegungsvisualisierung",
+  }}
+/>
+
+## Geschwindigkeit ändert sich, wenn sich auch der Beobachter bewegt
+
+Bewegt sich auch der Beobachter, erhält er für das beobachtete Objekt eine andere Geschwindigkeit. Deshalb werden nicht nur die Bewegungen des Objekts, sondern auch die des Beobachters miteinander verglichen.
+
+Angenommen, rechts wird als positiv gewählt. Ein Auto bewegt sich mit <InlineMath math="+12 \text{ m/s}" /> und ein Taxi mit <InlineMath math="+14 \text{ m/s}" />. Für einen Passagier im Taxi scheint es, als würde sich das Auto rückwärts bewegen:
+
+<BlockMath math="v_{\text{Auto/Taxi}}=12-14=-2 \text{ m/s}" />
+
+Das negative Vorzeichen zeigt, dass die relative Bewegung nach links gerichtet ist.
+
+Fahren zwei Fahrzeuge in dieselbe Richtung, kann das langsamere Fahrzeug für die Person im schnelleren Fahrzeug rückwärts erscheinen. Das Auto hat seine Fahrtrichtung relativ zur Straße nicht geändert. Nur die Beschreibung aus dem fahrenden Taxi fällt anders aus.
+
+## Wenn der Beobachter still steht
+
+Wenn der Beobachter relativ zum Boden stillsteht, ist die Relativgeschwindigkeit dieselbe wie die Geschwindigkeit relativ zum Boden.
+
+<BlockMath math="v_{\text{Objekt/Beobachter}}=v_{\text{Objekt/Boden}}-0=v_{\text{Objekt/Boden}}" />
+
+Deshalb wird bei vielen einfachen Aufgaben stillschweigend angenommen, dass eine angegebene Geschwindigkeit relativ zum Boden gilt.
+
+Der wichtige Punkt ist nicht der Name des Beobachters, sondern ob der Beobachter sich bewegt. Wenn der Beobachter stationär ist, gibt es keine zu subtrahierende Beobachtergeschwindigkeit.
+
+## Wenn sich beide bewegen
+
+Wenn sich zwei Objekte in entgegengesetzte Richtungen bewegen, kann ihr Relativgeschwindigkeitsbetrag größer sein als der Geschwindigkeitsbetrag jedes Objekts relativ zum Boden. Beispielsweise bewegt sich ein Auto bei <InlineMath math="+12 \text{ m/s}" /> nach rechts, während sich ein Lkw bei <InlineMath math="-8 \text{ m/s}" /> nach links bewegt.
+
+Für den LKW-Fahrer beträgt die Geschwindigkeit des Autos:
+
+<BlockMath math="v_{\text{Auto/Lkw}}=12-(-8)=+20 \text{ m/s}" />
+
+Der Wert <InlineMath math="+20 \text{ m/s}" /> bedeutet, dass sich die Position des Autos relativ zum Lkw mit <InlineMath math="20\text{ m/s}" /> nach rechts ändert. Ob sich beide Fahrzeuge nähern oder voneinander entfernen, hängt zusätzlich davon ab, welches anfangs weiter links steht.
+
+Eine relative Beschreibung verändert die tatsächliche Bewegung nicht. Sie ändert nur, **wie verschiedene Beobachter dieselbe Bewegung wahrnehmen**.
+
+## Was der Beobachter sieht, ist der Unterschied
+
+| Situation | Berechnung | Bedeutung der Relativbewegung |
+| :-------- | :---------- | :-------------- |
+| Beobachter steht still | <InlineMath math="v_Y=0" /> | <InlineMath math="v_{X/Y}=v_X" /> |
+| Beobachter ist in gleicher Richtung schneller | <InlineMath math="12-14=-2 \text{ m/s}" /> | Das Objekt scheint sich in die negative Richtung zu bewegen |
+| Beobachter bewegt sich in die entgegengesetzte Richtung | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Das Objekt scheint sich in die positive Richtung zu bewegen |
+
+Bevor eine Bewegung als schnell, langsam, stillstehend oder rückwärts beschrieben wird, muss deshalb immer das Bezugssystem geklärt sein.

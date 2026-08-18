@@ -1,0 +1,177 @@
+
+export const metadata = {
+  title: "Geometrische Folge",
+  description: "Verstehe geometrische Folgen mit konstantem Faktor, leite das allgemeine Glied her und prüfe idealisierte Wachstumsmodelle.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-05",
+  subject: "Folgen und Reihen",
+};
+
+## Geometrische Folgen verstehen
+
+Eine geometrische Folge ist eine Zahlenfolge, bei der jedes Glied aus dem vorherigen durch Multiplikation mit einem konstanten Faktor entsteht. Dieser Faktor wird mit <InlineMath math="r" /> bezeichnet.
+
+Für eine geometrische Folge <InlineMath math="U_1, U_2, U_3, ..., U_n" /> lässt sich derselbe Zusammenhang über Quotienten ausdrücken, sofern alle benötigten Nenner ungleich null sind:
+
+<BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
+
+Jedes Glied entsteht also durch Multiplikation des vorherigen Gliedes mit dem Faktor <InlineMath math="r" />. Die Quotientenform setzt von null verschiedene Nenner voraus. Die Multiplikationsregel bleibt dagegen auch dann gültig, wenn ein Glied null ist:
+
+<BlockMath math="U_{n+1}=rU_n" />
+
+## Erkundung durch Papierfalten
+
+Ein einfaches Faltmodell macht den konstanten Faktor sichtbar. Falte ein rechteckiges Blatt Papier mehrmals in der Mitte.
+
+Nach <InlineMath math="1 \text{Mal}" /> Falten entstehen gedanklich <InlineMath math="2 \text{Teile}" /> gleicher Größe. Nach dem zweiten Falten, also nach <InlineMath math="2 \text{Mal}" />, sind es <InlineMath math="4 \text{Teile}" />. Das Muster lautet:
+
+| Anzahl der Falten | Anzahl gleicher Teile |
+| --------------- | --------------------- |
+| <InlineMath math="1 \text{Faltung}" /> | <InlineMath math="2 \text{Teile}" /> |
+| <InlineMath math="2 \text{Faltungen}" /> | <InlineMath math="4 \text{Teile}" /> |
+| <InlineMath math="3 \text{Faltungen}" /> | <InlineMath math="8 \text{Teile}" /> |
+| <InlineMath math="4 \text{Faltungen}" /> | <InlineMath math="16 \text{Teile}" /> |
+
+Die Zahl der Teile bildet die Folge <InlineMath math="2, 4, 8, 16, \ldots" />.
+
+Jedes Glied entsteht durch Multiplikation des vorherigen Gliedes mit <InlineMath math="2" />. Der konstante Faktor ist also <InlineMath math="2" />.
+
+## Allgemeine Formel für geometrische Folgen
+
+Die allgemeine Formel für eine geometrische Folge lautet:
+
+<BlockMath math="U_n = a \cdot r^{n-1}" />
+
+Dabei gilt:
+
+- <InlineMath math="U_n" /> = allgemeines Glied
+- <InlineMath math="a" /> = erstes Glied
+- <InlineMath math="r" /> = konstanter Faktor
+- <InlineMath math="n" /> = Gliednummer
+
+Der Exponent lautet <InlineMath math="n-1" />, weil vom ersten bis zum <InlineMath math="n" />-ten Glied genau <InlineMath math="n-1" /> Multiplikationen mit <InlineMath math="r" /> nötig sind.
+
+## Was der Faktor über die Folge verrät
+
+Bei einem positiven ersten Glied bestimmt der Faktor das grundlegende Verhalten:
+
+- Für <InlineMath math="r>1" /> wachsen die positiven Glieder.
+- Für <InlineMath math="0<r<1" /> nähern sich die positiven Glieder null.
+- Für <InlineMath math="r=1" /> bleibt die Folge konstant.
+- Für <InlineMath math="r=0" /> sind alle Glieder nach dem ersten null.
+- Für <InlineMath math="r<0" /> wechseln die Vorzeichen. Die Beträge können dabei wachsen, schrumpfen oder konstant bleiben.
+
+Aus diesem Grund stellt eine geometrische Folge nicht immer ein Wachstum dar.
+
+## Ein idealisiertes Bakterienwachstumsmodell
+
+Angenommen, eine idealisierte Bakterienkultur verdreifacht sich alle <InlineMath math="2 \text{Stunden}" />. Das ist ein mathematisches Modell mit konstantem Wachstumsfaktor. Es behauptet nicht, dass sich eine einzelne Bakterienzelle buchstäblich in drei Zellen teilt.
+
+Wenn die anfängliche Bakterienzahl <InlineMath math="2 \text{Zellen}" /> beträgt, dann:
+
+- Anfangsbestand (<InlineMath math="N_0" />) <InlineMath math="=2" />
+- Wachstumsfaktor (<InlineMath math="r" />) <InlineMath math="=3" />
+
+In <InlineMath math="20 \text{Stunden}" /> durchläuft die Kultur <InlineMath math="10 \text{Wachstumsintervalle}" />, weil <InlineMath math="20 \div 2=10" />.
+
+Die Zählung beginnt bei Index <InlineMath math="0" />, damit der Anfangsbestand klar vom ersten abgeschlossenen Wachstumsintervall getrennt bleibt. Nach <InlineMath math="10" /> Intervallen gilt:
+
+<BlockMath math="N_{10}=N_0\cdot r^{10}=2\cdot3^{10}=118{.}098" />
+
+Nach dem idealisierten Modell enthält die Kultur also <InlineMath math="118{.}098 \text{Bakterienzellen}" /> nach <InlineMath math="20 \text{Stunden}" />.
+
+<BacterialGrowth
+  formulaType="geometric"
+  ratio={3}
+  initialCount={2}
+  maxGenerations={3}
+  timeInterval={2}
+  timeUnit="Stunden"
+  labels={{
+    title: "Idealisiertes Bakterienwachstum",
+    bacterial: "Bakterien",
+    initialBacteria: "Anfangsbestand",
+  }}
+/>
+
+## Eigenschaften geometrischer Folgen
+
+### Konstanter Faktor und Quotient
+
+Sofern das vorherige Glied nicht null ist, kann der Faktor <InlineMath math="r" /> als Quotient aus dem nächsten und dem vorherigen Glied berechnet werden:
+
+<BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
+
+### Das n-te Glied bestimmen
+
+Das allgemeine Glied wird direkt mit folgender Formel berechnet:
+
+<BlockMath math="U_n = a \cdot r^{n-1}" />
+
+## Anwendungen geometrischer Folgen
+
+Geometrische Folgen dienen als Modelle für Vorgänge mit konstantem Faktor, zum Beispiel:
+
+1. Bevölkerungswachstum (wie im Bakterienbeispiel)
+2. Zinseszins in der Wirtschaft
+3. Radioaktiver Zerfall in der Physik
+4. Zellwachstum in der Biologie
+
+Damit lassen sich idealisierte Vorgänge mit Wachstum oder Abnahme um einen konstanten Faktor beschreiben.
+
+Prüfe stets, ob ein Modell mit konstantem Faktor für die Situation und den untersuchten Zeitraum sinnvoll ist. Reale Populationen stoßen irgendwann an Grenzen, die dieses einfache Modell nicht berücksichtigt.
+
+## Beispiele
+
+### Den Faktor bestimmen
+
+Das erste Glied einer geometrischen Folge ist <InlineMath math="4" />, und das Glied an Position <InlineMath math="4" /> ist <InlineMath math="108" />. Bestimme den Faktor.
+
+**Lösung**:
+
+Gegeben:
+
+- <InlineMath math="a = 4" /> (erstes Glied)
+- <InlineMath math="U_4 = 108" /> (Glied an Position <InlineMath math="4" />)
+
+Wir setzen die bekannten Werte in das allgemeine Glied ein:
+
+<MathContainer>
+  <BlockMath math="U_4 = a \cdot r^{4-1}" />
+  <BlockMath math="108 = 4 \cdot r^3" />
+  <BlockMath math="r^3 = \frac{108}{4} = 27" />
+  <BlockMath math="r = \sqrt[3]{27} = 3" />
+</MathContainer>
+
+Der konstante Faktor beträgt somit <InlineMath math="3" />.
+
+### Länge der Seilabschnitte
+
+Ein Seil wird in <InlineMath math="5 \text{Teile}" /> geteilt, deren positive Längen in aufsteigender Reihenfolge eine geometrische Folge bilden. Das kürzeste Stück ist <InlineMath math="16 \text{ cm}" /> lang, das längste <InlineMath math="81 \text{ cm}" />. Bestimme die Länge des dritten Stücks.
+
+**Lösung**:
+
+Gegeben:
+
+- <InlineMath math="a = 16" /> (kürzestes Stück)
+- <InlineMath math="U_5 = 81" /> (längstes Stück)
+
+Zuerst bestimmen wir den Faktor:
+
+<MathContainer>
+  <BlockMath math="U_5 = a \cdot r^{5-1}" />
+  <BlockMath math="81 = 16 \cdot r^4" />
+  <BlockMath math="r^4 = \frac{81}{16}" />
+  <BlockMath math="r = \sqrt[4]{\frac{81}{16}} = \frac{3}{2}" />
+</MathContainer>
+
+Anschließend berechnen wir die Länge des dritten Stücks <InlineMath math="U_3" />:
+
+<MathContainer>
+  <BlockMath math="U_3 = a \cdot r^{3-1}" />
+  <BlockMath math="U_3 = 16 \cdot \left(\frac{3}{2}\right)^2" />
+  <BlockMath math="U_3 = 16 \cdot \frac{9}{4}" />
+  <BlockMath math="U_3 = 36" />
+</MathContainer>
+
+Das dritte Stück ist somit <InlineMath math="36 \text{ cm}" /> lang.

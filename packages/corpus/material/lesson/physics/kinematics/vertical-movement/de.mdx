@@ -1,0 +1,109 @@
+export const metadata = {
+  title: "Vertikale Bewegung",
+  description:
+    "Untersuche vertikale Bewegung als eindimensionale Bewegung mit einer nach unten gerichteten Gravitationsbeschleunigung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-06-01",
+  subject: "Kinematik",
+};
+
+
+## Eine vertikale Achse benötigt eine positive Richtung
+
+Vertikale Bewegung ist eine Aufwärts- oder Abwärtsbewegung entlang einer geraden Linie. Um die Zeichen klar zu halten, wählen wir nach oben als positiv und nach unten als negativ.
+
+Im Modell des freien Falls nahe der Erdoberfläche wird die Gravitationsbeschleunigung als <InlineMath math="-g" /> geschrieben, weil sie bei dieser Vorzeichenkonvention nach unten zeigt.
+
+<MathContainer>
+  <BlockMath math="y=y_0+v_0t-\frac{1}{2}gt^2" />
+  <BlockMath math="v_y=v_0-gt" />
+  <BlockMath math="v_y^2=v_0^2-2g(y-y_0)" />
+</MathContainer>
+
+> Diese Gleichungen modellieren eine Bewegung nahe der Erdoberfläche mit konstantem <InlineMath math="g" /> und ohne Luftwiderstand. Der Standardwert beträgt <InlineMath math="g_n=9{,}80665\text{ m/s}^2" />; für Rechnungen von Hand rundet diese Lektion auf <InlineMath math="10\text{ m/s}^2" />. Siehe [NIST SP 811](https://physics.nist.gov/cuu/pdf/sp811.pdf) und [OpenStax zum freien Fall](https://openstax.org/books/university-physics-volume-1/pages/3-5-free-fall).
+
+<VerticalMovementLab
+  title={<>Ball in vertikaler Bewegung</>}
+  description={
+    <>
+      Wähle den Anfangszustand des Balls und beobachte, wie die Gravitation seine
+      Höhe und Geschwindigkeit verändert.
+    </>
+  }
+  labels={{
+    condition: "Ausgangszustand",
+    modeLabels: {
+      throw: <>Nach oben geworfen</>,
+      drop: <>Fallen gelassen</>,
+    },
+    initialCondition: <>Ausgangszustand</>,
+    maxHeight: <>Höchster Punkt</>,
+    time: <>Bewegungszeit</>,
+    finalVelocity: <>Endgeschwindigkeit</>,
+    viewLabel: "Darstellung eines Balls in vertikaler Bewegung",
+  }}
+/>
+
+## Die Gravitation wirkt auch während des Aufstiegs
+
+Wird ein Objekt nach oben geworfen, ist seine Anfangsgeschwindigkeit positiv. Danach verringert die Gravitation seine Vertikalgeschwindigkeit, bis das Objekt am höchsten Punkt für einen Moment stillsteht.
+
+> Am höchsten Punkt ist die Vertikalgeschwindigkeit vorübergehend Null, die Erdbeschleunigung zeigt jedoch immer noch nach unten.
+
+Dieser Unterschied ist wichtig: Am höchsten Punkt verschwindet nicht die Gravitation. Nur die Geschwindigkeit ist für einen Moment null, nicht die Beschleunigung.
+
+## Ein Aufwärtswurf stoppt für einen Moment
+
+Angenommen, ein Ball wird mit der Anfangsgeschwindigkeit <InlineMath math="20\text{ m/s}" /> von der Position <InlineMath math="y_0=0" /> nach oben geworfen. Verwende <InlineMath math="g=10\text{ m/s}^2" />. Am höchsten Punkt beträgt seine Vertikalgeschwindigkeit <InlineMath math="v_y=0" />.
+
+<MathContainer>
+  <BlockMath math="v_y=v_0-gt" />
+  <BlockMath math="0=20-10t" />
+  <BlockMath math="t=2\text{ s}" />
+</MathContainer>
+
+Die maximale Höhe über dem Startpunkt kann aus der Positionsgleichung ermittelt werden.
+
+<BlockMath math="\begin{aligned}
+y-y_0&=v_0t-\frac{1}{2}gt^2\\
+&=20(2)-\frac{1}{2}(10)(2^2)\\
+&=20\text{ m}
+\end{aligned}" />
+
+Der Ball benötigt also <InlineMath math="2\text{ s}" />, um den höchsten Punkt zu erreichen, und steigt <InlineMath math="20\text{ m}" /> über seinen Startpunkt.
+
+## Das Zeichen der Geschwindigkeit lesen
+
+Das Vorzeichen von <InlineMath math="v_y" /> gibt die Bewegungsrichtung in diesem Moment an. Ein positiver Wert bedeutet eine Bewegung nach oben, ein negativer Wert eine Bewegung nach unten und null einen momentanen Stillstand.
+
+Beachte, dass die Höhe <InlineMath math="y" /> nicht automatisch die Bewegungsrichtung angibt. Ein Objekt kann sich beim Aufstieg und beim Abstieg auf derselben Höhe befinden, doch die Vorzeichen seiner Geschwindigkeit sind verschieden.
+
+| Wert von <InlineMath math="v_y" /> | Bewegungsrichtung | Beispielsituation |
+| --- | --- | --- |
+| Positiv | Aufwärts | Ein gerade nach oben geworfener Ball |
+| Null | Momentaner Stillstand | Ein Ball am höchsten Punkt |
+| Negativ | Nach unten | Ein Ball fällt zurück nach unten |
+
+## Ein Ball wird aus einer Höhe fallen gelassen
+
+Angenommen, ein Ball wird aus einer Höhe von <InlineMath math="20\text{ m}" /> ohne Anfangsgeschwindigkeit fallen gelassen. Mit <InlineMath math="g=10\text{ m/s}^2" /> beträgt die Zeit bis zum Erreichen des Bodens:
+
+<BlockMath math="\begin{aligned}
+0&=20-\frac{1}{2}(10)t^2\\
+5t^2&=20\\
+t&=2\text{ s}
+\end{aligned}" />
+
+Die Geschwindigkeit kurz vor Erreichen des Bodens beträgt:
+
+<BlockMath math="v_y=0-10(2)=-20\text{ m/s}" />
+
+Das negative Vorzeichen zeigt die Abwärtsrichtung an. Der Geschwindigkeitsbetrag ist <InlineMath math="20\text{ m/s}" />, die Bewegungsrichtung jedoch abwärts.
+
+Dieses Beispiel zeigt, warum das Vorzeichen bei vertikaler Bewegung nicht ignoriert werden darf. Der Geschwindigkeitsbetrag gibt an, wie schnell sich der Ball bewegt, während das Vorzeichen die Bewegungsrichtung angibt.
+
+## Von der vertikalen Bewegung zur Projektilbewegung
+
+Vertikale Bewegung tritt auch bei Projektilbewegungen auf. Wird ein Objekt schräg geworfen, folgt seine horizontale Komponente einer gleichförmigen Bewegung, während die vertikale Komponente weiterhin den Gravitationsgleichungen dieser Lektion folgt.
+
+Deshalb ist der freie Fall auch für weitere Bewegungen wichtig. Die vertikale Komponente eines geworfenen Balls, eines Projektils oder eines Wasserstrahls wird weiterhin durch die Gravitationsbeschleunigung bestimmt.

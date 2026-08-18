@@ -94,8 +94,18 @@ describe("Nakafa child process", () => {
       "AKSARA_PREVIEW_PUBLIC_KEY",
       "AKSARA_PREVIEW_RENDERER_SECRET",
       "AKSARA_PREVIEW_RENDERER_TOKEN",
+      "CONTENT_RUNTIME_TOKEN",
       "HOME",
+      "INTERNAL_CONTENT_API_KEY",
+      "NEXT_PUBLIC_APP_URL",
+      "NEXT_PUBLIC_CONVEX_SITE_URL",
+      "NEXT_PUBLIC_CONVEX_URL",
+      "NEXT_PUBLIC_MCP_URL",
+      "NEXT_PUBLIC_POSTHOG_KEY",
+      "NEXT_PUBLIC_POSTHOG_UI_HOST",
+      "NEXT_PUBLIC_VERSION",
       "PATH",
+      "SITE_URL",
     ]);
     expect(started.environment).toMatchObject({
       AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
@@ -112,8 +122,28 @@ describe("Nakafa child process", () => {
       AKSARA_PREVIEW_RENDERER_TOKEN: Redacted.value(
         input.credentials.renderer.token
       ),
+      CONTENT_RUNTIME_TOKEN: Redacted.value(
+        input.credentials.contentRuntimeToken
+      ),
       HOME: process.env.HOME,
+      INTERNAL_CONTENT_API_KEY: Redacted.value(
+        input.credentials.internalContentToken
+      ),
+      NEXT_PUBLIC_APP_URL: result.child.origin.toString(),
+      NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
+        "/__aksara-preview/convex-site",
+        result.child.origin
+      ).toString(),
+      NEXT_PUBLIC_CONVEX_URL: new URL(
+        "/__aksara-preview/convex",
+        result.child.origin
+      ).toString(),
+      NEXT_PUBLIC_MCP_URL: new URL("/mcp", result.child.origin).toString(),
+      NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
+      NEXT_PUBLIC_POSTHOG_UI_HOST: result.child.origin.toString(),
+      NEXT_PUBLIC_VERSION: "aksara-preview",
       PATH: process.env.PATH,
+      SITE_URL: result.child.origin.toString(),
     });
     expect(started.environment).not.toHaveProperty("AKSARA_TEST_PARENT_SECRET");
     expect(result.exit).toMatchObject({ reason: "exit", status: 0 });

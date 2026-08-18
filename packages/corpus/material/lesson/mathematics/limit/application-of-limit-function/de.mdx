@@ -1,0 +1,257 @@
+export const metadata = {
+    title: "Anwendungen von Grenzwerten",
+    description: "Grenzwerte auf vereinfachte Gesundheits-, Wirtschafts-, Bevölkerungs-, Signal- und Reaktionsmodelle anwenden und die Aussagegrenzen jedes Modells prüfen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Grenzwerte",
+};
+
+## Ein vereinfachtes Modell aus dem Gesundheitsbereich
+
+Grenzwerte können das langfristige Verhalten eines mathematischen Modells beschreiben. Im Gesundheitsbereich muss eine Formel jedoch mit verlässlichen Daten abgeglichen und geprüft werden, bevor sie eine reale Entscheidung unterstützen kann. Das folgende **fiktive Unterrichtsmodell** dient dazu, Grenzwerte zu berechnen und den Gültigkeitsbereich eines Modells zu untersuchen.
+
+### Den Gültigkeitsbereich prüfen
+
+Betrachte die folgende bewusst vereinfachte Funktion:
+
+<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+
+Dabei wird <InlineMath math="N(t)" /> als modellierte Fallzahl gedeutet. <InlineMath math="t" /> ist eine nicht negative Eingabe, deren Einheit für das jeweilige Szenario festgelegt werden muss.
+
+Um zu prüfen, ob die Formel langfristig sinnvoll bleibt, berechnen wir:
+
+<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190{,}68)^3}\right)" />
+
+**Langfristiges Verhalten:**
+
+Für sehr große Werte von <InlineMath math="t" /> dominiert der Term <InlineMath math="t^2" /> unter der Wurzel, denn:
+- <InlineMath math="t^2" /> wächst schneller als <InlineMath math="t" /> und die Konstante <InlineMath math="(190{,}68)^3" />
+- Für <InlineMath math="t \gg 1" /> gilt <InlineMath math="t^2 - t + (190{,}68)^3 \approx t^2" />
+
+Also,
+
+<MathContainer>
+<BlockMath math="\sqrt{t^2 - t + (190{,}68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(für} t &gt; 0\text{)}" />
+<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
+</MathContainer>
+
+> Das negative Ergebnis zeigt den **begrenzten Gültigkeitsbereich** des Modells. Eine Fallzahl kann nicht negativ sein, daher ist die Formel nur sinnvoll, solange <InlineMath math="N(t) \geq 0" /> gilt. Dieses fiktive Modell ist keine epidemiologische Prognose und darf nicht als medizinische oder politische Empfehlung verwendet werden.
+
+### Ein Impfziel interpretieren
+
+In einem Unterrichtsmodell können Grenzwerte und Funktionswerte zeigen, was eine Formel in der Nähe eines vorgegebenen Impfziels liefert. Ohne empirische Daten, Annahmen zur Übertragung und reale Bevölkerungsdaten beweist diese Rechnung jedoch nicht, dass das Ziel wirksam ist.
+
+Angenommen, eine Übung setzt für Einwohner über <InlineMath math="18 \text{Jahre}" /> ein Ziel von <InlineMath math="V \text{Menschen}" /> fest. Wir können die Formel an diesem Ziel auswerten und das Ergebnis innerhalb des Modells deuten. Die Rechnung allein belegt keine optimale Strategie.
+
+## Anwendung in den Wirtschaftswissenschaften
+
+### Grenzkostenanalyse
+
+In einem differenzierbaren Kostenmodell beschreiben **Grenzkosten**, wie schnell sich die Gesamtkosten im jeweiligen Augenblick mit der Produktionsmenge ändern. Sie werden durch die Ableitung definiert:
+
+**Mathematische Definition mit Grenzwerten:**
+
+<BlockMath math="\text{Grenzkosten} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+
+Dabei gilt:
+- <InlineMath math="C(x)" /> = Gesamtproduktionskostenfunktion für <InlineMath math="x \text{Einheiten}" />
+- <InlineMath math="\Delta x" /> = kleine Änderung der Produktionsmenge
+- Der Grenzwert gibt die **augenblickliche Änderungsrate** der Kosten in Bezug auf die Produktion an
+
+Wird die Produktion in ganzen Einheiten gezählt, betragen die exakten Zusatzkosten der nächsten Einheit <InlineMath math="C(x+1)-C(x)" />. Die Ableitung <InlineMath math="C'(x)" /> nähert diese diskrete Änderung häufig an, beide Größen sind aber nicht automatisch identisch.
+
+### Bevölkerungswachstumsmodell
+
+Ein vereinfachtes logistisches Bevölkerungsmodell kann so geschrieben werden:
+
+<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}, \qquad K > 0,\ A > 0,\ r > 0" />
+
+Da <InlineMath math="e^{-rt} \to 0" /> für <InlineMath math="t \to \infty" /> gilt, nähert sich das Modell seinem **Tragfähigkeitsparameter**:
+
+<BlockMath math="\lim_{t \to \infty} P(t) = \frac{K}{1+A(0)}=K" />
+
+Dabei ist <InlineMath math="K" /> ein Parameter des vereinfachten Modells. Die Tragfähigkeit einer realen Umwelt kann sich ändern. Der Grenzwert behauptet also nicht, dass jede gemessene Population dauerhaft bei einem festen Wert bleibt.
+
+## Anwendung in Technologie und Wissenschaft
+
+### Digitale Signalanalyse
+
+Für ein **normiertes Tiefpassmodell erster Ordnung** mit der Grenzfrequenz <InlineMath math="\omega_c > 0" /> lautet der Betrag des Frequenzgangs:
+
+<BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
+
+Seine Grenzwerte zeigen das idealisierte Verhalten unmittelbar:
+
+<MathContainer>
+<BlockMath math="\lim_{\omega \to 0}|H(i\omega)|=1" />
+<BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
+</MathContainer>
+
+Das Modell lässt sehr niedrige Frequenzen mit Verstärkung eins passieren und dämpft hohe Frequenzen zunehmend. Es ist ein mathematisches Filtermodell und keine Beschreibung jedes digitalen Filters.
+
+### Chemische Reaktionsgeschwindigkeit
+
+Für den **idealisierten Verbrauch erster Ordnung** eines Reaktanden <InlineMath math="A" /> gilt:
+
+<BlockMath math="[A](t)=[A]_0e^{-kt}, \qquad k>0" />
+
+Daraus folgt:
+
+<BlockMath math="\lim_{t \to \infty}[A](t)=[A]_0\lim_{t \to \infty}e^{-kt}=0" />
+
+Diese Schlussfolgerung gehört zu diesem irreversiblen Modell erster Ordnung. Eine reversible Reaktion im Gleichgewicht benötigt im Allgemeinen ein anderes Modell und muss keine Reaktandenkonzentration von null haben.
+
+## Ein fiktives Impfziel auswerten
+
+1. **Problembeschreibung:**
+
+    In diesem fiktiven Unterrichtsszenario hat eine Stadt <InlineMath math="576{.}260 \text{Menschen}" />. Die Aufgabe gibt eine vereinfachte Formel vor, die eine Impfzahl mit der modellierten Zahl verbleibender positiver Fälle verknüpft:
+
+    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+
+    Dabei gilt:
+    - <InlineMath math="N(t)" /> = Anzahl der verbleibenden positiven Fälle
+    - <InlineMath math="t" /> = Anzahl der geimpften Personen
+
+2. **Frage:**
+
+    Wenn das Ziel des Impfprogramms <InlineMath math="282{.}367 \text{Menschen}" /> ist, wie viele positive Fälle bleiben dann übrig, wenn das Ziel erreicht ist?
+
+3. **Daten und Annahmen:**
+
+    Die Aufgabe nimmt an:
+    - Gesamtbevölkerung: <InlineMath math="576{.}260 \text{Menschen}" />
+    - Alterszusammensetzung: <InlineMath math="21\%" /> Kinder (<InlineMath math="\leq 18 \text{Jahre}" />), <InlineMath math="79\%" /> Erwachsene (<InlineMath math="\gt 18 \text{Jahre}" />)
+    - Gesundheitszustand: <InlineMath math="30\%" /> bereits als positiv bestätigt, wobei für alle Altersgruppen derselbe Anteil angenommen wird
+    - Richtlinie: Nur Erwachsene, die nicht positiv getestet wurden, können geimpft werden
+
+    Begründung für das Impfziel <InlineMath math="282{.}367 \text{Menschen}" />:
+
+    <MathContainer>
+    <BlockMath math="\text{Kinder} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{Menschen}" />
+    <BlockMath math="\text{Erwachsene} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{Menschen}" />
+    <BlockMath math="\text{Insgesamt positiv} = 0{,}3 \times 576{.}260 = 172{.}878 \text{Menschen}" />
+    <BlockMath math="\text{Positive Erwachsene} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{Menschen}" />
+    <BlockMath math="\text{Berechtigte Erwachsene} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{Menschen}" />
+    </MathContainer>
+
+    Der Anteil des Ziels wird mit der **ungerundeten Zahl der Berechtigten** berechnet:
+
+    <BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
+
+    Das Impfziel entspricht in diesem fiktiven Szenario also ungefähr <InlineMath math="88{,}6\%" /> der berechtigten Erwachsenen. Die Aufgabe gibt dieses Ziel vor. Die Rechnung begründet nicht, wie ein reales Impfziel festgelegt werden sollte.
+
+4. **Lösung:**
+
+    Um die Anzahl der verbleibenden Fälle bei <InlineMath math="t = 282{.}367" /> zu ermitteln, berechnen wir:
+
+    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
+
+    **Schritt** <InlineMath math="1" />: Berechne <InlineMath math="(190{,}68)^3" />
+
+    <BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
+
+    Der angezeigte Wert ist auf zwei Dezimalstellen gerundet. In der folgenden Rechnung wird intern weiterhin der ungerundete Wert verwendet.
+
+    **Schritt** <InlineMath math="2" />: Berechne <InlineMath math="(282{.}367)^2" />
+
+    <BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
+
+    **Schritt** <InlineMath math="3" />: Setze die Werte unter der Wurzel ein
+
+    <BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
+
+    **Schritt** <InlineMath math="4" />: Berechne das Endergebnis
+
+    <MathContainer>
+    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
+    <BlockMath math="= 285{.}000 - 282{.}378{,}78" />
+    <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{Menschen}" />
+    </MathContainer>
+
+5. **Ergebnisinterpretation:**
+
+    Bei <InlineMath math="282{.}367" /> geimpften Personen liefert die vorgegebene Formel ungefähr <InlineMath math="2{.}621" /> verbleibende Fälle. Das ist ein Ergebnis des fiktiven Modells, **keine reale Prognose** und keine ausreichende Grundlage für die Verteilung von Gesundheitsressourcen.
+
+## Das Ergebnis verantwortungsvoll deuten
+
+Der Wert <InlineMath math="2{.}621 \text{Fälle}" /> beantwortet die mathematische Frage der Übung. Eine reale Entscheidung bräuchte zusätzlich unabhängig geprüfte Erkenntnisse über:
+
+1. Aktuelle und erwartete **Krankenhauskapazitäten**
+2. Verfügbares **medizinisches Personal** und seine Auslastung
+3. Die **Ressourcenverteilung** unter mehreren plausiblen Szenarien
+4. Unsicherheit und eine ehrliche **öffentliche Kommunikation**
+
+> Ein Grenzwert beschreibt das Verhalten einer Formel. Ob diese Formel die Wirklichkeit beschreibt, ist eine eigene Beweisfrage. Vor jeder Deutung müssen Annahmen, Gültigkeitsbereich, Einheiten und Unsicherheit des Modells genannt werden.
+
+## Übungen
+
+1. Ein Pharmaunternehmen modelliert die kumulierte Impfstoffproduktion mit <InlineMath math="P(t) = 50000(1 - e^{-0{,}1t})" /> für <InlineMath math="t \geq 0" />. Bestimme die langfristige Produktionsgrenze, die das Modell vorhersagt.
+
+2. Die kumulierte Reichweite einer Nachricht in sozialen Medien wird durch <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> für <InlineMath math="t \geq 0" /> modelliert. Berechne den Grenzwert für <InlineMath math="t \to \infty" /> und deute ihn innerhalb des Modells.
+
+3. Die Gesamtkosten für die Produktion von <InlineMath math="x" /> Masken werden durch <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" /> modelliert. Bestimme die Grenzkostenfunktion mit der Grenzwertdefinition und vergleiche sie anschließend mit den exakten Zusatzkosten beim Anstieg von <InlineMath math="x" /> auf <InlineMath math="x+1" /> Einheiten.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Die langfristige Grenze des Modells ergibt sich aus dem Grenzwert für <InlineMath math="t \to \infty" />:
+
+   <MathContainer>
+   <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
+   <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0{,}1t})" />
+   <BlockMath math="= 50000(1 - 0) = 50000 \text{Impfeinheiten}" />
+   </MathContainer>
+
+   Die kumulierte Produktion nähert sich im Modell <InlineMath math="50{.}000" /> Impfstoffeinheiten. Für ein endliches <InlineMath math="t" /> erreicht sie diesen Wert nicht genau, weil <InlineMath math="e^{-0{,}1t}>0" /> für jedes endliche <InlineMath math="t" /> gilt.
+
+2. **Lösung:**
+
+   <MathContainer>
+   <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
+   <BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
+   <BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{Menschen}" />
+   </MathContainer>
+
+   Innerhalb des Modells nähert sich die kumulierte Reichweite mit zunehmender Zeit <InlineMath math="100{.}000 \text{Menschen}" />. Dieser Grenzwert ist ein modelliertes Sättigungsniveau und kein Beleg dafür, dass eine reale Nachricht genau diese Reichweite erzielen muss.
+
+3. **Lösung:**
+
+   Die Grenzkosten sind die Ableitung der Kostenfunktion und lassen sich mit der Grenzwertdefinition berechnen:
+
+   <MathContainer>
+   <BlockMath math="\text{Grenzkosten} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+   </MathContainer>
+
+   **Detaillierte Schritte:**
+
+   <BlockMath math="C(x + \Delta x) = 1000 + 5(x + \Delta x) + 0{,}01(x + \Delta x)^2" />
+
+   Wir multiplizieren aus:
+
+   <BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
+
+   Dann setzen wir den Ausdruck ein:
+
+   <BlockMath math="C(x + \Delta x) = 1000 + 5x + 5\Delta x + 0{,}01x^2 + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
+
+   Also,
+
+   <MathContainer>
+   <BlockMath math="C(x + \Delta x) - C(x) = 5\Delta x + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
+   <BlockMath math="\frac{C(x + \Delta x) - C(x)}{\Delta x} = 5 + 0{,}02x + 0{,}01\Delta x" />
+   <BlockMath math="\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) = 5 + 0{,}02x" />
+   </MathContainer>
+
+   Damit lautet die Grenzkostenfunktion <InlineMath math="C'(x)=5+0{,}02x" /> Geldeinheiten pro Produktionseinheit.
+
+   Die exakten Zusatzkosten der nächsten ganzen Einheit sind:
+
+   <MathContainer>
+   <BlockMath math="C(x+1)-C(x)" />
+   <BlockMath math="=1000+5(x+1)+0{,}01(x+1)^2-(1000+5x+0{,}01x^2)" />
+   <BlockMath math="=5{,}01+0{,}02x" />
+   </MathContainer>
+
+   Bei diesem Modell liegt die Ableitung um <InlineMath math="0{,}01" /> Geldeinheit unter dem exakten Zuwachs um eine Einheit. Der Vergleich zeigt, weshalb Grenzkosten eine momentane Änderungsrate sind und die diskreten Kosten der nächsten Einheit nur annähern.

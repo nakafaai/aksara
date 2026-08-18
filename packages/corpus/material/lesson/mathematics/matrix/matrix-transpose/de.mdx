@@ -1,0 +1,107 @@
+export const metadata = {
+    title: "Transponierte einer Matrix",
+    description: "Vertausche Zeilen und Spalten einer Matrix und nutze die Eigenschaften der Transponierten in vollständig gelösten Beispielen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-06-05",
+    subject: "Matrix",
+};
+
+## Was ist die Transponierte einer Matrix?
+
+Die Transponierte entsteht, wenn man die Zeilen und Spalten einer Matrix vertauscht. Jede Zeile der ursprünglichen Matrix wird zu einer Spalte der neuen Matrix und jede Spalte zu einer Zeile.
+
+Wenn wir eine Matrix <InlineMath math="A" /> haben, dann wird die Transponierte der Matrix <InlineMath math="A" /> normalerweise mit <InlineMath math="A^T" /> oder <InlineMath math="A'" /> bezeichnet.
+
+Hat die Matrix <InlineMath math="A" /> das Format <InlineMath math="m \times n" /> und steht <InlineMath math="a_{ij}" /> in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte, dann hat <InlineMath math="A^T" /> das Format <InlineMath math="n \times m" /> und es gilt <InlineMath math="(A^T)_{ji} = a_{ij}" />.
+
+Dies bedeutet, dass das Element in der <InlineMath math="j" />-ten Zeile und <InlineMath math="i" />-ten Spalte von <InlineMath math="A^T" /> das gleiche ist wie das Element in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte von <InlineMath math="A" />.
+
+## So wird eine Matrix transponiert
+
+So entsteht die transponierte Matrix:
+
+1.  Schreibe die erste Zeile der ursprünglichen Matrix als erste Spalte der Transponierten.
+2.  Schreibe die zweite Zeile als zweite Spalte.
+3.  Wiederhole den Vorgang für alle übrigen Zeilen.
+
+### Allgemeine Matrix
+
+Angenommen, wir haben die Matrix <InlineMath math="A" />:
+
+<BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
+
+Dann ist die Transponierte der Matrix <InlineMath math="A" />:
+
+<BlockMath math="A^T = \begin{bmatrix} a & c \\ b & d \end{bmatrix}" />
+
+Die erste Zeile <InlineMath math="\begin{bmatrix} a & b \end{bmatrix}" /> wird zur
+ersten Spalte <InlineMath math="\begin{bmatrix} a \\ b \end{bmatrix}" />. Entsprechend wird
+die zweite Zeile <InlineMath math="\begin{bmatrix} c & d \end{bmatrix}" /> zur
+zweiten Spalte <InlineMath math="\begin{bmatrix} c \\ d \end{bmatrix}" />.
+
+### Matrix mit anderem Format
+
+Gegeben ist die Matrix <InlineMath math="B" /> im Format <InlineMath math="2 \times 3" />:
+
+<BlockMath math="B = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}" />
+
+Die Transponierte der Matrix <InlineMath math="B" />, also <InlineMath math="B^T" />, hat das Format <InlineMath math="3 \times 2" />:
+
+<BlockMath math="B^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}" />
+
+- Die erste Zeile von <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) wird zur ersten Spalte von <InlineMath math="B^T" />.
+- Die zweite Zeile von <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) wird zur zweiten Spalte von <InlineMath math="B^T" />.
+
+### Spaltenmatrix zur Zeilenmatrix
+
+Wenn <InlineMath math="C" /> eine Spaltenmatrix ist:
+
+<BlockMath math="C = \begin{bmatrix} 2 \\ 3 \end{bmatrix}" />
+
+Dann ist ihre Transponierte, <InlineMath math="C^T" />, eine Zeilenmatrix:
+
+<BlockMath math="C^T = \begin{bmatrix} 2 & 3 \end{bmatrix}" />
+
+### Transponierte einer Quadratmatrix
+
+Gegeben sei eine quadratische Matrix <InlineMath math="D" />:
+
+<BlockMath math="D = \begin{bmatrix} -7 & 8 & 1 & 3 \\ 5 & 9 & 7 & 2 \\ 2 & 2 & 1 & 3 \\ 1 & -6 & 0 & 1 \end{bmatrix}" />
+
+Dann ist ihre Transponierte, <InlineMath math="D^T" />, ebenfalls eine quadratische Matrix:
+
+<BlockMath math="D^T = \begin{bmatrix} -7 & 5 & 2 & 1 \\ 8 & 9 & 2 & -6 \\ 1 & 7 & 1 & 0 \\ 3 & 2 & 3 & 1 \end{bmatrix}" />
+
+## Eigenschaften der Matrixtransponierung
+
+Einige wichtige Eigenschaften der Matrixtransponierung sind:
+
+1.  <InlineMath math="(A^T)^T = A" /> (Wird eine Matrix zweimal transponiert, erhält man
+    die ursprüngliche Matrix.)
+2.  <InlineMath math="(A + B)^T = A^T + B^T" /> (Transponierte der Summe zweier Matrizen)
+3.  <InlineMath math="(A - B)^T = A^T - B^T" /> (Transponierte der Differenz zweier Matrizen)
+4.  <InlineMath math="(kA)^T = kA^T" />, wobei <InlineMath math="k" /> ein Skalar ist
+5.  <InlineMath math="(AB)^T = B^T A^T" /> (Beim Transponieren eines Produkts
+    kehrt sich die Reihenfolge der Faktoren um.)
+
+## Übungen
+
+Bestimme die Transponierte der folgenden Matrizen und gib den Typ der Ergebnismatrix an, zum Beispiel Zeilenmatrix, Spaltenmatrix oder Quadratmatrix.
+
+1.  <InlineMath math="A = \begin{bmatrix} 1 & 3 & -5 \end{bmatrix}" />
+2.  <InlineMath math="B = \begin{bmatrix} 9 & -1 \\ 3 & 0 \\ 1 & 5 \end{bmatrix}" />
+3.  <InlineMath math="C = \begin{bmatrix} 2 & 3 & 1 \\ 1 & 6 & -2 \\ 4 & 5 & -7 \end{bmatrix}" />
+
+### Ausführliche Lösungen
+
+1.  <InlineMath math="A^T = \begin{bmatrix} 1 \\ 3 \\ -5 \end{bmatrix}" />
+
+    Die einzige Zeile von <InlineMath math="A" /> wird zu einer Spalte. Somit hat <InlineMath math="A^T" /> das Format <InlineMath math="3 \times 1" /> und ist eine Spaltenmatrix.
+
+2.  <InlineMath math="B^T = \begin{bmatrix} 9 & 3 & 1 \\ -1 & 0 & 5 \end{bmatrix}" />
+
+    Jede Zeile von <InlineMath math="B" /> wird zu einer Spalte von <InlineMath math="B^T" />. Das Format ändert sich von <InlineMath math="3 \times 2" /> zu <InlineMath math="2 \times 3" />. Das Ergebnis ist daher eine rechteckige Matrix.
+
+3.  <InlineMath math="C^T = \begin{bmatrix} 2 & 1 & 4 \\ 3 & 6 & 5 \\ 1 & -2 & -7 \end{bmatrix}" />
+
+    Liest man die Spalten von <InlineMath math="C" /> als Zeilen von <InlineMath math="C^T" />, entsteht die oben angegebene Matrix. Ihr Format bleibt <InlineMath math="3 \times 3" />, daher ist sie weiterhin quadratisch.

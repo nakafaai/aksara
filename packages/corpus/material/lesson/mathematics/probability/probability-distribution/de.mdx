@@ -1,0 +1,169 @@
+export const metadata = {
+  title: "Wahrscheinlichkeitsverteilung",
+  description: "Verstehe Wahrscheinlichkeitsverteilungen, Ergebnismengen und Ereigniswahrscheinlichkeiten anhand vollständiger Beispiele mit einem und zwei Würfeln.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-21",
+  subject: "Wahrscheinlichkeit",
+};
+
+## Was ist eine Wahrscheinlichkeitsverteilung?
+
+Eine Wahrscheinlichkeitsverteilung nennt die möglichen Werte einer Zufallsgröße und ordnet jedem Wert eine Wahrscheinlichkeit zu. Bei einem Würfel kann die Zufallsgröße die gewürfelte Zahl sein. Bei zwei Würfeln kann sie stattdessen deren Summe sein. Die Verteilung zeigt, welche Werte möglich sind und wie wahrscheinlich jeder Wert ist.
+
+## Die Ergebnismenge (alle möglichen Ergebnisse)
+
+Die Ergebnismenge enthält alle Elementarereignisse, die in einem Zufallsversuch _auftreten können_. Sie wird mit dem Symbol <InlineMath math="\Omega" /> (Omega) bezeichnet.
+
+Bei einem Wurf mit einem gewöhnlichen <InlineMath math="6" />-seitigen Würfel sind <InlineMath math="1, 2, 3, 4, 5," /> und <InlineMath math="6" /> möglich. Zusammen bilden diese Ergebnisse die Ergebnismenge:
+
+<BlockMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />
+
+Hier gibt es insgesamt <InlineMath math="6" /> mögliche Ergebnisse.
+
+## Ereignisse und ihre Wahrscheinlichkeiten
+
+### Was ist ein Ereignis?
+
+Ein Ereignis ist eine Teilmenge der Ergebnismenge. Es enthält genau die Ergebnisse, die eine bestimmte Bedingung erfüllen.
+
+**Beispiel**:
+
+Für den Würfelversuch (<InlineMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />) betrachten wir das Ereignis „Das Ergebnis ist gerade“. Die geraden Ergebnisse sind <InlineMath math="2, 4," /> und <InlineMath math="6" />. Ereignis <InlineMath math="A" /> lautet also:
+
+<BlockMath math="A = \{2, 4, 6\}" />
+
+Das Ereignis <InlineMath math="A" /> enthält <InlineMath math="3" /> Ergebnisse.
+
+### Berechnung der Wahrscheinlichkeit eines Ereignisses
+
+Die Wahrscheinlichkeit misst, wie wahrscheinlich ein Ereignis eintritt.
+
+Sind alle Elementarereignisse gleich wahrscheinlich, wird die Anzahl der günstigen Ergebnisse durch die Anzahl aller Ergebnisse geteilt:
+
+<BlockMath math="P(\text{Ereignis}) = \frac{\text{Anzahl der günstigen Ergebnisse}}{\text{Anzahl aller Ergebnisse}}" />
+
+Mit den Symbolen aus unserem Beispiel:
+
+<BlockMath math="P(A) = \frac{|A|}{|\Omega|}" />
+
+Dabei gilt:
+
+- <InlineMath math="|A|" /> ist die Anzahl der Ergebnisse in Ereignis <InlineMath math="A" />, hier also <InlineMath math="3" />.
+- <InlineMath math="|\Omega|" /> ist die Anzahl aller Ergebnisse in der
+  Ergebnismenge, hier also <InlineMath math="6" />.
+
+Damit beträgt die Wahrscheinlichkeit des Ereignisses „gerade Zahl“ (Ereignis <InlineMath math="A" />):
+
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+
+Das Ereignis hat also die Wahrscheinlichkeit <InlineMath math="1/2" />, also <InlineMath math="50\%" />.
+
+## Regeln für Wahrscheinlichkeitsverteilungen
+
+Eine gültige Wahrscheinlichkeitsverteilung erfüllt zwei Regeln:
+
+1.  Die Wahrscheinlichkeit jedes Wertes (<InlineMath math="P(x)" />) liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />.
+
+    <BlockMath math="0 \leq P(x) \leq 1" />
+
+2.  Die Wahrscheinlichkeiten aller möglichen Werte ergeben zusammen genau <InlineMath math="1" />.
+
+    <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
+
+## Einen Würfel werfen
+
+Bei einem fairen Würfel hat jede Seite dieselbe Wahrscheinlichkeit. Die Verteilung lautet:
+
+| Ergebnis <InlineMath math="x" /> | Wahrscheinlichkeit <InlineMath math="P(x)" /> |
+| :--------------- | :------------------------------------- |
+| <InlineMath math="1" /> | <InlineMath math="1/6" /> |
+| <InlineMath math="2" /> | <InlineMath math="1/6" /> |
+| <InlineMath math="3" /> | <InlineMath math="1/6" /> |
+| <InlineMath math="4" /> | <InlineMath math="1/6" /> |
+| <InlineMath math="5" /> | <InlineMath math="1/6" /> |
+| <InlineMath math="6" /> | <InlineMath math="1/6" /> |
+
+**Warum sind sie alle <InlineMath math="1/6" />?**
+
+Der Würfel hat <InlineMath math="6" /> gleich wahrscheinliche Seiten, daher besitzt jede Seite die Wahrscheinlichkeit <InlineMath math="1/6" />. Ihre Summe ist <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" /> und erfüllt damit die zweite Regel.
+
+## Zwei Würfel werfen
+
+Nun werfen wir **einen roten und einen weißen Würfel**. Wird das Ergebnis als geordnetes Paar notiert, gibt es <InlineMath math="36" /> mögliche Ergebnisse.
+
+**Warum <InlineMath math="36" />?**
+
+Der rote Würfel hat <InlineMath math="6" /> Möglichkeiten und der weiße ebenfalls <InlineMath math="6" />. Daraus entstehen <InlineMath math="6 \times 6 = 36" /> geordnete Paare.
+
+Die resultierenden Paare können wie folgt geschrieben werden:
+
+- Roter Würfel <InlineMath math="1" />, weißer Würfel <InlineMath math="1" /> ergibt <InlineMath math="(1, 1)" />.
+- Roter Würfel <InlineMath math="1" />, weißer Würfel <InlineMath math="2" /> ergibt <InlineMath math="(1, 2)" />.
+- ... und so weiter bis ...
+- Roter Würfel <InlineMath math="6" />, weißer Würfel <InlineMath math="6" /> ergibt <InlineMath math="(6, 6)" />.
+
+Da die Würfel fair und unabhängig sind, hat jedes geordnete Paar die Wahrscheinlichkeit <InlineMath math="1/36" />.
+
+**<InlineMath math="(1, 2)" /> und <InlineMath math="(2, 1)" /> unterscheiden**
+
+Da die Würfel verschiedene Farben haben, unterscheidet sich eine rote <InlineMath math="3" /> mit einer weißen <InlineMath math="2" /> von einer roten <InlineMath math="2" /> mit einer weißen <InlineMath math="3" />. Die Reihenfolge hält fest, welcher Würfel welche Zahl zeigt.
+
+### Wahrscheinlichkeitsverteilung für die Summe zweier Würfel
+
+Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <InlineMath math="1+1=2" /> und ihr größter Wert <InlineMath math="6+6=12" />. Die Summen entstehen aus unterschiedlich vielen geordneten Paaren und haben daher verschiedene Wahrscheinlichkeiten:
+
+| Summe der Zahlen <InlineMath math="j" /> | Mögliche Paare | Anzahl der Paare | Wahrscheinlichkeit <InlineMath math="P(j)" /> |
+| :------------------------------------- | :---------------------------------------------- | :-------- | :------------------------------------- |
+| <InlineMath math="2" /> | <InlineMath math="(1,1)" /> | <InlineMath math="1" /> | <InlineMath math="1/36" /> |
+| <InlineMath math="3" /> | <InlineMath math="(1,2), (2,1)" /> | <InlineMath math="2" /> | <InlineMath math="2/36" /> |
+| <InlineMath math="4" /> | <InlineMath math="(1,3), (2,2), (3,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/36" /> |
+| <InlineMath math="5" /> | <InlineMath math="(1,4), (2,3), (3,2), (4,1)" /> | <InlineMath math="4" /> | <InlineMath math="4/36" /> |
+| <InlineMath math="6" /> | <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> | <InlineMath math="5" /> | <InlineMath math="5/36" /> |
+| <InlineMath math="7" /> | <InlineMath math="(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)" /> | <InlineMath math="6" /> | <InlineMath math="6/36" /> |
+| <InlineMath math="8" /> | <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> | <InlineMath math="5" /> | <InlineMath math="5/36" /> |
+| <InlineMath math="9" /> | <InlineMath math="(3,6), (4,5), (5,4), (6,3)" /> | <InlineMath math="4" /> | <InlineMath math="4/36" /> |
+| <InlineMath math="10" /> | <InlineMath math="(4,6), (5,5), (6,4)" /> | <InlineMath math="3" /> | <InlineMath math="3/36" /> |
+| <InlineMath math="11" /> | <InlineMath math="(5,6), (6,5)" /> | <InlineMath math="2" /> | <InlineMath math="2/36" /> |
+| <InlineMath math="12" /> | <InlineMath math="(6,6)" /> | <InlineMath math="1" /> | <InlineMath math="1/36" /> |
+
+Die Summe <InlineMath math="7" /> ist am wahrscheinlichsten, weil <InlineMath math="6" /> geordnete Paare zu ihr führen. Die Summen <InlineMath math="2" /> und <InlineMath math="12" /> entstehen dagegen jeweils nur aus einem Paar. Dieser Unterschied ist entscheidend, wenn ein Spiel oder Modell von der Summe und nicht von den einzelnen Würfelwerten abhängt.
+
+## Wozu dienen Wahrscheinlichkeitsverteilungen?
+
+Wahrscheinlichkeitsverteilungen machen unsichere Ergebnisse vergleichbar und nutzbar:
+
+- **Ergebnisse vergleichen:** Man erkennt unmittelbar, dass die Summe <InlineMath math="7" /> wahrscheinlicher ist als die Summe <InlineMath math="12" />.
+- **Spiele analysieren:** Bei Würfelspielen zeigt die Verteilung, welche Züge oder Summen häufiger auftreten, auch wenn ein einzelner Wurf ungewiss bleibt.
+- **Vorhersagen treffen:** Eine Verteilung kann Unsicherheit zusammenfassen, etwa die Regenwahrscheinlichkeit in einem Wettermodell.
+- **Entscheidungen unterstützen:** Wissenschaft und Wirtschaft vergleichen mit Wahrscheinlichkeitsverteilungen Risiken und erwartete Ergebnisse anhand von Daten statt anhand unbegründeter Vermutungen.
+
+In jedem Fall liefert die Verteilung ein Zahlenmodell für Unsicherheit.
+
+## Übung
+
+Drei faire Münzen werden geworfen. Die Zufallsgröße <InlineMath math="X" /> gibt die Anzahl der geworfenen Köpfe an. Stelle die Wahrscheinlichkeitsverteilung von <InlineMath math="X" /> auf, prüfe ihre Gültigkeit und bestimme <InlineMath math="P(X \geq 2)" />.
+
+### Ausführliche Lösung
+
+Wir codieren Kopf mit <InlineMath math="1" /> und Zahl mit <InlineMath math="0" />. Die drei Würfe erzeugen dann <InlineMath math="2^3=8" /> gleich wahrscheinliche geordnete Tripel:
+
+<BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
+
+Wir zählen die Ergebnisse mit <InlineMath math="0,1,2" /> oder <InlineMath math="3" /> Köpfen:
+
+| Anzahl der Köpfe <InlineMath math="x" /> | Ergebnisse | Anzahl | <InlineMath math="P(X=x)" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="0" /> | <InlineMath math="(0,0,0)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1,0,0),(0,1,0),(0,0,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="2" /> | <InlineMath math="(1,1,0),(1,0,1),(0,1,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="3" /> | <InlineMath math="(1,1,1)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+
+Jede Wahrscheinlichkeit liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" /> und ihre Summe ist
+
+<BlockMath math="\frac{1}{8}+\frac{3}{8}+\frac{3}{8}+\frac{1}{8}=\frac{8}{8}=1" />
+
+Die Verteilung ist somit gültig. Mindestens zwei Köpfe bedeuten <InlineMath math="X=2" /> oder <InlineMath math="X=3" />. Daher gilt:
+
+<BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
+
+Da die Ergebnismenge zuerst vollständig aufgeschrieben wurde, lässt sich die Verteilung prüfen: Jedes der <InlineMath math="8" /> Ergebnisse erscheint in _genau einer Zeile_.

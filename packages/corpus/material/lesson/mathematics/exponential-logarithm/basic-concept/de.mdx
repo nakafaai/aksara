@@ -1,0 +1,142 @@
+export const metadata = {
+  title: "Potenzen verstehen",
+  description:
+    "Von der wiederholten Multiplikation zu Potenzen mit Exponent null, negativen und gebrochenen Exponenten sowie exponentiellem Wachstum und Zerfall.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-01",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Vom Papierfalten zum Wachstumsmodell
+
+Nehmen wir an, ein Blatt Papier ist anfangs etwa <InlineMath math="0{,}1\text{ mm}" /> dick. In einem idealen Modell verdoppelt jede Faltung die Dicke. Nach <InlineMath math="42" /> Faltungen ergibt das Modell:
+
+<BlockMath math="0{,}1\text{ mm}\times 2^{42}\approx 439{.}805\text{ km}" />
+
+Das ist mehr als die mittlere Entfernung von der Erde zum Mond. Ein echtes Blatt lässt sich nicht so oft falten. Das Modell macht aber das entscheidende Muster sichtbar: Derselbe Faktor wird immer wieder angewendet. Das ist **exponentielles Wachstum**.
+
+Dasselbe Muster kann die Ausbreitung in einer kurzen frühen Phase eines Ausbruchs näherungsweise beschreiben. Würde jeder Fall unter unveränderten Bedingungen genau zwei neue Fälle verursachen, entstünde die Folge <InlineMath math="1,2,4,8,\ldots" />. Bei realen Ausbrüchen bleibt der Faktor nicht konstant. Es handelt sich also um ein Lernmodell, nicht um eine wörtliche Vorhersage.
+
+## Definition von Potenzen
+
+Eine Potenz schreibt eine wiederholte Multiplikation kompakt. Im Verdopplungsmodell sehen die ersten Stufen so aus:
+
+<BlockMath math="1 = 2^0 \quad 2 = 2^1 \quad 4 = 2 \times 2 = 2^2 \quad 8 = 2 \times 2 \times 2 = 2^3 \quad 16 = 2 \times 2 \times 2 \times 2 = 2^4" />
+
+In Stufe <InlineMath math="n" /> lautet das Modell <InlineMath math="m(n)=2^n" />. Zum Beispiel:
+
+<InlineMath math="m(5)=2^5=32" />.
+
+## Bedeutung der Potenzschreibweise
+
+Ein Ausdruck wie <InlineMath math="a^n" /> besteht aus zwei Teilen:
+
+<BlockMath math="a^n" />
+
+- <InlineMath math="a" /> ist die **Basis**, also die Zahl, die multipliziert wird
+- <InlineMath math="n" /> ist der **Exponent**, also die Anzahl gleicher Faktoren
+
+Ist <InlineMath math="a" /> reell und <InlineMath math="n" /> eine positive ganze Zahl, dann gilt:
+
+<BlockMath math="a^n = \underbrace{a \times a \times a \times \ldots \times a}_{n \text{ Faktoren}}" />
+
+## Wichtige Definitionen
+
+### Exponent Null
+
+Für jede reelle Zahl <InlineMath math="a" /> ungleich null gilt:
+
+<BlockMath math="a^0=1" />
+
+Diese Regel ist nicht willkürlich. Teilt man eine von null verschiedene Potenz durch sich selbst, erhält man sowohl <InlineMath math="1" /> als auch <InlineMath math="a^{n-n}=a^0" />. Beide Ausdrücke müssen daher übereinstimmen.
+
+<BlockMath math="\frac{a^n}{a^n}=a^{n-n}=a^0=1" />
+
+### Negative Exponenten
+
+Für jede reelle Zahl <InlineMath math="a" /> ungleich null und jede positive ganze Zahl <InlineMath math="n" /> gilt:
+
+<BlockMath math="a^{-n}=\frac{1}{a^n}=\left(\frac{1}{a}\right)^n" />
+
+Der Grund ist <InlineMath math="a^n a^{-n}=a^0=1" />. Ein negativer Exponent steht also für den Kehrwert der entsprechenden positiven Potenz. Zum Beispiel:
+
+<InlineMath math="3^{-2}=\frac{1}{3^2}=\frac{1}{9}=0{,}111\ldots" />.
+
+### Gebrochene Exponenten
+
+Für reelle Wurzeln betrachten wir in diesem Abschnitt <InlineMath math="a>0" /> und eine positive ganze Zahl <InlineMath math="n" />. Dann gilt:
+
+<BlockMath math="a^{\frac{1}{n}}=\sqrt[n]{a}=p" />
+
+Dabei ist <InlineMath math="p" /> die eindeutig bestimmte positive reelle Zahl mit <InlineMath math="p^n=a" />. Zum Beispiel gilt <InlineMath math="16^{\frac14}=2" />, weil <InlineMath math="2^4=16" /> ist.
+
+Wurzeln mit ungeradem Wurzelexponenten sind auch für negative reelle Zahlen definiert, etwa <InlineMath math="(-8)^{\frac13}=-2" />. Gerade Wurzeln aus negativen Zahlen sind nicht reell. Die Definitionsmenge muss genannt werden, weil die Schreibweise nicht für jede Basis dieselbe reelle Bedeutung hat.
+
+### Allgemeine Bruchpotenzen
+
+Sind <InlineMath math="a>0" /> und <InlineMath math="m,n" /> positive ganze Zahlen, dann gilt:
+
+<BlockMath math="a^{\frac{m}{n}}=\left(a^{\frac{1}{n}}\right)^m=\left(\sqrt[n]{a}\right)^m" />
+
+Zuerst wird die <InlineMath math="n" />te Wurzel gezogen, anschließend wird das Ergebnis mit <InlineMath math="m" /> potenziert. Zum Beispiel:
+
+<InlineMath math="8^{\frac23}=\left(8^{\frac13}\right)^2=2^2=4" />.
+
+## Exponentialfunktionen
+
+Eine Exponentialfunktion hat die Form <InlineMath math="f(x)=a^x" /> mit <InlineMath math="a>0" /> und <InlineMath math="a\neq1" />:
+
+1. Für <InlineMath math="a>1" /> steigt der Funktionswert mit wachsendem <InlineMath math="x" />
+2. Für <InlineMath math="0<a<1" /> fällt der Funktionswert mit wachsendem <InlineMath math="x" />
+
+Der erste Fall beschreibt Wachstum, der zweite Zerfall. Das Modell ist nur so lange sinnvoll, wie Faktor und Zeitintervall zur untersuchten Situation passen.
+
+## Anwendungen
+
+### Bakterienwachstum
+
+In einem idealen Kulturmodell teilt sich jedes Bakterium in jedem Intervall in zwei Bakterien. Todesfälle und begrenzte Ressourcen werden dabei nicht berücksichtigt. Ist <InlineMath math="B_0" /> der Anfangsbestand, gilt nach <InlineMath math="t" /> Intervallen:
+
+<BlockMath math="B(t)=B_0\times2^t" />
+
+Die Basis <InlineMath math="2" /> ist der Wachstumsfaktor. Beginnt die Kultur mit <InlineMath math="100" /> Bakterien und teilt sie sich alle <InlineMath math="30\text{ Minuten}" />, dann liegen in <InlineMath math="2\text{ Stunden}" /> genau <InlineMath math="4" /> Intervalle:
+
+<BlockMath math="B(4)=100\times2^4=1{.}600" />
+
+<BacterialGrowth
+  formulaType="exponential"
+  ratio={2}
+  initialCount={100}
+  maxGenerations={4}
+  timeInterval={30}
+  timeUnit="Minuten"
+  labels={{
+    title: "Idealisiertes Bakterienwachstum",
+    bacterial: "Bakterien",
+    initialBacteria: "Anfangsbestand",
+  }}
+/>
+
+### Virusausbreitung
+
+Ein vereinfachtes Modell für die frühe Ausbreitungsphase verwendet den durchschnittlichen Faktor <InlineMath math="R" />:
+
+<BlockMath math="C(n)=C_0\times R^n" />
+
+Dabei ist <InlineMath math="C_0" /> die anfängliche Fallzahl und <InlineMath math="n" /> die Anzahl der Übertragungszyklen. Für <InlineMath math="C_0=10" />, <InlineMath math="R=2{,}5" /> und <InlineMath math="n=3" /> ergibt sich:
+
+<BlockMath math="C(3)=10\times2{,}5^3=156{,}25\approx156" />
+
+Das Dezimalergebnis ist ein Erwartungswert des Modells, kein Bruchteil einer Person. In der Praxis verändert sich <InlineMath math="R" /> durch Verhalten, Immunität, Maßnahmen und Messverfahren. Die Rechnung ist deshalb keine exakte Vorhersage.
+
+### Bevölkerungswachstum
+
+Wächst eine Bevölkerung in jedem Intervall mit derselben relativen Rate <InlineMath math="r" />, dann gilt:
+
+<BlockMath math="P(t)=P_0(1+r)^t" />
+
+Der Faktor <InlineMath math="1+r" /> umfasst den bisherigen Bestand und den Zuwachs. Bei einer Anfangsbevölkerung von <InlineMath math="1{.}000{.}000" /> und einer konstanten jährlichen Wachstumsrate von <InlineMath math="2\%" /> gilt:
+
+<BlockMath math="P(10)=1{.}000{.}000(1{,}02)^{10}\approx1{.}218{.}994" />
+
+Das ist eine Schätzung mit Zinseszinseffekt. Die tatsächliche Wachstumsrate einer Bevölkerung kann sich von Jahr zu Jahr ändern.

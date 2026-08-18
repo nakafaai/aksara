@@ -1,0 +1,143 @@
+
+export const metadata = {
+  title: "Streudiagramm",
+  description: "Lerne, Beziehungen zwischen zwei numerischen Variablen in einem Streudiagramm zu erkennen und positive, negative oder fehlende lineare Muster zu unterscheiden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was ist ein Streudiagramm?
+
+Ein Streudiagramm macht sichtbar, wie zwei numerische Variablen zusammenhängen könnten. Wir können damit zum Beispiel Lernzeit auf der <InlineMath math="x" />-Achse und Prüfungsergebnisse auf der <InlineMath math="y" />-Achse vergleichen.
+
+Jeder Punkt steht für ein zusammengehöriges Wertepaar, etwa die Lernzeit und das Ergebnis eines Schülers. Die Lage aller Punkte zeigt, ob sich ein gemeinsames Muster abzeichnet.
+
+### Wann sollte ein Streudiagramm verwendet werden?
+
+Ein Streudiagramm eignet sich besonders, wenn wir:
+
+- prüfen möchten, ob zwischen **zwei numerischen Variablen** ein **Zusammenhang** erkennbar ist, etwa zwischen Körpergröße und Gewicht oder zwischen Lernzeit und Prüfungsergebnis;
+- die **Richtung und Form** des Musters untersuchen möchten, also ob es positiv, negativ oder nicht erkennbar ist.
+
+Dies unterscheidet sich von anderen Diagrammen:
+
+- **Balkendiagramm:** vergleicht Werte zwischen **Kategorien**, etwa die Zahl der Schüler in verschiedenen Klassen.
+- **Liniendiagramm:** zeigt eine Entwicklung über die **Zeit** oder entlang einer festen Reihenfolge, etwa tägliche Temperaturen.
+- **Kreisdiagramm:** stellt **Anteile eines Ganzen** dar, etwa die Verteilung bevorzugter Obstsorten.
+
+Wenn du also vor allem den möglichen **Zusammenhang zwischen zwei Zahlenreihen** untersuchen möchtest, ist ein Streudiagramm eine passende Darstellung.
+
+## Beispiele für Streudiagramme und Korrelationsmuster
+
+Die folgenden Beispiele zeigen drei typische Punktmuster.
+
+### Positive Korrelation
+
+Verläuft die Punktwolke tendenziell von links unten nach rechts oben, liegt eine **positive Korrelation** vor. Mit größerem <InlineMath math="X" /> wird auch <InlineMath math="Y" /> meist größer.
+
+<ScatterDiagram
+  title="Zusammenhang zwischen Lernzeit (Stunden) und Prüfungsergebnissen"
+  description="Mit längerer Lernzeit fallen die Prüfungsergebnisse tendenziell höher aus, auch wenn nicht jeder Punkt genau demselben Muster folgt."
+  xAxisLabel="Lernzeit (Stunden)"
+  yAxisLabel="Prüfungsergebnis"
+  datasets={[
+    {
+      name: "Schüler",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 60 },
+        { x: 1.5, y: 68 },
+        { x: 2, y: 65 },
+        { x: 2.5, y: 75 },
+        { x: 3, y: 72 },
+        { x: 3.5, y: 80 },
+        { x: 4, y: 85 },
+        { x: 4, y: 82 },
+        { x: 4.5, y: 90 },
+        { x: 5, y: 88 },
+        { x: 5.5, y: 95 },
+        { x: 6, y: 92 },
+      ],
+    },
+  ]}
+/>
+
+### Negative Korrelation
+
+Verläuft die Punktwolke dagegen von links oben nach rechts unten, liegt eine **negative Korrelation** vor. Mit größerem <InlineMath math="X" /> wird <InlineMath math="Y" /> meist kleiner.
+
+<ScatterDiagram
+  title="Zusammenhang zwischen Fahrzeugalter und Verkaufspreis"
+  description="Je älter ein Auto ist, desto niedriger fällt sein Verkaufspreis tendenziell aus."
+  xAxisLabel="Fahrzeugalter (Jahre)"
+  yAxisLabel="Verkaufspreis (10 Mio. Rupiah)"
+  datasets={[
+    {
+      name: "Gebrauchtwagen",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 25 },
+        { x: 2, y: 22 },
+        { x: 2, y: 23 },
+        { x: 3, y: 20 },
+        { x: 4, y: 18 },
+        { x: 4, y: 19 },
+        { x: 5, y: 15 },
+        { x: 6, y: 14 },
+        { x: 7, y: 12 },
+        { x: 8, y: 10 },
+      ],
+    },
+  ]}
+/>
+
+### Keine klare lineare Korrelation in zwei Gruppen
+
+Sind die Punkte ohne erkennbare Richtung verstreut, gibt es **keine klare lineare Korrelation** oder sie ist nur sehr schwach. Verschiedene Farben können dabei mehrere Gruppen im selben Diagramm unterscheiden.
+
+<ScatterDiagram
+  title={
+    <>
+      Zusammenhang zwischen Körpergröße (<InlineMath math="\text{cm}" />) und Laufzeit über <InlineMath math="100 \text{ m}" /> (Sekunden) an zwei Schulen
+    </>
+  }
+  description={
+    <>
+      In diesen Daten aus zwei Schulen ist keine klare lineare Korrelation zwischen Körpergröße und der Sprintzeit über <InlineMath math="100 \text{ m}" /> erkennbar.
+    </>
+  }
+  xAxisLabel="Körpergröße (cm)"
+  yAxisLabel="100-m-Sprintzeit (Sekunden)"
+  xAxisDomain="min-max"
+  datasets={[
+    {
+      name: "Schule A",
+      color: "var(--chart-3)",
+      points: [
+        { x: 165, y: 13.5 },
+        { x: 170, y: 13.1 },
+        { x: 172, y: 13.8 },
+        { x: 175, y: 12.9 },
+        { x: 178, y: 13.3 },
+        { x: 180, y: 12.8 },
+        { x: 182, y: 13.6 },
+      ],
+    },
+    {
+      name: "Schule B",
+      color: "var(--chart-5)",
+      points: [
+        { x: 168, y: 13.9 },
+        { x: 171, y: 13.0 },
+        { x: 174, y: 13.5 },
+        { x: 176, y: 13.2 },
+        { x: 179, y: 12.7 },
+        { x: 181, y: 14.0 },
+        { x: 185, y: 13.1 },
+      ],
+    },
+  ]}
+/>
+
+Das Muster der Punktwolke liefert somit einen ersten Eindruck davon, wie zwei Variablen zusammenhängen, auch wenn mehrere Gruppen dargestellt werden. Es ist jedoch nur ein Ausgangspunkt: Ein sichtbares Muster beweist noch nicht, dass eine Variable die andere verursacht.

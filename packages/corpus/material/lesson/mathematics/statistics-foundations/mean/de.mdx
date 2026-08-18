@@ -1,0 +1,153 @@
+export const metadata = {
+  title: "Arithmetisches Mittel (Durchschnitt)",
+  description: "Berechne das arithmetische Mittel, untersuche den Einfluss eines Extremwerts und vergleiche Mittelwert, Median und Modus an einem anschaulichen Beispiel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Was ist der Mittelwert?
+
+Neben dem Median (mittlerer Wert) und dem Modus (häufigster Wert) ist das **arithmetische Mittel**, oft einfach Durchschnitt genannt, ein weiteres Maß für die Mitte eines Datensatzes.
+
+Das arithmetische Mittel ist der Wert, den jede Person bekäme, wenn wir **die Gesamtsumme gleichmäßig verteilen**. Stell dir vor, ihr legt alle Süßigkeiten aus einer Gruppe zusammen und teilt sie anschließend gerecht auf. Die Anzahl pro Person ist dann das arithmetische Mittel.
+
+## So berechnest du das arithmetische Mittel
+
+Gehe in zwei Schritten vor:
+
+1. Addiere alle Datenwerte.
+2. Teile die Summe durch die Anzahl der Werte.
+
+**Mittelwertformel:**
+
+<BlockMath math="\bar{x} = \frac{\sum x}{n}" />
+
+dabei gilt:
+
+- <InlineMath math="\bar{x}" />, gesprochen „x quer“, steht für das **arithmetische Mittel**.
+- <InlineMath math="\sum x" />, gesprochen „Sigma x“, steht für die **Summe aller Datenwerte**.
+- <InlineMath math="n" /> ist die **Anzahl der Datenwerte**.
+
+## Fallstudie
+
+Ein Beispiel macht die Idee greifbar.
+
+### Kleideraktion der Schülervertretung
+
+**Ausgangssituation:**
+
+Zehn Mitglieder der Schülervertretung von Schule A sammeln gut erhaltene Kleidung für eine Hilfsaktion. So viele Kleidungsstücke bringt jedes Mitglied mit:
+
+<BlockMath math="3, 5, 7, 10, 5, 3, 4, 6, 9, 8" />
+
+**Arithmetisches Mittel, Median und Modus der Ausgangsdaten:**
+
+1.  **Sortiere die Daten** (für Median und Modus):
+
+    <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> (insgesamt <InlineMath math="10 \text{Datenwerte}" />, also <InlineMath math="n = 10" />)
+
+2.  **Berechne das arithmetische Mittel:**
+
+    <MathContainer>
+      <BlockMath math="\sum x = 3+3+4+5+5+6+7+8+9+10 = 60" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{60}{10} = 6" />
+    </MathContainer>
+
+    Das arithmetische Mittel der Ausgangsdaten beträgt <InlineMath math="6" />.
+
+3.  **Bestimme den Median:**
+
+    Die Anzahl der Datenwerte ist gerade (<InlineMath math="n = 10" />). Deshalb liegen die beiden mittleren Werte an den Positionen <InlineMath math="10/2 = 5" /> und <InlineMath math="(10/2)+1 = 6" />.
+
+    An Position <InlineMath math="5" /> steht <InlineMath math="5" />, an Position <InlineMath math="6" /> steht <InlineMath math="6" />.
+
+    <BlockMath math="\text{Median} = \frac{5+6}{2} = 5{,}5" />
+
+    Der Median der Ausgangsdaten beträgt somit <InlineMath math="5{,}5" />.
+
+4.  **Bestimme den Modus:**
+
+    Am häufigsten kommen <InlineMath math="3" /> (<InlineMath math="2 \text{Mal}" />) und <InlineMath math="5" /> (<InlineMath math="2 \text{Mal}" />) vor.
+
+    Die Ausgangsdaten besitzen also die beiden Modi <InlineMath math="3" /> und <InlineMath math="5" />. Eine solche Verteilung heißt bimodal.
+
+**Neue Situation:**
+
+Am nächsten Tag beteiligen sich <InlineMath math="2 \text{weitere Mitglieder}" />. Sie bringen <InlineMath math="20" /> beziehungsweise <InlineMath math="22" /> Kleidungsstücke mit.
+
+Der neue Datensatz lautet:
+
+<BlockMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 22" />
+
+**Arithmetisches Mittel, Median und Modus des neuen Datensatzes:**
+
+1.  **Sortiere die Daten**:
+
+    <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 22" /> (insgesamt <InlineMath math="12 \text{Datenwerte}" />, also <InlineMath math="n = 12" />)
+
+2.  **Berechne das neue arithmetische Mittel:**
+
+    <MathContainer>
+      <BlockMath math="\sum x = 60 + 20 + 22 = 102" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{102}{12} = 8{,}5" />
+    </MathContainer>
+
+    Das neue arithmetische Mittel beträgt <InlineMath math="8{,}5" />.
+
+3.  **Bestimme den neuen Median:**
+
+    Die Anzahl der Datenwerte ist wieder gerade (<InlineMath math="n=12" />). Die beiden mittleren Werte liegen an den Positionen <InlineMath math="12/2 = 6" /> und <InlineMath math="(12/2)+1 = 7" />.
+
+    An Position <InlineMath math="6" /> steht <InlineMath math="6" />, an Position <InlineMath math="7" /> steht <InlineMath math="7" />.
+
+    <BlockMath math="\text{Median} = \frac{6+7}{2} = 6{,}5" />
+
+    Der neue Median beträgt somit <InlineMath math="6{,}5" />.
+
+4.  **Bestimme den neuen Modus:**
+
+    Am häufigsten kommen weiterhin <InlineMath math="3" /> (<InlineMath math="2 \text{Mal}" />) und <InlineMath math="5" /> (<InlineMath math="2 \text{Mal}" />) vor.
+
+    Die Modi bleiben daher <InlineMath math="3" /> und <InlineMath math="5" />.
+
+## Einfluss der zusätzlichen Daten
+
+Vergleichen wir die drei Lagemaße vor und nach der Ergänzung:
+
+- **Mittelwert:** steigt von <InlineMath math="6" /> auf <InlineMath math="8{,}5" />, also um <InlineMath math="2{,}5" />.
+- **Median:** steigt von <InlineMath math="5{,}5" /> auf <InlineMath math="6{,}5" />, also um <InlineMath math="1" />.
+- **Modus:** bleibt bei <InlineMath math="3" /> und <InlineMath math="5" />.
+
+Die zusätzlichen Werte <InlineMath math="20" /> und <InlineMath math="22" /> liegen deutlich über den Ausgangsdaten. Deshalb haben sie den **größten Einfluss auf den Mittelwert** und ziehen ihn nach oben.
+
+Der Median verschiebt sich ebenfalls, aber weniger stark. Der Modus bleibt unverändert.
+
+## Auswirkung eines Extremwerts
+
+Was geschieht, wenn einer der neuen Werte besonders groß ist? Nehmen wir an, das <InlineMath math="12" />. Mitglied bringt nun <InlineMath math="100 \text{Kleidungsstücke}" /> statt <InlineMath math="22" /> mit.
+
+Der Datensatz lautet dann: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<InlineMath math="n=12" />)
+
+1.  **Berechne das arithmetische Mittel:**
+
+    <MathContainer>
+      <BlockMath math="\sum x = 60 + 20 + 100 = 180" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{180}{12} = 15" />
+    </MathContainer>
+
+    Das arithmetische Mittel beträgt nun <InlineMath math="15" />. Damit liegt es weit über dem Ausgangswert <InlineMath math="6" /> und dem vorherigen Wert <InlineMath math="8{,}5" />.
+
+2.  **Bestimme den Median:**
+
+    Sortierter Datensatz: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" />
+
+    Der Median bleibt bei <InlineMath math="(6+7)/2 = 6{,}5" /> und ändert sich gegenüber dem vorherigen Datensatz nicht.
+
+3.  **Bestimme den Modus:**
+
+    Auch die Modi bleiben <InlineMath math="3" /> und <InlineMath math="5" />.
+
+Ein Extremwert kann nach einer ausdrücklich genannten statistischen Regel oder aufgrund fachlicher Beurteilung als **Ausreißer** gelten. In diesem Beispiel beeinflusst <InlineMath math="100" /> das arithmetische Mittel stark, während Median und Modi unverändert bleiben. Diese Empfindlichkeit ist die größte Schwäche des arithmetischen Mittels; Median und Modus reagieren auf einen einzelnen ungewöhnlich großen oder kleinen Wert stabiler.
+
+Das arithmetische Mittel ist leicht zu berechnen. Ein ungewöhnlich großer oder kleiner Wert kann jedoch dazu führen, dass es die übrigen Daten nicht mehr gut repräsentiert.

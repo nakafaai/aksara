@@ -1,0 +1,211 @@
+export const metadata = {
+  title: "Zusammengesetzte Transformationsmatrix",
+  description: "Verknüpfe Spiegelungen, Drehungen und zentrische Streckungen durch Matrixmultiplikation und beachte dabei die Reihenfolge der Transformationen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Verkettung von Transformationen mit Matrizen
+
+In der Geometrie bildet eine Transformation jeden Punkt einer Figur auf einen Bildpunkt ab. Je nach Transformation können sich Lage, Ausrichtung, Größe oder Form der Figur ändern. Werden mehrere Transformationen nacheinander angewendet, sprechen wir von einer Verkettung von Transformationen.
+
+Matrizen helfen uns dabei, viele geometrische Transformationen darzustellen und das Ergebnis ihrer Verkettung zu berechnen.
+
+Wir konzentrieren uns auf Transformationen, die sich durch <InlineMath math="2 \times 2" />-Matrizen darstellen lassen. Die Spiegelung an der <InlineMath math="x" />-Achse wird zum Beispiel durch <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> beschrieben. Wird ein Punkt <InlineMath math="(x,y)" /> an der <InlineMath math="x" />-Achse gespiegelt, erhalten wir seinen Bildpunkt durch die Multiplikation dieser Matrix mit dem Ortsvektor: <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
+
+Hier sind einige grundlegende Transformationen zusammen mit ihren Matrizen, die häufig bei der Zusammensetzung von Transformationen verwendet werden:
+
+1.  Spiegelung an der <InlineMath math="x" />-Achse: <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+2.  Spiegelung an der <InlineMath math="y" />-Achse: <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+3.  Spiegelung an der Geraden <InlineMath math="y=x" />: <InlineMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+4.  Spiegelung an der Geraden <InlineMath math="y=-x" />: <InlineMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+5.  Spiegelung am Ursprung <InlineMath math="O(0,0)" /> (entspricht einer Drehung um <InlineMath math="180^\circ" />): <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+6.  Drehung um den Ursprung <InlineMath math="(0,0)" /> um den Winkel <InlineMath math="\theta" />: <InlineMath math="\begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
+7.  Zentrische Streckung mit dem Zentrum <InlineMath math="(0,0)" /> und dem Streckfaktor <InlineMath math="k" />: <InlineMath math="\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}" />
+
+### Verkettete Transformationen mit Matrizen anwenden
+
+Bei einer Verkettung führen wir mehrere Transformationen nacheinander aus. Folgt auf <InlineMath math="T_1" /> die Transformation <InlineMath math="T_2" />, schreiben wir <InlineMath math="T_2 \circ T_1" />. Dabei wird zuerst <InlineMath math="T_1" /> und anschließend <InlineMath math="T_2" /> angewendet.
+
+Angenommen, die Matrix, die <InlineMath math="T_1" /> entspricht, ist <InlineMath math="M_1" />, und die Matrix, die <InlineMath math="T_2" /> entspricht, ist <InlineMath math="M_2" />. Um das Bild des Punktes <InlineMath math="P(x,y)" /> unter der Komposition <InlineMath math="T_2 \circ T_1" /> zu finden, gibt es zwei äquivalente Methoden:
+
+1.  **Transformationen sequenziell auf den Punkt anwenden:**
+
+    - Berechne das Bild <InlineMath math="P'(x',y')" /> von <InlineMath math="P(x,y)" /> unter <InlineMath math="T_1" />: <InlineMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix}" />.
+    - Berechne danach das Bild <InlineMath math="P''(x'',y'')" /> von <InlineMath math="P'(x',y')" /> unter <InlineMath math="T_2" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix}" />.
+
+    Setzen wir das Ergebnis aus Schritt (a) in Schritt (b) ein, erhalten wir: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \left( M_1 \begin{pmatrix} x \\ y \end{pmatrix} \right)" />.
+
+2.  **Zuerst die zusammengesetzte Matrix finden:**
+
+    - Bestimme die Matrix <InlineMath math="M" />, die die verkettete Transformation <InlineMath math="T_2 \circ T_1" /> darstellt. Diese Matrix ist das Produkt <InlineMath math="M_2 M_1" />.
+
+      **Achte auf die Reihenfolge:** Die Matrix der zweiten Transformation <InlineMath math="M_2" /> steht links von der Matrix der ersten Transformation <InlineMath math="M_1" />.
+
+    - Berechne das Bild <InlineMath math="P''(x'',y'')" /> von <InlineMath math="P(x,y)" /> mithilfe der verketteten Matrix <InlineMath math="M" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M \begin{pmatrix} x \\ y \end{pmatrix} = (M_2 M_1) \begin{pmatrix} x \\ y \end{pmatrix}" />.
+
+Beide Methoden liefern aufgrund der assoziativen Eigenschaft der Matrixmultiplikation das gleiche Endbild, d. h. <InlineMath math="M_2 (M_1 P) = (M_2 M_1) P" />, wobei <InlineMath math="P" /> der Spaltenvektor <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> ist.
+
+**Anschauliches Beispiel:**
+
+Angenommen, <InlineMath math="T_1" /> ist eine Spiegelung an der <InlineMath math="y" />-Achse und <InlineMath math="T_2" /> eine Drehung um den Ursprung <InlineMath math="O" /> um <InlineMath math="\frac{1}{2}\pi" /> im Bogenmaß, also <InlineMath math="90^\circ" />. Gesucht ist das Bild des Punktes <InlineMath math="P(x,y)" /> unter <InlineMath math="T_2 \circ T_1" />.
+
+Die Matrix für <InlineMath math="T_1" /> (Spiegelung an der <InlineMath math="y" />-Achse) ist <InlineMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+
+Die Matrix für <InlineMath math="T_2" /> (Drehung <InlineMath math="90^\circ" />) ist <InlineMath math="M_2 = \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />.
+
+**Methode <InlineMath math="1" />: Sequentielle Transformation auf den Punkt**
+
+- Bild von <InlineMath math="P(x,y)" /> unter <InlineMath math="T_1" />:
+
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ y \end{pmatrix}" />
+
+  Also <InlineMath math="P'(-x,y)" />.
+
+- Bild von <InlineMath math="P'(-x,y)" /> unter <InlineMath math="T_2" />:
+
+  <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} = \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
+
+- Das endgültige Bild ist <InlineMath math="P''(-y,-x)" />.
+
+**Methode <InlineMath math="2" />: Zuerst zusammengesetzte Matrix**
+
+- Zusammengesetzte Matrix <InlineMath math="M = M_2 M_1" />:
+
+  <BlockMath math="M = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \\ (1)(-1)+(0)(0) & (1)(0)+(0)(1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+
+- Bild von <InlineMath math="P(x,y)" /> unter <InlineMath math="M" />:
+
+  <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
+
+- Das endgültige Bild ist <InlineMath math="P''(-y,-x)" />.
+
+Beide Methoden liefern das gleiche Ergebnis. Die Verwendung der zusammengesetzten Matrix (<InlineMath math="M_2 M_1" />) ist oft effizienter, wenn wir viele Punkte mit derselben Zusammensetzung transformieren müssen.
+
+## Matrixregel für verkettete Transformationen
+
+Angenommen, die Matrizen, die sich auf die Transformationen <InlineMath math="T_1" /> und <InlineMath math="T_2" /> beziehen, sind <InlineMath math="M_1 = \begin{pmatrix} p & q \\ r & s \end{pmatrix}" /> bzw. <InlineMath math="M_2 = \begin{pmatrix} t & u \\ v & w \end{pmatrix}" />.
+
+Dann ist die Matrix, die sich auf die Zusammensetzung der Transformationen <InlineMath math="T_2 \circ T_1" /> (Transformation <InlineMath math="T_1" /> gefolgt von <InlineMath math="T_2" />) bezieht, <InlineMath math="M_2 M_1 = \begin{pmatrix} t & u \\ v & w \end{pmatrix} \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />.
+
+Die Reihenfolge der Matrixmultiplikation ist entscheidend: Rechts steht die Matrix der zuerst ausgeführten Transformation <InlineMath math="M_1" />.
+
+## Anwendungsbeispiele
+
+### Verkettung zweier Spiegelungen
+
+Bestimme das Bild des Punktes <InlineMath math="(2,5)" />, der zuerst an der <InlineMath math="x" />-Achse und danach an der <InlineMath math="y" />-Achse gespiegelt wird.
+
+**Lösung:**
+
+Sei <InlineMath math="T_1" /> die Spiegelung an der <InlineMath math="x" />-Achse und <InlineMath math="T_2" /> die Spiegelung an der <InlineMath math="y" />-Achse.
+
+Die Matrix für <InlineMath math="T_1" /> (<InlineMath math="M_1" />) ist <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+Die Matrix für <InlineMath math="T_2" /> (<InlineMath math="M_2" />) ist <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+
+Die Zusammensetzung der Transformationen <InlineMath math="T_2 \circ T_1" /> hat die Matrix <InlineMath math="M = M_2 M_1" />.
+
+<BlockMath math="M = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (-1)(1)+(0)(0) & (-1)(0)+(0)(-1) \\ (0)(1)+(1)(0) & (0)(0)+(1)(-1) \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Das Bild des Punktes <InlineMath math="(2,5)" /> ist:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (-1)(2)+(0)(5) \\ (0)(2)+(-1)(5) \end{pmatrix} = \begin{pmatrix} -2 \\ -5 \end{pmatrix}" />
+
+Das Bild des Punktes ist also <InlineMath math="(-2,-5)" />.
+
+### Verkettung von Spiegelung und Drehung
+
+Bestimme das Bild des Punktes <InlineMath math="(-2,3)" /> nach einer Spiegelung an der <InlineMath math="y" />-Achse und einer anschließenden Drehung um <InlineMath math="180^\circ" /> um den Ursprung.
+
+**Lösung:**
+
+Sei <InlineMath math="T_1" /> die Spiegelung an der <InlineMath math="y" />-Achse und <InlineMath math="T_2" /> die <InlineMath math="180^\circ" />-Drehung um den Ursprung.
+
+Die Matrix für <InlineMath math="T_1" /> (<InlineMath math="M_1" />) ist <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+
+Die Matrix für <InlineMath math="T_2" /> (<InlineMath math="M_2" />) ist <InlineMath math="\begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+Die Zusammensetzung der Transformationen <InlineMath math="T_2 \circ T_1" /> hat die Matrix <InlineMath math="M = M_2 M_1" />.
+
+<BlockMath math="M = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (-1)(-1)+(0)(0) & (-1)(0)+(0)(1) \\ (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Das Bild des Punktes <InlineMath math="(-2,3)" /> ist:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} -2 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -2 \\ 3 \end{pmatrix} = \begin{pmatrix} (1)(-2)+(0)(3) \\ (0)(-2)+(-1)(3) \end{pmatrix} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}" />
+
+Das Bild des Punktes ist also <InlineMath math="(-2,-3)" />.
+
+### Verkettung von drei Transformationen
+
+Auf den Punkt <InlineMath math="P(2,5)" /> werden nacheinander drei Transformationen angewendet: eine Spiegelung an der <InlineMath math="x" />-Achse, eine Drehung um <InlineMath math="90^\circ" /> um den Ursprung und eine weitere Drehung um <InlineMath math="180^\circ" /> um den Ursprung. Bestimme den Bildpunkt.
+
+**Lösung:**
+
+Wir setzen:
+
+- <InlineMath math="T_1" />: Spiegelung an der <InlineMath math="x" />-Achse.
+
+  Matrix <InlineMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+- <InlineMath math="T_2" />: Drehung um <InlineMath math="90^\circ" /> um den
+  Ursprung.
+
+  Matrix <InlineMath math="M_2 = \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+- <InlineMath math="T_3" />: Halbe Umdrehung, also eine Drehung um <InlineMath math="180^\circ" />
+  um den Ursprung.
+
+  Matrix <InlineMath math="M_3 = \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Die Verkettung lautet <InlineMath math="T_3 \circ T_2 \circ T_1" />. Ihre Matrix ist <InlineMath math="M = M_3 M_2 M_1" />.
+
+<MathContainer>
+  <BlockMath math="M_2 M_1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (0)(1)+(-1)(0) & (0)(0)+(-1)(-1) \\ (1)(1)+(0)(0) & (1)(0)+(0)(-1) \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+  <BlockMath math="M = M_3 (M_2 M_1) = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} (-1)(0)+(0)(1) & (-1)(1)+(0)(0) \\ (0)(0)+(-1)(1) & (0)(1)+(-1)(0) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+</MathContainer>
+
+Das Bild von <InlineMath math="P(2,5)" /> ist:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (0)(2)+(-1)(5) \\ (-1)(2)+(0)(5) \end{pmatrix} = \begin{pmatrix} -5 \\ -2 \end{pmatrix}" />
+
+Das Bild des Punktes ist also <InlineMath math="(-5,-2)" />.
+
+## Übung
+
+Auf den Punkt <InlineMath math="P(2,5)" /> werden nacheinander drei Transformationen angewendet: eine Spiegelung an der <InlineMath math="y" />-Achse, eine Drehung um <InlineMath math="180^\circ" /> um den Ursprung und eine Spiegelung an der Geraden <InlineMath math="y=x" />. Bestimme den Bildpunkt.
+
+### Lösung
+
+Wir setzen:
+
+- <InlineMath math="T_1" />: Spiegelung an der <InlineMath math="y" />-Achse.
+
+  Matrix <InlineMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+
+- <InlineMath math="T_2" />: Drehung um <InlineMath math="180^\circ" /> um den
+  Ursprung.
+
+  Matrix <InlineMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+- <InlineMath math="T_3" />: Spiegelung an der Geraden <InlineMath math="y=x" />
+  .
+
+  Matrix <InlineMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+
+Die Verkettung lautet <InlineMath math="T_3 \circ T_2 \circ T_1" />. Ihre Matrix ist <InlineMath math="M = M_3 M_2 M_1" />.
+
+**Schritt** <InlineMath math="1" />: Berechne <InlineMath math="M_2 M_1" />.
+
+<BlockMath math="M_2 M_1 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (-1)(-1)+(0)(0) & (-1)(0)+(0)(1) \\ (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+**Schritt** <InlineMath math="2" />: Berechne <InlineMath math="M = M_3 (M_2 M_1)" />.
+
+<BlockMath math="M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (0)(1)+(1)(0) & (0)(0)+(1)(-1) \\ (1)(1)+(0)(0) & (1)(0)+(0)(-1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+Das Bild von <InlineMath math="P(2,5)" /> ist:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (0)(2)+(-1)(5) \\ (1)(2)+(0)(5) \end{pmatrix} = \begin{pmatrix} -5 \\ 2 \end{pmatrix}" />
+
+Das Bild des Punktes ist also <InlineMath math="(-5,2)" />.

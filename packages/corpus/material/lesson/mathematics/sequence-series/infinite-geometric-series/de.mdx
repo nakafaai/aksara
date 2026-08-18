@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Unendliche geometrische Reihe",
+  description: "Verknüpfe unendliche geometrische Reihen mit einem springenden Ball und leite daraus Konvergenz, Divergenz und die Summenformel ab.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Ein springender Ball
+
+Ein Tennisball fällt aus einer Höhe von <InlineMath math="1 \text{ Meter}" />. In einem idealisierten Modell erreicht jeder Sprung <InlineMath math="\frac{1}{4}" /> der vorherigen Höhe.
+
+Die Abwurfhöhe und die anschließenden Rücksprunghöhen bilden eine **geometrische Folge**:
+
+<MathContainer>
+  <BlockMath math="1, \quad 1 \times \frac{1}{4}, \quad (1 \times \frac{1}{4}) \times \frac{1}{4}, \quad \dots" />
+  <BlockMath math="1, \quad \frac{1}{4}, \quad \frac{1}{16}, \quad \frac{1}{64}, \quad \dots" />
+</MathContainer>
+
+Das erste Glied (<InlineMath math="a" />) ist <InlineMath math="1" />, der Faktor (<InlineMath math="r" />) ist <InlineMath math="\frac{1}{4}" />.
+
+Wie groß ist die _Gesamtstrecke_, die der Ball vom Loslassen bis zum Stillstand zurücklegt?
+
+Im idealisierten Modell bewegt sich der Ball nach unten, dann nach oben, wieder nach unten und so weiter, ohne einen letzten Sprung. Die Gesamtstrecke setzt sich aus allen Abwärts- und Aufwärtswegen zusammen. Da ihre Längen ein unendliches geometrisches Muster bilden, berechnen wir sie mit einer **unendlichen geometrischen Reihe**.
+
+### Wann konvergiert die Reihe?
+
+Die mathematische Reihe besitzt keinen letzten Sprung. Ihre Teilsummen können sich dennoch einem endlichen Grenzwert nähern. Bei einer geometrischen Reihe geschieht das, wenn der Betrag des Faktors <InlineMath math="r" /> kleiner als <InlineMath math="1" /> ist.
+
+<BlockMath math="|r| &lt; 1 \quad \text{oder} \quad -1 &lt; r &lt; 1" />
+
+Eine solche Reihe heißt **konvergent**: Ihre Teilsummen nähern sich einem bestimmten endlichen Wert. Im Ballbeispiel gilt <InlineMath math="r = \frac{1}{4}" />. Wegen <InlineMath math="-1 < \frac{1}{4} < 1" /> ist die Reihe konvergent.
+
+Wenn <InlineMath math="|r| \ge 1" /> und <InlineMath math="a\ne0" />, nähern sich die Glieder nicht null. Die Reihe ist dann **divergent**. Ihre Teilsummen können unbegrenzt wachsen, unbegrenzt abnehmen oder oszillieren. Divergenz bedeutet, dass kein endlicher Grenzwert existiert. Das Ergebnis muss nicht <InlineMath math="+\infty" /> oder <InlineMath math="-\infty" /> sein.
+
+## Berechnen der Summe einer unendlichen Reihe
+
+Wie berechnen wir die Summe einer konvergenten unendlichen Reihe? Wir beginnen mit der Formel für die Summe der ersten <InlineMath math="n" /> Glieder einer geometrischen Reihe:
+
+<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
+
+Für eine unendliche Reihe betrachten wir <InlineMath math="S_n" />, wenn <InlineMath math="n" /> immer größer wird. Ist die Reihe konvergent (<InlineMath math="-1 < r < 1" />), nähert sich <InlineMath math="r^n" /> dem Wert null, wenn <InlineMath math="n" /> gegen unendlich geht. Zum Beispiel: <InlineMath math="(\frac{1}{4})^2 = \frac{1}{16}" />, <InlineMath math="(\frac{1}{4})^3 = \frac{1}{64}" />, <InlineMath math="(\frac{1}{4})^{10} \approx 0{,}00000095" />. Je größer <InlineMath math="n" /> wird, desto näher liegt <InlineMath math="(\frac{1}{4})^n" /> bei <InlineMath math="0" />.
+
+Für <InlineMath math="n \to \infty" /> und <InlineMath math="-1 < r < 1" /> gilt also <InlineMath math="r^n \to 0" />. Die Formel lautet:
+
+<BlockMath math="S_\infty = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} = \frac{a(1 - 0)}{1 - r}" />
+
+Somit lautet die Formel für die Summe einer konvergenten unendlichen geometrischen Reihe:
+
+<BlockMath math="S_\infty = \frac{a}{1 - r}" />
+
+Dabei gilt:
+
+- <InlineMath math="S_\infty" /> = Summe der unendlichen Reihe
+- <InlineMath math="a" /> = erstes Glied
+- <InlineMath math="r" /> = Faktor mit <InlineMath math="-1<r<1" />
+
+## Kontrolle mit halbierten Strecken
+
+Betrachte die Reihe:
+
+<BlockMath math="1+\frac12+\frac14+\frac18+\cdots" />
+
+Hier <InlineMath math="a=1" /> und <InlineMath math="r=\frac12" />, also:
+
+<BlockMath math="S_\infty=\frac{1}{1-1/2}=2" />
+
+Keine endliche Teilsumme ist gleich <InlineMath math="2" />, aber die Teilsummen können beliebig nahe an <InlineMath math="2" /> herankommen. Die unendliche Summe ist die Grenze dieser endlichen Teilsummen.
+
+## Berechnung der Gesamtstrecke
+
+Mit der Formel <InlineMath math="S_\infty" /> können wir die vom Ball zurückgelegte Gesamtstrecke berechnen. Der Weg besteht aus zwei Teilen:
+
+1.  **Abwärtsstrecke:** Der Ball fällt aus der Höhe <InlineMath math="a" />, nach dem ersten Sprung erneut um <InlineMath math="ar" />, nach dem zweiten Sprung um <InlineMath math="ar^2" /> und so weiter.
+
+    - Abwärtsreihe: <InlineMath math="a + ar + ar^2 + ar^3 + \dots" />
+    - Das erste Glied (<InlineMath math="a_{\downarrow}" />) ist <InlineMath math="a" />
+    - Der Faktor (<InlineMath math="r_{\downarrow}" />) ist <InlineMath math="r" />
+    - Summe der Abwärtsstrecken: <InlineMath math="S_{\downarrow}=\frac{a_{\downarrow}}{1-r_{\downarrow}}=\frac{a}{1-r}" />
+
+2.  **Aufwärtsstrecke:** Nach dem ersten Aufprall steigt der Ball um <InlineMath math="ar" />, nach dem zweiten um <InlineMath math="ar^2" /> und so weiter.
+    - Aufwärtsreihe: <InlineMath math="ar + ar^2 + ar^3 + \dots" />
+    - Das erste Glied (<InlineMath math="a_{\uparrow}" />) ist <InlineMath math="ar" />
+    - Der Faktor (<InlineMath math="r_{\uparrow}" />) ist <InlineMath math="r" />
+    - Summe der Aufwärtsstrecken: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtdistanz} = \text{Summe des Abwärtspfads} + \text{Summe des Aufwärtspfads}" />
+  <BlockMath math="\text{Gesamt} = S_{\downarrow} + S_{\uparrow} = \frac{a}{1 - r} + \frac{ar}{1 - r}" />
+  <BlockMath math="\text{Gesamt} = \frac{a(1 + r)}{1 - r}" />
+</MathContainer>
+
+Für das Tennisball-Beispiel mit <InlineMath math="a = 1 \text{ Meter}" /> und <InlineMath math="r = \frac{1}{4}" />:
+
+<BlockMath math="\text{Gesamt} = \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} = \frac{1(\frac{5}{4})}{\frac{3}{4}} = \frac{5/4}{3/4} = \frac{5}{4} \times \frac{4}{3} = \frac{5}{3}" />
+
+Das Modell ergibt also eine Gesamtstrecke von <InlineMath math="\frac{5}{3} \text{Metern}" />.
+
+Dies ist ein idealisiertes mathematisches Modell. Ein echter Ball vollführt nicht unendlich viele messbare Sprünge und sein Sprungverhältnis ist nicht vollkommen konstant.
+
+**Eine zweite Berechnung:**
+Die Gesamtstrecke lässt sich auch als erste Abwärtsstrecke plus <InlineMath math="2 \text{ mal}" /> der Summe aller Aufwärtsstrecken berechnen.
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = a + 2 \times S_{\uparrow} = a + 2 \times \left( \frac{ar}{1 - r} \right)" />
+  <BlockMath math="\text{Gesamt} = 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) = 1 + 2 \times \left( \frac{1/4}{3/4} \right) = 1 + 2 \times \left( \frac{1}{3} \right) = 1 + \frac{2}{3} = \frac{5}{3}" />
+</MathContainer>
+
+Beide Wege führen zum selben Ergebnis.
+
+## Übung: Eine alternierende Reihe
+
+Berechne die Summe:
+
+<BlockMath math="12-6+3-\frac32+\cdots" />
+
+Hier <InlineMath math="a=12" /> und <InlineMath math="r=-\frac12" />. Da <InlineMath math="|r|<1" /> konvergiert die Reihe:
+
+<BlockMath math="S_\infty=\frac{12}{1-(-1/2)}=8" />
+
+Durch den negativen Faktor wechseln sich die Vorzeichen der Glieder ab. Ihre Beträge werden jedoch schnell genug kleiner, sodass sich die Teilsummen dem Wert <InlineMath math="8" /> nähern.

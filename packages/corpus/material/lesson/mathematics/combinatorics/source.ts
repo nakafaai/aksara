@@ -10,50 +10,18 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "binomial-newton", id: "binomial-newton" },
       slug: "binomial-newton",
-      translations: {
-        en: {
-          title: "Binomial Newton",
-        },
-        id: {
-          title: "Binomial Newton",
-        },
-      },
     },
     {
       routeSlugs: { en: "circular-permutation", id: "permutasi-siklis" },
       slug: "circular-permutation",
-      translations: {
-        en: {
-          title: "Circular Permutation",
-        },
-        id: {
-          title: "Permutasi Siklis",
-        },
-      },
     },
     {
       routeSlugs: { en: "combination", id: "kombinasi" },
       slug: "combination",
-      translations: {
-        en: {
-          title: "Combination",
-        },
-        id: {
-          title: "Kombinasi",
-        },
-      },
     },
     {
       routeSlugs: { en: "filling-place-rule", id: "aturan-pengisian-tempat" },
       slug: "filling-place-rule",
-      translations: {
-        en: {
-          title: "Slot Filling Rule",
-        },
-        id: {
-          title: "Aturan Pengisian Tempat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -61,14 +29,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "permutasi-semua-objek",
       },
       slug: "permutation-of-n-items-from-n-objects",
-      translations: {
-        en: {
-          title: "Permutation of All Objects",
-        },
-        id: {
-          title: "Permutasi Semua Objek",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -76,14 +36,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "permutasi-dengan-objek-yang-sama",
       },
       slug: "permutation-with-identical-objects",
-      translations: {
-        en: {
-          title: "Permutation with Identical Objects",
-        },
-        id: {
-          title: "Permutasi dengan Objek yang Sama",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -91,14 +43,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "peluang-suatu-kejadian",
       },
       slug: "probability-of-an-event",
-      translations: {
-        en: {
-          title: "Probability of an Event",
-        },
-        id: {
-          title: "Peluang Suatu Kejadian",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -106,14 +50,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "peluang-kejadian-majemuk",
       },
       slug: "probability-of-compound-events",
-      translations: {
-        en: {
-          title: "Probability of Compound Events",
-        },
-        id: {
-          title: "Peluang Kejadian Majemuk",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -121,14 +57,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "peluang-kejadian-majemuk-saling-bebas-bersyarat",
       },
       slug: "probability-of-independent-conditional-events",
-      translations: {
-        en: {
-          title: "Probability of Independent Conditional Events",
-        },
-        id: {
-          title: "Peluang Kejadian Majemuk Saling Bebas Bersyarat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -136,14 +64,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "peluang-kejadian-majemuk-saling-bebas",
       },
       slug: "probability-of-independent-events",
-      translations: {
-        en: {
-          title: "Probability of Independent Events",
-        },
-        id: {
-          title: "Peluang Kejadian Majemuk Saling Bebas",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -151,14 +71,6 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
         id: "peluang-kejadian-majemuk-saling-lepas",
       },
       slug: "probability-of-mutually-exclusive-events",
-      translations: {
-        en: {
-          title: "Probability of Mutually Exclusive Events",
-        },
-        id: {
-          title: "Peluang Kejadian Majemuk Saling Lepas",
-        },
-      },
     },
   ],
   slug: "combinatorics",

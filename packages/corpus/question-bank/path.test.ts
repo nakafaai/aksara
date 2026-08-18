@@ -1,5 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
@@ -8,6 +9,8 @@ import {
   decodeQuestionPath,
   indexQuestionBanks,
   locateQuestionEntry,
+  questionAuthoringArtifactLocalesForSection,
+  questionAuthoringSourceFiles,
 } from "#corpus/question-bank/path";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
@@ -95,6 +98,26 @@ function rejectPath(path: string) {
 }
 
 describe("question path", () => {
+  it("derives candidate files without translating assessed-language prompts", () => {
+    expect(
+      questionAuthoringSourceFiles(TryoutKeySchema.make("general-reasoning"))
+    ).toEqual([
+      "answer.de.mdx",
+      "answer.en.mdx",
+      "answer.id.mdx",
+      "choices.de.ts",
+      "choices.ts",
+      "question.de.mdx",
+      "question.en.mdx",
+      "question.id.mdx",
+    ]);
+    expect(
+      questionAuthoringArtifactLocalesForSection(
+        TryoutKeySchema.make("english-language")
+      )
+    ).toEqual(["en"]);
+  });
+
   it("locates the terminal question below a question-prefixed bank", () => {
     expect(
       locateQuestionEntry(

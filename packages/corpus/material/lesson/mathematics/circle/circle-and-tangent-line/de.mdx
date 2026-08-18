@@ -1,0 +1,605 @@
+
+export const metadata = {
+  title: "Kreis und Tangente",
+  description: "Tangentengleichungen aus dem senkrechten Radius herleiten und Aufgaben zu äußeren Punkten sowie gemeinsamen Tangenten Schritt für Schritt lösen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Kreis",
+};
+
+## Definition der Kreistangente
+
+Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt. Dieser Punkt heißt Berührpunkt.
+
+<LineEquation
+  title="Kreistangente"
+  description="Eine Tangente berührt den Kreis in genau einem Punkt."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="P" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 3, y: -3, z: 0 },
+        { x: 3, y: 3, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: "Tangente", at: 1, offset: [1.5, 0, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+**Wichtige Eigenschaft:** Eine Tangente verläuft im Tangentenpunkt immer senkrecht zum Radius des Kreises.
+
+## Gleichung der Kreistangente
+
+### Tangente durch einen Punkt auf dem Kreis
+
+Liegt der Punkt <InlineMath math="(x_1, y_1)" /> auf dem Kreis <InlineMath math="x^2 + y^2 = r^2" />, dann lautet die Gleichung der Tangente an diesem Punkt:
+
+<BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+
+Für einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" />:
+
+<BlockMath math="(x_1 - a)(x - a) + (y_1 - b)(y - b) = r^2" />
+
+### Tangente mit gegebener Steigung
+
+Die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = r^2" /> mit der Steigung <InlineMath math="m" /> lautet:
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+Für einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" />:
+
+<BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+
+## Tangenten von einem Punkt außerhalb des Kreises
+
+Von einem Punkt außerhalb des Kreises können zwei Tangenten an den Kreis gezogen werden.
+
+<LineEquation
+  title="Zwei Tangenten von einem äußeren Punkt"
+  description={
+    <>
+      Vom Punkt <InlineMath math="P" /> außerhalb des Kreises lassen sich zwei
+      Tangenten an den Kreis zeichnen.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 2.5 * Math.cos(angle),
+          y: 2.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 5, y: 0, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: (() => {
+        const P = { x: 5, y: 0 };
+        const O = { x: 0, y: 0 };
+        const r = 2.5;
+        const d = Math.sqrt((P.x - O.x) ** 2 + (P.y - O.y) ** 2);
+
+        // Winkel vom Mittelpunkt zum äußeren Punkt
+        const theta = Math.atan2(P.y - O.y, P.x - O.x);
+
+        // Winkel der Tangente vom Mittelpunkt aus
+        const alpha = Math.asin(r / d);
+
+        // Erster Berührpunkt
+        const T1x = O.x + r * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O.y + r * Math.sin(theta + Math.PI / 2 - alpha);
+
+        return [
+          { x: P.x, y: P.y, z: 0 },
+          { x: T1x, y: T1y, z: 0 },
+        ];
+      })(),
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T_1" />, at: 1, offset: [0.3, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const P = { x: 5, y: 0 };
+        const O = { x: 0, y: 0 };
+        const r = 2.5;
+        const d = Math.sqrt((P.x - O.x) ** 2 + (P.y - O.y) ** 2);
+
+        // Winkel vom Mittelpunkt zum äußeren Punkt
+        const theta = Math.atan2(P.y - O.y, P.x - O.x);
+
+        // Winkel der Tangente vom Mittelpunkt aus
+        const alpha = Math.asin(r / d);
+
+        // Zweiter Berührpunkt
+        const T2x = O.x + r * Math.cos(theta - Math.PI / 2 + alpha);
+        const T2y = O.y + r * Math.sin(theta - Math.PI / 2 + alpha);
+
+        return [
+          { x: P.x, y: P.y, z: 0 },
+          { x: T2x, y: T2y, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 10]}
+showZAxis={false}
+/>
+
+### Länge der Tangente
+
+Wenn <InlineMath math="P(x_1, y_1)" /> ein Punkt außerhalb des Kreises mit Mittelpunkt <InlineMath math="O(a, b)" /> und Radius <InlineMath math="r" /> ist, dann beträgt die Länge der Tangentenstrecke von <InlineMath math="P" /> bis zum Berührpunkt:
+
+<BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
+
+## Gemeinsame Tangenten zweier Kreise
+
+### Äußere gemeinsame Tangenten
+
+Äußere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Verbindungslinie der beiden Kreismittelpunkte nicht schneiden.
+
+<LineEquation
+  title="Äußere gemeinsame Tangenten"
+  description="Geraden, die beide Kreise von derselben Seite berühren."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -3 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel zwischen Mittelpunktsgerade und gemeinsamer Tangente
+        const alpha = Math.asin((r2 - r1) / d);
+
+        // Winkel von O1 zu O2
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        // Berührpunkte am ersten Kreis
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 + alpha);
+
+        // Berührpunkte am zweiten Kreis
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 + alpha);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 + alpha);
+
+        // Gerade über die Berührpunkte hinaus verlängern
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
+          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel zwischen Mittelpunktsgerade und gemeinsamer Tangente
+        const alpha = Math.asin((r2 - r1) / d);
+
+        // Winkel von O1 zu O2
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        // Berührpunkte am ersten Kreis
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 - alpha);
+
+        // Berührpunkte am zweiten Kreis
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 - alpha);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 - alpha);
+
+        // Gerade über die Berührpunkte hinaus verlängern
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
+          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+Länge der äußeren gemeinsamen Tangente:
+
+<BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
+
+wobei <InlineMath math="d" /> der Abstand zwischen den beiden Kreismittelpunkten ist.
+
+Das äußere Tangentenstück hat nur für <InlineMath math="d>|r_1-r_2|" /> eine positive Länge. Bei Gleichheit berühren sich die Kreise von innen und das Stück zwischen den beiden Berührpunkten schrumpft auf die Länge null.
+
+### Innere gemeinsame Tangenten
+
+Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Verbindungslinie der beiden Kreismittelpunkte schneiden.
+
+<LineEquation
+  title="Innere gemeinsame Tangenten"
+  description="Geraden, die beide Kreise von gegenüberliegenden Seiten berühren."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -3 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 1.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der gemeinsamen inneren Tangente bestimmen
+        const alpha = Math.asin((r1 + r2) / d);
+
+        // Winkel von O1 zu O2
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        // Bei der inneren Tangente liegen die Berührpunkte auf gegenüberliegenden Seiten
+        // Erster Kreis: Oberseite
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 - alpha);
+
+        // Zweiter Kreis: Unterseite, PI für die gegenüberliegende Seite addieren
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 - alpha + Math.PI);
+
+        // Gerade über die Berührpunkte hinaus verlängern
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
+          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+      })(),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mathrm{IKT}" />, at: 0, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 1.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der gemeinsamen inneren Tangente bestimmen
+        const alpha = Math.asin((r1 + r2) / d);
+
+        // Winkel von O1 zu O2
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        // Bei der inneren Tangente liegen die Berührpunkte auf gegenüberliegenden Seiten
+        // Erster Kreis: Unterseite
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 + alpha);
+
+        // Zweiter Kreis: Oberseite, PI für die gegenüberliegende Seite addieren
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 + alpha + Math.PI);
+
+        // Gerade über die Berührpunkte hinaus verlängern
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
+          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mathrm{IKT}" />, at: 0, offset: [-1, -0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+Länge der inneren gemeinsamen Tangente:
+
+<BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+
+Das innere Tangentenstück hat nur für <InlineMath math="d>r_1+r_2" /> eine positive Länge. Bei Gleichheit berühren sich die Kreise von außen und das Stück zwischen den beiden Berührpunkten hat die Länge null.
+
+## Tangentengleichungen bestimmen
+
+### Bestimmen der Tangente durch einen Punkt auf dem Kreis
+
+Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> am Punkt <InlineMath math="(3, 4)" />.
+
+**Lösung:**
+
+Da der Punkt <InlineMath math="(3, 4)" /> auf dem Kreis liegt (nachweisbar: <InlineMath math="3^2 + 4^2 = 9 + 16 = 25" />), lautet die Gleichung der Tangente:
+
+<MathContainer>
+  <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+  <BlockMath math="3x + 4y = 25" />
+</MathContainer>
+
+### Tangente mit vorgegebener Steigung bestimmen
+
+Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 16" />, die parallel zur Geraden <InlineMath math="3x - 4y + 5 = 0" /> verläuft.
+
+**Lösung:**
+
+Die Steigung der Geraden <InlineMath math="3x - 4y + 5 = 0" /> beträgt <InlineMath math="m = \frac{3}{4}" />.
+
+Tangentengleichung mit Steigung <InlineMath math="m = \frac{3}{4}" />:
+
+<MathContainer>
+  <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{1 + \left(\frac{3}{4}\right)^2}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{1 + \frac{9}{16}}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{\frac{25}{16}}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4 \cdot \frac{5}{4}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 5" />
+</MathContainer>
+
+Daher lauten die Gleichungen der Tangenten:
+
+- <InlineMath math="y = \frac{3}{4}x + 5" /> oder <InlineMath math="3x - 4y + 20 = 0" />
+- <InlineMath math="y = \frac{3}{4}x - 5" /> oder <InlineMath math="3x - 4y - 20 = 0" />
+
+### Tangentenlänge von einem äußeren Punkt berechnen
+
+Bestimmen Sie die Länge der Tangente vom Punkt <InlineMath math="P(7, 1)" /> zum Kreis <InlineMath math="x^2 + y^2 = 25" />.
+
+**Lösung:**
+
+Kreismittelpunkt <InlineMath math="O(0, 0)" /> und Radius <InlineMath math="r = 5" />.
+
+<MathContainer>
+  <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
+  <BlockMath math="PT = \sqrt{(7 - 0)^2 + (1 - 0)^2 - 25}" />
+  <BlockMath math="PT = \sqrt{49 + 1 - 25}" />
+  <BlockMath math="PT = \sqrt{25}" />
+  <BlockMath math="PT = 5" />
+</MathContainer>
+
+## Übungsaufgaben
+
+1. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 36" /> im Punkt <InlineMath math="(-3, 3\sqrt{3})" />!
+
+2. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" />, die senkrecht zur Geraden <InlineMath math="2x + y - 5 = 0" /> steht!
+
+3. Vom Punkt <InlineMath math="A(10, 0)" /> werden Tangenten zum Kreis <InlineMath math="x^2 + y^2 = 36" /> gezogen. Bestimmen Sie:
+
+   - Länge der Tangente
+   - Koordinaten von Tangentenpunkten
+
+4. Zwei Kreise haben die Mittelpunkte <InlineMath math="O_1(-4, 0)" /> und <InlineMath math="O_2(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimmen Sie die Länge der äußeren gemeinsamen Tangente!
+
+5. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, die durch den Punkt <InlineMath math="(8, -2)" /> verläuft!
+
+### Ausführliche Lösungen
+
+1.  **Tangentengleichung an einem Punkt auf dem Kreis**
+
+    Punkt auf Kreis überprüfen:
+
+    <BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
+
+    Tangentengleichung:
+
+    <MathContainer>
+      <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+      <BlockMath math="-3x + 3\sqrt{3}y = 36" />
+      <BlockMath math="-x + \sqrt{3}y = 12" />
+      <BlockMath math="x - \sqrt{3}y + 12 = 0" />
+    </MathContainer>
+
+2.  **Tangente senkrecht zu einer vorgegebenen Geraden**
+
+    Die Steigung der Linie <InlineMath math="2x + y - 5 = 0" /> beträgt <InlineMath math="m_1 = -2" />.
+
+    Da die Geraden senkrecht zueinander stehen, gilt <InlineMath math="m_2 = \frac{1}{2}" />.
+
+    Tangentengleichung:
+
+    <MathContainer>
+      <BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+      <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
+      <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
+      <BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
+    </MathContainer>
+
+    Daher: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
+
+3.  **Tangente von einem äußeren Punkt**
+
+    - Länge der Tangente:
+
+      <MathContainer>
+        <BlockMath math="AT = \sqrt{10^2 + 0^2 - 36} = \sqrt{100 - 36} = \sqrt{64} = 8" />
+      </MathContainer>
+
+    - Für die Berührpunkte sei <InlineMath math="T(x,y)" /> einer der beiden Punkte. Weil der Radius <InlineMath math="OT" /> senkrecht auf der Tangente <InlineMath math="AT" /> steht, ist das Skalarprodukt ihrer Richtungsvektoren null:
+
+      <MathContainer>
+        <BlockMath math="(A-T)\cdot T=0" />
+        <BlockMath math="(10-x)x-y^2=0" />
+        <BlockMath math="10x-(x^2+y^2)=0" />
+        <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+        <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+      </MathContainer>
+
+      Damit sind die Berührpunkte <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> und <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
+
+4.  **Äußere gemeinsame Tangente**
+
+    <MathContainer>
+      <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+      <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2} = \sqrt{64 - 1} = \sqrt{63} = 3\sqrt{7}" />
+    </MathContainer>
+
+5.  **Tangente durch einen Punkt auf dem Kreis**
+
+    Kreis: <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />
+
+    Mittelpunkt <InlineMath math="(3, -2)" />, Radius <InlineMath math="r = 5" />
+
+    Prüfe, ob der Punkt <InlineMath math="(8, -2)" /> auf dem Kreis liegt:
+
+    <BlockMath math="(8-3)^2 + (-2+2)^2 = 25 + 0 = 25" />
+
+    Die linke Seite ist <InlineMath math="r^2=25" />. Der Punkt liegt also auf dem Kreis, und die Tangentengleichung lautet:
+
+    <MathContainer>
+      <BlockMath math="(8-3)(x-3) + (-2+2)(y+2) = 25" />
+      <BlockMath math="5(x-3) + 0 = 25" />
+      <BlockMath math="x - 3 = 5" />
+      <BlockMath math="x = 8" />
+    </MathContainer>
+
+## Quellen
+
+- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
+- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
+- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)

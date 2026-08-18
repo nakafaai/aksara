@@ -1,0 +1,106 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+
+
+Da der Umfang der Raute <InlineMath math="PQRS" /> <InlineMath math="20\text{ Einheiten}" /> beträgt, ist jede Seite
+
+<BlockMath math="\text{Seitenlänge} = \frac{20}{4} = 5 \text{ Einheiten}" />
+
+Das Diagramm zeigt die Eckpunkte der Raute bei <InlineMath math="P(0, 0)" />, <InlineMath math="Q(4, 3)" />, <InlineMath math="R(8, 0)" /> und <InlineMath math="S(4, -3)" />.
+
+Zur Kontrolle berechnen wir die Länge der Seite <InlineMath math="PQ" />
+
+<BlockMath math="PQ = \sqrt{(4-0)^2 + (3-0)^2} = \sqrt{16 + 9} = \sqrt{25} = 5 \text{ Einheiten}" />
+
+Dies entspricht dem angegebenen Umfang.
+
+<LineEquation
+  title="Raute PQRS mit Hilfslinien"
+  description={<>Die Hilfslinien in der Raute <InlineMath math="PQRS" /> bilden ein rechtwinkliges Dreieck. Damit lässt sich die Länge der Seite <InlineMath math="PQ" /> berechnen.</>}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 3, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="Q(4,3)" />, at: 1, offset: [0.3, 0.3, 0] },
+        { text: <InlineMath math="5" />, at: 0, offset: [2, 2, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#6b7280",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="4" />, at: 0, offset: [2, -0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4, y: 3, z: 0 }
+      ],
+      color: "#6b7280",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="3" />, at: 0, offset: [0.5, 1.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 4, y: 3, z: 0 },
+        { x: 8, y: 0, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="R(8,0)" />, at: 1, offset: [0.5, -0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 8, y: 0, z: 0 },
+        { x: 4, y: -3, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="S" />, at: 1, offset: [0.3, -0.3, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 4, y: -3, z: 0 },
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true
+    }
+  ]}
+  showZAxis={false}
+/>
+
+Wir berechnen die Steigung von <InlineMath math="QR" /> mit der Steigungsformel:
+
+<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
+
+Für <InlineMath math="Q(4, 3)" /> und <InlineMath math="R(8, 0)" /> gilt:
+
+<MathContainer>
+<BlockMath math="m_{QR} = \frac{0 - 3}{8 - 4}" />
+<BlockMath math="m_{QR} = \frac{-3}{4}" />
+<BlockMath math="m_{QR} = -\frac{3}{4}" />
+</MathContainer>
+
+Die Gerade fällt um <InlineMath math="3" /> Einheiten, während sie sich um <InlineMath math="4" /> Einheiten nach rechts bewegt. Ihre Steigung muss deshalb negativ sein. Die Steigung der Geraden <InlineMath math="QR" /> beträgt also <InlineMath math="-\frac{3}{4}" />.

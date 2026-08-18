@@ -1,0 +1,19 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+<MathContainer>
+<BlockMath math="\lim_{x \to \infty} (5^x + 5^{3x})^{\frac{1}{x}} = \lim_{x \to \infty} \left[5^{3x} \left(\frac{1}{5^{2x}} + 1\right)\right]^{\frac{1}{x}}" />
+<BlockMath math="= 5^3\lim_{x\to\infty}\left(1+5^{-2x}\right)^{\frac1x}" />
+</MathContainer>
+
+Den verbleibenden Faktor bestimmen wir sauber über seinen natürlichen Logarithmus.
+
+<MathContainer>
+<BlockMath math="\lim_{x\to\infty}\ln\left[\left(1+5^{-2x}\right)^{\frac1x}\right]
+=\lim_{x\to\infty}\frac{\ln(1+5^{-2x})}{x}=0" />
+<BlockMath math="\lim_{x\to\infty}\left(1+5^{-2x}\right)^{\frac1x}=e^0=1" />
+<BlockMath math="\lim_{x \to \infty} (5^x + 5^{3x})^{\frac{1}{x}}=5^3=125" />
+</MathContainer>

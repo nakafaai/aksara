@@ -1,0 +1,65 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-27",
+};
+
+Die beiden Faktoren müssen aus zwei verschiedenen Mengen stammen. Zunächst schreiben wir die Form jeder Menge auf:
+
+<MathContainer>
+  <BlockMath math="A = \{-1, -2, -3, \dots\}" />
+  <BlockMath math="B = \{2, 4, 6, \dots\}" />
+  <BlockMath math="C = \{3, 6, 9, \dots\}" />
+</MathContainer>
+
+Nun prüfen wir, ob sich jede Antwortmöglichkeit mit einem der drei zulässigen Mengenpaare darstellen lässt: <InlineMath math="A" /> mit <InlineMath math="B" />, <InlineMath math="A" /> mit <InlineMath math="C" /> oder <InlineMath math="B" /> mit <InlineMath math="C" />.
+
+#### Prüfe jede Zahl
+
+1. <InlineMath math="-14" />
+
+    <MathContainer>
+       <BlockMath math="-14 = (-7) \times 2" />
+    </MathContainer>
+
+    Hier gilt <InlineMath math="-7 \in A" /> und <InlineMath math="2 \in B" />. Das Produkt verwendet also zwei verschiedene Mengen.
+
+2. <InlineMath math="-15" />
+
+    <MathContainer>
+       <BlockMath math="-15 = (-5) \times 3" />
+    </MathContainer>
+
+    Hier gilt <InlineMath math="-5 \in A" /> und <InlineMath math="3 \in C" />. Auch dieses Produkt verwendet zwei verschiedene Mengen.
+
+3. <InlineMath math="-18" />
+
+    <MathContainer>
+       <BlockMath math="-18 = (-3) \times 6" />
+    </MathContainer>
+
+    Hier gilt <InlineMath math="-3 \in A" /> und <InlineMath math="6 \in B" />. Da außerdem <InlineMath math="6 \in C" /> gilt, funktioniert sowohl <InlineMath math="A" /> mit <InlineMath math="B" /> als auch <InlineMath math="A" /> mit <InlineMath math="C" />.
+
+4. <InlineMath math="14" />
+
+    <MathContainer>
+       <BlockMath math="14 = 2 \times 7" />
+    </MathContainer>
+
+    Hier gilt <InlineMath math="2 \in B" />. Allerdings ist <InlineMath math="7" /> eine positive ungerade ganze Zahl, die nicht durch <InlineMath math="3" /> teilbar ist. Das bedeutet:
+
+    - <InlineMath math="7 \notin A" />, da <InlineMath math="A" /> negative ganze Zahlen enthält.
+    - <InlineMath math="7 \notin B" />, da <InlineMath math="7" /> ungerade ist.
+    - <InlineMath math="7 \notin C" />, da <InlineMath math="7" /> nicht durch <InlineMath math="3" /> teilbar ist.
+
+    Ein positives Produkt kann <InlineMath math="A" /> nicht mit einer der beiden positiven Mengen verbinden, denn dabei entstünde ein negatives Ergebnis. Es bleibt nur das Paar <InlineMath math="B" /> und <InlineMath math="C" />. Dessen Produkt muss durch <InlineMath math="6" /> teilbar sein. Da <InlineMath math="14" /> nicht durch <InlineMath math="6" /> teilbar ist, lässt sich diese Zahl nicht bilden.
+
+5. <InlineMath math="18" />
+
+    <MathContainer>
+       <BlockMath math="18 = 2 \times 9" />
+    </MathContainer>
+
+    Hier gilt <InlineMath math="2 \in B" /> und <InlineMath math="9 \in C" />. Das Produkt verwendet also zwei verschiedene Mengen.
+
+Damit ist <InlineMath math="14" /> die Zahl, die sich nicht aus zwei verschiedenen Mengen bilden lässt.

@@ -1,0 +1,155 @@
+export const metadata = {
+  title: "Positiv definite Matrizen",
+  description: "Klassifiziere symmetrische und hermitesche Matrizen mithilfe quadratischer Formen, Eigenwerte, Hauptminoren, Cholesky-Faktoren und der Optimierungsgeometrie.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-13",
+  subject: "Lineare Methoden der KI",
+};
+
+## Definition über quadratische Formen
+
+Für eine reelle symmetrische Matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" /> betrachten wir die quadratische Form
+
+<BlockMath math="q(x)=x^TAx" />
+
+Die komplexe Variante verwendet eine hermitesche Matrix und <InlineMath math="q(x)=x^HAx" />. Das Vorzeichen dieses Skalars klassifiziert die Matrix:
+
+| Klasse | Bedingung für jedes <InlineMath math="x" /> ungleich null |
+| --- | --- |
+| Positiv definit | <InlineMath math="x^TAx>0" /> |
+| Positiv semidefinit | <InlineMath math="x^TAx\ge0" /> |
+| Negativ definit | <InlineMath math="x^TAx<0" /> |
+| Negativ semidefinit | <InlineMath math="x^TAx\le0" /> |
+| Indefinit | die quadratische Form nimmt positive und negative Werte an |
+
+Symmetrie gehört zur üblichen Definition. Für eine nicht symmetrische reelle Matrix gilt
+
+<BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
+
+Die quadratische Form sieht also nur den symmetrischen Anteil.
+
+## Spektralkriterium
+
+Nach dem Spektralsatz lässt sich eine reelle symmetrische Matrix schreiben als
+
+<BlockMath math="A=Q\Lambda Q^T" />
+
+mit orthogonalem <InlineMath math="Q" /> und reeller Diagonalmatrix <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" />. Mit <InlineMath math="y=Q^Tx" /> folgt
+
+<BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
+
+Daher gilt:
+
+- <InlineMath math="A" /> ist genau dann positiv definit, wenn jedes <InlineMath math="\lambda_i>0" /> ist.
+- <InlineMath math="A" /> ist genau dann positiv semidefinit, wenn jedes <InlineMath math="\lambda_i\ge0" /> ist.
+- <InlineMath math="A" /> ist genau dann indefinit, wenn sie positive und negative Eigenwerte besitzt.
+
+Jeder Diagonaleintrag einer positiv definiten Matrix ist positiv, denn
+
+<BlockMath math="a_{ii}=e_i^TAe_i>0" />
+
+Die Umkehrung ist falsch. Positive Diagonaleinträge allein kontrollieren die gemischten Terme nicht.
+
+## Ellipsoidgeometrie
+
+Ist <InlineMath math="A" /> positiv definit, dann ist
+
+<BlockMath math="E=\{x\in\mathbb{R}^n:x^TAx=1\}" />
+
+ein Ellipsoid mit Mittelpunkt im Ursprung. In Eigenvektorkoordinaten gilt
+
+<BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
+
+Die Hauptachsen sind also die Eigenvektoren von <InlineMath math="A" />, und ihre Halbachsenlängen betragen <InlineMath math="1/\sqrt{\lambda_i}" />. Kleine Eigenwerte gehören zu langen, große Eigenwerte zu kurzen Richtungen.
+
+## Hauptminorentests
+
+Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Block einer reellen symmetrischen oder komplexen hermiteschen Matrix. Das Sylvester-Kriterium lautet
+
+<BlockMath math="A\text{ ist positiv definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ für }k=1,ldots,n" />
+
+Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Positive Semidefinitheit ist gleichbedeutend damit, dass alle Hauptminoren nichtnegativ sind, nicht nur die führenden.
+
+## Prüfungen für Zwei-mal-zwei-Matrizen
+
+Betrachte
+
+<BlockMath math="A=\begin{pmatrix}5&1\\1&4\end{pmatrix}" />
+
+Die führenden Hauptminoren sind
+
+<MathContainer>
+<BlockMath math="\det(A_1)=5>0" />
+<BlockMath math="\det(A)=20-1=19>0" />
+</MathContainer>
+
+Somit ist <InlineMath math="A" /> positiv definit. Die Eigenwerte bestätigen dies:
+
+<BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197" />
+
+Vergleiche nun
+
+<BlockMath math="B=\begin{pmatrix}1&5\\5&4\end{pmatrix}" />
+
+Obwohl beide Diagonaleinträge positiv sind, gilt
+
+<BlockMath math="\det(B)=4-25=-21<0" />
+
+Die beiden Eigenwerte haben daher verschiedene Vorzeichen und <InlineMath math="B" /> ist indefinit.
+
+## Cholesky-Charakterisierung
+
+Eine reelle symmetrische Matrix ist genau dann positiv definit, wenn sie eine Cholesky-Faktorisierung
+
+<BlockMath math="A=LL^T" />
+
+mit unterer Dreiecksmatrix <InlineMath math="L" /> und ausschließlich positiven Diagonaleinträgen besitzt. Dann gilt
+
+<BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
+
+Umgekehrt läuft der Cholesky-Algorithmus für jede positiv definite Matrix ohne nichtpositiven Pivot vollständig durch. Dies liefert sowohl einen Test als auch einen effizienten Weg zum Lösen von <InlineMath math="Ax=b" />.
+
+## Gram-Matrizen und <InlineMath math="A^TA" />
+
+Für jede reelle Matrix <InlineMath math="M\in\mathbb{R}^{m\times n}" /> gilt
+
+<BlockMath math="x^TM^TMx=\|Mx\|_2^2\ge0" />
+
+Daher ist <InlineMath math="M^TM" /> immer positiv semidefinit. Sie ist genau dann positiv definit, wenn
+
+<BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
+
+Voller Spaltenrang impliziert automatisch <InlineMath math="m\ge n" />. Dies muss für die Aussage über Semidefinitheit nicht vorab angenommen werden.
+
+Allgemeiner ist eine Gram-Matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positiv semidefinit. Sie ist genau dann positiv definit, wenn die Vektoren <InlineMath math="v_i" /> linear unabhängig sind.
+
+## Bedeutung für die Optimierung
+
+Betrachte die quadratische Zielfunktion
+
+<BlockMath math="F(x)=\frac12x^TAx-b^Tx+c" />
+
+Ihr Gradient und ihre Hesse-Matrix sind
+
+<MathContainer>
+<BlockMath math="\nabla F(x)=Ax-b" />
+<BlockMath math="\nabla^2F(x)=A" />
+</MathContainer>
+
+Ist <InlineMath math="A" /> positiv definit, dann ist <InlineMath math="F" /> streng konvex und besitzt den eindeutigen Minimierer
+
+<BlockMath math="x_*=A^{-1}b" />
+
+Positive Definitheit allein garantiert keine einfache oder numerisch stabile Berechnung. Das Krümmungsverhältnis
+
+<BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
+
+kann dennoch sehr groß sein. Dadurch wird die Zielfunktion langgestreckt und Algorithmen können langsam oder empfindlich werden.
+
+## Spektralverschiebungen und Inversen
+
+Für eine hermitesche Matrix <InlineMath math="A" /> sind die Eigenwerte von <InlineMath math="A-tI" /> gleich <InlineMath math="\lambda_i(A)-t" />. Folglich
+
+<BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
+
+Aus <InlineMath math="A\succ0" /> folgt außerdem <InlineMath math="A^{-1}\succ0" /> mit Eigenwerten <InlineMath math="1/\lambda_i(A)" />. Diese Tatsachen sind nützlich. Ein numerischer Algorithmus sollte lineare Gleichungssysteme trotzdem lösen, statt eine Inverse explizit zu bilden.

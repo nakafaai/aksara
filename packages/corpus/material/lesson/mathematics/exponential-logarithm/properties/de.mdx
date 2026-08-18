@@ -1,0 +1,126 @@
+export const metadata = {
+  title: "Potenzgesetze",
+  description:
+    "Nutze sieben Potenzgesetze mit korrekten Definitionsbedingungen, einer Zweierpotenztabelle und Beispielen zu ganzzahligen und rationalen Exponenten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-01",
+  subject: "Exponenten und Logarithmen",
+};
+
+## Das Muster der Zweierpotenzen lesen
+
+Die Tabelle zeigt ein wiederkehrendes Muster. Eine Zeile weiter unten wird der Wert mit <InlineMath math="2" /> multipliziert, weil sich der Exponent um eins erhöht.
+
+| <InlineMath math="2^n" /> | Wert |
+| ------------------------- | ---- |
+| <InlineMath math="2^1" /> | <InlineMath math="2" /> |
+| <InlineMath math="2^2" /> | <InlineMath math="4" /> |
+| <InlineMath math="2^3" /> | <InlineMath math="8" /> |
+| <InlineMath math="2^4" /> | <InlineMath math="16" /> |
+| <InlineMath math="2^5" /> | <InlineMath math="32" /> |
+| <InlineMath math="2^6" /> | <InlineMath math="64" /> |
+| <InlineMath math="2^7" /> | <InlineMath math="128" /> |
+| <InlineMath math="2^8" /> | <InlineMath math="256" /> |
+| <InlineMath math="2^9" /> | <InlineMath math="512" /> |
+| <InlineMath math="2^{10}" /> | <InlineMath math="1024" /> |
+
+Zum Beispiel verbindet <InlineMath math="2^5\cdot2^3" /> fünf Faktoren zwei mit drei weiteren Faktoren zwei. Das Ergebnis besitzt acht Faktoren zwei. Daher gilt <InlineMath math="2^5\cdot2^3=2^8" />.
+
+## Sieben Potenzgesetze
+
+| Form des Ausdrucks | Gesetz | Hier verwendete Bedingungen |
+| ------------------ | ------ | --------------------------- |
+| Gleiche Basen multiplizieren | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Gleiche Basen dividieren | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Eine Potenz potenzieren | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Ein Produkt potenzieren | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Einen Quotienten potenzieren | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Rationale Potenzen mit gleichem Nenner multiplizieren | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Allgemeine rationale Potenzen multiplizieren | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
+
+Beim Multiplizieren oder Dividieren gleicher Basen bleibt die Basis unverändert. Nur die Exponenten werden miteinander verknüpft. Eine Potenz außerhalb einer Klammer wirkt dagegen auf den gesamten Ausdruck in der Klammer.
+
+## Warum die Bedingungen wichtig sind
+
+- Die Basis null funktioniert bei einigen positiven Exponenten, aber nicht bei negativen Exponenten, denn <InlineMath math="0^{-1}" /> würde eine Division durch null verlangen. Die ganzzahligen Regeln verwenden deshalb <InlineMath math="a\neq0" /> als einheitliche Bedingung.
+- Ein Quotient benötigt außerdem einen Nenner ungleich null.
+- Bei rationalen Exponenten sorgt <InlineMath math="a>0" /> dafür, dass jede Wurzel und Potenz reell und eindeutig definiert ist. Einzelne Beispiele mit negativer Basis können reell sein, doch eine uneingeschränkte Regel würde nicht alle rationalen Exponenten abdecken.
+
+Die Bedingungen sind kein Zusatz hinter der Formel. Sie müssen vor der Anwendung des Gesetzes geprüft werden.
+
+## Das passende Gesetz wählen
+
+| Muster im Ausdruck | Erster Schritt |
+| ------------------ | -------------- |
+| Gleiche Basen werden multipliziert | Exponenten addieren |
+| Gleiche Basen werden dividiert | Exponenten des Nenners subtrahieren |
+| Eine Potenz steht außerhalb einer Potenz | Exponenten multiplizieren |
+| Produkt oder Quotient steht in Klammern | Äußeren Exponenten verteilen |
+| Rationale Exponenten haben verschiedene Nenner | Auf einen gemeinsamen Nenner bringen |
+
+## Durchgerechnete Beispiele
+
+### Produkte und Quotienten verknüpfen
+
+1. Vereinfache <InlineMath math="\frac{2^5\cdot2^3}{2^2}" />.
+
+    <MathContainer>
+      <BlockMath math="\frac{2^5\cdot2^3}{2^2}=2^{5+3-2}" />
+      <BlockMath math="2^{5+3-2}=2^6=64" />
+    </MathContainer>
+
+2. Vereinfache <InlineMath math="2^2\cdot2^3" />.
+
+    <BlockMath math="2^2\cdot2^3=2^{2+3}=2^5=32" />
+
+3. Vereinfache <InlineMath math="2^5\cdot2^2" />.
+
+    <BlockMath math="2^5\cdot2^2=2^{5+2}=2^7=128" />
+
+4. Vereinfache <InlineMath math="2^3\cdot2^7" />.
+
+    <BlockMath math="2^3\cdot2^7=2^{3+7}=2^{10}=1024" />
+
+5. Vereinfache <InlineMath math="\frac{2^8}{2^6}" />.
+
+    <BlockMath math="\frac{2^8}{2^6}=2^{8-6}=2^2=4" />
+
+6. Vereinfache <InlineMath math="\frac{2^{10}}{2^3}" />.
+
+    <BlockMath math="\frac{2^{10}}{2^3}=2^{10-3}=2^7=128" />
+
+7. Vereinfache <InlineMath math="\frac{2^6}{2^4}" />.
+
+    <BlockMath math="\frac{2^6}{2^4}=2^{6-4}=2^2=4" />
+
+### Potenzen potenzieren
+
+8. Vereinfache <InlineMath math="(2^3)^3" />.
+
+    <BlockMath math="(2^3)^3=2^{3\cdot3}=2^9=512" />
+
+9. Vereinfache <InlineMath math="(2^4)^2" />.
+
+    <BlockMath math="(2^4)^2=2^{4\cdot2}=2^8=256" />
+
+10. Vereinfache <InlineMath math="(2^2)^5" />.
+
+    <BlockMath math="(2^2)^5=2^{2\cdot5}=2^{10}=1024" />
+
+### Rationale Exponenten
+
+11. Vereinfache <InlineMath math="2^{1/3}2^{2/3}" />.
+
+    <MathContainer>
+      <BlockMath math="2^{1/3}2^{2/3}=2^{(1+2)/3}" />
+      <BlockMath math="2^{3/3}=2" />
+    </MathContainer>
+
+12. Vereinfache <InlineMath math="3^{1/2}3^{1/3}" />.
+
+    <MathContainer>
+      <BlockMath math="3^{1/2}3^{1/3}=3^{3/6+2/6}" />
+      <BlockMath math="3^{1/2}3^{1/3}=3^{5/6}" />
+    </MathContainer>
+
+In jedem Beispiel bestimmen die Rechenoperation und die Anordnung der Basen, welches Gesetz anzuwenden ist. Diese Struktur zuerst zu lesen ist zuverlässiger, als eine Formel ohne Zusammenhang auswendig abzurufen.

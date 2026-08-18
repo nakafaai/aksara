@@ -1,0 +1,557 @@
+export const metadata = {
+  title: "Position zweier Kreise",
+  description: "Lagebeziehungen zweier Kreise anhand von Mittelpunktabstand und Radien bestimmen: schneidend, berührend, getrennt oder konzentrisch.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Lagebeziehungen zweier Kreise
+
+Zwei Seifenblasen liefern ein anschauliches Bild: Manchmal überlappen sie sich, manchmal berühren sie sich nur, und manchmal bleiben sie vollständig voneinander getrennt. Ganz ähnlich beschreiben wir in der Mathematik die **Lage zweier Kreise**.
+
+In der analytischen Geometrie reichen die Mittelpunkte und Radien aus, um die Lage eindeutig zu bestimmen. Entscheidend ist der Abstand zwischen den beiden Mittelpunkten.
+
+Mit demselben Vergleich lässt sich prüfen, ob sich zwei kreisförmige Bereiche überlappen, berühren oder einen Abstand voneinander haben, etwa in Abdeckungskarten oder geometrischen Entwürfen.
+
+## Sich schneidende Kreise
+
+Zwei Kreise **schneiden sich**, wenn sie genau zwei gemeinsame Punkte haben. Anschaulich sieht das aus wie zwei Ringe, die sich überlappen.
+
+<LineEquation
+  title="Zwei sich schneidende Kreise"
+  description="Die beiden Kreislinien haben genau zwei gemeinsame Punkte."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 3;
+        const centerX = -1;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#2563eb",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2.5;
+        const centerX = 1.5;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -1, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 1.5, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        // Schnittpunkte exakt berechnen
+        const r1 = 3, r2 = 2.5;
+        const x1 = -1, y1 = 0, x2 = 1.5, y2 = 0;
+        const d = Math.sqrt((x2-x1)**2 + (y2-y1)**2); // d = 2.5
+
+        // Abstand von Mittelpunkt 1 zur Potenzgeraden
+        const a = (r1**2 - r2**2 + d**2) / (2*d); // a = (9 - 6.25 + 6.25) / 5 = 1.8
+
+        // Höhe des Schnittpunkts über der Verbindungslinie der Mittelpunkte
+        const h = Math.sqrt(r1**2 - a**2); // h = sqrt(9 - 3.24) = sqrt(5.76) = 2.4
+
+        // Schnittpunkte
+        const px = x1 + a * (x2-x1) / d; // px = -1 + 1.8 * 2.5 / 2.5 = 0.8
+        const py1 = y1 + h; // py1 = 2.4
+        const py2 = y1 - h; // py2 = -2.4
+
+        return [
+          { x: px, y: py1, z: 0 },
+          { x: px, y: py2, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0.5, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Für zwei Kreise mit den Radien <InlineMath math="r_1" /> und <InlineMath math="r_2" /> sowie dem Mittelpunktabstand <InlineMath math="d" /> gilt die Schnittbedingung:
+
+<BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
+
+Die beiden strengen Grenzen erklären diese Bedingung:
+
+- **Obergrenze**: Bei <InlineMath math="r_1 + r_2" /> berühren sich die Kreise von außen
+- **Untere Grenze**: Bei <InlineMath math="|r_1 - r_2|" /> berührt der kleinere Kreis den größeren von innen
+- **Zwischen den Grenzen**: Die Kreislinien schneiden sich in zwei Punkten
+
+## Sich berührende Kreise
+
+Zwei Kreise berühren sich tangential, wenn sie **genau einen gemeinsamen Punkt** haben. Zwei Zahnräder, die sich an einem Punkt berühren, liefern dafür ein anschauliches Bild.
+
+<LineEquation
+  title="Von außen berührende Kreise"
+  description="Die beiden Kreislinien haben genau einen gemeinsamen Punkt."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2.5;
+        const centerX = -2.5;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#059669",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2;
+        const centerX = 2;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0, 0.8, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Für zwei nicht identische Kreise gibt es zwei Berührungsfälle:
+
+1. **Äußere Berührung** liegt vor, wenn <InlineMath math="d = r_1 + r_2" /> gilt. Die Kreise liegen außerhalb voneinander und berühren sich in einem Punkt.
+
+2. **Innere Berührung** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| > 0" /> gilt. Der kleinere Kreis liegt im größeren und berührt ihn in einem Punkt.
+
+Das nächste Diagramm zeigt eine innere Berührung:
+
+<LineEquation
+  title="Von innen berührende Kreise"
+  description="Der kleinere Kreis liegt im größeren und beide Kreislinien haben einen gemeinsamen Punkt."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 4;
+        const centerX = 0;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 1.5;
+        const centerX = 2.5;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 2.5, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0, -0.8, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -5, z: 0 },
+        { x: 0, y: 5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Getrennte Kreise
+
+Zwei Kreise liegen außen getrennt, wenn sich weder ihre Kreislinien noch ihre Kreisflächen treffen.
+
+<LineEquation
+  title="Zwei getrennte Kreise"
+  description="Beide Kreise liegen weit auseinander und berühren sich nicht."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2;
+        const centerX = -3;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 1.5;
+        const centerX = 3;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#ca8a04",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="d" />, at: 1, offset: [0, 0.8, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Der getrennte Zustand liegt vor, wenn der Abstand zwischen den Mittelpunkten größer ist als die Summe beider Radien:
+
+<BlockMath math="d > r_1 + r_2" />
+
+In diesem Fall gehört kein Punkt zu beiden Kreisflächen.
+
+## Konzentrische und zusammenfallende Kreise
+
+**Konzentrische Kreise** haben denselben Mittelpunkt, aber unterschiedliche Radien, wie die Kreislinien auf einer Zielscheibe.
+
+<LineEquation
+  title="Konzentrische Kreise"
+  description="Zwei Kreise mit demselben Mittelpunkt, aber unterschiedlichen Radien."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 3.5;
+        const centerX = 0;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0284c7",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2;
+        const centerX = 0;
+        const centerY = 0;
+        return {
+          x: centerX + radius * Math.cos(angle),
+          y: centerY + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#65a30d",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 0, z: 0 }
+      ],
+      color: "#ca8a04",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3.5, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 1, offset: [0, 0.8, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 }
+      ],
+      color: "#c026d3",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -5, z: 0 },
+        { x: 0, y: 5, z: 0 }
+      ],
+      color: "#c026d3",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Bei konzentrischen Kreisen beträgt der Abstand zwischen den Mittelpunkten Null (<InlineMath math="d = 0" />), aber die Radien sind unterschiedlich (<InlineMath math="r_1 \ne r_2" />).
+
+**Identische Kreise** sind ein Sonderfall: Beide Kreise haben denselben Mittelpunkt und denselben Radius. Deshalb liegen sie vollständig aufeinander und erscheinen als ein einziger Kreis.
+
+Zwei Kreise sind identisch, wenn:
+
+<MathContainer>
+  <BlockMath math="d = 0" />
+  <BlockMath math="r_1 = r_2" />
+</MathContainer>
+
+## Die Lage bestimmen
+
+Um zwei Kreise einzuordnen, berechnen wir ihren Mittelpunktabstand und vergleichen ihn mit der Summe und dem absoluten Unterschied der Radien.
+
+Der erste Kreis habe den Mittelpunkt <InlineMath math="(x_1, y_1)" /> und den Radius <InlineMath math="r_1" />. Der zweite Kreis habe den Mittelpunkt <InlineMath math="(x_2, y_2)" /> und den Radius <InlineMath math="r_2" />.
+
+Der Abstand zwischen den Mittelpunkten wird nach folgender Formel berechnet:
+
+<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
+
+Unter der Annahme positiver Radien erfassen die folgenden Bedingungen alle Möglichkeiten, ohne sich zu überschneiden:
+
+- **Identisch**: <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> (dieselbe Kreislinie)
+- **Konzentrisch, aber verschieden**: <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" /> (gleicher Mittelpunkt, unterschiedliche Radien)
+- **Ineinanderliegend, ohne Berührung und nicht konzentrisch**: <InlineMath math="0 < d < |r_1-r_2|" /> (ein Kreis liegt vollständig im anderen)
+- **Innerlich tangential**: <InlineMath math="d = |r_1-r_2| > 0" /> (ein innerer Berührpunkt)
+- **Sich schneidend**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (zwei gemeinsame Punkte)
+- **Äußerlich tangential**: <InlineMath math="d = r_1+r_2" /> (ein äußerer Berührpunkt)
+- **Äußerlich getrennt**: <InlineMath math="d > r_1+r_2" /> (die beiden Kreisscheiben treffen sich nicht)
+
+### Ausführliches Beispiel
+
+Wir bestimmen die Lage der Kreise mit den Gleichungen <InlineMath math="x^2 + y^2 = 9" /> und <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
+
+**Schritt** <InlineMath math="1" />: Mittelpunkt und Radius beider Kreise bestimmen.
+
+Erster Kreis: Mittelpunkt <InlineMath math="(0, 0)" />, Radius <InlineMath math="r_1 = 3" />
+
+Für den zweiten Kreis vervollständigen wir das Quadrat:
+
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
+  <BlockMath math="(x^2 - 6x + 9) + (y^2 - 8y + 16) = 9 + 16" />
+  <BlockMath math="(x - 3)^2 + (y - 4)^2 = 25" />
+</MathContainer>
+
+Zweiter Kreis: Mittelpunkt <InlineMath math="(3, 4)" />, Radius <InlineMath math="r_2 = 5" />
+
+**Schritt** <InlineMath math="2" />: Abstand zwischen den Mittelpunkten berechnen.
+
+<BlockMath math="d = \sqrt{(3-0)^2 + (4-0)^2} = \sqrt{9 + 16} = \sqrt{25} = 5" />
+
+**Schritt** <InlineMath math="3" />: Mit Positionsbedingungen vergleichen.
+
+<MathContainer>
+  <BlockMath math="r_1 + r_2 = 3 + 5 = 8" />
+  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2" />
+</MathContainer>
+
+Da <InlineMath math="2 < 5 < 8" /> gilt, **schneiden sich die beiden Kreise**.
+
+Zur Kontrolle setzen wir die drei Werte in <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" /> ein:
+- <InlineMath math="|3 - 5| = 2" />
+- <InlineMath math="3 + 5 = 8" />
+- <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (Schnittbedingung erfüllt)

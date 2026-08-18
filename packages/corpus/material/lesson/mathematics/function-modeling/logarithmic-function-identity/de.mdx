@@ -1,0 +1,232 @@
+export const metadata = {
+  title: "Logarithmische Rechenregeln",
+  description: "Produkt-, Quotienten-, Potenz- und Basiswechselregeln anwenden, um Terme zu vereinfachen, Gleichungen zu lösen und logarithmische Modelle zu verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Logarithmische Rechenregeln verstehen
+
+Logarithmische Rechenregeln verwandeln Produkte in Summen, Quotienten in Differenzen und Potenzen in Faktoren. Dadurch lassen sich viele logarithmische Terme und Gleichungen leichter bearbeiten.
+
+Logarithmen machen Potenzierungen rückgängig. Aus <InlineMath math="b^x = a" /> folgt <InlineMath math="\log_b a = x" />. In diesem Kapitel sind alle Argumente der Logarithmen positiv. Außerdem gilt für jede Basis <InlineMath math="b>0" /> und <InlineMath math="b\neq1" />.
+
+## Grundlegende Logarithmusregeln
+
+### Produktregel
+
+<BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
+
+Der Logarithmus eines Produkts ist die Summe der Logarithmen seiner Faktoren.
+
+**Beispiel:**
+
+<BlockMath math="\log_2(8 \times 4) = {\log_2 8} + {\log_2 4} = 3 + 2 = 5" />
+
+### Quotientenregel
+
+<BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
+
+Der Logarithmus eines Quotienten ist die Differenz aus dem Logarithmus des Zählers und dem Logarithmus des Nenners.
+
+**Beispiel:**
+
+<BlockMath math="\log_3\left(\frac{81}{9}\right) = {\log_3 81} - {\log_3 9} = 4 - 2 = 2" />
+
+### Potenzregel
+
+<BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
+
+Ein Exponent im Argument kann als Faktor vor den Logarithmus gezogen werden.
+
+**Beispiel:**
+
+<BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
+
+## Weitere Logarithmusregeln
+
+### Wechsel der Basis
+
+<BlockMath math="\log_b M = \frac{\log_a M}{\log_a b}" />
+
+Mit dieser Regel lässt sich ein Logarithmus in eine andere Basis umrechnen.
+
+**Beispiel:**
+
+Da <InlineMath math="9=3^2" /> gilt, ist der Zähler genau doppelt so groß wie der Nenner:
+
+<BlockMath math="\log_3 9 = \frac{\log_{10} 9}{\log_{10} 3} = \frac{2\log_{10}3}{\log_{10}3} = 2" />
+
+### Gleichheitsregel
+
+Wenn <InlineMath math="\log_b M = {\log_b N}" />, dann gilt <InlineMath math="M = N" />.
+
+Zwei Zahlen mit demselben logarithmischen Wert (mit derselben Basis) müssen dieselbe Zahl sein.
+
+### Monotonie und Ungleichungen
+
+- Wenn <InlineMath math="b > 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M < N" />
+- Wenn <InlineMath math="0 < b < 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M > N" />
+
+## Logarithmische Rechenregeln anwenden
+
+### Ausdrücke vereinfachen
+
+Vereinfache <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />.
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+  <BlockMath math="= {\log_2(32 \times 8)} - {\log_2 4}" />
+  <BlockMath math="= {\log_2 256} - {\log_2 4}" />
+  <BlockMath math="= {\log_2\left(\frac{256}{4}\right)}" />
+  <BlockMath math="= {\log_2 64} = 6" />
+</MathContainer>
+
+### Gleichungen lösen
+
+Bestimme <InlineMath math="x" />, wenn <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" /> gilt.
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+  <BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
+  <BlockMath math="x \times 9 = 81" />
+  <BlockMath math="x = \frac{81}{9} = 9" />
+</MathContainer>
+
+## Anwendungen in Modellen
+
+### Eine logarithmische Magnitudenskala
+
+In einem vereinfachten Magnitudenmodell wird eine gemessene Amplitude <InlineMath math="A" /> mit einer Referenzamplitude <InlineMath math="A_0" /> verglichen:
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+Dabei gilt:
+
+- <InlineMath math="M" /> ist die Magnitude in diesem vereinfachten Modell
+- <InlineMath math="A" /> ist die gemessene Amplitude
+- <InlineMath math="A_0" /> ist die Referenzamplitude
+
+**Beispiel:** Eine gemessene Amplitude sei <InlineMath math="10^7" />-mal so groß wie die Referenzamplitude. Welche Magnitude ergibt das vereinfachte Modell?
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+  <BlockMath math="= \log\left(\frac{10^7 A_0}{A_0}\right)" />
+  <BlockMath math="= \log(10^7)" />
+  <BlockMath math="= 7" />
+</MathContainer>
+
+Das Amplitudenverhältnis entspricht in diesem vereinfachten Modell der Magnitude <InlineMath math="7" />. Bei tatsächlichen Erdbebenberechnungen werden außerdem Messgerät, Wellentyp und Entfernung zur Quelle berücksichtigt.
+
+### Aufladen eines Akkus
+
+In einem vereinfachten Lademodell erster Ordnung ergibt sich die Zeit bis zu einem bestimmten Anteil der maximalen Kapazität aus:
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+Dabei gilt:
+
+- <InlineMath math="t" /> = Ladezeit (in Minuten)
+- <InlineMath math="k" /> = Ladekonstante
+- <InlineMath math="C" /> = gewünschte Kapazität
+- <InlineMath math="C_0" /> = maximale Kapazität
+
+**Beispiel:** Wie lange dauert es in diesem Modell, einen leeren Akku auf <InlineMath math="90\%" /> seiner maximalen Kapazität zu laden? Es gilt <InlineMath math="k = 0{,}02" />.
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+  <BlockMath math="= -\frac{1}{0{,}02}\ln\left(1 - \frac{0{,}9C_0}{C_0}\right)" />
+  <BlockMath math="= -50\ln(1 - 0{,}9)" />
+  <BlockMath math="= -50\ln(0{,}1)" />
+  <BlockMath math="\approx 115{,}13" />
+</MathContainer>
+
+In diesem vereinfachten Modell dauert das Laden auf <InlineMath math="90\%" /> ungefähr <InlineMath math="115 \text{Minuten}" />. Reale Ladesysteme können ihre Rate bei hohem Ladestand ändern.
+
+### Abwertung des Autopreises
+
+Ist die momentane Wertminderung proportional zum aktuellen Fahrzeugwert, hat ein exponentielles Modell die Form:
+
+<BlockMath math="H(t) = ce^{kt}" />
+
+Dabei ist <InlineMath math="H(t)" /> der Wert zum Zeitpunkt <InlineMath math="t" />.
+
+**Beispiel:** Ein Neuwagen kostet <InlineMath math="200 \text{Millionen Rupiah}" />. Sein modellierter Wert beträgt nach <InlineMath math="5 \text{Jahren}" /> noch <InlineMath math="100 \text{Millionen Rupiah}" />. Bestimme den modellierten Wert nach <InlineMath math="10 \text{Jahren}" />, wenn dieselbe exponentielle Wertminderung anhält.
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="H(0) = 200 \text{Millionen, also} 200 = ce^0 = c" />
+  <BlockMath math="H(5) = 100 \text{Millionen, also} 100 = 200e^{5k}" />
+  <BlockMath math="e^{5k} = \frac{1}{2} \text{, also} 5k = \ln\left(\frac{1}{2}\right)" />
+  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
+</MathContainer>
+
+Aus diesen Ergebnissen ergibt sich für den Autopreis zu jedem Zeitpunkt <InlineMath math="t" />:
+
+<BlockMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t} \approx 200e^{-0{,}1386t}" />
+
+Der modellierte Fahrzeugwert nach <InlineMath math="10 \text{Jahren}" /> beträgt daher:
+
+<BlockMath math="H(10) = 200e^{2\ln(1/2)} = 200\left(\frac{1}{2}\right)^2 = 50 \text{Millionen Rupiah}" />
+
+## Übungen
+
+**Aufgabe** <InlineMath math="1" />
+
+Vereinfache: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
+
+**Aufgabe** <InlineMath math="2" />
+
+Für <InlineMath math="\log_2 x = 3" /> und <InlineMath math="\log_2 y = 5" /> ist <InlineMath math="\log_2(xy)" /> zu bestimmen.
+
+**Aufgabe** <InlineMath math="3" />
+
+Bestimme <InlineMath math="x" />, wenn <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" /> gilt.
+
+### Ausführliche Lösungen
+
+**Antwort** <InlineMath math="1" />
+
+Alle drei Zahlen sind Potenzen von <InlineMath math="5" />. Zuerst werden die einzelnen Logarithmen bestimmt:
+
+<MathContainer>
+  <BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+  <BlockMath math="\log_5 125 + {\log_5 25} - {\log_5 5}=3+2-1=4" />
+</MathContainer>
+
+Der vereinfachte Term hat den Wert <InlineMath math="4" />.
+
+**Antwort** <InlineMath math="2" />
+
+Da im gesuchten Term das Produkt <InlineMath math="xy" /> steht, passt die Produktregel:
+
+<MathContainer>
+  <BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
+  <BlockMath math="= 3 + 5 = 8" />
+</MathContainer>
+
+Somit gilt <InlineMath math="\log_2(xy)=8" />.
+
+**Antwort** <InlineMath math="3" />
+
+Auf der rechten Seite wird zuerst die Quotientenregel angewendet. Danach können die Argumente der Logarithmen mit derselben Basis gleichgesetzt werden:
+
+<MathContainer>
+  <BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+  <BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+  <BlockMath math="\log_4(x-1) = {\log_4 8}" />
+  <BlockMath math="x - 1 = 8" />
+  <BlockMath math="x = 9" />
+</MathContainer>
+
+Für den Logarithmus muss <InlineMath math="x-1>0" /> gelten. Da <InlineMath math="9-1=8>0" /> gilt, ist die Lösung zulässig.

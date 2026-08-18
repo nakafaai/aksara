@@ -1,0 +1,113 @@
+export const metadata = {
+  title: "Matrixnormen und Konditionszahlen",
+  description: "Verstehe induzierte Matrixnormen, Spektralradius, Konditionszahlen aus Singulärwerten, Störungsabschätzungen und den Unterschied zwischen Kondition und Stabilität.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-13",
+  subject: "Lineare Methoden der KI",
+};
+
+## Induzierte Matrixnormen
+
+Eine Vektornorm misst die Größe eines Vektors. Die zugehörige induzierte Matrixnorm misst den größten Faktor, um den eine Matrix einen Vektor strecken kann:
+
+<BlockMath math="\|A\|=\sup_{x\ne0}\frac{\|Ax\|}{\|x\|}=\max_{\|x\|=1}\|Ax\|" />
+
+Aus dieser Definition folgen unmittelbar zwei wichtige Abschätzungen für Matrizen und Vektoren mit passenden Dimensionen:
+
+<MathContainer>
+<BlockMath math="\|Ax\|\le\|A\|\|x\|" />
+<BlockMath math="\|AB\|\le\|A\|\|B\|" />
+</MathContainer>
+
+Die gewählte Vektornorm bestimmt die induzierte Matrixnorm.
+
+| Vektornorm | Induzierte Matrixnorm |
+| --- | --- |
+| <InlineMath math="\displaystyle\|x\|_1=\sum_{i=1}^{n}\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_1=\max_j\sum_i\lvert a_{ij}\rvert" />, die größte absolute Spaltensumme |
+| <InlineMath math="\displaystyle\|x\|_\infty=\max_i\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_\infty=\max_i\sum_j\lvert a_{ij}\rvert" />, die größte absolute Zeilensumme |
+| <InlineMath math="\displaystyle\|x\|_2=\sqrt{x^{\mathsf T}x}" /> | <InlineMath math="\displaystyle\|A\|_2=\sigma_{\max}(A)" />, der größte Singulärwert |
+
+## Spektralradius und Spektralnorm
+
+Für eine quadratische Matrix ist der Spektralradius
+
+<BlockMath math="\rho(A)=\max_{\lambda\in\operatorname{spec}(A)}|\lambda|" />
+
+Jede induzierte Matrixnorm beschränkt den Spektralradius:
+
+<BlockMath math="\rho(A)\le\|A\|" />
+
+Für die Spektralnorm gilt
+
+<BlockMath math="\|A\|_2=\sigma_{\max}(A)=\sqrt{\lambda_{\max}(A^{\mathsf T}A)}" />
+
+Ist <InlineMath math="A" /> reell symmetrisch, so sind ihre Singulärwerte die Beträge ihrer Eigenwerte. Daher gilt
+
+<BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
+
+Bei einer allgemeinen nichtnormalen Matrix müssen Spektralradius und Spektralnorm nicht übereinstimmen.
+
+## Konditionszahl eines linearen Gleichungssystems
+
+Für eine invertierbare quadratische Matrix und eine induzierte Norm definieren wir
+
+<BlockMath math="\kappa(A)=\|A\|\|A^{-1}\|" />
+
+Die Konditionszahl ist mindestens eins. Eine singuläre Matrix hat eine unendliche Konditionszahl. In der euklidischen Norm gilt
+
+<BlockMath math="\kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}" />
+
+Für eine invertierbare symmetrische Matrix wird daraus
+
+<BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
+
+Im Nenner steht der kleinste Betrag, nicht der algebraisch kleinste Eigenwert.
+
+| Größe von <InlineMath math="\kappa(A)" /> | Bedeutung |
+| --- | --- |
+| Nahe bei <InlineMath math="1" /> | Relative Störungen werden im ungünstigsten Fall nicht stark verstärkt. |
+| Groß | Bestimmte Eingaberichtungen können viel größere relative Änderungen der Lösung erzeugen. |
+| Unendlich | Die Matrix ist singulär, daher ist das inverse Problem nicht eindeutig lösbar. |
+
+## Ein zweidimensionales Beispiel
+
+Betrachten wir
+
+<BlockMath math="A=\begin{pmatrix}1&0\\0&\varepsilon\end{pmatrix},\qquad 0<\varepsilon\ll1" />
+
+Die Singulärwerte sind <InlineMath math="1" /> und <InlineMath math="\varepsilon" />. Somit gilt
+
+<BlockMath math="\kappa_2(A)=\frac{1}{\varepsilon}" />
+
+Für <InlineMath math="b=(b_1,b_2)^{\mathsf T}" /> ist die Lösung
+
+<BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
+
+Eine kleine Änderung von <InlineMath math="b_2" /> wird in der zweiten Lösungskomponente mit <InlineMath math="1/\varepsilon" /> verstärkt. Die Matrix ist beinahe singulär, weil sie eine Richtung nahezu zusammenfallen lässt.
+
+## Störungsabschätzung
+
+Es seien <InlineMath math="Ax=b" /> und
+
+<BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
+
+mit derselben induzierten Norm gegeben. Falls
+
+<BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
+
+gilt, wird die relative Lösungsänderung beschränkt durch
+
+<BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
+
+Dies ist eine Abschätzung für den ungünstigsten Fall. Sie sagt nicht voraus, dass jede Störung die maximale Verstärkung erreicht.
+
+## Kondition ist nicht algorithmische Stabilität
+
+Die beiden Begriffe beantworten verschiedene Fragen:
+
+- **Kondition** beschreibt die Empfindlichkeit des mathematischen Problems gegenüber Eingabeänderungen
+- **Stabilität** beschreibt den zusätzlichen Fehler, den ein numerisches Verfahren einführt
+
+Ein stabiles Verfahren kann die bereits vorhandene Empfindlichkeit eines schlecht konditionierten Problems nicht beseitigen. Umgekehrt kann eine instabile Implementierung auch ein gut konditioniertes Problem schlecht lösen. Ein kleines Residuum <InlineMath math="\|b-A\hat{x}\|" /> allein garantiert bei großer Konditionszahl <InlineMath math="\kappa(A)" /> ebenfalls keinen kleinen Vorwärtsfehler <InlineMath math="\|x-\hat{x}\|" />.
+
+In numerischen Berechnungen sollte man die reziproke Konditionszahl aus einer zuverlässigen Faktorisierung schätzen. Man bildet <InlineMath math="A^{-1}" /> nicht eigens explizit, nur um <InlineMath math="\kappa(A)" /> auszuwerten.

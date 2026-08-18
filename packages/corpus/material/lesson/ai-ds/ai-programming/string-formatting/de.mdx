@@ -1,0 +1,282 @@
+export const metadata = {
+    title: "String-Formatierung",
+    description: "Formatiere Python-Ausgaben mit str.format(), F-Strings, Feldbreite, Ausrichtung, Genauigkeit und Vorzeichen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-17",
+    subject: "KI-Programmierung",
+};
+
+## Grundkonzepte und Breitensteuerung
+
+Stringformatierung verwandelt Werte in gezielt gestaltete Textausgaben. Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
+
+Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine Mindestbreite und keine Höchstbreite fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus, statt ihn abzuschneiden.
+
+### Formattypen für Zahlensysteme
+
+| Formattyp | Symbol | Beispieleingabe | Ausgabe | Verwendung |
+|-------------|---------|--------------|--------|-------|
+| Dezimal | `d` | `45` | `45` | Dezimale Ganzzahl |
+| Binär | `b` | `45` | `101101` | Bitdarstellung |
+| Oktal | `o` | `45` | `55` | Darstellung zur Basis acht |
+| Hexadezimal | `x/X` | `45` | `2d/2D` | Basis sechzehn mit Klein- oder Großbuchstaben |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "width_and_types.py",
+      code: `# Breitensteuerung bei verschiedenen Formaten
+print('|{0:15}|'.format('xxx'))     # Ausgabe: |xxx            |
+print('a = {0:6d}'.format(45))      # Ausgabe: a =     45
+print('a = {0:10b}'.format(45))     # Ausgabe: a =     101101
+print('a = {0:6x}'.format(45))      # Ausgabe: a =     2d
+
+# Breite kleiner als String - nicht abgeschnitten
+print('|{0:1}|'.format('xxx'))      # Ausgabe: |xxx|`
+    }
+  ]}
+/>
+
+## Positionseinstellungen und Füllzeichen
+
+### Ausrichtungsoptionen
+
+<Mermaid
+  title="Wie Breite Text platziert"
+  description="Vergleiche die linke, rechte und mittige Ausrichtung desselben Strings in einem Feld mit fester Breite."
+  chart={`
+    flowchart TD
+        A["Eingabezeichenfolge: 'xxx'"] --> B["Ausrichtung wählen"]
+
+        B --> C["< (links)"]
+        B --> D["> (rechts)"]
+        B --> E["^ (zentriert)"]
+
+        C --> F["'xxx            '"]
+        D --> G["'            xxx'"]
+        E --> H["'      xxx      '"]
+  `}
+/>
+
+| Symbol | Name | Verhalten | Standard für |
+|--------|------|----------|-------------|
+| `<` | Links | Text links, Abstand rechts | String, Objekte |
+| `>` | Rechts | Text rechts, Abstand links | Zahlen |
+| `^` | Zentriert | Text in der Mitte, gleichmäßiger Abstand | - |
+
+### Füllzeichen und erweiterte Formatierung
+
+Das Füllzeichen belegt den ungenutzten Raum im Feld. Standardmäßig ist es ein Leerzeichen und steht unmittelbar vor dem Ausrichtungssymbol. In `str.format()` und F-Strings können die literalen Zeichen `{` und `}` nicht als Füllzeichen dienen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "alignment_fill.py",
+      code: `# Grundlegende Ausrichtung
+print('|{0:<15}|'.format('xxx'))    # Ausgabe: |xxx            |
+print('|{0:>15}|'.format('xxx'))    # Ausgabe: |            xxx|
+print('|{0:^15}|'.format('xxx'))    # Ausgabe: |      xxx      |
+
+# Benutzerdefinierte Füllzeichen
+print('|{0:-<15}|'.format('xxx'))   # Ausgabe: |xxx------------|
+print('|{0:*>15}|'.format('xxx'))   # Ausgabe: |************xxx|
+print('|{0:^^15}|'.format('xxx'))   # Ausgabe: |^^^^^^xxx^^^^^^|
+
+# Decimal formatting
+x = 123.98
+print('x = {0:12f}'.format(x))      # Ausgabe: x =   123.980000
+print('x = {0:12e}'.format(x))      # Ausgabe: x = 1.239800e+02`
+    }
+  ]}
+/>
+
+## Argumentreferenzmethoden
+
+Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortargumente über einen Namen oder Positionsargumente über eine automatische Nummerierung auswählen.
+
+<Mermaid
+  title="Wie Platzhalter Werte auswählen"
+  description="Sieh dir an, wie nummerierte, benannte und automatische Referenzen den Wert für einen Formatplatzhalter auswählen."
+  chart={`
+    flowchart TD
+        A["Stringformatierung"] --> B["Referenzarten für Argumente"]
+
+        B --> C["Nummeriert: {0} {1}"]
+        B --> D["Schlüsselwort: {name}"]
+        B --> E["Automatisch: {}"]
+
+        C --> F["Explizit und wiederverwendbar"]
+        D --> G["Lesbar und flexibel"]
+        E --> H["Einfach, aber fortlaufend"]
+  `}
+/>
+
+### Vergleich der Referenzmethoden
+
+| Methode | Syntax | Vorteile | Einschränkungen |
+|--------|---------|-----------|-------------|
+| Nummeriert | `{0}, {1}` | Explizite Kontrolle, kann wiederholt werden | Jeder verwendete Index muss vorhanden sein |
+| Schlüsselwort | `{name}, {age}` | Leicht lesbar, flexibel | Namen müssen übereinstimmen |
+| Automatisch | `{}, {}` | Einfache Syntax | Nicht mit nummerierten Feldern kombinierbar |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "argument_methods.py",
+      code: `# Nummerierte Felder - explizite Kontrolle
+print('{2} - {0} - {1}'.format('first', 'second', 'third'))
+# Ausgabe: third - first - second
+
+# Schlüsselwortfelder - Namen verwenden
+print('{name} ist {age} Jahre alt'.format(name='Alice', age=25))
+# Ausgabe: Alice ist 25 Jahre alt
+
+# Automatische Nummerierung - fortlaufende Reihenfolge
+print('{} + {} = {}'.format(5, 3, 8))
+# Ausgabe: 5 + 3 = 8
+
+# Fehlerbehandlung
+try:
+    print('{a} - {b}'.format(a='xxx'))  # Wird Fehler machen
+except KeyError as e:
+    print(f"KeyError: {e}")  # Ausgabe: KeyError: 'b'
+
+try:
+    print('{0} - {1}'.format('xxx'))    # Wird Fehler machen
+except IndexError as e:
+    print(f"IndexError: {e}")  # Ausgabe: IndexError: Replacement index 1 out of range for positional args tuple`
+    }
+  ]}
+/>
+
+## Präzision und Vorzeichen
+
+### Präzision für Dezimalzahlen
+
+Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` bestimmt sie die Stellen nach dem Dezimalpunkt, bei `g` die Anzahl signifikanter Ziffern.
+
+| Formattyp | Präzisionsverhalten | Beispiel |
+|-------------|-----|---------|
+| `f/F` | Dezimalstellen | `{:.2f}` → `123.99` |
+| `e/E` | Dezimalstellen in der Exponentialfunktion | `{:.2e}` → `1.24e+02` |
+| `g/G` | Signifikante Ziffern | `{:.3g}` → `124` |
+
+### Vorzeichenoptionen
+
+<Mermaid
+  title="Wie Zeichen in Zahlen erscheinen"
+  description="Vergleiche Plus, Minus und Leerzeichen für eine konsistente Ausgabe positiver und negativer Zahlen."
+  chart={`
+    flowchart TD
+        A["Zahleneingabe"] --> B{"Vorzeichen wählen"}
+
+        B --> C["+ (immer anzeigen)"]
+        B --> D["- (Standard)"]
+        B --> E["Leerzeichen (bei positiven Zahlen)"]
+
+        C --> F["+100, -200"]
+        D --> G["100, -200"]
+        E --> H["' 100', '-200'"]
+  `}
+/>
+
+In der Leerzeichenzeile ist das Symbol ein Leerzeichen innerhalb des Formatbezeichners, wie in `{: d}`. Da dieses Zeichen unsichtbar ist, wird es in der Tabelle als literales Leerzeichen bezeichnet.
+
+| Symbol | Verhalten | Beispiel |
+|--------|----------|---------|
+| `+` | Vorzeichen immer anzeigen | `+100`, `-200` |
+| `-` | Nur negatives Vorzeichen (Standard) | `100`, `-200` |
+| literales Leerzeichen | Lässt ein Leerzeichen vor einer positiven Zahl | `' 100'`, `'-200'` |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "precision_sign.py",
+      code: `# Precision control
+print('x = {0:.3f}'.format(123.98765))     # Ausgabe: x = 123.988
+print('x = {0:12.2e}'.format(1.987e-10))   # Ausgabe: x =     1.99e-10
+print('x = {0:.3g}'.format(1.123456))      # Ausgabe: x = 1.12
+
+# Vorzeichen festlegen
+numbers = [-100, 200, -300]
+print('Default:', ['{:d}'.format(n) for n in numbers])
+# Ausgabe: Default: ['-100', '200', '-300']
+print('Always sign:', ['{:+d}'.format(n) for n in numbers])
+# Ausgabe: Always sign: ['-100', '+200', '-300']
+print('Leerzeichen vor positiven Zahlen:', ['{: d}'.format(n) for n in numbers])
+# Ausgabe: Leerzeichen vor positiven Zahlen: ['-100', ' 200', '-300']
+
+# Rounding behavior
+print('Tiny number f: {0:12f}'.format(1.1e-10))  # Ausgabe: Tiny number f:     0.000000
+print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      1.1e-10`
+    }
+  ]}
+/>
+
+## F-Strings und dynamische Vorlagen
+
+### F-Strings und Python-Version
+
+F-Strings gibt es seit Python 3.6. Sie werten Ausdrücke direkt im Ersetzungsfeld aus. Dadurch ist eine lokale Formatierung oft leichter lesbar als eine getrennte Argumentliste für `format()`.
+
+### Dynamische Formatvorlagen
+
+Verschachtelte Ersetzungsfelder können Teile einer Formatspezifikation liefern, etwa Breite, Füllzeichen oder Ausrichtung. Das ist nützlich, wenn diese Angaben erst zur Laufzeit feststehen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fstrings_dynamic.py",
+      code: `# F-Strings mit einfacher Syntax
+name, age = 'Alice', 25
+print(f'{name} ist {age} Jahre alt')                  # Ausgabe: Alice ist 25 Jahre alt
+print(f'Nächstes Jahr ist {name} {age + 1} Jahre alt') # Ausgabe: Nächstes Jahr ist Alice 26 Jahre alt
+
+# Dynamische Formatvorlagen
+value, width, fill, align = 'data', 12, '-', '^'
+template = '|{val:{f}{a}{w}}|'
+result = template.format(val=value, w=width, f=fill, a=align)
+print(result)                                 # Ausgabe: |----data----|
+
+# Vergleich: gleiche Ausgabe mit unterschiedlichen Methoden
+x = 123.456
+print('Alter Stil: %8.2f' % x)               # Ausgabe: Alter Stil:   123.46
+print('Format-Methode: {0:8.2f}'.format(x))  # Ausgabe: Format-Methode:   123.46
+print(f'F-string: {x:8.2f}')                 # Ausgabe: F-string:   123.46
+
+# Komplexer F-String mit Formatangabe
+import math
+radius = 5.7
+print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm²`
+    }
+  ]}
+/>
+
+### Vollständiges Formatspezifikationsmuster
+
+<Mermaid
+  title="Reihenfolge innerhalb eines Formatbezeichners"
+  description="Lies diese häufig verwendete Teilmenge vom Füllzeichen bis zum Darstellungstyp, damit jeder Abschnitt einen klaren Platz hat."
+  chart={`
+    flowchart TD
+        A["Formatspezifikation"] --> B["Reihenfolge der Komponenten"]
+
+        B --> C[": (Beginn)"]
+        C --> D["fill (Füllzeichen)"]
+        D --> E["align (Ausrichtung: < > ^)"]
+        E --> F["sign (Vorzeichen: + - Leerzeichen)"]
+        F --> G["width (Mindestbreite)"]
+        G --> H[".prec (Dezimalgenauigkeit)"]
+        H --> I["type (Typ: d b o x f e g)"]
+
+        J["Vollständiges Beispiel"] --> K["{value:*^+10.2f}"]
+        K --> L["ein vollständiges Ersetzungsfeld"]
+  `}
+/>
+
+Für die hier behandelte Teilmenge liest du `{value:*^+10.2f}` als Feldname `value`, Füllzeichen `*`, mittige Ausrichtung `^`, ausdrückliches Vorzeichen `+`, Mindestbreite `10`, Präzision `2` und Festkommatyp `f`. Die vollständige Formatierungs-Minisprache von Python unterstützt außerdem Optionen wie Zifferngruppierung und alternative Darstellungen. Schlage dort nach, wenn du mehr als dieses Kernmuster brauchst.

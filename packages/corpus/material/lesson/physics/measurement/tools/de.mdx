@@ -1,0 +1,152 @@
+
+export const metadata = {
+  title: "Arten von Messwerkzeugen",
+  description:
+    "Lerne wichtige Messwerkzeuge kennen, wähle das passende Gerät aus und lies Messwerte zusammen mit ihren Einheiten ab.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-25",
+  subject: "Messen in der Naturwissenschaft",
+};
+
+## Warum Messungen wichtig sind
+
+Wir messen, wenn wir Zutaten abwiegen, auf einen Tachometer schauen, die Körpertemperatur ablesen oder die Länge eines Tisches bestimmen. In der Physik ist Messen ein experimenteller Vorgang, durch den ein oder mehrere Größenwerte ermittelt werden. Eine Maßeinheit liefert den gemeinsamen Bezug.
+
+<BlockMath math="\text{Größenwert} = \text{Zahlenwert} \times \text{Einheit}" />
+
+Hat ein Gegenstand beispielsweise die Länge <InlineMath math="8 \text{ cm}" />, ist <InlineMath math="8" /> der Zahlenwert und <InlineMath math="\text{cm}" /> die Einheit.
+
+> Erst das passende Messwerkzeug macht ein Ergebnis brauchbar. Mit dem falschen Gerät kann ein Wert sauber aussehen und trotzdem für die untersuchte Größe ungeeignet sein.
+
+## Messwerkzeuge vergleichen
+
+Nutze das kleine Labor, um drei grundlegende Messwerkzeuge zu vergleichen. Drehe das Modell und achte darauf, was gemessen wird, welche Einheit erscheint und wie der Messwert zu lesen ist.
+
+<MeasurementToolsLab
+  title={<>Labor für Messwerkzeuge</>}
+  description={
+    <>
+      Wähle ein Werkzeug und untersuche den Zusammenhang zwischen Größe,
+      Gegenstand und Messwert.
+  </>
+  }
+  labels={{
+    chooseTool: "Messwerkzeug auswählen",
+    decimalSeparator: ",",
+    instrument: "Instrument",
+    measuredObject: "Messobjekt",
+    reading: "Messwert",
+    tools: {
+      length: {
+        tab: "Länge",
+        control: "Blocklänge",
+        instrument: "Lineal",
+        object: "Kleiner Block",
+      },
+      mass: {
+        tab: "Masse",
+        control: "Objektmasse",
+        instrument: "Waage",
+        object: "Fester Gegenstand",
+      },
+      time: {
+        tab: "Zeit",
+        control: "Bewegungsdauer",
+        instrument: "Stoppuhr",
+        object: "Bewegungsdauer",
+      },
+    },
+  }}
+/>
+
+## Das passende Messwerkzeug auswählen
+
+Kläre vor jeder Messung zuerst die gesuchte Größe. Daraus ergeben sich das geeignete Gerät und die passende Einheit.
+
+<Mermaid
+  title="Werkzeug und Größe zuordnen"
+  description="Gehe von der gesuchten Größe aus und wähle das Werkzeug nach Messbereich, Auflösung und Ableseart."
+  chart={`flowchart TD
+    A["Gesuchte Größe"] --> B["Länge"]
+    A --> C["Masse"]
+    A --> D["Zeit"]
+    B --> E["Längenwerkzeug"]
+    C --> F["Waage"]
+    D --> G["Uhr oder Stoppuhr"]`}
+/>
+
+SI ist die Abkürzung für *Système international d’unités*, das **Internationale Einheitensystem**. Dieser gemeinsame Standard macht Messungen aus verschiedenen Schulen, Laboren und Ländern direkt vergleichbar.
+
+Zu den ersten SI-Grundgrößen im Physikunterricht gehören Länge, Masse und Zeit. Ihre Basiseinheiten sind <InlineMath math="\text{m}" />, <InlineMath math="\text{kg}" /> und <InlineMath math="\text{s}" />.
+
+## Messergebnisse lesen
+
+Die folgenden Beispiele verbinden Startpunkt, angezeigten Wert und Einheit. Entscheidend ist nicht nur die Zahl, sondern auch ihre physikalische Bedeutung.
+
+### Länge
+
+Beim Ablesen eines Lineals zählt nicht nur die Zahl am rechten Ende. Prüfe auch die Anfangsposition. Beginnt der Gegenstand bei <InlineMath math="0 \text{ cm}" /> und endet bei <InlineMath math="8 \text{ cm}" />, ergibt sich:
+
+<BlockMath math="\begin{aligned}
+\text{Objektlänge} &= 8 \text{cm} - 0 \text{cm} \\
+&= 8 \text{cm}
+\end{aligned}" />
+
+Wenn das Objekt bei <InlineMath math="1 \text{ cm}" /> beginnt und bei <InlineMath math="7 \text{ cm}" /> endet, beträgt seine Länge nicht <InlineMath math="7 \text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\text{Objektlänge} &= 7 \text{cm} - 1 \text{cm} \\
+&= 6 \text{cm}
+\end{aligned}" />
+
+### Masse
+
+Die Masse beschreibt, wie stark sich ein Körper einer Bewegungsänderung widersetzt. Eine Waage bestimmt sie durch den Vergleich mit bekannten Massen. Zeigt die Waage <InlineMath math="250 \text{ g}" />, beträgt die Masse des Gegenstands:
+
+<BlockMath math="m = 250 \text{ g}" />
+
+Im Labor oben ist eine gleicharmige Waage dargestellt. Der Gegenstand liegt auf der linken Schale, eine Referenzmasse von <InlineMath math="250 \text{ g}" /> auf der rechten. Ist die Gegenstandsmasse größer als <InlineMath math="250 \text{ g}" />, sinkt ihre Seite. Ist sie kleiner als <InlineMath math="250 \text{ g}" />, sinkt die Referenzseite. Bei gleicher Masse bleibt die Waage im Gleichgewicht.
+
+<BlockMath math="\begin{aligned}
+\tau_\text{links} &= r m_\text{Objekt} g \\
+\tau_\text{rechts} &= r m_\text{Referenz} g \\
+m_\text{Objekt} = m_\text{Referenz} &\Rightarrow \tau_\text{links} = \tau_\text{rechts}
+\end{aligned}" />
+
+Für eine SI-Angabe wird die Masse in Kilogramm umgerechnet.
+
+<BlockMath math="\begin{aligned}
+250 \text{g} &= 250 \times 10^{-3} \text{kg} \\
+&= 0{,}25 \text{kg}
+\end{aligned}" />
+
+### Zeit
+
+Eine Stoppuhr misst die Dauer eines Vorgangs. Zeigt sie <InlineMath math="12{,}8 \text{s}" />, dauert der Vorgang <InlineMath math="12{,}8" /> Sekunden.
+
+<BlockMath math="t = 12{,}8 \text{s}" />
+
+## Messwerkzeuge um uns herum
+
+- Lineale und Maßbänder helfen beim Messen von Tischlängen, Körpergrößen oder kurzen Distanzen.
+- Messschieber helfen bei der Messung des Außendurchmessers, Innendurchmessers oder der Tiefe kleiner Objekte.
+- Mikrometerschrauben messen die Dicke sehr kleiner Gegenstände, etwa dünner Drähte.
+- Waagen helfen dabei, die Masse von Objekten zu messen.
+- Thermometer helfen bei der Messung der Temperatur.
+- Stoppuhren helfen dabei, die Dauer von Ereignissen zu messen.
+- Tachometer helfen bei der Messung der Fahrzeuggeschwindigkeit.
+
+## Prüfe dein Verständnis
+
+Ein Bleistift liegt auf einem Lineal. Sein linkes Ende befindet sich bei <InlineMath math="2 \text{ cm}" />, das rechte bei <InlineMath math="15 \text{ cm}" />. Seine Länge beträgt:
+
+<BlockMath math="\begin{aligned}
+\text{Bleistiftlänge} &= 15 \text{cm} - 2 \text{cm} \\
+&= 13 \text{cm}
+\end{aligned}" />
+
+Die Bleistiftlänge beträgt also <InlineMath math="13 \text{ cm}" />.
+
+Das Bleistiftbeispiel zeigt das Grundmuster jeder Messung: zuerst die Größe bestimmen, dann ein geeignetes Werkzeug wählen und schließlich das Ergebnis mit Einheit notieren. Sind diese <InlineMath math="3" /> Schritte klar, ist der Messwert mehr als eine Zahl. Er lässt sich vergleichen und für weitere Untersuchungen verwenden.
+
+Die Begriffe folgen den JCGM-Definitionen von [Messung](https://jcgm.bipm.org/vim/en/2.1.html) und [Größenwert](https://jcgm.bipm.org/vim/en/1.19.html) im International Vocabulary of Metrology.

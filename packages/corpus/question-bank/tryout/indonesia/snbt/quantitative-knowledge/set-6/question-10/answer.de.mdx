@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben sei die rekursive Gleichung:
+
+<MathContainer>
+  <BlockMath math="a_{n+1} = a_{n+2} - 4a_n" />
+</MathContainer>
+
+Wir stellen die Rekursion zunächst nach <InlineMath math="a_{n+2}" /> um:
+
+<MathContainer>
+  <BlockMath math="a_{n+2} = a_{n+1} + 4a_n" />
+</MathContainer>
+
+**Schritt** <InlineMath math="1" />: Zuerst bestimmen wir <InlineMath math="a_3" />, indem wir <InlineMath math="n=1" /> sowie <InlineMath math="a_1=8" /> und <InlineMath math="a_2=-5" /> einsetzen:
+
+<MathContainer>
+  <BlockMath math="a_{1+2} = a_{1+1} + 4a_1" />
+  <BlockMath math="a_3 = a_2 + 4a_1" />
+  <BlockMath math="a_3 = -5 + 4(8)" />
+  <BlockMath math="a_3 = -5 + 32" />
+  <BlockMath math="a_3 = 27" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: Anschließend bestimmen wir <InlineMath math="a_4" /> mit <InlineMath math="n=2" />:
+
+<MathContainer>
+  <BlockMath math="a_{2+2} = a_{2+1} + 4a_2" />
+  <BlockMath math="a_4 = a_3 + 4a_2" />
+  <BlockMath math="a_4 = 27 + 4(-5)" />
+  <BlockMath math="a_4 = 27 - 20" />
+  <BlockMath math="a_4 = 7" />
+</MathContainer>
+
+**Schritt** <InlineMath math="3" />: Nun addieren wir <InlineMath math="a_3+a_4" />:
+
+<MathContainer>
+  <BlockMath math="a_3 + a_4 = 27 + 7" />
+  <BlockMath math="a_3 + a_4 = 34" />
+</MathContainer>
+
+Der Wert von <InlineMath math="a_3 + a_4" /> ist also <InlineMath math="34" />.

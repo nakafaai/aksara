@@ -1,0 +1,290 @@
+
+export const metadata = {
+  title: "Trigonometrische Identität",
+  description: "Leite pythagoreische, reziproke und Quotientenidentitäten her und verwende sie zum Vereinfachen und Beweisen trigonometrischer Ausdrücke.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Trigonometrische Identitäten verstehen
+
+Manche Gleichungen gelten für jeden zulässigen Wert ihrer Variablen. Zum Beispiel ist <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> für alle Werte von <InlineMath math="a" /> und <InlineMath math="b" /> wahr. Solche Gleichungen heißen Identitäten.
+
+In der Trigonometrie heißt eine Gleichung, die für jeden Winkel ihres Definitionsbereichs gilt, **trigonometrische Identität**. Mit Identitäten lassen sich Ausdrücke umformen, gleichwertige Darstellungen beweisen und Gleichungen lösen, ohne ihren Wert zu verändern.
+
+## Grundlegende trigonometrische Identitäten
+
+### Pythagoreische Identität
+
+Ausgangspunkt ist der Einheitskreis. Der Punkt <InlineMath math="P(x, y)" /> gehört zum Winkel <InlineMath math="\theta" />, gemessen von der positiven <InlineMath math="x" />-Achse.
+
+<UnitCircle
+  title="Einheitskreis und pythagoreische Identität"
+  description={
+    <>
+      Beobachte, wie sich die Koordinaten des Punktes <InlineMath math="P" /> mit
+      dem Winkel ändern. Sie entsprechen den Werten von{" "}
+      <InlineMath math="\cos\theta" /> und <InlineMath math="\sin\theta" />.
+    </>
+  }
+  angle={45}
+/>
+
+Auf dem Einheitskreis:
+
+- Radius: <InlineMath math="r = 1" />
+- Die <InlineMath math="x" />-Koordinate ist <InlineMath math="\cos \theta" />
+- Die <InlineMath math="y" />-Koordinate ist <InlineMath math="\sin \theta" />
+
+Der Satz des Pythagoras liefert für den Punkt <InlineMath math="P" />:
+
+<BlockMath math="x^2 + y^2 = 1^2" />
+
+Wir setzen die Werte für <InlineMath math="x" /> und <InlineMath math="y" /> ein:
+
+<BlockMath math="(\cos \theta)^2 + (\sin \theta)^2 = 1" />
+
+Üblicherweise wird die Gleichung so geschrieben:
+
+<BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+
+Dies ist die **pythagoreische Identität**, die grundlegendste Identität in der Trigonometrie.
+
+**Weitere Formen der pythagoreischen Identität:**
+
+Aus der obigen Grundidentität können wir zwei weitere Formen ableiten:
+
+**Zweite Form:** Beide Seiten durch <InlineMath math="\cos^2 \theta" /> dividieren (für <InlineMath math="\cos \theta \neq 0" />)
+
+<MathContainer>
+  <BlockMath math="\frac{\sin^2 \theta}{\cos^2 \theta} + \frac{\cos^2 \theta}{\cos^2 \theta} = \frac{1}{\cos^2 \theta}" />
+  <BlockMath math="\tan^2 \theta + 1 = \sec^2 \theta" />
+</MathContainer>
+
+**Dritte Form:** Beide Seiten durch <InlineMath math="\sin^2 \theta" /> dividieren (für <InlineMath math="\sin \theta \neq 0" />)
+
+<MathContainer>
+  <BlockMath math="\frac{\sin^2 \theta}{\sin^2 \theta} + \frac{\cos^2 \theta}{\sin^2 \theta} = \frac{1}{\sin^2 \theta}" />
+  <BlockMath math="1 + \cot^2 \theta = \csc^2 \theta" />
+</MathContainer>
+
+### Reziproke Identitäten
+
+Zu jeder trigonometrischen Funktion gehört eine Kehrwertbeziehung. Daraus entstehen die reziproken Identitäten:
+
+<MathContainer>
+  <BlockMath math="\sin \theta = \frac{1}{\csc \theta}" />
+  <BlockMath math="\cos \theta = \frac{1}{\sec \theta}" />
+  <BlockMath math="\tan \theta = \frac{1}{\cot \theta}" />
+</MathContainer>
+
+Gleichwertig dazu gilt:
+
+<MathContainer>
+  <BlockMath math="\csc \theta = \frac{1}{\sin \theta}" />
+  <BlockMath math="\sec \theta = \frac{1}{\cos \theta}" />
+  <BlockMath math="\cot \theta = \frac{1}{\tan \theta}" />
+</MathContainer>
+
+Jede reziproke Identität gilt dort, wo beide Seiten definiert sind.
+
+### Quotientenidentitäten
+
+Die Quotientenidentitäten drücken Tangens und Kotangens durch Sinus und Kosinus aus:
+
+<ContentStack>
+
+  <MathContainer>
+  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
+
+    <BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+</MathContainer>
+
+Auch diese Quotientenformen setzen einen von null verschiedenen Nenner voraus.
+
+  <Triangle
+    title="Visualisierung trigonometrischer Funktionen"
+    description={<>Die Seitenverhältnisse des Dreiecks ergeben die Werte von <InlineMath math="\sin" />, <InlineMath math="\cos" /> und <InlineMath math="\tan" />. Verändere den Winkel und beobachte, wie sich die drei Verhältnisse mitändern.</>}
+    angle={30}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentStack>
+
+Beide Quotientenidentitäten folgen direkt aus den Definitionen der trigonometrischen Funktionen am Einheitskreis.
+
+### Identitäten gerader und ungerader Funktionen
+
+Bei negativen Winkeln haben trigonometrische Funktionen besondere Eigenschaften:
+
+**Gerade Funktion (Symmetrie um die <InlineMath math="y" />-Achse):**
+
+<BlockMath math="\cos(-\theta) = \cos \theta" />
+
+**Ungerade Funktionen (Symmetrie zum Ursprung):**
+
+<ContentStack>
+
+  <MathContainer>
+  <BlockMath math="\sin(-\theta) = -\sin \theta" />
+
+    <BlockMath math="\tan(-\theta) = -\tan \theta" />
+</MathContainer>
+
+  <UnitCircle
+    title="Erkunden gerader und ungerader Eigenschaften"
+    description={<>Bewege den Regler zwischen negativen und positiven Winkeln. Vergleiche die Werte von <InlineMath math="\cos" />, <InlineMath math="\sin" /> und <InlineMath math="\tan" /> für entgegengesetzte Winkel.</>}
+    angle={60}
+  />
+</ContentStack>
+
+## Identitäten zum Beweisen verwenden
+
+Beim Beweisen wird eine Seite mit bekannten Identitäten so lange umgeformt, bis sie der anderen Seite entspricht.
+
+### Ausdrücke vereinfachen
+
+Vereinfache <InlineMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta" />
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \frac{\sin^2 \theta}{\cos \theta} + \frac{\cos^2 \theta}{\cos \theta}" />
+  <BlockMath math="= \frac{\sin^2 \theta + \cos^2 \theta}{\cos \theta}" />
+  <BlockMath math="= \frac{1}{\cos \theta} \quad \text{(unter Verwendung der pythagoräischen Identität)}" />
+  <BlockMath math="= \sec \theta" />
+</MathContainer>
+
+### Identitäten beweisen
+
+Beweise, dass <InlineMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \sec \theta" />
+
+**Lösung:**
+
+Wir beginnen mit der linken Seite:
+
+<MathContainer>
+  <BlockMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \frac{\sec^2 \theta}{\sec \theta} \quad \text{(mit} 1 + \tan^2 \theta = \sec^2 \theta \text{)}" />
+  <BlockMath math="= \sec \theta" />
+</MathContainer>
+
+Die linke Seite ist damit zur rechten Seite geworden. Die Identität gilt auf dem gemeinsamen Definitionsbereich beider Seiten.
+
+## Trigonometrische Funktionswerte bestimmen
+
+Ist der Wert einer trigonometrischen Funktion bekannt, lassen sich die übrigen Werte mit Identitäten und der Lage des Winkels bestimmen.
+
+### Identitätsanwendungen
+
+Für <InlineMath math="\sin \theta = \frac{3}{5}" /> und <InlineMath math="90^\circ < \theta < 180^\circ" /> (Quadrant II) sind die übrigen trigonometrischen Funktionswerte gesucht.
+
+**Lösung:**
+
+Mit der pythagoreischen Identität bestimmen wir zunächst <InlineMath math="\cos \theta" />:
+
+<MathContainer>
+  <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+  <BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
+  <BlockMath math="\frac{9}{25} + \cos^2 \theta = 1" />
+  <BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
+  <BlockMath math="\cos \theta = \pm \frac{4}{5}" />
+</MathContainer>
+
+Da <InlineMath math="\theta" /> im zweiten Quadranten liegt, gilt <InlineMath math="\cos \theta < 0" />.
+Daher ist <InlineMath math="\cos \theta = -\frac{4}{5}" />.
+
+Die übrigen Funktionswerte folgen aus den Quotienten- und Kehrwertidentitäten:
+
+<MathContainer>
+  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
+  <BlockMath math="\csc \theta = \frac{1}{\sin \theta} = \frac{5}{3}" />
+  <BlockMath math="\sec \theta = \frac{1}{\cos \theta} = -\frac{5}{4}" />
+  <BlockMath math="\cot \theta = \frac{1}{\tan \theta} = -\frac{4}{3}" />
+</MathContainer>
+
+## Übungen
+
+1. Vereinfache den Ausdruck <InlineMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta}" />
+
+2. Beweise die Identität <InlineMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{1 - \cos \theta}{\sin \theta}" />
+
+3. Für <InlineMath math="\cos \theta = \frac{5}{13}" /> und <InlineMath math="270^\circ < \theta < 360^\circ" /> sind alle trigonometrischen Funktionswerte zu bestimmen.
+
+4. Vereinfache <InlineMath math="\sin^4 \theta - \cos^4 \theta" />
+
+5. Für <InlineMath math="\tan \theta = \frac{4}{3}" /> und <InlineMath math="\sin \theta < 0" /> sind <InlineMath math="\sin \theta" /> und <InlineMath math="\cos \theta" /> zu bestimmen.
+
+### Lösungen
+
+1. Wir ersetzen den Tangens durch den Quotienten aus Sinus und Kosinus:
+
+   <MathContainer>
+     <BlockMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta} = \frac{\frac{\sin \theta}{\cos \theta} \cdot \cos \theta}{\sin \theta}" />
+     <BlockMath math="= \frac{\sin \theta}{\sin \theta} = 1" />
+   </MathContainer>
+
+   Das Ergebnis gilt im Definitionsbereich des ursprünglichen Ausdrucks, also für <InlineMath math="\sin\theta \neq 0" /> und <InlineMath math="\cos\theta \neq 0" />.
+
+2. Um die Identität zu beweisen, transformieren wir die linke Seite:
+
+   <MathContainer>
+     <BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{\sin \theta}{1 + \cos \theta} \cdot \frac{1 - \cos \theta}{1 - \cos \theta}" />
+     <BlockMath math="= \frac{\sin \theta (1 - \cos \theta)}{(1 + \cos \theta)(1 - \cos \theta)}" />
+     <BlockMath math="= \frac{\sin \theta (1 - \cos \theta)}{1 - \cos^2 \theta}" />
+     <BlockMath math="= \frac{\sin \theta (1 - \cos \theta)}{\sin^2 \theta}" />
+     <BlockMath math="= \frac{1 - \cos \theta}{\sin \theta}" />
+   </MathContainer>
+
+   Damit ist die Gleichheit für alle Winkel bewiesen, für die beide ursprünglichen Seiten definiert sind.
+
+3. Gegeben <InlineMath math="\cos \theta = \frac{5}{13}" /> im Quadranten IV.
+
+   Zunächst bestimmen wir <InlineMath math="\sin \theta" />. Im vierten Quadranten ist der Sinus negativ:
+
+   <MathContainer>
+     <BlockMath math="\sin^2 \theta = 1 - \cos^2 \theta = 1 - \frac{25}{169} = \frac{144}{169}" />
+     <BlockMath math="\sin \theta = -\frac{12}{13} \text{(negativ im Quadranten IV)}" />
+   </MathContainer>
+
+   Weitere trigonometrische Funktionen:
+
+   <MathContainer>
+     <BlockMath math="\tan \theta = \frac{-12/13}{5/13} = -\frac{12}{5}" />
+     <BlockMath math="\csc \theta = -\frac{13}{12}" />
+     <BlockMath math="\sec \theta = \frac{13}{5}" />
+     <BlockMath math="\cot \theta = -\frac{5}{12}" />
+   </MathContainer>
+
+4. Wir faktorisieren als Differenz zweier Quadrate und setzen anschließend die pythagoreische Identität ein:
+
+   <MathContainer>
+     <BlockMath math="\sin^4 \theta - \cos^4 \theta = (\sin^2 \theta)^2 - (\cos^2 \theta)^2" />
+     <BlockMath math="= (\sin^2 \theta + \cos^2 \theta)(\sin^2 \theta - \cos^2 \theta)" />
+     <BlockMath math="= 1 \cdot (\sin^2 \theta - \cos^2 \theta)" />
+     <BlockMath math="= \sin^2 \theta - \cos^2 \theta" />
+   </MathContainer>
+
+5. Gegeben sind <InlineMath math="\tan \theta = \frac{4}{3}" /> und <InlineMath math="\sin \theta < 0" />.
+
+   Aus <InlineMath math="\tan \theta > 0" /> und <InlineMath math="\sin \theta < 0" /> folgt <InlineMath math="\cos \theta < 0" /> (Quadrant III).
+
+   Mit der Identität <InlineMath math="1 + \tan^2 \theta = \sec^2 \theta" /> folgt:
+
+   <MathContainer>
+     <BlockMath math="1 + \frac{16}{9} = \sec^2 \theta" />
+     <BlockMath math="\sec^2 \theta = \frac{25}{9}" />
+     <BlockMath math="\sec \theta = -\frac{5}{3} \text{(negativ in Quadrant III)}" />
+     <BlockMath math="\cos \theta = -\frac{3}{5}" />
+   </MathContainer>
+
+   Für <InlineMath math="\sin \theta" />:
+
+   <MathContainer>
+     <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
+     <BlockMath math="\frac{4}{3} = \frac{\sin \theta}{-3/5}" />
+     <BlockMath math="\sin \theta = \frac{4}{3} \cdot \left(-\frac{3}{5}\right) = -\frac{4}{5}" />
+   </MathContainer>

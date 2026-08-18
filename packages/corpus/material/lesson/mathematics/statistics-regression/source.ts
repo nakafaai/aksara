@@ -14,14 +14,6 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "koefisien-determinasi",
         },
         slug: "coefficient-of-determination",
-        translations: {
-          en: {
-            title: "Coefficient of Determination",
-          },
-          id: {
-            title: "Koefisien Determinasi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -29,14 +21,6 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "konsep-analisis-korelasi",
         },
         slug: "correlation-analysis-concept",
-        translations: {
-          en: {
-            title: "Correlation Analysis Concept",
-          },
-          id: {
-            title: "Konsep Analisis Korelasi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -44,14 +28,6 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "metode-kuadrat-terkecil",
         },
         slug: "least-squares-method",
-        translations: {
-          en: {
-            title: "Least Squares Method",
-          },
-          id: {
-            title: "Metode Kuadrat Terkecil",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -59,14 +35,6 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "konsep-regresi-linear",
         },
         slug: "linear-regression-concept",
-        translations: {
-          en: {
-            title: "Linear Regression Concept",
-          },
-          id: {
-            title: "Konsep Regresi Linear",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -74,14 +42,6 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "korelasi-product-moment",
         },
         slug: "product-moment-correlation",
-        translations: {
-          en: {
-            title: "Product Moment Correlation",
-          },
-          id: {
-            title: "Korelasi Product Moment",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -89,24 +49,16 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           id: "diagram-pencar-atau-diagram-scatter",
         },
         slug: "scatter-diagram",
-        translations: {
-          en: {
-            title: "Scatter Diagram",
-          },
-          id: {
-            title: "Diagram Pencar atau Diagram Scatter",
-          },
-        },
       },
     ],
     slug: "statistics-regression",
     translations: {
       en: {
-        description: "Read how r² shows variation explained by a model.",
+        description: "Interpret a model's coefficient of determination.",
         title: "Statistics",
       },
       id: {
-        description: "Baca r² sebagai ukuran variasi yang terjelaskan.",
+        description: "Tafsirkan koefisien determinasi suatu model.",
         title: "Statistika",
       },
     },

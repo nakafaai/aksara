@@ -1,0 +1,35 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-24",
+};
+
+Gegeben:
+
+-   <InlineMath math="B_3 = 2" />
+-   <InlineMath math="B_5 = -1" />
+-   <InlineMath math="B_n = B_{n+2} + B_{n-1}" />
+
+Damit <InlineMath math="B_2" /> in der Rekursion erscheint, setzen wir <InlineMath math="n = 3" /> ein.
+
+#### Das vorherige Glied bestimmen
+
+<MathContainer>
+  <BlockMath math="B_3 = B_{3+2} + B_{3-1}" />
+  <BlockMath math="B_3 = B_5 + B_2" />
+</MathContainer>
+
+Nun setzen wir <InlineMath math="B_3 = 2" /> und <InlineMath math="B_5 = -1" /> ein.
+
+<MathContainer>
+  <BlockMath math="2 = -1 + B_2" />
+  <BlockMath math="B_2 = 3" />
+</MathContainer>
+
+#### Überprüfung
+
+Setzen wir das Ergebnis wieder in die Rekursion ein:
+
+<BlockMath math="-1 + 3 = 2" />
+
+Das stimmt mit <InlineMath math="B_3 = 2" /> überein. Daher ist <InlineMath math="B_2" /> gleich <InlineMath math="3" />.

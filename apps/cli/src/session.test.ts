@@ -1,4 +1,5 @@
 import { writeFileSync } from "node:fs";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, Logger, Redacted } from "effect";
 import { afterEach, describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
@@ -21,12 +22,10 @@ const repositories = makeRepositoryTracker();
 const POLICY_DIAGNOSTIC_PATTERN =
   /^ExecutablePolicyError at material\/.+ \(rejected executable syntax: process \(process\)\)\.$/;
 type ProviderControl = Parameters<typeof makeProvider>[0];
-
 /** Creates pristine provider transition counts for one behavior test. */
 function makeControl(): ProviderControl {
   return { failed: 0, pending: 0, ready: 0 };
 }
-
 afterEach(() => {
   repositories.clear();
 });
@@ -244,10 +243,15 @@ describe("local preview session", () => {
   it("opens the real selected corpus and recompiles without a child restart", async () => {
     const repository = repositories.create();
     const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
-    await runLocal(repository, makeApp(capture), () => {
-      expect(capture.input?.provider.origin.hostname).toBe("127.0.0.1");
-      return Effect.void;
-    });
+    await runLocal(
+      repository,
+      makeApp(capture),
+      () => {
+        expect(capture.input?.provider.origin.hostname).toBe("127.0.0.1");
+        return Effect.void;
+      },
+      AppLocaleSchema.make("en")
+    );
   });
 
   it("keeps a changed route failed when initial compilation fails", async () => {

@@ -1,0 +1,137 @@
+export const metadata = {
+  title: "Eigenschaften der Matrixdeterminante",
+  description: "Untersuche anhand ausgearbeiteter Beispiele, wie sich Determinanten bei Matrixprodukten und Skalarmultiplikationen verhalten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrix",
+};
+
+## Zwei wichtige Determinanteneigenschaften
+
+Wir betrachten die beiden Matrizen <InlineMath math="A" /> und <InlineMath math="B" />:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
+</MathContainer>
+
+### Determinante des Produkts zweier Matrizen
+
+Zuerst vergleichen wir die Determinante des Matrixprodukts <InlineMath math="|AB|" /> mit dem Produkt der beiden Determinanten <InlineMath math="|A||B|" />.
+
+**Schritt <InlineMath math="1" />: Determinante der Matrix <InlineMath math="A" /> (<InlineMath math="|A|" />)**
+
+Die Determinante der Matrix <InlineMath math="A" /> ist:
+
+<BlockMath math="|A| = (-5 \cdot -3) - (2 \cdot 1) = 15 - 2 = 13" />
+
+**Schritt <InlineMath math="2" />: Determinante der Matrix <InlineMath math="B" /> (<InlineMath math="|B|" />)**
+
+Die Determinante der Matrix <InlineMath math="B" /> ist:
+
+<BlockMath math="|B| = (9 \cdot -1) - (-4 \cdot 1) = -9 - (-4) = -9 + 4 = -5" />
+
+**Schritt <InlineMath math="3" />: Matrixprodukt <InlineMath math="A" /> mal <InlineMath math="B" /> (<InlineMath math="AB" />)**
+
+Für die Matrix <InlineMath math="AB" /> multiplizieren wir die Matrix <InlineMath math="A" /> mit <InlineMath math="B" />:
+
+<MathContainer>
+  <BlockMath math="AB = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
+  <BlockMath math="AB = \begin{bmatrix} (-5)(9) + (2)(1) & (-5)(-4) + (2)(-1) \\ (1)(9) + (-3)(1) & (1)(-4) + (-3)(-1) \end{bmatrix}" />
+  <BlockMath math="AB = \begin{bmatrix} -45 + 2 & 20 - 2 \\ 9 - 3 & -4 + 3 \end{bmatrix}" />
+  <BlockMath math="AB = \begin{bmatrix} -43 & 18 \\ 6 & -1 \end{bmatrix}" />
+</MathContainer>
+
+**Schritt <InlineMath math="4" />: Determinante der Matrix <InlineMath math="AB" /> (<InlineMath math="|AB|" />)**
+
+Berechnen wir nun die Determinante der Produktmatrix <InlineMath math="AB" />:
+
+<BlockMath math="|AB| = (-43 \cdot -1) - (18 \cdot 6) = 43 - 108 = -65" />
+
+**Schritt <InlineMath math="5" />: Vergleich von <InlineMath math="|AB|" /> und <InlineMath math="|A||B|" />**
+
+Wir haben <InlineMath math="|A| = 13" />, <InlineMath math="|B| = -5" /> und <InlineMath math="|AB| = -65" /> erhalten.
+
+Berechnen wir <InlineMath math="|A||B|" />:
+
+<BlockMath math="|A||B| = 13 \cdot (-5) = -65" />
+
+Beide Rechnungen liefern denselben Wert: <InlineMath math="|AB|" /> ist gleich <InlineMath math="|A||B|" />.
+
+**Formel für die Eigenschaft der Determinante des Matrixprodukts**
+
+Für zwei quadratische Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> desselben Formats gilt: Die Determinante des Produkts von <InlineMath math="A" /> und <InlineMath math="B" /> ist gleich dem Produkt der einzelnen Determinanten.
+
+<BlockMath math="|AB| = |A||B|" />
+
+### Determinante einer Matrix mit Skalarmultiplikation
+
+Als Nächstes untersuchen wir, wie sich die Determinante verändert, wenn jedes Matrixelement mit derselben Zahl multipliziert wird.
+
+Dazu verwenden wir erneut die Matrix <InlineMath math="A" /> und den Skalar <InlineMath math="k=2" />.
+
+<BlockMath math="A = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix}" />
+
+Wir wissen bereits, dass <InlineMath math="|A| = 13" />. Die Matrix <InlineMath math="A" /> hat das Format <InlineMath math="2 \times 2" />, also ist <InlineMath math="n=2" />.
+
+**Schritt <InlineMath math="1" />: Matrix <InlineMath math="kA" /> bestimmen**
+
+Wir multiplizieren jedes Element der Matrix <InlineMath math="A" /> mit <InlineMath math="k=2" />:
+
+<BlockMath math="kA = 2A = 2\begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} = \begin{bmatrix} 2(-5) & 2(2) \\ 2(1) & 2(-3) \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ 2 & -6 \end{bmatrix}" />
+
+**Schritt <InlineMath math="2" />: Determinante der Matrix <InlineMath math="kA" /> (<InlineMath math="|kA|" />)**
+
+Die Determinante der Matrix <InlineMath math="kA" /> ist:
+
+<BlockMath math="|kA| = (-10 \cdot -6) - (4 \cdot 2) = 60 - 8 = 52" />
+
+**Schritt <InlineMath math="3" />: Vergleich von <InlineMath math="|kA|" /> und <InlineMath math="k^n|A|" />**
+
+Wir haben <InlineMath math="|kA| = 52" />. Für die Vergleichsrechnung verwenden wir <InlineMath math="k=2" />, <InlineMath math="n=2" /> und <InlineMath math="|A|=13" />.
+
+Berechnen wir <InlineMath math="k^n|A|" />:
+
+<BlockMath math="k^n|A| = 2^2 \cdot 13 = 4 \cdot 13 = 52" />
+
+Auch hier stimmen beide Werte überein: <InlineMath math="|kA|" /> ist gleich <InlineMath math="k^n|A|" />.
+
+**Formel für die Eigenschaft der Determinante der Skalarmultiplikation**
+
+Ist <InlineMath math="A" /> eine quadratische Matrix im Format <InlineMath math="n \times n" /> und <InlineMath math="k" /> ein Skalar, dann ist die Determinante von <InlineMath math="kA" /> gleich <InlineMath math="k^n" /> mal der Determinante von <InlineMath math="A" />.
+
+<BlockMath math="|kA| = k^n |A|" />
+
+Dabei ist <InlineMath math="n" /> die Anzahl der Zeilen beziehungsweise Spalten der quadratischen Matrix <InlineMath math="A" />.
+
+## Weitere Determinanteneigenschaften
+
+Die Produktregel und die Skalierung der gesamten Matrix gehören zu einer größeren Gruppe nützlicher Regeln. In der Tabelle ist <InlineMath math="A" /> quadratisch, und jede Zeilenoperation erzeugt eine neue Matrix <InlineMath math="B" />.
+
+| Änderung oder Matrixform | Auswirkung auf die Determinante |
+| :-------------------------- | :------------------------------ |
+| Transponieren | <InlineMath math="\det(A^T)=\det(A)" /> |
+| Inverse, falls <InlineMath math="\det(A)\neq0" /> | <InlineMath math="\det(A^{-1})=1/\det(A)" /> |
+| Dreiecksmatrix <InlineMath math="U" /> | <InlineMath math="\det(U)=\prod_{i=1}^{n}u_{ii}" /> |
+| Zwei Zeilen vertauschen, <InlineMath math="R_i\leftrightarrow R_j" /> | <InlineMath math="\det(B)=-\det(A)" /> |
+| Eine Zeile mit <InlineMath math="k" /> multiplizieren | <InlineMath math="\det(B)=k\det(A)" /> |
+| Ein Vielfaches einer Zeile zu einer anderen addieren, <InlineMath math="R_i\leftarrow R_i+kR_j" /> | <InlineMath math="\det(B)=\det(A)" /> |
+| Zwei gleiche Zeilen oder eine Nullzeile | <InlineMath math="\det(A)=0" /> |
+
+Die Skalierung einer Zeile darf nicht mit der Skalierung der gesamten Matrix verwechselt werden. Bei einer <InlineMath math="n\times n" />-Matrix skaliert <InlineMath math="kA" /> alle <InlineMath math="n" /> Zeilen mit <InlineMath math="k" />. Deshalb tritt der Faktor <InlineMath math="k" /> genau <InlineMath math="n" />-mal auf und ergibt <InlineMath math="k^n" />.
+
+## Verständnis prüfen
+
+Ausgangspunkt ist:
+
+<BlockMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\qquad \det(A)=-2" />
+
+Mit den Determinantenregeln lassen sich die Ergebnisse vor jeder vollständigen Entwicklung vorhersagen:
+
+<MathContainer>
+  <BlockMath math="B=\begin{bmatrix}3&4\\1&2\end{bmatrix}\quad\Longrightarrow\quad\det(B)=2" />
+  <BlockMath math="C=\begin{bmatrix}5&10\\3&4\end{bmatrix}\quad\Longrightarrow\quad\det(C)=5\det(A)=-10" />
+  <BlockMath math="D=\begin{bmatrix}1&2\\6&10\end{bmatrix}\quad\Longrightarrow\quad\det(D)=\det(A)=-2" />
+</MathContainer>
+
+Matrix <InlineMath math="B" /> vertauscht die Zeilen, Matrix <InlineMath math="C" /> multipliziert die erste Zeile mit <InlineMath math="5" />, und Matrix <InlineMath math="D" /> führt <InlineMath math="R_2\leftarrow R_2+3R_1" /> aus. Eine direkte Rechnung bestätigt alle drei Vorhersagen.

@@ -1,0 +1,53 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-26",
+};
+
+<Set9Question2Graph
+    mode="answer"
+    title="Lösungsvisualisierung"
+    description={
+        <>
+            Kreis mit Mittelpunkt <InlineMath math="F" />, Radius{" "}
+            <InlineMath math="r" /> und Hilfslinien zur Berechnung des Radius.
+        </>
+    }
+/>
+
+Sei <InlineMath math="F" /> der Mittelpunkt des Kreises, also <InlineMath math="AF = FD = FG = r" /> (der Radius des Kreises).
+
+Gegeben sei die Seitenlänge des Quadrats <InlineMath math="AD = 24 \text{ cm}" />. Da <InlineMath math="E" /> der Mittelpunkt von <InlineMath math="AD" /> ist und der Kreis durch <InlineMath math="A" /> und <InlineMath math="D" /> verläuft, gilt aufgrund der Kreissymmetrie:
+
+<MathContainer>
+  <BlockMath math="AE = ED = \frac{1}{2} AD = 12 \text{ cm}" />
+</MathContainer>
+
+#### Radius des Kreises
+
+Den Radius <InlineMath math="r" /> bestimmen wir mit dem Satz des Pythagoras im rechtwinkligen Dreieck <InlineMath math="\triangle AEF" />.
+Die Strecke <InlineMath math="EF" /> ist der Abstand des Kreismittelpunkts von der Seite <InlineMath math="AD" />.
+Da der Kreis am Punkt <InlineMath math="G" /> die Seite <InlineMath math="BC" /> tangiert und der Gesamtabstand von der Seite <InlineMath math="AD" /> zur Seite <InlineMath math="BC" /> der Seitenlänge des Quadrats (<InlineMath math="24 \text{ cm}" />) entspricht, gilt <InlineMath math="EF = AB - r = 24 - r" />.
+
+Mit dem Satz des Pythagoras im Dreieck <InlineMath math="\triangle AEF" /> folgt:
+
+<MathContainer>
+  <BlockMath math="AF^2 = AE^2 + EF^2" />
+  <BlockMath math="r^2 = 12^2 + (24 - r)^2" />
+  <BlockMath math="r^2 = 144 + (576 - 48r + r^2)" />
+  <BlockMath math="r^2 = r^2 - 48r + 720" />
+  <BlockMath math="48r = 720" />
+  <BlockMath math="r = \frac{720}{48} = 15 \text{ cm}" />
+</MathContainer>
+
+#### Fläche des Kreises
+
+Mit <InlineMath math="r = 15 \text{ cm}" /> ergibt sich die Kreisfläche:
+
+<MathContainer>
+  <BlockMath math="A_o = \pi r^2" />
+  <BlockMath math="A_o = \pi (15)^2" />
+  <BlockMath math="A_o = 225\pi \text{ cm}^2" />
+</MathContainer>
+
+Die gesuchte Fläche beträgt <InlineMath math="225\pi \text{ cm}^2" />.

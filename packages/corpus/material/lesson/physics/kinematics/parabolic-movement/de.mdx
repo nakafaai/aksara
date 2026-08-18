@@ -1,0 +1,90 @@
+export const metadata = {
+  title: "Wurfbewegung",
+  description:
+    "Verstehe die Wurfbewegung als Verbindung einer gleichförmigen horizontalen Bewegung mit einer durch die Schwerkraft beschleunigten vertikalen Bewegung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-06-01",
+  subject: "Kinematik",
+};
+
+
+## Ein Ball mit zwei Bewegungen gleichzeitig
+
+Bei einer Wurfbewegung folgt ein Objekt einer gekrümmten Bahn, weil es sich gleichzeitig horizontal und vertikal bewegt. Der Luftwiderstand wird in dieser Lektion vernachlässigt. Die einzige Beschleunigung ist daher die nach unten gerichtete Erdbeschleunigung.
+
+Am übersichtlichsten wird die Bewegung, wenn sie in zwei Richtungen zerlegt wird. Horizontal liegt eine gleichförmige geradlinige Bewegung vor, weil die Geschwindigkeit dort konstant bleibt. Vertikal handelt es sich um eine gleichmäßig beschleunigte Bewegung, weil die Schwerkraft die vertikale Geschwindigkeit fortlaufend verändert.
+
+<MathContainer>
+  <BlockMath math="x(t)=x_0+v_0\cos\theta\ t" />
+  <BlockMath math="y(t)=y_0+v_0\sin\theta\ t-\frac{1}{2}gt^2" />
+  <BlockMath math="v_x=v_0\cos\theta,\qquad v_y=v_0\sin\theta-gt" />
+</MathContainer>
+
+Dabei ist <InlineMath math="v_0" /> der Anfangsgeschwindigkeitsbetrag, <InlineMath math="\theta" /> der Abwurfwinkel zur Horizontalen, <InlineMath math="g" /> der Betrag der Gravitationsbeschleunigung und <InlineMath math="t" /> die Zeit seit dem Abwurf. Die Koordinaten <InlineMath math="x_0" /> und <InlineMath math="y_0" /> bezeichnen die Abwurfposition. Setzt man beide null, entstehen die häufig verwendeten kürzeren Formeln.
+
+In der Abbildung unten wird ein Ball verwendet, damit Abwurfwinkel, Scheitelpunkt und Wurfweite leichter verglichen werden können.
+
+<ParabolicMovementLab
+  title={<>Flugbahn eines geworfenen Balls</>}
+  description={
+    <>
+    Verändere den Abwurfwinkel. Der Ball bewegt sich horizontal weiter,
+    während die Schwerkraft seine Höhe verändert.
+  </>
+  }
+  labels={{
+    chooseLaunch: "Abwurfwinkel wählen",
+    factLabels: {
+      initialSpeed: <>Anfangsgeschwindigkeitsbetrag</>,
+      flightTime: <>Zeit in der Luft</>,
+      range: <>Wurfweite</>,
+      peakHeight: <>Maximale Höhe</>,
+    },
+    viewLabel: "Visualisierung der Flugbahn eines geworfenen Balls",
+  }}
+/>
+
+## Die Schwerkraft verändert nur den vertikalen Anteil
+
+Stelle dir einen Ball vor, der eine Rampe schräg verlässt. Seine horizontale Bewegung läuft mit gleichbleibender Geschwindigkeit weiter. Vertikal wird er beim Aufsteigen langsamer und beim Fallen schneller.
+
+> Bei einer Projektilbewegung ohne Luftwiderstand bleibt <InlineMath math="v_x" /> konstant, aber <InlineMath math="v_y" /> ändert sich jeden Moment.
+
+Dieser Satz verhindert einen häufigen Fehler. Das Objekt verliert oben nicht seine horizontale Bewegung. Nur die Vertikalgeschwindigkeit wird dort Null.
+
+## Auch am Scheitelpunkt bewegt sich der Ball weiter
+
+Am Scheitelpunkt gilt <InlineMath math="v_y=0" />, weil die vertikale Bewegung des Balls dort für einen Moment stoppt. <InlineMath math="v_x" /> bleibt jedoch erhalten, sodass sich der Ball weiterhin vorwärts bewegt.
+
+Deshalb endet die Flugbahn nicht am Scheitelpunkt. Danach wird <InlineMath math="v_y" /> durch die Gravitation negativ und der Ball bewegt sich nach unten. Gleichzeitig trägt <InlineMath math="v_x" /> ihn weiter nach vorn.
+
+| Bewegungsanteil | Was geschieht? | Bewegungsart |
+| --- | --- | --- |
+| Horizontal | <InlineMath math="v_x" /> bleibt konstant | Horizontale Beschleunigung ist null |
+| Vertikal beim Aufsteigen | Positives <InlineMath math="v_y" /> sinkt bis auf null | Konstante Beschleunigung <InlineMath math="-g" /> |
+| Vertikal beim Fallen | <InlineMath math="v_y" /> ist negativ und sein Betrag wächst | Konstante Beschleunigung <InlineMath math="-g" /> |
+
+## Die Wurfweite folgt aus der Flugzeit
+
+Die horizontale Wurfweite, meist mit <InlineMath math="R" /> bezeichnet, ist die horizontale Entfernung vom Start- bis zum Landepunkt. Weil die horizontale Geschwindigkeit konstant ist, ergibt sich die Wurfweite aus horizontaler Geschwindigkeit mal Flugzeit.
+
+<BlockMath math="R=v_x t_{\text{Luft}}" />
+
+Haben zwei Bälle dasselbe <InlineMath math="v_x" />, landet der Ball mit der längeren Flugzeit weiter entfernt. Bei gleicher Flugzeit erreicht der Ball mit dem größeren <InlineMath math="v_x" /> die größere Wurfweite.
+
+## Ein Ball verlässt einen Tisch waagerecht
+
+Ein Ball verlässt eine Tischkante waagerecht mit <InlineMath math="v_x=4\text{ m/s}" />. Der Tisch ist <InlineMath math="1{,}25\text{ m}" /> hoch. Mit <InlineMath math="g=10\text{ m/s}^2" /> folgt die Fallzeit aus der vertikalen Bewegung:
+
+<BlockMath math="\begin{aligned}
+h&=\frac{1}{2}gt^2\\
+1{,}25&=\frac{1}{2}(10)t^2\\
+t^2&=0{,}25\\
+t&=0{,}5\text{ s}
+\end{aligned}" />
+
+Die horizontale Wurfweite beträgt:
+
+<BlockMath math="R=v_x t=4(0{,}5)=2\text{ m}" />
+
+Der Ball landet also <InlineMath math="2\text{ m}" /> vom Fußpunkt der Tischkante entfernt. Die Fallzeit wird durch die vertikale Bewegung bestimmt. Die horizontale Bewegung legt fest, welche Strecke der Ball während genau dieser Zeit nach vorn zurücklegt.

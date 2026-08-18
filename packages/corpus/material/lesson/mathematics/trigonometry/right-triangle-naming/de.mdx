@@ -1,0 +1,48 @@
+
+export const metadata = {
+  title: "Seiten im rechtwinkligen Dreieck benennen",
+  description: "Bestimme Gegenkathete, Ankathete und Hypotenuse relativ zu einem gewählten spitzen Winkel im rechtwinkligen Dreieck.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-13",
+  subject: "Trigonometrie",
+};
+
+## Warum die Seitennamen wichtig sind
+
+In der Trigonometrie des rechtwinkligen Dreiecks beschreibt der Name einer Seite ihre Lage zu einem gewählten spitzen Winkel. Sind die Seiten richtig zugeordnet, lassen sich mit ihren Verhältnissen Entfernungen und Höhen berechnen, die nur schwer direkt messbar sind.
+
+Die Höhe eines Turms kann zum Beispiel als eine Seite eines rechtwinkligen Dreiecks modelliert werden. Eine gemessene waagerechte Entfernung und der Höhenwinkel entscheiden dann, welches trigonometrische Verhältnis gebraucht wird.
+
+## Drei Seitennamen in einem rechtwinkligen Dreieck
+
+Wähle einen der beiden spitzen Winkel als Bezugswinkel. Ist dieser Winkel <InlineMath math="\theta" />, heißen die Seiten wie folgt:
+
+1. **Gegenkathete**: die Seite gegenüber von <InlineMath math="\theta" />. Sie berührt den Bezugswinkel nicht.
+
+2. **Ankathete**: die Kathete, die <InlineMath math="\theta" /> berührt. Auch die Hypotenuse berührt einen spitzen Winkel. Mit Ankathete ist deshalb ausdrücklich die anliegende Seite gemeint, die nicht die Hypotenuse ist.
+
+3. **Hypotenuse**: die Seite gegenüber dem rechten Winkel, <InlineMath math="90^\circ" />. Sie ist immer die längste Seite eines rechtwinkligen Dreiecks.
+
+<ContentBlock>
+  <Triangle
+    title="Rechtes Dreieck"
+    description={
+      <>
+        Rechtwinkliges Dreieck mit dem Winkel <InlineMath math="\theta" /> sowie
+        Gegenkathete, Ankathete und Hypotenuse.
+      </>
+    }
+    angle={30}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+## Was sich beim Wechsel des Bezugswinkels ändert
+
+Die Hypotenuse wird durch den rechten Winkel bestimmt, daher ändert sich ihr Name nicht. Die beiden anderen Namen sind relativ. Wechselt der Bezug vom einen spitzen Winkel zum anderen, wird die bisherige Gegenkathete zur Ankathete und die bisherige Ankathete zur Gegenkathete.
+
+Diese Reihenfolge verhindert einen häufigen Fehler: Bestimme zuerst den Bezugswinkel <InlineMath math="\theta" />, benenne dann die Seiten und wähle erst danach Sinus, Kosinus oder Tangens.

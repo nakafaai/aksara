@@ -1,0 +1,144 @@
+export const metadata = {
+  title: "Quartile für gruppierte Daten",
+  description: "Bestimme Quartile gruppierter Daten mithilfe kumulierter Häufigkeiten, Klassengrenzen und linearer Interpolation.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Quartile in gruppierten Daten bestimmen
+
+Bei ungruppierten Daten können wir jeden Wert sortieren und seine genaue Position ablesen. In einer Häufigkeitstabelle kennen wir dagegen nur Intervalle, zum Beispiel <InlineMath math="70\text{-}79" /> und <InlineMath math="80\text{-}89" />, sowie die Anzahl der Werte in jedem Intervall. Die einzelnen Messwerte sind nicht mehr sichtbar.
+
+Wie beim [Median gruppierter Daten](/de/faecher/mathematik/grundlagen-der-statistik/median-und-modalwert-gruppierter-daten) bestimmen wir <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> deshalb durch **Interpolation**. Wir schätzen, an welcher Stelle innerhalb des betreffenden Klassenintervalls das Quartil liegt.
+
+Wir bestimmen die Position des Quartils mit dieser Formel:
+
+- <InlineMath math="Q_1" /> liegt an der Position <InlineMath math="\frac{1}{4}n" />.
+- <InlineMath math="Q_2" /> liegt an der Position <InlineMath math="\frac{2}{4}n" />, also <InlineMath math="\frac{1}{2}n" />.
+- <InlineMath math="Q_3" /> liegt an der Position <InlineMath math="\frac{3}{4}n" />.
+
+Dabei bezeichnet <InlineMath math="n" /> die Gesamtzahl aller Werte.
+
+## Vorgehen bei gruppierten Daten
+
+Als Beispiel betrachten wir die nach Schuhgrößen gruppierten Verkaufszahlen eines Geschäfts.
+
+### Kumulative Häufigkeitstabelle aufstellen
+
+Zuerst ergänzen wir die kumulierte Häufigkeit <InlineMath math="F_k" />. Sie addiert alle Häufigkeiten von der ersten Klasse bis einschließlich der betrachteten Klasse. Daran erkennen wir, in welchem Intervall eine gesuchte Position liegt.
+
+Die vollständige Tabelle sieht so aus:
+
+| Schuhgröße | Häufigkeit (<InlineMath math="f" />) | Kumulierte Häufigkeit (<InlineMath math="F_k" />) | Untere Grenze (<InlineMath math="T_b" />) | Obergrenze (<InlineMath math="T_a" />) | Klassenbreite (<InlineMath math="p" />) |
+| :-------: | :------------------------------------------------: | :-------------------------------: | :-------------------------: | :-------------------------: | :----------------------------------: |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="36{,}5" /> | <InlineMath math="39{,}5" /> | <InlineMath math="3" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> | <InlineMath math="13" /> | <InlineMath math="39{,}5" /> | <InlineMath math="42{,}5" /> | <InlineMath math="3" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="10" /> | <InlineMath math="23" /> | <InlineMath math="42{,}5" /> | <InlineMath math="45{,}5" /> | <InlineMath math="3" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="5" /> | <InlineMath math="28" /> | <InlineMath math="45{,}5" /> | <InlineMath math="48{,}5" /> | <InlineMath math="3" /> |
+| <InlineMath math="49\text{-}51" /> | <InlineMath math="2" /> | <InlineMath math="30" /> | <InlineMath math="48{,}5" /> | <InlineMath math="51{,}5" /> | <InlineMath math="3" /> |
+| **Gesamt** | <InlineMath math="30" /> |                                                  |                                            |                                            |                                       |
+
+<InlineMath math="\text{Untere Klassengrenze} = \text{unterer Klassenwert} - 0{,}5" />
+
+<InlineMath math="\text{Obere Klassengrenze} = \text{oberer Klassenwert} + 0{,}5" />
+
+<InlineMath math="\text{Klassenbreite} = \text{obere Klassengrenze} - \text{untere Klassengrenze}" />
+
+### Quartilklasse bestimmen
+
+Nun bestimmen wir zunächst die Position jedes Quartils.
+
+Insgesamt liegen <InlineMath math="n" /> = <InlineMath math="30" /> Werte vor.
+
+- **Position von <InlineMath math="Q_1" />:** <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
+
+  In der Spalte <InlineMath math="F_k" /> endet die erste Klasse an Position <InlineMath math="2" /> und die zweite an Position <InlineMath math="13" />. Die Positionen <InlineMath math="3" /> bis <InlineMath math="13" /> gehören zur zweiten Klasse, sodass Position <InlineMath math="7{,}5" /> in der Klasse <InlineMath math="40\text{-}42" /> liegt.
+
+- **Position von <InlineMath math="Q_2" /> (Median):** <InlineMath math="\frac{1}{2} \times 30 = 15" />.
+
+  In der Spalte <InlineMath math="F_k" /> liegt die Position <InlineMath math="15" /> in der Klasse <InlineMath math="43\text{-}45" />: Der vorherige Wert von <InlineMath math="F_k" /> ist <InlineMath math="13" />, der Wert von <InlineMath math="F_k" /> in dieser Klasse ist <InlineMath math="23" />.
+
+- **Position von <InlineMath math="Q_3" />:** <InlineMath math="\frac{3}{4} \times 30 = 22{,}5" />.
+
+  In der Spalte <InlineMath math="F_k" /> liegt auch die Position <InlineMath math="22{,}5" /> in der Klasse <InlineMath math="43\text{-}45" />: Der vorherige Wert von <InlineMath math="F_k" /> ist <InlineMath math="13" />, der Wert von <InlineMath math="F_k" /> in dieser Klasse ist <InlineMath math="23" />.
+
+### Quartilwert interpolieren
+
+Sobald die Quartilklasse feststeht, schätzen wir den Wert innerhalb des Intervalls mit folgender Formel:
+
+<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{kum}}}{f_i} \right) p" />
+
+dabei gilt:
+
+- <InlineMath math="Q_i" /> = Wert des gesuchten Quartils
+- <InlineMath math="T_b" /> = untere Grenze der Quartilklasse
+- <InlineMath math="n" /> = Gesamtzahl der Werte
+- <InlineMath math="F_{\text{kum}}" /> = kumulierte Häufigkeit **vor** der <InlineMath math="i" />-ten Quartilklasse
+- <InlineMath math="f_i" /> = Häufigkeit der Quartilklasse
+- <InlineMath math="p" /> = Klassenbreite
+
+Diese Interpolation setzt voraus, dass die Beobachtungen innerhalb der gewählten Klasse gleichmäßig verteilt sind. Sie liefert eine modellbasierte Schätzung und kann die durch die Gruppierung verborgenen Einzelwerte nicht rekonstruieren.
+
+## Unteres Quartil der Schuhverkäufe
+
+Berechnen wir <InlineMath math="Q_1" /> aus der obigen Tabelle.
+
+1.  **Position von <InlineMath math="Q_1" />:** <InlineMath math="7{,}5" />.
+2.  **Klasse von <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+3.  **Benötigte Größen ablesen:**
+    - Die untere Grenze der Klasse <InlineMath math="Q_1" /> (<InlineMath math="T_b" />) ist <InlineMath math="39{,}5" />
+    - Die Gesamtzahl der Werte (<InlineMath math="n" />) ist <InlineMath math="30" />
+    - Die kumulierte Häufigkeit vor der Klasse <InlineMath math="Q_1" /> (<InlineMath math="F_{\text{kum}}" />) beträgt <InlineMath math="2" /> (siehe <InlineMath math="F_k" /> für Klasse <InlineMath math="37\text{-}39" />)
+    - Die Häufigkeit der Klasse <InlineMath math="Q_1" /> (<InlineMath math="f_1" />) beträgt <InlineMath math="11" />
+    - Die Klassenbreite (<InlineMath math="p" />) beträgt <InlineMath math="3" />
+4.  **Werte einsetzen:**
+
+    <MathContainer>
+      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
+      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
+      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
+      <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
+      <BlockMath math="Q_1 = 39{,}5 + 1{,}5" />
+      <BlockMath math="Q_1 = 41" />
+    </MathContainer>
+
+Damit ergibt sich für <InlineMath math="Q_1" /> der Wert <InlineMath math="41" />. Nach dem gruppierten Modell entfallen also etwa <InlineMath math="25\%" /> der Verkäufe auf Schuhgröße <InlineMath math="41" /> oder kleiner.
+
+## Übung
+
+Berechne <InlineMath math="Q_3" /> anhand der Schuhverkaufsdaten aus der Tabelle.
+
+Vergleiche anschließend das Vorgehen mit der Quartilbestimmung für ungruppierte Daten. Warum liefert die gruppierte Tabelle nur einen Schätzwert?
+
+### Lösung
+
+1.  **Position von <InlineMath math="Q_3" />:** <InlineMath math="22{,}5" />.
+2.  **Klasse von <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+3.  **Benötigte Größen ablesen:**
+
+    - <InlineMath math="T_b = 42{,}5" /> (untere Grenze der Klasse <InlineMath math="Q_3" />)
+    - <InlineMath math="n = 30" /> (Gesamtzahl der Werte)
+    - <InlineMath math="F_{\text{kum}} = 13" /> (siehe <InlineMath math="F_k" /> für Klasse
+      <InlineMath math="40\text{-}42" />)
+    - <InlineMath math="f_3 = 10" /> (Häufigkeit der Klasse <InlineMath math="Q_3" />)
+    - <InlineMath math="p = 3" /> (Klassenbreite)
+
+4.  **Werte einsetzen:**
+
+    <MathContainer>
+      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
+      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
+      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
+      <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
+      <BlockMath math="Q_3 = 42{,}5 + 2{,}85" />
+      <BlockMath math="Q_3 = 45{,}35" />
+    </MathContainer>
+
+Damit ergibt sich für <InlineMath math="Q_3" /> der Wert <InlineMath math="45{,}35" />. Im gruppierten Modell liegen etwa <InlineMath math="75\%" /> der Verkäufe bei Schuhgröße <InlineMath math="45{,}35" /> oder darunter. Die übrigen <InlineMath math="25\%" /> liegen über <InlineMath math="45{,}35" />.
+
+**Vergleich mit Einzeldaten:**
+
+Bei gruppierten Daten kennen wir nur die Intervalle, nicht jeden einzelnen Wert. Deshalb liefert die **Interpolation** einen geschätzten Quartilwert.
+
+Bei ungruppierten Daten sind die sortierten Einzelwerte bekannt. Die gewählte Quartilkonvention kann deshalb einen Wert auswählen oder direkt zwischen zwei bekannten Werten interpolieren. Die Interpolation gruppierter Daten ist ungenauer, weil die Beobachtungen innerhalb jeder Klasse nicht mehr vorliegen.

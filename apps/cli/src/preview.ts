@@ -15,6 +15,9 @@ export function runPreviewCommand(input: {
       cwd: input.cwd,
       environment,
       requestedDocument: input.preview.document,
+      ...(input.preview.appLocale === undefined
+        ? {}
+        : { appLocale: input.preview.appLocale }),
     });
     return yield* session.run;
   }).pipe(Effect.provide(NakafaAppLive), Effect.scoped);

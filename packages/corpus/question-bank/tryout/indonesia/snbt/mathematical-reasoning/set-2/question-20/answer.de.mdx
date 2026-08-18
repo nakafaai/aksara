@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-01",
+};
+
+**Lieferplananalyse**
+
+Wir müssen das Zeitintervall ermitteln, in dem alle drei Lieferanten gleichzeitig Waren liefern können. Das verwendete Konzept ist das kleinste gemeinsame Vielfache (kgV).
+
+Gegebene Liefertermine:
+*   Öl A: alle <InlineMath math="3\text{ Tage}" />.
+*   Öl B: alle <InlineMath math="4\text{ Tage}" />.
+*   Öl C: alle <InlineMath math="x\text{ Tage}" />.
+
+Das erste Treffen fand am <InlineMath math="1" /> April <InlineMath math="2023" /> statt. Das <InlineMath math="11" />-te Treffen findet <InlineMath math="120\text{ Tage}" /> später statt.
+
+**Besprechungsintervall berechnen**
+
+Da die erste Besprechung bereits stattgefunden hat, bedeutet die <InlineMath math="11" />-te Besprechung, dass es einen Unterschied von <InlineMath math="11 - 1 = 10" /> Besprechungsintervallen gibt. Die insgesamt verstrichene Zeit beträgt <InlineMath math="120\text{ Tage}" />.
+
+<MathContainer>
+  <BlockMath math="\text{Intervall} = \frac{\text{Gesamtzahl der Tage}}{\text{Anzahl der Intervalle}} = \frac{120}{10} = 12 \text{ Tage}" />
+</MathContainer>
+
+Das bedeutet, dass alle drei Lieferanten alle <InlineMath math="12\text{ Tage}" /> gleichzeitig Waren liefern. Dies ist der kgV-Wert ihrer Lieferpläne.
+
+<MathContainer>
+  <BlockMath math="\text{kgV}(3, 4, x) = 12" />
+</MathContainer>
+
+**Bestimmung des unbekannten Werts**
+
+Wir wissen, dass <InlineMath math="\text{kgV}(3, 4) = 12" />. Für <InlineMath math="\text{kgV}(12, x) = 12" /> muss <InlineMath math="x" /> ein Faktor von <InlineMath math="12" /> sein (eine Zahl, die <InlineMath math="12" /> ohne Rest teilt).
+
+Überprüfen der verfügbaren Optionen:
+*   <InlineMath math="5, 7, 8, 9" /> sind keine Faktoren von <InlineMath math="12" />.
+*   <InlineMath math="6" /> ist ein Faktor von <InlineMath math="12" />.
+
+Somit ist der Wert von <InlineMath math="x" />, der die Bedingung erfüllt, <InlineMath math="6" />.

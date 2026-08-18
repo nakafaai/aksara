@@ -1,0 +1,44 @@
+export const metadata = {
+    title: "Definition des unbestimmten Integrals",
+    description: "Verstehe unbestimmte Integrale als Familien von Stammfunktionen und weshalb jedes Ergebnis eine Integrationskonstante benötigt.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Integrale",
+};
+
+## Das Konzept der Integrale verstehen
+
+Durch Differenzieren wird aus einer Ortsfunktion <InlineMath math="s(t)" /> ihre Geschwindigkeit <InlineMath math="v(t)=s'(t)" />. Das unbestimmte Integral kehrt diesen Schritt um: Aus <InlineMath math="v(t)" /> entsteht eine Familie möglicher Ortsfunktionen. Dieser Umkehrprozess heißt **unbestimmte Integration**, und die entstehende Funktionsfamilie ist das **unbestimmte Integral**. Erst eine Anfangsposition legt fest, welche Funktion aus dieser Familie gemeint ist.
+
+## Weshalb die Konstante nötig ist
+
+Vergleiche die folgenden Funktionen mit ihren Ableitungen.
+
+| Funktion <InlineMath math="F(x)" /> | Ableitung <InlineMath math="f(x) = F'(x)" /> |
+| :--- | :--- |
+| <InlineMath math="F(x) = 2x^2 + 1" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2 + 5" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2 - 10" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2" /> | <InlineMath math="f(x) = 4x" /> |
+
+Alle vier Funktionen <InlineMath math="F(x)" /> haben dieselbe Ableitung <InlineMath math="f(x) = 4x" />. Der Grund: Die Ableitung einer Konstanten wie <InlineMath math="1" />, <InlineMath math="5" /> oder <InlineMath math="-10" /> ist null.
+
+Beim Differenzieren geht die ursprüngliche Konstante verloren. Aus der Ableitung allein lässt sich nicht mehr erkennen, ob sie <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" /> oder einen anderen Wert hatte. Das Symbol <InlineMath math="C" /> steht für alle Möglichkeiten. Deshalb ist das unbestimmte Integral eine Familie von Stammfunktionen und nicht nur eine einzelne Funktion.
+
+## Formale Notation von Integralen
+
+Die formale Schreibweise hält Integrand, Integrationsvariable und die gesamte Familie der Stammfunktionen fest:
+
+<BlockMath math="\int f(x) \, dx = F(x) + C" />
+
+Jeder Teil hat eine bestimmte Aufgabe:
+- **<InlineMath math="\int" />** ist das **Integralsymbol**; es sieht aus wie ein verlängertes „S“, das „Summation“ oder „Akkumulation“ symbolisiert.
+- **<InlineMath math="f(x)" />** ist die Funktion, die wir integrieren werden, genannt **Integrand**.
+- **<InlineMath math="dx" />** heißt **Differential** von <InlineMath math="x" />. Dies ist ein entscheidender Teil, der anzeigt, dass wir in Bezug auf die Variable <InlineMath math="x" /> integrieren. Ohne sie ist der Integralausdruck unvollständig.
+- **<InlineMath math="F(x) + C" />** ist das **unbestimmte Integral** von <InlineMath math="f(x)" />. Dies ist unsere Antwort, wobei <InlineMath math="F(x)" /> die Stammfunktion und <InlineMath math="C" /> die **Integrationskonstante** ist.
+
+Die grundlegende Beziehung lautet:
+
+<BlockMath math="\frac{d}{dx} [F(x)] = f(x) \quad \iff \quad \int f(x) \, dx = F(x) + C" />
+
+> Wenn eine Funktion <InlineMath math="F(x)" /> die Ableitung <InlineMath math="f(x)" /> hat, dann ist das unbestimmte Integral von <InlineMath math="f(x)" /> die Familie aller möglichen <InlineMath math="F(x)" />-Funktionen, die wir als <InlineMath math="F(x) + C" /> schreiben.

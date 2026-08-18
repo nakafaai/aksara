@@ -1,0 +1,42 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-24",
+};
+
+Es gilt <InlineMath math="-1 < x < 1" /> mit:
+
+-   <InlineMath math="P = \frac{1 + x^4}{1 - x^2}" />
+-   <InlineMath math="Q = 1 + x^4" />
+
+#### Analyse des Nenners
+
+Aus <InlineMath math="-1 < x < 1" /> folgt durch Quadrieren:
+
+<BlockMath math="0 \leq x^2 < 1" />
+
+Damit gilt für den Nenner:
+
+<BlockMath math="0 < 1 - x^2 \leq 1" />
+
+#### Vergleich der Größen
+
+Wir dividieren <InlineMath math="P" /> durch <InlineMath math="Q" />:
+
+<MathContainer>
+  <BlockMath math="\frac{P}{Q} = \frac{\frac{1 + x^4}{1 - x^2}}{1 + x^4} = \frac{1}{1 - x^2}" />
+</MathContainer>
+
+Jetzt analysieren wir zwei Fälle:
+
+**Fall** <InlineMath math="1" />: Wenn <InlineMath math="0 < 1 - x^2 < 1" />
+
+Dann <InlineMath math="\frac{1}{1 - x^2} > 1" />, also <InlineMath math="P > Q" />.
+
+**Fall** <InlineMath math="2" />: Wenn <InlineMath math="1 - x^2 = 1" /> (d. h. wenn <InlineMath math="x = 0" />)
+
+Dann <InlineMath math="\frac{1}{1 - x^2} = 1" />, also <InlineMath math="P = Q" />.
+
+#### Fazit
+
+Im Intervall <InlineMath math="-1 < x < 1" /> gilt <InlineMath math="P > Q" /> für <InlineMath math="x \neq 0" />, aber <InlineMath math="P = Q" /> für <InlineMath math="x = 0" />. Da beide Fälle möglich sind, lässt sich keine einzige Beziehung festlegen, die immer gilt.

@@ -1,0 +1,182 @@
+
+
+export const metadata = {
+  title: "Addition und Subtraktion von Funktionen",
+  description: "Addiere und subtrahiere Funktionen und bestimme den gemeinsamen Definitionsbereich anhand nachvollziehbarer Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Funktionen kombinieren
+
+Zwei Funktionen können an derselben Eingabe miteinander verknüpft werden. Für ein <InlineMath math="x" /> werden <InlineMath math="f(x)" /> und <InlineMath math="g(x)" /> berechnet und anschließend addiert oder subtrahiert. Die Eingabe muss in beiden Definitionsbereichen <InlineMath math="D_f" /> und <InlineMath math="D_g" /> liegen.
+
+<LineEquation
+  title="Visualisierung der Funktionsaddition"
+  description={
+    <>
+      Beobachte, wie die Geraden <InlineMath math="f(x)=x" /> und{" "}
+      <InlineMath math="g(x)=2" /> zur neuen Geraden{" "}
+      <InlineMath math="(f+g)(x)=x+2" /> zusammenwirken.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 11 }, (_, i) => ({
+        x: i - 5,
+        y: i - 5,
+        z: 0,
+      })),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [1, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 11 }, (_, i) => ({
+        x: i - 5,
+        y: i - 5 + 2,
+        z: 0,
+      })),
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="(f+g)(x)=x+2" />, at: 9, offset: [1.5, -0.5, 0] }],
+    },
+  ]}
+/>
+
+## Addition zweier Funktionen
+
+Die Summenfunktion addiert die beiden Funktionswerte an derselben Eingabe:
+
+<BlockMath math="(f+g)(x) = f(x) + g(x)" />
+
+Die Summe <InlineMath math="(f+g)" /> ist nur dort definiert, wo beide Ausgangsfunktionen definiert sind. Ihr Definitionsbereich ist deshalb die Schnittmenge beider Definitionsbereiche:
+
+<BlockMath math="D_{f+g} = D_f \cap D_g" />
+
+Das bedeutet, dass <InlineMath math="x" /> Element von <InlineMath math="D_f" /> **UND** auch Element von <InlineMath math="D_g" /> sein muss.
+
+### Beispiel einer Addition
+
+Angenommen, wir haben zwei Funktionen:
+
+1.  <InlineMath math="f(x) = x^2" />, mit Definitionsbereich <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> (alle
+    reelle Zahlen).
+2.  <InlineMath math="g(x) = \sqrt{x+2}" />, mit Definitionsbereich <InlineMath math="D_g = \{x | x \ge -2, x \in \mathbb{R}\}" /> (alle
+    reellen Zahlen größer oder gleich <InlineMath math="-2" />, weil der Ausdruck unter der Quadratwurzel,
+    <InlineMath math="x+2" />, nicht negativ sein darf).
+
+**Schritt** <InlineMath math="1" />: Bestimmen Sie die resultierende Funktion aus der Addition
+
+<BlockMath math="(f+g)(x) = f(x) + g(x) = x^2 + \sqrt{x+2}" />
+
+**Schritt** <InlineMath math="2" />: Bestimmen Sie den Definitionsbereich der resultierenden Funktion
+
+Wir finden den Schnittpunkt von <InlineMath math="D_f" /> und <InlineMath math="D_g" />:
+
+<MathContainer>
+  <BlockMath math="D_{f+g} = D_f \cap D_g = \{x | x \in \mathbb{R}\} \cap \{x | x \ge -2, x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f+g} = \{x | x \ge -2, x \in \mathbb{R}\}" />
+</MathContainer>
+
+Die Summe ist also <InlineMath math="(f+g)(x) = x^2 + \sqrt{x+2}" /> mit dem Definitionsbereich <InlineMath math="\{x | x \ge -2, x \in \mathbb{R}\}" />.
+
+## Subtraktion zweier Funktionen
+
+Um die Funktion <InlineMath math="g" /> von der Funktion <InlineMath math="f" /> abzuziehen, ziehen wir für dieselbe Eingabe den Funktionswert <InlineMath math="g(x)" /> von <InlineMath math="f(x)" /> ab. Diese Eingabe bezeichnen wir mit <InlineMath math="x" />. Das Ergebnis ist die neue Funktion <InlineMath math="(f-g)" />.
+
+<BlockMath math="(f-g)(x) = f(x) - g(x)" />
+
+Auch hier ist der Definitionsbereich die Schnittmenge der Definitionsbereiche von <InlineMath math="f" /> und <InlineMath math="g" />. Schließlich muss <InlineMath math="x" /> in beiden Definitionsbereichen liegen.
+
+<BlockMath math="D_{f-g} = D_f \cap D_g" />
+
+### Beispiel für Subtraktion
+
+Wir verwenden die gleichen Funktionen wie im Additionsbeispiel:
+
+1.  <InlineMath math="f(x) = x^2" />, <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" />
+2.  <InlineMath math="g(x) = \sqrt{x+2}" />, <InlineMath math="D_g = \{x | x \ge -2, x \in \mathbb{R}\}" />
+
+**Schritt** <InlineMath math="1" />: Bestimmen Sie die resultierende Funktion aus der Subtraktion
+
+<BlockMath math="(f-g)(x) = f(x) - g(x) = x^2 - \sqrt{x+2}" />
+
+**Schritt** <InlineMath math="2" />: Bestimmen Sie den Definitionsbereich der resultierenden Funktion
+Sein Definitionsbereich ist derselbe wie der Definitionsbereich des Additionsergebnisses, da die Schnittregel dieselbe ist:
+
+<BlockMath math="D_{f-g} = D_f \cap D_g = \{x | x \ge -2, x \in \mathbb{R}\}" />
+
+Die Differenz ist also <InlineMath math="(f-g)(x) = x^2 - \sqrt{x+2}" /> mit dem Definitionsbereich <InlineMath math="\{x | x \ge -2, x \in \mathbb{R}\}" />.
+
+## Übungsaufgaben
+
+Gegeben seien die Funktionen <InlineMath math="f(x) = 2x - 1" /> mit <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> und die Funktion <InlineMath math="g(x) = x^2 + 3" /> mit <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
+
+1.  Bestimmen Sie <InlineMath math="(f+g)(x)" /> und seinen Definitionsbereich <InlineMath math="D_{f+g}" />.
+2.  Bestimmen Sie <InlineMath math="(f-g)(x)" /> und seinen Definitionsbereich <InlineMath math="D_{f-g}" />.
+3.  Berechnen Sie den Wert von <InlineMath math="(f+g)(2)" />.
+4.  Berechnen Sie den Wert von <InlineMath math="(f-g)(-1)" />.
+
+### Lösungen
+
+1.  **Bestimmung von <InlineMath math="(f+g)(x)" />:**
+
+    <MathContainer>
+      <BlockMath math="(f+g)(x) = f(x) + g(x)" />
+      <BlockMath math="= (2x - 1) + (x^2 + 3)" />
+      <BlockMath math="= x^2 + 2x + 2" />
+    </MathContainer>
+
+    **Definitionsbereich <InlineMath math="D_{f+g}" />:**
+
+    <MathContainer>
+      <BlockMath math="D_{f+g} = D_f \cap D_g" />
+      <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+      <BlockMath math="= \{x | x \in \mathbb{R}\}" />
+    </MathContainer>
+
+    Damit gilt <InlineMath math="(f+g)(x) = x^2 + 2x + 2" /> für alle reellen Zahlen.
+
+2.  **Bestimmung von <InlineMath math="(f-g)(x)" />:**
+
+    <MathContainer>
+      <BlockMath math="(f-g)(x) = f(x) - g(x)" />
+      <BlockMath math="= (2x - 1) - (x^2 + 3)" />
+      <BlockMath math="= 2x - 1 - x^2 - 3" />
+      <BlockMath math="= -x^2 + 2x - 4" />
+    </MathContainer>
+
+    **Definitionsbereich <InlineMath math="D_{f-g}" />:**
+
+    <MathContainer>
+      <BlockMath math="D_{f-g} = D_f \cap D_g" />
+      <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+      <BlockMath math="= \{x | x \in \mathbb{R}\}" />
+    </MathContainer>
+
+    Damit gilt <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" /> für alle reellen Zahlen.
+
+3.  **Berechnung von <InlineMath math="(f+g)(2)" />:**
+
+    Wir verwenden das Ergebnis aus Aufgabe <InlineMath math="1" />: <InlineMath math="(f+g)(x) = x^2 + 2x + 2" />
+
+    <MathContainer>
+      <BlockMath math="(f+g)(2) = (2)^2 + 2(2) + 2" />
+      <BlockMath math="= 4 + 4 + 2" />
+      <BlockMath math="= 10" />
+    </MathContainer>
+
+4.  **Berechnung von <InlineMath math="(f-g)(-1)" />:**
+
+    Wir verwenden das Ergebnis aus Aufgabe <InlineMath math="2" />: <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" />
+
+    <MathContainer>
+      <BlockMath math="(f-g)(-1) = -(-1)^2 + 2(-1) - 4" />
+      <BlockMath math="= -(1) - 2 - 4" />
+      <BlockMath math="= -7" />
+    </MathContainer>

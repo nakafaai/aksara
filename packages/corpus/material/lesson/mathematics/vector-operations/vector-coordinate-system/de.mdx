@@ -1,0 +1,137 @@
+
+
+export const metadata = {
+  title: "Vektoren und Koordinatensystem",
+  description: "Lerne kartesische Koordinaten in zwei und drei Dimensionen kennen und verbinde Punkte, Ortsvektoren, Verschiebungsvektoren und Kartenanwendungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-09",
+  subject: "Vektoren und Operationen",
+};
+
+## Kartesisches Koordinatensystem
+
+Um die Position eines Objekts, etwa eines Flugzeugs, anzugeben, müssen wir zuerst einen **Bezugsrahmen** oder ein **Koordinatensystem** festlegen. Ein häufig verwendetes System ist das **kartesische Koordinatensystem**, das nach René Descartes benannt ist.
+
+Das kartesische Koordinatensystem verwendet senkrechte Achsen, um die Position eines Punktes zu bestimmen.
+
+- In **zwei Dimensionen** verwenden wir die <InlineMath math="x" />-Achse (horizontal) und die <InlineMath math="y" />-Achse (vertikal). Die Position eines Punktes wird als geordnetes Paar <InlineMath math="(x, y)" /> ausgedrückt, zum Beispiel Punkt <InlineMath math="P(3, 4)" />.
+
+  Das bedeutet, dass der Punkt <InlineMath math="P" /> vom Ursprung <InlineMath math="O(0, 0)" /> aus <InlineMath math="3 \text{ Einheiten}" /> nach rechts in positive <InlineMath math="x" />-Richtung und <InlineMath math="4 \text{ Einheiten}" /> nach oben in positive <InlineMath math="y" />-Richtung liegt.
+
+  <VectorChart
+    title={
+      <>
+        Ortsvektor von <InlineMath math="P(3, 4)" />
+      </>
+    }
+    description={
+      <>
+        Vom Ursprung <InlineMath math="O(0, 0)" /> zum Punkt{" "}
+        <InlineMath math="P(3, 4)" />.
+      </>
+    }
+    vectors={[
+      {
+        id: "OP",
+        name: "OP",
+        points: [
+          { x: 0, y: 0 },
+          { x: 3, y: 4 },
+        ],
+      },
+    ]}
+  />
+
+- In **drei Dimensionen** kommt eine <InlineMath math="z" />-Achse hinzu, die senkrecht auf der <InlineMath math="xy" />-Ebene steht. Die Position eines Punktes wird als <InlineMath math="(x, y, z)" /> angegeben. Damit lässt sich etwa die Lage eines Flugzeugs im dreidimensionalen Raum beschreiben.
+
+  In einem häufig verwendeten räumlichen Modell können <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" /> Länge, Breite und Höhe darstellen. Diese Bedeutung folgt aus dem gewählten Modell, nicht aus den Namen der Achsen selbst.
+
+  <Vector3d
+    title={
+      <>
+        Ortsvektor von <InlineMath math="P(3, 4, 5)" />
+      </>
+    }
+    description={
+      <>
+        Vom Ursprung <InlineMath math="O(0, 0, 0)" /> zum Punkt{" "}
+        <InlineMath math="P(3, 4, 5)" />.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [3, 4, 5],
+        color: "#9333ea",
+        label: <InlineMath math="P(3, 4, 5)" />,
+      },
+    ]}
+  />
+
+## Unterschied zwischen Vektoren und Koordinaten
+
+Koordinaten geben die _Position_ eines Punktes in einem Koordinatensystem an. Ein **Vektor** besitzt dagegen einen **Betrag** und eine **Richtung**. Stell dir eine Fliege vor, die vom Punkt <InlineMath math="P(3, 4)" /> zum Punkt <InlineMath math="Q(-2, -8)" /> fliegt. Ihre Verschiebung lässt sich durch einen Vektor darstellen.
+
+- **Ortsvektor:** Ein Vektor vom Ursprung <InlineMath math="O(0, 0)" /> zu einem Punkt <InlineMath math="P(x, y)" />. Den Ortsvektor von <InlineMath math="P" /> schreibt man als <InlineMath math="\overrightarrow{OP}" />.
+
+  Beispiel: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+
+- **Verschiebungsvektor:** Ein Vektor, der zwei beliebige Punkte verbindet, zum Beispiel den Punkt <InlineMath math="P(x_P, y_P)" /> mit dem Punkt <InlineMath math="Q(x_Q, y_Q)" />. Diesen Vektor schreibt man als <InlineMath math="\overrightarrow{PQ}" />. Er muss nicht am Ursprung beginnen.
+
+  Beispiele sind die Verschiebungsvektoren von <InlineMath math="P(3, 4)" /> nach <InlineMath math="Q(-2, -8)" /> und von <InlineMath math="Q(-2, -8)" /> nach <InlineMath math="R(1, 3)" />.
+
+  <VectorChart
+    title="Verschiebungsvektoren"
+    description={
+      <>
+        Verschiebungsvektoren von <InlineMath math="P" /> nach{" "}
+        <InlineMath math="Q" /> und von <InlineMath math="Q" /> nach{" "}
+        <InlineMath math="R" />
+      </>
+    }
+    vectors={[
+      {
+        id: "QR",
+        name: "QR",
+        points: [
+          { x: -2, y: -8 },
+          { x: 1, y: 3 },
+        ],
+      },
+      {
+        id: "PQ",
+        name: "PQ",
+        points: [
+          { x: 3, y: 4 },
+          { x: -2, y: -8 },
+        ],
+      },
+    ]}
+  />
+
+## Schreibweisen für Vektoren
+
+Vektoren können auf verschiedene Arten geschrieben werden:
+
+- **Zeilenvektor:** Die Komponenten stehen nebeneinander in runden Klammern.
+
+  Beispiel: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+
+- **Spaltenvektor:** Die Komponenten stehen untereinander in eckigen oder großen runden Klammern.
+
+  Beispiel: <InlineMath math="\overrightarrow{OP} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />.
+
+- **Schreibweise mit Einheitsvektoren in drei Dimensionen:** Dazu verwenden wir die Einheitsvektoren <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" /> und <InlineMath math="\mathbf{k}" /> in Richtung der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse.
+
+  Beispiel: Der Vektor <InlineMath math="\overrightarrow{AB}" /> kann als <InlineMath math="\mathbf{i} - 3\mathbf{j} - 4\mathbf{k}" /> geschrieben werden. Der Vektor <InlineMath math="\overrightarrow{AB}" /> hat also die Komponente <InlineMath math="1" /> in <InlineMath math="x" />-Richtung, <InlineMath math="-3" /> in <InlineMath math="y" />-Richtung und <InlineMath math="-4" /> in <InlineMath math="z" />-Richtung.
+
+## Warum sind Koordinatensysteme wichtig?
+
+Stell dir eine Karten-App auf deinem Smartphone vor. Sie verwendet ein Koordinatensystem, um:
+
+1.  deinen aktuellen Standort zu bestimmen,
+2.  dein Ziel zu finden,
+3.  deine Position mit Straßen und möglichen Routen zu verknüpfen,
+4.  Wegbeschreibungen zu geben, etwa links abbiegen, rechts abbiegen oder geradeaus fahren.
+
+Koordinaten liefern die Orte. Kartendaten und Routenalgorithmen bestimmen daraus einen passenden Weg. Vektoren helfen anschließend, Änderungen von Position und Richtung zu beschreiben. Derselbe Unterschied gilt für ein Flugzeug: Koordinaten beschreiben seinen Ort, ein Verschiebungsvektor beschreibt die Änderung seiner Position.

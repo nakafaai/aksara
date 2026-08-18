@@ -1,0 +1,157 @@
+export const metadata = {
+  title: "Orthogonale Polynome",
+  description: "Konstruiere Chebyshev- und Legendre-Basen aus gewichteten Skalarprodukten, projiziere Funktionen, transformiere Intervalle und verbinde ihre Nullstellen mit der Gauß-Quadratur.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Lineare Methoden der KI",
+};
+
+## Orthogonalität für Funktionen
+
+Sei <InlineMath math="w(x)>0" /> auf einem Intervall <InlineMath math="[a,b]" />. Das gewichtete Skalarprodukt und die davon erzeugte Norm sind
+
+<MathContainer>
+<BlockMath math="\langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\,dx" />
+<BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
+</MathContainer>
+
+Zwei Funktionen sind orthogonal, wenn <InlineMath math="\langle f,g\rangle_w=0" /> gilt. Dies ist eine gewichtete <InlineMath math="L^2" />-Geometrie. Sie misst einen integrierten quadratischen Fehler und nicht den maximalen Fehler
+
+<BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
+
+Der Unterschied ist wichtig. Die orthogonale Projektion minimiert den gewichteten <InlineMath math="L^2" />-Fehler. Chebyshev-Polynome besitzen zusätzlich eine eigene Minimax-Eigenschaft, aber das gewichtete Skalarprodukt und die Maximumsnorm sind nicht austauschbar.
+
+## Projektion auf eine orthogonale Basis
+
+Seien <InlineMath math="p_0,ldots,p_n" /> paarweise orthogonal. Die Projektion vom Grad <InlineMath math="n" /> einer Funktion <InlineMath math="f" /> lautet
+
+<MathContainer>
+<BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
+<BlockMath math="c_k=\frac{\langle f,p_k\rangle_w}{\langle p_k,p_k\rangle_w}" />
+</MathContainer>
+
+Da alle Kreuzterme verschwinden, kann jeder Koeffizient unabhängig berechnet werden. Dies ist das funktionale Gegenstück zur Zerlegung eines Vektors entlang senkrechter Koordinatenachsen.
+
+## Dreitermrekursion aus Gram-Schmidt
+
+Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,ldots" /> erzeugt eine Folge monischer orthogonaler Polynome <InlineMath math="\pi_k" />. Für ein positives Skalarprodukt gilt
+
+<MathContainer>
+<BlockMath math="\pi_0(x)=1" />
+<BlockMath math="\pi_1(x)=x-\alpha_0" />
+<BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
+</MathContainer>
+
+mit
+
+<MathContainer>
+<BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
+<BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
+</MathContainer>
+
+Die Dreitermform ist keine willkürliche Abkürzung. Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Durch die Orthogonalität verschwinden alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />.
+
+## Chebyshev-Polynome erster Art
+
+Wähle auf <InlineMath math="[-1,1]" />
+
+<BlockMath math="w(x)=\frac{1}{\sqrt{1-x^2}}" />
+
+Die Chebyshev-Polynome erster Art sind
+
+<MathContainer>
+<BlockMath math="T_0(x)=1,\qquad T_1(x)=x" />
+<BlockMath math="T_{k+1}(x)=2xT_k(x)-T_{k-1}(x)" />
+<BlockMath math="T_k(x)=\cos\bigl(k\arccos x\bigr)" />
+</MathContainer>
+
+Ihre gewichtete Orthogonalität lautet
+
+<BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
+
+Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die kleinste Maximumsnorm. Dies ist die genaue Verbindung zur Minimax-Approximation.
+
+<LineEquation
+  title={<>Die ersten Chebyshev-Polynome <InlineMath math="T_0,T_1,T_2,T_3" /></>}
+  description={<>Alle vier bleiben im Intervall <InlineMath math="[-1,1]" /> zwischen <InlineMath math="-1" /> und <InlineMath math="1" />.</>}
+  cameraPosition={[3, 3, 5]}
+  data={(() => {
+    const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
+    const polynomials = [
+      { color: "#0891b2", evaluate: (x) => 1 },
+      { color: "#ea580c", evaluate: (x) => x },
+      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
+      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x }
+    ];
+
+    return polynomials.map(({ color, evaluate }) => ({
+      points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
+      color,
+      smooth: true,
+      showPoints: false
+    }));
+  })()}
+/>
+
+## Legendre-Polynome
+
+Für das ungewichtete Skalarprodukt auf <InlineMath math="[-1,1]" />,
+
+<BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
+
+erfüllen die üblichen Legendre-Polynome
+
+<MathContainer>
+<BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
+<BlockMath math="(k+1)P_{k+1}(x)=(2k+1)xP_k(x)-kP_{k-1}(x)" />
+</MathContainer>
+
+Ihre Orthogonalität und Normierung sind
+
+<MathContainer>
+<BlockMath math="\int_{-1}^{1}P_j(x)P_k(x)\,dx=\frac{2}{2k+1}\delta_{jk}" />
+<BlockMath math="\varphi_k(x)=\sqrt{\frac{2k+1}{2}}P_k(x)" />
+<BlockMath math="\langle\varphi_j,\varphi_k\rangle=\delta_{jk}" />
+</MathContainer>
+
+Zum Beispiel gilt
+
+<MathContainer>
+<BlockMath math="P_2(x)=\frac12(3x^2-1)" />
+<BlockMath math="x^2=\frac13P_0(x)+\frac23P_2(x)" />
+</MathContainer>
+
+Die zweite Identität ist eine exakte orthogonale Entwicklung und keine Näherung.
+
+## Von <InlineMath math="[-1,1]" /> nach <InlineMath math="[a,b]" />
+
+Verwende die affine Variablentransformation
+
+<MathContainer>
+<BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />
+<BlockMath math="t=\frac{2x-a-b}{b-a}" />
+<BlockMath math="dx=\frac{b-a}{2}\,dt" />
+</MathContainer>
+
+Ist <InlineMath math="\varphi_k" /> auf <InlineMath math="[-1,1]" /> orthonormal, dann ist
+
+<BlockMath math="\widetilde{\varphi}_k(x)=\sqrt{\frac{2}{b-a}}\,\varphi_k\left(\frac{2x-a-b}{b-a}\right)" />
+
+auf <InlineMath math="[a,b]" /> orthonormal, denn
+
+<BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
+
+## Verbindung zur Gauß-Quadratur
+
+Sei <InlineMath math="p_n" /> das orthogonale Polynom vom Grad <InlineMath math="n" /> für dasselbe positive Gewicht und Intervall wie ein Integral. Seine <InlineMath math="n" /> Nullstellen sind die Gauß-Quadraturknoten. Mit passenden positiven Gewichten <InlineMath math="w_i" /> erhält man
+
+<BlockMath math="\int_a^b f(x)w(x)\,dx\approx\sum_{i=1}^n w_i f(x_i)" />
+
+Die Regel ist für jedes Polynom bis zum Grad <InlineMath math="2n-1" /> exakt. Legendre-Nullstellen liefern die Gauß-Legendre-Quadratur für das Gewicht <InlineMath math="w(x)=1" />. Chebyshev-Nullstellen liefern die Gauß-Chebyshev-Quadratur für <InlineMath math="w(x)=1/\sqrt{1-x^2}" />.
+
+| Basis | Gewicht auf <InlineMath math="[-1,1]" /> | Besonders geeignet für |
+| --- | --- | --- |
+| Chebyshev <InlineMath math="T_k" /> | <InlineMath math="1/\sqrt{1-x^2}" /> | stabile Interpolationsgitter, nahezu optimale Minimax-Approximation, Spektralmethoden |
+| Legendre <InlineMath math="P_k" /> | <InlineMath math="1" /> | ungewichtete <InlineMath math="L^2" />-Projektion und Gauß-Legendre-Quadratur |
+
+Polynomfamilie, Skalarprodukt, Approximationsziel und Quadraturgewicht müssen zusammenpassen. Wird eines davon geändert, ändert sich das gelöste Problem.

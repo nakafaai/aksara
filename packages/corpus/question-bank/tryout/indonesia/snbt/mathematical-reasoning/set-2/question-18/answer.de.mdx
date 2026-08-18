@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-01",
+};
+
+**Strategie zur Minimierung des Durchschnitts**
+
+Um die **kleinstmögliche durchschnittliche** Punktzahl zu finden, müssen wir die Punktzahl jedes Teilnehmers so niedrig wie möglich machen und uns dabei strikt an die in der Aufgabe angegebenen Einschränkungen halten.
+
+Wir haben insgesamt <InlineMath math="60" /> Teilnehmer, die basierend auf den bereitgestellten Informationen in zwei Gruppen eingeteilt wurden:
+1. Erste Gruppe: <InlineMath math="21" /> Teilnehmer mit Punktzahlen <InlineMath math="\geq 80" />.
+2. Zweite Gruppe: Die verbleibenden <InlineMath math="60 - 21 = 39" /> Teilnehmer mit Punktzahlen <InlineMath math="< 80" />.
+
+**Bestimmung der Mindestpunktzahl für jede Gruppe**
+
+Um die Gesamtsumme (und damit den Durchschnitt) zu minimieren, weisen wir jeder Gruppe die niedrigstmögliche Punktzahl zu:
+
+*   **Für die <InlineMath math="21" /> Teilnehmer (Ergebnisse <InlineMath math="\geq 80" />):** Der kleinste Wert, der diese Bedingung erfüllt, ist genau <InlineMath math="80" />. Wir gehen davon aus, dass alle <InlineMath math="21\text{ Menschen}" /> genau <InlineMath math="80" /> erzielt haben.
+*   **Für die anderen <InlineMath math="39" /> Teilnehmer (Wertungen <InlineMath math="< 80" />):** Da der Punktebereich zwischen <InlineMath math="0" /> und <InlineMath math="100" /> liegt, ist die niedrigste mögliche Punktzahl, die sie erreichen können, <InlineMath math="0" />. Wir gehen davon aus, dass alle <InlineMath math="39\text{ Menschen}" /> <InlineMath math="0" /> erzielt haben.
+
+**Berechnung des kleinsten Durchschnitts**
+
+Jetzt berechnen wir den Durchschnitt basierend auf diesem Szenario mit der Mindestpunktzahl:
+
+<MathContainer>
+  <BlockMath math="\bar{x}_{\text{min}} = \frac{(21 \times 80) + (39 \times 0)}{60}" />
+  <BlockMath math="\bar{x}_{\text{min}} = \frac{1{.}680 + 0}{60}" />
+  <BlockMath math="\bar{x}_{\text{min}} = \frac{1{.}680}{60}" />
+  <BlockMath math="\bar{x}_{\text{min}} = 28" />
+</MathContainer>
+
+Somit beträgt die kleinstmögliche Durchschnittspunktzahl für die <InlineMath math="60" /> Teilnehmer <InlineMath math="28" />.

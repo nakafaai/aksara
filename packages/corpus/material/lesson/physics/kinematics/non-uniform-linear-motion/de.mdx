@@ -1,0 +1,118 @@
+
+export const metadata = {
+  title: "Gleichmäßig beschleunigte geradlinige Bewegung",
+  description:
+    "Untersuche geradlinige Bewegung mit konstanter Beschleunigung anhand von Positionsspuren und Geschwindigkeits-Zeit-Diagrammen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Gerade Bewegung mit regelmäßiger Änderung
+
+Eine gleichmäßig beschleunigte lineare Bewegung ist eine Bewegung entlang einer geraden Bahn mit konstanter Beschleunigung. Konstante Beschleunigung bedeutet, dass sich die Geschwindigkeit in jedem gleichen Zeitintervall um den gleichen Betrag ändert.
+
+Startet ein Auto mit <InlineMath math="0\text{ m/s}" /> und nimmt seine Geschwindigkeit in jeder Sekunde um <InlineMath math="2\text{ m/s}" /> zu, lauten die aufeinanderfolgenden Werte <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" /> und so weiter. Die Änderung erfolgt regelmäßig und nicht zufällig.
+
+> Bei einer gleichmäßig beschleunigten Bewegung ist die Geschwindigkeit nicht konstant. Die Beschleunigung ist konstant.
+
+<MathContainer>
+  <BlockMath math="v_t=v_0+at" />
+  <BlockMath math="\Delta x=v_0t+\frac{1}{2}at^2" />
+  <BlockMath math="v_t^2=v_0^2+2a\Delta x" />
+</MathContainer>
+
+Hier ist <InlineMath math="v_0" /> die Anfangsgeschwindigkeit, <InlineMath math="v_t" /> die Geschwindigkeit nach der Zeit, <InlineMath math="t" />, <InlineMath math="a" /> die Beschleunigung und <InlineMath math="\Delta x" /> die Verschiebung.
+
+## Positionsmarkierungen bleiben nicht mehr gleichmäßig verteilt
+
+Bei einer gleichförmigen geradlinigen Bewegung haben die Positionsmarken für jede Sekunde denselben Abstand. Bei gleichmäßig beschleunigter Bewegung können sich diese Abstände verändern. Solange sich das Objekt in dieselbe Richtung bewegt, wachsen die Abstände bei zunehmendem Geschwindigkeitsbetrag und schrumpfen bei abnehmendem Betrag. Bei einer Richtungsumkehr müssen zusätzlich die Reihenfolge und die Seite der Marken betrachtet werden.
+
+Betrachte den Fall „Aus der Ruhe“. Im ersten Augenblick steht das Auto noch. Danach werden die Abstände zwischen den Positionsmarken immer größer. Daran ist die zunehmende Geschwindigkeit zu erkennen. Im Geschwindigkeits-Zeit-Diagramm steigt die Linie geradlinig an, weil die Beschleunigung konstant ist.
+
+<NonUniformLinearMotionLab
+  title={<>Positionsmarken auf einer Schiene</>}
+  description={
+    <>
+      Marken auf der Schiene zeigen die Position des Zuges im Abstand von{" "}
+      <InlineMath math="1\text{ s}" />, während die Beschleunigung konstant bleibt.
+    </>
+  }
+  labels={{
+    chooseScenario: "Bewegung wählen",
+    scenarioNames: {
+      "from-rest": <>Aus der Ruhe</>,
+      "speed-up": <>Schneller werden</>,
+      brake: <>Bremsen</>,
+    },
+    factLabels: {
+      initialVelocity: <>Anfangsgeschwindigkeit</>,
+      acceleration: <>Beschleunigung</>,
+      finalVelocity: <>Endgeschwindigkeit</>,
+      displacement: <>Verschiebung</>,
+    },
+    viewLabel: "Gleichmäßig beschleunigtes Bewegungsbild",
+  }}
+/>
+
+## Die Verschiebung entspricht der Fläche unter dem Diagramm
+
+Ein Geschwindigkeits-Zeit-Diagramm kann mehr als nur die Geschwindigkeit anzeigen. Die vorzeichenbehaftete Fläche zwischen dem Diagramm und der Zeitachse stellt die Verschiebung dar. Oberhalb der Zeitachse kann diese Fläche bei gleichmäßig beschleunigter Bewegung ein Dreieck oder ein Trapez sein. Eine Fläche unterhalb der Achse trägt eine negative Verschiebung bei.
+
+<NonUniformLinearMotionGraphCard
+  title={<>Fläche unter dem Geschwindigkeitsgraphen</>}
+  description={
+    <>
+      Wähle dieselbe Bewegung und lies ihre vorzeichenbehaftete Fläche relativ
+      zur Zeitachse als Verschiebung des Objekts ab.
+    </>
+  }
+  labels={{
+    chooseScenario: "Bewegung wählen",
+    scenarioNames: {
+      "from-rest": "Aus Ruhe",
+      "speed-up": "Beschleunigung",
+      brake: "Bremsen",
+    },
+    timeAxis: "t (s)",
+    velocityAxis: "v (m/s)",
+  }}
+/>
+
+| Situation | Flächenform im Diagramm | Verschiebungsformel |
+| --- | --- | --- |
+| Start aus der Ruhe | Dreieck | <InlineMath math="\Delta x=\frac{1}{2}at^2" /> |
+| Hat Anfangsgeschwindigkeit | Trapez | <InlineMath math="\Delta x=\frac{1}{2}(v_0+v_t)t" /> |
+| Verwendet die Beschleunigung direkt | Rechteck plus Dreieck | <InlineMath math="\Delta x=v_0t+\frac{1}{2}at^2" /> |
+
+Diese Formeln sind keine separaten Tricks zum Auswendiglernen. Sie basieren alle auf derselben Idee: Die Verschiebung ist die vorzeichenbehaftete Fläche zwischen einem Diagramm von <InlineMath math="v" /> gegenüber <InlineMath math="t" /> und der Zeitachse.
+
+## Auto startet aus dem Ruhezustand
+
+Ein Spielzeugauto startet aus dem Ruhezustand und hat dann eine konstante Beschleunigung <InlineMath math="2\text{ m/s}^2" /> für <InlineMath math="5\text{ s}" />.
+
+Seine Endgeschwindigkeit beträgt:
+
+<BlockMath math="\begin{aligned}
+v_t &= v_0+at \\
+&= 0+2(5) \\
+&= 10\text{ m/s}
+\end{aligned}" />
+
+Seine Verschiebung beträgt:
+
+<BlockMath math="\begin{aligned}
+\Delta x &= v_0t+\frac{1}{2}at^2 \\
+&= 0(5)+\frac{1}{2}(2)(5^2) \\
+&= 25\text{ m}
+\end{aligned}" />
+
+Nach <InlineMath math="5\text{ s}" /> bewegt sich das Auto also mit <InlineMath math="10\text{ m/s}" /> und hat seine Position gegenüber dem Startpunkt um <InlineMath math="25\text{ m}" /> verändert.
+
+Die beiden Ergebnisse beantworten unterschiedliche Fragen. Die Endgeschwindigkeit gibt Betrag und Richtung der Bewegung am Ende an, während die Verschiebung die gesamte Positionsänderung im Intervall angibt.
+
+## Das Vorzeichen der Beschleunigung zeigt die Änderungsrichtung
+
+Bei eindimensionaler Bewegung hängen positive und negative Vorzeichen von der gewählten positiven Richtung ab. Wenn rechts positiv ist, bedeutet eine positive Beschleunigung, dass die Geschwindigkeitsänderung nach rechts zeigt.
+
+Eine negative Beschleunigung bedeutet nicht automatisch, dass sich das Objekt nach links bewegt. Ein Auto kann sich trotz negativer Beschleunigung immer noch nach rechts bewegen, wenn es bremst. Seine Geschwindigkeit zeigt nach rechts, aber ihr Betrag wird kleiner.

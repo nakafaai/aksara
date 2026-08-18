@@ -8,6 +8,9 @@ import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import type { PreviewProvider } from "#cli/provider";
 
 const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
+const ChildUrlSchema = Schema.String.pipe(
+  Schema.pattern(/^http:\/\/localhost:\d+(?:\/.*)?$/u)
+);
 
 const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PREVIEW_EVENTS_PATH: Schema.String.pipe(Schema.startsWith("/")),
@@ -23,8 +26,18 @@ const ChildEnvironmentSchema = Schema.Struct({
   ),
   AKSARA_PREVIEW_RENDERER_SECRET: Schema.NonEmptyTrimmedString,
   AKSARA_PREVIEW_RENDERER_TOKEN: Schema.NonEmptyTrimmedString,
+  CONTENT_RUNTIME_TOKEN: Schema.NonEmptyTrimmedString,
   HOME: Schema.NonEmptyTrimmedString,
+  INTERNAL_CONTENT_API_KEY: Schema.NonEmptyTrimmedString,
+  NEXT_PUBLIC_APP_URL: ChildUrlSchema,
+  NEXT_PUBLIC_CONVEX_SITE_URL: ChildUrlSchema,
+  NEXT_PUBLIC_CONVEX_URL: ChildUrlSchema,
+  NEXT_PUBLIC_MCP_URL: ChildUrlSchema,
+  NEXT_PUBLIC_POSTHOG_KEY: Schema.String.pipe(Schema.startsWith("phc_")),
+  NEXT_PUBLIC_POSTHOG_UI_HOST: ChildUrlSchema,
+  NEXT_PUBLIC_VERSION: Schema.Literal("aksara-preview"),
   PATH: Schema.NonEmptyTrimmedString,
+  SITE_URL: ChildUrlSchema,
 });
 
 /** Running child whose exit always terminates the local preview session. */
@@ -71,7 +84,7 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
 
 /** Decodes every child environment value together before process creation. */
 const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
-  (input: NakafaStartInput) =>
+  (input: NakafaStartInput, origin: URL) =>
     Schema.decodeUnknown(ChildEnvironmentSchema)({
       AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
       AKSARA_PREVIEW_KEY_ID: input.credentials.keyId,
@@ -87,8 +100,28 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       AKSARA_PREVIEW_RENDERER_TOKEN: Redacted.value(
         input.credentials.renderer.token
       ),
+      CONTENT_RUNTIME_TOKEN: Redacted.value(
+        input.credentials.contentRuntimeToken
+      ),
       HOME: process.env.HOME,
+      INTERNAL_CONTENT_API_KEY: Redacted.value(
+        input.credentials.internalContentToken
+      ),
+      NEXT_PUBLIC_APP_URL: origin.toString(),
+      NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
+        "/__aksara-preview/convex-site",
+        origin
+      ).toString(),
+      NEXT_PUBLIC_CONVEX_URL: new URL(
+        "/__aksara-preview/convex",
+        origin
+      ).toString(),
+      NEXT_PUBLIC_MCP_URL: new URL("/mcp", origin).toString(),
+      NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
+      NEXT_PUBLIC_POSTHOG_UI_HOST: origin.toString(),
+      NEXT_PUBLIC_VERSION: "aksara-preview",
       PATH: process.env.PATH,
+      SITE_URL: origin.toString(),
     }).pipe(Effect.mapError(() => makeNakafaAppError("child-env", false)))
 );
 
@@ -97,8 +130,9 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
   input: NakafaStartInput
 ) {
   const processes = yield* NakafaProcess;
-  const environment = yield* makeChildEnvironment(input);
   const port = yield* reserveNakafaPort();
+  const origin = new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`);
+  const environment = yield* makeChildEnvironment(input, origin);
   const process = yield* processes
     .start({
       args: [
@@ -124,6 +158,6 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
         Effect.fail(makeNakafaAppError("exit", false, Number(status)))
       )
     ),
-    origin: new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`),
+    origin,
   } satisfies RunningNakafa;
 });

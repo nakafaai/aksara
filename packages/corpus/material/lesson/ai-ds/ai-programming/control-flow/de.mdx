@@ -1,0 +1,399 @@
+export const metadata = {
+    title: "Control Flow",
+    description: "Steuere Python-Programme mit break, continue, pass, Schleifen-else, enumerate, while, zip, range und if/elif/else.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-18",
+    subject: "KI-Programmierung",
+};
+
+## Schleifenkontrollanweisungen
+
+Python bietet mehrere Anweisungen, die den Ablauf innerhalb einer Schleife steuern. Damit legst du fest, wann eine Schleife endet, zur nächsten Iteration springt oder einen besonderen Abschluss ausführt.
+
+### break, continue, pass und else
+
+Die `break`-Anweisung verlässt sofort die nächstgelegene Schleife, sobald eine Bedingung erfüllt ist. Danach läuft das Programm mit der ersten Anweisung hinter dieser Schleife weiter.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "break_example.py",
+      code: `# Suche nach einer Zahl, die durch 15 und 25 teilbar ist
+x = 0
+while True:
+    x += 1
+    if not (x % 15 or x % 25):
+        break
+print(x, 'ist durch 15 und 25 teilbar')
+# Ausgabe: 75 ist durch 15 und 25 teilbar`
+    }
+  ]}
+/>
+
+Die `continue`-Anweisung überspringt den Rest des Codes in der aktuellen Iteration und fährt mit der nächsten Iteration fort. Dies unterscheidet sich von `break`, das die gesamte Schleife stoppt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "continue_example.py",
+      code: `# Es werden nur gerade Zahlen gedruckt
+for i in range(1, 11):
+    if i % 2:
+        continue
+    print(i, 'ist gerade.')
+# Ausgabe:
+# 2 ist gerade.
+# 4 ist gerade.
+# 6 ist gerade.
+# 8 ist gerade.
+# 10 ist gerade.`
+    }
+  ]}
+/>
+
+Die `pass`-Anweisung bewirkt nichts, ist aber als Platzhalter für Code nützlich, der noch nicht geschrieben wurde. Python erfordert mindestens eine Anweisung in jedem Codeblock.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "pass_example.py",
+      code: `# pass ist eine wirkungslose Anweisung; die Iteration wird nicht übersprungen
+for i in range(1, 11):
+    if i == 6:
+        pass  # Für die Zahl 6 nichts tun
+    if not i % 3:
+        print(i, 'ist durch 3 teilbar')
+# Ausgabe:
+# 3 ist durch 3 teilbar
+# 6 ist durch 3 teilbar
+# 9 ist durch 3 teilbar`
+    }
+  ]}
+/>
+
+Der `else`-Block läuft, wenn die Schleife endet, ohne `break` auszuführen. Das passt besonders gut zu einer Suche: Behandle einen Treffer vor `break` und den Fall "nicht gefunden" im `else`-Block.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "loop_else_example.py",
+      code: `# Suche nach negativen Zahlen in der Liste
+numbers = [0, 4, 2, 5]
+for i in numbers:
+    if i < 0:
+        break
+else:
+    print('Keine negative Zahl in der Liste')
+# Ausgabe: Keine negative Zahl in der Liste`
+    }
+  ]}
+/>
+
+## Enumerate-Funktion
+
+Nutze `enumerate()`, wenn eine Iteration sowohl einen Zähler als auch den jeweiligen Wert benötigt. Die Funktion liefert einen Iterator, der Tupel der Form `(Index, Wert)` erzeugt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "enumerate_basic.py",
+      code: `# Mit enumerate Index und Wert abrufen
+fruits = ['apple', 'banana', 'mango', 'melon']
+
+for i, fruit in enumerate(fruits):
+    print(i, ':', fruit)
+# Ausgabe:
+# 0 : apple
+# 1 : banana
+# 2 : mango
+# 3 : melon`
+    }
+  ]}
+/>
+
+Standardmäßig beginnt `enumerate()` bei <InlineMath math="0" />. Mit dem zweiten Argument legst du einen anderen Startwert fest.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "enumerate_custom_start.py",
+      code: `# Benutzerdefinierten Startindex für enumerate festlegen
+fruits = ['apple', 'banana', 'mango', 'melon']
+
+for i, fruit in enumerate(fruits, 5):
+    print(i, ':', fruit)
+# Ausgabe:
+# 5 : apple
+# 6 : banana
+# 7 : mango
+# 8 : melon`
+    }
+  ]}
+/>
+
+In `for i, fruit in enumerate(fruits)` bindet das Tuple-Unpacking bei jeder Iteration den Index an `i` und den zugehörigen Wert an `fruit`.
+
+## While-Schleife
+
+Die `while`-Schleife führt einen Block aus, solange ihre Bedingung truthy ist. Eine `for`-Schleife verbraucht ein Iterable, während `while` anhand einer Bedingung wiederholt, die der Schleifenrumpf normalerweise verändert.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "while_loop_example.py",
+      code: `# Beispiel einer While-Schleife mit mathematischer Berechnung
+z = 1
+while abs(z) < 100:
+    z = z**2 + 1
+print(z)
+# Ausgabe: 677`
+    }
+  ]}
+/>
+
+Eine `while`-Schleife eignet sich für bedingungsgesteuerte Wiederholungen. Ihr Rumpf muss die Bedingung irgendwann verändern oder die Schleife ausdrücklich verlassen, sonst kann sie endlos laufen.
+
+<Mermaid
+  title="Während die Bedingung wahr bleibt, wird sie wiederholt"
+  description="Lies den Zyklus aus Bedingung prüfen, Block ausführen und erneut prüfen, bis die Schleife endet."
+  chart={`
+    flowchart TD
+        A[Start] --> B{Bedingung wahr?}
+        B -->|Ja| C[Codeblock ausführen]
+        C --> D[Variablen aktualisieren]
+        D --> B
+        B -->|Nein| E[Schleife beenden]
+        E --> F[Programm fortsetzen]
+  `}
+/>
+
+## Zip-Funktion
+
+Mit `zip()` kannst du mehrere Iterables parallel durchlaufen. Die Funktion verbindet jeweils die Werte an derselben Iterationsposition zu einem Tupel.
+
+### Grundlegende Zip-Nutzung
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_basic.py",
+      code: `# Zwei Listen mit Zip kombinieren
+p = [1, 2, 3, 4]
+q = ['a', 'b', 'c', 'd']
+
+for pair in zip(p, q):
+    print(pair)
+# Ausgabe:
+# (1, 'a')
+# (2, 'b')
+# (3, 'c')
+# (4, 'd')`
+    }
+  ]}
+/>
+
+Die Funktion `zip()` liefert einen Iterator aus Tupeln. Jedes Tupel enthält die zusammengehörigen Elemente der Eingaben. Standardmäßig endet der Iterator mit dem kürzesten Iterable und kann dadurch unterschiedliche Längen verbergen. Nutze `zip(..., strict=True)`, wenn ungleiche Längen ein Fehler sein sollen.
+
+### Zip-Ergebnisse konvertieren
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_conversion.py",
+      code: `# Konvertieren von Zip-Ergebnissen in eine Liste oder ein Tupel
+p = [1, 2, 3, 4]
+q = ['a', 'b', 'c', 'd']
+
+zipped = zip(p, q)
+print(list(zipped))  # In Liste konvertieren
+# Ausgabe: [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+
+# Zip-Objekt bereits verbraucht, neues erstellen
+zipped_new = zip(p, q)
+print(tuple(zipped_new))  # In Tupel konvertieren
+# Ausgabe: ((1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'))`
+    }
+  ]}
+/>
+
+### Entpacken mit dem Asterisk-Operator
+
+Mit dem Entpackoperator `*` lässt sich ein nichtleerer Satz gezippter Tupel wieder nach Positionen trennen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_unpacking.py",
+      code: `# Mit zip verbundene Daten wieder trennen
+pairs = [(1, 'a'), (2, 'b'), (3, 'd')]
+numbers, letters = zip(*pairs)
+print(numbers, letters)
+# Ausgabe: (1, 2, 3) ('a', 'b', 'd')`
+    }
+  ]}
+/>
+
+Dieser Vorgang wird als „Entpacken“ bezeichnet, da er die zusammengeführten Daten trennt.
+
+## Range und For-Schleife
+
+Die Funktion `range()` erstellt eine Folge von Zahlen, die iteriert werden können. Dies ist sehr nützlich für Schleifen mit numerischen Indizes.
+
+### Bereichssyntax
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "range_syntax.py",
+      code: `# Verschiedene Möglichkeiten, range zu verwenden
+# Bereich (Stopp) - von 0 bis Stop-1
+for i in range(4):
+    print(i)
+# Ausgabe: 0, 1, 2, 3
+
+print()
+
+# Bereich (Start, Stopp) - von Start bis Stopp-1
+for i in range(2, 6):
+    print(i)
+# Ausgabe: 2, 3, 4, 5
+
+print()
+
+# Bereich (Start, Stopp, Schritt) - mit spezifischem Schritt
+for i in range(8, 4, -1):
+    print(i)
+# Ausgabe: 8, 7, 6, 5`
+    }
+  ]}
+/>
+
+Der Bereich folgt einer arithmetischen Formel, bei der jedes i-te Element `start + i * step` für alle `i` von <InlineMath math="0" /> bis `n-1` ist.
+
+### Effizienz von range und Listen
+
+Ein `range` speichert Start, Ende und Schritt kompakt, statt jede ganze Zahl als Liste anzulegen. Die Werte werden bei Bedarf berechnet, sodass der Speicherbedarf nicht mit der Anzahl der dargestellten Zahlen wächst.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "range_efficiency.py",
+      code: `# Speicherbedarf von range und einer vollständigen Liste vergleichen
+n = 10000
+k = 10
+
+# Materialisiert alle ganzen Zahlen im Speicher
+index = list(range(n))
+for i in index:
+    if i < k:
+        print(i)
+    else:
+        break
+
+# Effizienter - verwendet range
+for i in range(n):  # Speichert nicht alle Zahlen im Speicher
+    if i < k:
+        print(i)
+    else:
+        break`
+    }
+  ]}
+/>
+
+## Bedingte Anweisungen
+
+Bedingte Anweisungen lassen ein Programm anhand ausgewerteter Bedingungen einen Zweig wählen. Einrückung gehört zur Python-Syntax. Verwende vier Leerzeichen pro Ebene und mische innerhalb eines Blocks keine Tabs und Leerzeichen.
+
+### If-, Elif- und Else-Syntax
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conditional_syntax.py",
+      code: `# Vollständige if/elif/else-Struktur
+age = 20
+
+if age <= 5:
+    print("Freier Eintritt")
+elif age <= 14:
+    print("15.00 EUR")
+elif age <= 65:
+    print("30.00 EUR")
+else:
+    print("20.00 EUR")
+# Ausgabe: 30.00 EUR`
+    }
+  ]}
+/>
+
+Bedingungen brauchen keine umschließenden Klammern, der Doppelpunkt hinter jedem Zweigkopf ist jedoch Pflicht. Alle Anweisungen eines Blocks benötigen eine einheitliche Einrückungsebene.
+
+### Verschachtelte If-Anweisung
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "nested_if.py",
+      code: `# Bestimmen des Quadranten aus dem Koordinatenpunkt
+x = (-1, -3)
+
+if x[0] >= 0:
+    if x[1] >= 0:
+        print('erster Quadrant')
+    else:
+        print('vierter Quadrant')
+elif x[1] >= 0:
+    print('zweiter Quadrant')
+else:
+    print('dritter Quadrant')
+# Ausgabe: dritter Quadrant`
+    }
+  ]}
+/>
+
+Verschachtelte ifs sind nützlich, um komplexere Entscheidungen mit mehreren Bedingungsebenen zu treffen.
+
+## For-Schleifensyntax
+
+For-Schleifen in Python werden verwendet, um Elemente in iterierbaren Objekten wie Listen, Tupeln, Zeichenfolgen oder Bereichen zu iterieren.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "for_loop_syntax.py",
+      code: `# Beispiel einer Listeniteration
+fruit_list = ['apple', 'banana', 'mango']
+for fruit in fruit_list:
+    print(fruit)
+# Ausgabe:
+# apple
+# banana
+# mango
+
+# Beispiel für eine String-Iteration
+text = 'hi'
+for char in text:
+    print(char)
+# Ausgabe:
+# h
+# i`
+    }
+  ]}
+/>
+
+Ein Iterable liefert Werte nacheinander, ist aber nicht zwingend geordnet, indexierbar, wiederverwendbar oder endlich. Eine `for`-Schleife fordert fortlaufend Werte vom Iterator an. Der Operator `in` prüft die Mitgliedschaft typabhängig, während Doppelpunkte und einheitliche Einrückung Anweisungsblöcke bilden.

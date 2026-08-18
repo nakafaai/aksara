@@ -13,26 +13,10 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         id: "proses-kimia-sehari-hari",
       },
       slug: "chemical-processes-daily-life",
-      translations: {
-        en: {
-          title: "Daily Chemical Processes",
-        },
-        id: {
-          title: "Proses Kimia Sehari-hari",
-        },
-      },
     },
     {
       routeSlugs: { en: "definition", id: "pengertian-kimia-hijau" },
       slug: "definition",
-      translations: {
-        en: {
-          title: "Definition of Green Chemistry",
-        },
-        id: {
-          title: "Pengertian Kimia Hijau",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -40,26 +24,10 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         id: "kegiatan-kimia-hijau",
       },
       slug: "green-chemistry-activities",
-      translations: {
-        en: {
-          title: "Green Chemistry Activities",
-        },
-        id: {
-          title: "Kegiatan Kimia Hijau",
-        },
-      },
     },
     {
       routeSlugs: { en: "principles", id: "prinsip-kimia-hijau" },
       slug: "principles",
-      translations: {
-        en: {
-          title: "Green Chemistry Principles",
-        },
-        id: {
-          title: "Prinsip Kimia Hijau",
-        },
-      },
     },
   ],
   slug: "green-chemistry",

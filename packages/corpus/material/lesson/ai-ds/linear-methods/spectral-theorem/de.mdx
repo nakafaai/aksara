@@ -1,0 +1,91 @@
+export const metadata = {
+    title: "Spektralsatz",
+    description: "Erfahren Sie, wann Matrizen mit orthonormalen Eigenvektoren diagonalisiert werden können und wie normale, hermitesche und unitäre Matrizen zusammenhängen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-16",
+    subject: "Lineare Methoden der KI",
+};
+
+## Grundkonzepte normaler Matrizen
+
+Der komplexe Spektralsatz besagt, dass sich eine Matrix genau dann mithilfe einer Orthonormalbasis aus Eigenvektoren diagonalisieren lässt, wenn sie normal ist. In Matrixform gilt
+
+<BlockMath math="A\text{ ist normal}\qquad\Longleftrightarrow\qquad A=U\Lambda U^H" />
+
+wobei <InlineMath math="U" /> unitär und <InlineMath math="\Lambda" /> diagonal ist. Eine solche Basis zerlegt die Transformation in unabhängige Eigenvektorrichtungen und bewahrt dabei Längen und Winkel. Im reellen symmetrischen Fall kann <InlineMath math="U" /> reell und orthogonal gewählt werden, sodass <InlineMath math="U^{-1}=U^T" /> gilt.
+
+Eine komplexe Matrix <InlineMath math="A \in \mathbb{C}^{n \times n}" /> heißt normal, wenn sie mit ihrer konjugierten Transponierten die Kommutativitätsbedingung erfüllt:
+
+<BlockMath math="A \cdot A^H = A^H \cdot A" />
+
+Diese algebraische Bedingung hat eine starke geometrische Folge: Eigenräume zu verschiedenen Eigenwerten sind orthogonal, und über <InlineMath math="\mathbb{C}" /> lässt sich die Matrix unitär diagonalisieren.
+
+## Spezielle Eigenschaften von Eigenräumen normaler Matrizen
+
+Normale Matrizen haben interessante Eigenschaften, die beliebige Matrizen nicht besitzen. Bei normalen Matrizen erweisen sich der Nullraum der Matrix und der Nullraum ihrer konjugierten Transponierten als identisch.
+
+Der Kern ist die Menge aller Vektoren <InlineMath math="x" />, die <InlineMath math="Ax=0" /> erfüllen. Aus der Normalität folgt für jedes <InlineMath math="x" /> die Normidentität
+
+<MathContainer>
+<BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
+<BlockMath math="=x^HAA^Hx=\lVert A^Hx\rVert_2^2" />
+</MathContainer>
+
+Damit gilt <InlineMath math="Ax=0" /> genau dann, wenn <InlineMath math="A^Hx=0" /> ist. Folglich
+
+<BlockMath math="\ker A=\ker A^H" />
+
+Wenden wir dieselbe Kerngleichheit auf die normale Matrix <InlineMath math="A-\lambda I" /> an, erhalten wir für jeden Eigenwert <InlineMath math="\lambda \in \mathbb{C}" /> die zugehörige Eigenraumbeziehung:
+
+<BlockMath math="E_A(\lambda)=E_{A^H}(\overline{\lambda})" />
+
+Gilt also <InlineMath math="Av=\lambda v" />, dann gilt <InlineMath math="A^H v=\overline{\lambda}v" />. Der Eigenvektor bleibt derselbe, der Eigenwert wird komplex konjugiert.
+
+Diese Identität beweist zugleich die Orthogonalität. Gelten <InlineMath math="Av=\lambda v" /> und <InlineMath math="Aw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />, so folgt
+
+<MathContainer>
+<BlockMath math="\overline{\lambda}v^Hw=(Av)^Hw=v^HA^Hw" />
+<BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
+</MathContainer>
+
+## Hermitesche und Unitäre Matrizen als Beispiele für Normalmatrizen
+
+Zwei wichtige Klassen normaler Matrizen sind hermitesche und unitäre Matrizen. Die definierenden Gleichungen zeigen unmittelbar, warum beide normal sind.
+
+### Hermitesche Matrizen und reelle Eigenwerte
+
+Hermitesche Matrizen haben die Eigenschaft <InlineMath math="A^H = A" />. Aufgrund der Normaldefinition <InlineMath math="A \cdot A^H = A^H \cdot A" /> gilt für hermitesche Matrizen <InlineMath math="A \cdot A = A \cdot A" />, was offensichtlich immer wahr ist.
+
+Eigenwerte hermitescher Matrizen sind immer reell. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, dann liefert die hermitesche Symmetrie:
+
+<BlockMath math="\lambda v^H v = v^HAv = v^HA^Hv = (Av)^Hv = \overline{\lambda}v^Hv \Rightarrow \lambda=\overline{\lambda}" />
+
+Die Gleichheit <InlineMath math="\lambda=\overline{\lambda}" /> bedeutet genau, dass <InlineMath math="\lambda" /> reell ist.
+
+### Vollständig gerechnetes hermitesches Beispiel
+
+Betrachten wir
+
+<BlockMath math="H=\begin{pmatrix}2&i\\-i&2\end{pmatrix}" />
+
+Die konjugierte Transponierte ergibt wieder dieselbe Matrix, also <InlineMath math="H^H=H" />. Das charakteristische Polynom ist <InlineMath math="(2-\lambda)^2-1" /> und liefert die reellen Eigenwerte <InlineMath math="1" /> und <InlineMath math="3" />. Zugehörige normierte Eigenvektoren sind
+
+<MathContainer>
+<BlockMath math="u_1=\frac1{\sqrt2}\begin{pmatrix}-i\\1\end{pmatrix},\qquad u_3=\frac1{\sqrt2}\begin{pmatrix}i\\1\end{pmatrix}" />
+<BlockMath math="U=(u_1\quad u_3),\qquad U^HHU=\operatorname{diag}(1,3)" />
+</MathContainer>
+
+Die Vektoren sind orthonormal, denn <InlineMath math="u_1^Hu_3=0" /> und beide haben die Norm <InlineMath math="1" />. So zeigt sich der Spektralsatz an einem konkreten <InlineMath math="2\times2" />-Beispiel.
+
+### Unitäre Matrizen und Eigenwerte auf dem Einheitskreis
+
+Unitäre Matrizen erfüllen <InlineMath math="A^H = A^{-1}" />. Eingesetzt in die Definition der Normalität ergibt sich <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
+
+Eigenwerte unitärer Matrizen haben den Betrag <InlineMath math="1" /> und liegen daher auf dem Einheitskreis. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, bewahrt die unitäre Abbildung die Norm:
+
+<MathContainer>
+<BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />
+<BlockMath math="v\neq0 \Rightarrow \lVert v\rVert^2>0 \Rightarrow |\lambda|^2=1 \Rightarrow |\lambda|=1" />
+</MathContainer>
+
+Damit hat jeder Eigenwert einer unitären Matrix den Betrag <InlineMath math="1" />. Geometrisch bewahren unitäre Transformationen Vektorlängen, und ihre Eigenwerte liegen auf dem Einheitskreis.

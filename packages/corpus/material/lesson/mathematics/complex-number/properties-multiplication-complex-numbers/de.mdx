@@ -1,0 +1,149 @@
+export const metadata = {
+  title: "Eigenschaften der Multiplikation komplexer Zahlen",
+  description: "Nutze Rechengesetze und den Kehrwert, um Ausdrücke mit komplexen Zahlen umzuformen und zu beweisen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Eigenschaften der Multiplikationsoperation
+
+Die Multiplikation komplexer Zahlen folgt den vertrauten Kommutativ-, Assoziativ-, Identitäts- und Distributivgesetzen. Seien <InlineMath math="z_1, z_2," /> und <InlineMath math="z_3" /> beliebige komplexe Zahlen.
+
+### Kommutative Eigenschaft
+
+Die kommutative Eigenschaft bedeutet, dass die Reihenfolge bei der Multiplikation zweier komplexer Zahlen keinen Einfluss auf das Ergebnis hat.
+
+<BlockMath math="z_1 \times z_2 = z_2 \times z_1" />
+
+**Beispiel:**
+
+Seien <InlineMath math="z_1 = 1+2i" /> und <InlineMath math="z_2 = 3-i" />.
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (1+2i)(3-i) = 1(3-i) + 2i(3-i) = 3-i+6i-2i^2 = 3+5i-2(-1) = 5+5i" />
+  <BlockMath math="z_2 \times z_1 = (3-i)(1+2i) = 3(1+2i) - i(1+2i) = 3+6i-i-2i^2 = 3+5i-2(-1) = 5+5i" />
+</MathContainer>
+
+Beide Produkte ergeben <InlineMath math="5+5i" />. Damit ist die Kommutativität in diesem Beispiel bestätigt.
+
+### Assoziative Eigenschaft
+
+Die assoziative Eigenschaft besagt, dass bei der Multiplikation von drei oder mehr komplexen Zahlen die Gruppierung der Multiplikation das Ergebnis nicht verändert.
+
+<BlockMath math="(z_1 \times z_2) \times z_3 = z_1 \times (z_2 \times z_3)" />
+
+**Beispiel:**
+
+Seien <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" /> und <InlineMath math="z_3 = 3-i" />.
+
+<MathContainer>
+  <BlockMath math="(z_1 \times z_2) \times z_3 = (i \times 2) \times (3-i) = 2i(3-i) = 6i - 2i^2 = 6i - 2(-1) = 2+6i" />
+  <BlockMath math="z_1 \times (z_2 \times z_3) = i \times (2 \times (3-i)) = i \times (6-2i) = 6i - 2i^2 = 6i - 2(-1) = 2+6i" />
+</MathContainer>
+
+Beide Klammerungen ergeben <InlineMath math="2+6i" />. Damit ist die Assoziativität in diesem Beispiel bestätigt.
+
+### Multiplikative Identität
+
+Die komplexe Zahl <InlineMath math="1 = 1+0i" /> ist das neutrale Element der Multiplikation. Eine Multiplikation mit <InlineMath math="1" /> lässt jede komplexe Zahl unverändert.
+
+<BlockMath math="z \times 1 = z = 1 \times z" />
+
+**Beispiel:**
+
+Sei <InlineMath math="z = 4-7i" />.
+
+<MathContainer>
+  <BlockMath math="z \times 1 = (4-7i)(1+0i) = 4(1) - (-7)(0) + i(4(0) + (-7)(1)) = 4 - 7i = z" />
+  <BlockMath math="1 \times z = (1+0i)(4-7i) = 1(4) - (0)(-7) + i(1(-7) + 0(4)) = 4 - 7i = z" />
+</MathContainer>
+
+### Distributivgesetz
+
+Das Distributivgesetz verbindet Multiplikation und Addition komplexer Zahlen.
+
+<BlockMath math="z_1 \times (z_2 + z_3) = (z_1 \times z_2) + (z_1 \times z_3)" />
+
+**Beispiel:**
+
+Sei <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath math="z_3 = 3-2i" />.
+
+**Linke Seite:** <InlineMath math="z_1 \times (z_2 + z_3)" />
+
+<MathContainer>
+  <BlockMath math="z_1 \times (z_2 + z_3) = 2 \times ((1+i) + (3-2i))" />
+  <BlockMath math="= 2 \times (1+3 + i-2i)" />
+  <BlockMath math="= 2 \times (4-i)" />
+  <BlockMath math="= 8-2i" />
+</MathContainer>
+
+**Rechte Seite:** <InlineMath math="(z_1 \times z_2) + (z_1 \times z_3)" />
+
+<MathContainer>
+  <BlockMath math="(z_1 \times z_2) + (z_1 \times z_3) = (2(1+i)) + (2(3-2i))" />
+  <BlockMath math="= (2+2i) + (6-4i)" />
+  <BlockMath math="= (2+6) + (2i-4i)" />
+  <BlockMath math="= 8-2i" />
+</MathContainer>
+
+Beide Seiten ergeben <InlineMath math="8-2i" />. Damit ist das Distributivgesetz in diesem Beispiel bestätigt.
+
+## Beispielbeweis mithilfe von Eigenschaften
+
+Mit denselben Gesetzen lassen sich algebraische Identitäten beweisen. Für beliebige <InlineMath math="z_1, z_2" /> wird <InlineMath math="(z_1 + z_2)^2" /> wie folgt ausmultipliziert:
+
+<MathContainer>
+  <BlockMath math="(z_1 + z_2)^2 = (z_1 + z_2)(z_1 + z_2) \quad \text{(Definition von Quadrat)}" />
+  <BlockMath math="= z_1(z_1 + z_2) + z_2(z_1 + z_2) \quad \text{(Distributivgesetz)}" />
+  <BlockMath math="= (z_1z_1 + z_1z_2) + (z_2z_1 + z_2z_2) \quad \text{(Distributivgesetz)}" />
+  <BlockMath math="= z_1^2 + z_1z_2 + z_2z_1 + z_2^2 \quad \text{(Definition von Quadrat)}" />
+  <BlockMath math="= z_1^2 + z_1z_2 + z_1z_2 + z_2^2 \quad \text{(Kommutative Eigenschaft:} z_2z_1 = z_1z_2)" />
+  <BlockMath math="= z_1^2 + 2z_1z_2 + z_2^2 \quad \text{(Kombination ähnlicher Begriffe)}" />
+</MathContainer>
+
+## Multiplikative Umkehrung
+
+Jede von Null verschiedene komplexe Zahl <InlineMath math="z = x + iy \neq 0" /> hat eine multiplikative Umkehrung, die als <InlineMath math="z^{-1}" /> oder <InlineMath math="1/z" /> bezeichnet wird, so dass <InlineMath math="z \times z^{-1} = 1" />.
+
+Sei <InlineMath math="z^{-1} = u + iv" />. Dann:
+
+<MathContainer>
+  <BlockMath math="z \times z^{-1} = 1" />
+  <BlockMath math="(x+iy)(u+iv) = 1 + 0i" />
+  <BlockMath math="(xu - yv) + i(xv + uy) = 1 + 0i" />
+</MathContainer>
+
+Aus der Gleichheit zweier komplexer Zahlen folgt das Gleichungssystem:
+
+1.  <InlineMath math="xu - yv = 1" />
+2.  <InlineMath math="xv + uy = 0" />
+
+Um <InlineMath math="u" /> zu bestimmen, multiplizieren wir die erste Gleichung mit <InlineMath math="x" /> und die zweite mit <InlineMath math="y" /> und addieren anschließend:
+
+<MathContainer>
+  <BlockMath math="x^2u-xyv=x" />
+  <BlockMath math="xyv+y^2u=0" />
+  <BlockMath math="(x^2+y^2)u=x" />
+</MathContainer>
+
+Um <InlineMath math="v" /> zu bestimmen, multiplizieren wir die erste Gleichung mit <InlineMath math="-y" /> und die zweite mit <InlineMath math="x" /> und addieren wieder. Wegen <InlineMath math="z\neq0" /> gilt <InlineMath math="x^2+y^2>0" />, sodass wir durch diesen Wert teilen dürfen:
+
+<MathContainer>
+  <BlockMath math="-xyu+y^2v=-y" />
+  <BlockMath math="x^2v+xyu=0" />
+  <BlockMath math="(x^2+y^2)v=-y" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="u = \frac{x}{x^2+y^2}" />
+  <BlockMath math="v = -\frac{y}{x^2+y^2}" />
+</MathContainer>
+
+Die multiplikative Umkehrung von <InlineMath math="z = x+iy" /> ist also:
+
+<BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
+
+Da <InlineMath math="x^2+y^2 = |z|^2" /> und <InlineMath math="x-iy = \bar{z}" /> gilt, lässt sich der Kehrwert auch so schreiben:
+
+<BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />

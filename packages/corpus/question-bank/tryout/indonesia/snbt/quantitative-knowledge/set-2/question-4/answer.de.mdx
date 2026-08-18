@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Für die Bestehensquote prüfen wir bei jeder Person zwei Bedingungen:
+1. Die Punktzahl in Naturwissenschaften muss höher sein als die mittlere Punktzahl in Naturwissenschaften aller Schüler.
+2. Die durchschnittliche Prüfungspunktzahl (<InlineMath math="\text{Mathe} + \text{Wissenschaft}" />) geteilt durch <InlineMath math="2" /> muss größer als <InlineMath math="85" /> sein.
+
+#### Median der naturwissenschaftlichen Punktzahlen
+
+Die Wissenschaftsergebnisse sind: <InlineMath math="78, 82, 87, 85, 79, 88, 81, 80" />.
+
+Sortiert lauten die Werte:
+<InlineMath math="78, 79, 80, 81, 82, 85, 87, 88" />.
+
+Da es <InlineMath math="8" /> Datenpunkte gibt, ist der Median der Durchschnitt des <InlineMath math="4" />-ten und <InlineMath math="5" />-ten Datenpunkts:
+
+<BlockMath math="\text{Median} = \frac{81 + 82}{2} = 81{,}5" />
+
+Die erste Bedingung erfüllen die folgenden Schüler mit einer naturwissenschaftlichen Punktzahl von <InlineMath math="> 81{,}5" />:
+- Boni (<InlineMath math="82" />)
+- Cindy (<InlineMath math="87" />)
+- Dita (<InlineMath math="85" />)
+- Fani (<InlineMath math="88" />)
+
+Die naturwissenschaftlichen Punktzahlen der anderen Schüler (Ayu, Erfan, Gilang und Herman) liegen nicht über dem Median. Sie erfüllen daher bereits die erste Bedingung nicht.
+
+#### Den Durchschnitt der beiden Prüfungen prüfen
+
+Nun prüfen wir die zweite Bedingung für die vier Personen, die über dem Median liegen:
+
+1. **Boni:**
+
+   <BlockMath math="\text{Durchschnitt} = \frac{92 + 82}{2} = \frac{174}{2} = 87" />
+
+   Da <InlineMath math="87 > 85" /> gilt, hat Boni **bestanden**.
+
+2. **Cindy:**
+
+   <BlockMath math="\text{Durchschnitt} = \frac{90 + 87}{2} = \frac{177}{2} = 88{,}5" />
+
+   Da <InlineMath math="88{,}5 > 85" /> gilt, hat Cindy **bestanden**.
+
+3. **Dita:**
+
+   <BlockMath math="\text{Durchschnitt} = \frac{86 + 85}{2} = \frac{171}{2} = 85{,}5" />
+
+   Da <InlineMath math="85{,}5 > 85" /> gilt, hat Dita **bestanden**.
+
+4. **Fani:**
+
+   <BlockMath math="\text{Durchschnitt} = \frac{88 + 88}{2} = \frac{176}{2} = 88" />
+
+   Da <InlineMath math="88 > 85" /> gilt, hat Fani **bestanden**.
+
+Damit bestehen <InlineMath math="4" /> von insgesamt <InlineMath math="8" /> Schülern.
+
+#### Berechnung der ersten Größe
+
+<BlockMath math="P = \frac{4}{8} \times 100\% = 50\%" />
+
+#### Vergleich der Größen
+
+Es gilt <InlineMath math="Q = 65\%" />.
+
+Damit folgt:
+
+<BlockMath math="50\% &lt; 65\% \Rightarrow P &lt; Q \text{ oder } Q &gt; P" />

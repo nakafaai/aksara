@@ -1,0 +1,347 @@
+export const metadata = {
+    title: "Mathematische Funktionen",
+    description: "Nutze Pythons math-Modul, numerische Built-ins, Importstile, Definitionsbereiche und Konstanten in überprüften Berechnungen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-16",
+    subject: "KI-Programmierung",
+};
+
+## Modulkonzept in Python
+
+Python hält seine Kernsprache übersichtlich und organisiert wiederverwendbaren Code in Modulen. Ein Modul kann Funktionen, Konstanten, Klassen und weitere Namen enthalten, ohne sie alle im globalen Namensraum abzulegen.
+
+Ein `import` lädt ein Modul bei Bedarf und bindet einen Namen, über den dein Code auf dessen öffentliche Elemente zugreift. Die Standardbibliothek bietet bereits gut getestete mathematische Operationen. Anwendungscode sollte sie nutzen, statt Formeln unbedacht neu zu implementieren.
+
+## Das Modul `math`
+
+Das Modul `math` stellt reellwertige Funktionen und Konstanten bereit. Es akzeptiert kompatible reelle Zahlen wie `int` und `float`, nimmt bei Operationen wie `sqrt()` aber keine komplexen Werte an. Verwende `cmath`, wenn der Definitionsbereich oder das Ergebnis komplex sein kann.
+
+## Das Modul `math` importieren
+
+Python bietet mehrere Möglichkeiten zum Importieren von Modulen mit jeweils unterschiedlichen Eigenschaften und Verwendungszwecken.
+
+### Basisimport mit Namespace
+
+Die einfachste Möglichkeit, ein Modul zu importieren, ist die Verwendung des Befehls `import math`. Auf diese Weise bleiben alle Funktions- und Konstantennamen an den Namensraum `math` gebunden.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_basic.py",
+      code: `import math
+
+# sqrt mit dem Präfix math verwenden
+print(math.sqrt(9))  # Ausgabe: 3.0
+
+# Zugriff auf die Pi-Konstante
+print(math.pi)  # Ausgabe: 3.141592653589793
+
+# Ein Aufruf ohne Präfix führt zu einem Fehler
+# sqrt(9)  # NameError: name 'sqrt' is not defined`
+    }
+  ]}
+/>
+
+### Importieren mit Alias
+
+Ein Alias bindet das Modul an einen anderen lokalen Namen. Nutze ihn nur, wenn er einer etablierten Konvention folgt oder einen echten Namenskonflikt löst. `math` selbst ist bereits kurz und eindeutig.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_alias.py",
+      code: `import math as m
+
+# Den Alias „m“ anstelle von „math“ verwenden
+print(m.sqrt(9))  # Ausgabe: 3.0
+print(m.pi)       # Ausgabe: 3.141592653589793
+
+# Der ursprüngliche Name „math“ ist nicht mehr verfügbar
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+### Alle Funktionen importieren
+
+Diese Form importiert jeden öffentlichen Namen aus `math` in den aktuellen Namensraum. In einer einmaligen interaktiven Sitzung mag das bequem sein, Anwendungscode sollte es jedoch vermeiden.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_all.py",
+      code: `from math import *
+
+# Funktionen können ohne Präfix direkt aufgerufen werden
+print(sqrt(9))  # Ausgabe: 3.0
+print(pi)       # Ausgabe: 3.141592653589793
+
+# Der Name „math“ ist nicht verfügbar, da er nicht importiert wurde
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+`from math import *` kann bestehende Namen unbemerkt überschreiben, erschwert die Zuordnung eines Namens zu seinem Modul und lässt spätere Änderungen am Modul den importierenden Namensraum verändern. Explizite Imports halten diese Abhängigkeiten überprüfbar.
+
+### Spezifische Funktionen importieren
+
+Ein selektiverer Ansatz besteht darin, nur die spezifischen Funktionen zu importieren, die benötigt werden. Dies ermöglicht einen direkten Zugriff ohne Präfix bei gleichzeitiger Wahrung der Codeklarheit.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_specific.py",
+      code: `from math import sqrt
+
+# Die sqrt-Funktion kann direkt aufgerufen werden
+print(sqrt(9))  # Ausgabe: 3.0
+
+# Die pi-Konstante ist nicht verfügbar, da sie nicht importiert wurde
+# print(pi)  # NameError: name 'pi' is not defined
+
+# Der Name „math“ ist ebenfalls nicht verfügbar
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+### Importieren mit Funktionsalias
+
+Auch eine einzelne importierte Funktion kann einen Alias erhalten. Das ist sinnvoll, wenn dadurch ein Namenskonflikt verschwindet oder eine etablierte lokale Konvention eingehalten wird.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_function_alias.py",
+      code: `from math import factorial as fac
+
+# Den Alias „fac“ für factorial verwenden
+print(fac(5))  # Ausgabe: 120
+
+# Der ursprüngliche Name „factorial“ ist nicht verfügbar
+# factorial(5)  # NameError: name 'factorial' is not defined
+
+# Das Gleiche gilt für „math“
+# math.factorial(5)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+## Eingebaute Funktionen vs. Modulfunktionen
+
+Python stellt numerische Built-ins wie `abs()` und `round()` ohne Import bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
+
+### Absolutwertfunktion
+
+Für reelle Zahlen liefert `abs()` einen nichtnegativen Betrag. Für eine komplexe Zahl liefert die Funktion den Abstand zum Ursprung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "abs_function.py",
+      code: `# Absoluter Wert für negative Ganzzahl
+print(abs(-5))    # Ausgabe: 5
+
+# Absolutwert einer negativen Gleitkommazahl
+print(abs(-1.4))  # Ausgabe: 1.4
+
+# Absolutwert für komplexe Zahl (Modul)
+print(abs(4 + 3j))  # Ausgabe: 5.0`
+    }
+  ]}
+/>
+
+Für `4 + 3j` ergibt sich <InlineMath math="5.0" />, denn <InlineMath math="|4+3i|=\sqrt{4^2+3^2}=\sqrt{25}=5" />. Python schreibt die imaginäre Einheit als `j`, während mathematische Formeln üblicherweise <InlineMath math="i" /> verwenden.
+
+### Rundungsfunktion
+
+Für Pythons eingebaute Zahlentypen rundet `round()` auf den nächsten Wert und wählt bei einem exakten Gleichstand die gerade Möglichkeit. Ein Aufruf ohne `ndigits` liefert für einen Float einen Integer. Das zweite Argument bestimmt die Dezimalstelle.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "round_function.py",
+      code: `# Standardrundung
+print(round(-3.8))  # Ausgabe: -4
+print(round(3.5))   # Ausgabe: 4
+print(round(4.5))   # Ausgabe: 4 (nicht 5!)
+
+# Runden mit spezifischer Präzision
+print(round(3.141592653589793, 3))  # Ausgabe: 3.142
+print(round(1234.4321, -2))         # Ausgabe: 1200.0`
+    }
+  ]}
+/>
+
+Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `round(3.5)` den Wert <InlineMath math="4" /> liefert. Dezimal aussehende Float-Werte werden binär gespeichert. Ein scheinbar exakter Gleichstand muss intern also keiner sein. Verwende Dezimalarithmetik, wenn ein Fachgebiet dezimale Rundungsregeln verlangt.
+
+## Funktionen und Konstanten im Mathematikmodul
+
+Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben.
+
+### Quadratwurzel- und Logarithmusfunktionen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_functions.py",
+      code: `import math
+
+# Quadratwurzelfunktion
+print(f"Quadratwurzel von 16: {math.sqrt(16)}")  # Ausgabe: 4.0
+
+# Exponentialfunktion (e^x)
+print(f"e hoch 2: {math.exp(2)}")  # Ausgabe: 7.38905609893065
+
+# Natürliche Logarithmusfunktion
+print(f"ln(10): {math.log(10)}")  # Ausgabe: 2.302585092994046
+
+# Basis der Logarithmusfunktion 10
+print(f"log10(100): {math.log10(100)}")  # Ausgabe: 2.0
+
+# Logarithmus mit spezifischer Basis
+print(f"log2(8): {math.log(8, 2)}")  # Ausgabe: 3.0`
+    }
+  ]}
+/>
+
+### Trigonometriefunktionen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "trigonometry.py",
+      code: `import math
+
+# Trigonometriefunktionen (Eingabe im Bogenmaß)
+angle_rad = math.pi / 4  # 45 Grad im Bogenmaß
+
+print(f"sin(π/4): {math.sin(angle_rad)}")  # Ausgabe: 0.7071067811865475
+print(f"cos(π/4): {math.cos(angle_rad)}")  # Ausgabe: 0.7071067811865476
+print(f"tan(π/4): {math.tan(angle_rad)}")  # Ausgabe: 0.9999999999999999
+
+# Grad in Bogenmaß umrechnen
+angle_deg = 45
+angle_rad = math.radians(angle_deg)
+print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 0.7853981633974483`
+    }
+  ]}
+/>
+
+### Aufrunden, Abrunden und Fakultät
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "ceiling_floor.py",
+      code: `import math
+
+number = 4.7
+
+# ceil: kleinste ganze Zahl >= x
+print(f"ceil(4.7): {math.ceil(number)}")    # Ausgabe: 5
+
+# floor: größte ganze Zahl <= x
+print(f"floor(4.7): {math.floor(number)}")  # Ausgabe: 4
+
+# Fakultät
+print(f"5!: {math.factorial(5)}")  # Ausgabe: 120`
+    }
+  ]}
+/>
+
+### Mathematische Konstanten
+
+Das Modul stellt außerdem Konstanten bereit, darunter endliche mathematische Konstanten und besondere Gleitkommawerte.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_constants.py",
+      code: `import math
+
+# Pi-Konstante (π ≈ 3.141592...)
+print(f"Wert von π: {math.pi}")
+
+# e-Konstante (Eulersche Zahl ≈ 2.718281...)
+print(f"Wert von e: {math.e}")
+
+# Unendlichkeit (positive Unendlichkeit)
+print(f"Infinity: {math.inf}")
+
+# NaN (kein gültiger Zahlenwert)
+print(f"NaN: {math.nan}")
+
+# Beispiel für die Verwendung von Konstanten
+circle_radius = 5
+circle_area = math.pi * circle_radius ** 2
+print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
+    }
+  ]}
+/>
+
+## Auswahl der richtigen Importmethode
+
+Wähle einen Importstil, der am Aufrufort die Herkunft der Operation erkennen lässt und nur die Namen einführt, die das Modul benötigt.
+
+### Leitfaden zur Auswahl von Importmethoden
+
+1. **Bevorzuge `import math`**, wenn du mehrere Elemente nutzt und ihre Herkunft sichtbar bleiben soll.
+2. **Verwende `import math as m` bewusst** und nur, wenn der Alias eine dokumentierte lokale Konvention ist.
+3. **Verwende `from math import sqrt, pi`**, wenn eine kleine Menge eindeutiger Namen den lokalen Code klarer macht.
+4. **Vermeide `from math import *`**, weil es die Herkunft verschleiert und Namenskonflikte erzeugen kann.
+
+### Implementierung in realen Anwendungen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_example.py",
+      code: `import math
+
+def calculate_euclidean_distance(x1, y1, x2, y2):
+    """Berechnet den euklidischen Abstand zwischen zwei Punkten."""
+    return math.hypot(x2 - x1, y2 - y1)
+
+def calculate_triangle_area(a, b, c):
+    """Berechnet die Dreiecksfläche mit der heronischen Formel."""
+    if min(a, b, c) <= 0:
+        raise ValueError("Seitenlängen müssen positiv sein")
+
+    if a + b <= c or a + c <= b or b + c <= a:
+        raise ValueError("Seitenlängen müssen ein Dreieck bilden")
+
+    # Halbumfang berechnen
+    s = (a + b + c) / 2
+
+    # Herons Formel
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+    return area
+
+# Anwendungsbeispiel
+point1 = (0, 0)
+point2 = (3, 4)
+distance = calculate_euclidean_distance(*point1, *point2)
+print(f"Abstand zwischen {point1} und {point2}: {distance}")
+
+# Dreiecksfläche für die Seitenlängen 3, 4 und 5 berechnen
+area = calculate_triangle_area(3, 4, 5)
+print(f"Dreiecksfläche bei Seitenlängen 3, 4 und 5: {area}")`
+    }
+  ]}
+/>
+
+Klarer numerischer Code macht drei Entscheidungen sichtbar: Welcher Namensraum besitzt eine Operation, welchen Eingabebereich akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.

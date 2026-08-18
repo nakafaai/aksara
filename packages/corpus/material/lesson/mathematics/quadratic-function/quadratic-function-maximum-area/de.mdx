@@ -1,0 +1,197 @@
+export const metadata = {
+  title: "Eine maximale Fläche bestimmen",
+  description: "Aus einer geometrischen Nebenbedingung eine quadratische Flächenfunktion aufstellen, ihr Maximum bestimmen und das Ergebnis im Sachzusammenhang deuten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Wie aus einer Nebenbedingung ein Flächenmaximum wird
+
+Bei einer Optimierungsaufgabe suchen wir den besten Wert, der eine vorgegebene Bedingung erfüllt. Aus einem Zaun fester Länge lassen sich zum Beispiel viele Rechtecke bilden. Ihre Flächen sind jedoch unterschiedlich groß. Mit einer quadratischen Funktion können wir alle zulässigen Rechtecke in einem Modell vergleichen.
+
+Entscheidend ist nicht, eine Spezialformel für einen bestimmten Zaun auswendig zu lernen. Wir drücken eine Seitenlänge durch die andere aus, setzen diese Beziehung in die Flächenformel ein und deuten anschließend den Scheitel der entstehenden Parabel.
+
+## Warum eine nach unten geöffnete Parabel ein Maximum besitzt
+
+Eine quadratische Funktion hat die Form
+
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
+
+Für <InlineMath math="a<0" /> öffnet sich ihr Graph nach unten. Der Scheitel ist dann der höchste Punkt des Graphen. Liegt er im zulässigen Bereich der Aufgabe, ist sein Funktionswert das Maximum.
+
+### Den Scheitel bestimmen
+
+Für <InlineMath math="f(x)=ax^2+bx+c" /> berechnen wir die Scheitelkoordinaten mit
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
+
+Gleichwertig dazu ist die Darstellung über die Diskriminante:
+
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
+
+Die Rechnung liefert den Scheitel. Ob er in der Aufgabe tatsächlich zulässig ist, entscheidet der Sachzusammenhang. Längen dürfen nicht negativ sein, Stückzahlen müssen unter Umständen ganzzahlig sein und Zeitwerte müssen im beschriebenen Intervall liegen.
+
+## Ausführliches Beispiel: ein rechteckiges Hühnergehege
+
+Ein Landwirt hat <InlineMath math="20\text{ m}" /> Zaunmaterial und möchte damit ein rechteckiges Hühnergehege einzäunen. Welche Seitenlängen ergeben die größtmögliche Fläche?
+
+1. **Benenne die Seitenlängen.** Die Länge sei <InlineMath math="p\text{ m}" />, die Breite <InlineMath math="l\text{ m}" />.
+2. **Übersetze die Umfangsbedingung.**
+
+   <MathContainer>
+     <BlockMath math="2p+2l=20" />
+     <BlockMath math="p+l=10" />
+     <BlockMath math="p=10-l" />
+   </MathContainer>
+
+3. **Stelle eine Flächenfunktion mit nur einer Variablen auf.**
+
+   <MathContainer>
+     <BlockMath math="A=p\cdot l" />
+     <BlockMath math="A(l)=(10-l)l" />
+     <BlockMath math="A(l)=10l-l^2" />
+     <BlockMath math="A(l)=-l^2+10l" />
+   </MathContainer>
+
+4. **Gib den zulässigen Bereich an.** Beide Seitenlängen müssen positiv sein, also gilt <InlineMath math="0<l<10" />. Der Koeffizient <InlineMath math="a=-1" /> ist negativ. Der Flächengraph öffnet sich deshalb nach unten.
+5. **Bestimme den Scheitel.**
+
+   <BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
+
+6. **Berechne die andere Seitenlänge und die Fläche.**
+
+   <MathContainer>
+     <BlockMath math="p=10-l=10-5=5" />
+     <BlockMath math="A(5)=5\cdot5=25" />
+   </MathContainer>
+
+7. **Prüfe und deute das Ergebnis.** Der Scheitel liegt im Bereich <InlineMath math="0<l<10" />. An den Randwerten fällt das Rechteck zusammen und die Fläche nähert sich <InlineMath math="0" />. Damit liefert der innere Scheitel das globale Maximum.
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Flächenmodell <InlineMath math="A(l)=-l^2+10l" />
+      </>
+    }
+    description={
+      <>
+        Der Graph ist für <InlineMath math="0\le l\le10" /> dargestellt. Im zulässigen Intervall <InlineMath math="0<l<10" /> erreicht er seinen höchsten Punkt bei <InlineMath math="(5,25)" />.
+      </>
+    }
+    showZAxis={false}
+    cameraPosition={[5, 12, 18]}
+    data={[
+      {
+        points: Array.from({ length: 11 }, (_, l) => ({
+          x: l,
+          y: -l * l + 10 * l,
+          z: 0,
+        })),
+        color: "#0d9488",
+        labels: [
+          {
+            text: "Hochpunkt",
+            at: 5,
+            offset: [0, 2, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+Die größtmögliche Fläche beträgt somit <InlineMath math="25\text{ m}^2" />. Sie entsteht bei einem Quadrat mit den Seitenlängen <InlineMath math="5\text{ m}\times5\text{ m}" />.
+
+## Das Modell auf einen Blick
+
+| Teil der Aufgabe | Mathematische Aussage | Bedeutung |
+| ---------------- | ---------------------- | --------- |
+| Fester Umfang | <InlineMath math="2p+2l=20" /> | Jedes zulässige Rechteck nutzt die gesamten <InlineMath math="20\text{ m}" /> Zaun. |
+| Modell mit einer Variablen | <InlineMath math="A(l)=-l^2+10l" /> | Zu jeder zulässigen Breite gehört genau eine Fläche. |
+| Zulässiger Bereich | <InlineMath math="0<l<10" /> | Beide Seitenlängen bleiben positiv. |
+| Scheitel | <InlineMath math="(5,25)" /> | Die Breite <InlineMath math="5\text{ m}" /> ergibt die Fläche <InlineMath math="25\text{ m}^2" />. |
+
+## Weitere Anwendungen
+
+### Produktionsgewinn
+
+Der Gewinn beim Verkauf von <InlineMath math="x" /> Spielzeugen werde in Tausend Rupiah durch folgende Funktion beschrieben:
+
+<BlockMath math="P(x)=-2x^2+100x" />
+
+Wegen <InlineMath math="a=-2<0" /> besitzt das Modell ein Maximum:
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{100}{2(-2)}=25" />
+  <BlockMath math="P(25)=-2(25)^2+100(25)=-2(625)+2500=1250" />
+</MathContainer>
+
+Das Modell sagt einen maximalen Gewinn von <InlineMath math="\text{IDR }1\,250\,000" /> beim Verkauf von <InlineMath math="25" /> Spielzeugen voraus. Der Scheitel liegt bereits bei einer ganzen Zahl, daher ist kein Vergleich gerundeter Stückzahlen nötig.
+
+### Flughöhe eines Körpers
+
+Die Höhe einer Spielzeugrakete nach <InlineMath math="t\text{ s}" /> werde beschrieben durch
+
+<BlockMath math="h(t)=-5t^2+40t" />
+
+Der physikalisch sinnvolle Zeitraum ergibt sich aus den Zeitpunkten, zu denen die Höhe null ist:
+
+<MathContainer>
+  <BlockMath math="-5t^2+40t=-5t(t-8)=0" />
+  <BlockMath math="t=0\text{ s}\quad\text{oder}\quad t=8\text{ s}" />
+</MathContainer>
+
+Das Modell beginnt für <InlineMath math="t=0" /> am Boden und erreicht ihn für <InlineMath math="t=8" /> wieder. Sein physikalischer Zeitbereich ist daher <InlineMath math="0\le t\le8" />. In diesem Intervall liegt das Maximum bei
+
+<MathContainer>
+  <BlockMath math="t_v=-\frac{40}{2(-5)}=\frac{-40}{-10}=4\text{ s}" />
+  <BlockMath math="h(4)=-5(4)^2+40(4)=-80+160=80\text{ m}" />
+</MathContainer>
+
+Die Rakete erreicht eine maximale Höhe von <InlineMath math="80\text{ m}" /> nach <InlineMath math="4\text{ s}" />.
+
+## Übungsaufgabe
+
+Ein Rechteck hat den Umfang <InlineMath math="60\text{ cm}" />. Bestimme die Länge und Breite, für die seine Fläche maximal wird, und berechne diese maximale Fläche.
+
+### Ausführliche Lösung
+
+1. Die Länge sei <InlineMath math="p\text{ cm}" />, die Breite <InlineMath math="l\text{ cm}" />.
+2. Forme die Umfangsbedingung nach der Länge um.
+
+   <MathContainer>
+     <BlockMath math="2p+2l=60" />
+     <BlockMath math="p+l=30" />
+     <BlockMath math="p=30-l" />
+   </MathContainer>
+
+3. Setze die Beziehung in die Flächenformel ein.
+
+   <MathContainer>
+     <BlockMath math="A(l)=p\cdot l" />
+     <BlockMath math="A(l)=(30-l)l" />
+     <BlockMath math="A(l)=30l-l^2" />
+     <BlockMath math="A(l)=-l^2+30l" />
+   </MathContainer>
+
+4. Der zulässige Bereich ist <InlineMath math="0<l<30" />. Außerdem gilt <InlineMath math="a=-1<0" />, sodass der Scheitel das Maximum liefert.
+5. Berechne die Breite am Scheitel.
+
+   <BlockMath math="l_v=-\frac{30}{2(-1)}=\frac{-30}{-2}=15\text{ cm}" />
+
+6. Berechne die zugehörige Länge und Fläche.
+
+   <MathContainer>
+     <BlockMath math="p=30-l=30-15=15\text{ cm}" />
+     <BlockMath math="A(15)=15\cdot15=225\text{ cm}^2" />
+   </MathContainer>
+
+Die maximale Fläche beträgt <InlineMath math="225\text{ cm}^2" />. Sie entsteht bei einem Quadrat mit den Seitenlängen <InlineMath math="15\text{ cm}\times15\text{ cm}" />.

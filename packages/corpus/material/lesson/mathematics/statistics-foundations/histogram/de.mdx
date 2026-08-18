@@ -1,0 +1,107 @@
+
+export const metadata = {
+  title: "Histogramme",
+  description: "Unterscheide Histogramme von Balkendiagrammen, lies Häufigkeitsverteilungen ab und wähle für numerische oder kategoriale Daten die passende Darstellung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Histogramme kennenlernen
+
+Ein Histogramm sieht auf den ersten Blick wie ein Balkendiagramm aus. Beide Darstellungen verwenden rechteckige Balken, beantworten aber unterschiedliche Fragen. Ein Balkendiagramm vergleicht einzelne Kategorien. Ein Histogramm zeigt dagegen, wie numerische Werte über zusammenhängende Intervalle verteilt sind.
+
+## Balkendiagramm und Histogramm vergleichen
+
+Balkendiagramme eignen sich für kategoriale Daten, etwa Smartphone-Marken oder Lieblingssportarten:
+
+<BarChart
+  title="Smartphone-Marken einer Oberstufengruppe"
+  description="Vergleicht die Anzahl der Lernenden für jede Smartphone-Marke."
+  data={[
+    { name: "Apple", value: 12 },
+    { name: "Samsung", value: 10 },
+    { name: "Xiaomi", value: 8 },
+    { name: "Oppo", value: 5 },
+    { name: "Lenovo", value: 5 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Anzahl der Lernenden",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Anzahl der Lernenden"
+/>
+
+Aus dem Balkendiagramm lässt sich ablesen:
+
+- Apple wird mit <InlineMath math="12" /> Nennungen am häufigsten verwendet
+- Samsung folgt mit <InlineMath math="10" /> Nennungen
+- Xiaomi liegt mit <InlineMath math="8" /> Nennungen dahinter
+- Oppo und Lenovo wurden jeweils <InlineMath math="5" /> Mal genannt
+
+Zwischen den Balken bleiben Lücken, weil jede Marke eine eigenständige Kategorie darstellt.
+
+Histogramme verwenden wir für numerische Daten, die in aneinandergrenzende Intervalle eingeteilt sind, zum Beispiel Zeitspannen oder Körpergrößen. Die Balken berühren sich, weil auch die Klassenintervalle lückenlos aneinander anschließen.
+
+<HistogramChart
+  title="Tägliche Smartphone-Nutzung einer Oberstufengruppe"
+  description="Zeigt, wie sich die tägliche Nutzungsdauer auf Zeitintervalle verteilt."
+  data={[
+    { name: "0-2", value: 10 },
+    { name: "2-4", value: 12 },
+    { name: "4-6", value: 32 },
+    { name: "6-8", value: 28 },
+    { name: "8-10", value: 8 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Häufigkeit",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Häufigkeit"
+/>
+
+Das Histogramm zeigt folgende Häufigkeiten:
+
+- <InlineMath math="10" /> Lernende nutzen ihr Smartphone täglich <InlineMath math="0\text{-}2 \text{ Stunden}" />
+- <InlineMath math="12" /> Lernende kommen auf <InlineMath math="2\text{-}4 \text{ Stunden}" />
+- Mit <InlineMath math="32" /> Lernenden ist das Intervall <InlineMath math="4\text{-}6 \text{ Stunden}" /> am stärksten besetzt
+- <InlineMath math="28" /> Lernende nutzen ihr Smartphone <InlineMath math="6\text{-}8 \text{ Stunden}" />
+- <InlineMath math="8" /> Lernende liegen im Intervall <InlineMath math="8\text{-}10 \text{ Stunden}" />
+
+Insgesamt liegen <InlineMath math="32+28=60" /> von <InlineMath math="90" /> Beobachtungen zwischen <InlineMath math="4\text{-}8 \text{ Stunden}" />. Damit befindet sich die Mehrheit in diesem Bereich. Das am häufigsten besetzte Einzelintervall ist <InlineMath math="4\text{-}6 \text{ Stunden}" />.
+
+## Die wichtigsten Unterschiede
+
+| Merkmal | Histogramm | Balkendiagramm |
+| ------------ | ------------------------------------ | ------------------------------------------- |
+| Datentyp | Quantitativ, in Intervalle gruppiert | Kategorial, ein Balken je Kategorie |
+| Anordnung | Balken berühren sich | Zwischen den Balken liegen Lücken |
+| Häufigkeitsdarstellung | Bei gleich breiten Klassen zeigt die Höhe die Häufigkeit; bei ungleichen Breiten ist die Fläche entscheidend | Die Balkenhöhe zeigt die Anzahl oder den Anteil |
+
+## Wann ist ein Histogramm sinnvoll?
+
+Verwende ein Histogramm, wenn:
+
+1. die Daten aus messbaren Zahlen bestehen,
+2. ihre Verteilung oder Streuung sichtbar werden soll und
+3. die Werte sinnvoll in Intervalle eingeteilt werden können.
+
+Typische Beispiele sind:
+
+- Körpergrößen einer Lerngruppe
+- Testergebnisse
+- Schulwege in Minuten
+- Körpergewichte
+- tägliche Gerätenutzungszeiten
+
+Ein Histogramm macht sichtbar, in welchen Wertebereichen viele oder wenige Beobachtungen liegen. Außerdem lassen sich Form, Streuung und mögliche Schiefe einer Verteilung erkennen. Für einzelne Kategorien ohne natürliche Zahlenachse bleibt dagegen das Balkendiagramm die passende Wahl.

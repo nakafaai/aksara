@@ -1,0 +1,134 @@
+export const metadata = {
+  title: "Die Geschichte von Pi",
+  description: "Wie Mathematiker von Babylon bis Zu Chongzhi Pi eingrenzten und annäherten und wie sich das heutige Symbol durchsetzte.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+
+## Verständnis und Bedeutung von Pi
+
+Bei jedem Kreis ist das Verhältnis von Umfang zu Durchmesser gleich. Diese Konstante heißt <InlineMath math="\pi" /> (Pi), und ihr Wert beginnt mit <InlineMath math="3{,}14159" />.
+
+Mathematisch kann <InlineMath math="\pi" /> wie folgt definiert werden:
+
+<BlockMath math="\pi = \frac{\text{Kreisumfang}}{\text{Kreisdurchmesser}}" />
+
+Die Größe des Kreises spielt dabei keine Rolle: Verdoppeln sich alle Längen, verdoppeln sich Umfang und Durchmesser gemeinsam, ihr Verhältnis bleibt jedoch unverändert.
+
+## Frühe Näherungen
+
+Erhaltene antike Quellen enthalten mehrere Näherungen und nicht einen überall verwendeten Wert. Eine mesopotamische Näherung lautet <InlineMath math="\pi \approx \frac{25}{8}=3{,}125" />.
+
+Der ägyptische Rhind-Papyrus, der auf etwa <InlineMath math="1650 \text{ v. Chr.}" /> datiert wird, enthält eine Regel, die <InlineMath math="\pi \approx \frac{256}{81}" /> entspricht. Das ergibt ungefähr <InlineMath math="3{,}16049" />. Keine der beiden Näherungen ist der exakte Wert von <InlineMath math="\pi" />. Von diesen beiden liegt der mesopotamische Wert <InlineMath math="3{,}125" /> sogar näher.
+
+<MathContainer>
+<BlockMath math="\frac{256}{81} = 3{,}16049\ldots" />
+</MathContainer>
+
+## Archimedes und die Polygonmethode
+
+Archimedes von Syrakus, ein griechischer Mathematiker, der etwa <InlineMath math="287\text{-}212 \text{ v. Chr.}" /> lebte, entwickelte eine systematische Methode, um <InlineMath math="\pi" /> genauer einzugrenzen. Er verglich regelmäßige Vielecke innerhalb und außerhalb eines Kreises.
+
+Der Umfang des einbeschriebenen Vielecks liegt unter dem Kreisumfang, der des umbeschriebenen Vielecks darüber. Mit immer mehr Seiten rücken beide Grenzen enger zusammen.
+
+<LineEquation
+  title={<>Visualisierung der Archimedes-Polygon-Methode</>}
+  description="Ein einbeschriebenes und ein umbeschriebenes regelmäßiges Vieleck begrenzen den Kreisumfang."
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 37 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 36;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0
+        };
+      }),
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false,
+      labels: [{ text: "Kreis", at: 9, offset: [0.5, 0.5, 0] }]
+    },
+    {
+      points: Array.from({ length: 7 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 6;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0
+        };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: "Inneres Polygon", at: 2, offset: [-1, -0.5, 0] }]
+    },
+    {
+      points: Array.from({ length: 7 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 6;
+        const radius = 3;
+        const apothem = radius / Math.cos(Math.PI / 6);
+        return {
+          x: apothem * Math.cos(angle),
+          y: apothem * Math.sin(angle),
+          z: 0
+        };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: "Äußeres Polygon", at: 4, offset: [0.8, -0.5, 0] }]
+    }
+  ]}
+/>
+
+Mit <InlineMath math="96" />-seitigen Vielecken bewies Archimedes, dass <InlineMath math="\pi" /> zwischen <InlineMath math="\frac{223}{71}" /> und <InlineMath math="\frac{22}{7}" /> liegt. Insbesondere ist <InlineMath math="\frac{22}{7}" /> hier eine obere Schranke und nicht der exakte Wert von <InlineMath math="\pi" />:
+
+<MathContainer>
+<BlockMath math="3{,}1408 < \pi < 3{,}1429" />
+</MathContainer>
+
+## Beiträge chinesischer Mathematiker
+
+Im <InlineMath math="5" />. Jahrhundert n. Chr. verfeinerte der chinesische Mathematiker und Astronom Zu Chongzhi die Polygonmethode. Er bestimmte die bemerkenswert enge Schranke <InlineMath math="3{,}1415926 < \pi < 3{,}1415927" />.
+
+Zu Chongzhi gab außerdem die Näherung <InlineMath math="\pi \approx \frac{355}{113}" /> an. Sie ergibt <InlineMath math="3{,}1415929" /> und stimmt in den ersten sechs Nachkommastellen mit <InlineMath math="\pi" /> überein. Seine Schranke mit sieben Nachkommastellen wurde erst durch al-Kashis Arbeit im <InlineMath math="15" />. Jahrhundert übertroffen, fast ein Jahrtausend später.
+
+<MathContainer>
+<BlockMath math="\frac{355}{113} = 3{,}1415929\ldots" />
+</MathContainer>
+
+## Das moderne Symbol
+
+Der walisische Mathematiker William Jones verwendete <InlineMath math="\pi" /> in seinem Werk „Synopsis Palmariorum Matheseos“ von <InlineMath math="1706" /> in der heute üblichen Bedeutung. Die Schreibweise setzte sich nicht sofort allgemein durch.
+
+Leonhard Euler übernahm das Symbol später in seinen einflussreichen Arbeiten. Dadurch wurde <InlineMath math="\pi" /> zur bis heute üblichen mathematischen Notation.
+
+## Besondere Eigenschaften von Pi
+
+<InlineMath math="\pi" /> ist irrational und lässt sich daher nicht als Bruch zweier ganzer Zahlen schreiben. Johann Heinrich Lambert lieferte im <InlineMath math="18" />. Jahrhundert den ersten strengen Beweis dafür. Ferdinand von Lindemann bewies <InlineMath math="1882" />, dass <InlineMath math="\pi" /> außerdem transzendent ist. Die Zahl ist also keine Nullstelle eines von null verschiedenen Polynoms mit rationalen Koeffizienten.
+
+Für viele Schulrechnungen genügen <InlineMath math="\pi \approx 3{,}14" /> oder <InlineMath math="\pi \approx \frac{22}{7}" />. Präzise technische und wissenschaftliche Berechnungen verwenden entsprechend mehr Stellen.
+
+Die grundlegende Beziehung von <InlineMath math="\pi" /> zur Kreisgeometrie kann ausgedrückt werden als:
+
+<MathContainer>
+<BlockMath math="C = \pi \cdot d" />
+<BlockMath math="A = \pi \cdot r^2" />
+</MathContainer>
+
+Dabei ist <InlineMath math="C" /> der Umfang, <InlineMath math="d" /> der Durchmesser, <InlineMath math="A" /> die Fläche und <InlineMath math="r" /> der Radius des Kreises.
+
+## Quellen
+
+- [NIST: Circumference, Area and Volume](https://www.nist.gov/pml/owm/circumference-area-and-volume)
+- [MacTutor: A History of Pi](https://mathshistory.st-andrews.ac.uk/HistTopics/Pi_through_the_ages/)
+- [MacTutor: Earliest Uses of Symbols for Constants](https://mathshistory.st-andrews.ac.uk/Miller/mathsym/constants/)
+- [MacTutor: Zu Chongzhi](https://mathshistory.st-andrews.ac.uk/Biographies/Zu_Chongzhi/)
+- [MacTutor: Johann Heinrich Lambert](https://mathshistory.st-andrews.ac.uk/Biographies/Lambert/)
+- [MacTutor: Ferdinand von Lindemann](https://mathshistory.st-andrews.ac.uk/Biographies/Lindemann/)

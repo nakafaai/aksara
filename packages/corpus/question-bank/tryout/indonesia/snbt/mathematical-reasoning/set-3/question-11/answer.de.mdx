@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+**Methode zum Füllen von Slots**
+
+Wir haben <InlineMath math="7" /> Flags mit einer bestimmten Bedingung: **Armenien** und **Belgien** müssen am Ende der Zeile stehen. Wir können die Anordnung mithilfe von Schlitzen (Boxen) visualisieren.
+
+**Schritt** <InlineMath math="1" />: Endpositionen bestimmen
+
+Es gibt nur <InlineMath math="2" /> Möglichkeiten für die Enden: Armenien links und Belgien rechts oder umgekehrt. Daher schreiben wir die Zahl <InlineMath math="2" /> in das erste Feld als Multiplikator für die Endvarianten.
+
+**Schritt** <InlineMath math="2" />: Mittlere Positionen füllen
+
+Es gibt noch <InlineMath math="5" /> Flaggen (China, Dänemark, Ecuador, Finnland, Ghana), um die <InlineMath math="5" /> Mittelpositionen zu besetzen. Die restlichen Slots füllen wir in absteigender Reihenfolge (<InlineMath math="5, 4, 3, 2, 1" />) nach dem Permutationsprinzip.
+
+Hier ist die Visualisierung der gefüllten Slots:
+
+<MathContainer>
+  <BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
+</MathContainer>
+
+Die Zahl <InlineMath math="2" /> stellt die Möglichkeiten dar, die Enden anzuordnen.
+
+Die Zahlen <InlineMath math="5, 4, 3, 2, 1" /> stellen die Möglichkeiten dar, die <InlineMath math="5" /> mittleren Flags (<InlineMath math="5!" />) anzuordnen.
+
+**Endgültige Berechnung**
+
+Die Gesamtzahl der Wege ist das Produkt aller Zahlen in den Kästchen.
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = 2 \times (5 \times 4 \times 3 \times 2 \times 1)" />
+  <BlockMath math="\text{Gesamt} = 2 \times 5!" />
+  <BlockMath math="\text{Gesamt} = 2(5!)" />
+</MathContainer>
+
+Somit gibt es <InlineMath math="2(5!)" /> Möglichkeiten, die Flags anzuordnen.

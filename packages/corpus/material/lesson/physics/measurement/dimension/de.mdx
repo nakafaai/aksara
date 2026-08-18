@@ -1,0 +1,115 @@
+
+export const metadata = {
+  title: "Physikalische Dimensionen",
+  description:
+    "Verstehe physikalische Dimensionen als Bauplan aus Grundgrößen, leite die Dimensionen abgeleiteter Größen her und prüfe Formeln ohne Zahlenwerte.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-25",
+  subject: "Messen in der Naturwissenschaft",
+};
+
+## Dimension bedeutet mehr als räumliche Größe
+
+Im Alltag bezeichnet Dimension oft eine räumliche Größe wie Länge, Breite oder Höhe. In der Physik hat **Dimension** eine genauere Bedeutung: Sie zeigt, aus welchen Grundgrößen sich eine physikalische Größe zusammensetzt.
+
+Schraubenlänge, Mutterdurchmesser, Kugelradius und zurückgelegter Weg können zum Beispiel in unterschiedlichen Einheiten angegeben werden. Trotzdem gehören sie alle zur gleichen Größenart.
+
+<BlockMath math="\text{Länge, Durchmesser, Radius, Abstand} \Rightarrow [\mathrm{L}]" />
+
+Eine Dimension nennt nicht den gemessenen Wert. Sie verrät die *physikalische Art* hinter diesem Wert.
+
+## Potenzen der Längendimension erkennen
+
+Die Darstellung unten konzentriert sich auf die Längendimension. Wechsle von der Länge zur Fläche und anschließend zum Volumen. Beobachte dabei, wie aus einem Längenfaktor <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" /> und schließlich <InlineMath math="[\mathrm{L}]^3" /> wird.
+
+<DimensionLab
+  title={<>Generator für Längendimensionen</>}
+  description={
+    <>
+      Wähle eine Form, die aus Längenfaktoren aufgebaut ist. Vergleiche dann
+      ihre Formel, ihre SI-Einheit und ihre Dimension.
+  </>
+  }
+  labels={{
+    chooseMode: "Form auswählen",
+    dimension: "Dimension",
+    formula: "Formel",
+    modes: {
+      length: "Länge",
+      area: "Fläche",
+      volume: "Volumen",
+    },
+    unit: "SI-Einheit",
+  }}
+/>
+
+## Das Alphabet der Grundgrößen
+
+Das Internationale Einheitensystem, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. In der Dimensionsanalyse bilden sie ein Alphabet, aus dem sich weitere Größen zusammensetzen lassen.
+
+| Grundgröße | Beispielsymbol | Dimension |
+| :------------ | :------------- | :-------- |
+| Länge | <InlineMath math="\ell,\ x,\ r" /> | <InlineMath math="[\mathrm{L}]" /> |
+| Masse | <InlineMath math="m" /> | <InlineMath math="[\mathrm{M}]" /> |
+| Zeit | <InlineMath math="t" /> | <InlineMath math="[\mathrm{T}]" /> |
+| Elektrischer Strom | <InlineMath math="I" /> | <InlineMath math="[\mathrm{I}]" /> |
+| Thermodynamische Temperatur | <InlineMath math="T" /> | <InlineMath math="[\Theta]" /> |
+| Stoffmenge | <InlineMath math="n" /> | <InlineMath math="[\mathrm{N}]" /> |
+| Lichtstärke | <InlineMath math="I_v" /> | <InlineMath math="[\mathrm{J}]" /> |
+
+Eckige Klammern unterscheiden Dimensionen von Einheiten. So bezeichnet <InlineMath math="[\mathrm{L}]" /> die Dimension Länge, während <InlineMath math="\text{m}" /> für die Einheit Meter steht.
+
+## Dimensionen aus Formeln ableiten
+
+Bei einer Dimensionsanalyse ersetzt man jede Größe in der Formel durch ihre Dimension und vereinfacht anschließend die Potenzen.
+
+<BlockMath math="\begin{aligned}
+[A] &= [l][w] = [\mathrm{L}][\mathrm{L}] = [\mathrm{L}]^2 \\
+[V] &= [l][w][h] = [\mathrm{L}]^3 \\
+[v] &= \frac{[\Delta s]}{[\Delta t]} = \frac{[\mathrm{L}]}{[\mathrm{T}]} = [\mathrm{L}][\mathrm{T}]^{-1} \\
+[a] &= \frac{[\Delta v]}{[\Delta t]} = \frac{[\mathrm{L}][\mathrm{T}]^{-1}}{[\mathrm{T}]} = [\mathrm{L}][\mathrm{T}]^{-2}
+\end{aligned}" />
+
+Auf dieselbe Weise lassen sich Kraft, Arbeit und Leistung als Dimensionsstrukturen lesen.
+
+<BlockMath math="\begin{aligned}
+[F] &= [m][a] = [\mathrm{M}][\mathrm{L}][\mathrm{T}]^{-2} \\
+[W] &= [F][\Delta s] = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-2} \\
+[P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
+\end{aligned}" />
+
+## Eine Formel auf Plausibilität prüfen
+
+Mit Dimensionen lässt sich prüfen, ob eine Formel überhaupt stimmen kann. Größen, die addiert werden, müssen dieselbe Dimension besitzen.
+
+Betrachte die Wegformel für eine gleichmäßig beschleunigte Bewegung:
+
+<BlockMath math="s = v_0 t + \frac{1}{2} a t^2" />
+
+Ersetze nun jeden Term durch seine Dimension:
+
+<BlockMath math="\begin{aligned}
+[v_0t] &= [\mathrm{L}][\mathrm{T}]^{-1}[\mathrm{T}] = [\mathrm{L}] \\
+[at^2] &= [\mathrm{L}][\mathrm{T}]^{-2}[\mathrm{T}]^2 = [\mathrm{L}]
+\end{aligned}" />
+
+Beide Terme auf der rechten Seite haben die Dimension <InlineMath math="[\mathrm{L}]" />. Die Formel besteht damit die Dimensionsprüfung. Das beweist noch nicht, dass sie vollständig korrekt ist, schließt aber viele unmögliche Formeln sofort aus.
+
+<BlockMath math="s + t \quad \text{ist nicht gültig, weil} \quad [\mathrm{L}] \ne [\mathrm{T}]" />
+
+## Ein Objekt, viele Dimensionen
+
+Schraube und Mutter sind kleine Gegenstände, an denen dennoch mehrere Größen gemessen werden können. Für ein einziges Objekt können deshalb unterschiedliche Messwerkzeuge nötig sein.
+
+| Was wird überprüft | Passendes Werkzeug | Dimension |
+| :-------------- | :------------ | :-------- |
+| Schraubenlänge | Lineal oder Messschieber | <InlineMath math="[\mathrm{L}]" /> |
+| Außendurchmesser | Messschieber oder Mikrometerschraube | <InlineMath math="[\mathrm{L}]" /> |
+| Querschnittsfläche | berechnet aus Durchmesser | <InlineMath math="[\mathrm{L}]^2" /> |
+| Materialvolumen | berechnet aus der räumlichen Größe | <InlineMath math="[\mathrm{L}]^3" /> |
+| Masse | Waage | <InlineMath math="[\mathrm{M}]" /> |
+| Dichte | Masse geteilt durch Volumen | <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" /> |
+
+Zwei Geräte können also dieselbe Dimension messen und trotzdem für verschiedene Situationen gedacht sein. Für eine größere Länge ohne hohe Genauigkeitsanforderung genügt ein Lineal. Bei einem kleinen Durchmesser, der genauer abgelesen werden muss, eignet sich ein Messschieber oder eine Mikrometerschraube besser.
+
+Eine ausführliche fachliche Einordnung bietet OpenStax im Abschnitt [Dimensional Analysis](https://openstax.org/books/university-physics-volume-1/pages/1-4-dimensional-analysis).

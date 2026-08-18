@@ -1,0 +1,663 @@
+export const metadata = {
+  title: "Ellipse",
+  description: "Verstehe Ellipsen über Brennpunkte, Achsen und Gleichungen und wende diese Beziehungen in vollständig gelösten Beispielen an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Was ist eine Ellipse?
+
+Planetenbahnen um die Sonne und der schräge Schatten eines Kreises erinnern an dieselbe Form: eine **Ellipse**. Sie ist jedoch mehr als ein „abgeflachter“ Kreis. Ihre Form folgt einer genauen geometrischen Bedingung.
+
+Eine Ellipse besteht aus allen Punkten, für die **die Summe der Abstände zu zwei festen Punkten konstant ist**. Diese beiden festen Punkte heißen **Brennpunkte**. Das lässt sich mit zwei Nägeln, einer geschlossenen Schnur und einem Stift nachvollziehen: Die Schnur wird an den Nägeln befestigt und mit dem Stift gespannt. Fährt der Stift einmal herum, zeichnet er eine Ellipse.
+
+<LineEquation
+  title="Grundlegendes Ellipsenkonzept"
+  description="Ellipse mit zwei Brennpunkten und mehreren Punkten, die eine konstante Summe der Entfernungen zeigen."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const a = 4;
+        const b = 2.5;
+        return {
+          x: a * Math.cos(angle),
+          y: b * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 4, b = 2.5;
+        const c = Math.sqrt(a*a - b*b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
+      ],
+    },
+    {
+      points: (() => {
+        const angle = Math.PI / 3;
+        const a = 4, b = 2.5;
+        return [{
+          x: a * Math.cos(angle),
+          y: b * Math.sin(angle),
+          z: 0,
+        }];
+      })(),
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: (() => {
+        const angle = Math.PI / 3;
+        const a = 4, b = 2.5;
+        const c = Math.sqrt(a*a - b*b);
+        const px = a * Math.cos(angle);
+        const py = b * Math.sin(angle);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: px, y: py, z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const angle = Math.PI / 3;
+        const a = 4, b = 2.5;
+        const c = Math.sqrt(a*a - b*b);
+        const px = a * Math.cos(angle);
+        const py = b * Math.sin(angle);
+        return [
+          { x: c, y: 0, z: 0 },
+          { x: px, y: py, z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+In der Grafik liegt <InlineMath math="P" /> auf der Ellipse. Sein Abstand zu <InlineMath math="F_1" />, bezeichnet mit <InlineMath math="r_1" />, und sein Abstand zu <InlineMath math="F_2" />, bezeichnet mit <InlineMath math="r_2" />, ergeben zusammen für jeden Ellipsenpunkt dieselbe Länge. Genau das ist das **grundlegende Merkmal einer Ellipse**.
+
+## Ellipse-Komponenten
+
+Bevor die Gleichungen folgen, ordnen wir die Bestandteile einer Ellipse. Jeder davon beschreibt einen anderen Aspekt ihrer Lage oder Form.
+
+<LineEquation
+  title="Ellipsenkomponenten"
+  description="Wichtige Teile einer Ellipse mit horizontaler Hauptachse."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const a = 4;
+        const b = 2.8;
+        return {
+          x: a * Math.cos(angle),
+          y: b * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: "Mitte", at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 4, b = 2.8;
+        const c = Math.sqrt(a*a - b*b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: -2.8, z: 0 },
+        { x: 0, y: 2.8, z: 0 }
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="B_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="B_2" />, at: 1, offset: [-0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#ca8a04",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Hauptachse", at: 1, offset: [-1.5, -1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: -2.8, z: 0 },
+        { x: 0, y: 2.8, z: 0 }
+      ],
+      color: "#db2777",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Kleine Achse", at: 1, offset: [1.5, -1, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Die wichtigsten Bestandteile sind:
+
+1. Der **Mittelpunkt** ist das Zentrum der Ellipse und wird häufig mit <InlineMath math="O" /> bezeichnet. Von ihm aus werden die Halbachsen und Brennpunktabstände gemessen.
+
+2. Die **Brennpunkte** <InlineMath math="F_1" /> und <InlineMath math="F_2" /> sind die beiden festen Bezugspunkte der Ellipsendefinition. Ihr Abstand voneinander beträgt <InlineMath math="2c" />.
+
+3. Die **Hauptachse** ist die längere Symmetrieachse. Sie verläuft durch Mittelpunkt und Brennpunkte und endet in <InlineMath math="A_1" /> und <InlineMath math="A_2" />.
+
+4. Die **Nebenachse** ist die kürzere Symmetrieachse. Sie steht senkrecht auf der Hauptachse und endet in <InlineMath math="B_1" /> und <InlineMath math="B_2" />.
+
+5. Die **große Halbachse** <InlineMath math="a" /> ist die halbe Hauptachsenlänge, also der Abstand vom Mittelpunkt zu einem Hauptscheitel.
+
+6. Die **kleine Halbachse** <InlineMath math="b" /> ist die halbe Nebenachsenlänge, also der Abstand vom Mittelpunkt zu einem Nebenscheitel.
+
+> Für eine echte Ellipse gilt <InlineMath math="a > b" />. Im Grenzfall <InlineMath math="a = b" /> fallen beide Halbachsen zusammen und die Kurve ist ein Kreis.
+
+## Ellipsengleichungen
+
+Die Gleichungsform hängt davon ab, wo der Mittelpunkt liegt und ob die Hauptachse horizontal oder vertikal verläuft.
+
+### Mittelpunkt im Ursprung
+
+Liegt der Mittelpunkt bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche Ausrichtungen:
+
+<LineEquation
+  title="Horizontale Hauptachse"
+  description={<>Ellipse <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> mit <InlineMath math="a > b" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const a = 4.5;
+        const b = 3;
+        return {
+          x: a * Math.cos(angle),
+          y: b * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 4.5, b = 3;
+        const c = Math.sqrt(a*a - b*b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4.5, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Verläuft die Hauptachse parallel zur <InlineMath math="x" />-Achse, lautet die Ellipsengleichung:
+
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+mit der Bedingung <InlineMath math="a > b" />.
+
+<LineEquation
+  title="Vertikale Hauptachse"
+  description={<>Ellipse <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> mit <InlineMath math="a > b" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const a = 4.5;
+        const b = 3;
+        return {
+          x: b * Math.cos(angle),
+          y: a * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 4.5, b = 3;
+        const c = Math.sqrt(a*a - b*b);
+        return [
+          { x: 0, y: -c, z: 0 },
+          { x: 0, y: c, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 4.5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -6, z: 0 },
+        { x: 0, y: 6, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Verläuft die Hauptachse parallel zur <InlineMath math="y" />-Achse, lautet die Ellipsengleichung:
+
+<BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
+
+mit der Bedingung <InlineMath math="a > b" />.
+
+### Verschobener Mittelpunkt
+
+Liegt der Mittelpunkt im Punkt <InlineMath math="(h, k)" /> statt im Ursprung, entstehen die verschobenen Formen:
+
+<MathContainer>
+  <BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontale Hauptachse)}" />
+  <BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1 \quad \text{(vertikale Hauptachse)}" />
+</MathContainer>
+
+Die folgende Grafik zeigt ein Beispiel:
+
+<LineEquation
+  title="Ellipse mit verschobenem Mittelpunkt"
+  description={<>Ellipse mit Mittelpunkt <InlineMath math="(2, -1)" /> und horizontaler Hauptachse.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const a = 3.5;
+        const b = 2.5;
+        const h = 2, k = -1;
+        return {
+          x: h + a * Math.cos(angle),
+          y: k + b * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0284c7",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2, y: -1, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(2,-1)" />, at: 0, offset: [-0.8, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3.5, b = 2.5;
+        const c = Math.sqrt(a*a - b*b);
+        const h = 2, k = -1;
+        return [
+          { x: h - c, y: k, z: 0 },
+          { x: h + c, y: k, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: -1, z: 0 },
+        { x: 5.5, y: -1, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: -1, z: 0 },
+        { x: 2, y: 1.5, z: 0 }
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 7, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -5, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Wichtige Beziehungen
+
+Zwischen den drei charakteristischen Längen gilt stets:
+
+<BlockMath math="c^2 = a^2 - b^2" />
+
+Dabei ist <InlineMath math="c" /> der Abstand vom Mittelpunkt zu einem Brennpunkt.
+
+Die **Exzentrizität** einer Ellipse ist definiert als:
+
+<BlockMath math="e = \frac{c}{a}" />
+
+Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je näher <InlineMath math="e" /> an <InlineMath math="0" /> liegt, desto stärker nähert sich die Form einem Kreis. Je näher <InlineMath math="e" /> an <InlineMath math="1" /> liegt, desto gestreckter ist sie. Der Kreis als Grenzfall hat <InlineMath math="e = 0" />.
+
+## Übungen
+
+1. Bestimme die Gleichung einer Ellipse mit Mittelpunkt <InlineMath math="(0,0)" />, Hauptachsenlänge <InlineMath math="12" />, Nebenachsenlänge <InlineMath math="8" /> und horizontaler Hauptachse.
+
+2. Gegeben ist die Ellipse <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />. Bestimme ihre Brennpunkte und ihre Exzentrizität.
+
+3. Eine Ellipse hat den Mittelpunkt <InlineMath math="(3, -1)" />, die Brennpunkte <InlineMath math="(3, 2)" /> und <InlineMath math="(3, -4)" /> sowie die Nebenachsenlänge <InlineMath math="6" />. Bestimme ihre Gleichung.
+
+4. Bestimme die Gleichung einer Ellipse, die durch <InlineMath math="(4, 3)" /> und <InlineMath math="(6, 2)" /> verläuft, den Mittelpunkt <InlineMath math="(0, 0)" /> hat und deren Hauptachse horizontal liegt.
+
+### Lösungen
+
+1. **Lösung**:
+
+   Gegeben sind:
+   - Mittelpunkt <InlineMath math="(0,0)" />
+   - Hauptachsenlänge <InlineMath math="12" />, daher <InlineMath math="2a = 12" /> und <InlineMath math="a = 6" />
+   - Nebenachsenlänge <InlineMath math="8" />, daher <InlineMath math="2b = 8" /> und <InlineMath math="b = 4" />
+   - Horizontale Hauptachse
+
+   Ellipsengleichung mit horizontaler Hauptachse:
+
+   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+   Nach dem Einsetzen von <InlineMath math="a = 6" /> und <InlineMath math="b = 4" /> folgt:
+
+   <BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
+
+2. **Lösung**:
+
+   Aus der Gleichung <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" /> lesen wir ab:
+   - <InlineMath math="a^2 = 25" />, daher <InlineMath math="a = 5" />
+   - <InlineMath math="b^2 = 16" />, daher <InlineMath math="b = 4" />
+
+   Weil <InlineMath math="a^2 > b^2" /> gilt, ist die Hauptachse horizontal.
+
+   Nun berechnen wir <InlineMath math="c" />:
+
+   <MathContainer>
+     <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
+     <BlockMath math="c = 3" />
+   </MathContainer>
+
+   Die Brennpunkte liegen bei <InlineMath math="(\pm 3, 0)" />, also bei <InlineMath math="(-3, 0)" /> und <InlineMath math="(3, 0)" />.
+
+   Exzentrizität:
+
+   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{,}6" />
+
+3. **Lösung**:
+
+   Gegeben sind:
+   - Mittelpunkt: <InlineMath math="(3, -1)" />
+   - Brennpunkte: <InlineMath math="(3, 2)" /> und <InlineMath math="(3, -4)" />
+   - Nebenachsenlänge <InlineMath math="6" />, daher <InlineMath math="2b = 6" /> und <InlineMath math="b = 3" />
+
+   Da die Brennpunkte die gleichen <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 3" />) haben, ist die Hauptachse vertikal.
+
+   <BlockMath math="\text{Abstand zwischen Brennpunkten} = |2 - (-4)| = 6" />
+
+   Daher gilt <InlineMath math="2c = 6" /> und somit <InlineMath math="c = 3" />.
+
+   Mit <InlineMath math="c^2 = a^2-b^2" /> bestimmen wir <InlineMath math="a" />:
+
+   <MathContainer>
+     <BlockMath math="c^2 = a^2 - b^2" />
+     <BlockMath math="9 = a^2 - 9" />
+     <BlockMath math="a^2 = 18" />
+     <BlockMath math="a = 3\sqrt{2}" />
+   </MathContainer>
+
+   Ellipsengleichung mit Mittelpunkt <InlineMath math="(h,k) = (3,-1)" /> und vertikaler Hauptachse:
+
+   <BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
+
+4. **Lösung**:
+
+   Eine Ellipse mit Mittelpunkt <InlineMath math="(0,0)" /> und horizontaler Hauptachse hat die Gleichung:
+
+   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+   Einsetzen des Punkts <InlineMath math="(4,3)" />:
+
+   <BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
+
+   Einsetzen des Punkts <InlineMath math="(6,2)" />:
+
+   <BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
+
+   Mit <InlineMath math="u = \frac{1}{a^2}" /> und <InlineMath math="v = \frac{1}{b^2}" /> wird daraus ein lineares Gleichungssystem:
+
+   <MathContainer>
+     <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
+     <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
+   </MathContainer>
+
+   Aus Gleichung (<InlineMath math="1" />) folgt <InlineMath math="v = \frac{1-16u}{9}" />.
+
+   Dies setzen wir in Gleichung (<InlineMath math="2" />) ein:
+
+   <MathContainer>
+     <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
+     <BlockMath math="36u + \frac{4-64u}{9} = 1" />
+     <BlockMath math="324u + 4 - 64u = 9" />
+     <BlockMath math="260u = 5" />
+     <BlockMath math="u = \frac{1}{52}" />
+   </MathContainer>
+
+   Folglich ist <InlineMath math="a^2 = 52" />.
+
+   Rückeinsetzen liefert:
+
+   <MathContainer>
+     <BlockMath math="v = \frac{1-16 \cdot \frac{1}{52}}{9} = \frac{1-\frac{16}{52}}{9} = \frac{\frac{36}{52}}{9} = \frac{4}{52} = \frac{1}{13}" />
+   </MathContainer>
+
+   Damit ist <InlineMath math="b^2 = 13" />.
+
+   Die gesuchte Ellipsengleichung lautet <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />.

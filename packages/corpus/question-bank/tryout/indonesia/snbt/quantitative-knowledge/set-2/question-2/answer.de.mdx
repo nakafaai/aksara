@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Die erste Zahl sei <InlineMath math="A" /> und die zweite Zahl sei <InlineMath math="B" />.
+
+Die Angaben liefern folgende Gleichungen:
+
+1. Das Doppelte der ersten Zahl minus das Dreifache der zweiten Zahl ergibt <InlineMath math="14" />:
+
+   <BlockMath math="2A - 3B = 14" />
+
+2. Die erste Zahl multipliziert mit <InlineMath math="k" /> plus dem Doppelten der zweiten Zahl ergibt <InlineMath math="4" />:
+
+   <BlockMath math="Ak + 2B = 4" />
+
+3. Der Wert der ersten Zahl ist <InlineMath math="2" /> größer als <InlineMath math="k" /> (bedeutet <InlineMath math="A = k + 2" /> oder <InlineMath math="k = A - 2" />).
+
+#### Lösungsschritte
+
+Wir setzen <InlineMath math="k = A - 2" /> in Gleichung <InlineMath math="(2)" /> ein:
+
+<MathContainer>
+  <BlockMath math="A(A - 2) + 2B = 4" />
+  <BlockMath math="A^2 - 2A + 2B = 4" />
+</MathContainer>
+
+Nach <InlineMath math="B" /> umgestellt ergibt sich:
+
+<MathContainer>
+  <BlockMath math="2B = 4 + 2A - A^2" />
+  <BlockMath math="B = \frac{-A^2 + 2A + 4}{2}" />
+</MathContainer>
+
+Diesen Ausdruck für <InlineMath math="B" /> setzen wir nun in Gleichung <InlineMath math="(1)" /> ein:
+
+<MathContainer>
+  <BlockMath math="2A - 3\left(\frac{-A^2 + 2A + 4}{2}\right) = 14" />
+</MathContainer>
+
+Nach der Multiplikation beider Seiten mit <InlineMath math="2" /> verschwindet der Nenner:
+
+<MathContainer>
+  <BlockMath math="4A - 3(-A^2 + 2A + 4) = 28" />
+  <BlockMath math="4A + 3A^2 - 6A - 12 = 28" />
+  <BlockMath math="3A^2 - 2A - 12 = 28" />
+  <BlockMath math="3A^2 - 2A - 40 = 0" />
+</MathContainer>
+
+Die quadratische Gleichung lässt sich faktorisieren:
+
+<MathContainer>
+  <BlockMath math="(3A - 12)(3A + 10) = 0" />
+  <BlockMath math="3(A - 4)(3A + 10) = 0" />
+</MathContainer>
+
+Dies ergibt zwei mögliche Werte für <InlineMath math="A" />:
+
+<BlockMath math="A = 4 \quad \text{oder} \quad A = -\frac{10}{3}" />
+
+#### Den größten Wert der zweiten Zahl bestimmen
+
+Wir ermitteln den Wert von <InlineMath math="B" /> für jeden Wert von <InlineMath math="A" /> mithilfe der Gleichung <InlineMath math="2A - 3B = 14 \Rightarrow 3B = 2A - 14 \Rightarrow B = \frac{2A - 14}{3}" />.
+
+**Fall** <InlineMath math="1" />: Für <InlineMath math="A = 4" />
+
+<BlockMath math="B = \frac{2(4) - 14}{3} = \frac{8 - 14}{3} = \frac{-6}{3} = -2" />
+
+**Fall** <InlineMath math="2" />: Für <InlineMath math="A = -\frac{10}{3}" />
+
+<BlockMath math="B = \frac{2(-\frac{10}{3}) - 14}{3} = \frac{-\frac{20}{3} - \frac{42}{3}}{3} = \frac{-\frac{62}{3}}{3} = -\frac{62}{9} \approx -6{,}88" />
+
+Die beiden möglichen Werte von <InlineMath math="B" /> sind <InlineMath math="-2" /> und <InlineMath math="-\frac{62}{9}" />.
+
+Der Wert <InlineMath math="-2" /> ist größer als <InlineMath math="-\frac{62}{9}" />.
+
+Somit ist der größtmögliche Wert der zweiten Zahl <InlineMath math="-2" />.

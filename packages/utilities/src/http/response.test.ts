@@ -5,6 +5,7 @@ import {
   BodyError,
   hasDirectives,
   isJsonType,
+  readBytes,
   readText,
 } from "#utilities/http/response";
 
@@ -47,11 +48,14 @@ describe("HTTP response utilities", () => {
       },
     });
 
+    const bounded = response(stream, { headers: { "content-length": "4" } });
+
+    await expect(Effect.runPromise(readBytes(bounded, 4))).resolves.toEqual(
+      Uint8Array.from([1, 2, 3, 4])
+    );
     await expect(
-      Effect.runPromise(
-        readText(response(stream, { headers: { "content-length": "4" } }), 4)
-      )
-    ).resolves.toBe("\u0001\u0002\u0003\u0004");
+      Effect.runPromise(readText(response("text"), 4))
+    ).resolves.toBe("text");
   });
 
   it("classifies unsafe lengths, overflows, empty bodies, and streams", async () => {

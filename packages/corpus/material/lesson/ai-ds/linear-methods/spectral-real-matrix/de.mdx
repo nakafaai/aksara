@@ -1,0 +1,79 @@
+export const metadata = {
+    title: "Spektralsatz für reelle normale Matrizen",
+    description: "Erfahren Sie genau, wann eine reelle normale Matrix eine reelle orthonormale Eigenbasis besitzt, und unterscheiden Sie gewöhnliche von orthogonaler Diagonalisierung.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-16",
+    subject: "Lineare Methoden der KI",
+};
+
+## Wann eine reelle normale Matrix eine reelle Eigenbasis besitzt
+
+Für <InlineMath math="A\in\mathbb{R}^{n\times n}" /> sind die folgenden Aussagen äquivalent:
+
+1. Es gibt eine Orthonormalbasis von <InlineMath math="\mathbb{R}^n" />, die aus Eigenvektoren von <InlineMath math="A" /> besteht.
+2. Die Matrix ist normal und ihr charakteristisches Polynom <InlineMath math="\chi_A(t)" /> zerfällt über <InlineMath math="\mathbb{R}" /> vollständig in Linearfaktoren.
+3. Es gibt eine reelle orthogonale Matrix <InlineMath math="Q" /> und eine reelle Diagonalmatrix <InlineMath math="\Lambda" /> mit <InlineMath math="A=Q\Lambda Q^T" />.
+4. Die Matrix ist symmetrisch: <InlineMath math="A^T=A" />.
+
+Die Äquivalenz erklärt die zusätzliche Bedingung gegenüber [komplexen normalen Matrizen](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/spektralsatz-fuer-komplexe-matrizen). Eine komplexe normale Matrix besitzt stets eine unitäre Eigenbasis, doch diese Basis und ihre Eigenwerte müssen nicht reell sein.
+
+Der Beweis verbindet die vier Aussagen direkt. Eine orthonormale Eigenbasis liefert die Spalten von <InlineMath math="Q" />. Aus <InlineMath math="A=Q\Lambda Q^T" /> mit reeller Diagonalmatrix <InlineMath math="\Lambda" /> folgt <InlineMath math="A^T=A" />. Umgekehrt diagonalisiert der reelle Spektralsatz jede reelle symmetrische Matrix orthogonal. Hat schließlich eine reelle normale Matrix nur reelle Eigenwerte, so erfüllt ihre komplexe unitäre Diagonalisierung <InlineMath math="A^H=A" />. Da <InlineMath math="A" /> reell ist, bedeutet dies genau <InlineMath math="A^T=A" />.
+
+| Matrixklasse | Körper | Garantierte Spektralform |
+| --- | --- | --- |
+| Komplex und normal | <InlineMath math="\mathbb{C}" /> | Unitäre Diagonalisierung; die Eigenwerte dürfen komplex sein |
+| Komplex und hermitesch | <InlineMath math="\mathbb{C}" /> | Unitäre Diagonalisierung mit reellen Eigenwerten |
+| Reell und symmetrisch | <InlineMath math="\mathbb{R}" /> | Orthogonale Diagonalisierung mit reellen Eigenwerten |
+| Reell und orthogonal | <InlineMath math="\mathbb{R}" /> | Im Allgemeinen reelle Rotationsblöcke; eine reelle Diagonalform nur bei ausschließlich reellen Eigenwerten |
+
+## Normale Matrix ohne reelle Eigenbasis
+
+Betrachten Sie die Drehung um einen Winkel <InlineMath math="\alpha" />, der kein ganzzahliges Vielfaches von <InlineMath math="\pi" /> ist:
+
+<BlockMath math="R_\alpha=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}" />
+
+Die Matrix ist orthogonal. Daher gilt <InlineMath math="R_\alpha^TR_\alpha=I=R_\alpha R_\alpha^T" /> und sie ist normal. Ihr charakteristisches Polynom lautet
+
+<MathContainer>
+<BlockMath math="\chi_{R_\alpha}(t)=(t-\cos\alpha)^2+\sin^2\alpha" />
+<BlockMath math="=t^2-2(\cos\alpha)t+1" />
+</MathContainer>
+
+Seine Diskriminante ist
+
+<BlockMath math="\Delta=4\cos^2\alpha-4=-4\sin^2\alpha<0" />
+
+denn unter der genannten Voraussetzung gilt <InlineMath math="\sin\alpha\neq0" />. Das Polynom hat daher keine reelle Nullstelle und <InlineMath math="R_\alpha" /> besitzt keine reelle Eigenvektorbasis. Über <InlineMath math="\mathbb{C}" /> sind die Eigenwerte <InlineMath math="e^{i\alpha}" /> und <InlineMath math="e^{-i\alpha}" />.
+
+## Diagonalisierbare Matrix, die nicht normal ist
+
+Betrachten wir nun
+
+<BlockMath math="A=\begin{pmatrix}1&3\\0&2\end{pmatrix}" />
+
+Die beiden verschiedenen Eigenwerte <InlineMath math="1" /> und <InlineMath math="2" /> garantieren bereits die gewöhnliche Diagonalisierbarkeit. Die zugehörigen Eigenräume sind
+
+<MathContainer>
+<BlockMath math="E_A(1)=\ker(A-I)=\operatorname{span}\begin{pmatrix}1\\0\end{pmatrix}" />
+<BlockMath math="E_A(2)=\ker(A-2I)=\operatorname{span}\begin{pmatrix}3\\1\end{pmatrix}" />
+</MathContainer>
+
+Mit diesen Eigenvektoren als Spalten erhält man eine explizite Diagonalisierung:
+
+<MathContainer>
+<BlockMath math="S=\begin{pmatrix}1&3\\0&1\end{pmatrix},\qquad D=\begin{pmatrix}1&0\\0&2\end{pmatrix}" />
+<BlockMath math="AS=SD\qquad\Longrightarrow\qquad S^{-1}AS=D" />
+</MathContainer>
+
+Die beiden Eigenvektoren sind jedoch nicht orthogonal, denn
+
+<BlockMath math="\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=3\neq0" />
+
+und direktes Multiplizieren bestätigt, dass <InlineMath math="A" /> nicht normal ist:
+
+<MathContainer>
+<BlockMath math="AA^T=\begin{pmatrix}10&6\\6&4\end{pmatrix}" />
+<BlockMath math="A^TA=\begin{pmatrix}1&3\\3&13\end{pmatrix}" />
+</MathContainer>
+
+Dieses Beispiel trennt die beiden Begriffe. Bei einer gewöhnlichen Diagonalisierung darf die Eigenvektormatrix <InlineMath math="S" /> beliebig invertierbar sein. Eine orthogonale Diagonalisierung verlangt dagegen eine orthonormale Eigenbasis und damit eine reelle symmetrische Matrix.

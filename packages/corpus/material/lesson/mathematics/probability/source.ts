@@ -10,26 +10,10 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "addition-rule", id: "aturan-penjumlahan" },
       slug: "addition-rule",
-      translations: {
-        en: {
-          title: "Addition Rule",
-        },
-        id: {
-          title: "Aturan Penjumlahan",
-        },
-      },
     },
     {
       routeSlugs: { en: "probability-distribution", id: "distribusi-peluang" },
       slug: "probability-distribution",
-      translations: {
-        en: {
-          title: "Probability Distribution",
-        },
-        id: {
-          title: "Distribusi Peluang",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -37,14 +21,6 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
         id: "dua-kejadian-a-dan-b-saling-lepas",
       },
       slug: "two-events-mutually-exclusive",
-      translations: {
-        en: {
-          title: "Mutually Exclusive Events A and B",
-        },
-        id: {
-          title: "Dua Kejadian A dan B Saling Lepas",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -52,14 +28,6 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
         id: "dua-kejadian-a-dan-b-tidak-saling-lepas",
       },
       slug: "two-events-not-mutually-exclusive",
-      translations: {
-        en: {
-          title: "Non-Mutually Exclusive Events A and B",
-        },
-        id: {
-          title: "Dua Kejadian A dan B Tidak Saling Lepas",
-        },
-      },
     },
   ],
   slug: "probability",

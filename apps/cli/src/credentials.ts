@@ -18,6 +18,8 @@ export interface RendererCredentials {
 
 /** Ephemeral authentication and signing values scoped to one preview process. */
 export interface PreviewCredentials {
+  readonly contentRuntimeToken: Redacted.Redacted<string>;
+  readonly internalContentToken: Redacted.Redacted<string>;
   readonly keyId: typeof SigningKeyIdSchema.Type;
   readonly providerToken: Redacted.Redacted<string>;
   readonly publicKeyPem: string;
@@ -50,6 +52,12 @@ export const makePreviewCredentials = Effect.fn(
         .toString();
       const digest = createHash("sha256").update(publicKeyPem).digest("hex");
       return {
+        contentRuntimeToken: Redacted.make(
+          randomBytes(32).toString("base64url")
+        ),
+        internalContentToken: Redacted.make(
+          randomBytes(32).toString("base64url")
+        ),
         keyId: SigningKeyIdSchema.make(`local-${digest.slice(0, 24)}`),
         privateKeyPem,
         providerToken: Redacted.make(randomBytes(32).toString("base64url")),
@@ -69,6 +77,8 @@ export const makePreviewCredentials = Effect.fn(
     Effect.mapError(() => new PreviewCredentialError({ stage: "signer" }))
   );
   return {
+    contentRuntimeToken: generated.contentRuntimeToken,
+    internalContentToken: generated.internalContentToken,
     keyId: generated.keyId,
     providerToken: generated.providerToken,
     publicKeyPem: generated.publicKeyPem,

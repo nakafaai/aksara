@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-09",
+};
+
+Die sechs Altersangaben bilden eine arithmetische Folge, also gilt <InlineMath math="n = 6" />. Mit <InlineMath math="U_n" /> bezeichnen wir das Alter des <InlineMath math="n" />. Kindes.
+
+Aus der Aufgabe wissen wir:
+- Das <InlineMath math="3" />. Kind ist <InlineMath math="18\text{ Jahre}" /> alt: <InlineMath math="U_3 = 18" />.
+- Das <InlineMath math="5" />. Kind ist <InlineMath math="16\text{ Jahre}" /> alt: <InlineMath math="U_5 = 16" />.
+
+Für den <InlineMath math="n" />. Term einer arithmetischen Folge gilt <InlineMath math="U_n = a + (n-1)b" />. Daraus erhalten wir:
+
+<MathContainer>
+  <BlockMath math="\begin{cases} U_3 = a + 2b = 18 \\ U_5 = a + 4b = 16 \end{cases}" />
+</MathContainer>
+
+Wir ziehen die erste Gleichung von der zweiten ab und bestimmen so die Differenz <InlineMath math="b" />:
+
+<MathContainer>
+  <BlockMath math="(a + 4b) - (a + 2b) = 16 - 18" />
+  <BlockMath math="2b = -2 \implies b = -1" />
+</MathContainer>
+
+Nun setzen wir <InlineMath math="b = -1" /> in die Gleichung für <InlineMath math="U_3" /> ein und berechnen den ersten Term <InlineMath math="a" />:
+
+<MathContainer>
+  <BlockMath math="a + 2(-1) = 18" />
+  <BlockMath math="a - 2 = 18 \implies a = 20" />
+</MathContainer>
+
+Das älteste Kind ist also <InlineMath math="20\text{ Jahre}" /> alt. Die Differenz <InlineMath math="-1\text{ Jahr}" /> bedeutet, dass jedes folgende Kind ein Jahr jünger ist. Die sechs Altersangaben lauten <InlineMath math="20, 19, 18, 17, 16, 15" />.
+
+Die Alterssumme <InlineMath math="S_6" /> berechnen wir mit der Summenformel der arithmetischen Folge:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2} (2a + (n-1)b)" />
+  <BlockMath math="S_6 = \frac{6}{2} (2(20) + (6-1)(-1))" />
+  <BlockMath math="S_6 = 3 (40 - 5)" />
+  <BlockMath math="S_6 = 3 (35) = 105" />
+</MathContainer>
+
+Die sechs Kinder sind zusammen <InlineMath math="105\text{ Jahre}" /> alt.

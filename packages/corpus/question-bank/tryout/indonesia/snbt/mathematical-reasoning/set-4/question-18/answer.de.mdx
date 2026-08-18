@@ -1,0 +1,41 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+<Set4Question18Graph
+  title="Illustration der Boots- und Hügelposition"
+  description={
+    <>
+      Visualisierung von Punkten <InlineMath math="A" />, <InlineMath math="B" />,{" "}
+      <InlineMath math="C" /> und <InlineMath math="D" /> mit den beiden Höhenwinkeln.
+    </>
+  }
+/>
+
+Punkt <InlineMath math="A" /> ist der Hügelgipfel, <InlineMath math="B" /> der Fuß des Hügels, <InlineMath math="C" /> die Ausgangsposition des Bootes und <InlineMath math="D" /> der Anleger. Im rechtwinkligen Dreieck <InlineMath math="ABC" /> liegt die Hügelhöhe <InlineMath math="AB" /> dem Winkel <InlineMath math="37^\circ" /> gegenüber.
+
+<MathContainer>
+  <BlockMath math="\sin 37^\circ = \frac{AB}{AC}" />
+  <BlockMath math="0{,}6 = \frac{AB}{20}" />
+  <BlockMath math="AB = 12\text{ km}" />
+</MathContainer>
+
+Die zweite Beobachtung muss dieselbe Höhe ergeben. Dazu bestimmen wir zunächst die waagerechten Strecken:
+
+<MathContainer>
+  <BlockMath math="BC = AC\cos 37^\circ = 20(0{,}8) = 16\text{ km}" />
+  <BlockMath math="BD = BC - CD = 16 - 7 = 9\text{ km}" />
+</MathContainer>
+
+Vom Punkt <InlineMath math="D" /> aus hat die Sichtlinie die Länge:
+
+<MathContainer>
+  <BlockMath math="\cos 53^\circ = \frac{BD}{AD}" />
+  <BlockMath math="0{,}6 = \frac{9}{AD} \implies AD = 15\text{ km}" />
+  <BlockMath math="\sin 53^\circ = \frac{AB}{AD}" />
+  <BlockMath math="AB = 15(0{,}8) = 12\text{ km}" />
+</MathContainer>
+
+Beide Beobachtungen stimmen überein. Der Hügel ist also <InlineMath math="12\text{ km}" /> hoch.

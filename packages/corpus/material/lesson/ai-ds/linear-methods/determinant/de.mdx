@@ -1,0 +1,148 @@
+export const metadata = {
+    title: "Definition der Determinante",
+    description: "Verstehe die Determinante als orientierten Volumenfaktor und verbinde ihre definierenden Eigenschaften mit Rang und Invertierbarkeit.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-10",
+    subject: "Lineare Methoden der KI",
+};
+
+## Grundlegende Konzepte der Determinante
+
+Die Determinante einer quadratischen Matrix misst die orientierte Volumenskalierung ihrer linearen Abbildung. Ihr Betrag gibt den Volumenfaktor an, ihr Vorzeichen zeigt, ob die Orientierung erhalten oder umgekehrt wird.
+
+Jede quadratische Matrix besitzt genau eine Determinante. Der Wert null bedeutet, dass mindestens eine Dimension zusammenfällt. Dann kann keine inverse Abbildung den ursprünglichen Vektor wiederherstellen.
+
+Determinante ist eine spezielle Funktion, die eine quadratische Matrix annimmt und eine reelle Zahl erzeugt:
+
+<BlockMath math="\det : \mathbb{R}^{n \times n} \to \mathbb{R} : A \mapsto \det A" />
+
+Diese Funktion ist einzigartig, da sie über drei charakteristische Eigenschaften verfügt, die keine andere Funktion aufweist.
+
+| Determinante | Geometrische Wirkung | Invertierbarkeit |
+|---|---|---|
+| <InlineMath math="\det A>0" /> | Skaliert das Volumen mit <InlineMath math="\lvert\det A\rvert" /> und erhält die Orientierung | Invertierbar |
+| <InlineMath math="\det A<0" /> | Skaliert das Volumen mit <InlineMath math="\lvert\det A\rvert" /> und kehrt die Orientierung um | Invertierbar |
+| <InlineMath math="\det A=0" /> | Lässt das Volumen auf eine niedriger dimensionale Menge zusammenfallen | Nicht invertierbar |
+
+## Drei bestimmende Eigenschaften der Determinante
+
+### Lineare Eigenschaft in jeder Zeile
+
+Die Determinante ist **in jeder Zeile linear, solange die übrigen Zeilen fest bleiben**. Diese Eigenschaft heißt Multilinearität.
+
+Wenn wir zwei Vektoren in einer Zeile hinzufügen:
+
+<MathContainer>
+<BlockMath math="\det \begin{pmatrix} a_1 \\ \vdots \\ a_i + a_i' \\ \vdots \\ a_n \end{pmatrix} = \det \begin{pmatrix} a_1 \\ \vdots \\ a_i \\ \vdots \\ a_n \end{pmatrix}" />
+<BlockMath math="+ \det \begin{pmatrix} a_1 \\ \vdots \\ a_i' \\ \vdots \\ a_n \end{pmatrix}" />
+</MathContainer>
+
+Wenn wir eine Zeile mit einem Skalar multiplizieren:
+
+<MathContainer>
+<BlockMath math="\det \begin{pmatrix} a_1 \\ \vdots \\ \lambda \cdot a_i \\ \vdots \\ a_n \end{pmatrix}" />
+<BlockMath math="= \lambda \cdot \det \begin{pmatrix} a_1 \\ \vdots \\ a_i \\ \vdots \\ a_n \end{pmatrix}" />
+</MathContainer>
+
+### Alternierende Eigenschaft
+
+Die Determinante ist **alternierend**: Sind zwei Zeilen gleich, ist ihr Wert null.
+
+<BlockMath math="\det \begin{pmatrix} \vdots \\ a \\ \vdots \\ a \\ \vdots \end{pmatrix} = 0" />
+
+Gleichbedeutend damit kehrt ein Tausch zweier Zeilen das Vorzeichen der Determinante um. Gleiche Zeilen blieben bei einem Tausch unverändert, zugleich müsste die Determinante ihr Vorzeichen wechseln. Daher kann ihr Wert nur null sein.
+
+### Normalisierungseigenschaft
+
+Die Determinante wird **normalisiert**, sodass die Determinante der Identitätsmatrix immer <InlineMath math="1" /> ist:
+
+<BlockMath math="\det I = 1" />
+
+Dabei ist <InlineMath math="I" /> die Einheitsmatrix passender Größe. Multilinearität, Alternierung und diese Normierung bestimmen die Determinante eindeutig.
+
+## Matrixoperationen und Determinante
+
+Wenn wir die gesamte Matrix mit einem Skalar <InlineMath math="\lambda" /> multiplizieren, wird die Determinante durch die Potenz von n beeinflusst:
+
+<BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
+
+Dies liegt daran, dass jede Zeile mit <InlineMath math="\lambda" /> multipliziert wird und es insgesamt <InlineMath math="n" /> Zeilen gibt.
+
+Wenn wir zwei Zeilen einer Matrix vertauschen, ändert die Determinante das Vorzeichen:
+
+<BlockMath math="\det B = -\det A" />
+
+Das Addieren eines Vielfachen einer Zeile zu einer anderen Zeile verändert die Determinante nicht:
+
+<MathContainer>
+<BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
+<BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
+</MathContainer>
+
+Die Multiplikation einer Zeile mit dem Skalar <InlineMath math="\lambda \neq 0" /> ändert die Determinante in <InlineMath math="\det A' = \lambda \cdot \det A" />. Durch Vertauschen der Zeilen ändert sich das Vorzeichen zu <InlineMath math="\det A' = -\det A" />. Das Hinzufügen mehrerer anderer Zeilen ändert die Determinante überhaupt nicht.
+
+## Beziehung zur Matrixinvertibilität
+
+Die Determinante entscheidet, ob eine quadratische Matrix <InlineMath math="A" /> invertierbar ist. Die folgenden Bedingungen sind äquivalent:
+
+1. **Matrix A ist invertierbar**
+2. **Es gibt eine inverse Matrix** <InlineMath math="A^{-1}" />, die <InlineMath math="AA^{-1} = I" /> erfüllt
+3. **Matrix mit vollem Rang**: <InlineMath math="\operatorname{rank}(A) = n" />
+4. **Trivialer Kernel**: <InlineMath math="\ker(A) = \{0\}" />
+5. **Spalten sind linear unabhängig**
+6. **Zeilen sind linear unabhängig**
+7. **Determinante ist nicht Null**: <InlineMath math="\det A \neq 0" />
+
+> Wenn die Determinante Null ist, „flacht“ die Matrix den Raum auf eine niedrigere Dimension ab, sodass die Transformation nicht umgekehrt werden kann.
+
+Sind die Zeilen linear abhängig, ist eine Zeile eine Linearkombination der übrigen. Die Multilinearität zerlegt die Determinante dann in Terme mit wiederholten Zeilen, die wegen der alternierenden Eigenschaft alle null sind.
+
+## Multiplikationseigenschaften und ähnliche Matrizen
+
+Eine der nützlichsten Eigenschaften der Determinante ist ihre Wechselwirkung mit der Matrixmultiplikation:
+
+<BlockMath math="\det(AB) = \det A \cdot \det B" />
+
+Ist die Matrix <InlineMath math="A" /> invertierbar, gilt für die Determinante ihrer Inversen:
+
+<BlockMath math="\det(A^{-1}) = \frac{1}{\det A}" />
+
+Zwei Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> heißen **ähnlich**, wenn es eine invertierbare Matrix <InlineMath math="S" /> gibt, so dass:
+
+<BlockMath math="B = S^{-1}AS" />
+
+Ähnliche Matrizen haben die gleiche Determinante. Der Beweis ist einfach:
+
+<MathContainer>
+<BlockMath math="\det B = \det(S^{-1}AS)" />
+<BlockMath math="= \det(S^{-1}) \cdot \det A \cdot \det S" />
+<BlockMath math="= \frac{1}{\det S} \cdot \det A \cdot \det S = \det A" />
+</MathContainer>
+
+Verwendet die Gauß-Elimination nur Zeilenadditionen und <InlineMath math="p" /> Zeilenvertauschungen, gilt für die Determinante der entstehenden oberen Dreiecksmatrix <InlineMath math="R" />
+
+<BlockMath math="\det R = (-1)^p \cdot \det A" />
+
+Wird eine Zeile zusätzlich skaliert, muss dieser Faktor gesondert berücksichtigt werden. Mit klar angegebenen Operationen liefert die Dreiecksform ein praktisches Verfahren zur Determinantenberechnung.
+
+## Häufige Fehler bei der Determinante
+
+Es ist wichtig, sich daran zu erinnern, dass die Determinante **nicht** additiv ist:
+
+<BlockMath math="\det(A + B) \neq \det A + \det B" />
+
+Als einfaches Beispiel:
+
+<MathContainer>
+<BlockMath math="\det\left(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\right)" />
+<BlockMath math="= \det\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = 4" />
+</MathContainer>
+
+Aber:
+
+<MathContainer>
+<BlockMath math="\det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
+<BlockMath math="= 1 + 1 = 2" />
+</MathContainer>
+
+Offensichtlich <InlineMath math="4 \neq 2" />, daher ist die Determinante bei der Matrixaddition nicht additiv.

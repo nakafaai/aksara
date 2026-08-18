@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "Arithmetische und geometrische Reihen im Vergleich",
+  description: "Unterscheide arithmetische und geometrische Reihen anhand ihrer Glieder und wähle die passende Summenformel für vollständige Rechnungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Arithmetische Reihe
+
+**Grundkonzept:**
+
+Eine arithmetische Reihe ist die **Summe** der Glieder einer **arithmetischen Folge**. Zwischen den aufeinanderfolgenden Gliedern dieser Folge liegt die **konstante gemeinsame Differenz** <InlineMath math="b" />.
+
+Summiert werden also Glieder mit dem Muster <InlineMath math="a, a+b, a+2b, a+3b, \dots" />.
+
+Die Summe der ersten <InlineMath math="n" /> Glieder wird mit <InlineMath math="S_n" /> bezeichnet und lässt sich so berechnen:
+
+<BlockMath math="S_n = \frac{n}{2}(2a + (n-1)b)" />
+
+oder
+
+<BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+
+Dabei ist <InlineMath math="a" /> das erste Glied und <InlineMath math="U_n" /> das <InlineMath math="n" />-te Glied.
+
+Ein Stapel bestehe in der ersten Schicht aus <InlineMath math="1" /> Stein, in der zweiten aus <InlineMath math="3" /> Steinen und in der dritten aus <InlineMath math="5" /> Steinen. Die gemeinsame Differenz beträgt <InlineMath math="= 2" />. Die arithmetische Reihe gibt die **Gesamtzahl** der Steine in den ersten <InlineMath math="n" /> Schichten an.
+
+## Geometrische Reihe
+
+**Grundkonzept:**
+
+Eine geometrische Reihe ist die **Summe** der Glieder einer **geometrischen Folge**. Der **konstante gemeinsame Quotient** aufeinanderfolgender Glieder wird mit <InlineMath math="r" /> bezeichnet.
+
+Summiert werden also Glieder mit dem Muster <InlineMath math="a, ar, ar^2, ar^3, \dots" />.
+
+Für die Summe der ersten <InlineMath math="n" /> Glieder <InlineMath math="S_n" /> gilt:
+
+<BlockMath math="S_n = \frac{a(r^n - 1)}{r-1}" />
+
+Diese Formel gilt für <InlineMath math="r \neq 1" />. Dabei ist <InlineMath math="a" /> das erste Glied und <InlineMath math="r" /> der Quotient.
+
+Für <InlineMath math="r=1" /> sind alle Glieder gleich <InlineMath math="a" />. Dann gilt der Sonderfall:
+
+<BlockMath math="S_n=na" />
+
+Eine Werkstatt fertige in aufeinanderfolgenden Stunden <InlineMath math="1" />, dann <InlineMath math="2" /> und anschließend <InlineMath math="4" /> neue Bauteile. Die Stundenproduktion hat den Quotienten <InlineMath math="r=2" />. Die geometrische Reihe beschreibt die **kumulative** Produktion über <InlineMath math="n \text{Stunden}" />. In den ersten <InlineMath math="3 \text{Stunden}" /> entstehen insgesamt <InlineMath math="1+2+4=7 \text{Komponenten}" />.
+
+## Hauptunterschiede
+
+| Merkmal | Arithmetische Reihe | Geometrische Reihe |
+| ----------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Grundlage** | Summe der Glieder einer arithmetischen Folge mit gemeinsamer Differenz <InlineMath math="b" /> | Summe der Glieder einer geometrischen Folge mit Quotient <InlineMath math="r" /> |
+| **Summenformel <InlineMath math="S_n" />** | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" /> | <InlineMath math="\frac{a(r^n - 1)}{r-1}" /> |
+| **Muster** | Konstante Addition/Subtraktion | Konstante Multiplikation/Division |
+
+## Ausführliche Beispiele
+
+Für die arithmetische Reihe:
+
+<BlockMath math="5+8+11+14+17" />
+
+Die gemeinsame Differenz ist <InlineMath math="b=3" />. Daher:
+
+<BlockMath math="S_5=\frac52(5+17)=55" />
+
+Für die geometrische Reihe:
+
+<BlockMath math="5+10+20+40+80" />
+
+Der gemeinsame Quotient ist <InlineMath math="r=2" />. Daher:
+
+<BlockMath math="S_5=5\frac{2^5-1}{2-1}=155" />
+
+## Glieder und Partialsummen nicht verwechseln
+
+Die Glieder einer arithmetischen Reihe ändern sich linear mit dem Index, ihre Partialsummen im Allgemeinen quadratisch. Die Glieder einer geometrischen Reihe ändern sich exponentiell, während ihre endlichen Partialsummen der geometrischen Summenformel folgen.
+
+Der Name einer Reihe bezieht sich auf die Folge ihrer Glieder. Er sagt nicht, dass die Partialsummen <InlineMath math="S_1,S_2,S_3,\ldots" /> selbst eine arithmetische oder geometrische Folge bilden.
+
+## Übung
+
+Klassifiziere jede Reihe und berechne ihre Summe:
+
+1. <InlineMath math="30+25+20+15+10" />
+2. <InlineMath math="2+6+18+54+162" />
+
+### Lösung
+
+Die erste Reihe ist arithmetisch mit <InlineMath math="b=-5" />. Die zweite ist geometrisch mit <InlineMath math="r=3" />:
+
+<MathContainer>
+  <BlockMath math="S_5=\frac52(30+10)=100" />
+  <BlockMath math="S_5=2\frac{3^5-1}{3-1}=242" />
+</MathContainer>

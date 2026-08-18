@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+Die Stellen folgen dem Muster <InlineMath math="\text{Ziffer} - \text{Buchstabe} - \text{Ziffer} - \text{Buchstabe}" />. Wir zählen die zulässigen Möglichkeiten an jeder Stelle und multiplizieren sie anschließend.
+
+#### Erste Ziffer
+
+Für die erste Stelle kommen die ungeraden Ziffern <InlineMath math="1, 3, 5, 7, 9" /> infrage. Das sind <InlineMath math="5" /> Möglichkeiten.
+
+#### Erster Buchstabe
+
+Der zweite Buchstabe steht bereits als <InlineMath math="O" /> fest. Da sich Buchstaben nicht wiederholen dürfen, kann der erste Buchstabe weder <InlineMath math="A" /> noch <InlineMath math="O" /> sein. Es bleiben <InlineMath math="E, I, U" />, also <InlineMath math="3" /> Möglichkeiten.
+
+#### Zweite Ziffer und zweiter Buchstabe
+
+Die zweite Ziffer stammt aus <InlineMath math="2, 4, 6, 8" /> und bietet damit <InlineMath math="4" /> Möglichkeiten. Sie kann nicht mit der ersten Ziffer übereinstimmen, weil die erste ungerade und die zweite gerade ist. Der letzte Buchstabe ist festgelegt und trägt daher <InlineMath math="1" /> Möglichkeit bei.
+
+#### Gesamtzahl
+
+Nach der Multiplikationsregel gilt:
+
+<BlockMath math="\text{Gesamtzahl der Passwörter} = 5 \times 3 \times 4 \times 1 = 60" />
+
+Damit erfüllen <InlineMath math="60" /> Passwörter alle Regeln.

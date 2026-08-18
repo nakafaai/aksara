@@ -1,0 +1,95 @@
+
+export const metadata = {
+  title: "Grundidee der linearen Regression",
+  description: "Verstehe, wie eine Regressionsgerade einen linearen Datentrend zusammenfasst, Vorhersagen ermöglicht und mit der Methode der kleinsten Quadrate bestimmt wird.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was ist lineare Regression?
+
+Ein [Streudiagramm](/de/faecher/mathematik/regression-und-korrelation/streudiagramm) zeigt, ob die Werte zweier Variablen <InlineMath math="X" /> und <InlineMath math="Y" /> ein gemeinsames Muster bilden.
+
+Wenn die Punktwolke ungefähr einem ansteigenden oder fallenden geradlinigen Trend folgt, können wir diesen Trend durch eine passende Gerade zusammenfassen. Sie heißt **lineare Regressionsgerade**. Das Verfahren zu ihrer Bestimmung heißt **lineare Regression**.
+
+## Die „Best-Fit“-Linie
+
+Die Regressionsgerade wird auch als _Best-Fit_-Gerade bezeichnet. Das bedeutet nicht, dass sie durch jeden Datenpunkt verläuft. Nach dem Kriterium der kleinsten Quadrate ist es die Gerade mit der kleinsten möglichen Summe quadrierter vertikaler Residuen. So fasst sie den linearen Trend der Daten zusammen.
+
+## Beispiel einer Regressionslinie
+
+Betrachten wir erneut Lernzeiten und Prüfungsergebnisse. Die Punktwolke zeigt einen positiven linearen Trend.
+
+<ScatterDiagram
+  title="Regressionslinie für den Zusammenhang zwischen Lernzeit und Prüfungsergebnissen"
+  description="Die Linie zeigt den linearen Trend (Regressionslinie) der Daten."
+  xAxisLabel="Lernzeit (Stunden)"
+  yAxisLabel="Prüfungsergebnis"
+  datasets={[
+    {
+      name: "Schüler",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 60 },
+        { x: 1.5, y: 68 },
+        { x: 2, y: 65 },
+        { x: 2.5, y: 75 },
+        { x: 3, y: 72 },
+        { x: 3.5, y: 80 },
+        { x: 4, y: 85 },
+        { x: 4, y: 82 },
+        { x: 4.5, y: 90 },
+        { x: 5, y: 88 },
+        { x: 5.5, y: 95 },
+        { x: 6, y: 92 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{
+    color: "var(--chart-3)",
+  }}
+/>
+
+Die eingezeichnete Regressionsgerade zeigt den **allgemeinen Trend**: Mit längerer Lernzeit steigt das vorhergesagte Prüfungsergebnis tendenziell an. Einzelne Ergebnisse können trotzdem oberhalb oder unterhalb der Geraden liegen.
+
+## Wozu dient diese Regressionslinie?
+
+Eine wichtige Anwendung ist die **Vorhersage**. Wir könnten mit der Geraden zum Beispiel das Ergebnis eines Schülers schätzen, der <InlineMath math="7 \text{Stunden}" /> lernt. Die beobachteten Lernzeiten reichen jedoch nur von <InlineMath math="1" /> bis <InlineMath math="6" /> Stunden. Eine Vorhersage für <InlineMath math="7 \text{Stunden}" /> ist daher eine **Extrapolation** und weniger verlässlich als eine Schätzung innerhalb des beobachteten Bereichs.
+
+## Mathematisches Konzept
+
+Die lineare Regressionsgerade, also die _Best-Fit_-Gerade, wird mit der **Methode der kleinsten Quadrate** bestimmt. Gesucht ist die Gerade, welche die **Summe der quadrierten vertikalen Residuen** zwischen beobachteten und vorhergesagten Werten minimiert.
+
+Mathematisch hat sie die Form:
+
+<BlockMath math="\hat{y} = a + bx" />
+
+Dabei gilt:
+
+- <InlineMath math="\hat{y}" /> (gesprochen: <InlineMath math="y" />-Dach) ist der von der Regressionsgeraden **vorhergesagte <InlineMath math="y" />-Wert**.
+- <InlineMath math="x" /> ist der Wert der unabhängigen Variablen.
+- <InlineMath math="b" /> ist die **Steigung**. Sie gibt an, um wie viel sich <InlineMath math="\hat{y}" /> bei einer Erhöhung von <InlineMath math="x" /> um eine Einheit verändert.
+- <InlineMath math="a" /> ist der **<InlineMath math="y" />-Achsenabschnitt**, also der vorhergesagte <InlineMath math="y" />-Wert bei <InlineMath math="x = 0" />. Diese Deutung ist nur sinnvoll, wenn <InlineMath math="x = 0" /> im Sachzusammenhang eine Bedeutung hat.
+
+Die Werte von <InlineMath math="b" /> und <InlineMath math="a" /> werden aus den beobachteten <InlineMath math="(x, y)" />-Paaren berechnet:
+
+<MathContainer>
+  <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
+  <BlockMath math="a = \bar{y} - b\bar{x}" />
+</MathContainer>
+
+Dabei bedeutet:
+
+- <InlineMath math="n" /> ist die Anzahl der Datenpaare.
+- <InlineMath math="\sum x" /> ist die Summe aller <InlineMath math="x" />-Werte.
+- <InlineMath math="\sum y" /> ist die Summe aller <InlineMath math="y" />-Werte.
+- <InlineMath math="\sum xy" /> ist die Summe der Produkte der zusammengehörigen <InlineMath math="x" />- und <InlineMath math="y" />-Werte.
+- <InlineMath math="\sum x^2" /> ist die Summe der quadrierten <InlineMath math="x" />-Werte.
+- <InlineMath math="\bar{x}" /> ist der Mittelwert der <InlineMath math="x" />-Werte (<InlineMath math="\frac{\sum x}{n}" />
+  ).
+- <InlineMath math="\bar{y}" /> ist der Mittelwert der <InlineMath math="y" />-Werte (<InlineMath math="\frac{\sum y}{n}" />
+  ).
+
+Diese Formeln bestimmen eine eindeutige Kleinste-Quadrate-Gerade, solange die beobachteten <InlineMath math="x" />-Werte nicht alle gleich sind. Sind alle <InlineMath math="x" />-Werte identisch, ist der Nenner der Steigungsformel null und die Daten bestimmen keine eindeutige Regressionssteigung.

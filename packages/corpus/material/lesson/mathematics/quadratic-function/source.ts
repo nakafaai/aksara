@@ -10,14 +10,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "quadratic-equation", id: "persamaan-kuadrat" },
       slug: "quadratic-equation",
-      translations: {
-        en: {
-          title: "Quadratic Equations",
-        },
-        id: {
-          title: "Persamaan Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -25,14 +17,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "faktorisasi-persamaan-kuadrat",
       },
       slug: "quadratic-equation-factorization",
-      translations: {
-        en: {
-          title: "Quadratic Equation Factorization",
-        },
-        id: {
-          title: "Faktorisasi Persamaan Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -40,14 +24,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "rumus-persamaan-kuadrat",
       },
       slug: "quadratic-equation-formula",
-      translations: {
-        en: {
-          title: "Quadratic Formula",
-        },
-        id: {
-          title: "Rumus Persamaan Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -55,14 +31,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "akar-tidak-nyata-atau-imajiner",
       },
       slug: "quadratic-equation-imaginary-root",
-      translations: {
-        en: {
-          title: "Imaginary or Non-Real Roots",
-        },
-        id: {
-          title: "Akar Tidak Nyata atau Imajiner",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -70,14 +38,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "melengkapi-kuadrat-sempurna",
       },
       slug: "quadratic-equation-perfect-square",
-      translations: {
-        en: {
-          title: "Completing the Square",
-        },
-        id: {
-          title: "Melengkapi Kuadrat Sempurna",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -85,14 +45,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "jenis-jenis-akar-persamaan-kuadrat",
       },
       slug: "quadratic-equation-types-of-root",
-      translations: {
-        en: {
-          title: "Types of Quadratic Equation Roots",
-        },
-        id: {
-          title: "Jenis-Jenis Akar Persamaan Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -100,14 +52,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "karakteristik-fungsi-kuadrat",
       },
       slug: "quadratic-function-characteristics",
-      translations: {
-        en: {
-          title: "Characteristics of Quadratic Functions",
-        },
-        id: {
-          title: "Karakteristik Fungsi Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -115,14 +59,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "mengonstruksi-fungsi-kuadrat",
       },
       slug: "quadratic-function-construction",
-      translations: {
-        en: {
-          title: "Constructing Quadratic Functions",
-        },
-        id: {
-          title: "Mengonstruksi Fungsi Kuadrat",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -130,14 +66,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "menentukan-luas-maksimum",
       },
       slug: "quadratic-function-maximum-area",
-      translations: {
-        en: {
-          title: "Determining Maximum Area",
-        },
-        id: {
-          title: "Menentukan Luas Maksimum",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -145,14 +73,6 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
         id: "menentukan-luas-minimum",
       },
       slug: "quadratic-function-minimum-area",
-      translations: {
-        en: {
-          title: "Determining Minimum Area",
-        },
-        id: {
-          title: "Menentukan Luas Minimum",
-        },
-      },
     },
   ],
   slug: "quadratic-function",

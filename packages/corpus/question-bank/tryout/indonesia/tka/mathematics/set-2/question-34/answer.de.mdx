@@ -1,0 +1,82 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 34",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-11",
+};
+
+#### Faktorisieren Sie den ersten Teiler
+
+<MathContainer>
+<BlockMath math="2x^2 - x - 1 = (2x + 1)(x - 1) = 0" />
+<BlockMath math="x = -\frac{1}{2} \cup x = 1" />
+</MathContainer>
+
+Der Rest ist <InlineMath math="s(x) = 4ax - b" />. Die Wurzeln des Divisors sind <InlineMath math="-\frac{1}{2}" /> und <InlineMath math="1" />, also
+
+Für <InlineMath math="x = -\frac{1}{2}" />
+
+<MathContainer>
+<BlockMath math="f\left(-\frac{1}{2}\right) = s\left(-\frac{1}{2}\right)" />
+<BlockMath math="f\left(-\frac{1}{2}\right) = 4a\left(-\frac{1}{2}\right) - b" />
+<BlockMath math="f\left(-\frac{1}{2}\right) = -2a - b \quad ...(1)" />
+</MathContainer>
+
+Für <InlineMath math="x = 1" />
+
+<MathContainer>
+<BlockMath math="f(1) = s(1)" />
+<BlockMath math="f(1) = 4a - b \quad ...(2)" />
+</MathContainer>
+
+#### Faktorisieren Sie den zweiten Teiler
+
+Gegeben sei das Polynom <InlineMath math="f(x)" /> mit dem Teiler <InlineMath math="2x^2 + 3x + 1 = (2x + 1)(x + 1) = 0" />, dann <InlineMath math="x = -\frac{1}{2} \cup x = -1" />.
+
+Der Rest ist <InlineMath math="s(x) = -2bx + a - 11" />.
+
+Für <InlineMath math="x = -\frac{1}{2}" />
+
+<MathContainer>
+<BlockMath math="f\left(-\frac{1}{2}\right) = s\left(-\frac{1}{2}\right)" />
+<BlockMath math="f\left(-\frac{1}{2}\right) = -2b\left(-\frac{1}{2}\right) + a - 11" />
+<BlockMath math="f\left(-\frac{1}{2}\right) = a + b - 11 \quad ...(3)" />
+</MathContainer>
+
+#### Verwenden Sie die Teilbarkeitsbedingung
+
+<InlineMath math="f(x - 2)" /> ist durch <InlineMath math="x - 3" /> teilbar, also der Teiler <InlineMath math="x - 3 = 0 \rightarrow x = 3" />.
+
+Der Rest ist <InlineMath math="s(x) = 0" /> (da er teilbar ist).
+
+<MathContainer>
+<BlockMath math="x = 3 \rightarrow f(x - 2) = 0" />
+<BlockMath math="f(3 - 2) = 0" />
+<BlockMath math="f(1) = 0 \quad ...(4)" />
+</MathContainer>
+
+#### Lösen Sie das Gleichungssystem
+
+Aus der zweiten und vierten Gleichung
+
+<MathContainer>
+<BlockMath math="4a - b = 0" />
+<BlockMath math="b = 4a \quad ...(5)" />
+</MathContainer>
+
+Aus der ersten und dritten Gleichung mit <InlineMath math="b = 4a" />
+
+<MathContainer>
+<BlockMath math="f\left(-\frac{1}{2}\right) = f\left(-\frac{1}{2}\right)" />
+<BlockMath math="a + b - 11 = -2a - b" />
+<BlockMath math="3a + 2b = 11" />
+<BlockMath math="3a + 2(4a) = 11" />
+<BlockMath math="3a + 8a = 11" />
+<BlockMath math="11a = 11" />
+<BlockMath math="a = 1" />
+</MathContainer>
+
+Setzen Sie den Wert <InlineMath math="a = 1" /> in die fünfte Gleichung ein
+
+<BlockMath math="b = 4a = 4(1) = 4" />
+
+Daher der Wert von <InlineMath math="a + 2b + 6 = 1 + 2(4) + 6 = 15" />.

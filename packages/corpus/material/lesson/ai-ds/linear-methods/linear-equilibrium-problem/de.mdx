@@ -1,0 +1,144 @@
+export const metadata = {
+  title: "Lineares Ausgleichsproblem",
+  description: "Löse inkonsistente lineare Systeme mit kleinsten Quadraten, Residualnormen, orthogonaler Projektion, Normalgleichungen und numerisch stabilen Verfahren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Lineare Methoden der KI",
+};
+
+## Vom inkonsistenten System zur besten Anpassung
+
+Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" /> und <InlineMath math="b \in \mathbb{R}^m" />. Liegt <InlineMath math="b" /> nicht im Spaltenraum von <InlineMath math="A" />, dann besitzt das System
+
+<BlockMath math="Ax=b" />
+
+keine exakte Lösung. Das kommt häufig vor, wenn ein Modell an verrauschte Messwerte angepasst wird oder ein überbestimmtes System mehr unabhängige Gleichungen als Unbekannte enthält.
+
+Statt die Gleichheit zu erzwingen, definieren wir das Residuum
+
+<BlockMath math="e(x)=Ax-b" />
+
+und wählen den Vektor mit dem kleinsten Residuum. Das gewöhnliche lineare Ausgleichsproblem lautet
+
+<BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
+
+Da das Residuum <InlineMath math="m" /> Komponenten besitzt, lässt sich die Zielfunktion schreiben als
+
+<BlockMath math="\|Ax-b\|_2^2=\sum_{i=1}^{m}(Ax-b)_i^2" />
+
+Durch das Quadrieren sind alle Beiträge nicht negativ. Eine große Residualkomponente wird stärker gewichtet als eine kleine.
+
+## Die geometrische Bedingung
+
+Der Vektor <InlineMath math="A\hat{x}" /> ist der Punkt in <InlineMath math="\operatorname{col}(A)" />, der <InlineMath math="b" /> im euklidischen Abstand am nächsten liegt. Im Optimum steht das Residuum senkrecht auf jeder Spalte von <InlineMath math="A" />:
+
+<MathContainer>
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=0" />
+<BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
+</MathContainer>
+
+Die zweite Gleichung heißt **Normalgleichung**.
+
+<LineEquation
+  title="Orthogonale Projektion beim Ausgleichsproblem"
+  description={<>Der blaue Vektor endet bei <InlineMath math="A\hat{x}" />, der orangefarbene bei <InlineMath math="b" />, und der violette Vektor ist das Residuum <InlineMath math="A\hat{x}-b" />.</>}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 2, z: 1 },
+        { x: 6, y: 3, z: 1.5 }
+      ],
+      color: "#0284c7",
+      cone: { position: "end" },
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2.5, y: 2, z: 1.5 },
+        { x: 5, y: 4, z: 3 }
+      ],
+      color: "#d97706",
+      cone: { position: "end" },
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="b" />, at: 2, offset: [0.5, 0, 0.5] }
+      ]
+    },
+    {
+      points: [
+        { x: 5, y: 4, z: 3 },
+        { x: 5.5, y: 3.5, z: 2.25 },
+        { x: 6, y: 3, z: 1.5 }
+      ],
+      color: "#9333ea",
+      cone: { position: "end" },
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
+      ]
+    }
+  ]}
+/>
+
+Die Szene zeigt den Zielvektor, seine Projektion und das verbindende Residuum. Der blaue Vektor stellt den projizierten Punkt im Spaltenraum dar, nicht den gesamten Unterraum. Die Orthogonalitätsbedingung oben ist die exakte Aussage, durch die <InlineMath math="A\hat{x}" /> zum nächstgelegenen Punkt wird.
+
+## Ein kleines durchgerechnetes Beispiel
+
+Eine Konstante <InlineMath math="x" /> soll die drei Beobachtungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> möglichst gut darstellen. Dann gilt
+
+<BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
+
+und die Zielfunktion lautet
+
+<MathContainer>
+<BlockMath math="F(x)=(x-1)^2+(x-2)^2+(x-6)^2" />
+<BlockMath math="F'(x)=2(x-1)+2(x-2)+2(x-6)=6x-18" />
+</MathContainer>
+
+Setzen wir die Ableitung gleich null, erhalten wir <InlineMath math="\hat{x}=3" />. Der angepasste Vektor und das Residuum sind
+
+<MathContainer>
+<BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
+<BlockMath math="A\hat{x}-b=\begin{pmatrix}2\\1\\-3\end{pmatrix}" />
+</MathContainer>
+
+Die Residualkomponenten summieren sich zu null:
+
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=2+1-3=0" />
+
+Damit ist die Normalgleichung erfüllt.
+
+## Andere Residualnormen
+
+Die gewählte Norm bestimmt, welche Fehlerart bei der Anpassung im Vordergrund steht.
+
+| Zielfunktion | Was sie steuert |
+| --- | --- |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_2^2=\min_x\sum_{i=1}^{m}(Ax-b)_i^2" /> | Bestraft große Residuen quadratisch und ergibt die gewöhnliche Projektion nach kleinsten Quadraten. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_1=\min_x\sum_{i=1}^{m}\lvert(Ax-b)_i\rvert" /> | Verwendet eine lineare Strafe, sodass ein vereinzeltes großes Residuum weniger Einfluss hat als beim quadrierten Verlust. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_\infty=\min_x\max_{1\le i\le m}\lvert(Ax-b)_i\rvert" /> | Minimiert das größte absolute Residuum. |
+
+Die Formulierungen mit <InlineMath math="\ell_1" /> und <InlineMath math="\ell_\infty" /> lassen sich als lineare Programme schreiben. Ihre Eignung hängt weiterhin vom Entstehungsprozess der Daten und vom relevanten Fehlerkriterium der Anwendung ab.
+
+## Kleinste Quadrate zuverlässig berechnen
+
+Hat <InlineMath math="A" /> vollen Spaltenrang, ist der Ausgleichsvektor eindeutig. Aus der Normalgleichung folgt dann
+
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
+
+Diese Identität ist für die Analyse nützlich. Das explizite Bilden der Inversen ist jedoch nicht das bevorzugte numerische Verfahren. In der Praxis:
+
+- verwendet man eine QR-Zerlegung für ein stabiles Ausgleichsproblem mit vollem Rang
+- verwendet man eine SVD, wenn Rangmangel oder schlechte Konditionierung wichtig sind
+- verwendet man die Pseudoinverse, um bei mehreren Minimierern die Lösung mit kleinster Norm auszuwählen
+
+Es gibt außerdem eine präzise statistische Interpretation. Im Modell
+
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+
+mit festem <InlineMath math="A" /> und unabhängigen gaußverteilten Fehlern gleicher Varianz ist die Methode der kleinsten Quadrate der Maximum-Likelihood-Schätzer für <InlineMath math="x_*" />. Korrelierte Fehler oder unterschiedliche Varianzen erfordern eine andere Gewichtung statt der uneingeschränkten gewöhnlichen Ausgleichsformel.

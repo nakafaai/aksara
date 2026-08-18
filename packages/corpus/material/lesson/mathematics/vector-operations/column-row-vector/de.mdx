@@ -1,0 +1,93 @@
+export const metadata = {
+   title: "Spalten- und Zeilenvektoren",
+   description: "Lerne die Schreibweisen von Spalten- und Zeilenvektoren, das Transponieren und die Einheitsvektoren im kartesischen Koordinatensystem kennen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-04-12",
+   subject: "Vektoren und ihre Operationen",
+};
+
+## Spalten- und Zeilenvektoren
+
+Ein Vektor besitzt einen Betrag und eine Richtung. In Koordinatenrechnungen ordnen wir seine Komponenten meist als **Spaltenvektor** oder als **Zeilenvektor** an. Das sind Komponentendarstellungen und nicht die einzigen Möglichkeiten, einen Vektor zu zeichnen oder zu schreiben.
+
+Bei einem **Spaltenvektor** stehen die Komponenten untereinander. Bei einem **Zeilenvektor** stehen sie nebeneinander.
+
+## Notation von Spalten- und Zeilenvektoren
+
+So sehen beide Schreibweisen aus:
+
+1. Für zweidimensionale Vektoren:
+
+   - Zeilenvektor: <InlineMath math="(3 \; 4)" /> oder <InlineMath math="[3 \; 4]" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> oder <InlineMath math="\begin{bmatrix} 3 \\ 4 \end{bmatrix}" />
+
+2. Für dreidimensionale Vektoren:
+   - Zeilenvektor: <InlineMath math="(2 \; 1 \; 3)" /> oder <InlineMath math="[2 \; 1 \; 3]" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix}" /> oder <InlineMath math="\begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+## Gleichwertige Komponentendarstellungen
+
+Ein Vektor mit denselben Komponenten lässt sich auf mehrere nützliche Arten darstellen:
+
+1. Mit runden Klammern:
+
+   <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix}" />
+
+2. Mit eckigen Klammern:
+
+   <BlockMath math="\begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+3. Mit kartesischen Einheitsvektoren:
+
+   <BlockMath math="2\mathbf{i} + \mathbf{j} + 3\mathbf{k}" />
+
+Alle drei Ausdrücke beschreiben denselben Vektor. Die ersten beiden stellen seine Komponenten als Spalte dar. Der dritte Ausdruck zerlegt den Vektor in die kartesischen Einheitsvektoren. Die Bedeutung senkrechter Striche ergibt sich aus dem Kontext: <InlineMath math="\det A" /> oder <InlineMath math="|A|" /> kann die Determinante einer quadratischen Matrix bezeichnen, <InlineMath math="|x|" /> den Betrag eines Skalars und <InlineMath math="\lVert \vec{v} \rVert" /> den Betrag, also die Norm, eines Vektors.
+
+## Einheitsvektoren im kartesischen Koordinatensystem
+
+Ein Einheitsvektor hat den Betrag <InlineMath math="1 \text{ Einheit}" /> und zeigt in eine bestimmte Richtung. Im kartesischen Koordinatensystem gibt es für jede Achse einen solchen Basisvektor.
+
+### Einheitsvektoren im zweidimensionalen kartesischen Koordinatensystem
+
+1. Einheitsvektor in horizontaler Richtung, also entlang der <InlineMath math="x" />-Achse:
+
+   - Zeilenvektor: <InlineMath math="(1 \; 0)" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 1 \\ 0 \end{pmatrix}" />
+
+2. Einheitsvektor in vertikaler Richtung, also entlang der <InlineMath math="y" />-Achse:
+   - Zeilenvektor: <InlineMath math="(0 \; 1)" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
+
+### Einheitsvektoren im dreidimensionalen kartesischen Koordinatensystem
+
+1. Einheitsvektor entlang der <InlineMath math="x" />-Achse:
+
+   - Zeilenvektor: <InlineMath math="(1 \; 0 \; 0)" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}" />
+
+2. Einheitsvektor entlang der <InlineMath math="y" />-Achse:
+
+   - Zeilenvektor: <InlineMath math="(0 \; 1 \; 0)" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}" />
+
+3. Einheitsvektor entlang der <InlineMath math="z" />-Achse:
+   - Zeilenvektor: <InlineMath math="(0 \; 0 \; 1)" />
+   - Spaltenvektor: <InlineMath math="\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}" />
+
+## Beziehung zwischen Spalten- und Zeilenvektoren
+
+Spalten- und Zeilenvektoren hängen über das **Transponieren** zusammen. Dabei wird aus einer Zeile eine Spalte oder aus einer Spalte eine Zeile.
+
+Ist <InlineMath math="\vec{a} = (a_1 \; a_2 \; \ldots \; a_n)" /> ein Zeilenvektor, dann ist seine Transponierte ein Spaltenvektor:
+
+<BlockMath math="\vec{a}^T = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix}" />
+
+Ist umgekehrt <InlineMath math="\vec{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}" /> ein Spaltenvektor, dann ist seine Transponierte ein Zeilenvektor:
+
+<BlockMath math="\vec{b}^T = (b_1 \; b_2 \; \ldots \; b_m)" />
+
+## Anwendungen von Spalten- und Zeilenvektoren
+
+Die Unterscheidung ist besonders bei Operationen der linearen Algebra wichtig, etwa bei der Matrixmultiplikation. In der Vektorrechnung, der Physik und anderen wissenschaftlichen Anwendungen muss die gewählte Form zur jeweiligen Rechnung passen.
+
+In der Informatik stellen Spalten- und Zeilenvektoren zum Beispiel Daten und Variablen in der numerischen Programmierung, der Bildverarbeitung und der künstlichen Intelligenz dar.

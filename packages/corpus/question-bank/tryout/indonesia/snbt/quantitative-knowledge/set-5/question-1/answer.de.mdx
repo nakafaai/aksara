@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben sind die ersten beiden Glieder <InlineMath math="a_1 = -6" /> und <InlineMath math="a_2 = -8" /> sowie die Rekursionsgleichung:
+
+<MathContainer>
+  <BlockMath math="a_{n+1} = 2a_{n+2} + 3a_n" />
+</MathContainer>
+
+Für <InlineMath math="a_3 + 2a_4" /> bestimmen wir nacheinander <InlineMath math="a_3" /> und <InlineMath math="2a_4" />.
+
+#### Drittes Glied bestimmen
+
+Zuerst setzen wir <InlineMath math="n = 1" /> in die Rekursionsgleichung ein:
+
+<MathContainer>
+  <BlockMath math="a_{1+1} = 2a_{1+2} + 3a_1" />
+  <BlockMath math="a_2 = 2a_3 + 3a_1" />
+</MathContainer>
+
+Dann setzen wir die bekannten Werte von <InlineMath math="a_1" /> und <InlineMath math="a_2" /> ein:
+
+<MathContainer>
+  <BlockMath math="-8 = 2a_3 + 3(-6)" />
+  <BlockMath math="-8 = 2a_3 - 18" />
+</MathContainer>
+
+Wir bringen den Term <InlineMath math="-18" /> auf die linke Seite:
+
+<MathContainer>
+  <BlockMath math="2a_3 = -8 + 18" />
+  <BlockMath math="2a_3 = 10" />
+  <BlockMath math="a_3 = 5" />
+</MathContainer>
+
+#### Doppeltes des vierten Glieds bestimmen
+
+Nun setzen wir <InlineMath math="n = 2" /> ein, sodass <InlineMath math="a_4" /> in der Gleichung erscheint:
+
+<MathContainer>
+  <BlockMath math="a_{2+1} = 2a_{2+2} + 3a_2" />
+  <BlockMath math="a_3 = 2a_4 + 3a_2" />
+</MathContainer>
+
+Wir setzen <InlineMath math="a_3 = 5" /> und <InlineMath math="a_2 = -8" /> ein:
+
+<MathContainer>
+  <BlockMath math="5 = 2a_4 + 3(-8)" />
+  <BlockMath math="5 = 2a_4 - 24" />
+</MathContainer>
+
+Da die Aufgabe direkt nach <InlineMath math="a_3 + 2a_4" /> fragt, lösen wir nach <InlineMath math="2a_4" /> auf:
+
+<MathContainer>
+  <BlockMath math="2a_4 = 5 + 24" />
+  <BlockMath math="2a_4 = 29" />
+</MathContainer>
+
+#### Endergebnis
+
+Nun summieren wir die erhaltenen Werte:
+
+<MathContainer>
+  <BlockMath math="a_3 + 2a_4 = 5 + 29 = 34" />
+</MathContainer>
+
+Damit hat <InlineMath math="a_3 + 2a_4" /> den Wert <InlineMath math="34" />.

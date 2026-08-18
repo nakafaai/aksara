@@ -1,0 +1,132 @@
+
+export const metadata = {
+  title: "Vektorkonzept",
+  description: "Verstehe Vektoren mithilfe einer Windkarte und lerne Betrag, Richtung, Schreibweisen und die Darstellung als Pfeil kennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Vektoroperationen",
+};
+
+## Was ist ein Vektor?
+
+Stell dir eine Wetterkarte mit Pfeilen vor, die den Wind an verschiedenen Orten zeigen. Die Richtung jedes Pfeils zeigt, **wohin der Wind weht**. Seine Länge oder Dicke kann zeigen, **wie schnell der Wind weht**.
+
+Die Windgeschwindigkeit ist ein **Vektor**, weil sie einen **Betrag** und eine **Richtung** hat. Der Betrag entspricht der Geschwindigkeit, zum Beispiel <InlineMath math="30 \text{ km/h}" />. Die Richtung gibt an, wohin der Wind weht.
+
+## Vektoren zeichnen und schreiben
+
+Ein Vektor ist eine abstrakte Größe. Üblicherweise stellen wir ihn durch eine gerichtete Strecke, also einen Pfeil, dar.
+
+<VectorChart
+  title="Vektordiagramm"
+  description={
+    <>
+      Vektoren in einem kartesischen Koordinatensystem mit waagerechter{" "}
+      <InlineMath math="x" />-Achse und senkrechter <InlineMath math="y" />-Achse.
+    </>
+  }
+  vectors={[
+    {
+      id: "vector_1",
+      name: "Vektor 1",
+      points: [
+        { x: 0, y: 0 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      id: "vector_2",
+      name: "Vektor 2",
+      points: [
+        { x: 1, y: 1 },
+        { x: 5, y: 2 },
+      ],
+      direction: "backward",
+    },
+    {
+      id: "vector_3",
+      name: "Vektor 3",
+      points: [
+        { x: 2, y: 0 },
+        { x: 4, y: 7 },
+      ],
+      direction: "backward",
+    },
+  ]}
+/>
+
+- **Vektor** <InlineMath math="1" />: Richtung des Vektors vom Punkt <InlineMath math="(0, 0)" /> zum Punkt <InlineMath math="(6, 8)" />
+- **Vektor** <InlineMath math="2" />: Richtung des Vektors vom Punkt <InlineMath math="(5, 2)" /> zum Punkt <InlineMath math="(1, 1)" />
+- **Vektor** <InlineMath math="3" />: Richtung des Vektors vom Punkt <InlineMath math="(4, 7)" /> zum Punkt <InlineMath math="(2, 0)" />
+
+### Wesentliche Bestandteile eines Vektors
+
+1.  **Anfangspunkt:** Der Startpunkt des Vektors.
+2.  **Endpunkt:** Der Endpunkt des Vektors, markiert mit einer Pfeilspitze.
+3.  **Betrag:** Die Länge des Pfeils stellt den Betrag des Vektors dar. Den Betrag des Vektors <InlineMath math="\overrightarrow{AB}" /> schreibt man als <InlineMath math="|\overrightarrow{AB}|" />.
+4.  **Richtung:** Die Richtung, in die die Pfeilspitze zeigt.
+
+### Schreibweisen für Vektoren
+
+Vektoren lassen sich auf verschiedene Arten schreiben:
+
+1.  **Zwei Großbuchstaben mit einem Pfeil darüber:** Sie geben Anfangs- und Endpunkt an. <InlineMath math="\overrightarrow{AB}" /> bezeichnet den Vektor vom Punkt <InlineMath math="A" /> zum Punkt <InlineMath math="B" />.
+2.  **Ein Kleinbuchstabe mit einem Pfeil darüber:** Beispiel: <InlineMath math="\vec{a}" />.
+3.  **Ein fett gedruckter Kleinbuchstabe:** Beispiel: **a**.
+
+## Übung
+
+Stellen die folgenden Zeichnungen jeweils einen einzelnen Vektorpfeil dar? Begründe deine Antwort.
+
+<VectorChart
+  title="Kartesisches Koordinatensystem"
+  description={
+    <>
+      Waagerechte <InlineMath math="x" />-Achse und senkrechte{" "}
+      <InlineMath math="y" />-Achse.
+    </>
+  }
+  vectors={[
+    {
+      id: "shape_1",
+      name: "Form 1",
+      points: [
+        { x: 0, y: 0 },
+        { x: 1, y: 9 },
+        { x: 3, y: 4 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      id: "shape_2",
+      name: "Form 2",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 6 },
+        { x: 5, y: 2 },
+      ],
+      direction: "backward",
+    },
+    {
+      id: "shape_3",
+      name: "Form 3",
+      points: [
+        { x: 2, y: 0 },
+        { x: 4, y: 7 },
+      ],
+      direction: "both",
+    },
+  ]}
+/>
+
+In der dargestellten Form ist keine der drei Zeichnungen die übliche Darstellung eines einzelnen Vektors:
+
+1. **Form** <InlineMath math="1" />: Der gekrümmte Linienzug beschreibt einen Weg, keine einzelne gerichtete Strecke. Die gesamte Verschiebung ließe sich dennoch durch einen Pfeil vom Anfangs- zum Endpunkt darstellen.
+2. **Form** <InlineMath math="2" />: Auch die geknickte Linie beschreibt einen Weg aus mehreren Teilstrecken. Ein einzelner Vektorpfeil würde den Anfangspunkt direkt mit dem Endpunkt verbinden.
+3. **Form** <InlineMath math="3" />: Die Strecke trägt an beiden Enden eine Pfeilspitze und legt deshalb keine eindeutige Orientierung fest. Ein einzelner Vektor braucht genau einen Anfangs- und einen Endpunkt.
+
+Die übliche Pfeildarstellung eines einzelnen Vektors hat deshalb diese Eigenschaften:
+
+- Sie besteht aus genau einer geraden Strecke
+- Eine Pfeilspitze zeigt ihre Richtung an
+- Anfangs- und Endpunkt sind eindeutig festgelegt

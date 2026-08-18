@@ -5,8 +5,9 @@ import {
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocale,
-  activeAppLocaleCode,
+  type ActiveAppLocaleList,
+  type AppLocale,
+  AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
   QuranChunkRowSchema,
@@ -20,8 +21,15 @@ import {
   QURAN_CHUNK_SIZE,
   QuranSurahRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Schema, Stream } from "effect";
-import { quranSourceAttributions } from "#corpus/quran/provenance";
+import { Effect, Stream } from "effect";
+import {
+  requireSourceLocale,
+  type SourceLocaleUnavailableError,
+} from "#corpus/locale/source";
+import {
+  type QuranAttributionLocaleError,
+  quranSourceAttributionsFor,
+} from "#corpus/quran/attribution";
 import type {
   QuranCountError,
   QuranRevelationError,
@@ -30,19 +38,31 @@ import type {
 } from "#corpus/quran/registry";
 import type { QuranSurah, QuranVerse } from "#corpus/quran/schema";
 
-/** Validates one source verse against the exact runtime contract. */
-function projectVerse(verse: QuranVerse) {
-  return Schema.decodeUnknownSync(QuranRuntimeVerseSchema)({
+/** Validates one source verse against the selected runtime locale contract. */
+const projectVerse = Effect.fn("AksaraCorpus.projectQuranVerse")(function* (
+  verse: QuranVerse,
+  activeAppLocales: ActiveAppLocaleList
+) {
+  const translations = yield* Effect.forEach(
+    activeAppLocales,
+    (appLocale) =>
+      requireSourceLocale(
+        verse.translation,
+        appLocale,
+        `Quran verse ${verse.number.inQuran}`
+      ).pipe(Effect.map((value) => ({ appLocale, value }))),
+    { concurrency: "unbounded" }
+  );
+  return QuranRuntimeVerseSchema.make({
     meta: verse.meta,
     number: verse.number,
-    tafsir: [{ appLocale: "id", ...verse.tafsir.id }],
+    tafsir: activeAppLocales.includes(AppLocaleSchema.make("id"))
+      ? [{ appLocale: "id", ...verse.tafsir.id }]
+      : [],
     text: verse.text,
-    translations: ACTIVE_APP_LOCALES.map((appLocale) => ({
-      appLocale,
-      value: verse.translation[activeAppLocaleCode(appLocale)],
-    })),
+    translations,
   });
-}
+});
 
 /** Projects immutable metadata without embedding any verse bodies. */
 function projectSurah(surah: QuranSurah) {
@@ -56,17 +76,26 @@ function projectSurah(surah: QuranSurah) {
 }
 
 /** Builds deterministic contiguous chunks of at most six verses. */
-function projectChunks(surah: QuranSurah) {
+const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
+  surah: QuranSurah,
+  activeAppLocales: ActiveAppLocaleList
+) {
+  const projectedVerses = yield* Effect.forEach(
+    surah.verses,
+    (verse) => projectVerse(verse, activeAppLocales),
+    { concurrency: "unbounded" }
+  );
   const chunks: QuranRowPayload[] = [];
-  for (const [index, firstSource] of surah.verses.entries()) {
+  for (const [index, firstVerse] of projectedVerses.entries()) {
     if (index % QURAN_CHUNK_SIZE !== 0) {
       continue;
     }
-    const remaining = surah.verses
-      .slice(index + 1, index + QURAN_CHUNK_SIZE)
-      .map(projectVerse);
+    const remaining = projectedVerses.slice(
+      index + 1,
+      index + QURAN_CHUNK_SIZE
+    );
     const verses: [QuranRuntimeVerse, ...QuranRuntimeVerse[]] = [
-      projectVerse(firstSource),
+      firstVerse,
       ...remaining,
     ];
     const [first] = verses;
@@ -83,33 +112,40 @@ function projectChunks(surah: QuranSurah) {
     );
   }
   return chunks;
-}
+});
 
 /** Builds one search row only from exact source-owned text. */
 const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
   surah: QuranSurah,
-  appLocale: ActiveAppLocale
+  appLocale: AppLocale
 ) {
-  const appLocaleCode = activeAppLocaleCode(appLocale);
   const title = `${surah.number}. ${surah.name.transliteration}`;
-  const verseText = surah.verses
-    .map((verse) => {
-      const translation = verse.translation[appLocaleCode];
-      const values = [
-        verse.number.inSurah.toString(),
-        verse.text.arabic,
-        translation.text,
-        translation.footnotes,
-      ];
-      if (appLocale === "id") {
-        values.push(verse.tafsir.id.text);
-        if (verse.tafsir.id.footnotes !== null) {
-          values.push(verse.tafsir.id.footnotes);
-        }
-      }
-      return values.join(" ");
-    })
-    .join(" ");
+  const verseText = (yield* Effect.forEach(
+    surah.verses,
+    (verse) =>
+      requireSourceLocale(
+        verse.translation,
+        appLocale,
+        `Quran search verse ${verse.number.inQuran}`
+      ).pipe(
+        Effect.map((translation) => {
+          const values = [
+            verse.number.inSurah.toString(),
+            verse.text.arabic,
+            translation.text,
+            translation.footnotes,
+          ];
+          if (appLocale === "id") {
+            values.push(verse.tafsir.id.text);
+            if (verse.tafsir.id.footnotes !== null) {
+              values.push(verse.tafsir.id.footnotes);
+            }
+          }
+          return values.join(" ");
+        })
+      ),
+    { concurrency: "unbounded" }
+  )).join(" ");
   const graph = yield* makeLearningGraphIdentity({
     appLocale,
     concept: ["quran", "surah", surah.number.toString()],
@@ -134,13 +170,23 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
 });
 
 /** Emits metadata followed by bounded chunks for one reviewed surah. */
-function streamSurahRuntime(surah: QuranSurah) {
-  return Stream.fromIterable([projectSurah(surah), ...projectChunks(surah)]);
+function streamSurahRuntime(
+  surah: QuranSurah,
+  activeAppLocales: ActiveAppLocaleList
+) {
+  return Stream.fromEffect(projectChunks(surah, activeAppLocales)).pipe(
+    Stream.flatMap((chunks) =>
+      Stream.fromIterable([projectSurah(surah), ...chunks])
+    )
+  );
 }
 
-/** Emits both complete locale-specific search rows for one surah. */
-function streamSurahSearch(surah: QuranSurah) {
-  return Stream.fromIterable(ACTIVE_APP_LOCALES).pipe(
+/** Emits complete locale-specific search rows for one surah. */
+function streamSurahSearch(
+  surah: QuranSurah,
+  activeAppLocales: ActiveAppLocaleList
+) {
+  return Stream.fromIterable(activeAppLocales).pipe(
     Stream.mapEffect((appLocale) => projectSearch(surah, appLocale))
   );
 }
@@ -155,7 +201,9 @@ export type QuranRegistryError =
 /** Expected graph derivation failure for one locale-specific Quran row. */
 export type QuranProjectionError =
   | LearningGraphIdentityError
-  | QuranRegistryError;
+  | QuranAttributionLocaleError
+  | QuranRegistryError
+  | SourceLocaleUnavailableError;
 
 /** Replay factory for the complete strictly validated Quran registry. */
 export type QuranRegistrySource = () => Stream.Stream<
@@ -164,17 +212,30 @@ export type QuranRegistrySource = () => Stream.Stream<
 >;
 
 /** Emits all runtime rows first and all search rows second deterministically. */
-export function streamQuranRows(source: QuranRegistrySource) {
-  const attribution = Stream.succeed(
-    QuranAttributionRowSchema.make({
-      activeAppLocales: ACTIVE_APP_LOCALES,
-      kind: "quran-attribution",
-      sources: quranSourceAttributions,
-    })
+export function streamQuranRows(
+  source: QuranRegistrySource,
+  activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
+) {
+  const attribution = Stream.fromEffect(
+    quranSourceAttributionsFor(activeAppLocales).pipe(
+      Effect.map((sources) =>
+        QuranAttributionRowSchema.make({
+          activeAppLocales,
+          kind: "quran-attribution",
+          sources,
+        })
+      )
+    )
   );
   const runtime = attribution.pipe(
-    Stream.concat(source().pipe(Stream.flatMap(streamSurahRuntime)))
+    Stream.concat(
+      source().pipe(
+        Stream.flatMap((surah) => streamSurahRuntime(surah, activeAppLocales))
+      )
+    )
   );
-  const search = source().pipe(Stream.flatMap(streamSurahSearch));
+  const search = source().pipe(
+    Stream.flatMap((surah) => streamSurahSearch(surah, activeAppLocales))
+  );
   return runtime.pipe(Stream.concat(search));
 }

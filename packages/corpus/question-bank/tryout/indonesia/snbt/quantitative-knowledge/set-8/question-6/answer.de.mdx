@@ -1,0 +1,47 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-25",
+};
+
+Bei einer Teilmenge spielt die Reihenfolge der Elemente keine Rolle. Deshalb zählen wir mit Kombinationen.
+
+Eine Menge mit <InlineMath math="n" /> Elementen besitzt insgesamt <InlineMath math="2^n" /> Teilmengen. Für <InlineMath math="n = 10" /> sind das:
+
+<BlockMath math="2^{10} = 1024" />
+
+Gesucht sind Teilmengen mit **mehr als <InlineMath math="3" />** Elementen, also mit <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, ..., <InlineMath math="10" /> Elementen.
+
+Einfacher ist das Komplement: Von allen Teilmengen ziehen wir diejenigen mit **<InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> oder <InlineMath math="3" />** Elementen ab.
+
+Die Kombinationsformel lautet:
+
+<BlockMath math="C(n, r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}" />
+
+Diese vier Anzahlen berechnen wir einzeln.
+
+#### Teilmengen mit null Elementen
+
+<BlockMath math="C(10, 0) = \frac{10!}{0!10!} = 1" />
+
+#### Teilmengen mit einem Element
+
+<BlockMath math="C(10, 1) = \frac{10!}{1!9!} = 10" />
+
+#### Teilmengen mit zwei Elementen
+
+<BlockMath math="C(10, 2) = \frac{10!}{2!8!} = \frac{10 \times 9}{2 \times 1} = 45" />
+
+#### Teilmengen mit drei Elementen
+
+<BlockMath math="C(10, 3) = \frac{10!}{3!7!} = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120" />
+
+Zusammen gibt es so viele Teilmengen mit <InlineMath math="\leq 3" /> Elementen:
+
+<BlockMath math="1 + 10 + 45 + 120 = 176" />
+
+Für die Teilmengen mit **mehr als <InlineMath math="3" />** Elementen bleibt:
+
+<BlockMath math="\begin{aligned} \text{Gesamt} - (\leq 3) &= 1024 - 176 \\ &= 848 \end{aligned}" />
+
+Damit gibt es <InlineMath math="848" /> Teilmengen von <InlineMath math="A" /> mit mehr als <InlineMath math="3" /> Elementen.

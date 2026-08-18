@@ -1,0 +1,75 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Zunächst bestimmen wir <InlineMath math="n" /> aus <InlineMath math="f(-2) = \frac{1}{2}" />.
+
+#### Den unbekannten Wert finden
+
+Wir setzen <InlineMath math="x = -2" /> in die Funktionsgleichung ein:
+
+<MathContainer>
+  <BlockMath math="f(-2) = \frac{1}{\sqrt{(-2)^2 - (-2) + n}}" />
+  <BlockMath math="\frac{1}{2} = \frac{1}{\sqrt{4 + 2 + n}}" />
+  <BlockMath math="\frac{1}{2} = \frac{1}{\sqrt{6 + n}}" />
+</MathContainer>
+
+Nach dem Quadrieren beider Seiten folgt:
+
+<MathContainer>
+  <BlockMath math="\left(\frac{1}{2}\right)^2 = \left(\frac{1}{\sqrt{6 + n}}\right)^2" />
+  <BlockMath math="\frac{1}{4} = \frac{1}{6 + n}" />
+  <BlockMath math="4 = 6 + n" />
+  <BlockMath math="n = -2" />
+</MathContainer>
+
+Die Funktion <InlineMath math="f(x)" /> lautet also:
+
+<BlockMath math="f(x) = \frac{1}{\sqrt{x^2 - x - 2}}" />
+
+Prüfen wir nun den Wahrheitsgehalt jeder Aussage.
+
+#### Aussage eins
+
+<InlineMath math="n" /> ist eine ungerade Zahl.
+Da <InlineMath math="n = -2" /> gerade ist, ist Aussage <InlineMath math="1" /> **falsch**.
+
+#### Aussage zwei
+
+<InlineMath math="0" /> soll zum Wertebereich von <InlineMath math="f(x)" /> gehören. Die Funktion <InlineMath math="f(x) = \frac{1}{\sqrt{\dots}}" /> besitzt einen konstanten, von null verschiedenen Zähler. Deshalb kann der Funktionswert niemals <InlineMath math="0" /> werden.
+Aussage <InlineMath math="2" /> ist daher **falsch**.
+
+#### Aussage drei
+
+Die Funktion <InlineMath math="f" /> hat einen Wert von <InlineMath math="\frac{1}{4}" />, wenn <InlineMath math="x = -4" />.
+Wir berechnen <InlineMath math="f(-4)" />:
+
+<MathContainer>
+  <BlockMath math="f(-4) = \frac{1}{\sqrt{(-4)^2 - (-4) - 2}}" />
+  <BlockMath math="= \frac{1}{\sqrt{16 + 4 - 2}}" />
+  <BlockMath math="= \frac{1}{\sqrt{18}}" />
+  <BlockMath math="= \frac{1}{3\sqrt{2}}" />
+</MathContainer>
+
+Da <InlineMath math="\frac{1}{3\sqrt{2}} \neq \frac{1}{4}" /> gilt, ist Aussage <InlineMath math="3" /> **falsch**.
+
+#### Aussage vier
+
+Der behauptete Definitionsbereich der Funktion <InlineMath math="f" /> lautet <InlineMath math="x < -1 \cup x > 2" />. Da die Quadratwurzel im Nenner steht, muss ihr Radikand strikt positiv sein:
+
+<BlockMath math="x^2 - x - 2 > 0" />
+
+Wir faktorisieren die quadratische Ungleichung:
+
+<BlockMath math="(x - 2)(x + 1) > 0" />
+
+Die Nullstellen sind <InlineMath math="x = 2" /> und <InlineMath math="x = -1" />. Eine Vorzeichenbetrachtung zeigt, dass der Ausdruck für <InlineMath math="x < -1" /> oder <InlineMath math="x > 2" /> positiv ist.
+
+Der Definitionsbereich von <InlineMath math="f" /> ist also <InlineMath math="\{x \mid x &lt; -1 \text{ oder } x &gt; 2\}" />.
+Aussage <InlineMath math="4" /> ist **wahr**.
+
+#### Fazit
+
+Nur Aussage <InlineMath math="4" /> ist wahr. Es gibt daher genau <InlineMath math="1" /> wahre Aussage.

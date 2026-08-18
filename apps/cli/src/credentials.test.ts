@@ -42,11 +42,15 @@ describe("preview credentials", () => {
     expect(first.keyId).toMatch(LOCAL_KEY_ID_PATTERN);
     expect(first.keyId).not.toBe(second.keyId);
     const firstSecrets = [
+      Redacted.value(first.contentRuntimeToken),
+      Redacted.value(first.internalContentToken),
       Redacted.value(first.providerToken),
       Redacted.value(first.renderer.secret),
       Redacted.value(first.renderer.token),
     ];
     const secondSecrets = [
+      Redacted.value(second.contentRuntimeToken),
+      Redacted.value(second.internalContentToken),
       Redacted.value(second.providerToken),
       Redacted.value(second.renderer.secret),
       Redacted.value(second.renderer.token),

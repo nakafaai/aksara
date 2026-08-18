@@ -1,0 +1,94 @@
+export const metadata = {
+    title: "Bestimmtes Integral",
+    description: "Definiere das bestimmte Integral als Grenzwert von Riemann-Summen und werte ein Beispiel direkt über diesen Grenzwert aus.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Integrale",
+};
+
+## Von der Näherung zur exakten Fläche
+
+Im Material [Riemann-Summen](/de/faecher/mathematik/integralrechnung/riemann-summen) haben wir die Fläche unter einer nichtnegativen Kurve durch Rechtecke angenähert. Wird die Zerlegung immer feiner, nähern sich die Riemann-Summen bei einer integrierbaren Funktion demselben Wert.
+
+Nun lassen wir die Rechteckbreite <InlineMath math="\Delta x" /> gegen null gehen, während die Anzahl <InlineMath math="n" /> der Rechtecke unbegrenzt wächst. Entscheidend ist, dass die **Maschenweite gegen null geht**. Der Grenzwert der Riemann-Summen ersetzt die Näherung durch einen exakten Wert. Genau daraus entsteht das **bestimmte Integral**.
+
+## Notation und Bedeutung des bestimmten Integrals
+
+Das bestimmte Integral beschreibt diese Akkumulation im Grenzwert. Es ist als Grenzwert von Riemann-Summen definiert, sofern dieser Grenzwert existiert.
+
+<BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
+
+Jeder Teil der Notation hat eine klare Bedeutung:
+- **<InlineMath math="\int_{a}^{b}" />**: Das Integralsymbol trägt die **untere Grenze** <InlineMath math="a" /> und die **obere Grenze** <InlineMath math="b" />. Beide Werte legen das betrachtete Intervall fest.
+- **<InlineMath math="f(x)" />**: Der **Integrand** liefert die Funktionswerte für die vorzeichenbehaftete Akkumulation.
+- **<InlineMath math="dx" />**: Wie beim unbestimmten Integral zeigt diese Schreibweise an, dass bezüglich der Variablen <InlineMath math="x" /> integriert wird.
+
+Im Gegensatz zum unbestimmten Integral, das eine Funktionenfamilie (<InlineMath math="F(x) + C" />) beschreibt, ist ein bestimmtes Integral eine **einzelne Zahl**. Es misst die vorzeichenbehaftete Akkumulation von <InlineMath math="x=a" /> bis <InlineMath math="x=b" /> und entspricht nur bei einem nichtnegativen Integranden dem geometrischen Flächeninhalt.
+
+## Berechnung des bestimmten Integrals mit Grenzwerten
+
+Wir berechnen nun ein bestimmtes Integral direkt aus seiner Grenzwertdefinition.
+
+**Aufgabe:** Berechne den Wert von <InlineMath math="\int_{0}^{7} x \, dx" />.
+
+**Lösung:**
+
+Dazu schreiben wir das Integral wieder als Grenzwert einer Riemann-Summe.
+
+**Schritt** <InlineMath math="1" />: Bestandteile der Riemann-Summe bestimmen
+
+Aus dem Problem <InlineMath math="\int_{0}^{7} x \, dx" /> wissen wir:
+- Funktion: <InlineMath math="f(x) = x" />
+- Intervall: <InlineMath math="[a, b] = [0, 7]" />
+
+Somit beträgt die Breite jedes Teilintervalls:
+
+<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{7-0}{n} = \frac{7}{n}" />
+
+Als Stützstelle jedes Teilintervalls verwenden wir den rechten Endpunkt <InlineMath math="x_i" />:
+
+<BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
+
+**Schritt** <InlineMath math="2" />: Riemann-Summe aufstellen
+
+Die Höhe jedes Rechtecks beträgt <InlineMath math="f(x_i)" />, also:
+
+<BlockMath math="f(x_i) = x_i = \frac{7i}{n}" />
+
+Nun setzen wir diesen Ausdruck in die Riemann-Summe ein:
+
+<BlockMath math="\sum_{i=1}^{n} f(x_i) \Delta x = \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) = \sum_{i=1}^{n} \frac{49i}{n^2}" />
+
+**Schritt** <InlineMath math="3" />: Vereinfachen und die Summenformel anwenden
+
+<InlineMath math="n" /> ist für die Summe von <InlineMath math="i=1" /> bis <InlineMath math="n" /> konstant. Deshalb kann der Faktor vor das Summenzeichen gezogen werden.
+
+<BlockMath math="\frac{49}{n^2} \sum_{i=1}^{n} i" />
+
+Als Nächstes ersetzen wir <InlineMath math="\sum_{i=1}^{n} i" /> durch die Summenformel <InlineMath math="\frac{n(n+1)}{2}" /> und vereinfachen den Ausdruck, bevor wir den Grenzwert bilden.
+
+<MathContainer>
+<BlockMath math="\frac{49}{n^2} \cdot \frac{n(n+1)}{2}" />
+<BlockMath math="= \frac{49n(n+1)}{2n^2}" />
+<BlockMath math="= \frac{49(n+1)}{2n}" />
+<BlockMath math="= \frac{49}{2} \left( \frac{n+1}{n} \right) = \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
+</MathContainer>
+
+Zuerst kürzen wir <InlineMath math="n" /> in Zähler und Nenner. Anschließend zerlegen wir den verbleibenden Bruch so, dass der Grenzwert direkt ablesbar wird.
+
+> Für Grenzwerte von Riemann-Summen sind diese Summenformeln besonders nützlich:
+> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
+
+**Schritt** <InlineMath math="4" />: Grenzwert bilden
+
+Nun lassen wir <InlineMath math="n \to \infty" /> gehen. Dabei nähert sich <InlineMath math="\frac{1}{n}" /> dem Wert null.
+
+<MathContainer>
+<BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
+<BlockMath math="= \frac{49}{2} \left( 1 + 0 \right)" />
+<BlockMath math="= \frac{49}{2}" />
+</MathContainer>
+
+Da <InlineMath math="f(x) = x" /> zwischen <InlineMath math="x=0" /> und <InlineMath math="x=7" /> nichtnegativ ist, entspricht das Integral zugleich dem geometrischen Flächeninhalt: <InlineMath math="\frac{49}{2}" /> beziehungsweise <InlineMath math="24{,}5" /> Quadrateinheiten. Der Grenzwert hat die Rechtecknäherungen in einen exakten Wert überführt.

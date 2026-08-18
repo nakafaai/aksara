@@ -1,0 +1,423 @@
+export const metadata = {
+  title: "Kreissektor",
+  description: "Kreissektoren erkennen und ihre Fläche aus Radius und Mittelpunktswinkel berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+
+## Definition des Kreissektors
+
+Ein Kreissektor ist der Teil einer Kreisscheibe, der von zwei Radien und dem dazwischenliegenden Kreisbogen begrenzt wird. Ein radial aus einer runden Torte geschnittenes Stück oder eine Orangenspalte hat annähernd diese Form.
+
+Sein Rand besteht aus drei Teilen:
+
+- Zwei Radien, die sich im Kreismittelpunkt treffen
+- Ein Bogen, der die Enden beider Radien verbindet
+
+Die beiden Radien bilden im Kreismittelpunkt einen Mittelpunktswinkel. Bei festem Radius bestimmt dieser Winkel, welchen Anteil der Kreisscheibe der Sektor einnimmt.
+
+## Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche
+
+Bei festem Radius wächst die Sektorfläche proportional zum Mittelpunktswinkel. Ein doppelt so großer Winkel gehört also zu einer doppelt so großen Sektorfläche.
+
+Misst der Mittelpunktswinkel <InlineMath math="\alpha" /> Grad, dann beträgt der Flächenanteil des Sektors <InlineMath math="\frac{\alpha}{360^\circ}" /> der gesamten Kreisfläche.
+
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+</MathContainer>
+
+Bei <InlineMath math="90^\circ" /> umfasst der Sektor ein Viertel der Kreisfläche, bei <InlineMath math="180^\circ" /> genau die Hälfte.
+
+## Berechnung der Sektorfläche
+
+Für die Berechnung benötigen wir den Radius und den Mittelpunktswinkel.
+
+Ein Kreis habe den Radius <InlineMath math="14 \text{ cm}" /> und der Sektor den Mittelpunktswinkel <InlineMath math="60^\circ" />. Einsetzen liefert:
+
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{60^\circ}{360^\circ} \times \pi \times 14^2" />
+<BlockMath math="= \frac{1}{6} \times \pi \times 196" />
+<BlockMath math="= \frac{196\pi}{6}" />
+<BlockMath math="= \frac{98\pi}{3} \text{ cm}^2" />
+<BlockMath math="\approx 102{,}63 \text{ cm}^2" />
+</MathContainer>
+
+Die Sektorfläche beträgt exakt <InlineMath math="\frac{98\pi}{3} \text{ cm}^2" />, also ungefähr <InlineMath math="102{,}63 \text{ cm}^2" />.
+
+## Winkel und Flächenanteil vergleichen
+
+Die folgenden Darstellungen zeigen, wie der Flächenanteil mit dem Winkel zunimmt:
+
+<ContentStack>
+
+<LineEquation
+  title={<>Sektor <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> des Kreises)</>}
+  description={<>Ein Mittelpunktswinkel von <InlineMath math="60^\circ" /> erfasst <InlineMath math="\frac{1}{6}" /> der Kreisfläche.</>}
+  cameraPosition={[6, 4, 6]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const angle = (i * Math.PI / 3) / 20;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="60^\circ=\frac{1}{6}" />,
+          at: 10,
+          offset: [0.8, 0.5, 0],
+          color: "#7c3aed",
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Sektor <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> des Kreises)</>}
+  description={<>Ein Mittelpunktswinkel von <InlineMath math="90^\circ" /> erfasst <InlineMath math="\frac{1}{4}" /> der Kreisfläche.</>}
+  cameraPosition={[6, 4, 6]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 3, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (i * Math.PI / 2) / 30;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#65a30d",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="90^\circ=\frac{1}{4}" />,
+          at: 15,
+          offset: [0.5, 0.8, 0],
+          color: "#7c3aed",
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Sektor <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> des Kreises)</>}
+  description={<>Ein Mittelpunktswinkel von <InlineMath math="120^\circ" /> erfasst <InlineMath math="\frac{1}{3}" /> der Kreisfläche.</>}
+  cameraPosition={[6, 4, 6]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const angle = (i * 2 * Math.PI / 3) / 40;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="120^\circ=\frac{1}{3}" />,
+          at: 20,
+          offset: [-0.5, 1, 0],
+          color: "#7c3aed",
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Sektor <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> des Kreises)</>}
+  description={<>Ein Mittelpunktswinkel von <InlineMath math="180^\circ" /> erfasst <InlineMath math="\frac{1}{2}" /> der Kreisfläche.</>}
+  cameraPosition={[6, 4, 6]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (i * Math.PI) / 30;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="180^\circ=\frac{1}{2}" />,
+          at: 15,
+          offset: [0, 0.5, 0],
+          color: "#7c3aed",
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Sektor <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> des Kreises)</>}
+  description={<>Ein Mittelpunktswinkel von <InlineMath math="270^\circ" /> erfasst <InlineMath math="\frac{3}{4}" /> der Kreisfläche.</>}
+  cameraPosition={[6, 4, 6]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#c026d3",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: -3, z: 0 },
+      ],
+      color: "#c026d3",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 82 }, (_, i) => {
+        const startAngle = 0;
+        const endAngle = (3 * Math.PI) / 2;
+        const angle = startAngle + (i * endAngle) / 81;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="270^\circ=\frac{3}{4}" />,
+          at: 40,
+          offset: [1, -0.5, 0],
+          color: "#7c3aed",
+        },
+      ],
+    },
+  ]}
+/>
+
+</ContentStack>
+
+## Übungsaufgaben
+
+1. Ein Kreis hat den Radius <InlineMath math="21 \text{ cm}" />. Bestimme die Fläche des Sektors mit <InlineMath math="120^\circ" />.
+
+2. Ein Sektor hat in einem Kreis mit dem Radius <InlineMath math="14 \text{ cm}" /> die Fläche <InlineMath math="49\pi \text{ cm}^2" />. Wie groß ist sein Mittelpunktswinkel?
+
+3. Ein rundes Fladenbrot mit Durchmesser <InlineMath math="28 \text{ cm}" /> wird radial durch seinen Mittelpunkt in <InlineMath math="8" /> gleich große Sektoren geschnitten. Bestimme die Fläche eines Stücks.
+
+### Ausführliche Lösungen
+
+1. **Lösungsschritte:**
+
+   Gegeben: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+
+   <MathContainer>
+   <BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+   <BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
+   <BlockMath math="= \frac{1}{3} \times \pi \times 441" />
+   <BlockMath math="= \frac{441\pi}{3}" />
+   <BlockMath math="= 147\pi \text{ cm}^2" />
+   <BlockMath math="\approx 461{,}81 \text{ cm}^2" />
+   </MathContainer>
+
+2. **Lösungsschritte:**
+
+   Gegeben: Sektorfläche = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+
+   <MathContainer>
+   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
+   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
+   <BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
+   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
+   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
+   <BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
+   <BlockMath math="\alpha = 90^\circ" />
+   </MathContainer>
+
+3. **Lösungsschritte:**
+
+   Gegeben ist der Durchmesser <InlineMath math="28 \text{ cm}" />, also <InlineMath math="r = 14 \text{ cm}" />.
+   Bei <InlineMath math="8" /> gleich großen radialen Sektoren beträgt der Mittelpunktswinkel jedes Stücks <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />.
+
+   <MathContainer>
+   <BlockMath math="\text{Fläche jedes Stücks} = \frac{45^\circ}{360^\circ} \times \pi \times 14^2" />
+   <BlockMath math="= \frac{1}{8} \times \pi \times 196" />
+   <BlockMath math="= \frac{196\pi}{8}" />
+   <BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
+   <BlockMath math="\approx 76{,}97 \text{ cm}^2" />
+   </MathContainer>

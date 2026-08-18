@@ -1,0 +1,121 @@
+export const metadata = {
+   title: "Arithmetische und geometrische Folgen im Vergleich",
+   description: "Unterscheide arithmetische und geometrische Folgen anhand konstanter Differenzen und Quotienten und wende beide Modelle gezielt an.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-04-05",
+   subject: "Folgen und Reihen",
+};
+
+## Zahlenfolgen verstehen
+
+Eine Zahlenfolge ordnet jedem Index ein Glied zu. Zwei häufige Typen sind [arithmetische Folgen](./arithmetische-folge) und [geometrische Folgen](./geometrische-folge).
+
+## Arithmetische Folgen
+
+### Definition arithmetischer Folgen
+
+Bei einer arithmetischen Folge ist die Differenz zwischen zwei aufeinanderfolgenden Gliedern konstant.
+
+Für die Folge <InlineMath math="a_1, a_2, a_3, ..., a_n" /> gilt also:
+
+<BlockMath math="a_2 - a_1 = a_3 - a_2 = a_4 - a_3 = ... = a_n - a_{n-1} = b" />
+
+Dabei bezeichnet <InlineMath math="b" /> die gemeinsame Differenz.
+
+### Allgemeines Glied einer arithmetischen Folge
+
+Für eine arithmetische Folge mit dem ersten Glied <InlineMath math="a" /> und der gemeinsamen Differenz <InlineMath math="b" /> lautet das allgemeine Glied:
+
+<BlockMath math="U_n = a + (n-1)b" />
+
+## Geometrische Folgen
+
+### Definition geometrischer Folgen
+
+Bei einer geometrischen Folge ist der Quotient zweier aufeinanderfolgender Glieder konstant.
+
+Für die Folge <InlineMath math="a_1, a_2, a_3, ..., a_n" /> gilt, sofern die Nenner nicht null sind:
+
+<BlockMath math="\frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ... = \frac{a_n}{a_{n-1}} = r" />
+
+Dabei bezeichnet <InlineMath math="r" /> den gemeinsamen Quotienten. Die gleichwertige Multiplikationsregel <InlineMath math="a_{n+1}=ra_n" /> bleibt auch für ein Nullglied sinnvoll.
+
+### Allgemeines Glied einer geometrischen Folge
+
+Für eine geometrische Folge mit dem ersten Glied <InlineMath math="a" /> und dem Quotienten <InlineMath math="r" /> lautet das allgemeine Glied:
+
+<BlockMath math="U_n = a \times r^{n-1}" />
+
+## Hauptunterschiede
+
+### So wird der Folgentyp bestimmt
+
+Prüfe nacheinander Differenzen und Quotienten:
+
+1. **Arithmetische Folge**: Berechne die Differenzen aufeinanderfolgender Glieder. Sind sie konstant, ist die Folge arithmetisch.
+
+   <BlockMath math="b = a_2 - a_1 = a_3 - a_2 = a_4 - a_3 = ..." />
+
+2. **Geometrische Folge**: Berechne die Quotienten aufeinanderfolgender Glieder, sofern die Nenner nicht null sind. Sind sie konstant, ist die Folge geometrisch.
+
+   <BlockMath math="r = \frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ..." />
+
+### Vergleichstabelle
+
+| Aspekt | Arithmetische Folge | Geometrische Folge |
+| ------------------------ | -------------------------------------- | -------------------------------------------- |
+| Muster | Konstante Differenz | Konstanter Quotient |
+| Allgemeines Glied | <InlineMath math="U_n = a + (n-1)b" /> | <InlineMath math="U_n = a \times r^{n-1}" /> |
+| Bildung des nächsten Glieds | Eine Konstante addieren | Mit einer Konstanten multiplizieren |
+
+### Ausführliche Klassifizierungsbeispiele
+
+Die Folge <InlineMath math="7,11,15,19,\ldots" /> hat konstante Differenzen:
+
+<BlockMath math="11-7=15-11=19-15=4" />
+
+Sie ist daher arithmetisch. Für die Folge <InlineMath math="5,10,20,40,\ldots" /> gilt:
+
+<BlockMath math="10=2\cdot5,\qquad20=2\cdot10,\qquad40=2\cdot20" />
+
+Sie ist geometrisch mit <InlineMath math="r=2" />. Die Folge <InlineMath math="1,2,4,7,\ldots" /> ist weder arithmetisch noch geometrisch: Ihre Differenzen <InlineMath math="1,2,3" /> sind nicht konstant, und auch die Quotienten stimmen nicht überein.
+
+### Lineare und exponentielle Modelle
+
+Eine nichtkonstante arithmetische Folge hängt linear von ihrem Index ab. Eine geometrische Folge mit einem positiven Quotienten ungleich eins hängt exponentiell vom Index ab. Diese Begriffe beschreiben die mathematische Form. Sie bedeuten nicht, dass ein realer Vorgang unbegrenzt nach demselben Modell weiterläuft.
+
+Wenn man jeden Monat denselben Betrag addiert, entsteht ein arithmetisches Modell. Eine monatliche Änderung um denselben Prozentsatz führt dagegen zu einem geometrischen Modell.
+
+### Sonderfälle
+
+Die konstante Nullfolge ist arithmetisch mit <InlineMath math="b=0" /> und erfüllt zugleich <InlineMath math="a_{n+1}=ra_n" /> für jeden Wert von <InlineMath math="r" />. Eine konstante Folge ungleich Null ist arithmetisch mit <InlineMath math="b=0" /> und geometrisch mit <InlineMath math="r=1" />.
+
+Daher überschneiden sich in diesen Spezialfällen die arithmetischen und geometrischen Kategorien.
+
+## Anwendungen im Alltag
+
+### Beispiele für arithmetische Folgen
+
+1. **Regelmäßiges Sparen**: Ein Schüler zahlt im ersten Monat <InlineMath math="\text{Rp}5{.}000" />, im zweiten <InlineMath math="\text{Rp}7{.}000" /> und im dritten <InlineMath math="\text{Rp}9{.}000" /> in die Schülergenossenschaft ein. Bei der Differenz <InlineMath math="\text{Rp}2{.}000" /> lässt sich der Einzahlungsbetrag im <InlineMath math="10" />. Monat mit der Formel für arithmetische Folgen berechnen.
+
+2. **Pflanzenwachstum**: In einem vereinfachten Modell wächst eine Pflanze jede Woche um <InlineMath math="3 \text{ cm}" /> und ist anfangs <InlineMath math="15 \text{ cm}" /> hoch. Die modellierte Höhe bildet dann eine arithmetische Folge.
+
+### Beispiele für geometrische Folgen
+
+1. **Anlage mit Zinseszins**: Werden <InlineMath math="\text{Rp}1{.}000{.}000" /> ohne Einzahlungen oder Entnahmen angelegt und die Zinsen von <InlineMath math="10\%" /> jährlich gutgeschrieben, bildet der Wert am Ende jedes Jahres eine geometrische Folge mit dem Quotienten <InlineMath math="1{,}1" />.
+
+2. **Idealisiertes Populationswachstum**: Verdoppelt sich eine modellierte Bakterienpopulation stündlich, entsteht eine geometrische Folge mit dem Quotienten <InlineMath math="2" />. Reale Populationen stoßen irgendwann an Grenzen, die dieses einfache Modell nicht abbildet.
+
+## Übung
+
+Klassifiziere jede Folge und bestimme, sofern möglich, <InlineMath math="b" /> oder <InlineMath math="r" />:
+
+1. <InlineMath math="18,12,6,0,\ldots" />
+2. <InlineMath math="81,-27,9,-3,\ldots" />
+3. <InlineMath math="2,4,8,14,\ldots" />
+
+### Lösung
+
+1. Die erste Folge ist arithmetisch mit <InlineMath math="b=-6" />.
+2. Die zweite Folge ist geometrisch mit <InlineMath math="r=-1/3" />.
+3. Die dritte Folge ist weder arithmetisch noch geometrisch, da weder ihre Differenzen noch ihre Quotienten konstant sind.

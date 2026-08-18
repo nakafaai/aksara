@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-26",
+};
+
+Für den Definitionsbereich müssen beide Wurzeln definiert sein. Zusätzlich darf der Nenner nicht null werden.
+
+Die Funktion <InlineMath math="f(x) = \frac{\sqrt{5 - x}}{\sqrt{x^2 + x - 6}}" /> hat zwei Hauptbedingungen:
+
+#### Bedingung im Zähler
+
+Der Radikand im Zähler muss nichtnegativ sein:
+
+<MathContainer>
+  <BlockMath math="5 - x \geq 0" />
+  <BlockMath math="-x \geq -5" />
+  <BlockMath math="x \leq 5" />
+</MathContainer>
+
+#### Bedingung im Nenner
+
+Der Radikand im Nenner muss sogar positiv sein, weil ein Nenner von <InlineMath math="0" /> ausgeschlossen ist:
+
+<MathContainer>
+  <BlockMath math="x^2 + x - 6 > 0" />
+  <BlockMath math="(x + 3)(x - 2) > 0" />
+</MathContainer>
+
+Die Randstellen sind <InlineMath math="x = -3" /> und <InlineMath math="x = 2" />.
+
+Mithilfe von Testpunkten finden wir den Lösungsbereich für den Nenner: <InlineMath math="x < -3" /> oder <InlineMath math="x > 2" />.
+
+#### Schnittmenge der Bedingungen
+
+Der Definitionsbereich der Funktion <InlineMath math="f" /> ist die Schnittmenge der beiden Bedingungen:
+1.  <InlineMath math="x \leq 5" />
+2.  <InlineMath math="x < -3" /> oder <InlineMath math="x > 2" />
+
+Der Schnittpunkt ist:
+-   Für <InlineMath math="x < -3" /> erfüllt es <InlineMath math="x \leq 5" />.
+-   Für <InlineMath math="x > 2" /> wird es durch <InlineMath math="x \leq 5" /> begrenzt und wird zu <InlineMath math="2 < x \leq 5" />.
+
+Damit lautet der Definitionsbereich der Funktion <InlineMath math="f" />:
+
+<MathContainer>
+  <BlockMath math="Df = \{x | x < -3 \text{ oder } 2 < x \leq 5\}" />
+</MathContainer>

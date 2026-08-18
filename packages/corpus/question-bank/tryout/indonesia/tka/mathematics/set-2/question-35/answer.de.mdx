@@ -1,0 +1,75 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 35",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-11",
+};
+
+#### Faktorisieren Sie den ersten Teiler
+
+Der Teiler ist <InlineMath math="x^2 + 3x + 2 = (x + 1)(x + 2) \rightarrow x = -1 \vee x = -2" />.
+
+Der Rest ist <InlineMath math="s(x) = 3bx + a - 2" />.
+
+Für <InlineMath math="x = -1" />
+
+<MathContainer>
+<BlockMath math="f(-1) = s(-1)" />
+<BlockMath math="f(-1) = 3b(-1) + a - 2" />
+<BlockMath math="f(-1) = -3b + a - 2 \quad ...(1)" />
+</MathContainer>
+
+Für <InlineMath math="x = -2" />
+
+<MathContainer>
+<BlockMath math="f(-2) = s(-2)" />
+<BlockMath math="f(-2) = 3b(-2) + a - 2" />
+<BlockMath math="f(-2) = -6b + a - 2 \quad ...(2)" />
+</MathContainer>
+
+#### Faktorisieren Sie den zweiten Teiler
+
+Für das zweite Polynom ist der Divisor <InlineMath math="x^2 - 2x - 3 = (x + 1)(x - 3) \rightarrow x = -1 \vee x = 3" />.
+
+Der Rest ist <InlineMath math="s(x) = ax - 2b" />.
+
+Für <InlineMath math="x = -1" />
+
+<MathContainer>
+<BlockMath math="f(-1) = s(-1)" />
+<BlockMath math="f(-1) = a(-1) - 2b" />
+<BlockMath math="f(-1) = -a - 2b \quad ...(3)" />
+</MathContainer>
+
+Für <InlineMath math="x = 3" />
+
+<MathContainer>
+<BlockMath math="f(3) = s(3)" />
+<BlockMath math="f(3) = a(3) - 2b" />
+<BlockMath math="f(3) = 3a - 2b \quad ...(4)" />
+</MathContainer>
+
+#### Lösen Sie das Gleichungssystem
+
+Aus der ersten und dritten Gleichung erhalten wir
+
+<MathContainer>
+<BlockMath math="f(-1) = f(-1)" />
+<BlockMath math="-3b + a - 2 = -a - 2b" />
+<BlockMath math="b = 2a - 2 \quad ...(5)" />
+</MathContainer>
+
+Kombinieren Sie dann die Gleichungen zwei, vier und fünf
+
+<MathContainer>
+<BlockMath math="f(3) + f(-2) = 6" />
+<BlockMath math="3a - 2b + (-6b + a - 2) = 6" />
+<BlockMath math="4a - 8b = 8" />
+<BlockMath math="a - 2b = 2" />
+<BlockMath math="a - 2(2a - 2) = 2" />
+<BlockMath math="-3a = -2" />
+<BlockMath math="a = \frac{2}{3}" />
+</MathContainer>
+
+Dann der Wert von <InlineMath math="b = 2a - 2 = 2\left(\frac{2}{3}\right) - 2 = -\frac{2}{3}" />.
+
+Daher <InlineMath math="a + b = \frac{2}{3} + \left(-\frac{2}{3}\right) = 0" />.

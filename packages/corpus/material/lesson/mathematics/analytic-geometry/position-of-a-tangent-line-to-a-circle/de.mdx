@@ -1,0 +1,597 @@
+export const metadata = {
+  title: "Lage und Gleichung von Kreistangenten",
+  description: "Konstruiere Kreistangenten aus einem Berührpunkt, einer Steigung oder einem äußeren Punkt, mit Visualisierungen und vollständigen Lösungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Tangenten an Kreise verstehen
+
+Stell dir vor, du fährst mit dem Fahrrad auf einer kreisförmigen Bahn. Verlässt du die Bahn, ohne den Lenker zu drehen, folgt deine Richtung in diesem Moment der **Tangente**. Sie ist nicht irgendeine Gerade durch diesen Punkt, sondern die einzige Gerade, die dort senkrecht auf dem Radius steht.
+
+Mathematisch trifft eine Tangente den Kreis in genau einem Punkt, dem **Berührpunkt**. Die Tangente steht immer **senkrecht** auf dem Radius zu diesem Punkt.
+
+Diese senkrechte Beziehung zieht sich durch die ganze Lektion. Wir konstruieren eine Tangente in einem bekannten Punkt, bestimmen Tangenten mit gegebener Steigung und ziehen beide Tangenten durch einen Punkt außerhalb des Kreises.
+
+## Tangente durch einen Punkt auf dem Kreis
+
+Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein Radiusvektor wird dann zum Normalenvektor der Tangente.
+
+<LineEquation
+  title="Tangente durch einen Punkt auf dem Kreis"
+  description="Der Radius zum bekannten Berührpunkt ist ein Normalenvektor der Tangente."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 3;
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        const angle = Math.PI / 4;
+        const radius = 3;
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const angle = Math.PI / 4;
+        const radius = 3;
+        const tangentPoint = {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+        };
+        const radiusSlope = tangentPoint.y / tangentPoint.x;
+        const tangentSlope = -1 / radiusSlope;
+
+        const xRange = 4;
+        return {
+          x: tangentPoint.x + (i - 0.5) * xRange,
+          y: tangentPoint.y + tangentSlope * (i - 0.5) * xRange,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente", at: 1, offset: [1, 2, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const angle = Math.PI / 4;
+        const radius = 3;
+        return {
+          x: i * radius * Math.cos(angle),
+          y: i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Radius", at: 1, offset: [-2, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -4;
+        const yMax = 4;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Für den Kreis <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> und den Berührpunkt <InlineMath math="T(x_1,y_1)" /> gehen wir so vor.
+
+**Schritt** <InlineMath math="1" />: Prüfe, ob <InlineMath math="T" /> auf dem Kreis liegt.
+
+<BlockMath math="(x_1-a)^2+(y_1-b)^2=r^2" />
+
+**Schritt** <InlineMath math="2" />: Der Radiusvektor ist ein Normalenvektor der Tangente.
+
+<BlockMath math="\vec{OT}=(x_1-a,\,y_1-b)" />
+
+**Schritt** <InlineMath math="3" />: Setze diesen Normalenvektor in die Geradengleichung durch <InlineMath math="T" /> ein.
+
+<BlockMath math="(x_1-a)(x-x_1)+(y_1-b)(y-y_1)=0" />
+
+Mit der Punktbedingung aus Schritt <InlineMath math="1" /> erhalten wir die **Berührpunktform**:
+
+<BlockMath math="(x - a)(x_1 - a) + (y - b)(y_1 - b) = r^2" />
+
+> Weil diese Herleitung einen Normalenvektor statt einer Steigung verwendet, funktionieren auch vertikale und horizontale Tangenten ohne Sonderfall.
+
+## Tangente mit gegebener Steigung
+
+Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschnitt die Gerade genau einen Radius vom Mittelpunkt entfernt platzieren. Dieser Fall tritt etwa auf, wenn die Tangente zu einer anderen Geraden parallel sein soll.
+
+<LineEquation
+  title="Tangente mit gegebener Steigung"
+  description="Eine Steigung bestimmt zwei parallele Tangenten auf beiden Seiten des Mittelpunkts."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2.5;
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const m = 1; // given slope
+        const r = 2.5;
+        const c1 = r * Math.sqrt(1 + m * m);
+        const xRange = 6;
+        return {
+          x: -xRange/2 + i * xRange,
+          y: m * (-xRange/2 + i * xRange) + c1,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente 1", at: 0, offset: [0.5, 2.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const m = 1; // given slope
+        const r = 2.5;
+        const c2 = -r * Math.sqrt(1 + m * m);
+        const xRange = 6;
+        return {
+          x: -xRange/2 + i * xRange,
+          y: m * (-xRange/2 + i * xRange) + c2,
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente 2", at: 1, offset: [0.5, -1.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -4;
+        const yMax = 4;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Für den Kreis <InlineMath math="x^2 + y^2 = r^2" /> und die bekannte Steigung <InlineMath math="m" /> setzen wir die Geradengleichung <InlineMath math="y = mx + c" /> in die Kreisgleichung ein:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+</MathContainer>
+
+Da die Gerade den Kreis tangiert, muss die Diskriminante dieser quadratischen Gleichung Null sein:
+
+<MathContainer>
+  <BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2) = 0" />
+  <BlockMath math="4m^2c^2 - 4(1 + m^2)(c^2 - r^2) = 0" />
+  <BlockMath math="m^2c^2 - (1 + m^2)c^2 + (1 + m^2)r^2 = 0" />
+  <BlockMath math="-c^2 + (1 + m^2)r^2 = 0" />
+  <BlockMath math="c^2 = (1 + m^2)r^2" />
+</MathContainer>
+
+Für den Achsenabschnitt ergibt sich:
+
+<BlockMath math="c = \pm r\sqrt{1 + m^2}" />
+
+Für jede endliche Steigung <InlineMath math="m" /> besitzt der Kreis um den Ursprung damit **zwei parallele Tangenten**:
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+## Tangenten durch einen Punkt außerhalb des Kreises
+
+Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden Berührpunkte liegen auf einer gemeinsamen Hilfsgeraden, der Polaren des äußeren Punkts.
+
+<LineEquation
+  title="Tangenten durch einen Punkt außerhalb des Kreises"
+  description="Ein äußerer Punkt bestimmt zwei Berührpunkte und zwei Tangenten."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        const radius = 2;
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 4,
+          y: 2,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        // Erster Berührpunkt (mathematisch berechnet)
+        const px = 4, py = 2, r = 2;
+        const d = Math.sqrt(px*px + py*py);
+        const angle1 = Math.atan2(py, px) - Math.acos(r/d);
+        return {
+          x: r * Math.cos(angle1),
+          y: r * Math.sin(angle1),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T_1" />, at: 0, offset: [0.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        // Zweiter Berührpunkt (mathematisch berechnet)
+        const px = 4, py = 2, r = 2;
+        const d = Math.sqrt(px*px + py*py);
+        const angle2 = Math.atan2(py, px) + Math.acos(r/d);
+        return {
+          x: r * Math.cos(angle2),
+          y: r * Math.sin(angle2),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="T_2" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        // Erste Tangente
+        const px = 4, py = 2, r = 2;
+        const d = Math.sqrt(px*px + py*py);
+        const angle1 = Math.atan2(py, px) - Math.acos(r/d);
+        const t1x = r * Math.cos(angle1);
+        const t1y = r * Math.sin(angle1);
+
+        return {
+          x: i === 0 ? px : t1x,
+          y: i === 0 ? py : t1y,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente 1", at: 0, offset: [0.5, -1, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        // Zweite Tangente
+        const px = 4, py = 2, r = 2;
+        const d = Math.sqrt(px*px + py*py);
+        const angle2 = Math.atan2(py, px) + Math.acos(r/d);
+        const t2x = r * Math.cos(angle2);
+        const t2y = r * Math.sin(angle2);
+
+        return {
+          x: i === 0 ? px : t2x,
+          y: i === 0 ? py : t2y,
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente 2", at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -3;
+        const xMax = 5;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -2;
+        const yMax = 4;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Der Punkt <InlineMath math="P(x_0,y_0)" /> liege außerhalb des Kreises <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Seine **Polare** lautet:
+
+<BlockMath math="(x-a)(x_0-a) + (y-b)(y_0-b) = r^2" />
+
+Für einen äußeren Punkt ist die Polare die **Berührsehne**, also die Gerade durch beide Berührpunkte. Die Konstruktion lautet:
+
+1. Stelle die Gleichung der Polaren auf.
+2. Schneide sie mit dem Kreis, um beide Berührpunkte zu finden.
+3. Konstruiere mit jedem Berührpunkt eine Tangente durch <InlineMath math="P" />.
+
+> Die Polare ist nicht selbst eine der beiden Tangenten. Sie verbindet deren Berührpunkte.
+
+## Beispiel mit vollständigem Rechenweg
+
+Bestimme beide Tangenten von <InlineMath math="B(2,6)" /> an den Kreis <InlineMath math="L \equiv (x+1)^2+(y-2)^2=9" />.
+
+**Schritt** <InlineMath math="1" />: Stelle die Polare von <InlineMath math="B(2,6)" /> bezüglich des Kreises auf.
+
+<MathContainer>
+  <BlockMath math="(x-(-1))(2-(-1)) + (y-2)(6-2) = 9" />
+  <BlockMath math="(x+1)(3) + (y-2)(4) = 9" />
+  <BlockMath math="3x + 3 + 4y - 8 = 9" />
+  <BlockMath math="3x + 4y = 14" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: Schneide die Polare <InlineMath math="3x+4y=14" /> mit dem Kreis. Aus der Geradengleichung folgt <InlineMath math="x=\frac{14-4y}{3}" />. Setze diesen Ausdruck in die Kreisgleichung ein.
+
+<MathContainer>
+  <BlockMath math="(\frac{14-4y}{3} + 1)^2 + (y-2)^2 = 9" />
+  <BlockMath math="(\frac{17-4y}{3})^2 + (y-2)^2 = 9" />
+</MathContainer>
+
+**Schritt** <InlineMath math="3" />: Löse die quadratische Gleichung für die beiden möglichen <InlineMath math="y" />-Koordinaten.
+
+<MathContainer>
+  <BlockMath math="(17-4y)^2+9(y-2)^2=81" />
+  <BlockMath math="25y^2-172y+244=0" />
+  <BlockMath math="y=\frac{172\pm\sqrt{172^2-4(25)(244)}}{50}=\frac{172\pm72}{50}" />
+  <BlockMath math="y_1=\frac{122}{25}\quad\text{und}\quad y_2=2" />
+</MathContainer>
+
+**Schritt** <InlineMath math="4" />: Setze beide Werte in die Polare ein, um die Berührpunkte zu erhalten.
+
+<MathContainer>
+  <BlockMath math="x_1=\frac{14-4\left(\frac{122}{25}\right)}{3}=-\frac{46}{25}" />
+  <BlockMath math="x_2=\frac{14-4(2)}{3}=2" />
+  <BlockMath math="T_1\left(-\frac{46}{25},\frac{122}{25}\right),\qquad T_2(2,2)" />
+</MathContainer>
+
+**Schritt** <InlineMath math="5" />: Setze jeden Berührpunkt in die Berührpunktform des Kreises ein.
+
+<MathContainer>
+  <BlockMath math="-\frac{21}{25}(x+1)+\frac{72}{25}(y-2)=9\quad\Longrightarrow\quad -7x+24y=130" />
+  <BlockMath math="3(x+1)=9\quad\Longrightarrow\quad x=2" />
+</MathContainer>
+
+Beide Geraden verlaufen durch <InlineMath math="B(2,6)" /> und berühren den Kreis genau einmal. Damit sind sie die gesuchten Tangenten.
+
+## Übungen
+
+1. Bestimme die Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> im Punkt <InlineMath math="(3, 4)" />.
+
+2. Finde die Tangenten an den Kreis <InlineMath math="x^2 + y^2 = 16" />, die parallel zur Geraden <InlineMath math="y = 2x + 5" /> verlaufen.
+
+3. Bestimme die Tangenten an den Kreis <InlineMath math="(x-1)^2 + (y+2)^2 = 8" />, die durch den Punkt <InlineMath math="(4, 2)" /> verlaufen.
+
+4. Ein Kreis hat die Gleichung <InlineMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />. Bestimme die Tangenten, die senkrecht zur Geraden <InlineMath math="x + 2y = 7" /> stehen.
+
+### Ausführliche Lösungen
+
+1. **Lösung**:
+
+   Der Kreis <InlineMath math="x^2 + y^2 = 25" /> hat den Mittelpunkt <InlineMath math="O(0,0)" /> und den Radius <InlineMath math="r=5" />. Der Berührpunkt ist <InlineMath math="T(3,4)" />.
+
+   Setze diese Werte in die Berührpunktform <InlineMath math="(x-a)(x_1-a)+(y-b)(y_1-b)=r^2" /> ein.
+
+   <MathContainer>
+     <BlockMath math="(x-0)(3-0) + (y-0)(4-0) = 25" />
+     <BlockMath math="3x + 4y = 25" />
+   </MathContainer>
+
+   Daher lautet die Tangentengleichung <InlineMath math="3x + 4y = 25" />.
+
+2. **Lösung**:
+
+   Eine Gerade parallel zu <InlineMath math="y = 2x + 5" /> hat die Steigung <InlineMath math="m = 2" />.
+
+   Für den Kreis <InlineMath math="x^2 + y^2 = 16" /> mit <InlineMath math="r=4" /> verwenden wir:
+
+   <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+   <MathContainer>
+     <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
+     <BlockMath math="y = 2x \pm 4\sqrt{5}" />
+   </MathContainer>
+
+   Daher gibt es zwei Tangenten: <InlineMath math="y = 2x + 4\sqrt{5}" /> und <InlineMath math="y = 2x - 4\sqrt{5}" />.
+
+3. **Lösung**:
+
+   Kreis <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> hat Mittelpunkt <InlineMath math="(1,-2)" /> und <InlineMath math="r^2 = 8" />.
+
+   Die Polare des Punkts <InlineMath math="(4,2)" /> lautet:
+
+   <MathContainer>
+     <BlockMath math="(x-1)(4-1) + (y-(-2))(2-(-2)) = 8" />
+     <BlockMath math="3(x-1) + 4(y+2) = 8" />
+     <BlockMath math="3x - 3 + 4y + 8 = 8" />
+     <BlockMath math="3x + 4y = 3" />
+   </MathContainer>
+
+   Verschiebe den Mittelpunkt mit <InlineMath math="u=x-1" /> und <InlineMath math="v=y+2" /> in den Ursprung. Kreis und Polare werden zu:
+
+   <MathContainer>
+     <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
+     <BlockMath math="u=\frac{8-4v}{3}" />
+     <BlockMath math="25v^2-64v-8=0" />
+     <BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
+   </MathContainer>
+
+   Durch Rücksubstitution erhalten wir die beiden Berührpunkte:
+
+   <MathContainer>
+     <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
+     <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
+   </MathContainer>
+
+   Die Steigungen von <InlineMath math="(4,2)" /> zu diesen Punkten sind <InlineMath math="12-2\sqrt{34}" /> und <InlineMath math="12+2\sqrt{34}" />. Damit lauten die gesuchten Tangenten:
+
+   <MathContainer>
+     <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
+     <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
+   </MathContainer>
+
+4. **Lösung**:
+
+   Wandeln Sie die Kreisgleichung in die Standardform um, indem Sie das Quadrat vervollständigen:
+
+   <MathContainer>
+     <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
+     <BlockMath math="(x^2 - 4x + 4) + (y^2 + 6y + 9) = 3 + 4 + 9" />
+     <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
+   </MathContainer>
+
+   Mittelpunkt <InlineMath math="(2,-3)" />, Radius <InlineMath math="r = 4" />.
+
+   Die Gerade <InlineMath math="x+2y=7" /> lässt sich als <InlineMath math="y=-\frac{1}{2}x+\frac{7}{2}" /> schreiben. Ihre Steigung ist daher <InlineMath math="m_1=-\frac{1}{2}" />.
+
+   Eine dazu senkrechte Gerade hat die Steigung <InlineMath math="m = 2" />.
+
+   Für den Kreis mit Mittelpunkt <InlineMath math="(2,-3)" /> gilt die Tangentengleichung mit Steigung <InlineMath math="2" />:
+
+   <MathContainer>
+     <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
+     <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
+     <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
+   </MathContainer>
+
+   Daher sind die beiden Tangenten: <InlineMath math="y = 2x - 7 + 4\sqrt{5}" /> und <InlineMath math="y = 2x - 7 - 4\sqrt{5}" />.

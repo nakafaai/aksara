@@ -1,0 +1,86 @@
+export const metadata = {
+   title: "Grundlegendes Verfahren zur Diagonalisierung",
+   description: "Das dreistufige Verfahren zur Matrixdiagonalisierung: Eigenwerte berechnen, Eigenräume bestimmen und die Diagonalisierbarkeit prüfen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-07-16",
+   subject: "Lineare Methoden der KI",
+};
+
+## Allgemeines Verfahren zur Matrixdiagonalisierung
+
+Die Diagonalisierung verändert nicht die lineare Transformation selbst. Sie wechselt die Koordinatenbasis so, dass die Transformation entlang der Eigenvektorrichtungen unabhängig wirkt. Die resultierende Diagonaldarstellung lässt sich leichter ablesen und berechnen.
+
+Um eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> zu diagonalisieren, verwenden wir ein systematisches Verfahren, das ermittelt, ob und wie die Matrix vereinfacht werden kann.
+
+## Diagonalisierungsschritte
+
+Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
+
+1. **Charakteristisches Polynom berechnen.** Daraus folgen alle Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> und ihre algebraischen Multiplizitäten <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
+
+   Über dem gewählten Körper <InlineMath math="\mathbb{K}" /> muss das charakteristische Polynom <InlineMath math="\chi_A(t)" /> vollständig in lineare Faktoren zerfallen:
+
+   <MathContainer>
+   <BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
+   <BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
+   </MathContainer>
+
+   Zerfällt das Polynom nicht vollständig, ist die Matrix über diesem Körper nicht diagonalisierbar.
+
+2. **Eigenräume bestimmen.** Für jeden Eigenwert lösen wir das homogene lineare System:
+
+   <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
+
+   Gesucht sind alle Vektoren, die die Matrix <InlineMath math="A" /> auf ein skalares Vielfaches ihrer selbst abbildet. Der Faktor ist der Eigenwert <InlineMath math="\lambda_i" />. Ein negativer Faktor kehrt die Richtung um, lässt den Vektor aber auf derselben Geraden.
+
+3. **Diagonalisierbarkeit prüfen.** Für jeden Eigenwert muss die algebraische Multiplizität mit der geometrischen Multiplizität übereinstimmen. Für alle <InlineMath math="i = 1, \ldots, k" /> muss also <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" /> gelten.
+
+   Diese Bedingung stellt sicher, dass wir genügend unabhängige Eigenvektoren haben, um eine vollständige Basis zu bilden. Wenn erfüllt, bilden die Basisvektoren aller Eigenräume die Spalten der Transformationsmatrix <InlineMath math="S" /> und ergeben:
+
+   <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+
+## Beispielanwendung des Verfahrens
+
+Betrachten wir die Matrix:
+
+<BlockMath math="A = \begin{pmatrix} 0 & -1 & 1 \\ -3 & -2 & 3 \\ -2 & -2 & 3 \end{pmatrix}" />
+
+Nun führen wir die drei Schritte durch:
+
+1. Zuerst berechnen wir das charakteristische Polynom:
+
+   <BlockMath math="\chi_A(t) = \det(A - t \cdot I) = -t^3 + t^2 + t - 1" />
+
+   Nach Faktorisierung erhalten wir:
+
+   <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
+
+   Damit ist <InlineMath math="\lambda_1 = 1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(1) = 2" /> und <InlineMath math="\lambda_2 = -1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(-1) = 1" />. Die Summe <InlineMath math="2 + 1 = 3" /> stimmt mit der Matrixdimension überein.
+
+2. Für jeden Eigenwert bestimmen wir den zugehörigen Eigenraum:
+
+   <MathContainer>
+   <BlockMath math="E_A(1) = \ker(A - I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\}" />
+   <BlockMath math="E_A(-1) = \ker(A + I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\}" />
+   </MathContainer>
+
+   Der Kern oder Nullraum enthält alle Vektoren, die auf den Nullvektor abgebildet werden. Die lineare Hülle einer Vektormenge umfasst dagegen alle Linearkombinationen dieser Vektoren.
+
+3. Wir prüfen, ob die Diagonalisierungsbedingungen erfüllt sind. Für den Eigenwert <InlineMath math="\lambda_1 = 1" /> beträgt seine algebraische Multiplizität <InlineMath math="2" /> und sein Eigenraum hat die Dimension <InlineMath math="2" /> (zwei unabhängige Basisvektoren). Für den Eigenwert <InlineMath math="\lambda_2 = -1" /> beträgt seine algebraische Multiplizität <InlineMath math="1" /> und sein Eigenraum hat die Dimension <InlineMath math="1" />.
+
+   Da <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> und <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" /> gelten, sind beide Bedingungen erfüllt.
+
+Jetzt können wir die Transformationsmatrix <InlineMath math="S" /> bilden, indem wir alle Eigenvektoren als Spalten anordnen, und die Diagonalmatrix <InlineMath math="\Lambda" /> mit Eigenwerten auf der Hauptdiagonale:
+
+<MathContainer>
+<BlockMath math="S = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 3 \\ 1 & 1 & 2 \end{pmatrix}" />
+<BlockMath math="\Lambda = \begin{pmatrix} 1 & & \\ & 1 & \\ & & -1 \end{pmatrix}" />
+</MathContainer>
+
+Die Spalten von <InlineMath math="S" /> und die zugehörigen Diagonaleinträge von <InlineMath math="\Lambda" /> müssen in derselben Reihenfolge bleiben. Hier ist die Konstruktion gültig, denn:
+
+<BlockMath math="\det S = -2 \neq 0, \qquad S^{-1}AS = \Lambda" />
+
+Somit wird die Matrix <InlineMath math="A" /> zu <InlineMath math="\Lambda" /> diagonalisiert, und zwar durch die Transformation <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
+
+Das Verfahren weist damit beide Voraussetzungen nach: Die Eigenvektoren bilden eine Basis, und die Matrixdarstellung in dieser Basis ist diagonal.

@@ -1,0 +1,101 @@
+export const metadata = {
+  title: "Exponentialfunktionen definieren",
+  description:
+    "Definitionsmenge, Wertemenge, Achsenschnittpunkte und Monotonie von Exponentialfunktionen verstehen und zulässige Basen erkennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-02",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Die Standard-Exponentialfunktion
+
+Bei einer Exponentialfunktion steht die Variable im Exponenten:
+
+<BlockMath math="f(x)=a^x" />
+
+Damit die Funktion für alle reellen Eingaben reelle Werte besitzt, muss die Basis folgende Bedingungen erfüllen:
+
+<BlockMath math="a>0\qquad\text{und}\qquad a\neq1" />
+
+Die Bedingung <InlineMath math="a>0" /> sorgt dafür, dass <InlineMath math="a^x" /> für jedes reelle <InlineMath math="x" /> reell bleibt. Der Ausschluss von <InlineMath math="a=1" /> trennt echtes Wachstum und echten Zerfall von einer konstanten Funktion.
+
+Eine skalierte Exponentialfunktion hat die Form:
+
+<BlockMath math="g(x)=k\,a^x" />
+
+Dabei ist <InlineMath math="k\neq0" /> ein vertikaler Streckfaktor. Die Basis bestimmt Wachstum oder Zerfall. <InlineMath math="k" /> bestimmt den Anfangswert und die Seite der <InlineMath math="x" />-Achse, auf der der Graph liegt.
+
+## Definitionsmenge, Wertemenge und Achsenschnittpunkt
+
+Für die Standardfunktion <InlineMath math="f(x)=a^x" /> gilt:
+
+1. Die Definitionsmenge ist <InlineMath math="\mathbb{R}" />.
+2. Die Wertemenge ist <InlineMath math="(0,\infty)" />.
+3. Der Graph schneidet die <InlineMath math="y" />-Achse bei <InlineMath math="(0,1)" />, weil <InlineMath math="a^0=1" /> gilt.
+4. Der Graph schneidet die <InlineMath math="x" />-Achse nie, weil <InlineMath math="a^x>0" /> gilt.
+5. Für <InlineMath math="a>1" /> ist die Funktion streng monoton steigend.
+6. Für <InlineMath math="0<a<1" /> ist die Funktion streng monoton fallend.
+
+Für <InlineMath math="g(x)=k\,a^x" /> liegt der Schnittpunkt mit der <InlineMath math="y" />-Achse bei <InlineMath math="(0,k)" />. Für <InlineMath math="k>0" /> ist die Wertemenge <InlineMath math="(0,\infty)" />. Für <InlineMath math="k<0" /> wird der Graph an der <InlineMath math="x" />-Achse gespiegelt und die Wertemenge ist <InlineMath math="(-\infty,0)" />.
+
+## Warum zwei Basen ausgeschlossen sind
+
+### Basis Eins
+
+Für <InlineMath math="a=1" /> gilt:
+
+<BlockMath math="g(x)=k\cdot1^x=k" />
+
+Der Funktionswert ändert sich nicht. Deshalb handelt es sich um eine konstante Funktion und nicht um exponentielles Wachstum oder exponentiellen Zerfall.
+
+<FunctionChart
+  a={1}
+  p={1}
+  title="Konstante Funktion"
+  description={
+    <>
+      Jede Eingabe ergibt <InlineMath math="y=1" />.
+    </>
+  }
+/>
+
+### Basis Null
+
+Der Ausdruck <InlineMath math="0^x" /> definiert keine reellwertige Funktion für alle reellen Eingaben:
+
+<MathContainer>
+  <BlockMath math="0^x=0\qquad\text{für }x>0" />
+  <BlockMath math="0^x\text{ ist nicht definiert für }x<0" />
+</MathContainer>
+
+Für <InlineMath math="x=0" /> wird dem Ausdruck <InlineMath math="0^0" /> in dieser Funktionsdefinition kein Wert zugewiesen. Die Basis null kann daher die geforderte Definitionsmenge <InlineMath math="\mathbb{R}" /> nicht erfüllen.
+
+## Beispiele lesen
+
+1. Für <InlineMath math="f(x)=4^x" /> gilt <InlineMath math="a=4>1" />. Die Funktion ist daher steigend. Zu ihren Werten gehören <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" /> und <InlineMath math="f(2)=16" />.
+
+2. <InlineMath math="f(x)=3^{x+1}" /> lässt sich als <InlineMath math="f(x)=3\cdot3^x" /> schreiben. Der Faktor <InlineMath math="3" /> verschiebt den Schnittpunkt mit der <InlineMath math="y" />-Achse von <InlineMath math="1" /> auf <InlineMath math="3" />.
+
+3. <InlineMath math="f(x)=5^{2x-1}" /> ist steigend, weil der Exponent <InlineMath math="2x-1" /> mit <InlineMath math="x" /> wächst. Zum Beispiel gilt <InlineMath math="f(0)=5^{-1}=\frac15" /> und <InlineMath math="f(1)=5" />.
+
+4. Für <InlineMath math="f(x)=0{,}5^x" /> gilt <InlineMath math="0<a<1" />. Die Funktion ist daher fallend. Zu ihren Werten gehören <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=0{,}5" /> und <InlineMath math="f(2)=0{,}25" />.
+
+<FunctionChart
+  a={0.5}
+  p={1}
+  title="Exponentieller Zerfall"
+  description={
+    <>
+      Der Faktor <InlineMath math="0{,}5" /> halbiert den Funktionswert bei jeder Zunahme von <InlineMath math="x" /> um <InlineMath math="1" />.
+    </>
+  }
+/>
+
+## Häufige Modelle
+
+1. **Wiederholte Verdopplung**: <InlineMath math="P(t)=P_0\,2^{t/d}" />, wobei <InlineMath math="d" /> die Verdopplungszeit ist.
+2. **Wachstum mit Zinseszinseffekt**: <InlineMath math="A(t)=P(1+r)^t" />, wobei <InlineMath math="r" /> die Rate pro Verzinsungsintervall ist.
+3. **Halbwertszeit**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, wobei <InlineMath math="h" /> die Halbwertszeit ist.
+4. **Frühe Übertragung**: <InlineMath math="C(n)=C_0R^n" />, wobei <InlineMath math="R" /> ein angenommener durchschnittlicher Faktor pro Zyklus ist.
+
+Jede Formel erhält erst durch klar benannte Variablen, Einheiten, Intervalle und Annahmen eine Bedeutung. Dieselbe exponentielle Form kann verschiedene Zusammenhänge beschreiben. Die Symbole allein besitzen noch keine reale Bedeutung.

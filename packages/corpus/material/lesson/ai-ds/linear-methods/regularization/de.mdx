@@ -1,0 +1,105 @@
+export const metadata = {
+  title: "Tikhonov-Regularisierung",
+  description: "Schlecht konditionierte Ausgleichsprobleme mit Tikhonov-Regularisierung, Spektralfiltern, begründeter Parameterwahl und stabilen numerischen Verfahren lösen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Lineare Methoden der KI",
+};
+
+## Warum Ausgleichsprobleme instabil sein können
+
+Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> und <InlineMath math="b\in\mathbb{R}^m" /> löst die gewöhnliche Methode der kleinsten Quadrate
+
+<BlockMath math="\min_x\|Ax-b\|_2^2" />
+
+Ein Minimierer existiert immer, auch wenn die Gleichungen <InlineMath math="Ax=b" /> nicht konsistent sind. Das eigentliche Problem ist ein anderes: Bei einer rangdefizienten Matrix <InlineMath math="A" /> muss der Minimierer nicht eindeutig sein. Ist <InlineMath math="A" /> nahezu rangdefizient, können kleine Störungen in <InlineMath math="b" /> große Änderungen der angepassten Parameter verursachen.
+
+Die Singulärwertzerlegung erklärt diese Verstärkung. Für <InlineMath math="A=U\Sigma V^T" /> enthält die Ausgleichslösung Faktoren <InlineMath math="1/\sigma_i" />. Eine Datenkomponente in Richtung eines sehr kleinen Singulärwerts <InlineMath math="\sigma_i" /> wird daher stark vergrößert.
+
+## Tikhonov-Problem
+
+Die Tikhonov-Regularisierung wägt Datentreue gegen eine gewählte Vorstellung plausibler Parameter ab:
+
+<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
+
+Dabei ist <InlineMath math="x_0" /> ein Referenzwert, <InlineMath math="L" /> legt fest, welche Größe klein oder glatt bleiben soll, und <InlineMath math="\alpha" /> steuert die Abwägung.
+
+- <InlineMath math="L=I" /> bestraft den Abstand zu <InlineMath math="x_0" />.
+- Eine Matrix erster Differenzen bestraft schnelle Änderungen benachbarter Parameter.
+- Eine Matrix zweiter Differenzen bestraft Krümmung und begünstigt glattere Profile.
+
+Die Strafe erzeugt keine neuen Informationen in den Beobachtungen. Sie macht die gewählte Vorstruktur ausdrücklich sichtbar und führt zu einem stabilen Optimierungsproblem.
+
+## Erweitertes Ausgleichsproblem
+
+Die Zielfunktion ist exakt das Ausgleichsproblem
+
+<BlockMath math="\min_x\left\|\begin{pmatrix}A\\\alpha L\end{pmatrix}x-\begin{pmatrix}b\\\alpha Lx_0\end{pmatrix}\right\|_2^2" />
+
+Die Ableitung liefert die Normalgleichung
+
+<BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
+
+Die Lösung ist genau dann eindeutig, wenn
+
+<BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
+
+Für die gewöhnliche Ridge-Regularisierung mit <InlineMath math="L=I" /> gilt diese Bedingung für jedes <InlineMath math="\alpha>0" />, denn <InlineMath math="A^TA+\alpha^2I" /> ist positiv definit.
+
+## Spektrale Filterung
+
+Für <InlineMath math="L=I" /> und <InlineMath math="x_0=0" /> sei <InlineMath math="A=U\Sigma V^T" />. Dann gilt
+
+<MathContainer>
+<BlockMath math="x_\alpha=\sum_i\frac{\sigma_i}{\sigma_i^2+\alpha^2}(u_i^Tb)v_i" />
+<BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
+</MathContainer>
+
+Der Faktor <InlineMath math="\phi_i" /> liegt nahe bei <InlineMath math="1" />, wenn <InlineMath math="\sigma_i\gg\alpha" />, und nahe bei <InlineMath math="0" />, wenn <InlineMath math="\sigma_i\ll\alpha" />. Die Regularisierung erhält somit gut bestimmte Richtungen und dämpft Richtungen, die Rauschen verstärken würden.
+
+## Gerechnetes Sensitivitätsbeispiel
+
+Wir betrachten
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}1&0\\0&0{,}1\end{pmatrix},\qquad b=\begin{pmatrix}1\\0{,}2\end{pmatrix}" />
+<BlockMath math="x_{\mathrm{LS}}=A^{-1}b=\begin{pmatrix}1\\2\end{pmatrix}" />
+</MathContainer>
+
+Der zweite Singulärwert beträgt nur <InlineMath math="0{,}1" />. Eine Änderung der zweiten Beobachtung um <InlineMath math="0{,}01" /> ändert den zweiten unregularisierten Parameter um <InlineMath math="0{,}1" />.
+
+Mit <InlineMath math="L=I" />, <InlineMath math="x_0=0" /> und <InlineMath math="\alpha=0{,}2" /> folgt
+
+<MathContainer>
+<BlockMath math="(A^TA+0{,}2^2I)x=A^Tb" />
+<BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
+</MathContainer>
+
+Dieselbe Störung um <InlineMath math="0{,}01" /> verändert den zweiten Parameter nun nur um <InlineMath math="0{,}02" />. Diese Stabilität kostet Verzerrung: Der Schätzwert <InlineMath math="0{,}4" /> liegt weiter vom unregularisierten Wert <InlineMath math="2" /> entfernt.
+
+## Wahl des Regularisierungsparameters
+
+Es gibt keinen universell besten Wert für <InlineMath math="\alpha" />. Er hängt vom Rauschniveau, von der Parameterskalierung, von der Strafe und vom Zweck des Modells ab.
+
+| Methode | Geeignete Evidenz | Entscheidung |
+| --- | --- | --- |
+| Validierung oder Kreuzvalidierung | Vorhersagemodell mit zurückgehaltenen Beobachtungen | Den Wert mit der besten Leistung außerhalb der Trainingsdaten wählen |
+| Diskrepanzprinzip | Belastbare Schätzung der Norm des Beobachtungsrauschens | Residualnorm an das erwartete Rauschniveau anpassen |
+| Verallgemeinerte Kreuzvalidierung | Lineares inverses Problem ohne eigenen Validierungssatz | Einen aus dem angepassten System berechneten Vorhersagewert minimieren |
+| L-Kurve | Explorative Analyse inverser Probleme | Die Ecke der Kurve aus Residualnorm und Strafnorm untersuchen |
+
+Ein kleines <InlineMath math="\alpha" /> betont die Datentreue und kann Rauschverstärkung bestehen lassen. Ein großes <InlineMath math="\alpha" /> betont die Strafe und kann die Lösung zu stark glätten oder schrumpfen. Auch Parameterspalten und Strafzeilen müssen sinnvoll skaliert sein. Andernfalls lässt sich der Zahlenwert von <InlineMath math="\alpha" /> kaum interpretieren.
+
+## Allgemeine Gewichte und Nebenbedingungen
+
+Eine Diagonalmatrix <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega_n)" /> erzeugt parameterspezifische Strafen:
+
+<BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
+
+Ein größeres <InlineMath math="\omega_i" /> bedeutet eine stärkere Schrumpfung in Richtung <InlineMath math="x_{0i}" />. Die Gewichte sollten jedoch Einheiten und eine begründbare Vorstruktur widerspiegeln, nicht bloß kennzeichnen, welche Koeffizienten schwer zu schätzen sind.
+
+Eine Gleichung wie <InlineMath math="x_i=c" /> sollte als ausdrückliche Gleichungsnebenbedingung modelliert werden, wenn sie exakt gelten muss. Schranken wie <InlineMath math="l_i\le x_i\le u_i" /> erfordern ein beschränktes Ausgleichsproblem. Eine extrem große Strafe kann eine Gleichung annähern, ersetzt aber keine exakte Nebenbedingung und kann die numerische Skalierung verschlechtern.
+
+## Zuverlässige numerische Lösung
+
+Die Normalgleichung ist für die Analyse nützlich, doch das ausdrückliche Bilden von <InlineMath math="A^TA" /> quadriert die Konditionszahl. In numerischem Code sollte das erweiterte Ausgleichssystem mit QR oder SVD gelöst werden, wenn Stabilität wichtig ist. Dokumentiert werden sollten <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm. So bleibt die Abwägung nachvollziehbar, statt den regularisierten Schätzwert als reine Aussage der Daten zu behandeln.

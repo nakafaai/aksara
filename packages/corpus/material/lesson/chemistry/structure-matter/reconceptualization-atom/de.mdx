@@ -1,0 +1,129 @@
+
+export const metadata = {
+  title: "Das Atom neu gedacht",
+  description:
+    "Nachvollziehen, wie John Dalton die Atomidee mithilfe von Masse, konstanter Zusammensetzung und multiplen Proportionen zu einer chemischen Theorie machte.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-28",
+  subject: "Atomstruktur",
+};
+
+## Als Atome zu Zählwerkzeugen wurden
+
+Schon vor John Dalton stellte man sich Atome als kleinste Bestandteile der Materie vor. Die Idee blieb jedoch weitgehend philosophisch: plausibel, aber noch nicht präzise genug, um Versuchsergebnisse zu berechnen.
+
+Dalton änderte die Richtung der Diskussion. Er konnte Atome nicht direkt sehen, erkannte aber **Massenmuster** in chemischen Reaktionen. Daraus entwickelte er ein Modell, das feste Zusammensetzungen und einfache Massenverhältnisse erklären konnte.
+
+> Rekonzeptualisierung bedeutet, die Art und Weise, wie wir ein Konzept betrachten, neu zu gestalten. In Daltons Theorie ist ein Atom nicht mehr nur ein winziges Stück Materie. Es wird zu einer Zähleinheit zur Erklärung chemischer Reaktionen.
+
+[Britannicas Biografie von John Dalton](https://www.britannica.com/biography/John-Dalton) ordnet seine Arbeit dem frühen 19. Jahrhundert zu. In dieser Zeit überführte er die griechische Atomidee in eine wissenschaftliche Theorie der Chemie.
+
+OpenStax zeigt in [Early Ideas in Atomic Theory](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-1-early-ideas-in-atomic-theory), wie Daltons Theorie das Gesetz der konstanten und das Gesetz der multiplen Proportionen erklärt.
+
+## Daltons Verhältnis-Labor
+
+Wähle einen Modus und beobachte, was jeweils erhalten bleibt: Atomzahl, Zusammensetzung der Verbindung oder Massenverhältnis.
+
+<DaltonEvidenceLab
+  title={<>Daltons Verhältnis-Labor</>}
+  description={
+    <>
+      Vergleiche die Teilchen links und rechts sowie das angezeigte Verhältnis.
+    </>
+  }
+  labels={{
+    chooseMode: "Beleg für Daltons Atomtheorie auswählen",
+    modes: {
+      conservation: {
+        tab: "Masse bleibt erhalten",
+        beforeTitle: "Vor der Reaktion",
+        afterTitle: "Nach der Reaktion",
+        expression: "\\mathrm{2CO + O_2 \\rightarrow 2CO_2}",
+        facts: [
+          { label: "Anzahl C", value: "2 = 2" },
+          { label: "Anzahl O", value: "4 = 4" },
+          { label: "Bedeutung", value: "\\text{Neu angeordnet}" },
+        ],
+      },
+      fixed: {
+        tab: "Feste Zusammensetzung",
+        beforeTitle: "Kleine Probe",
+        afterTitle: "Größere Probe",
+        expression: "\\mathrm{H_2O}",
+        facts: [
+          { label: "Atomverhältnis", value: "H:O = 2:1" },
+          { label: "Massenverhältnis", value: "m_H:m_O \\approx 1:8" },
+          { label: "Bedeutung", value: "\\text{Feste Zusammensetzung}" },
+        ],
+      },
+      multiple: {
+        tab: "Multiple Verhältnisse",
+        beforeTitle: "Kohlenmonoxid",
+        afterTitle: "Kohlendioxid",
+        expression: "\\mathrm{CO \\quad und \\quad CO_2}",
+        facts: [
+          { label: "Masse von O", value: "16:32" },
+          { label: "Vereinfacht", value: "1:2" },
+          { label: "Bedeutung", value: "\\text{Multiples Verhältnis}" },
+        ],
+      },
+    },
+  }}
+/>
+
+Die Wassertafel verwendet die ganzzahligen Näherungen <InlineMath math="H \approx 1" /> und <InlineMath math="O \approx 16" /> aus dem Chemieunterricht. Deshalb ist <InlineMath math="2(1):16=1:8" /> eine schulische Näherung und keine Behauptung, jede gemessene Wasserprobe besitze exakt dieses dezimalfreie Massenverhältnis. Aktuelle Standardatomgewichte und ihre von der Isotopenzusammensetzung abhängigen Intervalle werden von der [CIAAW](https://ciaaw.org/atomic-weights.htm) gepflegt.
+
+## Fünf Aussagen, die Chemie messbar machten
+
+Daltons Modell wird oft als Kugelmodell bezeichnet. Atome galten darin als winzige feste Kugeln: unteilbar, je nach Element verschieden und nur in bestimmten Anzahlen miteinander verbunden.
+
+| Daltons Aussage | Bedeutung |
+| :------------- | :-------------------------------- |
+| Materie besteht aus Atomen. | Unter einem Stoff versteht man eine Ansammlung extrem kleiner Teilchen. |
+| Atome desselben Elements werden als identisch behandelt. | Ein <InlineMath math="C" />-Atom wird anders behandelt als ein <InlineMath math="O" />-Atom. |
+| Atome verwandeln sich bei gewöhnlichen chemischen Reaktionen nicht in Atome eines anderen Elements. | Eine chemische Reaktion ordnet Atome neu an, anstatt aus dem Nichts neue Atome zu erschaffen. |
+| Verbindungen entstehen aus Atomen in bestimmten Verhältnissen. | Wasser wird als <InlineMath math="\mathrm{H_2O}" /> geschrieben, weil das Atomverhältnis <InlineMath math="H:O = 2:1" /> ist. |
+| Zwei Elemente können mehr als eine Verbindung bilden. | <InlineMath math="\mathrm{CO}" /> und <InlineMath math="\mathrm{CO_2}" /> enthalten beide Kohlenstoff und Sauerstoff, aber ihre Verhältnisse unterscheiden sich. |
+
+Die Stärke von Daltons Theorie liegt in der Vorstellung von **Atomen als diskreten Einheiten**. Diskret bedeutet: Sie lassen sich einzeln zählen wie Murmeln und nicht beliebig portionieren wie Wasser. Verbinden sich Atome in ganzzahligen Anzahlen, sollten auch Messdaten häufig einfache Massenverhältnisse zeigen.
+
+## Kohlenstoff und Sauerstoff lesen wie Dalton
+
+Kohlenmonoxid und Kohlendioxid enthalten beide Kohlenstoff und Sauerstoff, aber unterschiedlich viele Sauerstoffatome.
+
+| Verbindung | Formel | Atomverhältnis | Relative O-Masse bei festem C |
+| :------- | :------ | :--------- | :---------------------------------- |
+| Kohlenmonoxid | <InlineMath math="\mathrm{CO}" /> | <InlineMath math="C:O = 1:1" /> | <InlineMath math="16" /> Teile |
+| Kohlendioxid | <InlineMath math="\mathrm{CO_2}" /> | <InlineMath math="C:O = 1:2" /> | <InlineMath math="32" /> Teile |
+
+Hier bedeutet **Teile** Vergleichseinheiten. Wichtig ist das Verhältnis, nicht eine bestimmte Einheitenbezeichnung.
+
+Bei gleichbleibender Kohlenstoffmasse bilden die Sauerstoffmassen in <InlineMath math="\mathrm{CO}" /> und <InlineMath math="\mathrm{CO_2}" /> dieses Verhältnis:
+
+<BlockMath math="\begin{aligned}
+\frac{m_O \text{ in } \mathrm{CO}}{m_O \text{ in } \mathrm{CO_2}}
+&= \frac{16}{32} \\
+&= \frac{1}{2}
+\end{aligned}" />
+
+Das Verhältnis <InlineMath math="1:2" /> ist ein einfaches ganzzahliges Verhältnis. Dieses Muster unterstützt das Gesetz der multiplen Proportionen: Wenn zwei Elemente mehrere Verbindungen bilden, haben die Massen eines Elements, die sich mit einer festen Masse eines anderen Elements verbinden, ein einfaches ganzzahliges Verhältnis.
+
+## Was Dalton noch nicht erklären konnte
+
+Daltons Modell half beim Deuten chemischer Reaktionen, konnte aber nicht jede Beobachtung erklären. Wenn Atome tatsächlich feste Kugeln ohne innere Bestandteile wären, warum leiten Metalle dann Strom? Und warum lassen sich Kathodenstrahlen durch elektrische und magnetische Felder ablenken?
+
+<Mermaid
+  title="Daltons Modell trifft auf neue Erkenntnisse"
+  description="Den Belegen folgen, durch die das Atommodell über Daltons Erklärung hinauswuchs."
+  chart={`flowchart LR
+    A["Atomidee"] --> B["Reaktionsmassendaten"]
+    B --> C["Dalton-Modell"]
+    C --> D["Elektrische Beweise"]
+    D --> E["Subatomare Teilchen"]`}
+/>
+
+OpenStax erklärt in [Evolution of Atomic Theory](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-2-evolution-of-atomic-theory), wie J. J. Thomsons Kathodenstrahlversuche ein negativ geladenes Teilchen sichtbar machten, das viel kleiner als ein Atom ist. Heute nennen wir es Elektron. Damit war klar: Atome sind nicht vollständig unteilbar, wie Dalton angenommen hatte.
+
+Auch Isotope konnte Daltons Modell noch nicht erklären. Dabei handelt es sich um Atome desselben Elements mit unterschiedlichen Massen. Verständlich wird dieser Unterschied erst mit den subatomaren Teilchen.
+
+Diese Grenzen machen Daltons Modell nicht wertlos. Für seine Zeit war es eine tragfähige Grundlage: Es erklärte Masse, konstante Zusammensetzung und multiple Proportionen, aber noch nicht elektrische Ladung oder den inneren Aufbau eines Atoms. Genau an dieser Grenze beginnt die Untersuchung subatomarer Teilchen.

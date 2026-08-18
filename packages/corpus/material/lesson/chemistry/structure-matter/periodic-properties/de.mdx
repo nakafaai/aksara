@@ -1,0 +1,103 @@
+
+export const metadata = {
+  title: "Periodische Eigenschaften von Elementen",
+  description:
+    "Atomradius, erste Ionisierungsenergie, Elektronenaffinität und Elektronegativität aus der Position eines Elements im Periodensystem erschließen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-29",
+  subject: "Atomstruktur",
+};
+
+## Die Position verrät die Kernanziehung
+
+Das Periodensystem kann wie ein Sitzplan der Elemente gelesen werden. Die Position eines Elements gibt Hinweise auf die Atomgröße, wie leicht ein Elektron entfernt werden kann und wie stark das Atom Elektronen in einer Bindung anzieht.
+
+Die Schlüsselidee ist die **Anziehung des Kerns auf die Valenzelektronen**. Valenzelektronen liegen in der äußersten Schale. Mit steigender Protonenzahl wird die Kernanziehung meist stärker. Kommen dagegen weitere Schalen hinzu, liegen die Valenzelektronen weiter vom Kern entfernt und spüren seine Anziehung schwächer.
+
+<PeriodicPropertiesLab
+  title={<>Modell periodischer Trends</>}
+  description={
+    <>
+      Wähle eine Eigenschaft und vergleiche ihren Verlauf innerhalb einer
+      Periode mit dem Verlauf innerhalb einer Gruppe. Die Richtung macht den
+      Fachbegriff zuerst anschaulich.
+    </>
+  }
+  labels={{
+    chooseTrend: "Periodische Eigenschaft auswählen",
+    sceneLabel: "Dreidimensionales Modell periodischer Eigenschaften",
+    factLabels: {
+      question: "Bedeutung",
+      period: "Innerhalb einer Periode",
+      group: "Innerhalb einer Gruppe nach unten",
+      cause: "Wichtigster Grund",
+    },
+    modes: {
+      "atomic-radius": {
+        tab: "Radius",
+        name: "Atomradius",
+        question: <>Relative Atomgröße, meist in <InlineMath math="\mathrm{pm}" />.</>,
+        periodTrend: <>Von <InlineMath math="\mathrm{Na}" /> zu <InlineMath math="\mathrm{Cl}" /> nimmt die Größe ab.</>,
+        groupTrend: <>Von <InlineMath math="\mathrm{N}" /> zu <InlineMath math="\mathrm{Bi}" /> nimmt die Größe zu.</>,
+        cause: <>Nach rechts steigt <InlineMath math="Z" />. Nach unten steigt die Zahl der Schalen.</>,
+        guidance: <>Beginne mit der Periodenbahn: Die Markierung für <InlineMath math="\mathrm{Na}" /> ist am größten und wird in Richtung <InlineMath math="\mathrm{Cl}" /> kleiner. Innerhalb derselben Periode zieht der Kern die äußeren Elektronen immer stärker an.</>,
+      },
+      "ionization-energy": {
+        tab: "Ionisierung",
+        name: "Erste Ionisierungsenergie",
+        question: <>Mindestenergie zum Entfernen des ersten Elektrons aus einem neutralen Gasatom, geschrieben als <InlineMath math="E_1" />.</>,
+        periodTrend: <>Von <InlineMath math="\mathrm{Na}" /> zu <InlineMath math="\mathrm{Ar}" /> steigt sie im Allgemeinen, mit kleinen Einbrüchen bei <InlineMath math="\mathrm{Al}" /> und <InlineMath math="\mathrm{S}" />.</>,
+        groupTrend: <>In der Alkalimetallgruppe nimmt sie von <InlineMath math="\mathrm{Li}" /> zu <InlineMath math="\mathrm{Cs}" /> ab.</>,
+        cause: <>Ein kernnahes, stärker gebundenes Elektron lässt sich schwerer entfernen.</>,
+        guidance: <>Die Periodenbahn steigt nicht vollkommen gleichmäßig. Das ist zu erwarten: Durch die Anordnung der Unterschalen lassen sich einige Atome leichter ionisieren als ihre Nachbarn.</>,
+      },
+      "electron-affinity": {
+        tab: "Affinität",
+        name: "Elektronenaffinität",
+        question: <>Energie, die bei der Aufnahme eines Elektrons durch ein Gasatom frei wird oder aufgenommen wird. Dieses Modell verwendet die IUPAC-Konvention der freigesetzten Energie. Höhere Markierungen bedeuten daher eine größere positive Elektronenaffinität.</>,
+        periodTrend: <>Halogene wie <InlineMath math="\mathrm{Cl}" /> liegen hoch. <InlineMath math="\mathrm{Mg}" /> und <InlineMath math="\mathrm{Ar}" /> liegen niedrig, weil die Elektronenaufnahme ungünstig ist.</>,
+        groupTrend: <>Bei den Halogenen liegt <InlineMath math="\mathrm{Cl}" /> etwas höher als <InlineMath math="\mathrm{F}" />. Danach nimmt der Wert in Richtung <InlineMath math="\mathrm{I}" /> tendenziell ab.</>,
+        cause: <>Die Kernanziehung begünstigt die Aufnahme, aber Elektronenabstoßung und gefüllte Schalen machen den Trend unregelmäßiger.</>,
+        guidance: <>Achte auf die auffällige Markierung für <InlineMath math="\mathrm{Cl}" />. Die Elektronenaffinität besitzt wichtige Ausnahmen und muss mit Vorzeichen und Kontext gelesen werden, nicht als ein einziger glatter Pfeil.</>,
+      },
+      "electronegativity": {
+        tab: "Elektronegativität",
+        name: "Elektronegativität",
+        question: <>Tendenz eines Atoms, gemeinsame Elektronen in einer chemischen Bindung anzuziehen, häufig als <InlineMath math="\chi" /> geschrieben.</>,
+        periodTrend: <>Von <InlineMath math="\mathrm{Na}" /> zu <InlineMath math="\mathrm{Cl}" /> nimmt sie zu.</>,
+        groupTrend: <>Von <InlineMath math="\mathrm{F}" /> zu <InlineMath math="\mathrm{I}" /> nimmt sie ab.</>,
+        cause: <>Ein kleines Atom mit starker Kernanziehung zieht bindende Elektronenpaare stärker an.</>,
+        guidance: <>Das Modell zeigt oben rechts die stärkste Anziehung auf Bindungselektronen. Deshalb bildet <InlineMath math="\mathrm{F}" /> den höchsten Bezugspunkt der Pauling-Skala.</>,
+      },
+    },
+  }}
+/>
+
+## Vier Eigenschaften, vier Fragen
+
+Die Pfeile sollten nicht am Anfang stehen. Zuerst hilft die Frage, was die jeweilige Eigenschaft überhaupt beschreibt.
+
+- **Atomradius** fragt: Wie groß ist das Atom? Atome haben keine harten Oberflächen, daher wird die Größe aus den Kernabständen oder einem anderen vergleichbaren Messmodell abgelesen.
+- **Erste Ionisierungsenergie** fragt: Wie schwer ist es, das erste Elektron aus einem neutralen Atom zu entfernen?
+- **Elektronenaffinität** fragt: Welche Energieänderung passiert, wenn ein Elektron in ein gasförmiges Atom eintritt?
+- **Elektronegativität** fragt: Wie stark zieht ein Atom Elektronen an, die in einer Bindung geteilt sind?
+
+Elektronenaffinität und Elektronegativität werden leicht verwechselt. Bei der Elektronenaffinität nimmt ein gasförmiges Atom ein Elektron **auf**. Elektronegativität beschreibt dagegen die Anziehung gemeinsamer Elektronen **innerhalb einer Bindung**.
+
+## Das nützlichste Muster
+
+Im Laufe einer Periode nimmt die Anzahl der Protonen zu, aber die Valenzelektronen befinden sich immer noch in derselben Hauptschale. Die effektive nukleare Anziehungskraft wird stärker. Infolgedessen nimmt der Atomradius tendenziell ab, während Ionisierungsenergie und Elektronegativität tendenziell zunehmen.
+
+Innerhalb einer Gruppe nach unten wächst die Zahl der Schalen. Die Valenzelektronen liegen weiter vom Kern entfernt, während innere Elektronen einen Teil der Kernanziehung abschirmen. Dieser Effekt heißt **Elektronenabschirmung**. Eine Lampe hinter mehreren Papierblättern liefert ein gutes Bild: Das Licht ist weiterhin vorhanden, wirkt von außen aber schwächer.
+
+Die Elektronenaffinität muss genauer gelesen werden, weil Quellen zwei scheinbar entgegengesetzte Vorzeichenkonventionen verwenden. Das [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) definiert die Elektronenaffinität als die bei der Elektronenaufnahme freigesetzte Energie. Eine günstige Aufnahme besitzt daher <InlineMath math="\mathrm{EA}>0" />. Wird derselbe Vorgang als Reaktionsenergie geschrieben, gilt das entgegengesetzte Vorzeichen <InlineMath math="\Delta E=-\mathrm{EA}<0" />. [OpenStax](https://openstax.org/books/chemistry-atoms-first/pages/3-5-periodic-variations-in-element-properties) verwendet diese Reaktionsenergiekonvention.
+
+<BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)} \qquad \mathrm{EA}>0,\quad \Delta E=-\mathrm{EA}<0" />
+
+Edelgase wie <InlineMath math="\mathrm{Ar}" /> haben bereits stabile Valenzschalen, sodass sie zusätzliche Elektronen nur schwer aufnehmen können. Aus diesem Grund ist die Elektronenaffinität weniger eindeutig als der Atomradius oder die Ionisierungsenergie.
+
+## Lesen der Trendrichtung
+
+Zwei Fragen geben eine schnelle Orientierung: Liegen die Valenzelektronen näher am Kern oder weiter entfernt? Wird die effektive Kernanziehung stärker oder schwächer?
+
+Liegen Valenzelektronen näher am Kern und werden stärker angezogen, sind Atome tendenziell kleiner und Elektronen schwerer zu entfernen. Kommen weitere Schalen hinzu, liegen die Valenzelektronen weiter außen, die Atome werden größer und äußere Elektronen lassen sich leichter entfernen. Mit diesem Zusammenhang werden Trendpfeile zu einer begründeten Aussage statt zu leerem Auswendiglernen.

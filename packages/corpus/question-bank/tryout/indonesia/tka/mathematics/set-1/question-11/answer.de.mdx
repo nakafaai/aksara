@@ -1,0 +1,51 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+#### Skalierungstransformationsmatrix
+
+Skalenmatrix <InlineMath math="(T_1)" /> mit Faktor <InlineMath math="2" /> auf der <InlineMath math="x" />-Achse und <InlineMath math="0{,}5" /> auf der <InlineMath math="y" />-Achse
+
+<BlockMath math="M_1 = \begin{pmatrix} 2 & 0 \\ 0 & 0{,}5 \end{pmatrix}" />
+
+#### Schertransformationsmatrix
+
+Schermatrix entlang der <InlineMath math="x" />-Achse mit Faktor <InlineMath math="1" /> <InlineMath math="(T_2)" />
+
+<BlockMath math="M_2 = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}" />
+
+#### Kompositionsmatrix
+
+Die Kompositionsmatrix <InlineMath math="(T_2 \circ T_1)" /> ist <InlineMath math="M_2 \times M_1" />
+
+<BlockMath math="M_2 \times M_1 = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 & 0 \\ 0 & 0{,}5 \end{pmatrix} = \begin{pmatrix} 2 & 0{,}5 \\ 0 & 0{,}5 \end{pmatrix}" />
+
+#### Berechnung der Anfangsfläche
+
+Ein Quadrat mit der Seite <InlineMath math="2 \text{ Einheiten}" /> hat eine Anfangsfläche von
+
+<BlockMath math="\text{Anfangsbereich} = 2 \times 2 = 4 \text{ quadratische Einheiten}" />
+
+#### Bestimmen des Flächenänderungs-Skalierungsfaktors
+
+Die Determinante der Zusammensetzungsmatrix <InlineMath math="M_2 \cdot M_1" /> gibt den Skalierungsfaktor für die Flächenänderung an
+
+<MathContainer>
+<BlockMath math="\det(M_2 M_1) = (2 \times 0{,}5) - (0{,}5 \times 0)" />
+<BlockMath math="= 1 - 0 = 1" />
+</MathContainer>
+
+#### Bereich nach der Transformation
+
+Die Fläche nach der Transformation wird berechnet durch
+
+<MathContainer>
+<BlockMath math="\text{Neuer Bereich} = |\det(M_2 M_1)| \times \text{Anfangsbereich}" />
+<BlockMath math="= |1| \times 4 = 4 \text{ quadratische Einheiten}" />
+</MathContainer>
+
+Obwohl Skalen- und Schertransformationen stattgefunden haben, bleibt die Fläche des Quadrats gleich, da die Determinante der Zusammensetzungsmatrix <InlineMath math="1" /> ist.
+
+Daher beträgt die Fläche des Quadrats nach beiden Transformationen <InlineMath math="4" /> Quadrateinheiten

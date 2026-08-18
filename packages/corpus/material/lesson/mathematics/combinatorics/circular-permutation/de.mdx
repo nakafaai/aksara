@@ -1,0 +1,125 @@
+export const metadata = {
+   title: "Kreispermutation",
+   description: "Kreispermutationen zählen relative Reihenfolgen. Beispiele erklären gleiche Rotationen, unterschiedliche Spiegelbilder und Anordnungen mit Zusatzbedingungen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Was ist eine Kreispermutation?
+
+Wenn an einem runden Tisch jede Person einen Platz im Uhrzeigersinn weiterrückt, bleiben die Sitznachbarn gleich. Eine **Kreispermutation** zählt deshalb die relative Reihenfolge und nicht die Bezeichnung einzelner Plätze.
+
+Das unterscheidet sie von einer linearen Permutation. In einer Reihe sind der erste und der letzte Platz eindeutig; im Kreis gibt es keinen ausgezeichneten Startpunkt.
+
+Jedes Objekt kann daher als Bezugspunkt dienen. Lineare Reihenfolgen, die sich nur durch eine Drehung unterscheiden, beschreiben **dieselbe Anordnung im Kreis**.
+
+## Formel der Kreispermutation
+
+Für <InlineMath math="n" /> verschiedene Objekte gilt:
+
+<BlockMath math="P_n = (n-1)!" />
+
+Dabei gilt:
+- <InlineMath math="P_n" /> = Anzahl der Kreispermutationen von <InlineMath math="n" /> Objekten
+- <InlineMath math="n" /> = Anzahl der anzuordnenden Objekte
+- <InlineMath math="(n-1)!" /> = Fakultät von <InlineMath math="(n-1)" />
+
+**Warum ist die Formel <InlineMath math="(n-1)!" /> und nicht <InlineMath math="n!" />?**
+
+Eine gemeinsame Drehung aller Objekte erzeugt keine neue Anordnung. Das lässt sich an einem runden Tisch leicht erkennen.
+
+Angenommen, <InlineMath math="3" /> Kinder, <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />, sitzen um einen runden Tisch. Die Reihenfolgen <InlineMath math="ABC" />, <InlineMath math="BCA" /> und <InlineMath math="CAB" /> sind **dieselbe Anordnung**, denn sie gehen durch Drehung ineinander über und ihre relativen Positionen bleiben gleich.
+
+So entsteht die Formel:
+1. Fixiere ein Objekt als **Bezugspunkt**, zum Beispiel Kind A.
+2. Ordne alle übrigen Objekte relativ zu diesem Bezugspunkt an.
+3. Es bleiben <InlineMath math="n-1" /> Objekte zum Anordnen.
+4. Dafür gibt es <InlineMath math="(n-1)!" /> Möglichkeiten.
+
+Für <InlineMath math="3" /> Kinder ergibt sich <InlineMath math="P_3 = (3-1)! = 2! = 2 \times 1 = 2 \text{ Anordnungen}" />.
+
+Die Formel <InlineMath math="(n-1)!" /> fasst gedrehte Anordnungen zusammen, zählt Spiegelbilder aber weiterhin getrennt. Das passt zu Personen, die zur Tischmitte schauen, denn eine gespiegelte Reihenfolge vertauscht die linken und rechten Nachbarn. Ein Armband lässt sich dagegen umdrehen. Bei <InlineMath math="n\geq3" /> verschiedenen Perlen bildet jede Kreisreihenfolge mit einem anderen Spiegelbild ein Paar. Daher bleiben <InlineMath math="\frac{(n-1)!}{2}" /> Anordnungen.
+
+## Anwendungen
+
+Kreispermutationen treten in unterschiedlichen Situationen auf:
+
+**Sitzordnung am runden Tisch:**
+
+Fünf Lernende sitzen für eine Diskussion an einem runden Tisch. Die Anzahl der Sitzordnungen beträgt:
+
+<BlockMath math="P_5 = (5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{ Anordnungen}" />
+
+**Traditionelle Spiele:**
+
+Acht Kinder stellen sich für ein Spiel im Kreis auf. Die Anzahl der verschiedenen Formationen ist:
+
+<BlockMath math="P_8 = (8-1)! = 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040 \text{ Anordnungen}" />
+
+**Situationen mit besonderen Bedingungen:**
+
+Bei **Zusatzbedingungen**, etwa wenn bestimmte Objekte nebeneinanderliegen müssen, hilft die **Blockmethode**:
+
+Beispiel: <InlineMath math="4" /> Ehepaare sitzen im Kreis, wobei die beiden Personen jedes Paares nebeneinandersitzen müssen.
+
+**Lösungsstrategie:**
+1. **Fasse** jedes Paar zu einem Block zusammen: <InlineMath math="4 \text{ Blöcke}" />.
+2. **Ordne die Blöcke** im Kreis an: <InlineMath math="(4-1)! = 3! = 6 \text{ Anordnungen}" />.
+3. **Vertausche die Plätze** innerhalb jedes Paares: <InlineMath math="2! \text{ Möglichkeiten}" /> pro Paar.
+4. **Multipliziere:** <InlineMath math="3! \times (2!)^4 = 6 \times 2^4 = 6 \times 16 = 96 \text{ Anordnungen}" />.
+
+## Übungsaufgaben
+
+1. Es gibt <InlineMath math="6" /> Freunde, die am Lagerfeuer sitzen. Auf wie viele Arten können sie sitzen?
+
+2. Aus <InlineMath math="8" /> Perlen in verschiedenen Farben wird ein Armband gefertigt. Wenn Drehungen und umgedrehte Spiegelbilder als dasselbe Armband gelten, wie viele Anordnungen sind dann möglich?
+
+3. <InlineMath math="5" /> Ehepaare sitzen an einem runden Tisch. Die beiden Personen jedes Paares sollen nebeneinandersitzen. Wie viele Sitzordnungen sind möglich?
+
+4. <InlineMath math="7" /> Lernende stellen sich im Kreis auf. Zwei bestimmte Personen dürfen nicht nebeneinanderstehen. Wie viele Anordnungen sind möglich?
+
+### Lösungen
+
+1. **Antwort: <InlineMath math="120 \text{Wege}" />**
+
+   Rechenweg:
+   - Gegeben: <InlineMath math="n = 6 \text{ Personen}" />
+   - Formel der Kreispermutation: <InlineMath math="P_n = (n-1)!" />
+   - <InlineMath math="P_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />
+
+   Die <InlineMath math="6 \text{ Personen}" /> können also in <InlineMath math="120" /> verschiedenen Sitzordnungen am Lagerfeuer sitzen.
+
+2. **Antwort: <InlineMath math="2\,520 \text{Wege}" />**
+
+   Rechenweg:
+   - Zunächst zählen gedrehte Anordnungen als gleich: <InlineMath math="P_8 = (8-1)! = 7!" />
+   - <InlineMath math="7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040" />
+   - Durch Umdrehen des Armbands wird jede Reihenfolge im Uhrzeigersinn mit ihrem Spiegelbild gegen den Uhrzeigersinn identisch.
+   - Da alle Perlen verschieden sind, bilden diese Anordnungen Paare. Deshalb teilen wir durch <InlineMath math="2" />.
+   - <InlineMath math="\frac{5\,040}{2} = 2\,520" />
+
+   Es gibt <InlineMath math="2\,520" /> verschiedene Armbänder.
+
+3. **Antwort: <InlineMath math="768 \text{Wege}" />**
+
+   Rechenweg:
+   - Gegeben: <InlineMath math="5" /> Ehepaare, also <InlineMath math="10 \text{ Personen}" />; jedes Paar soll zusammensitzen.
+   - **Blockmethode:** Jedes Paar bildet einen Block: <InlineMath math="5 \text{ Blöcke}" />.
+   - Kreispermutation der <InlineMath math="5 \text{ Blöcke}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />.
+   - Innerhalb jedes Paares sind <InlineMath math="2! = 2 \text{ Anordnungen}" /> möglich.
+   - Gesamt: <InlineMath math="24 \times 2^5 = 24 \times 32 = 768" />
+
+   Damit erfüllen <InlineMath math="768" /> Sitzordnungen die Bedingung.
+
+4. **Antwort: <InlineMath math="480 \text{Wege}" />**
+
+   Rechenweg mit der **Komplementmethode**:
+   - Ohne Einschränkung gibt es <InlineMath math="(7-1)! = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" /> Anordnungen.
+   - Für die unerwünschten Fälle fassen wir die <InlineMath math="2 \text{ Lernenden}" /> zu einem Block zusammen.
+   - Damit liegen <InlineMath math="6" /> Blöcke im Kreis. Sie lassen sich auf <InlineMath math="(6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" /> Arten anordnen.
+   - Die <InlineMath math="2 \text{ Lernenden}" /> im Block können ihre Plätze tauschen. Das ergibt <InlineMath math="2! = 2" /> innere Anordnungen.
+   - Gesamtzahl benachbarter Anordnungen: <InlineMath math="120 \times 2 = 240" />
+   - **Gesuchte Anordnungen:** <InlineMath math="720 - 240 = 480" />
+
+   Somit gibt es <InlineMath math="480 \text{ Anordnungen}" />, bei denen die beiden Lernenden nicht nebeneinanderstehen.

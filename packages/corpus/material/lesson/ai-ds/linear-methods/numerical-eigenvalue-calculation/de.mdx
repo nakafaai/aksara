@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Numerische Berechnung von Eigenwerten",
+  description: "Berechne Eigenwerte mit Potenziteration, verschobener inverser Iteration und dem QR-Algorithmus. Lerne Konvergenzannahmen, Residuenprüfungen und die Verfahrenswahl kennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-17",
+  subject: "Lineare Methoden der KI",
+};
+
+## Warum numerische Methoden anders arbeiten
+
+Ein Eigenpaar einer quadratischen Matrix <InlineMath math="A" /> erfüllt
+
+<BlockMath math="Av=\lambda v,\qquad v\ne0" />
+
+Bei einer kleinen symbolischen Matrix kann man <InlineMath math="\det(A-\lambda I)=0" /> lösen. Numerische Software vermeidet es normalerweise, das charakteristische Polynom zu bilden und dessen Nullstellen zu bestimmen. Seine Koeffizienten können empfindlich auf Rundung reagieren. Für große oder dünn besetzte Matrizen gibt es außerdem effizientere Wege, die direkt Matrix-Vektor-Produkte und Faktorisierungen verwenden.
+
+Verschiedene Algorithmen beantworten verschiedene Fragen:
+
+- Die Potenziteration schätzt einen Eigenwert mit größtem Betrag.
+- Die verschobene inverse Iteration zielt auf einen Eigenwert nahe einer gewählten Verschiebung.
+- Der QR-Algorithmus berechnet das vollständige Spektrum einer dichten Matrix.
+- Lanczos- und Arnoldi-Verfahren zielen auf einen kleinen Teil des Spektrums einer großen dünn besetzten Matrix.
+
+## Potenziteration
+
+Wähle einen von null verschiedenen Startvektor <InlineMath math="q_0" /> und normiere ihn. Wiederhole
+
+<MathContainer>
+<BlockMath math="z_k=Aq_{k-1}" />
+<BlockMath math="q_k=\frac{z_k}{\|z_k\|_2}" />
+<BlockMath math="\mu_k=q_k^TAq_k" />
+</MathContainer>
+
+Der Skalar <InlineMath math="\mu_k" /> ist der Rayleigh-Quotient. Für eine diagonalisierbare Matrix mit eindeutig größtem Betrag,
+
+<BlockMath math="|\lambda_1|>|\lambda_2|\ge\cdots\ge|\lambda_n|" />
+
+und einen Startvektor mit einer von null verschiedenen Komponente in dominanter Eigenrichtung nähert sich <InlineMath math="q_k" /> dieser Richtung. Der asymptotische Fehler schrumpft üblicherweise proportional zu
+
+<BlockMath math="\left|\frac{\lambda_2}{\lambda_1}\right|^k" />
+
+Daraus folgen zwei mögliche Fehlerfälle. Gleiche dominante Beträge können die Konvergenz zu einem einzelnen Vektor verhindern. Ein Startvektor, der orthogonal zum dominanten Eigenraum ist, findet diesen Eigenraum nie.
+
+### Mit dem Residuum abbrechen
+
+Brich nicht nur deshalb ab, weil zwei aufeinanderfolgende Eigenwertschätzungen ähnlich aussehen. Prüfe das Eigenpaarresiduum
+
+<BlockMath math="r_k=Aq_k-\mu_kq_k" />
+
+Eine skalierungsbewusste Bedingung lautet
+
+<BlockMath math="\|r_k\|_2\le \tau\bigl(\|A\|_2+|\mu_k|\bigr)" />
+
+wobei <InlineMath math="\tau" /> die geforderte Toleranz ist. Ein kleines Residuum bestätigt, dass das berechnete Paar die Eigenwertgleichung annähernd erfüllt. Es zeigt jedoch nicht allein, welcher benachbarte Eigenwert gefunden wurde.
+
+## Beispiel zur Potenziteration
+
+Betrachte
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+<BlockMath math="q_0=\begin{pmatrix}1\\0\end{pmatrix}" />
+</MathContainer>
+
+Der erste Schritt ergibt
+
+<MathContainer>
+<BlockMath math="z_1=Aq_0=\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="q_1=\frac{1}{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="\mu_1=q_1^TAq_1=\frac{14}{5}=2{,}8" />
+</MathContainer>
+
+Der zweite Schritt ergibt
+
+<MathContainer>
+<BlockMath math="q_2=\frac{1}{\sqrt{41}}\begin{pmatrix}5\\4\end{pmatrix}" />
+<BlockMath math="\mu_2=\frac{122}{41}\approx2{,}97561" />
+</MathContainer>
+
+Die Iterierten nähern sich
+
+<BlockMath math="q_*=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\qquad \lambda_*=3" />
+
+Der andere Eigenwert ist <InlineMath math="1" />. Der erwartete Konvergenzfaktor beträgt daher <InlineMath math="|1/3|" /> pro Iteration, sobald der asymptotische Bereich erreicht ist.
+
+## Verschobene inverse Iteration
+
+Die Potenziteration bevorzugt den größten Betrag. Um einen Eigenwert nahe der Verschiebung <InlineMath math="\sigma" /> zu finden, wiederholt man
+
+<MathContainer>
+<BlockMath math="(A-\sigma I)z_k=q_{k-1}" />
+<BlockMath math="q_k=\frac{z_k}{\|z_k\|_2}" />
+<BlockMath math="\mu_k=q_k^TAq_k" />
+</MathContainer>
+
+Die Eigenwerte von <InlineMath math="(A-\sigma I)^{-1}" /> sind <InlineMath math="1/(\lambda_i-\sigma)" />. Daher wird der Eigenwert mit dem kleinsten Abstand zu <InlineMath math="\sigma" /> dominant. Bilde die Inverse niemals explizit. Faktorisiere <InlineMath math="A-\sigma I" /> und löse in jeder Iteration ein lineares Gleichungssystem. Bei fester Verschiebung kann die Faktorisierung wiederverwendet werden.
+
+Liegt <InlineMath math="\sigma" /> sehr nahe an einem Eigenwert, ist das verschobene System schlecht konditioniert. Genaue lineare Lösungen und Residuenprüfungen sind deshalb unverzichtbar.
+
+## QR-Algorithmus für das vollständige Spektrum
+
+Beginne mit <InlineMath math="A_0=A" />. Berechne in Iteration <InlineMath math="k" />
+
+<MathContainer>
+<BlockMath math="A_k=Q_kR_k" />
+<BlockMath math="A_{k+1}=R_kQ_k=Q_k^TA_kQ_k" />
+</MathContainer>
+
+Jeder Schritt ist eine orthogonale Ähnlichkeitstransformation und erhält daher die Eigenwerte. Praktische QR-Algorithmen reduzieren eine dichte Matrix zuerst auf Hessenberg-Form, verwenden Verschiebungen und trennen konvergierte Blöcke ab. Bei einer reellen unsymmetrischen Matrix ist das Ergebnis im Allgemeinen eine reelle Schur-Form mit diagonalen <InlineMath math="1\times1" />- und <InlineMath math="2\times2" />-Blöcken. Eine symmetrische Matrix wird auf Tridiagonalform reduziert und konvergiert zu einer Diagonalmatrix.
+
+## Das passende Verfahren wählen
+
+| Ziel und Matrixstruktur | Geeignetes Verfahren | Wichtige Prüfung |
+| --- | --- | --- |
+| Ein dominantes Eigenpaar | Potenziteration | eindeutig größter Betrag und Startkomponente ungleich null |
+| Eigenpaar nahe <InlineMath math="\sigma" /> | Verschobene inverse Iteration | stabile Lösungen mit <InlineMath math="A-\sigma I" /> |
+| Mehrere extreme Eigenpaare einer großen symmetrischen dünn besetzten Matrix | Lanczos | Verlust der Orthogonalität und Residuen |
+| Mehrere Eigenpaare einer großen unsymmetrischen dünn besetzten Matrix | Arnoldi | Unterraumgröße, Neustarts und Residuen |
+| Vollständiges Spektrum einer dichten Matrix | Verschobenes QR-Verfahren zur Schur-Form | konvergierte diagonale oder quasidiagonale Blöcke |
+
+Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: Kontrolliere die Residuen, erhalte komplex konjugierte Paare reeller Matrizen und erkläre einen Eigenvektor nicht allein deshalb für genau, weil sich die Eigenwertschätzung stabilisiert hat.

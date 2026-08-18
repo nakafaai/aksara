@@ -1,0 +1,66 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+#### Die Skizze lesen
+
+<Set7Question19Graph
+  title="Flugzeug und Kontrollturm"
+  description={<>Das Flugzeug bewegt sich waagerecht auf den Turm zu. Deshalb wächst der Höhenwinkel von <InlineMath math="30^\circ" /> auf <InlineMath math="45^\circ" />.</>}
+  labels={{
+    atc: "Kontrollturm",
+    initialPos: "Anfangsposition",
+    finalPos: "Endposition",
+    height: "3000 m"
+  }}
+/>
+
+Die Flughöhe bleibt konstant. Deshalb entstehen bei beiden Beobachtungen rechtwinklige Dreiecke mit derselben senkrechten Seite. Gegeben sind:
+- Flughöhe <InlineMath math="h = 3000 \text{ m}" />.
+- anfänglicher Höhenwinkel <InlineMath math="\alpha = 30^\circ" />.
+- abschließender Höhenwinkel <InlineMath math="\beta = 45^\circ" />.
+- verstrichene Zeit <InlineMath math="t = 30 \text{ Sekunden}" />.
+
+#### Den anfänglichen horizontalen Abstand bestimmen
+
+Der anfängliche horizontale Abstand (<InlineMath math="x_1" />) kann mithilfe des Tangens von <InlineMath math="30^\circ" /> berechnet werden:
+
+<MathContainer>
+  <BlockMath math="\tan 30^\circ = \frac{h}{x_1}" />
+  <BlockMath math="x_1 = \frac{h}{\tan 30^\circ} = \frac{3000}{\frac{1}{\sqrt{3}}}" />
+  <BlockMath math="x_1 = 3000\sqrt{3} \text{ m}" />
+</MathContainer>
+
+#### Den abschließenden horizontalen Abstand bestimmen
+
+Der endgültige horizontale Abstand (<InlineMath math="x_2" />) kann mithilfe des Tangens von <InlineMath math="45^\circ" /> berechnet werden:
+
+<MathContainer>
+  <BlockMath math="\tan 45^\circ = \frac{h}{x_2}" />
+  <BlockMath math="x_2 = \frac{h}{\tan 45^\circ} = \frac{3000}{1}" />
+  <BlockMath math="x_2 = 3000 \text{ m}" />
+</MathContainer>
+
+#### Die zurückgelegte horizontale Strecke bestimmen
+
+Die horizontale Verschiebung (<InlineMath math="\Delta x" />) ist die Differenz zwischen Anfangs- und Endabstand:
+
+<MathContainer>
+  <BlockMath math="\Delta x = x_1 - x_2" />
+  <BlockMath math="\Delta x = 3000\sqrt{3} - 3000" />
+  <BlockMath math="\Delta x = 3000(\sqrt{3} - 1) \text{ m}" />
+</MathContainer>
+
+#### Die durchschnittliche horizontale Geschwindigkeit bestimmen
+
+Die durchschnittliche horizontale Geschwindigkeit (<InlineMath math="v" />) ist die horizontale Strecke geteilt durch die verstrichene Zeit:
+
+<MathContainer>
+  <BlockMath math="v = \frac{\Delta x}{t}" />
+  <BlockMath math="v = \frac{3000(\sqrt{3} - 1)}{30}" />
+  <BlockMath math="v = 100(\sqrt{3} - 1) \text{ m/s}" />
+</MathContainer>
+
+Die durchschnittliche horizontale Geschwindigkeit des Flugzeugs beträgt somit <InlineMath math="100(\sqrt{3} - 1) \text{ m/s}" />.

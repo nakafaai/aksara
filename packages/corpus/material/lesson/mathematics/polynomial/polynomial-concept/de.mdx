@@ -1,0 +1,124 @@
+export const metadata = {
+  title: "Polynomkonzept",
+  description: "Verstehe Polynome von Grund auf: Erkenne Monome, verbinde sie zu Polynomen und unterscheide gültige von ungültigen Polynomausdrücken.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-04",
+  subject: "Polynom",
+};
+
+## Monome kennenlernen
+
+Bevor wir Polynome definieren, schauen wir uns ihre Bausteine an: **Monome**. Betrachte dazu die folgenden algebraischen Ausdrücke:
+
+<MathContainer>
+  <BlockMath math="\sqrt[3]{p} \quad \text{(kein Monom)}" />
+  <BlockMath math="2x^2y \quad \text{(Monom)}" />
+  <BlockMath math="-8 \quad \text{(Monom)}" />
+  <BlockMath math="\frac{2}{m} \quad \text{(kein Monom)}" />
+  <BlockMath math="1{,}24k^4 \quad \text{(Monom)}" />
+  <BlockMath math="5a^{-6} \quad \text{(kein Monom)}" />
+</MathContainer>
+
+Die Ausdrücke lassen sich in zwei Gruppen einteilen:
+
+1.  **Gruppe <InlineMath math="1" /> (Monome):** <InlineMath math="2x^2y" />, <InlineMath math="-8" />, <InlineMath math="1{,}24k^4" />
+2.  **Gruppe <InlineMath math="2" /> (keine Monome):** <InlineMath math="\sqrt[3]{p}" />, <InlineMath math="\frac{2}{m}" />, <InlineMath math="5a^{-6}" />
+
+Die Ausdrücke in Gruppe <InlineMath math="1" /> heißen **Monome**.
+
+### Was ist ein Monom?
+
+**Ein Monom** ist eine Zahl, eine Variable mit einem nichtnegativen ganzzahligen Exponenten (<InlineMath math="0, 1, 2, 3, \dots" />) oder ein Produkt aus einer Zahl und solchen Variablen.
+
+Schauen wir genauer hin, warum Gruppe <InlineMath math="1" /> aus Monomen besteht und Gruppe <InlineMath math="2" /> nicht:
+
+- **Gruppe <InlineMath math="1" /> (Monome):**
+
+  - <InlineMath math="2x^2y" />:
+
+    Ein Produkt aus der Zahl <InlineMath math="2" /> und den Variablen <InlineMath math="x" /> und <InlineMath math="y" /> mit den nichtnegativen ganzzahligen Exponenten <InlineMath math="2" /> und <InlineMath math="1" />.
+
+  - <InlineMath math="-8" />:
+
+    Eine Konstante, also eine Zahl ohne Variable. Sie lässt sich auch als <InlineMath math="-8x^0" /> schreiben.
+
+  - <InlineMath math="1{,}24k^4" />:
+
+    Ein Produkt aus der Zahl <InlineMath math="1{,}24" /> und der Variablen <InlineMath math="k" /> mit dem nichtnegativen ganzzahligen Exponenten <InlineMath math="4" />.
+
+- **Gruppe <InlineMath math="2" /> (keine Monome):**
+
+  - <InlineMath math="\sqrt[3]{p} = p^{1/3}" />:
+
+    Der Exponent <InlineMath math="1/3" /> von <InlineMath math="p" /> ist keine nichtnegative ganze Zahl.
+
+  - <InlineMath math="\frac{2}{m} = 2m^{-1}" />:
+
+    Der Exponent <InlineMath math="-1" /> von <InlineMath math="m" /> ist keine nichtnegative ganze Zahl.
+
+  - <InlineMath math="5a^{-6}" />:
+
+    Der Exponent <InlineMath math="-6" /> von <InlineMath math="a" /> ist keine nichtnegative ganze Zahl.
+
+Das entscheidende Merkmal eines Monoms lautet also: **Alle Variablenexponenten sind nichtnegative ganze Zahlen.** Die Zahl, mit der der Variablenteil multipliziert wird, heißt **Koeffizient**. In <InlineMath math="2x^2y" /> ist das zum Beispiel <InlineMath math="2" />.
+
+## Definition des Polynoms
+
+Mit diesem Baustein können wir nun ein **Polynom** definieren.
+
+**Ein Polynom** ist ein einzelnes Monom oder eine Summe beziehungsweise Differenz aus mehreren Monomen.
+
+Betrachte die folgenden Beispiele:
+
+<MathContainer>
+  <BlockMath math="4x^3y - 3x^2" />
+  <BlockMath math="x + 2\sqrt{x}" />
+  <BlockMath math="2x^3 - 5x^{-2} + 1" />
+</MathContainer>
+
+Wir prüfen nun, welche Ausdrücke Polynome sind:
+
+1.  <InlineMath math="4x^3y - 3x^2" />
+
+    - Der Term <InlineMath math="4x^3y" /> ist ein Monom.
+    - Der Term <InlineMath math="-3x^2" /> ist ein Monom.
+    - **Fazit:** ein Polynom, denn hier werden zwei Monome subtrahiert.
+
+2.  <InlineMath math="x + 2\sqrt{x}" />
+
+    - Der Term <InlineMath math="x" /> ist ein Monom.
+    - Der Term <InlineMath math="2\sqrt{x} = 2x^{1/2}" /> ist kein Monom, denn der Exponent ist keine nichtnegative ganze Zahl.
+    - **Fazit:** kein Polynom.
+
+3.  <InlineMath math="2x^3 - 5x^{-2} + 1" />
+
+    - Der Term <InlineMath math="2x^3" /> ist ein Monom.
+    - Der Term <InlineMath math="-5x^{-2}" /> ist kein Monom, denn der Exponent ist keine nichtnegative ganze Zahl.
+    - Der Term <InlineMath math="1" /> ist ein Monom (Konstante).
+    - **Fazit:** kein Polynom.
+
+### Addition und Subtraktion in Polynomen
+
+Die Definition verwendet eine _Summe_ von Monomen, während Beispiel <InlineMath math="1" /> mit der _Subtraktion_ <InlineMath math="4x^3y - 3x^2" /> geschrieben ist. Zwischen beiden Formen besteht kein Widerspruch.
+
+Eine Subtraktion lässt sich als Addition einer negativen Zahl auffassen. Deshalb ist <InlineMath math="4x^3y - 3x^2" /> dasselbe wie <InlineMath math="4x^3y + (-3x^2)" />.
+
+Sowohl <InlineMath math="4x^3y" /> als auch <InlineMath math="-3x^2" /> sind Monome. Ihre Summe ist daher ein Polynom, auch wenn sie ursprünglich als Subtraktion geschrieben wurde.
+
+Ein algebraischer Ausdruck heißt also Polynom, wenn alle seine Terme Monome sind, das heißt, jede Variable hat einen nichtnegativen ganzzahligen Exponenten.
+
+## Übung
+
+Entscheide für jeden Ausdruck, ob er in den angegebenen Variablen ein Polynom ist. Begründe deine Entscheidung mit der Exponentenregel.
+
+1. <InlineMath math="7x^4-2x+9" /> in <InlineMath math="x" />
+2. <InlineMath math="\sqrt{x}+1" /> in <InlineMath math="x" />
+3. <InlineMath math="\frac{3}{x^2}-5" /> in <InlineMath math="x" />
+4. <InlineMath math="5y^2z^3-2yz+4" /> in <InlineMath math="y" /> und <InlineMath math="z" />
+
+### Ausführliche Lösung
+
+1. **Polynom.** Die Exponenten von <InlineMath math="x" /> sind <InlineMath math="4" />, <InlineMath math="1" /> und <InlineMath math="0" />.
+2. **Kein Polynom.** Wegen <InlineMath math="\sqrt{x}=x^{1/2}" /> ist der Exponent <InlineMath math="1/2" /> keine nichtnegative ganze Zahl.
+3. **Kein Polynom.** Wegen <InlineMath math="\frac{3}{x^2}=3x^{-2}" /> ist der Exponent <InlineMath math="-2" /> negativ.
+4. **Polynom.** Alle Exponenten von <InlineMath math="y" /> und <InlineMath math="z" /> sind nichtnegative ganze Zahlen. Fehlt eine Variable in einem Term, hat sie dort den Exponenten <InlineMath math="0" />.

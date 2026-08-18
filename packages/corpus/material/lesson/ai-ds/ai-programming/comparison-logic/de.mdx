@@ -1,0 +1,265 @@
+export const metadata = {
+    title: "Vergleich und Logik",
+    description: "Python-Vergleich und boolesche Operatoren, Vorrang, falsche/wahre Werte und sichere Float-Vergleiche.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-16",
+    subject: "KI-Programmierung",
+};
+
+## Rangfolge der Operatoren
+
+Die Operatorrangfolge bestimmt, wie Python einen Ausdruck gruppiert, wenn Klammern diese Gruppierung nicht ausdrücklich festlegen. Sie ist eine Parsing-Regel und keine Zusage, dass jeder Operand in derselben sichtbaren Reihenfolge ausgewertet wird.
+
+<Mermaid
+  title="Welcher Operator wird zuerst ausgeführt?"
+  description="Lies die Bindungsstärke von Klammern bis zu logischen Operatoren, damit das Ergebnis eines Ausdrucks nicht geraten werden muss."
+  chart={`
+    flowchart LR
+        A["Klammern, Aufrufe, Indizierung"] --> B["** Potenz"]
+        B --> C["unäres +, -, ~"]
+        C --> D["*, /, //, %"]
+        D --> E["+, -"]
+        E --> F["Vergleichsoperatoren"]
+        F --> G["not"]
+        G --> H["and"]
+        H --> I["or"]
+  `}
+/>
+
+Operatoren mit höherer Priorität binden ihre Operanden stärker. Die meisten binären Operatoren derselben Stufe gruppieren von links nach rechts. Potenzen gruppieren dagegen von rechts nach links, und Vergleiche bilden Ketten. Verwende Klammern, sobald die beabsichtigte Gruppierung nicht sofort erkennbar ist.
+
+## Vergleichsoperatoren
+
+Vergleichsoperatoren werden verwendet, um zwei Werte zu vergleichen und boolesche Werte (`True` oder `False`) zu erzeugen. In Python verfügbare Vergleichsoperatoren:
+
+- `==` gleich
+- `!=` ungleich
+- `<` weniger als
+- `<=` kleiner oder gleich
+- `>` größer als
+- `>=` größer oder gleich
+
+Diese Operatoren liefern einen `bool`. Die Gleichheit kann Objekte verschiedener Typen vergleichen. Ordnungsvergleiche wie `<` benötigen jedoch Typen mit einer kompatiblen Ordnung und können sonst einen `TypeError` auslösen. Vergleiche teilen sich eine Prioritätsstufe und lassen sich verketten.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "comparison_example.py",
+      code: `# Beispiel für die Verwendung von Vergleichsoperatoren
+>>> 4 == 5
+False
+
+>>> 3 > 2.1  # Python unterstützt diesen gemischten Zahlenvergleich
+True`
+    }
+  ]}
+/>
+
+## Boolesche Operatoren
+
+Mit booleschen Operatoren können Sie mehrere Bedingungen kombinieren oder boolesche Werte ändern. Python bietet drei wichtige boolesche Operatoren:
+
+<Mermaid
+  title="Boolesche Operatoren verknüpfen Bedingungen"
+  description="Das Diagramm zeigt, wie die Operatoren and, or und not Wahrheitswerte verarbeiten."
+  chart={`
+    flowchart LR
+        A[Eingabe A] --> AND{and}
+        B[Eingabe B] --> AND
+        AND --> C["A ist falsch: A"]
+        AND --> D["A ist wahr: B"]
+
+        E[Eingabe A] --> OR{or}
+        F[Eingabe B] --> OR
+        OR --> G["A ist wahr: A"]
+        OR --> H["A ist falsch: B"]
+
+        I[Eingabe] --> NOT{not}
+        NOT --> J["Negierter Wahrheitswert"]
+  `}
+/>
+
+1. **Operator `and`** gibt den ersten Wert zurück, wenn er falsch ist, oder den zweiten Wert, wenn der erste Wert wahr ist.
+
+2. **Operator `or`** gibt den ersten Wert zurück, wenn er wahr ist, oder den zweiten Wert, wenn der erste Wert falsch ist.
+
+3. **Operator `not`** unterscheidet sich von den Operatoren `and` und `or`, da er immer einen neuen booleschen Wert erzeugt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_operators.py",
+      code: `# Beispiel für boolesche Operatoren
+>>> 4.0 and 5.0  # wertet 4.0 als wahr aus, wertet 5.0 als wahr aus und gibt 5.0 zurück
+5.0
+
+>>> 0 and 5  # wertet 0 als falsch aus und gibt wegen Kurzschlussauswertung 0 zurück
+0
+
+>>> 4.0 or 5.0  # wertet 4.0 als wahr aus und gibt wegen Kurzschlussauswertung 4.0 zurück
+4.0
+
+>>> 0 or 5  # wertet 0 als falsch aus, wertet 5 als wahr aus und gibt 5 zurück
+5
+
+>>> not 4.0  # wertet 4.0 als wahr aus und gibt False zurück
+False
+
+>>> not 0  # wertet 0 als falsch aus und gibt True zurück
+True`
+    }
+  ]}
+/>
+
+Die Operatoren `and` und `or` verwenden eine Kurzschlussauswertung, was bedeutet, dass die Auswertung stoppt, wenn das Ergebnis ermittelt werden kann, ohne dass alle Operanden ausgewertet werden müssen. Beide geben das zuletzt ausgewertete Argument zurück, während der `not`-Operator immer einen neuen booleschen Wert erstellt.
+
+## Werte im booleschen Kontext
+
+Python verfügt über spezielle Regeln, um zu bestimmen, welche Werte im booleschen Kontext als `False` oder `True` betrachtet werden.
+
+### Falsche und wahre Werte
+
+<Mermaid
+  title="Werte, die Python als Bedingungsergebnisse behandelt"
+  description="Gruppieren Sie die Werte, die Python als „False“ oder „True“ behandelt, bevor sie in Bedingungen verwendet werden."
+  chart={`
+    flowchart TD
+        A[Python-Werte] --> B{Boolesche Auswertung}
+        B -->|falsch| C[False]
+        B -->|falsch| D[None]
+        B -->|falsch| E["Null und leere Container"]
+        B -->|wahr| F["Alle anderen Werte"]
+        F --> G["Zahlen ungleich null"]
+        F --> H["Nicht leere Werte"]
+  `}
+/>
+
+**Angenommene Werte `False` (falsch):**
+
+1. `False` selbst
+2. `None` (von NoneType)
+3. Null aus allen numerischen Datentypen:
+   - `0` (ganzzahlige Null)
+   - `0.0` (Float Null)
+   - `0j` (komplexe Nullstelle, wobei j die imaginäre Einheit ist)
+4. Leere Zeichenfolge `""`
+5. Leere Behälter: `[]`, `{}`, `()`, `set()`
+
+**Angenommene Werte `True` (Wahrheit):**
+
+1. Andere eingebaute Werte, die weder null noch leer sind
+
+Eigene Objekte können ihre Wahrheitsprüfung mit `__bool__()` oder `__len__()` festlegen. Ist keine der beiden Methoden definiert, gilt eine Instanz standardmäßig als wahr.
+
+### Boolescher Datentyp
+
+Der Typ `bool` in Python stellt die Wahrheitswerte `False` und `True` dar, ist ein Untertyp der Ganzzahl (`int`) und boolesche Werte verhalten sich in mathematischen Operationen wie <InlineMath math="0" /> und <InlineMath math="1" />.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_values.py",
+      code: `# Bool-Konstruktor und arithmetische Operationen
+>>> bool(-1)
+True
+
+>>> bool(0.0)
+False
+
+>>> True + True
+2
+
+>>> 3 * False
+0`
+    }
+  ]}
+/>
+
+## Operatoren kombinieren
+
+Sie können Vergleichsoperatoren mit booleschen Operatoren kombinieren, um komplexere Bedingungen zu erstellen. Python ermöglicht auch eine natürlichere Vergleichsverkettung wie `1 < 2 < 3`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "combined_operators.py",
+      code: `# Beispiel einer Operatorkombination
+>>> 4.0 > 3 and 2 >= 3  # ⇔ True and False
+False
+
+>>> 7 < 6 or 4 != 2  # ⇔ False or True
+True
+
+>>> not 0 < 2  # ⇔ not (0 < 2) ⇔ not True
+False
+
+# Vergleichsverkettung
+>>> 1 < 2 < 3  # ⇔ (1 < 2) and (2 < 3)
+True
+
+>>> 5 <= 7 < 10  # ⇔ (5 <= 7) und (7 < 10), Anwendung: Intervalltest
+True`
+    }
+  ]}
+/>
+
+## Vergleich von Gleitkommazahlen
+
+Viele Dezimalbrüche besitzen keine exakte endliche binäre Gleitkommadarstellung. Arithmetische Operationen runden Zwischenergebnisse. Zwei mathematisch gleichwertige Rechnungen können deshalb nahe beieinanderliegende, aber ungleiche Floats liefern.
+
+### Float-Präzisionsprobleme
+
+<Mermaid
+  title="Gleich aussehende Dezimalwerte können sich unterscheiden"
+  description="Verfolge Dezimalwerte bis zur Gleitkommadarstellung, um die Rolle einer Vergleichstoleranz zu verstehen."
+  chart={`
+    flowchart TD
+        A[Dezimalzahlen] --> B[Binäre Umwandlung]
+        B --> C[Gleitkommadarstellung]
+        C --> D{Begrenzte Genauigkeit?}
+        D -->|ja| E[Rundungsfehler]
+        D -->|nein| F[Exakte Darstellung]
+        E --> G[Vergleich schlägt fehl]
+        F --> H[Vergleich gelingt]
+
+        I[Lösung math.isclose] --> J[Relative Toleranz]
+        I --> K[Absolute Toleranz]
+        J --> L[Sicherer Vergleich]
+        K --> L
+  `}
+/>
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_comparison.py",
+      code: `# Gleitkomma-Präzisionsproblem
+>>> a = 0.01
+>>> b = 0.1**2  # b ist 0.010000000000000002
+>>> a == b
+False
+
+# Lösung mit math.isclose()
+>>> import math
+>>> math.isclose(0.01, 0.1**2)
+True
+
+>>> math.isclose(100, 95, rel_tol=0.05)  # relative Toleranz ist 5%
+True
+
+>>> math.isclose(100, 95, abs_tol=5)  # Die absolute Toleranz ist 5
+True`
+    }
+  ]}
+/>
+
+### Lösung mit math.isclose()
+
+Python bietet die Funktion `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` zum Testen der ungefähren Gleichheit. Diese Funktion verwendet relative Toleranz (rel_tol) und absolute Toleranz (abs_tol), um zu bestimmen, ob zwei Werte nahe genug beieinander liegen.
+
+> Verwende exakte Gleichheit, wenn wirklich der genaue Gleitkommawert übereinstimmen muss. Wähle für gemessene oder berechnete Größen fachlich begründete Toleranzen und nutze `math.isclose()`. In der Nähe von null ist eine passende `abs_tol` unverzichtbar, weil die relative Toleranz mit den verglichenen Werten schrumpft.

@@ -1,0 +1,228 @@
+
+export const metadata = {
+  title: "Produkt-Moment-Korrelation",
+  description: "Lerne, wie Pearsons Korrelationskoeffizient Richtung und Stärke eines linearen Zusammenhangs misst und wie du seinen Wert mit Streudiagramm und Kontext deutest.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was ist Produkt-Moment-Korrelation?
+
+Die Produkt-Moment-Korrelation, meist **Pearson-Korrelation** genannt, wird mit **<InlineMath math="r" />** bezeichnet. Sie beschreibt die Richtung und Stärke des **linearen Zusammenhangs** zwischen zwei quantitativen Variablen.
+
+Das Vorzeichen von <InlineMath math="r" /> zeigt die Richtung: positiv bedeutet gleichgerichtet, negativ bedeutet gegenläufig. Der Abstand von null beschreibt, wie deutlich die Punkte einem geradlinigen Muster folgen.
+
+## Korrelation aus Streudiagrammen
+
+Am anschaulichsten wird <InlineMath math="r" />, wenn wir zuerst die Punktwolke im Streudiagramm betrachten.
+
+### Starke positive Korrelation
+
+Liegt <InlineMath math="r" /> nahe bei <InlineMath math="+1" />, steigen beide Variablen tendenziell gemeinsam an.
+
+<ScatterDiagram
+  title="Beispiel einer starken positiven Korrelation"
+  description="Die Datenpunkte liegen dicht an einem ansteigenden geradlinigen Muster."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Daten",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 3.1 },
+        { x: 3, y: 3.9 },
+        { x: 4, y: 5.2 },
+        { x: 5, y: 6.1 },
+        { x: 6, y: 6.8 },
+        { x: 7, y: 8.1 },
+        { x: 8, y: 9.0 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Steigt die Punktwolke von links unten nach rechts oben und liegt sie dicht an einer Geraden, befindet sich <InlineMath math="r" /> nahe bei <InlineMath math="+1" />.
+
+### Schwach positive Korrelation
+
+Ist <InlineMath math="r" /> positiv, aber näher an <InlineMath math="0" />, ist die gleichgerichtete lineare Tendenz schwächer.
+
+<ScatterDiagram
+  title="Beispiel einer schwachen positiven Korrelation"
+  description="Die Punkte steigen tendenziell an, streuen aber stärker um eine Gerade."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Daten",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 8 },
+        { x: 3, y: 3 },
+        { x: 4, y: 6 },
+        { x: 5, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 4 },
+        { x: 8, y: 7 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Für diese acht Punkte ergibt die Rechnung <InlineMath math="r\approx0{,}279" />. Die lineare Tendenz ist positiv, aber schwach. Genau das zeigt auch die breite Streuung der Punkte.
+
+### Starke negative Korrelation
+
+Liegt <InlineMath math="r" /> nahe bei <InlineMath math="-1" />, nimmt die eine Variable tendenziell ab, wenn die andere zunimmt.
+
+<ScatterDiagram
+  title="Beispiel einer starken negativen Korrelation"
+  description="Die Datenpunkte liegen dicht an einem fallenden geradlinigen Muster."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Daten",
+      color: "var(--chart-3)",
+      points: [
+        { x: 1, y: 10 },
+        { x: 2, y: 8.9 },
+        { x: 3, y: 8.1 },
+        { x: 4, y: 6.8 },
+        { x: 5, y: 6.0 },
+        { x: 6, y: 5.1 },
+        { x: 7, y: 4.0 },
+        { x: 8, y: 3.1 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Fällt die Punktwolke von links oben nach rechts unten und liegt sie dicht an einer Geraden, befindet sich <InlineMath math="r" /> nahe bei <InlineMath math="-1" />.
+
+### Keine lineare Korrelation
+
+Liegt <InlineMath math="r" /> nahe bei <InlineMath math="0" />, ist nur ein sehr schwacher oder kein linearer Zusammenhang erkennbar.
+
+<ScatterDiagram
+  title="Beispiel für keine lineare Korrelation"
+  description="Die Datenpunkte sind verstreut und bilden kein klares geradliniges Muster."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Daten",
+      color: "var(--chart-5)",
+      points: [
+        { x: 1, y: 5 },
+        { x: 2, y: 2 },
+        { x: 3, y: 7 },
+        { x: 4, y: 4 },
+        { x: 5, y: 9 },
+        { x: 6, y: 3 },
+        { x: 7, y: 8 },
+        { x: 8, y: 1 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Fehlt ein klares geradliniges Muster, liegt <InlineMath math="r" /> nahe bei <InlineMath math="0" />. Ein gekrümmter oder anderer nichtlinearer Zusammenhang kann trotzdem vorhanden sein.
+
+## Wie wird der Korrelationskoeffizient berechnet?
+
+Der Pearson-Korrelationskoeffizient (<InlineMath math="r" />) misst, wie **gemeinsam** zwei Variablen (<InlineMath math="X" /> und <InlineMath math="Y" />) von ihren Mittelwerten abweichen, relativ zu ihrer jeweiligen eigenen Streuung.
+
+**Die Idee in drei Schritten:**
+
+1.  **Streuung der einzelnen Variablen:**
+
+    Jede Variable (<InlineMath math="X" /> und <InlineMath math="Y" />) hat ihre eigene Streuung. <InlineMath math="SS_{xx}" /> misst die quadrierten Abweichungen der <InlineMath math="X" />-Werte von ihrem Mittelwert, <InlineMath math="SS_{yy}" /> entsprechend die der <InlineMath math="Y" />-Werte.
+
+2.  **Gemeinsame Abweichung:**
+
+    Zusätzlich betrachten wir, wie <InlineMath math="X" /> und <InlineMath math="Y" /> _gemeinsam_ abweichen. Steigt <InlineMath math="Y" /> tendenziell, wenn <InlineMath math="X" /> zunimmt, oder fällt es? Die Summe <InlineMath math="SS_{xy}" /> misst diese paarweisen Kreuzabweichungen. Sie ist der Zähler der Kovarianz; je nach Konvention wird für die Kovarianz zusätzlich durch <InlineMath math="n" /> oder <InlineMath math="n-1" /> geteilt.
+
+    - Ist <InlineMath math="SS_{xy}" /> positiv, haben die gepaarten Abweichungen tendenziell dasselbe Vorzeichen.
+    - Ist <InlineMath math="SS_{xy}" /> negativ, haben die gepaarten Abweichungen tendenziell entgegengesetzte Vorzeichen.
+    - Liegt <InlineMath math="SS_{xy}" /> nahe null, bleibt nur wenig lineare gemeinsame Abweichung übrig.
+
+3.  **Standardisierung:**
+
+    Der Wert von <InlineMath math="SS_{xy}" /> hängt von den Maßeinheiten ab. Wird etwa Körpergröße in Metern statt Zentimetern gemessen, ändert sich die Kreuzabweichungssumme, obwohl der zugrunde liegende Zusammenhang gleich bleibt.
+
+    Deshalb müssen wir das Maß **standardisieren**. Wir teilen <InlineMath math="SS_{xy}" /> durch die geometrische Verbindung der beiden Streuungsmaße, <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
+
+    <BlockMath math="r = \frac{\text{Wie stark variieren X und Y zusammen?}}{\text{Standardisiertes Maß für individuelle X- und Y-Variationen}} = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
+
+Das Ergebnis ist **<InlineMath math="r" />**, der Pearson-Korrelationskoeffizient. Wenn beide Variablen eine von null verschiedene Streuung besitzen, beschränkt die Standardisierung seinen Wert auf das Intervall von <InlineMath math="-1" /> bis <InlineMath math="+1" />, unabhängig von den ursprünglichen Maßeinheiten. So lassen sich lineare Zusammenhänge verschiedener Variablenpaare vergleichen.
+
+Damit vergleicht <InlineMath math="r" /> die paarweisen Abweichungen von <InlineMath math="X" /> und <InlineMath math="Y" /> mit der getrennten Streuung beider Variablen.
+
+## Produktmoment-Korrelationsformel
+
+Für die genaue Berechnung von <InlineMath math="r" /> verwenden wir die folgenden **Abweichungssummen**:
+
+<BlockMath math="r = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
+
+**Was sind <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" /> und <InlineMath math="SS_{yy}" />?**
+
+Sie beschreiben die Streuung und gemeinsame Abweichung unserer Daten:
+
+1.  **<InlineMath math="SS_{xx}" /> (Quadratsumme für <InlineMath math="x" />):** Misst, wie weit die <InlineMath math="x" />-Daten von ihrem Mittelwert abweichen.
+
+    <BlockMath math="SS_{xx} = \sum (x - \bar{x})^2 = \sum x^2 - \frac{(\sum x)^2}{n}" />
+
+2.  **<InlineMath math="SS_{yy}" /> (Quadratsumme für <InlineMath math="y" />):** Misst, wie weit die <InlineMath math="y" />-Daten von ihrem Mittelwert abweichen.
+
+    <BlockMath math="SS_{yy} = \sum (y - \bar{y})^2 = \sum y^2 - \frac{(\sum y)^2}{n}" />
+
+3.  **<InlineMath math="SS_{xy}" /> (Summe der Produkte der Abweichungen für <InlineMath math="x" /> und <InlineMath math="y" />):** Misst, wie <InlineMath math="x" /> und <InlineMath math="y" /> _zusammen_ variieren.
+
+    <BlockMath math="SS_{xy} = \sum (x - \bar{x})(y - \bar{y}) = \sum xy - \frac{(\sum x)(\sum y)}{n}" />
+
+Dabei bedeutet:
+
+- <InlineMath math="n" />: Anzahl der Datenpaare <InlineMath math="(x, y)" />.
+- <InlineMath math="\sum x" />, <InlineMath math="\sum y" />: Summe aller <InlineMath math="x" /> und <InlineMath math="y" />
+  Werte.
+- <InlineMath math="\sum x^2" />, <InlineMath math="\sum y^2" />: Summe der Quadrate
+  jedes <InlineMath math="x" />- und <InlineMath math="y" />-Werts.
+- <InlineMath math="\sum xy" />: Summe des Produkts jedes <InlineMath math="x" />- und <InlineMath math="y" />-Paars.
+- <InlineMath math="\bar{x}" />, <InlineMath math="\bar{y}" />: Mittelwert der Werte <InlineMath math="x" /> und <InlineMath math="y" />.
+
+Nachdem wir die drei <InlineMath math="SS" />-Werte berechnet haben, setzen wir sie in die Formel für <InlineMath math="r" /> ein.
+
+Die Formel setzt <InlineMath math="SS_{xx}>0" /> und <InlineMath math="SS_{yy}>0" /> voraus. Ist eine der Variablen konstant, wird der Nenner null und Pearsons <InlineMath math="r" /> ist nicht definiert.
+
+## Interpretation des Korrelationskoeffizienten
+
+Sobald <InlineMath math="r" /> bestimmt ist, bietet die folgende Tabelle eine grobe sprachliche Einordnung. Ihre Grenzen sind Konventionen und keine universellen Naturgesetze. Die praktische Bedeutung hängt vom Fachgebiet, von der Messqualität, vom Stichprobenumfang und vom Sachzusammenhang ab. Deshalb gehört das Streudiagramm immer zur Deutung dazu.
+
+| Wert von <InlineMath math="r" /> | Korrelationsstärke | Beschreibung |
+| :------------------------------------ | :-------------------- | :---------------------------------------------------------------- |
+| <InlineMath math="1" /> | Perfekt positiv | Alle Punkte liegen genau auf einer ansteigenden Linie.  |
+| <InlineMath math="0{,}7 \le r < 1" /> | Stark positiv | Klare und starke positive lineare Beziehung.     |
+| <InlineMath math="0{,}3 < r < 0{,}7" /> | Mäßig positiv | Mäßig sichtbarer positiver linearer Zusammenhang.   |
+| <InlineMath math="0 < r \le 0{,}3" /> | Schwach positiv | Sehr geringe positive lineare Beziehung.             |
+| <InlineMath math="0" /> | Keine lineare Korrelation | Kein lineares Muster; ein nichtlinearer Zusammenhang ist weiterhin möglich. |
+| <InlineMath math="-0{,}3 \le r < 0" /> | Schwach negativ | Sehr schwacher negativer linearer Zusammenhang.             |
+| <InlineMath math="-0{,}7 < r < -0{,}3" /> | Mäßig negativ | Mäßig sichtbarer negativer linearer Zusammenhang.   |
+| <InlineMath math="-1 < r \le -0{,}7" /> | Stark negativ | Klarer und starker negativer linearer Zusammenhang.     |
+| <InlineMath math="-1" /> | Perfekt negativ | Alle Punkte liegen genau auf einer fallenden Geraden. |

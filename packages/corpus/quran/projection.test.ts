@@ -1,12 +1,16 @@
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+} from "@nakafa/aksara-contracts/locale";
 import type { QuranRowPayload } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   QURAN_CHUNK_SIZE,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Chunk, Effect, Stream } from "effect";
+import { Chunk, Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
+import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { streamQuranRows } from "#corpus/quran/projection";
 import { testQuranRegistry } from "#corpus/test/quran";
 
@@ -131,7 +135,58 @@ describe("Quran projection", () => {
       ...english.graph,
       assetId: "asset:id:quran:quran-surah:1",
     });
-  });
+  }, 30_000);
+
+  it("projects German search and runtime rows only for the authoring locale set", async () => {
+    const rows = Chunk.toReadonlyArray(
+      await Effect.runPromise(
+        streamQuranRows(source, AUTHORING_APP_LOCALES).pipe(Stream.runCollect)
+      )
+    );
+    const attribution = rows.find(({ kind }) => kind === "quran-attribution");
+    const firstChunk = rows.find(isChunk);
+    const searches = rows.filter(isSearch);
+
+    expect(attribution).toMatchObject({
+      activeAppLocales: ["en", "id", "de"],
+      sources: expect.arrayContaining([
+        expect.objectContaining({ id: "quranenc-german" }),
+      ]),
+    });
+    expect(firstChunk?.verses[0]?.translations).toEqual(
+      expect.arrayContaining([
+        {
+          appLocale: "de",
+          value: {
+            footnotes: "",
+            text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
+          },
+        },
+      ])
+    );
+    expect(searches).toHaveLength(QURAN_SURAH_COUNT * 3);
+    expect(searches.find(({ appLocale }) => appLocale === "de")).toMatchObject({
+      graph: { assetId: "asset:de:quran:quran-surah:1" },
+      route: "quran/1",
+    });
+  }, 30_000);
+
+  it("omits Indonesian Tafsir when it is outside the selected locale policy", async () => {
+    const germanOnly = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+      "de",
+    ]);
+    const [chunk] = Chunk.toReadonlyArray(
+      await Effect.runPromise(
+        streamQuranRows(source, germanOnly).pipe(
+          Stream.filter(isChunk),
+          Stream.take(1),
+          Stream.runCollect
+        )
+      )
+    );
+
+    expect(chunk?.verses[0]?.tafsir).toEqual([]);
+  }, 30_000);
 
   it("preserves non-null Tafsir footnotes in Indonesian search text", async () => {
     const [quranSource] = Chunk.toReadonlyArray(

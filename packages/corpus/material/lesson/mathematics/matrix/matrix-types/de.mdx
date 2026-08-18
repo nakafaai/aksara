@@ -1,0 +1,182 @@
+export const metadata = {
+  title: "Matrixtypen",
+  description: "Unterscheide Zeilen-, Spalten-, Quadrat-, Dreiecks-, Diagonal-, Einheits-, Null- und symmetrische Matrizen anhand klarer Definitionen und Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrix",
+};
+
+## Zeilenmatrix
+
+Eine Zeilenmatrix ist eine Matrix, die nur aus einer Zeile besteht.
+
+Eine Zeilenmatrix hat das Format <InlineMath math="1 \times n" />, wobei <InlineMath math="n" /> die Anzahl der Spalten ist.
+
+Ihre allgemeine Form ist:
+
+<BlockMath math="A_{1 \times n} = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \end{bmatrix}" />
+
+Beispiel:
+
+<BlockMath math="P = \begin{bmatrix} 3 & -1 & 0 & 7 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="P" /> ist eine Zeilenmatrix im Format <InlineMath math="1 \times 4" />.
+
+## Spaltenmatrix
+
+Eine Spaltenmatrix ist eine Matrix, die nur aus einer Spalte besteht.
+
+Eine Spaltenmatrix hat das Format <InlineMath math="m \times 1" />, wobei <InlineMath math="m" /> die Anzahl der Zeilen ist.
+
+Ihre allgemeine Form ist:
+
+<BlockMath math="B_{m \times 1} = \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}" />
+
+Beispiel:
+
+<BlockMath math="Q = \begin{bmatrix} 2 \\ 5 \\ -4 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="Q" /> ist eine Spaltenmatrix im Format <InlineMath math="3 \times 1" />.
+
+## Quadratische Matrix
+
+Eine quadratische Matrix ist eine Matrix, die die gleiche Anzahl von Zeilen und Spalten hat.
+
+Wenn <InlineMath math="\text{Anzahl der Zeilen} = \text{Anzahl der Spalten} = n" /> gilt, hat die Matrix das Format <InlineMath math="n \times n" />.
+
+Ihre allgemeine Form ist:
+
+<BlockMath
+  math="A_{n \times n} = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{bmatrix}"
+/>
+
+In einer quadratischen Matrix gibt es:
+
+1. **Hauptdiagonale**:
+
+   Die Elemente <InlineMath math="a_{11}, a_{22}, \dots, a_{nn}" /> (d. h. <InlineMath math="a_{ij}" /> mit <InlineMath math="i=j" />).
+
+2. **Gegendiagonale**:
+
+   Die Elemente <InlineMath math="a_{1n}, a_{2,n-1}, \dots, a_{n1}" /> (d. h. <InlineMath math="a_{ij}" /> mit <InlineMath math="i+j=n+1" />).
+
+Beispiel:
+
+<BlockMath math="M = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="M" /> ist eine quadratische Matrix im Format <InlineMath math="3 \times 3" />. Ihre Hauptdiagonale enthält <InlineMath math="1, 5, 9" />, ihre Gegendiagonale enthält <InlineMath math="3, 5, 7" />.
+
+## Rechteckige Matrix
+
+Eine rechteckige Matrix ist eine Matrix, bei der die Anzahl der Zeilen und Spalten nicht gleich ist (<InlineMath math="m \neq n" />).
+
+Allgemeines Beispiel:
+
+<BlockMath math="C = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="C" /> hat <InlineMath math="2" /> Zeilen und <InlineMath math="3" /> Spalten, also das Format <InlineMath math="2 \times 3" />. Da Zeilen- und Spaltenzahl verschieden sind (<InlineMath math="2 \neq 3" />), ist <InlineMath math="C" /> eine rechteckige Matrix.
+
+Einige Schulbücher unterscheiden Rechteckmatrizen zusätzlich nach ihrer Form: Breite Matrizen haben mehr Spalten als Zeilen, hohe Matrizen mehr Zeilen als Spalten. In manchen Lehrplänen heißen sie auch horizontale beziehungsweise vertikale Matrizen.
+
+### Breite Matrix
+
+Eine breite Matrix ist eine rechteckige Matrix mit mehr Spalten als Zeilen (<InlineMath math="n > m" />).
+
+Beispiel:
+
+<BlockMath math="D = \begin{bmatrix} 1 & 0 & 4 \\ -2 & 3 & 5 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="D" /> ist eine breite Matrix im Format <InlineMath math="2 \times 3" />.
+
+### Hohe Matrix
+
+Eine hohe Matrix ist eine rechteckige Matrix mit mehr Zeilen als Spalten (<InlineMath math="m > n" />).
+
+Beispiel:
+
+<BlockMath math="T = \begin{bmatrix} 7 & 1 \\ 0 & -3 \\ 4 & 2 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="T" /> ist eine hohe Matrix im Format <InlineMath math="3 \times 2" />.
+
+## Dreiecksmatrix
+
+Eine Dreiecksmatrix ist eine quadratische Matrix, bei der die Elemente unterhalb oder oberhalb der Hauptdiagonale Null sind.
+
+### Obere Dreiecksmatrix
+
+Eine obere Dreiecksmatrix ist eine quadratische Matrix, bei der alle Elemente unterhalb der Hauptdiagonale Null sind.
+
+Das bedeutet <InlineMath math="a_{ij} = 0" /> für jedes <InlineMath math="i > j" />.
+
+Beispiel:
+
+<BlockMath math="U = \begin{bmatrix} 5 & 2 & -1 \\ 0 & 3 & 7 \\ 0 & 0 & 1 \end{bmatrix}" />
+
+### Untere Dreiecksmatrix
+
+Eine untere Dreiecksmatrix ist eine quadratische Matrix, bei der alle Elemente über der Hauptdiagonale Null sind.
+
+Das bedeutet <InlineMath math="a_{ij} = 0" /> für jedes <InlineMath math="i < j" />.
+
+Beispiel:
+
+<BlockMath math="L = \begin{bmatrix} 2 & 0 & 0 \\ 4 & 6 & 0 \\ -3 & 1 & 9 \end{bmatrix}" />
+
+## Diagonale Matrix
+
+Eine Diagonalmatrix ist eine quadratische Matrix, bei der alle Elemente außerhalb der Hauptdiagonale Null sind.
+
+Das bedeutet <InlineMath math="a_{ij} = 0" /> für jedes <InlineMath math="i \neq j" />. Elemente auf der Hauptdiagonale können Null oder ungleich Null sein.
+
+Beispiel:
+
+<BlockMath math="X = \begin{bmatrix} 7 & 0 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
+
+Die Matrix <InlineMath math="X" /> ist eine Diagonalmatrix im Format <InlineMath math="3 \times 3" />.
+
+## Einheitsmatrix
+
+Eine Einheitsmatrix (bezeichnet mit <InlineMath math="I" /> oder <InlineMath math="I_n" />) ist eine Diagonalmatrix, deren Hauptdiagonale nur aus <InlineMath math="1" /> besteht.
+
+Beispiel:
+
+<MathContainer>
+  <BlockMath math="I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Die Einheitsmatrix ist das neutrale Element der Matrixmultiplikation. Hat <InlineMath math="A" /> das Format <InlineMath math="m \times n" />, muss die Einheitsmatrix zu der Seite passen, auf der sie multipliziert wird:
+
+<BlockMath math="I_mA=A=AI_n" />
+
+## Nullmatrix
+
+Eine Nullmatrix (bezeichnet mit <InlineMath math="O" /> oder <InlineMath math="O_{m \times n}" />) ist eine Matrix, in der alle Elemente Null sind.
+
+Beispiel:
+
+<MathContainer>
+  <BlockMath math="O_{2 \times 2} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
+  <BlockMath math="O_{2 \times 3} = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
+</MathContainer>
+
+## Symmetrische Matrix
+
+Eine symmetrische Matrix ist eine quadratische Matrix, die mit ihrer Transponierten übereinstimmt (<InlineMath math="A^T = A" />).
+
+Das bedeutet, dass <InlineMath math="a_{ij} = a_{ji}" /> für alle <InlineMath math="i" /> und <InlineMath math="j" /> gilt. Ihre Einträge liegen spiegelbildlich zur Hauptdiagonalen.
+
+Beispiel:
+
+<BlockMath math="S = \begin{bmatrix} 1 & 7 & -3 \\ 7 & 2 & 0 \\ -3 & 0 & 5 \end{bmatrix}" />
+
+In der Matrix <InlineMath math="S" /> gilt:
+
+- <InlineMath math="s_{12} = s_{21} = 7" />
+- <InlineMath math="s_{13} = s_{31} = -3" />
+- <InlineMath math="s_{23} = s_{32} = 0" />

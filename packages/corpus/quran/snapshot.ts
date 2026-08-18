@@ -29,7 +29,7 @@ import {
   type QuranProjectionError,
   streamQuranRows,
 } from "#corpus/quran/projection";
-import { quranProvenanceRecords } from "#corpus/quran/provenance";
+import { quranProvenanceRecordsFor } from "#corpus/quran/provenance";
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
 type PreparedQuranRowError = QuranRowHashError | QuranProjectionError;
@@ -68,9 +68,11 @@ export const prepareQuranSnapshot = Effect.fn(
   "AksaraCorpus.prepareQuranSnapshot"
 )(function* (input: { readonly checkoutRoot: string }) {
   const verifiedSource = yield* loadVerifiedQuranSource(input.checkoutRoot);
+  const provenanceRecords =
+    yield* quranProvenanceRecordsFor(ACTIVE_APP_LOCALES);
   const provenance = yield* makeQuranProvenanceManifest({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    records: quranProvenanceRecords,
+    records: provenanceRecords,
   });
   const rowSummary = yield* digestQuranRows({
     activeAppLocales: ACTIVE_APP_LOCALES,

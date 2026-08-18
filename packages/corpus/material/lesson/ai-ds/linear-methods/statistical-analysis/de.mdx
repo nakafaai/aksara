@@ -1,0 +1,124 @@
+export const metadata = {
+    title: "Statistische Analyse",
+    description: "Lernen Sie die Fisher-Informationsmatrix, Parameterkovarianz, gewichtete kleinste Quadrate und Konfidenzintervalle für statistische Modelle kennen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-15",
+    subject: "Lineare Methoden der KI",
+};
+
+## Mit dem statistischen Modell beginnen
+
+Die Methode der kleinsten Quadrate wird erst dann zu einem statistischen Schätzer, wenn feststeht, wie die Beobachtungen entstanden sind. Sei
+
+<BlockMath math="y=X\beta+\varepsilon" />
+
+wobei <InlineMath math="X\in\mathbb{R}^{m\times p}" /> eine feste Designmatrix, <InlineMath math="\beta\in\mathbb{R}^p" /> der unbekannte Parametervektor und <InlineMath math="y\in\mathbb{R}^m" /> der Beobachtungsvektor ist. Für gewöhnliche gaußsche kleinste Quadrate nehmen wir an,
+
+<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
+
+und dass <InlineMath math="X" /> vollen Spaltenrang besitzt. Nicht die Beobachtungen sind standardnormalverteilt. Der zufällige Fehlervektor ist zentriert gaußverteilt und hat die Varianz <InlineMath math="\sigma^2" />.
+
+## Fisher-Information und Kovarianz des Schätzers
+
+Bis auf eine von <InlineMath math="\beta" /> unabhängige Konstante lautet die Log-Likelihood
+
+<BlockMath math="\ell(\beta)=-\frac1{2\sigma^2}\lVert y-X\beta\rVert_2^2" />
+
+Score, Hesse-Matrix und Fisher-Information sind
+
+<MathContainer>
+<BlockMath math="\nabla\ell(\beta)=\frac1{\sigma^2}X^T(y-X\beta)" />
+<BlockMath math="\nabla^2\ell(\beta)=-\frac1{\sigma^2}X^TX" />
+<BlockMath math="\mathcal I(\beta)=-\mathbb E[\nabla^2\ell(\beta)]=\frac1{\sigma^2}X^TX" />
+</MathContainer>
+
+Somit ist <InlineMath math="X^TX" /> allein nur im standardisierten Fall <InlineMath math="\sigma^2=1" /> die Fisher-Information. Das Lösen der Score-Gleichung ergibt
+
+<MathContainer>
+<BlockMath math="\hat\beta=(X^TX)^{-1}X^Ty" />
+<BlockMath math="\hat\beta=\beta+(X^TX)^{-1}X^T\varepsilon" />
+</MathContainer>
+
+Da eine lineare Transformation eines gaußschen Vektors wieder gaußverteilt ist, gilt
+
+<BlockMath math="\hat\beta\sim\mathcal N\left(\beta,\sigma^2(X^TX)^{-1}\right)" />
+
+Die Kovarianz ist unter diesem Modell exakt die inverse Fisher-Information:
+
+<BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2(X^TX)^{-1}=\mathcal I(\beta)^{-1}" />
+
+Der Diagonaleintrag <InlineMath math="c_{jj}" /> ist die Varianz von <InlineMath math="\hat\beta_j" />. Ein Eintrag <InlineMath math="c_{jk}" /> außerhalb der Diagonalen misst, wie zwei Koeffizientenschätzer gemeinsam schwanken. Ihre Korrelation ist
+
+<BlockMath math="\rho_{jk}=\frac{c_{jk}}{\sqrt{c_{jj}c_{kk}}}" />
+
+## Konfidenzintervalle bei unbekannter Varianz
+
+Ist <InlineMath math="\sigma^2" /> unbekannt und gilt <InlineMath math="m>p" />, schätzen wir sie aus den Residuen:
+
+<BlockMath math="s^2=\frac{\lVert y-X\hat\beta\rVert_2^2}{m-p}" />
+
+Unter dem gaußschen Modell lautet ein exaktes zweiseitiges <InlineMath math="100(1-\alpha)\%" />-Konfidenzintervall für den Koeffizienten <InlineMath math="\beta_j" />
+
+<BlockMath math="\hat\beta_j\pm t_{m-p,\,1-\alpha/2}\,s\sqrt{[(X^TX)^{-1}]_{jj}}" />
+
+Das Intervall beschreibt die Überdeckungsrate des Verfahrens bei wiederholten Stichproben. Es ist nicht die Wahrscheinlichkeit, dass ein fester Parameter in einem bereits berechneten Intervall liegt.
+
+## Stabile Berechnung mit QR
+
+Sei <InlineMath math="X=QR" /> die reduzierte QR-Zerlegung mit <InlineMath math="Q^TQ=I_p" /> und einer regulären oberen Dreiecksmatrix <InlineMath math="R" />. Dann gilt
+
+<MathContainer>
+<BlockMath math="\hat\beta=R^{-1}Q^Ty" />
+<BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
+</MathContainer>
+
+In numerischem Code löst man das Dreieckssystem <InlineMath math="R\hat\beta=Q^Ty" />, statt <InlineMath math="R^{-1}" /> explizit zu bilden. QR vermeidet außerdem, dass sich die Konditionszahl durch die allein zum Lösen des Kleinste-Quadrate-Problems gebildete Matrix <InlineMath math="X^TX" /> quadriert.
+
+## Gewichtete und verallgemeinerte kleinste Quadrate
+
+Nehmen wir nun an, die Fehler hätten die bekannte positiv definite Kovarianzmatrix <InlineMath math="\Omega" />:
+
+<BlockMath math="\varepsilon\sim\mathcal N(0,\Omega)" />
+
+Verallgemeinerte kleinste Quadrate minimieren
+
+<BlockMath math="(y-X\beta)^T\Omega^{-1}(y-X\beta)" />
+
+und liefern
+
+<MathContainer>
+<BlockMath math="\hat\beta_{\mathrm{GLS}}=(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1}y" />
+<BlockMath math="\mathcal I(\beta)=X^T\Omega^{-1}X" />
+<BlockMath math="\operatorname{Cov}(\hat\beta_{\mathrm{GLS}})=(X^T\Omega^{-1}X)^{-1}" />
+</MathContainer>
+
+Für unabhängige Fehler mit Varianzen <InlineMath math="\sigma_i^2" /> gilt <InlineMath math="\Omega=\operatorname{diag}(\sigma_1^2,\ldots,\sigma_m^2)" />. Die Zielfunktion wird dann zu
+
+<BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
+
+und Beobachtung <InlineMath math="i" /> erhält das Gewicht <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
+
+## Vollständig gerechnetes gewichtetes Beispiel
+
+Betrachten wir drei Beobachtungen für einen Achsenabschnitt und eine Steigung:
+
+<MathContainer>
+<BlockMath math="X=\begin{pmatrix}1&0\\1&1\\1&2\end{pmatrix},\qquad y=\begin{pmatrix}1\\2\\5\end{pmatrix}" />
+<BlockMath math="\Omega=\operatorname{diag}(1,1,4),\qquad \Omega^{-1}=\operatorname{diag}\left(1,1,\frac14\right)" />
+</MathContainer>
+
+Die dritte Beobachtung hat die Standardabweichung <InlineMath math="2" /> und erhält daher nur ein Viertel des Gewichts der beiden ersten Beobachtungen. Die gewichteten Normalgleichungen lauten
+
+<MathContainer>
+<BlockMath math="X^T\Omega^{-1}X=\begin{pmatrix}\frac94&\frac32\\\frac32&2\end{pmatrix}" />
+<BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
+</MathContainer>
+
+und damit
+
+<MathContainer>
+<BlockMath math="\hat\beta_{\mathrm{GLS}}=\begin{pmatrix}\frac79\\\frac53\end{pmatrix}" />
+<BlockMath math="\operatorname{Cov}(\hat\beta_{\mathrm{GLS}})=\begin{pmatrix}\frac89&-\frac23\\-\frac23&1\end{pmatrix}" />
+</MathContainer>
+
+Die Gewichtung hat nur dann eine probabilistische Bedeutung, wenn das Varianzmodell begründet ist. Falsche Gewichte können irreführende Standardfehler erzeugen. Exakte gaußsche Konfidenzintervalle setzen außerdem ein angemessenes lineares Mittelwertmodell, eine passende Kovarianz und normalverteilte Fehler voraus.

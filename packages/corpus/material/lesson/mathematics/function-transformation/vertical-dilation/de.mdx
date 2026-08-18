@@ -1,0 +1,328 @@
+export const metadata = {
+  title: "Vertikale Streckung und Stauchung",
+  description: "Verstehe anhand von Graphen und Beispielen, wie ein Skalierungsfaktor die Funktionswerte vertikal streckt, staucht oder spiegelt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Funktionstransformation",
+};
+
+
+
+## Grundidee der vertikalen Skalierung
+
+Eine vertikale Skalierung verändert die Höhe eines Funktionsgraphen. Man kann sich den Graphen wie ein Gummiband vorstellen, das nach oben und unten auseinandergezogen oder zur <InlineMath math="x" />-Achse hin zusammengedrückt wird. Seine Breite bleibt dabei unverändert.
+
+Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = k \cdot f(x)" />. Der Skalierungsfaktor <InlineMath math="k \ne 0" /> multipliziert jeden Funktionswert und verändert dadurch die vertikalen Abstände.
+
+### Skalierungsregel
+
+Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Skalierungsfaktor <InlineMath math="k" /> gilt:
+
+<BlockMath math="g(x) = k \cdot f(x)" />
+
+Der Faktor <InlineMath math="k" /> bestimmt die Wirkung:
+- Bei <InlineMath math="k > 1" /> wird der Graph vertikal gestreckt
+- Bei <InlineMath math="0 < k < 1" /> wird der Graph vertikal gestaucht
+- Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
+- Bei <InlineMath math="k < 0" /> kommt zur Streckung oder Stauchung eine Spiegelung hinzu
+
+Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen, weil dann alle Funktionswerte zu <InlineMath math="0" /> zusammenfallen. Das wäre keine Skalierung des Graphen.
+
+## Vergleich am Graphen
+
+Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt besonders deutlich, wie verschiedene Faktoren den Abstand zur <InlineMath math="x" />-Achse verändern.
+
+<LineEquation
+  title={<>Vertikale Skalierung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
+  description="Achte darauf, wie die unterschiedlichen Skalierungsfaktoren den Graphen vertikal strecken oder stauchen."
+  showZAxis={false}
+  cameraPosition={[12, 8, 12]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: 2 * x * x, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [3.5, 2, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: 0.5 * x * x, z: 0 };
+      }),
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="h(x)=0{,}5x^2" />, offset: [3.5, 0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Graph zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = x^2" /> dient als Vergleich
+- Die Funktion <InlineMath math="g(x) = 2x^2" /> wird durch den Faktor <InlineMath math="2" /> vertikal gestreckt
+- Die Funktion <InlineMath math="h(x) = 0{,}5x^2" /> wird durch den Faktor <InlineMath math="0{,}5" /> vertikal gestaucht
+- Alle Graphen haben den gleichen Scheitelpunkt bei <InlineMath math="(0, 0)" />
+
+## Skalierung einer linearen Funktion
+
+Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = x + 1" /> an.
+
+<LineEquation
+  title={<>Vertikale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 1" /></>}
+  description={<>Die Skalierung verändert sowohl die Steigung als auch den <InlineMath math="y" />-Achsenabschnitt.</>}
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: x + 1, z: 0 };
+      }),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [2, 1.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 3 * (x + 1), z: 0 };
+      }),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [1, 2, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 0.5 * (x + 1), z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [2, 0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Vergleich zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = x + 1" /> hat die Steigung <InlineMath math="1" />
+- Funktion <InlineMath math="g(x) = 3(x + 1)" /> hat Steigung <InlineMath math="3" /> (gestreckt)
+- Funktion <InlineMath math="h(x) = 0{,}5(x + 1)" /> hat Steigung <InlineMath math="0{,}5" /> (gestaucht)
+- Alle Geraden schneiden immer noch die <InlineMath math="y" />-Achse, allerdings an unterschiedlichen Punkten
+
+## Wichtige Eigenschaften
+
+### Wirkung auf Koordinatenpunkte
+
+Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, dann liegt auf dem Graphen von <InlineMath math="k \cdot f(x)" /> der Punkt <InlineMath math="(a, k \cdot b)" />.
+
+### Definitionsbereich und Wertebereich
+
+- **Definitionsbereich**: Bleibt unverändert
+- **Wertebereich**: Wird entsprechend dem Skalierungsfaktor <InlineMath math="k" /> vertikal skaliert
+
+Ist der ursprüngliche Wertebereich <InlineMath math="[c, d]" />, dann wird er bei einer vertikalen Skalierung mit <InlineMath math="k > 0" /> zu <InlineMath math="[k \cdot c, k \cdot d]" />.
+
+### Achsenabschnitte
+
+- **<InlineMath math="x" />-Achsenabschnitt**: Bleibt unverändert
+- **<InlineMath math="y" />-Achsenabschnitt**: Wird mit dem Skalierungsfaktor multipliziert
+
+## Weitere Beispiele
+
+### Exponentialfunktion
+
+Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verdoppelt der vertikale Faktor alle Funktionswerte.
+
+<LineEquation
+  title={<>Vertikale Skalierung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
+  description="Der Skalierungsfaktor verändert die Höhe des Exponentialgraphen."
+  showZAxis={false}
+  cameraPosition={[8, 6, 8]}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: 2 * Math.pow(2, x), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="g(x)=2 \cdot 2^x" />, offset: [1, 2, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für Exponentialfunktionen:
+- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
+- Der <InlineMath math="y" />-Achsenabschnitt ändert sich von <InlineMath math="(0, 1)" /> auf <InlineMath math="(0, 2)" />
+- Jeder Funktionswert verdoppelt sich, während Basis und relative Wachstumsrate gleich bleiben
+
+## Negativer Skalierungsfaktor
+
+Ein negatives Vorzeichen vor der Funktion spiegelt den Graphen zusätzlich an der <InlineMath math="x" />-Achse.
+
+<LineEquation
+  title={<>Vertikale Skalierung mit negativem Faktor bei <InlineMath math="f(x) = x^2" /></>}
+  description="Der Betrag des Faktors bestimmt die Skalierung, sein Minuszeichen die Spiegelung."
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#0891b2",
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: -2 * x * x, z: 0 };
+      }),
+      color: "#db2777",
+      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [1, -2, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für einen negativen Skalierungsfaktor gilt:
+- Der Graph erfährt eine Spiegelung an der <InlineMath math="x" />-Achse
+- Gleichzeitig wird der Graph entsprechend dem Betrag des Skalierungsfaktors gestreckt oder gestaucht
+- Eine Parabel, die sich nach oben öffnet, wird zu einer, die sich nach unten öffnet
+
+## Übungen
+
+1. Skaliere die Funktion <InlineMath math="f(x) = x^2 - 4x + 3" /> vertikal mit dem Faktor <InlineMath math="3" /> und bestimme die neue Funktionsgleichung.
+
+2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird vertikal mit dem Faktor <InlineMath math="\frac{1}{2}" /> skaliert. Bestimme:
+   - Die Gleichung der skalierten Funktion
+   - Den Wertebereich nach der Skalierung
+
+3. Skaliere die Funktion <InlineMath math="h(x) = |x - 1| + 2" /> vertikal mit dem Faktor <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
+
+### Lösungen
+
+1. Vertikale Skalierung mit Faktor <InlineMath math="3" />: <InlineMath math="f'(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="f(x) = x^2 - 4x + 3" /> und ihr Skalierungsergebnis</>}
+     description={
+       <>
+         Der Faktor{" "}
+         <InlineMath math="3" /> streckt die ursprüngliche Parabel vertikal und macht sie steiler.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[12, 8, 12]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x - 4 * x + 3, z: 0 };
+         }),
+         color: "#9333ea",
+         labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: 3 * (x * x - 4 * x + 3), z: 0 };
+         }),
+         color: "#ea580c",
+         labels: [{ text: <InlineMath math="f'(x)=3x^2-12x+9" />, offset: [1, -3, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+2. Gleichung der skalierten Funktion:
+
+   - Vertikale Skalierung: <InlineMath math="g'(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
+   - Wertebereich nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />; für jede Eingabe wird der positive Funktionswert halbiert
+
+   Im Graphen:
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und ihr Skalierungsergebnis</>}
+     description={
+       <>
+         Der Faktor{" "}
+         <InlineMath math="0{,}5" /> staucht den Quadratwurzelgraphen vertikal und halbiert seine Funktionswerte.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[8, 6, 8]}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(x), z: 0 };
+         }),
+         color: "#7c3aed",
+         labels: [{ text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [2, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: 0.5 * Math.sqrt(x), z: 0 };
+         }),
+         color: "#0d9488",
+         labels: [{ text: <InlineMath math="g'(x)=0{,}5\sqrt{x}" />, offset: [2, 0.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+3. Die ursprüngliche Funktion <InlineMath math="h(x) = |x - 1| + 2" /> hat ihren Scheitelpunkt bei <InlineMath math="(1, 2)" />.
+   Nach vertikaler Skalierung mit dem Faktor <InlineMath math="-1" />: <InlineMath math="h'(x) = -1 \cdot (|x - 1| + 2) = -|x - 1| - 2" /> wird der Scheitelpunkt zu <InlineMath math="(1, -2)" />.
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="h(x) = |x - 1| + 2" /> und ihr Skalierungsergebnis</>}
+     description={<>Der Faktor <InlineMath math="-1" /> spiegelt den Betragsgraphen an der <InlineMath math="x" />-Achse, ohne seine vertikale Größe zu ändern.</>}
+     showZAxis={false}
+     cameraPosition={[10, 6, 10]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: Math.abs(x - 1) + 2, z: 0 };
+         }),
+         color: "#4f46e5",
+         labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, offset: [1, -1.5, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: -(Math.abs(x - 1) + 2), z: 0 };
+         }),
+         color: "#059669",
+         labels: [{ text: <InlineMath math="h'(x)=-|x-1|-2" />, offset: [1, 1.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />

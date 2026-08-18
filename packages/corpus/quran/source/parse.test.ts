@@ -17,8 +17,6 @@ const TRANSLATION_PATTERN =
   /<translation><!\[CDATA\[[\s\S]*?\]\]><\/translation>/u;
 const rawSources: RawSources = {
   arabic: readFileSync(resolve(sourceRoot, "tanzil/text.txt"), "utf8"),
-  english: readFileSync(resolve(sourceRoot, "quranenc/en.xml"), "utf8"),
-  indonesian: readFileSync(resolve(sourceRoot, "quranenc/id.xml"), "utf8"),
   metadata: readFileSync(resolve(sourceRoot, "tanzil/data.xml"), "utf8"),
   tafsir: Array.from({ length: 114 }, (_, index) =>
     readFileSync(
@@ -26,6 +24,10 @@ const rawSources: RawSources = {
       "utf8"
     )
   ),
+  translations: {
+    en: readFileSync(resolve(sourceRoot, "quranenc/en.xml"), "utf8"),
+    id: readFileSync(resolve(sourceRoot, "quranenc/id.xml"), "utf8"),
+  },
 };
 
 /** Parses one complete source set only at the test runner boundary. */
@@ -48,6 +50,14 @@ function withTafsir(index: number, source: string): RawSources {
   };
 }
 
+/** Replaces the English source without mutating other official bytes. */
+function withEnglish(english: string): RawSources {
+  return {
+    ...rawSources,
+    translations: { ...rawSources.translations, en: english },
+  };
+}
+
 describe("Quran source parsing", () => {
   it("derives all 114 surahs and 6,236 verses from official bytes", async () => {
     const surahs = await parse(rawSources);
@@ -56,6 +66,22 @@ describe("Quran source parsing", () => {
     expect(
       surahs.reduce((count, surah) => count + surah.verses.length, 0)
     ).toBe(6236);
+  });
+
+  it("preserves the complete German candidate translation exactly", async () => {
+    const german = readFileSync(
+      resolve(sourceRoot, "german/translation.xml"),
+      "utf8"
+    );
+    const surahs = await parse({
+      ...rawSources,
+      translations: { ...rawSources.translations, de: german },
+    });
+
+    expect(surahs[0]?.verses[0]?.translation.de).toEqual({
+      footnotes: "",
+      text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
+    });
   });
 
   it("rejects missing and empty Arabic verses", async () => {
@@ -79,22 +105,22 @@ describe("Quran source parsing", () => {
   });
 
   it("rejects empty, misnumbered, and unexpected translation surahs", async () => {
-    const empty = rawSources.english.replace(
+    const empty = rawSources.translations.en.replace(
       FIRST_SURAH_PATTERN,
       '<sura number="1"></sura>'
     );
-    const misnumbered = rawSources.english.replace(
+    const misnumbered = rawSources.translations.en.replace(
       '<sura number="1">',
       '<sura number="2">'
     );
-    const unexpected = rawSources.english.replace(
+    const unexpected = rawSources.translations.en.replace(
       "</sura_list>",
       '<sura number="115">unexpected</sura></sura_list>'
     );
     const errors = await Promise.all([
-      reject({ ...rawSources, english: empty }),
-      reject({ ...rawSources, english: misnumbered }),
-      reject({ ...rawSources, english: unexpected }),
+      reject(withEnglish(empty)),
+      reject(withEnglish(misnumbered)),
+      reject(withEnglish(unexpected)),
     ]);
 
     expect(
@@ -103,33 +129,39 @@ describe("Quran source parsing", () => {
   });
 
   it("rejects a translation surah with a missing verse", async () => {
-    const incomplete = rawSources.english.replace(FIRST_VERSE_PATTERN, "");
-    const error = await reject({ ...rawSources, english: incomplete });
+    const incomplete = rawSources.translations.en.replace(
+      FIRST_VERSE_PATTERN,
+      ""
+    );
+    const error = await reject(withEnglish(incomplete));
 
     expect(error.detail).toBe("Incomplete QuranEnc surah 1.");
   });
 
   it("rejects every invalid translation verse field", async () => {
-    const emptyBody = rawSources.english.replace(
+    const emptyBody = rawSources.translations.en.replace(
       FIRST_VERSE_PATTERN,
       '<aya number="1"></aya>'
     );
-    const wrongNumber = rawSources.english.replace(
+    const wrongNumber = rawSources.translations.en.replace(
       '<aya number="1">',
       '<aya number="2">'
     );
-    const missingText = rawSources.english.replace(TRANSLATION_PATTERN, "");
-    const emptyText = rawSources.english.replace(
+    const missingText = rawSources.translations.en.replace(
+      TRANSLATION_PATTERN,
+      ""
+    );
+    const emptyText = rawSources.translations.en.replace(
       TRANSLATION_PATTERN,
       "<translation></translation>"
     );
-    const missingFootnotes = rawSources.english.replace(
+    const missingFootnotes = rawSources.translations.en.replace(
       "<footnotes></footnotes>",
       ""
     );
     const errors = await Promise.all(
       [emptyBody, wrongNumber, missingText, emptyText, missingFootnotes].map(
-        (english) => reject({ ...rawSources, english })
+        (english) => reject(withEnglish(english))
       )
     );
 
@@ -139,8 +171,11 @@ describe("Quran source parsing", () => {
   });
 
   it("rejects a translation that omits a complete surah", async () => {
-    const incomplete = rawSources.english.replace(LAST_SURAH_PATTERN, "");
-    const error = await reject({ ...rawSources, english: incomplete });
+    const incomplete = rawSources.translations.en.replace(
+      LAST_SURAH_PATTERN,
+      ""
+    );
+    const error = await reject(withEnglish(incomplete));
 
     expect(error.detail).toBe("QuranEnc translation is incomplete.");
   });

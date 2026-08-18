@@ -1,0 +1,81 @@
+
+
+export const metadata = {
+  title: "Zweidimensionaler Vektor",
+  description: "Lerne zweidimensionale Vektoren, ihre Komponenten und ihren Betrag mithilfe einer anschaulichen Darstellung in der Koordinatenebene kennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-11",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Zweidimensionale Vektoren
+
+Im kartesischen Koordinatensystem lässt sich jeder Punkt einer Ebene durch ein Zahlenpaar <InlineMath math="(x, y)" /> beschreiben. Dabei gibt <InlineMath math="x" /> die horizontale und <InlineMath math="y" /> die vertikale Position an. Der Koordinatenursprung ist <InlineMath math="O(0, 0)" />.
+
+Zeichnen wir eine gerichtete Strecke vom Ursprung <InlineMath math="O" /> zu einem anderen Punkt, etwa <InlineMath math="Q(x, y)" />, erhalten wir einen **Vektor**. Er wird als <InlineMath math="\overrightarrow{OQ}" /> geschrieben. Sein **Betrag** ist die Länge der Strecke. Seine **Richtung** verläuft vom Anfangspunkt zur Pfeilspitze.
+
+Zur Beschreibung der beiden Achsen verwenden wir **Einheitsvektoren**. Sie haben den Betrag <InlineMath math="1 \text{ Einheit}" />.
+
+- <InlineMath math="\mathbf{i}" /> ist der Einheitsvektor entlang der positiven <InlineMath math="x" />-Achse (horizontal).
+- <InlineMath math="\mathbf{j}" /> ist der Einheitsvektor entlang der positiven <InlineMath math="y" />-Achse (vertikal).
+
+Der Vektor <InlineMath math="\overrightarrow{OQ}" /> setzt sich aus einer horizontalen Verschiebung um <InlineMath math="x" /> und einer vertikalen Verschiebung um <InlineMath math="y" /> zusammen. Mit Einheitsvektoren schreiben wir:
+
+<BlockMath math="\overrightarrow{OQ} = x\mathbf{i} + y\mathbf{j}" />
+
+## Komponenten und Betrag
+
+Die Werte <InlineMath math="x" /> und <InlineMath math="y" /> in <InlineMath math="\overrightarrow{OQ} = x\mathbf{i} + y\mathbf{j}" /> heißen **Komponenten** des Vektors.
+
+- <InlineMath math="x" /> ist die **horizontale skalare Komponente**. Die zugehörige Vektorprojektion auf die <InlineMath math="x" />-Achse ist <InlineMath math="x\mathbf{i}" />.
+- <InlineMath math="y" /> ist die **vertikale skalare Komponente**. Die zugehörige Vektorprojektion auf die <InlineMath math="y" />-Achse ist <InlineMath math="y\mathbf{j}" />.
+
+Ein Vektor mit diesen beiden Komponenten ist ein **zweidimensionaler Vektor**.
+
+Die **Länge** oder der **Betrag** von <InlineMath math="\overrightarrow{OQ}" />, geschrieben als <InlineMath math="|\overrightarrow{OQ}|" />, ist der Abstand vom Ursprung <InlineMath math="O" /> zum Endpunkt <InlineMath math="Q" />. Ist <InlineMath math="Q(x,y)" /> der Endpunkt und <InlineMath math="R(x,0)" /> die Projektion von <InlineMath math="Q" /> auf die <InlineMath math="x" />-Achse, liefert das rechtwinklige Dreieck <InlineMath math="ORQ" /> mit dem Satz des Pythagoras den Betrag:
+
+<BlockMath math="|\overrightarrow{OQ}| = \sqrt{x^2 + y^2}" />
+
+## Zweidimensionalen Vektor visualisieren
+
+Die folgende Darstellung verbindet den Vektor mit seinen Komponenten und seinem Betrag in der kartesischen Ebene:
+
+<Vector3d
+  title="Vektor in der Koordinatenebene"
+  description={
+    <>
+      Darstellung des Vektors{" "}
+      <InlineMath math="OQ = 4\mathbf{i} + 3\mathbf{j}" />
+      im kartesischen Koordinatensystem
+    </>
+  }
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [4, 3, 0],
+      color: "#65a30d",
+      label: <>Vektor <InlineMath math="OQ" /></>,
+    },
+    {
+      from: [0, 0, 0],
+      to: [4, 0, 0],
+      color: "#0d9488",
+      label: <><InlineMath math="x" />-Komponente</>,
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 3, 0],
+      color: "#ca8a04",
+      label: <><InlineMath math="y" />-Komponente</>,
+    },
+  ]}
+/>
+
+Die <InlineMath math="z" />-Achse wird nicht dargestellt, weil der Vektor vollständig in einer zweidimensionalen Ebene liegt.
+
+In der Darstellung gilt:
+
+- Der Vektor <InlineMath math="\overrightarrow{OQ}" /> (hellgrün) hat den Anfangspunkt <InlineMath math="O(0,0)" /> und den Endpunkt <InlineMath math="Q(4,3)" />
+- Die <InlineMath math="x" />-Komponente (hellblau) ist die Projektion des Vektors <InlineMath math="\overrightarrow{OQ}" /> auf die <InlineMath math="x" />-Achse, also <InlineMath math="4\mathbf{i}" />
+- Die <InlineMath math="y" />-Komponente (gelb) ist die Projektion des Vektors <InlineMath math="\overrightarrow{OQ}" /> auf die <InlineMath math="y" />-Achse, also <InlineMath math="3\mathbf{j}" />
+- Der Betrag des Vektors ist <InlineMath math="|\overrightarrow{OQ}| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5" />

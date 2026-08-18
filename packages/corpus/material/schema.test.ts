@@ -19,10 +19,6 @@ function lessonSource() {
       {
         routeSlugs: { en: "definition", id: "definisi" },
         slug: "definition",
-        translations: {
-          en: { title: "Definition" },
-          id: { title: "Definisi" },
-        },
       },
     ],
     slug: "function-concept",
@@ -97,7 +93,7 @@ describe("material schema", () => {
 
   it("loads every authored lesson material source module", async () => {
     const files = await Effect.runPromise(
-      importCorpusModules("material/lesson/**/*.ts")
+      importCorpusModules("material/lesson/**/*.ts", ["**/locale/**/*.ts"])
     );
 
     expect(files).toHaveLength(44);

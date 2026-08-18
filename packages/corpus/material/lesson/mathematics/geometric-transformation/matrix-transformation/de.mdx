@@ -1,0 +1,189 @@
+
+export const metadata = {
+  title: "Matrizen als geometrische Transformationen",
+  description: "Verstehe, wie quadratische Matrizen zweiter Ordnung Punkte und Figuren abbilden, und erkenne Drehungen, Spiegelungen und Scherungen an ihren Matrizen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Was ist der Zusammenhang zwischen Matrizen und geometrischen Transformationen?
+
+Eine <InlineMath math="2 \times 2" />-Matrix definiert eine lineare Transformation der kartesischen Ebene. Sie bildet den Ursprung stets auf sich selbst ab, weshalb eine reine Verschiebung stattdessen eine Vektoraddition oder homogene Koordinaten benötigt.
+
+Einen Punkt mit den Koordinaten <InlineMath math="(x,y)" /> können wir als Ortsvektor <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> schreiben. In dieser Form lässt sich die Abbildung direkt als Matrixmultiplikation darstellen.
+
+Wenn ein Punkt <InlineMath math="P(x,y)" /> durch die Matrix <InlineMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" /> transformiert wird, wird sein Bild <InlineMath math="P'(x',y')" /> durch Matrixmultiplikation erhalten:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix}" />
+
+Also <InlineMath math="x' = ax + by" /> und <InlineMath math="y' = cx + dy" />.
+
+## Multiplizieren einer Matrix mit einem Positionsvektor
+
+Der Vektor <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> beschreibt einen beliebigen Punkt der Ebene. Bestimme das Produkt <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" /> und deute das Ergebnis geometrisch.
+
+**Lösung:**
+
+Das Matrixprodukt ist:
+
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}" />
+
+Die Matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab. Genau diese Koordinatenregel beschreibt eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
+
+<LineEquation
+  title={
+    <>
+    Abbildung von <InlineMath math="P(2,3)" /> durch die Matrix{" "}
+      <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+    </>
+  }
+  description={
+    <>
+    Der Punkt <InlineMath math="P(2,3)" /> wird auf{" "}
+      <InlineMath math="P'(-3,2)" /> abgebildet.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, -0.3, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 3, z: 0 }],
+      color: "#0284c7",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P(2,3)" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: [{ x: -3, y: 2, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P'(-3,2)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 3, z: 0 },
+      ],
+      color: "#4f46e5",
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -3, y: 2, z: 0 },
+      ],
+      color: "#4f46e5",
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+/>
+
+## Drei Punkte gleichzeitig transformieren
+
+Bestimme das Bild von <InlineMath math="\triangle ABC" /> mit den Eckpunkten <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(4,2)" /> unter der Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+**Lösung:**
+
+Zuerst schreiben wir die Koordinaten der Punkte als Spalten einer Matrix: <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />. Die drei Spalten gehören der Reihe nach zu <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+
+Dann multiplizieren wir die Punktmatrix von links mit der Transformationsmatrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix} = \begin{pmatrix} (-1)(1)+(0)(1) & (-1)(4)+(0)(1) & (-1)(4)+(0)(2) \\ (0)(1)+(-1)(1) & (0)(4)+(-1)(1) & (0)(4)+(-1)(2) \end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} -1 & -4 & -4 \\ -1 & -1 & -2 \end{pmatrix}" />
+</MathContainer>
+
+Das Ergebnis der Transformation ist ein neues Dreieck <InlineMath math="\triangle A'B'C'" /> mit den Eckpunkten <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" /> und <InlineMath math="C'(-4,-2)" />.
+
+Die Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> stellt eine <InlineMath math="180^\circ" /> Drehung um den Ursprung dar.
+
+<LineEquation
+  title={
+    <>
+    Abbildung von <InlineMath math="\triangle ABC" /> durch die Matrix{" "}
+      <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+    </>
+  }
+  description={
+    <>
+    Das Dreieck <InlineMath math="ABC" /> wird auf das Bilddreieck{" "}
+      <InlineMath math="A'B'C'" /> abgebildet.
+    </>
+  }
+  data={[
+    // Ausgangsdreieck ABC
+    ...[
+      {
+        from: { x: 1, y: 1, z: 0, label: <InlineMath math="A(1,1)" /> },
+        to: { x: 4, y: 1, z: 0, label: <InlineMath math="B(4,1)" /> },
+      },
+      {
+        from: { x: 4, y: 1, z: 0, label: <InlineMath math="B(4,1)" /> },
+        to: { x: 4, y: 2, z: 0, label: <InlineMath math="C(4,2)" /> },
+      },
+      {
+        from: { x: 4, y: 2, z: 0, label: <InlineMath math="C(4,2)" /> },
+        to: { x: 1, y: 1, z: 0, label: <InlineMath math="A(1,1)" /> },
+      },
+    ].map((segment) => ({
+      points: [segment.from, segment.to],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
+    })),
+    // Bilddreieck A'B'C'
+    ...[
+      {
+        from: { x: -1, y: -1, z: 0, label: <InlineMath math="A'(-1,-1)" /> },
+        to: { x: -4, y: -1, z: 0, label: <InlineMath math="B'(-4,-1)" /> },
+      },
+      {
+        from: { x: -4, y: -1, z: 0, label: <InlineMath math="B'(-4,-1)" /> },
+        to: { x: -4, y: -2, z: 0, label: <InlineMath math="C'(-4,-2)" /> },
+      },
+      {
+        from: { x: -4, y: -2, z: 0, label: <InlineMath math="C'(-4,-2)" /> },
+        to: { x: -1, y: -1, z: 0, label: <InlineMath math="A'(-1,-1)" /> },
+      },
+    ].map((segment) => ({
+      points: [segment.from, segment.to],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
+    })),
+  ]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 12]}
+/>
+
+## Übungen
+
+1.  Bestimme das Produkt <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />. Welche Transformation beschreibt diese Matrix?
+2.  Die Matrix <InlineMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> beschreibt eine Transformation. Bestimme das Bild des Dreiecks mit den Eckpunkten <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" /> und <InlineMath math="C(0,1)" />.
+
+### Lösungen
+
+1.  <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} y \\ -x \end{pmatrix}" />
+
+    Der Punkt <InlineMath math="(x,y)" /> wird auf <InlineMath math="(y,-x)" /> abgebildet.
+
+    Dies ist eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn. Gleichwertig dazu ist eine Drehung um <InlineMath math="270^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
+
+2.  Transformationsmatrix <InlineMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />.
+
+    Eckpunkte: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
+
+    Punktmatrix: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
+
+    <MathContainer>
+      <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} (1)(2)+(2)(0) & (1)(2)+(2)(1) & (1)(0)+(2)(1) \\ (0)(2)+(1)(0) & (0)(2)+(1)(1) & (0)(0)+(1)(1) \end{pmatrix}" />
+      <BlockMath math="= \begin{pmatrix} 2+0 & 2+2 & 0+2 \\ 0+0 & 0+1 & 0+1 \end{pmatrix} = \begin{pmatrix} 2 & 4 & 2 \\ 0 & 1 & 1 \end{pmatrix}" />
+    </MathContainer>
+
+    Die Bildpunkte sind <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" /> und <InlineMath math="C'(2,1)" />.
+
+    Diese Transformation heißt horizontale Scherung, weil die <InlineMath math="x" />-Koordinate um das Doppelte der <InlineMath math="y" />-Koordinate verschoben wird, während <InlineMath math="y" /> unverändert bleibt.

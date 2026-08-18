@@ -9,8 +9,9 @@ import {
   decodeMaterialDomains,
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
-import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
+import { PublicRouteSegmentSchema } from "#corpus/route/schema";
+import { earthScienceMaterialSource } from "#corpus/test/material";
 
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
 function merdekaLeaf(input: {
@@ -30,32 +31,6 @@ function merdekaLeaf(input: {
         order: 10,
       },
     ],
-  });
-}
-
-/** Decodes one generic material source without adding it to corpus inventory. */
-function earthScienceMaterial() {
-  return Schema.decodeUnknownSync(LessonMaterialSourceSchema)({
-    assetRoot: "material/lesson/earth-science/geology",
-    domain: "earth-science",
-    key: "lesson.earth-science.geology",
-    kind: "lesson",
-    routeSlugs: { en: "geology", id: "geologi" },
-    sections: [
-      {
-        routeSlugs: { en: "rocks", id: "batuan" },
-        slug: "rocks",
-        translations: {
-          en: { title: "Rocks" },
-          id: { title: "Batuan" },
-        },
-      },
-    ],
-    slug: "geology",
-    translations: {
-      en: { description: "Test geology.", title: "Geology" },
-      id: { description: "Geologi pengujian.", title: "Geologi" },
-    },
   });
 }
 
@@ -148,6 +123,29 @@ describe("curriculum node projection", () => {
     expect(error).toMatchObject({ code: "display" });
   });
 
+  it("rejects a locale route without matching material display copy", async () => {
+    const materials = await Effect.runPromise(decodeMaterialSources());
+    const material = materials.find(
+      ({ key }) => key === "lesson.mathematics.matrix"
+    );
+    if (material === undefined) {
+      throw new Error("Expected the matrix material source.");
+    }
+    const mismatched = {
+      ...material,
+      routeSlugs: {
+        ...material.routeSlugs,
+        de: PublicRouteSegmentSchema.make("matrix"),
+      },
+    };
+    const curriculum = merdekaLeaf({ materialKeys: [material.key] });
+    const error = await Effect.runPromise(
+      projectCurriculumNodes([curriculum], [mismatched]).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ code: "display", value: material.key });
+  });
+
   it("uses explicit source copy for a multi-material leaf", async () => {
     const materials = await Effect.runPromise(decodeMaterialSources());
     const matrix = materials.find(
@@ -184,7 +182,7 @@ describe("curriculum node projection", () => {
   });
 
   it("projects a generic material domain from one reviewed descriptor", async () => {
-    const material = earthScienceMaterial();
+    const material = earthScienceMaterialSource();
     const curriculum = merdekaLeaf({ materialKeys: [material.key] });
     const domains = await Effect.runPromise(
       decodeMaterialDomains([
@@ -203,7 +201,7 @@ describe("curriculum node projection", () => {
   });
 
   it("rejects a curriculum material with no domain descriptor", async () => {
-    const material = earthScienceMaterial();
+    const material = earthScienceMaterialSource();
     const curriculum = merdekaLeaf({ materialKeys: [material.key] });
     const error = await Effect.runPromise(
       projectCurriculumNodes([curriculum], [material], []).pipe(Effect.flip)
@@ -217,7 +215,7 @@ describe("curriculum node projection", () => {
   });
 
   it("rejects material ownership that conflicts with its curriculum domain", async () => {
-    const material = earthScienceMaterial();
+    const material = earthScienceMaterialSource();
     const materials = await Effect.runPromise(decodeMaterialSources());
     const mathematics = materials.find(
       ({ key }) => key === "lesson.mathematics.matrix"

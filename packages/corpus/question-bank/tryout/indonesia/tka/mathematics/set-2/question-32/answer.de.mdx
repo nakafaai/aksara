@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 32",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-11",
+};
+
+Vorausgesetzt, das Polynom <InlineMath math="ax^3 + 2x^2 + 5x + b" /> dividiert durch <InlineMath math="(x^2 - 1)" /> hat einen Rest von <InlineMath math="(6x + 5)" />.
+
+Was wir tun können, ist, die Wurzeln der Gleichung <InlineMath math="x^2 - 1" /> zu finden.
+
+<MathContainer>
+<BlockMath math="x^2 - 1 = 0" />
+<BlockMath math="(x + 1)(x - 1) = 0" />
+<BlockMath math="x = -1 \text{ oder} x = 1" />
+</MathContainer>
+
+#### Ersetzen Sie die erste Wurzel
+
+<MathContainer>
+<BlockMath math="P(x) = ax^3 + 2x^2 + 5x + b" />
+<BlockMath math="P(-1) = a(-1)^3 + 2(-1)^2 + 5(-1) + b" />
+<BlockMath math="P(-1) = -a + b - 3" />
+</MathContainer>
+
+#### Ersetzen Sie die zweite Wurzel
+
+<MathContainer>
+<BlockMath math="P(x) = ax^3 + 2x^2 + 5x + b" />
+<BlockMath math="P(1) = a(1)^3 + 2(1)^2 + 5(1) + b" />
+<BlockMath math="P(1) = a + b + 7" />
+</MathContainer>
+
+#### Setzen Sie Wurzeln in den Rest ein
+
+Ersetzen Sie dann die Wurzeln von <InlineMath math="x^2 - 1" /> durch den Rest <InlineMath math="(6x + 5)" />.
+
+Für <InlineMath math="x = -1" />
+
+<MathContainer>
+<BlockMath math="P(x) = 6x + 5" />
+<BlockMath math="P(-1) = 6(-1) + 5" />
+<BlockMath math="-a + b - 3 = -6 + 5" />
+<BlockMath math="-a + b = 2 \quad ...(1)" />
+</MathContainer>
+
+Für <InlineMath math="x = 1" />
+
+<MathContainer>
+<BlockMath math="P(x) = 6x + 5" />
+<BlockMath math="P(1) = 6(1) + 5" />
+<BlockMath math="a + b + 7 = 6 + 5" />
+<BlockMath math="a + b = 4 \quad ...(2)" />
+</MathContainer>
+
+#### Eliminieren Sie die Gleichungen
+
+Eliminieren Sie als Nächstes die erste und zweite Gleichung, um die Werte von <InlineMath math="a" /> und <InlineMath math="b" /> zu erhalten.
+
+<MathContainer>
+<BlockMath math="-a + b = 2" />
+<BlockMath math="a + b = 4 \quad -" />
+<BlockMath math="-2a = -2" />
+<BlockMath math="a = 1" />
+</MathContainer>
+
+Setzen Sie den Wert von <InlineMath math="a" /> in die zweite Gleichung ein, um den Wert von <InlineMath math="b" /> zu erhalten.
+
+<MathContainer>
+<BlockMath math="a + b = 4" />
+<BlockMath math="1 + b = 4" />
+<BlockMath math="b = 3" />
+</MathContainer>
+
+Daher der Wert von <InlineMath math="a + 3b = 1 + 3(3) = 10" />.

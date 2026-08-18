@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben sind <InlineMath math="f(x) = 2x - 3" /> und <InlineMath math="(g \circ f)(x) = 4x^2 - 12x + 10" />. Gesucht ist <InlineMath math="g(1)" />.
+
+Für die Verkettung gilt <InlineMath math="(g \circ f)(x) = g(f(x))" />. Setzen wir <InlineMath math="u = f(x) = 2x - 3" />. Dann drücken wir <InlineMath math="x" /> durch <InlineMath math="u" /> aus:
+
+<MathContainer>
+  <BlockMath math="2x = u + 3" />
+  <BlockMath math="x = \frac{u + 3}{2}" />
+</MathContainer>
+
+Wir setzen <InlineMath math="x" /> in <InlineMath math="(g \circ f)(x)" /> ein:
+
+<MathContainer>
+  <BlockMath math="g(u) = 4\left(\frac{u + 3}{2}\right)^2 - 12\left(\frac{u + 3}{2}\right) + 10" />
+  <BlockMath math="g(u) = 4\left(\frac{u^2 + 6u + 9}{4}\right) - 6(u + 3) + 10" />
+  <BlockMath math="g(u) = (u^2 + 6u + 9) - (6u + 18) + 10" />
+  <BlockMath math="g(u) = u^2 + 6u - 6u + 9 - 18 + 10" />
+  <BlockMath math="g(u) = u^2 + 1" />
+</MathContainer>
+
+Somit gilt <InlineMath math="g(x) = x^2 + 1" />.
+
+Damit ist der gesuchte Wert <InlineMath math="g(1)" />:
+
+<MathContainer>
+  <BlockMath math="g(1) = 1^2 + 1 = 1 + 1 = 2" />
+</MathContainer>
+
+Der Wert von <InlineMath math="g(1)" /> ist also <InlineMath math="2" />.

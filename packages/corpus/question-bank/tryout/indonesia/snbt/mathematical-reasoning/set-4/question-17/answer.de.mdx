@@ -1,0 +1,35 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+Für die Lösung brauchen wir zwei Eigenschaften linear transformierter Daten:
+1. Der **Mittelwert** wird mit demselben Faktor multipliziert und anschließend um denselben Betrag verschoben wie jeder einzelne Datenwert.
+2. Die **Spannweite** wird mit dem Betrag des Faktors multipliziert. Eine anschließende Verschiebung verändert sie nicht.
+
+Zuerst bestimmen wir <InlineMath math="p" /> mithilfe der Spannweite. Die ursprüngliche Spannweite <InlineMath math="6" /> wird durch die Multiplikation mit <InlineMath math="p" /> zu <InlineMath math="9" />:
+
+<MathContainer>
+  <BlockMath math="\text{Neue Spannweite} = |p| \times \text{alte Spannweite}" />
+  <BlockMath math="9 = p \times 6" />
+  <BlockMath math="p = \frac{9}{6} = \frac{3}{2}" />
+</MathContainer>
+
+Anschließend bestimmen wir <InlineMath math="q" /> aus dem neuen Mittelwert. Der Mittelwert wird zuerst mit <InlineMath math="p" /> multipliziert und danach um <InlineMath math="q" /> verringert.
+
+<MathContainer>
+  <BlockMath math="\text{Neuer Mittelwert} = (p \times \text{Alter Mittelwert}) - q" />
+  <BlockMath math="20 = \left(\frac{3}{2} \times 16\right) - q" />
+  <BlockMath math="20 = 24 - q" />
+  <BlockMath math="q = 4" />
+</MathContainer>
+
+Zum Schluss setzen wir <InlineMath math="p" /> und <InlineMath math="q" /> in den gesuchten Ausdruck ein.
+
+<MathContainer>
+  <BlockMath math="2p + q = 2\left(\frac{3}{2}\right) + 4" />
+  <BlockMath math="2p + q = 3 + 4 = 7" />
+</MathContainer>
+
+Somit ist der Wert von <InlineMath math="2p + q" /> <InlineMath math="7" />.

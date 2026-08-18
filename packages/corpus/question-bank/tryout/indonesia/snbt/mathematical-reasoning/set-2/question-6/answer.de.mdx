@@ -1,0 +1,72 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-31",
+};
+
+<Set2Question6Graph
+  title={<>Würfel <InlineMath math="ABCD.EFGH" /></>}
+  description={<>Würfelvisualisierung und der Abstand vom Punkt <InlineMath math="Q" /> linieren <InlineMath math="BD" />.</>}
+/>
+
+Um den Abstand vom Punkt <InlineMath math="Q" /> zur Linie <InlineMath math="BD" /> zu ermitteln, bilden wir ein Dreieck <InlineMath math="BDQ" /> und berechnen seine Höhe vom Scheitelpunkt <InlineMath math="Q" />. Der erste Schritt besteht darin, die Längen aller drei Seiten dieses Dreiecks zu berechnen.
+
+**Berechnungsseite <InlineMath math="BD" /> (Basisdiagonale)**
+
+Die Linie <InlineMath math="BD" /> ist die Diagonale der Würfelbasis mit der Kantenlänge <InlineMath math="s = 4" />.
+
+<MathContainer>
+  <BlockMath math="BD = \sqrt{AB^2 + AD^2} = \sqrt{4^2 + 4^2} = \sqrt{32} = 4\sqrt{2}" />
+</MathContainer>
+
+**Berechnungsseite <InlineMath math="DQ" />**
+
+Punkt <InlineMath math="Q" /> liegt in der Mitte von <InlineMath math="FG" />. Wir können die Länge von <InlineMath math="DQ" /> ermitteln, indem wir das rechtwinklige Dreieck <InlineMath math="DHQ" /> betrachten. Zuerst berechnen wir die Länge von <InlineMath math="HQ" /> auf der Oberseite des Würfels:
+
+<MathContainer>
+  <BlockMath math="HQ = \sqrt{HG^2 + GQ^2} = \sqrt{4^2 + 2^2} = \sqrt{20} = 2\sqrt{5}" />
+</MathContainer>
+
+Als nächstes verwenden Sie den Satz des Pythagoras für das Dreieck <InlineMath math="DHQ" />:
+
+<MathContainer>
+  <BlockMath math="DQ = \sqrt{DH^2 + HQ^2} = \sqrt{4^2 + (2\sqrt{5})^2} = \sqrt{16 + 20} = \sqrt{36} = 6" />
+</MathContainer>
+
+**Berechnungsseite <InlineMath math="BQ" />**
+
+Die Länge von <InlineMath math="BQ" /> kann aus dem rechtwinkligen Dreieck <InlineMath math="BFQ" /> mit <InlineMath math="BF = 4" /> und <InlineMath math="FQ = 2" /> berechnet werden:
+
+<MathContainer>
+  <BlockMath math="BQ = \sqrt{BF^2 + FQ^2} = \sqrt{4^2 + 2^2} = \sqrt{20} = 2\sqrt{5}" />
+</MathContainer>
+
+**Berechnung der Entfernung von <InlineMath math="Q" /> zur Linie <InlineMath math="BD" />**
+
+Jetzt haben wir das Dreieck <InlineMath math="BDQ" /> mit den Seiten <InlineMath math="BD = 4\sqrt{2}" />, <InlineMath math="DQ = 6" /> und <InlineMath math="BQ = 2\sqrt{5}" />. Sei <InlineMath math="O" /> die senkrechte Projektion von <InlineMath math="Q" /> auf die Linie <InlineMath math="BD" />, den Punkt, der die Linie <InlineMath math="BD" /> teilt.
+
+Sei die Länge <InlineMath math="DO = x" />, dann die Länge <InlineMath math="OB = 4\sqrt{2} - x" />. Die Höhe des Dreiecks <InlineMath math="QO" /> (nennen wir es <InlineMath math="y" />) ist der Abstand, den wir suchen. Unter Verwendung der beiden gebildeten rechtwinkligen Dreiecke erhalten wir die Gleichung:
+
+<MathContainer>
+  <BlockMath math="QO^2 = DQ^2 - DO^2 = BQ^2 - OB^2" />
+</MathContainer>
+
+Ersetzen der Seitenwerte:
+
+<MathContainer>
+  <BlockMath math="6^2 - x^2 = (2\sqrt{5})^2 - (4\sqrt{2} - x)^2" />
+  <BlockMath math="36 - x^2 = 20 - (32 - 8\sqrt{2}x + x^2)" />
+  <BlockMath math="36 - x^2 = 20 - 32 + 8\sqrt{2}x - x^2" />
+  <BlockMath math="36 = -12 + 8\sqrt{2}x" />
+  <BlockMath math="48 = 8\sqrt{2}x" />
+  <BlockMath math="x = \frac{48}{8\sqrt{2}} = \frac{6}{\sqrt{2}} = 3\sqrt{2}" />
+</MathContainer>
+
+Nachdem wir <InlineMath math="x = 3\sqrt{2}" /> gefunden haben, ersetzen wir es wieder, um <InlineMath math="y" /> zu finden:
+
+<MathContainer>
+  <BlockMath math="y = \sqrt{DQ^2 - x^2} = \sqrt{6^2 - (3\sqrt{2})^2}" />
+  <BlockMath math="y = \sqrt{36 - 18} = \sqrt{18} = 3\sqrt{2}" />
+</MathContainer>
+
+Somit beträgt der Abstand vom Punkt <InlineMath math="Q" /> zur Linie <InlineMath math="BD" /> <InlineMath math="3\sqrt{2}\text{ Einheiten}" />.

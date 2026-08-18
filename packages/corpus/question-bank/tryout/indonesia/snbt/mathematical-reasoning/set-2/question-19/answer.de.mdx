@@ -1,0 +1,60 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-01",
+};
+
+**Geometrische Analyse der Flugzeugbewegung**
+
+Da das Flugzeug in gleichbleibender Höhe direkt auf den Turm zufliegt, entspricht seine zurückgelegte Strecke der Abnahme des horizontalen Abstands. Mit der Trigonometrie am rechtwinkligen Dreieck bestimmen wir beide Abstände.
+
+<Set2Question19Graph
+  title="Illustration der Flugzeugbewegung"
+  description="Visualisierung der Position des Flugzeugs relativ zum ATC-Turm."
+/>
+
+Gegeben:
+*   Flugzeughöhe (Gegenkathete) bleibt konstant: <InlineMath math="h = 3000\text{ m}" />.
+*   Anfänglicher Höhenwinkel: <InlineMath math="\theta_1 = 30^\circ" />.
+*   Endgültiger Höhenwinkel: <InlineMath math="\theta_2 = 45^\circ" />.
+*   Zeitintervall: <InlineMath math="t = 30\text{ s}" />.
+
+Das Flugzeug bewegt sich auf den Turm zu, da der Höhenwinkel von <InlineMath math="30^\circ" /> auf <InlineMath math="45^\circ" /> zunimmt. Wir müssen den horizontalen Abstand des Flugzeugs vom Turm an beiden Positionen ermitteln.
+
+**Berechnung horizontaler Entfernungen**
+
+Die Beziehung zwischen Höhe, horizontaler Distanz (<InlineMath math="x" />) und Höhenwinkel (<InlineMath math="\theta" />) ist gegeben durch:
+
+<MathContainer>
+  <BlockMath math="\tan(\theta) = \frac{\text{Gegenkathete}}{\text{Ankathete}} = \frac{h}{x} \Rightarrow x = \frac{h}{\tan(\theta)}" />
+</MathContainer>
+
+1.  **Anfangsentfernung (<InlineMath math="x_1" />)** wenn <InlineMath math="\theta_1 = 30^\circ" />:
+
+    <MathContainer>
+      <BlockMath math="x_1 = \frac{3000}{\tan(30^\circ)} = \frac{3000}{\frac{1}{\sqrt{3}}} = 3000\sqrt{3}\text{ m}" />
+    </MathContainer>
+
+2.  **Endgültige Distanz (<InlineMath math="x_2" />)** wenn <InlineMath math="\theta_2 = 45^\circ" />:
+
+    <MathContainer>
+      <BlockMath math="x_2 = \frac{3000}{\tan(45^\circ)} = \frac{3000}{1} = 3000\text{ m}" />
+    </MathContainer>
+
+**Flugzeuggeschwindigkeit berechnen**
+
+Die vom Flugzeug zurückgelegte Strecke (<InlineMath math="\Delta x" />) ist die Differenz zwischen der anfänglichen und der endgültigen horizontalen Distanz:
+
+<MathContainer>
+  <BlockMath math="\Delta x = x_1 - x_2 = 3000\sqrt{3} - 3000 = 3000(\sqrt{3} - 1)\text{ m}" />
+</MathContainer>
+
+Geschwindigkeit (<InlineMath math="v" />) ist definiert als zurückgelegte Strecke geteilt durch Zeit:
+
+<MathContainer>
+  <BlockMath math="v = \frac{\Delta x}{t}" />
+  <BlockMath math="v = \frac{3000(\sqrt{3} - 1)}{30}" />
+  <BlockMath math="v = 100(\sqrt{3} - 1)\text{ m/s}" />
+</MathContainer>
+
+Somit beträgt die geschätzte Geschwindigkeit des Flugzeugs <InlineMath math="100(\sqrt{3} - 1)\text{ m/s}" />.

@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { localePolicyViolations } from "#scripts/check-locales";
+import {
+  contractLocaleCodes,
+  localePolicyViolations,
+} from "#scripts/check-locales";
 
 describe("locale source policy", () => {
   it("allows the canonical locale contract and derived consumers", () => {
@@ -22,6 +25,46 @@ describe("locale source policy", () => {
         'import { HistoricalAppLocaleSchema } from "#contracts/locale";\nconst ContentLocaleSchema = HistoricalAppLocaleSchema;'
       )
     ).toEqual([]);
+    expect(
+      localePolicyViolations(
+        "packages/corpus/locale/source.ts",
+        "const Embedded = Schema.keyof(Schema.Struct({ en: Schema.Void, id: Schema.Void }));"
+      )
+    ).toEqual([]);
+  });
+
+  it("rejects a Schema.keyof object that bypasses the locale contract", () => {
+    const file = "packages/example/src/source.ts";
+    const source =
+      "const Embedded = Schema.keyof(Schema.Struct({ en: Schema.Void, id: Schema.Void }));";
+
+    expect(localePolicyViolations(file, source)).toEqual([
+      `${file}:1: locale vocabulary must derive from the locale contract`,
+    ]);
+  });
+
+  it("fails closed when the canonical contract declaration is missing", () => {
+    expect(() => contractLocaleCodes("const unrelated = true;")).toThrow(
+      "The canonical app-locale contract could not be decoded."
+    );
+    expect(() =>
+      contractLocaleCodes("const AppLocaleCodeSchema = Schema.Literal();")
+    ).toThrow("The canonical app-locale contract could not be decoded.");
+  });
+
+  it("ignores malformed keyof shapes that do not declare locale fields", () => {
+    const file = "packages/example/src/source.ts";
+    const source = [
+      'const literal = Schema.keyof(Schema.Literal("en", "id"));',
+      "const empty = Schema.keyof(Schema.Struct());",
+      "const spread = Schema.keyof(Schema.Struct({ ...base }));",
+      'const computed = Schema.keyof(Schema.Struct({ ["en"]: Schema.Void, id: Schema.Void }));',
+      "const unrelated = Schema.keyof(Schema.Struct({ en: Schema.Void, other: Schema.Void }));",
+    ].join("\n");
+
+    expect(localePolicyViolations(file, source)).toEqual([
+      `${file}:1: locale vocabulary must derive from the locale contract`,
+    ]);
   });
 
   it("rejects duplicated schema and TypeScript locale unions", () => {

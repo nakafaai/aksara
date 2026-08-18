@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Sich gegenseitig ausschließende Ereignisse A und B",
+  description: "Lerne anhand von Münz-, Würfel- und Kartenbeispielen, wie sich Wahrscheinlichkeiten gegenseitig ausschließender Ereignisse verbinden lassen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-21",
+  subject: "Wahrscheinlichkeit",
+};
+
+## Was bedeutet gegenseitiger Ausschluss?
+
+Angenommen, ein Versuch kann eines von zwei Ereignissen hervorbringen, aber nicht beide. In der Wahrscheinlichkeitsrechnung heißen solche Ereignisse **gegenseitig ausschließend** oder _disjunkt_.
+
+Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **gegenseitig ausschließend**, wenn sie **nicht gemeinsam** in einem Versuch auftreten können. Tritt <InlineMath math="A" /> ein, tritt <InlineMath math="B" /> nicht ein, und umgekehrt.
+
+## Merkmale sich gegenseitig ausschließender Ereignisse
+
+Ihr wesentliches Merkmal ist eine leere Schnittmenge: Kein Ergebnis gehört gleichzeitig zu Ereignis <InlineMath math="A" /> und Ereignis <InlineMath math="B" />.
+
+### Wahrscheinlichkeit, dass zwei Ereignisse gleichzeitig auftreten
+
+Da die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> nicht gemeinsam auftreten können, ist die Wahrscheinlichkeit ihrer Schnittmenge **null**.
+
+Wir können die Wahrscheinlichkeit des Ereignisses „<InlineMath math="A" /> **und** <InlineMath math="B" />“ (beide treten ein) wie folgt schreiben:
+
+<BlockMath math="P(A \text{und} B) = 0" />
+
+Oder mit dem Schnittmengensymbol:
+
+<BlockMath math="P(A \cap B) = 0" />
+
+Bei gegenseitig ausschließenden Ereignissen ist die Schnittmenge leer, also hat sie die Wahrscheinlichkeit null.
+
+## Berechnung der kombinierten Wahrscheinlichkeit für sich gegenseitig ausschließende Ereignisse
+
+Für die Wahrscheinlichkeit, dass Ereignis <InlineMath math="A" /> **ODER** Ereignis <InlineMath math="B" /> eintritt, nutzen wir die fehlende Überschneidung.
+
+Die beiden Einzelwahrscheinlichkeiten können **addiert** werden, ohne ein Ergebnis doppelt zu zählen.
+
+Die Formel lautet:
+
+<BlockMath math="P(A \text{oder} B) = P(A) + P(B)" />
+
+Oder mit dem Vereinigungszeichen:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B)" />
+
+Dies ist die **spezielle Additionsregel** für Ereignisse, die sich gegenseitig ausschließen. Bei Ereignissen mit gemeinsamen Ergebnissen muss deren Schnittmenge zusätzlich berücksichtigt werden.
+
+## Beispiele für sich gegenseitig ausschließende Ereignisse
+
+Die folgenden Beispiele zeigen, wann die spezielle Additionsregel gilt:
+
+1.  **Münzwurf:**
+
+    Bei einem einzelnen Münzwurf kann entweder Kopf oder Zahl fallen, aber nicht beides zugleich.
+
+    - <InlineMath math="P(\text{Kopf}) = 1/2" />
+    - <InlineMath math="P(\text{Zahl}) = 1/2" />
+    - Die Wahrscheinlichkeit für Kopf ODER Zahl beträgt <InlineMath math="P(\text{Kopf}) + P(\text{Zahl}) = 1/2 + 1/2 = 1" />, denn eines der beiden Ergebnisse muss auftreten.
+
+2.  **Einen Würfel werfen (einmal):**
+
+    Betrachten wir zwei Ereignispaare:
+
+    - Eine <InlineMath math="3" /> und eine <InlineMath math="5" /> können nicht gleichzeitig fallen. Beide Ergebnisse haben die Wahrscheinlichkeit <InlineMath math="1/6" />. Daher beträgt die Wahrscheinlichkeit für eine <InlineMath math="3" /> oder eine <InlineMath math="5" /> insgesamt <InlineMath math="1/6 + 1/6 = 2/6 = 1/3" />.
+    - Das Ereignis „gerade Zahl“ umfasst <InlineMath math="\{2, 4, 6\}" />, das Ereignis „ungerade Zahl“ umfasst <InlineMath math="\{1, 3, 5\}" />. Beide Ereignisse haben die Wahrscheinlichkeit <InlineMath math="3/6 = 1/2" />. Zusammen ergibt sich <InlineMath math="1/2 + 1/2 = 1" />.
+
+3.  **Eine Karte ziehen (einmal):**
+
+    Dieselbe Idee gilt beim Ziehen einer einzelnen Karte:
+
+    - Die Ereignisse „König“ und „Dame“ schließen sich gegenseitig aus. Unter <InlineMath math="52 \text{Karten}" /> gibt es jeweils <InlineMath math="4" /> Könige und <InlineMath math="4" /> Damen. Damit beträgt die Wahrscheinlichkeit für einen König oder eine Dame <InlineMath math="4/52 + 4/52 = 8/52 = 2/13" />.
+    - Auch „rote Karte“ und „Kreuz“ <InlineMath math="\clubsuit" /> schließen sich aus, weil alle Kreuzkarten schwarz sind. Mit <InlineMath math="26" /> roten Karten und <InlineMath math="13" /> Kreuzkarten ergibt sich <InlineMath math="26/52 + 13/52 = 39/52 = 3/4" />.
+
+## Übung
+
+Ein fairer sechsseitiger Würfel wird einmal geworfen. Es seien <InlineMath math="A=\{1,2\}" /> und <InlineMath math="B=\{5,6\}" />.
+
+1.  Zeige, dass <InlineMath math="A" /> und <InlineMath math="B" /> sich gegenseitig ausschließen.
+2.  Bestimme <InlineMath math="P(A \cup B)" />.
+3.  Bestimme die Wahrscheinlichkeit, dass keines der beiden Ereignisse eintritt.
+
+### Ausführliche Lösung
+
+Die beiden Ereignisse haben eine **leere Schnittmenge** und damit kein gemeinsames Ergebnis:
+
+<BlockMath math="A \cap B=\varnothing" />
+
+Sie schließen sich daher **gegenseitig aus**. Jedes Ereignis enthält <InlineMath math="2" /> der <InlineMath math="6" /> gleich wahrscheinlichen Würfelergebnisse. Mit der speziellen Additionsregel folgt
+
+<MathContainer>
+  <BlockMath math="P(A \cup B)=P(A)+P(B)" />
+  <BlockMath math="=\frac{2}{6}+\frac{2}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+Außerhalb von <InlineMath math="A \cup B=\{1,2,5,6\}" /> liegen die Ergebnisse <InlineMath math="\{3,4\}" />. Somit gilt:
+
+<BlockMath math="P(\text{weder }A\text{ noch }B)=\frac{2}{6}=\frac{1}{3}" />
+
+Zur Kontrolle ergeben die Wahrscheinlichkeit der Vereinigung und die Wahrscheinlichkeit ihres Komplements zusammen <InlineMath math="2/3+1/3=1" />.

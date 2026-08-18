@@ -1,0 +1,59 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+**Geometrische Visualisierung**
+
+<Set3Question19Graph
+  title="Illustration der Boots- und Hügelposition"
+  description={
+    <>
+      Darstellung der Bootsfahrt von Punkt <InlineMath math="C" /> zum Anleger
+      bei <InlineMath math="D" /> sowie der Sichtlinien zum Hügelgipfel{" "}
+      <InlineMath math="A" />.
+    </>
+  }
+/>
+
+**Positionsanalyse**
+
+Wir bezeichnen:
+- <InlineMath math="A" />: Hügelgipfel
+- <InlineMath math="B" />: Fuß des Hügels
+- <InlineMath math="C" />: Ausgangsposition des Bootes
+- <InlineMath math="D" />: Anleger und Endposition des Bootes
+
+Gegeben:
+- Bootsfahrstrecke <InlineMath math="CD = 2\text{ km}" />.
+- Länge der ursprünglichen Sichtlinie <InlineMath math="AC = 12\text{ km}" />.
+- Höhenwinkel bei <InlineMath math="C" />: <InlineMath math="37^\circ" />.
+
+Gesucht ist die waagerechte Strecke <InlineMath math="BD" /> vom Fuß des Hügels zum Anleger.
+
+**Entfernungsberechnung**
+
+Im rechtwinkligen Dreieck <InlineMath math="ABC" /> verwenden wir den Kosinus des Winkels bei <InlineMath math="C" /> (<InlineMath math="37^\circ" />):
+
+<MathContainer>
+  <BlockMath math="\cos 37^\circ = \frac{\text{Ankathete}}{\text{Hypotenuse}} = \frac{BC}{AC}" />
+</MathContainer>
+
+Die Länge <InlineMath math="BC" /> ist die Gesamtentfernung vom Fuß des Hügels bis zur anfänglichen Bootsposition, bestehend aus der Entfernung vom Pier zum Fuß des Hügels (<InlineMath math="BD" />) und der Fahrstrecke des Bootes (<InlineMath math="CD" />).
+
+<MathContainer>
+  <BlockMath math="BC = BD + CD = BD + 2" />
+</MathContainer>
+
+Nun setzen wir die bekannten Werte in die Kosinusgleichung ein:
+
+<MathContainer>
+  <BlockMath math="0{,}8 = \frac{BD + 2}{12}" />
+  <BlockMath math="0{,}8 \times 12 = BD + 2" />
+  <BlockMath math="9{,}6 = BD + 2" />
+  <BlockMath math="BD = 9{,}6 - 2" />
+  <BlockMath math="BD = 7{,}6\text{ km}" />
+</MathContainer>
+
+Somit beträgt die waagerechte Entfernung vom Fuß des Hügels zum Anleger <InlineMath math="7{,}6\text{ km}" />.

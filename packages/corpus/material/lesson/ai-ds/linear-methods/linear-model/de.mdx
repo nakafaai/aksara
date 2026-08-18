@@ -1,0 +1,96 @@
+export const metadata = {
+  title: "Lineare Modelle",
+  description: "Erstelle parameterlineare Modelle aus Basisfunktionen, fasse Messungen in einer Designmatrix zusammen und unterscheide exakte lineare Modelle von lokaler Linearisierung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-14",
+  subject: "Lineare Methoden der KI",
+};
+
+## Was linear hier bedeutet
+
+Ein lineares Modell verbindet eine bekannte Eingabe <InlineMath math="t \in \mathbb{R}^k" /> mit einer beobachteten Antwort <InlineMath math="y \in \mathbb{R}^d" /> über unbekannte Parameter <InlineMath math="x \in \mathbb{R}^n" />:
+
+<BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
+
+Entscheidend ist die Formulierung **linear in den Parametern**. Bei festem <InlineMath math="t" /> ist die Abbildung von <InlineMath math="x" /> nach <InlineMath math="y" /> linear. Die Abhängigkeit von <InlineMath math="t" /> darf Potenzen, Logarithmen, Sinusfunktionen oder andere nichtlineare Basisfunktionen enthalten.
+
+Diese Unterscheidung verhindert ein häufiges Missverständnis: Ein lineares Modell muss als Funktion seiner Eingabe keine Gerade zeichnen. Es muss die unbekannten Parameter linear kombinieren.
+
+## Von Messungen zur Designmatrix
+
+Wir erfassen <InlineMath math="M" /> Eingabe-Antwort-Paare <InlineMath math="(t_i,y_i)" /> und modellieren jede Beobachtung als
+
+<BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
+
+wobei <InlineMath math="\varepsilon_i" /> Messrauschen und Modellabweichungen enthält. Durch Stapeln aller Antworten und Modellblöcke erhält man
+
+<MathContainer>
+<BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
+<BlockMath math="A=\begin{pmatrix}h(t_1)\\\vdots\\h(t_M)\end{pmatrix}\in\mathbb{R}^{Md\times n}" />
+<BlockMath math="b=Ax+\varepsilon" />
+</MathContainer>
+
+Die Matrix <InlineMath math="A" /> heißt **Designmatrix**. Lassen sich die Beobachtungen nicht durch einen einzigen Parametervektor exakt erfüllen, schätzt man <InlineMath math="x" /> mit kleinsten Quadraten oder einem anderen Residualmodell. Ob die Parameter identifizierbar sind, hängt außerdem vom Rang und von der Kondition von <InlineMath math="A" /> ab.
+
+## Basisfunktionen erzeugen verschiedene Modellformen
+
+Seien <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> bekannte Basisfunktionen. Ein Modell mit skalarer Antwort lässt sich schreiben als
+
+<BlockMath math="y(t)=\sum_{j=1}^{n}x_j\phi_j(t)=\begin{pmatrix}\phi_1(t)&\cdots&\phi_n(t)\end{pmatrix}x" />
+
+Verschiedene Basisfunktionen erzeugen verschiedene Formen, ohne die Linearität in <InlineMath math="x" /> aufzugeben.
+
+| Modell | Basisdarstellung |
+| --- | --- |
+| Affine Gerade | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
+| Polynom vom Grad <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
+| Fourier-Basis | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
+| Wechselwirkung zweier Eingaben | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
+
+Terme wie <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" /> und <InlineMath math="ts" /> dürfen in den Eingaben nichtlinear sein. Nach der Beobachtung der Eingaben sind sie bekannte Koeffizienten. Das Modell bleibt daher in seinen unbekannten Parametern linear.
+
+## Mehrere Antworten
+
+Liefert jede Eingabe mehrere Antworten, ordnet man ihre Parametervektoren in einer Matrix <InlineMath math="B" /> an. Für eine Zeile von Basiswerten <InlineMath math="\phi(t)^{\mathsf T}" /> gilt
+
+<BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
+
+Jede Spalte von <InlineMath math="B" /> beschreibt eine Antwort. Auch dies ist ein lineares Modell, weil jede Ausgabe eine lineare Kombination derselben bekannten Basiswerte ist.
+
+## Physikalisches Beispiel: das ideale Gasgesetz
+
+Für ein ideales Gas gilt
+
+<BlockMath math="pV=nRT" />
+
+und damit bei bekannter Temperatur <InlineMath math="T" /> und bekanntem Volumen <InlineMath math="V" />
+
+<BlockMath math="p=\frac{RT}{V}n" />
+
+Der Druck <InlineMath math="p" /> hängt linear von der unbekannten Stoffmenge <InlineMath math="n" /> ab, die in Mol gemessen wird. Die Größe <InlineMath math="n" /> ist nicht selbst die Anzahl der Moleküle. Die Anzahl der angegebenen Teilchen ist <InlineMath math="N=nN_A" />.
+
+Wiederholte Druckmessungen bei mehreren bekannten Werten <InlineMath math="(T_i,V_i)" /> liefern für jede Beobachtung eine Designmatrixzeile <InlineMath math="RT_i/V_i" />.
+
+## Lokale Linearisierung eines nichtlinearen Modells
+
+Ein tatsächlich nichtlineares Parametermodell hat die Form
+
+<BlockMath math="y=g(t,x)" />
+
+wobei Parameter in Exponentialfunktionen, Potenzen oder Produkten miteinander auftreten können. In der Nähe eines aktuellen Parameterwerts <InlineMath math="x_0" /> liefert eine Taylor-Näherung erster Ordnung
+
+<BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
+
+Die Jacobi-Matrix <InlineMath math="J_xg(t,x_0)" /> ist nach der Wahl von <InlineMath math="x_0" /> bekannt. Dadurch tritt die Korrektur <InlineMath math="x-x_0" /> linear auf. Diese Näherung ist lokal und keine exakte Umwandlung des nichtlinearen Modells. Iterative Verfahren wie Gauss-Newton aktualisieren den Linearisierungspunkt wiederholt.
+
+## Prüfungen vor der Anpassung
+
+Vor der Interpretation angepasster Parameter sollte man prüfen, dass:
+
+- die Spalten der Designmatrix die vorgesehenen Basisfunktionen und Einheiten darstellen
+- die Daten genügend unabhängige Information für die Parameter enthalten, typischerweise <InlineMath math="\operatorname{rank}(A)=n" />
+- Merkmalsskalen und Konditionszahl die Lösung nicht numerisch empfindlich machen
+- die gewählte Residualfunktion zu den Annahmen über Rauschen und Ausreißer passt
+- eine lokale Linearisierung anschließend am ursprünglichen nichtlinearen Modell geprüft wird
+
+Eine flexible Basis kann viele Formen anpassen. Flexibilität allein garantiert jedoch weder Identifizierbarkeit noch numerische Stabilität oder nützliche Vorhersagen.

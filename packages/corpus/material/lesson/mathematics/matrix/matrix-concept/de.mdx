@@ -1,0 +1,112 @@
+export const metadata = {
+  title: "Matrizen verstehen",
+  description: "Matrizen anhand von Zeilen, Spalten, Einträgen, Formaten und zwei vertrauten Datentabellen verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrizen",
+};
+
+## Was ist eine Matrix?
+
+Tabellen ordnen Informationen häufig in Zeilen und Spalten. Eine Notenübersicht kann zum Beispiel für jede Person eine Zeile und für jedes Fach eine Spalte verwenden. Eine **Matrix** nutzt dieselbe rechteckige Anordnung, um Zahlen mathematisch zu verarbeiten.
+
+Die Zahlen in einer Matrix heißen **Elemente** oder **Einträge**. Meist stehen sie zwischen runden Klammern <InlineMath math="()" /> oder eckigen Klammern <InlineMath math="[]" />. Ihre Position ist wichtig: Ein Wechsel der Zeile oder Spalte verändert die Bedeutung eines Eintrags.
+
+Betrachten wir die Mathematik- und Englischnoten von drei Personen:
+
+| Name   | Mathematik | Englisch |
+| :----- | :--------- | :------- |
+| Aisyah | <InlineMath math="80" /> | <InlineMath math="75" /> |
+| Alex   | <InlineMath math="70" /> | <InlineMath math="95" /> |
+| Wayan  | <InlineMath math="95" /> | <InlineMath math="75" /> |
+
+Beschränken wir uns auf die Zahlen, erhalten wir die Matrix:
+
+<BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
+
+Dieselbe Matrix lässt sich auch mit runden Klammern schreiben:
+
+<BlockMath math="A = \begin{pmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{pmatrix}" />
+
+Damit sind <InlineMath math="80, 75, 70, 95, 95, 75" /> die Elemente der Matrix <InlineMath math="A" />.
+
+## Zeilen, Spalten und Elemente
+
+Drei Begriffe beschreiben den Aufbau einer Matrix:
+
+1.  Eine **Zeile** ist eine waagerechte Folge von Elementen.
+2.  Eine **Spalte** ist eine senkrechte Folge von Elementen.
+3.  Ein **Element** ist ein Eintrag an einer bestimmten Zeilen- und Spaltenposition.
+
+Für die Matrix <InlineMath math="A" /> gilt:
+
+<BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
+
+- **Zeile** <InlineMath math="1" /> ist <InlineMath math="[80 \ 75]" />
+- **Zeile** <InlineMath math="2" /> ist <InlineMath math="[70 \ 95]" />
+- **Zeile** <InlineMath math="3" /> ist <InlineMath math="[95 \ 75]" />
+
+- **Spalte** <InlineMath math="1" /> ist <InlineMath math="\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}" />
+- **Spalte** <InlineMath math="2" /> ist <InlineMath math="\begin{bmatrix} 75 \\ 95 \\ 75 \end{bmatrix}" />
+
+Ein Element der Matrix <InlineMath math="A" /> wird als <InlineMath math="a_{ij}" /> geschrieben. Der erste Index <InlineMath math="i" /> gibt die Zeile an, der zweite Index <InlineMath math="j" /> die Spalte.
+
+<BlockMath math="A=[a_{ij}]_{m\times n},\qquad 1\le i\le m,\qquad 1\le j\le n" />
+
+Die Schreibweise zeigt zugleich den zulässigen Indexbereich: Der Zeilenindex darf <InlineMath math="m" /> und der Spaltenindex <InlineMath math="n" /> nicht überschreiten.
+
+Für die Matrix oben bedeutet das:
+
+- <InlineMath math="a_{11}" /> steht in Zeile <InlineMath math="1" />, Spalte <InlineMath math="1" />, also <InlineMath math="a_{11}=80" />.
+- <InlineMath math="a_{12}" /> steht in Zeile <InlineMath math="1" />, Spalte <InlineMath math="2" />, also <InlineMath math="a_{12}=75" />.
+- <InlineMath math="a_{21}" /> steht in Zeile <InlineMath math="2" />, Spalte <InlineMath math="1" />, also <InlineMath math="a_{21}=70" />.
+- <InlineMath math="a_{22}" /> steht in Zeile <InlineMath math="2" />, Spalte <InlineMath math="2" />, also <InlineMath math="a_{22}=95" />.
+- <InlineMath math="a_{31}" /> steht in Zeile <InlineMath math="3" />, Spalte <InlineMath math="1" />, also <InlineMath math="a_{31}=95" />.
+- <InlineMath math="a_{32}" /> steht in Zeile <InlineMath math="3" />, Spalte <InlineMath math="2" />, also <InlineMath math="a_{32}=75" />.
+
+## Format einer Matrix
+
+Das **Format** einer Matrix nennt zuerst die Anzahl der Zeilen und dann die Anzahl der Spalten. Eine Matrix mit <InlineMath math="m" /> Zeilen und <InlineMath math="n" /> Spalten hat das Format <InlineMath math="m \times n" />, gelesen als „<InlineMath math="m" /> mal <InlineMath math="n" />“.
+
+Für die Matrix <InlineMath math="A" /> gilt:
+
+<BlockMath math="A = \underbrace{\begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}}_{\text{2 Spalten}} \hspace{0{,}1em} \left. \vphantom{\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}} \right\} \hspace{0{,}1em} \text{3 Zeilen}" />
+
+Matrix <InlineMath math="A" /> hat <InlineMath math="3" /> Zeilen und <InlineMath math="2" /> Spalten. Ihr Format ist daher <InlineMath math="3 \times 2" /> und kann als <InlineMath math="A_{3 \times 2}" /> notiert werden.
+
+**Ein weiteres Beispiel:**
+
+Eine Anwesenheitstabelle für ein Semester erfasse entschuldigte, krankheitsbedingte und unentschuldigte Fehltage:
+
+| Name   | Entschuldigt | Krank | Unentschuldigt |
+| :----- | :----------- | :---- | :-------------- |
+| Aisyah | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Alex   | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Wayan  | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+Die Zahlen bilden die Matrix <InlineMath math="B" />:
+
+<BlockMath math="B = \underbrace{\begin{bmatrix} 2 & 1 & 0 \\ 3 & 1 & 1 \\ 1 & 2 & 1 \end{bmatrix}}_{\text{3 Spalten}} \hspace{0{,}1em} \left. \vphantom{\begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}} \right\} \hspace{0{,}1em} \text{3 Zeilen}" />
+
+Matrix <InlineMath math="B" /> hat <InlineMath math="3" /> Zeilen und <InlineMath math="3" /> Spalten. Ihr Format ist also <InlineMath math="3 \times 3" />, geschrieben <InlineMath math="B_{3 \times 3}" />.
+
+Zum Beispiel:
+
+- <InlineMath math="b_{11} = 2" /> ist das Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="1" />.
+- <InlineMath math="b_{23} = 1" /> ist das Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="3" />.
+- <InlineMath math="b_{32} = 2" /> ist das Element in Zeile <InlineMath math="3" />, Spalte <InlineMath math="2" />.
+
+## Allgemeine Matrixnotation
+
+Eine Matrix <InlineMath math="A" /> mit <InlineMath math="m" /> Zeilen und <InlineMath math="n" /> Spalten lässt sich so schreiben:
+
+<BlockMath math="A_{m \times n} = \underbrace{\begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{bmatrix}}_{\text{n Spalten}} \hspace{0{,}1em} \left. \vphantom{\begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}} \right\} \hspace{0{,}1em} \text{m Zeilen}" />
+
+Die Notation bedeutet:
+
+- <InlineMath math="A_{m \times n}" /> ist die Matrix <InlineMath math="A" /> mit dem Format <InlineMath math="m \times n" />.
+- <InlineMath math="m" /> ist die Anzahl der Zeilen.
+- <InlineMath math="n" /> ist die Anzahl der Spalten.
+- <InlineMath math="a_{ij}" /> ist das Element in Zeile <InlineMath math="i" /> und Spalte <InlineMath math="j" />.
+
+Diese Zeilen- und Spaltenstruktur ist die Grundlage für Matrixtypen, Matrixoperationen, Transformationen sowie Anwendungen in Mathematik, Naturwissenschaften, Informatik und Wirtschaft.

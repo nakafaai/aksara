@@ -1,0 +1,54 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-17",
+};
+
+Gegeben ist der Ausdruck
+
+<BlockMath math="\frac{x + 2y}{3} + \frac{2x - y}{4} - \frac{3x + 2y}{6}" />
+
+#### Den gemeinsamen Nenner finden
+
+Um diesen Ausdruck zu vereinfachen, müssen wir das kleinste gemeinsame Vielfache (kgV) von <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6" /> finden.
+
+Primfaktorzerlegung:
+- <InlineMath math="3 = 3" />
+- <InlineMath math="4 = 2^2" />
+- <InlineMath math="6 = 2 \times 3" />
+
+Das kgV von <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6" /> ist <InlineMath math="2^2 \times 3 = 12" />.
+
+#### Nenner ausgleichen
+
+Wir erweitern jeden Bruch auf den Nenner <InlineMath math="12" />:
+
+<MathContainer>
+<BlockMath math="\frac{x + 2y}{3} = \frac{4(x + 2y)}{12} = \frac{4x + 8y}{12}" />
+<BlockMath math="\frac{2x - y}{4} = \frac{3(2x - y)}{12} = \frac{6x - 3y}{12}" />
+<BlockMath math="\frac{3x + 2y}{6} = \frac{2(3x + 2y)}{12} = \frac{6x + 4y}{12}" />
+</MathContainer>
+
+#### Den Ausdruck vereinfachen
+
+Damit lautet der ursprüngliche Ausdruck:
+
+<BlockMath math="\frac{x + 2y}{3} + \frac{2x - y}{4} - \frac{3x + 2y}{6} = \frac{4x + 8y}{12} + \frac{6x - 3y}{12} - \frac{6x + 4y}{12}" />
+
+Da alle Brüche den gleichen Nenner haben, können wir die Zähler kombinieren:
+
+<BlockMath math="= \frac{(4x + 8y) + (6x - 3y) - (6x + 4y)}{12}" />
+
+Nun fassen wir gleichartige Terme im Zähler zusammen:
+
+<MathContainer>
+<BlockMath math="= \frac{4x + 8y + 6x - 3y - 6x - 4y}{12}" />
+<BlockMath math="= \frac{(4x + 6x - 6x) + (8y - 3y - 4y)}{12}" />
+<BlockMath math="= \frac{4x + y}{12}" />
+</MathContainer>
+
+Damit vereinfacht sich
+
+<BlockMath math="\frac{x + 2y}{3} + \frac{2x - y}{4} - \frac{3x + 2y}{6}" />
+
+zu <InlineMath math="\frac{4x + y}{12}" />.

@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Mittelwert, Median oder Modus?",
+  description: "Entscheide passend zum Datensatz, ob Mittelwert, Median oder Modus die Mitte sinnvoll beschreibt, und prüfe den Einfluss ungewöhnlich großer oder kleiner Werte.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Das passende Lagemaß wählen
+
+Mittelwert, Median und Modus beschreiben jeweils die Mitte eines Datensatzes. Der Mittelwert bezieht alle Werte ein, der Median richtet sich nach der mittleren Position und der Modus nach der größten Häufigkeit. Deshalb beantworten die drei Maße nicht immer dieselbe Frage.
+
+Ein unpassendes Lagemaß kann ein verzerrtes Bild vermitteln. Bevor wir rechnen, prüfen wir daher, welche Art von Daten vorliegt und ob einzelne Werte ungewöhnlich weit vom Rest entfernt sind.
+
+## Die wichtigsten Eigenschaften
+
+### Mittelwert
+
+- **Berechnung:** Addiere alle Datenwerte und teile die Summe durch ihre Anzahl.
+- **Eigenschaft:** Der Mittelwert verwendet _jeden_ Wert. Dadurch reagiert er stark auf Extremwerte. Schon ein einzelner sehr großer oder kleiner Wert kann ihn deutlich verschieben.
+- **Beispiel:** Die Testergebnisse <InlineMath math="7, 8, 9, 8, 10" /> haben den Mittelwert <InlineMath math="8{,}4" />. Kommt der ungewöhnlich niedrige Wert <InlineMath math="1" /> hinzu, ergibt sich <InlineMath math="(7+8+9+8+10+1)/6 = 7{,}17" />. Der Mittelwert sinkt deutlich, weil jeder Wert in die Berechnung eingeht.
+
+### Median
+
+- **Berechnung:** Sortiere die Daten und bestimme den Wert in der Mitte. Bei einer geraden Anzahl ist der Median der Mittelwert der beiden mittleren Werte.
+- **Eigenschaft:** Der Median hängt von der mittleren Position ab. Einzelne Extremwerte an den Rändern verändern ihn deshalb meist kaum.
+- **Beispiel:** Sortiert lautet der Datensatz <InlineMath math="7, 8, 9, 8, 10" /> als <InlineMath math="7, 8, 8, 9, 10" />. Sein Median ist <InlineMath math="8" />. Nach dem Ergänzen von <InlineMath math="1" /> entsteht <InlineMath math="1, 7, 8, 8, 9, 10" /> und der Median bleibt mit <InlineMath math="(8+8)/2=8" /> unverändert.
+
+### Modus
+
+- **Berechnung:** Bestimme den Wert oder die Kategorie mit der höchsten Häufigkeit.
+- **Eigenschaft:** Der Modus beschreibt das häufigste Vorkommen. Ein einzelner Extremwert ändert ihn normalerweise nicht. Außerdem eignet er sich auch für qualitative, also nicht numerische Daten.
+- **Beispiel:** Im Datensatz <InlineMath math="7, 8, 9, 8, 10" /> ist <InlineMath math="8" /> der Modus. Der zusätzliche Wert <InlineMath math="1" /> ändert daran nichts; der Modus bleibt <InlineMath math="8" />. Bei den Lieblingsfarben Rot, Blau, Rot und Grün ist Rot der Modus.
+
+## Entscheidungshilfe
+
+Die folgende Übersicht zeigt, welches Lagemaß zu welcher Fragestellung passt:
+
+| Lagemaß | Geeignete Daten | Einfluss von Extremwerten | Sinnvoll, wenn ... |
+| :--------- | :----------- | :---------------- | :------------------------------------------------------------------------------------------- |
+| **Mittelwert** | Quantitative Daten | Stark | jede Größenordnung eingehen soll und Extremwerte das Ergebnis nicht irreführend machen. |
+| **Median** | Quantitative Daten | Gering | die Verteilung schief ist oder ungewöhnliche Randwerte enthält und eine stabile Positionsmitte gesucht ist. |
+| **Modus** | Qualitative und quantitative Daten | Gering bei einem einzelnen Wert | die häufigste Kategorie oder der am häufigsten vorkommende Wert gesucht ist. |
+
+**Typische Situationen:**
+
+- **Den Klassendurchschnitt berechnen:** Sind die Ergebnisse ohne extreme Ausreißer annähernd gleichmäßig verteilt, beschreibt der **Mittelwert** die gesamte Klasse sinnvoll.
+- **Ein typisches Einkommen beschreiben:** Einige sehr hohe Einkommen können den Mittelwert stark anheben. Der **Median** beschreibt dann eher, was für die Mitte der Bevölkerung typisch ist.
+- **Die meistverkaufte Schuhgröße bestimmen:** Gesucht ist die am häufigsten gekaufte Größe. Dafür verwenden wir den **Modus**.
+- **Die beliebteste Farbe einer Lerngruppe bestimmen:** Farben sind Kategorien. Ihr häufigster Wert lässt sich mit dem **Modus** angeben.

@@ -1,0 +1,148 @@
+export const metadata = {
+  title: "Vollständige Polynomfaktorisierung",
+  description: "Faktorisiere Polynome mithilfe reeller und komplexer Nullstellen vollständig und wende dabei den Fundamentalsatz der Algebra an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-04",
+  subject: "Polynom",
+};
+
+## Die vollständige Faktorisierung verstehen
+
+Mit dem [Faktorsatz](/de/fächer/mathematik/polynome/faktorsatz) können wir Polynome schrittweise zerlegen. Manchmal bleibt dabei ein nichtlinearer Faktor zurück, etwa ein quadratischer Faktor ohne reelle Nullstellen. Über den komplexen Zahlen lässt auch er sich weiter zerlegen.
+
+Bei einer **vollständigen Faktorisierung** schreiben wir ein Polynom als Produkt linearer Faktoren. Die zugehörigen Nullstellen dürfen dabei komplex sein.
+
+Grundlage ist der Fundamentalsatz der Algebra: Jedes Polynom vom Grad <InlineMath math="n \ge 1" /> besitzt in den komplexen Zahlen genau <InlineMath math="n" /> Nullstellen, wenn ihre Vielfachheiten mitgezählt werden. Reelle Nullstellen sind darin enthalten.
+
+### Vollständige Faktorisierungseigenschaft von Polynomen
+
+Wenn <InlineMath math="P(x)" /> ein Polynom vom Grad <InlineMath math="n \ge 1" /> mit dem führenden Koeffizienten <InlineMath math="a_n \neq 0" /> ist, dann gibt es komplexe Zahlen <InlineMath math="c_1, c_2, \dots, c_n" /> (die die Wurzeln von <InlineMath math="P(x)" /> sind), so dass:
+
+<BlockMath math="P(x) = a_n(x - c_1)(x - c_2)\dots(x - c_n)" />
+
+Damit lässt sich jedes Polynom vom Grad <InlineMath math="n" /> in genau <InlineMath math="n" /> lineare Faktoren der Form <InlineMath math="(x - \text{Wurzel})" /> zerlegen und mit seinem Leitkoeffizienten multiplizieren.
+
+## Schritte zur vollständigen Faktorisierung
+
+So gehst du bei der vollständigen Faktorisierung eines Polynoms <InlineMath math="P(x)" /> vor:
+
+1. **Alle komplexen Nullstellen bestimmen:** Finde sämtliche <InlineMath math="n" /> Nullstellen von <InlineMath math="P(x) = 0" />. Dafür kommen mehrere Verfahren infrage:
+
+   - Direkte Faktorisierung (Gruppierung usw.).
+   - der Satz über rationale Nullstellen,
+   - das Horner-Schema oder die Polynomdivision, sobald eine Nullstelle bekannt ist,
+   - die Lösungsformel für quadratische Gleichungen, auch wenn komplexe Nullstellen <InlineMath math="a \pm bi" /> entstehen.
+
+2. **Faktorsatz anwenden:** Zu jeder Nullstelle <InlineMath math="c_i" /> gehört der lineare Faktor <InlineMath math="(x - c_i)" />.
+3. **Vollständige Faktorisierung notieren:** Multipliziere alle linearen Faktoren mit dem Leitkoeffizienten <InlineMath math="a_n" /> von <InlineMath math="P(x)" />.
+
+   <BlockMath math="P(x) = a_n(x - c_1)(x - c_2)\dots(x - c_n)" />
+
+### Verwendung der vollständigen Faktorisierung
+
+Bestimme alle komplexen Nullstellen von <InlineMath math="P(x) = x^3 - x^2 + x - 1" /> und faktorisiere das Polynom vollständig.
+
+**Lösung:**
+
+1. **Wurzeln finden:** Versuchen wir zunächst, <InlineMath math="P(x)" /> zu faktorisieren.
+
+    - Faktorisieren durch Gruppierung:
+
+      <MathContainer>
+        <BlockMath math="P(x) = (x^3 - x^2) + (x - 1)" />
+        <BlockMath math="P(x) = x^2(x - 1) + 1(x - 1)" />
+        <BlockMath math="P(x) = (x^2 + 1)(x - 1)" />
+      </MathContainer>
+
+    - Bestimme nun die Nullstellen aus <InlineMath math="P(x) = 0" />:
+
+      <BlockMath math="(x^2 + 1)(x - 1) = 0" />
+
+    - Dadurch ergeben sich zwei Möglichkeiten:
+
+      <MathContainer>
+        <BlockMath math="x - 1 = 0 \implies x = 1" />
+        <BlockMath math="x^2 + 1 = 0 \implies x^2 = -1 \implies x = \pm\sqrt{-1} \implies x = \pm i" />
+      </MathContainer>
+
+    Die komplexen Wurzeln sind also <InlineMath math="1, i, -i" />.
+
+2. **Lineare Faktoren bilden:**
+
+    - Zur Nullstelle <InlineMath math="1" /> gehört der Faktor <InlineMath math="(x - 1)" />.
+    - Zur Nullstelle <InlineMath math="i" /> gehört der Faktor <InlineMath math="(x - i)" />.
+    - Zur Nullstelle <InlineMath math="-i" /> gehört der Faktor <InlineMath math="(x - (-i)) = (x + i)" />.
+
+3. **Vollständige Faktorisierung schreiben:**
+
+    Der führende Koeffizient von <InlineMath math="P(x)" /> ist <InlineMath math="a_3 = 1" />.
+
+    <MathContainer>
+      <BlockMath math="P(x) = 1 \cdot (x - 1)(x - i)(x + i)" />
+      <BlockMath math="P(x) = (x - 1)(x - i)(x + i)" />
+    </MathContainer>
+
+## Übung
+
+Bestimme alle komplexen Nullstellen von <InlineMath math="P(x) = x^3 - 3x^2 + x + 5" /> und faktorisiere anschließend <InlineMath math="P(x)" /> vollständig.
+
+### Ausführliche Lösung
+
+1. **Rationale Wurzeln finden (Rationaler Nullsatz):**
+
+    - <InlineMath math="a_0 = 5" />, Faktoren <InlineMath math="p" />: <InlineMath math="\pm 1, \pm 5" />.
+    - <InlineMath math="a_n = 1" />, Faktoren <InlineMath math="q" />: <InlineMath math="\pm 1" />.
+    - Mögliche Wurzeln <InlineMath math="p/q" />: <InlineMath math="\pm 1, \pm 5" />.
+    - Prüfe <InlineMath math="x = -1" />:
+
+      <BlockMath math="P(-1) = (-1)^3 - 3(-1)^2 + (-1) + 5 = -1 - 3(1) - 1 + 5 = -1 - 3 - 1 + 5 = 0" />
+
+      Also ist <InlineMath math="x = -1" /> eine Wurzel und <InlineMath math="(x+1)" /> ein Faktor.
+
+2. **Mit dem Horner-Schema dividieren (<InlineMath math="c = -1" />):**
+
+   <BlockMath
+     math="
+        \begin{array}{c|cccc}
+        -1 & 1 & -3 & 1 & 5 \\
+          &   & -1 & 4 & -5 \\
+        \hline
+          & 1 & -4 & 5 & \boxed{0} \\
+        \end{array}
+        "
+   />
+
+   Quotient <InlineMath math="H(x) = x^2 - 4x + 5" />.
+
+   <InlineMath math="P(x) = (x+1)(x^2 - 4x + 5)" />.
+
+3. **Nullstellen des Quotienten bestimmen:** Löse <InlineMath math="x^2 - 4x + 5 = 0" /> mit der quadratischen Formel.
+
+   <MathContainer>
+     <BlockMath math="x = \frac{-(-4) \pm \sqrt{(-4)^2 - 4(1)(5)}}{2(1)}" />
+     <BlockMath math="x = \frac{4 \pm \sqrt{16 - 20}}{2}" />
+     <BlockMath math="x = \frac{4 \pm \sqrt{-4}}{2}" />
+     <BlockMath math="x = \frac{4 \pm 2i}{2}" />
+     <BlockMath math="x = 2 \pm i" />
+   </MathContainer>
+
+   Die anderen Wurzeln sind <InlineMath math="2 + i" /> und <InlineMath math="2 - i" />.
+
+4. **Alle komplexen Wurzeln:** Die Wurzeln sind <InlineMath math="-1, 2+i, 2-i" />.
+
+5. **Vollständige Faktorisierung (<InlineMath math="a_n = 1" />):**
+
+   <MathContainer>
+     <BlockMath math="P(x) = 1 \cdot (x - (-1))(x - (2+i))(x - (2-i))" />
+     <BlockMath math="P(x) = (x + 1)(x - 2 - i)(x - 2 + i)" />
+   </MathContainer>
+
+## Komplexe konjugierte Wurzelpaare
+
+Kann ein Polynom mit reellen Koeffizienten **genau eine** nichtreelle komplexe Nullstelle besitzen? **Nein.**
+
+Dies liegt an der Eigenschaft komplex konjugierter Paare. Wenn ein Polynom reelle Koeffizienten hat, dann treten seine nicht-reellen komplexen Wurzeln (<InlineMath math="a + bi" /> mit <InlineMath math="b \neq 0" />) **immer** in konjugierten Paaren auf.
+
+Das heißt: Ist <InlineMath math="a + bi" /> eine Nullstelle, dann ist auch die konjugierte Zahl <InlineMath math="a - bi" /> eine Nullstelle des Polynoms.
+
+Nichtreelle komplexe Nullstellen treten bei Polynomen mit reellen Koeffizienten deshalb immer paarweise auf. Ein solches Polynom kann also nicht _genau eine_ nichtreelle Nullstelle besitzen.

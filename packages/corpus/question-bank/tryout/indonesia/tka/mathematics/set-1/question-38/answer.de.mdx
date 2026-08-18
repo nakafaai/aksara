@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 38",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+Um das obere Quartil aus gruppierten Daten zu berechnen, verwenden Sie die Formel für das dritte Quartil.
+
+#### Datentabelle
+
+| Ergebnis | Häufigkeit |
+| ------------------------------------------------------------------- | -------------------------- |
+| <InlineMath math="40" /> bis <InlineMath math="49" /> | <InlineMath math="7" /> |
+| <InlineMath math="50" /> bis <InlineMath math="59" /> | <InlineMath math="11" /> |
+| <InlineMath math="60" /> bis <InlineMath math="69" /> | <InlineMath math="9" /> |
+| <InlineMath math="70" /> bis <InlineMath math="79" /> | <InlineMath math="6" /> |
+| <InlineMath math="80" /> bis <InlineMath math="89" /> | <InlineMath math="5" /> |
+| <InlineMath math="90" /> bis <InlineMath math="99" /> | <InlineMath math="2" /> |
+| **Gesamt** | <InlineMath math="40" /> |
+
+#### Bestimmung der oberen Quartilposition
+
+Das obere Quartil liegt an der Position
+
+<MathContainer>
+<BlockMath math="f_{K_3} = \frac{3}{4} \cdot n = \frac{3}{4} \cdot 40 = 30" />
+</MathContainer>
+
+Die <InlineMath math="30" />-te Position liegt im Intervall von <InlineMath math="70" /> bis <InlineMath math="79" />.
+
+#### Berechnung der kumulativen Häufigkeit
+
+Kumulierte Häufigkeit vor der oberen Quartilklasse
+
+<BlockMath math="f_{ks} = 7 + 11 + 9 = 27" />
+
+Häufigkeit der oberen Quartilklasse
+
+<BlockMath math="f_{K_3} = 6" />
+
+#### Parameter ermitteln
+
+Untere Grenze der oberen Quartilklasse
+
+<BlockMath math="T_b = 70 - 0{,}5 = 69{,}5" />
+
+Klassenbreite
+
+<BlockMath math="c = 79{,}5 - 69{,}5 = 10" />
+
+#### Berechnung des oberen Quartils
+
+Verwendung der Formel für das obere Quartil für gruppierte Daten
+
+<MathContainer>
+<BlockMath math="K_3 = T_b + \left(\frac{\frac{3}{4}n - f_{ks}}{f_{K_3}}\right) \cdot c" />
+<BlockMath math="= 69{,}5 + \left(\frac{30 - 27}{6}\right) \cdot 10" />
+<BlockMath math="= 69{,}5 + \frac{3}{6} \cdot 10" />
+<BlockMath math="= 69{,}5 + 5" />
+<BlockMath math="= 74{,}5" />
+</MathContainer>
+
+Daher ist das obere Quartil der Daten in der Tabelle <InlineMath math="74{,}5" />

@@ -1,4 +1,3 @@
-import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import {
   QuranMeaningfulTextSchema,
   QuranSurahMetadataSchema,
@@ -7,6 +6,8 @@ import {
   QuranTranslationSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Schema } from "effect";
+
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Exact authored contract for one Quran verse. */
 export const QuranVerseSchema = Schema.Struct({
@@ -30,10 +31,7 @@ export const QuranVerseSchema = Schema.Struct({
     }),
   }),
   text: QuranTextSchema,
-  translation: Schema.Record({
-    key: ActiveAppLocaleCodeSchema,
-    value: QuranTranslationSchema,
-  }),
+  translation: localizedSourceMapSchema(QuranTranslationSchema),
 });
 export type QuranVerse = typeof QuranVerseSchema.Type;
 

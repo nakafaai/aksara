@@ -1,0 +1,134 @@
+export const metadata = {
+  title: "Definitionsmenge, Zielmenge und Bildmenge",
+  description: "Unterscheide zulässige Eingaben, festgelegte Zielwerte und tatsächlich erreichte Funktionswerte anhand konkreter Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Definitionsmenge
+
+Die **Definitionsmenge** enthält alle Werte, die als Eingabe einer Funktion zulässig sind. Ein Wert außerhalb dieser Menge darf nicht eingesetzt werden.
+
+### Beispiel zur Definitionsmenge
+
+Betrachten wir zunächst die Funktion
+
+<BlockMath math="f(x) = \frac{1}{x}" />
+
+Sie teilt <InlineMath math="1" /> durch die eingesetzte Zahl. Ob wirklich jede reelle Zahl zulässig ist, zeigt der Versuch mit <InlineMath math="0" />:
+
+<BlockMath math="f(0) = \frac{1}{0}" />
+
+Durch Null darf nicht dividiert werden. Deshalb gehört die Zahl <InlineMath math="0" /> nicht zur Definitionsmenge dieser Funktion. Alle anderen reellen Zahlen sind zulässig.
+
+Die Definitionsmenge von <InlineMath math="f(x) = \frac{1}{x}" /> umfasst daher alle reellen Zahlen außer <InlineMath math="0" />.
+
+Ein zweites Beispiel ist
+
+<BlockMath math="g(x) = \sqrt{x}" />
+
+Hier wird die Quadratwurzel der Eingabe gebildet. Für <InlineMath math="-4" /> ergäbe sich
+
+<BlockMath math="g(-4) = \sqrt{-4}" />
+
+Im Bereich der reellen Zahlen ist die Quadratwurzel einer negativen Zahl nicht definiert. Zulässig sind deshalb nur <InlineMath math="0" /> und positive Zahlen.
+
+Die Definitionsmenge von <InlineMath math="g(x) = \sqrt{x}" /> besteht also aus allen reellen Zahlen größer oder gleich <InlineMath math="0" />, das heißt mit <InlineMath math="x \ge 0" />.
+
+## Zielmenge
+
+Die **Zielmenge** wird bei der Definition einer Funktion festgelegt. Sie enthält die Werte, in denen die Ausgaben der Funktion liegen sollen.
+
+Als Beispiel definieren wir <InlineMath math="f(x) = 2x" />.
+
+Als **Definitionsmenge** wählen wir die natürlichen Zahlen:
+
+<BlockMath math="\{1, 2, 3, ...\}" />
+
+Dann legen wir als **Zielmenge** die ganzen Zahlen fest:
+
+<BlockMath math="\{..., -2, -1, 0, 1, 2, ...\}" />
+
+Mit den ganzen Zahlen als Zielmenge legen wir fest, in welcher Menge die Werte von <InlineMath math="f(x)=2x" /> liegen. Für natürliche Eingaben entstehen tatsächlich nur positive gerade Zahlen. Genau diese Werte bilden die Bildmenge:
+
+<BlockMath math="\{2, 4, 6, ...\}" />
+
+Die gewählte Zielmenge ist gültig, weil alle tatsächlich entstehenden Werte der Bildmenge in den ganzen Zahlen enthalten sind.
+
+Die Zielmenge beschreibt also den vorgesehenen Ausgaberaum. Nicht jeder ihrer Werte muss von der Funktion tatsächlich erreicht werden.
+
+## Bildmenge
+
+Die **Bildmenge** enthält alle Ausgabewerte, die bei den zulässigen Eingaben tatsächlich entstehen. Sie ist eine Teilmenge der Zielmenge und kann mit ihr übereinstimmen.
+
+**Beispiel:**
+
+Betrachten wir nun die Funktion <InlineMath math="f(x) = x^2" />.
+
+Ihre Definitionsmenge sei die Menge der ganzen Zahlen:
+
+<BlockMath math="\{..., -2, -1, 0, 1, 2, ...\}" />
+
+Auch als Zielmenge wählen wir die ganzen Zahlen.
+
+Setzen wir einige Werte aus der Definitionsmenge ein:
+
+- <InlineMath math="f(-2) = 4" />
+- <InlineMath math="f(-1) = 1" />
+- <InlineMath math="f(0) = 0" />
+- <InlineMath math="f(1) = 1" />
+- <InlineMath math="f(2) = 4" />
+- und so weiter...
+
+Tatsächlich entstehen <InlineMath math="0, 1, 4, 9, 16" /> und weitere nicht negative Quadratzahlen.
+
+Die **Bildmenge** dieser Funktion ist daher
+
+<BlockMath math="\{0, 1, 4, 9, 16, ...\}" />
+
+Die Bildmenge <InlineMath math="\{0, 1, 4, 9, ...\}" /> ist eine echte Teilmenge der gewählten Zielmenge der ganzen Zahlen:
+
+<BlockMath math="\{..., -1, 0, 1, 2, ...\}" />
+
+Nicht jedes Element der Zielmenge gehört zur Bildmenge.
+
+## Warum ist das wichtig?
+
+Definitionsmenge, Zielmenge und Bildmenge erfüllen verschiedene Aufgaben. Die Definitionsmenge verhindert unzulässige Eingaben wie eine Division durch Null. Die Zielmenge legt den Ausgaberaum fest, und die Bildmenge zeigt, welche Werte darin tatsächlich erreicht werden.
+
+## Mathematische Beziehung
+
+Mathematisch ordnet eine Funktion <InlineMath math="f" /> jedem Element der Definitionsmenge <InlineMath math="D" /> genau ein Element der Zielmenge <InlineMath math="K" /> zu:
+
+<BlockMath math="f: D \to K" />
+
+Die Bildmenge <InlineMath math="R" /> enthält alle tatsächlich entstehenden Werte <InlineMath math="f(x)" /> für <InlineMath math="x" /> aus der Definitionsmenge:
+
+<BlockMath math="R = \{ f(x) \mid x \in D \}" />
+
+Damit ist die Bildmenge stets eine Teilmenge der Zielmenge:
+
+<BlockMath math="R \subseteq K" />
+
+Jeder tatsächlich erreichte Funktionswert muss also in der Zielmenge liegen. Umgekehrt muss jedoch nicht jeder Wert der Zielmenge von der Funktion erreicht werden.
+
+## Überprüfe dein Verständnis
+
+Es sei <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> mit <InlineMath math="h(x)=\frac1{x-2}" />.
+
+1. Warum ist <InlineMath math="2" /> aus der Definitionsmenge ausgeschlossen?
+2. Kann <InlineMath math="0" /> zur Bildmenge gehören?
+3. Gib die Bildmenge von <InlineMath math="h" /> an.
+
+### Ausführliche Lösungen
+
+1. Für <InlineMath math="x=2" /> wird der Nenner null:
+
+   <BlockMath math="h(2)=\frac1{2-2}=\frac10" />
+
+   Der Ausdruck ist nicht definiert. Daher kann <InlineMath math="2" /> nicht zur Definitionsmenge gehören.
+2. Nein. Ein Bruch mit dem Zähler <InlineMath math="1" /> kann nicht den Wert <InlineMath math="0" /> annehmen.
+3. Jeder von null verschiedene reelle Wert wird erreicht. Für <InlineMath math="y\neq0" /> wählen wir <InlineMath math="x=2+\frac1y" /> und erhalten <InlineMath math="h(x)=y" />. Somit gilt:
+
+   <BlockMath math="R_h=\mathbb{R}\setminus\{0\}" />

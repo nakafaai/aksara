@@ -1,0 +1,178 @@
+export const metadata = {
+    title: "Charakteristisches Polynom",
+    description: "Erkunden Sie charakteristische Polynome, um Eigenwerte zu finden, algebraische Multiplizität zu verstehen und Matrixspurbeziehungen in der linearen Algebra zu analysieren.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Definition und Grundkonzepte
+
+Ein Eigenwert <InlineMath math="\lambda" /> einer quadratischen Matrix <InlineMath math="A" /> besitzt einen von null verschiedenen Eigenvektor <InlineMath math="v" /> mit
+
+<BlockMath math="Av=\lambda v" />
+
+Durch Umstellen erhalten wir <InlineMath math="(A-\lambda I)v=0" />. Eine von null verschiedene Lösung existiert genau dann, wenn <InlineMath math="A-\lambda I" /> singulär ist. Daher muss die Determinante verschwinden. Das charakteristische Polynom erfasst diese Bedingung gleichzeitig für alle möglichen Skalare.
+
+Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Wir können eine spezielle Funktion bilden:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det(A - t \cdot I)" />
+<BlockMath math="\chi_A(t) = a_n \cdot t^n + a_{n-1} \cdot t^{n-1} + \cdots + a_1 t + a_0" />
+</MathContainer>
+
+Dieses Polynom vom Grad <InlineMath math="n" /> in <InlineMath math="t" /> mit Koeffizienten <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" /> heißt **charakteristisches Polynom** von <InlineMath math="A" />. Wir verwenden hier die Konvention <InlineMath math="\det(A-tI)" />. Die ebenfalls verbreitete Konvention <InlineMath math="\det(tI-A)" /> unterscheidet sich nur um den Faktor <InlineMath math="(-1)^n" /> und hat daher dieselben Nullstellen.
+
+## Matrixspur und Polynomkoeffizienten
+
+Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" /> eine quadratische Matrix. Die **Spur** von <InlineMath math="A" /> ist die Summe der Diagonalelemente:
+
+<BlockMath math="\operatorname{tr}(A) = \sum_{i=1}^n a_{ii}" />
+
+Die Matrixspur steht in engem Zusammenhang mit den Koeffizienten des charakteristischen Polynoms.
+
+### Beziehung der Koeffizienten mit Spur und Determinante
+
+Im charakteristischen Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath math="A" /> haben seine Koeffizienten eine besondere Bedeutung:
+
+<BlockMath math="a_n = (-1)^n, \quad a_{n-1} = (-1)^{n-1}\operatorname{tr}(A), \quad a_0 = \det A" />
+
+Das bedeutet:
+- Der höchste Koeffizient ist immer <InlineMath math="(-1)^n" />
+- Der zweithöchste Koeffizient bezieht sich auf die Matrixspur
+- Der konstante Term ist die Determinante der Matrix
+
+## Eigenwerte als Polynomwurzeln
+
+Das wichtigste Konzept des charakteristischen Polynoms ist seine Beziehung zu Eigenwerten.
+
+Betrachten wir nun eine sehr wichtige Beziehung: <InlineMath math="\lambda \in \mathbb{K}" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
+
+Mit anderen Worten: **Eigenwerte sind die Wurzeln des charakteristischen Polynoms**.
+
+Die Gleichung für <InlineMath math="t \in \mathbb{K}" />:
+
+<BlockMath math="\det(A - t \cdot I) = 0" />
+
+nennen wir die **charakteristische Gleichung** von <InlineMath math="A" />.
+
+## Algebraische Multiplizität
+
+Was passiert nun, wenn ein Eigenwert mehrmals als Wurzel des charakteristischen Polynoms auftritt? Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda \in \mathbb{K}" />. Die Multiplizität der Wurzel <InlineMath math="t = \lambda" /> des charakteristischen Polynoms <InlineMath math="\chi_A(t)" /> wird als **algebraische Multiplizität** <InlineMath math="\mu_A(\lambda)" /> des Eigenwerts <InlineMath math="\lambda" /> von <InlineMath math="A" /> bezeichnet. Wir sagen, dass <InlineMath math="\lambda" /> ein Eigenwert mit der Multiplizität <InlineMath math="\mu_A(\lambda)" /> von <InlineMath math="A" /> ist.
+
+### Multiplizitätsgrenzen
+
+Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine algebraische Vielfachheit
+
+<BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
+
+## Beziehung zwischen geometrischer und algebraischer Vielfachheit
+
+Ein wichtiges Ergebnis der Eigenwerttheorie ist der Zusammenhang zwischen geometrischer und algebraischer Multiplizität.
+
+Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \mathbb{K}^{n \times n}" /> gilt zwischen geometrischer und algebraischer Vielfachheit
+
+<BlockMath math="1 \leq \dim \operatorname{Eig}_A(\lambda) \leq \mu_A(\lambda) \leq n" />
+
+> Die geometrische Vielfachheit jedes Eigenwerts ist immer kleiner oder gleich seiner algebraischen Vielfachheit.
+
+Die geometrische Vielfachheit zählt die unabhängigen Eigenvektoren im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
+
+## Beispiele für die Berechnung charakteristischer Polynome
+
+Nun wenden wir die Definition an und nutzen die Koeffizientenbeziehungen zur Kontrolle der Rechnung.
+
+### Beispiel für eine Matrix dritter Ordnung
+
+Sei <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. Das charakteristische Polynom von <InlineMath math="A" /> ist:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 3-t & 2 & -1 \\ 1 & -t & -4 \\ 3 & 0 & 1-t \end{pmatrix}" />
+<BlockMath math="= (3-t)(-t)(1-t) - 2(13-t) - 3t" />
+<BlockMath math="= -3t + 3t^2 + t^2 - t^3 - 2 + 2t - 24 - 3t" />
+<BlockMath math="= -t^3 + 4t^2 - 4t - 26" />
+</MathContainer>
+
+Für <InlineMath math="\mathbb{K} = \mathbb{R}" /> hat <InlineMath math="\chi_A(t)" /> nur die Wurzel <InlineMath math="\lambda_1 \approx -1{,}8003" /> mit algebraischer Multiplizität <InlineMath math="\mu_A(\lambda_1) = 1" />.
+
+Für <InlineMath math="\mathbb{K} = \mathbb{C}" /> hat <InlineMath math="\chi_A(t)" /> Wurzeln <InlineMath math="\lambda_1 \approx -1{,}8003" />, <InlineMath math="\lambda_2 \approx 2{,}9001 + 2{,}4559i" /> und <InlineMath math="\lambda_3 \approx 2{,}9001 - 2{,}4559i" /> mit algebraischen Multiplizitäten <InlineMath math="\mu_A(\lambda_1) = \mu_A(\lambda_2) = \mu_A(\lambda_3) = 1" />.
+
+Die Nullstellen bestehen zwei nützliche Kontrollen: Ihre Summe ist die Spur, ihr Produkt die Determinante.
+
+<MathContainer>
+<BlockMath math="\lambda_1+\lambda_2+\lambda_3=4=\operatorname{tr}(A)" />
+<BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
+</MathContainer>
+
+### Einfaches Beispiel
+
+Das charakteristische Polynom der Matrix <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> ist:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det(A - t \cdot I) = \det \begin{pmatrix} 1-t & 2 \\ 0 & 1-t \end{pmatrix}" />
+<BlockMath math="= (1-t) \cdot (1-t) - 0 \cdot 2 = (1-t)^2" />
+<BlockMath math="= t^2 - 2 \cdot t + 1" />
+</MathContainer>
+
+Diese Matrix hat die Wurzel <InlineMath math="\lambda = 1" /> mit der algebraischen Multiplizität <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> ist der einzige Eigenwert von <InlineMath math="A" />. Wir haben berechnet, dass <InlineMath math="\dim \text{Eig}_A(1) = 1" />.
+
+## Beispiele für geometrische Transformationen
+
+Die folgenden vertrauten Abbildungen auf <InlineMath math="\mathbb{R}^2" /> verbinden die algebraische Rechnung mit ihrer geometrischen Bedeutung.
+
+### Rotation
+
+Die Rotation mit <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" /> hat das charakteristische Polynom:
+
+<BlockMath math="\chi_A(t) = (\cos(\alpha) - t)^2 + \sin(\alpha)^2 = t^2 - 2 \cdot \cos(\alpha) \cdot t + 1" />
+
+Die Diskriminante ist <InlineMath math="-4\sin^2(\alpha)" />. Die Nullstellen sind genau dann reell, wenn <InlineMath math="\sin(\alpha)=0" />. Innerhalb einer vollen Umdrehung gilt also <InlineMath math="\alpha\equiv0" /> oder <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
+
+### Reflexion
+
+Die Spiegelung an der <InlineMath math="x" />-Achse mit <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> hat das charakteristische Polynom:
+
+<BlockMath math="\chi_A(t) = (1-t) \cdot (-1-t) = t^2 - 1" />
+
+Die Eigenwerte sind <InlineMath math="\lambda_1 = 1" /> und <InlineMath math="\lambda_2 = -1" /> mit <InlineMath math="\mu_A(1) = \mu_A(-1) = 1" />.
+
+### Skalierung
+
+Die Skalierung mit <InlineMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" /> hat das charakteristische Polynom:
+
+<BlockMath math="\chi_A(t) = (s-t)^2 = t^2 - 2 \cdot s \cdot t + s^2" />
+
+Der Eigenwert ist <InlineMath math="\lambda = s" /> mit <InlineMath math="\mu_A(s) = 2" />.
+
+### Scheren
+
+Das Scheren mit <InlineMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" /> mit <InlineMath math="s \neq 0" /> hat das charakteristische Polynom:
+
+<BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
+
+Der Eigenwert ist <InlineMath math="\lambda = 1" /> mit <InlineMath math="\mu_A(1) = 2" />.
+
+## Eigenschaften ähnlicher Matrizen
+
+Ähnliche Matrizen beschreiben dieselbe lineare Abbildung in verschiedenen Basen. Sie besitzen deshalb dasselbe charakteristische Polynom, dieselben Eigenwerte, dieselbe Spur und dieselbe Determinante.
+
+Sei <InlineMath math="S \in \mathbb{K}^{n \times n}" /> invertierbar und <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Dann:
+
+<MathContainer>
+<BlockMath math="\chi_B(t) = \det(B - t \cdot I) = \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S)" />
+<BlockMath math="= \det(S^{-1} \cdot (A - t \cdot I) \cdot S)" />
+<BlockMath math="= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S = \chi_A(t)" />
+</MathContainer>
+
+### Eigenvektoreigenschaften ähnlicher Matrizen
+
+Die Eigenvektoren ändern sich mit der Basis. Ist <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath math="A" /> zu <InlineMath math="\lambda" />, dann ist <InlineMath math="w = S^{-1}v" /> ein Eigenvektor von <InlineMath math="B" /> zum selben Eigenwert.
+
+Mit <InlineMath math="Av=\lambda v" /> und <InlineMath math="w=S^{-1}v" /> folgt
+
+<MathContainer>
+<BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v = S^{-1} \cdot A \cdot v" />
+<BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
+</MathContainer>
+
+Damit bewahrt die Ähnlichkeit die Eigenwerte, während der inverse Basiswechsel die zugehörigen Eigenvektoren umrechnet.

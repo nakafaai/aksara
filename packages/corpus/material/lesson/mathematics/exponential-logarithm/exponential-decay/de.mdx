@@ -1,0 +1,147 @@
+export const metadata = {
+  title: "Exponentieller Zerfall",
+  description:
+    "Wiederholte proportionale Abnahme modellieren, Zerfallsgraphen lesen und Beispiele zu Halbwertszeit, radioaktivem Zerfall und Sprunghöhen lösen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-04",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Definition des exponentiellen Zerfalls
+
+Exponentieller Zerfall liegt vor, wenn eine positive Größe in jedem gleich langen Intervall mit demselben Faktor zwischen <InlineMath math="0" /> und <InlineMath math="1" /> multipliziert wird. Ein diskretes Zerfallsmodell hat die Form:
+
+<BlockMath math="f(x)=C\,a^x" />
+
+mit:
+
+- <InlineMath math="C>0" />, dem Anfangswert
+- <InlineMath math="0<a<1" />, dem Zerfallsfaktor pro Intervall
+- <InlineMath math="x" />, der Anzahl der Intervalle
+
+Der Faktor beschreibt den verbleibenden Anteil, nicht den verlorenen Anteil. Eine Abnahme um <InlineMath math="15\%" /> lässt zum Beispiel <InlineMath math="85\%" /> übrig. Der Zerfallsfaktor ist dann <InlineMath math="a=0{,}85" />.
+
+## Einen Zerfallsgraphen lesen
+
+Mit wachsendem <InlineMath math="x" /> wird <InlineMath math="a^x" /> kleiner. Der Graph fällt zunächst schnell und flacht anschließend ab, weil derselbe prozentuale Rückgang auf eine immer kleinere Menge angewendet wird.
+
+Für <InlineMath math="f(x)=50\left(\frac12\right)^x" /> beträgt der Anfangswert <InlineMath math="50" /> und jedes Intervall lässt die Hälfte des vorherigen Wertes übrig:
+
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
+
+<ContentBlock>
+  <FunctionChart
+    a={0.5}
+    p={50}
+    title="Exponentieller Zerfall"
+    description={
+      <>
+        Jedes Intervall lässt <InlineMath math="\frac12" /> des vorherigen Wertes übrig.
+      </>
+    }
+  />
+</ContentBlock>
+
+Der Graph nähert sich der waagerechten Asymptote <InlineMath math="y=0" />, erreicht sie aber für kein endliches reelles <InlineMath math="x" />.
+
+## Anwendungen
+
+### Ein Halbwertszeitmodell
+
+Nehmen wir an, von einem hypothetischen Medikament befinden sich anfangs <InlineMath math="50\,\mu\text{g}" /> im Körper und jede Stunde wird die Hälfte der verbleibenden Menge ausgeschieden. Wird <InlineMath math="x" /> in Stunden gemessen, gilt:
+
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
+
+Die ersten Werte zeigen, dass das Modell immer die aktuelle Menge halbiert:
+
+- <InlineMath math="f(0)=50\,\mu\text{g}" />
+- <InlineMath math="f(1)=25\,\mu\text{g}" />
+- <InlineMath math="f(2)=12{,}5\,\mu\text{g}" />
+- <InlineMath math="f(3)=6{,}25\,\mu\text{g}" />
+
+Nach <InlineMath math="9" /> Stunden gilt <InlineMath math="f(9)=50\left(\frac12\right)^9\approx0{,}0977\,\mu\text{g}" />. Das sind weniger als <InlineMath math="0{,}1\,\mu\text{g}" />.
+
+### Radioaktiver Zerfall
+
+Verliert eine Probe in jedem Zeitintervall denselben Anteil <InlineMath math="r" />, bleibt der Anteil <InlineMath math="1-r" /> übrig. Für <InlineMath math="0<r<1" /> gilt:
+
+<BlockMath math="M(t)=M_0(1-r)^t" />
+
+Dabei ist <InlineMath math="M_0" /> die Anfangsmasse und <InlineMath math="t" /> zählt gleich lange Zeitintervalle. Das Modell setzt voraus, dass die angegebene proportionale Rate im untersuchten Zeitraum konstant bleibt.
+
+### Sprunghöhe
+
+Ein Ball wird aus der Höhe <InlineMath math="h_0" /> fallen gelassen. Jeder Rücksprung erreicht den festen Anteil <InlineMath math="0<p<1" /> der vorherigen Höhe. Die Höhe nach dem <InlineMath math="n" />ten Rücksprung ist:
+
+<BlockMath math="h_n=h_0p^n" />
+
+Für <InlineMath math="h_0=300\text{ cm}" /> und <InlineMath math="p=\frac35" /> gilt:
+
+- <InlineMath math="h_0=300\text{ cm}" />
+- <InlineMath math="h_1=300\left(\frac35\right)=180\text{ cm}" />
+- <InlineMath math="h_2=300\left(\frac35\right)^2=108\text{ cm}" />
+- <InlineMath math="h_3=300\left(\frac35\right)^3=64{,}8\text{ cm}" />
+
+Das mathematische Modell erreicht nie den Wert null. Eine praktische Aussage über das Ende der Bewegung braucht daher einen Grenzwert, zum Beispiel „unter <InlineMath math="1\text{ cm}" />“.
+
+## Übungen
+
+1. Eine hypothetische Substanz beginnt mit <InlineMath math="200\text{ mg}" />. In jeder Stunde wird die Hälfte der verbleibenden Menge ausgeschieden. Wie viel bleibt nach <InlineMath math="5" /> Stunden übrig?
+
+2. Eine radioaktive Probe hat zu Beginn einer Beobachtung eine Masse von <InlineMath math="0{,}3\text{ kg}" />. Sie verliert in jeder Stunde <InlineMath math="15\%" /> ihrer Masse. Wie viel bleibt nach <InlineMath math="8" /> Stunden übrig?
+
+3. Ein Ball wird aus <InlineMath math="3\text{ m}" /> Höhe fallen gelassen. Jeder Rücksprung erreicht <InlineMath math="\frac35" /> der vorherigen Höhe.
+
+   1. Zeichne den diskreten Graphen der Sprunghöhen.
+   2. Der Ball soll als gestoppt gelten, sobald die Sprunghöhe kleiner als <InlineMath math="1\text{ cm}" /> ist. Bestimme den ersten Rücksprung, der diese Bedingung erfüllt.
+
+### Ausführliche Lösungen
+
+1. Der Zerfallsfaktor ist <InlineMath math="\frac12" />. Nach fünf einstündigen Intervallen gilt:
+
+   <MathContainer>
+     <BlockMath math="f(x)=200\left(\frac12\right)^x" />
+     <BlockMath math="f(5)=200\left(\frac12\right)^5=200\left(\frac1{32}\right)=6{,}25" />
+   </MathContainer>
+
+   Es bleiben also <InlineMath math="6{,}25\text{ mg}" /> übrig.
+
+2. Ein Verlust von <InlineMath math="15\%" /> ergibt den verbleibenden Faktor <InlineMath math="0{,}85" />:
+
+   <MathContainer>
+     <BlockMath math="M(t)=0{,}3(0{,}85)^t" />
+     <BlockMath math="M(8)=0{,}3(0{,}85)^8\approx0{,}08175\text{ kg}" />
+     <BlockMath math="0{,}08175\text{ kg}\approx81{,}75\text{ g}" />
+   </MathContainer>
+
+3. Wird die Höhe in Zentimetern gemessen, lautet das Modell:
+
+   <BlockMath math="h_n=300\left(\frac35\right)^n" />
+
+   <ContentBlock>
+     <FunctionChart
+       a={3 / 5}
+       p={300}
+       title="Sprunghöhe"
+       description={
+         <>
+           Diskrete Höhen mit dem Faktor <InlineMath math="\frac35" />.
+         </>
+       }
+     />
+   </ContentBlock>
+
+   Die Werte in der Nähe des Grenzwertes sind:
+
+   | Rücksprung | Höhe in Zentimetern |
+   | ---------- | ------------------- |
+   | <InlineMath math="n=9" /> | <InlineMath math="3{,}023309" /> |
+   | <InlineMath math="n=10" /> | <InlineMath math="1{,}813985" /> |
+   | <InlineMath math="n=11" /> | <InlineMath math="1{,}088391" /> |
+   | <InlineMath math="n=12" /> | <InlineMath math="0{,}653035" /> |
+
+   Rücksprung <InlineMath math="11" /> liegt noch über <InlineMath math="1\text{ cm}" />, Rücksprung <InlineMath math="12" /> bereits darunter. Damit ist <InlineMath math="n=12" /> der erste Rücksprung, der die festgelegte Stoppregel erfüllt.
+
+## Grenzen des Modells
+
+Exponentieller Zerfall wird unter anderem für radioaktiven Zerfall, Wertverlust, Näherungen bei Abkühlung und Ausscheidungsmodelle verwendet. In jeder Anwendung müssen das Intervall, der verbleibende Faktor und die Bedingungen für einen annähernd konstanten Faktor geklärt werden. Ein Modell beschreibt eine Situation innerhalb bestimmter Grenzen. Es garantiert nicht, dass sich dasselbe Muster unbegrenzt fortsetzt.

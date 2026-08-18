@@ -1,0 +1,168 @@
+
+export const metadata = {
+  title: "Trigonometrischer Vergleich: Sinus und Kosinus",
+  description: "Vergleiche Sinus und Kosinus im rechtwinkligen Dreieck, berechne fehlende Seiten und prüfe, ob das Modell zur Geometrie passt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-14",
+  subject: "Trigonometrie",
+};
+
+## Was ist das Sinusverhältnis?
+
+Der Sinus eines Winkels <InlineMath math="\theta" /> in einem rechtwinkligen Dreieck ist das Verhältnis der Gegenkathete zur Hypotenuse.
+
+<BlockMath math="\sin \theta = \frac{\text{Gegenkathete}}{\text{Hypotenuse}}" />
+
+<ContentBlock>
+  <Triangle
+    title={
+      <>
+        Visualisierung von Sinus (<InlineMath math="\sin \theta" />)
+      </>
+    }
+    description={<>Bewege den Regler und beobachte, wie sich <InlineMath math="\sin" /> mit dem Winkel verändert.</>}
+    angle={30}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+### Was ist das Kosinusverhältnis?
+
+Der Kosinus eines Winkels <InlineMath math="\theta" /> in einem rechtwinkligen Dreieck ist das Verhältnis der Ankathete zur Hypotenuse.
+
+<BlockMath math="\cos \theta = \frac{\text{Ankathete}}{\text{Hypotenuse}}" />
+
+<ContentBlock>
+  <Triangle
+    title={
+      <>
+        Visualisierung von Kosinus (<InlineMath math="\cos \theta" />)
+      </>
+    }
+    description={<>Bewege den Regler und beobachte, wie sich <InlineMath math="\cos" /> mit dem Winkel verändert.</>}
+    angle={60}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+## Sinus- und Kosinuswerte für gemeinsame Winkel
+
+Hier sind einige Sinus- und Kosinuswerte für häufig verwendete Winkel:
+
+| Winkel | Sinuswert <InlineMath math="\sin \theta" /> | Dezimalwert | Kosinuswert <InlineMath math="\cos \theta" /> | Dezimalwert |
+| ------------------------- | ---------------------------------------- | -------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="0{,}5" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0{,}87" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0{,}71" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0{,}71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0{,}87" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="0{,}5" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+## Anwendungen von Sinus und Kosinus
+
+Sinus und Kosinus haben viele wichtige Anwendungen im Alltag, insbesondere in:
+
+1. Messen der Höhe von Gebäuden oder Objekten
+2. Navigation und Peilung
+3. Architektur und Bauwesen
+4. Physik und Ingenieurwesen
+5. Entwurf und Berechnung von Bauwerken
+
+## Ein rechtwinkliges Modell einer Pyramide
+
+Betrachte einen mittleren Schnitt durch die Spitze einer regelmäßigen Pyramide und den Mittelpunkt einer Grundkante. Eine Hälfte dieses Schnitts ist ein rechtwinkliges Dreieck. Seine senkrechte Kathete ist die Pyramidenhöhe, seine waagerechte Kathete die halbe Grundbreite und seine Hypotenuse die Seitenhöhe vom Grundkantenmittelpunkt zur Spitze.
+
+### Verwenden des Sinus zur Berechnung der Pyramidenhöhe
+
+Die Seitenhöhe sei <InlineMath math="600 \text{ m}" /> lang und bilde mit der Grundfläche einen Winkel von <InlineMath math="41^\circ" />. Die Pyramidenhöhe liegt diesem Winkel gegenüber.
+
+<Triangle
+  title="Berechnung der Pyramidenhöhe mit Sinus"
+  description="Mittlerer Schnitt durch die Spitze und den Mittelpunkt einer Grundkante."
+  angle={41}
+  labels={{
+    opposite: "Pyramidenhöhe",
+    adjacent: "Halbe Grundbreite",
+    hypotenuse: "Seitenhöhe",
+  }}
+/>
+
+Um die Höhe der Pyramide zu berechnen, verwenden wir das Sinusverhältnis:
+
+<MathContainer>
+  <BlockMath math="\sin 41^\circ = \frac{\text{Pyramidenhöhe}}{\text{Seitenhöhe}}" />
+  <BlockMath math="\sin 41^\circ = \frac{x}{600}" />
+  <BlockMath math="\sin 41^\circ \approx 0{,}65606" />
+  <BlockMath math="x = 600\sin 41^\circ \text{ m} \approx 393{,}6 \text{ m}" />
+</MathContainer>
+
+Die modellierte Pyramidenhöhe beträgt ungefähr <InlineMath math="393{,}6 \text{ m}" />.
+
+### Mit Kosinus die halbe Grundbreite berechnen
+
+Die waagerechte Kathete liegt am Winkel <InlineMath math="41^\circ" /> an. Daher liefert der Kosinus die halbe Grundbreite:
+
+<MathContainer>
+  <BlockMath math="\cos 41^\circ = \frac{\text{halbe Grundbreite}}{\text{Seitenhöhe}}" />
+  <BlockMath math="\cos 41^\circ = \frac{y}{600}" />
+  <BlockMath math="\cos 41^\circ \approx 0{,}75471" />
+  <BlockMath math="y = 600\cos 41^\circ \text{ m} \approx 452{,}8 \text{ m}" />
+</MathContainer>
+
+Die volle Grundbreite dieses Schnitts beträgt somit ungefähr <InlineMath math="2y = 905{,}7 \text{ m}" />.
+
+## Unterschiede und Ähnlichkeiten zwischen Sin, Cos und Tan
+
+### Unterschiede
+
+1. **Sinus** <InlineMath math="\sin \theta" /> vergleicht die Gegenkathete mit der Hypotenuse.
+2. **Kosinus** <InlineMath math="\cos \theta" /> vergleicht die Ankathete mit der Hypotenuse.
+3. **Tangens** <InlineMath math="\tan \theta" /> vergleicht die Gegenkathete mit der Ankathete.
+
+### Ähnlichkeiten
+
+1. Alle drei sind trigonometrische Verhältnisse in rechtwinkligen Dreiecken.
+2. Alle drei ändern ihre Werte entsprechend dem Winkel.
+3. Diese drei Verhältnisse haben einen mathematischen Zusammenhang:
+
+   <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta \ne 0" />
+
+## Übungsaufgabe
+
+Ein Kind lässt einen Drachen <InlineMath math="3{,}5 \text{ m}" /> über ebenem Boden steigen. Es hält das Ende der geraden, gespannten Schnur <InlineMath math="60 \text{ cm}" /> über dem Boden. Die Schnur bildet mit der Waagerechten einen Winkel von <InlineMath math="25^\circ" />. Wie lang ist sie?
+
+<Triangle
+  title="Drachenproblem"
+  description="Visualisierung des Drachensaitenlängenproblems."
+  angle={25}
+  labels={{
+    opposite: "Drachenhöhe",
+    adjacent: "Horizontaler Abstand",
+    hypotenuse: "Schnurlänge",
+  }}
+/>
+
+Welches trigonometrische Verhältnis sollten wir verwenden, um dieses Problem zu lösen?
+
+**Richtige Lösung:**
+
+1. Wir müssen die Schnurlänge (Hypotenuse) berechnen.
+2. Wir kennen die effektive Höhe des Drachens, die <InlineMath math="3{,}5 \text{m} - 0{,}6 \text{m} = 2{,}9 \text{m}" /> beträgt.
+3. Wir kennen den Höhenwinkel <InlineMath math="25^\circ" />.
+4. Da wir die Hypotenuse suchen und die Gegenkathete (effektive Höhe) kennen, verwenden wir das Sinusverhältnis:
+
+   <MathContainer>
+     <BlockMath math="\sin 25^\circ = \frac{\text{effektive Höhe}}{\text{Schnurlänge}}" />
+     <BlockMath math="\sin 25^\circ = \frac{2{,}9}{x}" />
+     <BlockMath math="\sin 25^\circ \approx 0{,}42262" />
+     <BlockMath math="x = \frac{2{,}9}{\sin 25^\circ}\text{ m} \approx 6{,}86 \text{ m}" />
+   </MathContainer>
+
+Auf Zehntelmeter gerundet ist die Schnur ungefähr <InlineMath math="6{,}9 \text{ m}" /> lang.

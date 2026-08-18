@@ -1,0 +1,28 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$x^2 - 5x + 5 = 0$$",
+      value: false,
+    },
+    {
+      label: "$$(x - 5)^2 = 0$$",
+      value: false,
+    },
+    {
+      label: "$$x^2 - 5^2 = 0$$",
+      value: true,
+    },
+    {
+      label: "$$(x + 5)^2 = 0$$",
+      value: false,
+    },
+    {
+      label: "$$x^2 + 5x + 5 = 0$$",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

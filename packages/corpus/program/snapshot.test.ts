@@ -134,4 +134,32 @@ describe("program snapshot preparation", () => {
       slugCount: 14,
     });
   });
+
+  it("keeps candidate German program copy outside the active signed snapshot", async () => {
+    const [firstSchool] = schoolProgramSources;
+    expect(firstSchool).toBeDefined();
+    const prepared = await Effect.runPromise(
+      prepareProgramSnapshot({
+        programLocaleInput: [
+          {
+            appLocale: "de",
+            programKey: firstSchool.key,
+            publicSlug: "merdeka-lehrplan",
+            title: "Merdeka-Lehrplan",
+          },
+        ],
+      })
+    );
+    const rows = Chunk.toReadonlyArray(
+      await Effect.runPromise(Stream.runCollect(prepared.rows()))
+    );
+    const programRows = rows.filter((row) => row.kind === "program");
+
+    expect(prepared.manifest.activeAppLocales).toEqual(["en", "id"]);
+    expect(
+      programRows.flatMap(({ row }) =>
+        row.translations.map(({ appLocale }) => appLocale)
+      )
+    ).not.toContain("de");
+  });
 });

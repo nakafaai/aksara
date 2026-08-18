@@ -1,0 +1,152 @@
+export const metadata = {
+  title: "Dichtefunktion der Normalverteilung",
+  description: "Verstehe die Normaldichte anhand einer Glockenkurve, standardisiere Werte mit z-Werten und berechne eine Intervallwahrscheinlichkeit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Datenanalyse und Wahrscheinlichkeit",
+};
+
+
+
+## Normalverteilung verstehen
+
+Messwerte wie die Körpergröße von Menschen oder wiederholte Laborergebnisse häufen sich oft um einen Mittelwert. Für manche Populationen und unter passenden Bedingungen kann eine **Normalverteilung** dieses Muster annähern. Ob das Modell geeignet ist, muss dennoch anhand der Daten geprüft werden.
+
+Im Jahr <InlineMath math="1733" /> leitete Abraham de Moivre eine Normalapproximation der Binomialverteilung für große <InlineMath math="n" /> her. Pierre-Simon Laplace erweiterte das Ergebnis später. Heute ist es mit dem Satz von de Moivre-Laplace und der Entwicklung des zentralen Grenzwertsatzes verbunden.
+
+> Die Normalverteilung ist ein Modell und kein Gesetz, dem jeder Datensatz folgt. Sie ist geeignet, wenn die Beobachtungen ungefähr symmetrisch um einen Mittelwert liegen und das Modell die Daten für die untersuchte Frage ausreichend gut beschreibt.
+
+## Eigenschaften der Normalkurve
+
+Die Dichtefunktion der Normalverteilung bildet eine symmetrische Glockenkurve. Die folgende Visualisierung zeigt die Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" />:
+
+<LineEquation
+  title="Standardnormalverteilungskurve"
+  description={
+    <>
+      Die Standardnormaldichte ist bei <InlineMath math="\mu=0" /> zentriert. Die senkrechten Strecken markieren ihre Wendepunkte <InlineMath math="\mu\pm\sigma" />.
+    </>
+  }
+  cameraPosition={[0, 0, 5]}
+  showZAxis={false}
+  data={[
+    {
+      points: (() => {
+        const points = [];
+        const step = 0.1;
+        for (let x = -3.5; x <= 3.5; x += step) {
+          const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x);
+          points.push({ x: x, y: y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#9333ea",
+      smooth: true,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="\mu=0" />, at: 35, offset: [0, 0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: -1, y: 0, z: 0 },
+        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="\mu-\sigma" />, at: 0, offset: [0, -0.3, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="\mu+\sigma" />, at: 0, offset: [0, -0.3, 0] }
+      ]
+    },
+  ]}
+/>
+
+Die Kurve besitzt vier kennzeichnende Eigenschaften:
+
+1. **Form und Symmetrie**
+
+    Die Kurve ist glockenförmig und symmetrisch zur vertikalen Linie, die durch den Mittelwert (<InlineMath math="\mu" />) verläuft. Das bedeutet, dass der linke und der rechte Teil der Kurve perfekte Spiegelbilder voneinander sind.
+
+2. **Zentraler Punkt**
+
+    Die Normaldichte ist symmetrisch und besitzt genau einen Gipfel. Daher fallen Mittelwert, Median und Modus bei <InlineMath math="\mu" /> zusammen.
+
+3. **Wendepunkte**
+
+    Die Kurve hat Wendepunkte bei <InlineMath math="x = \mu \pm \sigma" />, was bedeutet, dass sich die Kurve in einem Abstand von einer Standardabweichung vom Mittelwert von konkav zu konvex (oder umgekehrt) ändert.
+
+4. **Horizontale Asymptote**
+
+    Die Dichte bleibt für jedes endliche <InlineMath math="x" /> positiv und nähert sich <InlineMath math="0" />, wenn <InlineMath math="x" /> gegen eine der beiden Unendlichkeiten strebt.
+
+## Wahrscheinlichkeitsdichtefunktion
+
+Die folgende Formel gibt die Wahrscheinlichkeitsdichte an jeder Stelle <InlineMath math="x" /> an.
+
+Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" />, Varianz <InlineMath math="\sigma^2" /> und <InlineMath math="\sigma>0" />, lautet die Dichtefunktion:
+
+<BlockMath math="f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+
+für <InlineMath math="-\infty < x < \infty" />.
+
+Dabei gilt:
+
+- <InlineMath math="\pi \approx 3{,}1416" /> ist die Kreiszahl
+- <InlineMath math="e \approx 2{,}7183" /> ist die Eulersche Zahl
+- <InlineMath math="\mu" /> ist der Mittelwert der Verteilung
+- <InlineMath math="\sigma>0" /> ist die Standardabweichung
+
+> Der Parameter <InlineMath math="\mu" /> verschiebt das Zentrum der Kurve, während <InlineMath math="\sigma" /> ihre Streuung bestimmt. Wahrscheinlichkeiten entsprechen Flächen unter der Dichtekurve, nicht der Höhe <InlineMath math="f(x)" /> an einem einzelnen Punkt.
+
+## Transformation zur Standardnormalverteilung
+
+In der Praxis verwenden wir häufig die **Standardnormalverteilung** mit Mittelwert <InlineMath math="\mu = 0" /> und Standardabweichung <InlineMath math="\sigma = 1" />. Um eine reguläre Normalverteilung in eine Standardnormalverteilung umzuwandeln, verwenden wir die Transformation:
+
+<BlockMath math="Z = \frac{x - \mu}{\sigma}" />
+
+Die Variable <InlineMath math="Z" /> heißt **Standardwert** oder **z-Wert**. Sie gibt an, wie viele Standardabweichungen <InlineMath math="x" /> über oder unter dem Mittelwert liegt. Dadurch kann dieselbe Standardnormalverteilungstabelle für jede Normalverteilung verwendet werden.
+
+**Warum z-Werte verwenden?**
+
+Mit dieser Transformation lassen sich Werte aus verschiedenen Verteilungen vergleichen. So können etwa Mathematik- und Physikergebnisse trotz unterschiedlicher Mittelwerte und Standardabweichungen auf derselben Skala eingeordnet werden.
+
+## Berechnungsbeispiel
+
+Angenommen, <InlineMath math="X" /> ist normalverteilt mit <InlineMath math="\mu = 50" /> und <InlineMath math="\sigma = 10" />. Gesucht ist die Wahrscheinlichkeit, dass <InlineMath math="X" /> zwischen <InlineMath math="45" /> und <InlineMath math="62" /> liegt.
+
+**Schritt** <InlineMath math="1" />: In z-Werte umwandeln
+
+<MathContainer>
+<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0{,}5" />
+<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1{,}2" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: Standardnormalverteilungstabelle verwenden
+
+Das standardisierte Intervall lautet <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />. Von der kumulierten Wahrscheinlichkeit an der oberen Grenze wird die kumulierte Wahrscheinlichkeit an der unteren Grenze abgezogen:
+
+<BlockMath math="P(a < Z < b) = P(Z < b) - P(Z < a)" />
+
+Aus der Standardnormalverteilungstabelle:
+
+- <InlineMath math="P(Z < -0{,}5) = 0{,}3085" />
+- <InlineMath math="P(Z < 1{,}2) = 0{,}8849" />
+
+**Schritt** <InlineMath math="3" />: Endgültige Wahrscheinlichkeit berechnen
+
+<BlockMath math="P(45 < X < 62) = P(-0{,}5 < Z < 1{,}2) = 0{,}8849 - 0{,}3085 = 0{,}5764" />
+
+Die Wahrscheinlichkeit, dass <InlineMath math="X" /> zwischen <InlineMath math="45" /> und <InlineMath math="62" /> liegt, beträgt also <InlineMath math="0{,}5764" /> oder ungefähr <InlineMath math="57{,}64\%" />.

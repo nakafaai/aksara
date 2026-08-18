@@ -2,7 +2,7 @@ import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { TryoutPreviewTargetSchema } from "@nakafa/aksara-contracts/preview/target";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
@@ -115,7 +115,8 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
     rows: readonly TryoutCatalogRow[],
     sources: readonly TryoutExamSource[],
     entry: QuestionEntry,
-    question: QuestionSource
+    question: QuestionSource,
+    appLocale: AppLocale
   ) {
     const context = yield* selectOne(
       placementContexts(sources, entry),
@@ -129,18 +130,13 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
         sourcePath: entry.sourcePath,
       });
     }
-    const appLocale = yield* Schema.decodeUnknown(ActiveAppLocaleSchema)(
-      entry.artifactLocale
-    ).pipe(
-      Effect.mapError(
-        () =>
-          new TryoutTargetError({
-            count: 0,
-            rowKind: "target",
-            sourcePath: entry.sourcePath,
-          })
-      )
-    );
+    if (!rows.some((row) => row.appLocale === appLocale)) {
+      return yield* new TryoutTargetError({
+        count: 0,
+        rowKind: "target",
+        sourcePath: entry.sourcePath,
+      });
+    }
     const placement = yield* makeTryoutPlacement(context, question, appLocale);
     const [exam, track, set, section] = yield* Effect.all([
       selectCatalogRow(rows, placement, "exam", entry.sourcePath),

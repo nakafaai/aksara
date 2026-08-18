@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben sind die Funktionen:
+
+<MathContainer>
+  <BlockMath math="f(x) = 5 - 4x^2" />
+  <BlockMath math="g(x) = \frac{3x - 5}{2}" />
+</MathContainer>
+
+Gesucht ist die Verkettung <InlineMath math="(f\circ g)(x)" />.
+
+Nach der Definition gilt <InlineMath math="(f\circ g)(x)=f(g(x))" />. Wir setzen daher den gesamten Ausdruck für <InlineMath math="g(x)" /> anstelle von <InlineMath math="x" /> in <InlineMath math="f(x)" /> ein.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} (f \circ g)(x) &= f\left(\frac{3x - 5}{2}\right) \\ &= 5 - 4\left(\frac{3x - 5}{2}\right)^2 \end{aligned}" />
+</MathContainer>
+
+Wir quadrieren den Bruch und entwickeln das Binom:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &= 5 - 4\left(\frac{(3x - 5)^2}{2^2}\right) \\ &= 5 - 4\left(\frac{9x^2 - 30x + 25}{4}\right) \end{aligned}" />
+</MathContainer>
+
+Der Faktor <InlineMath math="4" /> kürzt sich:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &= 5 - (9x^2 - 30x + 25) \end{aligned}" />
+</MathContainer>
+
+Nach dem Auflösen der Klammer folgt:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &= 5 - 9x^2 + 30x - 25 \\ &= -9x^2 + 30x - 20 \end{aligned}" />
+</MathContainer>
+
+Also <InlineMath math="(f \circ g)(x) = -9x^2 + 30x - 20" />.

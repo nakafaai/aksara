@@ -1,0 +1,42 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Gemeinsame Differenz bestimmen
+
+Januar ist der erste Monat (<InlineMath math="U_1" />), also gilt <InlineMath math="a = 100\text{ Fahrzeuge}" />. April ist der <InlineMath math="4" />. Monat (<InlineMath math="U_4" />) mit <InlineMath math="160\text{ Fahrzeugen}" />.
+
+Die gemeinsame Differenz <InlineMath math="b" /> folgt aus der Formel für das <InlineMath math="n" />-te Glied:
+
+<BlockMath math="U_n = a + (n - 1)b" />
+
+Wir setzen die Werte für April ein (<InlineMath math="n=4" />):
+
+<MathContainer>
+  <BlockMath math="160 = 100 + (4 - 1)b" />
+  <BlockMath math="160 = 100 + 3b" />
+  <BlockMath math="60 = 3b" />
+  <BlockMath math="b = 20" />
+</MathContainer>
+
+Die Produktion steigt also jeden Monat um <InlineMath math="20\text{ Fahrzeuge}" />.
+
+#### Berechnung der gesamten Jahresproduktion
+
+Die Jahresproduktion ist die Summe der <InlineMath math="12\text{ Monatswerte}" /> (<InlineMath math="S_{12}" />). Dafür verwenden wir die Summenformel der arithmetischen Folge:
+
+<BlockMath math="S_n = \frac{n}{2} \{2a + (n - 1)b\}" />
+
+Wir setzen <InlineMath math="n = 12" />, <InlineMath math="a = 100" /> und <InlineMath math="b = 20" /> ein:
+
+<MathContainer>
+  <BlockMath math="S_{12} = \frac{12}{2} \{2(100) + (12 - 1)(20)\}" />
+  <BlockMath math="S_{12} = 6 \{200 + (11)(20)\}" />
+  <BlockMath math="S_{12} = 6 (200 + 220)" />
+  <BlockMath math="S_{12} = 6 (420)" />
+  <BlockMath math="S_{12} = 2520" />
+</MathContainer>
+
+Die Fabrik produziert im Jahr insgesamt <InlineMath math="2{.}520\text{ Fahrzeuge}" />.

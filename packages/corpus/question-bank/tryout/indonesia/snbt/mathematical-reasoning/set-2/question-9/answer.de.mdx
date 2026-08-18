@@ -1,0 +1,36 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-31",
+};
+
+**Kollisionsbedingung**
+
+Zu einer Kollision zwischen der Rakete und dem Flugzeugträger kommt es, wenn sich beide gleichzeitig an derselben Position befinden. Daher müssen wir die Positionsfunktion der Rakete mit der Positionsfunktion des Flugzeugträgers gleichsetzen.
+
+<MathContainer>
+  <BlockMath math="s_{\text{Rakete}}(t) = s_{\text{Träger}}(t)" />
+  <BlockMath math="4000 - t^2 = 60t" />
+</MathContainer>
+
+**Bestimmung der Kollisionszeit**
+
+Wir ordnen die quadratische Gleichung in die Standardform um, um sie nach <InlineMath math="t" /> aufzulösen.
+
+<MathContainer>
+  <BlockMath math="t^2 + 60t - 4000 = 0" />
+</MathContainer>
+
+Als nächstes faktorisieren wir diese quadratische Gleichung. Wir müssen zwei Zahlen finden, die sich mit <InlineMath math="-4000" /> multiplizieren und zu <InlineMath math="60" /> addieren. Diese Nummern sind <InlineMath math="100" /> und <InlineMath math="-40" />.
+
+<MathContainer>
+  <BlockMath math="(t + 100)(t - 40) = 0" />
+</MathContainer>
+
+Aus dieser Faktorisierung erhalten wir zwei mögliche Werte für <InlineMath math="t" />:
+
+<MathContainer>
+  <BlockMath math="t = -100 \quad \text{oder} \quad t = 40" />
+</MathContainer>
+
+Da die Zeit (<InlineMath math="t" />) nicht negativ sein kann, ist der gültige Wert <InlineMath math="40\text{ Sekunden}" />. Somit findet die Kollision genau bei <InlineMath math="40\text{ Sekunden}" /> statt.

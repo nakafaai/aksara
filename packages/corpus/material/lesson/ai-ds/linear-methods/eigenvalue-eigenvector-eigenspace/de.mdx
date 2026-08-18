@@ -1,0 +1,119 @@
+export const metadata = {
+    title: "Eigenwerte, Eigenvektoren und Eigenräume",
+    description: "Eigenwerte, Eigenvektoren und Eigenräume verstehen, berechnen und mit der Invertierbarkeit einer Matrix verknüpfen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Definition grundlegender Konzepte
+
+Die meisten Vektoren ändern unter einer Matrixtransformation sowohl ihre Länge als auch ihre Richtung. Ein Eigenvektor ist besonders: Die Transformation hält ihn auf derselben Geraden. Ein positiver Eigenwert erhält die Orientierung, ein negativer kehrt sie um und ein Eigenwert von null bildet den Vektor auf den Nullvektor ab.
+
+Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" /> eine quadratische Matrix. Ein **Eigenvektor** <InlineMath math="v \in \mathbb{K}^n" /> für einen **Eigenwert** <InlineMath math="\lambda \in \mathbb{K}" /> ist ein Nicht-Null-Vektor <InlineMath math="v \neq 0" />, der Folgendes erfüllt:
+
+<BlockMath math="A \cdot v = \lambda \cdot v" />
+
+Diese Gleichung zeigt, dass das Ergebnis ein skalares Vielfaches desselben Vektors ist, wenn die Matrix <InlineMath math="A" /> auf den Vektor <InlineMath math="v" /> operiert.
+
+> Per Definition können Eigenwerte gleich <InlineMath math="0" /> sein, aber Eigenvektoren sind immer ungleich Null.
+
+## Grundlegende Eigenschaften von Eigenvektoren
+
+Eigenvektoren haben grundlegende Eigenschaften, die in verschiedenen mathematischen Anwendungen sehr nützlich sind.
+
+**Skalare Multiplikation**: Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="v \in \mathbb{K}^n" /> mit <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" />. Dann sind alle Vielfachen <InlineMath math="t \cdot v" /> mit <InlineMath math="t \neq 0" /> auch Eigenvektoren von <InlineMath math="A" /> für denselben Eigenwert <InlineMath math="\lambda" />.
+
+Das folgt direkt aus der Linearität:
+
+<BlockMath math="A \cdot (t \cdot v) = t \cdot (A \cdot v) = t \cdot (\lambda \cdot v) = \lambda \cdot (t \cdot v)" />
+
+Diese Eigenschaft zeigt, dass, wenn wir einen Eigenvektor finden, alle seine Vielfachen ungleich Null auch Eigenvektoren für denselben Eigenwert sind.
+
+## Beispiele für Eigenvektorberechnungen
+
+Betrachten wir einige konkrete Beispiele, um dieses Konzept besser zu verstehen:
+
+### Diagonale Matrix
+
+Für Matrix <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}" />:
+
+<InlineMath math="v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}" /> ist ein Eigenvektor für den Eigenwert <InlineMath math="\lambda_1 = 1" />, weil <InlineMath math="A \cdot v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} = 1 \cdot v_1" />
+
+<InlineMath math="v_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" /> ist ein Eigenvektor für den Eigenwert <InlineMath math="\lambda_2 = 2" />, weil <InlineMath math="A \cdot v_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} = 2 \cdot v_2" />
+
+### Symmetrische Matrix
+
+Für Matrix <InlineMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" />:
+
+<InlineMath math="v_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" /> ist ein Eigenvektor für den Eigenwert <InlineMath math="\lambda_1 = 2" />, weil <InlineMath math="A \cdot v_1 = \begin{pmatrix} -2 \\ 2 \end{pmatrix} = 2 \cdot v_1" />
+
+<InlineMath math="v_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}" /> ist ein Eigenvektor für den Eigenwert <InlineMath math="\lambda_2 = 4" />, weil <InlineMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
+
+## Lineare Unabhängigkeit von Eigenvektoren
+
+Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> paarweise verschiedene Eigenwerte von <InlineMath math="A" />, sodass <InlineMath math="\lambda_i \neq \lambda_j" /> gilt, sobald <InlineMath math="i \neq j" /> ist. Dann sind die zugehörigen Eigenvektoren <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> linear unabhängig.
+
+Dieser Satz kann durch mathematische Induktion bewiesen werden und hat die wichtige Konsequenz, dass eine <InlineMath math="n \times n" />-Matrix höchstens <InlineMath math="n" /> verschiedene Eigenwerte hat.
+
+## Eigenräume und geometrische Multiplizität
+
+Für jeden Eigenwert können wir einen Vektorraum definieren, der aus allen Eigenvektoren besteht, die diesem Eigenwert entsprechen.
+
+Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda \in \mathbb{K}" />. Die Menge
+
+<BlockMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : A \cdot v = \lambda \cdot v\}" />
+
+heißt der **Eigenraum** von <InlineMath math="A" /> für <InlineMath math="\lambda" />. Seine Dimension:
+
+<BlockMath math="\dim E_A(\lambda)" />
+
+wird die **geometrische Multiplizität** des Eigenwerts <InlineMath math="\lambda" /> von <InlineMath math="A" /> genannt.
+
+### Eigenschaften von Eigenräumen
+
+Eigenräume haben mehrere wichtige Eigenschaften:
+
+1. **Nullvektor ist kein Eigenvektor**: Der Nullvektor ist kein Eigenvektor, gehört aber zu <InlineMath math="E_A(\lambda)" />.
+
+2. **Menge der Eigenvektoren**: <InlineMath math="E_A(\lambda) \setminus \{0\}" /> ist die Menge aller Eigenvektoren von <InlineMath math="A" /> zu <InlineMath math="\lambda" />.
+
+3. **Eigenwertbedingung**: <InlineMath math="\lambda" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="E_A(\lambda) \neq \{0\}" />.
+
+4. **Dimensionsgrenze**: <InlineMath math="0 \leq \dim E_A(\lambda) \leq n" />. Ist <InlineMath math="\lambda" /> ein Eigenwert, verbessert sich die untere Grenze auf <InlineMath math="1" />.
+
+5. **Beziehung zum Kern**: <InlineMath math="E_A(0) = \{v \in \mathbb{K}^n : A \cdot v = 0\} = \ker A" />.
+
+6. **Allgemeiner Eigenraum**: <InlineMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : (A - \lambda \cdot I) \cdot v = 0\} = \ker(A - \lambda \cdot I)" />.
+
+7. **Schnitt der Eigenräume**: Wenn <InlineMath math="\lambda_1 \neq \lambda_2" />, dann gilt <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
+
+## Zusammenhang mit Invertibilität
+
+Eigenwerte stehen in engem Zusammenhang mit der Invertibilitätseigenschaft von Matrizen.
+
+Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ist genau dann invertierbar, wenn null keiner ihrer Eigenwerte ist.
+
+Tatsächlich ist <InlineMath math="A" /> genau dann invertierbar, wenn <InlineMath math="\operatorname{rank} A = n" /> gilt, äquivalent zu <InlineMath math="E_A(0) = \ker A = \{0\}" />.
+
+### Eigenwerte der inversen Matrix
+
+Wenn die Matrix <InlineMath math="A" /> invertierbar ist und <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, dann ist <InlineMath math="v" /> auch ein Eigenvektor von <InlineMath math="A^{-1}" /> für den Eigenwert <InlineMath math="\frac{1}{\lambda}" />.
+
+Wenden wir <InlineMath math="A^{-1}" /> auf <InlineMath math="A \cdot v = \lambda \cdot v" /> an, erhalten wir:
+
+<BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+## Invertibilitätskriterien
+
+Betrachten wir verschiedene Möglichkeiten, um zu bestimmen, ob eine Matrix invertierbar ist. Für eine quadratische Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> sind die folgenden Aussagen äquivalent:
+
+1. <InlineMath math="A" /> ist invertierbar
+2. Es existiert eine Matrix <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> mit <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
+3. <InlineMath math="A" /> hat vollen Rang, <InlineMath math="\operatorname{rank} A = n" />, äquivalent zu <InlineMath math="\ker A = \{0\}" />
+4. Die Spalten von <InlineMath math="A" /> sind linear unabhängig
+5. Die Zeilen von <InlineMath math="A" /> sind linear unabhängig
+6. <InlineMath math="\det A \neq 0" />
+7. <InlineMath math="0" /> ist kein Eigenwert von <InlineMath math="A" />
+
+Dieser Satz bietet verschiedene äquivalente Möglichkeiten, um zu überprüfen, ob eine Matrix invertierbar ist, wobei Eigenwerte eines der sehr nützlichen Kriterien sind.
