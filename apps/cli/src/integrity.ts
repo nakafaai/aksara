@@ -18,6 +18,7 @@ export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepository
     path: Schema.String,
     reason: Schema.Literal(
       "changed",
+      "app-locale",
       "identity",
       "missing",
       "registry",

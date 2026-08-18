@@ -3,26 +3,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "people in most countries benefit from marine business",
+      label: "marine businesses earn profits in every country",
+      value: false,
+    },
+    {
+      label: "oceans benefit people only by producing rainfall",
       value: false,
     },
     {
       label:
-        "oceans benefit the world with water as the main source of rainfalls",
-      value: false,
-    },
-    {
-      label: "many people gain considerable advantages from marine ecosystems",
+        "coastal ecosystems provide communities with several forms of value",
       value: true,
     },
     {
       label:
-        "explorations from coast to ocean should be done to gain the most benefit",
+        "ocean exploration should expand so people can extract more resources",
       value: false,
     },
     {
-      label:
-        "those benefitted by marine lives range from local to global people",
+      label: "every person depends on exactly the same marine resource",
       value: false,
     },
   ],

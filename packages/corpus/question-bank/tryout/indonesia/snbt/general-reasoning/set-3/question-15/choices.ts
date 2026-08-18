@@ -3,49 +3,53 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "It is definitely true that green tea can eliminate acne.",
+      label: "Drinking green tea every day is a proven way to eliminate acne.",
       value: false,
     },
     {
       label:
-        "It is possibly true that green tea, if consumed regularly, can maintain skin health.",
+        "Oral green tea is being studied for possible skin effects, but the evidence does not justify promising that it treats acne or prevents photoaging.",
       value: true,
     },
     {
-      label: "It is definitely false that green tea has many benefits.",
+      label:
+        "Clinical studies have proved that green tea prevents every form of UV-related skin damage.",
       value: false,
     },
     {
-      label: "It is possibly false that green tea inhibits premature aging.",
+      label: "Drinking green tea can replace established sun protection.",
       value: false,
     },
     {
       label:
-        "Green tea cannot reduce acne and does not inhibit premature aging.",
+        "Concentrated green tea supplements are proven safe for everyone because they are herbal.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Pasti benar bahwa teh hijau mampu menghilangkan jerawat.",
+      label:
+        "Minum teh hijau setiap hari terbukti mampu menghilangkan jerawat.",
       value: false,
     },
     {
       label:
-        "Mungkin benar bahwa teh hijau jika dikonsumsi rutin dapat menjaga kesehatan kulit.",
+        "Teh hijau oral sedang diteliti untuk kemungkinan efek pada kulit, tetapi buktinya belum cukup untuk menjanjikan bahwa teh hijau mengatasi jerawat atau mencegah penuaan akibat cahaya.",
       value: true,
     },
     {
-      label: "Pasti salah bahwa teh hijau memiliki banyak manfaat.",
-      value: false,
-    },
-    {
-      label: "Mungkin salah bahwa teh hijau menghambat penuaan dini.",
+      label:
+        "Studi klinis telah membuktikan bahwa teh hijau mencegah semua bentuk kerusakan kulit akibat UV.",
       value: false,
     },
     {
       label:
-        "Teh hijau tidak mampu mengurangi jerawat dan tidak menghambat penuaan dini.",
+        "Minum teh hijau dapat menggantikan perlindungan matahari yang sudah mapan.",
+      value: false,
+    },
+    {
+      label:
+        "Suplemen ekstrak teh hijau pekat terbukti aman untuk semua orang karena berasal dari tumbuhan.",
       value: false,
     },
   ],

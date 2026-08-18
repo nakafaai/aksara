@@ -3,27 +3,27 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "UNESCO is an important organization for humanity.",
+      label: "UNESCO works only to protect famous cultural monuments.",
       value: false,
     },
     {
       label:
-        "UNESCO is the United Nations Educational, Scientific and Cultural Organization.",
+        "UNESCO mainly writes domestic laws that every government must adopt.",
       value: false,
     },
     {
       label:
-        "UNESCO's duty remains to reaffirm the humanist missions of education, science and culture.",
+        "UNESCO was created to manage the Sustainable Development Goals after 2015.",
       value: false,
     },
     {
       label:
-        "UNESCO has mission and mandate for humanity in education, science and culture.",
+        "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
       value: true,
     },
     {
       label:
-        "UNESCO's programmes contribute to the achievement of the Sustainable Development Goals.",
+        "UNESCO replaces national education and science institutions with one global system.",
       value: false,
     },
   ],

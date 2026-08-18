@@ -2,44 +2,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Fuel imports fluctuate.", value: false },
+    { label: "Imports rise and fall from year to year.", value: false },
     {
       label:
-        "Production, consumption, and fuel imports always increase every year.",
+        "Production, consumption, and imports rise by the same amount each year.",
       value: false,
     },
-    {
-      label: "The highest fuel consumption occurred in $$2005$$.",
-      value: false,
-    },
+    { label: "The highest consumption occurs in year A.", value: false },
     {
       label:
-        "Fuel consumption is always higher than production, so imports are carried out.",
+        "Consumption exceeds domestic production in every listed year, and imports cover the gap.",
       value: true,
     },
     {
-      label: "The amount of fuel imports is always lower than fuel production.",
+      label: "Imports exceed domestic production in every listed year.",
       value: false,
     },
   ],
   id: [
-    { label: "Impor BBM mengalami fluktuasi.", value: false },
+    { label: "Impor naik dan turun dari tahun ke tahun.", value: false },
     {
       label:
-        "Produksi, konsumsi, dan impor BBM selalu mengalami kenaikan tiap tahunnya.",
+        "Produksi, konsumsi, dan impor bertambah dengan jumlah yang sama setiap tahun.",
       value: false,
     },
-    {
-      label: "Konsumsi BBM tertinggi terjadi pada tahun $$2005$$.",
-      value: false,
-    },
+    { label: "Konsumsi tertinggi terjadi pada tahun A.", value: false },
     {
       label:
-        "Konsumsi BBM selalu lebih tinggi daripada produksi sehingga dilakukan impor.",
+        "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
       value: true,
     },
     {
-      label: "Jumlah impor BBM selalu lebih rendah dari produksi BBM.",
+      label:
+        "Impor melebihi produksi dalam negeri pada setiap tahun yang tercantum.",
       value: false,
     },
   ],

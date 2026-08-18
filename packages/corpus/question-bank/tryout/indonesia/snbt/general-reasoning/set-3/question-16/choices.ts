@@ -3,45 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The child has low calories and high protein.",
+      label: "Jicama provides $$14$$ fewer kilocalories than apple.",
       value: false,
     },
     {
-      label: "Some children have high calories.",
+      label: "Jicama provides $$0.46$$ g more protein than apple.",
       value: false,
     },
     {
-      label: "There are children who do not get fat.",
+      label: "Apple provides less fat than jicama.",
       value: true,
     },
     {
-      label: "There are children who get low fat.",
+      label: "Both foods provide less than $$1$$ g of protein per $$100$$ g.",
       value: false,
     },
     {
-      label: "Some children get low calories and low fat.",
+      label: "Both foods provide less than $$1$$ g of fat per $$100$$ g.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Anak memiliki sedikit kalori dan banyak protein.",
+      label:
+        "Bengkuang memberikan energi $$14$$ kkal lebih sedikit daripada apel.",
       value: false,
     },
     {
-      label: "Sebagian anak memiliki banyak kalori.",
+      label:
+        "Bengkuang mengandung protein $$0{,}46$$ g lebih banyak daripada apel.",
       value: false,
     },
     {
-      label: "Ada anak yang tidak mendapatkan lemak.",
+      label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
       value: true,
     },
     {
-      label: "Ada anak yang mendapatkan sedikit lemak.",
+      label:
+        "Kedua pangan mengandung protein kurang dari $$1$$ g per $$100$$ g.",
       value: false,
     },
     {
-      label: "Beberapa anak mendapatkan sedikit kalori dan sedikit lemak.",
+      label: "Kedua pangan mengandung lemak kurang dari $$1$$ g per $$100$$ g.",
       value: false,
     },
   ],

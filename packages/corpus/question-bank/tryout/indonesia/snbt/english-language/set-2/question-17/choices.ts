@@ -3,27 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Open offices give employees a better sense of community",
+      label: "Open layouts may reduce visual and acoustic privacy.",
       value: false,
     },
     {
       label:
-        "One of the disadvantages of open office is that the information is easily exposed",
+        "Private offices received the highest satisfaction ratings in one study.",
       value: false,
     },
     {
-      label:
-        "Closed offices are the best solution to those who require concentration and quiet large space",
+      label: "Removing walls always increases face-to-face collaboration.",
       value: true,
     },
     {
-      label:
-        "A completely open office space without any barriers can inhibit workers' productivity",
+      label: "The two field studies found more electronic communication.",
       value: false,
     },
     {
-      label:
-        "Closed offices can reduce distraction to make workers increase their productivity",
+      label: "The best layout may depend on tasks and communication needs.",
       value: false,
     },
   ],

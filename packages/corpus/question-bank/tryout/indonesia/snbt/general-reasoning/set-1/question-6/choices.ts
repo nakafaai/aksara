@@ -4,54 +4,52 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The Ministry of Agriculture has successfully increased the production of food commodities while reducing imports of various types of oil and gas and non-oil and gas commodities.",
+        "The ministry used its entire budget to guarantee a permanent rise in every crop.",
       value: false,
     },
     {
       label:
-        "Closing the tap on food commodity imports opens up opportunities for farmers to develop agricultural products and spur their agricultural productivity.",
+        "Corn production rose less than rice production during the reported period.",
       value: false,
     },
     {
       label:
-        "The success of various government programs focused on efforts to increase production through intensification and extensification is in accordance with the government's strong commitment.",
+        "The figures prove that redirecting the budget was the only cause of the production increases.",
       value: false,
     },
     {
       label:
-        "The Ministry of Agriculture has successfully increased agricultural production significantly in the last four years so that imports of a number of food commodities can be suppressed.",
+        "The ministry prioritized production support, and its 2017 publication reported historical increases in rice and corn production.",
       value: true,
     },
     {
-      label:
-        "Efforts to spur food production remain open, even though imports are suppressed, by narrowing the gap between farmers in Java and outside Java.",
+      label: "The remaining share of the ministry's budget was unused.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Kementerian Pertanian telah berhasil meningkatkan produksi komoditas pangan sekaligus mengurangi impor berbagai jenis komoditas migas dan nonmigas.",
+        "Kementerian menggunakan seluruh anggarannya untuk menjamin kenaikan permanen pada setiap tanaman pangan.",
       value: false,
     },
     {
       label:
-        "Ditutupnya kran impor komoditas pangan membuka peluang petani dalam mengembangkan produk pertanian dan memacu produktivitas pertaniannya.",
+        "Produksi jagung meningkat lebih sedikit daripada produksi padi pada periode yang dilaporkan.",
       value: false,
     },
     {
       label:
-        "Keberhasilan berbagai program pemerintah yang difokuskan pada upaya peningkatan produksi secara intensifikasi dan ekstensifikasi sesuai dengan komitmen kuat pemerintah.",
+        "Angka-angka tersebut membuktikan bahwa perubahan arah anggaran merupakan satu-satunya penyebab kenaikan produksi.",
       value: false,
     },
     {
       label:
-        "Kemtan berhasil meningkatkan produksi pertanian secara signifikan dalam empat tahun terakhir sehingga impor sejumlah komoditas pangan dapat ditekan.",
+        "Kementerian memprioritaskan dukungan produksi, dan publikasi tahun 2017 melaporkan kenaikan historis produksi padi dan jagung.",
       value: true,
     },
     {
-      label:
-        "Upaya memacu produksi pangan tetap terbuka, meski impor ditekan, dengan cara mempersempit kesenjangan antara petani di Jawa dan luar Jawa.",
+      label: "Sisa anggaran kementerian tidak digunakan.",
       value: false,
     },
   ],

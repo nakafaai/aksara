@@ -2,11 +2,17 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "the access to ICT for Indonesian students.", value: true },
-    { label: "the positive impact of ICT on modern life.", value: false },
-    { label: "the use of ICT in education.", value: false },
-    { label: "the benefits of ICT for life.", value: false },
-    { label: "ICT and modern life.", value: false },
+    { label: "the rapid growth of internet access worldwide.", value: false },
+    { label: "the replacement of teachers by digital tools.", value: false },
+    {
+      label: "the conditions under which technology can support education.",
+      value: true,
+    },
+    {
+      label: "the superiority of online learning over classrooms.",
+      value: false,
+    },
+    { label: "the features of one educational device.", value: false },
   ],
 };
 

@@ -3,28 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Veggies and fresh fruits contain important content than any other raw foods.",
+      label: "Everyone should take the largest possible dose of every vitamin.",
+      value: false,
+    },
+    {
+      label: "Supplements always cure an infection after symptoms begin.",
+      value: false,
+    },
+    {
+      label: "A nutrient deficiency has no effect on normal immune function.",
+      value: false,
+    },
+    {
+      label: "Vitamin and mineral supplements prevent every common cold.",
       value: false,
     },
     {
       label:
-        "The content of vitamin C and phytonutrients are very beneficial to elevate fruits and veggies substances.",
-      value: false,
-    },
-    {
-      label:
-        "A great way to be healthy is solely by eating fresh fruits and vegetables as their contents are perfect for human’s body.",
-      value: false,
-    },
-    {
-      label:
-        "Taking some fresh fruits and vegetables is the only demanded way to get immune boosting.",
-      value: false,
-    },
-    {
-      label:
-        "Consuming fruits and veggies is a recommended way to improve body immune due to their contents of vitamin C and phytonutrients.",
+        "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
       value: true,
     },
   ],

@@ -41,7 +41,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "seandainya.",
+      label: "jika.",
       value: false,
     },
   ],

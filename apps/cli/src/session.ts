@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
 import { Effect, Either, Fiber, Ref } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
@@ -31,6 +32,7 @@ export interface LocalPreviewSession {
 }
 
 interface OpenPreviewInput {
+  readonly appLocale?: AppLocale;
   readonly cwd: string;
   readonly environment: PreviewEnvironment;
   readonly requestedDocument: string;
@@ -150,6 +152,9 @@ export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
       selection: {
         kind: "document",
         requestedPath: input.requestedDocument,
+        ...(input.appLocale === undefined
+          ? {}
+          : { appLocale: input.appLocale }),
       },
     });
     const repositoryRef = yield* Ref.make(renderer.repositories);

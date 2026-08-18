@@ -1,6 +1,11 @@
 import { globSync } from "node:fs";
 import { resolve } from "node:path";
-import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
@@ -8,63 +13,19 @@ import {
   decodeMaterialDomains,
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
+import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
+import {
+  germanMaterialCatalog,
+  lessonMaterialGraph,
+  lessonMaterialSource,
+} from "#corpus/test/material";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-
-/** Builds one exact lesson source so failure tests change one identity at a time. */
-function lessonSource() {
-  return {
-    assetRoot:
-      "material/lesson/mathematics/function-composition-inverse-function",
-    domain: "mathematics",
-    key: "lesson.mathematics.function-composition-inverse-function",
-    kind: "lesson",
-    routeSlugs: {
-      en: "function-composition-inverse-function",
-      id: "fungsi-komposisi-dan-fungsi-invers",
-    },
-    sections: [
-      {
-        routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
-        slug: "function-concept",
-        translations: {
-          en: { title: "Function Concept" },
-          id: { title: "Konsep Fungsi" },
-        },
-      },
-    ],
-    slug: "function-composition-inverse-function",
-    translations: {
-      en: {
-        description: "Operate on functions while tracking shared domains.",
-        title: "Function Composition and Inverse Function",
-      },
-      id: {
-        description: "Operasikan fungsi sambil menjaga domain bersama.",
-        title: "Fungsi Komposisi dan Fungsi Invers",
-      },
-    },
-  };
-}
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
   return Effect.runPromise(decodeMaterialRegistry(input).pipe(Effect.flip));
-}
-
-/** Builds the expected signed graph identity for the representative lesson. */
-function lessonGraph(locale: AppLocaleCode) {
-  return {
-    alignmentId:
-      "alignment:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept",
-    assetId: `asset:${locale}:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept`,
-    conceptId:
-      "concept:material:lesson:mathematics:function-composition-inverse-function",
-    learningObjectId:
-      "lo:material-section:mathematics:function-composition-inverse-function:function-concept",
-    lensId: "lens:material:lesson:mathematics",
-  };
 }
 
 describe("material registry", () => {
@@ -72,7 +33,13 @@ describe("material registry", () => {
     const entries = await Effect.runPromise(decodeMaterialRegistry());
     const authoredPaths = globSync("packages/corpus/material/lesson/**/*.mdx", {
       cwd: corpusRoot,
-    }).sort();
+    })
+      .filter((sourcePath) =>
+        ACTIVE_APP_LOCALES.some((locale) =>
+          sourcePath.endsWith(`/${locale}.mdx`)
+        )
+      )
+      .sort();
     const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
 
     expect(entries).toHaveLength(766);
@@ -115,7 +82,7 @@ describe("material registry", () => {
 
   it("derives exact localized routes from one material source", async () => {
     const entries = await Effect.runPromise(
-      decodeMaterialRegistry([lessonSource()])
+      decodeMaterialRegistry([lessonMaterialSource()])
     );
 
     expect(entries).toEqual([
@@ -129,7 +96,7 @@ describe("material registry", () => {
           artifactLocale: "en",
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
-          graph: lessonGraph("en"),
+          graph: lessonMaterialGraph("en"),
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
           order: 1,
@@ -151,7 +118,7 @@ describe("material registry", () => {
           artifactLocale: "id",
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
-          graph: lessonGraph("id"),
+          graph: lessonMaterialGraph("id"),
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
           order: 1,
@@ -166,16 +133,36 @@ describe("material registry", () => {
     ]);
   });
 
+  it("projects permanent German overlays through the publication seam", async () => {
+    const source = lessonMaterialSource();
+    const descriptors = await Effect.runPromise(decodeMaterialDomains());
+    const entries = await Effect.runPromise(
+      decodeMaterialRegistry(
+        [source],
+        descriptors,
+        germanMaterialCatalog(),
+        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+      )
+    );
+
+    expect(entries).toHaveLength(1);
+    expect(entries[0]?.route).toMatchObject({
+      appLocale: "de",
+      publicPath:
+        "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
+    });
+  });
+
   it("expands a generic domain through one corpus descriptor", async () => {
     const source = {
-      ...lessonSource(),
+      ...lessonMaterialSource(),
       assetRoot: "material/lesson/earth-science/geology",
       domain: "earth-science",
       key: "lesson.earth-science.geology",
       routeSlugs: { en: "geology", id: "geologi" },
       sections: [
         {
-          ...lessonSource().sections[0],
+          ...lessonMaterialSource().sections[0],
           routeSlugs: { en: "rocks", id: "batuan" },
           slug: "rocks",
         },
@@ -212,7 +199,7 @@ describe("material registry", () => {
 
   it("rejects a source whose domain has no reviewed descriptor", async () => {
     const error = await Effect.runPromise(
-      decodeMaterialRegistry([lessonSource()], []).pipe(Effect.flip)
+      decodeMaterialRegistry([lessonMaterialSource()], []).pipe(Effect.flip)
     );
 
     expect(error).toBeInstanceOf(MaterialDomainMissingError);
@@ -224,30 +211,40 @@ describe("material registry", () => {
 
   it("maps malformed catalogs and invalid projections to typed failures", async () => {
     const malformed = await rejectRegistry(null);
-    const overlong = await rejectRegistry([
-      {
-        ...lessonSource(),
-        assetRoot: `material/lesson/mathematics/${"a".repeat(490)}`,
-      },
+    const invalidSource = {
+      ...lessonMaterialSource(),
+      assetRoot: `material/lesson/mathematics/${"a".repeat(490)}`,
+    };
+    const [overlong, preview] = await Promise.all([
+      rejectRegistry([invalidSource]),
+      Effect.runPromise(
+        decodeMaterialPreviewEntry(
+          CorpusSourcePathSchema.make(
+            `packages/corpus/${invalidSource.assetRoot}/function-concept/en.mdx`
+          ),
+          [invalidSource]
+        ).pipe(Effect.flip)
+      ),
     ]);
 
     expect(malformed._tag).toBe("MaterialCatalogError");
     expect(overlong._tag).toBe("MaterialRegistryError");
+    expect(preview._tag).toBe("MaterialRegistryError");
   });
 
   it("rejects duplicate material keys and asset roots", async () => {
     const duplicateKey = await rejectRegistry([
-      lessonSource(),
+      lessonMaterialSource(),
       {
-        ...lessonSource(),
+        ...lessonMaterialSource(),
         assetRoot: "material/lesson/mathematics/alternate-functions",
         slug: "alternate-functions",
       },
     ]);
     const duplicateRoot = await rejectRegistry([
-      lessonSource(),
+      lessonMaterialSource(),
       {
-        ...lessonSource(),
+        ...lessonMaterialSource(),
         key: "lesson.mathematics.alternate-functions",
         slug: "alternate-functions",
       },
@@ -265,7 +262,7 @@ describe("material registry", () => {
   });
 
   it("rejects duplicate locale heads and public routes", async () => {
-    const source = lessonSource();
+    const source = lessonMaterialSource();
     const [section] = source.sections;
     const duplicateHead = await rejectRegistry([
       { ...source, sections: [section, section] },
@@ -280,7 +277,6 @@ describe("material registry", () => {
         slug: "alternate-functions",
       },
     ]);
-
     expect(duplicateHead).toMatchObject({
       _tag: "MaterialIdentityError",
       artifactLocale: "en",

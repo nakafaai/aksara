@@ -20,6 +20,9 @@ describe("preview arguments", () => {
     await expect(parse(["--document", ENGLISH_DOCUMENT])).resolves.toEqual({
       document: ENGLISH_DOCUMENT,
     });
+    await expect(
+      parse(["--app-locale", "de", "--document", ENGLISH_DOCUMENT])
+    ).resolves.toEqual({ appLocale: "de", document: ENGLISH_DOCUMENT });
   });
 
   it.each([
@@ -29,6 +32,18 @@ describe("preview arguments", () => {
     [["--document", ""], "value"],
     [["--document", "   "], "value"],
     [["--document", "--document"], "value"],
+    [["--app-locale", "fr", "--document", ENGLISH_DOCUMENT], "value"],
+    [
+      [
+        "--app-locale",
+        "de",
+        "--app-locale",
+        "en",
+        "--document",
+        ENGLISH_DOCUMENT,
+      ],
+      "duplicate",
+    ],
     [["--document", "first.mdx", "--document", "second.mdx"], "duplicate"],
   ] as const)("rejects ambiguous invocation %#", async (args, reason) => {
     await expect(reject(args)).resolves.toMatchObject({

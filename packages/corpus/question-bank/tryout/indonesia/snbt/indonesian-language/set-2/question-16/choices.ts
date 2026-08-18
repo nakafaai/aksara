@@ -2,21 +2,21 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Penemuan itu dapat menambah catatan sejarah", value: false },
+    { label: "Membuktikan bahwa semua catatan Romawi keliru", value: false },
     {
-      label: "Dapat membantu para peneliti untuk membuka pandangan dunia",
+      label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
       value: false,
     },
     {
-      label: "Penemuan tersebut sangat berharga dan bernilai tinggi",
+      label: "Menetapkan harga setiap benda peninggalan Romawi",
       value: false,
     },
     {
-      label: "Membantu kepentingan umat manusia untuk memperbaiki kehidupan",
+      label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
       value: false,
     },
     {
-      label: "Dapat memahami tentang kehidupan masyarakat di masa itu",
+      label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
       value: true,
     },
   ],

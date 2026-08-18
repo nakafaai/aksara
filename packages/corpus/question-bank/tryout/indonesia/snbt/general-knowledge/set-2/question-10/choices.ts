@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "interference.",
+      label: "complete digestion.",
       value: false,
     },
     {
-      label: "contact.",
+      label: "rapid fermentation.",
       value: false,
     },
     {
-      label: "discriminatory.",
+      label: "incomplete absorption.",
       value: true,
     },
     {
-      label: "addition.",
+      label: "excess enzyme production.",
       value: false,
     },
     {
-      label: "displeasure.",
+      label: "food preference.",
       value: false,
     },
   ],
   id: [
     {
-      label: "interferensi.",
+      label: "pencernaan sempurna.",
       value: false,
     },
     {
-      label: "persentuhan.",
+      label: "fermentasi cepat.",
       value: false,
     },
     {
-      label: "diskriminatif.",
+      label: "penyerapan yang tidak sempurna.",
       value: true,
     },
     {
-      label: "penambahan.",
+      label: "produksi enzim berlebih.",
       value: false,
     },
     {
-      label: "ketidaksenangan.",
+      label: "kesukaan terhadap makanan.",
       value: false,
     },
   ],

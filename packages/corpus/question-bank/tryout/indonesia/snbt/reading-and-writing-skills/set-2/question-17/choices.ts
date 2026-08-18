@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The General Chairperson of Kadin Indonesia, Rosan Roeslani, appreciated the United States business world for welcoming the omnibus law positively due to the Job Creation Law can certainly improve the investment climate, improve the ease of doing business ranking, productivity, and create wider employment opportunities.",
+        "Coastal communities benefit from healthy mangrove forests because of the forests reduce wave energy and provide nursery habitat for fish and crustaceans.",
       value: false,
     },
     {
       label:
-        "The General Chairperson of Kadin Indonesia, Rosan Roeslani, appreciated the United States business world for welcoming the omnibus law positively and can certainly improve the investment climate, improve the ease of doing business ranking, productivity, and create wider employment opportunities.",
+        "Coastal communities benefit from healthy mangrove forests which the forests reduce wave energy and provide nursery habitat for fish and crustaceans.",
       value: false,
     },
     {
       label:
-        "The General Chairperson of Kadin Indonesia, Rosan Roeslani, appreciated the United States business world for welcoming the omnibus law positively if the Job Creation Law can certainly improve the investment climate, improve the ease of doing business ranking, productivity, and create wider employment opportunities.",
+        "Coastal communities benefit from healthy mangrove forests if the forests reduce wave energy and provide nursery habitat for fish and crustaceans.",
       value: false,
     },
     {
       label:
-        "The General Chairperson of Kadin Indonesia, Rosan Roeslani, appreciated the United States business world for welcoming the omnibus law positively because the Job Creation Law can certainly improve the investment climate, improve the ease of doing business ranking, productivity, and create wider employment opportunities.",
+        "Coastal communities benefit from healthy mangrove forests because the forests reduce wave energy and provide nursery habitat for fish and crustaceans.",
       value: true,
     },
     {
       label:
-        "The General Chairperson of Kadin Indonesia, Rosan Roeslani, appreciated the United States business world for welcoming the omnibus law positively, but can improve the investment climate, improve the ease of doing business ranking, productivity, and create wider employment opportunities.",
+        "Coastal communities benefit from healthy mangrove forests, but the forests reduce wave energy and provide nursery habitat for fish and crustaceans.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Ketua Umum Kadin Indonesia, Rosan Roeslani, mengapresiasi dunia usaha Amerika Serikat yang menyambut positif omnibus law dikarenakan UU Cipta Kerja tentunya dapat meningkatkan iklim investasi, meningkatkan ranking kemudahan berusaha, produktivitas, dan menciptakan lapangan kerja lebih luas lagi.",
+        "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat disebabkan hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
       value: false,
     },
     {
       label:
-        "Ketua Umum Kadin Indonesia, Rosan Roeslani, mengapresiasi dunia usaha Amerika Serikat yang menyambut positif omnibus law dan tentunya dapat meningkatkan iklim investasi, meningkatkan ranking kemudahan berusaha, produktivitas, dan menciptakan lapangan kerja lebih luas lagi.",
+        "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat yang hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
       value: false,
     },
     {
       label:
-        "Ketua Umum Kadin Indonesia, Rosan Roeslani, mengapresiasi dunia usaha Amerika Serikat yang menyambut positif omnibus law jika UU Cipta Kerja tentunya dapat meningkatkan iklim investasi, meningkatkan ranking kemudahan berusaha, produktivitas, dan menciptakan lapangan kerja lebih luas lagi.",
+        "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat jika hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
       value: false,
     },
     {
       label:
-        "Ketua Umum Kadin Indonesia, Rosan Roeslani, mengapresiasi dunia usaha Amerika Serikat yang menyambut positif omnibus law karena UU Cipta Kerja tentunya dapat meningkatkan iklim investasi, meningkatkan ranking kemudahan berusaha, produktivitas, dan menciptakan lapangan kerja lebih luas lagi.",
+        "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat karena hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
       value: true,
     },
     {
       label:
-        "Ketua Umum Kadin Indonesia, Rosan Roeslani, mengapresiasi dunia usaha Amerika Serikat yang menyambut positif omnibus law, tetapi dapat meningkatkan iklim investasi, meningkatkan ranking kemudahan berusaha, produktivitas, dan menciptakan lapangan kerja lebih luas lagi.",
+        "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat, tetapi hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
       value: false,
     },
   ],

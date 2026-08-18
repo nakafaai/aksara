@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "$$\\frac{7}{3}$$ satuan luas",
+      label: "$$\\frac{7}{3}$$ square units",
       value: false,
     },
     {
-      label: "$$\\frac{8}{2}$$ satuan luas",
+      label: "$$\\frac{8}{2}$$ square units",
       value: false,
     },
     {
-      label: "$$\\frac{9}{2}$$ satuan luas",
+      label: "$$\\frac{9}{2}$$ square units",
       value: true,
     },
     {
-      label: "$$\\frac{11}{3}$$ satuan luas",
+      label: "$$\\frac{11}{3}$$ square units",
       value: false,
     },
     {
-      label: "$$\\frac{11}{2}$$ satuan luas",
+      label: "$$\\frac{11}{2}$$ square units",
       value: false,
     },
   ],

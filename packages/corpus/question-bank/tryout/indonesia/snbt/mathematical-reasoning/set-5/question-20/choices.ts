@@ -9,11 +9,11 @@ const choices: QuestionChoices = {
     { label: "$$\\text{Rp}420{,}000.00$$", value: false },
   ],
   id: [
-    { label: "$$\\text{Rp}120.000{,}00$$", value: false },
-    { label: "$$\\text{Rp}180.000{,}00$$", value: false },
-    { label: "$$\\text{Rp}360.000{,}00$$", value: true },
-    { label: "$$\\text{Rp}380.000{,}00$$", value: false },
-    { label: "$$\\text{Rp}420.000{,}00$$", value: false },
+    { label: "$$\\text{Rp}120{.}000{,}00$$", value: false },
+    { label: "$$\\text{Rp}180{.}000{,}00$$", value: false },
+    { label: "$$\\text{Rp}360{.}000{,}00$$", value: true },
+    { label: "$$\\text{Rp}380{.}000{,}00$$", value: false },
+    { label: "$$\\text{Rp}420{.}000{,}00$$", value: false },
   ],
 };
 

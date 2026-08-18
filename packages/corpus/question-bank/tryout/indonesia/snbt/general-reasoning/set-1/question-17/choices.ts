@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Part of a child's health can be seen from the presence of nutrition indicated by body weight",
+        "A single weight measurement is enough to prove that a child is completely healthy.",
       value: false,
     },
     {
       label:
-        "All indicators of a child's weight and height are indicators of the child's nutritional adequacy",
+        "Head circumference alone determines a child's nutritional status at every age.",
       value: false,
     },
     {
       label:
-        "Part of the nutrition needed by children can play a role in increasing the child's weight and height",
+        "Any increase in weight or height automatically means that growth is appropriate.",
       value: false,
     },
     {
       label:
-        "All indicators of a child's health can be seen from nutritional adequacy by observing body weight and height",
+        "Child growth is assessed with several age-appropriate measurements and their pattern over time.",
       value: true,
     },
     {
       label:
-        "Part of the nutritional adequacy indicators function to control the child's body weight",
+        "Growth charts replace all other professional assessment of a child's health.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Sebagian kesehatan anak dapat dilihat dari keberadaan gizi yang ditunjukkan oleh berat badan",
+        "Satu kali pengukuran berat badan cukup untuk membuktikan bahwa seorang anak sepenuhnya sehat.",
       value: false,
     },
     {
       label:
-        "Semua indikator berat badan dan tinggi anak adalah indikator kecukupan gizi anak",
+        "Lingkar kepala saja menentukan status gizi anak pada semua kelompok umur.",
       value: false,
     },
     {
       label:
-        "Sebagian gizi yang dibutuhkan anak dapat berperan untuk peningkatan berat badan dan tinggi anak",
+        "Setiap kenaikan berat atau tinggi badan otomatis berarti pertumbuhan anak sudah sesuai.",
       value: false,
     },
     {
       label:
-        "Semua indikator kesehatan anak dapat dilihat dari kecukupan gizi dengan memperhatikan berat badan dan tinggi badan",
+        "Pertumbuhan anak dinilai melalui beberapa pengukuran yang sesuai dengan umur serta polanya dari waktu ke waktu.",
       value: true,
     },
     {
       label:
-        "Sebagian indikator kecukupan gizi berfungsi mengontrol berat badan anak",
+        "Kurva pertumbuhan menggantikan seluruh penilaian profesional lain terhadap kesehatan anak.",
       value: false,
     },
   ],

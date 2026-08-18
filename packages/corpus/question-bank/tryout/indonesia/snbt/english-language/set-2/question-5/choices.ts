@@ -2,24 +2,26 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "fasting people will be good at body shape", value: false },
     {
-      label:
-        "being slim should be the aim of people engaged in Ramadan fasting",
+      label: "Every participant lost exactly 1.24 kg and kept it off.",
+      value: false,
+    },
+    {
+      label: "Only one of the 35 studies reported any weight change.",
+      value: false,
+    },
+    {
+      label: "Average weight increased during Ramadan and fell afterward.",
       value: false,
     },
     {
       label:
-        "people’s physical fitness is closely related to their feeding pattern",
+        "The review prescribed a fixed calorie target for all participants.",
       value: false,
     },
     {
       label:
-        "weight loss in people means they do the appropriate Ramadan fasting",
-      value: false,
-    },
-    {
-      label: "a significant finding during Ramadan fasting is weight reduction",
+        "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
       value: true,
     },
   ],

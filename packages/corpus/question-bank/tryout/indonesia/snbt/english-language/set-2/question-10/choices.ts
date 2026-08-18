@@ -3,25 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "People should migrate to boost their immune systems",
+      label: "Migration immediately strengthens every bird's immunity.",
+      value: false,
+    },
+    {
+      label: "Bird migration provides direct medical advice for humans.",
+      value: false,
+    },
+    {
+      label: "Greater MHC-I diversity can have benefits but never costs.",
       value: false,
     },
     {
       label:
-        "People probably have different immune systems depending on where they live",
-      value: false,
-    },
-    {
-      label: "Migratory birds can affect human immune system",
-      value: false,
-    },
-    {
-      label: "The human immune system can be studied based on that of birds",
+        "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
       value: true,
     },
     {
-      label:
-        "Human beings learn how to deal with diseases from migratory birds",
+      label: "All songbird lineages originated in the Palaearctic.",
       value: false,
     },
   ],

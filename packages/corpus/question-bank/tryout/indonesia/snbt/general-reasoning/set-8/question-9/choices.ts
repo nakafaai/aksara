@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Students who do not achieve high exam scores mean they cannot manage their time well",
+        "A student who does not achieve a high exam score did not manage their time well.",
       value: true,
     },
     {
       label:
-        "Students do not achieve high exam scores if they can manage their time well",
+        "A student who manages their time well does not achieve a high exam score.",
       value: false,
     },
     {
       label:
-        "Students can achieve high exam scores if they cannot manage their time well",
+        "Every student who studies consistently must manage their time well.",
       value: false,
     },
     {
       label:
-        "Students can manage their time well if they can achieve high exam scores",
+        "A high exam score guarantees that a student studied consistently.",
       value: false,
     },
     {
       label:
-        "Students who do not manage their time well will be able to achieve high exam scores",
+        "Poor time management guarantees that a student achieves a high exam score.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Mahasiswa yang tidak meraih nilai ujian tinggi berarti tidak dapat mengatur waktunya dengan baik",
+        "Mahasiswa yang tidak meraih nilai ujian tinggi tidak mengatur waktunya dengan baik.",
       value: true,
     },
     {
       label:
-        "Mahasiswa tidak meraih nilai ujian tinggi jika dapat mengatur waktunya dengan baik",
+        "Mahasiswa yang mengatur waktunya dengan baik tidak meraih nilai ujian tinggi.",
       value: false,
     },
     {
       label:
-        "Mahasiswa dapat meraih nilai ujian tinggi jika tidak dapat mengatur waktunya dengan baik",
+        "Setiap mahasiswa yang belajar secara konsisten pasti mengatur waktunya dengan baik.",
       value: false,
     },
     {
       label:
-        "Mahasiswa dapat mengatur waktunya dengan baik jika dapat meraih nilai ujian tinggi",
+        "Nilai ujian tinggi menjamin bahwa mahasiswa belajar secara konsisten.",
       value: false,
     },
     {
       label:
-        "Mahasiswa yang tidak mengatur waktunya dengan baik akan dapat meraih nilai ujian tinggi",
+        "Pengaturan waktu yang buruk menjamin mahasiswa meraih nilai ujian tinggi.",
       value: false,
     },
   ],

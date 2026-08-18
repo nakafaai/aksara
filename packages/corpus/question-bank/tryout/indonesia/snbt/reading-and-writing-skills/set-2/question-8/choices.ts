@@ -3,55 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Indonesia has recorded violations that occurred when PSBB began to be implemented.",
+      label: "The Jakarta government began to implement PSBB on 10 April 2020.",
       value: false,
     },
     {
-      label:
-        "Several regions in Indonesia have implemented PSBB properly and systematically.",
+      label: "PSBB was announced by the Jakarta government on 10 April 2020.",
       value: false,
     },
     {
-      label:
-        "PSBB began to be implemented in several regions in Indonesia due to the spike in Covid-19 patients.",
+      label: "PSBB began to be implemented in DKI Jakarta on 10 April 2020.",
       value: true,
     },
     {
-      label:
-        "Because PSBB has been implemented, many economic actors have gone bankrupt.",
+      label: "On 10 April 2020, the PSBB rules were announced in DKI Jakarta.",
       value: false,
     },
     {
-      label:
-        "Indonesia simultaneously implemented PSBB to prevent the spread of Covid-19.",
+      label: "Residents of DKI Jakarta began following PSBB on 10 April 2020.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Indonesia sudah mencatat pelanggaran yang terjadi saat PSBB mulai diberlakukan.",
+        "Pemerintah DKI Jakarta mulai memberlakukan PSBB pada 10 April 2020.",
       value: false,
     },
     {
-      label:
-        "Beberapa daerah di Indonesia sudah memberlakukan PSBB dengan baik dan terarah.",
+      label: "PSBB diumumkan oleh Pemerintah DKI Jakarta pada 10 April 2020.",
       value: false,
     },
     {
-      label:
-        "PSBB mulai diberlakukan di sejumlah daerah di Indonesia akibat lonjakan pasien Covid-19.",
+      label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
       value: true,
     },
     {
-      label:
-        "Karena PSBB sudah diberlakukan, banyak pelaku ekonomi yang gulung tikar.",
+      label: "Pada 10 April 2020, aturan PSBB diumumkan di DKI Jakarta.",
       value: false,
     },
     {
-      label:
-        "Indonesia serempak melakukan PSBB untuk mencegah penyebaran Covid-19.",
+      label: "Warga DKI Jakarta mulai mengikuti PSBB pada 10 April 2020.",
       value: false,
     },
   ],

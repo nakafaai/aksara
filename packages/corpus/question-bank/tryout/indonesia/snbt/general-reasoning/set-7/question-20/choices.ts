@@ -20,11 +20,12 @@ const choices: QuestionChoices = {
     { label: "Simpulan tersebut mungkin benar.", value: false },
     { label: "Simpulan tersebut pasti salah.", value: false },
     {
-      label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+      label: "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
       value: false,
     },
     {
-      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+      label:
+        "Simpulan tersebut tidak dapat dinilai karena informasi tidak cukup.",
       value: false,
     },
   ],

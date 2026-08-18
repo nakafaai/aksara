@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "democratization", value: true },
-    { label: "competitiveness", value: false },
-    { label: "revolution", value: false },
-    { label: "advancement", value: false },
-    { label: "importance", value: false },
+    { label: "equitable", value: true },
+    { label: "appropriate", value: false },
+    { label: "sustainable", value: false },
+    { label: "digital", value: false },
+    { label: "limited", value: false },
   ],
 };
 

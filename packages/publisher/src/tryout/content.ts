@@ -4,10 +4,8 @@ import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/content-hash"
 import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement";
 import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import {
-  indexQuestionChoices,
-  type QuestionSource,
-} from "@nakafa/aksara-corpus/question-bank/source";
+import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
+import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Option, Stream } from "effect";
 import {
   type InspectedQuestionDocument,

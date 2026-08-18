@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Bumi akan kembali kondisi jaman dulu",
+      label: "Bumi akan kembali persis seperti pada masa lampau",
       value: false,
     },
     {
-      label: "Polusi udara tidak akan terjadi lagi",
+      label: "Seluruh bentuk polusi udara akan hilang",
       value: false,
     },
     {
-      label: "Kondisi Bumi akan membaik dari kerusakan yang terjadi",
+      label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
       value: true,
     },
     {
-      label: "Kehidupan baru yang lebih baik akan tercipta",
+      label: "Kehidupan baru pasti tercipta tanpa campur tangan manusia",
       value: false,
     },
     {
-      label: "Bumi akan tidak terkendali",
+      label: "Keadaan Bumi akan menjadi tidak terkendali",
       value: false,
     },
   ],

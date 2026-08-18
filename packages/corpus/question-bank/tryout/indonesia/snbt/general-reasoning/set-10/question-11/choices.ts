@@ -3,12 +3,12 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Soil erosion will increase as deforestation increases",
+      label: "Deforestation can make soil more vulnerable to erosion",
       value: false,
     },
     {
       label:
-        "Deforestation contributes almost all of the world's greenhouse gas emissions",
+        "Deforestation alone produced almost all human-caused greenhouse gas emissions in 2019",
       value: true,
     },
     {
@@ -17,24 +17,22 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label:
-        "Wildlife habitats are increasingly threatened as deforestation occurs",
+      label: "Deforestation threatens wildlife habitats",
       value: false,
     },
     {
-      label: "Greenhouse gases affect communities that depend on forests",
+      label: "The land-use sector includes more than deforestation alone",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Erosi tanah akan semakin meningkat seiring meningkatnya deforestasi",
+      label: "Deforestasi dapat membuat tanah lebih rentan terhadap erosi",
       value: false,
     },
     {
       label:
-        "Deforestasi menyumbang hampir seluruh emisi gas rumah kaca di dunia",
+        "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada 2019",
       value: true,
     },
     {
@@ -43,13 +41,11 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label:
-        "Habitat satwa liar semakin terancam seiring terjadinya deforestasi",
+      label: "Deforestasi mengancam habitat satwa liar",
       value: false,
     },
     {
-      label:
-        "Gas rumah kaca berdampak pada masyarakat yang menggantungkan hidupnya pada hutan",
+      label: "Sektor penggunaan lahan mencakup lebih dari deforestasi saja",
       value: false,
     },
   ],

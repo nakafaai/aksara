@@ -3,11 +3,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Gajah betina memiliki anak-anak yang harus dijaga",
+      label: "Gajah betina selalu menjaga anaknya sendirian",
       value: false,
     },
     {
-      label: "Gajah betina merupakan pemimpin kelompok gajah",
+      label: "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
       value: true,
     },
     {
@@ -15,11 +15,11 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "Gajah betina yang sering melakukan perjalanan jauh",
+      label: "Gajah betina selalu menempuh perjalanan paling jauh",
       value: false,
     },
     {
-      label: "Gajah betina dikawal oleh gajah jantan",
+      label: "Gajah betina selalu dikawal oleh gajah jantan",
       value: false,
     },
   ],

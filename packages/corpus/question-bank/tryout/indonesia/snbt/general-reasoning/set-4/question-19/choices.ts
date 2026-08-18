@@ -2,50 +2,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Brown rice has high fiber and mineral content", value: false },
     {
-      label: "Brown rice can be consumed every day for those who are dieting",
+      label: "Brown rice provides $$7$$ kcal less energy than white rice",
       value: false,
     },
     {
-      label:
-        "Brown rice does not have high fiber or makes one feel full faster and not overeat",
+      label: "Brown rice provides $$1.2$$ g more fiber than white rice",
       value: false,
     },
     {
-      label:
-        "Brown rice has high fiber and does not make one feel full faster or lead to overeating",
+      label: "Brown rice provides $$27$$ mg more magnesium than white rice",
+      value: false,
+    },
+    {
+      label: "Brown rice provides $$2.59$$ g more carbohydrate than white rice",
       value: true,
     },
     {
-      label:
-        "Brown rice is high in fiber, rich in minerals but low in fat so it is used as the main intake for those who are dieting",
+      label: "Brown rice provides $$60$$ mg more phosphorus than white rice",
       value: false,
     },
   ],
   id: [
     {
-      label: "Beras merah memiliki kandungan serat dan mineral tinggi",
+      label:
+        "Nasi merah mengandung energi $$7$$ kkal lebih rendah daripada nasi putih",
       value: false,
     },
     {
       label:
-        "Beras merah bisa dikonsumsi setiap hari bagi mereka yang sedang berdiet",
+        "Nasi merah mengandung serat $$1{,}2$$ g lebih tinggi daripada nasi putih",
       value: false,
     },
     {
       label:
-        "Nasi merah tidak memiliki serat tinggi atau membuat cepat kenyang dan tidak makan berlebihan",
+        "Nasi merah mengandung magnesium $$27$$ mg lebih tinggi daripada nasi putih",
       value: false,
     },
     {
       label:
-        "Nasi merah memiliki serat tinggi dan tidak membuat cepat kenyang atau makan berlebihan",
+        "Nasi merah mengandung karbohidrat $$2{,}59$$ g lebih tinggi daripada nasi putih",
       value: true,
     },
     {
       label:
-        "Nasi merah memiliki tinggi serat, kaya mineral namun rendah lemak sehingga dijadikan asupan utama bagi yang sedang berdiet",
+        "Nasi merah mengandung fosfor $$60$$ mg lebih tinggi daripada nasi putih",
       value: false,
     },
   ],

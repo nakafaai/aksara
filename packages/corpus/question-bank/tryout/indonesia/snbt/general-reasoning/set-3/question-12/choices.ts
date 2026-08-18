@@ -4,26 +4,27 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Sales of pashmina veils are always lower than sales of square veils.",
+        "Pashmina headscarf sales are lower than square headscarf sales in every week.",
       value: false,
     },
     {
       label:
-        "Sales of bergo veils are always higher than sales of square veils.",
+        "Bergo headscarf sales are higher than square headscarf sales in every week.",
       value: true,
     },
     {
       label:
-        "The number of bergo veil sales follows an arithmetic progression pattern.",
+        "The weekly number of bergo headscarves sold forms an arithmetic sequence.",
       value: false,
     },
     {
       label:
-        "The sales level of each veil type every week is always higher than the previous week.",
+        "Sales of each headscarf style are higher than in the preceding week.",
       value: false,
     },
     {
-      label: "Bergo veil sales experience the smallest increase.",
+      label:
+        "Bergo headscarf sales have the smallest increase from week 1 to week 4.",
       value: false,
     },
   ],
@@ -50,7 +51,7 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Penjualan kerudung jenis bergo mengalami kenaikan yang paling kecil.",
+        "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-1 hingga minggu ke-4.",
       value: false,
     },
   ],

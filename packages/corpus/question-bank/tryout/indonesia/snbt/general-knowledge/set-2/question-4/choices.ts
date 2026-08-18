@@ -3,48 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "how bats find or hunt insect prey and other small animals.",
+      label: "how bats search for food at night.",
       value: false,
     },
     {
-      label: "hanging bat sleep is a way for bats to help them fly.",
+      label: "how dropping from a perch helps a bat take flight.",
       value: false,
     },
     {
-      label: "the reasons bats sleep upside down.",
+      label: "the advantages of upside-down roosting for bats.",
       value: true,
     },
     {
-      label: "the time bats sleep during the day.",
+      label: "the places where bats rest during the day.",
       value: false,
     },
     {
-      label: "sleeping upside down is a way for bats to avoid predators.",
+      label: "how high roosts may help bats avoid predators.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "cara kelelawar mencari atau berburu mangsa serangga dan hewan kecil lainnya.",
+      label: "cara kelelawar mencari makan pada malam hari.",
       value: false,
     },
     {
       label:
-        "tidur kelelawar menggantung merupakan cara kelelawar untuk membantunya terbang.",
+        "cara menjatuhkan diri dari tempat bertengger membantu kelelawar terbang.",
       value: false,
     },
     {
-      label: "alasan kelelawar tidur terbalik.",
+      label: "keuntungan bertengger terbalik bagi kelelawar.",
       value: true,
     },
     {
-      label: "waktu kelelawar tidur di siang hari.",
+      label: "tempat kelelawar beristirahat pada siang hari.",
       value: false,
     },
     {
       label:
-        "tidur terbalik merupakan cara kelelawar menghindar dari pemangsa.",
+        "cara tempat bertengger yang tinggi dapat melindungi kelelawar dari predator.",
       value: false,
     },
   ],

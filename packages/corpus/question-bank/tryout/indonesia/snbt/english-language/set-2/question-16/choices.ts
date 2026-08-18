@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "corral", value: false },
-    { label: "cuddies", value: false },
-    { label: "appartment", value: false },
-    { label: "huge rooms", value: false },
-    { label: "enclosed site", value: true },
+    { label: "A complete failure", value: false },
+    { label: "A legal requirement", value: false },
+    { label: "A historical sequence", value: false },
+    { label: "A guaranteed advantage", value: false },
+    { label: "A compromise between competing benefits and costs", value: true },
   ],
 };
 

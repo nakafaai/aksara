@@ -1,6 +1,6 @@
-import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Schema } from "effect";
+import { EmbeddedAppLocaleCodeSchema } from "#corpus/locale/source";
 
 /** One lowercase public URL segment authored without locale or slashes. */
 export const PublicRouteSegmentSchema = Schema.String.pipe(
@@ -12,8 +12,8 @@ export const PublicRouteSegmentSchema = Schema.String.pipe(
   Schema.brand("@NakafaAI/AksaraPublicRouteSegment")
 );
 
-/** Required public route segment for every supported content locale. */
+/** Required public route segment for every embedded source locale. */
 export const PublicRouteSlugMapSchema = Schema.Record({
-  key: ActiveAppLocaleCodeSchema,
+  key: EmbeddedAppLocaleCodeSchema,
   value: PublicRouteSegmentSchema,
 });

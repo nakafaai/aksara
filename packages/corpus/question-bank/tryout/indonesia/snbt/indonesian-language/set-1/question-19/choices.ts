@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Sosok yang penyabar",
+      label: "Mudah menerima citra yang ditentukan orang lain",
       value: false,
     },
     {
-      label: "Sosok yang berani",
+      label: "Berani meninggalkan dunia perfilman",
       value: false,
     },
     {
-      label: "Sosok yang tekun",
+      label: "Tekun mengembangkan kemampuan aktingnya",
       value: true,
     },
     {
-      label: "Sosok yang kuat",
+      label: "Mengutamakan ketenaran daripada keterampilan",
       value: false,
     },
     {
-      label: "Sosok yang pandai",
+      label: "Tidak puas terhadap penghargaan yang diterimanya",
       value: false,
     },
   ],

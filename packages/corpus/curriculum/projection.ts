@@ -1,3 +1,4 @@
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import {
   type MaterialDomain,
   MaterialDomainSchema,
@@ -14,14 +15,17 @@ import {
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Array as EffectArray, Schema } from "effect";
 
+import { composeCurriculumLocaleCatalog } from "#corpus/curriculum/locale";
+import { decodeCurriculumLocaleCatalog } from "#corpus/curriculum/locale-source";
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import {
-  CurriculumDisplayGroupMapSchema,
-  CurriculumMaterialCardMapSchema,
-  CurriculumNodeTranslationMapSchema,
   type CurriculumSource,
   type CurriculumTreeNode,
+  LocalizedCurriculumDisplayGroupMapSchema,
+  LocalizedCurriculumMaterialCardMapSchema,
+  LocalizedCurriculumNodeTranslationMapSchema,
 } from "#corpus/curriculum/schema";
+import { LocaleOverlayAppLocaleSchema } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
   type MaterialDomainDescriptor,
@@ -32,25 +36,25 @@ import type { LessonMaterialSource } from "#corpus/material/schema";
 const CurriculumPathNodeSchema = Schema.Struct({
   key: CurriculumNodeKeySchema,
   materialKeys: Schema.Array(MaterialKeySchema),
-  translations: CurriculumNodeTranslationMapSchema,
+  translations: LocalizedCurriculumNodeTranslationMapSchema,
 });
 type CurriculumPathNode = typeof CurriculumPathNodeSchema.Type;
 
 /** Flat validated curriculum node used to derive localized route rows. */
 export const ProjectedCurriculumNodeSchema = Schema.Struct({
   curriculumKey: LearningProgramKeySchema,
-  displayGroup: Schema.optional(CurriculumDisplayGroupMapSchema),
+  displayGroup: Schema.optional(LocalizedCurriculumDisplayGroupMapSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
   iconKey: Schema.optional(ProgramNavigationIconKeySchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
-  materialCard: Schema.optional(CurriculumMaterialCardMapSchema),
+  materialCard: Schema.optional(LocalizedCurriculumMaterialCardMapSchema),
   materialDomain: Schema.optional(MaterialDomainSchema),
   materialKeys: Schema.Array(MaterialKeySchema),
   order: Schema.Int.pipe(Schema.nonNegative()),
   parentKey: Schema.optional(CurriculumNodeKeySchema),
   path: Schema.NonEmptyArray(CurriculumPathNodeSchema),
-  translations: CurriculumNodeTranslationMapSchema,
+  translations: LocalizedCurriculumNodeTranslationMapSchema,
 });
 export type ProjectedCurriculumNode = typeof ProjectedCurriculumNodeSchema.Type;
 
@@ -66,7 +70,7 @@ function makeProjectedNode(
   curriculum: CurriculumSource,
   current: PendingCurriculumNode,
   materialDomain: MaterialDomain | undefined,
-  translations: typeof CurriculumNodeTranslationMapSchema.Type
+  translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type
 ) {
   const { node } = current;
   const ownsMaterial = "materialKeys" in node;
@@ -113,7 +117,7 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
       const { inheritedDomain, node } = current;
       const ownsMaterial = "materialKeys" in node;
       let materialDomain = inheritedDomain;
-      let translations: typeof CurriculumNodeTranslationMapSchema.Type;
+      let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type;
       if (ownsMaterial) {
         const resolved = yield* resolveCurriculumMaterial(
           curriculum,
@@ -166,7 +170,11 @@ export const projectCurriculumNodes = Effect.fn(
 )(function* (
   curricula: readonly CurriculumSource[],
   materials: readonly LessonMaterialSource[],
-  domainDescriptors?: readonly MaterialDomainDescriptor[]
+  domainDescriptors?: readonly MaterialDomainDescriptor[],
+  localeInput?: {
+    readonly appLocales: readonly AppLocale[];
+    readonly rows?: unknown;
+  }
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const materialByKey = new Map(
@@ -175,5 +183,18 @@ export const projectCurriculumNodes = Effect.fn(
   const projected = yield* Effect.forEach(curricula, (curriculum) =>
     projectCurriculum(curriculum, materialByKey, descriptors)
   );
-  return projected.flat();
+  const nodes = projected.flat();
+  if (
+    localeInput === undefined ||
+    !localeInput.appLocales.some(Schema.is(LocaleOverlayAppLocaleSchema))
+  ) {
+    return nodes;
+  }
+  const rows = yield* decodeCurriculumLocaleCatalog(localeInput.rows);
+  return yield* composeCurriculumLocaleCatalog({
+    appLocales: localeInput.appLocales,
+    curricula,
+    nodes,
+    rows,
+  });
 });

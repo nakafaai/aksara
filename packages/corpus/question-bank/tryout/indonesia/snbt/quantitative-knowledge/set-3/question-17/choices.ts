@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct",
+      label: "Statements $$(1)$$, $$(2)$$, and $$(3)$$ are correct",
       value: false,
     },
     {
-      label: "If $$(1)$$ and $$(3)$$ are correct",
+      label: "Statements $$(1)$$ and $$(3)$$ are correct",
       value: false,
     },
     {
-      label: "If $$(2)$$ and $$(4)$$ are correct",
+      label: "Statements $$(2)$$ and $$(4)$$ are correct",
       value: true,
     },
     {
-      label: "If only $$(4)$$ is correct",
+      label: "Only statement $$(4)$$ is correct",
       value: false,
     },
     {
-      label: "If all are correct",
+      label: "All statements are correct",
       value: false,
     },
   ],
   id: [
     {
-      label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul",
+      label: "Pernyataan $$(1)$$, $$(2)$$, dan $$(3)$$ benar",
       value: false,
     },
     {
-      label: "Jika $$(1)$$ dan $$(3)$$ yang betul",
+      label: "Pernyataan $$(1)$$ dan $$(3)$$ benar",
       value: false,
     },
     {
-      label: "Jika $$(2)$$ dan $$(4)$$ yang betul",
+      label: "Pernyataan $$(2)$$ dan $$(4)$$ benar",
       value: true,
     },
     {
-      label: "Jika hanya $$(4)$$ yang betul",
+      label: "Hanya pernyataan $$(4)$$ yang benar",
       value: false,
     },
     {
-      label: "Jika semuanya betul",
+      label: "Semua pernyataan benar",
       value: false,
     },
   ],

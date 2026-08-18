@@ -3,45 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "the benefits of milk for our bodies.",
+      label: "the nutrients supplied by milk and dairy foods.",
       value: false,
     },
     {
-      label: "we should drink milk to be healthy.",
+      label: "everyone should consume the same amount of dairy.",
       value: false,
     },
     {
-      label: "the benefits of milk are beyond doubt.",
+      label: "lactase turns lactose into gas in the colon.",
       value: false,
     },
     {
-      label: "not everyone can consume milk.",
+      label:
+        "people digest lactose differently, and low lactase can cause malabsorption.",
       value: true,
     },
     {
-      label: "biological traits affect people drinking milk.",
+      label: "fermented dairy products are always lactose-free.",
       value: false,
     },
   ],
   id: [
     {
-      label: "khasiat susu bagi tubuh kita.",
+      label: "zat gizi yang disediakan susu dan produk olahannya.",
       value: false,
     },
     {
-      label: "kita harus minum susu agar sehat.",
+      label:
+        "setiap orang harus mengonsumsi produk susu dalam jumlah yang sama.",
       value: false,
     },
     {
-      label: "khasiat susu tidak diragukan lagi.",
+      label: "laktase mengubah laktosa menjadi gas di usus besar.",
       value: false,
     },
     {
-      label: "tidak setiap orang dapat mengonsumsi susu.",
+      label:
+        "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
       value: true,
     },
     {
-      label: "sifat biologis memengaruhi orang minum susu.",
+      label: "produk susu fermentasi selalu bebas laktosa.",
       value: false,
     },
   ],

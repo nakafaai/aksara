@@ -3,23 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Aktris panggung utama",
+      label:
+        "AFI menempatkannya sebagai legenda film perempuan dan beberapa filmnya masuk National Film Registry",
       value: true,
     },
     {
-      label: "Presenter",
+      label: "Ia pernah bekerja di sebuah pabrik pada masa perang",
       value: false,
     },
     {
-      label: "Komedian",
+      label: "Namanya berubah dari Norma Jeane menjadi Marilyn Monroe",
       value: false,
     },
     {
-      label: "Personil salah satu girl band",
+      label: "Ia menikah pada usia enam belas tahun",
       value: false,
     },
     {
-      label: "Penyanyi pop",
+      label: "Ia menjadi model setelah bertemu seorang fotografer",
       value: false,
     },
   ],

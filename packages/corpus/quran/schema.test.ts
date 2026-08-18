@@ -50,12 +50,15 @@ describe("Quran schema", () => {
     expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id"]);
     expect(
       values.every(({ verses }) =>
-        verses.every(({ tafsir }) => Object.keys(tafsir).length === 1)
+        verses.every(
+          ({ tafsir, translation }) =>
+            Object.keys(tafsir).length === 1 && translation.de !== undefined
+        )
       )
     ).toBe(true);
   });
 
-  it("rejects empty text, removed fields, excess fields, and German data", async () => {
+  it("rejects empty text, removed fields, excess fields, and German Tafsir", async () => {
     const first = await firstSurah();
     const [firstVerse] = first.verses;
     if (firstVerse === undefined) {
@@ -71,19 +74,6 @@ describe("Quran schema", () => {
           {
             ...firstVerse,
             audio: { primary: "https://invalid.test/audio.mp3" },
-          },
-          ...first.verses.slice(1),
-        ],
-      }),
-      reject({
-        ...first,
-        verses: [
-          {
-            ...firstVerse,
-            translation: {
-              ...firstVerse.translation,
-              de: firstVerse.translation.en,
-            },
           },
           ...first.verses.slice(1),
         ],
@@ -111,6 +101,6 @@ describe("Quran schema", () => {
     expect(messages[1]).toContain("Quran text cannot be empty.");
     expect(
       messages.filter((message) => message.includes("is unexpected"))
-    ).toHaveLength(5);
+    ).toHaveLength(4);
   });
 });

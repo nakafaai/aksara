@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "rivaling.",
+      label: "competes with.",
       value: false,
     },
     {
-      label: "imitating.",
+      label: "imitates.",
       value: false,
     },
     {
-      label: "matching.",
+      label: "looks like.",
       value: true,
     },
     {
-      label: "following the example of.",
+      label: "follows.",
       value: false,
     },
     {
-      label: "copying.",
+      label: "replaces.",
       value: false,
     },
   ],
@@ -33,15 +33,15 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "menyamai.",
+      label: "mirip dengan.",
       value: true,
     },
     {
-      label: "meneladani.",
+      label: "mengikuti.",
       value: false,
     },
     {
-      label: "mencontoh.",
+      label: "menggantikan.",
       value: false,
     },
   ],

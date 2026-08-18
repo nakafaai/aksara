@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "sentence $$(2)$$.",
+      label: "Sentence $$(2)$$.",
       value: false,
     },
     {
-      label: "sentence $$(5)$$.",
+      label: "Sentence $$(4)$$.",
       value: false,
     },
     {
-      label: "sentence $$(6)$$.",
+      label: "Sentence $$(6)$$.",
       value: false,
     },
     {
-      label: "sentence $$(7)$$.",
+      label: "Sentence $$(7)$$.",
       value: false,
     },
     {
-      label: "sentence $$(9)$$.",
+      label: "Sentence $$(8)$$.",
       value: true,
     },
   ],
   id: [
     {
-      label: "kalimat $$(2)$$.",
+      label: "Kalimat $$(2)$$.",
       value: false,
     },
     {
-      label: "kalimat $$(5)$$.",
+      label: "Kalimat $$(4)$$.",
       value: false,
     },
     {
-      label: "kalimat $$(6)$$.",
+      label: "Kalimat $$(6)$$.",
       value: false,
     },
     {
-      label: "kalimat $$(7)$$.",
+      label: "Kalimat $$(7)$$.",
       value: false,
     },
     {
-      label: "kalimat $$(9)$$.",
+      label: "Kalimat $$(8)$$.",
       value: true,
     },
   ],

@@ -3,37 +3,37 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "innovative findings.",
+      label: "rapid changes.",
       value: false,
     },
     {
-      label: "rusty scales.",
+      label: "careful treatment.",
       value: false,
     },
     {
-      label: "writing exercises.",
+      label: "singing loudly.",
       value: false,
     },
     {
-      label: "bird chirps.",
+      label: "bird calls.",
       value: true,
     },
     {
-      label: "simple writings.",
+      label: "gentle washing.",
       value: false,
     },
   ],
   id: [
     {
-      label: "temuan inovatif.",
+      label: "perubahan cepat.",
       value: false,
     },
     {
-      label: "timbangan berkarat.",
+      label: "perawatan cermat.",
       value: false,
     },
     {
-      label: "latihan menulis.",
+      label: "bernyanyi nyaring.",
       value: false,
     },
     {
@@ -41,7 +41,7 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "tulisan sederhana.",
+      label: "pencucian lembut.",
       value: false,
     },
   ],

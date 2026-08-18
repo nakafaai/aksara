@@ -31,17 +31,31 @@ describe("material public routes", () => {
       requireMaterialDomain(domains, material.domain, material.key)
     );
     expect(
-      materialTopicPath(material, descriptor, ActiveAppLocaleSchema.make("en"))
+      await Effect.runPromise(
+        materialTopicPath(
+          material,
+          descriptor,
+          ActiveAppLocaleSchema.make("en")
+        )
+      )
     ).toBe("subjects/mathematics/function-modeling");
     expect(
-      materialTopicPath(material, descriptor, ActiveAppLocaleSchema.make("id"))
+      await Effect.runPromise(
+        materialTopicPath(
+          material,
+          descriptor,
+          ActiveAppLocaleSchema.make("id")
+        )
+      )
     ).toBe("materi/matematika/fungsi-dan-pemodelannya");
     expect(
-      materialLessonPath(
-        material,
-        section,
-        descriptor,
-        ActiveAppLocaleSchema.make("en")
+      await Effect.runPromise(
+        materialLessonPath(
+          material,
+          section,
+          descriptor,
+          ActiveAppLocaleSchema.make("en")
+        )
       )
     ).toBe("subjects/mathematics/function-modeling/absolute-value-function");
   });

@@ -2,15 +2,19 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Identifikasi gajah yang akan dipasang GPS", value: false },
-    { label: "Jumlah gajah sumatra di habitat aslinya", value: false },
-    { label: "Pemasangan GPS pada gajah", value: true },
+    { label: "Tahapan mengidentifikasi gajah sasaran", value: false },
+    { label: "Perkiraan populasi gajah sumatra di Riau", value: false },
     {
-      label: "Balai Besar Konservasi Sumber Daya Alam Riau (BBKSDA)",
+      label:
+        "Pemanfaatan GPS Collar untuk memitigasi interaksi negatif manusia dan gajah",
+      value: true,
+    },
+    {
+      label: "Peran BBKSDA Riau dalam konservasi satwa liar",
       value: false,
     },
     {
-      label: "Bumi Lancang Kuning adalah rumah bagi sebagian gajah sumatra",
+      label: "Kerja sama masyarakat dalam memulihkan habitat gajah",
       value: false,
     },
   ],

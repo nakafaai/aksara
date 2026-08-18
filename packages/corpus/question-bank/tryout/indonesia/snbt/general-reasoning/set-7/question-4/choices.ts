@@ -2,49 +2,32 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "Arin's session continues without interruption.", value: false },
     {
-      label:
-        "Mobile phones might not have a negative impact on child development.",
+      label: "Arin's access badge remains active during the review.",
       value: false,
     },
+    { label: "Arin's access badge is suspended pending review.", value: true },
+    { label: "The supervisor's access badge is suspended.", value: false },
     {
-      label:
-        "Communication relationship between child and parents will be well established.",
-      value: false,
-    },
-    {
-      label: "Mobile phones will cause disruption to the child's brain growth.",
-      value: true,
-    },
-    {
-      label: "Mobile phones will cause a lot of harm to the family.",
-      value: false,
-    },
-    {
-      label: "The child's brain growth will get better.",
+      label: "The laser cutter is permanently removed from the laboratory.",
       value: false,
     },
   ],
   id: [
+    { label: "Sesi Arin berlanjut tanpa dihentikan.", value: false },
     {
-      label:
-        "Handphone mungkin tidak memberi dampak negatif bagi perkembangan anak.",
+      label: "Kartu akses Arin tetap aktif selama peninjauan.",
       value: false,
     },
     {
-      label: "Hubungan komunikasi anak dan orangtua akan terjalin dengan baik.",
-      value: false,
-    },
-    {
-      label: "Handphone akan menyebabkan terganggunya pertumbuhan otak anak.",
+      label: "Kartu akses Arin ditangguhkan sampai peninjauan selesai.",
       value: true,
     },
+    { label: "Kartu akses pengawas ditangguhkan.", value: false },
     {
-      label: "Handphone akan memberikan banyak sekali kerugian bagi keluarga.",
-      value: false,
-    },
-    {
-      label: "Pertumbuhan otak anak akan semakin baik.",
+      label:
+        "Mesin pemotong laser dikeluarkan secara permanen dari laboratorium.",
       value: false,
     },
   ],

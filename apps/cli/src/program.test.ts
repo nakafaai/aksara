@@ -5,22 +5,17 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { makeCliProgram } from "#cli/program";
 import { unusedExactProcess } from "#test/process";
 
+interface ReleaseCommand {
+  readonly command: string;
+  readonly releaseId: string;
+}
+type RecoveryCommand = ReleaseCommand & { readonly recoveryId: string };
 const calls = vi.hoisted(() => ({
-  abort: undefined as
-    | { readonly command: string; readonly releaseId: string }
-    | undefined,
-  accept: undefined as
-    | {
-        readonly command: string;
-        readonly recoveryId: string;
-        readonly releaseId: string;
-      }
-    | undefined,
+  abort: undefined as ReleaseCommand | undefined,
+  accept: undefined as RecoveryCommand | undefined,
   args: [] as readonly string[],
   check: undefined as string | undefined,
-  cleanup: undefined as
-    | { readonly command: string; readonly releaseId: string }
-    | undefined,
+  cleanup: undefined as ReleaseCommand | undefined,
   document:
     "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
   open: undefined as
@@ -40,13 +35,7 @@ const calls = vi.hoisted(() => ({
         readonly cwd: string;
       }
     | undefined,
-  recover: undefined as
-    | {
-        readonly command: string;
-        readonly recoveryId: string;
-        readonly releaseId: string;
-      }
-    | undefined,
+  recover: undefined as RecoveryCommand | undefined,
   status: false,
 }));
 
@@ -95,7 +84,11 @@ vi.mock("#cli/args", async () => {
       if (args[0] === "status") {
         return TestEffect.succeed({ command: "status" });
       }
+      const appLocaleIndex = args.indexOf("--app-locale");
+      const appLocale =
+        appLocaleIndex === -1 ? undefined : args[appLocaleIndex + 1];
       return TestEffect.succeed({
+        ...(appLocale === undefined ? {} : { appLocale }),
         command: "preview",
         document: calls.document,
       });
@@ -237,10 +230,23 @@ describe("CLI program", () => {
     expect(result).toBe("preview-complete");
     expect(calls.args).toEqual(["--document", calls.document]);
     expect(calls.open).toEqual({
+      appLocale: undefined,
       cwd: "/code/aksara",
       environment: { nakafaAppDir: "/code/nakafa.com" },
       requestedDocument: calls.document,
     });
+  });
+
+  it("passes an explicit application locale into preview orchestration", async () => {
+    const result = await runProgram([
+      "--app-locale",
+      "de",
+      "--document",
+      calls.document,
+    ]);
+
+    expect(result).toBe("preview-complete");
+    expect(calls.open).toMatchObject({ appLocale: "de" });
   });
 
   it("dispatches explicit production commands without opening preview", async () => {

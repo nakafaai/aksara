@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "$$(1)$$—$$(5)$$—$$(4)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
       value: false,
     },
     {
-      label: "$$(4)$$—$$(5)$$—$$(1)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
       value: true,
     },
     {
-      label: "$$(4)$$—$$(2)$$—$$(3)$$—$$(1)$$—$$(5)$$.",
+      label: "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
       value: false,
     },
     {
-      label: "$$(5)$$—$$(4)$$—$$(1)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
       value: false,
     },
     {
-      label: "$$(5)$$—$$(4)$$—$$(1)$$—$$(2)$$—$$(3)$$.",
+      label: "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
       value: false,
     },
   ],
   id: [
     {
-      label: "$$(1)$$—$$(5)$$—$$(4)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
       value: false,
     },
     {
-      label: "$$(4)$$—$$(5)$$—$$(1)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
       value: true,
     },
     {
-      label: "$$(4)$$—$$(2)$$—$$(3)$$—$$(1)$$—$$(5)$$.",
+      label: "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
       value: false,
     },
     {
-      label: "$$(5)$$—$$(4)$$—$$(1)$$—$$(3)$$—$$(2)$$.",
+      label: "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
       value: false,
     },
     {
-      label: "$$(5)$$—$$(4)$$—$$(1)$$—$$(2)$$—$$(3)$$.",
+      label: "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
       value: false,
     },
   ],

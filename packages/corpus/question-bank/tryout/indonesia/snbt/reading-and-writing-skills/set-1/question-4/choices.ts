@@ -3,45 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "there is a punctuation error in sentence $$(2)$$.",
+      label: "Sentence $$(2)$$ contains a punctuation error.",
       value: false,
     },
     {
-      label: "sentence $$(1)$$ does not have a clear subject.",
+      label:
+        "The pattern *As an archipelagic country, therefore ...* makes sentence $$(1)$$ ineffective.",
       value: true,
     },
     {
-      label: "the conjunction used in sentence $$(3)$$ is incorrect.",
+      label: "Sentence $$(3)$$ uses the wrong conjunction.",
       value: false,
     },
     {
-      label: "a comma (,) needs to be added in sentence $$(4)$$.",
+      label: "Sentence $$(4)$$ needs an additional comma.",
       value: false,
     },
     {
-      label: "sentence $$(5)$$ contains wordiness.",
+      label: "Sentence $$(5)$$ is needlessly wordy.",
       value: false,
     },
   ],
   id: [
     {
-      label: "terdapat kesalahan tanda baca pada kalimat $$(2)$$.",
+      label: "Kalimat $$(2)$$ mengandung kesalahan tanda baca.",
       value: false,
     },
     {
-      label: "kalimat $$(1)$$ tidak memiliki subjek yang jelas.",
+      label:
+        "Pola *Sebagai negara kepulauan, maka ...* membuat kalimat $$(1)$$ tidak efektif.",
       value: true,
     },
     {
-      label: "konjungsi yang digunakan pada kalimat $$(3)$$ salah.",
+      label: "Kalimat $$(3)$$ menggunakan konjungsi yang salah.",
       value: false,
     },
     {
-      label: "perlu ditambahkan tanda (,) pada kalimat $$(4)$$.",
+      label: "Kalimat $$(4)$$ memerlukan tambahan tanda koma.",
       value: false,
     },
     {
-      label: "kalimat $$(5)$$ mengandung pemborosan kata.",
+      label: "Kalimat $$(5)$$ mengandung pemborosan kata.",
       value: false,
     },
   ],

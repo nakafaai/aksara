@@ -2,56 +2,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "Use exceeds the limit and the power is cut", value: false },
     {
-      label:
-        "There are energy sources or we will not be able to carry out all usual activities",
+      label: "If the power is not cut, use did not exceed the limit",
       value: false,
     },
     {
-      label:
-        "If electricity is used continuously without reasonable limits then it will run out",
+      label: "Use does not exceed the limit or the power is cut",
       value: false,
     },
     {
-      label:
-        "If the house electricity is not cut off then consumption occurred in an amount that did not exceed reasonable limits",
-      value: false,
-    },
-    {
-      label:
-        "Consumption exceeds reasonable limits and house electricity will not be cut off",
+      label: "Use exceeds the limit and the power is not cut",
       value: true,
     },
     {
       label:
-        "Consumption does not exceed reasonable limits or house electricity will be cut off",
+        "It is not the case that use exceeds the limit while power remains on",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Adanya sumber energi atau kita tidak akan bisa melakukan seluruh aktivitas yang biasa dilakukan",
+      label: "Pemakaian melebihi batas dan aliran listrik terputus",
       value: false,
     },
     {
       label:
-        "Jika listrik terus menerus digunakan tanpa batasan wajar maka akan habis",
+        "Jika aliran listrik tidak terputus, pemakaian tidak melebihi batas",
       value: false,
     },
     {
-      label:
-        "Jika listrik rumah tidak terputus maka terjadi pemakaian dalam jumlah yang tidak melebihi batasan wajar",
+      label: "Pemakaian tidak melebihi batas atau aliran listrik terputus",
       value: false,
     },
     {
-      label:
-        "Pemakaian dalam jumlah melebihi batasan wajar dan listrik rumah tidak akan terputus",
+      label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
       value: true,
     },
     {
       label:
-        "Pemakaian dalam jumlah tidak melebihi batasan wajar atau listrik rumah akan terputus",
+        "Tidak benar bahwa pemakaian melebihi batas sementara listrik tetap menyala",
       value: false,
     },
   ],

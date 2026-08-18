@@ -2,11 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Considerate", value: false },
-    { label: "Confident", value: false },
-    { label: "Persuasive", value: true },
-    { label: "Objective", value: false },
-    { label: "Serious", value: false },
+    { label: "Dismissive of all nutritional advice", value: false },
+    {
+      label: "Certain that one food can prevent every infection",
+      value: false,
+    },
+    { label: "Alarmist about eating any sugar", value: false },
+    { label: "Practical and evidence-based", value: true },
+    { label: "Indifferent to dietary habits", value: false },
   ],
 };
 

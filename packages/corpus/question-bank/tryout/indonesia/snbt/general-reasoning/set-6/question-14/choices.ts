@@ -2,40 +2,37 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The Director canceled the new program this year", value: false },
+    { label: "The director cancels both programs this year.", value: false },
     {
       label:
-        "The Director postponed the new program implementation until licensing is complete",
+        "The director postpones both programs until the permit is complete.",
       value: false,
     },
-    { label: "PT Batik did not sell the new product this year", value: false },
     {
-      label:
-        "PT Batik did not implement the program this year because licensing was not completed",
+      label: "PT Batik does not sell the new product this year.",
       value: false,
     },
-    { label: "PT Batik sells the new product this year", value: true },
+    { label: "PT Batik carries out neither program this year.", value: false },
+    { label: "PT Batik sells the new product this year.", value: true },
   ],
   id: [
     {
-      label: "Direktur batal melakukan program baru pada tahun ini",
+      label: "Direktur membatalkan kedua program pada tahun ini.",
       value: false,
     },
     {
-      label:
-        "Direktur menunda pelaksanaan program baru hingga perizinan selesai",
+      label: "Direktur menunda kedua program sampai izin selesai.",
       value: false,
     },
     {
-      label: "PT Batik tidak jadi menjual produk baru pada tahun ini",
+      label: "PT Batik tidak menjual produk baru pada tahun ini.",
       value: false,
     },
     {
-      label:
-        "PT Batik tidak jadi melaksanakan program tahun ini karena perizinan tidak selesai",
+      label: "PT Batik tidak menjalankan satu pun program pada tahun ini.",
       value: false,
     },
-    { label: "PT Batik menjual produk baru tahun ini", value: true },
+    { label: "PT Batik menjual produk baru pada tahun ini.", value: true },
   ],
 };
 

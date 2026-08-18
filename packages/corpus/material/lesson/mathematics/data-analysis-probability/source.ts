@@ -17,14 +17,6 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           id: "fungsi-distribusi-binomial",
         },
         slug: "binomial-distribution-function",
-        translations: {
-          en: {
-            title: "Binomial Distribution Function",
-          },
-          id: {
-            title: "Fungsi Distribusi Binomial",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -32,14 +24,6 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           id: "nilai-harapan-distribusi-binomial",
         },
         slug: "expected-value-of-binomial-distribution",
-        translations: {
-          en: {
-            title: "Expected Value of Binomial Distribution",
-          },
-          id: {
-            title: "Nilai Harapan Distribusi Binomial",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -47,14 +31,6 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           id: "nilai-harapan-distribusi-normal",
         },
         slug: "expected-value-of-normal-distribution",
-        translations: {
-          en: {
-            title: "Expected Value of Normal Distribution",
-          },
-          id: {
-            title: "Nilai Harapan Distribusi Normal",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -62,26 +38,10 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           id: "fungsi-distribusi-normal",
         },
         slug: "normal-distribution-function",
-        translations: {
-          en: {
-            title: "Normal Distribution Function",
-          },
-          id: {
-            title: "Fungsi Distribusi Normal",
-          },
-        },
       },
       {
         routeSlugs: { en: "uniform-distribution", id: "distribusi-seragam" },
         slug: "uniform-distribution",
-        translations: {
-          en: {
-            title: "Uniform Distribution",
-          },
-          id: {
-            title: "Distribusi Seragam",
-          },
-        },
       },
     ],
     slug: "data-analysis-probability",

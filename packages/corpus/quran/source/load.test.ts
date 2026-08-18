@@ -2,9 +2,14 @@ import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import { Effect } from "effect";
+import {
+  type ActiveAppLocaleList,
+  ActiveAppLocaleListSchema,
+} from "@nakafa/aksara-contracts/locale";
+import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
+import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 
 const repositoryRoot = resolve(import.meta.dirname, "../../../..");
@@ -15,6 +20,7 @@ const sourceBytes = new Map<string, Uint8Array>(
     new Uint8Array(readFileSync(resolve(sourceRoot, relativePath))),
   ])
 );
+const germanOnly = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)(["de"]);
 
 /** Provides deterministic byte reads for every pinned Quran source. */
 function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
@@ -37,21 +43,30 @@ function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
 }
 
 /** Loads pinned sources through one deterministic file adapter. */
-function load(sources: ReadonlyMap<string, Uint8Array>) {
+function load(
+  sources: ReadonlyMap<string, Uint8Array>,
+  appLocales?: ActiveAppLocaleList
+) {
+  const program =
+    appLocales === undefined
+      ? loadPinnedQuranSources(repositoryRoot)
+      : loadPinnedQuranSources(repositoryRoot, appLocales);
   return Effect.runPromise(
-    loadPinnedQuranSources(repositoryRoot).pipe(
-      Effect.provide([fileLayer(sources), Path.layer])
-    )
+    program.pipe(Effect.provide([fileLayer(sources), Path.layer]))
   );
 }
 
 /** Returns one typed pinned-source rejection at the test boundary. */
-function reject(sources: ReadonlyMap<string, Uint8Array>) {
+function reject(
+  sources: ReadonlyMap<string, Uint8Array>,
+  appLocales?: ActiveAppLocaleList
+) {
+  const program =
+    appLocales === undefined
+      ? loadPinnedQuranSources(repositoryRoot)
+      : loadPinnedQuranSources(repositoryRoot, appLocales);
   return Effect.runPromise(
-    loadPinnedQuranSources(repositoryRoot).pipe(
-      Effect.provide([fileLayer(sources), Path.layer]),
-      Effect.flip
-    )
+    program.pipe(Effect.provide([fileLayer(sources), Path.layer]), Effect.flip)
   );
 }
 
@@ -83,6 +98,29 @@ describe("Quran source loading", () => {
     expect(loaded.sources.tafsir).toHaveLength(114);
   });
 
+  it("derives the German authoring bundle without activating it", async () => {
+    const loaded = await load(sourceBytes, AUTHORING_APP_LOCALES);
+
+    expect(loaded.summary).toEqual({
+      byteCount: 13_030_246,
+      digest:
+        "sha256:4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8",
+      fileCount: 119,
+    });
+    expect(loaded.sources.translations.de).toContain(
+      "Im Namen Allahs, des Allerbarmers, des Barmherzigen."
+    );
+  });
+
+  it("rejects locale subsets that cannot describe the physical source bundle", async () => {
+    const error = await reject(sourceBytes, germanOnly);
+
+    expect(error).toMatchObject({
+      _tag: "QuranSourceLocaleError",
+      appLocales: ["de"],
+    });
+  });
+
   it("rejects missing data, legal, and Tafsir source files", async () => {
     const missingData = new Map(sourceBytes);
     missingData.delete(resolve(sourceRoot, "tanzil/text.txt"));
@@ -97,10 +135,19 @@ describe("Quran source loading", () => {
       reject(missingTafsir),
     ]);
 
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Could not read pinned source tanzil-text.txt.",
-      "Could not read pinned source tanzil-terms.html.",
-      "Could not read QuranEnc Tafsir source 114.json.",
+    expect(errors).toMatchObject([
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Could not read pinned source tanzil-text.txt.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Could not read pinned source tanzil-terms.html.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Could not read QuranEnc Tafsir source 114.json.",
+      },
     ]);
   });
 
@@ -115,10 +162,28 @@ describe("Quran source loading", () => {
       reject(drift("quranenc/en.xml")),
     ]);
 
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Pinned source drifted: quranenc-en.xml.",
-      "Pinned source drifted: quranenc-en.xml.",
+    expect(errors).toMatchObject([
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned source drifted: quranenc-en.xml.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned source drifted: quranenc-en.xml.",
+      },
     ]);
+  });
+
+  it("authenticates the candidate German publication record", async () => {
+    const error = await reject(
+      drift("german/publication.json"),
+      AUTHORING_APP_LOCALES
+    );
+
+    expect(error).toMatchObject({
+      _tag: "QuranSourceFileError",
+      detail: "Pinned source drifted: islamhouse-german-bubenheim.json.",
+    });
   });
 
   it("rejects invalid UTF-8 before parsing official text", async () => {
@@ -145,9 +210,15 @@ describe("Quran source loading", () => {
       reject(drift("quranenc/tafsir/1.json")),
     ]);
 
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Pinned QuranEnc Tafsir bundle drifted.",
-      "Pinned QuranEnc Tafsir bundle drifted.",
+    expect(errors).toMatchObject([
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned QuranEnc Tafsir bundle drifted.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned QuranEnc Tafsir bundle drifted.",
+      },
     ]);
   });
 });

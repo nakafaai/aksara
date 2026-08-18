@@ -2,29 +2,53 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The conclusion is definitely true.", value: false },
-    { label: "The conclusion is probably true.", value: false },
-    { label: "The conclusion is definitely false.", value: false },
     {
-      label: "The conclusion is irrelevant to the information provided.",
+      label: "It is necessarily true because green land cover decreased.",
+      value: false,
+    },
+    {
+      label: "It is probably true because land surface temperature increased.",
+      value: false,
+    },
+    {
+      label:
+        "It is definitely false because the project recorded no flooding data.",
+      value: false,
+    },
+    {
+      label:
+        "It is not supported by the information because it introduces an outcome that was neither measured nor linked by a stated rule.",
       value: true,
     },
     {
       label:
-        "The conclusion cannot be assessed because there is insufficient information.",
+        "It is supported because airborne particles and flooding are equivalent outcomes.",
       value: false,
     },
   ],
   id: [
-    { label: "Simpulan tersebut pasti benar.", value: false },
-    { label: "Simpulan tersebut mungkin benar.", value: false },
-    { label: "Simpulan tersebut pasti salah.", value: false },
     {
-      label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+      label: "Simpulan itu pasti benar karena tutupan lahan hijau berkurang.",
+      value: false,
+    },
+    {
+      label:
+        "Simpulan itu mungkin benar karena suhu permukaan lahan meningkat.",
+      value: false,
+    },
+    {
+      label:
+        "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
+      value: false,
+    },
+    {
+      label:
+        "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
       value: true,
     },
     {
-      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+      label:
+        "Simpulan itu didukung karena partikel di udara dan banjir merupakan hasil yang setara.",
       value: false,
     },
   ],

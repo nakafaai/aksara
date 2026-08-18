@@ -15,7 +15,7 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "sentence $$7$$.",
+      label: "sentence $$8$$.",
       value: false,
     },
     {
@@ -37,7 +37,7 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "kalimat $$7$$.",
+      label: "kalimat $$8$$.",
       value: false,
     },
     {

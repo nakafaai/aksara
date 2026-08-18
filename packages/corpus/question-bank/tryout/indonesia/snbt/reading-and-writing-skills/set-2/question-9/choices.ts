@@ -3,55 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "In the first quarter of $$2020$$, economic growth in several of Indonesia's trading partner countries grew negatively: Singapore $$-2.2$$, Hong Kong $$-8.9$$, the European Union $$-2.7$$, and China experienced a decline of up to $$-6.8$$.",
+      label: 'Remove the colon after the word "namely".',
       value: true,
     },
     {
-      label:
-        "In the first quarter of $$2020$$, economic growth in several of Indonesia's trading partner countries grew negatively such as; Singapore $$-2.2$$, Hong Kong $$-8.9$$, the European Union $$-2.7$$ as well as China experienced a decline of up to $$-6.8$$.",
+      label: 'Replace the colon after the word "namely" with a semicolon.',
       value: false,
     },
     {
-      label:
-        "In the first quarter of $$2020$$, economic growth in several of Indonesia's trading partner countries grew negatively, such as Singapore $$-2.2$$, Hong Kong $$-8.9$$, the European Union $$-2.7$$ and China experienced a decline of up to $$-6.8$$.",
+      label: 'Remove the comma before the word "namely".',
       value: false,
     },
     {
-      label:
-        "In the first quarter of $$2020$$, economic growth in several of Indonesia's trading partner countries grew negatively, such as: Singapore $$-2.2$$ Hong Kong $$-8.9$$ the European Union $$-2.7$$, and China experienced a decline of up to $$-6.8$$.",
+      label: 'Add a colon immediately after the words "The agency".',
       value: false,
     },
     {
-      label:
-        "In the first quarter of $$2020$$, economic growth in several of Indonesia's trading partner countries grew negatively, such as Singapore $$-2.2$$; Hong Kong $$-8.9$$; the European Union $$-2.7$$; and China experienced a decline of up to $$-6.8$$.",
+      label: "Replace every comma in the enumeration with a full stop.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Pada triwulan pertama $$2020$$ ini, pertumbuhan ekonomi di sejumlah negara mitra dagang Indonesia tumbuh negatif: Singapura $$-2{,}2$$, Hongkong $$-8{,}9$$, Uni Eropa $$-2{,}7$$, dan China mengalami penurunan sampai $$-6{,}8$$.",
+      label: 'Hapus tanda titik dua setelah kata "yaitu".',
       value: true,
     },
     {
       label:
-        "Pada triwulan pertama $$2020$$ ini, pertumbuhan ekonomi di sejumlah negara mitra dagang Indonesia tumbuh negatif seperti; Singapura $$-2{,}2$$, Hongkong $$-8{,}9$$, Uni Eropa $$-2{,}7$$ maupun China mengalami penurunan sampai $$-6{,}8$$.",
+        'Ganti tanda titik dua setelah kata "yaitu" dengan tanda titik koma.',
       value: false,
     },
     {
-      label:
-        "Pada triwulan pertama $$2020$$ ini, pertumbuhan ekonomi di sejumlah negara mitra dagang Indonesia tumbuh negatif, seperti Singapura $$-2{,}2$$, Hongkong $$-8{,}9$$, Uni Eropa $$-2{,}7$$ dan China mengalami penurunan sampai $$-6{,}8$$.",
+      label: 'Hapus tanda koma sebelum kata "yaitu".',
       value: false,
     },
     {
-      label:
-        "Pada triwulan pertama $$2020$$ ini, pertumbuhan ekonomi di sejumlah negara mitra dagang Indonesia tumbuh negatif, seperti: Singapura $$-2{,}2$$ Hongkong $$-8{,}9$$ Uni Eropa $$-2{,}7$$, dan China mengalami penurunan sampai $$-6{,}8$$.",
+      label: 'Tambahkan tanda titik dua tepat setelah kata "lembaga".',
       value: false,
     },
     {
-      label:
-        "Pada triwulan pertama $$2020$$ ini, pertumbuhan ekonomi di sejumlah negara mitra dagang Indonesia tumbuh negatif, seperti Singapura $$-2{,}2$$; Hongkong $$-8{,}9$$; Uni Eropa $$-2{,}7$$; dan China mengalami penurunan sampai $$-6{,}8$$.",
+      label: "Ganti setiap tanda koma dalam perincian dengan tanda titik.",
       value: false,
     },
   ],

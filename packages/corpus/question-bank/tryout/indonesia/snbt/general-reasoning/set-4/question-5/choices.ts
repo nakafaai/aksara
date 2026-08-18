@@ -2,18 +2,18 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "$$57$$ cal", value: false },
-    { label: "$$70$$ cal", value: false },
-    { label: "$$71.25$$ cal", value: true },
-    { label: "$$72$$ cal", value: false },
-    { label: "$$87.72$$ cal", value: false },
+    { label: "$$57\\text{ kcal}$$", value: false },
+    { label: "$$70\\text{ kcal}$$", value: false },
+    { label: "$$75\\text{ kcal}$$", value: true },
+    { label: "$$72\\text{ kcal}$$", value: false },
+    { label: "$$87.72\\text{ kcal}$$", value: false },
   ],
   id: [
-    { label: "$$57$$ kal", value: false },
-    { label: "$$70$$ kal", value: false },
-    { label: "$$71{,}25$$ kal", value: true },
-    { label: "$$72$$ kal", value: false },
-    { label: "$$87{,}72$$ kal", value: false },
+    { label: "$$57\\text{ kkal}$$", value: false },
+    { label: "$$70\\text{ kkal}$$", value: false },
+    { label: "$$75\\text{ kkal}$$", value: true },
+    { label: "$$72\\text{ kkal}$$", value: false },
+    { label: "$$87{,}72\\text{ kkal}$$", value: false },
   ],
 };
 

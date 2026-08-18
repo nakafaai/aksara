@@ -1,3 +1,5 @@
+import type { LocalizedSourceMap } from "#corpus/locale/source";
+
 /** Exact translation fields parsed from one official source verse. */
 export interface Translation {
   readonly footnotes: string;
@@ -26,10 +28,7 @@ export interface Verse {
   };
   readonly tafsir: { readonly id: Tafsir };
   readonly text: { readonly arabic: string };
-  readonly translation: {
-    readonly en: Translation;
-    readonly id: Translation;
-  };
+  readonly translation: LocalizedSourceMap<Translation>;
 }
 
 export interface SurahMetadata {
@@ -68,8 +67,7 @@ export interface ParsedMetadata {
 
 export interface RawSources {
   readonly arabic: string;
-  readonly english: string;
-  readonly indonesian: string;
   readonly metadata: string;
   readonly tafsir: readonly string[];
+  readonly translations: LocalizedSourceMap<string>;
 }

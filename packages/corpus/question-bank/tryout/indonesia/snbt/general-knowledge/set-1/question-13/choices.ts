@@ -3,7 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "They were fascinated.",
+      label: "Visitors were fascinated.",
       value: true,
     },
     {
@@ -25,7 +25,7 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "Mereka terpesona.",
+      label: "Para pengunjung terpesona.",
       value: true,
     },
     {

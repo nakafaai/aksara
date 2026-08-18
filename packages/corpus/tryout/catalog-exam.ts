@@ -2,12 +2,10 @@ import {
   type LearningGraphSegments,
   makeLearningGraphIdentity,
 } from "@nakafa/aksara-contracts/graph/identity";
-import {
-  type ActiveAppLocale,
-  activeAppLocaleCode,
-} from "@nakafa/aksara-contracts/locale";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 
+import { requireSourceLocale } from "#corpus/locale/source";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const TRYOUT_PATH = "try-out";
@@ -18,7 +16,7 @@ type TryoutSectionSource = TryoutSetSource["sections"][number];
 /** Includes a localized description only when the source authored it. */
 function localizedFields(input: {
   readonly description: string | undefined;
-  readonly appLocale: ActiveAppLocale;
+  readonly appLocale: AppLocale;
   readonly sourceRevision: string;
   readonly title: string;
 }) {
@@ -49,7 +47,7 @@ function visibleCount(sections: readonly TryoutSectionSource[]) {
 
 /** Derives a signed graph identity from stable source keys, never route slugs. */
 function graphIdentity(
-  appLocale: ActiveAppLocale,
+  appLocale: AppLocale,
   concept: LearningGraphSegments["concept"],
   learningObject: LearningGraphSegments["learningObject"],
   lens: LearningGraphSegments["lens"]
@@ -69,11 +67,20 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutCatalogSection")(
     track: TryoutTrackSource,
     set: TryoutSetSource,
     section: TryoutSectionSource,
-    appLocale: ActiveAppLocale,
+    appLocale: AppLocale,
     setPath: string,
     examLens: LearningGraphSegments["lens"]
   ) {
-    const appLocaleCode = activeAppLocaleCode(appLocale);
+    const owner = `${source.examKey}:${track.key}:${set.key}:${section.key}`;
+    const translation = yield* requireSourceLocale(
+      section.translations,
+      appLocale,
+      owner
+    );
+    const routeSlug =
+      section.visibility === "visible"
+        ? yield* requireSourceLocale(section.routeSlugs, appLocale, owner)
+        : undefined;
     const graph = yield* graphIdentity(
       appLocale,
       [...examLens, track.key, section.key],
@@ -90,18 +97,18 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutCatalogSection")(
     return {
       ...localizedFields({
         appLocale,
-        description: section.translations[appLocaleCode].description,
+        description: translation.description,
         sourceRevision: source.sourceRevision,
-        title: section.translations[appLocaleCode].title,
+        title: translation.title,
       }),
       countryKey: source.countryKey,
       examKey: source.examKey,
       graph,
       kind: "section",
       order: section.order,
-      ...(section.visibility === "visible"
-        ? { publicPath: publicPath(setPath, section.routeSlugs[appLocaleCode]) }
-        : {}),
+      ...(routeSlug === undefined
+        ? {}
+        : { publicPath: publicPath(setPath, routeSlug) }),
       questionCount: section.questionCount,
       questionSourcePath: `packages/corpus/${section.questionSourcePath}`,
       sectionKey: section.key,
@@ -118,12 +125,19 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
   source: TryoutExamSource,
   track: TryoutTrackSource,
   set: TryoutSetSource,
-  appLocale: ActiveAppLocale,
+  appLocale: AppLocale,
   trackPath: string,
   examLens: LearningGraphSegments["lens"]
 ) {
-  const appLocaleCode = activeAppLocaleCode(appLocale);
-  const setPath = publicPath(trackPath, set.routeSlugs[appLocaleCode]);
+  const owner = `${source.examKey}:${track.key}:${set.key}`;
+  const [routeSlug, translation] = yield* Effect.all(
+    [
+      requireSourceLocale(set.routeSlugs, appLocale, owner),
+      requireSourceLocale(set.translations, appLocale, owner),
+    ],
+    { concurrency: 2 }
+  );
+  const setPath = publicPath(trackPath, routeSlug);
   const graph = yield* graphIdentity(
     appLocale,
     [...examLens, track.key, set.key],
@@ -140,9 +154,9 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
     {
       ...localizedFields({
         appLocale,
-        description: set.translations[appLocaleCode].description,
+        description: translation.description,
         sourceRevision: source.sourceRevision,
-        title: set.translations[appLocaleCode].title,
+        title: translation.title,
       }),
       countryKey: source.countryKey,
       examKey: source.examKey,
@@ -169,13 +183,20 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
   function* (
     source: TryoutExamSource,
     track: TryoutTrackSource,
-    appLocale: ActiveAppLocale,
+    appLocale: AppLocale,
     examPath: string,
     examLens: LearningGraphSegments["lens"]
   ) {
-    const appLocaleCode = activeAppLocaleCode(appLocale);
+    const owner = `${source.examKey}:${track.key}`;
+    const [routeSlug, translation] = yield* Effect.all(
+      [
+        requireSourceLocale(track.routeSlugs, appLocale, owner),
+        requireSourceLocale(track.translations, appLocale, owner),
+      ],
+      { concurrency: 2 }
+    );
     const sections = track.sets.flatMap((set) => set.sections);
-    const trackPath = publicPath(examPath, track.routeSlugs[appLocaleCode]);
+    const trackPath = publicPath(examPath, routeSlug);
     const graph = yield* graphIdentity(
       appLocale,
       [...examLens, track.key],
@@ -189,9 +210,9 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
       {
         ...localizedFields({
           appLocale,
-          description: track.translations[appLocaleCode].description,
+          description: translation.description,
           sourceRevision: source.sourceRevision,
-          title: track.translations[appLocaleCode].title,
+          title: translation.title,
         }),
         countryKey: source.countryKey,
         examKey: source.examKey,
@@ -214,16 +235,18 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
 /** Projects one localized exam and every active child hierarchy row. */
 export const projectTryoutExam = Effect.fn(
   "AksaraCorpus.projectTryoutCatalogExam"
-)(function* (source: TryoutExamSource, appLocale: ActiveAppLocale) {
-  const appLocaleCode = activeAppLocaleCode(appLocale);
-  const countryPath = publicPath(
-    TRYOUT_PATH,
-    source.countryRouteSlugs[appLocaleCode]
+)(function* (source: TryoutExamSource, appLocale: AppLocale) {
+  const owner = `${source.countryKey}:${source.examKey}`;
+  const [countryRouteSlug, examRouteSlug, examTranslation] = yield* Effect.all(
+    [
+      requireSourceLocale(source.countryRouteSlugs, appLocale, owner),
+      requireSourceLocale(source.examRouteSlugs, appLocale, owner),
+      requireSourceLocale(source.examTranslations, appLocale, owner),
+    ],
+    { concurrency: 3 }
   );
-  const examPath = publicPath(
-    countryPath,
-    source.examRouteSlugs[appLocaleCode]
-  );
+  const countryPath = publicPath(TRYOUT_PATH, countryRouteSlug);
+  const examPath = publicPath(countryPath, examRouteSlug);
   const examLens: LearningGraphSegments["lens"] = [
     "tryout",
     source.countryKey,
@@ -242,9 +265,9 @@ export const projectTryoutExam = Effect.fn(
     {
       ...localizedFields({
         appLocale,
-        description: source.examTranslations[appLocaleCode].description,
+        description: examTranslation.description,
         sourceRevision: source.sourceRevision,
-        title: source.examTranslations[appLocaleCode].title,
+        title: examTranslation.title,
       }),
       countryKey: source.countryKey,
       examKey: source.examKey,

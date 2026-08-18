@@ -15,7 +15,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "his body was thinning.",
+      label: "his frame had grown leaner.",
       value: true,
     },
     {
@@ -37,7 +37,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "tubuhnya menipis.",
+      label: "tubuhnya tampak makin ramping.",
       value: true,
     },
     {

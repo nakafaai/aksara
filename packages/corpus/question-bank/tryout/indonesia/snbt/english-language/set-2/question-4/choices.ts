@@ -3,25 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The fasting method both improves and maintains human metabolism",
+      label: "It produces identical weight loss for every person who fasts.",
       value: false,
     },
     {
-      label: "Feeding patterns should be based on human rhythms",
+      label: "It is designed primarily as a clinical treatment for obesity.",
       value: false,
     },
     {
       label:
-        "Ramadan fasting contrasts with human circadian rhythms when applied as a weight-loss program",
+        "Its short-term average effects do not by themselves establish lasting weight loss.",
       value: true,
     },
     {
-      label: "Opposition to human circadian rhythms remains unverified",
+      label: "It permanently reduces fat-free mass and total body water.",
       value: false,
     },
     {
-      label:
-        "Ramadan fasting supports other rhythms which are unlikely to be pursued as a diet program",
+      label: "It always reduces calorie intake by a fixed amount.",
       value: false,
     },
   ],

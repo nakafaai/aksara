@@ -7,7 +7,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "$$a < -1 - \\sqrt{3}$$",
+      label: "$$a > -1 - \\sqrt{3}$$",
       value: true,
     },
     {
@@ -29,7 +29,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "$$a < -1 - \\sqrt{3}$$",
+      label: "$$a > -1 - \\sqrt{3}$$",
       value: true,
     },
     {

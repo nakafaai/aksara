@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Komik dan Novel", value: false },
+    { label: "Komik dan novel", value: false },
     { label: "Dongeng dan pengetahuan", value: true },
     { label: "Cerita fiksi dan komik", value: false },
     { label: "Dongeng dan penelitian", value: false },
-    { label: "Crita fiksi dan kagamaan", value: false },
+    { label: "Cerita fiksi dan keagamaan", value: false },
   ],
 };
 

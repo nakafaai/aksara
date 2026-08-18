@@ -1,6 +1,8 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranSourceArtifactSchema } from "@nakafa/aksara-contracts/quran/source";
 
+import type { LocalizedSourceMap } from "#corpus/locale/source";
+
 /** Domain that authenticates the complete ordered official data bundle. */
 export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle.v2";
 
@@ -26,9 +28,11 @@ export interface PinnedQuranFile {
 interface QuranSourcePolicy {
   readonly data: {
     readonly arabic: PinnedQuranFile;
-    readonly english: PinnedQuranFile;
-    readonly indonesian: PinnedQuranFile;
     readonly metadata: PinnedQuranFile;
+    readonly translations: LocalizedSourceMap<PinnedQuranFile>;
+  };
+  readonly evidence: {
+    readonly germanPublication: PinnedQuranFile;
   };
   readonly tafsir: {
     readonly artifact: ReturnType<typeof artifact>;
@@ -52,22 +56,6 @@ export const QURAN_SOURCE_POLICY = {
       name: "tanzil-text.txt",
       path: "tanzil/text.txt",
     },
-    english: {
-      artifact: artifact(
-        1_690_410,
-        "213e1aeb515c5bac6ca446955527b8f3c0f9c21e9d1bad9c6857e9e5b282e9b6"
-      ),
-      name: "quranenc-en.xml",
-      path: "quranenc/en.xml",
-    },
-    indonesian: {
-      artifact: artifact(
-        1_820_207,
-        "45d0014236443e91af1338fe7b60f9e20741c6ff5b4ee82ead960d111f91071b"
-      ),
-      name: "quranenc-id.xml",
-      path: "quranenc/id.xml",
-    },
     metadata: {
       artifact: artifact(
         77_234,
@@ -75,6 +63,42 @@ export const QURAN_SOURCE_POLICY = {
       ),
       name: "tanzil-data.xml",
       path: "tanzil/data.xml",
+    },
+    translations: {
+      de: {
+        artifact: artifact(
+          1_523_305,
+          "38763b972b2efeeed3062ba3495042c28f320cf734071e010d746c525ebce47e"
+        ),
+        name: "quranenc-de.xml",
+        path: "german/translation.xml",
+      },
+      en: {
+        artifact: artifact(
+          1_690_410,
+          "213e1aeb515c5bac6ca446955527b8f3c0f9c21e9d1bad9c6857e9e5b282e9b6"
+        ),
+        name: "quranenc-en.xml",
+        path: "quranenc/en.xml",
+      },
+      id: {
+        artifact: artifact(
+          1_820_207,
+          "45d0014236443e91af1338fe7b60f9e20741c6ff5b4ee82ead960d111f91071b"
+        ),
+        name: "quranenc-id.xml",
+        path: "quranenc/id.xml",
+      },
+    },
+  },
+  evidence: {
+    germanPublication: {
+      artifact: artifact(
+        3485,
+        "df3b2437afa0f52c3621c8c611384c45b00169e00a259a4f205a7ccd9150f645"
+      ),
+      name: "islamhouse-german-bubenheim.json",
+      path: "german/publication.json",
     },
   },
   tafsir: {
@@ -105,3 +129,11 @@ export const QURAN_SOURCE_POLICY = {
     },
   },
 } satisfies QuranSourcePolicy;
+
+/** Official endpoint for the exact pinned German Bubenheim XML transcript. */
+export const GERMAN_QURAN_SOURCE_URL =
+  "https://quranenc.com/en/home/download/xml/german_bubenheim";
+
+/** Official IslamHouse record for the German edition and its credited source. */
+export const GERMAN_QURAN_PUBLICATION_URL =
+  "https://api3.islamhouse.com/v3/paV29H2gm56kvLPy/main/get-item/59081/de/json";

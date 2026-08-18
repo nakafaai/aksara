@@ -26,23 +26,23 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "$$\\text{Rp}4.400.000{,}00$$",
+      label: "$$\\text{Rp}4{.}400{.}000{,}00$$",
       value: false,
     },
     {
-      label: "$$\\text{Rp}4.560.000{,}00$$",
+      label: "$$\\text{Rp}4{.}560{.}000{,}00$$",
       value: false,
     },
     {
-      label: "$$\\text{Rp}4.640.000{,}00$$",
+      label: "$$\\text{Rp}4{.}640{.}000{,}00$$",
       value: true,
     },
     {
-      label: "$$\\text{Rp}4.720.000{,}00$$",
+      label: "$$\\text{Rp}4{.}720{.}000{,}00$$",
       value: false,
     },
     {
-      label: "$$\\text{Rp}4.800.000{,}00$$",
+      label: "$$\\text{Rp}4{.}800{.}000{,}00$$",
       value: false,
     },
   ],

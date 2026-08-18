@@ -7,9 +7,9 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
-  ActiveAppLocaleSchema,
+  type ActiveAppLocaleList,
+  type AppLocale,
   AppLocaleSchema,
-  activeAppLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import {
   ArticleCategorySchema,
@@ -24,11 +24,24 @@ import {
   RendererDomainSchema,
 } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-
+import {
+  type ArticleLocaleCatalog,
+  decodeArticleLocaleCatalog,
+  type LocalizedArticleProjectionSource,
+  requireArticleLocaleSource,
+  validateArticleLocaleCatalog,
+} from "#corpus/articles/locale";
 import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
+import {
+  appLocaleCode,
+  EMBEDDED_APP_LOCALE_CODES,
+  type EmbeddedAppLocaleCode,
+  localeOverlayAppLocaleCode,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 
-const ArticleEntrySchema = Schema.Struct({
+export const ArticleEntrySchema = Schema.Struct({
   categoryTitle: ArticleCategoryTitleSchema,
   delivery: Schema.Literal("public"),
   references: Schema.Array(ArticleReferenceSchema),
@@ -59,10 +72,10 @@ export class ArticleRendererError extends Schema.TaggedError<ArticleRendererErro
 export class ArticleTitleError extends Schema.TaggedError<ArticleTitleError>()(
   "ArticleTitleError",
   {
-    actual: ArticleCategoryTitleSchema,
-    appLocale: ActiveAppLocaleSchema,
+    actual: Schema.optional(ArticleCategoryTitleSchema),
+    appLocale: AppLocaleSchema,
     category: ArticleCategorySchema,
-    expected: ArticleCategoryTitleSchema,
+    expected: Schema.optional(ArticleCategoryTitleSchema),
   }
 ) {}
 
@@ -70,10 +83,10 @@ export class ArticleTitleError extends Schema.TaggedError<ArticleTitleError>()(
 export class ArticleCategoryRouteError extends Schema.TaggedError<ArticleCategoryRouteError>()(
   "ArticleCategoryRouteError",
   {
-    actual: ArticleRouteSlugSchema,
-    appLocale: ActiveAppLocaleSchema,
+    actual: Schema.optional(ArticleRouteSlugSchema),
+    appLocale: AppLocaleSchema,
     category: ArticleCategorySchema,
-    expected: ArticleRouteSlugSchema,
+    expected: Schema.optional(ArticleRouteSlugSchema),
   }
 ) {}
 
@@ -94,150 +107,204 @@ export class ArticleRegistryError extends Schema.TaggedError<ArticleRegistryErro
   { cause: Schema.Unknown }
 ) {}
 
-/** Expands one reviewed source into its two locale-specific article bodies. */
-const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
-  source: ArticleSource
-) {
-  return yield* Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
-    Effect.gen(function* () {
-      const appLocaleCode = activeAppLocaleCode(appLocale);
-      const category = source.category.key;
-      const contentKey = `articles/${category}/${source.slug}`;
-      const graph = yield* makeLearningGraphIdentity({
+interface ArticleCategoryIdentity {
+  readonly rendererDomain: RendererDomain;
+  readonly routeSlugs: ArticleSource["category"]["routeSlugs"];
+  readonly titles: ArticleSource["category"]["titles"];
+}
+
+type ArticleProjectionSource = ArticleSource | LocalizedArticleProjectionSource;
+
+/** Projects one reviewed source into one exact locale-specific article body. */
+export const projectArticle = Effect.fn("AksaraCorpus.projectArticle")(
+  function* (source: ArticleProjectionSource, appLocale: AppLocale) {
+    const localeCode = appLocaleCode(appLocale);
+    const category = source.category.key;
+    const owner = `${source.sourceRoot}:${localeCode}`;
+    const [articleRouteSlug, categoryRouteSlug, categoryTitle] =
+      yield* Effect.all(
+        [
+          requireSourceLocale(source.routeSlugs, appLocale, owner),
+          requireSourceLocale(source.category.routeSlugs, appLocale, owner),
+          requireSourceLocale(source.category.titles, appLocale, owner),
+        ],
+        { concurrency: 3 }
+      );
+    const contentKey = `articles/${category}/${source.slug}`;
+    const graph = yield* makeLearningGraphIdentity({
+      appLocale,
+      concept: ["article", category],
+      learningObject: ["article", category, source.slug],
+      lens: ["article", category],
+    });
+    return {
+      categoryTitle,
+      delivery: "public",
+      references: source.references,
+      rendererDomain: source.category.rendererDomain,
+      route: {
         appLocale,
-        concept: ["article", category],
-        learningObject: ["article", category, source.slug],
-        lens: ["article", category],
-      });
-      return {
-        categoryTitle: source.category.titles[appLocaleCode],
-        delivery: "public",
-        references: source.references,
-        rendererDomain: source.category.rendererDomain,
-        route: {
-          appLocale,
-          articleRouteSlug: source.routeSlugs[appLocaleCode],
-          articleSlug: source.slug,
-          artifactLocale: appLocale,
-          category,
-          categoryRouteSlug: source.category.routeSlugs[appLocaleCode],
-          contentKey,
-          graph,
-          publicPath: `articles/${source.category.routeSlugs[appLocaleCode]}/${source.routeSlugs[appLocaleCode]}`,
-        },
-        sourcePath: `packages/corpus/${source.sourceRoot}/${appLocaleCode}.mdx`,
-        sourceRoot: source.sourceRoot,
-      };
-    })
-  );
+        articleRouteSlug,
+        articleSlug: source.slug,
+        artifactLocale: appLocale,
+        category,
+        categoryRouteSlug,
+        contentKey,
+        graph,
+        publicPath: `articles/${categoryRouteSlug}/${articleRouteSlug}`,
+      },
+      sourcePath: `packages/corpus/${source.sourceRoot}/${localeCode}.mdx`,
+      sourceRoot: source.sourceRoot,
+    };
+  }
+);
+
+/** Expands one reviewed source into its active locale-specific article bodies. */
+const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
+  source: ArticleSource,
+  localeCatalog: ArticleLocaleCatalog,
+  appLocales: ActiveAppLocaleList
+) {
+  return yield* Effect.forEach(appLocales, (appLocale) => {
+    const overlayLocale = localeOverlayAppLocaleCode(appLocale);
+    if (overlayLocale === undefined) {
+      return projectArticle(source, appLocale);
+    }
+    return requireArticleLocaleSource(
+      source,
+      localeCatalog,
+      overlayLocale
+    ).pipe(Effect.flatMap((localized) => projectArticle(localized, appLocale)));
+  });
 });
 
-/** Rejects category-local slug duplicates and renderer contradictions. */
-const validateSources = Effect.fn("AksaraCorpus.validateArticleSources")(
-  function* (sources: readonly ArticleSource[]) {
-    const categoryByKey = new Map<
-      string,
-      {
-        readonly rendererDomain: RendererDomain;
-        readonly routeSlugs: ArticleSource["category"]["routeSlugs"];
-        readonly titles: ArticleSource["category"]["titles"];
-      }
-    >();
-    const slugs = new Set<string>();
+/** Checks one locale-specific category identity against its first declaration. */
+const validateCategoryLocale = Effect.fn(
+  "AksaraCorpus.validateArticleCategoryLocale"
+)(function* (
+  expected: ArticleCategoryIdentity,
+  actual: ArticleSource["category"],
+  localeCode: EmbeddedAppLocaleCode
+) {
+  const appLocale = AppLocaleSchema.make(localeCode);
+  const actualRoute = actual.routeSlugs[localeCode];
+  const expectedRoute = expected.routeSlugs[localeCode];
+  if (actualRoute !== expectedRoute) {
+    return yield* new ArticleCategoryRouteError({
+      actual: actualRoute,
+      appLocale,
+      category: actual.key,
+      expected: expectedRoute,
+    });
+  }
+  const actualTitle = actual.titles[localeCode];
+  const expectedTitle = expected.titles[localeCode];
+  if (actualTitle !== expectedTitle) {
+    return yield* new ArticleTitleError({
+      actual: actualTitle,
+      appLocale,
+      category: actual.key,
+      expected: expectedTitle,
+    });
+  }
+});
 
-    for (const source of sources) {
-      const { category: sourceCategory, slug: sourceSlug } = source;
-      const { key, rendererDomain, routeSlugs, titles } = sourceCategory;
-      const category = categoryByKey.get(key);
-      if (
-        category !== undefined &&
-        category.rendererDomain !== rendererDomain
-      ) {
-        return yield* new ArticleRendererError({
-          actual: rendererDomain,
-          category: key,
-          expected: category.rendererDomain,
-        });
-      }
-      if (category !== undefined) {
-        for (const appLocale of ACTIVE_APP_LOCALES) {
-          const appLocaleCode = activeAppLocaleCode(appLocale);
-          if (
-            category.routeSlugs[appLocaleCode] !== routeSlugs[appLocaleCode]
-          ) {
-            return yield* new ArticleCategoryRouteError({
-              actual: routeSlugs[appLocaleCode],
-              appLocale,
-              category: key,
-              expected: category.routeSlugs[appLocaleCode],
-            });
-          }
-          if (category.titles[appLocaleCode] !== titles[appLocaleCode]) {
-            return yield* new ArticleTitleError({
-              actual: titles[appLocaleCode],
-              appLocale,
-              category: key,
-              expected: category.titles[appLocaleCode],
-            });
-          }
-        }
-      }
-      categoryByKey.set(key, sourceCategory);
-
-      const slug = `${key}\0${sourceSlug}`;
-      if (slugs.has(slug)) {
-        return yield* new ArticleSlugError({ slug: sourceSlug });
-      }
-      slugs.add(slug);
+/** Checks one repeated category against its first complete declaration. */
+const validateCategory = Effect.fn("AksaraCorpus.validateArticleCategory")(
+  function* (
+    expected: ArticleCategoryIdentity | undefined,
+    actual: ArticleSource["category"]
+  ) {
+    if (expected === undefined) {
+      return;
     }
-
-    return sources;
+    if (expected.rendererDomain !== actual.rendererDomain) {
+      return yield* new ArticleRendererError({
+        actual: actual.rendererDomain,
+        category: actual.key,
+        expected: expected.rendererDomain,
+      });
+    }
+    yield* Effect.forEach(EMBEDDED_APP_LOCALE_CODES, (localeCode) =>
+      validateCategoryLocale(expected, actual, localeCode)
+    );
   }
 );
+
+/** Rejects category-local slug duplicates and renderer contradictions. */
+export const validateArticleSources = Effect.fn(
+  "AksaraCorpus.validateArticleSources"
+)(function* (sources: readonly ArticleSource[]) {
+  const categoryByKey = new Map<string, ArticleCategoryIdentity>();
+  const slugs = new Set<string>();
+
+  for (const source of sources) {
+    const { category: sourceCategory, slug: sourceSlug } = source;
+    const { key } = sourceCategory;
+    const category = categoryByKey.get(key);
+    yield* validateCategory(category, sourceCategory);
+    categoryByKey.set(key, sourceCategory);
+
+    const slug = `${key}\0${sourceSlug}`;
+    if (slugs.has(slug)) {
+      return yield* new ArticleSlugError({ slug: sourceSlug });
+    }
+    slugs.add(slug);
+  }
+
+  return sources;
+});
 
 /** Rejects locale route collisions across distinct stable article identities. */
-const validateRoutes = Effect.fn("AksaraCorpus.validateArticleRoutes")(
-  function* (entries: readonly ArticleEntry[]) {
-    const contentKeyByRoute = new Map<
-      string,
-      ArticleEntry["route"]["contentKey"]
-    >();
-    for (const { route } of entries) {
-      const identity = `${route.appLocale}\0${route.publicPath}`;
-      const existing = contentKeyByRoute.get(identity);
-      if (existing !== undefined && existing !== route.contentKey) {
-        return yield* new ArticleRouteCollisionError({
-          appLocale: route.appLocale,
-          conflictingContentKey: existing,
-          contentKey: route.contentKey,
-          publicPath: route.publicPath,
-        });
-      }
-      contentKeyByRoute.set(identity, route.contentKey);
+export const validateArticleRoutes = Effect.fn(
+  "AksaraCorpus.validateArticleRoutes"
+)(function* (entries: readonly ArticleEntry[]) {
+  const contentKeyByRoute = new Map<
+    string,
+    ArticleEntry["route"]["contentKey"]
+  >();
+  for (const { route } of entries) {
+    const identity = `${route.appLocale}\0${route.publicPath}`;
+    const existing = contentKeyByRoute.get(identity);
+    if (existing !== undefined && existing !== route.contentKey) {
+      return yield* new ArticleRouteCollisionError({
+        appLocale: route.appLocale,
+        conflictingContentKey: existing,
+        contentKey: route.contentKey,
+        publicPath: route.publicPath,
+      });
     }
-    return entries;
+    contentKeyByRoute.set(identity, route.contentKey);
   }
-);
+  return entries;
+});
 
 /** Returns every canonical locale body from the reviewed article catalog. */
 export const decodeArticleRegistry = Effect.fn(
   "AksaraCorpus.decodeArticleRegistry"
-)(function* (input?: unknown) {
+)(function* (
+  input?: unknown,
+  localeInput?: unknown,
+  appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
+) {
   const sources = yield* decodeArticleSources(input);
-  yield* validateSources(sources);
-  const expanded = yield* Effect.forEach(sources, expandArticle);
+  const localeCatalog =
+    localeInput !== undefined ||
+    appLocales.some(
+      (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
+    )
+      ? yield* decodeArticleLocaleCatalog(localeInput)
+      : { articles: [], categories: [] };
+  yield* validateArticleSources(sources);
+  yield* validateArticleLocaleCatalog(sources, localeCatalog);
+  const expanded = yield* Effect.forEach(sources, (source) =>
+    expandArticle(source, localeCatalog, appLocales)
+  );
   const entries = yield* Schema.decodeUnknown(Schema.Array(ArticleEntrySchema))(
     expanded.flat(),
     { onExcessProperty: "error" }
-  ).pipe(
-    Effect.mapError(
-      (cause) =>
-        new ArticleRegistryError({
-          cause,
-        })
-    )
-  );
-  yield* validateRoutes(entries);
+  ).pipe(Effect.mapError((cause) => new ArticleRegistryError({ cause })));
+  yield* validateArticleRoutes(entries);
   return [...entries].sort((left, right) =>
     compareContentHeads(left.route, right.route)
   );

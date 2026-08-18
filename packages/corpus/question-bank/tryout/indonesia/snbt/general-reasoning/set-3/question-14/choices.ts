@@ -3,8 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "The highest sales for all types of spices occurred in November $$2020$$.",
+      label: "Each spice recorded its highest sales in November $$2020$$.",
       value: false,
     },
     {
@@ -17,18 +16,18 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "Shallot sales are always below red chili sales.",
+      label: "Shallot sales are lower than red chili sales in every month.",
       value: false,
     },
     {
-      label: "The smallest sales occur in shallot sales every month.",
+      label: "Shallot is the sole lowest-selling spice in every month.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Penjualan tertinggi untuk semua jenis rempah terjadi pada bulan November $$2020$$.",
+        "Setiap jenis rempah mencapai penjualan tertinggi pada November $$2020$$.",
       value: false,
     },
     {
@@ -42,12 +41,13 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "Penjualan bawang merah selalu di bawah penjualan cabai merah.",
+      label:
+        "Penjualan bawang merah lebih rendah daripada penjualan cabai merah pada setiap bulan.",
       value: false,
     },
     {
       label:
-        "Penjualan yang paling kecil terjadi pada penjualan bawang merah tiap bulannya.",
+        "Bawang merah menjadi satu-satunya rempah dengan penjualan terendah pada setiap bulan.",
       value: false,
     },
   ],

@@ -10,26 +10,10 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "arc", id: "busur" },
       slug: "arc",
-      translations: {
-        en: {
-          title: "Arc",
-        },
-        id: {
-          title: "Busur",
-        },
-      },
     },
     {
       routeSlugs: { en: "central-angle-on-arc", id: "sudut-pusat-pada-busur" },
       slug: "central-angle-on-arc",
-      translations: {
-        en: {
-          title: "Central Angle on Arc",
-        },
-        id: {
-          title: "Sudut Pusat pada Busur",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -37,62 +21,22 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         id: "sudut-pusat-pada-juring",
       },
       slug: "central-angle-on-sector",
-      translations: {
-        en: {
-          title: "Central Angle on Sector",
-        },
-        id: {
-          title: "Sudut Pusat pada Juring",
-        },
-      },
     },
     {
       routeSlugs: { en: "chord", id: "tali-busur" },
       slug: "chord",
-      translations: {
-        en: {
-          title: "Chord",
-        },
-        id: {
-          title: "Tali Busur",
-        },
-      },
     },
     {
       routeSlugs: { en: "circle-arc", id: "busur-lingkaran" },
       slug: "circle-arc",
-      translations: {
-        en: {
-          title: "Circle Arc",
-        },
-        id: {
-          title: "Busur Lingkaran",
-        },
-      },
     },
     {
       routeSlugs: { en: "circle-sector", id: "juring-lingkaran" },
       slug: "circle-sector",
-      translations: {
-        en: {
-          title: "Circle Sector",
-        },
-        id: {
-          title: "Juring Lingkaran",
-        },
-      },
     },
     {
       routeSlugs: { en: "pi-history", id: "sejarah-nilai-pi" },
       slug: "pi-history",
-      translations: {
-        en: {
-          title: "History of Pi",
-        },
-        id: {
-          title: "Sejarah Nilai Pi",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -100,38 +44,14 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         id: "hubungan-panjang-busur-dan-luas-juring",
       },
       slug: "relationship-between-arc-length-and-sector-area",
-      translations: {
-        en: {
-          title: "Relationship Between Arc Length and Sector Area",
-        },
-        id: {
-          title: "Hubungan Panjang Busur dan Luas Juring",
-        },
-      },
     },
     {
       routeSlugs: { en: "sector", id: "juring" },
       slug: "sector",
-      translations: {
-        en: {
-          title: "Sector",
-        },
-        id: {
-          title: "Juring",
-        },
-      },
     },
     {
       routeSlugs: { en: "segment", id: "tembereng" },
       slug: "segment",
-      translations: {
-        en: {
-          title: "Segment",
-        },
-        id: {
-          title: "Tembereng",
-        },
-      },
     },
   ],
   slug: "circle-arc-sector",

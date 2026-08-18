@@ -5,6 +5,7 @@ import {
   type Error as PlatformError,
 } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import {
   ExactProcess,
   type ExactProcessInput,
@@ -122,7 +123,8 @@ export function runLocal<A, E>(
   app: NakafaApp["Type"],
   use: (
     session: LocalPreviewSession
-  ) => Effect.Effect<A, E, FileSystem.FileSystem | Path.Path>
+  ) => Effect.Effect<A, E, FileSystem.FileSystem | Path.Path>,
+  appLocale?: AppLocale
 ) {
   const exactProcess = ExactProcess.of({
     /** Returns deterministic clean Git evidence for both test repositories. */
@@ -138,6 +140,7 @@ export function runLocal<A, E>(
   return Effect.runPromise(
     Effect.scoped(
       openLocalPreview({
+        ...(appLocale === undefined ? {} : { appLocale }),
         cwd: repository.aksaraRoot,
         environment: { nakafaAppDir: repository.nakafaRoot },
         requestedDocument: relative(

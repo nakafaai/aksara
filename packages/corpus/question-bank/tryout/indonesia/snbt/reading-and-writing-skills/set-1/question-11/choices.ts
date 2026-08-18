@@ -3,46 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "threatened (sentence $$(2)$$).",
+      label: "resilient (sentence $$(1)$$).",
       value: false,
     },
     {
-      label: "risk (sentence $$(3)$$).",
+      label: "consequence (sentence $$(2)$$).",
       value: false,
     },
     {
-      label: "resulted by (sentence $$(4)$$).",
+      label: "meet (sentence $$(3)$$).",
+      value: false,
+    },
+    {
+      label: "recognizes (sentence $$(4)$$).",
+      value: false,
+    },
+    {
+      label: "reduce (sentence $$(7)$$).",
       value: true,
-    },
-    {
-      label: "deterioration (sentence $$(5)$$).",
-      value: false,
-    },
-    {
-      label: "resources (sentence $$(6)$$).",
-      value: false,
     },
   ],
   id: [
     {
-      label: "mengancam (kalimat $$(2)$$).",
+      label: "tangguh (kalimat $$(1)$$).",
       value: false,
     },
     {
-      label: "risiko (kalimat $$(3)$$).",
+      label: "akibat (kalimat $$(2)$$).",
       value: false,
     },
     {
-      label: "dikarenakan (kalimat $$(4)$$).",
+      label: "memenuhi (kalimat $$(3)$$).",
+      value: false,
+    },
+    {
+      label: "mengakui (kalimat $$(4)$$).",
+      value: false,
+    },
+    {
+      label: "memperkecil (kalimat $$(7)$$).",
       value: true,
-    },
-    {
-      label: "deteriorasi (kalimat $$(5)$$).",
-      value: false,
-    },
-    {
-      label: "sumber daya (kalimat $$(6)$$).",
-      value: false,
     },
   ],
 };

@@ -3,54 +3,50 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "If plant pests do not increase then the temperature rise due to climate change has occurred",
+      label: "Temperature alone determines whether pest pressure increases",
       value: false,
     },
     {
       label:
-        "If plant pests do not increase then the temperature rise due to climate change did not occur",
+        "Climate change can alter where pests spread and how damaging they become",
       value: true,
     },
     {
       label:
-        "If climate change does not occur then pests will not expand their range",
+        "Plant pests and diseases destroy exactly the same share of every crop each year",
       value: false,
     },
     {
-      label: "If pests expand their range then climate change will occur",
+      label: "Rainfall and land use have no effect on pest pressure",
       value: false,
     },
     {
-      label:
-        "Pest populations will increase if pest predators such as birds change migration times",
+      label: "Climate change makes every pest more destructive everywhere",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Jika hama tanaman tidak meningkat maka kenaikan suhu karena perubahan iklim telah terjadi",
+      label: "Suhu saja menentukan apakah tekanan hama meningkat",
       value: false,
     },
     {
       label:
-        "Jika hama tanaman tidak meningkat maka kenaikan suhu karena perubahan iklim tidak terjadi",
+        "Perubahan iklim dapat mengubah persebaran hama dan tingkat kerusakan yang ditimbulkannya",
       value: true,
     },
     {
       label:
-        "Jika tidak terjadi perubahan iklim maka hama-hama tidak akan memperluas jangkauan mereka",
+        "Hama dan penyakit tanaman merusak bagian yang sama persis dari setiap jenis tanaman setiap tahun",
+      value: false,
+    },
+    {
+      label: "Curah hujan dan penggunaan lahan tidak memengaruhi tekanan hama",
       value: false,
     },
     {
       label:
-        "Jika hama-hama memperluas jangkauan mereka maka akan terjadi perubahan iklim",
-      value: false,
-    },
-    {
-      label:
-        "Populasi hama akan meningkat jika pemangsa hama seperti burung mengubah waktu migrasi",
+        "Perubahan iklim membuat setiap hama lebih merusak di semua tempat",
       value: false,
     },
   ],

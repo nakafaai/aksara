@@ -12,10 +12,7 @@ const choices: QuestionChoices = {
       label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
       value: false,
     },
-    {
-      label: "Jumlah pati yang berasal dari butiran beras berkurang",
-      value: true,
-    },
+    { label: "Pati bebas pada permukaan butiran beras berkurang", value: true },
   ],
 };
 

@@ -16,11 +16,11 @@ const choices: QuestionChoices = {
     },
     {
       label: "after sentence $$3$$.",
-      value: true,
+      value: false,
     },
     {
       label: "after sentence $$4$$.",
-      value: false,
+      value: true,
     },
   ],
   id: [
@@ -38,11 +38,11 @@ const choices: QuestionChoices = {
     },
     {
       label: "setelah kalimat $$3$$.",
-      value: true,
+      value: false,
     },
     {
       label: "setelah kalimat $$4$$.",
-      value: false,
+      value: true,
     },
   ],
 };

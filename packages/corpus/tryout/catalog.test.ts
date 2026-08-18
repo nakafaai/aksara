@@ -1,6 +1,14 @@
+import {
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { projectTryoutCatalog } from "#corpus/tryout/catalog";
+import {
+  projectCandidateTryoutCatalog,
+  projectTryoutCatalog,
+} from "#corpus/tryout/catalog";
+import { decodeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** Returns one nested source node or fails the test setup explicitly. */
@@ -97,5 +105,36 @@ describe("tryout catalog", () => {
     expect(rows).toContainEqual(
       expect.objectContaining({ appLocale: "en", description, kind: "country" })
     );
+  });
+
+  it("projects a complete German candidate hierarchy without activation", async () => {
+    const rows = await Effect.runPromise(
+      Effect.flatMap(
+        decodeTryoutLocaleRegistry(),
+        projectCandidateTryoutCatalog
+      )
+    );
+
+    expect(rows.length).toBeGreaterThan(0);
+    expect(rows.every(({ appLocale }) => appLocale === "de")).toBe(true);
+    expect(rows.find(({ kind }) => kind === "exam")).toMatchObject({
+      publicPath: "try-out/indonesien/snbt",
+      title: "SNBT",
+    });
+  });
+
+  it("projects the permanent German overlay through the active publication seam", async () => {
+    const sources = await Effect.runPromise(decodeTryoutRegistry());
+    const rows = await Effect.runPromise(
+      projectTryoutCatalog(
+        sources,
+        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+      )
+    );
+
+    expect(rows.every(({ appLocale }) => appLocale === "de")).toBe(true);
+    expect(rows.find(({ kind }) => kind === "exam")).toMatchObject({
+      publicPath: "try-out/indonesien/snbt",
+    });
   });
 });

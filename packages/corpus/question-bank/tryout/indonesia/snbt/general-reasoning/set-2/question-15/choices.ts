@@ -19,7 +19,7 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "The government purchase price for grain, specifically GKP, is stagnant or does not change from January—April",
+        "The government purchase price for GKP remained unchanged from January to April",
       value: true,
     },
     {
@@ -46,7 +46,7 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Harga pembelian pemerintah terhadap harga gabah, tepatnya GKP, stagnan atau tidak mengalami perubahan dari Januari—April",
+        "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
       value: true,
     },
     {

@@ -3,45 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The company does not give severance pay to employees",
+      label:
+        "The first outcome, in which employees resign and receive severance pay, does not occur",
       value: true,
     },
     {
-      label: "Employees choose for the company to be closed",
+      label: "The employees chose to close the company",
       value: false,
     },
     {
-      label: "Some employees are given severance pay",
+      label: "Some employees receive severance pay under the first outcome",
       value: false,
     },
     {
-      label: "The director pays attention to some employees",
+      label: "Both outcomes occur",
       value: false,
     },
     {
-      label: "Some employees do not want to resign",
+      label: "Neither outcome occurs",
       value: false,
     },
   ],
   id: [
     {
-      label: "Perusahaan tidak memberi pesangon kepada karyawan",
+      label:
+        "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
       value: true,
     },
     {
-      label: "Karyawan memilih perusahaan ditutup",
+      label: "Karyawan memilih untuk menutup perusahaan",
       value: false,
     },
     {
-      label: "Sebagian karyawan diberi pesangon",
+      label: "Sebagian karyawan menerima pesangon menurut hasil pertama",
       value: false,
     },
     {
-      label: "Direktur memperhatikan sebagian karyawan",
+      label: "Kedua hasil terjadi",
       value: false,
     },
     {
-      label: "Sebagian karyawan tidak mau mengundurkan diri",
+      label: "Tidak satu pun hasil terjadi",
       value: false,
     },
   ],

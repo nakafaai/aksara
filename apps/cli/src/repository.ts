@@ -1,4 +1,5 @@
 import { type FileSystem, Path } from "@effect/platform";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
@@ -30,14 +31,16 @@ function recordSelectedPath(
 /** Selects only an exact realpath-backed document and its registry closure. */
 export const selectPreviewDocument: (
   aksaraRoot: string,
-  requestedPath: string
+  requestedPath: string,
+  appLocale?: AppLocale
 ) => Effect.Effect<
   SelectedDocument,
   PreviewRepositoryError | PreviewRestartError,
   FileSystem.FileSystem | Path.Path
 > = Effect.fn("AksaraCli.selectPreviewDocument")(function* (
   aksaraRoot: string,
-  requestedPath: string
+  requestedPath: string,
+  appLocale?: AppLocale
 ) {
   const path = yield* Path.Path;
   const absolutePath = path.resolve(aksaraRoot, requestedPath);
@@ -52,13 +55,20 @@ export const selectPreviewDocument: (
       reason: "registry",
     });
   }
-  const selection = yield* selectCorpusDocument(aksaraRoot, relativePath).pipe(
+  const selection = yield* selectCorpusDocument(
+    aksaraRoot,
+    relativePath,
+    appLocale
+  ).pipe(
     Effect.mapError(
-      () =>
+      (cause) =>
         new PreviewRepositoryError({
           kind: "document",
           path: requestedPath,
-          reason: "registry",
+          reason:
+            cause._tag === "PreviewSelectionError" && cause.reason === "locale"
+              ? "app-locale"
+              : "registry",
         })
     )
   );

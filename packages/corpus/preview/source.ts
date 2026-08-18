@@ -1,4 +1,5 @@
 import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import type {
   ArticlePreviewDocument,
   MaterialPreviewDocument,
@@ -38,8 +39,9 @@ export interface MaterialPreviewSource {
   readonly family: "material";
 }
 
-/** One selected question body owned by the active try-out projection. */
+/** One selected question body owned by the authored question corpus. */
 export interface QuestionPreviewSource {
+  readonly appLocale: AppLocale;
   readonly dependencies: readonly [PreviewDependency, ...PreviewDependency[]];
   readonly directories: readonly [PreviewDirectory];
   readonly entry: QuestionEntry;
@@ -75,7 +77,7 @@ export type PreviewSelection =
 export class PreviewSelectionError extends Schema.TaggedError<PreviewSelectionError>()(
   "PreviewSelectionError",
   {
-    reason: Schema.Literal("missing", "path"),
+    reason: Schema.Literal("locale", "missing", "path"),
     sourcePath: Schema.String,
   }
 ) {}

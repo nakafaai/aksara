@@ -3,15 +3,15 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "the word *discovered* in sentence $$(3)$$.",
+      label: "the word *recovered* in sentence $$(3)$$.",
       value: false,
     },
     {
-      label: "the word *date back* in sentence $$(4)$$.",
+      label: "the word *date* in sentence $$(4)$$.",
       value: false,
     },
     {
-      label: "the word *finding* in sentence $$(5)$$.",
+      label: "the word *samples* in sentence $$(5)$$.",
       value: false,
     },
     {
@@ -19,7 +19,7 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "the word *suffered* in sentence $$(8)$$.",
+      label: "the word *circulated* in sentence $$(8)$$.",
       value: false,
     },
   ],
@@ -29,11 +29,11 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "kata *tertanggal* pada kalimat $$(4)$$.",
+      label: "kata *hidup* pada kalimat $$(4)$$.",
       value: false,
     },
     {
-      label: "kata *temuan* pada kalimat $$(5)$$.",
+      label: "kata *sampel* pada kalimat $$(5)$$.",
       value: false,
     },
     {
@@ -41,7 +41,7 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "kata *menderita* pada kalimat $$(8)$$.",
+      label: "kata *beredar* pada kalimat $$(8)$$.",
       value: false,
     },
   ],

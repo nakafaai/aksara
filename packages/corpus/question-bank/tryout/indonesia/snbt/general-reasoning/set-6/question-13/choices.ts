@@ -3,55 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "There are several countries that retaliate by complicating the entry of exports from Indonesia into the countries concerned.",
+      label: "Trading partners have already restricted the country's exports.",
+      value: false,
+    },
+    {
+      label: "A trade ruling directly caused the farm-gate price decline.",
       value: false,
     },
     {
       label:
-        "Chicken farmers lost money because chicken prices in the market collapsed caused by Indonesia's defeat against Brazil.",
+        "Retaliation is the only factor that determines the trade balance.",
       value: false,
     },
     {
       label:
-        "Trade balance performance is determined by retaliation against exports which complicates exports from Indonesia to several countries.",
+        "The proposed chicken imports have already entered the local market.",
       value: false,
     },
-    {
-      label:
-        "Retaliation carried out by several countries against Indonesia affects Indonesia's trade balance performance.",
-      value: false,
-    },
-    {
-      label: "Independent chicken farmers experienced losses.",
-      value: true,
-    },
+    { label: "Independent chicken farmers suffered losses.", value: true },
   ],
   id: [
     {
-      label:
-        "Terdapat beberapa negara yang melakukan retaliasi dengan cara menyulitkan ekspor asal Indonesia masuk ke negara-negara bersangkutan.",
+      label: "Mitra dagang telah membatasi ekspor negara tersebut.",
       value: false,
     },
     {
       label:
-        "Peternak ayam merugi karena harga ayam di pasaran ambruk yang disebabkan oleh kekalahan Indonesia terhadap Brasil.",
+        "Sebuah putusan dagang secara langsung menyebabkan penurunan harga di tingkat peternak.",
       value: false,
     },
     {
       label:
-        "Kinerja neraca perdagangan ditentukan oleh retaliasi terhadap ekspor yang menyulitkan ekspor asal Indonesia ke beberapa negara.",
+        "Retaliasi merupakan satu-satunya faktor yang menentukan neraca perdagangan.",
       value: false,
     },
     {
-      label:
-        "Retaliasi yang dilakukan oleh beberapa negara terhadap Indonesia memengaruhi kinerja neraca perdagangan Indonesia.",
+      label: "Impor ayam yang diusulkan telah masuk ke pasar lokal.",
       value: false,
     },
-    {
-      label: "Para peternak ayam mandiri mengalami kerugian.",
-      value: true,
-    },
+    { label: "Peternak ayam mandiri mengalami kerugian.", value: true },
   ],
 };
 

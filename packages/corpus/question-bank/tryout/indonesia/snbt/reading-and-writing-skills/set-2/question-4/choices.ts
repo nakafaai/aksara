@@ -3,45 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Climbers' temperature balance.",
+      label: "Hypothermia only threatens people outdoors in mountains.",
       value: false,
     },
     {
-      label: "The climbers' worries.",
+      label: "Shivering is the only reliable sign of hypothermia.",
       value: false,
     },
     {
-      label: "Hypothermia can be deadly.",
+      label:
+        "Hypothermia is a medical emergency that requires prompt and safe action.",
       value: true,
     },
     {
-      label: "Climbers' temperature below normal.",
+      label: "Direct heat is the best way to treat hypothermia.",
       value: false,
     },
     {
-      label: "Prohibition of wearing tight clothes.",
+      label: "A person who remains awake does not need medical help.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Keseimbangan suhu pendaki.",
+      label: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
       value: false,
     },
     {
-      label: "Kekhawatiran para pendaki.",
+      label:
+        "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
       value: false,
     },
     {
-      label: "Hipotermia dapat mematikan.",
+      label:
+        "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
       value: true,
     },
     {
-      label: "Suhu pendaki di bawah normal.",
+      label:
+        "Panas langsung merupakan cara terbaik untuk menangani hipotermia.",
       value: false,
     },
     {
-      label: "Larangan memakai baju ketat.",
+      label: "Orang yang masih sadar tidak memerlukan pertolongan medis.",
       value: false,
     },
   ],

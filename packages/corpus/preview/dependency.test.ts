@@ -97,6 +97,7 @@ describe("source dependencies", () => {
       "packages/corpus/articles/politics/category.ts",
       "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
       "packages/corpus/articles/schema.ts",
+      "packages/corpus/locale/source.ts",
     ]);
     expect(material).toEqual(
       expect.arrayContaining([

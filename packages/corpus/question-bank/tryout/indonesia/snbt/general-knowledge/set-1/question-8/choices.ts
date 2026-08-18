@@ -11,7 +11,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "gradual change.",
+      label: "change in viral lineages across generations.",
       value: true,
     },
     {
@@ -33,7 +33,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "perubahan secara bertahap.",
+      label: "perubahan garis keturunan virus dari generasi ke generasi.",
       value: true,
     },
     {

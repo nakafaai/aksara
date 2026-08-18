@@ -2,30 +2,50 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "It uses a different sealing method from Group A.", value: false },
     {
-      label: "Has a method of reproduction that is not the same as poultry.",
+      label: "It has all the same characteristics as packages in Group A.",
       value: false,
     },
-    { label: "Has the same characteristics as poultry.", value: false },
     {
-      label: "Has the same method of reproduction as poultry.",
+      label: "It uses the same sealing method as packages in Group A.",
       value: true,
     },
-    { label: "Has the same eggs as the poultry group.", value: false },
-    { label: "Has the same way of laying eggs as poultry.", value: false },
+    {
+      label: "It has the same serial number as packages in Group A.",
+      value: false,
+    },
+    {
+      label: "It passed the same inspections as packages in Group A.",
+      value: false,
+    },
   ],
   id: [
     {
-      label: "Memiliki cara berkembang biak yang tidak sama dengan unggas.",
+      label:
+        "Paket itu menggunakan cara penyegelan yang berbeda dari Kelompok A.",
       value: false,
     },
-    { label: "Memiliki ciri-ciri yang sama dengan unggas.", value: false },
     {
-      label: "Memiliki cara berkembang biak yang sama dengan unggas.",
+      label:
+        "Paket itu memiliki semua ciri yang sama dengan paket dalam Kelompok A.",
+      value: false,
+    },
+    {
+      label:
+        "Paket itu menggunakan cara penyegelan yang sama dengan paket dalam Kelompok A.",
       value: true,
     },
-    { label: "Memiliki telur yang sama dengan golongan unggas.", value: false },
-    { label: "Memiliki cara bertelur yang sama dengan unggas.", value: false },
+    {
+      label:
+        "Paket itu memiliki nomor seri yang sama dengan paket dalam Kelompok A.",
+      value: false,
+    },
+    {
+      label:
+        "Paket itu telah melalui pemeriksaan yang sama dengan paket dalam Kelompok A.",
+      value: false,
+    },
   ],
 };
 

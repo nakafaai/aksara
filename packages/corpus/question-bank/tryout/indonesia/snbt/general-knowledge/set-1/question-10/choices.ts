@@ -11,7 +11,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "decrease.",
+      label: "decreased.",
       value: true,
     },
     {

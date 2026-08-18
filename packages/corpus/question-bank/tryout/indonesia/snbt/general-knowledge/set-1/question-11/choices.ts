@@ -3,7 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "unclarity.",
+      label: "lack of clarity.",
       value: true,
     },
     {

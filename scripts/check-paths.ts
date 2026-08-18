@@ -37,7 +37,7 @@ const MATERIAL_LESSON_PREFIX = ["packages", "corpus", "material", "lesson"];
 const QUESTION_BANK_PREFIX = ["packages", "corpus", "question-bank", "tryout"];
 const QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
 const QUESTION_SOURCE_PATTERN =
-  /^(?:choices\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
+  /^(?:choices(?:\.[a-z]{2,3}(?:-[a-z0-9]+)*)?\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
 const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 /** Returns the semantic words in one file or folder name. */

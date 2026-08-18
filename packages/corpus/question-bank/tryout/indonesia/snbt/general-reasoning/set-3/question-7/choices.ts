@@ -4,52 +4,52 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "It is difficult to recover state losses due to the reduction in minimum fine provisions for corruptors.",
+        "Lower minimum fines would make it harder to recover state losses.",
       value: false,
     },
     {
       label:
-        "The deterrent effect for corruptors is decreasing and it is difficult to recover state losses.",
+        "The lighter provisions would weaken deterrence and make the recovery of state losses more difficult.",
       value: false,
     },
     {
       label:
-        "Some articles of the RKUHP are lighter than the Corruption Law and corruption in Indonesia is decreasing.",
+        "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
       value: true,
     },
     {
-      label: "A number of RKUHP articles are lighter than the Corruption Law.",
+      label: "Several provisions are more lenient than the Corruption Law.",
       value: false,
     },
     {
       label:
-        "All RKUHP articles are heavier than the Corruption Law or corruption in Indonesia is becoming more rampant.",
+        "The lighter provisions were expected to reduce deterrence and make corruption more widespread.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Sulitnya mengembalikan kerugian negara karena berkurangnya ketentuan minimum denda bagi koruptor.",
+        "Penurunan denda minimum akan mempersulit pengembalian kerugian negara.",
       value: false,
     },
     {
       label:
-        "Efek jera bagi koruptor semakin berkurang dan sulit mengembalikan kerugian negara.",
+        "Ketentuan yang lebih ringan akan mengurangi efek jera dan mempersulit pengembalian kerugian negara.",
       value: false,
     },
     {
       label:
-        "Beberapa pasal RKUHP lebih ringan dibandingkan UU Tipikor dan korupsi di Indonesia berkurang.",
+        "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
       value: true,
     },
     {
-      label: "Sejumlah pasal-pasal RKUHP lebih ringan dibandingkan UU Tipikor.",
+      label: "Sejumlah ketentuan lebih ringan daripada UU Tipikor.",
       value: false,
     },
     {
       label:
-        "Semua pasal RKUHP lebih berat dibandingkan UU Tipikor atau korupsi di Indonesia semakin marak.",
+        "Ketentuan yang lebih ringan diperkirakan akan mengurangi efek jera dan membuat korupsi semakin marak.",
       value: false,
     },
   ],

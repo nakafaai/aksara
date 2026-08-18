@@ -6,14 +6,50 @@ import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
 const HISTORICAL_LOCALE_MODULE = "packages/contracts/src/history/locale.ts";
+const EMBEDDED_LOCALE_MODULE = "packages/corpus/locale/source.ts";
 const LOCALE_POLICY_SCRIPT = "scripts/check-locales.ts";
 const LOCALE_VOCABULARY_MODULES = new Set([
+  EMBEDDED_LOCALE_MODULE,
   HISTORICAL_LOCALE_MODULE,
   LOCALE_CONTRACT_MODULE,
   LOCALE_POLICY_SCRIPT,
 ]);
 const TEST_SOURCE_PATTERN = /(?:^|\/)(?:test|tests)(?:\/|$)|\.test\.[^.]+$/u;
-const localeCodes = new Set(["de", "en", "id"]);
+
+/** Reads the canonical current locale vocabulary from its contract declaration. */
+export function contractLocaleCodes(
+  sourceText = readFileSync(LOCALE_CONTRACT_MODULE, "utf8")
+) {
+  const sourceFile = ts.createSourceFile(
+    LOCALE_CONTRACT_MODULE,
+    sourceText,
+    ts.ScriptTarget.Latest,
+    true
+  );
+  for (const statement of sourceFile.statements) {
+    if (!ts.isVariableStatement(statement)) {
+      continue;
+    }
+    for (const declaration of statement.declarationList.declarations) {
+      if (
+        ts.isIdentifier(declaration.name) &&
+        declaration.name.text === "AppLocaleCodeSchema" &&
+        declaration.initializer !== undefined &&
+        isSchemaCall(declaration.initializer, "Literal")
+      ) {
+        const codes = declaration.initializer.arguments
+          .filter(ts.isStringLiteralLike)
+          .map(({ text }) => text);
+        if (codes.length > 0) {
+          return new Set(codes);
+        }
+      }
+    }
+  }
+  throw new Error("The canonical app-locale contract could not be decoded.");
+}
+
+const localeCodes = contractLocaleCodes();
 
 /** Returns a statically declared locale code from one syntax node. */
 function localeCode(node: ts.Node): string | undefined {
@@ -40,6 +76,31 @@ function declaredLocaleCodes(nodes: readonly ts.Node[]) {
   return new Set(nodes.map(localeCode).filter((value) => value !== undefined));
 }
 
+/** Detects a Schema.keyof object that declares a second locale vocabulary. */
+function duplicatedLocaleKeyof(node: ts.Node) {
+  if (!isSchemaCall(node, "keyof")) {
+    return false;
+  }
+  const [schema] = node.arguments;
+  if (!(schema && isSchemaCall(schema, "Struct"))) {
+    return false;
+  }
+  const [fields] = schema.arguments;
+  if (!(fields && ts.isObjectLiteralExpression(fields))) {
+    return false;
+  }
+  const names = fields.properties.flatMap(({ name }) => {
+    if (name === undefined) {
+      return [];
+    }
+    if (ts.isIdentifier(name) || ts.isStringLiteralLike(name)) {
+      return localeCodes.has(name.text) ? [name.text] : [];
+    }
+    return [];
+  });
+  return new Set(names).size >= 2;
+}
+
 /** Detects one duplicated schema or type-level locale vocabulary. */
 function duplicatedLocaleVocabulary(node: ts.Node) {
   if (ts.isUnionTypeNode(node)) {
@@ -47,6 +108,9 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
   }
   if (isSchemaCall(node, "Literal")) {
     return declaredLocaleCodes(node.arguments).size >= 2;
+  }
+  if (duplicatedLocaleKeyof(node)) {
+    return true;
   }
   if (!isSchemaCall(node, "Union")) {
     return false;

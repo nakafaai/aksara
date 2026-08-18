@@ -2,53 +2,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "Tempeh contains more energy than fatty beef", value: false },
     {
-      label: "Tempeh has higher energy content compared to beef",
-      value: false,
-    },
-    {
-      label: "Tempeh has little nutritional content compared to beef",
-      value: false,
-    },
-    {
-      label: "Beef has many nutritional advantages compared to tempeh",
+      label:
+        "Fatty beef contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than tempeh",
       value: false,
     },
     {
       label:
-        "Protein content in tempeh is $$3.3 \\%$$ greater than protein content in beef",
+        "Tempeh contains $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than fatty beef",
+      value: false,
+    },
+    {
+      label:
+        "Tempeh contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than fatty beef",
       value: true,
     },
     {
       label:
-        "Fat content in beef is $$12.2 \\%$$ greater than fat content in tempeh",
+        "Fatty beef contains $$12.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than tempeh",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Tempe memiliki kandungan energi lebih tinggi dibandingkan daging sapi",
+      label: "Tempe mengandung energi lebih tinggi daripada daging sapi gemuk",
       value: false,
     },
     {
       label:
-        "Tempe memiliki sedikit kandungan nutrisi dibandingkan daging sapi",
+        "Daging sapi gemuk mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
       value: false,
     },
     {
       label:
-        "Daging sapi memiliki banyak keunggulan nutrisi dibandingkan tempe",
+        "Tempe mengandung lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
       value: false,
     },
     {
       label:
-        "Kandungan protein dalam tempe lebih besar $$3{,}3 \\%$$ dibandingkan kandungan protein dalam daging sapi",
+        "Tempe mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
       value: true,
     },
     {
       label:
-        "Kandungan lemak dalam sapi lebih besar $$12{,}2 \\%$$ dibandingkan kandungan lemak dalam tempe",
+        "Daging sapi gemuk mengandung lemak $$12{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
       value: false,
     },
   ],

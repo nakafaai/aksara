@@ -1,128 +1,76 @@
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
 import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
-import type {
-  QuestionAnswerPreviewDocument,
-  QuestionPromptPreviewDocument,
-} from "@nakafa/aksara-contracts/preview/document";
+  type AppLocale,
+  artifactLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
+import { questionArtifactLocaleForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect } from "effect";
-import type {
-  PreviewSelection,
-  QuestionPreviewSource,
-} from "#corpus/preview/source";
-import { restartDependencies } from "#corpus/preview/topology";
+import { AUTHORING_APP_LOCALES, appLocaleCode } from "#corpus/locale/source";
+import { selectQuestionContentPreview } from "#corpus/preview/question-selection";
+import { PreviewSelectionError } from "#corpus/preview/source";
+import type { QuestionEntry } from "#corpus/question-bank/content";
 import { selectQuestionContent } from "#corpus/question-bank/content";
-import { questionSourceFiles } from "#corpus/question-bank/path";
-import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
-import { selectTryoutTarget } from "#corpus/tryout/target";
 
-const QUESTION_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/tryout/registry.ts"
-);
+/** Resolves one honest shell locale without conflating it with prompt bytes. */
+const resolvePreviewAppLocale = Effect.fn(
+  "AksaraCorpus.resolveQuestionPreviewAppLocale"
+)(function* (entry: QuestionEntry, requested?: AppLocale) {
+  const { sectionKey } = questionKeyParts(entry.questionKey);
+  const compatible = AUTHORING_APP_LOCALES.filter((appLocale) => {
+    if (entry.bodyKind === "answer") {
+      return (
+        artifactLocaleCode(entry.artifactLocale) === appLocaleCode(appLocale)
+      );
+    }
+    return (
+      artifactLocaleCode(entry.artifactLocale) ===
+      artifactLocaleCode(
+        questionArtifactLocaleForSection(sectionKey, appLocale)
+      )
+    );
+  });
+  if (requested !== undefined && compatible.includes(requested)) {
+    return requested;
+  }
+  const [only] = compatible;
+  if (
+    requested === undefined &&
+    compatible.length === 1 &&
+    only !== undefined
+  ) {
+    return only;
+  }
+  return yield* new PreviewSelectionError({
+    reason: "locale",
+    sourcePath: entry.sourcePath,
+  });
+});
 
 /** Selects one active prompt or ordered prompt-answer preview closure. */
 export const selectQuestion = Effect.fn("AksaraCorpus.selectPreviewQuestion")(
-  function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
+  function* (
+    corpusRoot: string,
+    sourcePath: CorpusSourcePath,
+    requestedAppLocale?: AppLocale
+  ) {
     const sources = yield* decodeTryoutRegistry();
     const content = yield* selectQuestionContent(
       corpusRoot,
       sources,
       sourcePath
     );
-    const catalog = yield* projectTryoutCatalog(sources);
     const { selected } = content;
-    const target = yield* selectTryoutTarget(
-      catalog,
-      sources,
+    const previewAppLocale = yield* resolvePreviewAppLocale(
       selected,
-      content.source
+      requestedAppLocale
     );
-    const sourceModule = CorpusSourcePathSchema.make(
-      `packages/corpus/tryout/${target.exam.countryKey}/${target.exam.examKey}/source.ts`
+    return yield* selectQuestionContentPreview(
+      corpusRoot,
+      content,
+      previewAppLocale,
+      sources
     );
-    const dependencies = [
-      {
-        mode: "reload",
-        sourcePath: CorpusSourcePathSchema.make(
-          `${selected.sourceRoot}/choices.ts`
-        ),
-      },
-      { mode: "restart", sourcePath: QUESTION_OWNER },
-      ...(yield* restartDependencies(corpusRoot, sourceModule)),
-    ] satisfies QuestionPreviewSource["dependencies"];
-    const directories = [
-      {
-        files: questionSourceFiles(
-          questionKeyParts(content.source.questionKey).sectionKey
-        ),
-        sourcePath: selected.sourceRoot,
-      },
-    ] satisfies QuestionPreviewSource["directories"];
-    if (selected.bodyKind === "question") {
-      const document = {
-        delivery: selected.delivery,
-        family: "question",
-        identity: {
-          artifactLocale: selected.artifactLocale,
-          bodyKind: selected.bodyKind,
-          contentKey: selected.contentKey,
-          peerContentKey: selected.peerContentKey,
-          questionKey: selected.questionKey,
-          questionNumber: selected.questionNumber,
-          setKey: selected.setKey,
-        },
-        rendererDomain: selected.rendererDomain,
-        sourcePath: selected.sourcePath,
-        target,
-      } satisfies QuestionPromptPreviewDocument;
-      return {
-        document,
-        sources: [
-          {
-            dependencies,
-            directories,
-            entry: selected,
-            family: "question",
-          },
-        ],
-      } satisfies PreviewSelection;
-    }
-    const [prompt] = content.entries;
-    const document = {
-      delivery: selected.delivery,
-      family: "question",
-      identity: {
-        artifactLocale: selected.artifactLocale,
-        bodyKind: selected.bodyKind,
-        contentKey: selected.contentKey,
-        peerContentKey: selected.peerContentKey,
-        questionKey: selected.questionKey,
-        questionNumber: selected.questionNumber,
-        setKey: selected.setKey,
-      },
-      rendererDomain: selected.rendererDomain,
-      sourcePath: selected.sourcePath,
-      target,
-    } satisfies QuestionAnswerPreviewDocument;
-    return {
-      document,
-      sources: [
-        {
-          dependencies,
-          directories,
-          entry: prompt,
-          family: "question",
-        },
-        {
-          dependencies,
-          directories,
-          entry: selected,
-          family: "question",
-        },
-      ],
-    } satisfies PreviewSelection;
   }
 );

@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The wooden logs are tightly *tied*.",
+      label: "The gate remained *locked* after sunset.",
       value: true,
     },
     {
-      label: "His foot was *stepped on* while watching the concert last night.",
+      label: "The guard *locked* the gate at sunset.",
       value: false,
     },
     {
-      label: "Arman became the *best* student in the class.",
+      label: "It was the *coldest* morning of the month.",
       value: false,
     },
     {
-      label: "He *fell asleep* on the sofa last night.",
+      label: "Visitors were *waiting* outside the gate.",
       value: false,
     },
     {
-      label: "Dian became the *youngest* participant in the event.",
+      label: "The notice was *read* by every visitor.",
       value: false,
     },
   ],

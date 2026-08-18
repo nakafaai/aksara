@@ -4,54 +4,48 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "there are serious efforts and strong commitment from the government reflected in the total expenditure on agricultural production facilities and infrastructure reaching $$70\\%$$ of the total Ministry of Agriculture budget.",
+        "It was the share of the ministry's total budget spent on agricultural production facilities and infrastructure.",
       value: true,
     },
     {
-      label:
-        "there must be a comprehensive effort between the government and farmers in aligning strong commitments to be able to exceed $$70\\%$$.",
+      label: "It was the share of the budget left for other ministry needs.",
       value: false,
     },
     {
-      label:
-        "laws restricting imports can significantly increase the amount of domestic production.",
+      label: "It was the reported increase in rice production.",
       value: false,
     },
     {
-      label:
-        "the best program from the government is needed significantly and directed so that the government's export level is achieved.",
+      label: "It was the reported increase in corn production.",
       value: false,
     },
     {
-      label:
-        "cooperation between farmers and the government must be sustainable based on clear laws in accordance with their vocation.",
+      label: "It was the share of the budget used only to regulate imports.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "adanya upaya serius dan komitmen kuat pemerintah tecermin dari total belanja sarana dan prasarana produksi pertanian yang mencapai $$70\\%$$ dari total anggaran Kemtan.",
+        "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
       value: true,
     },
     {
       label:
-        "harus ada upaya menyeluruh antara pemerintah dan petani dalam menyelaraskan komitmen yang kuat hingga mampu melebihi $$70\\%$$.",
+        "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
+      value: false,
+    },
+    {
+      label: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
+      value: false,
+    },
+    {
+      label: "Angka itu merupakan kenaikan produksi jagung yang dilaporkan.",
       value: false,
     },
     {
       label:
-        "undang-undang yang membatasi impor dapat meningkatkan jumlah produksi dalam negeri secara signifikan.",
-      value: false,
-    },
-    {
-      label:
-        "perlu program terbaik dari pemerintah secara signifikan dan terarah agar tingkat ekspor pemerintah tercapai.",
-      value: false,
-    },
-    {
-      label:
-        "kerja sama petani dan pemerintah harus berkesinambungan yang didasarkan atas hukum yang jelas sesuai dengan vokasinya.",
+        "Angka itu merupakan bagian anggaran yang hanya digunakan untuk mengatur impor.",
       value: false,
     },
   ],

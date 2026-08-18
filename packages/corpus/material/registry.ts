@@ -11,28 +11,40 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
+  type ActiveAppLocaleList,
+  type AppLocale,
   AppLocaleSchema,
   ArtifactLocaleSchema,
-  activeAppLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import {
   MaterialKeySchema,
   MaterialLessonRouteSchema,
 } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema } from "effect";
-
+import {
+  appLocaleCode,
+  localeOverlayAppLocaleCode,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
   type MaterialDomainDescriptor,
   MaterialDomainDescriptorSchema,
   requireMaterialDomain,
 } from "#corpus/material/domain";
+import {
+  decodeMaterialLocaleCatalog,
+  type MaterialLocaleCatalog,
+  MaterialLocaleCatalogSchema,
+  requireMaterialLocaleBinding,
+} from "#corpus/material/locale";
+import { validateMaterialLocaleCatalog } from "#corpus/material/locale-catalog";
 import { materialLessonPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
 
-const MaterialEntrySchema = Schema.Struct({
+export const MaterialEntrySchema = Schema.Struct({
   assetRoot: LessonMaterialSourceSchema.fields.assetRoot,
   delivery: Schema.Literal("public"),
   rendererDomain: MaterialDomainDescriptorSchema.fields.rendererDomain,
@@ -41,7 +53,7 @@ const MaterialEntrySchema = Schema.Struct({
 });
 export type MaterialEntry = typeof MaterialEntrySchema.Type;
 
-interface MaterialSourceBinding {
+export interface MaterialSourceBinding {
   readonly descriptor: MaterialDomainDescriptor;
   readonly source: LessonMaterialSource;
 }
@@ -82,134 +94,175 @@ export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()
   }
 ) {}
 
-/** Expands one decoded material source into its locale-specific lesson bodies. */
-const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
-  binding: MaterialSourceBinding
-) {
-  const { descriptor, source } = binding;
-  const sections = yield* Effect.forEach(
-    source.sections,
-    (section, sectionIndex) =>
-      Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
-        Effect.gen(function* () {
-          const appLocaleCode = activeAppLocaleCode(appLocale);
-          const contentKey = `${source.assetRoot}/${section.slug}`;
-          const publicPath = materialLessonPath(
-            source,
-            section,
-            descriptor,
-            appLocale
-          );
-          const graph = yield* makeLearningGraphIdentity({
-            appLocale,
-            concept: ["material", "lesson", source.domain, source.slug],
-            learningObject: [
-              "material-section",
-              source.domain,
-              source.slug,
-              section.slug,
-            ],
-            lens: ["material", "lesson", source.domain],
-          });
+/** Projects one decoded material section into one exact app locale. */
+export const projectMaterial = Effect.fn("AksaraCorpus.projectMaterial")(
+  function* (
+    binding: MaterialSourceBinding,
+    section: LessonMaterialSource["sections"][number],
+    sectionIndex: number,
+    appLocale: AppLocale
+  ) {
+    const { descriptor, source } = binding;
+    const localeCode = appLocaleCode(appLocale);
+    const owner = `${source.key}:${section.slug}:${localeCode}`;
+    const [publicPath, translation] = yield* Effect.all(
+      [
+        materialLessonPath(source, section, descriptor, appLocale),
+        requireSourceLocale(source.translations, appLocale, owner),
+      ],
+      { concurrency: 2 }
+    );
+    const contentKey = `${source.assetRoot}/${section.slug}`;
+    const graph = yield* makeLearningGraphIdentity({
+      appLocale,
+      concept: ["material", "lesson", source.domain, source.slug],
+      learningObject: [
+        "material-section",
+        source.domain,
+        source.slug,
+        section.slug,
+      ],
+      lens: ["material", "lesson", source.domain],
+    });
+    return {
+      assetRoot: source.assetRoot,
+      delivery: "public",
+      rendererDomain: descriptor.rendererDomain,
+      route: {
+        appLocale,
+        artifactLocale: appLocale,
+        contentKey,
+        graph,
+        materialKey: source.key,
+        order: sectionIndex + 1,
+        publicPath,
+        sectionKey: section.slug,
+        topicTitle: translation.title,
+      },
+      sourcePath: `packages/corpus/${contentKey}/${localeCode}.mdx`,
+    };
+  }
+);
 
-          return {
-            assetRoot: source.assetRoot,
-            delivery: "public",
-            rendererDomain: descriptor.rendererDomain,
-            route: {
-              appLocale,
-              artifactLocale: appLocale,
-              contentKey,
-              graph,
-              materialKey: source.key,
-              order: sectionIndex + 1,
-              publicPath,
-              sectionKey: section.slug,
-              topicTitle: source.translations[appLocaleCode].title,
-            },
-            sourcePath: `packages/corpus/${contentKey}/${appLocaleCode}.mdx`,
-          };
-        })
-      )
+/** Expands one decoded material source into active locale-specific bodies. */
+const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
+  binding: MaterialSourceBinding,
+  localeCatalog: MaterialLocaleCatalog,
+  appLocales: ActiveAppLocaleList
+) {
+  const sections = yield* Effect.forEach(appLocales, (appLocale) =>
+    Effect.gen(function* () {
+      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
+      const projectionBinding =
+        overlayLocale === undefined
+          ? binding
+          : yield* requireMaterialLocaleBinding(
+              binding.descriptor,
+              binding.source,
+              localeCatalog,
+              overlayLocale
+            );
+      return yield* Effect.forEach(
+        projectionBinding.source.sections,
+        (section, sectionIndex) =>
+          projectMaterial(projectionBinding, section, sectionIndex, appLocale)
+      );
+    })
   );
   return sections.flat();
 });
 
 /** Rejects repeated source identities before projecting lesson bodies. */
-const validateSources = Effect.fn("AksaraCorpus.validateMaterialSources")(
-  function* (
-    sources: readonly LessonMaterialSource[],
-    descriptors: readonly MaterialDomainDescriptor[]
-  ) {
-    const keys = new Set<string>();
-    const roots = new Set<string>();
-    const bindings: MaterialSourceBinding[] = [];
+export const validateMaterialSources = Effect.fn(
+  "AksaraCorpus.validateMaterialSources"
+)(function* (
+  sources: readonly LessonMaterialSource[],
+  descriptors: readonly MaterialDomainDescriptor[]
+) {
+  const keys = new Set<string>();
+  const roots = new Set<string>();
+  const bindings: MaterialSourceBinding[] = [];
 
-    for (const source of sources) {
-      if (keys.has(source.key)) {
-        return yield* new MaterialKeyError({ materialKey: source.key });
-      }
-      keys.add(source.key);
-
-      if (roots.has(source.assetRoot)) {
-        return yield* new MaterialRootError({ assetRoot: source.assetRoot });
-      }
-      roots.add(source.assetRoot);
-      const descriptor = yield* requireMaterialDomain(
-        descriptors,
-        source.domain,
-        source.key
-      );
-      bindings.push({ descriptor, source });
+  for (const source of sources) {
+    if (keys.has(source.key)) {
+      return yield* new MaterialKeyError({ materialKey: source.key });
     }
+    keys.add(source.key);
 
-    return bindings;
+    if (roots.has(source.assetRoot)) {
+      return yield* new MaterialRootError({ assetRoot: source.assetRoot });
+    }
+    roots.add(source.assetRoot);
+    const descriptor = yield* requireMaterialDomain(
+      descriptors,
+      source.domain,
+      source.key
+    );
+    bindings.push({ descriptor, source });
   }
-);
+
+  return bindings;
+});
 
 /** Rejects duplicate content heads and public routes after source expansion. */
-const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
-  function* (entries: readonly MaterialEntry[]) {
-    const heads = new Set<string>();
-    const routes = new Set<string>();
+export const validateMaterialEntries = Effect.fn(
+  "AksaraCorpus.validateMaterialEntries"
+)(function* (entries: readonly MaterialEntry[]) {
+  const heads = new Set<string>();
+  const routes = new Set<string>();
 
-    for (const entry of entries) {
-      const head = headIdentity(entry.route);
-      if (heads.has(head)) {
-        return yield* new MaterialIdentityError({
-          artifactLocale: entry.route.artifactLocale,
-          contentKey: entry.route.contentKey,
-        });
-      }
-      heads.add(head);
-
-      const route = routeIdentity(entry.route);
-      if (routes.has(route)) {
-        return yield* new MaterialRouteError({
-          appLocale: entry.route.appLocale,
-          publicPath: entry.route.publicPath,
-        });
-      }
-      routes.add(route);
+  for (const entry of entries) {
+    const head = headIdentity(entry.route);
+    if (heads.has(head)) {
+      return yield* new MaterialIdentityError({
+        artifactLocale: entry.route.artifactLocale,
+        contentKey: entry.route.contentKey,
+      });
     }
+    heads.add(head);
 
-    return [...entries].sort((left, right) =>
-      compareContentHeads(left.route, right.route)
-    );
+    const route = routeIdentity(entry.route);
+    if (routes.has(route)) {
+      return yield* new MaterialRouteError({
+        appLocale: entry.route.appLocale,
+        publicPath: entry.route.publicPath,
+      });
+    }
+    routes.add(route);
   }
-);
+
+  return [...entries].sort((left, right) =>
+    compareContentHeads(left.route, right.route)
+  );
+});
 
 /** Returns every canonical locale-specific body from the real source catalog. */
 export const decodeMaterialRegistry = Effect.fn(
   "AksaraCorpus.decodeMaterialRegistry"
 )(function* (
   input?: unknown,
-  domainDescriptors?: readonly MaterialDomainDescriptor[]
+  domainDescriptors?: readonly MaterialDomainDescriptor[],
+  localeInput?: unknown,
+  appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
-  const bindings = yield* validateSources(sources, descriptors);
-  const expanded = yield* Effect.forEach(bindings, expandMaterial);
+  const bindings = yield* validateMaterialSources(sources, descriptors);
+  const needsLocaleOverlays = appLocales.some(
+    (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
+  );
+  const localeCatalog =
+    needsLocaleOverlays || localeInput !== undefined
+      ? yield* decodeMaterialLocaleCatalog(descriptors, localeInput)
+      : MaterialLocaleCatalogSchema.make({ domains: [], sources: [] });
+  yield* validateMaterialLocaleCatalog({
+    catalog: localeCatalog,
+    descriptors,
+    sources,
+  });
+  const expanded = yield* Effect.forEach(bindings, (binding) =>
+    expandMaterial(binding, localeCatalog, appLocales)
+  );
 
   const entries = yield* Schema.decodeUnknown(
     Schema.Array(MaterialEntrySchema)
@@ -222,5 +275,5 @@ export const decodeMaterialRegistry = Effect.fn(
     )
   );
 
-  return yield* validateEntries(entries);
+  return yield* validateMaterialEntries(entries);
 });

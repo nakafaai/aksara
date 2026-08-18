@@ -3,49 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Kidney stone formation is largely caused by tomato consumption.",
+      label: "All $$120$$ tomato seedlings survived the first month.",
+      value: false,
+    },
+    {
+      label: "All $$96$$ surviving seedlings produced new leaves.",
       value: false,
     },
     {
       label:
-        "Although tomatoes potentially cause kidney stones, they can also worsen digestion.",
+        "The report proved that the surviving seedlings were disease-free.",
       value: false,
     },
     {
-      label:
-        "The oxalate acid content in tomatoes potentially increases blood sugar levels.",
-      value: false,
+      label: "$$72$$ of the surviving seedlings produced new leaves.",
+      value: true,
     },
-    { label: "Consuming tomatoes can help someone avoid cancer.", value: true },
     {
-      label:
-        "Tomatoes are widely consumed because they have relatively low calories.",
+      label: "The surviving seedlings produced more fruit than the others.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Pembentukan batu ginjal sebagian besar disebabkan karena konsumsi tomat.",
+      label: "Seluruh $$120$$ bibit tomat bertahan hidup selama bulan pertama.",
+      value: false,
+    },
+    {
+      label: "Seluruh $$96$$ bibit yang bertahan hidup menghasilkan daun baru.",
       value: false,
     },
     {
       label:
-        "Walaupun tomat berpotensi menyebabkan batu ginjal, tomat juga dapat memperburuk pencernaan.",
+        "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
       value: false,
     },
     {
       label:
-        "Kandungan asam oksalat pada tomat berpotensi meningkatkan kadar gula darah.",
-      value: false,
-    },
-    {
-      label: "Mengonsumsi tomat dapat membuat seseorang terhindar dari kanker.",
+        "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
       value: true,
     },
     {
       label:
-        "Buah tomat banyak dikonsumsi karena memiliki kalori yang relatif rendah.",
+        "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
       value: false,
     },
   ],

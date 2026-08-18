@@ -4,53 +4,53 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "If illegal sand mining does not occur then the watershed is damaged.",
+        "Stopping illegal tin mining would necessarily damage the watershed.",
       value: false,
     },
     {
       label:
-        "Rivers are able to withstand rainwater discharge damaged or disaster occurs during the rainy season.",
+        "Mining-related sedimentation and disrupted channels can reduce river capacity and increase rainy-season flood risk.",
       value: true,
     },
     {
       label:
-        "There are illegal sand miners and no disaster occurs during the rainy season.",
+        "Because illegal miners operate openly, flooding cannot occur during the rainy season.",
       value: false,
     },
     {
       label:
-        "The watershed is damaged and sedimentation occurs but does not threaten the community.",
+        "Watershed damage and mining sedimentation do not threaten nearby communities.",
       value: false,
     },
     {
       label:
-        "If the river is covered by mining waste sedimentation then many river flows are not cut off.",
+        "Mining sediment improves river flow and prevents channels from being disrupted.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Jika tidak terjadi penambangan pasir ilegal maka DAS rusak.",
+      label: "Penghentian tambang timah ilegal pasti akan merusak DAS.",
       value: false,
     },
     {
       label:
-        "Sungai mampu menahan debit air hujan rusak atau terjadi bencana saat musim hujan.",
+        "Sedimentasi tambang dan alur yang terganggu dapat mengurangi kapasitas sungai serta meningkatkan risiko banjir pada musim hujan.",
       value: true,
     },
     {
       label:
-        "Ada penambang pasir ilegal dan tidak terjadi bencana saat musim hujan.",
+        "Karena penambang ilegal beroperasi secara terbuka, banjir tidak mungkin terjadi pada musim hujan.",
       value: false,
     },
     {
       label:
-        "DAS rusak dan terjadinya sedimentasi tapi tidak mengancam masyarakat.",
+        "Kerusakan DAS dan sedimentasi tambang tidak mengancam masyarakat di sekitarnya.",
       value: false,
     },
     {
       label:
-        "Jika sungai tertutup sedimentasi limbah tambang maka banyak aliran sungai tidak terputus.",
+        "Sedimentasi tambang memperbaiki aliran sungai dan mencegah alurnya terganggu.",
       value: false,
     },
   ],

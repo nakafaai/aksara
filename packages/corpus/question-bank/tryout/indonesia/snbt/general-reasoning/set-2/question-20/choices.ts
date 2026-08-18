@@ -4,7 +4,7 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The growth of Indonesia's ready-made clothing export market increased by $$9.3\\%$$.",
+        "Indonesia's garment exports to the United States fell by $$9.3\\%$$.",
       value: false,
     },
     {
@@ -31,7 +31,7 @@ const choices: QuestionChoices = {
   id: [
     {
       label:
-        "Pertumbuhan pasar ekspor pakaian jadi Indonesia naik $$9{,}3\\%$$.",
+        "Ekspor pakaian jadi Indonesia ke Amerika Serikat turun $$9{,}3\\%$$.",
       value: false,
     },
     {

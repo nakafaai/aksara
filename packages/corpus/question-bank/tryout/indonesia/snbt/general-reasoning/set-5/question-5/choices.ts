@@ -2,47 +2,31 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    {
-      label: "Factory X motorcycle sales of $$500{,}000$$ units",
-      value: false,
-    },
-    {
-      label: "Factory Y motorcycle sales of $$5{,}200{,}000$$ units",
-      value: false,
-    },
-    { label: "Factory Z motorcycle sales of $$250{,}000$$ units", value: true },
+    { label: "Factory X sells $$500{,}000$$ units", value: false },
+    { label: "Factory Y sells $$5{,}200{,}000$$ units", value: false },
+    { label: "Factory Z sells $$250{,}000$$ units", value: true },
     {
       label:
-        "Factory Y motorcycle sales are four times Factory X sales in $$2016$$",
+        "Factory Y's predicted sales are four times Factory X's $$2016$$ sales",
       value: false,
     },
     {
-      label:
-        "The difference in Factory X motorcycle sales is $$800{,}000$$ units",
+      label: "Factory X sells $$800{,}000$$ fewer units than in $$2016$$",
       value: false,
     },
   ],
   id: [
-    {
-      label: "Penjualan sepeda motor pabrik X sebanyak $$500.000$$ unit",
-      value: false,
-    },
-    {
-      label: "Penjualan sepeda motor pabrik Y sebanyak $$5.200.000$$ unit",
-      value: false,
-    },
-    {
-      label: "Penjualan sepeda motor pabrik Z sebanyak $$250.000$$ unit",
-      value: true,
-    },
+    { label: "Pabrik X menjual $$500{.}000$$ unit", value: false },
+    { label: "Pabrik Y menjual $$5{.}200{.}000$$ unit", value: false },
+    { label: "Pabrik Z menjual $$250{.}000$$ unit", value: true },
     {
       label:
-        "Penjualan sepeda motor pabrik Y sebanyak empat kali lipat penjualan sepeda motor X di tahun $$2016$$",
+        "Prediksi penjualan Pabrik Y empat kali penjualan Pabrik X pada $$2016$$",
       value: false,
     },
     {
       label:
-        "Selisih penjualan sepeda motor di pabrik X sebesar $$800.000$$ unit",
+        "Pabrik X menjual $$800{.}000$$ unit lebih sedikit daripada pada $$2016$$",
       value: false,
     },
   ],

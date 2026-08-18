@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "coiling.",
+      label: "narrow.",
       value: false,
     },
     {
-      label: "draining.",
+      label: "high.",
       value: true,
     },
     {
-      label: "exhaustion.",
+      label: "limited.",
       value: false,
     },
     {
-      label: "spending.",
+      label: "small.",
       value: false,
     },
     {
-      label: "sorting.",
+      label: "reduced.",
       value: false,
     },
   ],
   id: [
     {
-      label: "melinggarkan.",
+      label: "sempit.",
       value: false,
     },
     {
-      label: "pengurasan.",
+      label: "tinggi.",
       value: true,
     },
     {
-      label: "penghabisan.",
+      label: "terbatas.",
       value: false,
     },
     {
-      label: "menghabiskan.",
+      label: "kecil.",
       value: false,
     },
     {
-      label: "pengurutan.",
+      label: "berkurang.",
       value: false,
     },
   ],

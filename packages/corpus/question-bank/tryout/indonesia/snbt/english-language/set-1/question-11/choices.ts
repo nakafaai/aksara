@@ -2,14 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "UNESCO enlarges scientific programs.", value: false },
+    { label: "the architectural history of UNESCO's offices.", value: false },
+    { label: "a list of the capitals of UNESCO Member States.", value: false },
     {
-      label: "UNESCO builds up tools of education to help people.",
-      value: false,
+      label: "a current UNESCO initiative that puts its mission into practice.",
+      value: true,
     },
-    { label: "UNESCO conducts the humanist missions.", value: true },
-    { label: "UNESCO defends for freedom for all people.", value: false },
-    { label: "UNESCO works for children and citizen.", value: false },
+    { label: "an unrelated comparison of national budgets.", value: false },
+    { label: "a personal biography of one UNESCO employee.", value: false },
   ],
 };
 

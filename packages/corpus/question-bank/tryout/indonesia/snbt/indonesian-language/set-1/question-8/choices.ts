@@ -3,24 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Indonesia akan lebih bersih",
+      label: "Seluruh pantai di Indonesia akan bebas sampah",
       value: false,
     },
     {
-      label: "Dapat diprediksi bahwa jumlah penduduk Indonesia berkurang",
+      label: "Tidak akan ada lagi sampah dari kapal dan perikanan",
       value: false,
     },
     {
-      label: "Banjir disejumlah wilayah Indonesia tidak akan terjadi",
+      label: "Semua bentuk polusi laut di Seychelles akan hilang",
       value: false,
     },
     {
       label:
-        "Indonesia tidak akan disebut-sebut sebagai negara sumber utama sampah plastik",
+        "Indonesia diperkirakan menjadi sumber tunggal terbesar sampah berbasis daratan di banyak lokasi Seychelles",
       value: true,
     },
     {
-      label: "Regulasi terkait pengelolaan sampah tidak diperlukan",
+      label: "Seychelles tidak lagi mengalami musim penumpukan sampah",
       value: false,
     },
   ],
