@@ -5,13 +5,14 @@ export const metadata = {
 };
 
 Given:
-*   Total students (<InlineMath math="S" />) is <InlineMath math="800\text{ people}" />.
-*   Students who like Mathematics (<InlineMath math="M" />) is <InlineMath math="400\text{ people}" />.
-*   Students who like Physics (<InlineMath math="F" />) is <InlineMath math="500\text{ people}" />.
+
+- Total number of students: <InlineMath math="S = 800" />
+- Students who like Mathematics: <InlineMath math="M = 400" />
+- Students who like Physics: <InlineMath math="F = 500" />
 
 We want to find the maximum value (<InlineMath math="x" />) and minimum value (<InlineMath math="y" />) of the intersection of these two sets (students who like both).
 
-#### Finding Maximum Unknown Value
+#### Finding the Maximum Intersection
 
 The number of students who like both will be maximum if the smaller set is a subset of the larger set.
 Here, the number of students who like Mathematics (<InlineMath math="400" />) is less than those who like Physics (<InlineMath math="500" />).
@@ -21,13 +22,11 @@ So, the maximum value of the intersection is the number of students in the small
   <BlockMath math="x = 400" />
 </MathContainer>
 
-#### Finding Minimum Unknown Value
+#### Finding the Minimum Intersection
 
-The number of students who like both will be minimum if the distribution is spread out as much as possible so that the total union is maximum (equal to the total number of students).
+The intersection is smallest when the union is as large as possible. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
 
-Use the set formula: <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />.
-
-To get the minimum intersection, we assume all students (<InlineMath math="800" />) like at least one of the two subjects (no one dislikes both).
+Using <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, the smallest possible intersection occurs when the union reaches that upper bound. This arrangement is feasible: every student likes at least one of the two subjects.
 
 <MathContainer>
   <BlockMath math="800 = 400 + 500 - y" />

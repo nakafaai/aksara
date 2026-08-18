@@ -3,55 +3,53 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "The head of state summoned several entrepreneurs who are members of Apindo and Hippindo to the State Palace to ask for input regarding the US-China trade war",
+      label: "The meeting took place at the State Palace",
       value: false,
     },
     {
       label:
-        "The magnitude of Indonesia's current account deficit is more than three times the trade balance deficit based on existing data from BPS and Bank Indonesia",
+        "The current-account deficit was more than three times the trade-balance deficit",
       value: false,
     },
     {
       label:
-        "The head of state requested concrete and quickly implementable input from entrepreneurs in order to provide a good economic effect for the country",
+        "The government requested concrete, quickly implementable input from business representatives",
       value: true,
     },
     {
       label:
-        "The trade balance deficit experienced by Indonesia is a real effect of the US-China trade war that will never subside",
+        "The passage proves that the trade war permanently caused the trade deficit",
       value: false,
     },
     {
       label:
-        "To overcome problems arising from the US-China trade war, good synergy is needed between the government and the business world",
+        "The passage says business can address future challenges without government",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Kepala negara memanggil beberapa pengusaha yang tergabung dalam Apindo dan Hippindo ke Istana Negara untuk meminta masukan tentang perang dagang AS-China",
+      label: "Pertemuan berlangsung di Istana Negara",
       value: false,
     },
     {
       label:
-        "Besaran defisit transaksi berjalan Indonesia lebih dari tiga kali defisit neraca perdagangan berdasarkan data yang ada pada BPS dan Bank Indonesia",
+        "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
       value: false,
     },
     {
       label:
-        "Kepala negara meminta masukan yang konkret dan bisa cepat dilaksanakan dari para pengusaha agar bisa memberikan efek ekonomi yang baik bagi negara",
+        "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
       value: true,
     },
     {
       label:
-        "Defisit neraca perdagangan yang dialami Indonesia merupakan efek nyata dari perang dagang AS-China yang tidak akan pernah mereda",
+        "Bacaan membuktikan bahwa perang dagang secara permanen menyebabkan defisit perdagangan",
       value: false,
     },
     {
       label:
-        "Untuk mengatasi masalah yang timbul akibat perang dagang AS-China, diperlukan sinergi yang baik antara pemerintah dan dunia usaha",
+        "Bacaan menyatakan dunia usaha dapat menghadapi tantangan mendatang tanpa pemerintah",
       value: false,
     },
   ],

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Vertical Translation",
-  description: "Learn how vertical translation moves a function graph up or down while preserving its shape.",
+  description: "Shift function graphs up or down while tracking coordinates, asymptotes, and ranges.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Function Transformation",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Basic Concepts of Vertical Translation
 
-Vertical translation is a geometric transformation that shifts the graph of a function up or down along the <InlineMath math="y" />-axis without changing the shape of the graph. Imagine lifting or lowering an object vertically: the shape stays the same, only its position changes.
+Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. Every point moves by the same vertical distance, as if the entire graph were lifted or lowered.
 
 If we have a function <InlineMath math="f(x)" />, then vertical translation produces a new function <InlineMath math="g(x) = f(x) + k" /> where <InlineMath math="k" /> is the translation constant.
 
@@ -27,11 +27,11 @@ Where:
 
 ## Visualization of Vertical Translation
 
-Let's see how vertical translation works on the linear function <InlineMath math="f(x) = 2x" />.
+The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical translation leaves the slope unchanged.
 
 <LineEquation
   title={<>Vertical Translation of Linear Function <InlineMath math="f(x) = 2x" /></>}
-  description="Notice how the graph shifts vertically without changing the slope of the line."
+  description={<>The three lines have the same slope and different <InlineMath math="y" />-intercepts.</>}
   showZAxis={false}
   data={[
     {
@@ -58,20 +58,20 @@ Let's see how vertical translation works on the linear function <InlineMath math
         return { x, y: 2 * x - 2, z: 0 };
       }),
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=2x+(-2)" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-From the visualization above, we can observe:
+The graph shows:
 - The original function <InlineMath math="f(x) = 2x" /> passes through the origin
 - Function <InlineMath math="g(x) = 2x + 3" /> is the result of translation upward by <InlineMath math="3 \text{ units}" />
-- Function <InlineMath math="h(x) = 2x + (-2)" /> is the result of translation downward by <InlineMath math="2 \text{ units}" />
+- Function <InlineMath math="h(x) = 2x - 2" /> is the result of translation downward by <InlineMath math="2 \text{ units}" />
 
 ## Vertical Translation on Quadratic Functions
 
-Now let's apply the same concept to the quadratic function <InlineMath math="f(x) = x^2" />.
+The same translation rule applies to the quadratic function <InlineMath math="f(x) = x^2" />.
 
 <LineEquation
   title={<>Vertical Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
@@ -102,16 +102,16 @@ Now let's apply the same concept to the quadratic function <InlineMath math="f(x
         return { x, y: x * x - 3, z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=x^2+(-3)" />, offset: [1, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=x^2-3" />, offset: [1, 1, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Notice that:
+The vertices make the displacement explicit:
 - The vertex of the original parabola <InlineMath math="f(x) = x^2" /> is at <InlineMath math="(0, 0)" />
 - After vertical translation <InlineMath math="+4" />, the vertex of <InlineMath math="g(x) = x^2 + 4" /> is at <InlineMath math="(0, 4)" />
-- After vertical translation <InlineMath math="+(-3)" />, the vertex of <InlineMath math="h(x) = x^2 + (-3)" /> is at <InlineMath math="(0, -3)" />
+- After vertical translation <InlineMath math="-3" />, the vertex of <InlineMath math="h(x) = x^2 - 3" /> is at <InlineMath math="(0, -3)" />
 
 ## Important Properties of Vertical Translation
 
@@ -134,7 +134,7 @@ If the range of the original function is <InlineMath math="[c, d]" />, then the 
 
 ### Exponential Function Example
 
-Let's look at vertical translation on the exponential function <InlineMath math="f(x) = 2^x" />.
+For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical translation also moves the horizontal asymptote.
 
 <LineEquation
   title={<>Vertical Translation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
@@ -165,7 +165,7 @@ Let's look at vertical translation on the exponential function <InlineMath math=
         return { x, y: Math.pow(2, x) - 1, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x+(-1)" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0] }],
       showPoints: false,
     },
   ]}
@@ -222,8 +222,8 @@ For exponential functions:
 
 2. Equation of the resulting translated function:
 
-   - Translation downward by <InlineMath math="7 \text{ units}" />: <InlineMath math="g'(x) = g(x) + (-7) = 3x + 2 + (-7) = 3x + (-5)" />
-   - <InlineMath math="y" />-intercept: substitute <InlineMath math="x = 0" /> into <InlineMath math="g'(x) = 3(0) + (-5) = -5" />, so the intercept point is <InlineMath math="(0, -5)" />
+   - Translation downward by <InlineMath math="7 \text{ units}" />: <InlineMath math="g'(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
+   - <InlineMath math="y" />-intercept: substitute <InlineMath math="x = 0" /> into <InlineMath math="g'(x) = 3(0) - 5 = -5" />, so the intercept point is <InlineMath math="(0, -5)" />
 
    Visualization:
 
@@ -252,7 +252,7 @@ For exponential functions:
            return { x, y: 3 * x + 2 - 7, z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=3x+(-5)" />, offset: [1, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
      ]}

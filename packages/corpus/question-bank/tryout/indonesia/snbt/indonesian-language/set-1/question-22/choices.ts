@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Persetujuan dengan jalan damai",
+      label: "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
       value: true,
     },
     {
-      label: "Diskusi suatu kelompok",
+      label: "Percakapan tanpa tujuan di dalam suatu kelompok",
       value: false,
     },
     {
-      label: "Kerjasama untuk mencapai tujuan bersama",
+      label: "Kerja sama yang menghapus seluruh perbedaan",
       value: false,
     },
     {
-      label: "Bermusyawarah dan mufakat dalam mengambil keputusan",
+      label: "Pemungutan suara untuk menentukan pihak yang menang",
       value: false,
     },
     {
-      label: "Pemungutan suara antar kelompok",
+      label: "Penyerahan penuh satu pihak kepada pihak lain",
       value: false,
     },
   ],

@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Development investment must refer to disaster risk reduction so that community-owned buildings are not destroyed.",
+        "Only school buildings need disaster-risk reduction because other infrastructure is already safe.",
       value: false,
     },
     {
       label:
-        "Development investment is needed to monitor disasters strictly, sustainably, and robustly.",
+        "Early-warning systems can replace risk-aware planning and enforcement in development projects.",
       value: false,
     },
     {
       label:
-        "Investment and buildings as disaster mitigation elements aimed at reducing risk must be managed through regulators.",
+        "Disaster risks need to be considered only after a development investment has been completed.",
       value: false,
     },
     {
       label:
-        "Disaster mitigation must become a reference in development investment because the majority of public infrastructure and industry are located in disaster-prone zones.",
+        "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
       value: true,
     },
     {
       label:
-        "Development investment that refers to risk reduction must have a strong building structure.",
+        "Reinforcing buildings is sufficient even without regulation, oversight, or preparedness drills.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Investasi pembangunan harus merujuk pada pengurangan risiko bencana agar bangunan milik masyarakat tidak hancur.",
+        "Hanya bangunan sekolah yang memerlukan pengurangan risiko bencana karena infrastruktur lain sudah aman.",
       value: false,
     },
     {
       label:
-        "Investasi pembangunan diperlukan untuk mengawasi bencana secara ketat, berkelanjutan, dan kokoh.",
+        "Sistem peringatan dini dapat menggantikan perencanaan berbasis risiko dan penegakan aturan dalam pembangunan.",
       value: false,
     },
     {
       label:
-        "Investasi dan bangunan sebagai elemen mitigasi bencana yang bertujuan mengurangi risiko harus dikelola lewat regulator.",
+        "Risiko bencana baru perlu diperhitungkan setelah investasi pembangunan selesai dijalankan.",
       value: false,
     },
     {
       label:
-        "Mitigasi bencana harus menjadi acuan dalam investasi pembangunan karena mayoritas infrastruktur publik dan industri berada di zona rawan bencana.",
+        "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
       value: true,
     },
     {
       label:
-        "Investasi pembangunan yang merujuk pada pengurangan risiko harus berstruktur bangunan yang kuat.",
+        "Penguatan bangunan sudah cukup meskipun tanpa regulasi, pengawasan, atau latihan kesiapsiagaan.",
       value: false,
     },
   ],

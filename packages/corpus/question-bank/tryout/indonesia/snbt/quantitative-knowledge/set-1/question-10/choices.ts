@@ -19,7 +19,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "Cannot be determined",
+      label: "Neither quantity is defined",
       value: false,
     },
   ],
@@ -41,7 +41,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "Tidak dapat ditentukan",
+      label: "Kedua kuantitas tidak terdefinisi",
       value: false,
     },
   ],

@@ -1,21 +1,20 @@
 export const metadata = {
   title: "Distribusi Peluang",
-  description: "Pahami distribusi peluang dengan contoh dadu. Pelajari ruang sampel, perhitungan kejadian, dan aplikasi nyata melalui skenario interaktif yang mudah dipahami.",
+  description: "Pahami distribusi peluang, ruang sampel, dan peluang kejadian melalui contoh lengkap satu dadu dan dua dadu.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-21",
   subject: "Peluang",
 };
 
-## Apa Sih Distribusi Peluang Itu?
+## Apa Itu Distribusi Peluang?
 
-Bayangin kamu lagi main lempar dadu. Distribusi peluang itu kayak daftar lengkap semua hasil yang mungkin keluar pas kamu lempar dadu, plus dikasih tahu seberapa besar sih kesempatan (peluang) tiap hasil itu buat muncul. Gampangnya, ini daftar kemungkinan dan seberapa sering kemungkinan itu terjadi.
+Distribusi peluang mencantumkan nilai-nilai yang mungkin dari suatu besaran acak dan memberikan peluang untuk setiap nilai. Pada satu dadu, besarannya dapat berupa angka yang muncul. Pada dua dadu, besarannya dapat berupa jumlah kedua angka. Distribusi menunjukkan nilai yang mungkin dan peluang setiap nilai tersebut.
 
 ## Mengenal Ruang Sampel (Semua Kemungkinan Hasil)
 
-Ruang sampel itu kayak kumpulan semua hasil yang _bisa_ terjadi dalam satu percobaan. Kita biasa tulis pakai simbol <InlineMath math="\Omega" /> (Omega).
+Ruang sampel adalah himpunan seluruh hasil dasar yang _dapat_ terjadi dalam suatu percobaan. Ruang sampel ditulis dengan simbol <InlineMath math="\Omega" /> (Omega).
 
-Contohnya, kalau kamu lempar satu buah dadu biasa yang punya <InlineMath math="6" /> sisi:
-Angka yang bisa muncul kan <InlineMath math="1, 2, 3, 4, 5," /> atau <InlineMath math="6" />. Nah, semua kemungkinan ini kalau dikumpulin jadi satu, namanya ruang sampel.
+Pada satu lemparan dadu biasa bersisi <InlineMath math="6" />, hasil yang mungkin adalah <InlineMath math="1, 2, 3, 4, 5," /> dan <InlineMath math="6" />. Semua hasil tersebut membentuk ruang sampel:
 
 <BlockMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />
 
@@ -25,12 +24,11 @@ Total ada <InlineMath math="6" /> kemungkinan hasil di sini.
 
 ### Apa Itu Kejadian?
 
-Kejadian itu adalah satu atau beberapa hasil _tertentu_ yang kita perhatikan dari ruang sampel. Kejadian itu bagian kecilnya dari ruang sampel.
+Kejadian adalah himpunan bagian dari ruang sampel yang memuat hasil-hasil dengan syarat tertentu.
 
 **Contoh**:
 
-Dari lempar satu dadu tadi (<InlineMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />), kita mau lihat kejadian "muncul angka genap".
-Angka genap di situ kan <InlineMath math="2, 4," /> dan <InlineMath math="6" />. Jadi, kejadian muncul angka genap (kita sebut aja kejadian <InlineMath math="A" />) adalah:
+Untuk percobaan dadu (<InlineMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />), perhatikan kejadian "hasilnya genap." Hasil genapnya adalah <InlineMath math="2, 4," /> dan <InlineMath math="6" />, sehingga kejadian <InlineMath math="A" /> adalah:
 
 <BlockMath math="A = \{2, 4, 6\}" />
 
@@ -38,9 +36,9 @@ Ada <InlineMath math="3" /> hasil di kejadian <InlineMath math="A" /> ini.
 
 ### Hitung Peluang Kejadian
 
-Peluang itu angka yang nunjukkin seberapa besar kemungkinan suatu kejadian bakal terjadi.
+Peluang mengukur seberapa mungkin suatu kejadian terjadi.
 
-Cara hitungnya gampang:
+Jika seluruh hasil dasar memiliki peluang yang sama, peluang kejadian diperoleh dengan membagi banyak hasil yang memenuhi kejadian dengan banyak seluruh hasil:
 
 <BlockMath math="P(\text{Kejadian}) = \frac{\text{Banyaknya hasil di kejadian itu}}{\text{Total semua hasil di ruang sampel}}" />
 
@@ -48,33 +46,33 @@ Kalau pakai simbol dari contoh tadi:
 
 <BlockMath math="P(A) = \frac{|A|}{|\Omega|}" />
 
-Di mana:
+Pada rumus tersebut:
 
-- <InlineMath math="|A|" /> artinya banyaknya hasil di kejadian <InlineMath math="A" /> (tadi ada <InlineMath math="3" /> kan?).
-- <InlineMath math="|\Omega|" /> artinya total semua hasil di ruang sampel (tadi
-  ada <InlineMath math="6" /> kan?).
+- <InlineMath math="|A|" /> adalah banyak hasil dalam kejadian <InlineMath math="A" />, yaitu <InlineMath math="3" />.
+- <InlineMath math="|\Omega|" /> adalah banyak seluruh hasil dalam ruang sampel,
+  yaitu <InlineMath math="6" />.
 
 Jadi, peluang kejadian "muncul angka genap" (kejadian <InlineMath math="A" />) adalah:
 
 <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
 
-Artinya, kemungkinannya setengah-setengah, atau <InlineMath math="50\%" />.
+Jadi, kejadian tersebut memiliki peluang <InlineMath math="1/2" />, atau <InlineMath math="50\%" />.
 
-## Aturan Main Distribusi Peluang
+## Aturan Distribusi Peluang
 
-Distribusi peluang itu punya dua aturan penting:
+Distribusi peluang yang valid memenuhi dua aturan:
 
-1.  Peluang setiap hasil (<InlineMath math="P(x)" />) nilainya pasti antara <InlineMath math="0" /> sampai <InlineMath math="1" />. Gak mungkin negatif atau lebih dari <InlineMath math="1" />.
+1.  Peluang setiap nilai (<InlineMath math="P(x)" />) berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.
 
     <BlockMath math="0 \leq P(x) \leq 1" />
 
-2.  Kalau semua peluang dari tiap hasil di ruang sampel dijumlahin, totalnya pasti <InlineMath math="1" />.
+2.  Jumlah peluang seluruh nilai yang mungkin harus tepat <InlineMath math="1" />.
 
     <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
 
 ## Lempar Satu Dadu
 
-Kalau kita lempar satu dadu yang adil (artinya tiap sisi punya kesempatan muncul yang sama), distribusinya kayak gini:
+Pada satu dadu yang adil, setiap sisi memiliki peluang yang sama. Distribusinya adalah:
 
 | Hasil Muncul <InlineMath math="x" /> | Peluang <InlineMath math="P(x)" /> |
 | :----------------------------------- | :--------------------------------- |
@@ -87,15 +85,15 @@ Kalau kita lempar satu dadu yang adil (artinya tiap sisi punya kesempatan muncul
 
 **Kenapa semua <InlineMath math="1/6" />?**
 
-Karena ada <InlineMath math="6" /> sisi, dan dadunya adil, jadi tiap sisi punya <InlineMath math="1" /> kesempatan dari total <InlineMath math="6" /> kemungkinan. Coba deh jumlahin semua peluangnya: <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" />. Pas kan sama aturan kedua!
+Dadu memiliki <InlineMath math="6" /> sisi yang sama mungkin, sehingga setiap sisi berpeluang <InlineMath math="1/6" />. Jumlahnya adalah <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" />, sesuai aturan kedua.
 
 ## Lempar Dua Dadu
 
-Sekarang bayangin lempar dua dadu, misalnya ada **satu dadu merah dan satu dadu putih**. Kalau kita catat semua pasangan angka yang mungkin muncul, bakal ada <InlineMath math="36" /> kemungkinan!
+Sekarang lempar **satu dadu merah dan satu dadu putih**. Jika hasil dicatat sebagai pasangan berurutan, terdapat <InlineMath math="36" /> kemungkinan.
 
 **Kenapa <InlineMath math="36" />?**
 
-Karena dadu pertama ada <InlineMath math="6" /> kemungkinan, dadu kedua juga <InlineMath math="6" />, jadi totalnya <InlineMath math="6 \times 6 = 36" /> pasangan.
+Dadu merah memiliki <InlineMath math="6" /> kemungkinan dan dadu putih juga memiliki <InlineMath math="6" /> kemungkinan, sehingga terbentuk <InlineMath math="6 \times 6 = 36" /> pasangan berurutan.
 
 Pasangan hasilnya bisa kita tulis kayak gini:
 
@@ -104,15 +102,15 @@ Pasangan hasilnya bisa kita tulis kayak gini:
 - ... dan seterusnya sampai ...
 - Dadu merah <InlineMath math="6" />, dadu putih <InlineMath math="6" /> menghasilkan <InlineMath math="(6, 6)" />.
 
-Setiap pasangan ini punya peluang yang sama kecilnya, yaitu <InlineMath math="1/36" />.
+Karena kedua dadu adil dan saling bebas, setiap pasangan berurutan memiliki peluang <InlineMath math="1/36" />.
 
-**Penting! Bedain <InlineMath math="(1, 2)" /> sama <InlineMath math="(2, 1)" /> ya!**
+**Bedakan <InlineMath math="(1, 2)" /> dan <InlineMath math="(2, 1)" />**
 
-Kalau dadunya beda warna (misal merah dan putih), hasil <InlineMath math="3" /> di dadu merah dan <InlineMath math="2" /> di dadu putih itu beda sama hasil <InlineMath math="2" /> di dadu merah dan <InlineMath math="3" /> di dadu putih. Jadi urutan itu penting kalau dadunya bisa dibedain.
+Karena warna dadu berbeda, hasil <InlineMath math="3" /> pada dadu merah dan <InlineMath math="2" /> pada dadu putih berbeda dari hasil <InlineMath math="2" /> pada dadu merah dan <InlineMath math="3" /> pada dadu putih. Urutan menunjukkan dadu mana yang menghasilkan setiap angka.
 
 ### Distribusi Peluang untuk Jumlah Angka Dua Dadu
 
-Nah, seringnya kita tertarik sama _jumlah_ angka dari kedua dadu itu. Jumlah paling kecil kan <InlineMath math="1+1=2" />, paling besar <InlineMath math="6+6=12" />. Peluang untuk tiap jumlah beda-beda:
+Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath math="1+1=2" /> dan nilai terbesarnya <InlineMath math="6+6=12" />. Setiap jumlah memiliki banyak pasangan berurutan yang berbeda, sehingga peluangnya juga berbeda:
 
 | Jumlah Angka <InlineMath math="j" /> | Pasangan yang Mungkin                                          | Banyaknya Pasangan      | Peluang <InlineMath math="P(j)" /> |
 | :----------------------------------- | :------------------------------------------------------------- | :---------------------- | :--------------------------------- |
@@ -128,15 +126,44 @@ Nah, seringnya kita tertarik sama _jumlah_ angka dari kedua dadu itu. Jumlah pal
 | <InlineMath math="11" />             | <InlineMath math="(5,6), (6,5)" />                             | <InlineMath math="2" /> | <InlineMath math="2/36" />         |
 | <InlineMath math="12" />             | <InlineMath math="(6,6)" />                                    | <InlineMath math="1" /> | <InlineMath math="1/36" />         |
 
-Lihat deh, jumlah <InlineMath math="7" /> itu yang paling sering muncul (<InlineMath math="6/36" />), sementara jumlah <InlineMath math="2" /> dan <InlineMath math="12" /> paling jarang (<InlineMath math="1/36" />). Ini penting banget di banyak permainan papan!
+Jumlah <InlineMath math="7" /> paling mungkin karena dihasilkan oleh <InlineMath math="6" /> pasangan berurutan. Sebaliknya, jumlah <InlineMath math="2" /> dan <InlineMath math="12" /> masing-masing hanya berasal dari satu pasangan. Perbedaan ini penting saat sebuah permainan atau model bergantung pada jumlah, bukan pada nilai setiap dadu secara terpisah.
 
-## Kenapa Belajar Distribusi Peluang Itu Penting?
+## Mengapa Distribusi Peluang Berguna?
 
-Distribusi peluang ini gunanya banyak lho:
+Distribusi peluang mengubah ketidakpastian menjadi besaran yang dapat dibandingkan dan digunakan:
 
-- **Biar tahu mana yang lebih mungkin:** Kita jadi bisa lihat, hasil mana sih yang kesempatannya paling gede buat muncul, mana yang kecil. Kayak tadi, jumlah <InlineMath math="7" /> lebih mungkin muncul daripada jumlah <InlineMath math="12" />.
-- **Buat main game:** Banyak permainan (kayak monopoli, ular tangga, dll) pakai dadu. Kalau kita ngerti distribusi peluang, kita bisa punya strategi main yang lebih bagus (walaupun tetep ada untung-untungan ya!).
-- **Prediksi sederhana:** Bisa bantu kita nebak-nebak secara ilmiah. Misalnya, kalau tahu distribusi cuaca, kita bisa prediksi kemungkinan hujan besok.
-- **Ambil keputusan:** Dalam bisnis atau sains, distribusi peluang dipakai buat ambil keputusan berdasarkan data, biar nggak asal-asalan.
+- **Membandingkan hasil:** Kita dapat melihat langsung bahwa jumlah <InlineMath math="7" /> lebih mungkin daripada jumlah <InlineMath math="12" />.
+- **Menganalisis permainan:** Pada permainan yang memakai dadu, distribusi menunjukkan langkah atau jumlah yang lebih sering terjadi, meskipun hasil satu lemparan tetap tidak pasti.
+- **Membuat prediksi:** Distribusi dapat merangkum ketidakpastian, misalnya peluang hujan dalam suatu model cuaca.
+- **Mendukung keputusan:** Sains dan bisnis memakai distribusi peluang untuk membandingkan risiko dan hasil yang diharapkan berdasarkan data, bukan tebakan tanpa dasar.
 
-Intinya, distribusi peluang bantu kita memahami ketidakpastian dengan angka!
+Dalam setiap contoh tersebut, distribusi memberikan model numerik untuk ketidakpastian.
+
+## Latihan
+
+Tiga koin adil dilempar. Misalkan <InlineMath math="X" /> menyatakan banyak sisi gambar yang muncul. Susun distribusi peluang <InlineMath math="X" />, periksa bahwa distribusinya valid, lalu tentukan <InlineMath math="P(X \geq 2)" />.
+
+### Pembahasan
+
+Gunakan <InlineMath math="1" /> untuk sisi gambar dan <InlineMath math="0" /> untuk sisi angka. Tiga lemparan menghasilkan <InlineMath math="2^3=8" /> tripel terurut yang sama mungkin:
+
+<BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
+
+Hitung urutan hasil yang memuat <InlineMath math="0,1,2" /> atau <InlineMath math="3" /> sisi gambar:
+
+| Banyak sisi gambar <InlineMath math="x" /> | Urutan hasil | Banyaknya | <InlineMath math="P(X=x)" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="0" /> | <InlineMath math="(0,0,0)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1,0,0),(0,1,0),(0,0,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="2" /> | <InlineMath math="(1,1,0),(1,0,1),(0,1,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="3" /> | <InlineMath math="(1,1,1)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+
+Setiap peluang berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />, sedangkan jumlah seluruh peluang adalah
+
+<BlockMath math="\frac{1}{8}+\frac{3}{8}+\frac{3}{8}+\frac{1}{8}=\frac{8}{8}=1" />
+
+Jadi, distribusinya valid. Sedikitnya dua sisi gambar berarti <InlineMath math="X=2" /> atau <InlineMath math="X=3" />, sehingga
+
+<BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
+
+Dengan menuliskan ruang sampel terlebih dahulu, distribusi dapat diperiksa langsung: setiap satu dari <InlineMath math="8" /> urutan hasil muncul di _tepat satu baris_.

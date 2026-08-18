@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Konsep Regresi Linear",
-  description: "Pelajari regresi linear untuk membuat garis best-fit melalui titik data. Pahami prediksi, perhitungan slope, dan cara memodelkan hubungan variabel.",
+  description: "Pelajari cara garis regresi kuadrat terkecil merangkum tren linear, mendukung prediksi, dan ditentukan dari pasangan pengamatan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-30",
   subject: "Statistika",
@@ -9,17 +9,17 @@ export const metadata = {
 
 ## Apa Itu Regresi Linear?
 
-Dengan [Diagram Pencar](/id/materi/matematika/regresi-statistik/diagram-pencar-atau-diagram-scatter), kita bisa melihat hubungan antara dua variabel, yaitu data <InlineMath math="X" /> dan data <InlineMath math="Y" />.
+[Diagram pencar](/id/materi/matematika/regresi-statistik/diagram-pencar-atau-diagram-scatter) menunjukkan apakah pasangan nilai dua variabel, <InlineMath math="X" /> dan <InlineMath math="Y" />, membentuk pola yang sama.
 
-Nah, kalau titik-titik di diagram pencar itu kelihatannya membentuk pola lurus (ada korelasi linear, entah positif atau negatif), kita bisa coba gambar satu garis lurus yang paling pas melewati tengah-tengah kumpulan titik itu. Garis inilah yang disebut **Garis Regresi Linear**. Proses menemukan garis ini namanya **Regresi Linear**.
+Ketika kumpulan titik mengikuti kecenderungan garis lurus yang naik atau turun, kita dapat merangkum kecenderungan itu dengan sebuah garis yang dipasang pada data. Garis tersebut disebut **garis regresi linear**, sedangkan prosedur untuk menentukannya disebut **regresi linear**.
 
 ## Garis "Best-Fit"
 
-Garis Regresi Linear sering juga disebut garis _best-fit_ (paling pas). Kenapa? Karena dari sekian banyak kemungkinan garis lurus yang bisa digambar, garis inilah yang posisinya paling "dekat" dengan semua titik data secara keseluruhan. Garis ini mencoba merangkum tren atau pola lurus yang ada pada data.
+Garis regresi linear sering disebut garis _best-fit_ atau garis yang paling cocok. Ini bukan berarti garis tersebut harus melalui setiap titik. Menurut kriteria kuadrat terkecil, garis inilah yang memiliki jumlah kuadrat residu vertikal paling kecil. Garis tersebut merangkum tren linear dalam data.
 
 ## Contoh Garis Regresi
 
-Misalnya kita punya data lama belajar (jam) dan nilai ujian. Titik-titiknya kan cenderung naik (korelasi positif).
+Perhatikan kembali data lama belajar dan nilai ujian. Kumpulan titiknya menunjukkan tren linear positif.
 
 <ScatterDiagram
   title="Garis Regresi untuk Hubungan Lama Belajar dan Nilai Ujian"
@@ -52,11 +52,11 @@ Misalnya kita punya data lama belajar (jam) dan nilai ujian. Titik-titiknya kan 
   }}
 />
 
-Lihat garis di atas? Itu adalah garis regresi linearnya. Garis itu menunjukkan **tren umum**: semakin lama belajar (X naik), nilai ujian (Y) juga cenderung naik mengikuti arah garis tersebut.
+Garis regresi pada diagram menunjukkan **tren umum**: ketika lama belajar bertambah, nilai ujian yang diprediksi cenderung meningkat. Nilai setiap siswa tetap dapat berada di atas atau di bawah garis.
 
 ## Apa gunanya garis regresi?
 
-Salah satu kegunaan utamanya adalah untuk **prediksi**. Misalnya, kalau ada siswa baru yang belajar selama <InlineMath math="7 \text{ jam}" />, kita bisa gunakan garis regresi ini untuk memperkirakan berapa kira-kira nilai ujian yang akan dia dapat, meskipun kita tidak punya data pasti untuk <InlineMath math="7 \text{ jam}" />.
+Salah satu kegunaan utamanya adalah **prediksi**. Misalnya, kita dapat memakai garis ini untuk memperkirakan nilai siswa yang belajar selama <InlineMath math="7 \text{ jam}" />. Namun, waktu belajar yang diamati hanya berkisar dari <InlineMath math="1" /> sampai <InlineMath math="6" /> jam. Prediksi pada <InlineMath math="7 \text{ jam}" /> adalah **ekstrapolasi**, sehingga keandalannya lebih rendah daripada prediksi di dalam rentang data.
 
 ## Konsep Matematis
 
@@ -74,8 +74,8 @@ Keterangan:
 - <InlineMath math="b" /> adalah **kemiringan (slope)** garis, menunjukkan seberapa
   besar perubahan <InlineMath math="\hat{y}" /> untuk setiap satu satuan perubahan <InlineMath math="x" />
   .
-- <InlineMath math="a" /> adalah **perpotongan sumbu <InlineMath math="y" /> (intercept)**, yaitu nilai
-  prediksi <InlineMath math="\hat{y}" /> ketika <InlineMath math="x = 0" />.
+- <InlineMath math="a" /> adalah **perpotongan sumbu <InlineMath math="y" /> (intersep)**, yaitu nilai
+  <InlineMath math="y" /> yang diprediksi ketika <InlineMath math="x = 0" />. Interpretasi ini berguna hanya jika <InlineMath math="x = 0" /> masuk akal dalam konteks masalah.
 
 Nilai <InlineMath math="b" /> dan <InlineMath math="a" /> dihitung dari data <InlineMath math="(x, y)" /> yang kita punya menggunakan rumus berikut:
 
@@ -97,4 +97,4 @@ Keterangan rumus:
 - <InlineMath math="\bar{y}" /> adalah rata-rata nilai <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
   ).
 
-Dengan rumus ini, kita bisa mendapatkan satu garis lurus yang dianggap paling mewakili pola hubungan linear pada data kita.
+Rumus ini menentukan satu garis kuadrat terkecil yang unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama. Jika semua nilai <InlineMath math="x" /> identik, penyebut rumus kemiringan bernilai nol dan data tidak menentukan satu kemiringan regresi yang unik.

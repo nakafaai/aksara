@@ -5,7 +5,7 @@ const choices: QuestionChoices = {
     { label: "Pants sales are $$10$$ fewer than shirts", value: false },
     { label: "Suits sales are $$35$$ more than pants", value: false },
     {
-      label: "The total sales of shirts and pants is less than $$70$$",
+      label: "The combined number of shirts and pants sold is less than $$70$$",
       value: true,
     },
     { label: "Shirts sales are $$10$$ more than pants", value: false },

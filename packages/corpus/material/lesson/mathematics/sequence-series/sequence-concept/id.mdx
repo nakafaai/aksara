@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Pengertian Barisan Bilangan
 
-Barisan bilangan adalah susunan bilangan yang mengikuti pola tertentu. Setiap bilangan dalam barisan disebut sebagai suku. Perhatikan beberapa notasi berikut:
+Barisan bilangan adalah susunan bilangan yang mengikuti pola tertentu. Setiap bilangan dalam barisan disebut sebagai **suku**. Perhatikan beberapa notasi berikut:
 
 - Suku ke-<InlineMath math="1" /> dilambangkan dengan <InlineMath math="U_1" />
 - Suku ke-<InlineMath math="2" /> dilambangkan dengan <InlineMath math="U_2" />
@@ -16,6 +16,27 @@ Barisan bilangan adalah susunan bilangan yang mengikuti pola tertentu. Setiap bi
 - Suku umum dilambangkan dengan <InlineMath math="U_n" />
 
 Dengan mengetahui pola pada barisan, kita dapat menentukan suku-suku berikutnya dan bahkan menemukan suku umum menggunakan rumus.
+
+Secara lebih tepat, barisan memasangkan satu nilai dengan setiap indeks yang diperbolehkan:
+
+<BlockMath math="U:\{1,2,3,\ldots\}\to\mathbb{R},\qquad n\mapsto U_n" />
+
+Urutan merupakan bagian dari definisi. Barisan <InlineMath math="1,2,3,\ldots" /> dan <InlineMath math="3,2,1,\ldots" /> dapat memuat beberapa bilangan yang sama, tetapi keduanya bukan barisan yang sama.
+
+## Aturan Eksplisit dan Rekursif
+
+**Aturan eksplisit** menghitung suatu suku langsung dari indeksnya. Contohnya:
+
+<BlockMath math="U_n=2n+1" />
+
+Aturan ini menghasilkan <InlineMath math="3,5,7,9,\ldots" />. **Aturan rekursif** menyebutkan suku awal dan menjelaskan cara memperoleh suku berikutnya:
+
+<MathContainer>
+  <BlockMath math="U_1=3" />
+  <BlockMath math="U_{n+1}=U_n+2" />
+</MathContainer>
+
+Kedua aturan tersebut menjelaskan barisan yang sama. Bentuk eksplisit memudahkan pencarian suku yang jauh, sedangkan bentuk rekursif memperlihatkan perubahan dari satu suku ke suku berikutnya.
 
 ## Pola Bilangan dalam Kehidupan Sehari-hari
 
@@ -56,16 +77,23 @@ Jika diamati, setiap penambahan <InlineMath math="1 \text{ meja}" /> menghasilka
 
 <BlockMath math="U_n = 2n + 2" />
 
-Dimana:
+Pada rumus ini:
 
 - <InlineMath math="U_n" /> adalah banyak kursi
 - <InlineMath math="n" /> adalah banyak meja
+
+Pola yang sama dapat ditulis secara rekursif:
+
+<MathContainer>
+  <BlockMath math="U_1=4" />
+  <BlockMath math="U_{n+1}=U_n+2" />
+</MathContainer>
 
 ## Aplikasi Konsep Barisan
 
 ### Menentukan Jumlah Kursi dan Meja
 
-Dengan memahami pola barisan, kita dapat menjawab pertanyaan seperti:
+Aturan barisan tersebut dapat digunakan untuk menjawab pertanyaan seperti:
 
 **Jika terdapat <InlineMath math="20 \text{ orang}" /> yang akan duduk di kursi, berapa meja yang perlu disatukan?**
 
@@ -101,6 +129,12 @@ Selain barisan aritmetika dan geometri, terdapat banyak jenis barisan lain seper
 
 Contoh barisan Fibonacci: <InlineMath math="0, 1, 1, 2, 3, 5, 8, 13, \ldots" />
 
+## Beberapa Suku Awal Tidak Menentukan Satu Aturan Tunggal
+
+Daftar suku yang pendek dapat memberi petunjuk tentang pola yang masuk akal, tetapi tidak memaksa hanya satu kelanjutan. Awalan <InlineMath math="1,2,4" /> dapat dilanjutkan menjadi <InlineMath math="8,16,\ldots" /> jika setiap suku dikalikan dua. Aturan lain dapat cocok dengan tiga suku pertama lalu berubah mulai suku keempat.
+
+Karena itu, barisan yang terdefinisi lengkap memerlukan aturan yang tidak ambigu atau syarat yang cukup untuk menentukannya. Menebak pola merupakan awal yang berguna, tetapi belum menjadi bukti.
+
 ## Menemukan Pola
 
 Untuk menentukan pola suatu barisan:
@@ -111,3 +145,19 @@ Untuk menentukan pola suatu barisan:
 4. Jika tidak keduanya, cek kemungkinan pola lainnya
 
 Dengan memahami konsep barisan, kita dapat menyelesaikan berbagai masalah matematika yang berhubungan dengan pola bilangan di kehidupan sehari-hari.
+
+## Latihan
+
+Diberikan <InlineMath math="V_n=n^2-n" />:
+
+1. Tentukan lima suku pertama.
+2. Berikan aturan rekursif untuk barisan tersebut.
+
+<MathContainer>
+  <BlockMath math="V_1,V_2,V_3,V_4,V_5=0,2,6,12,20" />
+  <BlockMath math="V_1=0,\qquad V_{n+1}=V_n+2n" />
+</MathContainer>
+
+Pertambahan rekursifnya adalah <InlineMath math="2n" /> karena:
+
+<BlockMath math="V_{n+1}-V_n=((n+1)^2-(n+1))-(n^2-n)=2n" />

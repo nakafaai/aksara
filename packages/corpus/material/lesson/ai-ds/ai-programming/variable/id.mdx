@@ -8,22 +8,22 @@ export const metadata = {
 
 ## Konsep Dasar Variabel dalam Python
 
-Variabel dalam Python adalah nama yang merujuk pada objek tertentu di dalam memori komputer. Bayangkan variabel seperti label atau nama panggilan yang kamu berikan pada sebuah kotak penyimpanan. Kotak tersebut berisi nilai atau data, sedangkan label memudahkan kamu untuk menemukan dan menggunakan isi kotak tersebut kapan saja diperlukan.
+Dalam Python, variabel adalah nama yang terikat pada sebuah objek. Nama itu bukan kotak penyimpanan bertipe tetap: assignment dapat mengikatnya ke objek lain, sedangkan nama lain mungkin tetap merujuk pada objek semula.
 
-Ketika kamu menuliskan `x = 2`, Python melakukan tiga hal penting. Pertama, Python membuat objek dengan nilai <InlineMath math="2" /> di dalam memori. Kedua, Python menyimpan objek tersebut di alamat memori tertentu. Ketiga, Python menghubungkan nama variabel `x` dengan alamat memori tersebut.
+Ketika Python mengeksekusi `x = 2`, Python mengevaluasi ekspresi <InlineMath math="2" /> lalu mengikat nama `x` pada objek integer yang dihasilkan. Alokasi, penggunaan ulang objek, dan lokasi memori fisiknya adalah detail implementasi yang tidak boleh diasumsikan oleh program.
 
 ## Cara Kerja Variabel dan Memori
 
-Setiap kali kamu membuat variabel baru, Python mengalokasikan ruang di memori komputer untuk menyimpan nilai tersebut. Setiap lokasi memori memiliki alamat unik yang dapat kamu lihat menggunakan fungsi `id()`.
+Built-in `id()` mengembalikan integer yang mengidentifikasi sebuah objek secara unik selama masa hidup objek itu. CPython lazimnya menurunkannya dari alamat memori, tetapi Python tidak menjanjikan interpretasi tersebut pada setiap implementasi.
 
 <Mermaid
   title="Nama Variabel Menunjuk ke Objek"
   description="Telusuri nama variabel ke objek di memori agar assignment tidak keliru dibaca sebagai kotak penyimpanan tetap."
   chart={`graph TB
     subgraph "Memory"
-        M1["1004: int 2"]
-        M2["2008: str 'Hello'"]
-        M3["3012: list [1, 2, 3]"]
+        M1["Objek A: int 2"]
+        M2["Objek B: str 'Hello'"]
+        M3["Objek C: list [1, 2, 3]"]
     end
 
     subgraph "Variables"
@@ -49,25 +49,23 @@ Setiap kali kamu membuat variabel baru, Python mengalokasikan ruang di memori ko
       code: `# Membuat variabel x dengan nilai 2
 x = 2
 print(x)        # Output: 2
-print(id(x))    # Output: 1004 (alamat memori)
-
-# Fungsi id() menampilkan alamat memori objek
-print(id(2))    # Output: 1004 (alamat yang sama)
+print(id(x))    # Identitas objek bergantung pada implementasi
 
 # Membuat variabel y yang merujuk ke variabel x
 y = x
 print(y)        # Output: 2
-print(id(y))    # Output: 1004 (alamat yang sama dengan x)
+print(y is x)   # Output: True
 
 # Membuat variabel z dengan nilai yang sama
 z = 2
 print(z)        # Output: 2
-print(id(z))    # Output: 1004 (alamat yang sama)`
+print(z == x)   # Output: True (nilainya sama)
+# Jangan bergantung pada z is x; reuse objek adalah detail implementasi`
     }
   ]}
 />
 
-Contoh di atas menunjukkan konsep penting dalam Python. Ketika beberapa variabel memiliki nilai yang sama, Python sering kali membuat mereka merujuk ke objek yang sama di memori. Ini adalah optimasi yang dilakukan Python untuk menghemat penggunaan memori, terutama untuk objek yang sering digunakan seperti bilangan kecil dan string pendek.
+Assignment `y = x` menjamin kedua nama merujuk pada objek yang sama pada saat itu. Membuat nilai lain yang setara hanya menjamin equality, bukan identity. Beberapa implementasi Python menggunakan ulang objek immutable, tetapi kode yang benar tidak bergantung pada optimasi tersebut.
 
 ## Karakteristik Variabel Python
 
@@ -75,7 +73,7 @@ Python memiliki beberapa karakteristik unik dalam penanganan variabel yang membe
 
 ### Tidak Ada Deklarasi Variabel
 
-Berbeda dengan bahasa pemrograman seperti C atau Java, Python tidak memerlukan deklarasi variabel secara eksplisit. Kamu tidak perlu menentukan tipe data variabel sebelum menggunakannya. Python akan secara otomatis menentukan tipe data berdasarkan nilai yang diberikan.
+Berbeda dengan bahasa yang memerlukan deklarasi variabel terpisah, Python mengikat nama saat sebuah assignment berjalan. Objek memiliki tipe, dan `type(value)` melaporkan tipe objek yang sedang terikat pada sebuah nama.
 
 <CodeBlock
   data={[
@@ -99,7 +97,7 @@ print(type(aktif))      # Output: <class 'bool'>`
 
 ### Tipe Data Dinamis
 
-Python menggunakan sistem tipe data dinamis, yang berarti tipe data variabel dapat berubah selama program berjalan. Satu variabel dapat menyimpan integer pada satu waktu, kemudian diubah menjadi string pada waktu yang lain.
+Python memakai dynamic typing: setiap objek memiliki tipe, sedangkan nama yang sama dapat diikat ulang pada objek dari tipe berbeda saat program berjalan.
 
 <CodeBlock
   data={[
@@ -128,7 +126,7 @@ Python memiliki aturan ketat untuk penamaan variabel yang harus kamu ikuti agar 
 
 ### Komponen Nama Variabel
 
-Nama variabel dalam Python dapat terdiri dari tiga komponen utama. Pertama adalah huruf, baik huruf kecil (`a`, `b`, `c`, ..., `z`) maupun huruf besar (`A`, `B`, `C`, ..., `Z`). Kedua adalah angka (<InlineMath math="0, 1, 2, \dots, 9" />). Ketiga adalah karakter underscore (_).
+Identifier dimulai dengan underscore atau huruf Unicode, lalu dapat diteruskan dengan huruf identifier, underscore, dan digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak identifier non-ASCII, tetapi nama `snake_case` ASCII yang deskriptif biasanya lebih mudah diketik, dicari, dan dibagikan lintas tools.
 
 <CodeBlock
   data={[

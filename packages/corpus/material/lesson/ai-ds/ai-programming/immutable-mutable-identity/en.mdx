@@ -10,7 +10,7 @@ export const metadata = {
 
 In Python, lists are data structures that can be modified after they are created. Let's understand how lists behave when we perform certain operations.
 
-When you create a list and store it in a variable, Python doesn't copy the contents of that list. Instead, the variable stores a reference or memory address where the list is located. Think of it like a house address, the variable only stores the address, not the house itself.
+When a list is assigned to a variable, the variable refers to that list object. Assignment does not copy the list. Another variable or container can therefore refer to the very same object.
 
 <CodeBlock
   data={[
@@ -32,9 +32,9 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
 
 Notice how changes to `list1` also affect `list2`. This happens because `list2` doesn't store a copy of `list1`, but rather a reference to the same list object in memory.
 
-### Slice Operations Create New Copies
+### A Full Slice Creates a Shallow Copy
 
-Unlike regular assignment, slice operations on lists will create a new list object in memory. You can prove this by using the `id()` function which returns the memory address of an object.
+A full slice creates a new outer list containing references to the same elements. This is a shallow copy: replacing an outer element does not affect the original list, but a nested mutable element remains shared.
 
 <CodeBlock
   data={[
@@ -51,7 +51,13 @@ print(id(list2))  # Example: 8864 (different from list1)
 # Changing elements in list2 doesn't affect list1
 list2[0] = 'x'
 print(list1)  # [0, 1, 2] (unchanged)
-print(list2)  # ['x', 1, 2]`
+print(list2)  # ['x', 1, 2]
+
+# Nested mutable elements are still shared by a shallow copy
+nested1 = [[1], [2]]
+nested2 = nested1[:]
+nested2[0].append(3)
+print(nested1)  # [[1, 3], [2]]`
     }
   ]}
 />
@@ -69,7 +75,7 @@ Every object in Python has three important characteristics that distinguish it f
         A --> C[Type]
         A --> D[Value]
 
-        B --> B1[Unique memory address]
+        B --> B1[Stable identity during its lifetime]
         C --> C1[Determines operations]
         D --> D1[Stored data]
   `}
@@ -77,7 +83,7 @@ Every object in Python has three important characteristics that distinguish it f
 
 ### Object Identity
 
-Identity is the unique memory address where an object is stored. Python provides the `id()` function to view an object's identity and the `is` operator to compare the identity of two objects.
+Identity answers whether two references point to the same object. `id()` returns an integer that is unique among simultaneously living objects, while `is` compares identity directly. The language does not promise that the integer is a physical memory address.
 
 <CodeBlock
   data={[
@@ -98,26 +104,23 @@ print(id(a))      # 10492 (different from before)`
   ]}
 />
 
-### Identity and Value Comparison
+### Comparing Identity and Value
 
-Python has special optimization for small integers (usually <InlineMath math="-5" /> to <InlineMath math="256" />). Integers in this range use the same object in memory to save space.
+Use `is` when object identity is the question, most commonly in checks such as `value is None`. Use `==` when values should be compared. Interpreter caching and constant folding can make equal immutable values share an identity, but application logic must never rely on that implementation detail.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "identity_comparison.py",
-      code: `# Large integers may use different objects
-a = 300
-b = 300
-print(a is b)      # May be True or False (implementation dependent)
-print(a == b)      # True (same value)
+      code: `a = [1, 2]
+b = a
+c = [1, 2]
 
-# Integers in range -5 to 256 usually same
-a = 100
-b = 100
-print(a is b)      # True (optimization for small integers)
-print(a == b)      # True (same value)`
+print(a is b)  # True: same object
+print(a == b)  # True: same value
+print(a is c)  # False: different objects
+print(a == c)  # True: equal values`
     }
   ]}
 />
@@ -152,13 +155,16 @@ print(id(str_var))  # 75568
   ]}
 />
 
-Immutable data types in Python include:
-    - `bool` (boolean)
-    - `int` (integer)
-    - `float` (floating point)
-    - `complex` (complex numbers)
-    - `str` (string)
-    - `tuple` (tuple)
+Common immutable types in Python include:
+
+- `bool` (boolean)
+- `int` (integer)
+- `float` (floating point)
+- `complex` (complex numbers)
+- `str` (string)
+- `tuple` (tuple)
+
+A tuple's own sequence of references cannot change, although an object referenced by the tuple can still be mutable.
 
 ### Mutable Objects
 
@@ -171,23 +177,29 @@ Mutable objects can be changed after creation without creating a new object. The
       filename: "mutable_objects.py",
       code: `# List is mutable
 list_var = [0, 1, 2]
-print(id(list_var))  # 15296
+original_id = id(list_var)
 
-# Changing elements doesn't change object identity
+# Changing an element preserves the list's identity
+list_var[0] = 9
+print(id(list_var) == original_id)  # True
+
+# Assignment rebinds the variable to a new object
 list_var = [0, 0, 0]
-print(id(list_var))  # 60960 (new object due to assignment)
+print(id(list_var) == original_id)  # False
 
-# In-place modification maintains identity
+# Slice assignment mutates the current list in place
+current_id = id(list_var)
 list_var[:] = ['a', 'b', 'c']
-print(id(list_var))  # 60960 (same)`
+print(id(list_var) == current_id)  # True`
     }
   ]}
 />
 
-Mutable data types in Python include:
-    - `list` (list)
-    - `dict` (dictionary)
-    - `set` (set)
+Common mutable types in Python include:
+
+- `list` (list)
+- `dict` (dictionary)
+- `set` (set)
 
 ### Assignment vs Modification Behavior
 
@@ -236,4 +248,4 @@ print(list2)         # [0, 'x', 2] (unchanged)`
   `}
 />
 
-Understanding mutability is very important in Python programming. Immutable objects are safer to use in multi-threading contexts because they cannot be changed, while mutable objects provide flexibility to modify data efficiently without creating new objects every time.
+Mutability determines whether an operation changes an existing object or rebinds a name to another object. Immutability removes one source of shared-state bugs, but it does not by itself make a program thread-safe. Referenced mutable objects, compound operations, and external resources still require deliberate synchronization.

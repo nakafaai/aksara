@@ -4,30 +4,20 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Diketahui
-
-<BlockMath math="f(x) = \sin^2 x" />
-
-Ditanya
-
-<BlockMath math="\lim_{h \to \infty} h \left[f'\left(x + \frac{1}{h}\right) - f'(x)\right] = ... ?" />
-
-Misalkan <InlineMath math="\frac{1}{h} = a" />; <InlineMath math="h \to \infty" /> dengan begitu nilai <InlineMath math="a \to 0" />.
+Misalkan <InlineMath math="t=\frac1h" />. Ketika <InlineMath math="h\to\infty" />, berlaku <InlineMath math="t\to0^+" /> dan <InlineMath math="h=\frac1t" />. Dengan demikian, limit pada soal merupakan definisi turunan dari <InlineMath math="f'" />.
 
 <MathContainer>
 <BlockMath math="\lim_{h \to \infty} h \left[f'\left(x + \frac{1}{h}\right) - f'(x)\right]" />
-<BlockMath math="\lim_{h \to \infty} \frac{f'(x + a) - f'(x)}{a}" />
-<BlockMath math="f''(x)" />
+<BlockMath math="=\lim_{t\to0^+}\frac{f'(x+t)-f'(x)}{t}" />
+<BlockMath math="=f''(x)" />
 </MathContainer>
 
-Karena <InlineMath math="f(x) = \sin^2 x" />, maka
+Turunkan <InlineMath math="f(x)=\sin^2x" /> sebanyak dua kali.
 
 <MathContainer>
 <BlockMath math="f(x) = \sin^2 x" />
-<BlockMath math="f'(x) = 2 \sin x \cos x" />
+<BlockMath math="f'(x)=2\sin x\cos x=\sin 2x" />
 <BlockMath math="f''(x) = 2 \cos 2x" />
 </MathContainer>
-
-Jadi, nilai dari
 
 <BlockMath math="\lim_{h \to \infty} h \left[f'\left(x + \frac{1}{h}\right) - f'(x)\right] = 2 \cos 2x" />

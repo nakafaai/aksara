@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Apa itu Asimtot?
 
-Pernahkah kamu memperhatikan grafik fungsi yang mendekati suatu garis tapi tidak pernah menyentuhnya? Nah, garis tersebut disebut **asimtot**!
+Asimtot adalah garis yang didekati grafik dalam suatu proses limit. Di dekat asimtot vertikal, nilai fungsi membesar tanpa batas. Di dekat asimtot horizontal atau miring, jarak antara grafik dan garis mendekati nol ketika besar nilai masukan terus bertambah.
 
-Asimtot adalah garis lurus yang didekati oleh grafik fungsi ketika nilai variabelnya menuju tak hingga atau mendekati nilai tertentu. Bayangkan seperti kamu berjalan mendekati tembok tapi tidak pernah benar-benar menyentuhnya, itulah konsep asimtot.
+Grafik dapat memotong asimtot horizontal atau miring pada nilai masukan yang berhingga. Asimtot menjelaskan perilaku limit, bukan penghalang yang sama sekali tidak boleh disentuh grafik.
 
 ## Jenis-jenis Asimtot
 
@@ -22,29 +22,32 @@ Ada tiga jenis asimtot yang perlu kamu ketahui:
 
 Asimtot vertikal adalah garis vertikal yang didekati grafik ketika nilai fungsi menuju positif atau negatif tak hingga.
 
-**Definisi:** Garis <InlineMath math="x = a" /> adalah asimtot vertikal jika:
+**Definisi:** Garis <InlineMath math="x = a" /> adalah asimtot vertikal jika setidaknya salah satu limit satu sisi berikut tak berhingga:
 
 - Ketika <InlineMath math="x" /> mendekati <InlineMath math="a" /> dari kiri, <InlineMath math="f(x) \to \pm\infty" />
 - Ketika <InlineMath math="x" /> mendekati <InlineMath math="a" /> dari kanan, <InlineMath math="f(x) \to \pm\infty" />
 
-**Cara mencari:** Untuk fungsi rasional, asimtot vertikal terjadi saat <InlineMath math="\text{penyebut} = 0" /> dan <InlineMath math="\text{pembilang} \neq 0" />, atau ketika <InlineMath math="Q(x) = 0" /> dan <InlineMath math="P(x) \neq 0" />.
+**Cara mencari:** Sederhanakan dahulu faktor polinom yang sama. Pada fungsi rasional yang sudah disederhanakan, asimtot vertikal muncul ketika <InlineMath math="Q(x) = 0" /> sedangkan <InlineMath math="P(x) \neq 0" />. Faktor yang tercoret menghasilkan lubang, bukan asimtot vertikal.
 
 ### Asimtot Horizontal
 
-Asimtot horizontal adalah garis horizontal yang didekati grafik ketika <InlineMath math="x" /> menuju positif atau negatif tak hingga.
+Asimtot horizontal adalah garis horizontal yang didekati grafik ketika <InlineMath math="x" /> menuju positif tak hingga, negatif tak hingga, atau keduanya.
 
-**Definisi:** Garis <InlineMath math="y = b" /> adalah asimtot horizontal jika:
+**Definisi:** Garis <InlineMath math="y = b" /> adalah asimtot horizontal pada setiap arah yang memenuhi limit berikut:
 
 - <InlineMath math="\lim_{x \to \infty} f(x) = b" />
 - <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
 
-### Asimtot Miring (Oblique)
+### Asimtot Miring
 
-Asimtot miring adalah garis miring yang didekati grafik ketika <InlineMath math="x" /> menuju tak hingga.
+Asimtot miring adalah garis miring yang didekati grafik ketika <InlineMath math="x" /> menuju positif tak hingga, negatif tak hingga, atau keduanya.
 
-**Definisi:** Garis <InlineMath math="y = mx + c" /> adalah asimtot miring jika:
+**Definisi:** Garis <InlineMath math="y = mx + c" /> adalah asimtot miring pada arah ketika selisih berikut menuju nol:
 
-<BlockMath math="\lim_{x \to \pm\infty} [f(x) - (mx + c)] = 0" />
+<MathContainer>
+  <BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+  <BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+</MathContainer>
 
 ## Asimtot pada Fungsi Rasional
 
@@ -70,10 +73,10 @@ Mari kita lihat perilaku fungsi di sekitar asimtot vertikal:
 
 | <InlineMath math="x" />    | <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />                       | Keterangan                              |
 | -------------------------- | ---------------------------------------------------------------------- | --------------------------------------- |
-| <InlineMath math="1.9" />  | <InlineMath math="\frac{1.9 + 3}{1.9 - 2} = \frac{4.9}{-0.1} = -49" /> | Mendekati <InlineMath math="-\infty" /> |
-| <InlineMath math="1.99" /> | <InlineMath math="\frac{4.99}{-0.01} = -499" />                        | Semakin negatif                         |
-| <InlineMath math="2.01" /> | <InlineMath math="\frac{5.01}{0.01} = 501" />                          | Mendekati <InlineMath math="+\infty" /> |
-| <InlineMath math="2.1" />  | <InlineMath math="\frac{5.1}{0.1} = 51" />                             | Semakin positif                         |
+| <InlineMath math="1{,}9" />  | <InlineMath math="\frac{1{,}9 + 3}{1{,}9 - 2} = \frac{4{,}9}{-0{,}1} = -49" /> | Mendekati <InlineMath math="-\infty" /> |
+| <InlineMath math="1{,}99" /> | <InlineMath math="\frac{4{,}99}{-0{,}01} = -499" />                        | Semakin negatif                         |
+| <InlineMath math="2{,}01" /> | <InlineMath math="\frac{5{,}01}{0{,}01} = 501" />                          | Mendekati <InlineMath math="+\infty" /> |
+| <InlineMath math="2{,}1" />  | <InlineMath math="\frac{5{,}1}{0{,}1} = 51" />                             | Semakin positif                         |
 
 <LineEquation
   title={
@@ -91,22 +94,28 @@ Mari kita lihat perilaku fungsi di sekitar asimtot vertikal:
   data={[
     {
       points: [
-        { x: -2, y: 0.25, z: 0 },
-        { x: -1, y: 0.67, z: 0 },
-        { x: 0, y: 1.5, z: 0 },
-        { x: 1, y: 4, z: 0 },
-        { x: 1.5, y: 9, z: 0 },
-        { x: 1.8, y: 29, z: 0 },
-        { x: 1.9, y: 49, z: 0 },
+        { x: -2, y: -0.25, z: 0 },
+        { x: -1, y: -0.67, z: 0 },
+        { x: 0, y: -1.5, z: 0 },
+        { x: 1, y: -4, z: 0 },
+        { x: 1.5, y: -9, z: 0 },
+        { x: 1.8, y: -24, z: 0 },
+        { x: 1.9, y: -49, z: 0 },
       ],
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x → 2^{-}" />, at: 1, offset: [-1, 0.5, 0] }],
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{-}" />,
+          at: 1,
+          offset: [-1, 0.5, 0],
+        },
+      ],
     },
     {
       points: [
         { x: 2.1, y: 51, z: 0 },
-        { x: 2.2, y: 31, z: 0 },
+        { x: 2.2, y: 26, z: 0 },
         { x: 2.5, y: 11, z: 0 },
         { x: 3, y: 6, z: 0 },
         { x: 4, y: 3.5, z: 0 },
@@ -115,7 +124,13 @@ Mari kita lihat perilaku fungsi di sekitar asimtot vertikal:
       ],
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x → 2^{+}" />, at: 6, offset: [0.5, -0.5, 0] }],
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{+}" />,
+          at: 6,
+          offset: [0.5, -0.5, 0],
+        },
+      ],
     },
     {
       points: [
@@ -160,9 +175,9 @@ Mari kita lihat bagaimana fungsi mendekati asimtot horizontal:
 
 | <InlineMath math="x" />    | <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />                              | Mendekati                 |
 | -------------------------- | ----------------------------------------------------------------------------------- | ------------------------- |
-| <InlineMath math="10" />   | <InlineMath math="\frac{3(100) - 1}{2(100) + 5} = \frac{299}{205} \approx 1.459" /> | <InlineMath math="1.5" /> |
-| <InlineMath math="100" />  | <InlineMath math="\frac{29999}{20005} \approx 1.4997" />                            | <InlineMath math="1.5" /> |
-| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1.49997" />                       | <InlineMath math="1.5" /> |
+| <InlineMath math="10" />   | <InlineMath math="\frac{3(100) - 1}{2(100) + 5} = \frac{299}{205} \approx 1{,}459" /> | <InlineMath math="1{,}5" /> |
+| <InlineMath math="100" />  | <InlineMath math="\frac{29999}{20005} \approx 1{,}4996" />                            | <InlineMath math="1{,}5" /> |
+| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1{,}499996" />                      | <InlineMath math="1{,}5" /> |
 
 <LineEquation
   title={
@@ -173,7 +188,7 @@ Mari kita lihat bagaimana fungsi mendekati asimtot horizontal:
   }
   description={
     <>
-      Grafik mendekati <InlineMath math="y = 1.5" /> ketika{" "}
+      Grafik mendekati <InlineMath math="y = 1{,}5" /> ketika{" "}
       <InlineMath math="x \to \pm\infty" />.
     </>
   }
@@ -195,7 +210,7 @@ Mari kita lihat bagaimana fungsi mendekati asimtot horizontal:
       ],
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1.5" />, at: 1, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 1, offset: [2, 0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -213,9 +228,7 @@ Asimtot miring muncul ketika <InlineMath math="\text{derajat pembilang} = \text{
 **Penyelesaian:**
 Dengan pembagian polinomial:
 
-<MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
-</MathContainer>
+<BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
 
 Ketika <InlineMath math="x \to \pm\infty" />, suku <InlineMath math="\frac{2}{x - 1} \to 0" />
 
@@ -311,9 +324,9 @@ Asimtot sangat membantu dalam menggambar grafik fungsi. Berikut langkah-langkahn
 
 | <InlineMath math="x" />  | <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />                  | Keterangan                   |
 | ------------------------ | ----------------------------------------------------------------- | ---------------------------- |
-| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0.4" /> | Titik di kuadran I           |
+| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0{,}4" /> | Titik di kuadran II          |
 | <InlineMath math="-1" /> | <InlineMath math="\frac{-1 + 1}{-1 - 2} = \frac{0}{-3} = 0" />    | Titik potong sumbu <InlineMath math="x" />         |
-| <InlineMath math="0" />  | <InlineMath math="\frac{0 + 1}{0 - 2} = \frac{1}{-2} = -0.5" />   | Titik potong sumbu <InlineMath math="y" />         |
+| <InlineMath math="0" />  | <InlineMath math="\frac{0 + 1}{0 - 2} = \frac{1}{-2} = -0{,}5" />   | Titik potong sumbu <InlineMath math="y" />         |
 | <InlineMath math="1" />  | <InlineMath math="\frac{1 + 1}{1 - 2} = \frac{2}{-1} = -2" />     | Mendekati asimtot vertikal   |
 | <InlineMath math="3" />  | <InlineMath math="\frac{3 + 1}{3 - 2} = \frac{4}{1} = 4" />       | Di sebelah kanan asimtot     |
 | <InlineMath math="5" />  | <InlineMath math="\frac{5 + 1}{5 - 2} = \frac{6}{3} = 2" />       | Mendekati asimtot horizontal |
@@ -382,7 +395,7 @@ Asimtot sangat membantu dalam menggambar grafik fungsi. Berikut langkah-langkahn
       points: [{ x: 0, y: -0.5, z: 0 }],
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: <InlineMath math="(0,-0.5)" />, at: 0, offset: [-1.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="(0,-0{,}5)" />, at: 0, offset: [-1.5, -1, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -395,47 +408,53 @@ Asimtot sangat membantu dalam menggambar grafik fungsi. Berikut langkah-langkahn
 
 2. Tentukan asimtot dari <InlineMath math="g(x) = \frac{x^2 - 4}{x^2 - 9}" />
 
-3. Fungsi biaya rata-rata suatu produk adalah <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Tentukan biaya minimum per unit yang dapat dicapai.
+3. Fungsi biaya rata-rata suatu produk adalah <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Tentukan nilai batas biaya per unit ketika produksi bertambah tanpa batas.
 
 4. Gambar sketsa grafik <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> lengkap dengan asimtotnya.
 
-### Kunci Jawaban
+### Pembahasan
 
-**Jawaban** <InlineMath math="1" />:
+**Soal** <InlineMath math="1" />:
 
-- <InlineMath math="\text{derajat pembilang }(2) = \text{derajat penyebut }(1) + 1" />
-- Ada asimtot miring. Dengan pembagian: <InlineMath math="f(x) = 2x + 3 + \frac{10}{x - 3}" />
-- Asimtot vertikal: <InlineMath math="x = 3" />
-- Asimtot miring: <InlineMath math="y = 2x + 3" />
+Penyebut bernilai nol pada <InlineMath math="x = 3" />, sedangkan nilai pembilangnya adalah <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Karena pembilang tidak ikut bernilai nol, <InlineMath math="x = 3" /> merupakan asimtot vertikal.
 
-**Jawaban** <InlineMath math="2" />:
+Pembagian polinom memisahkan perilaku linear jangka panjang dari suku sisanya:
 
-- Asimtot vertikal: <InlineMath math="x^2 - 9 = 0" />, jadi <InlineMath math="x = 3" /> dan <InlineMath math="x = -3" />
-- Tapi saat <InlineMath math="x = 2" />, <InlineMath math="\text{pembilang} = 0" />, jadi <InlineMath math="x = 2" /> bukan asimtot
-- Saat <InlineMath math="x = -2" />, <InlineMath math="\text{pembilang} = 0" />, jadi <InlineMath math="x = -2" /> bukan asimtot
-- Asimtot horizontal: <InlineMath math="y = 1" /> (derajat sama, rasio <InlineMath math="= 1/1" />)
+<BlockMath math="\frac{2x^2 - 3x + 1}{x - 3} = 2x + 3 + \frac{10}{x - 3}" />
 
-**Jawaban** <InlineMath math="3" />:
+Ketika <InlineMath math="x \to \pm\infty" />, suku sisa <InlineMath math="\frac{10}{x - 3} \to 0" />. Jadi, asimtot miringnya adalah <InlineMath math="y = 2x + 3" />.
+
+**Soal** <InlineMath math="2" />:
+
+Faktorkan pembilang dan penyebut sebelum mengelompokkan akar-akarnya:
+
+<MathContainer>
+  <BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+</MathContainer>
+
+Tidak ada faktor yang sama untuk dicoret. Karena itu, akar penyebut <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" /> merupakan asimtot vertikal. Akar pembilang <InlineMath math="x = -2" /> dan <InlineMath math="x = 2" /> merupakan titik potong sumbu <InlineMath math="x" />. Derajat pembilang dan penyebut sama, serta koefisien terdepannya sama-sama <InlineMath math="1" />, sehingga asimtot horizontalnya adalah <InlineMath math="y = 1" />.
+
+**Soal** <InlineMath math="3" />:
 
 <BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
 
-Ketika <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />
-Jadi biaya minimum per unit <InlineMath math="= 3" />
+Ketika <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Karena itu, <InlineMath math="C(x) \to 3" />. Biaya mendekati <InlineMath math="3" /> per unit, tetapi tidak sama dengan nilai tersebut untuk nilai positif <InlineMath math="x" /> yang berhingga.
 
-**Jawaban** <InlineMath math="4" />:
+**Soal** <InlineMath math="4" />:
 
-- Asimtot vertikal: <InlineMath math="x = 1" /> dan <InlineMath math="x = -1" />
-- Asimtot horizontal: <InlineMath math="y = 0" /> (derajat pembilang lebih kecil daripada derajat penyebut)
-- Grafik memiliki tiga bagian terpisah karena dua asimtot vertikal
+Faktorkan penyebut menjadi <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Tidak ada faktor yang dapat dicoret dengan pembilang, sehingga asimtot vertikalnya adalah <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />. Karena derajat pembilang lebih kecil daripada derajat penyebut, <InlineMath math="h(x) \to 0" /> ketika <InlineMath math="x \to \pm\infty" />; jadi, asimtot horizontalnya adalah <InlineMath math="y = 0" />.
+
+Kedua asimtot vertikal membagi domain menjadi tiga interval. Tanda <InlineMath math="h(x)" /> negatif pada <InlineMath math="x < -1" />, positif pada <InlineMath math="-1 < x < 0" />, negatif pada <InlineMath math="0 < x < 1" />, dan positif pada <InlineMath math="x > 1" />. Informasi tanda ini, bersama titik potong <InlineMath math="(0,0)" />, menentukan letak ketiga cabang grafik.
 
 Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
 
 | <InlineMath math="x" />    | <InlineMath math="h(x)" />                              | Keterangan    |
 | -------------------------- | ------------------------------------------------------- | ------------- |
 | <InlineMath math="-2" />   | <InlineMath math="\frac{-2}{4-1} = -\frac{2}{3}" />     | Bagian kiri   |
-| <InlineMath math="-0.5" /> | <InlineMath math="\frac{-0.5}{0.25-1} = \frac{2}{3}" /> | Bagian tengah |
+| <InlineMath math="-0{,}5" /> | <InlineMath math="\frac{-0{,}5}{0{,}25-1} = \frac{2}{3}" /> | Bagian tengah |
 | <InlineMath math="0" />    | <InlineMath math="\frac{0}{0-1} = 0" />                 | Titik potong  |
-| <InlineMath math="0.5" />  | <InlineMath math="\frac{0.5}{0.25-1} = -\frac{2}{3}" /> | Bagian tengah |
+| <InlineMath math="0{,}5" />  | <InlineMath math="\frac{0{,}5}{0{,}25-1} = -\frac{2}{3}" /> | Bagian tengah |
 | <InlineMath math="2" />    | <InlineMath math="\frac{2}{4-1} = \frac{2}{3}" />       | Bagian kanan  |
 
 <LineEquation

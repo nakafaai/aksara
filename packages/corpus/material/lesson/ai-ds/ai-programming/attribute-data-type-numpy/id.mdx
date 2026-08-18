@@ -8,18 +8,18 @@ export const metadata = {
 
 ## Sistem Tipe Data NumPy
 
-Setiap data dalam NumPy memiliki tipe spesifik yang menentukan cara penyimpanan dan pemrosesannya. Bayangkan tipe data seperti wadah berbeda, masing-masing dirancang untuk jenis informasi tertentu. Boolean hanya butuh satu bit, sedangkan bilangan kompleks memerlukan ruang jauh lebih besar.
+Setiap elemen yang disimpan dalam array NumPy memiliki tipe spesifik yang menentukan cara NumPy merepresentasikan dan memprosesnya. Bayangkan tipe data sebagai format penyimpanan untuk jenis informasi yang berbeda. Boolean NumPy memakai satu byte, sedangkan bilangan kompleks menyimpan komponen real dan imajiner secara terpisah.
 
 Sistem tipe NumPy memastikan semua elemen array berbagi tipe data yang sama agar pemrosesan lebih efisien. Keseragaman ini membantu kode C di bawahnya memproses data dengan cepat. Untuk rincian setiap tipe data, lihat [dokumentasi tipe data NumPy](https://numpy.org/doc/stable/user/basics.types.html) yang mencakup spesifikasi teknis dan pertimbangan memori.
 
 ### Tipe Data Dasar
 
-NumPy mendukung tipe data Python native dengan tambahan underscore trailing untuk kompatibilitas dengan kode C:
+NumPy menerima tipe skalar bawaan Python dan menyediakan tipe skalar dengan lebar tetap ketika representasi data harus ditentukan secara tepat:
 
-1. **Boolean** (`bool_`) untuk nilai True atau False yang disimpan sebagai byte
-2. **Integer** (`int_`) sebagai tipe integer default, biasanya sama dengan C long
-3. **Float** (`float_`) untuk bilangan desimal dengan presisi ganda
-4. **Complex** (`complex_`) untuk bilangan kompleks dengan dua komponen float
+1. **Boolean** (`bool` atau `np.bool_`) untuk `True` dan `False`, dengan satu byte per elemen
+2. **Integer** (`np.int8` hingga `np.int64`) untuk bilangan bulat bertanda dengan lebar yang eksplisit
+3. **Float** (`np.float16`, `np.float32`, atau `np.float64`) untuk bilangan titik mengambang dengan tingkat presisi berbeda
+4. **Complex** (`np.complex64` atau `np.complex128`) untuk nilai dengan komponen real dan imajiner
 
 <CodeBlock
   data={[
@@ -29,15 +29,15 @@ NumPy mendukung tipe data Python native dengan tambahan underscore trailing untu
       code: `import numpy as np
 
 # Contoh tipe data dasar
-bool_array = np.array([True, False, True], dtype=bool)
+bool_array = np.array([True, False, True], dtype=np.bool_)
 print("Boolean array:", bool_array)  # Output: Boolean array: [ True False  True]
 print("Dtype:", bool_array.dtype)  # Output: Dtype: bool
 
-int_array = np.array([1, 2, 3], dtype=int)
+int_array = np.array([1, 2, 3], dtype=np.int64)
 print("Integer array:", int_array)  # Output: Integer array: [1 2 3]
 print("Dtype:", int_array.dtype)  # Output: Dtype: int64
 
-float_array = np.array([1.0, 2.5, 3.7], dtype=float)
+float_array = np.array([1.0, 2.5, 3.7], dtype=np.float64)
 print("Float array:", float_array)  # Output: Float array: [1.  2.5 3.7]
 print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
     }
@@ -58,15 +58,15 @@ NumPy menyediakan kontrol presisi yang detail dengan berbagai ukuran tipe data n
 | | `uint16` | <InlineMath math="16" />-bit unsigned integer | <InlineMath math="0 \text{ hingga } 65535" /> |
 | | `uint32` | <InlineMath math="32" />-bit unsigned integer | <InlineMath math="0 \text{ hingga } 4294967295" /> |
 | | `uint64` | <InlineMath math="64" />-bit unsigned integer | Rentang sangat besar positif |
-| **Float** | `float16` | Half-precision float | <InlineMath math="5 \text{ bit eksponen}" />, <InlineMath math="10 \text{ bit mantissa}" /> |
-| | `float32` | Single-precision float | <InlineMath math="8 \text{ bit eksponen}" />, <InlineMath math="23 \text{ bit mantissa}" /> |
-| | `float64` | Double-precision float | <InlineMath math="11 \text{ bit eksponen}" />, <InlineMath math="52 \text{ bit mantissa}" /> |
+| **Float** | `float16` | Half-precision float | <InlineMath math="5 \text{ bit eksponen}" />, <InlineMath math="10 \text{ bit fraksi}" /> |
+| | `float32` | Single-precision float | <InlineMath math="8 \text{ bit eksponen}" />, <InlineMath math="23 \text{ bit fraksi}" /> |
+| | `float64` | Double-precision float | <InlineMath math="11 \text{ bit eksponen}" />, <InlineMath math="52 \text{ bit fraksi}" /> |
 | **Complex** | `complex64` | Complex number | Dua <InlineMath math="32" />-bit float |
 | | `complex128` | Complex number | Dua <InlineMath math="64" />-bit float |
 
 ### Menentukan Tipe Data
 
-Kamu dapat menentukan tipe data saat membuat array atau mengubahnya setelah array dibuat:
+Kamu dapat menentukan tipe data saat membuat array atau mengonversi nilainya menjadi array baru dengan dtype lain:
 
 <CodeBlock
   data={[
@@ -85,7 +85,7 @@ a = np.ones((3, 3))
 print("Default ones dtype:", a.dtype)  # Output: Default ones dtype: float64
 
 # Mengubah ke integer
-a = np.ones((3, 3), dtype=int)
+a = np.ones((3, 3), dtype=np.int64)
 print("Ones dengan dtype int:", a.dtype)  # Output: Ones dengan dtype int: int64
 print("Array:")
 print(a)
@@ -110,7 +110,7 @@ NumPy secara otomatis mendeteksi tipe data berdasarkan elemen yang diberikan:
 
 # Semua integer
 a = np.array([0, 1, 2])
-print("Semua int - dtype:", a.dtype)  # Output: Semua int - dtype: int64
+print("Semua int - dtype:", a.dtype)  # Output umum pada sistem 64-bit: Semua int - dtype: int64
 
 # Semua float
 a = np.array([0., 1., 2.])
@@ -126,11 +126,11 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## Atribut Array NumPy
 
-Setiap array NumPy memiliki atribut yang memberikan informasi penting tentang struktur dan karakteristiknya. Atribut ini seperti kartu identitas yang menjelaskan semua detail penting tentang array.
+Setiap array NumPy menyediakan atribut yang menjelaskan bentuk, jumlah elemen, tipe data, dan penggunaan memorinya.
 
 ### Atribut Dimensi dan Bentuk
 
-Atribut dimensi dan bentuk memberikan informasi struktural yang penting tentang array. Mari kita lihat bagaimana cara mengakses dan menginterpretasikan atribut-atribut ini.
+Contoh berikut membaca atribut struktur utama dari sebuah array dua dimensi.
 
 <CodeBlock
   data={[
@@ -140,7 +140,7 @@ Atribut dimensi dan bentuk memberikan informasi struktural yang penting tentang 
       code: `import numpy as np
 
 # Membuat array 2D sebagai contoh
-a = np.array([[0, 1, 2], [3, 4, 5]])
+a = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.int64)
 print("Array:")
 print(a)
 # Output:
@@ -151,7 +151,7 @@ print("Shape (bentuk):", a.shape)  # Output: Shape (bentuk): (2, 3)
 print("Ndim (dimensi):", a.ndim)  # Output: Ndim (dimensi): 2
 print("Size (total elemen):", a.size)  # Output: Size (total elemen): 6
 print("Dtype (tipe data):", a.dtype)  # Output: Dtype (tipe data): int64
-print("Data pointer:", a.data)  # Output: Data pointer: <memory at 0x...>`
+print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen: 48`
     }
   ]}
 />
@@ -164,11 +164,11 @@ print("Data pointer:", a.data)  # Output: Data pointer: <memory at 0x...>`
 | `ndarray.ndim` | Jumlah axis/dimensi | `2` untuk array dua dimensi |
 | `ndarray.size` | Total jumlah elemen | `6` untuk array <InlineMath math="2 \times 3" /> |
 | `ndarray.dtype` | Tipe data elemen | `int64`, `float64`, dll |
-| `ndarray.data` | Pointer ke awal data array | Memory address |
+| `ndarray.nbytes` | Byte yang dipakai elemen array | `48` untuk enam nilai `int64` |
 
 ### Konsistensi Tipe Data
 
-Semua elemen dalam array NumPy harus memiliki tipe data yang sama. Objek `numpy.dtype` menjelaskan bagaimana item disimpan dan diinterpretasikan dalam memori. Ketika kamu mencampur tipe data yang berbeda, NumPy akan secara otomatis melakukan konversi ke tipe data yang paling umum.
+Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan diinterpretasikan dalam memori. Jika masukan memiliki tipe berbeda, NumPy memakai aturan promosi tipe untuk mencari dtype bersama yang kompatibel. Hasilnya bergantung pada presisi dan kategori tipe, bukan pada tipe yang paling sering muncul.
 
 <CodeBlock
   data={[
@@ -179,7 +179,7 @@ Semua elemen dalam array NumPy harus memiliki tipe data yang sama. Objek `numpy.
 
 # Semua integer
 a = np.array([0, 1, 2])
-print("All int - dtype:", a.dtype)  # Output: All int - dtype: int64
+print("Semua int - dtype:", a.dtype)  # Output umum pada sistem 64-bit: Semua int - dtype: int64
 
 # Semua float
 a = np.array([0., 1., 2.])
@@ -199,7 +199,7 @@ NumPy menyediakan berbagai cara untuk mengkonversi dan memanipulasi tipe data ar
 
 ### Metode Konversi Tipe Data
 
-Konversi tipe data memungkinkan kamu mengubah representasi data sesuai kebutuhan analisis. Metode `astype()` adalah cara paling umum untuk melakukan konversi eksplisit.
+Konversi tipe data memungkinkan kamu memilih representasi lain untuk analisis berikutnya. Metode `astype()` mengembalikan array hasil konversi dan tidak mengubah array asal secara langsung. Konversi nilai titik mengambang ke integer memotong bagian pecahan menuju nol, bukan membulatkannya.
 
 <CodeBlock
   data={[
@@ -214,7 +214,7 @@ print("Original array:", original)  # Output: Original array: [1.1 2.7 3.9]
 print("Original dtype:", original.dtype)  # Output: Original dtype: float64
 
 # Konversi ke integer menggunakan astype
-converted = original.astype(int)
+converted = original.astype(np.int64)
 print("Converted to int:", converted)  # Output: Converted to int: [1 2 3]
 print("Converted dtype:", converted.dtype)  # Output: Converted dtype: int64
 
@@ -224,16 +224,16 @@ print("Float32 dtype:", float32_array.dtype)  # Output: Float32 dtype: float32
 
 # Konversi string ke integer
 string_array = np.array(['1', '2', '3'])
-int_from_string = string_array.astype(int)
-print("From string:", int_from_string)  # Output: From string: [1 2 3]
-print("String to int dtype:", int_from_string.dtype)  # Output: String to int dtype: int64`
+int_from_string = string_array.astype(np.int64)
+print("Dari string:", int_from_string)  # Output: Dari string: [1 2 3]
+print("Tipe data hasil konversi ke int:", int_from_string.dtype)  # Output: Tipe data hasil konversi ke int: int64`
     }
   ]}
 />
 
 ### Optimasi Memori dengan Tipe Data
 
-Memilih tipe data yang tepat dapat menghemat memori secara signifikan, terutama untuk dataset besar. Perbedaan ukuran tipe data dapat memberikan penghematan yang dramatis pada aplikasi skala besar.
+Memilih tipe data tersempit yang tetap mencakup nilai dan presisi yang dibutuhkan dapat mengurangi penggunaan memori secara nyata. Sebelum memperkecil dtype, periksa rentangnya agar nilai tidak meluap atau kehilangan presisi penting.
 
 <CodeBlock
   data={[
@@ -242,8 +242,8 @@ Memilih tipe data yang tepat dapat menghemat memori secara signifikan, terutama 
       filename: "memory_optimization.py",
       code: `import numpy as np
 
-# Array dengan tipe data default (int64)
-large_array_int64 = np.arange(1000000)
+# Array dengan tipe integer 64-bit yang eksplisit
+large_array_int64 = np.arange(1000000, dtype=np.int64)
 print("Int64 itemsize:", large_array_int64.itemsize, "bytes")  # Output: Int64 itemsize: 8 bytes
 print("Int64 total memory:", large_array_int64.nbytes, "bytes")  # Output: Int64 total memory: 8000000 bytes
 
@@ -262,7 +262,7 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
 
 ### Informasi Detail Tipe Data
 
-NumPy menyediakan informasi detail tentang setiap tipe data yang dapat membantu dalam optimasi. Informasi ini berguna untuk memahami trade-off antara presisi dan penggunaan memori.
+Atribut `itemsize` memperlihatkan langsung hubungan antara presisi dan penggunaan memori pada setiap array.
 
 <CodeBlock
   data={[
@@ -299,11 +299,11 @@ for name, arr in arrays.items():
 
 ## Penggunaan Praktis Atribut Array
 
-Memahami atribut array sangat penting untuk debugging, optimasi, dan manipulasi data yang efektif dalam pemrograman ilmiah.
+Atribut array membantu proses debugging, optimasi, dan pengolahan data ilmiah.
 
 ### Analisis Struktur Data
 
-Fungsi analisis membantu kamu membaca karakteristik array dengan cepat. Ini berguna ketika bekerja dengan data yang kompleks atau saat debugging program.
+Fungsi analisis kecil dapat merangkum karakteristik array dengan cepat. Ini membantu saat datanya kompleks atau ketika kamu sedang menelusuri kesalahan program.
 
 <CodeBlock
   data={[
@@ -326,9 +326,9 @@ def analyze_array(arr, name="Array"):
         print(f"Array content:\\n{arr}")
 
 # Contoh analisis berbagai array
-array_1d = np.array([1, 2, 3, 4, 5])
-array_2d = np.array([[1, 2, 3], [4, 5, 6]])
-array_3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+array_1d = np.array([1, 2, 3, 4, 5], dtype=np.int64)
+array_2d = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
+array_3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]], dtype=np.int64)
 
 analyze_array(array_1d, "1D")
 analyze_array(array_2d, "2D")
@@ -369,7 +369,7 @@ analyze_array(array_3d, "3D")
 
 ### Validasi Data dan Debugging
 
-Validasi data adalah langkah penting sebelum melakukan analisis atau machine learning. Fungsi validasi membantu mengidentifikasi potensi masalah dalam dataset.
+Sebelum meneruskan array ke model, periksa bentuk, dtype, nilai yang hilang, dan penggunaan memori yang benar-benar diharapkan model tersebut.
 
 <CodeBlock
   data={[
@@ -378,8 +378,8 @@ Validasi data adalah langkah penting sebelum melakukan analisis atau machine lea
       filename: "data_validation.py",
       code: `import numpy as np
 
-def validate_array_for_ml(arr):
-    """Validasi array untuk machine learning"""
+def validate_feature_matrix(arr):
+    """Periksa matriks fitur numerik sebelum pemodelan."""
     print("=== Validasi Array untuk ML ===")
 
     # Cek dimensi
@@ -388,11 +388,12 @@ def validate_array_for_ml(arr):
     else:
         print(f"✓ Array 2D dengan shape: {arr.shape}")
 
-    # Cek tipe data
-    if arr.dtype in [np.float32, np.float64]:
-        print(f"✓ Tipe data sesuai: {arr.dtype}")
-    else:
+    # Periksa apakah matriks berisi nilai numerik
+    if not np.issubdtype(arr.dtype, np.number):
         print(f"WARNING: Tipe data mungkin perlu konversi: {arr.dtype}")
+        return
+
+    print(f"✓ Tipe data numerik: {arr.dtype}")
 
     # Cek missing values (NaN)
     if np.isnan(arr).any():
@@ -408,33 +409,33 @@ def validate_array_for_ml(arr):
 # Test dengan berbagai array
 test_arrays = [
     np.array([[1, 2, 3], [4, 5, 6]], dtype=np.float64),
-    np.array([1, 2, 3, 4, 5]),
+    np.array([1, 2, 3, 4, 5], dtype=np.int64),
     np.array([[1, 2, np.nan], [4, 5, 6]], dtype=np.float64)
 ]
 
 for i, arr in enumerate(test_arrays):
     print(f"\\n--- Test Array {i+1} ---")
-    validate_array_for_ml(arr)
+    validate_feature_matrix(arr)
 
 # Output:
 # --- Test Array 1 ---
 # === Validasi Array untuk ML ===
 # ✓ Array 2D dengan shape: (2, 3)
-# ✓ Tipe data sesuai: float64
+# ✓ Tipe data numerik: float64
 # ✓ Tidak ada nilai NaN
 # Penggunaan memori: 0.00 MB
 #
 # --- Test Array 2 ---
 # === Validasi Array untuk ML ===
 # WARNING: Array bukan 2D (current: 1D)
-# WARNING: Tipe data mungkin perlu konversi: int64
+# ✓ Tipe data numerik: int64
 # ✓ Tidak ada nilai NaN
 # Penggunaan memori: 0.00 MB
 #
 # --- Test Array 3 ---
 # === Validasi Array untuk ML ===
 # ✓ Array 2D dengan shape: (2, 3)
-# ✓ Tipe data sesuai: float64
+# ✓ Tipe data numerik: float64
 # WARNING: Terdapat 1 nilai NaN
 # Penggunaan memori: 0.00 MB`
     }

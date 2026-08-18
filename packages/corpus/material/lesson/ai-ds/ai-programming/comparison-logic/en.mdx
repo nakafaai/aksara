@@ -8,23 +8,25 @@ export const metadata = {
 
 ## Operator Precedence Order
 
-In programming, computers execute operations based on a specific precedence order. Imagine it like mathematical rules where multiplication is performed before addition. Python has similar rules for all its operators.
+Operator precedence determines how Python groups an expression when parentheses do not state the grouping explicitly. It is a parsing rule, not a promise that every operand will be evaluated in the same visual order.
 
 <Mermaid
   title="Which Operator Runs First"
   description="Read evaluation order from parentheses to logic operators so expression results are not guessed."
   chart={`
     flowchart LR
-        A["** exponent"] --> B["*, /, //, % arithmetic"]
-        B --> C["+, - add subtract"]
-        C --> D["comparison operators"]
-        D --> E["not"]
-        E --> F["and"]
-        F --> G["or"]
+        A["parentheses, calls, indexing"] --> B["** exponent"]
+        B --> C["unary +, -, ~"]
+        C --> D["*, /, //, %"]
+        D --> E["+, -"]
+        E --> F["comparison operators"]
+        F --> G["not"]
+        G --> H["and"]
+        H --> I["or"]
   `}
 />
 
-When you write complex expressions, Python will evaluate operators with higher precedence first. If multiple operators have the same precedence, evaluation is done from left to right.
+Higher-precedence operators bind more tightly. Most binary operators at the same level group from left to right, but exponentiation groups from right to left and comparisons form chains. Parentheses are the clearest choice whenever the intended grouping might be missed.
 
 ## Comparison Operators
 
@@ -37,7 +39,7 @@ Comparison operators are used to compare two values and produce boolean values (
 - `>` greater than
 - `>=` greater than or equal to
 
-Comparison operators have important characteristics: they compare values of two objects, objects don't have to be of the same data type, all comparison operators have the same precedence, and they always produce `True` or `False` values with type `bool`.
+These operators return a `bool`. Equality can compare objects of different types, but ordering comparisons such as `<` require types that define a compatible ordering and may raise `TypeError` otherwise. Comparisons share a precedence level and can be chained.
 
 <CodeBlock
   data={[
@@ -48,7 +50,7 @@ Comparison operators have important characteristics: they compare values of two 
 >>> 4 == 5
 False
 
->>> 3 > 2.1  # integer 3 is promoted to float for comparison with 2.1
+>>> 3 > 2.1  # Python supports this mixed numeric comparison
 True`
     }
   ]}
@@ -147,7 +149,9 @@ Python has special rules for determining which values are considered `False` or 
 
 **Values considered `True` (Truthy):**
 
-1. All other values
+1. Other nonzero and nonempty built-in values
+
+User-defined objects can customize truth testing with `__bool__()` or `__len__()`. If neither is defined, an instance is truthy by default.
 
 ### Boolean Data Type
 
@@ -191,7 +195,7 @@ False
 True
 
 >>> not 0 < 2  # ⇔ not (0 < 2) ⇔ not True
-True
+False
 
 # Comparison chaining
 >>> 1 < 2 < 3  # ⇔ (1 < 2) and (2 < 3)
@@ -205,7 +209,7 @@ True`
 
 ## Floating Point Number Comparison
 
-Comparing floating point numbers requires special attention due to precision limitations in digital representation. Loss of precision can cause unexpected results.
+Many decimal fractions have no exact finite binary floating-point representation. Arithmetic rounds intermediate results, so two mathematically equivalent calculations can produce nearby but unequal floats.
 
 ### Float Precision Issues
 
@@ -258,4 +262,4 @@ True`
 
 Python provides the `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` function to test approximate equality. This function uses relative tolerance (rel_tol) and absolute tolerance (abs_tol) to determine whether two values are close enough.
 
-> Avoid comparing floating point with `==` or `!=`. Use `math.isclose(a, b)` to test approximate equality. Use `abs_tol` if one of the numbers is close to zero.
+> Use exact equality when exact identity of the floating-point value is genuinely required. For measured or calculated quantities, choose tolerances from the problem domain and use `math.isclose()`. Near zero, an appropriate `abs_tol` is essential because relative tolerance alone shrinks with the compared values.

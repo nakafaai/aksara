@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The origins", value: false },
-    { label: "Researchers", value: true },
-    { label: "Migratory birds", value: false },
-    { label: "Immune systems", value: false },
-    { label: "Major differences", value: false },
+    { label: "The songbird species", value: false },
+    { label: "The researchers", value: true },
+    { label: "The pathogen communities", value: false },
+    { label: "The Palaearctic regions", value: false },
+    { label: "The immune-recognition genes", value: false },
   ],
 };
 

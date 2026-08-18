@@ -3,48 +3,35 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "There are West Javanese dishes that are not sour and spicy",
+      label: "At least one dish is not both sour and spicy",
       value: false,
     },
-    {
-      label: "Some West Javanese dishes are neither sour nor spicy",
-      value: false,
-    },
-    {
-      label: "All West Javanese dishes use raw vegetables",
-      value: false,
-    },
-    {
-      label: "There are West Javanese dishes that do not use raw vegetables",
-      value: false,
-    },
+    { label: "At least one dish is neither sour nor spicy", value: false },
+    { label: "Every dish contains raw vegetables", value: false },
+    { label: "No dish contains raw vegetables", value: false },
     {
       label:
-        "There are West Javanese dishes that do not use raw vegetables but have a sour and spicy taste",
+        "At least one dish contains no raw vegetables and tastes sour and spicy",
       value: true,
     },
   ],
   id: [
     {
-      label: "Ada masakan Jawa Barat yang memiliki rasa tidak asam dan pedas",
+      label: "Sedikitnya satu hidangan tidak sekaligus asam dan pedas",
+      value: false,
+    },
+    {
+      label: "Sedikitnya satu hidangan tidak asam dan tidak pedas",
+      value: false,
+    },
+    { label: "Setiap hidangan mengandung sayuran mentah", value: false },
+    {
+      label: "Tidak ada hidangan yang mengandung sayuran mentah",
       value: false,
     },
     {
       label:
-        "Beberapa masakan Jawa Barat memiliki rasa tidak asam dan tidak pedas",
-      value: false,
-    },
-    {
-      label: "Semua masakan Jawa Barat menggunakan sayuran mentah",
-      value: false,
-    },
-    {
-      label: "Ada masakan Jawa Barat tidak menggunakan sayuran mentah",
-      value: false,
-    },
-    {
-      label:
-        "Ada masakan Jawa Barat tidak menggunakan sayuran mentah memiliki rasa asam dan pedas",
+        "Sedikitnya satu hidangan tidak mengandung sayuran mentah serta terasa asam dan pedas",
       value: true,
     },
   ],

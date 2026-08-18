@@ -4,54 +4,49 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Every society experiences changes that occur due to relationships between individuals and groups coming from outside and inside",
+        "Every society changes, and the sources of social change can be internal or external",
       value: true,
     },
     {
       label:
-        "Essentially, society changes because of the many changes within society coming from outside and inside society",
+        "Social change is caused only by relationships between individuals",
+      value: false,
+    },
+    {
+      label: "External contact is the only source of social change",
       value: false,
     },
     {
       label:
-        "The many changes occurring from outside and inside society cause society to experience change",
+        "Researchers should study every change without identifying a primary one",
       value: false,
     },
     {
-      label:
-        "The study of social change can only be done because of changes coming from outside and inside society",
-      value: false,
-    },
-    {
-      label:
-        "Every society experiences changes whose study must first be determined by the changes that occur",
+      label: "A society changes only when another society influences it",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Setiap masyarakat mengalami perubahan yang terjadi karena hubungan antar individu dan kelompok yang datang dari luar dan dalam",
+        "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
       value: true,
     },
     {
-      label:
-        "Hakikatnya, masyarakat berubah karena banyaknya perubahan dalam masyarakat yang datang dari luar dan dalam masyarakat",
+      label: "Perubahan sosial hanya disebabkan oleh hubungan antarindividu",
+      value: false,
+    },
+    {
+      label: "Kontak dari luar merupakan satu-satunya sumber perubahan sosial",
       value: false,
     },
     {
       label:
-        "Banyaknya perubahan yang terjadi dari luar masyarakat dan dalam masyarakat menyebabkan masyarakat mengalami perubahan",
+        "Peneliti harus mengkaji semua perubahan tanpa menentukan perubahan utama",
       value: false,
     },
     {
-      label:
-        "Penelaahan perubahan sosial hanya dapat dilakukan karena perubahan yang datang dari luar dan dalam masyarakat",
-      value: false,
-    },
-    {
-      label:
-        "Setiap masyarakat mengalami perubahan yang penelaahannya harus ditentukan terlebih dahulu perubahan yang terjadi",
+      label: "Masyarakat hanya berubah ketika dipengaruhi oleh masyarakat lain",
       value: false,
     },
   ],

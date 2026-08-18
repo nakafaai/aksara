@@ -8,21 +8,23 @@ export const metadata = {
 
 ## Basic Object-Oriented Programming Concepts
 
-Python is a programming language that adopts the object-oriented programming or OOP paradigm. One of Python's fundamental principles is that everything is an object. This concept might sound abstract at first, but it's actually very natural and similar to how we view the real world.
+Python is a multi-paradigm language: procedural, functional, and object-oriented styles can coexist. In Python, runtime values such as numbers, functions, classes, and modules are objects with a type, identity, and value.
 
-Imagine the world around us. All objects have characteristics and can do something. A car has color, brand, and speed, and can move, stop, and honk its horn. Similarly in Python, every data and function is an object that has attributes and can perform certain actions.
+Objects may expose attributes and operations through their types. This uniform object model is why a function can be stored in a list, a class can be passed to another function, and a number can provide methods without forcing every program into an object-oriented design.
 
 ## Programming Paradigm Comparison
 
 ### Procedural Languages
 
-In procedural programming languages, state and actions are separated. Data and functions that operate on that data are separate from each other.
+In a procedural style, a program is organized around operations and explicit data flow. Data structures and the functions that receive them can remain separate, even in a language that also supports classes.
 
 <CodeBlock
   data={[{
     language: "c",
     filename: "procedural_parking.c",
-    code: `// Example of procedural approach in C language
+    code: `#include <stdio.h>
+
+// Example of procedural approach in C language
 struct ParkSystem {
     int max;
     int occ;
@@ -51,11 +53,11 @@ int main() {
   }]}
 />
 
-In the procedural approach, you can see that data (struct) and functions are separate. Functions accept data as parameters and modify them from outside.
+Here, the C `struct` stores parking state and each function receives a pointer to that state. The organization is procedural; it does not imply that every procedural function must mutate its input.
 
 ### Object-Oriented Languages
 
-In object-oriented programming languages, state and actions are combined into one unit called a class. Attributes describe state, while methods describe actions that can be performed on that state.
+In an object-oriented style, a class can group related state and behavior behind one interface. Attributes represent object state, while methods define operations that use or update it.
 
 <CodeBlock
   data={[{
@@ -84,7 +86,7 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-In the object-oriented approach, data and functions that operate on that data are packaged in one unit. Objects have the responsibility to manage their own state.
+The Python version groups parking invariants and operations in one class. That boundary can protect valid state, but only if its methods actually validate their inputs and avoid exposing mutable internals carelessly.
 
 ## Parking System as an Example
 
@@ -97,41 +99,43 @@ Let's use a parking system as an example to understand the concept of objects. I
     code: `class ParkingSystem:
     def __init__(self, capacity):
         """Initialize parking system with certain capacity"""
+        if capacity <= 0:
+            raise ValueError("Capacity must be positive")
         self.capacity = capacity
-        self.occupied = 0
         self.vehicles = []  # List of parked vehicles
 
     def park_vehicle(self, vehicle_plate):
         """Method to park a vehicle"""
-        if self.occupied >= self.capacity:
+        if vehicle_plate in self.vehicles:
+            return f"Vehicle {vehicle_plate} is already parked"
+        if len(self.vehicles) >= self.capacity:
             return f"Parking full! Cannot park {vehicle_plate}"
 
         self.vehicles.append(vehicle_plate)
-        self.occupied += 1
         return f"Vehicle {vehicle_plate} successfully parked"
 
     def exit_vehicle(self, vehicle_plate):
         """Method to exit parking"""
         if vehicle_plate in self.vehicles:
             self.vehicles.remove(vehicle_plate)
-            self.occupied -= 1
             return f"Vehicle {vehicle_plate} exited parking"
         else:
             return f"Vehicle {vehicle_plate} not found"
 
     def get_status(self):
         """Method to view parking status"""
-        available = self.capacity - self.occupied
+        occupied = len(self.vehicles)
+        available = self.capacity - occupied
         return {
             'capacity': self.capacity,
-            'occupied': self.occupied,
+            'occupied': occupied,
             'available': available,
-            'vehicles': self.vehicles
+            'vehicles': tuple(self.vehicles)
         }
 
     def is_full(self):
         """Method to check if parking is full"""
-        return self.occupied >= self.capacity
+        return len(self.vehicles) >= self.capacity
 
 # Example usage
 parking = ParkingSystem(5)
@@ -144,7 +148,7 @@ print(parking.is_full())`
 
 ## Object Concepts in Data Types
 
-In Python, the concept of "everything is an object" means every data you create has attributes and methods. Let's explore this concept deeper.
+"Everything is an object" means Python treats runtime values through one object model. Available attributes and methods still depend on each value's type.
 
 ### Numbers are Objects
 
@@ -344,8 +348,9 @@ def get_greeting_function(language):
 
     if language == "english":
         return english_greet
-    else:
+    if language == "indonesian":
         return indonesian_greet
+    raise ValueError(f"Unsupported language: {language}")
 
 # Using returned function
 greet_func = get_greeting_function("indonesian")
@@ -360,7 +365,7 @@ print(square(5))                    # 25`
 
 ## Classes and Instances as Objects
 
-A class is a blueprint for creating objects, while an instance is an object created from that class.
+A class defines how its instances are constructed and how their shared behavior is resolved. The class itself is also an object, and each instance carries its own instance state.
 
 <CodeBlock
   data={[{
@@ -434,90 +439,62 @@ print(Student.university)           # University of Indonesia`
 
 ## Special Methods
 
-Python has special methods that start and end with double underscores. These methods allow your objects to behave like built-in types.
+Special methods begin and end with double underscores. Python invokes them through syntax and built-ins such as `+`, `abs()`, `repr()`, and truth testing. Implement one only when its meaning is natural for the domain.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "magic_methods.py",
-    code: `class BankAccount:
-    def __init__(self, owner, balance=0):
-        self.owner = owner
-        self.balance = balance
+    code: `from math import hypot
+
+class Vector2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     def __str__(self):
-        """Readable string representation"""
-        return f"BankAccount({self.owner}, USD{self.balance:,})"
+        """Readable representation for people."""
+        return f"({self.x}, {self.y})"
 
     def __repr__(self):
-        """String representation for debugging"""
-        return f"BankAccount('{self.owner}', {self.balance})"
+        """Unambiguous representation for debugging."""
+        return f"Vector2D(x={self.x!r}, y={self.y!r})"
 
-    def __len__(self):
-        """Return length of owner name"""
-        return len(self.owner)
+    def __abs__(self):
+        """Return the vector magnitude."""
+        return hypot(self.x, self.y)
 
     def __eq__(self, other):
-        """Compare two bank accounts"""
-        if isinstance(other, BankAccount):
-            return self.balance == other.balance
-        return False
+        """Compare coordinates when the other value is a Vector2D."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
 
-    def __lt__(self, other):
-        """Less than comparison"""
-        if isinstance(other, BankAccount):
-            return self.balance < other.balance
-        return False
-
-    def __add__(self, amount):
-        """Add balance (deposit)"""
-        if isinstance(amount, (int, float)) and amount > 0:
-            self.balance += amount
-        return self
-
-    def __sub__(self, amount):
-        """Subtract balance (withdraw)"""
-        if isinstance(amount, (int, float)) and amount > 0:
-            if amount <= self.balance:
-                self.balance -= amount
-            else:
-                print("Insufficient balance!")
-        return self
+    def __add__(self, other):
+        """Return a new vector containing the coordinate-wise sum."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return Vector2D(self.x + other.x, self.y + other.y)
 
     def __bool__(self):
-        """True if has balance, False if balance is 0"""
-        return self.balance > 0
+        """The zero vector is false; every other vector is true."""
+        return bool(self.x or self.y)
 
-# Creating objects
-account1 = BankAccount("Alice", 1000000)
-account2 = BankAccount("Bob", 500000)
+first = Vector2D(3, 4)
+second = Vector2D(1, -2)
 
-# Magic methods in action
-print(account1)                     # __str__
-print(repr(account1))               # __repr__
-print(len(account1))                # __len__ (name length)
+print(first)                         # (3, 4) via __str__
+print(repr(first))                   # Vector2D(x=3, y=4)
+print(abs(first))                    # 5.0 via __abs__
+print(first == Vector2D(3, 4))       # True via __eq__
 
-# Comparison
-print(account1 == account2)         # __eq__
-print(account1 > account2)          # __lt__ (reversed)
+combined = first + second            # __add__ returns a new vector
+print(combined)                      # (4, 2)
+print(first)                         # (3, 4), unchanged
 
-# Arithmetic operations
-account1 + 500000                   # __add__ (deposit)
-print(account1)
-
-account1 - 200000                   # __sub__ (withdraw)
-print(account1)
-
-# Boolean conversion
-empty_account = BankAccount("Charlie", 0)
-print(bool(account1))               # True
-print(bool(empty_account))          # False
-
-# Using in conditionals
-if account1:
-    print(f"{account1.owner} has balance")
-else:
-    print(f"{account1.owner} has no balance")`
+zero = Vector2D(0, 0)
+print(bool(first))                   # True
+print(bool(zero))                    # False`
   }]}
 />
 
@@ -658,19 +635,19 @@ print(library.borrow_book("M001", "978-1234567890"))
 print(library.borrow_book("M002", "978-0987654321"))
 
 # Viewing book status
-print("\nList of all books:")
+print("\\nList of all books:")
 for book in library.books:
     print(book)
 
-print("\nAvailable books:")
+print("\\nAvailable books:")
 for book in library.get_available_books():
     print(book)
 
-print(f"\nBooks borrowed by Alice: {len(library.get_member_books('M001'))} books")
+print(f"\\nBooks borrowed by Alice: {len(library.get_member_books('M001'))} books")
 
 # Returning books
 print(library.return_book("M001", "978-1234567890"))`
   }]}
 />
 
-By understanding the concept that everything is an object in Python, you can write code that is more structured, easier to understand, and easier to maintain. Object-oriented programming allows you to model real-world problems into code in a natural and intuitive way.
+Python's object model explains why values, functions, and classes can move through the same language mechanisms. Use object-oriented composition when state and behavior form a useful boundary, but keep a procedural or functional design when it communicates the problem more directly.

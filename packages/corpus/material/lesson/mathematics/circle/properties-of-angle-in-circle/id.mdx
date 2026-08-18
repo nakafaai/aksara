@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Sifat Sudut dalam Lingkaran",
-  description: "Pelajari sifat sudut dalam lingkaran, termasuk sudut keliling, teorema Thales, dan segiempat tali busur.",
+  description: "Gunakan diagram dan pembahasan untuk menghubungkan sudut keliling, teorema Thales, dan sudut berhadapan dalam segiempat tali busur.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Lingkaran",
@@ -10,11 +10,11 @@ export const metadata = {
 
 ## Sudut Keliling yang Menghadap Busur yang Sama
 
-Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama, tidak peduli di mana posisi titik sudutnya pada lingkaran.
+Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama jika titik sudutnya berada pada busur sisanya yang sama, atau dengan kata lain dalam segmen lingkaran yang sama.
 
 <LineEquation
   title="Sudut Keliling Menghadap Busur yang Sama"
-  description="Semua sudut keliling yang menghadap busur yang sama besarnya sama."
+  description="Sudut keliling dalam segmen yang sama dan menghadap busur yang sama memiliki besar yang sama."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -110,8 +110,7 @@ Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama, ti
 
 **Sifat:** <InlineMath math="\angle ACB = \angle ADB" />
 
-Kedua sudut keliling <InlineMath math="\angle ACB" /> dan{" "}
-<InlineMath math="\angle ADB" /> menghadap busur <InlineMath math="AB" /> yang sama, sehingga besarnya sama.
+Kedua titik <InlineMath math="C" /> dan <InlineMath math="D" /> berada pada sisi yang sama terhadap tali busur <InlineMath math="AB" />. Karena itu, <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" /> menghadap busur yang sama dari segmen yang sama dan memiliki besar yang sama.
 
 ## Sudut Pusat dan Sudut Keliling
 
@@ -389,9 +388,9 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = (((i * 90) / 15) * Math.PI) / 180;
+        const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
         return {
-          x: 0.8 * Math.cos(angle),
+          x: 4 + 0.8 * Math.cos(angle),
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
@@ -402,9 +401,9 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((180 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
-          x: 0.8 * Math.cos(angle),
+          x: -4 + 0.8 * Math.cos(angle),
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
@@ -465,7 +464,7 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
     {
       points: [
         { x: 4, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 },
+        { x: 6, y: -2, z: 0 },
       ],
       color: "#0891b2",
       showPoints: true,
@@ -473,7 +472,7 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((270 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
           y: 0 + 0.8 * Math.sin(angle),
@@ -486,7 +485,7 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((90 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
           y: 0 + 0.8 * Math.sin(angle),
@@ -548,7 +547,7 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
 
 ## Latihan Soal
 
-1. Pada lingkaran dengan pusat <InlineMath math="O" />, sudut pusat <InlineMath math="\angle AOB = 140^\circ" />. Jika <InlineMath math="C" /> dan <InlineMath math="D" /> adalah dua titik berbeda pada lingkaran, tentukan:
+1. Pada lingkaran dengan pusat <InlineMath math="O" />, sudut pusat <InlineMath math="\angle AOB = 140^\circ" /> menghadap busur minor <InlineMath math="AB" />. Titik <InlineMath math="C" /> dan <InlineMath math="D" /> berada pada busur mayor <InlineMath math="AB" />. Tentukan:
 
    - Besar sudut <InlineMath math="\angle ACB" />
    - Besar sudut <InlineMath math="\angle ADB" />
@@ -568,13 +567,13 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
 
 5. Dalam segiempat tali busur <InlineMath math="KLMN" />, sudut luar di titik <InlineMath math="K" /> adalah <InlineMath math="65^\circ" />. Tentukan besar sudut dalam di titik <InlineMath math="M" />!
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Menentukan sudut keliling yang menghadap busur yang sama**
 
    <LineEquation
      title="Visualisasi"
-     description={<>Sudut pusat <InlineMath math="AOB = 140^\circ" /> dan sudut-sudut keliling yang menghadap busur <InlineMath math="AB" />.</>}
+     description={<>Sudut pusat <InlineMath math="\angle AOB = 140^\circ" /> dan sudut-sudut keliling menghadap busur <InlineMath math="AB" /> yang sama.</>}
      data={[
        {
          points: Array.from({ length: 361 }, (_, i) => {
@@ -860,6 +859,12 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
 
    Jika sudut luar di <InlineMath math="K" /> adalah <InlineMath math="65^\circ" />, maka:
 
-   <BlockMath math="\angle \text{dalam di M} = \angle \text{luar di K} = 65^\circ" />
+   <BlockMath math="\angle M = 65^\circ" />
 
    Ini karena titik <InlineMath math="K" /> dan <InlineMath math="M" /> berseberangan dalam segiempat tali busur <InlineMath math="KLMN" />.
+
+## Sumber
+
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [GeoGebra: Inscribed Angle Theorem](https://www.geogebra.org/m/nbepfdzb)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)

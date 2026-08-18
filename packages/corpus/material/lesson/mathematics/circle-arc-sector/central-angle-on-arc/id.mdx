@@ -10,16 +10,16 @@ export const metadata = {
 
 ## Pengertian Sudut Pusat
 
-Sudut pusat adalah sudut yang dibentuk oleh dua jari-jari lingkaran dengan titik sudutnya berada di pusat lingkaran. Bayangkan seperti potongan pizza, dimana ujung pizza yang runcing berada tepat di tengah lingkaran. Kedua sisi sudut pusat ini adalah jari-jari yang menghubungkan pusat lingkaran ke tepi lingkaran.
+Sudut pusat dibentuk oleh dua jari-jari dan memiliki titik sudut di pusat lingkaran. Potongan pizza dapat menjadi gambaran sederhana: ujung runcingnya berada di pusat, sedangkan kedua sisi lurusnya mengikuti jari-jari.
 
-Dalam lingkaran dengan pusat <InlineMath math="O" />, jika kita memiliki titik <InlineMath math="A" /> dan <InlineMath math="B" /> pada keliling lingkaran, maka <InlineMath math="\angle AOB" /> adalah sudut pusat. Sudut ini menghadap busur <InlineMath math="AB" /> yang merupakan bagian keliling lingkaran antara titik <InlineMath math="A" /> dan <InlineMath math="B" />.
+Pada lingkaran berpusat <InlineMath math="O" />, misalkan <InlineMath math="A" /> dan <InlineMath math="B" /> terletak pada keliling. Sudut <InlineMath math="\angle AOB" /> adalah sudut pusat yang membentang busur <InlineMath math="AB" /> di antara kedua titik tersebut.
 
 <LineEquation
   title={<>Visualisasi Sudut Pusat <InlineMath math="\angle AOB" /></>}
   description={
     <>
       Sudut pusat dibentuk oleh dua jari-jari <InlineMath math="OA" /> dan{" "}
-      <InlineMath math="OB" /> dengan vertex di pusat lingkaran{" "}
+      <InlineMath math="OB" /> dengan titik sudut di pusat lingkaran{" "}
       <InlineMath math="O" />.
     </>
   }
@@ -27,19 +27,21 @@ Dalam lingkaran dengan pusat <InlineMath math="O" />, jika kita memiliki titik <
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
       ],
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="OA" />, at: 0.5, offset: [0.3, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
       showPoints: true,
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
       ],
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="OB" />, at: 0.5, offset: [-0.3, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
       showPoints: true,
     },
     {
@@ -91,11 +93,11 @@ Dalam lingkaran dengan pusat <InlineMath math="O" />, jika kita memiliki titik <
 
 ## Hubungan Sudut Pusat dengan Busur
 
-Hubungan fundamental antara sudut pusat dan busur yang dihadapinya sangat sederhana namun penting. Besar sudut pusat dalam derajat sama dengan besar busur yang dihadapinya dalam derajat. Ini seperti hubungan langsung antara pembuka botol dan tutup botol yang dibuka.
+Sudut pusat dan busur yang dihadapinya memiliki besar derajat yang sama. Jadi, sudut pusat <InlineMath math="60^\circ" /> menghadap busur sebesar <InlineMath math="60^\circ" />.
 
-<BlockMath math="\text{Besar sudut pusat} = \text{Besar busur yang dihadapi}" />
+<BlockMath math="\text{besar sudut pusat} = \text{besar busur yang dibentang}" />
 
-Jika sudut pusat <InlineMath math="\angle AOB = 60^\circ" />, maka busur <InlineMath math="AB" /> juga berukuran <InlineMath math="60^\circ" />. Konsep ini berlaku karena busur didefinisikan berdasarkan sudut pusat yang menghadapinya.
+Jika <InlineMath math="\angle AOB = 60^\circ" />, besar busur <InlineMath math="AB" /> juga <InlineMath math="60^\circ" />. Kesamaan ini membandingkan besar dalam derajat, bukan panjang busur.
 
 ## Jenis Busur Berdasarkan Sudut Pusat
 
@@ -103,19 +105,19 @@ Berdasarkan besar sudut pusatnya, busur dapat dibedakan menjadi tiga jenis:
 
 ### Busur Minor
 
-Busur minor adalah busur yang dihadapi oleh sudut pusat kurang dari <InlineMath math="180^\circ" />. Ini adalah busur yang lebih pendek dari setengah lingkaran. Seperti potongan kue yang lebih kecil dari setengah kue utuh.
+Busur kecil dibentang oleh sudut pusat kurang dari <InlineMath math="180^\circ" />. Panjangnya kurang dari setengah keliling.
 
 ### Busur Setengah Lingkaran
 
-Busur setengah lingkaran dihadapi oleh sudut pusat tepat <InlineMath math="180^\circ" />. Sudut pusat ini dibentuk oleh diameter lingkaran, sehingga busurnya adalah setengah keliling lingkaran.
+Busur setengah lingkaran dibentang oleh sudut pusat tepat <InlineMath math="180^\circ" />. Kedua ujungnya terletak pada satu diameter sehingga panjang busurnya setengah keliling lingkaran.
 
 ### Busur Mayor
 
-Busur mayor adalah busur yang dihadapi oleh sudut pusat lebih dari <InlineMath math="180^\circ" />. Ini adalah busur yang lebih panjang dari setengah lingkaran. Untuk menghitung besar busur mayor, kita menggunakan:
+Busur besar dibentang oleh sudut pusat refleks yang lebih dari <InlineMath math="180^\circ" />. Panjangnya lebih dari setengah keliling. Besar busur dalam derajat merupakan sisa satu putaran penuh setelah besar busur kecil yang bersesuaian dikurangkan:
 
 <ContentStack>
 
-<BlockMath math="\text{Busur mayor} = 360^\circ - \text{Busur minor}" />
+<BlockMath math="\text{besar busur besar} = 360^\circ - \text{besar busur kecil}" />
 
 <LineEquation
   title="Perbandingan Jenis Busur"
@@ -230,7 +232,7 @@ Panjang busur dapat dihitung menggunakan perbandingan antara sudut pusat dengan 
 
 <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-Dimana:
+dengan:
 - <InlineMath math="s" /> = panjang busur
 - <InlineMath math="\theta" /> = besar sudut pusat dalam derajat
 - <InlineMath math="r" /> = jari-jari lingkaran
@@ -239,11 +241,11 @@ Jika sudut pusat dinyatakan dalam radian, rumusnya menjadi lebih sederhana:
 
 <BlockMath math="s = \theta \times r" />
 
-Dimana <InlineMath math="\theta" /> dalam radian.
+Di sini <InlineMath math="\theta" /> harus dinyatakan dalam radian.
 
 ## Contoh Penerapan
 
-Mari kita terapkan konsep ini dalam contoh konkret. Misalkan kita memiliki lingkaran dengan jari-jari <InlineMath math="r = 6 \text{ cm}" /> dan sudut pusat <InlineMath math="\theta = 120^\circ" />.
+Perhatikan sebuah lingkaran dengan jari-jari <InlineMath math="r = 6 \text{ cm}" /> dan sudut pusat <InlineMath math="\theta = 120^\circ" />.
 
 Langkah pertama, kita hitung panjang busur:
 
@@ -253,7 +255,7 @@ Langkah pertama, kita hitung panjang busur:
 <BlockMath math="s = 4\pi \text{ cm}" />
 </MathContainer>
 
-Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> adalah <InlineMath math="4\pi \text{ cm}" /> atau sekitar <InlineMath math="12.57 \text{ cm}" />.
+Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> adalah <InlineMath math="4\pi \text{ cm}" /> atau sekitar <InlineMath math="12{,}57 \text{ cm}" />.
 
 <LineEquation
   title={<>Contoh Sudut Pusat <InlineMath math="120^\circ" /></>}
@@ -262,19 +264,21 @@ Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> ada
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
         { x: 6, y: 0, z: 0 },
       ],
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 0.5, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
       showPoints: true,
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
         { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
       ],
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 0.5, offset: [-0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
       showPoints: true,
     },
     {
@@ -324,11 +328,11 @@ Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> ada
   showZAxis={false}
 />
 
-## Aplikasi dalam Kehidupan Sehari-hari
+## Model dan Penerapan
 
-Konsep sudut pusat pada busur memiliki banyak aplikasi praktis. Dalam desain roda gigi, sudut pusat menentukan jarak antar gigi. Pada jam analog, jarum jam bergerak membentuk sudut pusat yang menunjukkan waktu. Arsitek menggunakan konsep ini untuk merancang lengkungan jembatan atau kubah bangunan.
+Jarak sudut yang sama menempatkan fitur berulang secara merata pada roda gigi atau cakram; untuk mengubah sudut itu menjadi panjang busur, kita juga memerlukan jari-jari. Pada jam analog, jarum menyapu sudut pusat seiring berjalannya waktu. Geometri busur juga dapat menentukan garis bentuk ideal sebuah lengkungan atau kubah, tetapi rancangan strukturnya memerlukan informasi tambahan.
 
-Dalam navigasi, pilot pesawat menggunakan konsep busur lingkaran untuk menghitung jarak tempuh saat terbang mengikuti jalur melengkung di permukaan bumi. Semakin besar sudut pusat yang dilalui, semakin jauh jarak yang ditempuh.
+Jika Bumi dihampiri sebagai bola, panjang rute pada lingkaran besar memenuhi <InlineMath math="s=r\theta" /> untuk sudut pusat <InlineMath math="\theta" /> dalam radian. Ini adalah model matematika; navigasi presisi memakai model Bumi dan data rute yang sesuai dengan ketelitian yang dibutuhkan.
 
 ## Latihan
 
@@ -336,11 +340,11 @@ Dalam navigasi, pilot pesawat menggunakan konsep busur lingkaran untuk menghitun
 
 2. Diketahui panjang busur suatu lingkaran adalah <InlineMath math="10\pi \text{ cm}" /> dan jari-jarinya <InlineMath math="15 \text{ cm}" />. Tentukan besar sudut pusat yang menghadap busur tersebut.
 
-3. Dalam sebuah lingkaran dengan pusat <InlineMath math="O" />, terdapat sudut pusat <InlineMath math="\angle AOB = 72^\circ" />. Jika jari-jari lingkaran adalah <InlineMath math="5 \text{ cm}" />, tentukan panjang busur <InlineMath math="AB" /> dan nyatakan hasilnya dalam bentuk <InlineMath math="\pi" />.
+3. Dalam sebuah lingkaran dengan pusat <InlineMath math="O" />, terdapat sudut pusat <InlineMath math="\angle AOB = 72^\circ" />. Jika jari-jari lingkaran adalah <InlineMath math="r = 5 \text{ cm}" />, tentukan panjang busur <InlineMath math="AB" /> dan nyatakan hasilnya dalam bentuk <InlineMath math="\pi" />.
 
-4. Sebuah roda sepeda memiliki jari-jari <InlineMath math="30 \text{ cm}" />. Jika roda tersebut berputar sehingga membentuk sudut pusat <InlineMath math="150^\circ" />, berapa jarak yang ditempuh oleh titik pada tepi roda?
+4. Sebuah roda sepeda berjari-jari <InlineMath math="30 \text{ cm}" /> berputar pada poros tetap sebesar <InlineMath math="150^\circ" />. Berapa jauh sebuah titik pada tepi roda bergerak sepanjang lintasan melingkarnya?
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -384,7 +388,7 @@ Dalam navigasi, pilot pesawat menggunakan konsep busur lingkaran untuk menghitun
 
    <BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
 
-   **Langkah** <InlineMath math="4" />: Isolasi θ
+   **Langkah** <InlineMath math="4" />: Isolasi <InlineMath math="\theta" />
 
    <BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
 
@@ -440,4 +444,4 @@ Dalam navigasi, pilot pesawat menggunakan konsep busur lingkaran untuk menghitun
 
    <BlockMath math="s = 25\pi \text{ cm}" />
 
-   Jadi, jarak yang ditempuh oleh titik pada tepi roda adalah <InlineMath math="25\pi \text{ cm}" /> atau sekitar <InlineMath math="78{,}54 \text{ cm}" />.
+   Jadi, titik tersebut bergerak sejauh <InlineMath math="25\pi \text{ cm}" /> sepanjang lintasan melingkarnya, atau sekitar <InlineMath math="78{,}54 \text{ cm}" />.

@@ -1,47 +1,43 @@
 export const metadata = {
   title: "Bentuk Akar",
-  description: "Konversi eksponen pecahan ke bentuk akar dan sebaliknya, lalu gunakan sifat akar untuk menyederhanakan bentuk aljabar.",
+  description:
+    "Hubungkan pangkat pecahan dengan akar, ubah kedua bentuk secara setara, dan sederhanakan bentuk akar tanpa jalan pintas yang keliru.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-04",
   subject: "Eksponen dan Logaritma",
-
 };
 
-## Hubungan Bilangan Pangkat dan Akar
+## Hubungan Pangkat dan Akar
 
-Bentuk akar dan bilangan pangkat memiliki hubungan yang sangat erat. Ketika kita memiliki bilangan pangkat dengan eksponen pecahan, kita dapat mengubahnya menjadi bentuk akar.
+Pangkat pecahan dan akar adalah dua cara untuk menyatakan operasi yang sama. Model peluruhan berikut membuat hubungan itu lebih nyata.
 
-Perhatikan fungsi eksponen berikut:
+Anggap <InlineMath math="f(x)" /> menyatakan jumlah obat yang tersisa di dalam tubuh <InlineMath math="x" /> jam setelah pemberian dosis. Jumlah awalnya <InlineMath math="50" /> satuan dan menjadi setengah setiap satu jam:
 
-<BlockMath math="f(x) = 50(0{,}5)^x" />
+<BlockMath math="f(x)=50(0{,}5)^x" />
 
-Fungsi tersebut menunjukkan peluruhan dosis obat dalam tubuh pasien, di mana <InlineMath math="x" /> adalah waktu yang dibutuhkan obat untuk meluruh sebanyak setengah dosis dari dosis sebelumnya.
+Tiga puluh menit sama dengan setengah jam, sehingga masukan yang benar adalah:
 
-Jika kita ingin mengetahui banyaknya dosis yang meluruh setelah <InlineMath math="30 \text{ menit}" />, kita substitusikan <InlineMath math="x = 30" /> ke fungsi tersebut.
+<BlockMath math="x=\frac{30}{60}=\frac12" />
 
-<BlockMath math="f(30) = 50(0{,}5)^{30}" />
+Jumlah obat yang tersisa setelah tiga puluh menit adalah:
 
-Untuk waktu setengah jam, kita dapat menuliskan bentuk pangkat pecahan:
+<BlockMath math="f\left(\frac12\right)=50(0{,}5)^{\frac12}=50\sqrt{0{,}5}\approx35{,}36" />
 
-<BlockMath math="f\left(\frac{1}{2}\right) = 50(0{,}5)^{\frac{1}{2}}" />
-
-Pangkat pecahan <InlineMath math="(0{,}5)^{\frac{1}{2}}" /> merupakan bentuk yang sulit untuk dihitung secara manual. Oleh karena itu, kita perlu bentuk lain yang ekuivalen.
-
-Bentuk lain dari <InlineMath math="(0{,}5)^{\frac{1}{2}}" /> adalah <InlineMath math="\sqrt{0{,}5}" />. Inilah yang disebut bentuk akar.
+Kesamaan <InlineMath math="(0{,}5)^{\frac12}=\sqrt{0{,}5}" /> menunjukkan hubungan antara notasi pangkat dan notasi akar. Satuan pada model juga harus jelas, sebab <InlineMath math="x=30" /> berarti tiga puluh jam, bukan tiga puluh menit.
 
 ## Definisi Bentuk Akar
 
-Bentuk akar didefinisikan untuk setiap bilangan pangkat rasional <InlineMath math="\frac{m}{n}" />, di mana <InlineMath math="m" /> dan <InlineMath math="n" /> adalah bilangan bulat dan <InlineMath math="n > 0" />:
+Untuk <InlineMath math="a>0" />, <InlineMath math="m\in\mathbb{Z}" />, dan <InlineMath math="n\in\mathbb{N}" />, definisi bernilai realnya adalah:
 
-<BlockMath math="a^{\frac{m}{n}} = (\sqrt[n]{a})^m \text{ atau} a^{\frac{m}{n}} = \sqrt[n]{a^m}" />
+<BlockMath math="a^{\frac{m}{n}}=\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}" />
 
-Hal ini memungkinkan kita untuk mengubah bilangan dengan pangkat pecahan menjadi bentuk akar dan sebaliknya.
+Definisi ini memungkinkan kita berpindah antara pangkat pecahan dan akar tanpa mengubah nilainya. Jika <InlineMath math="n" /> ganjil, bilangan real negatif juga dapat memiliki akar pangkat <InlineMath math="n" /> yang real. Jika <InlineMath math="n" /> genap, bilangan negatif di dalam akar tidak memiliki akar real.
 
-## Penyederhanaan Bentuk Akar
+## Menyederhanakan Bentuk Akar
 
-Berikut adalah contoh penyederhanaan perkalian dua bentuk akar:
+Sederhanakan <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> untuk <InlineMath math="x>0" />.
 
-Sederhanakan bentuk <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> untuk <InlineMath math="x > 0" />
+Tulis kedua akar sebagai pangkat, kalikan koefisiennya, lalu jumlahkan pangkatnya:
 
 <BlockMath
   math="\begin{align}
@@ -53,21 +49,23 @@ Sederhanakan bentuk <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> untuk <Inlin
 \end{align}"
 />
 
-Jadi, bentuk yang disederhanakan adalah <InlineMath math="6x^{\frac{5}{6}}" /> atau <InlineMath math="6\sqrt[6]{x^5}" />.
+Jadi, bentuk sederhana yang setara adalah <InlineMath math="6x^{\frac56}" /> dan <InlineMath math="6\sqrt[6]{x^5}" />.
 
-## Sifat Penting Bentuk Akar
+## Jalan Pintas yang Keliru
 
-Penting untuk memahami bahwa bentuk <InlineMath math="\sqrt{a+b} = \sqrt{a} + \sqrt{b}" /> tidak benar.
+Akar tidak dapat didistribusikan terhadap penjumlahan. Secara umum:
 
-Misalkan kita ambil nilai <InlineMath math="a = 4" /> dan <InlineMath math="b = 9" />, maka:
+<BlockMath math="\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}" />
 
-<BlockMath math="\sqrt{4 + 9} = \sqrt{13} \neq \sqrt{4} + \sqrt{9} = 2 + 3 = 5" />
+Satu contoh penyangkal sudah cukup untuk menunjukkan bahwa bentuk tersebut bukan identitas. Ambil <InlineMath math="a=4" /> dan <InlineMath math="b=9" />:
 
-Contoh lain:
+<BlockMath math="\sqrt{4+9}=\sqrt{13}\neq\sqrt4+\sqrt9=2+3=5" />
+
+Perbedaannya lebih mudah terlihat jika kedua bilangan yang dijumlahkan merupakan kuadrat sempurna:
 
 <MathContainer>
-  <BlockMath math="\sqrt{16 + 9} = \sqrt{25} = 5" />
-  <BlockMath math="\sqrt{16} + \sqrt{9} = 4 + 3 = 7" />
+  <BlockMath math="\sqrt{16+9}=\sqrt{25}=5" />
+  <BlockMath math="\sqrt{16}+\sqrt9=4+3=7" />
 </MathContainer>
 
-Karena <InlineMath math="5 \neq 7" />, maka jelas bahwa <InlineMath math="\sqrt{a+b} \neq \sqrt{a} + \sqrt{b}" />.
+Karena <InlineMath math="5\neq7" />, kedua bentuk itu tidak dapat saling menggantikan. Biarkan penjumlahan tetap berada di dalam akar sampai ada langkah aljabar sah yang mengubahnya.

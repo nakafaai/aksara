@@ -1,109 +1,113 @@
 export const metadata = {
-    title: "Matrix Condition",
-    description: "Learn matrix norms, condition numbers, and numerical stability. Study spectral radius, eigenvalue analysis, and error estimation for AI systems.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-13",
-    subject: "Linear Methods of AI",
+  title: "Matrix Norms and Condition Numbers",
+  description: "Understand induced matrix norms, spectral radius, singular-value condition numbers, perturbation bounds, and the difference between conditioning and stability.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-13",
+  subject: "Linear Methods of AI",
 };
 
-## Matrix Norm from Vector Norm
+## Induced matrix norms
 
-Have you ever wondered how we can measure the "size" of a matrix? Just like vectors that have length, matrices also require the concept of "size" called matrix norm. What's interesting is that we can build matrix norms directly from vector norms that we already know.
+A vector norm measures vector size. The corresponding induced matrix norm measures the largest factor by which a matrix can stretch a vector:
 
-If we have a vector norm on space <InlineMath math="\mathbb{R}^n" />, then we can define a corresponding matrix norm on <InlineMath math="\mathbb{R}^{n \times n}" /> through the formula:
+<BlockMath math="\|A\|=\sup_{x\ne0}\frac{\|Ax\|}{\|x\|}=\max_{\|x\|=1}\|Ax\|" />
 
-<BlockMath math="\|A\| = \sup_{x \in \mathbb{R}^n} \frac{\|Ax\|}{\|x\|} = \max_{x \in \mathbb{R}^n: \|x\|=1} \|Ax\|" />
+This definition immediately gives two essential bounds for dimensionally compatible matrices and vectors:
 
-The norm produced this way is called the **natural matrix norm** that is induced by the vector norm. This norm has two important properties that make it very useful in numerical analysis.
+<MathContainer>
+<BlockMath math="\|Ax\|\le\|A\|\|x\|" />
+<BlockMath math="\|AB\|\le\|A\|\|B\|" />
+</MathContainer>
 
-1. **Compatibility Property**: For all matrices <InlineMath math="A \in \mathbb{R}^{n \times n}" /> and vectors <InlineMath math="x \in \mathbb{R}^n" />, the following holds:
+The vector norm determines the induced matrix norm.
 
-    <BlockMath math="\|Ax\| \leq \|A\| \cdot \|x\|" />
+| Vector norm | Induced matrix norm |
+| --- | --- |
+| <InlineMath math="\displaystyle\|x\|_1=\sum_{i=1}^{n}\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_1=\max_j\sum_i\lvert a_{ij}\rvert" />, the largest absolute column sum |
+| <InlineMath math="\displaystyle\|x\|_\infty=\max_i\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_\infty=\max_i\sum_j\lvert a_{ij}\rvert" />, the largest absolute row sum |
+| <InlineMath math="\displaystyle\|x\|_2=\sqrt{x^{\mathsf T}x}" /> | <InlineMath math="\displaystyle\|A\|_2=\sigma_{\max}(A)" />, the largest singular value |
 
-2. **Multiplicative Property**: For all matrices <InlineMath math="A, B \in \mathbb{R}^{n \times n}" />, the following holds:
+## Spectral radius and spectral norm
 
-    <BlockMath math="\|AB\| \leq \|A\| \cdot \|B\|" />
+For a square matrix, the spectral radius is
 
-Both properties are very fundamental because they ensure that matrix norms behave consistently with matrix and vector multiplication operations.
+<BlockMath math="\rho(A)=\max_{\lambda\in\operatorname{spec}(A)}|\lambda|" />
 
-## Examples of Special Matrix Norms
+Every induced matrix norm bounds the spectral radius:
 
-Let's look at some concrete examples of matrix norms that are often used in practice.
+<BlockMath math="\rho(A)\le\|A\|" />
 
-1. **Maximum Column Norm**: If we use the norm <InlineMath math="\|x\|_1 = \sum_{i=1}^n |x_i|" /> on vectors, then the induced matrix norm is:
+The spectral norm satisfies
 
-    <BlockMath math="\|A\|_1 = \max_{j=1,\ldots,n} \sum_{i=1}^n |a_{ij}|" />
+<BlockMath math="\|A\|_2=\sigma_{\max}(A)=\sqrt{\lambda_{\max}(A^{\mathsf T}A)}" />
 
-    This means we look for the column with the largest sum of absolute values.
+If <InlineMath math="A" /> is real symmetric, its singular values are the absolute values of its eigenvalues, so
 
-2. **Maximum Row Norm**: If we use the maximum norm <InlineMath math="\|x\|_\infty = \max_{i=1,\ldots,n} |x_i|" /> on vectors, then the induced matrix norm is:
+<BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
 
-    <BlockMath math="\|A\|_\infty = \max_{i=1,\ldots,n} \sum_{j=1}^n |a_{ij}|" />
+For a general nonnormal matrix, the spectral radius and spectral norm need not be equal.
 
-    This means we look for the row with the largest sum of absolute values.
+## Condition number of a linear solve
 
-Both norms are very easy to compute and provide good estimates for numerical algorithm stability analysis.
+For an invertible square matrix and an induced norm, define
 
-## Linear System Stability
+<BlockMath math="\kappa(A)=\|A\|\|A^{-1}\|" />
 
-Why do we need to understand matrix condition? The answer lies in the problem of numerical stability. When we solve linear equation systems <InlineMath math="Ax = b" /> using computers, there is always the possibility of small errors in data or calculations.
+The condition number is at least one. A singular matrix has infinite condition number. In the Euclidean norm,
 
-Imagine we have a slightly perturbed system. Instead of solving <InlineMath math="Ax = b" />, we actually solve the perturbed system <InlineMath math="\tilde{A}\tilde{x} = \tilde{b}" /> where <InlineMath math="\tilde{A} = A + \delta A" /> and <InlineMath math="\tilde{b} = b + \delta b" />.
+<BlockMath math="\kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}" />
 
-The crucial question is how much influence do small perturbations <InlineMath math="\delta A" /> and <InlineMath math="\delta b" /> have on the solution <InlineMath math="\tilde{x}" />?
+For an invertible symmetric matrix, this becomes
 
-If matrix <InlineMath math="A" /> is regular and the perturbation is small enough such that <InlineMath math="\|\delta A\| < \frac{1}{\|A^{-1}\|}" />, then the perturbed matrix <InlineMath math="\tilde{A} = A + \delta A" /> is also regular.
+<BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-For the relative error in the solution, we obtain the estimate:
+The smallest magnitude, not the algebraically smallest eigenvalue, belongs in the denominator.
 
-<BlockMath math="\frac{\|\delta x\|}{\|x\|} \leq \frac{\text{cond}(A)}{1 - \text{cond}(A)\|\delta A\|/\|A\|} \left( \frac{\|\delta b\|}{\|b\|} + \frac{\|\delta A\|}{\|A\|} \right)" />
+| Size of <InlineMath math="\kappa(A)" /> | Interpretation |
+| --- | --- |
+| Near <InlineMath math="1" /> | Relative perturbations are not strongly amplified in the worst case. |
+| Large | Some input directions can produce much larger relative changes in the solution. |
+| Infinite | The matrix is singular, so the inverse problem is not uniquely solvable. |
 
-where <InlineMath math="\text{cond}(A)" /> is the **condition number** of matrix <InlineMath math="A" />.
+## A two-dimensional example
 
-> The condition number measures the sensitivity of linear system solutions to small perturbations in input data.
+Consider
 
-## Spectral Radius and Eigenvalues
+<BlockMath math="A=\begin{pmatrix}1&0\\0&\varepsilon\end{pmatrix},\qquad 0<\varepsilon\ll1" />
 
-Before discussing condition numbers further, we need to understand the concept of spectral radius. The **spectral radius** of a matrix <InlineMath math="A" /> is defined as:
+Its singular values are <InlineMath math="1" /> and <InlineMath math="\varepsilon" />, hence
 
-<BlockMath math="\text{spr}(A) = \max\{|\lambda| : \lambda \text{ is an eigenvalue of } A\}" />
+<BlockMath math="\kappa_2(A)=\frac{1}{\varepsilon}" />
 
-The spectral radius provides information about the eigenvalue with the largest magnitude of the matrix.
+For <InlineMath math="b=(b_1,b_2)^{\mathsf T}" />, the solution is
 
-There is an interesting relationship between spectral radius and matrix norms. For every eigenvalue <InlineMath math="\lambda" /> of matrix <InlineMath math="A" />, the following holds:
+<BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
 
-<BlockMath math="|\lambda| \leq \|A\|" />
+A small change in <InlineMath math="b_2" /> is amplified by <InlineMath math="1/\varepsilon" /> in the second solution component. The matrix is close to singular because it nearly collapses one direction.
 
-This means that matrix norms provide an upper bound for all eigenvalues.
+## Perturbation bound
 
-A more specific result applies to the **spectral norm** or <InlineMath math="2" />-norm of matrices. For symmetric matrices <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the spectral norm equals the spectral radius:
+Let <InlineMath math="Ax=b" /> and
 
-<BlockMath math="\|A\|_2 = \max\{|\lambda| : \lambda \text{ eigenvalue of } A\} = \text{spr}(A)" />
+<BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
-For general matrices, the spectral norm is computed as:
+use the same induced norm. If
 
-<BlockMath math="\|A\|_2 = \sqrt{\text{spr}(A^T A)}" />
+<BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
 
-## Condition Number
+then the relative solution change is bounded by
 
-Now we arrive at the central concept in numerical analysis, namely the **condition number**. For invertible matrices <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the condition number is defined as follows.
+<BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
-<BlockMath math="\text{cond}(A) = \|A\| \cdot \|A^{-1}\|" />
+This is a worst-case bound, not a prediction that every perturbation attains the maximum amplification.
 
-The condition number measures how "bad" a matrix is in the context of numerical stability. The larger the condition number, the more sensitive the system is to small perturbations.
+## Conditioning is not algorithmic stability
 
-### Spectral Condition
+These concepts answer different questions:
 
-For symmetric matrices, we can compute the condition number explicitly using eigenvalues. The **spectral condition** of symmetric matrices is:
+- **conditioning** describes the sensitivity of the mathematical problem to input changes
+- **stability** describes how much additional error a numerical algorithm introduces
 
-<BlockMath math="\text{cond}_2(A) = \frac{|\lambda_{\max}|}{|\lambda_{\min}|}" />
+A stable algorithm cannot remove sensitivity already present in an ill-conditioned problem. Conversely, a well-conditioned problem can still be solved poorly by an unstable implementation. A small residual <InlineMath math="\|b-A\hat{x}\|" /> alone also does not guarantee a small forward error <InlineMath math="\|x-\hat{x}\|" /> when <InlineMath math="\kappa(A)" /> is large.
 
-where <InlineMath math="\lambda_{\max}" /> and <InlineMath math="\lambda_{\min}" /> are the eigenvalues with the largest and smallest magnitudes.
-
-The spectral condition provides a very clear interpretation. A matrix has bad condition if:
-- Its eigenvalues are very different in magnitude (large ratio)
-- There are eigenvalues that are very small (approaching singular)
-
-Conversely, matrices with good condition have eigenvalues that are relatively uniform in magnitude.
-
-> The condition number provides a quantitative measure of how sensitive linear system solutions are to small perturbations in input data.
+In numerical work, estimate the reciprocal condition number from a trusted factorization instead of explicitly forming <InlineMath math="A^{-1}" /> merely to evaluate <InlineMath math="\kappa(A)" />.

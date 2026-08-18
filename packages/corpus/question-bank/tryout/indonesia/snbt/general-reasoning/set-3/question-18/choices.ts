@@ -2,39 +2,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "All people consume tea with added sugar.", value: false },
+    { label: "Every participant chose tea with added sugar.", value: false },
     {
-      label: "All children under $$5$$ years old consume tea with added sugar.",
+      label: "Every tea drinker added sugar.",
       value: false,
     },
     {
-      label:
-        "Some children under $$5$$ years old consume tea with added sugar.",
+      label: "No participant drank tea without added sugar.",
       value: false,
     },
-    { label: "Some people consume tea without added sugar.", value: true },
-    { label: "All people who add sugar drink tea.", value: false },
+    {
+      label: "At least one participant drank tea without added sugar.",
+      value: true,
+    },
+    { label: "Every participant who chose a drink chose tea.", value: false },
   ],
   id: [
     {
-      label: "Semua orang mengkonsumsi teh dengan tambahan gula.",
+      label: "Setiap peserta memilih teh dengan tambahan gula.",
       value: false,
     },
     {
-      label:
-        "Semua anak di bawah $$5$$ tahun mengkonsumsi teh dengan tambahan gula.",
+      label: "Setiap peminum teh menambahkan gula.",
       value: false,
     },
     {
-      label:
-        "Beberapa anak di bawah $$5$$ tahun mengkonsumsi teh dengan tambahan gula.",
+      label: "Tidak ada peserta yang meminum teh tanpa tambahan gula.",
       value: false,
     },
     {
-      label: "Beberapa orang mengkonsumsi teh tanpa tambahan gula.",
+      label: "Sekurang-kurangnya satu peserta meminum teh tanpa tambahan gula.",
       value: true,
     },
-    { label: "Semua orang yang menambahkan gula meminum teh.", value: false },
+    { label: "Setiap peserta yang memilih minuman memilih teh.", value: false },
   ],
 };
 

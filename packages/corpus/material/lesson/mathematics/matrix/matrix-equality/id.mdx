@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Kesamaan Dua Matriks",
-  description: "Pelajari syarat kesamaan matriks: ordo sama dan elemen seletak sama melalui contoh soal, penentuan variabel, dan latihan praktis.",
+  description: "Tentukan kesamaan dua matriks dengan membandingkan ordo dan elemen seletak, lalu selesaikan nilai entri yang belum diketahui.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-06-05",
   subject: "Matriks",
@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Definisi Kesamaan Dua Matriks
 
-Dalam dunia matriks, kita seringkali perlu membandingkan dua matriks atau lebih. Salah satu konsep penting dalam perbandingan ini adalah kesamaan dua matriks. Dua matriks dikatakan sama jika memenuhi syarat-syarat tertentu.
+Kesamaan matriks membandingkan struktur sekaligus isinya. Nilai yang sama belum cukup jika posisinya berbeda atau kedua matriks memiliki ordo yang berbeda.
 
-Dua matriks, katakanlah matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dikatakan **sama** (ditulis <InlineMath math="A=B" />) jika dan hanya jika kedua syarat berikut terpenuhi:
+Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> dikatakan **sama**, ditulis <InlineMath math="A=B" />, jika dan hanya jika kedua syarat berikut terpenuhi:
 
 1.  **Ordo Sama**: Matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" /> harus memiliki ordo (jumlah baris dan kolom) yang sama. Jika matriks <InlineMath math="A" /> berordo <InlineMath math="m \times n" />, maka matriks <InlineMath math="B" /> juga harus berordo <InlineMath math="m \times n" />.
 2.  **Elemen Seletak Sama**: Setiap elemen yang seletak (berada pada posisi baris dan kolom yang sama) pada matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" /> harus memiliki nilai yang sama. Jika <InlineMath math="A = [a_{ij}]" /> dan <InlineMath math="B = [b_{ij}]" />, maka <InlineMath math="a_{ij} = b_{ij}" /> untuk semua nilai <InlineMath math="i" /> (indeks baris) dan <InlineMath math="j" /> (indeks kolom).
@@ -48,7 +48,7 @@ Diberikan dua matriks:
 
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{dan} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
-Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> berordo sama(<InlineMath math="2 \times 2" />), keduanya tidak sama (<InlineMath math="S \neq T" />) karena elemen pada baris ke-<InlineMath math="2" /> kolom ke-<InlineMath math="1" /> tidak sama (<InlineMath math="s_{21} = -2" /> sedangkan <InlineMath math="t_{21} = 2" />).
+Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> sama-sama berordo <InlineMath math="2 \times 2" />, keduanya tidak sama (<InlineMath math="S \neq T" />). Elemen seletak pada baris ke-<InlineMath math="2" />, kolom ke-<InlineMath math="1" /> berbeda: <InlineMath math="s_{21} = -2" />, sedangkan <InlineMath math="t_{21} = 2" />.
 
 ### Menentukan Nilai Variabel dari Kesamaan Matriks
 
@@ -71,20 +71,20 @@ Jadi, nilai <InlineMath math="x=1" />, <InlineMath math="y=-2" />, dan <InlineMa
 
 Jawablah pertanyaan berikut dengan **Benar** atau **Salah**.
 
-1.  Dua matriks yang mempunyai ordo yang sama merupakan salah satu syarat agar kedua matriks tersebut sama.
-2.  Dua matriks yang berbeda selalu memiliki ordo yang berbeda.
+1.  Ordo yang sama merupakan salah satu syarat yang harus dipenuhi oleh dua matriks yang sama.
+2.  Dua matriks yang tidak sama selalu memiliki ordo yang berbeda.
 3.  Jika diketahui matriks <InlineMath math="K = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}" /> dan matriks <InlineMath math="L = \begin{bmatrix} 2 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix}" />, maka matriks <InlineMath math="K" /> sama dengan matriks <InlineMath math="L" />.
 4.  Diketahui matriks <InlineMath math="P = \begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix}" /> dan <InlineMath math="Q = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />. Jika <InlineMath math="P=Q" />, tentukan nilai <InlineMath math="x" /> dan <InlineMath math="y" />.
-5.  Jika matriks <InlineMath math="A = \begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix}" /> dan <InlineMath math="I" /> adalah matriks identitas berordo <InlineMath math="2 \times 2" />. Jika <InlineMath math="A = I" />, tentukan nilai <InlineMath math="x+y" />.
+5.  Matriks <InlineMath math="I" /> adalah matriks identitas berordo <InlineMath math="2 \times 2" />, dan <InlineMath math="A = \begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix}" />. Jika <InlineMath math="A = I" />, tentukan nilai <InlineMath math="x+y" />.
 6.  Hitunglah nilai <InlineMath math="a+b+c+d" /> yang memenuhi kesamaan matriks berikut:
 
     <BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
 
-### Kunci Jawaban
+### Pembahasan Lengkap
 
-1.  **Benar**. Memiliki ordo yang sama adalah syarat pertama kesamaan dua matriks.
-2.  **Salah**. Dua matriks yang berbeda bisa saja memiliki ordo yang sama, tetapi elemen seletaknya berbeda (lihat Contoh <InlineMath math="3" />).
-3.  **Salah**. Matriks <InlineMath math="K" /> berordo <InlineMath math="2 \times 2" /> sedangkan matriks <InlineMath math="L" /> berordo <InlineMath math="3 \times 2" />. Karena ordonya berbeda, kedua matriks tidak sama.
+1.  **Benar**. Dua matriks yang sama harus memiliki ordo yang sama, walaupun syarat ini saja belum cukup.
+2.  **Salah**. Dua matriks yang tidak sama dapat memiliki ordo yang sama, tetapi berbeda pada satu atau beberapa elemen seletak, seperti pada Contoh <InlineMath math="3" />.
+3.  **Salah**. Matriks <InlineMath math="K" /> berordo <InlineMath math="2 \times 2" />, sedangkan matriks <InlineMath math="L" /> berordo <InlineMath math="3 \times 2" />. Matriks dengan ordo berbeda tidak mungkin sama.
 4.  Diketahui <InlineMath math="P=Q" />:
 
     <BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
@@ -116,7 +116,7 @@ Jawablah pertanyaan berikut dengan **Benar** atau **Salah**.
       <BlockMath math="x = 2y \quad \text{(Persamaan 2')}" />
     </MathContainer>
 
-    Substitusikan Persamaan <InlineMath math="2" />' ke Persamaan <InlineMath math="1" />:
+    Substitusikan Persamaan <InlineMath math="2'" /> ke Persamaan <InlineMath math="1" />:
 
     <MathContainer>
       <BlockMath math="-(2y)-3y = 1" />
@@ -168,7 +168,7 @@ Jawablah pertanyaan berikut dengan **Benar** atau **Salah**.
       <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
     </MathContainer>
 
-    Kurangkan persamaan (<InlineMath math="1" />) dari persamaan (<InlineMath math="2" />'):
+    Kurangkan persamaan (<InlineMath math="1" />) dari persamaan (<InlineMath math="2'" />):
 
     <MathContainer>
       <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />

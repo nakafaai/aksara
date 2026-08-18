@@ -10,15 +10,15 @@ export const metadata = {
 
 ## Relationship Between Circles
 
-Have you ever noticed how two soap bubbles interact? Sometimes they intersect, sometimes they just touch briefly, or they might even avoid each other completely. Well, the mathematical concept of **position of two circles** is really similar to this phenomenon!
+Two soap bubbles provide a useful picture of the possible relationships between circles. Their boundaries may cross, touch at one point, or remain separate.
 
-In analytic geometry, we can determine with certainty how two circles relate to each other: whether they intersect, are tangent, or are completely separate. What's interesting is that all of this can be predicted just by knowing the center and radius of each circle.
+In analytic geometry, the centers and radii are enough to determine the relationship precisely. The decisive quantity is the distance between the two centers.
 
-This concept is super useful in real life. For example, to design gears that must be tangent perfectly, calculate the coverage area of two radio antennas, or even plan a garden with round ponds that are interconnected.
+The same comparison appears when checking whether circular regions overlap, touch, or leave a gap, for example in coverage maps or geometric designs.
 
 ## Intersecting Circles
 
-Two circles are said to be **intersecting** if they meet at two different points. Just imagine two rings that "penetrate" each other.
+Two circles are **intersecting** when they have exactly two common points. Their disks overlap, while their circumferences cross at those two points.
 
 <LineEquation
   title="Two Intersecting Circles"
@@ -127,15 +127,15 @@ For two circles with radii <InlineMath math="r_1" /> and <InlineMath math="r_2" 
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-Here's the logic:
+The two strict bounds explain the condition:
 
-- **Upper bound**: If center distance is <InlineMath math="r_1 + r_2" />, both circles only touch externally
-- **Lower bound**: If center distance is <InlineMath math="|r_1 - r_2|" />, the small circle touches the large one internally
-- **Intersection area**: Between these two bounds, circles definitely intersect at two points
+- **Upper bound**: At <InlineMath math="r_1 + r_2" />, the circles are externally tangent
+- **Lower bound**: At <InlineMath math="|r_1 - r_2|" />, the smaller circle is internally tangent to the larger circle
+- **Between the bounds**: The circumferences cross at two points
 
 ## Tangent Circles
 
-Tangent means two circles **only meet at one point**. Like two wheels that touch at exactly one point to transfer motion.
+Two circles are **tangent** when they have exactly one common point. The tangency may occur outside both circles or inside the larger circle.
 
 <LineEquation
   title="Externally Tangent Circles"
@@ -218,13 +218,13 @@ Tangent means two circles **only meet at one point**. Like two wheels that touch
   showZAxis={false}
 />
 
-There are two types of tangency:
+For two noncoincident circles, there are two tangency cases:
 
 1. **External tangency** occurs when <InlineMath math="d = r_1 + r_2" />. Both circles are separate and touch at one point.
 
-2. **Internal tangency** occurs when <InlineMath math="d = |r_1 - r_2|" />. The small circle is inside the large one and they touch at one point.
+2. **Internal tangency** occurs when <InlineMath math="d = |r_1 - r_2| > 0" />. The smaller circle is inside the larger one and they touch at one point.
 
-Here's an example of internally tangent circles:
+The next diagram shows internal tangency:
 
 <LineEquation
   title="Internally Tangent Circles"
@@ -309,7 +309,7 @@ Here's an example of internally tangent circles:
 
 ## Separate Circles
 
-This condition occurs when the two circles **don't touch at all**. Like two islands separated by ocean, there's no physical connection between them.
+Two circles are externally separate when neither their circumferences nor their disks meet.
 
 <LineEquation
   title="Two Separate Circles"
@@ -398,11 +398,11 @@ The separate condition occurs when the distance between centers is greater than 
 
 <BlockMath math="d > r_1 + r_2" />
 
-In this situation, there's no point that belongs to both circles simultaneously. They are completely separate in the coordinate plane.
+In this case, no point belongs to both disks.
 
 ## Concentric and Coincident Circles
 
-**Concentric circles** are two circles that have the same center but different radii. Imagine an archery target with circles that have the same center.
+**Concentric circles** have the same center but different radii, like the circular boundaries on an archery target.
 
 <LineEquation
   title="Concentric Circles"
@@ -491,7 +491,7 @@ In this situation, there's no point that belongs to both circles simultaneously.
 
 For concentric circles, the distance between centers is zero (<InlineMath math="d = 0" />) but the radii are different (<InlineMath math="r_1 \ne r_2" />).
 
-**Coincident circles** are a special condition where both circles are completely identical. They have the same center and radius, so they look like just one circle.
+**Coincident circles** have the same center and the same radius. Their circumferences lie exactly on top of each other, so they appear as one circle.
 
 The coincident condition occurs when:
 
@@ -502,7 +502,7 @@ The coincident condition occurs when:
 
 ## How to Determine Position
 
-To determine the position of two circles practically, we need to calculate the distance between centers and compare it with the radii.
+To classify two circles, calculate the distance between their centers and compare it with the sum and absolute difference of their radii.
 
 Suppose the first circle is centered at <InlineMath math="(x_1, y_1)" /> with radius <InlineMath math="r_1" />, and the second circle is centered at <InlineMath math="(x_2, y_2)" /> with radius <InlineMath math="r_2" />.
 
@@ -510,19 +510,19 @@ The distance between centers is calculated using the formula:
 
 <BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
 
-After getting the value <InlineMath math="d" />, we can determine the position based on the following conditions:
+Assuming both radii are positive, the following conditions are exhaustive and do not overlap:
 
-- **Separate**: <InlineMath math="d > r_1 + r_2" /> (circles far apart)
-- **Externally tangent**: <InlineMath math="d = r_1 + r_2" /> (touching externally)
-- **Intersecting**: <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" /> (intersecting at two points)
-- **Internally tangent**: <InlineMath math="d = |r_1 - r_2|" /> (touching internally)
-- **Non-intersecting**: <InlineMath math="d < |r_1 - r_2|" /> (one circle inside the other)
-- **Concentric**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 \ne r_2" /> (same center, different radii)
-- **Coincident**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 = r_2" /> (identical circles)
+- **Coincident**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 = r_2" /> (the same circumference)
+- **Concentric but distinct**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 \ne r_2" /> (the same center, different radii)
+- **Contained without touching and nonconcentric**: <InlineMath math="0 < d < |r_1-r_2|" /> (one circle lies strictly inside the other)
+- **Internally tangent**: <InlineMath math="d = |r_1-r_2| > 0" /> (one internal point of contact)
+- **Intersecting**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (two common points)
+- **Externally tangent**: <InlineMath math="d = r_1+r_2" /> (one external point of contact)
+- **Externally separate**: <InlineMath math="d > r_1+r_2" /> (the two disks do not meet)
 
 ### Application Example
 
-Determine the position of two circles with equations <InlineMath math="x^2 + y^2 = 9" /> and <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
+Classify the circles with equations <InlineMath math="x^2 + y^2 = 9" /> and <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 
 **Step** <InlineMath math="1" />: Identify the center and radius of each circle.
 
@@ -551,7 +551,7 @@ Second circle: center <InlineMath math="(3, 4)" />, radius <InlineMath math="r_2
 
 Since <InlineMath math="2 < 5 < 8" />, the two circles are **intersecting**.
 
-To ensure the answer is correct, we can check the condition <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
+As a check, substitute the three values into <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
 - <InlineMath math="|3 - 5| = 2" />
 - <InlineMath math="3 + 5 = 8" />
 - <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (intersection condition satisfied)

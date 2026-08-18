@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Berendam",
+      label: "Berendam di dalam lumpur",
       value: false,
     },
     {
-      label: "Kesibukan",
+      label: "Bekerja dengan sangat sibuk",
       value: false,
     },
     {
-      label: "Kelompok",
+      label: "Berkumpul dalam satu kelompok",
       value: false,
     },
     {
-      label: "Berlumuran",
+      label: "Berlumuran oleh suatu benda",
       value: false,
     },
     {
-      label: "Terjebak",
+      label: "Terjebak dalam keadaan yang tidak menyenangkan",
       value: true,
     },
   ],

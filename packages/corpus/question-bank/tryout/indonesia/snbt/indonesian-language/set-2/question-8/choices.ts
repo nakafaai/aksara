@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Uwet mengambil buah ceri", value: true },
-    { label: "Uwet sedang berkebun", value: false },
+    { label: "Uwet mencoba mengambil buah ceri", value: true },
+    { label: "Uwet berkebun di bawah pohon ceri", value: false },
     { label: "Uwet mencari siput", value: false },
-    { label: "Melihat siput", value: false },
-    { label: "Menunggu kedatangan Enji dan Ensi", value: false },
+    { label: "Uwet menangkap siput", value: false },
+    { label: "Uwet menunggu kedatangan Enjin dan Ensi", value: false },
   ],
 };
 

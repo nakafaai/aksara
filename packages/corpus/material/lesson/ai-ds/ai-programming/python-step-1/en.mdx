@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Introduction to Python
 
-Python is a very popular and easy-to-learn programming language. Python is designed with a philosophy that prioritizes code readability, making it suitable for beginners who are new to programming.
+Python is a popular programming language with a strong emphasis on readable code. Its clear syntax makes it a practical first language for someone who is new to programming.
 
-Why is Python the favorite choice of many programmers? Python has syntax similar to everyday English, making it easy to understand. Imagine reading a recipe written in clear and easy-to-follow language. Python is also used for many purposes, from web development, data analysis, machine learning, to artificial intelligence.
+Many Python statements resemble short instructions in English, so you can often follow what a program does before you know every detail of the syntax. Python is also used across web development, data analysis, machine learning, and artificial intelligence.
 
-For more complete information about Python, you can visit the [official Python documentation](https://docs.python.org). This documentation serves as the main reference source that is always updated with the latest Python features.
+For details about the language and its standard library, use the [official Python documentation](https://docs.python.org). It is the authoritative reference for the Python version you are using.
 
 ## Hello World Program
 
-The tradition in learning programming is to create the first program that displays the text "Hello World!". This is a simple way to ensure Python is installed correctly and you're ready for coding.
+A common first program displays the text "Hello World!". Running it confirms that Python can execute a file and gives you a small, complete program to inspect.
 
 <CodeBlock
   data={[{
@@ -30,7 +30,7 @@ The `print()` command is a built-in Python function used to display text or data
 
 ## Three Ways to Run Python Programs
 
-There are three main ways to run Python code, each with different uses depending on your needs.
+This lesson uses three common ways to run Python code. Each supports a different part of the learning workflow.
 
 ### Interactive Mode
 
@@ -94,21 +94,21 @@ Happy learning Python!`
 
 ### Jupyter Lab and Notebooks
 
-Jupyter is an interactive environment very popular for data science and learning. Imagine Jupyter like a digital notebook that can run code. Jupyter allows you to write code, see results immediately, and add explanations in one document.
+Jupyter is an interactive environment often used for data science and teaching. A notebook combines executable code, its output, and written explanation in one document.
 
-Jupyter has many advantages. You can run code per cell or section, output results are immediately visible below the code, you can add text explanations, images, and graphs, and it's ideal for experiments, data analysis, and learning.
+Each cell can run independently, and its output appears directly below it. You can also add explanatory text, images, and graphs, which makes notebooks useful for experiments and data analysis.
 
-Using Jupyter is quite easy. First install Jupyter via pip:
+Install JupyterLab in a dedicated Python environment so its packages do not interfere with unrelated projects:
 
 <CodeBlock
   data={[{
     language: "bash",
     filename: "terminal",
-    code: `# Install jupyter
-pip install jupyter
+    code: `# Install JupyterLab with the selected Python interpreter
+python3 -m pip install jupyterlab
 
-# Or install via Anaconda (recommended)
-conda install jupyter`
+# Or install it from conda-forge in a Conda environment
+conda install -c conda-forge jupyterlab`
   }]}
 />
 
@@ -159,7 +159,7 @@ Let's learn some basic Python concepts that you'll use frequently.
 
 ### Variables and Data Types
 
-Python has several basic data types you need to understand. Variables in Python are like boxes that can store various types of data, and you can give labels or names to those boxes.
+Python has several basic data types. A variable name refers to a value; assigning a new value changes that binding rather than changing every value into a mutable box.
 
 <CodeBlock
   data={[{
@@ -324,12 +324,15 @@ print("=== TEMPERATURE CONVERTER ===")
 # Input temperature in Celsius
 celsius = float(input("Enter temperature in Celsius: "))
 
+if celsius < -273.15:
+    raise ValueError("Temperature cannot be below absolute zero")
+
 # Convert to Fahrenheit and Kelvin
 fahrenheit = (celsius * 9/5) + 32
 kelvin = celsius + 273.15
 
 # Output conversion results
-print(f"\nConversion results from {celsius}°C:")
+print(f"\\nConversion results from {celsius}°C:")
 print(f"Fahrenheit: {fahrenheit:.1f}°F")
 print(f"Kelvin: {kelvin:.1f}K")
 
@@ -360,13 +363,14 @@ student_id = input("Student ID: ")
 major = input("Major: ")
 semester = int(input("Semester: "))
 hobby = input("Favorite hobby: ")
+current_year = int(input("Current year: "))
 
-# Calculate additional information
-entry_year = 2025 - (semester - 1) // 2
+# Estimate using two semesters per academic year
+entry_year = current_year - (semester - 1) // 2
 estimated_graduation = entry_year + 4
 
 # Display complete profile
-print("\n" + "="*40)
+print("\\n" + "="*40)
 print("STUDENT PROFILE")
 print("="*40)
 print(f"Name        : {name}")

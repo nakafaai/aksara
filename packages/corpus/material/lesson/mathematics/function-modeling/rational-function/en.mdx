@@ -1,193 +1,203 @@
 export const metadata = {
   title: "Rational Function",
-  description: "Learn rational functions through domain checks, simplification, operations, and modeling problems such as a chicken coop design.",
+  description: "Learn rational functions through domain restrictions, equivalent simplification, arithmetic operations, and real models such as area and travel time.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Functions and Their Modeling",
 };
 
-## What is a Rational Function?
+## What Is a Rational Function?
 
-Have you ever seen fractions in mathematics? Well, rational functions are similar to fractions, but more interesting because they involve variables!
+A rational function is a quotient of two polynomials. Its general form is
 
-A rational function is a function in the form of a fraction, where both the numerator and denominator are polynomial functions. Simply put, a rational function can be written as:
+<BlockMath math="f(x)=\frac{P(x)}{Q(x)}" />
 
-<BlockMath math="f(x) = \frac{P(x)}{Q(x)}" />
+where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials and <InlineMath math="Q(x)" /> is not the zero polynomial.
 
-Where:
+The denominator adds one essential rule: every input that makes <InlineMath math="Q(x)=0" /> must be excluded. That restriction belongs to the function even when a common factor later cancels.
 
-- <InlineMath math="P(x)" /> is a polynomial in the numerator
-- <InlineMath math="Q(x)" /> is a polynomial in the denominator
-- <InlineMath math="Q(x) \neq 0" /> (denominator cannot be zero)
+## A Rational Model from Area
 
-## Examples of Rational Functions in Life
-
-Let's look at a real example to better understand rational functions.
-
-**Chicken Coop Problem:**
-
-Mr. Budi wants to build a rectangular chicken coop with an area of <InlineMath math="100 \text{ m}^2" />. He wants to know the relationship between the length and width of the coop.
-
-If the length of the coop is <InlineMath math="x \text{ meters}" />, then:
-
-- <InlineMath math="\text{Area} = \text{length} \times \text{width} = 100" />
-- <InlineMath math="x \times \text{width} = 100" />
-- Width is <InlineMath math="\frac{100}{x}" />
-
-The function <InlineMath math="f(x) = \frac{100}{x}" /> is an example of a rational function!
-
-## Types of Rational Functions
-
-### Simple Rational Function
-
-The simplest form of a rational function:
-
-<BlockMath math="f(x) = \frac{k}{x}" />
-
-Where <InlineMath math="k" /> is a constant. Example: <InlineMath math="f(x) = \frac{5}{x}" />
-
-### Linear Rational Function
-
-Both numerator and denominator are linear functions:
-
-<BlockMath math="f(x) = \frac{ax + b}{cx + d}" />
-
-Example: <InlineMath math="f(x) = \frac{2x + 3}{x - 1}" />
-
-### Quadratic Rational Function
-
-Involves quadratic functions in the numerator or denominator:
-
-<BlockMath math="f(x) = \frac{x^2 + 2x + 1}{x - 3}" />
-
-## Domain of Rational Functions
-
-The domain of a rational function is all values of <InlineMath math="x" /> that make the function defined. Remember, the denominator cannot be zero!
-
-**How to find the domain:**
-
-1. Find values of <InlineMath math="x" /> that make the denominator <InlineMath math="= 0" />
-2. The domain is all real numbers except those values
-
-**Example:** Determine the domain of <InlineMath math="f(x) = \frac{x + 2}{x - 3}" />
-
-**Solution:**
-
-- Denominator is zero when: <InlineMath math="x - 3 = 0" />
-- So: <InlineMath math="x = 3" />
-- Domain: <InlineMath math="D_f = \{x | x \neq 3, x \in \mathbb{R}\}" />
-
-## Simplifying Rational Functions
-
-Rational functions can be simplified by finding common factors in the numerator and denominator.
-
-### Without Factoring
-
-Simplify: <InlineMath math="f(x) = \frac{6x^2}{3x}" />
-
-**Solution:**
+Suppose Mr. Budi is planning a rectangular chicken coop with area <InlineMath math="100\text{ m}^2" />. Let its length be <InlineMath math="x\text{ m}" /> and its width be <InlineMath math="w\text{ m}" />. Then
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{6x^2}{3x}" />
-  <BlockMath math="= \frac{6x \cdot x}{3x}" />
-  <BlockMath math="= \frac{6x}{3} \cdot \frac{x}{x}" />
-  <BlockMath math="= 2x" />
+  <BlockMath math="xw=100" />
+  <BlockMath math="w(x)=\frac{100}{x}" />
 </MathContainer>
 
-### With Factoring
+The formula is rational because a variable appears in the denominator. In the physical situation, both dimensions must be positive, so the meaningful domain is <InlineMath math="x>0" />, not merely <InlineMath math="x\neq 0" />.
 
-Simplify: <InlineMath math="f(x) = \frac{x^2 - 4}{x - 2}" />
+The model also captures a tradeoff: making the coop longer forces its width to become smaller if the area must stay fixed.
 
-**Solution:**
+## Common Forms
+
+### Reciprocal Form
+
+The basic reciprocal form is
+
+<BlockMath math="f(x)=\frac{k}{x}" />
+
+where <InlineMath math="k" /> is a constant. For example, <InlineMath math="f(x)=\frac{5}{x}" /> has domain <InlineMath math="x\neq 0" />.
+
+### Linear-over-Linear Form
+
+When the numerator and denominator are linear,
+
+<BlockMath math="f(x)=\frac{ax+b}{cx+d}" />
+
+the denominator condition is <InlineMath math="cx+d\neq 0" />. One example is <InlineMath math="f(x)=\frac{2x+3}{x-1}" />, whose domain excludes <InlineMath math="x=1" />.
+
+### Higher-Degree Form
+
+Either polynomial may have degree two or higher. For example,
+
+<BlockMath math="f(x)=\frac{x^2+2x+1}{x-3}" />
+
+is still rational, and its domain excludes <InlineMath math="x=3" />.
+
+## Finding the Domain
+
+To find the real domain of a rational function:
+
+1. Set the original denominator equal to zero.
+2. Solve for every value that makes it zero.
+3. Exclude those values from the real numbers.
+
+For
+
+<BlockMath math="f(x)=\frac{x+2}{x-3}," />
+
+the denominator is zero when
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 - 4}{x - 2}" />
-  <BlockMath math="= \frac{(x + 2)(x - 2)}{x - 2}" />
-  <BlockMath math="= x + 2" />
+  <BlockMath math="x-3=0" />
+  <BlockMath math="x=3." />
 </MathContainer>
 
-Note: <InlineMath math="x \neq 2" /> (from the original domain)
+Therefore,
 
-## Operations on Rational Functions
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq 3\}." />
+
+## Simplifying Without Losing the Domain
+
+You may cancel a common factor only where that factor is nonzero. The simplified expression gives the same output on the original domain, but it does not restore an excluded input.
+
+### Canceling a Monomial Factor
+
+Simplify
+
+<BlockMath math="f(x)=\frac{6x^2}{3x}." />
+
+The original denominator requires <InlineMath math="x\neq 0" />. On that domain,
+
+<MathContainer>
+  <BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
+  <BlockMath math="=2x,\qquad x\neq 0." />
+</MathContainer>
+
+Although the expression <InlineMath math="2x" /> is defined at <InlineMath math="x=0" />, the original rational function is not.
+
+### Canceling After Factoring
+
+Simplify
+
+<BlockMath math="g(x)=\frac{x^2-4}{x-2}." />
+
+First record <InlineMath math="x\neq 2" />, then factor the difference of squares:
+
+<MathContainer>
+  <BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
+  <BlockMath math="=x+2,\qquad x\neq 2." />
+</MathContainer>
+
+The graph agrees with the line <InlineMath math="y=x+2" /> except for a hole at <InlineMath math="x=2" />.
+
+## Operations on Rational Expressions
 
 ### Addition and Subtraction
 
-Just like regular fractions, we need to find a common denominator first!
-
-**Example:** <InlineMath math="\frac{2}{x} + \frac{3}{x + 1}" />
-
-**Solution:**
+Use a common denominator and keep every restriction from the original denominators.
 
 <MathContainer>
-  <BlockMath math="\frac{2}{x} + \frac{3}{x + 1}" />
-  <BlockMath math="= \frac{2(x + 1)}{x(x + 1)} + \frac{3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{2(x + 1) + 3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{2x + 2 + 3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{5x + 2}{x(x + 1)}" />
+  <BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
+  <BlockMath math="=\frac{2(x+1)+3x}{x(x+1)}" />
+  <BlockMath math="=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
 </MathContainer>
 
 ### Multiplication
 
-Multiply numerator with numerator, denominator with denominator:
+Multiply numerators and denominators, then factor before canceling:
 
-<BlockMath math="\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}" />
+<MathContainer>
+  <BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
+  <BlockMath math="=\frac{2x(x+1)}{x(x-1)}" />
+  <BlockMath math="=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
+</MathContainer>
 
-**Example:** <InlineMath math="\frac{x + 1}{x} \times \frac{2x}{x - 1}" />
-
-**Solution:**
-
-<BlockMath math="\frac{x + 1}{x} \times \frac{2x}{x - 1} = \frac{2x(x + 1)}{x(x - 1)} = \frac{2(x + 1)}{x - 1}" />
+The canceled factor <InlineMath math="x" /> does not remove the original restriction <InlineMath math="x\neq 0" />.
 
 ### Division
 
-Remember, dividing means multiplying by the reciprocal:
+Dividing by a fraction means multiplying by its reciprocal:
 
-<BlockMath math="\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc}" />
+<BlockMath math="\frac{a}{b}\div\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c}=\frac{ad}{bc}." />
+
+This requires <InlineMath math="b\neq 0" /> and <InlineMath math="d\neq 0" /> so both original fractions exist, and <InlineMath math="c\neq 0" /> so the divisor is not zero.
 
 ## Exercises
 
-1. Determine the domain of <InlineMath math="f(x) = \frac{x + 3}{x^2 - 9}" />
+1. Determine the domain of <InlineMath math="f(x)=\frac{x+3}{x^2-9}" />.
 
-2. Simplify <InlineMath math="f(x) = \frac{x^2 - 1}{x + 1}" />
+2. Simplify <InlineMath math="g(x)=\frac{x^2-1}{x+1}" /> and retain its original restriction.
 
-3. Calculate <InlineMath math="\frac{1}{x - 1} - \frac{2}{x + 1}" />
+3. Calculate <InlineMath math="\frac{1}{x-1}-\frac{2}{x+1}" /> and state its domain restrictions.
 
-4. A car travels <InlineMath math="300 \text{ km}" />. If the average speed is <InlineMath math="v \text{ km/h}" />, write the travel time function in terms of <InlineMath math="v" />.
+4. A car travels <InlineMath math="300\text{ km}" /> at an average speed of <InlineMath math="v\text{ km/h}" />. Write travel time as a function of <InlineMath math="v" /> and state the physically meaningful domain.
 
-### Answer Key
+### Worked Solutions
 
-**Answer** <InlineMath math="1" />:
+#### 1. Domain
 
-<MathContainer>
-  <BlockMath math="x^2 - 9 = 0" />
-  <BlockMath math="(x + 3)(x - 3) = 0" />
-  <BlockMath math="x = -3 \text{ or} x = 3" />
-</MathContainer>
-
-Domain: <InlineMath math="D_f = \{x | x \neq -3, x \neq 3, x \in \mathbb{R}\}" />
-
-**Answer** <InlineMath math="2" />:
+The numerator does not determine the domain. Factor the denominator:
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 - 1}{x + 1}" />
-  <BlockMath math="= \frac{(x + 1)(x - 1)}{x + 1}" />
-  <BlockMath math="= x - 1" />
+  <BlockMath math="x^2-9=(x-3)(x+3)" />
+  <BlockMath math="(x-3)(x+3)=0\Longrightarrow x=3\text{ or }x=-3." />
 </MathContainer>
 
-With the condition <InlineMath math="x \neq -1" />
+Both values make the original denominator zero, so
 
-**Answer** <InlineMath math="3" />:
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
+
+#### 2. Simplification
+
+The original denominator gives <InlineMath math="x\neq -1" />. Factor and cancel only on that domain:
 
 <MathContainer>
-  <BlockMath math="\frac{1}{x - 1} - \frac{2}{x + 1}" />
-  <BlockMath math="= \frac{(x + 1) - 2(x - 1)}{(x - 1)(x + 1)}" />
-  <BlockMath math="= \frac{x + 1 - 2x + 2}{(x - 1)(x + 1)}" />
-  <BlockMath math="= \frac{-x + 3}{(x - 1)(x + 1)}" />
+  <BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
+  <BlockMath math="=x-1,\qquad x\neq -1." />
 </MathContainer>
 
-**Answer** <InlineMath math="4" />:
+The simplified formula still has a hole at the excluded input <InlineMath math="x=-1" />.
+
+#### 3. Subtraction
+
+The original denominators require <InlineMath math="x\neq 1" /> and <InlineMath math="x\neq -1" />. Using <InlineMath math="(x-1)(x+1)" /> as the common denominator gives
 
 <MathContainer>
-  <BlockMath math="\text{Time} = \frac{\text{Distance}}{\text{Speed}}" />
-  <BlockMath math="t(v) = \frac{300}{v}" />
+  <BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
+  <BlockMath math="=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
+  <BlockMath math="=\frac{x+1-2x+2}{(x-1)(x+1)}" />
+  <BlockMath math="=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
 </MathContainer>
+
+#### 4. Travel-Time Model
+
+Time equals distance divided by speed:
+
+<MathContainer>
+  <BlockMath math="\text{time}=\frac{\text{distance}}{\text{speed}}" />
+  <BlockMath math="t(v)=\frac{300}{v}." />
+</MathContainer>
+
+Algebraically, <InlineMath math="v\neq 0" />. For a moving car, speed must be positive, so the physical model uses <InlineMath math="v>0" />.

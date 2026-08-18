@@ -1,72 +1,122 @@
 export const metadata = {
   title: "Analisis Komponen Utama",
-  description: "Pelajari PCA melalui diagonalisasi matriks kovarians, analisis nilai eigen, transformasi koordinat, dan visualisasi geometris untuk sains data.",
+  description: "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Tafsirkan varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-17",
   subject: "Metode Linear AI",
 };
 
+## Mulai dengan Data Terpusat
 
-
-## Contoh Analisis Komponen Utama
-
-Bayangkan kamu memiliki sebuah vektor acak <InlineMath math="x \in \mathbb{R}^n" /> yang terdistribusi normal. Vektor ini memiliki nilai harapan nol <InlineMath math="0 \in \mathbb{R}^n" /> dan matriks kovarians positif definit <InlineMath math="C \in \mathbb{R}^{n \times n}" />. Kita dapat menuliskannya sebagai distribusi normal seperti ini:
+Misalkan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> memuat <InlineMath math="m" /> pengamatan dari <InlineMath math="n" /> fitur. PCA dimulai dengan mengurangi setiap fitur dengan nilai rata-ratanya:
 
 <MathContainer>
-<BlockMath math="x \sim N(0, C)" />
+<BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
+<BlockMath math="X_c=X-\mathbf{1}\mu^T" />
 </MathContainer>
 
-Setiap parameter individual <InlineMath math="x_i" /> merepresentasikan karakteristik dari proses yang sedang kita amati. Dalam praktiknya, hampir semua entri dari matriks kovarians <InlineMath math="C" /> bisa bernilai tidak nol. Ini artinya parameter-parameter tersebut saling berkorelasi kuat karena adanya kovarians pada elemen diagonal samping.
+Matriks kovarians sampelnya adalah
 
-Melalui analisis komponen utama, kita bisa menentukan faktor-faktor pengaruh utama yang mempengaruhi proses tersebut.
+<BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
-## Diagonalisasi Matriks Kovarians
+Matriks ini simetris positif semidefinit. Matriksnya dapat singular ketika fitur saling bergantung linear atau ketika <InlineMath math="n>m-1" />.
 
-Untuk mengidentifikasi faktor pengaruh utama, kita perlu melakukan diagonalisasi pada matriks kovarians <InlineMath math="C" />. Misalkan <InlineMath math="\lambda_1 \geq \ldots \geq \lambda_n > 0" /> adalah nilai eigen dari <InlineMath math="C" /> dengan vektor eigen ortonormal yang bersesuaian <InlineMath math="v_1, \ldots, v_n" />.
+Pemusatan bersifat wajib. Standardisasi setiap fitur menjadi varians satu merupakan pilihan pemodelan yang terpisah dan sering sesuai ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
 
-Berdasarkan teorema spektral, kita dapat membentuk matriks diagonal dan matriks vektor eigen:
+## Arah Komponen Utama
+
+Berdasarkan teorema spektral,
 
 <MathContainer>
-<BlockMath math="\Lambda = \begin{pmatrix} \lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_n \end{pmatrix}" />
-<BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
+<BlockMath math="Cv_i=\lambda_i v_i" />
+<BlockMath math="\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_n\ge0" />
+<BlockMath math="V=(v_1\ \,\cdots\ \,v_n),\qquad V^TV=I" />
+<BlockMath math="C=V\Lambda V^T" />
 </MathContainer>
 
-Kemudian berlaku hubungan fundamental:
+Arah komponen utama pertama menyelesaikan
+
+<BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
+
+Setiap arah berikutnya memaksimumkan varians yang sama dengan syarat tegak lurus terhadap semua arah sebelumnya. Koordinat baru, atau skor, adalah
+
+<BlockMath math="Z=X_cV" />
+
+dan kovarians sampelnya berbentuk diagonal:
+
+<BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
+
+Jadi, komponen utama tidak berkorelasi. Komponen tersebut tidak selalu independen. Independensi berlaku pada model khusus, termasuk distribusi Gaussian bersama.
+
+## Varians Terjelaskan dan Reduksi Dimensi
+
+Proporsi varians sampel total yang dijelaskan komponen <InlineMath math="j" /> adalah
+
+<BlockMath math="\operatorname{EVR}_j=\frac{\lambda_j}{\sum_{i=1}^n\lambda_i}=\frac{\lambda_j}{\operatorname{tr}(C)}" />
+
+Mempertahankan <InlineMath math="k" /> vektor eigen pertama dalam <InlineMath math="V_k" /> menghasilkan skor dan rekonstruksi
 
 <MathContainer>
-<BlockMath math="\Lambda = S^T \cdot C \cdot S" />
+<BlockMath math="Z_k=X_cV_k" />
+<BlockMath math="\widehat{X}_c=Z_kV_k^T=X_cV_kV_k^T" />
+<BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
 </MathContainer>
 
-## Transformasi ke Koordinat Baru
+Di antara semua rekonstruksi linear ber-rank <InlineMath math="k" />, pilihan ini meminimumkan galat rekonstruksi kuadrat. Dengan konvensi kovarians sampel di atas,
 
-Berkaitan dengan basis <InlineMath math="v_1, \ldots, v_n" />, koordinat baru didefinisikan sebagai <InlineMath math="y = S^T x" />. Yang menarik adalah variabel <InlineMath math="y_i" /> menjadi independen dan terdistribusi normal dengan varians <InlineMath math="\lambda_i" />:
+<BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
+
+## Perhitungan Ekuivalen dengan SVD
+
+Hitung dekomposisi nilai singular tipis
+
+<BlockMath math="X_c=U\Sigma V^T" />
+
+Vektor singular kanan menjadi arah komponen utama dan
+
+<BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
+
+Penggunaan SVD menghindari pembentukan eksplisit <InlineMath math="X_c^TX_c" /> yang menguadratkan bilangan kondisi. SVD juga merupakan jalur alami ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau kekurangan rank.
+
+## Contoh Kovarians Dua Dimensi
+
+Perhatikan elips kovarians yang diputar sebesar
+
+<BlockMath math="\theta=\frac{\pi}{6}" />
+
+dengan varians <InlineMath math="9" /> dan <InlineMath math="2{,}25" /> sepanjang sumbu utamanya. Misalkan
 
 <MathContainer>
-<BlockMath math="y_i \sim N(0, \lambda_i), \quad i = 1, \ldots, n" />
+<BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
+<BlockMath math="C=R\begin{pmatrix}9&0\\0&2{,}25\end{pmatrix}R^T" />
+<BlockMath math="C=\frac1{16}\begin{pmatrix}117&27\sqrt3\\27\sqrt3&63\end{pmatrix}" />
 </MathContainer>
 
-Variabel <InlineMath math="y_i" /> inilah yang disebut **komponen utama** dari <InlineMath math="x" />. Komponen utama dengan varians <InlineMath math="\lambda_i" /> yang paling besar menggambarkan faktor pengaruh utama dari proses yang diamati.
+Arah komponen utama adalah kolom <InlineMath math="R" />:
 
-Analoginya seperti ketika kamu mengamati gerak awan di langit. Ada banyak faktor yang mempengaruhi pergerakan awan, tapi angin barat mungkin memberikan pengaruh paling besar. Komponen utama pertama seperti arah angin utama yang memberikan kontribusi terbesar terhadap pola pergerakan awan.
+<MathContainer>
+<BlockMath math="v_1=\begin{pmatrix}\sqrt3/2\\1/2\end{pmatrix},\qquad\lambda_1=9" />
+<BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2{,}25" />
+</MathContainer>
 
-## Visualisasi Geometris
+Komponen pertama menjelaskan
 
-Secara geometris, analisis komponen utama dapat dipahami sebagai cara mencari arah yang paling optimal untuk merepresentasikan data. Bayangkan data tersebar seperti awan titik-titik dalam ruang dua dimensi. Komponen utama menunjukkan arah dimana data memiliki variabilitas maksimum.
+<BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
+
+dari varians total.
 
 <LineEquation
-  title={<>Visualisasi Analisis Komponen Utama dalam <InlineMath math="\mathbb{R}^2" /></>}
-  description="Transformasi dari koordinat asli ke arah faktor utama yang menangkap variabilitas maksimum data."
+  title={<>Elips kovarians dan arah komponen utama <InlineMath math="v_1,v_2" /></>}
+  description={<>Elips sian memiliki panjang semisumbu <InlineMath math="\sqrt{\lambda_1}=3" /> dan <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Arah jingga adalah vektor eigennya.</>}
   data={[
     {
-      points: Array.from({ length: 100 }, (_, i) => {
-        const angle = (i / 99) * 2 * Math.PI;
-        const a = 3;
-        const b = 1.5;
+      points: Array.from({ length: 100 }, (_, index) => {
+        const angle = (index / 99) * 2 * Math.PI;
+        const localX = 3 * Math.cos(angle);
+        const localY = 1.5 * Math.sin(angle);
         const rotation = Math.PI / 6;
-        const x_local = a * Math.cos(angle);
-        const y_local = b * Math.sin(angle);
-        const x = x_local * Math.cos(rotation) - y_local * Math.sin(rotation);
-        const y = x_local * Math.sin(rotation) + y_local * Math.cos(rotation);
+        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
+        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
         return { x, y, z: 0 };
       }),
       color: "#0891b2",
@@ -74,74 +124,62 @@ Secara geometris, analisis komponen utama dapat dipahami sebagai cara mencari ar
       showPoints: false
     },
     {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
+      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#7c3aed",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Variable 1",
-          at: 1,
-          offset: [0.3, -0.5, 0]
-        }
-      ]
+      labels: [{
+        text: <>Sumbu asli <InlineMath math="x_1" /></>,
+        at: 1,
+        offset: [0.3, -0.5, 0]
+      }]
     },
     {
-      points: [
-        { x: 0, y: -3, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
+      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
       color: "#7c3aed",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Variable 2",
-          at: 1,
-          offset: [0.8, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Sumbu asli <InlineMath math="x_2" /></>,
+        at: 1,
+        offset: [0.8, 0.3, 0]
+      }]
     },
     {
-      points: [
-        { x: -3.5, y: -2, z: 0 },
-        { x: 3.5, y: 2, z: 0 }
-      ],
+      points: [{ x: -3.464, y: -2, z: 0 }, { x: 3.464, y: 2, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Faktor 1",
-          at: 1,
-          offset: [0.3, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Arah utama <InlineMath math="v_1" /></>,
+        at: 1,
+        offset: [0.3, 0.3, 0]
+      }]
     },
     {
-      points: [
-        { x: -1.5, y: 2.6, z: 0 },
-        { x: 1.5, y: -2.6, z: 0 }
-      ],
+      points: [{ x: -1.5, y: 2.598, z: 0 }, { x: 1.5, y: -2.598, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Faktor 2",
-          at: 0,
-          offset: [-0.8, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Arah utama <InlineMath math="v_2" /></>,
+        at: 0,
+        offset: [-0.8, 0.3, 0]
+      }]
     }
   ]}
   cameraPosition={[0, 0, 15]}
   showZAxis={false}
 />
 
-Dalam visualisasi di atas, Variable <InlineMath math="1" /> dan Variable <InlineMath math="2" /> merepresentasikan koordinat asli data kamu. Sementara Faktor <InlineMath math="1" /> dan Faktor <InlineMath math="2" /> menunjukkan arah komponen utama yang baru. Perhatikan bagaimana arah faktor tidak sejajar dengan sumbu asli, melainkan mengikuti pola sebaran data yang sebenarnya.
+## Batas Interpretasi
 
-Faktor <InlineMath math="1" /> menunjukkan arah dengan variabilitas terbesar dari data, sedangkan Faktor <InlineMath math="2" /> menunjukkan arah variabilitas terbesar kedua yang tegak lurus terhadap Faktor <InlineMath math="1" />. Transformasi ini memungkinkan kita memahami struktur data dengan lebih baik karena komponen utama menangkap pola variabilitas yang sesungguhnya ada dalam data.
+| Pemeriksaan | Mengapa penting |
+| --- | --- |
+| Pusatkan hanya dengan rata-rata data latih | mencegah kebocoran data dan mempertahankan sistem koordinat yang dipelajari |
+| Tinjau satuan dan skala fitur | varians numerik besar dapat mendominasi karena alasan yang keliru |
+| Pilih <InlineMath math="k" /> berdasarkan kebutuhan validasi, bukan satu ambang tetap | varians terjelaskan tidak mengukur relevansi prediktif |
+| Ingat bahwa tanda vektor eigen bersifat sembarang | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mendefinisikan komponen yang sama |
+| Periksa struktur nonlinear dan pencilan | PCA merupakan ringkasan linear berbasis varians dan peka terhadap keduanya |
+
+PCA menemukan arah varians, bukan faktor kausal. Satu komponen utama dapat mencampurkan banyak fitur asli, dan arah dengan varians rendah tetap dapat penting untuk tugas lanjutan.

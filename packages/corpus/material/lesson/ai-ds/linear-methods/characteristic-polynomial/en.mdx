@@ -8,7 +8,11 @@ export const metadata = {
 
 ## Definition and Basic Concepts
 
-To find the eigenvalues of a matrix, we need a very important mathematical tool in linear algebra. Imagine we want to find all values <InlineMath math="\lambda" /> that make the matrix <InlineMath math="A - \lambda I" /> become singular (not invertible).
+An eigenvalue <InlineMath math="\lambda" /> of a square matrix <InlineMath math="A" /> has a nonzero eigenvector <InlineMath math="v" /> satisfying
+
+<BlockMath math="Av=\lambda v" />
+
+Rearranging gives <InlineMath math="(A-\lambda I)v=0" />. A nonzero solution exists exactly when <InlineMath math="A-\lambda I" /> is singular, so its determinant must vanish. The characteristic polynomial records this condition for every possible scalar at once.
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" />. We can form a special function:
 
@@ -17,17 +21,13 @@ Let <InlineMath math="A \in \mathbb{K}^{n \times n}" />. We can form a special f
 <BlockMath math="\chi_A(t) = a_n \cdot t^n + a_{n-1} \cdot t^{n-1} + \cdots + a_1 t + a_0" />
 </MathContainer>
 
-This function is a polynomial of degree <InlineMath math="n" /> in <InlineMath math="t \in \mathbb{K}" />, which we call the **characteristic polynomial** of <InlineMath math="A" />.
-
-with coefficients <InlineMath math="a_0, \ldots, a_{n-1}, a_n \in \mathbb{K}" />.
-
-In fact, <InlineMath math="\chi_A(t)" /> is indeed a polynomial of degree <InlineMath math="n" /> for every matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />.
+This degree-<InlineMath math="n" /> polynomial in <InlineMath math="t" />, with coefficients <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" />, is the **characteristic polynomial** of <InlineMath math="A" />. This lesson uses the convention <InlineMath math="\det(A-tI)" />. The equally common convention <InlineMath math="\det(tI-A)" /> differs by the factor <InlineMath math="(-1)^n" /> but has the same roots.
 
 ## Matrix Trace and Polynomial Coefficients
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be a square matrix. The **trace** of <InlineMath math="A" /> is the sum of the diagonal elements:
 
-<BlockMath math="\text{trace} A = \sum_{i=1}^n a_{ii}" />
+<BlockMath math="\operatorname{tr}(A) = \sum_{i=1}^n a_{ii}" />
 
 The matrix trace has a close relationship with the coefficients of the characteristic polynomial.
 
@@ -35,7 +35,7 @@ The matrix trace has a close relationship with the coefficients of the character
 
 In the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath math="A" />, its coefficients have special meaning:
 
-<BlockMath math="a_n = (-1)^n, \quad a_{n-1} = (-1)^{n-1} \cdot \text{trace} A, \quad a_0 = \det A" />
+<BlockMath math="a_n = (-1)^n, \quad a_{n-1} = (-1)^{n-1}\operatorname{tr}(A), \quad a_0 = \det A" />
 
 This means:
 - The highest coefficient is always <InlineMath math="(-1)^n" />
@@ -62,25 +62,25 @@ Now, what happens if an eigenvalue appears multiple times as a root of the chara
 
 ### Multiplicity Bounds
 
-For every eigenvalue <InlineMath math="\lambda" />, it holds:
+For every eigenvalue <InlineMath math="\lambda" />, its algebraic multiplicity satisfies
 
-<BlockMath math="0 \leq \mu_A(\lambda) \leq n" />
+<BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
 ## Relationship between Geometric and Algebraic Multiplicity
 
 One important result in eigenvalue theory is the relationship between geometric and algebraic multiplicity.
 
-For any matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda \in \mathbb{K}" />, we have an interesting relationship:
+For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \mathbb{K}^{n \times n}" />, its geometric and algebraic multiplicities satisfy
 
-<BlockMath math="0 \leq \dim \text{Eig}_A(\lambda) \leq \mu_A(\lambda) \leq n" />
+<BlockMath math="1 \leq \dim \operatorname{Eig}_A(\lambda) \leq \mu_A(\lambda) \leq n" />
 
 > The geometric multiplicity of every eigenvalue is always less than or equal to its algebraic multiplicity.
 
-Why does this happen? This can be explained using basis transformation and Jordan block form.
+The geometric multiplicity counts independent eigenvectors in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
 
 ## Examples of Characteristic Polynomial Calculation
 
-After understanding the basic concepts, let's see how to apply them in concrete examples of characteristic polynomial calculation:
+We now apply the definition and use the coefficient identities as checks on the calculation.
 
 ### Third-Order Matrix Example
 
@@ -88,7 +88,7 @@ Let <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 3-t & 2 & -1 \\ 1 & -t & -4 \\ 3 & 0 & 1-t \end{pmatrix}" />
-<BlockMath math="= (3-t) \cdot (-t) \cdot (1-t) - 2 \cdot (1 \cdot (1-t) + 3 \cdot 4) + 1 \cdot 3 \cdot t" />
+<BlockMath math="= (3-t)(-t)(1-t) - 2(13-t) - 3t" />
 <BlockMath math="= -3t + 3t^2 + t^2 - t^3 - 2 + 2t - 24 - 3t" />
 <BlockMath math="= -t^3 + 4t^2 - 4t - 26" />
 </MathContainer>
@@ -96,6 +96,13 @@ Let <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 
 For <InlineMath math="\mathbb{K} = \mathbb{R}" />, <InlineMath math="\chi_A(t)" /> only has the root <InlineMath math="\lambda_1 \approx -1.8003" /> with algebraic multiplicity <InlineMath math="\mu_A(\lambda_1) = 1" />.
 
 For <InlineMath math="\mathbb{K} = \mathbb{C}" />, <InlineMath math="\chi_A(t)" /> has roots <InlineMath math="\lambda_1 \approx -1.8003" />, <InlineMath math="\lambda_2 \approx 2.9001 + 2.4559i" />, and <InlineMath math="\lambda_3 \approx 2.9001 - 2.4559i" /> with algebraic multiplicities <InlineMath math="\mu_A(\lambda_1) = \mu_A(\lambda_2) = \mu_A(\lambda_3) = 1" /> respectively.
+
+The roots pass two useful checks: their sum is the trace, and their product is the determinant.
+
+<MathContainer>
+<BlockMath math="\lambda_1+\lambda_2+\lambda_3=4=\operatorname{tr}(A)" />
+<BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
+</MathContainer>
 
 ### Simple Example
 
@@ -111,7 +118,7 @@ This matrix has the root <InlineMath math="\lambda = 1" /> with algebraic multip
 
 ## Geometric Transformation Examples
 
-Now, let's explore something fascinating: how the characteristic polynomial works on common geometric transformations we often encounter in <InlineMath math="\mathbb{R}^2 \to \mathbb{R}^2" />:
+The following familiar maps on <InlineMath math="\mathbb{R}^2" /> connect the algebraic calculation to geometry.
 
 ### Rotation
 
@@ -119,11 +126,11 @@ Rotation with <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha)
 
 <BlockMath math="\chi_A(t) = (\cos(\alpha) - t)^2 + \sin(\alpha)^2 = t^2 - 2 \cdot \cos(\alpha) \cdot t + 1" />
 
-This has real roots if and only if <InlineMath math="\cos(\alpha)^2 - 1 \geq 0" />, that is <InlineMath math="\cos(\alpha)^2 = 1" />, so <InlineMath math="\alpha = 0" /> or <InlineMath math="\alpha = \pi" />.
+Its discriminant is <InlineMath math="-4\sin^2(\alpha)" />. The roots are real exactly when <InlineMath math="\sin(\alpha)=0" />, so, modulo a full turn, <InlineMath math="\alpha\equiv0" /> or <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
 ### Reflection
 
-Reflection along axes with <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> has the characteristic polynomial:
+Reflection across the <InlineMath math="x" />-axis with <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> has the characteristic polynomial:
 
 <BlockMath math="\chi_A(t) = (1-t) \cdot (-1-t) = t^2 - 1" />
 
@@ -147,9 +154,9 @@ The eigenvalue is <InlineMath math="\lambda = 1" /> with <InlineMath math="\mu_A
 
 ## Properties of Similar Matrices
 
-Similar matrices have a fascinating property: they have the same characteristic polynomial, and therefore have the same eigenvalues, the same trace, and the same determinant.
+Similar matrices describe the same linear transformation in different bases. They therefore have the same characteristic polynomial, eigenvalues, trace, and determinant.
 
-Let's see why this is true. Let <InlineMath math="S \in \mathbb{K}^{n \times n}" /> be invertible and <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Then:
+Let <InlineMath math="S \in \mathbb{K}^{n \times n}" /> be invertible and <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Then:
 
 <MathContainer>
 <BlockMath math="\chi_B(t) = \det(B - t \cdot I) = \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S)" />
@@ -159,13 +166,13 @@ Let's see why this is true. Let <InlineMath math="S \in \mathbb{K}^{n \times n}"
 
 ### Eigenvector Properties of Similar Matrices
 
-Now, what about the eigenvectors of similar matrices? Let <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> be similar matrices with <InlineMath math="B = S^{-1} \cdot A \cdot S" /> and invertible matrix <InlineMath math="S \in \mathbb{K}^{n \times n}" />. If <InlineMath math="\lambda \in \mathbb{K}" /> is an eigenvalue of both <InlineMath math="A" /> and <InlineMath math="B" />, and <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath math="A" /> for eigenvalue <InlineMath math="\lambda" />, then <InlineMath math="w = S^{-1} \cdot v" /> is an eigenvector of <InlineMath math="B" /> for eigenvalue <InlineMath math="\lambda" />.
+The eigenvectors change with the basis. If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath math="A" /> for <InlineMath math="\lambda" />, then <InlineMath math="w = S^{-1}v" /> is an eigenvector of <InlineMath math="B" /> for the same eigenvalue.
 
-Let's see why this is true. Let <InlineMath math="A \cdot v = \lambda \cdot v" /> and <InlineMath math="w = S^{-1} \cdot v" />. Then:
+Indeed, using <InlineMath math="Av=\lambda v" /> and <InlineMath math="w=S^{-1}v" /> gives
 
 <MathContainer>
 <BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v = S^{-1} \cdot A \cdot v" />
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 
-This shows that similarity transformation not only preserves eigenvalues, but also provides a systematic way to transform eigenvectors.
+Thus similarity preserves eigenvalues while the inverse basis change converts the corresponding eigenvectors.

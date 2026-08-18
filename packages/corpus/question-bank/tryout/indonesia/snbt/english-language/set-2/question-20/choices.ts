@@ -2,27 +2,19 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "A biography of the first clerical worker", value: false },
     {
-      label: "the other forms of innovative technology applied in the jobs",
+      label: "A list of jobs that will certainly disappear next year",
       value: false,
     },
+    { label: "The history of electricity generation", value: false },
     {
-      label: "the benefit for applying technology in long term period",
-      value: false,
-    },
-    {
-      label:
-        "the further descriptions shrinking labor market due to automation era",
-      value: false,
-    },
-    {
-      label:
-        "the alternative strategy for the government to protect the labor market",
+      label: "Instructions for building a language model from scratch",
       value: false,
     },
     {
       label:
-        "the other skills-related jobs that robots could or couldn't replace",
+        "Examples of how workers and organizations can adapt tasks through training and social dialogue",
       value: true,
     },
   ],

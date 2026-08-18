@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Properties of Angle in Circle",
-  description: "Explore angle properties in circles including inscribed angles, Thales' theorem, and cyclic quadrilaterals. Learn theorems with clear proofs.",
+  title: "Angle Theorems in Circles",
+  description: "Use diagrams and worked problems to connect inscribed angles, Thales' theorem, and opposite angles in cyclic quadrilaterals.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Circle",
@@ -10,11 +10,11 @@ export const metadata = {
 
 ## Inscribed Angles Subtending the Same Arc
 
-Inscribed angles that subtend the same arc have equal measures, regardless of where the vertex is positioned on the circle.
+Inscribed angles that subtend the same arc have equal measures when their vertices lie on the same remaining arc, or equivalently in the same circle segment.
 
 <LineEquation
   title="Inscribed Angles Subtending the Same Arc"
-  description="All inscribed angles subtending the same arc have equal measures."
+  description="Inscribed angles in the same segment that subtend the same arc have equal measures."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -110,8 +110,7 @@ Inscribed angles that subtend the same arc have equal measures, regardless of wh
 
 **Property:** <InlineMath math="\angle ACB = \angle ADB" />
 
-Both inscribed angles <InlineMath math="\angle ACB" /> and{" "}
-<InlineMath math="\angle ADB" /> subtend the same arc <InlineMath math="AB" />, so they have equal measures.
+Both vertices <InlineMath math="C" /> and <InlineMath math="D" /> lie on the same side of chord <InlineMath math="AB" />. The angles <InlineMath math="\angle ACB" /> and <InlineMath math="\angle ADB" /> therefore subtend the same arc from the same segment and have equal measures.
 
 ## Central Angle and Inscribed Angle
 
@@ -389,9 +388,9 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = (((i * 90) / 15) * Math.PI) / 180;
+        const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
         return {
-          x: 0.8 * Math.cos(angle),
+          x: 4 + 0.8 * Math.cos(angle),
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
@@ -402,9 +401,9 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((180 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
-          x: 0.8 * Math.cos(angle),
+          x: -4 + 0.8 * Math.cos(angle),
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
@@ -465,7 +464,7 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
     {
       points: [
         { x: 4, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 },
+        { x: 6, y: -2, z: 0 },
       ],
       color: "#0891b2",
       showPoints: true,
@@ -473,7 +472,7 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((270 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
           y: 0 + 0.8 * Math.sin(angle),
@@ -486,7 +485,7 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
     },
     {
       points: Array.from({ length: 16 }, (_, i) => {
-        const angle = ((90 + (i * 90) / 15) * Math.PI) / 180;
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
           y: 0 + 0.8 * Math.sin(angle),
@@ -538,20 +537,20 @@ Using the property of cyclic quadrilaterals:
 
 ### Using Thales' Theorem
 
-Point <InlineMath math="C" /> lies on a circle with AB as the diameter. Find the measure of <InlineMath math="\angle ACB" />!
+Point <InlineMath math="C" /> lies on a circle with <InlineMath math="AB" /> as the diameter. Find the measure of <InlineMath math="\angle ACB" />!
 
 **Solution:**
 
-Since <InlineMath math="AB" /> is a diameter and C lies on the circle, by Thales' Theorem:
+Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on the circle, by Thales' theorem:
 
 <BlockMath math="\angle ACB = 90^\circ" />
 
 ## Practice Problems
 
-1. In a circle with center <InlineMath math="O" />, central angle <InlineMath math="\angle AOB = 140^\circ" />. If <InlineMath math="C" /> and <InlineMath math="D" /> are two different points on the circle, find:
+1. In a circle with center <InlineMath math="O" />, central angle <InlineMath math="\angle AOB = 140^\circ" /> intercepts the minor arc <InlineMath math="AB" />. Points <InlineMath math="C" /> and <InlineMath math="D" /> lie on the major arc <InlineMath math="AB" />. Find:
 
-   - The measure of angle <InlineMath math="ACB" />
-   - The measure of angle <InlineMath math="ADB" />
+   - The measure of angle <InlineMath math="\angle ACB" />
+   - The measure of angle <InlineMath math="\angle ADB" />
 
 2. In cyclic quadrilateral <InlineMath math="PQRS" />, given:
 
@@ -568,13 +567,13 @@ Since <InlineMath math="AB" /> is a diameter and C lies on the circle, by Thales
 
 5. In cyclic quadrilateral <InlineMath math="KLMN" />, the exterior angle at vertex <InlineMath math="K" /> is <InlineMath math="65^\circ" />. Find the measure of the interior angle at vertex <InlineMath math="M" />!
 
-### Answer Key
+### Worked Solutions
 
 1. **Finding inscribed angles subtending the same arc**
 
    <LineEquation
      title="Visualization"
-     description={<>Central angle <InlineMath math="AOB = 140^\circ" /> and inscribed angles subtending arc <InlineMath math="AB" />.</>}
+     description={<>Central angle <InlineMath math="\angle AOB = 140^\circ" /> and the inscribed angles intercept the same arc <InlineMath math="AB" />.</>}
      data={[
        {
          points: Array.from({ length: 361 }, (_, i) => {
@@ -860,6 +859,12 @@ Since <InlineMath math="AB" /> is a diameter and C lies on the circle, by Thales
 
    If the exterior angle at <InlineMath math="K" /> is <InlineMath math="65^\circ" />, then:
 
-   <BlockMath math="\angle \text{interior at M} = \angle \text{exterior at K} = 65^\circ" />
+   <BlockMath math="\angle M = 65^\circ" />
 
    This is because vertices <InlineMath math="K" /> and <InlineMath math="M" /> are opposite in cyclic quadrilateral <InlineMath math="KLMN" />.
+
+## Sources
+
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [GeoGebra: Inscribed Angle Theorem](https://www.geogebra.org/m/nbepfdzb)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)

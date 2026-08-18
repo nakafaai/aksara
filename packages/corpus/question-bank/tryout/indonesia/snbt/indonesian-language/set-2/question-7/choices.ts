@@ -2,14 +2,13 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Bahan bacaan yang tersedia semua terkenal", value: false },
+    { label: "Semua bacaannya merupakan karya terkenal", value: false },
     {
-      label:
-        "Banyak fitur yang tersedia pada aplikasi yang memudahkan pengguna",
+      label: "Semua fitur dapat digunakan tanpa berlangganan",
       value: false,
     },
-    { label: "Aplikasi mudah diunduh", value: false },
-    { label: "Aplikasi tidak memakan banyak ruang ponsel Anda", value: false },
+    { label: "Aplikasi dapat digunakan tanpa perangkat digital", value: false },
+    { label: "Aplikasi tidak memerlukan ruang penyimpanan", value: false },
     { label: "Bacaan tersedia dalam berbagai bahasa", value: true },
   ],
 };

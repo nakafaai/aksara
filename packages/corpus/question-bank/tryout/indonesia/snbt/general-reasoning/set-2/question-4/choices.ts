@@ -2,24 +2,42 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The child has little fat, a lot of vitamin B6", value: false },
-    { label: "Some children have little fat", value: false },
     {
-      label: "Children must consume meat to get a lot of fat",
+      label: "The child gets a small amount of fat and a lot of vitamin B6",
+      value: false,
+    },
+    {
+      label: "Some children who eat bananas get a small amount of fat",
+      value: false,
+    },
+    {
+      label: "Meat can provide a lot of fat but little vitamin B6",
       value: false,
     },
     { label: "The child will not get any fat", value: true },
-    { label: "There are children who get a lot of vitamin B6", value: false },
+    {
+      label: "Some children who eat bananas get a lot of vitamin B6",
+      value: false,
+    },
   ],
   id: [
-    { label: "Anak memiliki sedikit lemak, banyak vitamin B6", value: false },
-    { label: "Sebagian anak memiliki sedikit lemak", value: false },
     {
-      label: "Anak harus mengonsumsi daging agar mendapatkan banyak lemak",
+      label: "Anak memperoleh sedikit lemak dan banyak vitamin B6",
+      value: false,
+    },
+    {
+      label: "Sebagian anak yang makan pisang memperoleh sedikit lemak",
+      value: false,
+    },
+    {
+      label: "Daging dapat memberikan banyak lemak tetapi sedikit vitamin B6",
       value: false,
     },
     { label: "Anak tidak akan mendapatkan lemak", value: true },
-    { label: "Ada anak yang mendapatkan banyak vitamin B6", value: false },
+    {
+      label: "Sebagian anak yang makan pisang memperoleh banyak vitamin B6",
+      value: false,
+    },
   ],
 };
 

@@ -4,36 +4,27 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-Lintasan dihitung mulai dari kotak hingga ke <InlineMath math="B10" /> sehingga didapatkan sebuah deret aritmetika dari jarak tempuh <InlineMath math="10, 18, 26, 34, \ldots" />
+Jarak dari kotak ke setiap botol membentuk barisan aritmetika:
 
-#### Menentukan Parameter Deret
+<BlockMath math="10,18,26,34,\ldots" />
 
-Dari deret <InlineMath math="10, 18, 26, 34, \ldots" />, kita dapatkan
+Barisan ini memiliki suku pertama <InlineMath math="a=10" />, beda <InlineMath math="d=8" />, dan banyak suku <InlineMath math="n=10" />.
 
-- Suku pertama <InlineMath math="a = 10" />
-- Beda <InlineMath math="b = 18 - 10 = 8" />
-- Banyak suku <InlineMath math="n = 10" /> (dari kotak ke <InlineMath math="B10" />)
-
-#### Menghitung Suku yang Ditanya
-
-Rumus suku ke-<InlineMath math="n" /> deret aritmetika
+#### Menentukan jarak terakhir
 
 <MathContainer>
-<BlockMath math="U_n = a + (n - 1)b" />
-<BlockMath math="U_{10} = 10 + (10 - 1) \cdot 8" />
-<BlockMath math="= 10 + 9 \cdot 8" />
-<BlockMath math="= 10 + 72 = 82" />
+<BlockMath math="U_n=a+(n-1)d" />
+<BlockMath math="U_{10}=10+(10-1)(8)=82" />
 </MathContainer>
 
-#### Menghitung Jumlah Deret
+Artinya, jarak kotak ke <InlineMath math="B_{10}" /> saja adalah <InlineMath math="82\text{ m}" />. Soal menanyakan jumlah seluruh jarak, bukan hanya jarak terakhir ini.
 
-Jumlah deret jarak tempuh dari kotak hingga <InlineMath math="B10" />
+#### Menjumlahkan sepuluh jarak
 
 <MathContainer>
-<BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
-<BlockMath math="S_{10} = \frac{10}{2}(a + U_{10})" />
-<BlockMath math="= 5(10 + 82)" />
-<BlockMath math="= 5 \cdot 92 = 460" />
+<BlockMath math="S_n=\frac{n}{2}(a+U_n)" />
+<BlockMath math="S_{10}=\frac{10}{2}(10+82)" />
+<BlockMath math="S_{10}=5(92)=460" />
 </MathContainer>
 
-Jadi, jarak start ke kotak adalah <InlineMath math="460 \text{ meter}" />
+Jadi, jumlah jaraknya adalah <InlineMath math="460\text{ m}" />.

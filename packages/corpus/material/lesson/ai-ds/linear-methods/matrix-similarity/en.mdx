@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Definition of Matrix Similarity
 
-In linear algebra, the concept of matrix similarity or equivalence is very important for understanding how two different matrices can represent the same linear transformation in different spaces. Imagine two different portraits of the same object, but taken from different perspectives.
+In linear algebra, matrix similarity explains how two different matrices can represent the same linear transformation in different bases. The entries change with the coordinates, but the underlying transformation does not.
 
 Two matrices <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> are said to be **similar** if there exists an invertible matrix <InlineMath math="S \in \mathbb{K}^{n \times n}" /> such that:
 
@@ -61,18 +61,35 @@ In the basis <InlineMath math="v_1, \ldots, v_n" />, the linear transformation <
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-This is why similar matrices represent the same linear transformation but viewed from different bases. Similar matrices represent the same linear transformation with respect to different bases of <InlineMath math="\mathbb{K}^n" />.
+Thus, similar matrices represent one linear transformation with respect to different bases of <InlineMath math="\mathbb{K}^n" />.
+
+## Worked Basis-Change Example
+
+Let
+
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&0\\0&3\end{pmatrix}" />
+<BlockMath math="S=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad S^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}" />
+</MathContainer>
+
+The same transformation in the basis formed by the columns of <InlineMath math="S" /> has the matrix
+
+<BlockMath math="B=S^{-1}AS=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />
+
+Although the entries differ, both matrices have characteristic polynomial <InlineMath math="(t-2)(t-3)" />, trace <InlineMath math="5" />, and determinant <InlineMath math="6" />.
 
 ## Invariant Properties of Similar Matrices
 
-Similar matrices have several fundamental properties that are very useful. Since they represent the same linear transformation in different spaces, similar matrices preserve the same intrinsic characteristics.
+Because similar matrices describe the same transformation in different coordinates, they preserve its basis-independent properties. They have the same characteristic polynomial, determinant, trace, rank, eigenvalues with algebraic multiplicity, minimal polynomial, and Jordan block sizes.
 
-Based on the theorem about similar matrices, if matrices <InlineMath math="A" /> and <InlineMath math="B = S^{-1} \cdot A \cdot S" /> are similar, then they both have:
+They do **not** necessarily have the same entries, eigenvector coordinates, Euclidean norm, symmetry, or orthogonality. Those properties can depend on the chosen basis. A unitary or orthogonal change of basis preserves more geometric structure than a general similarity transformation.
 
-1. **The same determinant**
-2. **The same characteristic polynomial**
-3. **The same eigenvalues**
-4. **The same trace**
+| Preserved by similarity | Not generally preserved |
+| --- | --- |
+| Characteristic and minimal polynomials | Matrix entries |
+| Eigenvalues and Jordan block sizes | Coordinate vectors of eigenvectors |
+| Determinant, trace, and rank | Euclidean norm and symmetry |
 
 ### Proof of Determinant Equality
 
@@ -90,7 +107,7 @@ Since <InlineMath math="\det(S^{-1}) = \frac{1}{\det(S)}" />, then:
 <BlockMath math="= \det(A)" />
 </MathContainer>
 
-### Eigenvalue Equality
+### Eigenvalue Correspondence
 
 If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath math="A" /> with eigenvalue <InlineMath math="\lambda \in \mathbb{K}" />, such that <InlineMath math="A \cdot v = \lambda \cdot v" />, then <InlineMath math="w = S^{-1} \cdot v" /> is an eigenvector of <InlineMath math="B" /> with the same eigenvalue:
 
@@ -101,4 +118,4 @@ If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath mat
 <BlockMath math="= \lambda \cdot w" />
 </MathContainer>
 
-This shows that matrix similarity preserves the spectrum or set of eigenvalues, which is a fundamental characteristic of linear transformations.
+This shows that similarity preserves the spectrum. The coordinate vector of an eigenvector changes from <InlineMath math="v" /> to <InlineMath math="S^{-1}v" />, while the represented geometric direction belongs to the same underlying transformation.

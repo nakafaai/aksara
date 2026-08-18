@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Vertical Reflection",
-  description: "Learn vertical reflection by flipping function graphs across the horizontal axis through examples and exercises.",
+  description: "Use graphs and examples to understand how reflection across the x-axis changes a function's y-coordinates.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Function Transformation",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Basic Concepts of Vertical Reflection
 
-Vertical reflection is a geometric transformation that reflects the graph of a function across the <InlineMath math="x" />-axis, like seeing the reflection of an object on the surface of calm water. Imagine an object reflected in a horizontal mirror, its shape remains the same but its position is flipped vertically.
+Vertical reflection flips a function graph across the <InlineMath math="x" />-axis. Like a reflection on calm water, each point keeps its horizontal position and appears at the same distance on the opposite side.
 
 If we have a function <InlineMath math="f(x)" />, then vertical reflection produces a new function <InlineMath math="g(x) = -f(x)" /> which is the reflection of the original function across the <InlineMath math="x" />-axis.
 
@@ -24,7 +24,7 @@ This transformation changes every point <InlineMath math="(x, y)" /> on the orig
 
 ## Visualization of Vertical Reflection
 
-Let's see how vertical reflection works on the quadratic function <InlineMath math="f(x) = x^2" />.
+The quadratic function <InlineMath math="f(x) = x^2" /> makes the change in every output visible.
 
 <LineEquation
   title={<>Vertical Reflection of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
@@ -52,14 +52,14 @@ Let's see how vertical reflection works on the quadratic function <InlineMath ma
   ]}
 />
 
-From the visualization above, we can observe:
+The graph shows:
 - The original function <InlineMath math="f(x) = x^2" /> opens upward with vertex at <InlineMath math="(0, 0)" />
 - The reflected function <InlineMath math="g(x) = -x^2" /> opens downward with vertex still at <InlineMath math="(0, 0)" />
-- Both graphs are symmetric across the <InlineMath math="x" />-axis
+- The two graphs are mirror images of one another across the <InlineMath math="x" />-axis
 
 ## Vertical Reflection on Linear Functions
 
-Now let's apply the same concept to the linear function <InlineMath math="f(x) = 2x + 3" />.
+The same reflection rule applies to the linear function <InlineMath math="f(x) = 2x + 3" />.
 
 <LineEquation
   title={<>Vertical Reflection of Linear Function <InlineMath math="f(x) = 2x + 3" /></>}
@@ -88,7 +88,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
   ]}
 />
 
-Notice that:
+The two lines show:
 - The original function <InlineMath math="f(x) = 2x + 3" /> has positive slope and intersects the <InlineMath math="y" />-axis at <InlineMath math="(0, 3)" />
 - The reflected function <InlineMath math="g(x) = -2x - 3" /> has negative slope and intersects the <InlineMath math="y" />-axis at <InlineMath math="(0, -3)" />
 - Both lines intersect at the <InlineMath math="x" />-axis
@@ -114,11 +114,11 @@ If the range of the original function is <InlineMath math="[c, d]" />, then the 
 
 ### Exponential Function Example
 
-Let's look at vertical reflection on the exponential function <InlineMath math="f(x) = 2^x" />.
+For the exponential function <InlineMath math="f(x) = 2^x" />, every positive output moves to the corresponding negative output.
 
 <LineEquation
   title={<>Vertical Reflection of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description={<>The exponential curve reflects to become a decreasing curve with horizontal asymptote below the <InlineMath math="x" />-axis.</>}
+  description={<>The reflected exponential curve decreases and approaches the same horizontal asymptote <InlineMath math="y = 0" /> from below.</>}
   showZAxis={false}
   cameraPosition={[8, 6, 8]}
   data={[
@@ -150,7 +150,7 @@ For exponential functions:
 
 ## Vertical Reflection on Trigonometric Functions
 
-Let's see how vertical reflection affects the <InlineMath math="\sin" /> function.
+For the <InlineMath math="\sin" /> function, vertical reflection exchanges crests and troughs.
 
 <LineEquation
   title={<>Vertical Reflection of Sine Function <InlineMath math="f(x) = \sin(x)" /></>}
@@ -179,7 +179,7 @@ Let's see how vertical reflection affects the <InlineMath math="\sin" /> functio
   ]}
 />
 
-Notice that:
+The graph shows:
 - The amplitude remains the same but the wave direction is inverted
 - The period and frequency do not change
 - Maximum points become minimum points and vice versa
@@ -200,7 +200,7 @@ Notice that:
 
    <LineEquation
      title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Reflection Result</>}
-     description="The original parabola opening upward is reflected to become a parabola opening downward."
+     description={<>The upward-opening parabola is reflected across the <InlineMath math="x" />-axis and opens downward.</>}
      showZAxis={false}
      data={[
        {
@@ -268,7 +268,7 @@ Notice that:
      data={[
        {
          points: Array.from({ length: 21 }, (_, i) => {
-           const x = i * 0.25;
+           const x = -1 + i * 0.25;
            return { x, y: Math.sqrt(x + 1), z: 0 };
          }),
          color: "#4f46e5",
@@ -277,7 +277,7 @@ Notice that:
        },
        {
          points: Array.from({ length: 21 }, (_, i) => {
-           const x = i * 0.25;
+           const x = -1 + i * 0.25;
            return { x, y: -Math.sqrt(x + 1), z: 0 };
          }),
          color: "#059669",

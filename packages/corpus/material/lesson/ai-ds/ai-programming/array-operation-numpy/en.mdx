@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Broadcasting in NumPy
 
-Broadcasting is NumPy's way of handling operations between arrays of different sizes. It automatically figures out how to make arrays with compatible shapes work together in calculations. You can explore more advanced broadcasting techniques in the [NumPy broadcasting guide](https://numpy.org/doc/stable/user/basics.broadcasting.html) when you're ready for complex scenarios.
+Broadcasting is NumPy's rule system for combining arrays with different but compatible shapes. It expands dimensions of size one conceptually, without copying the values into a larger array. The [NumPy broadcasting guide](https://numpy.org/doc/stable/user/basics.broadcasting.html) covers additional examples.
 
-Vectorization allows operations on entire arrays without writing loops, making calculations faster by processing elements simultaneously at the hardware level.
+Vectorization lets one expression operate over an entire array. NumPy executes the underlying loop in optimized compiled code, which is often faster than an explicit Python loop.
 
 <CodeBlock
   data={[
@@ -31,17 +31,17 @@ print(result)
   ]}
 />
 
-In the example above, NumPy automatically adds each element at the same position from both arrays. No need to write loops to access each element one by one.
+In the example above, NumPy adds elements at corresponding positions. We describe the operation once instead of indexing every element in a Python loop.
 
 ### Broadcasting Rules
 
-Broadcasting is a rule system that allows NumPy to perform operations on arrays with different shapes. Like when you want to add the same number to all elements in a list, NumPy can do it automatically.
+To decide whether two shapes are compatible, NumPy compares their dimensions from right to left.
 
 There are three main rules in broadcasting:
 
-1. **Rule** <InlineMath math="1" />: If dimensions differ, add dimensions of size <InlineMath math="1" /> from the left on the array with smaller dimensions
-2. **Rule** <InlineMath math="2" />: Stretch dimensions of size <InlineMath math="1" /> to match the corresponding dimension values of the other array
-3. **Rule** <InlineMath math="3" />: If shapes are incompatible, an error will occur
+1. **Rule** <InlineMath math="1" />: If the ranks differ, treat the lower-rank shape as if dimensions of size <InlineMath math="1" /> were added on the left
+2. **Rule** <InlineMath math="2" />: Two aligned dimensions are compatible when they are equal or one of them has size <InlineMath math="1" />; a size-one dimension is virtually expanded to the other size
+3. **Rule** <InlineMath math="3" />: If any aligned pair is incompatible, NumPy raises a `ValueError`
 
 ### Array with Scalar
 
@@ -128,9 +128,9 @@ except ValueError as e:
 
 ## Array Arithmetic Operations
 
-NumPy provides various arithmetic operations that can be applied to arrays. These operations work element-wise, similar to a calculator that can compute many numbers simultaneously.
+NumPy arithmetic operators work element by element unless an operation explicitly has different semantics, such as matrix multiplication.
 
-When you perform arithmetic operations with scalars, NumPy will apply that operation to every element in the array. This is very efficient because you don't need to write manual loops.
+When an array is combined with a scalar, broadcasting applies that scalar to every element. No manual indexing loop is required.
 
 <CodeBlock
   data={[
@@ -223,11 +223,11 @@ print(f"(a > 2) | (a == b): {(a > 2) | (a == b)}")
   ]}
 />
 
-Logical operators in NumPy use special symbols. Use `~` for NOT, `&` for AND, and `|` for OR, not regular Python operators like `not`, `and`, `or`.
+For element-wise boolean logic, use `~` for NOT, `&` for AND, and `|` for OR, or use the corresponding `np.logical_*` functions. Put each comparison in parentheses because the operators have different precedence from comparisons. Python's scalar operators `not`, `and`, and `or` do not perform element-wise array logic.
 
 ## Statistical Functions and Reductions
 
-Reduction functions allow you to calculate a single value from an entire array or along a specific axis. Imagine you have a table of exam scores and want to calculate the average for each subject or for each student.
+Reduction functions combine many elements into fewer values. Without an axis they can reduce the whole array to one value; with an axis they reduce only that dimension. For a table of exam scores, this can produce an average for each subject or each student.
 
 NumPy provides various statistical functions that are very useful for data analysis. These functions can be applied to the entire array or only to specific axes.
 
@@ -264,7 +264,7 @@ print(f"Standard deviation: {np.std(data):.2f}")
 
 ### Operations with Axes
 
-The concept of axes in NumPy is very important. For two-dimensional arrays, `axis=0` means operations are performed along rows (producing values for each column), while `axis=1` means operations are performed along columns (producing values for each row).
+For a two-dimensional array, `axis=0` collapses the row dimension and produces one value per column. `axis=1` collapses the column dimension and produces one value per row.
 
 Understanding axes helps you control how statistical functions work on multidimensional data. For example, if you have monthly sales data for various products, you can calculate total sales per product or per month.
 
@@ -302,9 +302,9 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
 
 ## Array Shape Manipulation
 
-Array shape manipulation allows you to change the dimensions and structure of data without changing its contents. Like rearranging books on a shelf, you can arrange them in different rows without adding or reducing the number of books.
+Shape operations reorganize how the same elements are indexed. A reshape keeps the number of elements unchanged while assigning them to different dimensions.
 
-NumPy stores multidimensional arrays internally as one-dimensional arrays with row-major order (elements at the last index are stored sequentially). Understanding this is important for reshape and flatten operations.
+New NumPy arrays are commonly C-contiguous, meaning the last index changes fastest in memory. Views created by slicing or transposing can have different strides, so an array is not always stored in one simple row-major layout. The `order` and stride rules matter when reshaping or flattening.
 
 <CodeBlock
   data={[
@@ -328,7 +328,7 @@ print(f"Stored in memory as: {a.ravel()}")
 
 ### Flatten and Ravel
 
-Both `flatten()` and `ravel()` functions convert multidimensional arrays to one-dimensional arrays, but in different ways. Flatten creates a new copy of the data, while ravel tries to create a more memory-efficient view.
+Both `flatten()` and `ravel()` return a one-dimensional array. `flatten()` always creates a copy, while `ravel()` returns a view when possible and a copy when the memory layout requires it.
 
 <CodeBlock
   data={[
@@ -369,7 +369,7 @@ print(a)`
 
 ### Reshape and Resize
 
-Reshape operation allows you to change the array shape without changing its data, as long as the total number of elements remains the same. While resize modifies the array directly (in-place).
+`reshape()` changes the shape as long as the number of elements stays the same and returns a view when possible. The `ndarray.resize()` method used below changes the original array in place.
 
 <CodeBlock
   data={[
@@ -404,7 +404,7 @@ print(a_flat)  # Now a_flat is 2D`
 
 ### Transpose
 
-Transpose is an operation that flips array axes, very useful in linear algebra operations. NumPy provides two ways to perform transpose: using the `transpose()` method or the shorter `.T` attribute.
+A transpose permutes an array's axes. For a two-dimensional array it swaps rows and columns. NumPy provides the `transpose()` method and the shorter `.T` attribute.
 
 <CodeBlock
   data={[
@@ -436,7 +436,7 @@ print("Is transpose a view?", np.shares_memory(a, b))`
 
 ## Data Standardization with Z-Transform
 
-Z-Transform is a standardization technique that transforms data to have a mean of <InlineMath math="0" /> and standard deviation of <InlineMath math="1" />. This technique is very useful in machine learning to ensure all features have the same scale.
+Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with nonzero standard deviation and puts features on comparable numerical scales.
 
 The Z-Transform formula is <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, where:
 - <InlineMath math="X" /> is the feature matrix of size <InlineMath math="n \times k" />
@@ -483,6 +483,6 @@ print(f"New standard deviation: {np.std(Z, axis=0)}")  # Should be close to 1
   ]}
 />
 
-This standardization process ensures that each feature contributes equally in machine learning algorithms, regardless of their original data scale. For example, if you have height data in centimeters and weight data in kilograms, standardization will make both have the same influence in the model.
+Standardization prevents units alone from creating large scale differences. It does not guarantee equal importance or influence: the model and the data still determine that. For example, height in centimeters and weight in kilograms become numerically comparable after standardization.
 
 For more details about NumPy array operations, you can visit the [official NumPy documentation](https://numpy.org/doc/stable/user/basics.html), which provides guides and practical examples.

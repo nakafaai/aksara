@@ -3,23 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Keseluruhan sampah plastik yang ada di Indonesia",
+      label: "Semua benda plastik yang diproduksi di daratan",
       value: false,
     },
     {
-      label: "Plastik yang masuk ke laut dari sungai atau langsung dari pantai",
+      label:
+        "Sampah yang masuk ke laut melalui sungai atau langsung dari pesisir",
       value: true,
     },
     {
-      label: "Sampah yang sampai ke daratan suatu wilayah tertentu",
+      label: "Sampah yang terdampar kembali di daratan suatu negara",
       value: false,
     },
     {
-      label: "Seluruh sampah yang nonorganik",
+      label: "Semua sampah nonorganik yang ditemukan di laut",
       value: false,
     },
     {
-      label: "Sampah yang proses penguraiannya sulit",
+      label: "Sampah yang tidak dapat terurai secara alami",
       value: false,
     },
   ],

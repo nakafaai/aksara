@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Peluang Kejadian Majemuk Saling Lepas",
-   description: "Pahami kejadian saling lepas dalam peluang dengan penjelasan jelas dan contoh. Pelajari cara menghitung peluangnya dan menerapkan konsep efektif.",
+   description: "Kenali kejadian saling lepas, bedakan dari kejadian saling bebas, dan gunakan aturan penjumlahan tanpa menghitung irisan dua kali.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Kombinatorik",
@@ -44,6 +44,8 @@ Karena kejadian saling lepas tidak memiliki irisan, perhitungan peluangnya menja
 
 Rumus ini menunjukkan bahwa peluang terjadinya kejadian <InlineMath math="A" /> atau kejadian <InlineMath math="B" /> sama dengan jumlah peluang masing-masing kejadian.
 
+Saling lepas **bukan** berarti saling bebas. Jika <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, informasi bahwa <InlineMath math="A" /> terjadi membuat <InlineMath math="B" /> mustahil terjadi. Jadi <InlineMath math="P(A \cap B) = 0" />, sedangkan kejadian saling bebas mensyaratkan <InlineMath math="P(A \cap B) = P(A)P(B) > 0" />.
+
 ### Mengapa Rumus Ini Berlaku
 
 Berbeda dengan kejadian yang tidak saling lepas, pada kejadian saling lepas tidak perlu mengurangi irisan karena <InlineMath math="P(A \cap B) = 0" />. Oleh karena itu, rumus umum:
@@ -69,9 +71,16 @@ Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />
 
 Periksa irisan: <InlineMath math="A \cap B = \{5\}" />
 
-Karena terdapat irisan (angka <InlineMath math="5" />), kedua kejadian **tidak saling lepas**. Mari gunakan contoh yang benar-benar saling lepas.
+Karena angka <InlineMath math="5" /> berada pada kedua kejadian, keduanya **tidak saling lepas**. Pertanyaan awal tetap dapat dijawab, tetapi irisannya harus dikurangkan:
 
-**Contoh yang Tepat:**
+<MathContainer>
+<BlockMath math="P(A \cup B)=P(A)+P(B)-P(A\cap B)" />
+<BlockMath math="P(A \cup B)=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+Contoh berikut menunjukkan kapan aturan yang lebih singkat untuk kejadian saling lepas dapat digunakan.
+
+**Contoh Pembanding yang Saling Lepas:**
 
 - Kejadian <InlineMath math="A" /> (angka ganjil): <InlineMath math="A = \{1, 3, 5\}" />
 - Kejadian <InlineMath math="C" /> (angka genap): <InlineMath math="C = \{2, 4, 6\}" />
@@ -143,9 +152,9 @@ Kedua kejadian **saling lepas**.
 
 **Penyelesaian penjumlahan pecahan:**
 
-Untuk menjumlahkan <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita perlu mencari KPK dari <InlineMath math="9" /> dan <InlineMath math="6" />.
+Untuk menjumlahkan <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita memerlukan kelipatan persekutuan terkecil dari <InlineMath math="9" /> dan <InlineMath math="6" />.
 
-<InlineMath math="KPK(9, 6) = 18" />, sehingga:
+<InlineMath math="\operatorname{lcm}(9, 6) = 18" />, sehingga:
 
 <MathContainer>
 <BlockMath math="\frac{1}{9} = \frac{1 \times 2}{9 \times 2} = \frac{2}{18}" />
@@ -191,12 +200,12 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 **Kesalahan umum**: "Warna dan jenis kartu berbeda, jadi saling lepas"
 **Kenyataan**: Ada As merah (As hati dan As wajik), jadi **tidak saling lepas**
 
-**Contoh <InlineMath math="3" />: Karakteristik Siswa**
+**Contoh <InlineMath math="3" />: Dua Kriteria Siswa**
 - Kejadian <InlineMath math="A" />: Siswa yang tinggi (<InlineMath math=">160 \text{ cm}" />)
-- Kejadian <InlineMath math="B" />: Siswa yang pintar (<InlineMath math="\text{nilai} > 80" />)
+- Kejadian <InlineMath math="B" />: Siswa dengan nilai di atas <InlineMath math="80" />
 
-**Kesalahan umum**: "Tinggi badan dan kepintaran tidak berhubungan"
-**Kenyataan**: Bisa ada siswa yang sekaligus tinggi dan pintar, jadi **tidak saling lepas**
+**Kesalahan umum**: “Tinggi badan dan nilai ujian adalah ciri yang berbeda, jadi kejadiannya saling lepas”
+**Kenyataan**: Seorang siswa dapat memenuhi kedua kriteria, jadi kejadiannya **tidak saling lepas**
 
 **Strategi Mengidentifikasi:**
 1. **Tanyakan**: "Bisakah satu elemen memenuhi kedua kriteria sekaligus?"
@@ -206,6 +215,8 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 
 ## Latihan
 
+Coba kerjakan setiap latihan sebelum membaca pembahasannya. Tulis kedua himpunan secara eksplisit dan periksa irisannya sebelum memilih aturan penjumlahan.
+
 1. Sebuah dadu dilempar satu kali. Tentukan peluang munculnya angka kurang dari <InlineMath math="3" /> atau angka lebih dari <InlineMath math="5" />.
 
 2. Dari sekotak kartu bridge standar, satu kartu diambil secara acak. Hitunglah peluang terambilnya kartu As atau kartu King.
@@ -214,7 +225,7 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 
 4. Dalam sebuah kotak terdapat <InlineMath math="10 \text{ bola}" /> bernomor <InlineMath math="1" /> sampai <InlineMath math="10" />. Sebuah bola diambil secara acak. Hitunglah peluang terambilnya bola bernomor genap atau bola bernomor prima ganjil.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -237,8 +248,8 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 
    Total kartu adalah <InlineMath math="52" />
 
-   - Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu}" /> As
-   - Kejadian <InlineMath math="B" /> (kartu King): <InlineMath math="4 \text{ kartu}" /> King
+   - Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu As}" />
+   - Kejadian <InlineMath math="B" /> (kartu King): <InlineMath math="4 \text{ kartu King}" />
 
    Periksa irisan: Tidak ada kartu yang sekaligus As dan King, sehingga <InlineMath math="A \cap B = \emptyset" />
 
@@ -252,10 +263,10 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 
 3. **Penyelesaian:**
 
-   Ruang sampel pelemparan dua koin: <InlineMath math="\{(A,A), (A,G), (G,A), (G,G)\}" />, total adalah <InlineMath math="4" />
+   Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampelnya <InlineMath math="\{(0,0), (0,1), (1,0), (1,1)\}" />, dengan <InlineMath math="4" /> hasil.
 
-   - Kejadian <InlineMath math="A" /> (tepat satu gambar): <InlineMath math="\{(A,G), (G,A)\}" />, sehingga <InlineMath math="n(A) = 2" />
-   - Kejadian <InlineMath math="B" /> (tepat dua angka): <InlineMath math="\{(A,A)\}" />, sehingga <InlineMath math="n(B) = 1" />
+   - Kejadian <InlineMath math="A" /> (tepat satu gambar): <InlineMath math="\{(0,1), (1,0)\}" />, sehingga <InlineMath math="n(A) = 2" />
+   - Kejadian <InlineMath math="B" /> (tepat dua angka): <InlineMath math="\{(0,0)\}" />, sehingga <InlineMath math="n(B) = 1" />
 
    Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak mungkin tepat satu gambar dan tepat dua angka bersamaan)
 
@@ -286,7 +297,7 @@ Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah conto
 
    Untuk menjumlahkan <InlineMath math="\frac{1}{2} + \frac{3}{10}" />, kita perlu menyamakan penyebut.
 
-   <InlineMath math="KPK(2, 10) = 10" />, sehingga:
+   <InlineMath math="\operatorname{lcm}(2, 10) = 10" />, sehingga:
 
    <MathContainer>
    <BlockMath math="\frac{1}{2} = \frac{1 \times 5}{2 \times 5} = \frac{5}{10}" />

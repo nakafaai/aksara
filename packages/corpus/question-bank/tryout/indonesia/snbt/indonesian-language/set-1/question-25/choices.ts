@@ -2,11 +2,26 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "$$(13)$$", value: false },
-    { label: "$$(9)$$", value: true },
-    { label: "$$(15)$$", value: false },
-    { label: "$$(7)$$", value: false },
-    { label: "$$(12)$$", value: false },
+    {
+      label: "Kalimat (13)",
+      value: false,
+    },
+    {
+      label: "Kalimat (9)",
+      value: true,
+    },
+    {
+      label: "Kalimat (15)",
+      value: false,
+    },
+    {
+      label: "Kalimat (7)",
+      value: false,
+    },
+    {
+      label: "Kalimat (12)",
+      value: false,
+    },
   ],
 };
 

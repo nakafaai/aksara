@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Konsep Dasar Metode Sarrus
 
-Metode Sarrus adalah cara praktis untuk menghitung determinan matriks berordo <InlineMath math="3 \times 3" />. Metode ini dinamai dari Pierre Frédéric Sarrus. Untuk memahaminya, mari kita ingat kembali cara menghitung determinan matriks <InlineMath math="2 \times 2" />.
+Metode Sarrus adalah cara praktis untuk menghitung determinan matriks berordo <InlineMath math="3 \times 3" />. Untuk memahami pola tandanya, ingat kembali cara menghitung determinan matriks <InlineMath math="2 \times 2" />.
 
 Jika kita memiliki matriks <InlineMath math="2 \times 2" />:
 
@@ -70,6 +70,22 @@ Atau, setelah tanda negatif didistribusikan:
 
 <BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
 
+### Contoh Numerik dengan Pembahasan
+
+Hitung determinan matriks <InlineMath math="P" /> berikut:
+
+<BlockMath math="P=\begin{bmatrix}1&3&2\\2&6&2\\5&9&4\end{bmatrix}" />
+
+Pisahkan kedua jumlah diagonal hingga pengurangan terakhir agar tandanya lebih mudah diperiksa:
+
+<MathContainer>
+  <BlockMath math="D_+=(1)(6)(4)+(3)(2)(5)+(2)(2)(9)=24+30+36=90" />
+  <BlockMath math="D_-=(2)(6)(5)+(1)(2)(9)+(3)(2)(4)=60+18+24=102" />
+  <BlockMath math="\det(P)=D_+-D_-=90-102=-12" />
+</MathContainer>
+
+Jadi, determinannya adalah <InlineMath math="-12" />. Ekspansi kofaktor pada matriks yang sama menghasilkan nilai yang sama dan dapat dipakai sebagai pemeriksaan independen.
+
 ### Visualisasi Metode Sarrus
 
 Untuk memvisualisasikan proses ini, kita bisa menuliskan:
@@ -90,4 +106,20 @@ Sehingga, formula lengkapnya menjadi:
 
 ## Batasan Penting Metode Sarrus
 
-Metode Sarrus **hanya berlaku untuk matriks berordo <InlineMath math="2 \times 2" /> dan <InlineMath math="3 \times 3" />**. Untuk matriks dengan ordo lebih tinggi (misalnya <InlineMath math="4 \times 4" />), metode ini tidak dapat digunakan. Metode lain seperti ekspansi kofaktor atau reduksi baris diperlukan untuk kasus tersebut.
+Metode Sarrus **hanya berlaku untuk matriks berordo <InlineMath math="3 \times 3" />**. Perhitungan matriks <InlineMath math="2 \times 2" /> di atas hanya mengingatkan kita pada pola tanda diagonal, bukan contoh lain dari metode Sarrus. Untuk matriks yang lebih besar, seperti matriks <InlineMath math="4 \times 4" />, gunakan metode lain seperti ekspansi kofaktor atau reduksi baris.
+
+## Latihan dengan Pembahasan
+
+Gunakan metode Sarrus untuk menghitung determinan:
+
+<BlockMath math="B=\begin{bmatrix}2&-1&3\\0&4&5\\1&2&-2\end{bmatrix}" />
+
+Hitung dahulu kedua jumlah diagonal, lalu kurangkan jumlah diagonal negatif dari jumlah diagonal positif:
+
+<MathContainer>
+  <BlockMath math="D_+=(2)(4)(-2)+(-1)(5)(1)+(3)(0)(2)=-16-5+0=-21" />
+  <BlockMath math="D_-=(3)(4)(1)+(2)(5)(2)+(-1)(0)(-2)=12+20+0=32" />
+  <BlockMath math="\det(B)=D_+-D_-=-21-32=-53" />
+</MathContainer>
+
+Dengan demikian, <InlineMath math="\det(B)=-53" />.

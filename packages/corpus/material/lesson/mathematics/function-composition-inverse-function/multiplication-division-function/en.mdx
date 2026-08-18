@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Multiplication and Division of Functions",
-  description: "Learn function multiplication and division, including domain rules, zero restrictions, and examples for (f·g)(x) and (f/g)(x).",
+  description: "Learn product and quotient functions, their domain rules, and the need to exclude zeros of the denominator.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Function Composition and Inverse Function",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Multiplication of Two Functions
 
-Multiplying two functions, <InlineMath math="f" /> and <InlineMath math="g" />, is as easy as multiplying two numbers. We just multiply the result of <InlineMath math="f(x)" /> by <InlineMath math="g(x)" /> for the same value of <InlineMath math="x" />. The result is a new function <InlineMath math="(f \cdot g)" />.
+The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math="g(x)" /> at the same input <InlineMath math="x" />. This produces the new function <InlineMath math="(f\cdot g)" />.
 
 <ContentStack>
   <LineEquation
@@ -52,7 +52,7 @@ Multiplying two functions, <InlineMath math="f" /> and <InlineMath math="g" />, 
 
 </ContentStack>
 
-Just like addition and subtraction, this multiplication machine <InlineMath math="(f \cdot g)" /> can only process raw materials (values of <InlineMath math="x" />) that can be processed by _both_ original machines, <InlineMath math="f" /> and <InlineMath math="g" />. So, its domain is the intersection of the domain of <InlineMath math="f" /> and the domain of <InlineMath math="g" />.
+As with a sum or difference, the product is defined only where both original functions are defined. Its domain is the intersection of their domains.
 
 <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
 
@@ -91,13 +91,13 @@ Dividing function <InlineMath math="f" /> by function <InlineMath math="g" /> is
 
 <BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}" />
 
-Now, there's a **very important additional rule!** We know that division by zero is not allowed. So, besides the value of <InlineMath math="x" /> needing to be in the domain of both <InlineMath math="f" /> and <InlineMath math="g" />, the value of <InlineMath math="g(x)" /> (the divisor function) **cannot be equal to zero**.
+Division has one additional condition. Besides being in the domains of <InlineMath math="f" /> and <InlineMath math="g" />, the input <InlineMath math="x" /> must satisfy <InlineMath math="g(x)\neq0" /> so that the denominator is nonzero.
 
 Therefore, the domain of the division function <InlineMath math="(\frac{f}{g})" /> is the intersection of domains <InlineMath math="D_f" /> and <InlineMath math="D_g" />, but we must _exclude_ all values of <InlineMath math="x" /> that cause <InlineMath math="g(x) = 0" />.
 
-<BlockMath math="D_{\frac{f}{g}} = D_f \cap D_g - \{x | g(x) = 0\}" />
+<BlockMath math="D_{\frac{f}{g}}=(D_f\cap D_g)\setminus\{x\mid g(x)=0\}" />
 
-The <InlineMath math="-" /> sign here means "minus" or "excluded".
+The symbol <InlineMath math="\setminus" /> denotes set difference: remove the listed inputs from the domain intersection.
 
 ### Example of Division
 
@@ -126,7 +126,7 @@ Second, find the value of <InlineMath math="x" /> that makes <InlineMath math="g
 
 Third, exclude the value <InlineMath math="x=1" /> from the intersection of the domains:
 
-<BlockMath math="D_{\frac{f}{g}} = \{x | x \in \mathbb{R}\} - \{1\}" />
+<BlockMath math="D_{\frac{f}{g}}=\{x\mid x\in\mathbb{R}\}\setminus\{1\}" />
 
 Or it can also be written as:
 
@@ -182,7 +182,7 @@ Given the function <InlineMath math="f(x) = \sqrt{x+4}" /> with <InlineMath math
 
     Exclude <InlineMath math="x=3" /> and <InlineMath math="x=-3" /> from the domain intersection:
 
-    <BlockMath math="D_{\frac{f}{g}} = \{x | x \ge -4, x \in \mathbb{R}\} - \{-3, 3\}" />
+    <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\geq-4,\ x\in\mathbb{R}\}\setminus\{-3,3\}" />
 
     Or it can be written as:
 

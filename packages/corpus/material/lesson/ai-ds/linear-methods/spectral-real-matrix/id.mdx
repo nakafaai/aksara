@@ -1,58 +1,79 @@
 export const metadata = {
-    title: "Teorema Spektral untuk Matriks Nyata",
-    description: "Temukan kapan matriks nyata memiliki basis vektor eigen ortonormal: jelajahi kondisi normalitas, polinomial karakteristik, dan contoh penyangkal.",
+    title: "Teorema Spektral untuk Matriks Normal Real",
+    description: "Pelajari dengan tepat kapan matriks normal real memiliki basis eigen ortonormal real, lalu bedakan diagonalisasi biasa dari diagonalisasi ortogonal.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-16",
     subject: "Metode Linear AI",
 };
 
-## Kondisi Ekuivalen Teorema
+## Kapan Matriks Normal Real Memiliki Basis Eigen Real
 
-Untuk matriks nyata <InlineMath math="A \in \mathbb{R}^{n \times n}" />, dua kondisi berikut ini ekuivalen satu sama lain.
+Untuk <InlineMath math="A\in\mathbb{R}^{n\times n}" />, pernyataan berikut ekuivalen:
 
-1. Terdapat basis ortonormal dari <InlineMath math="\mathbb{R}^n" /> yang terdiri dari vektor eigen matriks <InlineMath math="A" />
+1. Ada basis ortonormal dari <InlineMath math="\mathbb{R}^n" /> yang terdiri atas vektor eigen <InlineMath math="A" />.
+2. Matriks tersebut normal dan polinomial karakteristiknya <InlineMath math="\chi_A(t)" /> terurai sepenuhnya menjadi faktor linear di <InlineMath math="\mathbb{R}" />.
+3. Ada matriks ortogonal real <InlineMath math="Q" /> dan matriks diagonal real <InlineMath math="\Lambda" /> sehingga <InlineMath math="A=Q\Lambda Q^T" />.
+4. Matriks tersebut simetris: <InlineMath math="A^T=A" />.
 
-2. Matriks <InlineMath math="A" /> normal dan polinomial karakteristik <InlineMath math="\chi_A(t)" /> dari <InlineMath math="A" /> terurai di <InlineMath math="\mathbb{R}" /> menjadi faktor linear
+Ekuivalensi ini menjelaskan syarat tambahan dibandingkan dengan [matriks normal kompleks](/id/materi/ai-ds/metode-linear-ai/teorema-spektral-untuk-matriks-kompleks). Matriks normal kompleks selalu memiliki basis eigen uniter, tetapi basis dan nilai eigennya belum tentu real.
 
-Perbedaan utama dengan kasus [matriks kompleks](/id/materi/ai-ds/metode-linear-ai/teorema-spektral-untuk-matriks-kompleks) terletak pada syarat tambahan tentang faktorisasi polinomial karakteristik. Dalam bilangan nyata, semua akar polinomial karakteristik harus berupa bilangan nyata.
+Buktinya menghubungkan keempat pernyataan secara langsung. Basis eigen ortonormal menjadi kolom-kolom <InlineMath math="Q" />. Dari <InlineMath math="A=Q\Lambda Q^T" /> dengan <InlineMath math="\Lambda" /> diagonal real, kita memperoleh <InlineMath math="A^T=A" />. Sebaliknya, teorema spektral real mendiagonalisasi setiap matriks simetris real secara ortogonal. Terakhir, jika matriks normal real hanya memiliki nilai eigen real, diagonalisasi uniternya di bilangan kompleks memenuhi <InlineMath math="A^H=A" />; karena <InlineMath math="A" /> real, persamaan ini sama dengan <InlineMath math="A^T=A" />.
 
-Berdasarkan teorema ini, beberapa jenis matriks dapat didiagonalisasi menggunakan basis ortonormal dari vektor eigen. Matriks hermitian kompleks, matriks kesatuan kompleks, dan matriks simetris nyata selalu memenuhi kondisi ini. Matriks ortogonal dapat didiagonalisasi secara ortogonal hanya jika polinomial karakteristiknya terurai dalam faktor linear di bilangan nyata.
+| Kelas matriks | Medan | Bentuk spektral yang dijamin |
+| --- | --- | --- |
+| Normal kompleks | <InlineMath math="\mathbb{C}" /> | Diagonalisasi uniter; nilai eigen dapat kompleks |
+| Hermitian kompleks | <InlineMath math="\mathbb{C}" /> | Diagonalisasi uniter dengan nilai eigen real |
+| Simetris real | <InlineMath math="\mathbb{R}" /> | Diagonalisasi ortogonal dengan nilai eigen real |
+| Ortogonal real | <InlineMath math="\mathbb{R}" /> | Umumnya berbentuk blok rotasi real; bentuk diagonal real hanya jika semua nilai eigen real |
 
-## Matriks Normal tanpa Basis Ortonormal
+## Matriks Normal tanpa Basis Eigen Real
 
-Perhatikan matriks rotasi untuk sudut <InlineMath math="\alpha" /> yang bukan kelipatan <InlineMath math="\pi" />.
+Perhatikan rotasi sebesar sudut <InlineMath math="\alpha" /> yang bukan kelipatan bulat dari <InlineMath math="\pi" />:
 
-<BlockMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" />
+<BlockMath math="R_\alpha=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}" />
 
-Matriks ini ortogonal sehingga otomatis normal. Namun polinomial karakteristiknya
-
-<MathContainer>
-<BlockMath math="\chi_A(t) = (\cos(\alpha) - t)^2 + \sin^2(\alpha)" />
-<BlockMath math="= -t^2 + 2\cos(\alpha) \cdot t + 1" />
-</MathContainer>
-
-tidak terurai menjadi faktor linear di bilangan nyata untuk sebagian besar nilai <InlineMath math="\alpha" />. Bayangkan seperti mencari solusi persamaan kuadrat yang tidak memiliki akar nyata. Akibatnya, meskipun matriks normal, tidak terdapat basis ortonormal dari vektor eigen nyata.
-
-## Matriks Non-Normal yang Didiagonalisasi
-
-Matriks berikut memiliki nilai eigen <InlineMath math="\lambda_1 = 1" /> dan <InlineMath math="\lambda_2 = 2" /> dengan multiplisitas aljabar masing-masing <InlineMath math="1" />.
-
-<BlockMath math="A = \begin{pmatrix} 1 & 3 \\ 0 & 2 \end{pmatrix}" />
-
-Karena nilai eigen berbeda, matriks dapat didiagonalisasi. Namun matriks ini tidak normal karena
+Matriks ini ortogonal, sehingga <InlineMath math="R_\alpha^TR_\alpha=I=R_\alpha R_\alpha^T" /> dan matriksnya normal. Polinomial karakteristiknya adalah
 
 <MathContainer>
-<BlockMath math="A \cdot A^T = \begin{pmatrix} 10 & 6 \\ 6 & 4 \end{pmatrix}" />
-<BlockMath math="A^T \cdot A = \begin{pmatrix} 1 & 3 \\ 3 & 13 \end{pmatrix}" />
+<BlockMath math="\chi_{R_\alpha}(t)=(t-\cos\alpha)^2+\sin^2\alpha" />
+<BlockMath math="=t^2-2(\cos\alpha)t+1" />
 </MathContainer>
 
-Kedua matriks ini tidak sama, sehingga <InlineMath math="A \cdot A^T \neq A^T \cdot A" />.
+Diskriminannya
 
-Ruang eigen dari matriks ini adalah
+<BlockMath math="\Delta=4\cos^2\alpha-4=-4\sin^2\alpha<0" />
+
+karena <InlineMath math="\sin\alpha\neq0" /> berdasarkan syarat sudut tadi. Jadi polinomial tersebut tidak memiliki akar real dan <InlineMath math="R_\alpha" /> tidak mempunyai basis vektor eigen real. Di <InlineMath math="\mathbb{C}" />, nilai eigennya adalah <InlineMath math="e^{i\alpha}" /> dan <InlineMath math="e^{-i\alpha}" />.
+
+## Matriks Diagonalisabel yang Tidak Normal
+
+Sekarang perhatikan
+
+<BlockMath math="A=\begin{pmatrix}1&3\\0&2\end{pmatrix}" />
+
+Dua nilai eigennya yang berbeda, yaitu <InlineMath math="1" /> dan <InlineMath math="2" />, sudah menjamin bahwa matriks ini dapat didiagonalisasi secara biasa. Ruang eigennya adalah
 
 <MathContainer>
-<BlockMath math="\text{Eig}_A(1) = \text{Kern}(A - I) = \text{Kern}\begin{pmatrix} 0 & 3 \\ 0 & 1 \end{pmatrix} = \text{rentang}\begin{pmatrix} 1 \\ 0 \end{pmatrix}" />
-<BlockMath math="\text{Eig}_A(2) = \text{Kern}(A - 2I) = \text{Kern}\begin{pmatrix} -1 & 3 \\ 0 & 0 \end{pmatrix} = \text{rentang}\begin{pmatrix} 3 \\ 1 \end{pmatrix}" />
+<BlockMath math="E_A(1)=\ker(A-I)=\operatorname{span}\begin{pmatrix}1\\0\end{pmatrix}" />
+<BlockMath math="E_A(2)=\ker(A-2I)=\operatorname{span}\begin{pmatrix}3\\1\end{pmatrix}" />
 </MathContainer>
 
-Di sini kernel (ruang nol) adalah himpunan semua vektor yang dipetakan ke vektor nol oleh matriks, sedangkan rentang adalah himpunan semua kombinasi linear dari vektor tersebut. Meskipun matriks dapat didiagonalisasi, tidak terdapat basis ortonormal dari vektor eigen karena vektor eigen tidak ortogonal satu sama lain.
+Dengan memakai kedua vektor eigen sebagai kolom, kita memperoleh diagonalisasi eksplisit:
+
+<MathContainer>
+<BlockMath math="S=\begin{pmatrix}1&3\\0&1\end{pmatrix},\qquad D=\begin{pmatrix}1&0\\0&2\end{pmatrix}" />
+<BlockMath math="AS=SD\qquad\Longrightarrow\qquad S^{-1}AS=D" />
+</MathContainer>
+
+Namun, kedua vektor eigen tidak ortogonal karena
+
+<BlockMath math="\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=3\neq0" />
+
+dan perkalian langsung memastikan bahwa <InlineMath math="A" /> tidak normal:
+
+<MathContainer>
+<BlockMath math="AA^T=\begin{pmatrix}10&6\\6&4\end{pmatrix}" />
+<BlockMath math="A^TA=\begin{pmatrix}1&3\\3&13\end{pmatrix}" />
+</MathContainer>
+
+Contoh ini memisahkan kedua gagasan tersebut. Diagonalisasi biasa mengizinkan sembarang matriks vektor eigen <InlineMath math="S" /> yang invertibel, sedangkan diagonalisasi ortogonal memerlukan basis eigen ortonormal dan karena itu memerlukan matriks simetris real.

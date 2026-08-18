@@ -4,22 +4,22 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The impact of domestic absorption on rice imports is inversely proportional",
+        "Domestic procurement and rice imports are described as moving in opposite directions",
       value: true,
     },
     {
       label:
-        "The impact of domestic absorption on rice imports is directly proportional",
+        "Domestic procurement and rice imports are described as moving in the same direction",
       value: false,
     },
     {
       label:
-        "There is no correlation between domestic absorption and rice imports",
+        "The passage describes no relationship between domestic procurement and rice imports",
       value: false,
     },
     {
       label:
-        "The impact of domestic absorption on rice exports is inversely proportional",
+        "Domestic procurement and rice exports are described as moving in opposite directions",
       value: false,
     },
     {
@@ -31,22 +31,21 @@ const choices: QuestionChoices = {
   id: [
     {
       label:
-        "Dampak serapan dalam negeri terhadap impor beras adalah berbanding terbalik",
+        "Serapan dalam negeri dan impor beras digambarkan bergerak berlawanan arah",
       value: true,
     },
     {
-      label:
-        "Dampak serapan dalam negeri terhadap impor beras adalah berbanding lurus",
+      label: "Serapan dalam negeri dan impor beras digambarkan bergerak searah",
       value: false,
     },
     {
       label:
-        "Tidak ada korelasi antara serapan dalam negeri dengan impor beras",
+        "Bacaan tidak menggambarkan hubungan antara serapan dalam negeri dan impor beras",
       value: false,
     },
     {
       label:
-        "Dampak serapan dalam negeri terhadap ekspor beras adalah berbanding terbalik",
+        "Serapan dalam negeri dan ekspor beras digambarkan bergerak berlawanan arah",
       value: false,
     },
     {

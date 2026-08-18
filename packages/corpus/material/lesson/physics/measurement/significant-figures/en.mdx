@@ -11,9 +11,9 @@ export const metadata = {
 
 When a bottle cap diameter is read as <InlineMath math="3.12 \text{ cm}" />, a calculator can produce many digits after the area is calculated. The measuring tool does not justify all of those digits. This is why we use **significant figures**.
 
-Significant figures are the trusted digits in a measurement. The last digit is usually an estimated digit, meaning it is still reasonable based on the measuring tool.
+Significant figures are the digits retained to communicate the resolution of a measured value. The last reported digit is affected by the instrument resolution and rounding, so it is not an exact digit.
 
-<BlockMath math="\text{measurement result}=\text{certain digits}+\text{last estimated digit}" />
+<BlockMath math="\text{reported digits}=\text{supported digits}+\text{last rounded digit}" />
 
 The rule is not about making numbers shorter. It keeps a report from looking more precise than the measurement tool.
 
@@ -33,7 +33,7 @@ Zeros are tricky because their meaning depends on where they are written.
 | <InlineMath math="1.004 \text{ cm}" /> | Zeros between nonzero digits count, so there are <InlineMath math="4" /> significant figures. |
 | <InlineMath math="31.00 \text{ cm}" /> | Zeros after the decimal point count, so there are <InlineMath math="4" /> significant figures. |
 | <InlineMath math="0.0026 \text{ kg}" /> | Zeros before the first nonzero digit only hold place value, so there are <InlineMath math="2" /> significant figures. |
-| <InlineMath math="1000 \text{ m}" /> | Without a decimal point or another marker, trailing zeros are usually not treated as significant. |
+| <InlineMath math="1000 \text{ m}" /> | The trailing zeros are ambiguous unless the resolution or significant figures are stated. |
 | <InlineMath math="3.14 \times 10^{-5} \text{ m}" /> | The coefficient <InlineMath math="3.14" /> has <InlineMath math="3" /> significant figures |
 
 In scientific notation, a power such as <InlineMath math="10^{-5}" /> only gives the scale, not a new significant figure.
@@ -45,14 +45,15 @@ If a zero must be significant, write it in a way that removes ambiguity. Scienti
 1000 \text{ m} \text{ with } 4 \text{ significant figures} &= 1.000 \times 10^3 \text{ m}
 \end{aligned}" />
 
-## Rounding Follows the Next Digit
+## Round Once, Using the First Dropped Digit
 
 After the allowed number of digits is known, inspect the first digit that will be dropped.
 
 | First dropped digit | Decision |
 | :------------------ | :------- |
-| <InlineMath math="\ge 5" /> | Increase the last kept digit. |
-| <InlineMath math="<5" /> | Keep the last kept digit unchanged. |
+| <InlineMath math="<5" /> | Keep the last retained digit unchanged. |
+| <InlineMath math=">5" />, or <InlineMath math="5" /> followed by a nonzero digit | Increase the last retained digit by <InlineMath math="1" />. |
+| Exactly <InlineMath math="5" /> followed only by zeros | Use round-to-even: keep an even last digit, or increase an odd last digit by <InlineMath math="1" />. |
 
 For example, if a calculated area is <InlineMath math="52.976686625 \text{ cm}^2" /> and it must be written to <InlineMath math="4" /> significant figures, the next digit is <InlineMath math="6" />.
 
@@ -61,6 +62,15 @@ For example, if a calculated area is <InlineMath math="52.976686625 \text{ cm}^2
 If the calculated value is <InlineMath math="52.973376625 \text{ cm}^2" />, the next digit is <InlineMath math="3" />.
 
 <BlockMath math="52.973376625 \text{ cm}^2 \to 52.97 \text{ cm}^2" />
+
+For an exact halfway case, round-to-even avoids a long series of values being biased upward.
+
+<BlockMath math="\begin{aligned}
+7.450 &\to 7.4 \\
+7.550 &\to 7.6
+\end{aligned}" />
+
+Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
 ## Addition Follows Decimal Position
 
@@ -77,7 +87,7 @@ The value <InlineMath math="12.735 \text{ cm}" /> is rounded to <InlineMath math
 
 ## Multiplication Follows the Least Precise Data
 
-For multiplication and division, the limiting value is the smallest number of significant figures among the measured data.
+For multiplication and division, the classroom significant-figure rule uses the smallest number of significant figures among the measured data. It is a reporting shortcut, not a replacement for uncertainty propagation when measured uncertainties are available.
 
 Suppose a rectangle has width <InlineMath math="12.455 \text{ cm}" /> and length <InlineMath math="35.2 \text{ cm}" />.
 
@@ -90,17 +100,17 @@ A &= l \times w \\
 
 The value <InlineMath math="12.455 \text{ cm}" /> has <InlineMath math="5" /> significant figures, while <InlineMath math="35.2 \text{ cm}" /> has <InlineMath math="3" /> significant figures. Therefore, the area is reported with <InlineMath math="3" /> significant figures.
 
-For a bottle cap with diameter <InlineMath math="3.12 \text{ cm}" />, constants such as <InlineMath math="\pi" /> and <InlineMath math="\frac{1}{4}" /> do not limit significant figures because they come from the formula, not from a measuring tool. In this example calculation, <InlineMath math="\pi" /> is approximated as <InlineMath math="3.14" />.
+For a bottle cap with diameter <InlineMath math="3.12 \text{ cm}" />, exact formula factors such as <InlineMath math="\pi" /> and <InlineMath math="\frac{1}{4}" /> do not limit significant figures because they are not measured data. Use the calculator value of <InlineMath math="\pi" /> and keep guard digits until the final line.
 
 <BlockMath math="\begin{aligned}
 A &= \frac{1}{4}\pi d^2 \\
-&= \frac{1}{4}(3.14)(3.12 \text{ cm})^2 \\
-&= 7.641504 \text{ cm}^2 \\
-&\to 7.64 \text{ cm}^2
+&= \frac{1}{4}\pi(3.12 \text{ cm})^2 \\
+&= 7.645379881\ldots \text{ cm}^2 \\
+&\to 7.65 \text{ cm}^2
 \end{aligned}" />
 
 If the International System of Units (SI) is required, convert <InlineMath math="\text{cm}^2" /> to <InlineMath math="\text{m}^2" />. SI is the international standard for measurement units used in science.
 
-<BlockMath math="7.64 \text{ cm}^2 = 0.000764 \text{ m}^2 = 7.64 \times 10^{-4} \text{ m}^2" />
+<BlockMath math="7.65 \text{ cm}^2 = 0.000765 \text{ m}^2 = 7.65 \times 10^{-4} \text{ m}^2" />
 
-Rule references from OpenStax University Physics and NIST Technical Note <InlineMath math="1297" /> can be opened through [the OpenStax link](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) and [the NIST link](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-7-reporting-uncertainty).
+The classroom operation rules are introduced by [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures). NIST documents round-to-even, one-step rounding, and unrounded conversion factors in [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation).

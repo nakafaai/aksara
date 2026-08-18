@@ -8,14 +8,14 @@ export const metadata = {
 
 ## Diagonal Matrices and Their Special Properties
 
-For diagonal matrices, eigenvalues can be read directly from their main diagonal entries. This is one of the most fascinating features in linear algebra.
+For diagonal and triangular matrices, every eigenvalue can be read directly from the main diagonal, with algebraic multiplicity. The matrix may have one of these forms:
 
 The eigenvalues of a square diagonal matrix or triangular matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />
 
 <MathContainer>
-<BlockMath math="A = \begin{pmatrix} a_{11} & & 0 \\ & \ddots & \\ 0 & & a_{nn} \end{pmatrix}" />
-<BlockMath math="\text{or } A = \begin{pmatrix} a_{11} & * \\ & \ddots & \\ 0 & & a_{nn} \end{pmatrix}" />
-<BlockMath math="\text{or } A = \begin{pmatrix} a_{11} & & 0 \\ & \ddots & \\ * & & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & * & \cdots & * \\ 0 & a_{22} & \cdots & * \\ \vdots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
 </MathContainer>
 
 are its main diagonal entries:
@@ -24,7 +24,7 @@ are its main diagonal entries:
 
 Why is this true? Since <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{11} - t) \cdots (a_{nn} - t)" /> with roots <InlineMath math="a_{11}, \ldots, a_{nn}" />.
 
-This property greatly simplifies our work because we don't need to calculate determinants or solve complex characteristic equations.
+Thus no full determinant expansion or root-finding procedure is needed for a triangular matrix.
 
 ## Upper and Lower Triangular Matrices
 
@@ -34,7 +34,7 @@ This happens because when we calculate <InlineMath math="\det(A - tI)" />, the e
 
 ## Direct Calculation Examples
 
-Let's look at some concrete examples to better understand this concept.
+The diagonal rule is special to triangular matrices. For comparison, the following nontriangular matrices require us to compute their characteristic polynomials.
 
 ### Complex Eigenvalues
 
@@ -60,17 +60,17 @@ with roots <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 =
 
 ## Characteristic Polynomial Factorization
 
-When matrix <InlineMath math="A \in \mathbb{C}^{n \times n}" /> has <InlineMath math="n" /> eigenvalues that don't have to be distinct <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{C}" />, the characteristic polynomial <InlineMath math="\chi_A(t)" /> can be factored as:
+When <InlineMath math="A \in \mathbb{C}^{n \times n}" /> has eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n" /> counted with algebraic multiplicity, its characteristic polynomial factors as:
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-The sum of algebraic multiplicities of all eigenvalues is <InlineMath math="n" />:
+Let <InlineMath math="\sigma(A)" /> denote the finite set of distinct eigenvalues of <InlineMath math="A" />. Their algebraic multiplicities sum to <InlineMath math="n" />:
 
-<BlockMath math="\sum_{\lambda \in \mathbb{C}} \mu_A(\lambda) = n" />
+<BlockMath math="\sum_{\lambda \in \sigma(A)} \mu_A(\lambda) = n" />
 
 In a more compact form:
 
-<BlockMath math="\chi_A(t) = \prod_{\lambda \in \mathbb{C}} (\lambda - t)^{\mu_A(\lambda)}" />
+<BlockMath math="\chi_A(t) = \prod_{\lambda \in \sigma(A)} (\lambda - t)^{\mu_A(\lambda)}" />
 
 This property holds naturally for complex eigenvalues of matrices with real entries. Eigenvalues can be real numbers or complex conjugate pairs.
 
@@ -101,4 +101,8 @@ For <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> with
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
-This relationship is very useful for verifying calculations and provides geometric insights into the linear transformation represented by the matrix.
+These identities are useful checks, but they do not determine every eigenvalue of a general matrix when <InlineMath math="n > 2" />. One immediate consequence is:
+
+<BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
+
+So a square matrix is singular exactly when zero is one of its eigenvalues.

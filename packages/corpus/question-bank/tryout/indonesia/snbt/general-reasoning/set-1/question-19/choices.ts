@@ -4,51 +4,52 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Vegetables containing magnesium and low glucose can maintain the baby's growth and development",
-      value: false,
-    },
-    {
-      label: "Vegetables are good nutritional intake for babies",
+        "Complementary foods are generally introduced at about $$6$$ months of age.",
       value: false,
     },
     {
       label:
-        "Vegetables can be used as nutritional intake complementary to breast milk (ASI)",
+        "Breastfeeding can continue after complementary foods are introduced.",
       value: false,
     },
     {
       label:
-        "Vegetables needed by babies are those containing magnesium and low glucose",
+        "Complementary foods should be adequate, safe, and nutrient-dense.",
+      value: false,
+    },
+    {
+      label: "Fruits and vegetables are part of a diverse complementary diet.",
       value: false,
     },
     {
       label:
-        "Vegetables and fruits as child nutritional intake are able to improve health",
+        "Vegetables alone provide every food group an infant needs after $$6$$ months.",
       value: true,
     },
   ],
   id: [
     {
       label:
-        "Sayuran yang mengandung magnesium dan sedikit glukosa dapat menjaga tumbuh kembang bayi",
-      value: false,
-    },
-    {
-      label: "Sayuran adalah asupan gizi yang baik untuk bayi",
-      value: false,
-    },
-    {
-      label: "Sayuran dapat dijadikan asupan gizi sebagai pendamping ASI",
+        "Makanan pendamping umumnya mulai diberikan sekitar usia $$6$$ bulan.",
       value: false,
     },
     {
       label:
-        "Sayuran yang diperlukan oleh bayi adalah yang mengandung magnesium dan sedikit glukosa",
+        "Pemberian ASI dapat dilanjutkan setelah makanan pendamping mulai diberikan.",
+      value: false,
+    },
+    {
+      label: "Makanan pendamping harus cukup, aman, dan padat gizi.",
       value: false,
     },
     {
       label:
-        "Sayuran dan buah-buahan sebagai asupan gizi anak mampu meningkatkan kesehatan",
+        "Buah dan sayuran merupakan bagian dari makanan pendamping yang beragam.",
+      value: false,
+    },
+    {
+      label:
+        "Sayuran saja menyediakan seluruh kelompok makanan yang dibutuhkan bayi setelah usia $$6$$ bulan.",
       value: true,
     },
   ],

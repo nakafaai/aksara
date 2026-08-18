@@ -6,71 +6,73 @@ export const metadata = {
   subject: "Peluang",
 };
 
-## Apa Sih Aturan Penjumlahan Peluang Itu?
+## Apa Itu Aturan Penjumlahan Peluang?
 
-Bayangin kamu lagi nanya temen-temen sekelas, "Hari ini ke sekolah naik apa?". Terus kamu pengen tahu, berapa sih peluangnya kalau kita pilih satu anak secara acak, anak itu naik **sepeda ATAU motor**?
+Bayangkan kita menanyakan cara setiap siswa pergi ke sekolah. Setelah memilih satu siswa secara acak, kita ingin mengetahui peluang bahwa siswa tersebut datang dengan **sepeda ATAU motor**.
 
-Nah, kata **"ATAU"** ini penting banget di dunia peluang. Aturan Penjumlahan itu cara kita menghitung peluang gabungan dari dua (atau lebih) kejadian, pakai kata "ATAU". Artinya, kita pengen tahu peluang kejadian <InlineMath math="A" /> terjadi, _atau_ kejadian <InlineMath math="B" /> terjadi, _atau_ bahkan keduanya terjadi (kalau memang bisa).
+Kata **"ATAU"** menggabungkan kedua kejadian. Aturan penjumlahan menghitung peluang bahwa kejadian <InlineMath math="A" /> terjadi, kejadian <InlineMath math="B" /> terjadi, atau keduanya terjadi jika terdapat irisan.
 
-Ada dua jenis situasi penting nih pas kita ngomongin "ATAU":
+Ada dua keadaan yang menentukan rumusnya:
 
-1.  Kejadiannya nggak bisa terjadi barengan (Namanya **Saling Lepas**).
-2.  Kejadiannya bisa terjadi barengan (Namanya **Tidak Saling Lepas**).
+1.  Kedua kejadian tidak dapat terjadi dalam satu percobaan. Kejadian seperti ini disebut **saling lepas**.
+2.  Kedua kejadian dapat terjadi dalam satu percobaan. Kejadian seperti ini disebut **tidak saling lepas**.
+
+Perbedaannya terletak pada ada atau tidaknya irisan kedua kejadian.
 
 ## Kejadian Saling Lepas
 
-Kejadian Saling Lepas (atau nama kerennya _Mutually Exclusive_ atau _Disjoint_) itu artinya dua kejadian yang **nggak mungkin terjadi secara bersamaan** dalam satu kali percobaan.
+Kejadian saling lepas, yang juga disebut _mutually exclusive_ atau _disjoint_, adalah dua kejadian yang **tidak mungkin terjadi bersamaan** dalam satu percobaan.
 
-Kalau kejadian <InlineMath math="A" /> terjadi, maka kejadian <InlineMath math="B" /> pasti nggak terjadi, begitu juga sebaliknya.
+Jika kejadian <InlineMath math="A" /> terjadi, kejadian <InlineMath math="B" /> tidak terjadi, begitu pula sebaliknya.
 
-**Contoh Gampang:**
+**Contoh:**
 
-1.  Kamu lempar satu koin. Hasilnya pasti kalau nggak "Angka", ya "Gambar". Nggak mungkin kan keluar "Angka" dan "Gambar" barengan di satu koin?
-2.  Zain hari ini ke sekolah naik motor **ATAU** Zain hari ini ke sekolah naik sepeda. (Biasanya sih orang naik satu kendaraan aja kan? Jadi ini saling lepas).
+1.  Satu lemparan koin menghasilkan "Angka" atau "Gambar," tetapi tidak keduanya sekaligus.
+2.  Zain pergi ke sekolah dengan motor **ATAU** sepeda, dengan asumsi setiap siswa memakai satu moda transportasi.
 3.  Lempar dua dadu: Kejadian "jumlahnya <InlineMath math="7" />" **ATAU** kejadian "dapat angka kembar (double)".
     - Jumlah <InlineMath math="7" />: <InlineMath math="(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)" />
     - Angka kembar: <InlineMath math="(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)" />
-    - Lihat deh, nggak ada pasangan yang sama antara dua kelompok itu. Jadi, dua kejadian ini saling lepas!
+    - Tidak ada pasangan berurutan yang muncul dalam kedua kelompok, sehingga kedua kejadian saling lepas.
 
 ### Rumus Kejadian Saling Lepas
 
-Kalau kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> itu saling lepas, cara hitung peluang "A ATAU B" tinggal dijumlahin aja peluang masing-masing:
+Jika kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> saling lepas, irisannya kosong. Peluang "A ATAU B" cukup dihitung dengan menjumlahkan peluang masing-masing kejadian:
 
 <BlockMath math="P(A \text{ atau} B) = P(A) + P(B)" />
 
-**Contoh Hitung:**
+**Contoh perhitungan:**
 
-Misalnya, dari lemparan dua dadu tadi:
+Untuk percobaan dua dadu di atas:
 
-- Peluang jumlah <InlineMath math="7" /> (<InlineMath math="P(J=7)" />) adalah <InlineMath math="6" /> pasangan dari total <InlineMath math="36" />, yaitu <InlineMath math="6/36" />
+- Peluang jumlah <InlineMath math="7" /> (<InlineMath math="P(S=7)" />) adalah <InlineMath math="6" /> pasangan dari total <InlineMath math="36" />, yaitu <InlineMath math="6/36" />
 - Peluang dapat angka kembar (<InlineMath math="P(\text{Kembar})" />) adalah <InlineMath math="6" /> pasangan dari total <InlineMath math="36" />, yaitu <InlineMath math="6/36" />
 
-Maka, peluang dapat jumlah <InlineMath math="7" /> ATAU angka kembar adalah:
+Jadi, peluang memperoleh jumlah <InlineMath math="7" /> ATAU angka kembar adalah:
 
-<BlockMath math="P(J=7 \text{ atau Kembar}) = P(J=7) + P(\text{Kembar}) = \frac{6}{36} + \frac{6}{36} = \frac{12}{36} = \frac{1}{3}" />
+<BlockMath math="P(S=7 \text{ atau Kembar}) = P(S=7) + P(\text{Kembar}) = \frac{6}{36} + \frac{6}{36} = \frac{12}{36} = \frac{1}{3}" />
 
 ## Kejadian Tidak Saling Lepas
 
-Kejadian Tidak Saling Lepas itu artinya dua kejadian yang **BISA terjadi secara bersamaan** dalam satu kali percobaan. Ada kemungkinan kedua kejadian itu muncul bareng.
+Kejadian tidak saling lepas **dapat terjadi bersamaan** dalam satu percobaan, sehingga himpunan hasilnya memiliki irisan.
 
-**Contoh Gampang:**
+**Contoh:**
 
-1.  Ambil satu kartu dari setumpuk kartu bridge. Kejadian "dapat kartu As" **ATAU** kejadian "dapat kartu Hati (<InlineMath math="\heartsuit" />)". Bisa nggak kejadian bareng? Bisa dong! Yaitu kartu As Hati (<InlineMath math="A\heartsuit" />).
+1.  Ambil satu kartu dari setumpuk kartu bridge. Kejadian "mendapat kartu As" dan "mendapat kartu Hati (<InlineMath math="\heartsuit" />)" beririsan pada kartu As Hati (<InlineMath math="A\heartsuit" />).
 2.  Lempar dua dadu: Kejadian "jumlahnya <InlineMath math="8" />" **ATAU** kejadian "dapat angka kembar".
     - Jumlah <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" />
     - Angka kembar: <InlineMath math="(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)" />
-    - Nah, lihat! Ada yang sama kan? Yaitu pasangan <InlineMath math="(4,4)" />. Karena ada yang sama, berarti dua kejadian ini **tidak saling lepas**.
+    - Pasangan <InlineMath math="(4,4)" /> muncul dalam kedua kelompok. Karena ada irisan, kedua kejadian **tidak saling lepas**.
 
-**Apakah bisa langsung dijumlah?**
+**Mengapa tidak cukup langsung dijumlahkan?**
 
-Kalau kita langsung jumlahin <InlineMath math="P(A) + P(B)" /> untuk kejadian tidak saling lepas, nanti ada yang kehitung dua kali! Yaitu bagian yang sama-sama <InlineMath math="A" /> dan <InlineMath math="B" /> (irisannya).
+Jika kita langsung menjumlahkan <InlineMath math="P(A) + P(B)" />, bagian irisan akan terhitung dua kali: sekali sebagai anggota <InlineMath math="A" /> dan sekali lagi sebagai anggota <InlineMath math="B" />.
 
-Kayak di contoh jumlah <InlineMath math="8" /> ATAU kembar tadi:
+Pada contoh "jumlah <InlineMath math="8" /> ATAU angka kembar":
 
-- <InlineMath math="P(J=8)" /> adalah <InlineMath math="5" /> pasangan, yaitu <InlineMath math="5/36" />
+- <InlineMath math="P(S=8)" /> adalah <InlineMath math="5" /> pasangan, yaitu <InlineMath math="5/36" />
 - <InlineMath math="P(\text{Kembar})" /> adalah <InlineMath math="6" /> pasangan, yaitu <InlineMath math="6/36" />
 
-Kalau kita jumlahin langsung: <InlineMath math="5/36 + 6/36 = 11/36" />. Pasangan <InlineMath math="(4,4)" /> kan dihitung di kelompok "Jumlah <InlineMath math="8" />" dan dihitung lagi di kelompok "Kembar". **Jadi kehitung dua kali**!
+Penjumlahan langsung menghasilkan <InlineMath math="5/36 + 6/36 = 11/36" />, tetapi pasangan <InlineMath math="(4,4)" /> muncul dalam kedua kelompok. Peluang pasangan itu harus dikurangi satu kali untuk memperbaiki penghitungan ganda.
 
 ### Rumus Kejadian Tidak Saling Lepas
 
@@ -78,29 +80,53 @@ Untuk kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> yang tidak sa
 
 <BlockMath math="P(A \text{ atau} B) = P(A) + P(B) - P(A \text{ dan} B)" />
 
-Bagian <InlineMath math="P(A \text{ dan} B)" /> itu adalah peluang kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> terjadi **bersamaan** (irisannya). Ini yang kita kurangkan biar nggak kehitung dua kali.
+Suku <InlineMath math="P(A \text{ dan} B)" /> adalah peluang irisan, yaitu ketika <InlineMath math="A" /> dan <InlineMath math="B" /> terjadi **bersamaan**. Pengurangan satu kali menghilangkan penghitungan ganda.
 
-**Contoh Hitung:**
+**Contoh perhitungan:**
 
-Kita lanjutin contoh jumlah <InlineMath math="8" /> ATAU kembar:
+Lanjutkan contoh "jumlah <InlineMath math="8" /> ATAU angka kembar":
 
-- <InlineMath math="P(J=8) = 5/36" />
+- <InlineMath math="P(S=8) = 5/36" />
 - <InlineMath math="P(\text{Kembar}) = 6/36" />
-- Peluang kejadian "jumlah <InlineMath math="8" /> DAN kembar" (<InlineMath math="P(J=8 \text{ dan Kembar})" />) itu cuma satu, yaitu pasangan <InlineMath math="(4, 4)" />. Jadi peluangnya <InlineMath math="1/36" />.
+- Peluang kejadian "jumlah <InlineMath math="8" /> DAN kembar" (<InlineMath math="P(S=8 \text{ dan Kembar})" />) itu cuma satu, yaitu pasangan <InlineMath math="(4, 4)" />. Jadi peluangnya <InlineMath math="1/36" />.
 
 Maka, peluang dapat jumlah <InlineMath math="8" /> ATAU angka kembar adalah:
 
 <MathContainer>
-  <BlockMath math="P(J=8 \text{ atau Kembar}) = P(J=8) + P(\text{Kembar}) - P(J=8 \text{ dan Kembar})" />
+  <BlockMath math="P(S=8 \text{ atau Kembar}) = P(S=8) + P(\text{Kembar}) - P(S=8 \text{ dan Kembar})" />
   <BlockMath math="= \frac{5}{36} + \frac{6}{36} - \frac{1}{36} = \frac{10}{36} = \frac{5}{18}" />
 </MathContainer>
 
-**Penting Soal Kata "ATAU"!**
+**Makna "ATAU" dalam matematika**
 
-Dalam matematika, "<InlineMath math="A" /> atau <InlineMath math="B" />" itu artinya bisa <InlineMath math="A" /> saja, bisa <InlineMath math="B" /> saja, atau bisa <InlineMath math="A" /> dan <InlineMath math="B" /> KEDUANYA (kalau memungkinkan). Ini beda sama "atau" sehari-hari yang kadang maksudnya "pilih salah satu". Ingat ya, "atau" di matematika itu **inklusif**!
+Dalam matematika, "<InlineMath math="A" /> atau <InlineMath math="B" />" mencakup tiga kemungkinan: hanya <InlineMath math="A" />, hanya <InlineMath math="B" />, atau keduanya jika terdapat irisan. Kata "atau" bersifat **inklusif**, berbeda dari penggunaan sehari-hari yang kadang mengharuskan tepat satu pilihan.
 
 ## Kapan Pakai Rumus yang Mana?
 
-1.  **Lihat dulu:** Apakah kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> bisa terjadi barengan?
-2.  **Jika TIDAK BISA barengan:** Pakai rumus simpel <InlineMath math="P(A \text{ atau} B) = P(A) + P(B)" />.
-3.  **Jika BISA barengan:** Pakai rumus lengkap <InlineMath math="P(A \text{ atau} B) = P(A) + P(B) - P(A \text{ dan} B)" />.
+1.  **Periksa irisannya:** Apakah kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> dapat terjadi dalam satu percobaan?
+2.  **Jika tidak dapat terjadi bersama:** Gunakan <InlineMath math="P(A \text{ atau} B) = P(A) + P(B)" />.
+3.  **Jika dapat terjadi bersama:** Gunakan <InlineMath math="P(A \text{ atau} B) = P(A) + P(B) - P(A \text{ dan} B)" />.
+
+## Latihan
+
+Di sebuah kelas yang berisi <InlineMath math="30" /> siswa, <InlineMath math="18" /> siswa mengikuti klub matematika, <InlineMath math="14" /> siswa mengikuti klub sains, dan <InlineMath math="8" /> siswa mengikuti kedua klub. Satu siswa dipilih secara acak.
+
+1.  Berapa peluang siswa yang terpilih mengikuti klub matematika **atau** klub sains?
+2.  Berapa peluang siswa tersebut tidak mengikuti kedua klub?
+
+### Pembahasan
+
+Misalkan <InlineMath math="M" /> adalah kejadian “mengikuti klub matematika” dan <InlineMath math="S" /> adalah kejadian “mengikuti klub sains.” Sebanyak <InlineMath math="8" /> siswa yang mengikuti kedua klub masuk dalam kedua hitungan. Jadi, penjumlahan <InlineMath math="18+14" /> akan menghitung mereka dua kali. Aturan penjumlahan umum menghapus hitungan ganda tersebut:
+
+<MathContainer>
+  <BlockMath math="n(M \cup S)=n(M)+n(S)-n(M \cap S)=18+14-8=24" />
+  <BlockMath math="P(M \cup S)=\frac{24}{30}=\frac{4}{5}" />
+</MathContainer>
+
+Ada <InlineMath math="30-24=6" /> siswa yang tidak mengikuti kedua klub. Jadi,
+
+<BlockMath math="P(\text{tidak mengikuti kedua klub})=\frac{6}{30}=\frac{1}{5}" />
+
+Kedua peluang tersebut berjumlah <InlineMath math="4/5+1/5=1" />. Hasil ini memeriksa bahwa seluruh kelas sudah terbagi menjadi dua kelompok yang saling melengkapi: siswa yang mengikuti setidaknya satu klub dan siswa yang tidak mengikuti keduanya.
+
+**Irisan harus dikurangi tepat satu kali** karena sudah masuk dalam _kedua hitungan awal_. **Pemeriksaan komplemen** ini membantu menemukan kelompok yang terlewat atau terhitung ganda _sebelum hasil diterima_.

@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Berhubungan", value: false },
-    { label: "Baik letaknya", value: true },
-    { label: "Bertalian", value: false },
-    { label: "Berdasarkan strategi", value: false },
-    { label: "Pendekatan secara keseluruhan", value: false },
+    { label: "Baik letaknya untuk mendukung suatu tujuan", value: true },
+    { label: "Disusun berdasarkan strategi militer", value: false },
+    { label: "Berkaitan langsung dengan catatan sejarah", value: false },
+    { label: "Mencakup seluruh kebudayaan yang ada", value: false },
+    { label: "Terpisah dari jalur perdagangan pesisir", value: false },
   ],
 };
 

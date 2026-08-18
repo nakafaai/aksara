@@ -4,7 +4,7 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Let <InlineMath math="a = \log_3 x" /> and <InlineMath math="b = \log_2 y" />. The first equation will be obtained
+Set <InlineMath math="a = \log_3 x" /> and <InlineMath math="b = \log_2 y" />. Rewriting the first equation with base <InlineMath math="2" /> gives:
 
 <MathContainer>
 <BlockMath math="\log_3 x + \log_4 y^2 = 5" />
@@ -12,17 +12,17 @@ Let <InlineMath math="a = \log_3 x" /> and <InlineMath math="b = \log_2 y" />. T
 <BlockMath math="\log_3 x + \frac{2}{2} \log_2 y = 5" />
 <BlockMath math="\log_3 x + \log_2 y = 5" />
 <BlockMath math="a + b = 5" />
-<BlockMath math="a = 5 - b \quad ...(1)" />
+<BlockMath math="a = 5 - b \tag{1}" />
 </MathContainer>
 
-Form <InlineMath math="\log_3 x \cdot \log_2 y = a \cdot b" />
+The expression to maximize is <InlineMath math="\log_3 x \cdot \log_2 y = ab" />. Substitute equation <InlineMath math="(1)" />:
 
 <MathContainer>
 <BlockMath math="ab = (5 - b)b" />
 <BlockMath math="f(b) = 5b - b^2" />
 </MathContainer>
 
-This means the maximum value of <InlineMath math="\log_3 x \cdot \log_2 y" /> is equal to the maximum value of the function <InlineMath math="f(b) = 5b - b^2" />. The condition for the maximum of the function is <InlineMath math="f'(b) = 0" />
+The target expression is therefore the downward-opening quadratic <InlineMath math="f(b) = 5b - b^2" />. Its maximum occurs where <InlineMath math="f'(b) = 0" />:
 
 <MathContainer>
 <BlockMath math="f'(b) = 0" />
@@ -31,7 +31,7 @@ This means the maximum value of <InlineMath math="\log_3 x \cdot \log_2 y" /> is
 <BlockMath math="b = \frac{5}{2}" />
 </MathContainer>
 
-Thus the value of <InlineMath math="a" />
+Use equation <InlineMath math="(1)" /> to recover <InlineMath math="a" />:
 
 <MathContainer>
 <BlockMath math="a = 5 - b" />
@@ -40,6 +40,6 @@ Thus the value of <InlineMath math="a" />
 <BlockMath math="a = \frac{5}{2}" />
 </MathContainer>
 
-So the value of <InlineMath math="ab" /> will be maximum when <InlineMath math="a = \frac{5}{2}" /> and <InlineMath math="b = \frac{5}{2}" />. The result of their product is
+Thus <InlineMath math="ab" /> is maximal when <InlineMath math="a = \frac{5}{2}" /> and <InlineMath math="b = \frac{5}{2}" />. Their product is:
 
 <BlockMath math="ab = \frac{5}{2} \cdot \frac{5}{2} = \frac{25}{4}" />

@@ -3,52 +3,52 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Millennial workers have many interesting ideas for their workplace",
+      label: "Participants report that mentors provide useful career feedback.",
       value: false,
     },
     {
-      label: "Millennial workers have a high work ethic",
-      value: false,
-    },
-    {
-      label:
-        "Few companies complain about the performance and contribution of millennial workers",
+      label: "Enrollment in the mentoring program increased during the year.",
       value: false,
     },
     {
       label:
-        "Many companies complain about the performance and contribution of millennial workers",
+        "An independent audit confirms the reported contract-renewal rate.",
+      value: false,
+    },
+    {
+      label:
+        "Contracts renew automatically unless employees submit an opt-out form.",
       value: true,
     },
     {
-      label: "Many millennial workers work at a company for a long period",
+      label:
+        "Several departments plan to offer more mentoring sessions next year.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Pekerja milenial banyak memiliki ide menarik untuk tempat kerjanya",
+        "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
       value: false,
     },
     {
-      label: "Pekerja milenial memiliki etos kerja yang tinggi",
-      value: false,
-    },
-    {
-      label:
-        "Sedikit perusahaan yang mengeluhkan kinerja dan kontribusi pekerja milenial",
+      label: "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
       value: false,
     },
     {
       label:
-        "Banyak perusahaan mengeluhkan kinerja dan kontribusi pekerja milenial",
+        "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
+      value: false,
+    },
+    {
+      label:
+        "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
       value: true,
     },
     {
       label:
-        "Banyak pekerja milenial yang bekerja di sebuah perusahaan dalam jangka waktu lama",
+        "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
       value: false,
     },
   ],

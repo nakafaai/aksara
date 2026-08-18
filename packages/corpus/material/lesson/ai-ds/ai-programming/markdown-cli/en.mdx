@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Markdown and Command Line Interfaces",
-    description: "Markdown syntax, CLI commands, file operations, automation scripts, and pandoc conversion for documentation workflows.",
+  description: "Write Markdown and use safe command-line workflows to inspect, convert, and version documentation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-26",
   subject: "AI Programming",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Introduction to Markdown
 
-Markdown is a simple markup language that allows you to write structured documents using plain text format. Imagine writing notes in a notebook, but with special rules that make your writing convertible into neat and structured documents.
+Markdown is a lightweight markup language for expressing document structure in plain text. Headings, lists, links, code blocks, and tables remain readable in the source and can be rendered into HTML or other formats.
 
-Why is markdown so useful? Just like you write WhatsApp messages with **bold text** or *italic text*, markdown allows you to format text in a way that's easy to read even before it's converted to the final format. It's like giving instructions to the computer about how text should be displayed, without having to bother with complicated formatting buttons.
+That readable source is Markdown's main advantage. You can review changes line by line, store them in Git, and let a renderer decide the final typography without hiding the document behind formatting controls.
 
 ### Basic Markdown Syntax
 
-Here are examples of the most commonly used markdown syntax. Notice how each symbol has a special meaning, like the hash symbol for headings:
+The following sample collects common syntax in one file. A hash introduces a heading, while surrounding markers express emphasis, links, code, and other structures:
 
 <CodeBlock
   data={[{
@@ -60,9 +60,9 @@ def hello_world():
 
 ### Markdown Workflow
 
-Working with markdown follows a very simple flow. Like writing a letter, you start by creating a draft on plain paper, then organize it into a formal letter. Same with markdown.
+Keep the source file as the reviewed artifact and treat rendered files as reproducible output. A short workflow is enough: create, edit, validate, convert, and preview.
 
-The first step is **creating a file** with `.md` extension. Then you **write content** using markdown syntax. After that, you **convert** to other formats using tools like pandoc. Finally, you **display** the result in a browser or other applications.
+Create a file with the `.md` extension, write its content, and convert it with an installed tool such as Pandoc. HTML output is self-contained when `--standalone` is supplied. PDF output additionally needs a compatible PDF engine on the machine.
 
 <CodeBlock
   data={[{
@@ -77,23 +77,23 @@ nano document.md
 # Convert to HTML using pandoc
 pandoc document.md -o document.html
 
-# Convert to PDF
+# Convert to PDF when a supported PDF engine is installed
 pandoc document.md -o document.pdf
 
-# Preview in browser
+# Preview on macOS; Linux desktops commonly use xdg-open
 open document.html`
   }]}
 />
 
 ## Command Line Interface Basics
 
-Command line interface or CLI is a way to communicate with computers using text, not mouse clicks. You type instructions, the computer reads and executes them.
+A command-line interface, or CLI, accepts textual commands through a shell. Each command has a program name, optional flags, and arguments such as paths.
 
-Why is learning CLI important? Programmers who learn CLI can work more efficiently and have full control over their systems.
+CLI work is valuable because commands can be inspected, repeated, scripted, and reviewed. That power also makes exact paths and destructive flags important: the shell executes what you wrote, not what you intended.
 
 ### Directory Navigation and Exploration
 
-CLI navigation involves several important things. You need to know where you are now, see what's around you, and move to where you want to go:
+Before changing files, confirm the current directory, inspect its contents, and move with explicit paths:
 
 <CodeBlock
   data={[{
@@ -108,7 +108,7 @@ ls -l    # detailed format
 ls -la   # including hidden files
 
 # Change directory
-cd /home/user/documents
+cd "$HOME/documents"
 cd ..    # go up one level
 cd ~     # go to home directory
 cd -     # return to previous directory
@@ -121,7 +121,7 @@ mkdir -p project/src/components  # create directory hierarchy`
 
 ### File and Directory Operations
 
-Working with files in CLI allows you to perform various operations. You can copy, move, delete, and read files with specific commands:
+File commands act on real paths immediately. Inspect the target before a removal, quote paths that may contain spaces, and avoid recursive force flags unless the exact directory is proven disposable.
 
 <CodeBlock
   data={[{
@@ -135,9 +135,11 @@ cp -r source_folder/ destination_folder/
 mv old_name.txt new_name.txt
 mv file.txt /path/to/new/location/
 
-# Delete files
+# Inspect before deleting
+pwd
+ls -la unwanted_folder
 rm unwanted_file.txt
-rm -rf unwanted_folder/  # delete directory and its contents
+rm -r unwanted_folder  # recursive and irreversible; verify this exact path first
 
 # View file contents
 cat file.txt        # display entire contents
@@ -149,7 +151,7 @@ less file.txt       # view with navigation`
 
 ### Integrating Markdown with CLI
 
-Combining markdown with CLI is like having a personal assistant that can turn your notes into professional documents automatically. You can manage documentation projects efficiently:
+A small build script makes the conversion repeatable. It should fail when a command fails, create its own output directory, quote every path, and handle the case where no source file exists:
 
 <CodeBlock
   data={[{
@@ -168,12 +170,16 @@ touch src/index.md src/getting-started.md src/api-reference.md
 # Automate build with script
 cat << 'EOF' > build.sh
 #!/bin/bash
+set -eu
+
 echo "Building documentation..."
+mkdir -p build
 
 # Convert all .md files to .html
 for file in src/*.md; do
+    [ -e "$file" ] || continue
     basename=$(basename "$file" .md)
-    pandoc "$file" -o "build/$basename.html" --standalone --css=style.css
+    pandoc "$file" -o "build/$basename.html" --standalone
     echo "Converted: $file -> build/$basename.html"
 done
 
@@ -190,30 +196,18 @@ chmod +x build.sh
 
 ### CLI Tools for Markdown
 
-There are various CLI tools that help you work with markdown. Each tool has a specific function to make work easier:
+Use tools from their official installation channels, then verify the installed commands before relying on them in a script. Pandoc converts documents, while a Markdown linter checks source conventions:
 
 <CodeBlock
   data={[{
     language: "bash",
     filename: "markdown-tools.sh",
-    code: `# Install pandoc (universal document converter)
-# Ubuntu/Debian:
-sudo apt-get install pandoc
+    code: `# Verify required tools
+command -v pandoc
+command -v markdownlint
 
-# macOS with Homebrew:
-brew install pandoc
-
-# Install markdown linter
-npm install -g markdownlint-cli
-
-# Check markdown syntax
-markdownlint *.md
-
-# Install markdown preview tool
-npm install -g markdown-preview
-
-# Preview markdown in browser
-markdown-preview README.md
+# Check Markdown sources
+markdownlint "docs/**/*.md"
 
 # Convert markdown to various formats
 pandoc input.md -o output.pdf
@@ -227,49 +221,54 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Best Practices for CLI and Markdown
 
-The combination of CLI and markdown is useful for documentation and development. You can create efficient workflows:
+Keep authored Markdown in version control, validate before conversion, build into a replaceable output directory, and review the diff before committing:
 
 <CodeBlock
   data={[{
     language: "bash",
     filename: "best-practices.sh",
-    code: `# Git workflow for markdown documentation
-git init
-git add README.md
-git commit -m "Initial documentation"
-
-# Automation script for documentation
+    code: `# Reproducible local documentation build
 cat << 'EOF' > update-docs.sh
 #!/bin/bash
+set -eu
 
-# Update timestamp
-echo "Last updated: $(date)" >> docs/footer.md
+SOURCE_DIR="docs"
+OUTPUT_DIR="site"
+STAGING_DIR=$(mktemp -d)
+trap 'rm -rf "$STAGING_DIR"' EXIT
 
-# Generate table of contents
-find docs/ -name "*.md" | sort > docs/TOC.md
+mapfile -d '' source_files < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+if [ "\${#source_files[@]}" -eq 0 ]; then
+    echo "No Markdown sources found" >&2
+    exit 1
+fi
 
-# Build static site
-pandoc docs/*.md -o site/index.html --standalone
+markdownlint "\${source_files[@]}"
 
-# Deploy to server
-rsync -av site/ user@server:/var/www/docs/
+for file in "\${source_files[@]}"; do
+    relative_path=\${file#"$SOURCE_DIR"/}
+    output_file="$STAGING_DIR/\${relative_path%.md}.html"
+    mkdir -p "$(dirname "$output_file")"
+    pandoc "$file" -o "$output_file" --standalone
+done
+
+[ ! -e "$OUTPUT_DIR" ] || rm -r -- "$OUTPUT_DIR"
+mv "$STAGING_DIR" "$OUTPUT_DIR"
+trap - EXIT
 EOF
 
-# Monitor file changes
-# Install inotify-tools first
-sudo apt-get install inotify-tools
+chmod +x update-docs.sh
+./update-docs.sh
 
-# Watch and auto-rebuild
-inotifywait -m -e modify --format '%w%f' docs/*.md | while read file; do
-    echo "File $file changed, rebuilding..."
-    ./build.sh
-done`
+# Review authored changes before committing
+git diff --check
+git diff -- docs`
   }]}
 />
 
 ### Real Project Example
 
-Let's create a complete documentation project example for development teams:
+The final example creates four source pages and combines them into one standalone HTML document. Every input path is explicit, so a missing page fails the build instead of being silently skipped:
 
 <CodeBlock
   data={[{
@@ -280,7 +279,7 @@ mkdir ai-project-docs
 cd ai-project-docs
 
 # Create directory structure
-mkdir -p {docs/{api,tutorials,guides},scripts,templates}
+mkdir -p docs/api docs/tutorials docs/guides scripts build
 
 # Create main documentation files
 cat << 'EOF' > docs/README.md
@@ -295,37 +294,39 @@ Complete documentation for AI programming projects.
 - [User Guides](guides/README.md)
 EOF
 
-# Create build configuration
-cat << 'EOF' > config.yaml
-input_dir: docs
-output_dir: build
-css: templates/style.css
-template: templates/default.html
+# Create the referenced pages
+cat << 'EOF' > docs/api/README.md
+# API Reference
+
+Describe each public interface and include one verified example.
+EOF
+
+cat << 'EOF' > docs/tutorials/README.md
+# Tutorials
+
+Guide the reader through one complete task.
+EOF
+
+cat << 'EOF' > docs/guides/README.md
+# User Guides
+
+Explain recurring workflows and their safety boundaries.
 EOF
 
 # Create automated build script
 cat << 'EOF' > scripts/build-docs.sh
 #!/bin/bash
+set -eu
 
-CONFIG_FILE="config.yaml"
-INPUT_DIR=$(grep "input_dir:" $CONFIG_FILE | cut -d' ' -f2)
-OUTPUT_DIR=$(grep "output_dir:" $CONFIG_FILE | cut -d' ' -f2)
+mkdir -p build
 
-echo "Building documentation from $INPUT_DIR to $OUTPUT_DIR"
-
-# Create output directory
-mkdir -p $OUTPUT_DIR
-
-# Convert all markdown files
-find $INPUT_DIR -name "*.md" -type f | while read file; do
-    rel_path=\${file#$INPUT_DIR/}
-    output_file="$OUTPUT_DIR/\${rel_path%.md}.html"
-    output_dir=$(dirname "$output_file")
-
-    mkdir -p "$output_dir"
-    pandoc "$file" -o "$output_file" --standalone
-    echo "✓ Converted: $file"
-done
+pandoc \
+    docs/README.md \
+    docs/api/README.md \
+    docs/tutorials/README.md \
+    docs/guides/README.md \
+    --standalone \
+    --output build/index.html
 
 echo "Documentation build completed!"
 EOF
@@ -337,4 +338,4 @@ chmod +x scripts/build-docs.sh
   }]}
 />
 
-After learning Markdown and the command line interface, you can create documentation workflows that are easier to repeat. Markdown gives you a simple way to write structured content, while CLI tools help manage, convert, and distribute that documentation.
+Markdown keeps document structure readable in source control, while the CLI makes validation and conversion repeatable. A trustworthy workflow preserves that boundary: edit the source, verify commands and paths, regenerate output, and review the resulting changes.

@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Children enjoy outdoor activities.",
+      label: "Children play outdoors.",
       value: false,
     },
     {
-      label: "Children are happier.",
+      label: "Children have more opportunities.",
       value: false,
     },
     {
-      label: "Summer makes children happy.",
+      label: "Summer gives children opportunities.",
       value: true,
     },
     {
-      label: "Summer enjoys outdoor activities.",
+      label: "Summer plays outdoors.",
       value: false,
     },
     {
-      label: "Children do activities outside.",
+      label: "Opportunities occur outdoors.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Anak menikmati aktivitas di luar ruangan.",
+      label: "Anak bermain di luar ruangan.",
       value: false,
     },
     {
-      label: "Anak lebih bahagia.",
+      label: "Anak memiliki lebih banyak kesempatan.",
       value: false,
     },
     {
-      label: "Musim panas membuat anak-anak bahagia.",
+      label: "Musim panas memberi anak kesempatan.",
       value: true,
     },
     {
-      label: "Musim panas menikmati aktivitas luar.",
+      label: "Musim panas bermain di luar ruangan.",
       value: false,
     },
     {
-      label: "Anak-anak beraktivitas di luar.",
+      label: "Kesempatan terjadi di luar ruangan.",
       value: false,
     },
   ],

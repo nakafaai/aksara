@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Suasana ketika langit berwarna orange",
+      label: "Warna jingga yang tampak di langit",
       value: false,
     },
     {
-      label: "Suasana saat matahari tenggelam",
+      label: "Saat matahari tepat menyentuh cakrawala",
+      value: false,
+    },
+    {
+      label: "Tanda bahwa seluruh kegiatan harus berakhir",
+      value: false,
+    },
+    {
+      label: "Waktu setengah gelap setelah matahari terbenam",
       value: true,
     },
     {
-      label: "Waktu yang menandakan semua aktivitas telah usai",
-      value: false,
-    },
-    {
-      label: "Waktu menjelang malam",
-      value: false,
-    },
-    {
-      label: "Suasana tenang dan damai",
+      label: "Suasana yang selalu tenang dan damai",
       value: false,
     },
   ],

@@ -4,27 +4,27 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Successful integration of technology and media is determined by the quality of the computers and the connection of the Internet.",
+        "Successful integration is determined mainly by the price and speed of the device.",
       value: false,
     },
     {
       label:
-        "The integration of technology and media occurs when the teacher focuses only on the technology itself.",
+        "Technology is fully integrated when children focus on the device rather than the activity.",
       value: false,
     },
     {
       label:
-        "The successful integration of technology and media in early childhood education really depends on good educators.",
+        "Every classroom activity should include a screen so that children become digitally fluent.",
       value: false,
     },
     {
       label:
-        "educators should be selective in choosing educational goals to be integrated with the use of technology and media.",
+        "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
       value: true,
     },
     {
       label:
-        "both passive and interactive uses of technology and media are needed as a key to successful learning in early childhood settings.",
+        "passive and interactive screen use are equally suitable in early childhood settings.",
       value: false,
     },
   ],

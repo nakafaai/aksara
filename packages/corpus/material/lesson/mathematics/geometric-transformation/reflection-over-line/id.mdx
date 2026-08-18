@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Pencerminan terhadap Garis",
-  description: "Pelajari pencerminan geometri terhadap garis apa pun. Pahami garis cermin, sumbu simetri, dan transformasi titik lewat contoh visual.",
+  description: "Pahami pencerminan terhadap garis sembarang melalui sumbu tegak lurus, jarak yang sama, dan visualisasi yang tepat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-10",
   subject: "Transformasi Geometri",
@@ -28,15 +28,15 @@ Secara matematis, jika kita punya titik <InlineMath math="P(x,y)" /> dan sebuah 
     Garis <InlineMath math="m" /> akan menjadi sumbu simetri dari ruas garis <InlineMath math="PP'" />. Ini berarti dua hal penting:
 
     <MathContainer>
-      <BlockMath math="\text{Ruas garis } PP' \perp m" />
-      <BlockMath math="\text{Jarak}(P, m) = \text{Jarak}(P', m)" />
+      <BlockMath math="\overline{PP'} \perp m" />
+      <BlockMath math="d(P,m) = d(P',m)" />
     </MathContainer>
 
     Akibatnya, garis <InlineMath math="m" /> memotong ruas garis <InlineMath math="PP'" /> tepat di tengah-tengahnya. Titik potong ini kita sebut sebagai titik <InlineMath math="M" />.
 
 ## Visualisasi Pencerminan Titik terhadap Garis
 
-Mari kita coba visualisasikan konsep pencerminan titik terhadap garis menggunakan contoh berikut:
+Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
 
 <LineEquation
   title="Ilustrasi Konsep Pencerminan Titik terhadap Garis"
@@ -44,7 +44,7 @@ Mari kita coba visualisasikan konsep pencerminan titik terhadap garis menggunaka
     <>
       Titik <InlineMath math="P(2,4)" /> dicerminkan terhadap garis{" "}
       <InlineMath math="m" /> menghasilkan bayangan{" "}
-      <InlineMath math="P'(3.6, 0.8)" />.
+      <InlineMath math="P'(3{,}6, 0{,}8)" />.
     </>
   }
   cameraPosition={[12, 8, 12]}
@@ -82,7 +82,7 @@ Mari kita coba visualisasikan konsep pencerminan titik terhadap garis menggunaka
       showPoints: true,
       labels: [
         {
-          text: <><InlineMath math="P'(3.6,0.8)" /> (titik bayangan)</>,
+          text: <><InlineMath math="P'(3{,}6,0{,}8)" /> (titik bayangan)</>,
           at: 0,
           offset: [1.7, -0.5, 0],
         },
@@ -103,10 +103,11 @@ Mari kita coba visualisasikan konsep pencerminan titik terhadap garis menggunaka
     {
       points: [
         { x: 2, y: 4, z: 0 },
+        { x: 2.8, y: 2.4, z: 0 },
         { x: 3.6, y: 0.8, z: 0 },
       ],
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="PP'" />, at: 0.5, offset: [-0.3, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="PP'" />, at: 1, offset: [-0.3, 0.3, 0] }],
     },
   ]}
 />

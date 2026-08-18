@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Cara Mencari Kuartil di Data Kelompok
 
-Kalau datanya tunggal, kita tinggal urutin terus cari posisi tengahnya. Nah, kalau datanya dikelompokkan dalam tabel frekuensi (kayak nilai ulangan yang dikelompokkan <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, dst.), caranya sedikit beda nih. Kita nggak tahu nilai pastinya satu per satu, cuma tahu ada berapa data di tiap kelompok (kelas interval).
+Pada data tunggal, setiap nilai dapat diurutkan dan posisinya dapat dibaca langsung. Pada tabel frekuensi berkelompok, kita hanya mengetahui interval, misalnya <InlineMath math="70\text{-}79" /> dan <InlineMath math="80\text{-}89" />, beserta banyak data di setiap interval. Nilai satu per satu tidak lagi terlihat.
 
-Sama kayak [median data kelompok](/id/materi/matematika/statistika-dasar/median-dan-kelas-modus-data-kelompok), buat cari kuartil (<InlineMath math="Q_1" />, <InlineMath math="Q_2" />, <InlineMath math="Q_3" />), kita juga pakai cara **interpolasi**. Intinya, kita "menebak" posisi kuartil di dalam kelas interval tempat dia berada.
+Seperti pada [median data kelompok](/id/materi/matematika/statistika-dasar/median-dan-kelas-modus-data-kelompok), <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> perlu diperkirakan dengan **interpolasi**. Perhitungan ini menempatkan setiap kuartil di dalam kelas interval yang memuat posisi sasarannya.
 
 Letak kuartilnya kita tentukan pakai rumus ini:
 
@@ -53,7 +53,7 @@ Total data (<InlineMath math="n" />) adalah <InlineMath math="30" />.
 
 - **Letak <InlineMath math="Q_1" />:** data ke <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
 
-  Lihat kolom <InlineMath math="F_k" />. Data ke-<InlineMath math="7{,}5" /> ada di kelas mana? Kelas pertama memiliki <InlineMath math="F_k = 2" /> (belum cukup). Kelas kedua memiliki <InlineMath math="F_k = 13" /> (data ke-<InlineMath math="3" /> sampai ke-<InlineMath math="13" /> ada di sini). Nah, berarti data ke-<InlineMath math="7{,}5" /> ada di kelas <InlineMath math="40\text{-}42" />.
+  Pada kolom <InlineMath math="F_k" />, kelas pertama berakhir di posisi <InlineMath math="2" /> dan kelas kedua berakhir di posisi <InlineMath math="13" />. Posisi <InlineMath math="3" /> hingga <InlineMath math="13" /> berada di kelas kedua, sehingga posisi <InlineMath math="7{,}5" /> termasuk kelas <InlineMath math="40\text{-}42" />.
 
 - **Letak <InlineMath math="Q_2" /> (Median):** data ke <InlineMath math="\frac{1}{2} \times 30 = 15" />.
 
@@ -63,20 +63,22 @@ Total data (<InlineMath math="n" />) adalah <InlineMath math="30" />.
 
   Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="22{,}5" /> ada di kelas <InlineMath math="43\text{-}45" /> juga (karena <InlineMath math="F_k" /> sebelumnya <InlineMath math="13" />, dan <InlineMath math="F_k" /> kelas ini <InlineMath math="23" />).
 
-### Hitung Nilai Kuartil dengan Rumus Interpolasi
+### Perkirakan Nilai Kuartil dengan Interpolasi
 
-Setelah tahu kelasnya, kita pakai rumus ini buat cari nilai pastinya:
+Setelah kelas kuartil diketahui, perkirakan nilainya di dalam interval tersebut dengan:
 
-<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{kum}}{f_i} \right) p" />
+<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{kum}}}{f_i} \right) p" />
 
 Di mana:
 
 - <InlineMath math="Q_i" /> = Nilai Kuartil ke-i (yang kita cari)
 - <InlineMath math="T_b" /> = Tepi bawah kelas kuartil ke-i
 - <InlineMath math="n" /> = Jumlah seluruh frekuensi
-- <InlineMath math="F_{kum}" /> = Frekuensi kumulatif **SEBELUM** kelas kuartil ke-i
+- <InlineMath math="F_{\text{kum}}" /> = frekuensi kumulatif **sebelum** kelas kuartil ke-<InlineMath math="i" />
 - <InlineMath math="f_i" /> = Frekuensi kelas kuartil ke-i
 - <InlineMath math="p" /> = Panjang kelas interval
+
+Interpolasi ini mengasumsikan bahwa data tersebar merata di dalam kelas terpilih. Hasilnya merupakan perkiraan berdasarkan model dan tidak dapat mengembalikan nilai asli yang hilang akibat pengelompokan.
 
 ## Mencari Kuartil Penjualan Sepatu
 
@@ -84,16 +86,16 @@ Kita hitung <InlineMath math="Q_1" /> dari tabel di atas.
 
 1.  **Letak <InlineMath math="Q_1" />:** Data ke-<InlineMath math="7{,}5" />.
 2.  **Kelas <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
-3.  **Kita kumpulkan bahan-bahannya:**
+3.  **Catat nilai dalam rumus:**
     - Tepi bawah kelas <InlineMath math="Q_1" /> (<InlineMath math="T_b" />) adalah <InlineMath math="39{,}5" />
     - Jumlah data (<InlineMath math="n" />) adalah <InlineMath math="30" />
-    - Frekuensi kumulatif sebelum kelas <InlineMath math="Q_1" /> (<InlineMath math="F_{kum}" />) adalah <InlineMath math="2" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="37\text{-}39" />)
+    - Frekuensi kumulatif sebelum kelas <InlineMath math="Q_1" /> (<InlineMath math="F_{\text{kum}}" />) adalah <InlineMath math="2" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="37\text{-}39" />)
     - Frekuensi kelas <InlineMath math="Q_1" /> (<InlineMath math="f_1" />) adalah <InlineMath math="11" />
     - Panjang kelas (<InlineMath math="p" />) adalah <InlineMath math="3" />
 4.  **Masukkan ke rumus:**
 
     <MathContainer>
-      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{kum}}{f_1} \right) p" />
+      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
       <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
       <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
       <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
@@ -105,9 +107,9 @@ Jadi, nilai <InlineMath math="Q_1" /> adalah <InlineMath math="41" />. Artinya, 
 
 ## Latihan
 
-Coba hitung <InlineMath math="Q_3" /> dari data penjualan sepatu di Toko A pada tabel di atas tadi.
+Hitung <InlineMath math="Q_3" /> dari data penjualan sepatu Toko A pada tabel di atas.
 
-Setelah dapat hasilnya, coba bandingkan dengan kuartil data tunggal. Kira-kira apa bedanya dan kenapa hasilnya bisa mirip atau beda?
+Kemudian, bandingkan caranya dengan perhitungan kuartil data tunggal. Mengapa tabel kelompok hanya memberikan perkiraan?
 
 ### Kunci Jawaban
 
@@ -118,14 +120,14 @@ Setelah dapat hasilnya, coba bandingkan dengan kuartil data tunggal. Kira-kira a
     - <InlineMath math="T_b = 42{,}5" /> (tepi bawah kelas <InlineMath math="Q_3" />
       )
     - <InlineMath math="n = 30" /> (jumlah data)
-    - <InlineMath math="F_{kum} = 13" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="40\text{-}42" />)
+    - <InlineMath math="F_{\text{kum}} = 13" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="40\text{-}42" />)
     - <InlineMath math="f_3 = 10" /> (frekuensi kelas <InlineMath math="Q_3" />)
     - <InlineMath math="p = 3" /> (panjang kelas)
 
 4.  **Masukkan ke rumus:**
 
     <MathContainer>
-      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{kum}}{f_3} \right) p" />
+      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
       <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
       <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
       <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
@@ -137,8 +139,6 @@ Jadi, nilai <InlineMath math="Q_3" /> adalah <InlineMath math="45{,}35" />. Arti
 
 **Perbandingan dengan Data Tunggal:**
 
-Mencari kuartil data kelompok menggunakan **interpolasi** karena kita tidak tahu nilai pasti tiap data, hanya rentangnya. Hasilnya adalah perkiraan nilai kuartil.
+Kuartil data kelompok dihitung dengan **interpolasi** karena kita hanya mengetahui interval, bukan setiap nilai data. Hasilnya berupa perkiraan nilai kuartil.
 
-Kalau data tunggal, kita bisa langsung menunjuk data ke berapa yang jadi kuartil (atau rata-rata dua data), jadi hasilnya lebih pasti (jika datanya memang tunggal).
-
-Kuartil data kelompok memberikan gambaran bagus untuk data yang banyak dan sudah dikelompokkan.
+Pada data tunggal, semua nilai yang telah diurutkan diketahui. Karena itu, konvensi kuartil yang dipilih dapat mengambil satu nilai atau menginterpolasi langsung di antara dua nilai yang diketahui. Interpolasi data kelompok kurang presisi karena nilai di dalam setiap kelas tidak lagi tersedia.

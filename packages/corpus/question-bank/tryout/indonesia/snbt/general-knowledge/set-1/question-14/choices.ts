@@ -3,55 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "He stated that this frost could cause crop failure and also losses for potato farmers.",
+      label: "Sri Utami explained that frost occurs every year.",
       value: false,
     },
     {
-      label:
-        "However, after the frost passes, the soil actually becomes more fertile.",
+      label: "After sunrise, the air temperature reached five degrees.",
       value: true,
     },
     {
-      label:
-        "This annual phenomenon has become part of the agricultural cycle that must be faced by potato farmers in the Dieng plateau.",
+      label: "Clear ice crystals covered the grass.",
       value: false,
     },
     {
-      label:
-        "Potato plants damaged by the frost initially turn black on their leaves due to freezing covered in ice.",
+      label: "Visitors who arrived early photographed the frost.",
       value: false,
     },
     {
-      label:
-        "Even so, a number of farmers observed that after being attacked by the frost, the next planting season the potato harvest produced can multiply.",
+      label: "Because the sky was clear, frost formed on the grass.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Ia menuturkan bahwa embun es ini bisa menyebabkan gagal panen dan juga kerugian pada petani kentang.",
+      label: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
       value: false,
     },
     {
-      label:
-        "Namun, setelah embun es berlalu, tanah justru menjadi lebih subur.",
+      label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
       value: true,
     },
     {
-      label:
-        "Fenomena tahunan ini telah menjadi bagian dari siklus pertanian yang harus dihadapi oleh petani kentang di dataran tinggi Dieng.",
+      label: "Kristal es bening menutupi rumput.",
       value: false,
     },
     {
-      label:
-        "Tanaman kentang yang rusak akibat embun es tersebut mula-mula menghitam daunnya karena beku diselubungi es.",
+      label: "Pengunjung yang datang lebih awal memotret embun es.",
       value: false,
     },
     {
-      label:
-        "Meski demikian, sejumlah petani mengamati bahwa setelah terserang embun upas, masa tanam berikutnya panen kentang yang dihasilkan bisa berlipat ganda.",
+      label: "Karena langit cerah, embun es terbentuk di atas rumput.",
       value: false,
     },
   ],

@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Membaca File
 
-Dalam Python, membaca file adalah proses mengambil data dari file yang tersimpan di sistem. Bayangkan seperti membuka buku dan membaca isinya, Python dapat membuka file dan mengakses informasi di dalamnya.
+Python membaca dan menulis file melalui objek file. Dalam text mode, objek ini mendekode byte yang tersimpan menjadi string dengan encoding yang dipilih. Dalam binary mode, byte diteruskan tanpa perubahan.
 
 ### Membaca Seluruh Isi File
 
@@ -19,10 +19,9 @@ Cara paling sederhana untuk membaca file adalah mengambil seluruh isinya sekalig
     {
       language: "python",
       filename: "read_entire_file.py",
-      code: `# Membaca seluruh isi file sekaligus
-f = open('file.txt', 'r')
-txt = f.read()
-f.close()
+      code: `# Membaca seluruh file teks UTF-8 sekaligus
+with open('file.txt', 'r', encoding='utf-8') as f:
+    txt = f.read()
 
 print(txt)
 # Output: [isi lengkap file akan ditampilkan]`
@@ -30,7 +29,7 @@ print(txt)
   ]}
 />
 
-Proses ini melibatkan tiga langkah utama. Pertama, buka file dengan fungsi `open()`. Kedua, baca isinya dengan metode `read()`. Ketiga, tutup file dengan metode `close()` untuk membebaskan sumber daya sistem.
+`open()` membuat objek file, `read()` mengambil teksnya, dan blok `with` menutup file secara otomatis ketika blok berakhir, termasuk ketika operasi terhenti oleh exception.
 
 ### Membaca File Baris per Baris
 
@@ -41,11 +40,10 @@ Untuk file yang besar, membaca baris per baris lebih efisien karena tidak memuat
     {
       language: "python",
       filename: "read_line_by_line.py",
-      code: `# Membaca file baris per baris
-f = open('file.txt', 'r')
-for line in f:
-    print(line, end='')
-f.close()
+      code: `# Membaca file teks UTF-8 baris per baris
+with open('file.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line, end='')
 
 # Catatan: setiap baris mempertahankan karakter newline
 # Parameter end='' mencegah penambahan newline tambahan`
@@ -53,7 +51,7 @@ f.close()
   ]}
 />
 
-Ketika membaca baris per baris, setiap baris mempertahankan karakter newline (`\n`) di akhirnya. Parameter `end=''` pada fungsi `print()` mencegah penambahan newline tambahan.
+Setiap baris mempertahankan newline di akhirnya jika karakter itu memang ada. Baris terakhir mungkin tidak memiliki newline. Pengaturan `end=''` mencegah `print()` menambahkan newline kedua.
 
 ## Menulis ke File
 
@@ -66,11 +64,10 @@ Menulis file memungkinkan program menyimpan data atau hasil perhitungan ke dalam
     {
       language: "python",
       filename: "write_string_to_file.py",
-      code: `# Menulis string ke file
-f = open('file.txt', 'w')
-for i in range(1, 11):
-    f.write(f'Line {i}\n')
-f.close()
+      code: `# Menulis string ke file teks UTF-8
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 11):
+        f.write(f'Line {i}\\n')
 
 # File akan berisi:
 # Line 1
@@ -90,11 +87,10 @@ Kamu dapat mengalihkan output fungsi `print()` langsung ke file menggunakan para
     {
       language: "python",
       filename: "redirect_print_output.py",
-      code: `# Mengalihkan output print ke file
-f = open('file.txt', 'w')
-for i in range(1, 21):
-    print("Line", i, file=f)
-f.close()
+      code: `# Mengalihkan output print ke file teks UTF-8
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 21):
+        print("Line", i, file=f)
 
 # File akan berisi output print yang dialihkan
 # Line 1
@@ -104,7 +100,7 @@ f.close()
   ]}
 />
 
-Metode ini sangat berguna ketika kamu ingin menyimpan hasil output program ke file tanpa mengubah struktur kode yang sudah ada.
+Argumen `file` memakai kembali pemformatan `print()` sambil mengarahkan teks hasilnya ke objek file yang dipilih.
 
 ## Mode Pembukaan File
 
@@ -118,15 +114,15 @@ Python menyediakan berbagai mode untuk membuka file sesuai dengan kebutuhan oper
         A[Mode File] --> B[Text Mode]
         A --> C[Binary Mode]
 
-        B --> B1[r - baca saja]
-        B --> B2[w - tulis baru]
-        B --> B3[a - tambah akhir]
-        B --> B4[r+ - baca dan tulis]
+        B --> B1[r - baca file yang ada]
+        B --> B2[w - buat atau kosongkan]
+        B --> B3[a - buat atau tambahkan]
+        B --> B4[r+ - baca tulis file yang ada]
 
         C --> C1[rb - baca binary]
-        C --> C2[wb - tulis binary]
-        C --> C3[ab - tambah binary]
-        C --> C4[rb+ - baca tulis binary]
+        C --> C2[wb - buat atau kosongkan binary]
+        C --> C3[ab - buat atau tambahkan binary]
+        C --> C4[rb+ - baca tulis binary yang ada]
   `}
 />
 
@@ -137,27 +133,26 @@ Python menyediakan berbagai mode untuk membuka file sesuai dengan kebutuhan oper
     {
       language: "python",
       filename: "file_opening_syntax.py",
-      code: `# Sintaks dasar pembukaan file
-f = open('nama_file', 'mode')
-# Operasi file
-f.close()
+      code: `# Membaca file teks yang sudah ada
+with open('data.txt', 'r', encoding='utf-8') as f:
+    first_line = f.readline()
 
-# Contoh berbagai mode
-f_read = open('data.txt', 'r')      # Baca saja (default)
-f_write = open('output.txt', 'w')   # Tulis (timpa jika ada)
-f_append = open('log.txt', 'a')     # Tambah di akhir file
-f_read_write = open('data.txt', 'r+')  # Baca dan tulis
+# Membuat file atau mengosongkan isi lamanya
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write('isi baru')
 
-# Jangan lupa tutup file
-f_read.close()
-f_write.close()
-f_append.close()
-f_read_write.close()`
+# Membuat file atau menambahkan data setelah isi yang ada
+with open('log.txt', 'a', encoding='utf-8') as f:
+    f.write('peristiwa berikutnya\\n')
+
+# Membaca dan menulis file yang ada tanpa mengosongkannya saat dibuka
+with open('data.txt', 'r+', encoding='utf-8') as f:
+    original = f.read()`
     }
   ]}
 />
 
-Parameter `mode` menentukan bagaimana file akan diakses. Mode `r` untuk membaca, `w` untuk menulis (menimpa file lama), `a` untuk menambah di akhir file, dan `r+` untuk membaca dan menulis.
+Mode menentukan apakah file harus sudah ada, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
 
 ## Metode Pembacaan File
 
@@ -170,31 +165,28 @@ Python menyediakan beberapa metode untuk membaca file dengan cara yang berbeda s
     {
       language: "python",
       filename: "read_methods.py",
-      code: `# Berbagai metode pembacaan file
-f = open('file.txt', 'r')
+      code: `# Mencoba beberapa metode pembacaan teks
+with open('file.txt', 'r', encoding='utf-8') as f:
+    # Membaca paling banyak 10 karakter
+    s = f.read(10)
+    print("10 karakter:", s)
 
-# Membaca n karakter dari file
-s = f.read(10)  # Membaca 10 karakter pertama
-print("10 karakter:", s)
+    # Kembali ke awal dan membaca seluruh file
+    f.seek(0)
+    s = f.read()
+    print("Seluruh file:", s)
 
-# Membaca seluruh file
-f.seek(0)  # Kembali ke awal file
-s = f.read()  # Membaca seluruh file
-print("Seluruh file:", s)
-
-# Membaca satu baris termasuk newline
-f.seek(0)  # Kembali ke awal file
-s = f.readline()  # Membaca satu baris
-print("Satu baris:", repr(s))
-
-f.close()`
+    # Kembali lagi dan membaca satu baris beserta newline jika ada
+    f.seek(0)
+    s = f.readline()
+    print("Satu baris:", repr(s))`
     }
   ]}
 />
 
 ### Posisi File dan Pembacaan
 
-Ketika kamu membuka file, posisi file dimulai dari awal. Setiap operasi pembacaan memajukan posisi file sesuai dengan jumlah data yang dibaca.
+File yang baru dibuka berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan cookie posisi yang opaque, bukan indeks karakter sederhana. Simpan dan gunakan kembali posisi itu daripada menghitung offset byte sendiri.
 
 <CodeBlock
   data={[
@@ -202,27 +194,22 @@ Ketika kamu membuka file, posisi file dimulai dari awal. Setiap operasi pembacaa
       language: "python",
       filename: "file_position.py",
       code: `# Demonstrasi posisi file
-f = open('sample.txt', 'r')
+with open('sample.txt', 'r', encoding='utf-8') as f:
+    first_read = f.read(5)  # Membaca paling banyak 5 karakter
+    saved_position = f.tell()
+    print("Bacaan pertama:", first_read)
 
-# Posisi awal di karakter ke-0
-first_read = f.read(5)  # Baca 5 karakter
-print("Bacaan pertama:", first_read)
+    second_read = f.read(3)  # Melanjutkan dari posisi saat ini
+    print("Bacaan kedua:", second_read)
 
-# Posisi sekarang di karakter ke-5
-second_read = f.read(3)  # Baca 3 karakter berikutnya
-print("Bacaan kedua:", second_read)
-
-# Menggunakan seek() untuk mengatur posisi
-f.seek(0)  # Kembali ke awal file
-third_read = f.read(2)  # Baca 2 karakter dari awal
-print("Bacaan ketiga:", third_read)
-
-f.close()`
+    f.seek(saved_position)  # Kembali ke posisi text stream yang disimpan
+    repeated = f.read(3)
+    print("Bacaan ulang:", repeated)`
     }
   ]}
 />
 
-Setiap metode pembacaan mengembalikan string yang dibaca. Ketika mencapai akhir file, metode pembacaan mengembalikan string kosong.
+Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilkan `''` ketika tidak ada teks tersisa. Dalam binary mode, keduanya mengembalikan `bytes` dan memakai `b''` pada akhir file. Iterasi berhenti otomatis ketika mencapai akhir.
 
 ## Penanganan File yang Aman
 
@@ -234,19 +221,19 @@ Python menyediakan statement `with` untuk penanganan file yang lebih aman dan ot
       language: "python",
       filename: "safe_file_handling.py",
       code: `# Menggunakan with statement untuk penanganan file aman
-with open('file.txt', 'r') as f:
+with open('file.txt', 'r', encoding='utf-8') as f:
     content = f.read()
     print(content)
 # File otomatis tertutup setelah keluar dari blok with
 
 # Menulis dengan with statement
-with open('output.txt', 'w') as f:
+with open('output.txt', 'w', encoding='utf-8') as f:
     f.write("Hello World!")
-    f.write("\nBaris kedua")
+    f.write("\\nBaris kedua")
 # File otomatis tertutup dan disimpan
 
 # Membaca dan menulis bersamaan
-with open('input.txt', 'r') as input_file, open('output.txt', 'w') as output_file:
+with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 'w', encoding='utf-8') as output_file:
     data = input_file.read()
     output_file.write(data.upper())
 # Kedua file otomatis tertutup`

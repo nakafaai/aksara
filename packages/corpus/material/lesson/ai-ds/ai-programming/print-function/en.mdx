@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Introduction to Print Function
 
-The `print()` function is one of the most frequently used built-in Python functions for displaying output to the screen. Imagine the print function like a loudspeaker that announces information to everyone. Every time you want to show calculation results, messages, or data to users, the print function becomes a communication bridge between the program and humans.
+The built-in `print()` function writes a text representation of values to a stream. By default that stream is `sys.stdout`, which a terminal usually displays on screen, but output can also be redirected to a file or another destination.
 
 The print function belongs to the built-in function category, just like `len()`, `abs()`, and `round()`. This means you don't need to import additional modules to use it.
 
@@ -38,7 +38,7 @@ print("Addition result", x, "+", y, "=", x + y)`
   ]}
 />
 
-The `*objects` parameter allows the print function to accept unlimited number of arguments. Each argument will be separated by the character specified by the `sep` parameter.
+The `*objects` notation means that `print()` accepts zero or more positional objects. It writes the separator specified by `sep` between adjacent objects.
 
 ## Separator Parameter (sep)
 
@@ -120,11 +120,11 @@ print("D", "E", "F", sep="-", end="\\n")`
   ]}
 />
 
-Changing the `end` parameter is very useful when you want to combine output from multiple print calls on one line or provide special formatting.
+Changing `end` lets several calls continue on one line. If output must become visible immediately rather than waiting in a buffer, pass `flush=True` as well.
 
 ## Displaying Various Data Types
 
-The print function can display various Python data types automatically. Python will convert each object to its string representation before displaying it.
+`print()` accepts objects of many types and obtains their human-readable string representation before writing it. Custom classes can control that representation with `__str__()`.
 
 <CodeBlock
   data={[
@@ -164,7 +164,7 @@ The ability of print to handle various data types makes it very flexible for deb
 
 ### Print with F-String
 
-F-string is a modern and efficient way to format output in Python. This technique allows direct variable insertion within strings.
+An f-string evaluates expressions inside braces and applies optional format specifications. It keeps the values and their surrounding text in one readable expression.
 
 <CodeBlock
   data={[
@@ -202,7 +202,8 @@ print(f"Score: {score}, Status: {status}")
 pi = 3.14159265359
 print(f"Pi with 2 decimals: {pi:.2f}")
 print(f"Pi with 4 decimals: {pi:.4f}")
-print(f"Pi as percentage: {pi:.1%}")`
+completion = 0.875
+print(f"Completion: {completion:.1%}")  # 87.5%`
     }
   ]}
 />
@@ -225,20 +226,20 @@ import time
 print("Processing", end="")
 for i in range(5):
     time.sleep(0.5)  # Half second delay
-    print(".", end="")
+    print(".", end="", flush=True)
 print(" Done!")
 
 # Creating simple progress bar
 print("\\nProgress: [", end="")
 for i in range(10):
     time.sleep(0.2)
-    print("#", end="")
+    print("#", end="", flush=True)
 print("] 100%")
 
 # Print counter in one line
 print("\\nCountdown: ", end="")
 for i in range(5, 0, -1):
-    print(i, end=" ")
+    print(i, end=" ", flush=True)
     time.sleep(1)
 print("Start!")
 
@@ -253,4 +254,4 @@ print("Citra", 28, "Surabaya", sep="\\t")`
   ]}
 />
 
-This technique is very useful for creating interactive interfaces or displaying progress from time-consuming operations.
+The `end` argument keeps each update on the current line, while `flush=True` asks Python to write buffered output immediately. For a real progress display, also account for terminal capabilities and avoid assuming that tabs or character widths render identically everywhere.

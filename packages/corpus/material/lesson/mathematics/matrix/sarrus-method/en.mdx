@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Basic Concept of Sarrus Method
 
-Sarrus' method is a practical way to calculate the determinant of a <InlineMath math="3 \times 3" /> matrix. This method is named after Pierre Frédéric Sarrus. To understand it, let's recall how to calculate the determinant of a <InlineMath math="2 \times 2" /> matrix.
+Sarrus' method is a practical way to calculate the determinant of a <InlineMath math="3 \times 3" /> matrix. To understand its sign pattern, first recall how to calculate the determinant of a <InlineMath math="2 \times 2" /> matrix.
 
 If we have a <InlineMath math="2 \times 2" /> matrix:
 
@@ -70,6 +70,22 @@ Or, after distributing the negative sign:
 
 <BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
 
+### Numerical Worked Example
+
+Calculate the determinant of matrix <InlineMath math="P" />:
+
+<BlockMath math="P=\begin{bmatrix}1&3&2\\2&6&2\\5&9&4\end{bmatrix}" />
+
+Keep the two diagonal sums separate until the final subtraction. This makes the sign easier to check:
+
+<MathContainer>
+  <BlockMath math="D_+=(1)(6)(4)+(3)(2)(5)+(2)(2)(9)=24+30+36=90" />
+  <BlockMath math="D_-=(2)(6)(5)+(1)(2)(9)+(3)(2)(4)=60+18+24=102" />
+  <BlockMath math="\det(P)=D_+-D_-=90-102=-12" />
+</MathContainer>
+
+The determinant is <InlineMath math="-12" />. Expanding the same matrix by cofactors gives the same value, which is a useful independent check.
+
 ### Visualizing Sarrus Method
 
 To visualize this process, we can write:
@@ -90,4 +106,20 @@ Thus, the complete formula becomes:
 
 ## Important Limitation of Sarrus Method
 
-Sarrus' method is **only applicable to <InlineMath math="2 \times 2" /> and <InlineMath math="3 \times 3" /> matrices**. For matrices of higher order (e.g., <InlineMath math="4 \times 4" />), this method cannot be used. Other methods such as cofactor expansion or row reduction are required for such cases.
+Sarrus' method is **only applicable to <InlineMath math="3 \times 3" /> matrices**. The <InlineMath math="2 \times 2" /> calculation above is a reminder of the diagonal sign pattern, not another case of Sarrus' method. For larger matrices, such as a <InlineMath math="4 \times 4" /> matrix, use another method such as cofactor expansion or row reduction.
+
+## Practice with a Worked Solution
+
+Use Sarrus' method to calculate the determinant of:
+
+<BlockMath math="B=\begin{bmatrix}2&-1&3\\0&4&5\\1&2&-2\end{bmatrix}" />
+
+First calculate the two diagonal sums, then subtract the negative-diagonal sum from the positive-diagonal sum:
+
+<MathContainer>
+  <BlockMath math="D_+=(2)(4)(-2)+(-1)(5)(1)+(3)(0)(2)=-16-5+0=-21" />
+  <BlockMath math="D_-=(3)(4)(1)+(2)(5)(2)+(-1)(0)(-2)=12+20+0=32" />
+  <BlockMath math="\det(B)=D_+-D_-=-21-32=-53" />
+</MathContainer>
+
+Therefore, <InlineMath math="\det(B)=-53" />.

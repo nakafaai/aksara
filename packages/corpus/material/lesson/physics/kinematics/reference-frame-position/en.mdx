@@ -11,27 +11,27 @@ export const metadata = {
 
 If you say, "I am <InlineMath math="30 \text{ m}" /> from the store," your friend can still ask, "which direction?" If you say, "I am east," your friend can still ask, "how far?"
 
-In physics, **position** is the location of an object measured from a chosen reference point. That chosen point is called a **reference frame**. A reference frame can be a store, a house, a flagpole, the start line of a race, or the zero point on a coordinate axis.
+In physics, **position** is an object's location in a chosen **frame of reference**. The frame provides a coordinate system and a positive direction. A store, house, flagpole, or start line can serve as the **reference point**, or origin, inside that frame.
 
 > A complete position statement names the reference point, value, unit, and direction.
 
 If motion happens along one straight line, we can choose one direction as positive. In the street example, east is positive and west is negative.
 
-<BlockMath math="x_{\text{relative}}=x_{\text{object}}-x_{\text{reference}}" />
+<BlockMath math="x'=x_{\text{object}}-x_{\text{origin}}" />
 
-This equation does not move the object. It only changes how we read the object's location from the chosen reference point.
+This equation does not move the object. It shifts the coordinate origin while the axis and positive direction stay fixed.
 
 ## Position from Different References
 
-Take one object at coordinate <InlineMath math="30 \text{ m}" /> when the store is used as zero. If the reference is changed to Rani's house at coordinate <InlineMath math="20 \text{ m}" />, the object's position becomes <InlineMath math="+10 \text{ m}" /> from Rani.
+Take one object at coordinate <InlineMath math="30 \text{ m}" /> when the store is used as zero. If the origin is shifted to Rani's house at coordinate <InlineMath math="20 \text{ m}" />, the object's new coordinate becomes <InlineMath math="+10 \text{ m}" />.
 
-The object does not move when the reference point changes. What changes is the way we read the coordinate. If the reference point moves to the right, a large positive position can become a smaller positive position, zero, or even negative.
+The object does not move when the origin changes. Only its coordinate changes. Shifting the origin to the right can turn a large positive coordinate into a smaller positive coordinate, zero, or a negative coordinate.
 
 ## Reading Sign and Direction
 
 The sign of a position tells us which side of the reference point the object is on. In the street example, east is chosen as positive. So a positive value means the object is east of the reference point, while a negative value means the object is west of it.
 
-| Reference frame | Object position on the street line | Object relative position |
+| Origin in the same reference frame | Object coordinate on the street axis | Coordinate relative to the origin |
 | :-------------- | :--------------------------------- | :----------------------- |
 | Store at <InlineMath math="0 \text{ m}" /> | Object at <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> east |
 | Rani's house at <InlineMath math="20 \text{ m}" /> | Object at <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> east |
@@ -47,24 +47,24 @@ A position sentence needs four parts. If one part is missing, another person can
   title="Building a Position Statement"
   description="Follow this order so the object's position is not read from the wrong reference point."
   chart={`flowchart LR
-    A["Observed object"] --> B["Reference frame"]
-    B --> C["Value and unit"]
-    C --> D["Direction from the reference"]`}
+    A["Observed object"] --> B["Origin and positive direction"]
+    B --> C["Coordinate value and unit"]
+    C --> D["Position relative to the origin"]`}
 />
 
-A complete sentence is: "The object is <InlineMath math="10 \text{ m}" /> east of Rani's house." That sentence is clear because it names the object, reference point, distance, unit, and direction.
+A complete sentence is: "The object is <InlineMath math="10 \text{ m}" /> east of Rani's house." That sentence is clear because it names the object, origin, coordinate magnitude, unit, and direction.
 
 The sentence "the object is near the house" is not enough for physics. Near which house? How many meters? East or west? These small questions matter because kinematics needs positions that can be calculated.
 
 ## A Position Sentence from the Store
 
-A marker is at coordinate <InlineMath math="40 \text{ m}" /> from the store. Dimas's house is at coordinate <InlineMath math="30 \text{ m}" /> from the store. If Dimas's house is used as the reference frame, the marker's position is:
+A marker is at coordinate <InlineMath math="40 \text{ m}" /> when the store is the origin. Dimas's house is at coordinate <InlineMath math="30 \text{ m}" /> in the same frame. If the origin is shifted to Dimas's house, the marker's coordinate is:
 
 <BlockMath math="\begin{aligned}
-x_{\text{relative}}
+x'
 &=x_{\text{marker}}-x_{\text{Dimas}} \\
 &=40 \text{ m}-30 \text{ m} \\
 &=+10 \text{ m}
 \end{aligned}" />
 
-So, the marker is <InlineMath math="10 \text{ m}" /> east of Dimas's house. From the store, its position is <InlineMath math="40 \text{ m}" />. From Dimas's house, its position is <InlineMath math="+10 \text{ m}" />. Both statements are correct because they use different reference frames.
+So, the marker is <InlineMath math="10 \text{ m}" /> east of Dimas's house. With the store as origin, its coordinate is <InlineMath math="40 \text{ m}" />. With Dimas's house as origin, its coordinate is <InlineMath math="+10 \text{ m}" />. Both statements are correct because they use different origins in a clearly defined reference frame.

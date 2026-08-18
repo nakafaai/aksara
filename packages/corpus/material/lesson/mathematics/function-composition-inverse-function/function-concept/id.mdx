@@ -1,45 +1,91 @@
 export const metadata = {
   title: "Konsep Fungsi",
-  description: "Pahami fungsi sebagai mesin ajaib dengan contoh interaktif. Pelajari notasi f(x), hubungan input-output, dan aturan tepat satu.",
+  description:
+    "Pahami fungsi sebagai aturan yang memasangkan tepat satu keluaran dengan setiap masukan yang diizinkan, lalu baca notasi, tabel, dan pasangan berurutan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
-## Apa Itu Fungsi?
+## Apa yang Membuat Suatu Relasi Menjadi Fungsi?
 
-Bayangkan kamu punya mesin ajaib. Mesin ini punya tugas khusus: setiap kali kamu memasukkan sesuatu (kita sebut *masukan* atau *input*), mesin itu akan mengeluarkan *tepat satu* barang lain (kita sebut *keluaran* atau *output*) sesuai aturan tertentu. Nah, mesin ajaib inilah yang kita sebut **fungsi** dalam matematika!
+Fungsi memasangkan **tepat satu keluaran** dengan setiap masukan dalam domainnya. Jika <InlineMath math="f" /> memetakan himpunan <InlineMath math="A" /> ke himpunan <InlineMath math="B" />, kita menulis:
 
-Jadi, fungsi adalah aturan khusus yang menghubungkan setiap anggota dari satu kelompok (himpunan) ke **tepat satu** anggota di kelompok lain. Kuncinya ada di kata "tepat satu". Setiap masukan hanya boleh punya satu keluaran.
+<BlockMath math="f:A\to B" />
 
-## Notasi Fungsi
+Untuk setiap <InlineMath math="x\in A" />, harus ada satu nilai <InlineMath math="y\in B" /> dengan <InlineMath math="y=f(x)" />. Dua masukan yang berbeda boleh memiliki keluaran yang sama. Yang tidak boleh adalah satu masukan memiliki dua keluaran yang berbeda.
 
-Biasanya, fungsi ditulis dalam bentuk <InlineMath math="f(x) = y" />.
+Sebagai contoh, aturan <InlineMath math="f(x)=x+2" /> memberikan satu nilai untuk setiap masukan real:
 
--   <InlineMath math="f" />: Ini adalah nama **fungsinya** (anggap saja sebagai nama mesin). Bisa juga pakai huruf lain seperti <InlineMath math="g" /> atau <InlineMath math="h" />.
+| Masukan <InlineMath math="x" /> | Keluaran <InlineMath math="f(x)" /> |
+| -------------------------------- | ---------------------------------- |
+| <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="2" /> |
 
--   <InlineMath math="x" />: Ini adalah **variabel masukan** (input). Anggap saja ini barang yang kamu masukkan ke mesin.
+Informasi yang sama dapat ditulis sebagai pasangan berurutan:
 
--   <InlineMath math="y" />: Ini adalah **variabel keluaran** (output). Ini barang yang keluar dari mesin setelah diproses. Nilai <InlineMath math="y" /> ini bergantung pada nilai <InlineMath math="x" /> yang dimasukkan dan aturan <InlineMath math="f" />. Jadi, <InlineMath math="y" /> sering juga ditulis sebagai <InlineMath math="f(x)" /> (dibaca: "f dari x").
+<BlockMath math="\{(3,5),(-1,1),(0,2)\}" />
 
-## Mesin Fungsi
+Setiap koordinat pertama hanya muncul dengan satu koordinat kedua. Jadi, pasangan tersebut menyatakan fungsi pada masukan yang ditampilkan.
 
-Agar lebih mudah membayangkannya, lihat mesin ini.
+## Membaca Notasi Fungsi
+
+Dalam persamaan <InlineMath math="f(x)=y" />:
+
+- <InlineMath math="f" /> adalah nama fungsi.
+- <InlineMath math="x" /> adalah masukan dari domain.
+- <InlineMath math="f(x)" /> adalah keluaran setelah aturan diterapkan pada <InlineMath math="x" />.
+- <InlineMath math="y" /> adalah nama lain untuk keluaran tersebut.
+
+Notasi <InlineMath math="f(3)" /> tidak berarti <InlineMath math="f\cdot3" />. Notasi itu berarti “hitung nilai <InlineMath math="f" /> pada masukan <InlineMath math="3" />.” Untuk <InlineMath math="f(x)=x+2" />:
+
+<MathContainer>
+  <BlockMath math="f(3)=3+2=5" />
+  <BlockMath math="f(-1)=-1+2=1" />
+  <BlockMath math="f(0)=0+2=2" />
+</MathContainer>
+
+## Menyelidiki Satu Aturan
+
+Mesin fungsi interaktif memakai <InlineMath math="f(x)=2x+1" />. Ubah masukannya, perkirakan keluarannya, lalu bandingkan perkiraanmu dengan hasil yang ditampilkan.
 
 <FunctionMachine
   title="Mesin Fungsi"
-  description="Masukkan angka ke dalam mesin, dan mesin akan mengeluarkan hasilnya."
-  inputLabel="Masukan mesin fungsi"
+  description="Masukkan sebuah bilangan untuk menghitung aturan fungsi yang tetap."
+  inputLabel="Masukan fungsi"
 />
 
-Di atas adalah contoh mesin fungsi interaktif. Coba ganti nilai masukan (<InlineMath math="x" />) di bagian bawah, dan perhatikan bagaimana nilai keluaran (<InlineMath math="f(x)" />) berubah sesuai aturan fungsi <InlineMath math="f(x) = 2x + 1" />.
+Aturannya selalu menjalankan dua operasi yang sama: kalikan masukan dengan <InlineMath math="2" />, lalu tambahkan <InlineMath math="1" />. Sebagai contoh:
 
-### Contoh Sederhana
+<BlockMath math="f(-4)=2(-4)+1=-8+1=-7" />
 
-Misalkan kita punya fungsi <InlineMath math="f(x) = x + 2" />. Ini artinya, aturan mesin <InlineMath math="f" /> adalah "tambahkan <InlineMath math="2" />" pada setiap masukan <InlineMath math="x" />.
+## Fungsi atau Bukan Fungsi?
 
--   Jika masukannya <InlineMath math="x=3" />, keluarannya adalah <InlineMath math="f(3) = 3 + 2 = 5" />.
--   Jika masukannya <InlineMath math="x=-1" />, keluarannya adalah <InlineMath math="f(-1) = -1 + 2 = 1" />.
--   Jika masukannya <InlineMath math="x=0" />, keluarannya adalah <InlineMath math="f(0) = 0 + 2 = 2" />.
+Bandingkan dua relasi berikut:
 
-Setiap masukan <InlineMath math="(3, -1, 0)" /> hanya punya **tepat satu** keluaran <InlineMath math="(5, 1, 2)" />. Inilah ciri khas fungsi!
+<MathContainer>
+  <BlockMath math="R=\{(1,4),(2,4),(3,7)\}" />
+  <BlockMath math="S=\{(1,4),(1,6),(3,7)\}" />
+</MathContainer>
+
+Relasi <InlineMath math="R" /> adalah fungsi. Masukan <InlineMath math="1" /> dan <InlineMath math="2" /> memiliki keluaran yang sama, yaitu <InlineMath math="4" />, dan hal itu diperbolehkan. Relasi <InlineMath math="S" /> bukan fungsi karena masukan <InlineMath math="1" /> dipasangkan dengan <InlineMath math="4" /> dan <InlineMath math="6" />.
+
+## Periksa Pemahamanmu
+
+1. Diberikan <InlineMath math="g(x)=3x-2" />. Tentukan <InlineMath math="g(0)" />, <InlineMath math="g(2)" />, dan <InlineMath math="g(-3)" />.
+2. Apakah <InlineMath math="T=\{(-2,5),(0,1),(4,5)\}" /> menyatakan fungsi pada masukan yang ditampilkan? Jelaskan.
+3. Apakah <InlineMath math="U=\{(-2,5),(0,1),(-2,7)\}" /> menyatakan fungsi pada masukan yang ditampilkan? Jelaskan.
+
+### Pembahasan
+
+1. Substitusikan setiap masukan ke aturan yang sama:
+
+   <MathContainer>
+     <BlockMath math="g(0)=3(0)-2=-2" />
+     <BlockMath math="g(2)=3(2)-2=4" />
+     <BlockMath math="g(-3)=3(-3)-2=-11" />
+   </MathContainer>
+
+2. Ya. Setiap koordinat pertama dalam <InlineMath math="T" /> memiliki tepat satu koordinat kedua. Keluaran <InlineMath math="5" /> boleh dipakai oleh lebih dari satu masukan.
+3. Tidak. Masukan <InlineMath math="-2" /> dipasangkan dengan dua keluaran yang berbeda, yaitu <InlineMath math="5" /> dan <InlineMath math="7" />.

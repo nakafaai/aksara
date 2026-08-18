@@ -1,112 +1,126 @@
 export const metadata = {
-   title: "Sifat Eksponen",
-   description: "Pelajari 7 aturan dasar eksponen dengan contoh praktis. Pelajari operasi perkalian, pembagian, pangkat dan eksponen rasional untuk pemecahan masalah.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   date: "2025-04-01",
-   subject: "Eksponen dan Logaritma",
+  title: "Sifat Eksponen",
+  description:
+    "Gunakan tujuh sifat eksponen dengan syarat domain yang tepat, tabel pola bilangan pokok dua, serta contoh pangkat bulat dan rasional.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-01",
+  subject: "Eksponen dan Logaritma",
 };
 
-## Tabel Nilai Eksponen untuk Basis Dua
+## Membaca Pola Pangkat Dua
 
-| <InlineMath math="2^n" />    | Hasil Perpangkatan |
-| ---------------------------- | ------------------ |
-| <InlineMath math="2^1" />    | <InlineMath math="2" /> |
-| <InlineMath math="2^2" />    | <InlineMath math="4" /> |
-| <InlineMath math="2^3" />    | <InlineMath math="8" /> |
-| <InlineMath math="2^4" />    | <InlineMath math="16" /> |
-| <InlineMath math="2^5" />    | <InlineMath math="32" /> |
-| <InlineMath math="2^6" />    | <InlineMath math="64" /> |
-| <InlineMath math="2^7" />    | <InlineMath math="128" /> |
-| <InlineMath math="2^8" />    | <InlineMath math="256" /> |
-| <InlineMath math="2^9" />    | <InlineMath math="512" /> |
+Tabel berikut menunjukkan pola berulang. Turun satu baris berarti mengalikan nilai dengan <InlineMath math="2" /> karena pangkatnya bertambah satu.
+
+| <InlineMath math="2^n" /> | Nilai |
+| ------------------------- | ----- |
+| <InlineMath math="2^1" /> | <InlineMath math="2" /> |
+| <InlineMath math="2^2" /> | <InlineMath math="4" /> |
+| <InlineMath math="2^3" /> | <InlineMath math="8" /> |
+| <InlineMath math="2^4" /> | <InlineMath math="16" /> |
+| <InlineMath math="2^5" /> | <InlineMath math="32" /> |
+| <InlineMath math="2^6" /> | <InlineMath math="64" /> |
+| <InlineMath math="2^7" /> | <InlineMath math="128" /> |
+| <InlineMath math="2^8" /> | <InlineMath math="256" /> |
+| <InlineMath math="2^9" /> | <InlineMath math="512" /> |
 | <InlineMath math="2^{10}" /> | <InlineMath math="1024" /> |
 
-## Sifat-Sifat Eksponen
+Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua dengan tiga faktor dua lainnya. Hasilnya memiliki delapan faktor dua, sehingga <InlineMath math="2^5\cdot2^3=2^8" />.
 
-Terdapat beberapa sifat eksponen yang perlu dipahami:
+## Tujuh Sifat Eksponen
 
-1. <InlineMath math="a^m \cdot a^n = a^{m+n}" />, dengan <InlineMath math="a \neq 0, m, n" /> bilangan
-   bulat
+| Bentuk dalam soal | Sifat | Syarat yang digunakan |
+| ----------------- | ----- | --------------------- |
+| Mengalikan bilangan pokok sama | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Membagi bilangan pokok sama | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Memangkatkan suatu pangkat | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Memangkatkan perkalian | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Memangkatkan pembagian | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Mengalikan pangkat rasional berpenyebut sama | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Mengalikan pangkat rasional umum | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
-   Ini berarti perkalian dua eksponen dengan basis sama menghasilkan eksponen baru dengan pangkat yang dijumlahkan.
+Bilangan pokok tetap sama ketika bilangan pokok yang sama dikalikan atau dibagi. Hanya pangkatnya yang digabungkan. Sebaliknya, pangkat di luar tanda kurung bekerja pada seluruh bentuk di dalam tanda kurung.
 
-2. <InlineMath math="\frac{a^m}{a^n} = a^{m-n}" />, dengan <InlineMath math="a \neq 0, m, n" /> bilangan
-   bulat
+## Alasan Syaratnya Penting
 
-   Pembagian dua eksponen dengan basis sama menghasilkan eksponen baru dengan pangkat yang dikurangkan.
+- Bilangan pokok nol dapat digunakan pada beberapa pangkat positif, tetapi tidak pada pangkat negatif karena <InlineMath math="0^{-1}" /> memerlukan pembagian dengan nol. Karena itu, sifat pangkat bulat menggunakan <InlineMath math="a\neq0" /> sebagai satu syarat yang konsisten.
+- Bentuk pembagian juga memerlukan penyebut yang tidak nol.
+- Untuk pangkat rasional, penggunaan <InlineMath math="a>0" /> membuat setiap akar dan pangkat real terdefinisi tanpa ambiguitas. Beberapa contoh khusus dengan bilangan pokok negatif memang bernilai real, tetapi satu aturan tanpa batasan tidak dapat mencakup semua pangkat rasional.
 
-3. <InlineMath math="(a^m)^n = a^{m \times n}" />, dengan <InlineMath math="a \neq 0, m, n" /> bilangan
-   bulat
+Syarat bukan hiasan setelah rumus. Periksa syaratnya sebelum menggunakan sifat.
 
-   Eksponen dari eksponen berarti pangkat dikali dengan pangkat luar.
+## Memilih Sifat yang Tepat
 
-4. <InlineMath math="(ab)^m = a^m \times b^m" />, dengan <InlineMath math="a, b \neq 0" />
-   , dan <InlineMath math="m" /> bilangan bulat
+| Pola pada bentuk | Langkah pertama |
+| ---------------- | --------------- |
+| Bilangan pokok sama dikalikan | Jumlahkan pangkat |
+| Bilangan pokok sama dibagi | Kurangi dengan pangkat penyebut |
+| Pangkat berada di luar pangkat | Kalikan pangkat |
+| Perkalian atau pembagian di dalam tanda kurung | Sebarkan pangkat luar |
+| Pangkat rasional berpenyebut berbeda | Ubah ke penyebut bersama |
 
-   Eksponen dari perkalian sama dengan perkalian masing-masing basis berpangkat sama.
+## Contoh Pembahasan
 
-5. <InlineMath math="\left(\frac{a}{b}\right)^m = \frac{a^m}{b^m}" />, dengan <InlineMath math="b \neq 0" />
-   , dan <InlineMath math="m" /> bilangan bulat
+### Menggabungkan Perkalian dan Pembagian
 
-   Eksponen dari pembagian sama dengan pembagian masing-masing basis berpangkat sama.
+1. Sederhanakan <InlineMath math="\frac{2^5\cdot2^3}{2^2}" />.
 
-6. <InlineMath math="(a^\frac{m}{n})^p \cdot (a^\frac{p}{n}) = (a)^\frac{m+p}{n}" />
-   , dengan <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> dan <InlineMath math="\frac{p}{n}" /> bilangan
-   rasional dengan <InlineMath math="n \neq 0" />
+    <MathContainer>
+      <BlockMath math="\frac{2^5\cdot2^3}{2^2}=2^{5+3-2}" />
+      <BlockMath math="2^{5+3-2}=2^6=64" />
+    </MathContainer>
 
-7. <InlineMath math="(a^\frac{m}{n}) \cdot (a^\frac{p}{q}) = (a)^\frac{m \cdot q + p \cdot n}{n \cdot q}" />
-   , dengan <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> dan <InlineMath math="\frac{p}{q}" /> bilangan
-   rasional dengan <InlineMath math="n, q \neq 0" />
+2. Sederhanakan <InlineMath math="2^2\cdot2^3" />.
 
-## Pentingnya Syarat pada Setiap Sifat
+    <BlockMath math="2^2\cdot2^3=2^{2+3}=2^5=32" />
 
-Setiap sifat eksponen memiliki syarat tertentu:
+3. Sederhanakan <InlineMath math="2^5\cdot2^2" />.
 
-- Pada sifat <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />, nilai <InlineMath math="a \neq 0" /> karena eksponen dengan basis <InlineMath math="0" /> hanya terdefinisi untuk pangkat positif.
-- Pada sifat <InlineMath math="4" />, nilai <InlineMath math="a, b \neq 0" /> untuk memastikan eksponen terdefinisi.
-- Pada sifat <InlineMath math="5" />, nilai <InlineMath math="b \neq 0" /> untuk menghindari pembagian dengan nol.
-- Pada sifat <InlineMath math="6" /> dan <InlineMath math="7" />, nilai <InlineMath math="a > 0" /> karena eksponen rasional pada bilangan negatif dapat menghasilkan bilangan kompleks.
+    <BlockMath math="2^5\cdot2^2=2^{5+2}=2^7=128" />
 
-Pemahaman sifat-sifat eksponen ini sangat penting sebagai dasar untuk pembelajaran matematika lanjutan, seperti logaritma, fungsi eksponen, dan kalkulus.
+4. Sederhanakan <InlineMath math="2^3\cdot2^7" />.
 
-## Contoh Penyelesaian
+    <BlockMath math="2^3\cdot2^7=2^{3+7}=2^{10}=1024" />
 
-1. **Sederhanakan <InlineMath math="\frac{2^5 \times 2^3}{2^2}" />**
+5. Sederhanakan <InlineMath math="\frac{2^8}{2^6}" />.
 
-   <BlockMath math="\frac{2^5 \times 2^3}{2^2} = \frac{2^{5+3}}{2^2} = \frac{2^8}{2^2} = 2^{8-2} = 2^6 = 64" />
+    <BlockMath math="\frac{2^8}{2^6}=2^{8-6}=2^2=4" />
 
-2. **Sederhanakan <InlineMath math="2^2 \cdot 2^3" />**
+6. Sederhanakan <InlineMath math="\frac{2^{10}}{2^3}" />.
 
-   <BlockMath math="2^2 \cdot 2^3 = 2^{2+3} = 2^5 = 32" />
+    <BlockMath math="\frac{2^{10}}{2^3}=2^{10-3}=2^7=128" />
 
-3. **Sederhanakan <InlineMath math="2^5 \cdot 2^2" />**
+7. Sederhanakan <InlineMath math="\frac{2^6}{2^4}" />.
 
-   <BlockMath math="2^5 \cdot 2^2 = 2^{5+2} = 2^7 = 128" />
+    <BlockMath math="\frac{2^6}{2^4}=2^{6-4}=2^2=4" />
 
-4. **Sederhanakan <InlineMath math="2^3 \cdot 2^7" />**
+### Pangkat dari Suatu Pangkat
 
-   <BlockMath math="2^3 \cdot 2^7 = 2^{3+7} = 2^{10} = 1024" />
+8. Sederhanakan <InlineMath math="(2^3)^3" />.
 
-5. **Sederhanakan <InlineMath math="\frac{2^8}{2^6}" />**
+    <BlockMath math="(2^3)^3=2^{3\cdot3}=2^9=512" />
 
-   <BlockMath math="\frac{2^8}{2^6} = 2^{8-6} = 2^2 = 4" />
+9. Sederhanakan <InlineMath math="(2^4)^2" />.
 
-6. **Sederhanakan <InlineMath math="\frac{2^{10}}{2^3}" />**
+    <BlockMath math="(2^4)^2=2^{4\cdot2}=2^8=256" />
 
-   <BlockMath math="\frac{2^{10}}{2^3} = 2^{10-3} = 2^7 = 128" />
+10. Sederhanakan <InlineMath math="(2^2)^5" />.
 
-7. **Sederhanakan <InlineMath math="\frac{2^6}{2^4}" />**
+    <BlockMath math="(2^2)^5=2^{2\cdot5}=2^{10}=1024" />
 
-   <BlockMath math="\frac{2^6}{2^4} = 2^{6-4} = 2^2 = 4" />
+### Pangkat Rasional
 
-8. **Sederhanakan <InlineMath math="(2^3)^3" />**
+11. Sederhanakan <InlineMath math="2^{1/3}2^{2/3}" />.
 
-   <BlockMath math="(2^3)^3 = 2^{3 \times 3} = 2^9 = 512" />
+    <MathContainer>
+      <BlockMath math="2^{1/3}2^{2/3}=2^{(1+2)/3}" />
+      <BlockMath math="2^{3/3}=2" />
+    </MathContainer>
 
-9. **Sederhanakan <InlineMath math="(2^4)^2" />**
+12. Sederhanakan <InlineMath math="3^{1/2}3^{1/3}" />.
 
-   <BlockMath math="(2^4)^2 = 2^{4 \times 2} = 2^8 = 256" />
+    <MathContainer>
+      <BlockMath math="3^{1/2}3^{1/3}=3^{3/6+2/6}" />
+      <BlockMath math="3^{1/2}3^{1/3}=3^{5/6}" />
+    </MathContainer>
 
-10. **Sederhanakan <InlineMath math="(2^2)^5" />**
-
-    <BlockMath math="(2^2)^5 = 2^{2 \times 5} = 2^{10} = 1024" />
+Pada setiap contoh, operasi dan susunan bilangan pokok menentukan sifat yang digunakan. Membaca struktur tersebut terlebih dahulu lebih andal daripada mencoba mengingat rumus tanpa konteks.

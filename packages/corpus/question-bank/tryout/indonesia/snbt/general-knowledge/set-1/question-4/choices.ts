@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Researchers are still developing the source of dreams that occur in animals.",
+        "Animal sleep proves that cats dream about activities they perform while awake.",
       value: false,
     },
     {
       label:
-        "The question about the origin of dreams has been around for a long time and until now researchers are still investigating the origin or source of dreams.",
+        "Dreams draw on sleeping-brain activity and fragments of waking experience, but their precise function remains under study.",
       value: true,
     },
     {
       label:
-        "A dream is a feeling carried over from when we are awake that is still desired by the dreaming person.",
+        "Every dream directly replays a recent waking experience and strengthens that memory.",
       value: false,
     },
     {
       label:
-        "Not only humans experience dreams, animals also experience dreams.",
+        "Only REM sleep produces dreams because the brain is inactive in every other stage.",
       value: false,
     },
     {
       label:
-        "Researchers still hypothesize the dream process like a computer turned off, but remains awake.",
+        "The purpose of dreaming is fully understood, so further research is unnecessary.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Para peneliti masih mengembangkan sumber mimpi yang terjadi pada binatang.",
+        "Tidur pada hewan membuktikan bahwa kucing bermimpi tentang kegiatan yang dilakukannya ketika terjaga.",
       value: false,
     },
     {
       label:
-        "Pertanyaan tentang asal mimpi sudah sejak lama dan hingga kini para peneliti masih menyelidiki asal atau sumber mimpi.",
+        "Mimpi berkaitan dengan aktivitas otak saat tidur dan potongan pengalaman terjaga, tetapi fungsi tepatnya masih diteliti.",
       value: true,
     },
     {
       label:
-        "Mimpi merupakan perasaan yang terbawa dari saat kita terjaga yang masih diinginkan oleh orang yang bermimpi tersebut.",
+        "Setiap mimpi menayangkan ulang pengalaman baru secara persis dan memperkuat ingatan tersebut.",
       value: false,
     },
     {
       label:
-        "Tidak hanya manusia yang mengalami mimpi, binatang pun mengalami mimpi.",
+        "Mimpi hanya terjadi dalam tidur REM karena otak tidak aktif pada tahap lainnya.",
       value: false,
     },
     {
       label:
-        "Para peneliti masih menduga-duga proses mimpi ibarat komputer yang dimatikan, tetapi tetap terjaga.",
+        "Tujuan mimpi sudah dipahami sepenuhnya sehingga tidak perlu diteliti lagi.",
       value: false,
     },
   ],

@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Environmental damage can be defined as a process of deterioration or decline in environmental quality so that it is characterized by the loss of soil, water, and air resources, the extinction of wild flora and fauna, and ecosystem damage.",
+        "Environmental degradation is a decline in environmental quality, so it is evident in damaged soil, polluted water and air, and biodiversity loss.",
       value: false,
     },
     {
       label:
-        "Environmental damage can be defined as a process of deterioration or decline in environmental quality which is characterized by the loss of soil, water, and air resources, the extinction of wild flora and fauna, and ecosystem damage.",
+        "Environmental degradation is a decline in environmental quality that is evident in damaged soil, polluted water and air, and biodiversity loss.",
       value: true,
     },
     {
       label:
-        "Environmental damage can be defined as a process of deterioration or decline in environmental quality which is also characterized by the loss of soil, water, and air resources, the extinction of soil, water, and air resources, the extinction of wild flora and fauna, and ecosystem damage.",
+        "Environmental degradation is a decline in environmental quality because it is evident in damaged soil, polluted water and air, and biodiversity loss.",
       value: false,
     },
     {
       label:
-        "Environmental damage can be defined as a process of deterioration or decline in environmental quality because it is characterized by the loss of soil, water, and air resources, the extinction of wild flora and fauna, and ecosystem damage.",
+        "Environmental degradation is a decline in environmental quality, but it is evident in damaged soil, polluted water and air, and biodiversity loss.",
       value: false,
     },
     {
       label:
-        "Environmental damage can be defined as a process of deterioration or decline in environmental quality, but is also characterized by the loss of soil, water, and air resources, the extinction of wild flora and fauna, and ecosystem damage.",
+        "Environmental degradation is a decline in environmental quality and that is evident in damaged soil, polluted water and air, and biodiversity loss.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Kerusakan lingkungan dapat diartikan sebagai proses deteriorasi atau penurunan mutu lingkungan sehingga ditandai dengan hilangnya sumber daya tanah, air, udara, punahnya flora dan fauna liar, serta rusaknya ekosistem.",
+        "Degradasi lingkungan adalah penurunan mutu lingkungan sehingga tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
       value: false,
     },
     {
       label:
-        "Kerusakan lingkungan dapat diartikan sebagai proses deteriorasi atau penurunan mutu lingkungan yang ditandai dengan hilangnya sumber daya tanah, air, udara, punahnya flora dan fauna liar, serta rusaknya ekosistem.",
+        "Degradasi lingkungan adalah penurunan mutu lingkungan yang tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
       value: true,
     },
     {
       label:
-        "Kerusakan lingkungan dapat diartikan sebagai proses deteriorasi atau penurunan mutu lingkungan yang mana ditandai pula oleh hilangnya sumber daya tanah, air, udara, punahnya sumber daya tanah, air, udara, punahnya flora dan fauna liar, dan kerusakan ekosistem.",
+        "Degradasi lingkungan adalah penurunan mutu lingkungan karena tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
       value: false,
     },
     {
       label:
-        "Kerusakan lingkungan dapat diartikan sebagai proses deteriorasi atau penurunan mutu lingkungan karena ditandai dengan hilangnya sumber daya tanah, air, udara, punahnya flora dan fauna liar, dan rusaknya ekosistem.",
+        "Degradasi lingkungan adalah penurunan mutu lingkungan, tetapi tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
       value: false,
     },
     {
       label:
-        "Kerusakan lingkungan dapat diartikan sebagai proses deteriorasi atau penurunan mutu lingkungan, tetapi juga ditandai dengan hilangnya sumber daya tanah, air, udara, punahnya flora dan fauna liar, serta kerusakan ekosistem.",
+        "Degradasi lingkungan adalah penurunan mutu lingkungan dan yang tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
       value: false,
     },
   ],

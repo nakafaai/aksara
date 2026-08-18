@@ -4,54 +4,53 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The Cukurgondang Kemtan Agricultural Technology Research and Development Installation Garden was established in $$1941$$ and has an area of thirteen hectares.",
+        "Mango accessions had been planted at Cukurgondang since January $$1941$$, and the site covered $$11.87$$ hectares.",
       value: false,
     },
     {
       label:
-        "Visitors to the National Mango Innovation Week were interested in taking pictures of mangoes of various shapes, colors, and sizes.",
+        "National Mango Innovation Week was held at IP2TP Cukurgondang in Pasuruan, East Java.",
       value: false,
     },
     {
       label:
-        "In Pasuruan, East Java, there are people's plantations cultivating various types of mangoes from domestic and foreign origins.",
+        "Community plantations in Pasuruan cultivated every accession in the Cukurgondang collection.",
       value: true,
     },
     {
       label:
-        "Various kinds of mangoes exhibited at PIMN contained mango type names that broadened insight into hundreds of mango types in the world.",
+        "The ministry described Cukurgondang as the world's second-largest mango collection.",
       value: false,
     },
     {
-      label:
-        "The Cukurgondang Kemtan Agricultural Technology Research and Development Installation Garden initially only had $$208$$ mango varieties with $$289$$ accessions.",
+      label: "The event served to disseminate mango research and technology.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Kebun Instalasi Penelitian Pengembangan Teknologi Pertanian Cukurgondang Kemtan berdiri tahun $$1941$$ dan memiliki luas tiga belas hektare.",
+        "Aksesi mangga telah ditanam di Cukurgondang sejak Januari $$1941$$, dan luas kebunnya $$11{,}87$$ hektare.",
       value: false,
     },
     {
       label:
-        "Pengunjung Pekan Inovasi Mangga Nasional tertarik mengambil gambar mangga beraneka jenis bentuk, warna, dan ukuran berbeda.",
+        "Pekan Inovasi Mangga Nasional diselenggarakan di IP2TP Cukurgondang, Pasuruan, Jawa Timur.",
       value: false,
     },
     {
       label:
-        "Di Pasuruan, Jawa Timur, terdapat perkebunan rakyat yang membudidayakan beraneka jenis mangga dari dalam dan luar negeri.",
+        "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
       value: true,
     },
     {
       label:
-        "Aneka macam mangga yang dipamerkan di PIMN memuat nama jenis mangga yang menambah wawasan tentang ratusan jenis mangga di dunia.",
+        "Kementerian menyebut Cukurgondang sebagai kebun koleksi mangga terbesar kedua di dunia.",
       value: false,
     },
     {
       label:
-        "Kebun Instalasi Penelitian Pengembangan Teknologi Pertanian Cukurgondang awalnya hanya memiliki $$208$$ varietas mangga dengan $$289$$ aksesi.",
+        "Kegiatan tersebut menjadi sarana untuk menyebarluaskan penelitian dan teknologi mangga.",
       value: false,
     },
   ],

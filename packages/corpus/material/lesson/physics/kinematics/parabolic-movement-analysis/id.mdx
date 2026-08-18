@@ -17,7 +17,7 @@ Analisis gerak parabola hampir selalu dimulai dari satu pertanyaan sederhana: be
   <BlockMath math="v_{0y}=v_0\sin\theta" />
 </MathContainer>
 
-Setelah itu, arah mendatar dan arah vertikal dihitung dengan aturan yang berbeda. Arah mendatar memakai GLB karena tidak ada percepatan mendatar. Arah vertikal memakai GLBB karena gravitasi terus bekerja ke bawah.
+Setelah itu, arah mendatar dan arah vertikal dihitung dengan aturan yang berbeda. Model di pelajaran ini mengabaikan hambatan udara dan memakai percepatan gravitasi tetap. Arah mendatar memakai GLB karena tidak ada percepatan mendatar. Arah vertikal memakai GLBB karena gravitasi terus bekerja ke bawah.
 
 > Kunci analisis gerak parabola adalah memakai waktu yang sama untuk dua arah yang berbeda.
 
@@ -51,7 +51,7 @@ Setelah itu, arah mendatar dan arah vertikal dihitung dengan aturan yang berbeda
 
 Lengkung dan bola bayangan menunjukkan posisi pada selang waktu yang sama, bukan lintasan mendatar dan vertikal yang terpisah. Angka di bawah adegan berasal dari pemecahan yang sama: <InlineMath math="v_{0x}" /> tetap, sedangkan <InlineMath math="v_y=v_{0y}-gt" /> berubah karena gravitasi menarik ke bawah.
 
-Cara membaca angkanya lebih enak kalau dilihat sebagai urutan rumus yang sama:
+Semua adegan berangkat dan mendarat pada ketinggian yang sama. Dengan syarat itu, angkanya dapat dibaca sebagai satu urutan rumus:
 
 <BlockMath math="\begin{aligned}
 v_{0x}&=v_0\cos\theta\\
@@ -76,7 +76,7 @@ Jika <InlineMath math="v_y=0" />, waktu menuju puncak menjadi:
 
 Untuk kelajuan awal <InlineMath math="40\text{ m/s}" /> dengan sudut <InlineMath math="60^\circ" />, komponen vertikal awalnya <InlineMath math="20\sqrt{3}\text{ m/s}" />. Sebelum puncak nilainya positif, di puncak menjadi nol, lalu setelah puncak bernilai negatif karena benda mulai turun.
 
-## Jarak Terjauh Memakai Waktu Total
+## Jangkauan Memakai Waktu Terbang Total
 
 Jika benda berangkat dari tanah dan kembali ke tanah pada ketinggian yang sama, waktu totalnya dua kali waktu menuju puncak.
 
@@ -97,11 +97,11 @@ Untuk mencari kecepatan pada waktu tertentu, hitung dulu <InlineMath math="v_x" 
   <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
 </MathContainer>
 
-Arah kecepatannya juga dapat dibaca dari perbandingan komponen vertikal dan mendatar:
+Arah kecepatan harus memakai kedua komponen dan kuadran yang benar:
 
-<BlockMath math="\tan\alpha=\frac{v_y}{v_x}" />
+<BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
 
-Jika <InlineMath math="v_y" /> positif, arah kecepatan miring ke atas. Jika <InlineMath math="v_y" /> negatif, arah kecepatan miring ke bawah.
+Jika <InlineMath math="v_x>0" />, rumus ini setara dengan <InlineMath math="\tan\alpha=v_y/v_x" /> untuk <InlineMath math="-90^\circ<\alpha<90^\circ" />. Nilai <InlineMath math="v_y" /> positif mengarah di atas horizontal, sedangkan nilai negatif mengarah di bawahnya.
 
 ## Sudut Enam Puluh Derajat Menentukan Dua Komponen
 
@@ -141,6 +141,6 @@ v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
 
 Arah kecepatannya terhadap horizontal:
 
-<BlockMath math="\alpha=\tan^{-1}\left(\frac{20\sqrt{3}-20}{20}\right)\approx 36{,}2^\circ" />
+<BlockMath math="\alpha=\operatorname{atan2}(20\sqrt{3}-20,20)\approx 36{,}2^\circ" />
 
 Jadi, pada <InlineMath math="t=2\text{ s}" />, bola masih bergerak miring ke atas karena <InlineMath math="v_y" /> masih positif.

@@ -2,18 +2,27 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The front part of the body will not feel pain.", value: true },
-    { label: "The front part of the body will feel pain.", value: false },
-    { label: "Potential to get acid reflux.", value: false },
-    { label: "The neck will be free from pain.", value: false },
-    { label: "Snoring will decrease.", value: false },
+    { label: "Mira's report enters the final decision queue.", value: true },
+    { label: "Mira's report failed the completeness check.", value: false },
+    { label: "Mira's application has already been approved.", value: false },
+    { label: "The analyst review is skipped for Mira's report.", value: false },
+    {
+      label: "Every report in the final queue is automatically approved.",
+      value: false,
+    },
   ],
   id: [
-    { label: "Tubuh bagian depan tidak terasa sakit.", value: true },
-    { label: "Tubuh bagian depan akan terasa sakit.", value: false },
-    { label: "Berpotensi untuk terkena asam lambung.", value: false },
-    { label: "Leher akan terhindar dari rasa sakit.", value: false },
-    { label: "Dengkuran akan semakin berkurang.", value: false },
+    { label: "Laporan Mira masuk ke antrean keputusan akhir.", value: true },
+    {
+      label: "Laporan Mira tidak lulus pemeriksaan kelengkapan.",
+      value: false,
+    },
+    { label: "Pengajuan Mira sudah disetujui.", value: false },
+    { label: "Penelaahan analis dilewati untuk laporan Mira.", value: false },
+    {
+      label: "Setiap laporan dalam antrean akhir disetujui secara otomatis.",
+      value: false,
+    },
   ],
 };
 

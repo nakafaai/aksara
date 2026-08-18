@@ -4,27 +4,27 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "the other sentences in paragraph $$1$$ explain further the kinds of integration of technology and media that can be of benefits to young learners.",
+        "the other sentences list devices without explaining the opening claim.",
       value: false,
     },
     {
       label:
-        "the other sentences in paragraph $$1$$ explain the impact of the integration of technology and media in early education explained in the first sentence.",
+        "the other sentences explain what successful integration looks like and how it supports the opening claim.",
       value: true,
     },
     {
       label:
-        "the other sentences in paragraph $$1$$ are examples of the use of technology in education.",
+        "the other sentences give historical examples that are unrelated to the opening claim.",
       value: false,
     },
     {
       label:
-        "the first sentence contains information that is contrary to the information in the other sentences.",
+        "the first sentence contradicts the warnings in the other sentences.",
       value: false,
     },
     {
       label:
-        "the other sentences vaguely support part of the statement in the first sentence.",
+        "the other sentences repeat the first sentence without adding detail.",
       value: false,
     },
   ],

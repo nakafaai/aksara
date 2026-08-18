@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Nilai Harapan Distribusi Normal",
-   description: "Pahami nilai harapan distribusi normal dengan penjelasan dan contoh jelas. Pelajari mengapa E(X)=μ dan cara menghitung mean dalam soal statistik.",
+   description: "Pahami nilai harapan distribusi normal dan tafsirkan rata-rata dalam soal statistika melalui penjelasan serta contoh.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Analisis Data dan Peluang",
@@ -8,11 +8,11 @@ export const metadata = {
 
 ## Konsep Dasar Nilai Harapan
 
-Pernahkah kamu bertanya-tanya, jika kita mengambil sampel berulang kali dari distribusi normal, berapa nilai yang paling sering muncul? Atau dengan kata lain, apa nilai tengah yang diharapkan dari distribusi tersebut?
+**Nilai harapan** adalah rata-rata berbobot peluang dari suatu variabel acak, atau rata-rata jangka panjang yang didekati oleh banyak pengamatan saling bebas. Secara umum, nilai harapan tidak harus sama dengan nilai yang paling sering muncul. Khusus pada distribusi normal, rata-rata, median, modus, dan nilai harapan berada di pusat yang sama.
 
-Inilah yang disebut **nilai harapan** atau expected value. Dalam konteks distribusi normal, nilai harapan memiliki sifat yang sangat menarik dan sederhana.
+Kesimetrian tersebut menghasilkan aturan nilai harapan yang sederhana.
 
-> Untuk distribusi normal <InlineMath math="n(x; \mu, \sigma)" />, nilai harapannya selalu sama dengan parameter rata-rata <InlineMath math="\mu" />.
+> Jika <InlineMath math="X \sim N(\mu, \sigma^2)" /> dengan <InlineMath math="\sigma>0" />, nilai harapannya sama dengan parameter rata-rata <InlineMath math="\mu" />.
 
 Secara matematis, kita dapat menuliskan:
 
@@ -20,7 +20,7 @@ Secara matematis, kita dapat menuliskan:
 
 di mana <InlineMath math="X" /> adalah variabel acak yang mengikuti distribusi normal dan <InlineMath math="\mu" /> adalah parameter rata-rata dari distribusi tersebut.
 
-Mengapa demikian? Mari kita buktikan secara matematis.
+Perhitungan berikut menunjukkan alasannya.
 
 ## Pembuktian Matematis
 
@@ -28,7 +28,7 @@ Nilai harapan suatu variabel acak kontinu didefinisikan sebagai:
 
 <BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot f(x) \, dx" />
 
-Untuk distribusi normal, fungsi kepadatan peluangnya adalah:
+Untuk distribusi normal dengan <InlineMath math="\sigma>0" />, fungsi kepadatan peluangnya adalah:
 
 <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
 
@@ -36,7 +36,7 @@ Substitusikan fungsi ini ke dalam rumus nilai harapan:
 
 <BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, dx" />
 
-Sekarang, mari kita lakukan substitusi <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Maka <InlineMath math="x = \sigma t + \mu" /> dan <InlineMath math="dx = \sigma \, dt" />.
+Gunakan substitusi <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Maka <InlineMath math="x = \sigma t + \mu" /> dan <InlineMath math="dx = \sigma \, dt" />.
 
 <MathContainer>
 <BlockMath math="E(X) = \int_{-\infty}^{\infty} (\sigma t + \mu) \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}t^2} \cdot \sigma \, dt" />
@@ -46,9 +46,9 @@ Sekarang, mari kita lakukan substitusi <InlineMath math="t = \frac{x-\mu}{\sigma
 
 Perhatikan bahwa:
 
-- **Integral pertama** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" /> karena fungsi <InlineMath math="t e^{-\frac{1}{2}t^2}" /> adalah fungsi ganjil. Artinya, <InlineMath math="f(-t) = -f(t)" />, sehingga ketika diintegralkan pada interval simetris <InlineMath math="[-\infty, \infty]" />, hasilnya saling meniadakan dan bernilai nol.
+- **Integral pertama** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" /> karena <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> adalah fungsi ganjil. Dengan demikian, <InlineMath math="g(-t) = -g(t)" />, sehingga luas bertanda pada interval simetris <InlineMath math="(-\infty, \infty)" /> saling meniadakan.
 
-- **Integral kedua** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> karena ini adalah integral Gaussian fundamental. Integral ini merupakan luas total di bawah kurva distribusi normal standar, yang selalu bernilai <InlineMath math="\sqrt{2\pi}" />.
+- **Integral kedua** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> adalah integral Gaussian. Setelah dikalikan faktor normalisasi <InlineMath math="1/\sqrt{2\pi}" />, hasilnya menjadi peluang total <InlineMath math="1" /> pada kepadatan normal standar.
 
 Maka:
 
@@ -57,17 +57,17 @@ Maka:
 <BlockMath math="E(X) = 0 + \mu = \mu" />
 </MathContainer>
 
-Terbukti bahwa **nilai harapan distribusi normal sama dengan parameter rata-ratanya**.
+Jadi, **nilai harapan variabel acak normal sama dengan parameter rata-ratanya**.
 
 > Untuk setiap distribusi normal <InlineMath math="X \sim N(\mu, \sigma^2)" />, berlaku <InlineMath math="E(X) = \mu" />. Ini berarti kita tidak perlu melakukan integrasi setiap kali menghitung nilai harapan distribusi normal, cukup menggunakan nilai parameter <InlineMath math="\mu" />.
 
 ## Interpretasi Praktis
 
-Hasil pembuktian di atas memberikan pemahaman yang sangat penting:
+Hasil tersebut memiliki tafsiran statistik yang langsung:
 
-Jika kita memiliki distribusi normal dengan rata-rata <InlineMath math="\mu" /> dan standar deviasi <InlineMath math="\sigma" />, maka **nilai harapan** (expected value) dari variabel acak tersebut adalah tepat <InlineMath math="\mu" />. Artinya, jika kita mengambil sampel dalam jumlah sangat besar dan menghitung rata-ratanya, hasilnya akan mendekati nilai <InlineMath math="\mu" />.
+Untuk variabel acak normal dengan rata-rata <InlineMath math="\mu" /> dan simpangan baku <InlineMath math="\sigma" />, **nilai harapannya** tepat <InlineMath math="\mu" />. Pada banyak pengamatan saling bebas dari distribusi tersebut, rata-rata sampel mendekati <InlineMath math="\mu" /> sesuai hukum bilangan besar.
 
-**Contoh sederhana:**
+**Contoh:**
 
 Jika tinggi badan siswa di sekolahmu terdistribusi normal dengan rata-rata <InlineMath math="165 \text{ cm}" />, maka nilai harapan tinggi badan siswa yang dipilih secara acak adalah <InlineMath math="165 \text{ cm}" />.
 
@@ -87,23 +87,23 @@ Jadi, nilai harapan skor ujian seorang siswa adalah <InlineMath math="75" />.
 
 **Contoh** <InlineMath math="2" />
 
-Berat bayi yang baru lahir di suatu rumah sakit terdistribusi normal dengan rata-rata <InlineMath math="3.200 \text{ gram}" /> dan standar deviasi <InlineMath math="400 \text{ gram}" />. Tentukan nilai harapan berat bayi yang akan lahir!
+Misalkan berat bayi baru lahir di suatu rumah sakit dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="3{.}200 \text{ gram}" /> dan simpangan baku <InlineMath math="400 \text{ gram}" />. Tentukan berat harapan satu bayi yang dipilih secara acak.
 
 **Penyelesaian:**
 
-Diketahui <InlineMath math="\mu = 3.200 \text{ gram}" /> dan <InlineMath math="\sigma = 400 \text{ gram}" />.
+Diketahui <InlineMath math="\mu = 3{.}200 \text{ gram}" /> dan <InlineMath math="\sigma = 400 \text{ gram}" />.
 
-Nilai harapan berat bayi yang akan lahir adalah:
+Berat harapannya sama dengan parameter rata-rata:
 
-<BlockMath math="E(X) = \mu = 3.200 \text{ gram}" />
+<BlockMath math="E(X) = \mu = 3{.}200 \text{ gram}" />
 
 ## Latihan
 
-1. Waktu tempuh perjalanan dari rumah ke sekolah terdistribusi normal dengan rata-rata <InlineMath math="25 \text{ menit}" /> dan standar deviasi <InlineMath math="5 \text{ menit}" />. Tentukan nilai harapan waktu tempuh perjalanan!
+1. Waktu tempuh dari rumah ke sekolah dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="25 \text{ menit}" /> dan simpangan baku <InlineMath math="5 \text{ menit}" />. Tentukan waktu tempuh harapannya.
 
-2. Suhu udara harian di kota Jakarta selama bulan Juni terdistribusi normal dengan rata-rata <InlineMath math="28^\circ\text{C}" /> dan standar deviasi <InlineMath math="3^\circ\text{C}" />. Berapa nilai harapan suhu udara pada hari yang dipilih secara acak?
+2. Suhu udara harian di Jakarta selama Juni dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="28^\circ\text{C}" /> dan simpangan baku <InlineMath math="3^\circ\text{C}" />. Berapa suhu harapan pada hari yang dipilih secara acak?
 
-3. Nilai ujian fisika siswa kelas <InlineMath math="12" /> terdistribusi normal dengan rata-rata <InlineMath math="78" /> dan standar deviasi <InlineMath math="12" />. Jika seorang siswa mengikuti ujian, berapa nilai harapan yang akan diperolehnya?
+3. Nilai ujian fisika siswa kelas <InlineMath math="12" /> dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="78" /> dan simpangan baku <InlineMath math="12" />. Berapa nilai harapan siswa yang dipilih secara acak?
 
 ### Kunci Jawaban
 
@@ -135,4 +135,4 @@ Nilai harapan berat bayi yang akan lahir adalah:
 
    <BlockMath math="E(X) = \mu = 78" />
 
-   **Jawaban:** Nilai harapan yang akan diperoleh siswa adalah <InlineMath math="78" />.
+   **Jawaban:** Nilai harapan ujian siswa adalah <InlineMath math="78" />.

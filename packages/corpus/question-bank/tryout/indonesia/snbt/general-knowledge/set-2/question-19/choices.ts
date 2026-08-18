@@ -4,54 +4,53 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "increase the number of extension workers in the field of aquaculture so that the growth of the fish farming sector becomes more optimal.",
+        "increase the number of extension workers without changing management or environmental safeguards.",
       value: false,
     },
     {
       label:
-        "improve human resources, improve fisheries management, and improve aquaculture technology.",
+        "strengthen human capacity, science-based management, habitat protection, and suitable aquaculture technology.",
       value: true,
     },
     {
-      label:
-        "improve water quality in densely populated areas and in areas with a high intensity of development.",
+      label: "focus only on water quality in densely populated coastal areas.",
       value: false,
     },
     {
       label:
-        "increase the number of fishing gears and provide subsidies to fishery business actors so that production volume increases.",
+        "add fishing gear and subsidies so that short-term catch volume rises.",
       value: false,
     },
     {
       label:
-        "pay attention to the threshold for wastewater quality standards so that fish farming yields increase.",
+        "raise catches first and collect stock data only after production declines.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "menambah jumlah penyuluh di bidang perikanan budi daya agar pertumbuhan bidang budi daya ikan makin optimal.",
+        "menambah jumlah penyuluh tanpa memperbaiki pengelolaan atau perlindungan lingkungan.",
       value: false,
     },
     {
       label:
-        "membenahi sumber daya manusia, membenahi manajemen perikanan, dan meningkatkan teknologi budi daya perikanan.",
+        "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
       value: true,
     },
     {
       label:
-        "memperbaiki kualitas air di kawasan padat penduduk dan di kawasan yang tingkat intensitas pembangunannya tinggi.",
+        "hanya memperbaiki kualitas air di kawasan pesisir yang padat penduduk.",
       value: false,
     },
     {
       label:
-        "menambah jumlah alat tangkap ikan dan memberikan subsidi kepada pelaku usaha perikanan agar jumlah produksi meningkat.",
+        "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
       value: false,
     },
     {
       label:
-        "memperhatikan ambang batas baku mutu air buangan limbah agar hasil budi daya ikan meningkat.",
+        "menaikkan tangkapan lebih dahulu dan baru mengumpulkan data stok setelah produksi menurun.",
       value: false,
     },
   ],

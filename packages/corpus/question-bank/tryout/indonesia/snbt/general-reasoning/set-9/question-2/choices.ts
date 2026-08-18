@@ -3,55 +3,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Climate change has altered food products and impacted human health",
+      label: "Climate change has already affected food security",
+      value: false,
+    },
+    {
+      label: "Its effects can differ by crop and region",
       value: false,
     },
     {
       label:
-        "Increased carbon dioxide in the atmosphere impacts the decline in agricultural yields",
+        "More atmospheric carbon dioxide can reduce nutrient concentrations in some crops",
       value: false,
     },
     {
       label:
-        "Tropical regions have high food production compared to other regions",
-      value: false,
-    },
-    {
-      label:
-        "If climate change does not occur, then there is no impact on changes in food production or human health",
+        "More atmospheric carbon dioxide can only reduce crop growth and yield",
       value: true,
     },
     {
       label:
-        "Temperature increases and changes in rainfall patterns impact the decline in corn, rice, and wheat production",
+        "Higher temperatures, changing rainfall, and extreme events can affect food security",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Perubahan iklim telah merubah produk pangan dan berdampak pada kesehatan manusia",
+      label: "Perubahan iklim telah memengaruhi ketahanan pangan",
+      value: false,
+    },
+    {
+      label: "Dampaknya dapat berbeda menurut tanaman dan wilayah",
       value: false,
     },
     {
       label:
-        "Peningkatan karbon dioksida di atmosfer berdampak pada penurunan hasil pertanian",
+        "Karbon dioksida atmosfer yang lebih tinggi dapat menurunkan kadar zat gizi pada sebagian tanaman",
       value: false,
     },
     {
       label:
-        "Daerah-daerah tropis memiliki produksi pangan yang tinggi dibanding daerah lainnya",
-      value: false,
-    },
-    {
-      label:
-        "Jika tidak terjadi perubahan iklim maka tidak berdampak pada perubahan produksi pangan atau kesehatan manusia",
+        "Karbon dioksida atmosfer yang lebih tinggi hanya dapat menurunkan pertumbuhan dan hasil tanaman",
       value: true,
     },
     {
       label:
-        "Kenaikan suhu dan perubahan pola curah hujan berdampak pada penurunan hasil produksi jagung, padi, dan gandum",
+        "Kenaikan suhu, perubahan curah hujan, dan kejadian ekstrem dapat memengaruhi ketahanan pangan",
       value: false,
     },
   ],

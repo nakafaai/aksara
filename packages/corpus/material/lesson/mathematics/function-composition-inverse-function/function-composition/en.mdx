@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Function Composition",
-  description: "Learn function composition (f∘g)(x) with real-world shopping examples. Learn sequential function application and non-commutative properties.",
+  description: "Learn function composition through a shopping example, sequential application, and the effect of reversing the order.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Function Composition and Inverse Function",
@@ -27,9 +27,13 @@ Mathematically, this is written as:
 
 <BlockMath math="(f \circ g)(x) = f(g(x))" />
 
+The composite is defined only for inputs <InlineMath math="x" /> in the domain of <InlineMath math="g" /> whose output <InlineMath math="g(x)" /> lies in the domain of <InlineMath math="f" />:
+
+<BlockMath math="D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}" />
+
 ### Promo Calculation
 
-Let's calculate the final price for an item worth <InlineMath math="\text{Rp}200{,}000.00" /> using both promos with the concept of functions.
+Let's calculate the final price for an item worth <InlineMath math="\text{Rp}200{,}000.00" />. This simplified example ignores taxes, minimum-purchase rules, and price floors so that only the order of the two operations changes.
 
 Let <InlineMath math="x" /> be the initial price of the item.
 
@@ -94,3 +98,25 @@ Determine <InlineMath math="(f \circ g)(x)" /> and <InlineMath math="(g \circ f)
     So, <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 
 Note that <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, illustrating the non-commutative property.
+
+## The Domain Must Follow the Order
+
+Composition is not the same as multiplying two functions, and its domain cannot be found by looking only at the final formula. Let
+
+<MathContainer>
+  <BlockMath math="f(u)=\sqrt{u-1}" />
+  <BlockMath math="g(x)=x^2" />
+</MathContainer>
+
+Then
+
+<BlockMath math="(f\circ g)(x)=\sqrt{x^2-1}" />
+
+The input must satisfy <InlineMath math="x\in D_g=\mathbb{R}" /> and <InlineMath math="g(x)=x^2\in D_f=[1,\infty)" />. Therefore,
+
+<MathContainer>
+  <BlockMath math="x^2\ge 1" />
+  <BlockMath math="D_{f\circ g}=(-\infty,-1]\cup[1,\infty)" />
+</MathContainer>
+
+This check explains why values between <InlineMath math="-1" /> and <InlineMath math="1" /> are excluded: they make the expression under the square root negative.

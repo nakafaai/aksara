@@ -3,53 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "What are the factors that influence environmental damage?",
+      label: "Which three drivers of risk does the Sendai Framework recognize?",
       value: true,
     },
     {
-      label:
-        "What are the impacts that occur when environmental damage arises?",
+      label: "Which country first adopted the Sendai Framework?",
       value: false,
     },
     {
-      label: "What human actions are the cause of environmental damage?",
+      label: "How much does it cost to restore a damaged ecosystem?",
       value: false,
     },
     {
-      label:
-        "What strategies are carried out to overcome the consequences of environmental damage?",
+      label: "When did environmental degradation begin in Indonesia?",
       value: false,
     },
     {
-      label:
-        "How is the handling process for the consequences of environmental damage?",
+      label: "Which ecosystem restoration method is the most effective?",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Faktor-faktor apa sajakah yang memengaruhi kerusakan lingkungan hidup?",
+      label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
       value: true,
     },
     {
-      label:
-        "Dampak apa saja yang terjadi saat kerusakan lingkungan hidup muncul?",
+      label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
       value: false,
     },
     {
-      label:
-        "Apa sajakah ulah manusia yang menjadi penyebab terjadinya kerusakan lingkungan hidup?",
+      label: "Berapa biaya untuk memulihkan ekosistem yang rusak?",
       value: false,
     },
     {
-      label:
-        "Strategi apakah yang dilakukan untuk menanggulangi akibat terjadinya kerusakan lingkungan hidup?",
+      label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
       value: false,
     },
     {
-      label:
-        "Bagaimana proses penanganan akibat terjadinya kerusakan lingkungan hidup?",
+      label: "Metode pemulihan ekosistem mana yang paling efektif?",
       value: false,
     },
   ],

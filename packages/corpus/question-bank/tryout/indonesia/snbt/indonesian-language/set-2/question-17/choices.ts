@@ -2,11 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Adanya tulang benulang di ruang rahasia", value: false },
-    { label: "Penemuan alat bunuh diri", value: false },
-    { label: "Penemuan gambar dari para budak", value: false },
-    { label: 'Penemuan "penjara" di sebuah toko roti', value: true },
-    { label: "Ditemukan ruangan sempit dan penuh alat penyiksa", value: false },
+    { label: "Tiga korban yang ditemukan di bagian hunian", value: false },
+    { label: "Lukisan dinding mewah di atrium rumah", value: false },
+    { label: "Prasasti pemilihan umum pada dinding bangunan", value: false },
+    {
+      label: "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
+      value: true,
+    },
+    { label: "Oven besar dan wadah untuk mengaduk adonan", value: false },
   ],
 };
 

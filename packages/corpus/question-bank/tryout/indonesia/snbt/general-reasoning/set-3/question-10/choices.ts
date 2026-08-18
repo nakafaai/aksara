@@ -4,11 +4,12 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The content of each component in jackfruit is always higher than in pomelo.",
+        "Every nutrient listed for jackfruit is higher than the corresponding value for pomelo.",
       value: false,
     },
     {
-      label: "Avocado content is always higher than Pomelo.",
+      label:
+        "Every nutrient listed for avocado is higher than the corresponding value for pomelo.",
       value: false,
     },
     {
@@ -22,18 +23,19 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "Jackfruit has the most content.",
+      label: "Jackfruit has the highest value for every nutrient listed.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Kandungan tiap komponen dalam nangka selalu lebih tinggi daripada jeruk bali.",
+        "Setiap zat gizi yang tercantum pada nangka lebih tinggi daripada nilai yang sama pada jeruk bali.",
       value: false,
     },
     {
-      label: "Kandungan alpukat selalu lebih tinggi dibandingkan Jeruk bali.",
+      label:
+        "Setiap zat gizi yang tercantum pada alpukat lebih tinggi daripada nilai yang sama pada jeruk bali.",
       value: false,
     },
     {
@@ -47,7 +49,8 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "Buah nangka memiliki kandungan yang paling banyak.",
+      label:
+        "Nangka memiliki nilai tertinggi untuk setiap zat gizi yang tercantum.",
       value: false,
     },
   ],

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Penggunaan Ukuran Pemusatan",
-  description: "Pelajari kapan menggunakan mean, median, atau modus dalam statistika. Pahami pengaruh pencilan dan dapatkan panduan praktis analisis data.",
+  description: "Pelajari kapan menggunakan mean, median, atau modus dan bagaimana nilai yang sangat besar atau kecil memengaruhi setiap ukuran.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -17,30 +17,30 @@ Memilih ukuran yang salah bisa memberikan gambaran yang kurang tepat tentang dat
 ### Mean (Rata-rata)
 
 - **Cara Hitung:** Jumlahkan semua nilai data, lalu bagi dengan banyaknya data.
-- **Sifat:** Menggunakan _semua_ nilai data dalam perhitungan. Karena itu, Mean **sangat sensitif terhadap nilai ekstrem (pencilan)**. Satu nilai yang sangat besar atau kecil bisa mengubah Mean secara signifikan.
-- **Contoh Sensitivitas:** Jika nilai ulanganmu <InlineMath math="7, 8, 9, 8, 10" /> (Mean adalah <InlineMath math="8.4" />), lalu ada satu nilai tambahan <InlineMath math="1" /> (pencilan), maka Mean baru menjadi <InlineMath math="(7+8+9+8+10+1)/6 = 7.17" />. Nilai Mean turun drastis karena pencilan.
+- **Sifat:** Menggunakan _semua_ nilai data dalam perhitungan. Karena itu, Mean **sangat sensitif terhadap nilai ekstrem**. Satu nilai yang sangat besar atau kecil bisa mengubah Mean secara signifikan.
+- **Contoh Sensitivitas:** Jika nilai ulanganmu <InlineMath math="7, 8, 9, 8, 10" /> (Mean adalah <InlineMath math="8{,}4" />), lalu ditambahkan satu nilai sangat rendah, yaitu <InlineMath math="1" />, maka Mean baru menjadi <InlineMath math="(7+8+9+8+10+1)/6 = 7{,}17" />. Mean turun cukup besar karena setiap nilai ikut diperhitungkan.
 
 ### Median (Nilai Tengah)
 
 - **Cara Hitung:** Urutkan data, lalu cari nilai yang posisinya tepat di tengah.
-- **Sifat:** Hanya memperhatikan posisi tengah data. Karena itu, Median **tidak sensitif (kebal) terhadap nilai ekstrem (pencilan)**.
-- **Contoh Kekebalan:** Untuk data <InlineMath math="7, 8, 9, 8, 10" /> (urut: <InlineMath math="7, 8, 8, 9, 10" />), median adalah <InlineMath math="8" />. Jika ditambah nilai <InlineMath math="1" /> (urut: <InlineMath math="1, 7, 8, 8, 9, 10" />), median adalah <InlineMath math="(8+8)/2=8" />. Nilai median hampir tidak berubah meskipun ada pencilan.
+- **Sifat:** Bergantung pada posisi tengah data yang sudah diurutkan. Karena itu, Median **jauh lebih tahan terhadap nilai ekstrem** daripada Mean, tetapi bukan berarti selalu kebal.
+- **Contoh Nilai Ekstrem:** Untuk data <InlineMath math="7, 8, 9, 8, 10" /> (urut: <InlineMath math="7, 8, 8, 9, 10" />), median adalah <InlineMath math="8" />. Jika ditambah nilai <InlineMath math="1" /> (urut: <InlineMath math="1, 7, 8, 8, 9, 10" />), median adalah <InlineMath math="(8+8)/2=8" />. Median tidak berubah dalam contoh ini.
 
 ### Modus (Nilai Paling Sering Muncul)
 
 - **Cara Hitung:** Cari nilai data yang frekuensinya paling tinggi.
-- **Sifat:** Fokus pada nilai yang paling populer. Seperti Median, Modus **tidak sensitif (kebal) terhadap nilai ekstrem (pencilan)**. Juga, Modus adalah satu-satunya ukuran pemusatan yang bisa digunakan untuk **data kualitatif** (bukan angka).
-- **Contoh Kekebalan & Data Kualitatif:** Untuk data <InlineMath math="7, 8, 9, 8, 10" />, modus adalah <InlineMath math="8" />. Jika ditambah nilai <InlineMath math="1" />, modus tetap <InlineMath math="8" />. Jika datanya adalah warna favorit (merah, biru, merah, hijau), modusnya adalah merah.
+- **Sifat:** Fokus pada nilai yang paling sering muncul. Satu nilai ekstrem yang berdiri sendiri biasanya tidak mengubah Modus. Modus juga menjadi satu-satunya ukuran pemusatan di sini yang dapat digunakan untuk **data kualitatif** (bukan angka).
+- **Contoh Nilai Ekstrem dan Data Kualitatif:** Untuk data <InlineMath math="7, 8, 9, 8, 10" />, modus adalah <InlineMath math="8" />. Jika ditambah nilai <InlineMath math="1" />, modus tetap <InlineMath math="8" />. Jika datanya adalah warna favorit (merah, biru, merah, hijau), modusnya adalah merah.
 
 ## Panduan Penggunaan
 
 Berikut panduan ringkas kapan menggunakan masing-masing ukuran:
 
-| Ukuran     | Jenis Data Terbaik       | Pengaruh Pencilan  | Kapan Digunakan?                                                                                                   |
+| Ukuran     | Jenis Data Terbaik       | Pengaruh Nilai Ekstrem  | Kapan Digunakan?                                                                                                   |
 | :--------- | :----------------------- | :----------------- | :----------------------------------------------------------------------------------------------------------------- |
-| **Mean**   | Kuantitatif (Angka)      | Sangat Terpengaruh | Ketika data **tidak memiliki pencilan** signifikan & ingin representasi yang melibatkan semua nilai data.          |
-| **Median** | Kuantitatif (Angka)      | Tidak Terpengaruh  | Ketika data **memiliki pencilan** atau distribusi data miring (tidak simetris). Memberikan nilai tengah yang kuat. |
-| **Modus**  | Kualitatif & Kuantitatif | Tidak Terpengaruh  | Ketika ingin mengetahui **nilai/kategori paling populer** atau yang paling sering terjadi.                         |
+| **Mean**   | Kuantitatif (Angka)      | Tinggi | Ketika setiap besaran perlu diperhitungkan dan nilai ekstrem tidak membuat hasilnya menyesatkan.          |
+| **Median** | Kuantitatif (Angka)      | Rendah  | Ketika distribusi miring atau memiliki nilai ekor yang tidak biasa dan kita memerlukan pusat berdasarkan posisi. |
+| **Modus**  | Kualitatif & Kuantitatif | Rendah untuk satu nilai terpisah  | Ketika ingin mengetahui **nilai/kategori paling populer** atau yang paling sering terjadi.                         |
 
 **Contoh Situasi:**
 

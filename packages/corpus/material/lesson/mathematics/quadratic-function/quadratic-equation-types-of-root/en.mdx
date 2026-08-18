@@ -8,11 +8,11 @@ export const metadata = {
 
 ## Understanding Quadratic Equation Roots
 
-In a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> (where <InlineMath math="a \neq 0" />), the roots of the equation are the values of <InlineMath math="x" /> that make the equation true. A quadratic equation always has two roots that can be found using the formula:
+In a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> with <InlineMath math="a \neq 0" />, a root is any value of <InlineMath math="x" /> that makes the equation true. Over the complex numbers, every quadratic equation has two roots when a repeated root is counted twice. The quadratic formula gives those values:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-The value <InlineMath math="b^2 - 4ac" /> is called the determinant or discriminant (denoted by <InlineMath math="D" />), which is very important because it determines the type of roots of the quadratic equation.
+The expression <InlineMath math="b^2 - 4ac" /> is the **discriminant**, denoted by <InlineMath math="D" />. Its sign reveals the type of roots before the formula is evaluated completely.
 
 ### Different Real Roots
 
@@ -38,13 +38,13 @@ Example: <InlineMath math="x^2 - 6x + 9 = 0" />
 - <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 9 = 36 - 36 = 0" />
 - The roots are: <InlineMath math="x_1 = x_2 = 3" />
 
-### Imaginary (Non-Real) Roots
+### Two Non-Real Complex Roots
 
-If <InlineMath math="D < 0" /> (or <InlineMath math="b^2 < 4ac" />), then the quadratic equation has two different complex (imaginary) roots.
+If <InlineMath math="D < 0" /> (or <InlineMath math="b^2 < 4ac" />), then the quadratic equation has two distinct non-real complex roots. For real coefficients, they form a conjugate pair.
 
 <BlockMath math="x_1 = \frac{-b + i\sqrt{|D|}}{2a} \quad \text{and} \quad x_2 = \frac{-b - i\sqrt{|D|}}{2a}" />
 
-Where <InlineMath math="i = \sqrt{-1}" /> is the imaginary number.
+Here <InlineMath math="i^2=-1" /> defines the imaginary unit.
 
 Example: <InlineMath math="x^2 + 2x + 5 = 0" />
 
@@ -61,4 +61,34 @@ If <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are the roots of the 
   <BlockMath math="x_1 \times x_2 = \frac{c}{a}" />
 </MathContainer>
 
-This is an important relationship that can be used to find the coefficients of a quadratic equation if its roots are known.
+These relationships can verify calculated roots or determine the coefficient ratios <InlineMath math="b/a" /> and <InlineMath math="c/a" />. A specific equation is fixed once the leading coefficient <InlineMath math="a" /> is also known.
+
+## Exercise
+
+Classify and solve the equation <InlineMath math="2x^2-4x+5=0" />. Then verify the roots using their sum and product.
+
+### Worked Solution
+
+The coefficients are <InlineMath math="a=2" />, <InlineMath math="b=-4" />, and <InlineMath math="c=5" />. Its discriminant is
+
+<BlockMath math="D=(-4)^2-4\cdot2\cdot5=16-40=-24" />
+
+Because <InlineMath math="D<0" />, the equation has two non-real complex roots. Apply the quadratic formula and use <InlineMath math="\sqrt{-24}=2i\sqrt6" />:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-(-4)\pm\sqrt{-24}}{2\cdot2}" />
+  <BlockMath math="x=\frac{4\pm2i\sqrt6}{4}=1\pm\frac{i\sqrt6}{2}" />
+</MathContainer>
+
+Thus,
+
+<BlockMath math="x_1=1+\frac{i\sqrt6}{2}\qquad\text{and}\qquad x_2=1-\frac{i\sqrt6}{2}" />
+
+Their sum and product agree with Vieta's formulas:
+
+<MathContainer>
+  <BlockMath math="x_1+x_2=2=-\frac{b}{a}" />
+  <BlockMath math="x_1x_2=1+\frac{6}{4}=\frac52=\frac{c}{a}" />
+</MathContainer>
+
+Both checks use the original coefficients, so they also catch a lost sign or an incorrect denominator in the quadratic formula.

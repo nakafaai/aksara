@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Pengertian Barisan
 
-Barisan bilangan adalah susunan bilangan yang memiliki pola tertentu. Dan kita sudah mempelajari dua jenis barisan utama: [barisan aritmetika](/id/materi/matematika/barisan-dan-deret/barisan-aritmetika) dan [barisan geometri](/id/materi/matematika/barisan-dan-deret/barisan-geometri).
+Barisan bilangan adalah susunan bilangan yang memiliki pola tertentu. Dua jenis yang umum adalah [barisan aritmetika](./barisan-aritmetika) dan [barisan geometri](./barisan-geometri).
 
 ## Barisan Aritmetika
 
@@ -38,7 +38,7 @@ Jika kita memiliki barisan <InlineMath math="a_1, a_2, a_3, ..., a_n" />, maka b
 
 <BlockMath math="\frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ... = \frac{a_n}{a_{n-1}} = r" />
 
-di mana <InlineMath math="r" /> adalah rasio yang tetap.
+di mana <InlineMath math="r" /> adalah rasio yang tetap. Jika penyebutnya nol, bentuk perbandingan tidak dapat digunakan, tetapi aturan perkalian yang setara <InlineMath math="a_{n+1}=ra_n" /> tetap bermakna.
 
 ### Rumus Suku Umum Barisan Geometri
 
@@ -66,18 +66,56 @@ Untuk menentukan apakah suatu barisan adalah barisan aritmetika atau geometri:
 | --------------- | -------------------------------------- | -------------------------------------------- |
 | Pola            | Selisih (beda) tetap                   | Rasio tetap                                  |
 | Rumus suku umum | <InlineMath math="U_n = a + (n-1)b" /> | <InlineMath math="U_n = a \times r^{n-1}" /> |
-| Pertumbuhan     | Linear                                 | Eksponensial                                 |
+| Cara memperoleh suku berikutnya | Menambahkan suatu konstanta           | Mengalikan dengan suatu konstanta            |
+
+### Contoh Klasifikasi Bertahap
+
+Barisan <InlineMath math="7,11,15,19,\ldots" /> memiliki beda yang konstan:
+
+<BlockMath math="11-7=15-11=19-15=4" />
+
+sehingga merupakan barisan aritmetika. Barisan <InlineMath math="5,10,20,40,\ldots" /> memenuhi:
+
+<BlockMath math="10=2\cdot5,\qquad20=2\cdot10,\qquad40=2\cdot20" />
+
+sehingga merupakan barisan geometri dengan <InlineMath math="r=2" />. Barisan <InlineMath math="1,2,4,7,\ldots" /> bukan keduanya: bedanya <InlineMath math="1,2,3" /> tidak konstan, begitu pula rasionya.
+
+### Model Linear dan Eksponensial
+
+Barisan aritmetika yang tidak konstan bergantung secara linear pada indeksnya. Barisan geometri dengan rasio positif selain satu bergantung secara eksponensial pada indeksnya. Istilah ini menunjukkan bentuk matematis, bukan berarti proses nyata akan terus berlangsung tanpa perubahan selamanya.
+
+Penambahan dengan jumlah yang sama setiap bulan membentuk model aritmetika. Kenaikan dengan persentase yang sama setiap bulan membentuk model geometri.
+
+### Kasus Khusus
+
+Barisan nol konstan merupakan barisan aritmetika dengan <InlineMath math="b=0" /> dan juga memenuhi <InlineMath math="a_{n+1}=ra_n" /> untuk setiap rasio <InlineMath math="r" />. Barisan konstan tak nol merupakan barisan aritmetika dengan <InlineMath math="b=0" /> sekaligus barisan geometri dengan <InlineMath math="r=1" />.
+
+Jadi, kategori aritmetika dan geometri beririsan pada kasus-kasus khusus tersebut.
 
 ## Aplikasi dalam Kehidupan Sehari-hari
 
 ### Contoh Barisan Aritmetika
 
-1. **Tabungan Berkala**: Seorang siswa menabung di koperasi sekolah dengan pola aritmetika. Bulan pertama menabung <InlineMath math="\text{Rp}5.000" />, bulan kedua <InlineMath math="\text{Rp}7.000" />, bulan ketiga <InlineMath math="\text{Rp}9.000" />, dan seterusnya. Dengan beda <InlineMath math="\text{Rp}2.000" />, jumlah tabungan pada bulan ke-<InlineMath math="10" /> dapat dihitung menggunakan rumus barisan aritmetika.
+1. **Tabungan Berkala**: Seorang siswa menabung di koperasi sekolah dengan pola aritmetika. Bulan pertama menabung <InlineMath math="\text{Rp}5{.}000" />, bulan kedua <InlineMath math="\text{Rp}7{.}000" />, bulan ketiga <InlineMath math="\text{Rp}9{.}000" />, dan seterusnya. Dengan beda <InlineMath math="\text{Rp}2{.}000" />, besar setoran pada bulan ke-<InlineMath math="10" /> dapat dihitung menggunakan rumus barisan aritmetika.
 
-2. **Pertumbuhan Tanaman**: Tinggi tanaman yang bertambah secara konstan setiap minggu. Jika tanaman bertambah tinggi <InlineMath math="3 \text{ cm}" /> setiap minggu dengan tinggi awal <InlineMath math="15 \text{ cm}" />, maka tingginya mengikuti barisan aritmetika.
+2. **Pertumbuhan Tanaman**: Dalam model sederhana, tanaman bertambah tinggi <InlineMath math="3 \text{ cm}" /> setiap minggu dari tinggi awal <InlineMath math="15 \text{ cm}" />. Tinggi tanaman dalam model ini mengikuti barisan aritmetika.
 
 ### Contoh Barisan Geometri
 
-1. **Investasi dengan Bunga Majemuk**: Uang <InlineMath math="\text{Rp}1.000.000" /> diinvestasikan dengan bunga <InlineMath math="10\%" /> per tahun. Maka nilai investasi akan membentuk barisan geometri dengan rasio <InlineMath math="1{,}1" />.
+1. **Investasi dengan Bunga Majemuk**: Misalkan uang <InlineMath math="\text{Rp}1{.}000{.}000" /> memperoleh bunga <InlineMath math="10\%" /> yang dibukukan setiap tahun, tanpa setoran atau penarikan. Nilainya pada akhir setiap tahun membentuk barisan geometri dengan rasio <InlineMath math="1{,}1" />.
 
-2. **Pertumbuhan Populasi**: Bakteri yang berkembang biak menjadi dua kali lipat setiap jam membentuk barisan geometri dengan rasio <InlineMath math="2" />.
+2. **Model Pertumbuhan Populasi Ideal**: Model populasi bakteri yang berlipat ganda setiap jam membentuk barisan geometri dengan rasio <InlineMath math="2" />. Populasi nyata pada akhirnya menghadapi batas yang tidak dimuat dalam model sederhana ini.
+
+## Latihan
+
+Klasifikasikan setiap barisan dan tentukan <InlineMath math="b" /> atau <InlineMath math="r" /> jika memungkinkan:
+
+1. <InlineMath math="18,12,6,0,\ldots" />
+2. <InlineMath math="81,-27,9,-3,\ldots" />
+3. <InlineMath math="2,4,8,14,\ldots" />
+
+### Penyelesaian
+
+1. Barisan pertama merupakan barisan aritmetika dengan <InlineMath math="b=-6" />.
+2. Barisan kedua merupakan barisan geometri dengan <InlineMath math="r=-1/3" />.
+3. Barisan ketiga bukan barisan aritmetika maupun geometri karena beda dan rasionya tidak konstan.

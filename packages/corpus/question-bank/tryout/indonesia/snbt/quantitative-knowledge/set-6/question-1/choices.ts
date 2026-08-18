@@ -18,7 +18,8 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "EACH statement ALONE is sufficient.",
+      label:
+        "Statement $$(1)$$ ALONE is sufficient, and statement $$(2)$$ ALONE is sufficient.",
       value: false,
     },
     {

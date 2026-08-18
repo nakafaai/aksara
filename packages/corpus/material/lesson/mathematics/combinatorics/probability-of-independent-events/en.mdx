@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Probability of Independent Events",
-   description: "Learn independent event probability with formulas and real-world examples, then calculate combined probabilities.",
+   description: "Test whether events are independent and calculate their joint probability without relying on misleading keywords.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Combinatorics",
@@ -8,17 +8,17 @@ export const metadata = {
 
 ## Understanding Independent Events
 
-In real life, we often encounter situations where **the result of one event does not affect the result of another event**. Imagine you throw a coin and a die simultaneously. Does the result of the coin affect the number that appears on the die? Of course not! These two events are independent.
+Some probability models contain events where **learning one result does not change the probability of another**. Toss a fair coin and roll a fair die. Knowing the coin result gives no information about the die result, so the two events are independent.
 
-**Independent events** are two or more events where the result of one event does not affect the probability of another event. If event <InlineMath math="A" /> does not affect event <InlineMath math="B" />, and vice versa, then both events are independent.
+Events <InlineMath math="A" /> and <InlineMath math="B" /> are **independent** when conditioning on either event leaves the probability of the other unchanged. Independence is a property of the probability model, not merely of events happening at the same time.
 
-As a simple illustration, think about today's weather and your math exam result tomorrow. Whether it's rainy or sunny today will not affect your exam score (unless you're late because of the rain, but that's another story!). These two events are statistically independent.
+This distinction matters because events can share a hidden cause. Two alarms may not directly control each other, for example, yet both can react to the same incident. Never assume independence without checking the model or being told that it holds.
 
 ## Characteristics of Independent Events
 
 ### Not Mutually Affecting
 
-The main characteristic of independent events is that **the result of one event does not change the probability of another event**. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent events, then:
+The main characteristic of independent events is that **the result of one event does not change the probability of another event**. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
 
 <BlockMath math="P(A|B) = P(A)" />
 
@@ -26,16 +26,16 @@ This means the probability of <InlineMath math="A" /> occurring when <InlineMath
 
 ### Daily Life Examples
 
-Some examples of independent events that are easy to understand:
+Examples with a clear independent mechanism include:
 
-- Throwing two different coins simultaneously
-- Drawing cards from two separate decks
-- Exam results of two different students (without cheating!)
-- Weather conditions in two distant cities
+- tossing two separate fair coins
+- drawing one card from each of two independently shuffled decks
+- rolling two separate fair dice
+- generating two random digits with independent trials
 
 ### Identifying Independent Events
 
-To identify whether two events are independent, ask: "Does knowing the result of the first event provide information about the result of the second event?" If the answer is no, then both events are independent.
+To test independence, ask: “Does knowing the first result change the probability distribution of the second?” A causal story alone is not enough; use the stated model or verify the equality of conditional and ordinary probabilities.
 
 ## Formula for Probability of Independent Events
 
@@ -81,12 +81,12 @@ A die and a coin are thrown simultaneously. Find the probability of getting an e
 **Solution:**
 
 <MathContainer>
-<BlockMath math="S_{die} = \{1, 2, 3, 4, 5, 6\}" />
-<BlockMath math="S_{coin} = \{H, T\}" />
+<BlockMath math="S_1 = \{1, 2, 3, 4, 5, 6\}" />
+<BlockMath math="S_2 = \{0, 1\}" />
 </MathContainer>
 
 - Event <InlineMath math="A" />: getting an even number on the die is <InlineMath math="\{2, 4, 6\}" />
-- Event <InlineMath math="B" />: getting tails on the coin is <InlineMath math="\{T\}" />
+- Event <InlineMath math="B" />: getting tails on the coin, represented by <InlineMath math="1" />, is <InlineMath math="\{1\}" />
 
 Both events are **independent** because the result of the die does not affect the result of the coin.
 
@@ -96,18 +96,18 @@ Both events are **independent** because the result of the die does not affect th
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
-### Real-World Application Example
+### Applied Modeling Example
 
-In a city, the probability that a fire truck is needed on a particular day is <InlineMath math="0.98" />, while the probability that an ambulance is needed is <InlineMath math="0.92" />. What is the probability that both vehicles are needed on the same day?
+Two independently powered monitoring sensors run a daily self-test. Sensor <InlineMath math="A" /> succeeds with probability <InlineMath math="0.98" />, while sensor <InlineMath math="B" /> succeeds with probability <InlineMath math="0.92" />. Under the stated independence model, what is the probability that both tests succeed?
 
-These probability numbers represent a scenario of a large city with high emergency activity levels.
+The independence assumption is part of this model. If both sensors shared a power supply or network, we would need to test that assumption again.
 
 **Solution:**
 
-- Event <InlineMath math="A" />: fire truck is needed
-- Event <InlineMath math="B" />: ambulance is needed
+- Event <InlineMath math="A" />: the first sensor passes its self-test
+- Event <InlineMath math="B" />: the second sensor passes its self-test
 
-Both events can be considered **independent** because the need for a fire truck does not affect the need for an ambulance.
+The problem states that the two self-tests are **independent**, so one result does not change the probability of the other.
 
 **Detailed calculation:**
 
@@ -116,7 +116,7 @@ Both events can be considered **independent** because the need for a fire truck 
 <BlockMath math="P(A \cap B) = 0.98 \times 0.92 = 0.9016" />
 </MathContainer>
 
-So the probability that both vehicles are needed on the same day is <InlineMath math="0.9016" /> or <InlineMath math="90.16\%" />.
+So the probability that both sensors pass is <InlineMath math="0.9016" /> or <InlineMath math="90.16\%" />.
 
 ## Problem-Solving Strategies
 
@@ -125,7 +125,7 @@ So the probability that both vehicles are needed on the same day is <InlineMath 
 To solve probability problems involving independent events, follow these steps:
 
 1. **Identify the events** involved in the problem
-2. **Ensure events are independent** by verifying there is no mutual influence
+2. **Verify independence** from the stated model or the conditional probabilities
 3. **Calculate individual probabilities** of each event
 4. **Apply the formula** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Check the result** to see if it makes sense in the problem context
@@ -135,7 +135,7 @@ To solve probability problems involving independent events, follow these steps:
 Some useful strategies:
 
 - **Visualize** events with tree diagrams if necessary
-- **Ensure independence** by asking whether one event affects another
+- **Verify independence** from the model or conditional probabilities, not from timing alone
 - **Check consistency** of results using different approaches
 - **Use context** to validate whether the answer makes sense
 
@@ -143,29 +143,31 @@ Some useful strategies:
 
 Pay attention to the following characteristics to identify independent events:
 
-**Independent Events:**
-- Throwing multiple coins simultaneously
-- Drawing cards with replacement
-- Exam results of different students
-- Weather conditions in separate locations
+**Independent under the stated model:**
+- separate fair-coin tosses
+- card draws with replacement and reshuffling
+- rolls of separate fair dice
+- independent random-number trials
 
-**Events that are NOT Independent:**
+**Situations where independence must not be assumed:**
 - Drawing cards without replacement
-- A person's height and weight
-- Test scores of the same student in different subjects
-- Air temperature and humidity
+- A person's height and weight, unless a model or data justify independence
+- Test scores of the same student in different subjects, unless independence is established
+- Air temperature and humidity, unless independence is established for the stated model
 
 ## Exercises
 
-1. Two coins are thrown simultaneously. Find the probability of getting heads on the first coin and tails on the second coin.
+1. Two fair coins are tossed independently. Find the probability of getting heads on the first coin and tails on the second coin.
 
-2. A die and a card are drawn from a standard deck. Calculate the probability of getting a prime number on the die and a red card.
+2. A fair die is rolled independently of drawing one card from a shuffled standard deck. Calculate the probability of getting a prime number on the die and a red card.
 
 3. In a class, the probability of a student passing mathematics is <InlineMath math="0.85" /> and the probability of passing physics is <InlineMath math="0.78" />. If both subjects are independent, what is the probability that the student passes both subjects?
 
-4. Three coins are thrown simultaneously. Find the probability of getting exactly two tails.
+4. Three fair coins are tossed independently. Find the probability of getting exactly two tails.
 
-### Answer Key
+Try each exercise before reading its worked solution. State why the events are independent before multiplying their probabilities.
+
+### Worked Solutions
 
 1. **Solution:**
 
@@ -200,9 +202,9 @@ Pay attention to the following characteristics to identify independent events:
 
    **Method <InlineMath math="1" />: Direct Enumeration**
 
-   Sample space for <InlineMath math="3" /> coins (<InlineMath math="H" /> = Heads, <InlineMath math="T" /> = Tails): <InlineMath math="\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}" />, total is <InlineMath math="8" />
+   Use <InlineMath math="0" /> for heads and <InlineMath math="1" /> for tails. The sample space for <InlineMath math="3" /> coins is <InlineMath math="\{000, 001, 010, 011, 100, 101, 110, 111\}" />, with <InlineMath math="8" /> outcomes.
 
-   Event of exactly two tails: <InlineMath math="\{HTT, THT, TTH\}" />, there are <InlineMath math="3" /> events
+   Exactly two tails occurs in <InlineMath math="\{011, 101, 110\}" />, so there are <InlineMath math="3" /> favorable outcomes.
 
    <BlockMath math="P(\text{exactly 2 tails}) = \frac{3}{8}" />
 

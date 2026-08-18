@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Peluang Suatu Kejadian",
-  description: "Pelajari peluang suatu kejadian dengan rumus yang jelas, konsep ruang sampel, dan contoh nyata. Hitung kemungkinan suatu kejadian dari ruang sampelnya.",
+  description: "Modelkan kejadian dengan ruang sampel, hitung peluangnya, lalu tafsirkan hasilnya.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Kombinatorik",
@@ -8,24 +8,24 @@ export const metadata = {
 
 ## Pengertian Peluang
 
-Pernahkah kamu bertanya-tanya berapa kemungkinan hujan turun hari ini? Atau berapa peluang tim favoritmu menang dalam pertandingan? Dalam kehidupan sehari-hari, kita sering berhadapan dengan situasi yang tidak pasti, dan di sinilah konsep **peluang** menjadi penting.
+Apakah hari ini akan hujan? Apakah sebuah tim akan menang pada pertandingan berikutnya? Hasilnya tidak pasti, tetapi **peluang** memberi kita cara yang tepat untuk menyatakan ketidakpastian tersebut.
 
-**Peluang** adalah ukuran kemungkinan terjadinya suatu kejadian. Peluang memberikan nilai numerik antara <InlineMath math="0" /> dan <InlineMath math="1" />, dimana:
-- Peluang <InlineMath math="0" /> berarti kejadian tersebut **mustahil** terjadi
-- Peluang <InlineMath math="1" /> berarti kejadian tersebut **pasti** terjadi
-- Peluang <InlineMath math="0.5" /> berarti kejadian tersebut memiliki kemungkinan **sama besar** untuk terjadi atau tidak
+**Peluang** mengukur seberapa mungkin suatu kejadian terjadi. Nilainya berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />:
+- Peluang <InlineMath math="0" /> berarti kejadian tersebut **mustahil**
+- Peluang <InlineMath math="1" /> berarti kejadian tersebut **pasti**
+- Peluang <InlineMath math="0{,}5" /> berarti kejadian dan komplemennya **sama mungkin**
 
-Konsep peluang membantu kita membuat keputusan berdasarkan data dan analisis, bukan hanya berdasarkan intuisi semata.
+Peluang tidak memastikan hasil dari satu percobaan. Peluang membantu kita menalar hasil berulang dan mengambil keputusan dengan menyatakan ketidakpastiannya secara terbuka.
 
 ## Ruang Sampel dan Kejadian
 
-Sebelum menghitung peluang, kita perlu memahami dua konsep fundamental:
+Ada dua gagasan yang perlu dipahami sebelum menghitung peluang:
 
-**Ruang Sampel (S)** adalah himpunan semua hasil yang mungkin terjadi dari suatu percobaan. Misalnya, ketika melempar dua buah dadu, ruang sampel terdiri dari semua pasangan angka yang mungkin muncul.
+**Ruang sampel (S)** adalah himpunan seluruh hasil yang mungkin dari suatu percobaan. Pada pelemparan dua dadu, misalnya, setiap hasil berupa pasangan terurut dari dua mata dadu.
 
-**Kejadian (A)** adalah himpunan bagian dari ruang sampel yang merepresentasikan hasil yang kita inginkan atau hasil yang sedang kita tinjau.
+**Kejadian (A)** adalah himpunan bagian dari ruang sampel yang memuat hasil-hasil yang ingin kita tinjau.
 
-**Contoh konkret:** ketika melempar dua koin secara bersamaan, ruang sampelnya adalah <InlineMath math="\{AA, AG, GA, GG\}" />, dengan <InlineMath math="A" /> mewakili angka dan <InlineMath math="G" /> mewakili gambar. Jika kita ingin mengetahui peluang munculnya minimal satu gambar, maka kejadian <InlineMath math="A = \{AG, GA, GG\}" />.
+**Contoh konkret:** untuk dua pelemparan koin, gunakan <InlineMath math="H" /> untuk sisi angka dan <InlineMath math="T" /> untuk sisi gambar. Ruang sampelnya adalah <InlineMath math="\{HH, HT, TH, TT\}" />. Kejadian “minimal satu gambar” adalah <InlineMath math="A = \{HT, TH, TT\}" />.
 
 ## Formula Peluang
 
@@ -33,26 +33,26 @@ Untuk menghitung peluang suatu kejadian, kita menggunakan **rumus peluang klasik
 
 <BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
 
-Dimana:
+dengan:
 - <InlineMath math="P(A)" /> = peluang terjadinya kejadian <InlineMath math="A" />
 - <InlineMath math="n(A)" /> = banyaknya hasil yang menguntungkan (anggota kejadian <InlineMath math="A" />)
 - <InlineMath math="n(S)" /> = banyaknya semua hasil yang mungkin (anggota ruang sampel)
 
-**Syarat penting:** Rumus ini berlaku ketika semua hasil dalam ruang sampel memiliki **peluang yang sama** untuk terjadi (equiprobable).
+**Syarat penting:** Rumus pencacahan ini hanya berlaku jika semua hasil dalam ruang sampel **sama mungkin** terjadi.
 
-**Sifat-sifat fundamental peluang:**
+**Sifat-sifat dasar:**
 - <InlineMath math="0 \leq P(A) \leq 1" /> (peluang selalu antara <InlineMath math="0" /> dan <InlineMath math="1" />)
 - <InlineMath math="P(A) + P(A') = 1" />, dimana <InlineMath math="A'" /> adalah **komplemen** dari kejadian <InlineMath math="A" />
 
-**Konsep Komplemen:** Komplemen kejadian <InlineMath math="A" /> adalah semua hasil dalam ruang sampel yang **bukan** termasuk kejadian <InlineMath math="A" />. Misalnya, jika <InlineMath math="A" /> adalah "mendapat angka genap", maka <InlineMath math="A'" /> adalah "mendapat angka ganjil".
+**Komplemen:** Komplemen <InlineMath math="A" /> memuat seluruh hasil dalam ruang sampel yang **tidak** termasuk <InlineMath math="A" />. Jika <InlineMath math="A" /> adalah “mendapat bilangan genap,” maka <InlineMath math="A'" /> adalah “mendapat bilangan ganjil.”
 
-## Penerapan dalam Situasi Nyata
+## Contoh dengan Pembahasan
 
 **Analisis Pelemparan Dua Dadu:**
 
-Ketika melempar dua buah dadu, total kemungkinan hasil adalah <InlineMath math="6 \times 6 = 36" /> pasangan. Mari kita analisis peluang mendapatkan jumlah mata dadu <InlineMath math="9" />:
+Dua dadu adil menghasilkan <InlineMath math="6 \times 6 = 36" /> pasangan terurut yang sama mungkin. Tentukan peluang jumlah kedua mata dadu adalah <InlineMath math="9" />.
 
-**Langkah sistematis:**
+**Pembahasan sistematis:**
 
 1. Identifikasi semua cara mendapat jumlah <InlineMath math="9" />:
    - Dadu pertama <InlineMath math="3" />, dadu kedua <InlineMath math="6" />: <InlineMath math="(3,6)" />
@@ -60,42 +60,44 @@ Ketika melempar dua buah dadu, total kemungkinan hasil adalah <InlineMath math="
    - Dadu pertama <InlineMath math="5" />, dadu kedua <InlineMath math="4" />: <InlineMath math="(5,4)" />
    - Dadu pertama <InlineMath math="6" />, dadu kedua <InlineMath math="3" />: <InlineMath math="(6,3)" />
 
-2. Hitung banyaknya kejadian yang menguntungkan: <InlineMath math="n(A) = 4" />
+2. Hitung banyaknya hasil yang menguntungkan: <InlineMath math="n(A) = 4" />
 
 3. Tentukan peluang:
 
-    <BlockMath math="P(\text{jumlah} = 9) = \frac{4}{36} = \frac{1}{9} \approx 0.111" />
+    <BlockMath math="P(\text{jumlah} = 9) = \frac{4}{36} = \frac{1}{9} \approx 0{,}111" />
 
 **Strategi Pemasaran Berbasis Peluang:**
 
-Sebuah perusahaan minuman mengadakan program hadiah dengan memasukkan kupon dalam setiap kotak susu. Berdasarkan data historis, peluang seseorang membeli kotak susu yang mengandung hadiah adalah <InlineMath math="\frac{3}{32}" />.
+Sebuah perusahaan minuman memasukkan kupon hadiah ke dalam sebagian kotak susu. Data historis memperkirakan peluang sebuah kotak yang dibeli memuat hadiah sebesar <InlineMath math="\frac{3}{32}" />.
 
-**Interpretasi praktis:** Dari setiap <InlineMath math="32" /> kotak susu yang diproduksi, rata-rata <InlineMath math="3" /> kotak berisi hadiah. Informasi ini membantu perusahaan:
+**Interpretasi praktis:** Dalam banyak pembelian, diperkirakan sekitar <InlineMath math="3" /> dari setiap <InlineMath math="32" /> kotak yang dibeli memuat hadiah. Perkiraan ini dapat membantu perusahaan:
 - Merencanakan anggaran promosi
 - Memperkirakan respons konsumen
 - Menentukan target penjualan
 
-**Permainan Strategis:**
+**Membandingkan Jumlah Mata Dadu:**
 
-Dalam permainan dadu tradisional, pemain sering menggunakan pemahaman peluang untuk membuat keputusan. Misalnya, peluang mendapatkan jumlah <InlineMath math="7" /> (yang paling sering muncul) adalah:
+Pada dua dadu adil, jumlah <InlineMath math="7" /> memiliki lebih banyak pasangan hasil daripada jumlah lainnya:
 
 Cara mendapat jumlah <InlineMath math="7" />: <InlineMath math="(1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6 \text{ cara}" />
 
-<BlockMath math="P(\text{jumlah} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0.167" />
+<BlockMath math="P(\text{jumlah} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
 
-Ini adalah peluang tertinggi dibandingkan jumlah lainnya, sehingga sering dijadikan dasar strategi permainan.
+Nilai ini merupakan peluang terbesar di antara semua jumlah yang mungkin. Namun, peluang tersebut tidak menjamin pelemparan berikutnya menghasilkan <InlineMath math="7" />; peluang menggambarkan model jangka panjang.
 
 ## Latihan
+
+Kerjakan setiap soal sebelum membaca pembahasannya. Nyatakan ruang sampel dan kejadiannya dengan jelas sebelum memasukkan angka ke dalam rumus.
 
 1. Dalam pelemparan dua buah dadu, tentukan peluang mendapatkan jumlah mata dadu yang merupakan bilangan genap.
 
 2. Sebuah kotak berisi <InlineMath math="5 \text{ bola}" /> merah, <InlineMath math="3 \text{ bola}" /> biru, dan <InlineMath math="2 \text{ bola}" /> hijau. Jika diambil satu bola secara acak, tentukan peluang mendapatkan bola yang bukan merah.
 
-3. Dalam pelemparan tiga koin sekaligus, tentukan peluang mendapatkan tepat dua gambar.
+3. Tiga koin adil dilempar secara independen. Tentukan peluang mendapatkan tepat dua gambar.
 
-4. Sebuah perusahaan memproduksi <InlineMath math="1000 \text{ unit}" /> produk. Berdasarkan pengalaman, <InlineMath math="5\%" /> dari produk tersebut mengalami cacat. Jika seorang konsumen membeli satu produk secara acak, berapa peluang produk tersebut tidak cacat?
+4. Pemeriksaan mutu menemukan tepat <InlineMath math="50" /> produk cacat dalam satu kelompok berisi <InlineMath math="1000 \text{ unit}" />. Jika satu produk dipilih secara acak dengan peluang yang sama, berapa peluang produk tersebut tidak cacat?
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Jawaban: <InlineMath math="\frac{1}{2}" />**
 
@@ -104,18 +106,18 @@ Ini adalah peluang tertinggi dibandingkan jumlah lainnya, sehingga sering dijadi
    Ruang sampel pelemparan dua dadu: <InlineMath math="n(S) = 36" />
 
    **Identifikasi semua jumlah genap dan cara memperolehnya:**
-   - Jumlah <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1 \text{ cara}" />
+   - Jumlah <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> cara
    - Jumlah <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ cara}" />
    - Jumlah <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ cara}" />
    - Jumlah <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ cara}" />
    - Jumlah <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ cara}" />
-   - Jumlah <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1 \text{ cara}" />
+   - Jumlah <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> cara
 
-   **Total kejadian menguntungkan:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
+   **Total hasil yang menguntungkan:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
 
    **Perhitungan peluang:**
 
-   <BlockMath math="P(\text{genap}) = \frac{18}{36} = \frac{1}{2} = 0.5" />
+   <BlockMath math="P(\text{genap}) = \frac{18}{36} = \frac{1}{2} = 0{,}5" />
 
 2. **Jawaban: <InlineMath math="\frac{1}{2}" />**
 
@@ -127,23 +129,23 @@ Ini adalah peluang tertinggi dibandingkan jumlah lainnya, sehingga sering dijadi
 
    **Perhitungan peluang:**
 
-   <BlockMath math="P(\text{bukan merah}) = \frac{5}{10} = \frac{1}{2} = 0.5" />
+   <BlockMath math="P(\text{bukan merah}) = \frac{5}{10} = \frac{1}{2} = 0{,}5" />
 
 3. **Jawaban: <InlineMath math="\frac{3}{8}" />**
 
    **Langkah penyelesaian:**
 
-   **Ruang sampel pelemparan tiga koin:** <InlineMath math="\{AAA, AAG, AGA, AGG, GAA, GAG, GGA, GGG\}" />
+   **Ruang sampel tiga pelemparan koin:** <InlineMath math="\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}" />
 
    **Total kemungkinan:** <InlineMath math="n(S) = 2^3 = 8" />
 
-   **Kejadian tepat dua gambar:** <InlineMath math="\{AGG, GAG, GGA\}" />
+   **Kejadian tepat dua sisi gambar:** <InlineMath math="\{HTT, THT, TTH\}" />
 
-   **Banyaknya kejadian menguntungkan:** <InlineMath math="n(A) = 3" />
+   **Banyaknya hasil yang menguntungkan:** <InlineMath math="n(A) = 3" />
 
    **Perhitungan peluang:**
 
-   <BlockMath math="P(\text{tepat 2 gambar}) = \frac{3}{8} = 0.375" />
+   <BlockMath math="P(\text{tepat 2 gambar}) = \frac{3}{8} = 0{,}375" />
 
 4. **Jawaban: <InlineMath math="\frac{19}{20}" /> atau <InlineMath math="95\%" />**
 
@@ -157,6 +159,6 @@ Ini adalah peluang tertinggi dibandingkan jumlah lainnya, sehingga sering dijadi
 
    **Perhitungan peluang:**
 
-   <BlockMath math="P(\text{tidak cacat}) = \frac{950}{1000} = \frac{19}{20} = 0.95 = 95\%" />
+   <BlockMath math="P(\text{tidak cacat}) = \frac{950}{1000} = \frac{19}{20} = 0{,}95 = 95\%" />
 
-   **Interpretasi:** Ada peluang <InlineMath math="95\%" /> bahwa produk yang dibeli konsumen tidak mengalami cacat.
+   **Interpretasi:** Jika dipilih secara acak dari kelompok yang telah diperiksa ini, peluang memperoleh produk tidak cacat adalah <InlineMath math="95\%" />. Hasil satu pemilihan tetap tidak dijamin.

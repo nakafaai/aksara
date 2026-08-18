@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Kuartil Data Tunggal",
-  description: "Hitung kuartil Q1, Q2, Q3 data tunggal dengan rumus posisi sederhana. Pelajari cara membagi data terurut menjadi empat bagian sama besar bertahap.",
+  description: "Hitung Q1, Q2, dan Q3 data tunggal dengan satu konvensi interpolasi yang dinyatakan jelas serta contoh pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,36 +8,38 @@ export const metadata = {
 
 ## Apa Itu Kuartil?
 
-Median itu kayak penggaris yang membagi data jadi dua bagian sama besar, pas di tengah (<InlineMath math="50\%" />). Nah, ada lagi nih temannya median, namanya **kuartil**.
+Median menandai bagian tengah data terurut pada <InlineMath math="50\%" />. **Kuartil** memperluas gagasan tersebut dengan menandai tiga posisi pada data terurut.
 
-Kalau median membagi data jadi dua, kuartil ini lebih jago lagi, dia membagi data yang sudah diurutin jadi **empat** bagian yang sama besar! Bayangin kamu punya coklat batang, terus kamu patahin jadi empat potong sama rata. Nah, kuartil itu titik-titik patahannya.
+Ketiga posisi itu membagi distribusi berdasarkan peringkat menjadi **empat** bagian yang masing-masing mewakili sekitar seperempat pengamatan. Pada data berhingga atau data yang memuat nilai sama, keempat bagian tersebut tidak harus tampak sebagai kelompok berbeda dengan jumlah titik yang persis sama.
 
-Ada tiga titik patahan kuartil:
+Ada tiga batas kuartil:
 
-1.  **Kuartil Bawah (<InlineMath math="Q_1" />):** Ini patahan pertama. Dia misahin <InlineMath math="25\%" /> data yang paling kecil dari yang lainnya. Kayak seperempat coklat pertama.
-2.  **Kuartil Tengah (<InlineMath math="Q_2" />):** Ini dia si **median**! Dia ada di tengah-tengah persis, membagi data jadi dua (<InlineMath math="50\%" /> kiri, <InlineMath math="50\%" /> kanan). Kayak patahan di tengah coklat.
-3.  **Kuartil Atas (<InlineMath math="Q_3" />):** Ini patahan terakhir. Dia misahin <InlineMath math="75\%" /> data yang kecil dari <InlineMath math="25\%" /> data yang paling gede. Kayak batas setelah tiga perempat coklat.
+1.  **Kuartil Bawah (<InlineMath math="Q_1" />):** Batas pada sekitar peringkat <InlineMath math="25\%" />.
+2.  **Kuartil Tengah (<InlineMath math="Q_2" />):** **Median**, pada sekitar peringkat <InlineMath math="50\%" />.
+3.  **Kuartil Atas (<InlineMath math="Q_3" />):** Batas pada sekitar peringkat <InlineMath math="75\%" />.
 
-Jadi, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> membagi data kita jadi empat kelompok kecil yang isinya sama banyak (masing-masing <InlineMath math="25\%" />).
+Secara bersama, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menggambarkan seperempat bawah, pusat, dan seperempat atas suatu distribusi terurut.
 
 ## Cara Mencari Letak Kuartil
 
-Oke, sekarang gimana caranya kita tahu si <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> ini ada di urutan data ke berapa?
+Bagaimana cara menentukan posisi peringkat <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> pada data terurut?
 
 Anggap kita punya <InlineMath math="n" /> data yang sudah kita urutin dari yang paling kecil sampai paling besar.
 
+Kuartil dapat ditentukan dengan beberapa konvensi peringkat yang sama-sama sah. Karena itu, perangkat lunak yang berbeda bisa menghasilkan nilai yang sedikit berbeda untuk satu kumpulan data kecil. Materi ini menggunakan posisi interpolasi <InlineMath math="p(n+1)" /> secara konsisten, dengan <InlineMath math="p" /> bernilai <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, atau <InlineMath math="\frac34" />. Posisi di bawah <InlineMath math="1" /> dibatasi pada nilai minimum, sedangkan posisi di atas <InlineMath math="n" /> dibatasi pada nilai maksimum. Sebutkan konvensi yang digunakan saat membandingkan hasil.
+
 ### Kuartil Bawah
 
-Rumusnya gampang:
+Untuk kuartil bawah:
 
 <BlockMath math="\text{Letak } Q_1 = \text{Data ke-}\frac{1}{4}(n+1)" />
 
 - **Kalau hasilnya angka bulat**, misalnya <InlineMath math="5" />, berarti <InlineMath math="Q_1" /> itu nilai data di urutan ke-<InlineMath math="5" />.
-- **Kalau hasilnya angka pakai koma**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> itu ada di antara data urutan ke-<InlineMath math="5" /> dan data urutan ke-<InlineMath math="6" />. (Nanti ada cara hitung nilainya, tapi sekarang kita cari letaknya dulu).
+- **Kalau hasilnya berupa desimal**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> berada di antara posisi <InlineMath math="5" /> dan <InlineMath math="6" />. Nilai interpolasinya akan kita hitung nanti; untuk sekarang, kita tentukan letaknya terlebih dahulu.
 
-**Contoh Gampang:**
+**Contoh:**
 
-Misalnya kita punya <InlineMath math="20 \text{ data}" /> (<InlineMath math="n = 20" />).
+Misalnya kita punya <InlineMath math="20" /> data (<InlineMath math="n=20" />).
 
 Letak <InlineMath math="Q_1" /> adalah data ke-<InlineMath math="\frac{1}{4}(20+1)" />, yaitu data ke-<InlineMath math="\frac{21}{4}" /> atau data ke-<InlineMath math="5{,}25" />.
 
@@ -45,7 +47,7 @@ Artinya, <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="5" />
 
 ### Kuartil Tengah
 
-Ini kan median, jadi rumusnya:
+Kuartil tengah adalah median:
 
 <BlockMath math="\text{Letak } Q_2 = \text{Data ke-}\frac{1}{2}(n+1)" />
 
@@ -54,7 +56,7 @@ Aturannya sama kayak <InlineMath math="Q_1" />:
 - **Kalau hasilnya angka bulat**, misal <InlineMath math="10" />, <InlineMath math="Q_2" /> itu nilai data ke-<InlineMath math="10" />.
 - **Kalau hasilnya angka pakai koma**, misal <InlineMath math="10{,}5" />, <InlineMath math="Q_2" /> ada di antara data ke-<InlineMath math="10" /> dan data ke-<InlineMath math="11" />.
 
-**Contoh Gampang (<InlineMath math="n=20" />):**
+**Contoh (<InlineMath math="n=20" />):**
 
 Letak <InlineMath math="Q_2" /> adalah data ke-<InlineMath math="\frac{1}{2}(20+1)" />, yaitu data ke-<InlineMath math="\frac{21}{2}" /> atau data ke-<InlineMath math="10{,}5" />.
 
@@ -66,22 +68,24 @@ Rumusnya mirip lagi:
 
 <BlockMath math="\text{Letak } Q_3 = \text{Data ke-}\frac{3}{4}(n+1)" />
 
-Aturannya juga sama persis:
+Aturan interpolasi yang sama tetap berlaku:
 
 - **Kalau hasilnya angka bulat**, misal <InlineMath math="15" />, <InlineMath math="Q_3" /> itu nilai data ke-<InlineMath math="15" />.
 - **Kalau hasilnya angka pakai koma**, misal <InlineMath math="15{,}75" />, <InlineMath math="Q_3" /> ada di antara data ke-<InlineMath math="15" /> dan data ke-<InlineMath math="16" />.
 
-**Contoh Gampang (<InlineMath math="n=20" />):**
+**Contoh (<InlineMath math="n=20" />):**
 
 Letak <InlineMath math="Q_3" /> adalah data ke-<InlineMath math="\frac{3}{4}(20+1)" />, yaitu data ke-<InlineMath math="\frac{63}{4}" /> atau data ke-<InlineMath math="15{,}75" />.
 
 Artinya, <InlineMath math="Q_3" /> ada di antara data ke-<InlineMath math="15" /> dan data ke-<InlineMath math="16" />.
 
-## Latihan
+## Latihan dengan pembahasan
 
 Coba cari letak <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> dari data nilai ulangan matematika <InlineMath math="7" /> anak ini:
 
 **Nilai:** <InlineMath math="7, 5, 8, 6, 9, 7, 10" />
+
+Coba kerjakan sendiri terlebih dahulu. Setelah itu, bandingkan alur berpikirmu dengan pembahasan lengkap di bawah.
 
 **Langkah** <InlineMath math="1" />: Urutkan data dulu!
 

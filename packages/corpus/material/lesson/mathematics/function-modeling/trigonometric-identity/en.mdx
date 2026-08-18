@@ -11,13 +11,13 @@ export const metadata = {
 
 Have you ever noticed that some mathematical equations are always true for any value of their variables? For example, <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> is always true for any values of <InlineMath math="a" /> and <InlineMath math="b" />. Equations like this are called identities.
 
-In trigonometry, we also have equations that are always true for any angle value. These are called **trigonometric identities**. These identities are very useful for simplifying trigonometric expressions and solving equations.
+In trigonometry, an equation that is true for every angle in its domain is a **trigonometric identity**. Identities let us rewrite expressions, prove equivalent forms, and solve equations without changing their value.
 
 ## Basic Trigonometric Identities
 
 ### Pythagorean Identity
 
-Let's start with the most fundamental identity. Consider a unit circle with point <InlineMath math="P(x, y)" /> that forms angle <InlineMath math="\theta" /> with the positive <InlineMath math="x" />-axis.
+Start with the most fundamental identity. Consider a unit circle with point <InlineMath math="P(x, y)" /> that forms angle <InlineMath math="\theta" /> with the positive <InlineMath math="x" />-axis.
 
 <UnitCircle
   title="Unit Circle and Pythagorean Identity"
@@ -33,9 +33,9 @@ Let's start with the most fundamental identity. Consider a unit circle with poin
 
 On the unit circle:
 
-- Radius <InlineMath math="= 1" />
-- <InlineMath math="x" />-coordinate is <InlineMath math="\cos \theta" />
-- <InlineMath math="y" />-coordinate is <InlineMath math="\sin \theta" />
+- Radius: <InlineMath math="r = 1" />
+- The <InlineMath math="x" />-coordinate is <InlineMath math="\cos \theta" />
+- The <InlineMath math="y" />-coordinate is <InlineMath math="\sin \theta" />
 
 Using the Pythagorean theorem for point <InlineMath math="P" />:
 
@@ -79,7 +79,7 @@ Each trigonometric function has its reciprocal. This relationship forms reciproc
   <BlockMath math="\tan \theta = \frac{1}{\cot \theta}" />
 </MathContainer>
 
-Or in the opposite form:
+Equivalently:
 
 <MathContainer>
   <BlockMath math="\csc \theta = \frac{1}{\sin \theta}" />
@@ -87,15 +87,21 @@ Or in the opposite form:
   <BlockMath math="\cot \theta = \frac{1}{\tan \theta}" />
 </MathContainer>
 
+Each reciprocal identity applies wherever both sides are defined.
+
 ### Quotient Identities
 
 Quotient identities relate tangent and cotangent to sine and cosine:
 
 <ContentStack>
 
+  <MathContainer>
   <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
 
-  <BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+    <BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+</MathContainer>
+
+The quotient forms likewise require a nonzero denominator.
 
   <Triangle
     title="Trigonometric Function Visualization"
@@ -109,7 +115,7 @@ Quotient identities relate tangent and cotangent to sine and cosine:
   />
 </ContentStack>
 
-Both identities can be proven directly from the definition of trigonometric functions on the unit circle.
+Both quotient identities follow directly from the definitions of the trigonometric functions on the unit circle.
 
 ### Even and Odd Function Identities
 
@@ -123,9 +129,11 @@ When angles are negative, trigonometric functions have special properties:
 
 <ContentStack>
 
+  <MathContainer>
   <BlockMath math="\sin(-\theta) = -\sin \theta" />
 
-  <BlockMath math="\tan(-\theta) = -\tan \theta" />
+    <BlockMath math="\tan(-\theta) = -\tan \theta" />
+</MathContainer>
 
   <UnitCircle
     title="Exploring Even and Odd Properties"
@@ -136,7 +144,7 @@ When angles are negative, trigonometric functions have special properties:
 
 ## Using Identities in Proofs
 
-Let's see how trigonometric identities are used to prove other equations.
+The next examples show how trigonometric identities prove other equations.
 
 ### Simplifying Expressions
 
@@ -164,7 +172,7 @@ We start from the left side:
   <BlockMath math="= \sec \theta" />
 </MathContainer>
 
-It is proven that the left side equals the right side.
+The left-hand side has become the right-hand side, so the identity holds on their common domain.
 
 ## Determining Trigonometric Function Values
 
@@ -212,12 +220,14 @@ Next, calculate the other trigonometric functions:
 
 ### Answer Key
 
-1. Let's simplify step by step:
+1. Simplify the expression step by step:
 
    <MathContainer>
      <BlockMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta} = \frac{\frac{\sin \theta}{\cos \theta} \cdot \cos \theta}{\sin \theta}" />
      <BlockMath math="= \frac{\sin \theta}{\sin \theta} = 1" />
    </MathContainer>
+
+   The result is valid on the original expression's domain, where <InlineMath math="\sin\theta \neq 0" /> and <InlineMath math="\cos\theta \neq 0" />.
 
 2. To prove the identity, we will transform the left side:
 
@@ -228,6 +238,8 @@ Next, calculate the other trigonometric functions:
      <BlockMath math="= \frac{\sin \theta (1 - \cos \theta)}{\sin^2 \theta}" />
      <BlockMath math="= \frac{1 - \cos \theta}{\sin \theta}" />
    </MathContainer>
+
+   This proves equality wherever both original sides are defined.
 
 3. Given <InlineMath math="\cos \theta = \frac{5}{13}" /> in quadrant IV.
 

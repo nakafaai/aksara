@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Apa itu Perkalian Skalar?
 
-Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real (skalar).
+Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang disebut **skalar**.
 
 <LineEquation
   title="Visualisasi Perkalian Skalar"
@@ -18,7 +18,7 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real (skala
     <>
       Perhatikan bagaimana vektor <InlineMath math="z = 1+2i" /> berubah ketika
       dikalikan skalar <InlineMath math="c=2" /> dan{" "}
-      <InlineMath math="c=-0.5" />.
+      <InlineMath math="c=-0{,}5" />.
     </>
   }
   cameraPosition={[0, 0, 12]}
@@ -51,7 +51,7 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real (skala
         { x: -0.5, y: -1, z: 0 }, // -0.5 * (1+2i) = -0.5 - i
       ],
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="-0.5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="-0{,}5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
     },
   ]}
@@ -61,7 +61,8 @@ Dari visualisasi di atas, kita bisa lihat:
 
 - Mengalikan <InlineMath math="z" /> dengan skalar <InlineMath math="c > 1" /> (seperti <InlineMath math="2" />) akan **memperpanjang** vektor <InlineMath math="z" /> searah.
 - Mengalikan <InlineMath math="z" /> dengan skalar <InlineMath math="0 < c < 1" /> akan **memperpendek** vektor <InlineMath math="z" /> searah.
-- Mengalikan <InlineMath math="z" /> dengan skalar <InlineMath math="c < 0" /> (seperti <InlineMath math="-0.5" />) akan **membalikkan arah** vektor <InlineMath math="z" /> (<InlineMath math="180^\circ" />) dan mengubah panjangnya sesuai nilai <InlineMath math="|c|" />.
+- Mengalikan <InlineMath math="z" /> dengan <InlineMath math="c = 0" /> memindahkan ujung vektor ke titik asal, sehingga <InlineMath math="0z = 0" />.
+- Untuk <InlineMath math="z\neq0" />, perkalian dengan skalar <InlineMath math="c < 0" /> (seperti <InlineMath math="-0{,}5" />) **membalikkan arah** vektor sebesar <InlineMath math="180^\circ" /> dan mengalikan panjangnya dengan <InlineMath math="|c|" />.
 
 ## Definisi Matematis
 
@@ -69,7 +70,7 @@ Jika <InlineMath math="z = x + iy" /> adalah bilangan kompleks dan <InlineMath m
 
 <BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
 
-Artinya, kita cukup kalikan skalar <InlineMath math="c" /> ke bagian real (<InlineMath math="x" />) dan bagian imajiner (<InlineMath math="y" />) secara terpisah.
+Rumus tersebut mengalikan skalar <InlineMath math="c" /> dengan bagian real <InlineMath math="x" /> dan bagian imajiner <InlineMath math="y" /> secara terpisah.
 
 ### Contoh Perhitungan
 
@@ -83,21 +84,21 @@ Jika <InlineMath math="z = 5 - i" /> dan <InlineMath math="c = -2" />, maka:
 
 ## Contoh Visualisasi
 
-Mari kita lihat beberapa contoh lagi untuk memperjelas efek perkalian skalar.
+Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
 
 ### Skalar Lebih dari Satu
 
 <LineEquation
   title={
     <>
-      Perkalian dengan Skalar <InlineMath math="c = 1.5" />
+      Perkalian dengan Skalar <InlineMath math="c = 1{,}5" />
     </>
   }
   description={
     <>
       Vektor <InlineMath math="z = -2 + i" /> diperpanjang searah saat dikalikan{" "}
-      <InlineMath math="c = 1.5" />, menjadi{" "}
-      <InlineMath math="1.5z = -3 + 1.5i" />.
+      <InlineMath math="c = 1{,}5" />, menjadi{" "}
+      <InlineMath math="1{,}5z = -3 + 1{,}5i" />.
     </>
   }
   cameraPosition={[0, 0, 8]}
@@ -118,7 +119,7 @@ Mari kita lihat beberapa contoh lagi untuk memperjelas efek perkalian skalar.
         { x: -3, y: 1.5, z: 0 }, // 1.5 * (-2+i)
       ],
       color: "#65a30d",
-      labels: [{ text: <InlineMath math="1.5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="1{,}5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
       cone: { position: "end" },
     },
   ]}
@@ -129,14 +130,14 @@ Mari kita lihat beberapa contoh lagi untuk memperjelas efek perkalian skalar.
 <LineEquation
   title={
     <>
-      Perkalian dengan Skalar <InlineMath math="c = 0.75" />
+      Perkalian dengan Skalar <InlineMath math="c = 0{,}75" />
     </>
   }
   description={
     <>
       Vektor <InlineMath math="z = 3 - 2i" /> diperpendek searah saat dikalikan{" "}
-      <InlineMath math="c = 0.75" />, menjadi{" "}
-      <InlineMath math="0.75z = 2.25 - 1.5i" />.
+      <InlineMath math="c = 0{,}75" />, menjadi{" "}
+      <InlineMath math="0{,}75z = 2{,}25 - 1{,}5i" />.
     </>
   }
   cameraPosition={[0, 0, 8]}
@@ -157,7 +158,7 @@ Mari kita lihat beberapa contoh lagi untuk memperjelas efek perkalian skalar.
         { x: 2.25, y: -1.5, z: 0 }, // 0.75 * (3-2i)
       ],
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="0.75z" />, at: 1, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="0{,}75z" />, at: 1, offset: [0.5, 1, 0] }],
       cone: { position: "end" },
     },
   ]}

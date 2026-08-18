@@ -3,46 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "convince the government to pay attention to dealers.",
+      label: "encourage buyers to purchase passenger cars.",
       value: false,
     },
     {
       label:
-        "explain the condition of the car business during the Covid-19 pandemic.",
+        "report the scale and course of Indonesia's wholesale car-sales decline and recovery in 2020.",
       value: true,
     },
     {
-      label: "inform the number of cars during the pandemic.",
+      label: "compare the profitability of passenger and commercial vehicles.",
       value: false,
     },
     {
-      label: "show data on the increase in car sales.",
+      label: "explain the history and organizational structure of GAIKINDO.",
       value: false,
     },
     {
-      label: "convey public opinion regarding business.",
+      label: "predict the number of vehicles that would be sold in 2021.",
       value: false,
     },
   ],
   id: [
     {
-      label: "meyakinkan pemerintah untuk memperhatikan dealer.",
+      label: "mendorong pembeli untuk membeli mobil penumpang.",
       value: false,
     },
     {
-      label: "memaparkan keadaan bisnis mobil di masa pandemi Covid-19.",
+      label:
+        "memaparkan skala dan perjalanan penurunan serta pemulihan penjualan wholesales mobil Indonesia pada 2020.",
       value: true,
     },
     {
-      label: "menginformasikan jumlah mobil di masa pandemi.",
+      label: "membandingkan keuntungan mobil penumpang dan kendaraan niaga.",
       value: false,
     },
     {
-      label: "menunjukkan data peningkatan penjualan mobil.",
+      label: "menjelaskan sejarah dan struktur organisasi GAIKINDO.",
       value: false,
     },
     {
-      label: "menyampaikan pendapat masyarakat mengenai bisnis.",
+      label: "meramalkan jumlah kendaraan yang akan terjual pada 2021.",
       value: false,
     },
   ],

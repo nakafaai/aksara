@@ -3,10 +3,10 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     { label: "Tindakan mengurangi dampak bencana", value: true },
-    { label: "Pengontrolan aktivitas gajah", value: false },
+    { label: "Pemantauan pergerakan gajah", value: false },
     { label: "Perlindungan satwa liar", value: false },
-    { label: "Pengurangan bencana alam", value: false },
-    { label: "Tindak mendeteksi masalah", value: false },
+    { label: "Penghapusan semua sumber bahaya", value: false },
+    { label: "Tindakan mendeteksi posisi", value: false },
   ],
 };
 

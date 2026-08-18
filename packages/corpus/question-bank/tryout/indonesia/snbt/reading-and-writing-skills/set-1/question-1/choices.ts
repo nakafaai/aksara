@@ -3,47 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Planting and harvesting periods being difficult for farmers to plan.",
+      label: "Shifts in seasons that complicate planting and harvesting.",
       value: false,
     },
     {
-      label:
-        "The country's agricultural productivity being threatened with failure.",
+      label: "Sea-level rise and coastal flooding.",
       value: false,
     },
     {
-      label: "Excessively long dry seasons and floods during the rainy season.",
+      label: "Droughts and floods that can damage crops.",
       value: true,
     },
     {
-      label: "New sources of plant diseases and strong winds.",
+      label: "Greater risks from crop pests or diseases.",
       value: false,
     },
     {
-      label: "Storms that destroy crops, causing losses to farmers.",
+      label: "Higher temperatures that put pressure on food production.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Masa tanam dan masa panen sulit untuk direncanakan petani.",
+      label:
+        "Pergeseran musim yang menyulitkan penentuan masa tanam dan panen.",
       value: false,
     },
     {
-      label: "Produktivitas pertanian negeri terancam mengalami kegagalan.",
+      label: "Kenaikan muka laut dan banjir pesisir.",
       value: false,
     },
     {
-      label: "Musim kemarau yang terlalu panjang dan banjir di musim hujan.",
+      label: "Kekeringan dan banjir yang dapat merusak tanaman.",
       value: true,
     },
     {
-      label: "Sumber-sumber penyakit baru pada tanaman dan angin kencang.",
+      label: "Meningkatnya risiko hama atau penyakit tanaman.",
       value: false,
     },
     {
-      label: "Badai yang merusak tanaman sehingga merugikan para petani.",
+      label: "Kenaikan suhu yang menekan produksi pangan.",
       value: false,
     },
   ],

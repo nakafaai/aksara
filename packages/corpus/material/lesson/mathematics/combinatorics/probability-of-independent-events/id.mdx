@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Peluang Kejadian Majemuk Saling Bebas",
-   description: "Pelajari peluang kejadian saling bebas dengan penjelasan jelas, rumus, dan contoh nyata. Pelajari cara menghitung probabilitas gabungan efektif.",
+   description: "Uji apakah dua kejadian saling bebas dan hitung peluang gabungannya tanpa bergantung pada kata kunci yang menyesatkan.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Kombinatorik",
@@ -8,17 +8,17 @@ export const metadata = {
 
 ## Memahami Kejadian Saling Bebas
 
-Dalam kehidupan nyata, kita sering menghadapi situasi dimana **hasil satu kejadian tidak mempengaruhi hasil kejadian lainnya**. Bayangkan kamu melempar koin dan dadu secara bersamaan. Apakah hasil koin mempengaruhi angka yang muncul pada dadu? Tentu tidak! Kedua kejadian ini bersifat independen atau saling bebas.
+Sebagian model peluang memuat kejadian ketika **informasi tentang satu hasil tidak mengubah peluang hasil lainnya**. Lempar sebuah koin adil dan sebuah dadu adil. Mengetahui hasil koin tidak memberi informasi tentang hasil dadu, sehingga kedua kejadian saling bebas.
 
-**Kejadian saling bebas** adalah dua atau lebih kejadian yang hasil dari satu kejadian tidak mempengaruhi probabilitas kejadian lainnya. Jika kejadian <InlineMath math="A" /> tidak mempengaruhi kejadian <InlineMath math="B" />, dan sebaliknya, maka kedua kejadian tersebut saling bebas.
+Kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> **saling bebas** jika menjadikan salah satunya sebagai syarat tidak mengubah peluang kejadian lainnya. Kebebasan adalah sifat model peluang, bukan sekadar karena kedua kejadian berlangsung bersamaan.
 
-Sebagai ilustrasi sederhana, pikirkan tentang cuaca hari ini dan hasil ujian matematika kamu besok. Hujan atau cerah hari ini tidak akan mempengaruhi nilai ujian kamu (kecuali kamu terlambat karena hujan, tapi itu cerita lain!). Kedua kejadian ini saling bebas secara statistik.
+Pembedaan ini penting karena dua kejadian dapat memiliki penyebab bersama yang tersembunyi. Dua alarm mungkin tidak saling mengendalikan, misalnya, tetapi keduanya dapat bereaksi terhadap kejadian yang sama. Jangan menganggap kejadian bebas tanpa memeriksa model atau informasi pada soal.
 
 ## Ciri Kejadian Saling Bebas
 
 ### Tidak Saling Mempengaruhi
 
-Ciri utama kejadian saling bebas adalah **hasil satu kejadian tidak mengubah probabilitas kejadian lainnya**. Dalam notasi matematika, jika <InlineMath math="A" /> dan <InlineMath math="B" /> adalah kejadian saling bebas, maka:
+Ciri utama kejadian saling bebas adalah **hasil satu kejadian tidak mengubah probabilitas kejadian lainnya**. Dalam notasi matematika, jika <InlineMath math="A" /> dan <InlineMath math="B" /> saling bebas serta <InlineMath math="P(B) > 0" />, maka:
 
 <BlockMath math="P(A|B) = P(A)" />
 
@@ -26,16 +26,16 @@ Artinya probabilitas <InlineMath math="A" /> terjadi ketika <InlineMath math="B"
 
 ### Contoh Kehidupan Sehari Hari
 
-Beberapa contoh kejadian saling bebas yang mudah dipahami:
+Contoh dengan mekanisme yang jelas saling bebas meliputi:
 
-- Melempar dua koin berbeda secara bersamaan
-- Mengambil kartu dari dua deck terpisah
-- Hasil ujian dua siswa yang berbeda (tanpa menyontek!)
-- Kondisi cuaca di dua kota yang berjauhan
+- melempar dua koin adil yang terpisah
+- mengambil satu kartu dari masing-masing dua set kartu yang dikocok secara terpisah
+- melempar dua dadu adil yang terpisah
+- menghasilkan dua angka acak melalui percobaan yang independen
 
 ### Identifikasi Kejadian Saling Bebas
 
-Untuk mengidentifikasi apakah dua kejadian saling bebas, tanyakan: "Apakah mengetahui hasil kejadian pertama memberikan informasi tentang hasil kejadian kedua?" Jika jawabannya tidak, maka kedua kejadian tersebut saling bebas.
+Untuk menguji kebebasan, tanyakan: “Apakah mengetahui hasil pertama mengubah distribusi peluang hasil kedua?” Cerita sebab-akibat saja tidak cukup; gunakan model yang dinyatakan atau periksa kesamaan peluang bersyarat dan peluang biasa.
 
 ## Rumus Peluang Kejadian Saling Bebas
 
@@ -81,12 +81,12 @@ Sebuah dadu dan sebuah koin dilempar bersamaan. Tentukan probabilitas mendapatka
 **Penyelesaian:**
 
 <MathContainer>
-<BlockMath math="S_{dadu} = \{1, 2, 3, 4, 5, 6\}" />
-<BlockMath math="S_{koin} = \{A, G\}" />
+<BlockMath math="S_1 = \{1, 2, 3, 4, 5, 6\}" />
+<BlockMath math="S_2 = \{0, 1\}" />
 </MathContainer>
 
 - Kejadian <InlineMath math="A" />: munculnya angka genap pada dadu adalah <InlineMath math="\{2, 4, 6\}" />
-- Kejadian <InlineMath math="B" />: munculnya gambar pada koin adalah <InlineMath math="\{G\}" />
+- Kejadian <InlineMath math="B" />: sisi gambar pada koin, yang dilambangkan dengan <InlineMath math="1" />, adalah <InlineMath math="\{1\}" />
 
 Kedua kejadian **saling bebas** karena hasil dadu tidak mempengaruhi hasil koin.
 
@@ -96,27 +96,27 @@ Kedua kejadian **saling bebas** karena hasil dadu tidak mempengaruhi hasil koin.
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
-### Contoh Aplikasi Nyata
+### Contoh Pemodelan Terapan
 
-Dalam sebuah kota, probabilitas mobil pemadam kebakaran diperlukan pada hari tertentu adalah <InlineMath math="0.98" />, sedangkan probabilitas ambulans diperlukan adalah <InlineMath math="0.92" />. Berapa probabilitas kedua kendaraan tersebut diperlukan pada hari yang sama?
+Dua sensor pemantauan dengan sumber daya terpisah menjalankan uji mandiri setiap hari. Sensor <InlineMath math="A" /> berhasil dengan peluang <InlineMath math="0{,}98" />, sedangkan sensor <InlineMath math="B" /> berhasil dengan peluang <InlineMath math="0{,}92" />. Dalam model yang menyatakan keduanya saling bebas, berapa peluang kedua uji berhasil?
 
-Angka probabilitas ini menggambarkan skenario kota besar dengan tingkat aktivitas darurat yang tinggi.
+Asumsi kebebasan merupakan bagian dari model ini. Jika kedua sensor memakai sumber daya atau jaringan yang sama, asumsi tersebut harus diperiksa kembali.
 
 **Penyelesaian:**
 
-- Kejadian <InlineMath math="A" />: mobil pemadam kebakaran diperlukan
-- Kejadian <InlineMath math="B" />: ambulans diperlukan
+- Kejadian <InlineMath math="A" />: sensor pertama lulus uji mandiri
+- Kejadian <InlineMath math="B" />: sensor kedua lulus uji mandiri
 
-Kedua kejadian ini dapat dianggap **saling bebas** karena kebutuhan pemadam kebakaran tidak mempengaruhi kebutuhan ambulans.
+Soal menyatakan bahwa kedua uji **saling bebas**, sehingga satu hasil tidak mengubah peluang hasil lainnya.
 
 **Perhitungan detail:**
 
 <MathContainer>
 <BlockMath math="P(A \cap B) = P(A) \times P(B)" />
-<BlockMath math="P(A \cap B) = 0.98 \times 0.92 = 0.9016" />
+<BlockMath math="P(A \cap B) = 0{,}98 \times 0{,}92 = 0{,}9016" />
 </MathContainer>
 
-Jadi probabilitas kedua kendaraan tersebut diperlukan pada hari yang sama adalah <InlineMath math="0.9016" /> atau <InlineMath math="90.16\%" />.
+Jadi peluang kedua sensor lulus adalah <InlineMath math="0{,}9016" /> atau <InlineMath math="90{,}16\%" />.
 
 ## Strategi Pemecahan Masalah
 
@@ -125,7 +125,7 @@ Jadi probabilitas kedua kendaraan tersebut diperlukan pada hari yang sama adalah
 Untuk menyelesaikan soal probabilitas kejadian saling bebas, ikuti langkah berikut:
 
 1. **Identifikasi kejadian** yang terlibat dalam masalah
-2. **Pastikan kejadian saling bebas** dengan memverifikasi tidak ada pengaruh timbal balik
+2. **Verifikasi kejadian saling bebas** melalui model yang dinyatakan atau peluang bersyaratnya
 3. **Hitung probabilitas individual** setiap kejadian
 4. **Terapkan rumus** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Periksa hasil** apakah masuk akal dalam konteks masalah
@@ -135,7 +135,7 @@ Untuk menyelesaikan soal probabilitas kejadian saling bebas, ikuti langkah berik
 Beberapa strategi untuk memudahkan pemahaman:
 
 - **Visualisasikan** kejadian dengan diagram pohon jika diperlukan
-- **Pastikan independensi** dengan bertanya apakah satu kejadian mempengaruhi yang lain
+- **Verifikasi kebebasan** dari model atau peluang bersyarat, bukan dari waktu kejadian saja
 - **Periksa konsistensi** hasil dengan menggunakan pendekatan berbeda
 - **Gunakan konteks** untuk memvalidasi apakah jawaban masuk akal
 
@@ -143,29 +143,31 @@ Beberapa strategi untuk memudahkan pemahaman:
 
 Perhatikan karakteristik berikut untuk mengidentifikasi kejadian saling bebas:
 
-**Kejadian yang Saling Bebas:**
-- Pelemparan beberapa koin sekaligus
-- Pengambilan kartu dengan pengembalian
-- Hasil ujian siswa yang berbeda
-- Kondisi cuaca di lokasi terpisah
+**Saling bebas dalam model yang dinyatakan:**
+- lemparan koin adil yang terpisah
+- pengambilan kartu dengan pengembalian dan pengocokan ulang
+- lemparan dadu adil yang terpisah
+- percobaan angka acak yang independen
 
-**Kejadian yang TIDAK Saling Bebas:**
+**Situasi yang tidak boleh langsung dianggap saling bebas:**
 - Pengambilan kartu tanpa pengembalian
-- Tinggi badan dan berat badan seseorang
-- Nilai ujian siswa yang sama pada mata pelajaran berbeda
-- Suhu dan kelembaban udara
+- Tinggi dan berat badan seseorang, kecuali model atau data membuktikan kebebasannya
+- Nilai siswa yang sama pada mata pelajaran berbeda, kecuali kebebasannya telah ditetapkan
+- Suhu dan kelembapan udara, kecuali kebebasannya telah ditetapkan untuk model tersebut
 
 ## Latihan
 
-1. Dua koin dilempar bersamaan. Tentukan probabilitas mendapatkan angka pada koin pertama dan gambar pada koin kedua.
+1. Dua koin adil dilempar secara independen. Tentukan probabilitas mendapatkan angka pada koin pertama dan gambar pada koin kedua.
 
-2. Sebuah dadu dan sebuah kartu diambil dari deck standar. Hitunglah probabilitas mendapatkan angka prima pada dadu dan kartu berwarna merah.
+2. Sebuah dadu adil dilempar secara independen dari pengambilan satu kartu pada set kartu standar yang telah dikocok. Hitunglah peluang mendapatkan bilangan prima pada dadu dan kartu berwarna merah.
 
-3. Dalam sebuah kelas, probabilitas seorang siswa lulus matematika adalah <InlineMath math="0.85" /> dan probabilitas lulus fisika adalah <InlineMath math="0.78" />. Jika kedua mata pelajaran independen, berapa probabilitas siswa tersebut lulus kedua mata pelajaran?
+3. Dalam sebuah kelas, probabilitas seorang siswa lulus matematika adalah <InlineMath math="0{,}85" /> dan probabilitas lulus fisika adalah <InlineMath math="0{,}78" />. Jika kedua mata pelajaran independen, berapa probabilitas siswa tersebut lulus kedua mata pelajaran?
 
-4. Tiga koin dilempar bersamaan. Tentukan probabilitas mendapatkan tepat dua gambar.
+4. Tiga koin adil dilempar secara independen. Tentukan probabilitas mendapatkan tepat dua gambar.
 
-### Kunci Jawaban
+Coba kerjakan setiap latihan sebelum membaca pembahasannya. Jelaskan alasan kedua kejadian saling bebas sebelum mengalikan peluangnya.
+
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -187,22 +189,22 @@ Perhatikan karakteristik berikut untuk mengidentifikasi kejadian saling bebas:
 
 3. **Penyelesaian:**
 
-   - Kejadian <InlineMath math="A" />: lulus matematika, <InlineMath math="P(A) = 0.85" />
-   - Kejadian <InlineMath math="B" />: lulus fisika, <InlineMath math="P(B) = 0.78" />
+   - Kejadian <InlineMath math="A" />: lulus matematika, <InlineMath math="P(A) = 0{,}85" />
+   - Kejadian <InlineMath math="B" />: lulus fisika, <InlineMath math="P(B) = 0{,}78" />
 
    Karena kedua mata pelajaran independen:
 
-   <BlockMath math="P(A \cap B) = 0.85 \times 0.78 = 0.663" />
+   <BlockMath math="P(A \cap B) = 0{,}85 \times 0{,}78 = 0{,}663" />
 
-   Jadi probabilitas lulus kedua mata pelajaran adalah <InlineMath math="0.663" /> atau <InlineMath math="66.3\%" />.
+   Jadi probabilitas lulus kedua mata pelajaran adalah <InlineMath math="0{,}663" /> atau <InlineMath math="66{,}3\%" />.
 
 4. **Penyelesaian:**
 
    **Cara <InlineMath math="1" />: Enumerasi Langsung**
 
-   Ruang sampel <InlineMath math="3" /> koin (<InlineMath math="A" /> = Angka, <InlineMath math="G" /> = Gambar): <InlineMath math="\{AAA, AAG, AGA, AGG, GAA, GAG, GGA, GGG\}" />, total adalah <InlineMath math="8" />
+   Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampel <InlineMath math="3" /> koin adalah <InlineMath math="\{000, 001, 010, 011, 100, 101, 110, 111\}" />, dengan <InlineMath math="8" /> hasil.
 
-   Kejadian tepat dua gambar: <InlineMath math="\{AGG, GAG, GGA\}" />, ada <InlineMath math="3" /> kejadian
+   Tepat dua sisi gambar terjadi pada <InlineMath math="\{011, 101, 110\}" />, sehingga ada <InlineMath math="3" /> hasil yang diinginkan.
 
    <BlockMath math="P(\text{tepat 2 gambar}) = \frac{3}{8}" />
 

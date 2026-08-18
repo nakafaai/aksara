@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Vector Components",
-  description: "Learn to break down vectors into x, y, z components, calculate magnitude using Pythagorean theorem, and find unit direction vectors with examples.",
+  description: "Decompose vectors into coordinate components, recover their magnitude with the Pythagorean theorem, and form unit direction vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-11",
   subject: "Vector and Operations",
@@ -10,35 +10,35 @@ export const metadata = {
 
 ## Understanding Vector Components
 
-In studying vectors, we need to understand that every vector can be broken down into its components. Vector components are parts of a vector that are parallel to the coordinate axes.
+Every vector in the coordinate plane can be decomposed along the two coordinate axes. In <InlineMath math="\vec{v}=a\mathbf{i}+b\mathbf{j}" />, the signed numbers <InlineMath math="a" /> and <InlineMath math="b" /> are the scalar components. The vectors <InlineMath math="a\mathbf{i}" /> and <InlineMath math="b\mathbf{j}" /> are the corresponding vector components, or orthogonal projections onto the axes.
 
-Vector components are values that indicate how far a vector moves in the direction of the <InlineMath math="x" />-axis and <InlineMath math="y" />-axis. Every vector in a plane can be expressed as a linear combination of unit vectors <InlineMath math="i" /> and <InlineMath math="j" />.
+The scalar components tell us how far and in which signed direction the vector extends along the <InlineMath math="x" />- and <InlineMath math="y" />-axes. Every vector in the plane is a linear combination of the unit vectors <InlineMath math="\mathbf{i}" /> and <InlineMath math="\mathbf{j}" />.
 
 <Vector3d
   title="Vector Visualization and Its Components"
   description={
     <>
       Vector <InlineMath math="AB" /> and its components on the{" "}
-      <InlineMath math="x" />, <InlineMath math="y" />, and{" "}
-      <InlineMath math="z" /> axes.
+      <InlineMath math="x" />- and <InlineMath math="y" />-axes, with zero{" "}
+      <InlineMath math="z" />-component.
     </>
   }
   vectors={[
     {
       from: [0, 0, 0],
-      to: [4, 6, 0],
+      to: [6, 8, 0],
       color: "#e11d48",
       label: <InlineMath math="AB" />,
     },
     {
       from: [0, 0, 0],
-      to: [4, 0, 0],
+      to: [6, 0, 0],
       color: "#0d9488",
       label: <><InlineMath math="x" />-component</>,
     },
     {
       from: [0, 0, 0],
-      to: [0, 6, 0],
+      to: [0, 8, 0],
       color: "#65a30d",
       label: <><InlineMath math="y" />-component</>,
     },
@@ -47,22 +47,22 @@ Vector components are values that indicate how far a vector moves in the directi
 
 If we have a vector <InlineMath math="\overrightarrow{AB}" />, then:
 
-<BlockMath math="\overrightarrow{AB} = a\cdot i + b\cdot j" />
+<BlockMath math="\overrightarrow{AB} = a\mathbf{i} + b\mathbf{j}" />
 
 where:
 
-- <InlineMath math="a" /> is the vector component on the <InlineMath math="x" />-axis (horizontal)
-- <InlineMath math="b" /> is the vector component on the <InlineMath math="y" />-axis (vertical)
-- <InlineMath math="i" /> is the unit vector in the direction of the <InlineMath math="x" />-axis
-- <InlineMath math="j" /> is the unit vector in the direction of the <InlineMath math="y" />-axis
+- <InlineMath math="a" /> is the horizontal scalar component, and <InlineMath math="a\mathbf{i}" /> is the corresponding vector projection
+- <InlineMath math="b" /> is the vertical scalar component, and <InlineMath math="b\mathbf{j}" /> is the corresponding vector projection
+- <InlineMath math="\mathbf{i}" /> is the unit vector in the direction of the <InlineMath math="x" />-axis
+- <InlineMath math="\mathbf{j}" /> is the unit vector in the direction of the <InlineMath math="y" />-axis
 
 ### Example of Vector Components
 
 Consider the vector <InlineMath math="\overrightarrow{AB}" /> in the figure. This vector can be written as:
 
-<BlockMath math="\overrightarrow{AB} = 6i + 8j" />
+<BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
 
-This means that vector <InlineMath math="\overrightarrow{AB}" /> has a horizontal component of <InlineMath math="6 \text{ units}" /> to the right and a vertical component of <InlineMath math="8 \text{ units}" /> upward.
+This means that <InlineMath math="\overrightarrow{AB}" /> has scalar components <InlineMath math="6" /> and <InlineMath math="8" />, with vector projections <InlineMath math="6\mathbf{i}" /> to the right and <InlineMath math="8\mathbf{j}" /> upward.
 
 ## Vector Magnitude from Its Components
 
@@ -76,7 +76,7 @@ where <InlineMath math="a" /> and <InlineMath math="b" /> are the components of 
 
 ### Example of Vector Magnitude Calculation
 
-For the vector <InlineMath math="\overrightarrow{AB} = 6i + 8j" />, its magnitude is:
+For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />, its magnitude is:
 
 <BlockMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10" />
 
@@ -120,33 +120,33 @@ Vectors are not limited to a plane (two dimensions) but can also be extended to 
 
 In three-dimensional space, a vector has three components: the x-component, y-component, and z-component. A vector in three-dimensional space can be expressed as:
 
-<BlockMath math="\overrightarrow{v} = ai + bj + ck" />
+<BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
 
 where:
 
-- <InlineMath math="a" /> is the vector component on the <InlineMath math="x" />-axis
-- <InlineMath math="b" /> is the vector component on the <InlineMath math="y" />-axis
-- <InlineMath math="c" /> is the vector component on the <InlineMath math="z" />-axis
-- <InlineMath math="i" />, <InlineMath math="j" />, and <InlineMath math="k" /> are
-  unit vectors in the direction of the x, y, and z axes
+- <InlineMath math="a" /> is the scalar component along the <InlineMath math="x" />-axis, while <InlineMath math="a\mathbf{i}" /> is its vector projection
+- <InlineMath math="b" /> is the scalar component along the <InlineMath math="y" />-axis, while <InlineMath math="b\mathbf{j}" /> is its vector projection
+- <InlineMath math="c" /> is the scalar component along the <InlineMath math="z" />-axis, while <InlineMath math="c\mathbf{k}" /> is its vector projection
+- <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" />, and <InlineMath math="\mathbf{k}" /> are
+  unit vectors in the direction of the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes
 
 The magnitude of a vector in three-dimensional space is calculated using the formula:
 
-<BlockMath math="|\overrightarrow{v}| = \sqrt{a^2 + b^2 + c^2}" />
+<BlockMath math="|\vec{v}| = \sqrt{a^2 + b^2 + c^2}" />
 
 ## Unit Direction Vector
 
-To determine the direction of a vector, we can use a unit vector. A unit vector is a vector with a magnitude of <InlineMath math="1 \text{ unit}" />. To obtain a unit vector from a vector, we divide the vector by its magnitude.
+To represent the direction of a nonzero vector, we can use a unit vector. A unit vector has magnitude <InlineMath math="1 \text{ unit}" />. We obtain it by dividing the nonzero vector by its magnitude.
 
-The unit direction vector of <InlineMath math="\overrightarrow{AB}" /> is denoted by <InlineMath math="\hat{AB}" /> and calculated using:
+Denote the unit direction vector of <InlineMath math="\overrightarrow{AB}" /> by <InlineMath math="\mathbf{u}_{AB}" />. It is calculated using:
 
-<BlockMath math="\hat{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
+<BlockMath math="\mathbf{u}_{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
 
 ### Example of Unit Direction Vector
 
-For the vector <InlineMath math="\overrightarrow{AB} = 6i + 8j" /> with a magnitude of <InlineMath math="10" />, its unit direction vector is:
+For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> with magnitude <InlineMath math="10" />, its unit direction vector is:
 
-<BlockMath math="\hat{AB} = \frac{6i + 8j}{10} = \frac{6}{10}i + \frac{8}{10}j = 0.6i + 0.8j" />
+<BlockMath math="\mathbf{u}_{AB} = \frac{6\mathbf{i} + 8\mathbf{j}}{10} = \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} = 0.6\mathbf{i} + 0.8\mathbf{j}" />
 
 This unit vector indicates the direction of vector <InlineMath math="\overrightarrow{AB}" /> without regard to its magnitude.
 

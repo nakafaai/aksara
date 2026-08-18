@@ -3,25 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Politik didefinisikan sebagai forum bermusyawarah",
+      label: "Semua kelompok selalu mempunyai tujuan yang sama",
+      value: false,
+    },
+    {
+      label: "Perang tidak pernah menghasilkan perubahan politik",
       value: false,
     },
     {
       label:
-        "Politik didefinisikan sebagai bukti perubahan zaman dari peperangan ke dunia politik",
-      value: false,
-    },
-    {
-      label: "Politik didefinisikan sebagai perang tanpa pertumpahan darah",
+        "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
       value: true,
     },
     {
-      label:
-        "Politik didefinisikan sebagai perlombaan menuju ke posisi paling unggul",
+      label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
       value: false,
     },
     {
-      label: "Politik didefinisikan sebagai bukti kemajuan peradaban",
+      label: "Lembaga internasional menyelesaikan setiap perselisihan",
       value: false,
     },
   ],

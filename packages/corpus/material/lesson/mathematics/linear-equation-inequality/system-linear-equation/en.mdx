@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Linear Equation Systems",
-  description: "Learn solving linear equation systems with substitution and elimination methods. Learn real-world applications with worked examples and visual guides.",
+  description: "Solve linear equation systems with substitution and elimination, then interpret worked examples and visual models.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-18",
   subject: "Systems of Linear Equations and Inequalities",
@@ -10,15 +10,15 @@ export const metadata = {
 
 ## Understanding Linear Equation Systems
 
-Imagine you're making a cake recipe. You know the cake requires eggs and flour in specific amounts. However, you only know the total ingredients and their ratios. This is similar to a linear equation system - we're looking for unknown values based on related information.
+A total price can be produced by many different item combinations. A second relationship, such as the total number of items, narrows those possibilities. A linear equation system keeps the relationships together, so its solution must satisfy every equation at once.
 
 ### What Is a Linear Equation System?
 
 A linear equation system is a collection of two or more linear equations that must be satisfied simultaneously. Each linear equation has the form:
 
-<BlockMath math="a_1x_1 + a_2x_2 + ... + a_nx_n = b" />
+<BlockMath math="a_1x_1 + a_2x_2 + \ldots + a_nx_n = b" />
 
-Where <InlineMath math="a_1, a_2, ..., a_n" /> are coefficients, <InlineMath math="x_1, x_2, ..., x_n" /> are variables, and <InlineMath math="b" /> is a constant.
+Here <InlineMath math="a_1, a_2, \ldots, a_n" /> are coefficients, <InlineMath math="x_1, x_2, \ldots, x_n" /> are variables, and <InlineMath math="b" /> is a constant.
 
 ### Two-Variable Linear Equation Systems
 
@@ -34,7 +34,7 @@ The solution to this system is the pair of values <InlineMath math="(x,y)" /> th
 
 ### Three-Variable Linear Equation Systems
 
-For three variables, we need at least three equations:
+A system may contain any number of equations. To determine unique values for <InlineMath math="x,y,z" />, however, the equations must provide three independent constraints. A common square form is:
 
 <BlockMath math="\begin{cases} a_1x + b_1y + c_1z = d_1 \\ a_2x + b_2y + c_2z = d_2 \\ a_3x + b_3y + c_3z = d_3 \end{cases}" />
 
@@ -113,6 +113,36 @@ Verify:
 - Equation (<InlineMath math="1" />): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
 - Equation (<InlineMath math="2" />): <InlineMath math="9 + 1 = 10" /> ✓
 
+## Check Your Understanding
+
+Solve the system:
+
+<BlockMath math="\begin{cases} 3x+2y=16 \\ x-y=2 \end{cases}" />
+
+### Worked Solution
+
+The second equation gives <InlineMath math="x=y+2" />. Substitute this expression into the first equation:
+
+<MathContainer>
+  <BlockMath math="3(y+2)+2y=16" />
+  <BlockMath math="5y+6=16" />
+  <BlockMath math="5y=10" />
+  <BlockMath math="y=2" />
+</MathContainer>
+
+Back-substitute into <InlineMath math="x=y+2" />:
+
+<BlockMath math="x=2+2=4" />
+
+Both original equations confirm the result:
+
+<MathContainer>
+  <BlockMath math="3(4)+2(2)=16" />
+  <BlockMath math="4-2=2" />
+</MathContainer>
+
+Therefore, the solution is <InlineMath math="(x,y)=(4,2)" />.
+
 ## Real-Life Applications
 
 ### Mathematical Modeling
@@ -131,9 +161,9 @@ In basketball, there are three types of shots with different point values: free 
 
 Let's define:
 
-- <InlineMath math="a" /> = number of <InlineMath math="1\text{-point}" /> shots
-- <InlineMath math="b" /> = number of <InlineMath math="2\text{-point}" /> shots
-- <InlineMath math="c" /> = number of <InlineMath math="3\text{-point}" /> shots
+- <InlineMath math="a" /> = number of <InlineMath math="1" />-point shots
+- <InlineMath math="b" /> = number of <InlineMath math="2" />-point shots
+- <InlineMath math="c" /> = number of <InlineMath math="3" />-point shots
 
 If Wijaya scored <InlineMath math="27" /> points, made <InlineMath math="16" /> shots total with <InlineMath math="6" /> of them being free throws, then:
 
@@ -159,7 +189,7 @@ From these two equations:
 
 Using elimination or substitution, we get <InlineMath math="b = 9" /> and <InlineMath math="c = 1" />.
 
-Therefore, Wijaya made <InlineMath math="6" /> free throws, <InlineMath math="9" /> two-point shots, and <InlineMath math="1" /> three-point shot.
+Therefore, Wijaya made <InlineMath math="6" /> free throws, <InlineMath math="9" /> <InlineMath math="2" />-point shots, and <InlineMath math="1" /> <InlineMath math="3" />-point shot.
 
 ## Interpreting Solutions
 
@@ -169,7 +199,7 @@ Linear equation systems have three possible solution types:
 2. **No solution**: When the lines are parallel (or planes do not intersect)
 3. **Infinitely many solutions**: When the lines coincide (or planes intersect along a line or plane)
 
-In three dimensions (three variables), a linear equation is represented as a plane. The intersection of two planes forms a line, and the intersection of three planes can form a point.
+In three dimensions, one linear equation represents a plane. Two distinct nonparallel planes intersect in a line. For three or more planes, the common solution set may be a point, a line, a plane, or empty.
 
 ### Visualizing Linear Equation Systems
 
@@ -180,8 +210,8 @@ In three dimensions (three variables), a linear equation is represented as a pla
     data={[
       {
         points: [
-          { x: -2, y: 8, z: 0 },
-          { x: 3.5, y: 4.5, z: 0 },
+          { x: -3, y: 9, z: 0 },
+          { x: 3, y: 5, z: 0 },
           { x: 9, y: 1, z: 0 },
         ],
         labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
@@ -204,18 +234,18 @@ In three dimensions (three variables), a linear equation is represented as a pla
     data={[
       {
         points: [
-          { x: -3, y: 1, z: 0 },
-          { x: 0, y: 4, z: 0 },
-          { x: 3, y: 7, z: 0 },
+          { x: -3, y: -4, z: 0 },
+          { x: 1, y: 2, z: 0 },
+          { x: 5, y: 8, z: 0 },
         ],
         labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
         color: "#db2777",
       },
       {
         points: [
-          { x: -2, y: -1, z: 0 },
-          { x: 1, y: 2, z: 0 },
-          { x: 4, y: 5, z: 0 },
+          { x: -3, y: -5, z: 0 },
+          { x: 1, y: 1, z: 0 },
+          { x: 5, y: 7, z: 0 },
         ],
         labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
         color: "#ca8a04",
@@ -228,18 +258,18 @@ In three dimensions (three variables), a linear equation is represented as a pla
     data={[
       {
         points: [
-          { x: -2, y: 1, z: 0 },
-          { x: 0, y: 0, z: 0 },
+          { x: -1, y: 1, z: 0 },
           { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
         ],
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
       },
       {
         points: [
-          { x: -2, y: 1, z: 0 },
-          { x: 0, y: 0, z: 0 },
+          { x: -1, y: 1, z: 0 },
           { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
         ],
         labels: [{ text: <InlineMath math="4x+6y=2" />, offset: [2, 1, 0] }],
         color: "#0891b2",

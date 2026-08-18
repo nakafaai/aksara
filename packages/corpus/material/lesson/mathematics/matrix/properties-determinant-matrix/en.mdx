@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Properties of Matrix Determinant",
-  description: "Explore matrix determinant properties: product rule |AB| = |A||B| and scalar multiplication |kA| = k^n|A|. Learn through worked examples.",
+  description: "Explore how determinants behave under matrix products and scalar multiplication through worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-06-05",
   subject: "Matrix",
@@ -103,3 +103,35 @@ If <InlineMath math="A" /> is a square matrix of order <InlineMath math="n \time
 <BlockMath math="|kA| = k^n |A|" />
 
 Here, <InlineMath math="n" /> is the order (number of rows or columns) of the square matrix <InlineMath math="A" />.
+
+## Other Determinant Properties
+
+The product and whole-matrix scaling laws are part of a larger set of useful rules. In the table, <InlineMath math="A" /> is square and every row operation produces a new matrix <InlineMath math="B" />.
+
+| Change or matrix form | Effect on the determinant |
+| :-------------------- | :------------------------ |
+| Transpose | <InlineMath math="\det(A^T)=\det(A)" /> |
+| Inverse, when <InlineMath math="\det(A)\neq0" /> | <InlineMath math="\det(A^{-1})=1/\det(A)" /> |
+| Triangular matrix <InlineMath math="U" /> | <InlineMath math="\det(U)=\prod_{i=1}^{n}u_{ii}" /> |
+| Swap two rows, <InlineMath math="R_i\leftrightarrow R_j" /> | <InlineMath math="\det(B)=-\det(A)" /> |
+| Multiply one row by <InlineMath math="k" /> | <InlineMath math="\det(B)=k\det(A)" /> |
+| Add a multiple of one row to another, <InlineMath math="R_i\leftarrow R_i+kR_j" /> | <InlineMath math="\det(B)=\det(A)" /> |
+| Two equal rows, or one zero row | <InlineMath math="\det(A)=0" /> |
+
+Do not confuse scaling one row with scaling the whole matrix. In an <InlineMath math="n\times n" /> matrix, <InlineMath math="kA" /> scales all <InlineMath math="n" /> rows by <InlineMath math="k" />, so the factor <InlineMath math="k" /> appears <InlineMath math="n" /> times and gives <InlineMath math="k^n" />.
+
+## Check Your Understanding
+
+Start with:
+
+<BlockMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\qquad \det(A)=-2" />
+
+The determinant rules predict each result before any full expansion:
+
+<MathContainer>
+  <BlockMath math="B=\begin{bmatrix}3&4\\1&2\end{bmatrix}\quad\Longrightarrow\quad\det(B)=2" />
+  <BlockMath math="C=\begin{bmatrix}5&10\\3&4\end{bmatrix}\quad\Longrightarrow\quad\det(C)=5\det(A)=-10" />
+  <BlockMath math="D=\begin{bmatrix}1&2\\6&10\end{bmatrix}\quad\Longrightarrow\quad\det(D)=\det(A)=-2" />
+</MathContainer>
+
+Matrix <InlineMath math="B" /> swaps the rows, matrix <InlineMath math="C" /> multiplies the first row by <InlineMath math="5" />, and matrix <InlineMath math="D" /> applies <InlineMath math="R_2\leftarrow R_2+3R_1" />. Direct calculation confirms all three predictions.

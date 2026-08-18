@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Definition of Indefinite Integral",
-    description: "Learn indefinite integrals as antiderivatives, how the constant C works, and how integration reverses differentiation.",
+    description: "Understand indefinite integrals as families of antiderivatives and see why every result needs a constant of integration.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integrals",
@@ -8,11 +8,11 @@ export const metadata = {
 
 ## Understanding the Concept of Integrals
 
-Imagine a derivative is like a "recipe" for knowing the rate of change of something. For example, a recipe to know your car's speed at any moment. Well, an integral is the opposite. If you have that speed "recipe," with an integral, you can find out your car's position function. So, an integral is essentially an **antiderivative**, or the process of finding the original function from its derivative.
+Differentiation turns a position function <InlineMath math="s(t)" /> into its velocity <InlineMath math="v(t)=s'(t)" />. Indefinite integration reverses that step: from <InlineMath math="v(t)" />, it recovers a family of possible position functions. This reverse process is **antidifferentiation**, and the resulting family is the **indefinite integral**. An initial position is still needed to select one member of that family.
 
-## The Role of the Mysterious Constant
+## Why the Constant Matters
 
-Let's look at a few functions and their derivatives. Pay close attention to the pattern.
+Compare these functions and their derivatives.
 
 | Function <InlineMath math="F(x)" /> | Derivative <InlineMath math="f(x) = F'(x)" /> |
 | :--- | :--- |
@@ -21,23 +21,23 @@ Let's look at a few functions and their derivatives. Pay close attention to the 
 | <InlineMath math="F(x) = 2x^2 - 10" /> | <InlineMath math="f(x) = 4x" /> |
 | <InlineMath math="F(x) = 2x^2" /> | <InlineMath math="f(x) = 4x" /> |
 
-See? All those different <InlineMath math="F(x)" /> functions have the exact same derivative, <InlineMath math="f(x) = 4x" />. This happens because the derivative of a constant (a number without a variable, like <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="-10" />) is always zero.
+All four <InlineMath math="F(x)" /> functions have the same derivative, <InlineMath math="f(x) = 4x" />. The reason is that the derivative of a constant, such as <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="-10" />, is zero.
 
-Because of this, when we do the reverse process (integration), we lose track of the original constant's value. Was the constant <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="-1000" />? We don't know. To solve this problem, we use the symbol <InlineMath math="C" /> to represent all possible constants. This symbol <InlineMath math="C" /> is our "safety net" to ensure no solution is missed. That's why the result is called an **indefinite integral**.
+Differentiation therefore erases the original constant. When we reverse the process, the derivative alone cannot tell us whether that constant was <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, or another value. The symbol <InlineMath math="C" /> represents every possibility, so the result is a family of antiderivatives rather than one function.
 
 ## Formal Notation of Integrals
 
-In mathematics, we have a formal way of writing this integration process. It might look a bit complex, but it's actually simple:
+The formal notation records the integrand, the variable of integration, and the full family of antiderivatives:
 
 <BlockMath math="\int f(x) \, dx = F(x) + C" />
 
-Let's break down what each part means:
+Each part has a specific role:
 - **<InlineMath math="\int" />** is the **integral symbol**; it looks like an elongated 'S', symbolizing "summation" or "accumulation."
 - **<InlineMath math="f(x)" />** is the function we are going to integrate, called the **integrand**.
 - **<InlineMath math="dx" />** is called the **differential** of <InlineMath math="x" />. This is a crucial part that indicates we are integrating with respect to the variable <InlineMath math="x" />. Without it, the integral expression is incomplete.
 - **<InlineMath math="F(x) + C" />** is the **indefinite integral** of <InlineMath math="f(x)" />. This is our answer, where <InlineMath math="F(x)" /> is the antiderivative and <InlineMath math="C" /> is the **constant of integration**.
 
-So, just remember this key relationship:
+The defining relationship is:
 
 <BlockMath math="\frac{d}{dx} [F(x)] = f(x) \quad \iff \quad \int f(x) \, dx = F(x) + C" />
 

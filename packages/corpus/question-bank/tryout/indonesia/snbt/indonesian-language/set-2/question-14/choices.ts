@@ -3,10 +3,10 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     { label: "GPS Collar", value: true },
-    { label: "GMaps", value: false },
+    { label: "Kamera jebak", value: false },
     { label: "Kompas", value: false },
-    { label: "Moovit", value: false },
-    { label: "Marine Navigation", value: false },
+    { label: "Radio genggam", value: false },
+    { label: "Penerima satelit", value: false },
   ],
 };
 

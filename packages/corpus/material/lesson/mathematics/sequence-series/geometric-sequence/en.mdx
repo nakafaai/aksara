@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Geometric Sequence",
-  description: "Learn geometric sequences with constant ratios. Learn formulas, solve real-world problems like bacterial growth, and discover practical applications.",
+  description: "Build geometric sequences from a constant ratio, derive the general term, and test idealized growth models in complete examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-05",
   subject: "Sequence and Series",
@@ -15,13 +15,15 @@ If we have a geometric sequence <InlineMath math="U_1, U_2, U_3, ..., U_n" />, t
 
 <BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
 
-In other words, each term in a geometric sequence is obtained by multiplying the previous term by the ratio <InlineMath math="r" />.
+In other words, each term in a geometric sequence is obtained by multiplying the previous term by the ratio <InlineMath math="r" />. The quotient form above requires the denominators to be nonzero. The multiplication rule still works when a term is zero:
+
+<BlockMath math="U_{n+1}=rU_n" />
 
 ## Paper Folding Exploration
 
-Let's perform a simple exploration to understand the concept of a geometric sequence. Prepare a rectangular piece of paper and fold it several times.
+A simple folding model makes the constant ratio visible. Fold a rectangular sheet of paper in half several times.
 
-If the paper is folded once, it will be divided into <InlineMath math="2" /> equal parts. If folded again (twice), it will form <InlineMath math="4" /> equal parts. The following pattern emerges:
+If the paper is folded <InlineMath math="1 \text{ time}" />, it will be divided into <InlineMath math="2 \text{ parts}" /> of equal size. If folded again (<InlineMath math="2 \text{ times}" />), it will form <InlineMath math="4 \text{ parts}" /> of equal size. The following pattern emerges:
 
 | Number of folds | Number of equal parts |
 | --------------- | --------------------- |
@@ -47,22 +49,36 @@ Where:
 - <InlineMath math="r" /> = ratio
 - <InlineMath math="n" /> = term number
 
-## Bacterial Division
+The exponent is <InlineMath math="n-1" /> because moving from the first term to the <InlineMath math="n" />th term takes exactly <InlineMath math="n-1" /> multiplications by <InlineMath math="r" />.
 
-Bacteria reproduce by dividing themselves. Within two hours, one bacterial cell divides into <InlineMath math="3 \text{ parts}" />.
+## What the Ratio Tells Us
+
+For a positive first term, the ratio determines the overall behavior:
+
+- If <InlineMath math="r>1" />, the positive terms grow.
+- If <InlineMath math="0<r<1" />, the positive terms approach zero.
+- If <InlineMath math="r=1" />, the sequence is constant.
+- If <InlineMath math="r=0" />, every term after the first is zero.
+- If <InlineMath math="r<0" />, the signs alternate while the magnitudes may grow, shrink, or stay constant.
+
+This is why a geometric sequence does not always represent growth.
+
+## An Idealized Bacterial Growth Model
+
+Suppose an idealized bacterial culture triples every <InlineMath math="2 \text{ hours}" />. This is a mathematical model with a constant growth factor, not a claim that one bacterial cell literally splits into three cells.
 
 If the initial number of bacteria is <InlineMath math="2 \text{ cells}" />, then:
 
-- First term (<InlineMath math="U_1" />) <InlineMath math="= 2" />
-- Ratio (<InlineMath math="r" />) <InlineMath math="= 3" />
+- Initial count (<InlineMath math="N_0" />) <InlineMath math="=2" />
+- Growth factor (<InlineMath math="r" />) <InlineMath math="=3" />
 
-In <InlineMath math="20 \text{ hours}" />, division occurs <InlineMath math="10\text{ times}" /> (<InlineMath math="20 \div 2 = 10" />).
+In <InlineMath math="20 \text{ hours}" />, the culture passes through <InlineMath math="10 \text{ growth intervals}" /> because <InlineMath math="20 \div 2=10" />.
 
-To determine the number of bacteria after <InlineMath math="20 \text{ hours}" /> (<InlineMath math="10" />th term), we use the formula:
+Starting at index <InlineMath math="0" /> keeps the initial count separate from the first completed growth interval. After <InlineMath math="10" /> intervals:
 
-<BlockMath math="U_{10} = 2 \cdot 3^{10-1} = 2 \cdot 3^9 = 2 \cdot 19{,}683 = 39{,}366" />
+<BlockMath math="N_{10}=N_0\cdot r^{10}=2\cdot3^{10}=118{,}098" />
 
-So, after <InlineMath math="20 \text{ hours}" />, there are <InlineMath math="39{,}366 \text{ bacterial cells}" />.
+So, under this idealized model, the culture contains <InlineMath math="118{,}098 \text{ bacterial cells}" /> after <InlineMath math="20 \text{ hours}" />.
 
 <BacterialGrowth
   formulaType="geometric"
@@ -70,8 +86,9 @@ So, after <InlineMath math="20 \text{ hours}" />, there are <InlineMath math="39
   initialCount={2}
   maxGenerations={3}
   timeInterval={2}
+  timeUnit="hours"
   labels={{
-    title: "Bacterial Division",
+    title: "Idealized Bacterial Growth",
     bacterial: "Bacteria",
     initialBacteria: "Initial Bacteria",
   }}
@@ -81,7 +98,7 @@ So, after <InlineMath math="20 \text{ hours}" />, there are <InlineMath math="39
 
 ### Ratio in Geometric Sequences
 
-The ratio (<InlineMath math="r" />) in a geometric sequence is always constant and can be calculated by dividing the next term by the previous term:
+The factor <InlineMath math="r" /> in a geometric sequence is constant. Whenever the previous term is nonzero, the same factor can be calculated by dividing the next term by the previous term:
 
 <BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
 
@@ -102,18 +119,20 @@ Geometric sequences are applied in various fields, such as:
 
 By understanding the concept of geometric sequences, we can model and predict various phenomena involving growth or decrease with a constant ratio.
 
+Always check whether a constant-factor model is reasonable for the situation and for the time span being studied. Real populations eventually face limits that this simple model does not include.
+
 ## Example Problems
 
 ### Finding the Ratio
 
-The first term of a geometric sequence is <InlineMath math="4" /> and the fourth term is <InlineMath math="108" />. Determine the ratio of this sequence.
+The first term of a geometric sequence is <InlineMath math="4" /> and term <InlineMath math="4" /> is <InlineMath math="108" />. Determine the ratio of this sequence.
 
 **Solution**:
 
 Given:
 
 - <InlineMath math="a = 4" /> (first term)
-- <InlineMath math="U_4 = 108" /> (fourth term)
+- <InlineMath math="U_4 = 108" /> (term <InlineMath math="4" />)
 
 Using the general formula for geometric sequences:
 
@@ -128,7 +147,7 @@ Therefore, the ratio of the geometric sequence is <InlineMath math="3" />.
 
 ### Length of Rope Sections
 
-A rope is divided into <InlineMath math="5 \text{ parts}" /> with lengths forming a geometric sequence. If the shortest piece is <InlineMath math="16 \text{ cm}" /> and the longest piece is <InlineMath math="81 \text{ cm}" />, determine the length of the third piece.
+A rope is divided into <InlineMath math="5 \text{ parts}" /> whose positive lengths, ordered from shortest to longest, form a geometric sequence. The shortest piece is <InlineMath math="16 \text{ cm}" /> and the longest is <InlineMath math="81 \text{ cm}" />. Determine the length of the third piece.
 
 **Solution**:
 

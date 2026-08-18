@@ -2,11 +2,11 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "India", value: true },
-    { label: "Yunani", value: false },
+    { label: "Asia Selatan", value: true },
+    { label: "Mediterania timur", value: false },
     { label: "Asia Tenggara", value: false },
-    { label: "Rusia", value: false },
-    { label: "Tiongkok", value: false },
+    { label: "Afrika Barat", value: false },
+    { label: "Eropa Utara", value: false },
   ],
 };
 

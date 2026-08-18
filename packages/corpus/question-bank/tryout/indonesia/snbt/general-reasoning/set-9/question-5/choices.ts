@@ -3,55 +3,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Someone experiencing snoring problems during sleep is advised to sleep in a prone position",
+      label: "Side sleeping may help reduce snoring for some people",
+      value: false,
+    },
+    {
+      label: "Back sleeping can narrow the airway in some people",
+      value: false,
+    },
+    {
+      label: "Snoring can have causes other than sleep position",
       value: false,
     },
     {
       label:
-        "Someone who often experiences neck pain is not advised to sleep in a prone position",
-      value: false,
-    },
-    {
-      label:
-        "The tongue will not block the airway when someone sleeps in a prone position",
-      value: false,
-    },
-    {
-      label:
-        "Prone sleeping only has bad impacts for someone who has snoring problems during sleep",
+        "Side sleeping guarantees that all snoring will stop and makes medical assessment unnecessary",
       value: true,
     },
     {
       label:
-        "Prone sleeping position is better than other sleeping positions for the body",
+        "Snoring with breathing pauses, gasping, or choking should be medically assessed",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Seseorang yang mengalami permasalahan dengkuran saat tidur dianjurkan melakukan posisi tidur tengkurap",
+        "Tidur menyamping dapat membantu mengurangi dengkuran pada sebagian orang",
       value: false,
     },
     {
       label:
-        "Seseorang yang sering mengalami nyeri leher tidak disarankan untuk melakukan posisi tidur tengkurap",
+        "Tidur telentang dapat mempersempit jalan napas pada sebagian orang",
+      value: false,
+    },
+    {
+      label: "Dengkuran dapat disebabkan oleh faktor selain posisi tidur",
       value: false,
     },
     {
       label:
-        "Lidah tidak akan menutup jalan napas saat seseorang tidur tengkurap",
-      value: false,
-    },
-    {
-      label:
-        "Tidur tengkurap hanya memberikan dampak buruk bagi seseorang yang punya permasalahan dengkuran saat tidur",
+        "Tidur menyamping menjamin semua dengkuran berhenti dan membuat pemeriksaan medis tidak diperlukan",
       value: true,
     },
     {
       label:
-        "Posisi tidur tengkurap lebih baik daripada posisi tidur yang lainnya bagi tubuh",
+        "Dengkuran yang disertai jeda napas, terengah-engah, atau tersedak perlu diperiksakan",
       value: false,
     },
   ],

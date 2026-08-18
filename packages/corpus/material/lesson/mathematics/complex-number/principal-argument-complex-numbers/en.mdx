@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Principal Argument of Complex Numbers",
-  description: "Find unique principal argument Arg(z) in range [0°,360°). Convert infinite angle possibilities to one standard value for complex number equality.",
+  description: "Find the unique principal argument of a nonzero complex number in the interval from negative pi to pi and reduce coterminal angles to that representative.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Complex Number",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Understanding the Principal Argument
 
-The argument <InlineMath math="\theta" /> of a complex number <InlineMath math="z = x + iy" /> is the angle formed by the vector <InlineMath math="z" /> with the positive real axis.
+The argument <InlineMath math="\theta" /> of a nonzero complex number <InlineMath math="z = x + iy" /> is the angle formed by the vector <InlineMath math="z" /> with the positive real axis. The zero vector has no direction, so <InlineMath math="\text{Arg}(0)" /> is undefined.
 
-However, there's an important point: the argument is not a single value!
+An angle is not the only argument for that direction.
 
 If <InlineMath math="\theta" /> is an argument of <InlineMath math="z" />, then <InlineMath math="\theta + 2\pi k" /> (where <InlineMath math="k" /> is an integer: <InlineMath math="0, \pm 1, \pm 2, \ldots" />) is also an argument of <InlineMath math="z" />, because adding multiples of <InlineMath math="360^\circ" /> or <InlineMath math="2\pi" /> radians results in the same angle on the complex plane.
 
@@ -24,17 +24,17 @@ Because there are infinitely many arguments for a single complex number, we ofte
 
 ## Definition of Principal Argument
 
-The Principal Argument of a complex number <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> is the unique value of the argument <InlineMath math="\theta" /> that satisfies a specific range.
+The Principal Argument of a nonzero complex number <InlineMath math="z = r(\cos \theta + i\sin \theta)" />, with <InlineMath math="r>0" />, is the unique value of the argument <InlineMath math="\theta" /> that satisfies a specific range.
 
-**Principal Argument** (denoted <InlineMath math="\text{Arg}(z)" />) is defined as the argument <InlineMath math="\theta" /> that satisfies:
+In this course, the **Principal Argument** (denoted <InlineMath math="\text{Arg}(z)" />) is the argument <InlineMath math="\theta" /> that satisfies:
 
-<BlockMath math="0 \leq \theta < 2\pi \quad \text{or} \quad 0^\circ \leq \theta < 360^\circ" />
+<BlockMath math="-\pi < \theta \leq \pi \quad \text{or} \quad -180^\circ < \theta \leq 180^\circ" />
 
-Note: Other definitions sometimes use the range <InlineMath math="(-\pi, \pi]" /> or <InlineMath math="(-180^\circ, 180^\circ]" />. It's important to always check the definition being used in a specific context.
+Some references use <InlineMath math="[0, 2\pi)" /> instead. Both conventions select one angle from each family of coterminal angles, but every example in this course uses <InlineMath math="(-\pi, \pi]" /> consistently.
 
 ## Determining the Principal Argument
 
-Determining the Principal Argument is the same as finding the regular argument, but we need to ensure the final result is within the range <InlineMath math="[0, 2\pi)" /> or <InlineMath math="[0^\circ, 360^\circ)" />.
+Find any argument first, then add or subtract full turns until the result lies in <InlineMath math="(-\pi, \pi]" /> or <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 ### Finding the Principal Argument
 
@@ -47,7 +47,7 @@ Determining the Principal Argument is the same as finding the regular argument, 
       <BlockMath math="\theta = \arctan(1) = 45^\circ" />
     </MathContainer>
 
-    Since <InlineMath math="45^\circ" /> is already within the range <InlineMath math="[0^\circ, 360^\circ)" />, the Principal Argument is:
+    Since <InlineMath math="45^\circ" /> is already within <InlineMath math="(-180^\circ, 180^\circ]" />, the Principal Argument is:
 
     <BlockMath math="\text{Arg}(z) = 45^\circ \text{ or} \frac{\pi}{4} \text{ radians}" />
 
@@ -60,7 +60,7 @@ Determining the Principal Argument is the same as finding the regular argument, 
       <BlockMath math="\theta = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ" />
     </MathContainer>
 
-    Since <InlineMath math="30^\circ" /> is already within the range <InlineMath math="[0^\circ, 360^\circ)" />, the Principal Argument is:
+    Since <InlineMath math="30^\circ" /> is already within <InlineMath math="(-180^\circ, 180^\circ]" />, the Principal Argument is:
 
     <BlockMath math="\text{Arg}(z) = 30^\circ \text{ or} \frac{\pi}{6} \text{ radians}" />
 
@@ -69,10 +69,9 @@ Determining the Principal Argument is the same as finding the regular argument, 
     title="Principal Argument Visualization"
     description={
       <>
-        Showing vectors for <InlineMath math="z_1=1+i" /> and
-        <InlineMath math="z_2=\sqrt{3}+i" />, along with their Principal Arguments
-        (<InlineMath math="45^\circ" /> and <InlineMath math="30^\circ" />
-        ).
+        The vectors <InlineMath math="z_1=1+i" /> and
+        <InlineMath math="z_2=\sqrt{3}+i" /> are shown with their Principal Arguments
+        <InlineMath math="45^\circ" /> and <InlineMath math="30^\circ" />.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -110,7 +109,7 @@ Determining the Principal Argument is the same as finding the regular argument, 
 
 ## Equality of Two Complex Numbers in Polar Form
 
-Two complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> and <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" /> are said to be **equal** if and only if:
+Two nonzero complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> and <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, with <InlineMath math="r_1>0" /> and <InlineMath math="r_2>0" />, are said to be **equal** if and only if:
 
 1.  Their moduli are equal:
 
@@ -121,7 +120,7 @@ Two complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)"
     <InlineMath math="\theta_1 = \theta_2 + 2k\pi" /> or <InlineMath math="\theta_1 - \theta_2 = 2k\pi" /> for
     some integer <InlineMath math="k" />.
 
-If we use the **Principal Argument** (with the range <InlineMath math="[0, 2\pi)" />), the second condition simplifies to: <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
+If we use the **Principal Argument** in <InlineMath math="(-\pi, \pi]" />, the second condition simplifies to <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
 
 ### Checking for Equality
 
@@ -156,7 +155,7 @@ Find the Principal Argument (in degrees) for the following complex numbers:
 1.  <InlineMath math="1 + \sqrt{3}i" />
 2.  <InlineMath math="-i" />
 
-### Answer Key
+### Worked Solutions
 
 1.  **For <InlineMath math="z = 1 + \sqrt{3}i" />:**
 
@@ -167,17 +166,10 @@ Find the Principal Argument (in degrees) for the following complex numbers:
       <BlockMath math="\theta = \arctan(\sqrt{3}) = 60^\circ" />
     </MathContainer>
 
-    Since <InlineMath math="60^\circ \in [0^\circ, 360^\circ)" />, then <InlineMath math="\text{Arg}(z) = 60^\circ" />.
+    Since <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z) = 60^\circ" />.
 
 2.  **For <InlineMath math="z = -i" />:**
 
-    Can be written as <InlineMath math="z = 0 - 1i" />. The point <InlineMath math="(0, -1)" /> is on the negative imaginary axis.
+    Write it as <InlineMath math="z = 0 - 1i" />. The point <InlineMath math="(0, -1)" /> lies directly on the negative imaginary axis, so no division by <InlineMath math="x=0" /> is needed.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-1}{0} = \infty" />
-      <BlockMath math="\theta = \arctan\left(\infty\right) = 90^\circ" />
-    </MathContainer>
-
-    The argument is <InlineMath math="270^\circ" /> (or <InlineMath math="-90^\circ" />).
-
-    Since we are looking for the Principal Argument in the range <InlineMath math="[0^\circ, 360^\circ)" />, then <InlineMath math="\text{Arg}(z) = 270^\circ" />.
+    <BlockMath math="\text{Arg}(z) = -90^\circ = -\frac{\pi}{2}" />

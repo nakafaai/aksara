@@ -3,47 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Water pollution is caused by human activities.",
+      label:
+        "Water-source contamination is linked to sanitation and wastewater.",
       value: true,
     },
     {
       label:
-        "Water pollution in Indonesia is mostly caused by human activities.",
+        "Water-source contamination in many Indonesian communities is closely linked to sanitation and wastewater.",
       value: false,
     },
     {
-      label: "Water pollution leaves behind waste.",
+      label: "Unsafe sanitation contaminates water sources.",
       value: false,
     },
     {
-      label: "Water pollution in Indonesia leaves behind waste.",
+      label: "Water-source contamination is closely linked.",
       value: false,
     },
     {
-      label: "Water pollution is the result of human activities.",
+      label: "Water-source contamination causes sanitation and wastewater.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Pencemaran air diakibatkan aktivitas manusia.",
+      label: "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
       value: true,
     },
     {
       label:
-        "Pencemaran air di Indonesia sebagian besar diakibatkan oleh aktivitas manusia.",
+        "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
       value: false,
     },
     {
-      label: "Pencemaran air meninggalkan limbah.",
+      label: "Sanitasi yang tidak aman mencemari sumber air.",
       value: false,
     },
     {
-      label: "Pencemaran air di Indonesia meninggalkan limbah.",
+      label: "Pencemaran sumber air berkaitan erat.",
       value: false,
     },
     {
-      label: "Pencemaran air diakibatkan oleh aktivitas manusia.",
+      label: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
       value: false,
     },
   ],

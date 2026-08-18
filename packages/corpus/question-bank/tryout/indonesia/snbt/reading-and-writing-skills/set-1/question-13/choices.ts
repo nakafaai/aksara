@@ -3,46 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The word _change_ in sentence $$(2)$$.",
+      label: "The word _tested_ in sentence $$(2)$$.",
       value: false,
     },
     {
-      label: "The phrase _intended purpose_ in sentence $$(3)$$.",
+      label: "The word _facilitate_ in sentence $$(3)$$.",
       value: false,
     },
     {
-      label: "The word _problem_ in sentence $$(5)$$.",
+      label: "The word _allows_ in sentence $$(4)$$.",
       value: false,
     },
     {
-      label: "The word _settlement_ in sentence $$(7)$$.",
-      value: false,
-    },
-    {
-      label: "The word _produce_ in sentence $$(10)$$.",
+      label: "The word _produce_ in sentence $$(8)$$.",
       value: true,
+    },
+    {
+      label: "The word _threaten_ in sentence $$(9)$$.",
+      value: false,
     },
   ],
   id: [
     {
-      label: "Kata _perubahan_ pada kalimat $$(2)$$.",
+      label: "Kata _diuji_ pada kalimat $$(2)$$.",
       value: false,
     },
     {
-      label: "Kata _peruntukannya_ pada kalimat $$(3)$$.",
+      label: "Kata _membantu_ pada kalimat $$(3)$$.",
       value: false,
     },
     {
-      label: "Kata _permasalahan_ pada kalimat $$(5)$$.",
+      label: "Kata _memungkinkan_ pada kalimat $$(4)$$.",
       value: false,
     },
     {
-      label: "Kata _permukiman_ pada kalimat $$(7)$$.",
-      value: false,
-    },
-    {
-      label: "Kata _menghasilkan_ pada kalimat $$(10)$$.",
+      label: "Kata _menghasilkan_ pada kalimat $$(8)$$.",
       value: true,
+    },
+    {
+      label: "Kata _mengancam_ pada kalimat $$(9)$$.",
+      value: false,
     },
   ],
 };

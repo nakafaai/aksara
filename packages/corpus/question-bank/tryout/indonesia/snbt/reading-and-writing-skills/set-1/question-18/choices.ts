@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "ninety-percent.",
+      label: "forty-eight-point-three-five-percent.",
       value: false,
     },
     {
-      label: "$$90\\text{-}\\%$$.",
-      value: false,
-    },
-    {
-      label: "ninetypercent.",
-      value: false,
-    },
-    {
-      label: "$$90\\%$$.",
+      label: "$$48.35\\%$$.",
       value: true,
     },
     {
-      label: "ninety 'percent'.",
+      label: "$$48.35\\text{-}\\%$$.",
+      value: false,
+    },
+    {
+      label: "$$48.35$$.",
+      value: false,
+    },
+    {
+      label: "$$4835\\%$$.",
       value: false,
     },
   ],
   id: [
     {
-      label: "sembilan puluh-persen.",
+      label: "empat-puluh-delapan-koma-tiga-lima-persen.",
       value: false,
     },
     {
-      label: "$$90\\text{-}\\%$$.",
-      value: false,
-    },
-    {
-      label: "sembilanpuluh persen.",
-      value: false,
-    },
-    {
-      label: "$$90\\%$$.",
+      label: "$$48{,}35\\%$$.",
       value: true,
     },
     {
-      label: "sembilan puluh 'persen'.",
+      label: "$$48{,}35\\text{-}\\%$$.",
+      value: false,
+    },
+    {
+      label: "$$48{,}35$$.",
+      value: false,
+    },
+    {
+      label: "$$4835\\%$$.",
       value: false,
     },
   ],

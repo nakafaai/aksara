@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Konsep Dasar
 
-Operasi penjumlahan dan pengurangan pada polinomial pada dasarnya sama seperti pada bentuk aljabar lainnya: kita hanya bisa menjumlahkan atau mengurangkan **suku-suku yang sejenis**.
+Penjumlahan dan pengurangan polinomial hanya menggabungkan **suku-suku yang sejenis**, sama seperti pada bentuk aljabar lainnya.
 
 ### Apa Itu Suku Sejenis?
 
@@ -37,7 +37,7 @@ Operasi penjumlahan dan pengurangan pada polinomial pada dasarnya sama seperti p
 
 ## Penjumlahan Polinomial
 
-Untuk menjumlahkan dua polinomial, kita cukup **menjumlahkan koefisien dari suku-suku yang sejenis**.
+Untuk menjumlahkan dua polinomial, **jumlahkan koefisien suku-suku yang sejenis** dan pertahankan bagian variabelnya.
 
 **Metode Horizontal:**
 
@@ -149,7 +149,7 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
   <LineEquation
     title={
       <>
-        Grafik <InlineMath math="g(x) = 0.5x^4 - 2x^2 + 1" />
+        Grafik <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
     description={<>Fungsi derajat <InlineMath math="4" /></>}
@@ -169,7 +169,7 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
   <LineEquation
     title={
       <>
-        Grafik <InlineMath math="h(x) = -0.5x^3 + 1.5x" />
+        Grafik <InlineMath math="h(x) = -0{,}5x^3 + 1{,}5x" />
       </>
     }
     description={<>Fungsi derajat <InlineMath math="3" /></>}
@@ -214,13 +214,13 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
       <>
         Grafik <InlineMath math="f(x) + g(x)" />,{" "}
         <InlineMath math="f(x) = x + 1" />, dan{" "}
-        <InlineMath math="g(x) = 0.5x^4 - 2x^2 + 1" />
+        <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
     description={
       <>
         Hasil dari penjumlahan <InlineMath math="f(x) + g(x)" /> adalah{" "}
-        <InlineMath math="x + 1 + 0.5x^4 - 2x^2 + 1" />
+        <InlineMath math="x + 1 + 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
     showZAxis={false}
@@ -241,13 +241,13 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
       <>
         Grafik <InlineMath math="f(x) - g(x)" />,{" "}
         <InlineMath math="f(x) = x + 1" />, dan{" "}
-        <InlineMath math="g(x) = 0.5x^4 - 2x^2 + 1" />
+        <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
     description={
       <>
         Hasil dari pengurangan <InlineMath math="f(x) - g(x)" /> adalah{" "}
-        <InlineMath math="x + 1 - (0.5x^4 - 2x^2 + 1)" />
+        <InlineMath math="x + 1 - (0{,}5x^4 - 2x^2 + 1)" />
       </>
     }
     showZAxis={false}
@@ -266,3 +266,33 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
 </ContentStack>
 
 Dengan cara yang sama, kamu bisa mensketsa grafik <InlineMath math="f(x) + h(x), \space g(x) + h(x), \space f(x) - h(x), \space \text{dan} \space g(x) - h(x)" />. Intinya adalah menjumlahkan atau mengurangkan ketinggian (nilai <InlineMath math="y" />) dari grafik-grafik asli pada setiap nilai <InlineMath math="x" /> yang bersesuaian.
+
+## Latihan
+
+Diberikan
+
+<MathContainer>
+  <BlockMath math="A(x)=3x^3-2x^2+5x-4" />
+  <BlockMath math="B(x)=-x^3+6x^2-3x+7" />
+</MathContainer>
+
+Tentukan <InlineMath math="A(x)+B(x)" /> dan <InlineMath math="A(x)-B(x)" />.
+
+### Pembahasan
+
+Untuk penjumlahan, gabungkan koefisien dari suku-suku yang berpangkat sama:
+
+<MathContainer>
+  <BlockMath math="A(x)+B(x)" />
+  <BlockMath math="=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7)" />
+  <BlockMath math="=2x^3+4x^2+2x+3" />
+</MathContainer>
+
+Untuk pengurangan, distribusikan tanda negatif ke setiap suku dalam <InlineMath math="B(x)" /> sebelum menggabungkan suku sejenis:
+
+<MathContainer>
+  <BlockMath math="A(x)-B(x)" />
+  <BlockMath math="=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7)" />
+  <BlockMath math="=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7)" />
+  <BlockMath math="=4x^3-8x^2+8x-11" />
+</MathContainer>

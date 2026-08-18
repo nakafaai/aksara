@@ -2,18 +2,18 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Strengthens statement A", value: false },
-    { label: "Weakens statement A", value: false },
-    { label: "Strengthens statement B", value: true },
-    { label: "Weakens statement B", value: false },
-    { label: "Irrelevant to statements A and B", value: false },
+    { label: "Strengthens Statement A", value: false },
+    { label: "Weakens Statement A", value: false },
+    { label: "Strengthens Statement B", value: true },
+    { label: "Weakens Statement B", value: false },
+    { label: "Is irrelevant to both statements", value: false },
   ],
   id: [
-    { label: "Memperkuat pernyataan A", value: false },
-    { label: "Memperlemah pernyataan A", value: false },
-    { label: "Memperkuat pernyataan B", value: true },
-    { label: "Memperlemah pernyataan B", value: false },
-    { label: "Tidak relevan dengan pernyataan A dan B", value: false },
+    { label: "Memperkuat Pernyataan A", value: false },
+    { label: "Memperlemah Pernyataan A", value: false },
+    { label: "Memperkuat Pernyataan B", value: true },
+    { label: "Memperlemah Pernyataan B", value: false },
+    { label: "Tidak relevan dengan kedua pernyataan", value: false },
   ],
 };
 

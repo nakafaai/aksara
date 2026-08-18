@@ -1,97 +1,134 @@
 export const metadata = {
-  title: "Imaginary or Non-Real Roots",
-  description: "Learn when quadratic equations have imaginary roots, how to identify them using discriminant, and solve complex numbers one step at a time with examples.",
+  title: "Non-Real Roots of Quadratic Equations",
+  description: "Extend quadratic equations to complex numbers, use a negative discriminant to find conjugate roots, and connect those roots to the real graph.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Quadratic Functions",
 };
 
-## What are Non-Real Roots?
+## Extending Beyond the Real Numbers
 
-Quadratic equations <InlineMath math="ax^2 + bx + c = 0" /> sometimes have solutions that cannot be found in ordinary numbers. These solutions are called "non-real roots" or "imaginary roots."
+The equation
 
-Imagine we're looking for a number that, when multiplied by itself, gives a negative result. Does such a number exist? No! Because any number multiplied by itself always gives a positive result or zero. This is where the concept of imaginary numbers begins.
+<BlockMath math="x^2+1=0" />
 
-## Imaginary Numbers
+requires <InlineMath math="x^2=-1" />. No real number has a negative square, so this equation has no solution in the real numbers. To solve it, we extend the number system with the imaginary unit <InlineMath math="i" />, defined by
 
-Imaginary numbers are numbers that contain <InlineMath math="i" />, where <InlineMath math="i = \sqrt{-1}" />. This means <InlineMath math="i^2 = -1" />.
+<BlockMath math="i^2=-1" />
 
-Examples of imaginary numbers:
+A complex number has the form
 
-- <InlineMath math="3i" /> (read as: "three i")
-- <InlineMath math="2 + 5i" /> (read as: "two plus five i")
-- <InlineMath math="-4i" /> (read as: "negative four i")
+<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
 
-Numbers like <InlineMath math="2 + 5i" /> are called complex numbers, because they are a combination of a real number <InlineMath math="2" /> and an imaginary number <InlineMath math="5i" />.
+The number <InlineMath math="2+5i" /> is complex. It is not purely imaginary because its real part is not zero. A number such as <InlineMath math="3i" /> is purely imaginary.
 
-## When Does a Quadratic Equation Have Imaginary Roots?
+## A Negative Discriminant
 
-A quadratic equation has imaginary roots when its discriminant is negative. The discriminant is <InlineMath math="D = b^2 - 4ac" />.
+For a quadratic equation <InlineMath math="ax^2+bx+c=0" /> with real coefficients, the discriminant is
 
-If <InlineMath math="D < 0" />, then the quadratic equation will have two different imaginary roots.
+<BlockMath math="D=b^2-4ac" />
 
-## How to Find Imaginary Roots
+If <InlineMath math="D<0" />, the equation has no real roots. It has two distinct non-real complex roots, and those roots form a conjugate pair.
 
-To find imaginary roots, we still use the formula:
+We still begin with the quadratic formula:
 
-<MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
-  <BlockMath math="x = \frac{-b \pm \sqrt{-(4ac - b^2)}}{2a}" />
-  <BlockMath math="x = \frac{-b \pm i\sqrt{4ac - b^2}}{2a}" />
-</MathContainer>
+<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
 
-### First Example Problem
-
-Let's find the roots of the equation <InlineMath math="x^2 + 4x + 5 = 0" />.
-
-**Step** <InlineMath math="1" />: Identify the values of <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />.
-
-- <InlineMath math="a = 1" />
-- <InlineMath math="b = 4" />
-- <InlineMath math="c = 5" />
-
-**Step** <InlineMath math="2" />: Calculate the discriminant.
-
-<BlockMath math="D = b^2 - 4ac = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
-
-Since <InlineMath math="D = -4 < 0" />, this equation has imaginary roots.
-
-**Step** <InlineMath math="3" />: Use the quadratic formula.
+Because <InlineMath math="D<0" />, write <InlineMath math="D=-|D|" />. Then
 
 <MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1}" />
-  <BlockMath math="x = \frac{-4 \pm 2i}{2} = -2 \pm i" />
+  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
+  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
 </MathContainer>
 
-Therefore, the roots of the equation <InlineMath math="x^2 + 4x + 5 = 0" /> are <InlineMath math="x_1 = -2 + i" /> and <InlineMath math="x_2 = -2 - i" />.
+## Worked Examples
 
-### Second Example Problem
+### Example 1: Find Both Roots
 
-Determine the type of roots for the equation <InlineMath math="2x^2 + x + 3 = 0" />.
+Solve
 
-**Step** <InlineMath math="1" />: Identify the values of <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />.
+<BlockMath math="x^2+4x+5=0" />
 
-- <InlineMath math="a = 2" />
-- <InlineMath math="b = 1" />
-- <InlineMath math="c = 3" />
+The coefficients are <InlineMath math="a=1" />, <InlineMath math="b=4" />, and <InlineMath math="c=5" />. First calculate the discriminant:
 
-**Step** <InlineMath math="2" />: Calculate the discriminant.
+<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
 
-<BlockMath math="D = b^2 - 4ac = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
-
-Since <InlineMath math="D = -23 < 0" />, this equation has imaginary roots.
-
-**Step** <InlineMath math="3" />: Find the equation's roots.
+Since <InlineMath math="D=-4<0" />, the roots are non-real. Substitute the values into the quadratic formula:
 
 <MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-1 \pm \sqrt{-23}}{2 \cdot 2}" />
-  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{4}" />
+  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
+  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
 </MathContainer>
 
-Therefore, the roots of the equation are <InlineMath math="x_1 = \frac{-1 + i\sqrt{23}}{4}" /> and <InlineMath math="x_2 = \frac{-1 - i\sqrt{23}}{4}" />.
+Therefore,
 
-## Why Do Imaginary Roots Always Come in Pairs?
+<BlockMath math="x_1=-2+i\qquad\text{and}\qquad x_2=-2-i" />
 
-Imaginary roots always appear in pairs in the form of <InlineMath math="a + bi" /> and <InlineMath math="a - bi" />. These pairs are called "complex conjugates."
+We can check one root directly:
 
-This happens because the quadratic formula involves <InlineMath math="\pm\sqrt{D}" />. When <InlineMath math="D < 0" />, we get <InlineMath math="\pm i\sqrt{|D|}" />, which gives us complex conjugate pairs.
+<MathContainer>
+  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
+  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
+</MathContainer>
+
+The other root follows by changing the sign of the imaginary part.
+
+### Example 2: Classify and Find the Roots
+
+Consider
+
+<BlockMath math="2x^2+x+3=0" />
+
+Here <InlineMath math="a=2" />, <InlineMath math="b=1" />, and <InlineMath math="c=3" />. Its discriminant is
+
+<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
+
+The negative discriminant tells us that the equation has two non-real complex roots. Their exact values are
+
+<MathContainer>
+  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
+</MathContainer>
+
+Thus,
+
+<BlockMath math="x_1=\frac{-1+i\sqrt{23}}4\qquad\text{and}\qquad x_2=\frac{-1-i\sqrt{23}}4" />
+
+## What the Real Graph Shows
+
+The first example can be rewritten as
+
+<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
+
+For every real <InlineMath math="x" />, the value of <InlineMath math="(x+2)^2" /> is nonnegative, so <InlineMath math="f(x)\ge1" />. The graph stays above the <InlineMath math="x" />-axis and has no real intercepts. The complex roots are not extra points on this real graph. They belong to the extended number system.
+
+## Why the Roots Come in Conjugate Pairs
+
+For real coefficients, the quadratic formula contains
+
+<BlockMath math="-b\pm i\sqrt{|D|}" />
+
+The two choices of the sign change only the imaginary part. This produces <InlineMath math="u+vi" /> and <InlineMath math="u-vi" />, called complex conjugates. If one is a root of a polynomial with real coefficients, its conjugate is also a root.
+
+## Practice Problem
+
+Solve <InlineMath math="2x^2+2x+5=0" /> over the complex numbers.
+
+### Worked Solution
+
+Start with the discriminant:
+
+<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+
+Because <InlineMath math="D<0" />, use <InlineMath math="\sqrt{-36}=6i" /> in the quadratic formula:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+</MathContainer>
+
+So the conjugate roots are
+
+<BlockMath math="x_1=-\frac12+\frac32i\qquad\text{and}\qquad x_2=-\frac12-\frac32i" />
+
+Their sum is <InlineMath math="-1=-\frac ba" /> and their product is <InlineMath math="\frac52=\frac ca" />, which checks the result against Vieta's formulas.

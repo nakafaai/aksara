@@ -3,27 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label:
-        "Norma Jeane mengalami gangguan mental sehingga dilantarkan ibunya",
+      label: "Norma Jeane menolak tinggal bersama ibunya",
+      value: false,
+    },
+    {
+      label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
       value: false,
     },
     {
       label:
-        "Norma Jeane tidak diakui oleh orang tuanya sehingga ia diasuh oleh negara di panti asuhan",
-      value: false,
-    },
-    {
-      label:
-        "Tidak ada yang merawat Norma Jeane pada saat itu lantaran ibunya mengalami gangguan mental",
+        "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
       value: true,
     },
     {
-      label:
-        "Ayahnya Norma Jeane melakukan pelanggran HAM terhadap Norma Jeane sehingga Norma Jeane diasu oleh negara",
+      label: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
       value: false,
     },
     {
-      label: "Norma Jeane anak yatim piatu sehingga diurus oleh negara",
+      label: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
       value: false,
     },
   ],

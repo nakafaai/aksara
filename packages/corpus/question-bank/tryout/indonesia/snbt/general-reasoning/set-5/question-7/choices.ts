@@ -2,27 +2,18 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The child has low water and carbohydrate content", value: false },
-    { label: "There is a child who has high water content", value: false },
-    { label: "The child must consume avocado to get high fat", value: false },
-    { label: "Some children get fat", value: true },
-    {
-      label: "There is a child who gets carbohydrates and high water",
-      value: false,
-    },
+    { label: "The card shows high water", value: false },
+    { label: "The card shows low carbohydrates", value: false },
+    { label: "The card shows no fat", value: false },
+    { label: "The card shows that the fruit provides fat", value: true },
+    { label: "The card does not show high carbohydrates", value: false },
   ],
   id: [
-    { label: "Anak memiliki sedikit air dan karbohidrat", value: false },
-    { label: "Ada anak yang memiliki banyak air", value: false },
-    {
-      label: "Anak harus mengkonsumsi alpukar agar dapat banyak lemak",
-      value: false,
-    },
-    { label: "Sebagian anak mendapatkan lemak", value: true },
-    {
-      label: "Ada anak yang mendapatkan karbohidrat dan banyak air",
-      value: false,
-    },
+    { label: "Kartu menunjukkan kadar air tinggi", value: false },
+    { label: "Kartu menunjukkan karbohidrat rendah", value: false },
+    { label: "Kartu menunjukkan tidak ada lemak", value: false },
+    { label: "Kartu menunjukkan buah tersebut memberikan lemak", value: true },
+    { label: "Kartu tidak menunjukkan karbohidrat tinggi", value: false },
   ],
 };
 

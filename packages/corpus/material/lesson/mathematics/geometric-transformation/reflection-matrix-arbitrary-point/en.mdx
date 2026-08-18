@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Reflection Matrix over Arbitrary Point",
-  description: "Learn how to reflect points over an arbitrary point using translation, matrix operations, and combined transformations.",
+  description: "Reflect points about an arbitrary center by combining translations with matrix operations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-10",
   subject: "Geometric Transformation",
@@ -38,13 +38,13 @@ Or, more precisely, it can be written as a combination:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) + \begin{pmatrix} a \\ b \end{pmatrix}" />
 
-The form presented as Property <InlineMath math="4.11" /> in the book (<InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix}" />) is a simplification of <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />.
+Expanding the matrix expression gives <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />, which is exactly the coordinate rule <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In vector form, the same relation is <InlineMath math="Q'=2P-Q" />: the center is the midpoint of the original point and its image.
 
 ## Finding the Image of a Point
 
 Determine the image of point <InlineMath math="(2,3)" /> by reflection over point <InlineMath math="(1,1)" />.
 
-**Alternative Solution:**
+**Solution:**
 
 Point <InlineMath math="(x,y) = (2,3)" />. Center <InlineMath math="(a,b) = (1,1)" />.
 
@@ -105,7 +105,7 @@ Visualization:
 1.  Determine the image of point <InlineMath math="(3,1)" /> by reflection over point <InlineMath math="(-2,-1)" />.
 2.  A line passes through points <InlineMath math="A(1,2)" /> and <InlineMath math="B(3,4)" />. Determine the equation of the image line after reflection over point <InlineMath math="C(0,1)" />.
 
-### Key Answers
+### Solutions
 
 1.  Point <InlineMath math="(x,y) = (3,1)" />. Center <InlineMath math="(a,b) = (-2,-1)" />.
 

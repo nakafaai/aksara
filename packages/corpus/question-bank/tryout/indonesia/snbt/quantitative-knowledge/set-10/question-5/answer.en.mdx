@@ -10,28 +10,28 @@ Given the system of inequalities:
   <BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
 </MathContainer>
 
-We can sum the two main inequalities to find the bound for <InlineMath math="x + y" />:
+Adding the two slanted constraints gives an upper bound for <InlineMath math="x + y" />:
 
 <MathContainer>
   <BlockMath math="(x + 5y) + (5x + y) \le 10 + (a^2 - 5)" />
   <BlockMath math="6x + 6y \le 5 + a^2" />
-  <BlockMath math="6(x + y) \le 5 + a^2" />
+  <BlockMath math="x + y \le \frac{a^2 + 5}{6}" />
 </MathContainer>
 
-It is given that the maximum value of <InlineMath math="x + y" /> is <InlineMath math="5" />. Therefore, we substitute this maximum value into the inequality:
+If <InlineMath math="a=3" /> or <InlineMath math="a=4" />, this bound is respectively <InlineMath math="\frac{7}{3}" /> or <InlineMath math="\frac{7}{2}" />, both below <InlineMath math="5" />. If <InlineMath math="a=16" /> or <InlineMath math="a=25" />, the feasible point <InlineMath math="(6,0)" /> already gives <InlineMath math="x+y=6" />, so the maximum would exceed <InlineMath math="5" />.
+
+It remains to check <InlineMath math="a=5" />. The bound becomes:
 
 <MathContainer>
-  <BlockMath math="6(5) = 5 + a^2" />
-  <BlockMath math="30 = 5 + a^2" />
-  <BlockMath math="a^2 = 25" />
+  <BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
 </MathContainer>
 
-Thus, the value of <InlineMath math="a" /> is:
+The intersection point <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> satisfies both boundary equations:
 
 <MathContainer>
-  <BlockMath math="a = 5" />
+  <BlockMath math="\frac{15}{4}+5\left(\frac{5}{4}\right)=10" />
+  <BlockMath math="5\left(\frac{15}{4}\right)+\frac{5}{4}=20=5^2-5" />
+  <BlockMath math="\frac{15}{4}+\frac{5}{4}=5" />
 </MathContainer>
 
-(We take the positive value since the options are positive).
-
-So, the value of <InlineMath math="a" /> is <InlineMath math="5" />.
+Thus, <InlineMath math="5" /> is both an upper bound and an attainable value. Therefore, <InlineMath math="a=5" />.

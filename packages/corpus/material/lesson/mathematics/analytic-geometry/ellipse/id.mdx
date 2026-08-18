@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Elips",
-  description: "Pahami sifat elips, fokus, dan persamaannya. Pelajari cara menyelesaikan masalah x²/a² + y²/b² = 1 dengan contoh bertahap dan visualisasi interaktif.",
+  description: "Pahami sifat, fokus, dan persamaan baku elips melalui visualisasi interaktif serta contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Geometri Analitik",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Apa itu Elips?
 
-Pernah lihat bentuk orbit planet yang mengelilingi matahari? Atau bayangan lingkaran ketika kita lihat dari samping? Nah, bentuk-bentuk seperti itu namanya **elips**! Elips bukan cuma lingkaran yang "gepeng" aja, tapi ada definisi matematika yang keren di baliknya.
+Orbit planet dan bayangan miring sebuah lingkaran sama-sama mengingatkan kita pada bentuk **elips**. Elips bukan sekadar lingkaran yang "gepeng" karena bentuknya memenuhi syarat geometri yang tepat.
 
-Jadi gini, elips itu adalah kumpulan titik-titik yang **jumlah jaraknya ke dua titik tertentu selalu sama**. Kedua titik tertentu ini namanya **fokus**. Bayangin aja, kamu punya dua paku dan tali. Kalau tali diikat ke kedua paku, terus kamu tarik pensil sampai tali kencang dan gambar kurva lengkap, maka kurva yang terbentuk itu elips!
+Elips adalah himpunan semua titik yang **jumlah jaraknya ke dua titik tetap selalu konstan**. Kedua titik tetap itu disebut **fokus**. Definisi ini dapat diperagakan dengan dua paku, seutas tali berbentuk lingkaran tertutup, dan sebuah pensil. Ikat tali pada kedua paku, tarik hingga tegang dengan pensil, lalu gerakkan pensil satu putaran penuh. Kurva yang terbentuk adalah elips.
 
 <LineEquation
   title="Konsep Dasar Elips"
@@ -127,11 +127,11 @@ Jadi gini, elips itu adalah kumpulan titik-titik yang **jumlah jaraknya ke dua t
   showZAxis={false}
 />
 
-Dari visualisasi di atas, coba perhatikan titik <InlineMath math="P" />. Jarak dari <InlineMath math="P" /> ke fokus <InlineMath math="F_1" /> (yang kita sebut <InlineMath math="r_1" />) ditambah jarak dari <InlineMath math="P" /> ke fokus <InlineMath math="F_2" /> (yang kita sebut <InlineMath math="r_2" />) akan selalu sama untuk semua titik yang ada di elips. Inilah **ciri khas elips** yang paling dasar!
+Pada visualisasi tersebut, <InlineMath math="P" /> terletak di elips. Jaraknya ke <InlineMath math="F_1" />, yaitu <InlineMath math="r_1" />, ditambah jaraknya ke <InlineMath math="F_2" />, yaitu <InlineMath math="r_2" />, bernilai sama untuk setiap titik pada kurva. Inilah **sifat yang mendefinisikan elips**.
 
 ## Komponen Elips
 
-Sebelum kita bahas rumusnya, yuk kenalan dulu sama bagian-bagian penting dalam elips. Tiap bagian ini punya peran masing-masing dalam menentukan bentuk elipsnya.
+Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk elips.
 
 <LineEquation
   title="Komponen Elips"
@@ -224,11 +224,11 @@ Sebelum kita bahas rumusnya, yuk kenalan dulu sama bagian-bagian penting dalam e
   showZAxis={false}
 />
 
-Nih, komponen-komponen yang perlu kamu tau:
+Komponen utama elips adalah:
 
 1. **Pusat elips** adalah titik tengah elips, biasanya kita tulis dengan huruf <InlineMath math="O" />. Semua pengukuran di elips merujuk ke titik ini.
 
-2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) adalah dua titik tetap yang jadi patokan definisi elips tadi. Jarak antara kedua fokus disebut jarak fokal.
+2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) adalah dua titik tetap yang mendefinisikan elips. Jarak antara keduanya adalah <InlineMath math="2c" />.
 
 3. **Sumbu mayor** adalah garis terpanjang yang lewat pusat elips dan kedua fokus. Ujung-ujungnya adalah titik <InlineMath math="A_1" /> dan <InlineMath math="A_2" />.
 
@@ -238,11 +238,11 @@ Nih, komponen-komponen yang perlu kamu tau:
 
 6. **Semi-minor** (<InlineMath math="b" />) adalah setengah panjang sumbu minor, yaitu jarak dari pusat ke ujung sumbu minor.
 
-> Ingat ya, dalam elips selalu berlaku <InlineMath math="a > b" />. Kalau <InlineMath math="a = b" />, bentuknya jadi lingkaran!
+> Elips yang bukan lingkaran memenuhi <InlineMath math="a > b" />. Pada kasus batas <InlineMath math="a = b" />, kedua semisumbunya sama panjang sehingga kurvanya menjadi lingkaran.
 
 ## Persamaan Elips
 
-Nah, sekarang kita masuk ke bagian yang seru: gimana cara nulis elips dalam bentuk persamaan matematika. Ada beberapa bentuk tergantung posisi dan orientasinya.
+Bentuk persamaan elips bergantung pada letak pusat dan arah sumbu mayornya.
 
 ### Pusat di Titik Asal
 
@@ -333,7 +333,7 @@ Kalau pusat elips ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orien
   showZAxis={false}
 />
 
-Kalau sumbu mayor sejajar sumbu <InlineMath math="X" /> (horizontal), persamaan elipsnya:
+Kalau sumbu mayor sejajar sumbu <InlineMath math="x" /> (horizontal), persamaan elipsnya:
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
@@ -424,7 +424,7 @@ dengan syarat <InlineMath math="a > b" />.
   showZAxis={false}
 />
 
-Kalau sumbu mayor sejajar sumbu <InlineMath math="Y" /> (vertikal), persamaan elipsnya:
+Kalau sumbu mayor sejajar sumbu <InlineMath math="y" /> (vertikal), persamaan elipsnya:
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
@@ -530,7 +530,7 @@ Visualisasi:
 
 ## Hubungan Penting
 
-Ada rumus yang selalu berlaku untuk setiap elips:
+Ketiga panjang khas elips memenuhi hubungan:
 
 <BlockMath math="c^2 = a^2 - b^2" />
 
@@ -540,7 +540,7 @@ di mana <InlineMath math="c" /> adalah jarak dari pusat ke fokus.
 
 <BlockMath math="e = \frac{c}{a}" />
 
-Nilai eksentrisitas elips selalu <InlineMath math="0 < e < 1" />. Makin mendekati <InlineMath math="0" />, elips makin bulat seperti lingkaran. Makin mendekati <InlineMath math="1" />, elips makin pipih.
+Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <InlineMath math="e" /> mendekati <InlineMath math="0" />, bentuk elips makin mendekati lingkaran. Ketika <InlineMath math="e" /> mendekati <InlineMath math="1" />, bentuknya makin memanjang. Lingkaran sebagai kasus batas memiliki <InlineMath math="e = 0" />.
 
 ## Latihan
 
@@ -552,7 +552,7 @@ Nilai eksentrisitas elips selalu <InlineMath math="0 < e < 1" />. Makin mendekat
 
 4. Tentukan persamaan elips yang melalui titik <InlineMath math="(4, 3)" /> dan <InlineMath math="(6, 2)" /> dengan pusat di <InlineMath math="(0, 0)" /> dan sumbu mayor horizontal.
 
-### Kunci Jawaban
+### Penyelesaian
 
 1. **Penyelesaian**:
 
@@ -604,7 +604,7 @@ Nilai eksentrisitas elips selalu <InlineMath math="0 < e < 1" />. Makin mendekat
 
    jadi <InlineMath math="2c = 6" />, maka <InlineMath math="c = 3" />
 
-   Hitung <InlineMath math="a" />:
+   Gunakan <InlineMath math="c^2 = a^2-b^2" /> untuk menghitung <InlineMath math="a" />:
 
    <MathContainer>
      <BlockMath math="c^2 = a^2 - b^2" />

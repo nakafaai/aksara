@@ -4,54 +4,49 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Students who continue to higher education are students who belong to the dropout category.",
+        "Students entering University $$P$$ belong to the withdrawal category",
       value: true,
     },
     {
-      label:
-        "Students who continue to higher education do not belong to the dropout category.",
+      label: "Every student entering University $$P$$ completed school",
       value: false,
     },
     {
-      label:
-        "People who live more prosperously usually belong to the students who continue to higher education at universities.",
+      label: "No withdrawn student enters University $$P$$ in the same intake",
       value: false,
     },
     {
-      label:
-        "Students who drop out before graduating do not continue to higher education at universities.",
+      label: "Every withdrawn student joins the school's job-placement program",
       value: false,
     },
     {
-      label:
-        "If the number of students dropping out increases, then the number of students entering higher education decreases.",
+      label: "The completed-school and withdrawal categories do not overlap",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Siswa yang melanjutkan ke jenjang pendidikan tinggi adalah siswa yang termasuk ke dalam siswa putus sekolah.",
+        "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
       value: true,
     },
     {
-      label:
-        "Siswa yang melanjutkan ke jenjang pendidikan tinggi tidak termasuk ke dalam siswa yang putus sekolah.",
+      label: "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
       value: false,
     },
     {
       label:
-        "Orang yang hidup lebih sejahtera biasanya termasuk ke dalam siswa yang melanjutkan pendidikan tinggi di universitas.",
+        "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas $$P$$ pada angkatan yang sama",
       value: false,
     },
     {
       label:
-        "Siswa yang putus sekolah sebelum lulus tidak melanjutkan ke jenjang pendidikan tinggi di universitas.",
+        "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
       value: false,
     },
     {
       label:
-        "Jika siswa yang putus sekolah semakin meningkat, maka siswa yang masuk pendidikan tinggi semakin menurun.",
+        "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
       value: false,
     },
   ],

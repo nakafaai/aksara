@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Mean/Rata-Rata Data Kelompok",
-  description: "Hitung rata-rata data berkelompok menggunakan nilai tengah kelas. Pelajari rumus dengan contoh bertahap dan tabel distribusi frekuensi.",
+  title: "Mean Data Kelompok",
+  description: "Perkirakan mean data kelompok dari nilai tengah dan frekuensi kelas melalui satu contoh dengan pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,39 +8,35 @@ export const metadata = {
 
 ## Rata-Rata untuk Data Berkelompok
 
-Kalian sudah tahu cara menghitung rata-rata (Mean) dari data tunggal, kan? Yaitu jumlahkan semua nilai lalu bagi dengan banyaknya data.
+Untuk data tunggal, mean dihitung dengan menjumlahkan semua nilai lalu membaginya dengan banyaknya data.
 
 <BlockMath math="\bar{x} = \frac{\sum x_i}{n}" />
 
-Tapi, bagaimana jika datanya sudah disajikan dalam bentuk **kelompok** atau **interval** seperti pada tabel distribusi frekuensi? Misalnya, data nilai ulangan dikelompokkan menjadi <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, dan <InlineMath math="90\text{-}100" />.
+Namun, tabel distribusi frekuensi dapat menyajikan nilai sebagai **kelompok** atau **interval**. Nilai ulangan, misalnya, dapat dikelompokkan menjadi <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, dan <InlineMath math="90\text{-}99" />.
 
-Kalau datanya sudah dikelompokkan, kita **tidak tahu persis** nilai asli dari setiap data di dalam kelompok itu. Contohnya, di kelompok <InlineMath math="70\text{-}79" /> ada <InlineMath math="5" /> siswa, kita tidak tahu apakah nilai mereka <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" />, atau berapa persisnya.
+Setelah data dikelompokkan, kita **tidak lagi mengetahui setiap nilai secara tepat**. Jika ada <InlineMath math="5" /> siswa dalam interval <InlineMath math="70\text{-}79" />, misalnya, kita tidak dapat memastikan apakah nilai mereka <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" />, atau nilai lain dalam interval tersebut.
 
 ## Menggunakan Nilai Tengah Kelas
 
-Karena kita tidak tahu nilai pastinya, kita pakai **asumsi** atau **pendekatan**. Kita anggap semua data dalam satu kelompok itu nilainya **diwakili oleh nilai tengah** dari kelompok (kelas interval) tersebut.
+Karena nilai tepatnya tidak tersedia, kita menggunakan **pendekatan**: nilai tengah kelas **mewakili semua nilai** dalam interval tersebut.
 
-Nilai tengah kelas (sering disimbolkan <InlineMath math="x_i" />) dihitung dengan cara:
+Nilai tengah kelas, yang dilambangkan dengan <InlineMath math="x_i" />, dihitung menggunakan:
 
 <BlockMath math="x_i = \frac{\text{Batas Bawah Kelas} + \text{Batas Atas Kelas}}{2}" />
 
 ## Rumus Mean Data Kelompok
 
-Setelah kita punya nilai tengah untuk setiap kelas, kita bisa menghitung Mean data kelompok dengan rumus:
+Setelah memperoleh nilai tengah setiap kelas, hitung perkiraan mean dengan:
 
 <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i}" />
 
-Keterangan:
+keterangan:
 
-- <InlineMath math="\bar{x}" /> = Mean (Rata-rata) data kelompok
-- <InlineMath math="f_i" /> = Frekuensi kelas ke-
-  <InlineMath math="i" /> (berapa banyak data di kelompok itu)
-- <InlineMath math="x_i" /> = Nilai tengah kelas ke-
-  <InlineMath math="i" />
-- <InlineMath math="\sum (f_i \times x_i)" /> = Jumlah dari hasil perkalian frekuensi
-  tiap kelas dengan nilai tengah kelasnya
-- <InlineMath math="\sum f_i" /> = Jumlah total frekuensi (sama dengan total banyaknya
-  data, <InlineMath math="n" />)
+- <InlineMath math="\bar{x}" /> adalah perkiraan mean data kelompok.
+- <InlineMath math="f_i" /> adalah frekuensi kelas ke-<InlineMath math="i" />.
+- <InlineMath math="x_i" /> adalah nilai tengah kelas ke-<InlineMath math="i" />.
+- <InlineMath math="\sum (f_i \times x_i)" /> adalah jumlah hasil kali frekuensi dan nilai tengah setiap kelas.
+- <InlineMath math="\sum f_i" /> adalah jumlah seluruh frekuensi, sama dengan banyaknya data <InlineMath math="n" />.
 
 ## Rata-Rata Ukuran Sepatu
 
@@ -54,16 +50,16 @@ Perhatikan data penjualan sepatu di Toko A yang sudah dikelompokkan berikut:
 | <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
 | **Total**                      | **<InlineMath math="n=30" />**        |
 
-**Langkah-langkah menghitung Mean:**
+**Perhitungan:**
 
-1.  **Cari Nilai Tengah (<InlineMath math="x_i" />) setiap kelas:**
+1.  **Cari nilai tengah (<InlineMath math="x_i" />) setiap kelas:**
 
     - Kelas <InlineMath math="37\text{-}39" />: <InlineMath math="x_1 = (37+39)/2 = 38" />
     - Kelas <InlineMath math="40\text{-}42" />: <InlineMath math="x_2 = (40+42)/2 = 41" />
     - Kelas <InlineMath math="43\text{-}45" />: <InlineMath math="x_3 = (43+45)/2 = 44" />
     - Kelas <InlineMath math="46\text{-}48" />: <InlineMath math="x_4 = (46+48)/2 = 47" />
 
-2.  **Kalikan Frekuensi dengan Nilai Tengah (<InlineMath math="f_i \times x_i" />) untuk setiap kelas:**
+2.  **Kalikan setiap frekuensi dengan nilai tengahnya (<InlineMath math="f_i \times x_i" />):**
 
     - Kelas <InlineMath math="37\text{-}39" />: <InlineMath math="2 \times 38 = 76" />
     - Kelas <InlineMath math="40\text{-}42" />: <InlineMath math="11 \times 41 = 451" />
@@ -78,10 +74,10 @@ Perhatikan data penjualan sepatu di Toko A yang sudah dikelompokkan berikut:
 
     <BlockMath math="\sum f_i = 2 + 11 + 16 + 1 = 30" />
 
-5.  **Hitung Mean (<InlineMath math="\bar{x}" />):**
+5.  **Hitung mean (<InlineMath math="\bar{x}" />):**
 
-    <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42.6" />
+    <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42{,}6" />
 
-**Jadi, rata-rata ukuran sepatu yang terjual di Toko A adalah <InlineMath math="42.6" />.**
+**Jadi, perkiraan rata-rata ukuran sepatu yang terjual di Toko A adalah <InlineMath math="42{,}6" />.**
 
-Perlu diingat, hasil ini adalah **estimasi** atau perkiraan rata-rata, karena kita menggunakan nilai tengah sebagai wakil dari setiap data dalam kelompok. Namun, ini adalah cara standar dan paling umum untuk menghitung rata-rata dari data yang sudah dikelompokkan.
+Hasil ini merupakan **perkiraan** karena nilai tengah mewakili semua nilai dalam satu kelas. Pendekatan tersebut menjadi standar ketika data yang tersedia hanya berupa frekuensi kelompok.

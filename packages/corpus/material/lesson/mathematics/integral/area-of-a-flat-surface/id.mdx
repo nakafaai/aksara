@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Luas Bidang Datar",
-  description: "Hitung luas bidang datar menggunakan integral tentu dengan solusi bertahap. Pelajari fungsi kuadrat dan irasional melalui contoh praktis.",
+  title: "Luas Daerah antara Kurva dan Sumbu",
+  description: "Gunakan integral tentu untuk menghitung luas daerah yang dibatasi kurva, dengan contoh lengkap pada fungsi kuadrat dan fungsi akar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Integral",
@@ -8,16 +8,16 @@ export const metadata = {
 
 
 
-## Konsep Dasar Luas Bidang Datar
+## Konsep Dasar Luas di Bawah Kurva
 
 Dalam kehidupan sehari-hari, kita sering perlu menghitung luas berbagai bentuk bidang. Untuk bidang dengan bentuk sederhana seperti persegi atau segitiga, kita dapat menggunakan rumus yang sudah familiar. Namun, bagaimana jika kita ingin menghitung luas daerah yang dibatasi oleh kurva yang tidak beraturan?
 
-**Integral tentu** memberikan solusi elegan untuk masalah ini. Konsep dasar integral tentu berawal dari pendekatan Riemann, di mana kita membagi daerah menjadi persegi panjang kecil, kemudian menjumlahkan luasnya.
+**Integral tentu** menangani daerah seperti ini dengan mengakumulasi luas strip yang makin sempit. Inilah gagasan di balik jumlahan Riemann: bagi interval, hampiri setiap strip dengan persegi panjang, lalu tinjau limit jumlahnya.
 
-Bayangkan kita memiliki fungsi <InlineMath math="f(x)" /> dan ingin mencari luas daerah di bawah kurva dari <InlineMath math="x = a" /> sampai <InlineMath math="x = b" />. Kita dapat membagi interval <InlineMath math="[a, b]" /> menjadi <InlineMath math="n \text{ bagian}" /> kecil dengan lebar <InlineMath math="\Delta x" />.
+Misalkan fungsi <InlineMath math="f(x)" /> membatasi daerah dari <InlineMath math="x = a" /> sampai <InlineMath math="x = b" />. Kita membagi <InlineMath math="[a, b]" /> menjadi <InlineMath math="n" /> subinterval dengan lebar <InlineMath math="\Delta x" />.
 
 <MathContainer>
-<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \cdot \Delta x" />
+<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
@@ -31,7 +31,7 @@ Langkah pertama adalah menentukan batas bawah dan batas atas integrasi. Batas in
 
 ### Tentukan Fungsi Integran
 
-Fungsi yang akan diintegralkan adalah fungsi yang membatasi daerah tersebut. Jika daerah berada di atas sumbu <InlineMath math="x" />, maka luas daerah adalah <InlineMath math="\int_{a}^{b} f(x) \, dx" />.
+Integran menyatakan tinggi vertikal daerah. Jika <InlineMath math="f(x) \ge 0" /> pada seluruh <InlineMath math="[a,b]" />, luasnya adalah <InlineMath math="\int_{a}^{b} f(x) \, dx" />. Jika grafik memotong sumbu, pecah interval pada titik nolnya atau integralkan <InlineMath math="|f(x)|" /> agar setiap bagian menyumbang luas positif.
 
 ### Evaluasi Integral
 
@@ -47,7 +47,7 @@ Mari kita terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitun
 
 <LineEquation
   title={<>Grafik Fungsi <InlineMath math="f(x) = x^2 - 4x" /></>}
-  description="Visualisasi daerah yang akan dihitung luasnya dengan bantuan garis batas dan area arsiran."
+  description="Kurva dan dua garis vertikal yang membatasi interval integrasi."
   showZAxis={false}
   cameraPosition={[0, 0, 12]}
   data={[
@@ -88,22 +88,22 @@ Mari kita terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitun
     },
     {
       points: [
-        { x: 1, y: -3, z: 0 },
-        { x: 3, y: -3, z: 0 }
+        { x: 1, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
       ],
       color: "#d97706",
       showPoints: false,
       lineWidth: 1,
       labels: [
-        { text: "Daerah Luas", at: 0, offset: [0, -1.5, 0] }
+        { text: <InlineMath math="x\in[1,3]" />, at: 0, offset: [0, 0.8, 0] }
       ]
     }
   ]}
 />
 
-Sekarang, coba perhatikan grafik di atas. Fungsi <InlineMath math="f(x) = x^2 - 4x" /> ternyata memiliki nilai negatif di interval <InlineMath math="[1, 3]" />. Kita bisa cek dengan mudah: ketika <InlineMath math="x = 1" />, kita dapat <InlineMath math="f(1) = 1 - 4 = -3" />. Demikian juga ketika <InlineMath math="x = 3" />, kita dapat <InlineMath math="f(3) = 9 - 12 = -3" />.
+Pada <InlineMath math="[1,3]" />, faktorkan fungsi menjadi <InlineMath math="f(x)=x(x-4)" />. Setiap titik pada interval memenuhi <InlineMath math="x>0" /> dan <InlineMath math="x-4<0" />, sehingga <InlineMath math="f(x)<0" /> di seluruh interval. Nilai ujung <InlineMath math="f(1)=-3" /> dan <InlineMath math="f(3)=-3" /> konsisten dengan analisis tanda ini.
 
-Nah, di sinilah letak keunikannya! Karena kita mencari **luas** yang selalu bernilai positif, maka kita perlu menggunakan nilai mutlak dari fungsi tersebut. Jadi integral kita menjadi:
+**Luas geometris** tidak bernilai negatif. Karena fungsi negatif di seluruh interval ini, nilai mutlaknya sama dengan lawan fungsinya, sehingga:
 
 <MathContainer>
 <BlockMath math="A = \int_{1}^{3} |x^2 - 4x| \, dx" />
@@ -111,7 +111,7 @@ Nah, di sinilah letak keunikannya! Karena kita mencari **luas** yang selalu bern
 <BlockMath math="A = \int_{1}^{3} (-x^2 + 4x) \, dx" />
 </MathContainer>
 
-Mari kita selesaikan langkah demi langkah:
+Sekarang evaluasi integral tentunya:
 
 <MathContainer>
 <BlockMath math="A = \left[-\frac{x^3}{3} + 2x^2\right]_{1}^{3}" />
@@ -119,11 +119,11 @@ Mari kita selesaikan langkah demi langkah:
 <BlockMath math="A = 9 - \frac{5}{3} = \frac{22}{3}" />
 </MathContainer>
 
-Jadi, luas daerah tersebut adalah <InlineMath math="\frac{22}{3} \text{ satuan}" /> luas.
+Jadi, luas daerah tersebut adalah <InlineMath math="\frac{22}{3}" /> satuan luas.
 
-## Penerapan pada Fungsi Irasional
+## Penerapan pada Fungsi Akar
 
-Sekarang mari kita coba contoh yang sedikit lebih menantang dengan fungsi irasional. Kita akan menghitung luas daerah di bawah kurva <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />.
+Pada contoh kedua, hitung luas di bawah kurva <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />.
 
 <LineEquation
   title={<>Grafik Fungsi <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -179,11 +179,11 @@ Sekarang mari kita coba contoh yang sedikit lebih menantang dengan fungsi irasio
   ]}
 />
 
-Untuk integral ini, kita perlu menggunakan **teknik substitusi**. Mengapa? Karena ada bentuk <InlineMath math="x\sqrt{x^2 + 5}" /> yang cukup rumit jika kita selesaikan langsung.
+Bentuk <InlineMath math="x\sqrt{x^2 + 5}" /> mengarahkan kita pada **substitusi** karena faktor <InlineMath math="x" /> sebanding dengan turunan ekspresi di dalam akar.
 
-Mari kita lakukan substitusi dengan <InlineMath math="u = x^2 + 5" />. Dari sini, kita dapat diferensial <InlineMath math="du = 2x \, dx" />, yang berarti <InlineMath math="x \, dx = \frac{1}{2} du" />.
+Tetapkan <InlineMath math="u = x^2 + 5" />. Maka <InlineMath math="du = 2x \, dx" />, sehingga <InlineMath math="x \, dx = \frac{1}{2} du" />.
 
-Jangan lupa mengubah batas integrasinya juga! Ketika <InlineMath math="x = 0" />, kita dapat <InlineMath math="u = 5" />. Ketika <InlineMath math="x = 2" />, kita dapat <InlineMath math="u = 9" />.
+Batas integrasi harus memakai variabel yang sama dengan integran: <InlineMath math="x = 0" /> menghasilkan <InlineMath math="u = 5" />, sedangkan <InlineMath math="x = 2" /> menghasilkan <InlineMath math="u = 9" />.
 
 Sekarang integral kita menjadi:
 
@@ -208,7 +208,7 @@ Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <Inl
 
 3. Hitunglah luas daerah yang dibatasi oleh kurva <InlineMath math="y = 2x - x^2" /> dan sumbu <InlineMath math="x" />!
 
-### Kunci Jawaban
+### Pembahasan Terperinci
 
 1. **Soal pertama dengan fungsi <InlineMath math="y = x^2 + 1" />**
 
@@ -223,7 +223,7 @@ Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <Inl
    <BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
    </MathContainer>
 
-   Jadi, luas daerah tersebut adalah <InlineMath math="\frac{14}{3} \text{ satuan}" /> luas.
+   Jadi, luas daerah tersebut adalah <InlineMath math="\frac{14}{3}" /> satuan luas.
 
 2. **Soal kedua dengan fungsi rasional**
 
@@ -235,7 +235,7 @@ Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <Inl
    <BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
    </MathContainer>
 
-   Luas daerah tersebut adalah <InlineMath math="\frac{\pi}{4} \text{ satuan}" /> luas.
+   Luas daerah tersebut adalah <InlineMath math="\frac{\pi}{4}" /> satuan luas.
 
 3. **Soal ketiga dengan parabola**
 
@@ -251,4 +251,4 @@ Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <Inl
    <BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
    </MathContainer>
 
-   Luas daerah tersebut adalah <InlineMath math="\frac{4}{3} \text{ satuan}" /> luas.
+   Luas daerah tersebut adalah <InlineMath math="\frac{4}{3}" /> satuan luas.

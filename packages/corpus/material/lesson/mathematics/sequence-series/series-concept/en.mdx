@@ -8,24 +8,32 @@ export const metadata = {
 
 ## Understanding Number Series
 
-Have you ever thought about how to sum the terms of a number sequence? For example, adding <InlineMath math="1 + 2 + 3 + \cdots" /> and so on? Well, this is what's called a **number series**.
+How can the terms of a number sequence be accumulated? An expression such as <InlineMath math="1+2+3+\cdots" /> is called a **series**.
 
-So, a **number series** is the result of sequentially adding the terms of a number sequence. Just like sequences, there are two main types of series: **arithmetic series** (the sum of terms in an arithmetic sequence) and **geometric series** (the sum of terms in a geometric sequence). But don't worry, we'll discuss the detailed formulas later.
+A **number series** is formed by adding the terms of a number sequence in their given order. Two common examples are an **arithmetic series**, whose terms come from an arithmetic sequence, and a **geometric series**, whose terms come from a geometric sequence.
 
-Now, let's look at a real-world example of the series concept through a simple exploration.
+The handshake problem makes this idea concrete.
+
+## Partial Sums Connect a Sequence to Its Series
+
+For a sequence <InlineMath math="(U_n)" />, the sum of its first <InlineMath math="n" /> terms is the <InlineMath math="n" />th partial sum:
+
+<BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
+
+Finite problems ask for a particular partial sum. For an infinite series, we study whether the sequence <InlineMath math="(S_n)" /> approaches a finite limit as <InlineMath math="n" /> grows.
 
 ## Number of Handshakes
 
 Imagine there are several people in a group. If each person shakes hands exactly once with every other person in the group, how many total handshakes occur?
 
-Let's try to count:
+Count the handshakes step by step:
 
 - **If there are <InlineMath math="2 \text{ people}" />:** There is only <InlineMath math="1 \text{ handshake}" />.
-- **If there are <InlineMath math="3 \text{ people}" />:** The first person shakes hands with <InlineMath math="2" /> others. The second person has already shaken hands with the first, so they only need to shake hands with the third person. The total is <InlineMath math="2 + 1 = 3 \text{ handshakes}" />.
+- **If there are <InlineMath math="3 \text{ people}" />:** The first person shakes hands with <InlineMath math="2 \text{ people}" />. The second person has already shaken hands with the first, so they only need to shake hands with the third person. The total is <InlineMath math="2 + 1 = 3 \text{ handshakes}" />.
 - **If there are <InlineMath math="4 \text{ people}" />:** Following the same pattern, we get <InlineMath math="3 + 2 + 1 = 6 \text{ handshakes}" />.
 - **If there are <InlineMath math="5 \text{ people}" />:** The total is <InlineMath math="4 + 3 + 2 + 1 = 10 \text{ handshakes}" />.
 
-Notice the pattern! The number of handshakes forms a sequential sum of natural numbers.
+The number of handshakes forms a sequential sum of natural numbers.
 
 | Number of people present | Number of handshakes | Breakdown of handshakes       |
 | :----------------------- | :------------------- | :---------------------------- |
@@ -36,10 +44,34 @@ Notice the pattern! The number of handshakes forms a sequential sum of natural n
 
 Summations like <InlineMath math="1+2+3+4" /> are examples of a **number series**. In this case, the series is formed from the sum of the terms of the sequence of natural numbers <InlineMath math="(1, 2, 3, 4, ...)" />.
 
+Each pair must be counted exactly once. Counting every person's handshakes independently would count each pair twice, once from each person's point of view.
+
+### A Second Counting Method
+
+A handshake is an unordered pair of people. The number of pairs chosen from <InlineMath math="n" /> people is:
+
+<BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
+
+For <InlineMath math="n=5" />, this gives <InlineMath math="\binom52=10" />, matching the sequential sum.
+
 ### Does This Form a Sequence?
 
-Interesting question: does the number of handshakes itself <InlineMath math="(1, 3, 6, 10, ...)" /> form an arithmetic or geometric sequence? The answer is no. This sequence does not have a constant difference or ratio between its terms (<InlineMath math="3-1=2" />, <InlineMath math="6-3=3" />, <InlineMath math="10-6=4" />).
+Does the number of handshakes itself <InlineMath math="(1, 3, 6, 10, ...)" /> form an arithmetic or geometric sequence? No. This sequence does not have a constant difference or ratio between its terms (<InlineMath math="3-1=2" />, <InlineMath math="6-3=3" />, <InlineMath math="10-6=4" />).
 
-However, the **breakdown** of the number of handshakes (<InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" />, <InlineMath math="1+2+3+4" />) clearly represents the sum of the terms of a sequence (specifically, the sequence of natural numbers). This is the core concept of a **series**.
+However, the **breakdown** of the number of handshakes (<InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" />, <InlineMath math="1+2+3+4" />) represents sums of terms from the natural-number sequence. This is the core concept of a **series**.
 
 So, this handshake exploration shows how the concept of a series arises from summing the terms of a pattern or number sequence in everyday situations.
+
+## Practice
+
+How many handshakes occur among <InlineMath math="12 \text{ people}" /> if every pair shakes hands exactly once?
+
+The sequential-sum method gives:
+
+<BlockMath math="S_{11}=1+2+\cdots+11" />
+
+The pair-counting formula gives the same result directly:
+
+<BlockMath math="S_{11}=\frac{12\cdot11}{2}=66" />
+
+Therefore, there are <InlineMath math="66 \text{ handshakes}" />.

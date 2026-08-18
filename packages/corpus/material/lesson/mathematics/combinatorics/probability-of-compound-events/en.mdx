@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Probability of Compound Events",
-   description: "Learn compound event probability through independent and dependent events, formulas, and real-world examples.",
+   description: "Distinguish unions, intersections, independent events, and dependent events, then choose the right probability rule.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Combinatorics",
@@ -8,19 +8,19 @@ export const metadata = {
 
 ## Understanding Compound Events
 
-In daily life, we often face situations where **two or more events occur simultaneously**. For example, when throwing a dice and a coin at the same time, or drawing two cards from one deck. Situations like this are called compound events.
+Many probability questions combine **two or more events**. A die and a coin may be tossed together, or two cards may be drawn from one deck. These are compound-event situations.
 
-**Compound events** are combinations of two or more single events that can occur in one experiment or several experiments conducted simultaneously. Unlike single events that only involve one outcome, compound events involve combinations of several outcomes at once.
+A **compound event** combines two or more simple events within one probability model. Instead of focusing on only the die or only the coin, for example, we study a condition involving both results.
 
-As a simple illustration, imagine you throw a dice and a coin simultaneously. A single event would only focus on the dice result alone or the coin alone. However, compound events would consider the combination of both results, such as "getting number <InlineMath math="3" /> on the dice AND getting tails on the coin".
+Suppose you toss a die and a coin. A simple event might focus only on the die or only on the coin. A compound event considers both, such as “the die shows <InlineMath math="3" /> AND the coin shows tails.”
 
 ## Types of Compound Events
 
 ### Mutually Exclusive Events
 
-Two events are said to be **mutually exclusive** when both events cannot occur simultaneously in one experiment. In other words, if event <InlineMath math="A" /> occurs, then event <InlineMath math="B" /> definitely cannot occur, and vice versa.
+Two events are **mutually exclusive** when they cannot occur in the same trial. If event <InlineMath math="A" /> occurs, event <InlineMath math="B" /> cannot occur, and vice versa.
 
-A classic example is throwing one dice. The event of getting an even number and the event of getting an odd number are mutually exclusive, because in one throw it's impossible to get a number that is both even and odd.
+A standard example is one die roll. “The result is even” and “the result is odd” are mutually exclusive because one result cannot be both.
 
 For mutually exclusive events, the probability formula is:
 
@@ -28,7 +28,7 @@ For mutually exclusive events, the probability formula is:
 
 **Calculation Example:**
 
-A dice is thrown once. Determine the probability of getting an even number or numbers <InlineMath math="1" /> or <InlineMath math="3" />.
+A die is rolled once. Find the probability of rolling an even number or rolling <InlineMath math="1" /> or <InlineMath math="3" />.
 
 **Solution:**
 
@@ -49,15 +49,15 @@ Since there is no intersection, both events are **mutually exclusive**.
 
 ### Non-Mutually Exclusive Events
 
-**Non-mutually exclusive events** occur when two events can happen simultaneously in one experiment. This means there is a possibility that both events occur at the same time.
+Events are **not mutually exclusive** when they can occur in the same trial. Their intersection is not empty.
 
-For example, in drawing one card from a standard deck, the event "drawing a red card" and the event "drawing an Ace" are not mutually exclusive. This is because there are cards that are both red and Ace, namely Ace of Hearts and Ace of Diamonds.
+For example, “draw a red card” and “draw an Ace” are not mutually exclusive. The Ace of Hearts and Ace of Diamonds satisfy both conditions.
 
 For non-mutually exclusive events, the formula is:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-The subtraction of <InlineMath math="P(A \cap B)" /> is needed to avoid double counting the intersection of both events.
+We subtract <InlineMath math="P(A \cap B)" /> because the outcomes in the intersection were counted once in <InlineMath math="P(A)" /> and again in <InlineMath math="P(B)" />.
 
 **Calculation Example:**
 
@@ -81,9 +81,9 @@ Intersection (red and face cards): <InlineMath math="6 \text{ cards}" /> (Jack, 
 
 ### Independent Events
 
-Two events are called **independent** when the occurrence of one event does not affect the probability of the other event occurring. The result of the first event does not change the conditions for the second event.
+Two events are **independent** when learning that one occurred does not change the probability distribution of the other. Independence concerns probabilities, not whether two events happen at the same time.
 
-An easy-to-understand example is throwing two coins simultaneously. The result of the first coin toss (for example, heads) will not affect the result of the second coin toss. The probability of getting tails on the second coin remains <InlineMath math="50\%" /> regardless of the first coin's result.
+A simple example is tossing two fair coins. Knowing the first coin landed heads does not change the second coin: its probability of tails remains <InlineMath math="50\%" />.
 
 Formula for independent events:
 
@@ -91,14 +91,14 @@ Formula for independent events:
 
 **Calculation Example:**
 
-Two dice are thrown simultaneously. Determine the probability of getting number <InlineMath math="3" /> on the first dice and an even number on the second dice.
+Two fair dice are rolled. Find the probability that the first die shows <InlineMath math="3" /> and the second die shows an even number.
 
 **Solution:**
 
-- Event <InlineMath math="A" /> (number <InlineMath math="3" /> on first dice): <InlineMath math="1 \text{ possibility}" /> out of <InlineMath math="6" />
-- Event <InlineMath math="B" /> (even number on second dice): <InlineMath math="\{2, 4, 6\} = 3 \text{ possibilities}" /> out of <InlineMath math="6" />
+- Event <InlineMath math="A" /> (number <InlineMath math="3" /> on the first die): <InlineMath math="1 \text{ possibility}" /> out of <InlineMath math="6" />
+- Event <InlineMath math="B" /> (even number on the second die): <InlineMath math="\{2, 4, 6\} = 3 \text{ possibilities}" /> out of <InlineMath math="6" />
 
-Since the result of the first dice does not affect the second dice, both events are independent.
+Since the result of the first die does not affect the second die, both events are independent.
 
 <MathContainer>
 <BlockMath math="P(A) = \frac{1}{6}" />
@@ -108,9 +108,9 @@ Since the result of the first dice does not affect the second dice, both events 
 
 ### Dependent Events
 
-**Dependent events** or conditional events occur when the result of the first event affects the probability of the second event occurring. The conditions after the first event change and affect subsequent calculations.
+Events are **dependent** when the outcome of one changes the probability of the next. The conditions for the second stage are no longer the same as they were at the start.
 
-**Main cause:** Drawing **without replacement** where objects that have been drawn are not returned to their original place, so the total number of objects decreases and changes the probability of subsequent draws.
+One common cause is drawing **without replacement**. The selected object is not returned, so both the total number of objects and possibly the number of favorable objects change.
 
 Formula for dependent events:
 
@@ -141,28 +141,30 @@ Since drawing is without replacement, conditions change after the first draw, so
 
 ### Union Operation
 
-When we want to know the probability of "event <InlineMath math="A" /> **OR** event <InlineMath math="B" />", we use the union operation. The keyword "or" indicates that we are looking for the probability where at least one event occurs.
+To find the probability of “event <InlineMath math="A" /> **OR** event <InlineMath math="B" />,” use the union. Here “or” is inclusive: at least one event occurs, and an overlap belongs to the union too.
 
 In dice throwing, if we want to find the probability of getting an odd number or a prime number, we need to consider whether both events are mutually exclusive or not.
 
 ### Intersection Operation
 
-Conversely, when looking for the probability of "event <InlineMath math="A" /> **AND** event <InlineMath math="B" />", we use the intersection operation. The keyword "and" indicates that both events must occur simultaneously.
+To find the probability of “event <InlineMath math="A" /> **AND** event <InlineMath math="B" />,” use the intersection. Every counted outcome must satisfy both conditions.
 
 In the context of card drawing, if we look for the probability of "drawing a red card AND an even-numbered card", we must count cards that meet both criteria.
 
 ## Problem-Solving Strategy
 
-The first step in solving compound event probability problems is **identifying the types of events** involved. Pay attention to keywords in the problem:
+Start a compound-event problem by **identifying the relationship between the events**. Keywords help, but the probability mechanism is the final test:
 
 1. **"or"** indicates union operation
 2. **"and"** indicates intersection operation
 3. **"without replacement"** indicates dependent events
-4. **"with replacement"** or "simultaneously" indicates independent events
+4. **"with replacement"** often preserves independence, but verify that one outcome truly does not change the other event's probability
 
-Next, determine whether the events are mutually exclusive or not by checking if there is a possibility that both events occur simultaneously. Finally, choose the appropriate formula and perform calculations carefully.
+Then check whether both events can occur together. Choose the formula only after those two questions are settled, and verify that no overlap is counted twice.
 
 ## Exercises
+
+Try each problem before opening its worked solution. Name the events, decide whether the problem asks for a union or intersection, and justify whether the events are mutually exclusive, independent, or dependent.
 
 1. In throwing a dice, determine the probability of getting a prime number or an odd number on the dice.
 
@@ -172,7 +174,7 @@ Next, determine whether the events are mutually exclusive or not by checking if 
 
 4. From a standard bridge card deck, one card is drawn randomly. Calculate the probability of drawing an Ace or a black card.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 
@@ -227,7 +229,7 @@ Next, determine whether the events are mutually exclusive or not by checking if 
 
    Total cards <InlineMath math="= 52" />
 
-   - Event <InlineMath math="A" /> (Ace cards): <InlineMath math="4" /> Ace cards
+   - Event <InlineMath math="A" /> (Ace cards): <InlineMath math="4 \text{ Aces}" />
    - Event <InlineMath math="B" /> (black cards): <InlineMath math="26 \text{ cards}" /> (Spades and Clubs)
 
    Intersection (black Aces): Ace of Spades and Ace of Clubs is <InlineMath math="2 \text{ cards}" />

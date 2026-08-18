@@ -4,26 +4,18 @@ export const metadata = {
   date: "2026-01-19",
 };
 
-Mari kita terjemahkan pernyataan-pernyataan tersebut ke dalam logika matematika.
-
 Misalkan:
 
-*   <InlineMath math="p" />: Siswa Nakafa mengerjakan soal empati bersyarat.
-*   <InlineMath math="q" />: Siswa Nakafa dapat mengerjakan soal TOBK di aplikasi Nakafa.
-*   <InlineMath math="r" />: Siswa Nakafa mendapatkan hasil Evaluasi Prestasi Belajar (EPB).
+- <InlineMath math="p" />: Dito menyelesaikan latihan prasyarat.
+- <InlineMath math="q" />: Dito mengikuti tes simulasi.
+- <InlineMath math="r" />: Dito menerima laporan evaluasi.
 
-Pernyataan yang diberikan adalah:
-
-1.  Jika siswa Nakafa mengerjakan soal empati bersyarat, maka dapat mengerjakan soal TOBK di aplikasi Nakafa (<InlineMath math="p \rightarrow q" />).
-2.  Jika siswa Nakafa mengerjakan soal TOBK di aplikasi Nakafa, maka mendapatkan hasil Evaluasi Prestasi Belajar (EPB) (<InlineMath math="q \rightarrow r" />).
-3.  Fakta: Dito mengerjakan soal TOBK di aplikasi Nakafa (<InlineMath math="q" />).
-
-Kita memiliki premis <InlineMath math="q \rightarrow r" /> dan fakta <InlineMath math="q" />. Berdasarkan aturan penarikan kesimpulan **Modus Ponens**:
+Premis yang diperlukan adalah <InlineMath math="q\rightarrow r" /> dan <InlineMath math="q" />. Dengan modus ponens:
 
 <MathContainer>
-  <BlockMath math="\begin{align*} & q \rightarrow r \\ & q \\ \hline \therefore \ & r \end{align*}" />
+  <BlockMath math="q\rightarrow r,\quad q\quad\Longrightarrow\quad r" />
 </MathContainer>
 
-Jadi, <InlineMath math="r" />, yaitu Dito mendapatkan hasil Evaluasi Prestasi Belajar (EPB).
+Jadi, **Dito menerima laporan evaluasi**.
 
-Perhatikan bahwa premis pertama (<InlineMath math="p \rightarrow q" />) tidak digunakan secara langsung untuk menarik kesimpulan ini karena fakta yang kita miliki adalah <InlineMath math="q" />, bukan <InlineMath math="p" />. Meskipun <InlineMath math="q" /> terjadi, kita tidak bisa menyimpulkan <InlineMath math="p" /> (karena <InlineMath math="q" /> bisa disebabkan oleh hal lain, atau Dito bisa mengerjakan TOBK tanpa mengerjakan soal empati bersyarat jika aturan tidak melarangnya secara eksklusif, namun logika formal hanya melihat implikasi ke depan). Fokus utama adalah implikasi dari <InlineMath math="q" /> ke <InlineMath math="r" />.
+Aturan pertama tidak mengizinkan kita menyimpulkan <InlineMath math="p" /> dari <InlineMath math="q" />. Dito mungkin mencapai tes simulasi melalui jalur lain. Menyimpulkan <InlineMath math="p" /> berarti melakukan kekeliruan menegaskan konsekuen pada <InlineMath math="p\rightarrow q" />.

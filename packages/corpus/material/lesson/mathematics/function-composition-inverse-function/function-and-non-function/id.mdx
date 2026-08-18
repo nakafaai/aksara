@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Fungsi dan Bukan Fungsi",
-  description: "Bedakan fungsi dan bukan fungsi dengan diagram panah dan definisi matematis. Pelajari aturan pemetaan satu-ke-satu dengan contoh visual.",
+  description:
+    "Bedakan fungsi dari relasi lain dengan memeriksa apakah setiap anggota domain memiliki tepat satu output melalui diagram panah dan definisi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Fungsi Komposisi dan Fungsi Invers",
@@ -47,7 +48,11 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
 <ContentStack>
   <FunctionAndNonFunctionDiagram
     title="Satu ke Banyak"
-    description="Elemen b memiliki lebih dari satu pasangan."
+    description={
+      <>
+        Elemen <InlineMath math="b" /> memiliki lebih dari satu pasangan.
+      </>
+    }
   >
     <FunctionAndNonFunctionRelationVisualizer
       accessibilityLabel="Diagram panah relasi satu ke banyak"
@@ -73,7 +78,11 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
 
   <FunctionAndNonFunctionDiagram
     title="Ada Domain Tanpa Pasangan"
-    description="Elemen c tidak memiliki pasangan di kodomain."
+    description={
+      <>
+        Elemen <InlineMath math="c" /> tidak memiliki pasangan di kodomain.
+      </>
+    }
   >
     <FunctionAndNonFunctionRelationVisualizer
       accessibilityLabel="Diagram panah dengan satu elemen domain tanpa pasangan"
@@ -102,7 +111,7 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
 
 <FunctionAndNonFunctionDiagram
   title="Tepat Satu Pasangan"
-  description="Setiap elemen domain (p, q, r) memiliki tepat satu pasangan."
+  description={<>Setiap elemen domain <InlineMath math="p" />, <InlineMath math="q" />, dan <InlineMath math="r" /> memiliki tepat satu pasangan.</>}
 >
   <FunctionAndNonFunctionRelationVisualizer
     accessibilityLabel="Diagram panah relasi fungsi dengan tepat satu pasangan"
@@ -125,3 +134,23 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
     ]}
   />
 </FunctionAndNonFunctionDiagram>
+
+## Memeriksa Bentuk Representasi Lain
+
+- Pada pasangan berurutan, periksa koordinat pertama. Jika satu koordinat pertama muncul bersama dua koordinat kedua yang berbeda, relasinya bukan fungsi.
+- Pada tabel, setiap baris masukan harus memiliki tepat satu keluaran.
+- Pada grafik <InlineMath math="y" /> sebagai fungsi dari <InlineMath math="x" />, setiap garis vertikal hanya boleh memotong grafik paling banyak satu kali. Pemeriksaan ini disebut uji garis vertikal.
+
+Sebagai contoh, lingkaran <InlineMath math="x^2+y^2=4" /> bukan grafik <InlineMath math="y" /> sebagai fungsi dari <InlineMath math="x" /> pada seluruh lingkaran. Saat <InlineMath math="x=0" />, relasi tersebut memuat <InlineMath math="y=2" /> dan <InlineMath math="y=-2" />.
+
+## Periksa Pemahamanmu
+
+1. Apakah <InlineMath math="R=\{(-1,3),(0,3),(2,5)\}" /> merupakan fungsi pada masukan yang ditampilkan?
+2. Apakah <InlineMath math="S=\{(-1,3),(0,3),(-1,5)\}" /> merupakan fungsi pada masukan yang ditampilkan?
+3. Apakah <InlineMath math="y^2=x" /> mendefinisikan <InlineMath math="y" /> sebagai fungsi dari setiap <InlineMath math="x\geq0" />?
+
+### Pembahasan
+
+1. Ya. Setiap koordinat pertama memiliki tepat satu koordinat kedua. Dua masukan boleh memiliki keluaran <InlineMath math="3" /> yang sama.
+2. Tidak. Masukan <InlineMath math="-1" /> memiliki dua keluaran yang berbeda.
+3. Tidak. Untuk setiap <InlineMath math="x>0" />, relasi tersebut memuat <InlineMath math="y=\sqrt{x}" /> dan <InlineMath math="y=-\sqrt{x}" />. Pembatasan menjadi <InlineMath math="y=\sqrt{x}" /> akan mendefinisikan satu fungsi.

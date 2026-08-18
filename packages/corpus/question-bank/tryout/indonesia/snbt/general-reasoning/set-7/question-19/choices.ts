@@ -4,56 +4,49 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Employees who have a chance of getting a promotion are not those with high salaries.",
+        "Sinta receives a salary review but does not enter the promotion assessment.",
       value: false,
     },
     {
       label:
-        "Employees who have a chance of getting a high salary are those who have a chance of getting a promotion.",
+        "Sinta receives a salary review and enters the promotion assessment.",
       value: true,
     },
     {
       label:
-        "Employees who have a chance of getting a high salary are not those who have a chance of getting a promotion.",
+        "Sinta receives neither a salary review nor a promotion assessment.",
       value: false,
     },
     {
       label:
-        "Employees who have a chance of getting a high salary do not have a chance of getting a promotion.",
+        "Sinta enters the promotion assessment without receiving a salary review.",
       value: false,
     },
     {
-      label:
-        "Employees who do not have a chance of getting a promotion are those who have a chance of getting a high salary.",
+      label: "Sinta has not completed the professional certification.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Pegawai yang berpeluang mendapatkan promosi jabatan adalah bukan yang bergaji tinggi.",
+        "Sinta menerima peninjauan gaji, tetapi tidak mengikuti penilaian promosi.",
       value: false,
     },
     {
-      label:
-        "Pegawai yang berpeluang memperoleh gaji tinggi adalah yang berpeluang mendapatkan promosi jabatan.",
+      label: "Sinta menerima peninjauan gaji dan mengikuti penilaian promosi.",
       value: true,
     },
     {
-      label:
-        "Pegawai yang berpeluang memperoleh gaji tinggi adalah bukan yang berpeluang mendapatkan promosi jabatan.",
+      label: "Sinta tidak menerima peninjauan gaji maupun penilaian promosi.",
       value: false,
     },
     {
       label:
-        "Pegawai yang berpeluang memperoleh gaji tinggi tidak berpeluang mendapatkan promosi jabatan.",
+        "Sinta mengikuti penilaian promosi tanpa menerima peninjauan gaji.",
       value: false,
     },
-    {
-      label:
-        "Pegawai yang tidak berpeluang mendapatkan promosi jabatan adalah yang berpeluang memperoleh gaji tinggi.",
-      value: false,
-    },
+    { label: "Sinta belum menyelesaikan sertifikasi profesi.", value: false },
   ],
 };
 

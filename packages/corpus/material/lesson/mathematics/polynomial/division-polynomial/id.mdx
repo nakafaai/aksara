@@ -12,9 +12,8 @@ Pembagian polinomial mirip dengan pembagian bilangan bulat yang sudah kita kenal
 
 Misalnya, saat membagi <InlineMath math="7" /> dengan <InlineMath math="4" />:
 
-- <InlineMath math="\frac{7}{4}" /> dapat ditulis sebagai <InlineMath math="1 \frac{3}{4}" /> (<InlineMath math="1" />
-  sisa <InlineMath math="3" />)
-- Ini juga bisa ditulis sebagai <InlineMath math="7 = 4 \cdot 1 + 3" />
+- Sebagai pecahan campuran, <InlineMath math="\frac{7}{4}" /> = <InlineMath math="1 \frac{3}{4}" />. Hasil bagi bulatnya adalah <InlineMath math="1" />, sedangkan sisanya <InlineMath math="3" />.
+- Untuk algoritma pembagian, kita menulis bentuk yang setara: <InlineMath math="7 = 4 \cdot 1 + 3" />.
 
 Di sini:
 
@@ -37,7 +36,7 @@ atau dapat ditulis sebagai:
 
 <BlockMath math="\frac{P(x)}{Q(x)} = H(x) + \frac{S(x)}{Q(x)}" />
 
-Dengan syarat derajat <InlineMath math="S(x)" /> lebih rendah dari derajat <InlineMath math="Q(x)" />, atau <InlineMath math="S(x) = 0" /> (sisanya nol).
+Identitas polinomial <InlineMath math="P=QH+S" /> berlaku untuk setiap <InlineMath math="x" />. Bentuk pecahan hanya terdefinisi pada nilai yang memenuhi <InlineMath math="Q(x)\neq0" />. Pada kedua bentuk, derajat <InlineMath math="S(x)" /> harus lebih rendah daripada derajat <InlineMath math="Q(x)" />, atau <InlineMath math="S(x)=0" /> jika pembagian tidak bersisa.
 
 **Istilah:**
 
@@ -63,7 +62,7 @@ Ini dapat ditulis dalam dua bentuk sesuai algoritma:
 
     <BlockMath math="x^3 + 4x^2 + 5x + 8 = (x + 3)(x^2 + x + 2) + 2" />
 
-Perhatikan bahwa derajat sisa (<InlineMath math="S(x)=2" />, derajat <InlineMath math="0" />) lebih rendah dari derajat pembagi (<InlineMath math="x+3" />, derajat <InlineMath math="1" />).
+Sisa <InlineMath math="S(x)=2" /> berderajat <InlineMath math="0" />, lebih rendah daripada derajat pembagi <InlineMath math="x+3" />, yaitu <InlineMath math="1" />. Syarat inilah yang menandai bahwa pembagian telah selesai.
 
 ### Verifikasi Algoritma Pembagian
 
@@ -82,3 +81,34 @@ Kita jabarkan ruas kanan:
 </MathContainer>
 
 Karena ruas kanan sama dengan ruas kiri, maka persamaan terbukti benar.
+
+## Latihan
+
+Bagi <InlineMath math="P(x)=2x^3-3x^2+4x-5" /> dengan <InlineMath math="Q(x)=x-2" />. Tentukan hasil bagi dan sisanya, lalu verifikasi hasil tersebut menggunakan algoritma pembagian.
+
+### Pembahasan
+
+Karena pembaginya adalah <InlineMath math="x-2" />, gunakan <InlineMath math="c=2" /> pada skema Horner:
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & 4 & -5 \\
+  &   & 4 & 2 & 12 \\
+\hline
+  & 2 & 1 & 6 & \boxed{7}
+\end{array}
+"
+/>
+
+Hasil baginya adalah <InlineMath math="H(x)=2x^2+x+6" /> dan sisanya <InlineMath math="S(x)=7" />. Verifikasi dengan menyusun kembali polinomial yang dibagi:
+
+<MathContainer>
+  <BlockMath math="(x-2)(2x^2+x+6)+7" />
+  <BlockMath math="=2x^3+x^2+6x-4x^2-2x-12+7" />
+  <BlockMath math="=2x^3-3x^2+4x-5" />
+</MathContainer>
+
+Jadi,
+
+<BlockMath math="P(x)=(x-2)(2x^2+x+6)+7" />

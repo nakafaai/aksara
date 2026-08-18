@@ -4,27 +4,24 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-The path is calculated from the box to <InlineMath math="B10" />, forming an arithmetic sequence of distances <InlineMath math="10, 18, 26, 34, \ldots" />
+Ten bottles, labeled <InlineMath math="B_1" /> through <InlineMath math="B_{10}" />, stand in a straight line. Bottle <InlineMath math="B_1" /> is <InlineMath math="10\text{ m}" /> from a box, and adjacent bottles are <InlineMath math="8\text{ m}" /> apart.
 
 <Mermaid
-  title="Path from the box to B10"
-  description="Follow the point order to see the distance pattern that forms an arithmetic sequence."
+  title="Distances from the box to ten bottles"
+  description="The first bottle is 10 meters from the box. Each following bottle is 8 meters farther away."
   chart={`
     graph LR
-      START[START] -->|start| B10[B10]
-      B10 -->|8m| B9[B9]
-      B9 -->|8m| B8[B8]
-      B8 -->|8m| B7[B7]
-      B7 -->|8m| B6[B6]
-      B6 -->|8m| B5[B5]
-      B5 -->|8m| B4[B4]
-      B4 -->|8m| B3[B3]
-      B3 -->|8m| B2[B2]
-      B2 -->|8m| B1[B1]
-      B1 -->|10m| BOX[BOX]
+      BOX[BOX] -->|10 m| B1[B1]
+      B1 -->|8 m| B2[B2]
+      B2 -->|8 m| B3[B3]
+      B3 -->|8 m| B4[B4]
+      B4 -->|8 m| B5[B5]
+      B5 -->|8 m| B6[B6]
+      B6 -->|8 m| B7[B7]
+      B7 -->|8 m| B8[B8]
+      B8 -->|8 m| B9[B9]
+      B9 -->|8 m| B10[B10]
   `}
 />
 
-There are <InlineMath math="10" /> flags in the box that must be moved into the available bottles one by one (not all at once). All race participants start from bottle number <InlineMath math="10" /> to retrieve flags from the box.
-
-The distance from the start to the box is ....
+What is the sum of the ten one-way distances from the box to <InlineMath math="B_1,B_2,\ldots,B_{10}" />?

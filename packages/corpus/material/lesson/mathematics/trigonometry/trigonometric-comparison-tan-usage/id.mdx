@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Apa itu Tangen?
 
-Dalam segitiga siku-siku, tangen sudut <InlineMath math="\theta" /> adalah perbandingan antara panjang sisi depan (opposite) dengan panjang sisi samping (adjacent). Ini sangat berbeda dengan sinus yang membandingkan sisi depan dengan hipotenusa, atau cosinus yang membandingkan sisi samping dengan hipotenusa.
+Dalam segitiga siku-siku, tangen sudut <InlineMath math="\theta" /> adalah perbandingan antara panjang sisi depan dan sisi samping. Sinus membandingkan sisi depan dengan sisi miring, sedangkan kosinus membandingkan sisi samping dengan sisi miring.
 
 <Triangle
   title={
@@ -17,7 +17,7 @@ Dalam segitiga siku-siku, tangen sudut <InlineMath math="\theta" /> adalah perba
       Visualisasi Tangen (<InlineMath math="\tan \theta" />)
     </>
   }
-    description={<>Geser slider untuk melihat bagaimana <InlineMath math="\tan" /> berubah saat sudut berubah.</>}
+  description={<>Geser slider untuk melihat bagaimana <InlineMath math="\tan" /> berubah saat sudut berubah.</>}
   angle={30}
   labels={{
     opposite: "Sisi Depan",
@@ -30,7 +30,7 @@ Misalnya, jika kita memiliki segitiga siku-siku dengan sudut <InlineMath math="\
 
 <BlockMath math="\tan \theta = \frac{\text{sisi depan}}{\text{sisi samping}}" />
 
-Nilai tangen berubah sesuai dengan besar sudut. Sebagai contoh, <InlineMath math="\tan 30^\circ = 0{,}57 \text{ atau} \frac{1}{\sqrt{3}}" />.
+Nilai tangen berubah sesuai dengan besar sudut. Sebagai contoh, <InlineMath math="\tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0{,}577" />.
 
 ## Kegunaan Tangen dalam Kehidupan Sehari-hari
 
@@ -43,11 +43,11 @@ Perbandingan trigonometri tangen sangat berguna untuk menyelesaikan berbagai mas
 
 ### Mengukur Tinggi melalui Bayangan
 
-Bayangkan kita ingin mengukur tinggi sebuah pohon, gedung, atau objek tinggi lainnya. Kita bisa menggunakan perbandingan tangen dengan langkah-langkah berikut:
+Misalkan kita ingin mengukur tinggi pohon atau gedung yang tegak di atas tanah datar. Jika sinar matahari dianggap sejajar, objek, bayangan, dan satu sinar matahari membentuk segitiga siku-siku. Langkahnya:
 
-1. Ukur panjang bayangan objek (sisi samping)
-2. Ukur atau ketahui sudut elevasi matahari <InlineMath math="\theta" />.
-3. Gunakan rumus <InlineMath math="\tan \theta" /> untuk menghitung tinggi objek (sisi depan).
+1. Ukur panjang bayangan mendatar sebagai sisi samping.
+2. Ukur atau dapatkan sudut elevasi matahari <InlineMath math="\theta" />.
+3. Gunakan <InlineMath math="\tan \theta" /> untuk menghitung tinggi tegak sebagai sisi depan.
 
 <MathContainer>
   <BlockMath math="\text{tinggi objek} = \text{panjang bayangan} \times \tan \theta" />
@@ -78,12 +78,14 @@ Misalnya, jika kita memiliki bayangan dari tiga objek berbeda tinggi (anak kecil
 
 <BlockMath math="\frac{\text{tinggi anak kecil}}{\text{panjang bayangan anak kecil}} = \frac{\text{tinggi remaja}}{\text{panjang bayangan remaja}} = \frac{\text{tinggi orang dewasa}}{\text{panjang bayangan orang dewasa}}" />
 
-Dengan persamaan ini, jika kita mengetahui tinggi anak kecil (misalnya <InlineMath math="114 \text{ cm}" />), panjang bayangannya (<InlineMath math="200 \text{ cm}" />), dan tinggi remaja (<InlineMath math="148 \text{ cm}" />), kita bisa menghitung panjang bayangan remaja:
+Jika seorang anak dan remaja berdiri di tanah datar yang sama pada waktu yang sama, sinar matahari memberikan sudut lancip yang sama pada kedua segitiga tinggi-bayangan. Misalkan tinggi anak <InlineMath math="114 \text{ cm}" />, bayangannya <InlineMath math="200 \text{ cm}" />, dan tinggi remaja <InlineMath math="148 \text{ cm}" />. Maka:
 
 <MathContainer>
   <BlockMath math="\frac{114 \text{ cm}}{200 \text{ cm}} = \frac{148 \text{ cm}}{x \text{ cm}}" />
-  <BlockMath math="x \text{ cm} = \frac{148 \text{ cm} \times 200 \text{ cm}}{114 \text{ cm}} = \frac{29.600 \text{ cm}}{114 \text{ cm}} = 259{,}65 \text{ cm}" />
+  <BlockMath math="x = \frac{148\times200}{114}\text{ cm} \approx 259{,}65 \text{ cm}" />
 </MathContainer>
+
+Segitiga acuan yang diukur memiliki <InlineMath math="\tan \theta=114/200=0{,}57" />, sehingga sudut elevasi mataharinya <InlineMath math="\theta=\arctan(0{,}57)\approx29{,}68^\circ" />.
 
 ### Menggunakan Rumus Tangen
 
@@ -91,18 +93,20 @@ Cara lain yang lebih langsung adalah dengan menggunakan perbandingan trigonometr
 
 <BlockMath math="\tan \theta = \frac{\text{sisi depan}}{\text{sisi samping}}" />
 
-Misalnya, jika kita memiliki sudut elevasi matahari <InlineMath math="30^\circ" /> (<InlineMath math="\tan 30^\circ = 0{,}57" />) dan ingin menghitung panjang bayangan remaja dengan tinggi <InlineMath math="148 \text{ cm}" />:
+Sekarang perhatikan situasi lain ketika sudut elevasi matahari tepat <InlineMath math="30^\circ" /> dan tinggi remaja <InlineMath math="148 \text{ cm}" />:
 
 <MathContainer>
   <BlockMath math="\tan \theta = \frac{\text{tinggi remaja}}{\text{panjang bayangan remaja}}" />
   <BlockMath math="\tan 30^\circ = \frac{148 \text{ cm}}{x \text{ cm}}" />
-  <BlockMath math="0{,}57 = \frac{148 \text{ cm}}{x \text{ cm}}" />
-  <BlockMath math="x \text{ cm} = \frac{148 \text{ cm}}{0{,}57} = 259{,}65 \text{ cm}" />
+  <BlockMath math="\frac{1}{\sqrt{3}} = \frac{148}{x}" />
+  <BlockMath math="x = 148\sqrt{3}\text{ cm} \approx 256{,}34 \text{ cm}" />
 </MathContainer>
+
+Hasil ini sedikit lebih pendek daripada <InlineMath math="259{,}65 \text{ cm}" /> karena <InlineMath math="30^\circ" /> sedikit lebih besar daripada sudut acuan terukur <InlineMath math="29{,}68^\circ" />. Untuk tinggi yang sama, sudut elevasi yang lebih besar menghasilkan bayangan yang lebih pendek.
 
 <ContentBlock>
   <Triangle
-    title={<>Sudut <InlineMath math="30^\circ" /> dengan Tangen <InlineMath math="0{,}57" /></>}
+    title={<>Sudut <InlineMath math="30^\circ" /> dengan Tangen <InlineMath math="1/\sqrt{3}" /></>}
     description={
       <>
         Visualisasi segitiga dengan sudut <InlineMath math="30^\circ" /> seperti pada

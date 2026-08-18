@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Properties of Complex Number Modulus",
-  description: "Learn modulus laws: |z₁×z₂|=|z₁|×|z₂|, triangle inequality, |z|²=z×z̄. Simplify calculations using properties instead of complex arithmetic.",
+  title: "Properties of the Modulus of a Complex Number",
+  description: "Modulus rules for products, quotients, conjugates, and triangle inequalities, with proofs and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Complex Number",
@@ -60,11 +60,23 @@ The modulus of the product of two complex numbers is equal to the product of the
 
 <BlockMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />
 
+This follows from multiplying each number by its conjugate:
+
+<MathContainer>
+  <BlockMath math="|z_1z_2|^2=(z_1z_2)\overline{(z_1z_2)}" />
+  <BlockMath math="=z_1\bar{z_1}\,z_2\bar{z_2}" />
+  <BlockMath math="=|z_1|^2|z_2|^2" />
+</MathContainer>
+
+Both moduli are non-negative, so taking the square root gives the product rule.
+
 ### Modulus of Quotient
 
 The modulus of the quotient of two complex numbers is equal to the quotient of their individual moduli (provided the denominator is non-zero).
 
 <BlockMath math="\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}, \quad \text{for } z_2 \neq 0" />
+
+The quotient rule follows from the product rule because <InlineMath math="z_1=(z_1/z_2)z_2" /> when <InlineMath math="z_2\neq0" />.
 
 ### Triangle Inequality
 
@@ -74,11 +86,19 @@ The modulus of the sum of two complex numbers is less than or equal to the sum o
 
 **Explanation:**
 
-Geometrically, if we consider <InlineMath math="z_1" />, <InlineMath math="z_2" />, and <InlineMath math="z_1 + z_2" /> as sides of a triangle on the complex plane, this property states that the length of one side (<InlineMath math="|z_1 + z_2|" />) cannot be greater than the sum of the lengths of the other two sides (<InlineMath math="|z_1| + |z_2|" />).
+Geometrically, place the vectors <InlineMath math="z_1" /> and <InlineMath math="z_2" /> head to tail. The direct vector from the starting point to the endpoint is <InlineMath math="z_1 + z_2" />, and its length cannot exceed the sum <InlineMath math="|z_1| + |z_2|" /> of the other two side lengths.
+
+### Reverse Triangle Inequality
+
+The difference between the moduli of two complex numbers cannot exceed the distance between the numbers themselves.
+
+<BlockMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1-z_2|" />
+
+This inequality provides a lower bound for a distance or sum. For example, replacing <InlineMath math="z_2" /> with <InlineMath math="-z_2" /> gives <InlineMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1+z_2|" />.
 
 ## Using Modulus Properties
 
-Suppose we are given the complex number <InlineMath math="z = \frac{1 - 2i}{3 + 4i}" />. Find <InlineMath math="|z|" />!
+Suppose we are given the complex number <InlineMath math="z = \frac{1 - 2i}{3 + 4i}" />. Find <InlineMath math="|z|" />.
 
 **Solution:**
 
@@ -99,14 +119,15 @@ Therefore,
 
 <BlockMath math="|z| = \frac{\sqrt{5}}{5}" />
 
-This is much easier than first multiplying by the conjugate of the denominator and then calculating the modulus.
+The quotient rule avoids expanding the fraction with the conjugate of the denominator before calculating its modulus.
 
 ## Exercise
 
 1.  If <InlineMath math="z_1 = 6 + 8i" /> and <InlineMath math="z_2 = 3 - i" />, calculate <InlineMath math="|z_1 \times z_2|" /> using the modulus properties.
 2.  If <InlineMath math="z = 5 - 12i" />, prove that <InlineMath math="|z|^2 = z \times \bar{z}" />.
+3.  If <InlineMath math="|z_1|=3" /> and <InlineMath math="|z_2|=5" />, determine the possible bounds for <InlineMath math="|z_1+z_2|" />.
 
-### Answer Key
+### Worked Solutions
 
 1.  We use the property <InlineMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />.
 
@@ -137,3 +158,9 @@ This is much easier than first multiplying by the conjugate of the denominator a
     <BlockMath math="z \times \bar{z} = (5 - 12i)(5 + 12i) = 5^2 - (12i)^2 = 25 - 144i^2 = 25 - 144(-1) = 25 + 144 = 169" />
 
     Since the left side (<InlineMath math="169" />) equals the right side (<InlineMath math="169" />), the statement <InlineMath math="|z|^2 = z \times \bar{z}" /> is proven.
+
+3.  The ordinary and reverse triangle inequalities give an upper and a lower bound:
+
+    <BlockMath math="\bigl||z_1|-|z_2|\bigr|\leq|z_1+z_2|\leq|z_1|+|z_2|" />
+
+    Substituting the known moduli gives <InlineMath math="2\leq|z_1+z_2|\leq8" />. The exact value depends on the angle between the two complex numbers.

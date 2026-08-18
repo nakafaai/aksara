@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Inverse Function",
-  description: "Learn inverse functions one step at a time: definition, bijective requirements, finding formulas, and graph reflections. Learn f⁻¹(x) with clear examples.",
+  description: "Learn inverse functions step by step, from their bijective requirement and formula to the reflection of their graphs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Function Composition and Inverse Function",
@@ -12,6 +12,8 @@ export const metadata = {
 You often translate words or sentences from English to Indonesian, for example, when watching movies or reading news. This translation process is similar to how a function works: there is an input (English word) and an output (Indonesian word).
 
 Consider the following illustration:
+
+Real language translation can be ambiguous. Here we use a deliberately small dictionary in which each selected word has exactly one paired translation.
 
 <InverseFunctionIllustration
   title="Translation Machine"
@@ -40,12 +42,18 @@ In other words, if <InlineMath math="f" /> changes <InlineMath math="x" /> to <I
 
 ## Condition for a Function to Have an Inverse
 
-Not all functions have an inverse function. For a function <InlineMath math="f" /> to have an inverse function <InlineMath math="f^{-1}" />, the function <InlineMath math="f" /> must be **bijective**. A bijective function is both **injective** (one-to-one) and **surjective** (onto).
+For a function <InlineMath math="f:A\to B" /> to have a two-sided inverse <InlineMath math="f^{-1}:B\to A" />, the function <InlineMath math="f" /> must be **bijective**. A bijective function is both **injective** (one-to-one) and **surjective** (onto).
 
 - **Injective (One-to-one):** Every distinct element in the domain maps to a distinct element in the codomain. No two different inputs produce the same output.
 - **Surjective (Onto):** Every element in the codomain is the result of mapping from at least one element in the domain. All possible outputs occur.
 
-If function <InlineMath math="f" /> is not bijective, its inverse relation might exist, but that relation will not be a function.
+The specified domain and codomain matter. If <InlineMath math="f" /> is injective but does not reach all of <InlineMath math="B" />, we can replace its codomain by its actual range. Writing that range as <InlineMath math="\operatorname{Im}(f)" />, the resulting function <InlineMath math="f:A\to \operatorname{Im}(f)" /> is bijective and therefore has an inverse <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. If <InlineMath math="f" /> is not injective, reversing its pairs sends one output to more than one input, so the reversed relation is not a function unless the original domain is restricted.
+
+For example, <InlineMath math="q(x)=x^2" /> is not injective on <InlineMath math="\mathbb{R}" /> because <InlineMath math="q(2)=q(-2)=4" />. Restricting its domain and codomain gives the bijection
+
+<BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
+
+whose inverse is <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
 
 ## Determining the Formula for an Inverse Function
 
@@ -58,7 +66,7 @@ To find the formula for the inverse function <InlineMath math="f^{-1}(x)" /> fro
 
 **Example:**
 
-Find the inverse function of <InlineMath math="f(x) = 2x + 3" />.
+Let <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath math="f(x) = 2x + 3" />. Find its inverse.
 
 1.  Replace <InlineMath math="f(x)" /> with <InlineMath math="y" />:
 
@@ -110,7 +118,7 @@ For example, let's look at the graph of <InlineMath math="f(x) = 2x + 3" />, its
       color: "#ea580c",
       labels: [
         {
-          text: <InlineMath math="f(x)=2x+3" />,
+          text: <InlineMath math="f(x)=2x + 3" />,
           at: 5,
           offset: [-2.5, 0, 0],
         },
@@ -125,7 +133,7 @@ For example, let's look at the graph of <InlineMath math="f(x) = 2x + 3" />, its
       color: "#059669",
       labels: [
         {
-          text: <InlineMath math="f^{-1}(x)=(x-3)/2" />,
+          text: <InlineMath math="f^{-1}(x)=\frac{x-3}{2}" />,
           at: 10,
           offset: [0.5, 0.5, 0],
         },
@@ -148,3 +156,30 @@ For example, let's look at the graph of <InlineMath math="f(x) = 2x + 3" />, its
     },
   ]}
 />
+
+## Check Your Understanding
+
+Let <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath math="r(x)=3x-5" />.
+
+1. Find <InlineMath math="r^{-1}(x)" />.
+2. Verify both compositions <InlineMath math="r^{-1}(r(x))" /> and <InlineMath math="r(r^{-1}(x))" />.
+3. State the domain and range of both functions.
+
+### Solution
+
+Starting with <InlineMath math="y=3x-5" />, swap the variables and solve for <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="x=3y-5" />
+  <BlockMath math="x+5=3y" />
+  <BlockMath math="r^{-1}(x)=\frac{x+5}{3}" />
+</MathContainer>
+
+Now verify both directions:
+
+<MathContainer>
+  <BlockMath math="r^{-1}(r(x))=\frac{(3x-5)+5}{3}=x" />
+  <BlockMath math="r(r^{-1}(x))=3\left(\frac{x+5}{3}\right)-5=x" />
+</MathContainer>
+
+Both <InlineMath math="r" /> and <InlineMath math="r^{-1}" /> have domain <InlineMath math="\mathbb{R}" /> and range <InlineMath math="\mathbb{R}" />. The two identities confirm that the functions undo each other on their complete domains.

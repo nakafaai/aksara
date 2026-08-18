@@ -8,21 +8,23 @@ export const metadata = {
 
 ## Konsep Dasar Object-Oriented Programming
 
-Python adalah bahasa pemrograman yang menganut paradigma object-oriented programming atau OOP. Salah satu prinsip fundamental Python adalah bahwa semuanya adalah objek. Konsep ini mungkin terdengar abstrak di awal, tapi sebenarnya sangat natural dan mirip dengan cara kita melihat dunia nyata.
+Python adalah bahasa multi-paradigm: gaya procedural, functional, dan object-oriented dapat dipakai bersama. Di Python, nilai runtime seperti bilangan, fungsi, class, dan modul merupakan objek yang memiliki tipe, identity, dan value.
 
-Bayangkan dunia di sekitar kita. Semua benda memiliki karakteristik dan dapat melakukan sesuatu. Mobil memiliki warna, merek, dan kecepatan, serta dapat bergerak, berhenti, dan membunyikan klakson. Begitu juga di Python, setiap data dan fungsi adalah objek yang memiliki atribut dan dapat melakukan aksi tertentu.
+Objek dapat mengekspos atribut dan operasi melalui tipenya. Model objek yang seragam ini membuat fungsi dapat disimpan di list, class dapat diberikan ke fungsi lain, dan bilangan dapat memiliki method tanpa memaksa setiap program memakai desain object-oriented.
 
 ## Perbandingan Paradigma Programming
 
 ### Bahasa Procedural
 
-Dalam bahasa pemrograman procedural, state dan action dipisahkan. Data dan fungsi yang mengoperasikan data tersebut terpisah satu sama lain.
+Dalam gaya procedural, program disusun di sekitar operasi dan aliran data yang eksplisit. Struktur data dan fungsi yang menerimanya dapat tetap terpisah, bahkan di bahasa yang juga mendukung class.
 
 <CodeBlock
   data={[{
     language: "c",
     filename: "procedural_parking.c",
-    code: `// Contoh pendekatan procedural dalam bahasa C
+    code: `#include <stdio.h>
+
+// Contoh pendekatan procedural dalam bahasa C
 struct ParkSystem {
     int max;
     int occ;
@@ -51,11 +53,11 @@ int main() {
   }]}
 />
 
-Dalam pendekatan procedural, kamu melihat bahwa data (struct) dan fungsi terpisah. Fungsi menerima data sebagai parameter dan memodifikasinya dari luar.
+Di sini, `struct` C menyimpan state parkir dan setiap fungsi menerima pointer ke state tersebut. Organisasinya procedural; bukan berarti setiap fungsi procedural harus memutasi input.
 
 ### Bahasa Object-Oriented
 
-Dalam bahasa pemrograman object-oriented, state dan action digabung menjadi satu unit yang disebut class. Atribut menggambarkan state, sedangkan method menggambarkan action yang dapat dilakukan pada state tersebut.
+Dalam gaya object-oriented, class dapat mengelompokkan state dan behavior yang berkaitan di balik satu interface. Atribut merepresentasikan state objek, sedangkan method mendefinisikan operasi yang memakai atau memperbaruinya.
 
 <CodeBlock
   data={[{
@@ -84,7 +86,7 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-Dalam pendekatan object-oriented, data dan fungsi yang mengoperasikan data tersebut dikemas dalam satu unit. Objek memiliki tanggung jawab untuk mengelola state-nya sendiri.
+Versi Python mengelompokkan invariant dan operasi parkir dalam satu class. Boundary itu dapat melindungi state yang valid, tetapi hanya jika method benar-benar memvalidasi input dan tidak sembarangan mengekspos internal mutable.
 
 ## Sistem Parkir sebagai Contoh
 
@@ -97,41 +99,43 @@ Mari kita gunakan sistem parkir sebagai contoh untuk memahami konsep objek. Dala
     code: `class ParkingSystem:
     def __init__(self, capacity):
         """Inisialisasi sistem parkir dengan kapasitas tertentu"""
+        if capacity <= 0:
+            raise ValueError("Kapasitas harus positif")
         self.capacity = capacity
-        self.occupied = 0
         self.vehicles = []  # Daftar kendaraan yang parkir
 
     def park_vehicle(self, vehicle_plate):
         """Method untuk parkir kendaraan"""
-        if self.occupied >= self.capacity:
+        if vehicle_plate in self.vehicles:
+            return f"Kendaraan {vehicle_plate} sudah terparkir"
+        if len(self.vehicles) >= self.capacity:
             return f"Parkir penuh! Tidak bisa parkir {vehicle_plate}"
 
         self.vehicles.append(vehicle_plate)
-        self.occupied += 1
         return f"Kendaraan {vehicle_plate} berhasil parkir"
 
     def exit_vehicle(self, vehicle_plate):
         """Method untuk keluar parkir"""
         if vehicle_plate in self.vehicles:
             self.vehicles.remove(vehicle_plate)
-            self.occupied -= 1
             return f"Kendaraan {vehicle_plate} keluar parkir"
         else:
             return f"Kendaraan {vehicle_plate} tidak ditemukan"
 
     def get_status(self):
         """Method untuk melihat status parkir"""
-        available = self.capacity - self.occupied
+        occupied = len(self.vehicles)
+        available = self.capacity - occupied
         return {
             'capacity': self.capacity,
-            'occupied': self.occupied,
+            'occupied': occupied,
             'available': available,
-            'vehicles': self.vehicles
+            'vehicles': tuple(self.vehicles)
         }
 
     def is_full(self):
         """Method untuk mengecek apakah parkir penuh"""
-        return self.occupied >= self.capacity
+        return len(self.vehicles) >= self.capacity
 
 # Contoh penggunaan
 parking = ParkingSystem(5)
@@ -144,7 +148,7 @@ print(parking.is_full())`
 
 ## Konsep Objek pada Tipe Data
 
-Di Python, konsep "semuanya adalah objek" berarti setiap data yang kamu buat memiliki atribut dan method. Mari kita eksplorasi konsep ini lebih dalam.
+"Semuanya adalah objek" berarti Python memperlakukan nilai runtime melalui satu model objek. Atribut dan method yang tersedia tetap bergantung pada tipe setiap nilai.
 
 ### Angka adalah Objek
 
@@ -344,8 +348,9 @@ def get_greeting_function(language):
 
     if language == "english":
         return english_greet
-    else:
+    if language == "indonesian":
         return indonesian_greet
+    raise ValueError(f"Bahasa tidak didukung: {language}")
 
 # Menggunakan fungsi yang dikembalikan
 greet_func = get_greeting_function("indonesian")
@@ -360,7 +365,7 @@ print(square(5))                    # 25`
 
 ## Class dan Instance sebagai Objek
 
-Class adalah blueprint untuk membuat objek, sedangkan instance adalah objek yang dibuat dari class tersebut.
+Class mendefinisikan cara instance dibuat dan cara shared behavior-nya di-resolve. Class itu sendiri juga objek, sedangkan setiap instance membawa instance state masing-masing.
 
 <CodeBlock
   data={[{
@@ -434,90 +439,62 @@ print(Student.university)           # Universitas Indonesia`
 
 ## Method Khusus
 
-Python memiliki method khusus yang dimulai dan diakhiri dengan double underscore. Method ini memungkinkan objek kamu berperilaku seperti built-in types.
+Special method dimulai dan diakhiri dengan double underscore. Python memanggilnya melalui sintaks dan built-in seperti `+`, `abs()`, `repr()`, dan truth testing. Implementasikan hanya jika maknanya alami untuk domain tersebut.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "magic_methods.py",
-    code: `class BankAccount:
-    def __init__(self, owner, balance=0):
-        self.owner = owner
-        self.balance = balance
+    code: `from math import hypot
+
+class Vector2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     def __str__(self):
-        """Representasi string yang readable"""
-        return f"BankAccount({self.owner}, Rp{self.balance:,})"
+        """Representasi yang mudah dibaca manusia."""
+        return f"({self.x}, {self.y})"
 
     def __repr__(self):
-        """Representasi string untuk debugging"""
-        return f"BankAccount('{self.owner}', {self.balance})"
+        """Representasi eksplisit untuk debugging."""
+        return f"Vector2D(x={self.x!r}, y={self.y!r})"
 
-    def __len__(self):
-        """Mengembalikan panjang nama pemilik"""
-        return len(self.owner)
+    def __abs__(self):
+        """Mengembalikan panjang vektor."""
+        return hypot(self.x, self.y)
 
     def __eq__(self, other):
-        """Membandingkan dua akun bank"""
-        if isinstance(other, BankAccount):
-            return self.balance == other.balance
-        return False
+        """Membandingkan koordinat dengan Vector2D lain."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
 
-    def __lt__(self, other):
-        """Less than comparison"""
-        if isinstance(other, BankAccount):
-            return self.balance < other.balance
-        return False
-
-    def __add__(self, amount):
-        """Menambah saldo (deposit)"""
-        if isinstance(amount, (int, float)) and amount > 0:
-            self.balance += amount
-        return self
-
-    def __sub__(self, amount):
-        """Mengurangi saldo (withdraw)"""
-        if isinstance(amount, (int, float)) and amount > 0:
-            if amount <= self.balance:
-                self.balance -= amount
-            else:
-                print("Saldo tidak mencukupi!")
-        return self
+    def __add__(self, other):
+        """Mengembalikan vektor baru berisi jumlah per koordinat."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return Vector2D(self.x + other.x, self.y + other.y)
 
     def __bool__(self):
-        """True jika ada saldo, False jika saldo 0"""
-        return self.balance > 0
+        """Vektor nol false; vektor lainnya true."""
+        return bool(self.x or self.y)
 
-# Membuat objek
-account1 = BankAccount("Alice", 1000000)
-account2 = BankAccount("Bob", 500000)
+pertama = Vector2D(3, 4)
+kedua = Vector2D(1, -2)
 
-# Magic methods in action
-print(account1)                     # __str__
-print(repr(account1))               # __repr__
-print(len(account1))                # __len__ (panjang nama)
+print(pertama)                         # (3, 4) melalui __str__
+print(repr(pertama))                   # Vector2D(x=3, y=4)
+print(abs(pertama))                    # 5.0 melalui __abs__
+print(pertama == Vector2D(3, 4))       # True melalui __eq__
 
-# Comparison
-print(account1 == account2)         # __eq__
-print(account1 > account2)          # __lt__ (terbalik)
+gabungan = pertama + kedua             # __add__ menghasilkan vektor baru
+print(gabungan)                        # (4, 2)
+print(pertama)                         # (3, 4), tidak berubah
 
-# Arithmetic operations
-account1 + 500000                   # __add__ (deposit)
-print(account1)
-
-account1 - 200000                   # __sub__ (withdraw)
-print(account1)
-
-# Boolean conversion
-empty_account = BankAccount("Charlie", 0)
-print(bool(account1))               # True
-print(bool(empty_account))          # False
-
-# Menggunakan dalam conditional
-if account1:
-    print(f"{account1.owner} memiliki saldo")
-else:
-    print(f"{account1.owner} tidak memiliki saldo")`
+nol = Vector2D(0, 0)
+print(bool(pertama))                   # True
+print(bool(nol))                       # False`
   }]}
 />
 
@@ -658,19 +635,19 @@ print(library.borrow_book("M001", "978-1234567890"))
 print(library.borrow_book("M002", "978-0987654321"))
 
 # Melihat status buku
-print("\nDaftar semua buku:")
+print("\\nDaftar semua buku:")
 for book in library.books:
     print(book)
 
-print("\nBuku yang tersedia:")
+print("\\nBuku yang tersedia:")
 for book in library.get_available_books():
     print(book)
 
-print(f"\nBuku yang dipinjam Alice: {len(library.get_member_books('M001'))} buku")
+print(f"\\nBuku yang dipinjam Alice: {len(library.get_member_books('M001'))} buku")
 
 # Mengembalikan buku
 print(library.return_book("M001", "978-1234567890"))`
   }]}
 />
 
-Dengan memahami konsep bahwa semuanya adalah objek di Python, kamu dapat menulis kode yang lebih terstruktur, mudah dipahami, dan mudah dipelihara. Object-oriented programming memungkinkan kamu untuk memodelkan masalah dunia nyata ke dalam kode dengan cara yang natural dan intuitif.
+Model objek Python menjelaskan mengapa nilai, fungsi, dan class dapat bergerak melalui mekanisme bahasa yang sama. Gunakan komposisi object-oriented ketika state dan behavior membentuk boundary yang berguna, tetapi pertahankan desain procedural atau functional jika itu menjelaskan masalah dengan lebih langsung.

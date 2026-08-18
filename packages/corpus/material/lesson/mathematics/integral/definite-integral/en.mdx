@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Definite Integral",
-    description: "Transform Riemann sums into exact area calculations using definite integrals. Learn limit processes and notation with detailed worked examples.",
+    description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integrals",
@@ -8,26 +8,26 @@ export const metadata = {
 
 ## From Approximation to Exact Area
 
-In the [Riemann Sums](/en/subjects/mathematics/integral/riemann-sum) material, we learned how to approximate the area under a curve by dividing it into many rectangles. We also know that the more rectangles we use (the larger the value of <InlineMath math="n" />), the more accurate our area approximation becomes.
+In the [Riemann Sums](/en/subjects/mathematics/integral/riemann-sum) material, we approximated the area under a nonnegative curve with rectangles. As the partition becomes finer, the corresponding Riemann sums approach a common value for an integrable function.
 
-Now, imagine if we could divide the area into an **infinite number of rectangles**. The width of each rectangle (<InlineMath math="\Delta x" />) would become infinitesimally small, approaching zero. This process of taking the limit as the number of partitions <InlineMath math="n" /> approaches infinity is what transforms the Riemann Sum from a mere approximation into an exact calculation. This very concept gives rise to the **Definite Integral**.
+For an equal-width partition, let the number of subintervals <InlineMath math="n" /> grow without bound. Their width <InlineMath math="\Delta x" /> then approaches zero. The essential condition is that the **mesh width tends to zero**. If the Riemann sums have a limit, that limit is the **definite integral**.
 
 ## Notation and Meaning of the Definite Integral
 
-The definite integral is the formal way of writing this "infinite sum" of the areas of infinitesimally small rectangles. Mathematically, the definite integral is defined as the limit of a Riemann Sum.
+The definite integral records this limiting accumulation. It is defined as the limit of Riemann sums, provided that the limit exists.
 
-<BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \Delta x" />
+<BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 This notation has a specific meaning:
 - **<InlineMath math="\int_{a}^{b}" />**: This is the integral symbol with a **lower** limit <InlineMath math="a" /> and an **upper** limit <InlineMath math="b" />. These numbers define the interval over which we are calculating the area.
-- **<InlineMath math="f(x)" />**: This is the **integrand**, which is the function whose curve we are finding the area under.
+- **<InlineMath math="f(x)" />**: This is the **integrand**, whose sampled values determine the signed accumulation.
 - **<InlineMath math="dx" />**: Just as with indefinite integrals, this indicates that we are integrating with respect to the variable <InlineMath math="x" />.
 
-Unlike an indefinite integral, which results in a function (<InlineMath math="F(x) + C" />), the result of a definite integral is a **single number** that represents the net area under the curve from <InlineMath math="x=a" /> to <InlineMath math="x=b" />.
+Unlike an indefinite integral, which represents a family of functions (<InlineMath math="F(x) + C" />), a definite integral is a **single number**. It measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />; it equals ordinary geometric area only when the integrand is nonnegative on the interval.
 
 ## Calculating the Definite Integral with Limits
 
-Let's try to calculate the exact value of a definite integral using its limit definition, as in the reference example.
+We now calculate a definite integral directly from its limit definition.
 
 **Problem:** Determine the value of <InlineMath math="\int_{0}^{7} x \, dx" />.
 
@@ -83,7 +83,7 @@ The simplification steps above ensure we get the easiest form to evaluate the li
 
 **Step** <InlineMath math="4" />: Take the Limit
 
-Finally, we take the limit as <InlineMath math="n \to \infty" /> to find the exact area.
+Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit, <InlineMath math="\frac{1}{n}" /> approaches zero.
 
 <MathContainer>
 <BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
@@ -91,4 +91,4 @@ Finally, we take the limit as <InlineMath math="n \to \infty" /> to find the exa
 <BlockMath math="= \frac{49}{2}" />
 </MathContainer>
 
-So, the exact area of the region under the curve <InlineMath math="f(x) = x" /> from <InlineMath math="x=0" /> to <InlineMath math="x=7" /> is <InlineMath math="\frac{49}{2}" /> or <InlineMath math="24.5" />. This is an example of how the definite integral provides an exact answer, no longer an approximation.
+Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x=0" /> to <InlineMath math="x=7" />, the definite integral is also the geometric area: <InlineMath math="\frac{49}{2}" />, or <InlineMath math="24.5" /> square units. The limit has turned the rectangle approximations into an exact value.

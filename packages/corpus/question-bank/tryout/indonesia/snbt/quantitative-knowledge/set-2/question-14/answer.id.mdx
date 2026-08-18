@@ -4,47 +4,43 @@ export const metadata = {
   date: "2025-11-22",
 };
 
-Diketahui rumus rekursif <InlineMath math="a_{n+1} = 4a_n + 1" /> dan <InlineMath math="a_4 = 85" />.
+Kita perlu menentukan secara pasti kapan <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" />. Menghitung beberapa suku dapat menunjukkan dugaan pola, tetapi belum membuktikan bahwa pola itu selalu berlaku. Karena itu, kita turunkan rumus untuk seluruh suku barisan.
 
-Kita ingin mencari pola keterbagian <InlineMath math="a_n" /> dengan <InlineMath math="5" />. Mari kita hitung beberapa suku pertama modulo <InlineMath math="5" />.
+#### Menentukan Suku Pertama
 
-Pertama, kita cari <InlineMath math="a_3, a_2," /> dan <InlineMath math="a_1" /> terlebih dahulu:
-
-<MathContainer>
-  <BlockMath math="a_4 = 85 \implies a_4 \equiv 0 \pmod{5}" />
-  <BlockMath math="a_4 = 4a_3 + 1 \implies 85 = 4a_3 + 1 \implies 84 = 4a_3 \implies a_3 = 21" />
-  <BlockMath math="a_3 = 21 \implies a_3 \equiv 1 \pmod{5}" />
-</MathContainer>
-
-Lanjutkan mundur ke <InlineMath math="a_2" />:
+Mulai dari <InlineMath math="a_4 = 85" /> dan hitung mundur:
 
 <MathContainer>
-  <BlockMath math="a_3 = 4a_2 + 1 \implies 21 = 4a_2 + 1 \implies 20 = 4a_2 \implies a_2 = 5" />
-  <BlockMath math="a_2 = 5 \implies a_2 \equiv 0 \pmod{5}" />
+  <BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+  <BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+  <BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
 </MathContainer>
 
-Lanjutkan mundur ke <InlineMath math="a_1" />:
+#### Menurunkan Rumus untuk Setiap Suku
+
+Kalikan relasi rekursif dengan <InlineMath math="3" />, lalu tambahkan <InlineMath math="1" />. Relasi tersebut berubah menjadi relasi geometri:
 
 <MathContainer>
-  <BlockMath math="a_2 = 4a_1 + 1 \implies 5 = 4a_1 + 1 \implies 4 = 4a_1 \implies a_1 = 1" />
-  <BlockMath math="a_1 = 1 \implies a_1 \equiv 1 \pmod{5}" />
+  <BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+  <BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
 </MathContainer>
 
-Pola sisa pembagian <InlineMath math="a_n" /> dengan <InlineMath math="5" /> adalah:
-- <InlineMath math="a_1 \equiv 1" />
-- <InlineMath math="a_2 \equiv 0" /> (habis dibagi <InlineMath math="5" />)
-- <InlineMath math="a_3 \equiv 1" />
-- <InlineMath math="a_4 \equiv 0" /> (habis dibagi <InlineMath math="5" />)
+Karena <InlineMath math="3a_1 + 1 = 4" />, perkalian berulang dengan <InlineMath math="4" /> memberikan
 
-Terlihat bahwa <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" /> jika dan hanya jika <InlineMath math="n" /> adalah bilangan **genap**.
+<MathContainer>
+  <BlockMath math="3a_n + 1 = 4^n" />
+  <BlockMath math="a_n = \frac{4^n - 1}{3}" />
+</MathContainer>
 
-Mari kita cek pilihan jawaban yang tersedia:
-- <InlineMath math="1" /> (Ganjil)
-- <InlineMath math="29" /> (Ganjil)
-- <InlineMath math="73" /> (Ganjil)
-- <InlineMath math="364" /> (Genap)
-- <InlineMath math="473" /> (Ganjil)
+#### Memeriksa Keterbagian oleh Lima
 
-Satu-satunya bilangan genap di antara pilihan adalah <InlineMath math="364" />.
+Dalam modulo <InlineMath math="5" />, berlaku <InlineMath math="4 \equiv -1" />. Oleh karena itu,
 
-Jadi, nilai <InlineMath math="n" /> agar <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" /> adalah <InlineMath math="364" />.
+<BlockMath math="3a_n \equiv (-1)^n - 1 \pmod{5}" />
+
+- Jika <InlineMath math="n" /> genap, maka <InlineMath math="(-1)^n - 1 = 0" />, sehingga <InlineMath math="a_n \equiv 0 \pmod{5}" />.
+- Jika <InlineMath math="n" /> ganjil, maka <InlineMath math="(-1)^n - 1 \equiv 3 \pmod{5}" />, sehingga <InlineMath math="a_n \equiv 1 \pmod{5}" />.
+
+Faktor <InlineMath math="3" /> boleh dicoret karena <InlineMath math="3" /> memiliki invers perkalian dalam modulo <InlineMath math="5" />. Jadi, <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" /> tepat ketika <InlineMath math="n" /> genap.
+
+Di antara <InlineMath math="1, 29, 73, 364" /> dan <InlineMath math="473" />, hanya <InlineMath math="364" /> yang genap. Jadi, nilai yang diminta adalah <InlineMath math="n = 364" />.

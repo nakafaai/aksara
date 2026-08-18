@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Fungsi Distribusi Normal",
-  description: "Pelajari fungsi distribusi normal dengan visualisasi kurva lonceng dan contoh soal. Pahami transformasi z-score dan cara menghitung peluang bertahap.",
+  title: "Fungsi Kepadatan Distribusi Normal",
+  description: "Pahami kepadatan normal melalui visualisasi kurva lonceng, lalu bakukan nilai dengan skor-z dan hitung peluang suatu interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analisis Data dan Peluang",
@@ -10,19 +10,23 @@ export const metadata = {
 
 ## Mengenal Distribusi Normal
 
-Tahukah kamu bahwa tinggi badan siswa di sekolahmu, nilai ujian nasional, atau bahkan berat buah apel di supermarket semuanya mengikuti pola yang sama? Pola ini disebut **distribusi normal**.
+Pengukuran seperti tinggi badan manusia atau hasil laboratorium berulang sering mengelompok di sekitar suatu nilai tengah. Pada populasi dan kondisi tertentu, **distribusi normal** dapat mendekati pola tersebut. Kesesuaian model tetap harus diperiksa dari data, bukan diasumsikan hanya dari konteksnya.
 
-Distribusi normal pertama kali diperkenalkan oleh Abraham de Moivre pada tahun <InlineMath math="1733" /> sebagai pendekatan dari distribusi binomial untuk <InlineMath math="n" /> yang besar. Kemudian, Pierre-Simon Laplace mengembangkannya lebih lanjut dan dikenal sebagai Teorema More Blue Laplace. Laplace menggunakan distribusi normal untuk menganalisis kesalahan dalam percobaan.
+Pada tahun <InlineMath math="1733" />, Abraham de Moivre menurunkan pendekatan normal untuk distribusi binomial dengan <InlineMath math="n" /> yang besar. Pierre-Simon Laplace kemudian memperluas hasil tersebut, yang kini berkaitan dengan teorema de Moivre-Laplace dan perkembangan teorema limit pusat.
 
-> Distribusi normal sangat berguna karena banyak fenomena alam dan sosial yang mengikuti pola ini. Dari tinggi badan manusia hingga hasil pengukuran ilmiah, semuanya cenderung terdistribusi normal.
+> Distribusi normal adalah model, bukan aturan yang diikuti setiap kumpulan data. Model ini berguna ketika pengamatan kurang lebih simetris di sekitar rata-rata dan kecocokannya memadai untuk pertanyaan yang sedang dikaji.
 
 ## Karakteristik Kurva Normal
 
-Bayangkan sebuah bukit yang sangat simetris, seperti lonceng terbalik. Itulah bentuk kurva distribusi normal. Mari kita lihat visualisasi kurva normal standar dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" />:
+Fungsi kepadatan normal berbentuk lonceng yang simetris. Visualisasi berikut menunjukkan kurva normal standar dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" />:
 
 <LineEquation
   title="Kurva Distribusi Normal Standar"
-  description="Kurva berbentuk lonceng yang simetris dengan karakteristik khas distribusi normal."
+  description={
+    <>
+      Kepadatan normal standar berpusat di <InlineMath math="\mu=0" />. Ruas vertikal menandai titik beloknya pada <InlineMath math="\mu\pm\sigma" />.
+    </>
+  }
   cameraPosition={[0, 0, 5]}
   showZAxis={false}
   data={[
@@ -70,7 +74,7 @@ Bayangkan sebuah bukit yang sangat simetris, seperti lonceng terbalik. Itulah be
   ]}
 />
 
-Kurva ini memiliki beberapa karakteristik unik yang membuatnya istimewa:
+Kurva ini memiliki empat ciri utama:
 
 1. **Bentuk dan Simetri**
 
@@ -78,7 +82,7 @@ Kurva ini memiliki beberapa karakteristik unik yang membuatnya istimewa:
 
 2. **Titik Pusat**
 
-    Mean, median, dan modus semua berada di titik yang sama, yaitu di puncak kurva. Ini terjadi karena distribusinya simetris.
+    Kepadatan normal simetris dan memiliki satu puncak. Karena itu, rata-rata, median, dan modusnya berimpit di <InlineMath math="\mu" />.
 
 3. **Titik Belok**
 
@@ -86,13 +90,13 @@ Kurva ini memiliki beberapa karakteristik unik yang membuatnya istimewa:
 
 4. **Asimtot Horizontal**
 
-    Kurva mendekati sumbu <InlineMath math="x" /> tapi tidak pernah menyentuhnya, baik di ujung kiri maupun kanan.
+    Kepadatan tetap positif untuk setiap <InlineMath math="x" /> berhingga dan mendekati <InlineMath math="0" /> ketika <InlineMath math="x" /> menuju salah satu arah tak berhingga.
 
-## Fungsi Matematisnya
+## Fungsi Kepadatan Peluang
 
-Nah, sekarang mari kita lihat rumus matematisnya. Jangan khawatir kalau terlihat rumit, yang penting kamu paham konsepnya.
+Rumus berikut memberikan kepadatan peluang pada setiap nilai <InlineMath math="x" />.
 
-Jika <InlineMath math="X" /> adalah variabel acak normal dengan rata-rata <InlineMath math="\mu" /> dan varians <InlineMath math="\sigma^2" />, maka fungsi distribusi normal dapat dituliskan:
+Jika <InlineMath math="X" /> terdistribusi normal dengan rata-rata <InlineMath math="\mu" />, varians <InlineMath math="\sigma^2" />, dan <InlineMath math="\sigma>0" />, fungsi kepadatannya adalah:
 
 <BlockMath math="f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
 
@@ -100,12 +104,12 @@ untuk <InlineMath math="-\infty < x < \infty" />.
 
 Di mana:
 
-- <InlineMath math="\pi" /> adalah konstanta <InlineMath math="3.1416" />
-- <InlineMath math="e" /> adalah bilangan konstan <InlineMath math="2.7183" />
+- <InlineMath math="\pi \approx 3{,}1416" /> adalah konstanta lingkaran
+- <InlineMath math="e \approx 2{,}7183" /> adalah bilangan Euler
 - <InlineMath math="\mu" /> adalah rata-rata distribusi
-- <InlineMath math="\sigma" /> adalah simpangan baku
+- <InlineMath math="\sigma>0" /> adalah simpangan baku
 
-> Rumus ini terlihat kompleks, tapi kamu tidak perlu menghafal atau menghitung secara manual. Yang penting adalah memahami bahwa bentuk kurva ditentukan oleh nilai <InlineMath math="\mu" /> dan <InlineMath math="\sigma" />.
+> Parameter <InlineMath math="\mu" /> menggeser pusat kurva, sedangkan <InlineMath math="\sigma" /> menentukan sebarannya. Peluang diperoleh dari luas di bawah kurva kepadatan, bukan dari tinggi <InlineMath math="f(x)" /> pada satu titik.
 
 ## Transformasi ke Normal Standar
 
@@ -113,7 +117,7 @@ Dalam praktik, kita sering menggunakan **distribusi normal standar** dengan rata
 
 <BlockMath math="Z = \frac{x - \mu}{\sigma}" />
 
-Variabel <InlineMath math="Z" /> ini disebut **skor standar** atau **z-score**. Transformasi ini sangat berguna karena memungkinkan kita menggunakan tabel distribusi normal standar yang sudah tersedia.
+Variabel <InlineMath math="Z" /> disebut **skor baku** atau **skor-z**. Nilainya menunjukkan berapa simpangan baku posisi <InlineMath math="x" /> di atas atau di bawah rata-rata dan memungkinkan satu tabel normal standar digunakan untuk semua distribusi normal.
 
 **Mengapa menggunakan z-score?**
 
@@ -121,28 +125,28 @@ Dengan transformasi ini, kita bisa membandingkan data dari distribusi yang berbe
 
 ## Contoh Perhitungan
 
-Mari kita lihat contoh praktis. Misalkan distribusi normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Kita ingin mencari peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" />.
+Misalkan <InlineMath math="X" /> terdistribusi normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Tentukan peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" />.
 
 **Langkah** <InlineMath math="1" />: Transformasi ke z-score
 
 <MathContainer>
-<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0.5" />
-<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1.2" />
+<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0{,}5" />
+<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1{,}2" />
 </MathContainer>
 
 **Langkah** <InlineMath math="2" />: Gunakan tabel distribusi normal standar
 
-Kita perlu mencari <InlineMath math="P(-0.5 < Z < 1.2)" />. Ingat bahwa untuk interval peluang, kita menggunakan rumus:
+Interval yang telah dibakukan adalah <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />. Kurangi peluang kumulatif pada batas bawah dari peluang kumulatif pada batas atas:
 
 <BlockMath math="P(a < Z < b) = P(Z < b) - P(Z < a)" />
 
 Dari tabel distribusi normal standar:
 
-- <InlineMath math="P(Z < -0.5) = 0.3085" />
-- <InlineMath math="P(Z < 1.2) = 0.8849" />
+- <InlineMath math="P(Z < -0{,}5) = 0{,}3085" />
+- <InlineMath math="P(Z < 1{,}2) = 0{,}8849" />
 
 **Langkah** <InlineMath math="3" />: Hitung peluang akhir
 
-<BlockMath math="P(45 < X < 62) = P(-0.5 < Z < 1.2) = 0.8849 - 0.3085 = 0.5764" />
+<BlockMath math="P(45 < X < 62) = P(-0{,}5 < Z < 1{,}2) = 0{,}8849 - 0{,}3085 = 0{,}5764" />
 
-Jadi, peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" /> adalah <InlineMath math="0.5764" /> atau sekitar <InlineMath math="57.64\%" />.
+Jadi, peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" /> adalah <InlineMath math="0{,}5764" /> atau sekitar <InlineMath math="57{,}64\%" />.

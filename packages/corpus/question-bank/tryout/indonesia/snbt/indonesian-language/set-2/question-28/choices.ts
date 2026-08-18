@@ -2,11 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Asal usul batik Lasem", value: false },
-    { label: "Sejarah pencipta batik Lasem", value: false },
-    { label: "Penemu batik Lasem", value: false },
-    { label: "Motif batik Lasem", value: false },
-    { label: "Jaringan bisnis batik Lasem", value: true },
+    {
+      label: "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
+      value: true,
+    },
+    { label: "Mengirim bahan baku batik dari Atapupu ke Lasem", value: false },
+    { label: "Membangun Museum Nyah Lasem pada masa perang", value: false },
+    { label: "Membuka jaringan dagang menuju Mediterania", value: false },
+    { label: "Menetapkan arsip sebagai Memori Kolektif Bangsa", value: false },
   ],
 };
 

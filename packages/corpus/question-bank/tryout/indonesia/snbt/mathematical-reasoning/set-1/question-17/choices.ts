@@ -4,7 +4,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "T TF",
+      label: "TTF",
       value: false,
     },
     {

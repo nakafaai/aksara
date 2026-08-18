@@ -5,32 +5,20 @@ export const metadata = {
 };
 
 Let:
-- <InlineMath math="n(S)" /> = Total number of students in the class
-- <InlineMath math="n(P)" /> = Number of students in scouts
-- <InlineMath math="n(F)" /> = Number of students in futsal
+- <InlineMath math="S" /> be the set of all students
+- <InlineMath math="P" /> be the students in Scouts
+- <InlineMath math="F" /> be the students in futsal
 
-Given:
-
-<MathContainer>
-  <BlockMath math="n(S) = 30" />
-  <BlockMath math="n(P) = 12" />
-  <BlockMath math="n(F) = 15" />
-  <BlockMath math="n(P \cap F) = 7" />
-</MathContainer>
-
-The number of students who do not participate in either (<InlineMath math="n(P \cup F)^c" />) can be found using the universal set formula:
+First use inclusion-exclusion to count students in at least one activity:
 
 <MathContainer>
-  <BlockMath math="n(S) = n(P) + n(F) - n(P \cap F) + n(P \cup F)^c" />
+  <BlockMath math="\begin{aligned} n(P \cup F) &= n(P)+n(F)-n(P\cap F) \\ &=12+15-7=20 \end{aligned}" />
 </MathContainer>
 
-Substitute the known values:
+The rest of the class joins neither activity:
 
 <MathContainer>
-  <BlockMath math="30 = 12 + 15 - 7 + n(P \cup F)^c" />
-  <BlockMath math="30 = 20 + n(P \cup F)^c" />
-  <BlockMath math="n(P \cup F)^c = 30 - 20" />
-  <BlockMath math="n(P \cup F)^c = 10" />
+  <BlockMath math="n\left((P\cup F)^c\right)=30-20=10" />
 </MathContainer>
 
-Thus, the number of students who do not join scouts and futsal extracurriculars is <InlineMath math="10" />.
+Therefore, <InlineMath math="10" /> students join neither activity.

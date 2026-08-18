@@ -5,7 +5,7 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Create the equation of the line from the points it passes through, namely <InlineMath math="(0, -2)" /> and <InlineMath math="\left(\frac{3}{2}, 0\right)" />
+First, determine the equation of the line through <InlineMath math="(0, -2)" /> and <InlineMath math="\left(\frac{3}{2}, 0\right)" />.
 
 <MathContainer>
 <BlockMath math="\frac{y - y_1}{y_2 - y_1} = \frac{x - x_1}{x_2 - x_1}" />
@@ -15,14 +15,14 @@ Create the equation of the line from the points it passes through, namely <Inlin
 <BlockMath math="-4x + 3y + 6 = 0" />
 </MathContainer>
 
-We cannot directly find the distance from a point to the line. Find the point whose position is closest to the line. Assume the point is <InlineMath math="(a, b)" /> so that
+Every point on the parabola can be written as <InlineMath math="(a, b)" />, where
 
 <MathContainer>
 <BlockMath math="y = x^2 - 1" />
 <BlockMath math="b = a^2 - 1" />
 </MathContainer>
 
-The point becomes <InlineMath math="(a, a^2 - 1)" /> as shown in the following illustration
+Thus a general point on the parabola is <InlineMath math="(a, a^2 - 1)" />. The illustration shows this point and its perpendicular distance to the line.
 
 <LineEquation
   title="Parabola and Line Visualization"
@@ -42,7 +42,7 @@ The point becomes <InlineMath math="(a, a^2 - 1)" /> as shown in the following i
       showPoints: false,
       labels: [
         {
-          text: <InlineMath math="y=x^2-1" />,
+          text: <InlineMath math="y=x^2 - 1" />,
           at: 70,
           offset: [-4.5, 0, 0]
         }
@@ -78,7 +78,7 @@ The point becomes <InlineMath math="(a, a^2 - 1)" /> as shown in the following i
       smooth: false,
       labels: [
         {
-          text: <InlineMath math="(\frac{2}{3},-\frac{5}{9})" />,
+          text: <InlineMath math="\left(\frac{2}{3},-\frac{5}{9}\right)" />,
           at: 0,
           offset: [-2, 0, 0]
         },
@@ -94,16 +94,17 @@ The point becomes <InlineMath math="(a, a^2 - 1)" /> as shown in the following i
   showZAxis={false}
 />
 
-We need to determine the distance from point <InlineMath math="(a, a^2 - 1)" /> to the line <InlineMath math="-4x + 3y + 6 = 0" />
+Apply the point-to-line distance formula to <InlineMath math="(a, a^2 - 1)" />.
 
 <MathContainer>
-<BlockMath math="distance = \frac{|-4x + 3y + 6|}{\sqrt{(-4)^2 + 3^2}}" />
+<BlockMath math="f(a) = \frac{|-4a + 3(a^2 - 1) + 6|}{\sqrt{(-4)^2 + 3^2}}" />
 <BlockMath math="f(a) = \frac{|-4a + 3(a^2 - 1) + 6|}{5}" />
 <BlockMath math="f(a) = \frac{|3a^2 - 4a + 3|}{5}" />
+<BlockMath math="3a^2 - 4a + 3 = 3\left(a - \frac{2}{3}\right)^2 + \frac{5}{3} > 0" />
 <BlockMath math="f(a) = \frac{1}{5}(3a^2 - 4a + 3)" />
 </MathContainer>
 
-The condition for minimum value is <InlineMath math="f'(x) = 0" />
+The completed-square form proves that the expression inside the absolute value is always positive. We may therefore remove the absolute value. At the minimum, <InlineMath math="f'(a) = 0" />.
 
 <MathContainer>
 <BlockMath math="f'(a) = \frac{1}{5}(6a - 4)" />
@@ -113,7 +114,7 @@ The condition for minimum value is <InlineMath math="f'(x) = 0" />
 <BlockMath math="a = \frac{4}{6} = \frac{2}{3}" />
 </MathContainer>
 
-Distance between line and parabola when <InlineMath math="a = \frac{2}{3}" />
+Substitute <InlineMath math="a = \frac{2}{3}" /> to obtain the minimum distance between the parabola and the line.
 
 <MathContainer>
 <BlockMath math="f(a) = \frac{1}{5}(3a^2 - 4a + 3)" />

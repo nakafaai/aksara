@@ -48,7 +48,7 @@ The degree of a monomial (with a non-zero coefficient) is the sum of the exponen
 
 ## Determining the Degree of a Polynomial
 
-Once we know how to determine the degree of each monomial (term), finding the degree of a polynomial becomes easier.
+The degree of a polynomial is determined from the degrees of its non-zero terms.
 
 **The degree of a polynomial** is the **highest degree** among all the terms (monomials) that make up the polynomial.
 
@@ -107,6 +107,26 @@ Is the degree of <InlineMath math="0" /> equal to <InlineMath math="0" />, since
 Generally in mathematics:
 
 - **Non-zero** constants (like <InlineMath math="5, -27, 1.72" />) have a degree of <InlineMath math="0" />.
-- The **zero polynomial** (the number <InlineMath math="0" /> itself) is often considered to **have no degree** or sometimes is said to have a degree of **negative infinity** (<InlineMath math="-\infty" />). The reason is a bit complex, but essentially it helps keep properties of degrees (like the degree of the product of two polynomials) consistent.
+- The **zero polynomial** has no non-zero term whose degree could be selected. Its degree is therefore left **undefined** in this course. In some contexts it is assigned the formal value **negative infinity** (<InlineMath math="-\infty" />), which keeps degree rules such as <InlineMath math="\deg(PQ)=\deg P+\deg Q" /> consistent when zero products are included.
 
-However, for the high school level, understanding that non-zero constants have degree <InlineMath math="0" /> and the degree of a polynomial is the highest degree of its terms is sufficient.
+For this course, use these rules: non-zero constants have degree <InlineMath math="0" />; the zero polynomial has undefined degree; and every other polynomial takes the greatest degree among its non-zero terms.
+
+## Exercise
+
+Determine the degree of
+
+<BlockMath math="P(x,y)=4x^3y^2-7x^2y^5+6" />
+
+Then explain why the same rule cannot assign degree <InlineMath math="0" /> to the zero polynomial.
+
+### Worked Solution
+
+Find the total degree of each non-zero term:
+
+- <InlineMath math="4x^3y^2" /> has degree <InlineMath math="3+2=5" />.
+- <InlineMath math="-7x^2y^5" /> has degree <InlineMath math="2+5=7" />.
+- <InlineMath math="6" /> has degree <InlineMath math="0" />.
+
+The largest term degree is <InlineMath math="7" />, so <InlineMath math="\deg P=7" />.
+
+The zero polynomial has no non-zero term whose degree could be chosen as the largest. Its degree is therefore left undefined in this course, rather than being assigned <InlineMath math="0" />.

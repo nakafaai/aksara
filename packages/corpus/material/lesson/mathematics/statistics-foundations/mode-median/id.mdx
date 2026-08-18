@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Modus dan Median",
-  description: "Pelajari perhitungan modus dan median dengan contoh sederhana. Temukan nilai tengah dan data paling sering muncul dalam kumpulan data kecil.",
+  description: "Tentukan median, modus, dan jangkauan suatu kumpulan data melalui contoh lengkap untuk jumlah data ganjil dan genap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,26 +8,24 @@ export const metadata = {
 
 ## Ukuran Pemusatan
 
-Dalam statistika, kita sering ingin tahu "pusat" dari data kita itu ada di mana. Nah, Modus dan Median adalah dua cara untuk melihat pusat atau kecenderungan data tersebut.
+Ukuran pemusatan menggambarkan letak pusat suatu kumpulan data. Median dan modus menunjukkan pusat tersebut dengan cara yang berbeda.
 
 ## Median: Nilai Tengah
 
-Median itu gampangnya adalah **nilai data yang posisinya paling tengah** setelah semua data diurutkan dari yang terkecil sampai yang terbesar.
+Median adalah **nilai tengah dari data yang sudah diurutkan**.
 
-**Cara Mencari Median:**
+**Cara mencari median:**
 
-<MathContainer>
-  <BlockMath math="\text{1. Urutkan Data: Dari yang terkecil ke terbesar}" />
-  <BlockMath math="\text{2. Cari Posisi Tengah}" />
-</MathContainer>
+1. Urutkan data dari nilai terkecil hingga terbesar.
+2. Tentukan satu atau dua posisi tengahnya.
 
 - **Jika jumlah data ganjil (<InlineMath math="n" /> ganjil):**
 
   <BlockMath math="\text{Median} = \text{Nilai data urutan ke-} \frac{n+1}{2}" />
 
-  **Contoh (Data Ganjil):**
+  **Contoh dengan jumlah data ganjil:**
 
-  Misal data nilai ulangan <InlineMath math="5 \text{ siswa}" />: <InlineMath math="7, 8, 6, 9, 7" />
+  Misalkan nilai ulangan <InlineMath math="5 \text{ siswa}" /> adalah <InlineMath math="7, 8, 6, 9, 7" />.
 
   Urutkan: <InlineMath math="6, 7, 7, 8, 9" /> (ada <InlineMath math="5" /> data, <InlineMath math="n=5" />)
 
@@ -39,9 +37,9 @@ Median itu gampangnya adalah **nilai data yang posisinya paling tengah** setelah
 
   <BlockMath math="\text{Median} = \frac{\text{Nilai urutan ke-}(n/2) + \text{Nilai urutan ke-}((n/2)+1)}{2}" />
 
-  **Contoh (Data Genap):**
+  **Contoh dengan jumlah data genap:**
 
-  Misal data nilai ulangan <InlineMath math="6 \text{ siswa}" />: <InlineMath math="7, 8, 6, 9, 7, 10" />
+  Misalkan nilai ulangan <InlineMath math="6 \text{ siswa}" /> adalah <InlineMath math="7, 8, 6, 9, 7, 10" />.
 
   Urutkan: <InlineMath math="6, 7, 7, 8, 9, 10" /> (ada <InlineMath math="6" /> data, <InlineMath math="n=6" />)
 
@@ -49,26 +47,26 @@ Median itu gampangnya adalah **nilai data yang posisinya paling tengah** setelah
 
   Dua angka di tengah adalah <InlineMath math="7" /> dan <InlineMath math="8" />.
 
-  Median adalah rata-rata dari <InlineMath math="7" /> dan <InlineMath math="8" />: <InlineMath math="(7+8)/2 = 7.5" />.
+  Median adalah rata-rata dari <InlineMath math="7" /> dan <InlineMath math="8" />: <InlineMath math="(7+8)/2 = 7{,}5" />.
 
-  Jadi, Median adalah <InlineMath math="7.5" />.
+  Jadi, median adalah <InlineMath math="7{,}5" />.
 
-Median ini bagus karena tidak terlalu terpengaruh oleh nilai yang sangat ekstrem (terlalu besar atau terlalu kecil) di ujung data.
+Karena ditentukan oleh posisi, median tidak banyak berubah akibat nilai yang sangat besar atau kecil di ujung data.
 
 ## Modus: Nilai Paling Sering Muncul
 
-Modus itu lebih simpel lagi. Modus adalah **nilai data yang paling sering muncul** atau yang frekuensinya paling tinggi.
+Modus adalah **nilai yang paling sering muncul**, yaitu nilai dengan frekuensi tertinggi.
 
-**Cara Mencari Modus:**
+**Cara mencari modus:**
 
-<MathContainer>
-  <BlockMath math="\text{1. Hitung frekuensi tiap nilai data}" />
-  <BlockMath math="\text{2. Cari nilai data dengan frekuensi terbesar}" />
-</MathContainer>
+1. Hitung frekuensi kemunculan setiap nilai.
+2. Tentukan nilai dengan frekuensi tertinggi.
 
 **Contoh:**
 
-Data nilai ulangan: <InlineMath math="7, 8, 6, 9, 7, 8, 7" />
+Data nilai ulangan:
+
+<BlockMath math="7, 8, 6, 9, 7, 8, 7" />
 
 - Nilai <InlineMath math="6" /> muncul <InlineMath math="1 \text{ kali}" />
 - Nilai <InlineMath math="7" /> muncul <InlineMath math="3 \text{ kali}" />
@@ -77,20 +75,20 @@ Data nilai ulangan: <InlineMath math="7, 8, 6, 9, 7, 8, 7" />
 
 Yang paling sering muncul adalah nilai <InlineMath math="7" /> (sebanyak <InlineMath math="3 \text{ kali}" />).
 
-Jadi, <InlineMath math="\text{Modus} = 7" />.
+Jadi, modusnya adalah <InlineMath math="7" />.
 
-**Penting tentang Modus:**
+**Catatan penting tentang modus:**
 
-- Sebuah kumpulan data bisa **tidak punya modus** (jika semua nilai muncul sama seringnya).
+- Jika semua nilai muncul sama seringnya, tidak ada satu nilai yang paling sering muncul. Berdasarkan konvensi yang digunakan di sini, kumpulan data tersebut dinyatakan **tidak memiliki modus**.
 - Bisa punya **satu modus** (unimodal).
 - Bisa punya **dua modus** (bimodal), jika ada dua nilai yang frekuensinya sama tinggi dan paling tinggi.
 - Bisa punya **lebih dari dua modus** (multimodal).
 
-Sama seperti median, modus juga tidak terpengaruh oleh nilai-nilai ekstrem (pencilan).
+Satu nilai ekstrem yang hanya muncul sekali biasanya tidak mengubah modus karena frekuensinya tetap satu.
 
-## Sedikit tentang Rentang (Range)
+## Jangkauan menunjukkan sebaran data
 
-Selain melihat pusat data dengan modus dan median, kadang kita juga perlu tahu seberapa **menyebar** data kita. Salah satu cara paling sederhana adalah dengan melihat **Rentang (Range)** atau **Jangkauan**.
+Selain mengetahui pusat data melalui median dan modus, kita juga perlu melihat seberapa **menyebar** datanya. **Jangkauan (range)** memberikan satu ukuran cepat.
 
 Rentang adalah **selisih antara data terbesar dan data terkecil**.
 
@@ -104,8 +102,8 @@ Data terbesar <InlineMath math="= 10" />
 
 Data terkecil <InlineMath math="= 6" />
 
-Rentang = <InlineMath math="10 - 6 = 4" />
+Jangkauan <InlineMath math="= 10 - 6 = 4" />
 
-Rentang memberi kita gambaran cepat tentang seberapa jauh data kita tersebar dari ujung ke ujung.
+Jangkauan menunjukkan jarak antara kedua ujung data, tetapi tidak menjelaskan penyebaran nilai di antaranya.
 
-Jadi, Median dan Modus fokus pada "pusat" data, sedangkan Rentang fokus pada "sebaran" data.
+Median dan modus menggambarkan pusat data, sedangkan jangkauan menggambarkan lebar keseluruhannya.

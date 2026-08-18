@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Kesiapan alat perang",
+      label: "Kesiapan persenjataan",
       value: false,
     },
     {
-      label: "Perlindungan terhadap masyarakat",
+      label: "Perlindungan terhadap pemimpin",
       value: false,
     },
     {
-      label: "Kesiapan tentara",
+      label: "Jumlah tentara yang tersedia",
       value: false,
     },
     {
-      label: "Rumah sakit dan obat-obatan",
+      label: "Ketersediaan rumah sakit dan obat-obatan",
       value: false,
     },
     {
-      label: "Dampak perang",
+      label: "Biaya dan dampak perang",
       value: true,
     },
   ],

@@ -9,27 +9,27 @@ export const metadata = {
 
 ## What Is the Least Squares Method?
 
-Imagine we have a set of data from observations or experiments consisting of pairs of values <InlineMath math="(x, y)" />. If we plot these data points on a scatter diagram, we sometimes see a pattern or trend that resembles a straight line.
+Suppose a set of observations or experimental results consists of value pairs <InlineMath math="(x, y)" />. When their scatter diagram follows an approximately straight trend, many different lines could be drawn through the point cloud.
 
 The question is, out of the many straight lines we could draw through these points, which is the **best straight line** that best represents the entire dataset?
 
-The Least Squares Method is a **mathematical procedure** used to find **one unique straight line** that is considered the best fit for the set of data points.
+The Least Squares Method is a **mathematical procedure** used to find the straight line that best fits the set of data points according to a precise criterion: the smallest possible sum of squared vertical residuals. The fitted slope is unique as long as the observed <InlineMath math="x" /> values are not all identical.
 
-## Minimizing Squared Errors
+## Minimizing Squared Residuals
 
-The main idea is to minimize the **error** or **residual** from each data point to the prediction line. So how do we determine the "best fit" line?
+The fitted line is determined from the vertical **residual** at each observed point:
 
 1.  **Prediction Line:** We try drawing a straight line (<InlineMath math="\hat{y} = a + bx" />) among the data points.
-2.  **Error (Residual):** For each original data point (<InlineMath math="y_i" />), there will be a vertical distance to the predicted line (<InlineMath math="\hat{y}_i" />). This distance is called the **error** or **residual**:
+2.  **Residual:** For each observed value <InlineMath math="y_i" />, the line gives a predicted value <InlineMath math="\hat{y}_i" />. Their signed vertical difference is the **residual**:
 
     <BlockMath math="e_i = y_i - \hat{y}_i" />
 
-3.  **Minimize Sum of Squared Errors:** The Least Squares Method works by finding the straight line that makes the **sum of the squares of all errors** (<InlineMath math="\sum e_i^2" />) as **small as possible**. This is why it's called "Least Squares".
+3.  **Minimize the residual sum of squares:** The least-squares line makes <InlineMath math="\sum e_i^2" /> as small as possible among all candidate lines.
 
-**Why square the errors?**
+**Why square the residuals?**
 
-- Squaring the errors makes all values positive, so errors above and below the line don't cancel each other out.
-- Larger errors contribute much more to the total sum (because they are squared), so this method strongly tries to minimize large errors.
+- Squaring prevents positive and negative residuals from canceling one another.
+- A residual with twice the magnitude contributes four times as much to the sum, so large departures receive more weight.
 
 ## Visualization Example
 
@@ -100,4 +100,6 @@ Formula key:
 - <InlineMath math="\bar{y}" /> = Mean of <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
   ).
 
-Thus, the Least Squares Method provides a systematic and objective way to find the best straight line representing the linear trend in the data based on the principle of minimizing the sum of squared errors.
+Thus, the least-squares method provides a systematic criterion for the line that represents the linear trend: its residual sum of squares is minimal.
+
+If every <InlineMath math="x" /> value is the same, then <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> and the slope formula has a zero denominator. In that case, the data cannot determine a unique linear regression slope.

@@ -4,67 +4,34 @@ export const metadata = {
   date: "2026-01-01",
 };
 
-We can solve this problem using a system of linear inequalities.
+Let <InlineMath math="F" />, <InlineMath math="M" />, and <InlineMath math="C" /> be the ages of Father, Mother, and their child.
 
-#### Defining Variables
+#### Translate the age differences
 
-Let:
-- <InlineMath math="F =" /> Father's age
-- <InlineMath math="M =" /> Mother's age
-- <InlineMath math="C =" /> Child's age
-
-#### Translating Information into Mathematical Model
-
-1. "The difference between Mother's and Father's ages is not more than <InlineMath math="5 \text{ years}" />":
-
-   <MathContainer>
-     <BlockMath math="|F - M| \le 5" />
-   </MathContainer>
-
-   This can be written as:
-
-   <MathContainer>
-     <BlockMath math="-5 \le F - M \le 5" />
-   </MathContainer>
-
-2. "The difference between Father's and their child's age is <InlineMath math="35 \text{ years}" />":
-
-   <MathContainer>
-     <BlockMath math="F - C = 35 \Rightarrow F = C + 35" />
-   </MathContainer>
-
-3. "The difference between Mother's and the child's age is x":
-
-   <MathContainer>
-     <BlockMath math="x = M - C" />
-   </MathContainer>
-
-   (We assume <InlineMath math="M > C" /> since Mother is definitely older than the child).
-
-#### Solving the Inequality
-
-Substitute <InlineMath math="F = C + 35" /> into the inequality:
+Mother and Father differ in age by at most <InlineMath math="5\text{ years}" />, so
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 &\le F - M \le 5 \\ -5 &\le (C + 35) - M \le 5 \\ -5 &\le 35 - (M - C) \le 5 \end{aligned}" />
+  <BlockMath math="|F-M| \le 5" />
 </MathContainer>
 
-Since <InlineMath math="x = M - C" />, the equation becomes:
+Father is <InlineMath math="35\text{ years}" /> older than the child, while Mother is <InlineMath math="x\text{ years}" /> older than the child:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 &\le 35 - x \le 5 \end{aligned}" />
+  <BlockMath math="F-C=35 \qquad\text{and}\qquad M-C=x" />
 </MathContainer>
 
-Subtract <InlineMath math="35" /> from all sides:
+Subtracting the second age difference from the first gives <InlineMath math="F-M=35-x" />. Therefore,
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 - 35 &\le -x \le 5 - 35 \\ -40 &\le -x \le -30 \end{aligned}" />
+  <BlockMath math="|35-x| \le 5" />
 </MathContainer>
 
-Multiply all sides by <InlineMath math="-1" /> (remember, inequality signs reverse):
+#### Solve the inequality
+
+The absolute-value inequality means that <InlineMath math="35-x" /> lies between <InlineMath math="-5" /> and <InlineMath math="5" />:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} 40 &\ge x \ge 30 \\ 30 &\le x \le 40 \end{aligned}" />
+  <BlockMath math="\begin{aligned} -5 &\le 35-x \le 5 \\ -40 &\le -x \le -30 \\ 30 &\le x \le 40 \end{aligned}" />
 </MathContainer>
 
-Thus, the correct value of <InlineMath math="x" /> is <InlineMath math="30 \le x \le 40" />.
+Thus, Mother's age difference from the child must satisfy <InlineMath math="30 \le x \le 40" />.

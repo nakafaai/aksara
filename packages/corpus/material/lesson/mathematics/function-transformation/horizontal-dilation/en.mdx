@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Horizontal Dilation",
-  description: "Understand horizontal dilation in functions with clear examples. Learn how to stretch or compress graphs horizontally and apply these concepts to various functions.",
+  description: "Understand how the input multiplier in a function changes its horizontal scale, then apply the rule to graphs, domains, and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Function Transformation",
@@ -10,31 +10,36 @@ export const metadata = {
 
 ## Basic Concepts of Horizontal Dilation
 
-Horizontal dilation is a geometric transformation that changes the size of a function graph horizontally, like pulling or compressing a rubber band left and right. Imagine holding a photo with both hands on the left and right sides, then stretching or compressing it horizontally without changing the height of the photo.
+Horizontal dilation changes a function graph's width without changing its heights. Picture a photograph pulled outward from its left and right edges or pressed inward toward its center.
 
-If we have a function <InlineMath math="f(x)" />, then horizontal dilation produces a new function <InlineMath math="g(x) = f(kx)" /> where <InlineMath math="k" /> is the scale factor that determines how much the horizontal size changes.
+If we have a function <InlineMath math="f(x)" />, then horizontal dilation produces a new function <InlineMath math="g(x) = f(kx)" />. Here, <InlineMath math="k \ne 0" /> is the input multiplier. The actual horizontal scale magnitude is <InlineMath math="s = \frac{1}{|k|}" />.
 
 ### Rules of Horizontal Dilation
 
-For any function <InlineMath math="f(x)" />, horizontal dilation is defined as:
+For any function <InlineMath math="f(x)" /> and nonzero input multiplier <InlineMath math="k" />, horizontal dilation is defined as:
 
-<BlockMath math="g(x) = f(kx)" />
+<MathContainer>
+  <BlockMath math="g(x) = f(kx)" />
+  <BlockMath math="s = \frac{1}{|k|}" />
+</MathContainer>
 
-Where <InlineMath math="k" /> is the scale factor that affects the transformation:
-- If <InlineMath math="k > 1" />, the graph is compressed horizontally (reduced)
-- If <InlineMath math="0 < k < 1" />, the graph is stretched horizontally (enlarged)
+The input multiplier <InlineMath math="k" /> determines the transformation:
+- If <InlineMath math="k > 1" />, the graph is compressed to <InlineMath math="\frac{1}{k}" /> of its original width
+- If <InlineMath math="0 < k < 1" />, the graph is stretched to <InlineMath math="\frac{1}{k}" /> times its original width
 - If <InlineMath math="k = 1" />, the graph does not change
-- If <InlineMath math="k < 0" />, the graph undergoes reflection as well as dilation
+- If <InlineMath math="k < 0" />, the graph is also reflected across the <InlineMath math="y" />-axis
 
-Note that the effect of horizontal dilation is counterintuitive: a larger scale factor actually compresses the graph.
+The value <InlineMath math="k = 0" /> is excluded: <InlineMath math="f(0x) = f(0)" /> would be constant wherever it is defined, so it would collapse the graph rather than scale it horizontally.
+
+The reciprocal matters: a larger input multiplier makes the graph narrower, while the horizontal scale itself is <InlineMath math="\frac{1}{|k|}" />.
 
 ## Visualization of Horizontal Dilation
 
-Let's see how horizontal dilation works on the quadratic function <InlineMath math="f(x) = x^2" /> with various scale factors.
+The quadratic function <InlineMath math="f(x) = x^2" /> makes the reciprocal rule visible for several input multipliers.
 
 <LineEquation
   title={<>Horizontal Dilation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
-  description="Notice how the graph is compressed or stretched horizontally with different scale factors."
+  description="Compare how different input multipliers change the width of the graph."
   showZAxis={false}
   data={[
     {
@@ -67,19 +72,19 @@ Let's see how horizontal dilation works on the quadratic function <InlineMath ma
   ]}
 />
 
-From the visualization above, we can observe:
+The graph shows:
 - The original function <InlineMath math="f(x) = x^2" /> as reference
-- Function <InlineMath math="g(x) = (2x)^2" /> is horizontally compressed by factor <InlineMath math="2" />
-- Function <InlineMath math="h(x) = (0.5x)^2" /> is horizontally stretched by factor <InlineMath math="0.5" />
+- Function <InlineMath math="g(x) = (2x)^2" /> uses input multiplier <InlineMath math="2" />, so its horizontal scale is <InlineMath math="\frac{1}{2}" />
+- Function <InlineMath math="h(x) = (0.5x)^2" /> uses input multiplier <InlineMath math="0.5" />, so its horizontal scale is <InlineMath math="2" />
 - All graphs have the same vertex at <InlineMath math="(0, 0)" />
 
 ## Horizontal Dilation on Linear Functions
 
-Now let's apply the same concept to the linear function <InlineMath math="f(x) = x + 2" />.
+The same rule applies to the linear function <InlineMath math="f(x) = x + 2" />.
 
 <LineEquation
   title={<>Horizontal Dilation of Linear Function <InlineMath math="f(x) = x + 2" /></>}
-  description="The dilated line has slope that changes according to the scale factor."
+  description={<>The input multiplier changes the slope but leaves the <InlineMath math="y" />-intercept fixed.</>}
   showZAxis={false}
   data={[
     {
@@ -112,7 +117,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
   ]}
 />
 
-Notice that:
+The three lines show:
 - The original function <InlineMath math="f(x) = x + 2" /> has slope <InlineMath math="1" />
 - Function <InlineMath math="g(x) = f(2x) = 2x + 2" /> has slope <InlineMath math="2" /> (horizontally compressed)
 - Function <InlineMath math="h(x) = f(0.5x) = 0.5x + 2" /> has slope <InlineMath math="0.5" /> (horizontally stretched)
@@ -126,25 +131,25 @@ If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)"
 
 ### Domain and Range
 
-- **Domain**: Changes according to the scale factor <InlineMath math="k" />
+- **Domain**: Its horizontal coordinates are divided by the input multiplier <InlineMath math="k" />
 - **Range**: Does not change after horizontal dilation
 
-If the domain of the original function is <InlineMath math="[c, d]" />, then the domain after horizontal dilation with factor <InlineMath math="k > 0" /> becomes <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
+If the domain of the original function is <InlineMath math="[c, d]" />, then the domain after horizontal dilation with input multiplier <InlineMath math="k > 0" /> becomes <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
 
 ### Axis Intercepts
 
-- **<InlineMath math="x" />-intercept**: Changes according to the scale factor
+- **<InlineMath math="x" />-intercept**: Its coordinate is divided by the input multiplier
 - **<InlineMath math="y" />-intercept**: Does not change
 
 ## Application Examples
 
 ### Exponential Function
 
-Let's look at horizontal dilation on the exponential function <InlineMath math="f(x) = 2^x" />.
+For the exponential function <InlineMath math="f(x) = 2^x" />, the input multiplier changes how quickly the graph rises.
 
 <LineEquation
   title={<>Horizontal Dilation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description="The exponential curve undergoes width changes according to the scale factor."
+  description="The input multiplier changes how quickly the exponential curve rises."
   showZAxis={false}
   cameraPosition={[8, 6, 8]}
   data={[
@@ -172,15 +177,15 @@ Let's look at horizontal dilation on the exponential function <InlineMath math="
 For exponential functions:
 - The horizontal asymptote remains at <InlineMath math="y = 0" /> for both functions
 - The <InlineMath math="y" />-intercept remains the same at <InlineMath math="(0, 1)" />
-- The growth rate of the function changes according to the scale factor
+- The growth rate of the function changes according to the input multiplier
 
-## Horizontal Dilation with Negative Factor
+## Horizontal Dilation with a Negative Input Multiplier
 
-Let's see what happens when the scale factor is negative.
+A negative input multiplier combines horizontal scaling with a reflection.
 
 <LineEquation
-  title={<>Horizontal Dilation with Negative Factor <InlineMath math="f(x) = x^2 + 1" /></>}
-  description="Negative scale factor causes reflection as well as dilation."
+  title={<>Horizontal Dilation with a Negative Input Multiplier for <InlineMath math="f(x) = x^2 + 1" /></>}
+  description="Its absolute value sets the horizontal scale, while its sign causes reflection."
   showZAxis={false}
   cameraPosition={[10, 6, 10]}
   data={[
@@ -205,31 +210,31 @@ Let's see what happens when the scale factor is negative.
   ]}
 />
 
-When the scale factor is negative:
+When the input multiplier is negative:
 - The graph undergoes reflection across the <InlineMath math="y" />-axis
-- Simultaneously undergoes dilation according to the absolute value of the scale factor
+- Its horizontal scale magnitude is <InlineMath math="\frac{1}{|k|}" />
 - The graph shape remains the same because the quadratic function is symmetric
 
 ## Exercises
 
-1. Given the function <InlineMath math="f(x) = x^2 - 2x + 1" />. Determine the equation of the function resulting from horizontal dilation with scale factor <InlineMath math="3" />.
+1. Given the function <InlineMath math="f(x) = x^2 - 2x + 1" />. Determine the equation produced by the input multiplier <InlineMath math="3" />.
 
-2. If the graph of function <InlineMath math="g(x) = \sqrt{x}" /> undergoes horizontal dilation with factor <InlineMath math="\frac{1}{2}" />, determine:
+2. If the graph of function <InlineMath math="g(x) = \sqrt{x}" /> undergoes horizontal dilation with input multiplier <InlineMath math="\frac{1}{2}" />, determine:
    - The equation of the resulting dilated function
    - The domain of the function after dilation
 
-3. Function <InlineMath math="h(x) = |x - 2|" /> undergoes horizontal dilation with factor <InlineMath math="-1" />. Determine the vertex of the resulting dilated function.
+3. Function <InlineMath math="h(x) = |x - 2|" /> undergoes horizontal dilation with input multiplier <InlineMath math="-1" />. Determine the vertex of the resulting function.
 
 ### Answer Key
 
-1. Horizontal dilation with factor <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+1. Horizontal dilation with input multiplier <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 
    <LineEquation
      title={<>Function <InlineMath math="f(x) = x^2 - 2x + 1" /> and Its Dilation Result</>}
      description={
        <>
-         The original parabola is horizontally compressed by factor{" "}
-         <InlineMath math="3" /> producing a narrower parabola.
+         Input multiplier <InlineMath math="3" /> gives horizontal scale{" "}
+         <InlineMath math="\frac{1}{3}" />, producing a narrower parabola.
        </>
      }
      showZAxis={false}
@@ -259,7 +264,7 @@ When the scale factor is negative:
 2. Equation of the resulting dilated function:
 
    - Horizontal dilation: <InlineMath math="g'(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
-   - Domain after dilation: <InlineMath math="[0, \infty)" /> becomes <InlineMath math="[0, \infty)" /> (unchanged because the scale factor is positive)
+   - Domain after dilation: <InlineMath math="[0, \infty)" /> remains <InlineMath math="[0, \infty)" /> because the input multiplier is positive
 
    Visualization:
 
@@ -267,8 +272,8 @@ When the scale factor is negative:
      title={<>Function <InlineMath math="g(x) = \sqrt{x}" /> and Its Dilation Result</>}
      description={
        <>
-         The square root curve is horizontally stretched by factor{" "}
-         <InlineMath math="0.5" /> producing a wider curve.
+         Input multiplier <InlineMath math="0.5" /> gives horizontal scale{" "}
+         <InlineMath math="2" />, making the square root curve twice as wide.
        </>
      }
      showZAxis={false}
@@ -295,11 +300,11 @@ When the scale factor is negative:
    />
 
 3. The original function <InlineMath math="h(x) = |x - 2|" /> has its vertex at <InlineMath math="(2, 0)" />.
-   After horizontal dilation with factor <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, the vertex becomes <InlineMath math="(-2, 0)" />.
+   After horizontal dilation with input multiplier <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, the vertex becomes <InlineMath math="(-2, 0)" />.
 
    <LineEquation
      title={<>Function <InlineMath math="h(x) = |x - 2|" /> and Its Dilation Result</>}
-     description={<>The absolute value function undergoes reflection and dilation with factor <InlineMath math="-1" />.</>}
+     description={<>Input multiplier <InlineMath math="-1" /> reflects the absolute value function across the <InlineMath math="y" />-axis without changing its horizontal scale.</>}
      showZAxis={false}
      cameraPosition={[10, 6, 10]}
      data={[

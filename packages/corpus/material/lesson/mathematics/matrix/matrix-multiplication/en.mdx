@@ -20,6 +20,8 @@ Since the number of columns in matrix <InlineMath math="A" /> (<InlineMath math=
 
 The result of the multiplication, let's call it matrix <InlineMath math="C = AB" />, will have an order of <InlineMath math="m \times p" />.
 
+The dimension check fits in one line: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="B\in\mathbb{R}^{n\times p}" /> imply <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. The shared inner dimension <InlineMath math="n" /> is consumed by each dot product, while the outer dimensions <InlineMath math="m" /> and <InlineMath math="p" /> determine the result.
+
 ### How to Calculate the Elements of the Resultant Matrix
 
 The element <InlineMath math="c_{ij}" /> in matrix <InlineMath math="C" /> (i.e., the element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column) is calculated by multiplying each element in the <InlineMath math="i" />-th row of matrix <InlineMath math="A" /> by the corresponding element in the <InlineMath math="j" />-th column of matrix <InlineMath math="B" />, and then summing all these products.
@@ -100,7 +102,7 @@ Matrix multiplication has several important properties:
 
 2.  **Associative**:
 
-    If the matrix multiplications <InlineMath math="A, B," /> and <InlineMath math="C" /> are defined, then <InlineMath math="(AB)C = A(BC)" /> holds. This means the order of grouping the multiplication does not change the final result.
+    If the products on both sides are defined, then <InlineMath math="(AB)C = A(BC)" /> holds. This means the order of grouping the multiplication does not change the final result.
 
 3.  **Distributive**:
 
@@ -115,9 +117,9 @@ Matrix multiplication has several important properties:
 
 4.  **Multiplication by Identity Matrix (<InlineMath math="I" />)**:
 
-    If <InlineMath math="A" /> is a square matrix of order <InlineMath math="n \times n" /> and <InlineMath math="I" /> is the identity matrix of order <InlineMath math="n \times n" />, then:
+    If <InlineMath math="A" /> has dimensions <InlineMath math="m \times n" />, then the left identity <InlineMath math="I_m" /> has dimensions <InlineMath math="m \times m" /> and the right identity <InlineMath math="I_n" /> has dimensions <InlineMath math="n \times n" />:
 
-    <BlockMath math="AI = IA = A" />
+    <BlockMath math="I_mA=A=AI_n" />
 
     The identity matrix acts like the number <InlineMath math="1" /> in ordinary number multiplication.
 
@@ -129,42 +131,25 @@ Matrix multiplication has several important properties:
 
 ## Calculating Revenue
 
-Matrix multiplication is very useful in various fields, one of which is for managing data and calculating aggregate values.
+Matrix multiplication can combine a table of quantities with a compatible table of prices. The labels attached to the rows and columns are just as important as their numerical dimensions.
 
-Imagine a home industry produces three types of food: tempeh chips, banana chips, and potato chips.
+Suppose a home business sells tempeh chips, banana chips, and potato chips at Place A, Place B, and Place C.
 
-These foods are marketed in three places: Place A, Place B, and Place C.
-
-The number of chips (in jars) sold in each place is presented in matrix <InlineMath math="P" />. The columns in matrix <InlineMath math="P" /> respectively represent Place A, Place B, and Place C, while the rows respectively represent tempeh chips, banana chips, and potato chips.
+The sales matrix <InlineMath math="P" /> uses product types as rows and places as columns. In other words, each entry of <InlineMath math="P" /> records how many jars of one product were sold at one place.
 
 <BlockMath math="P = \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix} \begin{matrix} \text{Tempeh Chips} \\ \text{Banana Chips} \\ \text{Potato Chips} \end{matrix}" />
 
-The first row (<InlineMath math="\begin{bmatrix} 15 & 12 & 20 \end{bmatrix}" />) means <InlineMath math="15" /> jars of tempeh chips were sold in Place A, <InlineMath math="12" /> in Place B, and <InlineMath math="20" /> in Place C.
+The first row (<InlineMath math="\begin{bmatrix} 15 & 12 & 20 \end{bmatrix}" />) means that <InlineMath math="15" /> jars of tempeh chips were sold at Place A, <InlineMath math="12" /> at Place B, and <InlineMath math="20" /> at Place C.
 
-The price for each jar of chips (in rupiah) is stated in the column matrix <InlineMath math="Q" /> below:
+The price per jar, in rupiah, is stored in the column matrix <InlineMath math="Q" /> using the same product order:
 
 <BlockMath math="Q = \begin{bmatrix} 20{,}000 \\ 15{,}000 \\ 30{,}000 \end{bmatrix} \begin{matrix} \text{Price of Tempeh Chips} \\ \text{Price of Banana Chips} \\ \text{Price of Potato Chips} \end{matrix}" />
 
-To determine the total revenue from each type of chip across all places, we can multiply matrix <InlineMath math="P" /> by matrix <InlineMath math="Q" />.
+The product <InlineMath math="PQ" /> is numerically defined because both inner dimensions are <InlineMath math="3" />, but it is not meaningful here. The columns of <InlineMath math="P" /> represent places, while the rows of <InlineMath math="Q" /> represent products. Those labels do not match.
 
-However, pay attention to the order of the matrices. Matrix <InlineMath math="P" /> has an order of <InlineMath math="3 \times 3" /> and matrix <InlineMath math="Q" /> has an order of <InlineMath math="3 \times 1" />. The number of columns in <InlineMath math="P" /> (<InlineMath math="3" />) is equal to the number of rows in <InlineMath math="Q" /> (<InlineMath math="3" />), so <InlineMath math="PQ" /> can be calculated and will result in a matrix <InlineMath math="R" /> of order <InlineMath math="3 \times 1" />.
+To calculate revenue by place, transpose the price vector and multiply <InlineMath math="Q^T" /> by <InlineMath math="P" />. The product <InlineMath math="S = Q^T P" /> pairs each product price with the sales of that same product.
 
-Matrix <InlineMath math="R = PQ" /> will show the total revenue for each type of chip.
-
-<MathContainer>
-  <BlockMath math="R = PQ = \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix} \begin{bmatrix} 20{,}000 \\ 15{,}000 \\ 30{,}000 \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} (15)(20{,}000) + (12)(15{,}000) + (20)(30{,}000) \\ (25)(20{,}000) + (10)(15{,}000) + (15)(30{,}000) \\ (15)(20{,}000) + (15)(15{,}000) + (20)(30{,}000) \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} 300{,}000 + 180{,}000 + 600{,}000 \\ 500{,}000 + 150{,}000 + 450{,}000 \\ 300{,}000 + 225{,}000 + 600{,}000 \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} 1{,}080{,}000 \\ 1{,}100{,}000 \\ 1{,}125{,}000 \end{bmatrix} \begin{matrix} \text{Total Revenue from Tempeh Chips} \\ \text{Total Revenue from Banana Chips} \\ \text{Total Revenue from Potato Chips} \end{matrix}" />
-</MathContainer>
-
-From matrix <InlineMath math="R" />, we can see that the total revenue from the sale of tempeh chips is <InlineMath math="\text{Rp}1{,}080{,}000" />, banana chips <InlineMath math="\text{Rp}1{,}100{,}000" />, and potato chips <InlineMath math="\text{Rp}1{,}125{,}000" />.
-
-If the question is "determine the revenue matrix for each place", then we need to arrange the price matrix <InlineMath math="Q" /> differently or perform multiplication with the transpose of <InlineMath math="P" />.
-
-Suppose we want to find the total revenue in Place A, Place B, and Place C. We can use the price matrix as a row matrix <InlineMath math="Q^T = \begin{bmatrix} 20{,}000 & 15{,}000 & 30{,}000 \end{bmatrix}" /> and multiply it by matrix <InlineMath math="P" />: <InlineMath math="S = Q^T P" />.
-
-Matrix <InlineMath math="Q^T" /> has an order of <InlineMath math="1 \times 3" /> and <InlineMath math="P" /> has an order of <InlineMath math="3 \times 3" />. The result <InlineMath math="S" /> will have an order of <InlineMath math="1 \times 3" />.
+Matrix <InlineMath math="Q^T" /> has dimensions <InlineMath math="1 \times 3" />, and <InlineMath math="P" /> has dimensions <InlineMath math="3 \times 3" />. Therefore <InlineMath math="S" /> has dimensions <InlineMath math="1 \times 3" />, with one entry for each place.
 
 <MathContainer>
   <BlockMath math="S = \begin{bmatrix} 20{,}000 & 15{,}000 & 30{,}000 \end{bmatrix} \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix}" />
@@ -177,7 +162,21 @@ Thus, <InlineMath math="S = \begin{bmatrix} 1{,}125{,}000 & 840{,}000 & 1{,}225{
 
 This means the total revenue from Place A is <InlineMath math="\text{Rp}1{,}125{,}000" />, from Place B is <InlineMath math="\text{Rp}840{,}000" />, and from Place C is <InlineMath math="\text{Rp}1{,}225{,}000" />.
 
-The interpretation of the elements of the resulting matrix greatly depends on how the initial matrices are defined and how the multiplication is performed.
+Revenue by product requires a different multiplication. First use a vector of ones <InlineMath math="U" /> to total each row of <InlineMath math="P" />, then multiply those totals by the diagonal price matrix derived from <InlineMath math="Q" />.
+
+<MathContainer>
+  <BlockMath math="U = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}" />
+  <BlockMath math="T = PU = \begin{bmatrix} 15+12+20 \\ 25+10+15 \\ 15+15+20 \end{bmatrix}" />
+  <BlockMath math="T = \begin{bmatrix} 47 \\ 50 \\ 50 \end{bmatrix} \begin{matrix} \text{Tempeh Jars} \\ \text{Banana Jars} \\ \text{Potato Jars} \end{matrix}" />
+  <BlockMath math="D = \operatorname{diag}(Q) = \begin{bmatrix} 20{,}000 & 0 & 0 \\ 0 & 15{,}000 & 0 \\ 0 & 0 & 30{,}000 \end{bmatrix}" />
+  <BlockMath math="R = DT = \begin{bmatrix} 940{,}000 \\ 750{,}000 \\ 1{,}500{,}000 \end{bmatrix}" />
+</MathContainer>
+
+Matrix <InlineMath math="R" /> therefore gives product revenue: <InlineMath math="\text{Rp}940{,}000" /> for tempeh chips, <InlineMath math="\text{Rp}750{,}000" /> for banana chips, and <InlineMath math="\text{Rp}1{,}500{,}000" /> for potato chips.
+
+The lesson is not merely to match dimensions. A meaningful matrix product must also pair quantities that describe the same category in the same order.
+
+Here, <InlineMath math="Q^T" /> and <InlineMath math="P" /> produce revenue by place in <InlineMath math="S" />, while the diagonal price matrix and product totals produce revenue by product in <InlineMath math="R" />. Those are different questions, so they require different products.
 
 ## Exercises
 
@@ -192,7 +191,7 @@ Determine the matrices <InlineMath math="CD" /> and <InlineMath math="DC" />.
 
 Is <InlineMath math="CD = DC" />?
 
-### Answer Key
+### Worked Solutions
 
 1.  Calculating <InlineMath math="CD" />:
 

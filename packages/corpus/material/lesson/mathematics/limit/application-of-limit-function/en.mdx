@@ -1,32 +1,32 @@
 export const metadata = {
     title: "Application of Limit Function",
-    description: "Apply limits to real-world scenarios: disease spread analysis, vaccination strategies, economic models, and marginal cost calculations with examples.",
+    description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Limits",
 };
 
-## Application in Public Health Problems
+## A Simplified Public Health Model
 
-One of the most relevant applications of limit functions is in **disease spread analysis** and vaccination programs. When governments design public health strategies, they need to understand how the number of cases will change over time and how many resources are needed.
+Limits can describe the long-term behavior of a mathematical model. In public health, however, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The example below is a **fictional classroom model** designed to practice limits and model-domain checks.
 
-### Virus Spread Model
+### Inspecting the Model's Domain
 
-Suppose in a city there is a function that describes the number of residents infected with a virus:
+Consider this deliberately simplified function:
 
 <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
 
-where <InlineMath math="N(t)" /> represents the number of infected residents and <InlineMath math="t" /> represents time in certain units.
+Here, <InlineMath math="N(t)" /> is interpreted as a modeled case count, while <InlineMath math="t" /> is a nonnegative input whose unit must be defined for the scenario being studied.
 
-To understand the long-term behavior of this spread, we need to calculate:
+To test whether the formula remains meaningful in the long run, calculate:
 
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190.68)^3}\right)" />
 
-**Long-term behavior analysis:**
+**Long-term behavior:**
 
 When <InlineMath math="t" /> is very large, the term <InlineMath math="t^2" /> will dominate inside the root because:
 - <InlineMath math="t^2" /> grows faster than <InlineMath math="t" /> and the constant <InlineMath math="(190.68)^3" />
-- For <InlineMath math="t >> 1" />, then <InlineMath math="t^2 - t + (190.68)^3 \approx t^2" />
+- For <InlineMath math="t \gg 1" />, <InlineMath math="t^2 - t + (190.68)^3 \approx t^2" />
 
 So,
 
@@ -35,19 +35,19 @@ So,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> This negative result mathematically indicates that this model is only valid for a limited time period. In real context, the number of infected residents cannot be negative, so this model is only valid up to the point where <InlineMath math="N(t) \geq 0" />.
+> The negative result exposes the model's **limited domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This fictional model is not an epidemiological forecast and must not be used as medical or policy guidance.
 
-### Optimal Vaccination Strategy
+### Interpreting a Vaccination Target
 
-In the context of vaccination programs, limit functions help determine **effective vaccination targets**. If we know that at a certain time the number of cases will stabilize or decrease, we can calculate how many vaccines are needed.
+In a classroom model, limits and function values can show what a formula predicts near a chosen vaccination target. They cannot establish that the target is effective without empirical evidence, assumptions about transmission, and real population data.
 
-Suppose the vaccination target for residents over <InlineMath math="18 \text{ years}" /> old is <InlineMath math="V \text{ people}" />, and we want to achieve a condition where the number of new cases approaches zero. We can use limits to determine the optimal strategy.
+Suppose a hypothetical exercise sets a target of <InlineMath math="V \text{ people}" /> among residents older than <InlineMath math="18 \text{ years}" />. We can evaluate the formula at that target and interpret the result within the model. That calculation does not, by itself, prove an optimal strategy.
 
 ## Application in Economics
 
 ### Marginal Cost Analysis
 
-In economics, **marginal cost** is the additional cost to produce one additional unit. Practically, this answers the question: "How much additional cost if we produce <InlineMath math="1" /> more unit?"
+In a differentiable cost model, **marginal cost** is the instantaneous rate at which total cost changes with output. It is defined by the derivative:
 
 **Mathematical definition using limits:**
 
@@ -58,33 +58,54 @@ where:
 - <InlineMath math="\Delta x" /> = small change in production quantity
 - The limit gives the **instantaneous rate of change** of cost with respect to production
 
+When output is counted in whole units, the exact additional cost of the next unit is <InlineMath math="C(x+1)-C(x)" />. The derivative <InlineMath math="C'(x)" /> often approximates that discrete change, but the two quantities are not automatically identical.
+
 ### Population Growth Model
 
-In demographic studies, population growth models often use functions involving limits. For example, the logistic model:
+An idealized logistic population model can be written as:
 
-<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}" />
+<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}, \qquad K > 0,\ A > 0,\ r > 0" />
 
-The limit of this function when <InlineMath math="t \to \infty" /> gives the environmental **carrying capacity**:
+Since <InlineMath math="e^{-rt} \to 0" /> as <InlineMath math="t \to \infty" />, the model approaches its **carrying-capacity parameter**:
 
-<BlockMath math="\lim_{t \to \infty} P(t) = K" />
+<BlockMath math="\lim_{t \to \infty} P(t) = \frac{K}{1+A(0)}=K" />
+
+Here, <InlineMath math="K" /> is a parameter of the simplified model. A real environment's carrying capacity can change, so the limit does not claim that every measured population will settle permanently at one fixed value.
 
 ## Application in Technology and Science
 
 ### Digital Signal Analysis
 
-In digital signal processing, limit functions are used to analyze **system response** to certain inputs. Digital filters are often evaluated using limits to understand high and low frequency behavior.
+For a **normalized first-order low-pass model** with cutoff frequency <InlineMath math="\omega_c > 0" />, the magnitude response is:
+
+<BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
+
+Its limiting values make the idealized behavior explicit:
+
+<MathContainer>
+<BlockMath math="\lim_{\omega \to 0}|H(i\omega)|=1" />
+<BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
+</MathContainer>
+
+This model passes very low frequencies with unit gain and increasingly attenuates high frequencies. It is one mathematical filter model, not a description of every digital filter.
 
 ### Chemical Reaction Rate
 
-In chemistry, reaction rates can be modeled using exponential functions. Limit functions help determine the **equilibrium concentration** of reactants:
+For an **idealized first-order consumption** of reactant <InlineMath math="A" />, the integrated rate law is:
 
-<BlockMath math="\lim_{t \to \infty} [A](t) = [A]_{\text{equilibrium}}" />
+<BlockMath math="[A](t)=[A]_0e^{-kt}, \qquad k>0" />
 
-## City Vaccination Program Optimization
+Therefore,
+
+<BlockMath math="\lim_{t \to \infty}[A](t)=[A]_0\lim_{t \to \infty}e^{-kt}=0" />
+
+This conclusion belongs to that irreversible first-order model. A reversible reaction at equilibrium generally requires a different model and need not have zero reactant concentration.
+
+## Evaluating a Fictional City Vaccination Target
 
 1. **Problem Description:**
 
-    A city with a population of <InlineMath math="576{,}260 \text{ people}" /> is facing a disease outbreak. The city government has developed a mathematical model to predict the number of positive cases based on the number of people who have been vaccinated. The model is expressed in the function:
+    In this fictional classroom scenario, a city has a population of <InlineMath math="576{,}260 \text{ people}" />. The exercise supplies a simplified formula relating a vaccination count to a modeled number of remaining positive cases:
 
     <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
 
@@ -98,23 +119,27 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
 
 3. **Data and Assumptions:**
 
-    Based on the city's demographic survey:
+    The exercise assumes:
     - Total population: <InlineMath math="576{,}260 \text{ people}" />
     - Age composition: <InlineMath math="21\%" /> children (<InlineMath math="\leq 18 \text{ years}" />), <InlineMath math="79\%" /> adults (<InlineMath math="\gt 18 \text{ years}" />)
-    - Health status: <InlineMath math="30\%" /> already confirmed positive
+    - Health status: <InlineMath math="30\%" /> already confirmed positive, with the same proportion assumed across age groups
     - Policy: Only adults who are not positive can be vaccinated
 
     Justification for Vaccination Target of <InlineMath math="282{,}367 \text{ people}" />:
 
     <MathContainer>
-    <BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}015 \text{ people}" />
-    <BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245 \text{ people}" />
+    <BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}014.6 \approx 121{,}015 \text{ people}" />
+    <BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
     <BlockMath math="\text{Total positive} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
-    <BlockMath math="\text{Positive adults} = 0.79 \times 172{,}878 = 136{,}574 \text{ people}" />
-    <BlockMath math="\text{Adults eligible for vaccination} = 455{,}245 - 136{,}574 = 318{,}671 \text{ people}" />
+    <BlockMath math="\text{Positive adults} = 0.79 \times 0.30 \times 576{,}260 = 136{,}573.62 \approx 136{,}574 \text{ people}" />
+    <BlockMath math="\text{Eligible adults} = 0.79 \times 0.70 \times 576{,}260 = 318{,}671.78 \approx 318{,}672 \text{ people}" />
     </MathContainer>
 
-    The vaccination target of <InlineMath math="282{,}367 \text{ people}" /> represents <InlineMath math="89\%" /> of eligible adults, adjusted for vaccine availability and medical staff capacity.
+    Compute the target share from the **unrounded eligible count**:
+
+    <BlockMath math="\frac{282{,}367}{318{,}671.78}\times 100\% \approx 88.6\%" />
+
+    The vaccination target is therefore about <InlineMath math="88.6\%" /> of the eligible adults in this fictional scenario. The exercise provides this target; the calculation does not justify how a real target should be selected.
 
 4. **Solution:**
 
@@ -125,6 +150,8 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
     **Step** <InlineMath math="1" />: Calculate <InlineMath math="(190.68)^3" />
 
     <BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
+
+    The displayed value is rounded to two decimal places; the calculation below retains the unrounded value internally.
 
     **Step** <InlineMath math="2" />: Calculate <InlineMath math="(282{,}367)^2" />
 
@@ -144,32 +171,32 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
 
 5. **Result Interpretation:**
 
-    When the vaccination program reaches the target of <InlineMath math="282{,}367" /> vaccinated people, the model predicts that there will be <InlineMath math="2{,}621" /> positive cases remaining that still need to be handled. This result provides important information for subsequent health resource planning.
+    At <InlineMath math="282{,}367" /> vaccinated people, the supplied formula gives approximately <InlineMath math="2{,}621" /> remaining cases. This is an output of the fictional model, **not a real-world forecast** or a sufficient basis for allocating health resources.
 
-## Interpretation and Decision Making
+## Interpreting the Result Responsibly
 
-**Understanding limit results** is very important in decision making. In the example above, the result of <InlineMath math="2{,}621 \text{ cases}" /> provides information to policymakers about:
+The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical question posed by the exercise. A real decision would still require independently validated evidence about:
 
-1. **Hospital capacity** still needed
-2. **Number of medical personnel** that must be prepared
-3. **Resource allocation** for handling remaining cases
-4. **Communication strategy** to the public about realistic expectations
+1. Current and projected **hospital capacity**
+2. Available **medical personnel** and workload
+3. **Resource allocation** under several credible scenarios
+4. Uncertainty and a truthful **public communication strategy**
 
-> Limit functions provide insights into the long-term behavior of systems, enabling more effective and realistic planning.
+> A limit describes the behavior of a formula. Whether that formula describes reality is a separate evidence question. Always state the model's assumptions, valid domain, units, and uncertainty before interpreting its output.
 
 ## Exercises
 
-1. A pharmaceutical company models vaccine production with the function <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" />. Determine the maximum production capacity using the concept of limits.
+1. A pharmaceutical company models cumulative vaccine production with <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" /> for <InlineMath math="t \geq 0" />. Determine the long-term production ceiling predicted by the model.
 
-2. The function of information spread on social media is expressed as <InlineMath math="I(t) = \frac{100000t}{t + 50}" />. Calculate the limit when <InlineMath math="t \to \infty" /> and interpret the result.
+2. The modeled cumulative reach of a social-media message is <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> for <InlineMath math="t \geq 0" />. Calculate the limit when <InlineMath math="t \to \infty" /> and interpret it within the model.
 
-3. The total cost of mask production is <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Determine the marginal cost using the limit definition.
+3. The total cost model for producing <InlineMath math="x" /> masks is <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Determine the marginal-cost function using the limit definition, then compare it with the exact cost of increasing output from <InlineMath math="x" /> to <InlineMath math="x+1" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 
-   Maximum production capacity is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
+   The model's long-term ceiling is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
 
    <MathContainer>
    <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
@@ -177,7 +204,7 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
    <BlockMath math="= 50000(1 - 0) = 50000 \text{ vaccine units}" />
    </MathContainer>
 
-   So, the maximum production capacity is <InlineMath math="50{,}000" /> vaccine units.
+   The modeled cumulative production approaches <InlineMath math="50{,}000" /> vaccine units. It does not equal that value at any finite <InlineMath math="t" /> because <InlineMath math="e^{-0.1t}>0" /> for finite <InlineMath math="t" />.
 
 2. **Solution:**
 
@@ -187,7 +214,7 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
    <BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ people}" />
    </MathContainer>
 
-   In the long term, information will reach a maximum of <InlineMath math="100{,}000 \text{ people}" />, indicating saturation in information spread.
+   Within the model, cumulative reach approaches <InlineMath math="100{,}000 \text{ people}" /> as time grows. The limit is a modeled saturation level, not evidence that a real message must reach exactly that audience.
 
 3. **Solution:**
 
@@ -217,4 +244,14 @@ In chemistry, reaction rates can be modeled using exponential functions. Limit f
    <BlockMath math="\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) = 5 + 0.02x" />
    </MathContainer>
 
-   The marginal cost is <InlineMath math="5 + 0.02x" /> rupiah per unit. This means, to produce the <InlineMath math="x" />-th mask, the additional cost is <InlineMath math="5 + 0.02x" /> rupiah. The more production, the higher the marginal cost due to the term <InlineMath math="0.02x" />.
+   Thus, the marginal-cost function is <InlineMath math="C'(x)=5+0.02x" /> currency units per output unit.
+
+   The exact cost of the next whole unit is:
+
+   <MathContainer>
+   <BlockMath math="C(x+1)-C(x)" />
+   <BlockMath math="=1000+5(x+1)+0.01(x+1)^2-(1000+5x+0.01x^2)" />
+   <BlockMath math="=5.01+0.02x" />
+   </MathContainer>
+
+   The derivative underestimates this particular one-unit increment by <InlineMath math="0.01" /> currency unit. That comparison shows why marginal cost is an instantaneous rate and only an approximation to a discrete next-unit cost.

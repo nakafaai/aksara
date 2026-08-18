@@ -3,55 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Indonesia's economic growth from $$2013$$ to $$2018$$ always experienced a decline",
+      label: "Growth declined every year from $$2013$$ through $$2018$$",
+      value: false,
+    },
+    {
+      label: "Growth never declined between $$2014$$ and $$2017$$",
+      value: false,
+    },
+    {
+      label: "Growth showed no recovery after $$2015$$",
       value: false,
     },
     {
       label:
-        "After $$2013$$ and before $$2018$$, Indonesia's economy never experienced a decline in growth",
+        "The decline from $$2014$$ to $$2015$$ was larger than the rise from $$2015$$ to $$2016$$",
       value: false,
     },
     {
       label:
-        "Indonesia's economic growth has not shown an improving trend in the last five years",
-      value: false,
-    },
-    {
-      label:
-        "The decline in Indonesia's economic growth from $$2014$$ to $$2015$$ was greater than the increase from $$2015$$ to $$2016$$",
-      value: false,
-    },
-    {
-      label:
-        "During those six years, Indonesia's economic growth in $$2013$$ was always higher than in the following years",
+        "The $$2013$$ growth rate was higher than every rate from $$2014$$ through $$2018$$",
       value: true,
     },
   ],
   id: [
     {
-      label:
-        "Pertumbuhan ekonomi Indonesia sejak tahun $$2013$$ hingga tahun $$2018$$ selalu mengalami penurunan",
+      label: "Pertumbuhan menurun setiap tahun dari $$2013$$ hingga $$2018$$",
+      value: false,
+    },
+    {
+      label: "Pertumbuhan tidak pernah menurun antara $$2014$$ dan $$2017$$",
+      value: false,
+    },
+    {
+      label: "Pertumbuhan tidak menunjukkan pemulihan setelah $$2015$$",
       value: false,
     },
     {
       label:
-        "Setelah tahun $$2013$$ dan sebelum tahun $$2018$$, ekonomi Indonesia tidak pernah mengalami penurunan pertumbuhan",
+        "Penurunan dari $$2014$$ ke $$2015$$ lebih besar daripada kenaikan dari $$2015$$ ke $$2016$$",
       value: false,
     },
     {
       label:
-        "Pertumbuhan perekonomian Indonesia tidak menunjukkan tren yang membaik sejak lima tahun terakhir",
-      value: false,
-    },
-    {
-      label:
-        "Penurunan pertumbuhan ekonomi Indonesia dari tahun $$2014$$ ke $$2015$$ lebih besar daripada kenaikan dari tahun $$2015$$ ke $$2016$$",
-      value: false,
-    },
-    {
-      label:
-        "Selama enam tahun tersebut, pertumbuhan perekonomian Indonesia tahun $$2013$$ selalu lebih tinggi daripada tahun berikutnya",
+        "Tingkat pertumbuhan $$2013$$ lebih tinggi daripada setiap tingkat pada $$2014$$ hingga $$2018$$",
       value: true,
     },
   ],

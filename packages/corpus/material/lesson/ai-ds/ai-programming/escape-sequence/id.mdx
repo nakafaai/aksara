@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Pengenalan Escape Sequence
 
-Escape sequence adalah kombinasi karakter khusus yang dimulai dengan backslash (`\`) diikuti oleh karakter tertentu. Bayangkan ketika kamu ingin menulis tanda kutip di dalam string yang sudah menggunakan tanda kutip yang sama. Komputer akan bingung menentukan mana awal dan akhir string tersebut.
+Escape sequence diawali backslash (`\`) yang diikuti satu atau beberapa karakter dan ditafsirkan secara khusus oleh Python. Notasi ini memungkinkan literal string memuat karakter seperti baris baru atau tanda kutip yang seharusnya menutup literal tersebut.
 
-Escape sequence memberikan cara untuk mengatasi masalah ini dengan menggunakan simbol khusus yang memberi tahu komputer bahwa karakter berikutnya memiliki makna khusus, bukan makna biasa.
+Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupakan bagian dari notasi dalam kode sumber, sedangkan string hasilnya berisi karakter yang diwakili notasi tersebut.
 
 ## Masalah dalam Penulisan String
 
 ### Konflik Tanda Kutip
 
-Ketika kamu menulis string dalam pemrograman, terkadang kamu perlu menyisipkan tanda kutip di dalam string itu sendiri. Ini menciptakan konflik karena komputer tidak tahu mana tanda kutip yang menandai awal/akhir string dan mana yang merupakan bagian dari teks.
+Jika karakter kutip yang sama dipakai sebagai pembatas string dan muncul di dalamnya, kutip yang tidak di-escape akan menutup literal terlalu awal. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
 
 <CodeBlock
   data={[
@@ -72,20 +72,20 @@ Karena backslash memiliki makna khusus dalam escape sequence, bagaimana cara men
       language: "python",
       filename: "escape_backslash.py",
       code: `# Menampilkan backslash dalam string
->>> print('The escape sequence for a new line is \\\\n.')
-The escape sequence for a new line is \\n.
+>>> print('Escape sequence untuk baris baru adalah \\\\n.')
+Escape sequence untuk baris baru adalah \\n.
 
 # Menggunakan raw string (prefix r)
->>> text = r'The escape sequence for a new line is \\n.'
+>>> text = r'Escape sequence untuk baris baru adalah \\n.'
 >>> text
-'The escape sequence for a new line is \\\\n.'
+'Escape sequence untuk baris baru adalah \\\\n.'
 >>> print(text)
-The escape sequence for a new line is \\n.`
+Escape sequence untuk baris baru adalah \\n.`
     }
   ]}
 />
 
-Raw string (dengan prefix `r`) memberitahu Python untuk tidak menginterpretasikan escape sequence, sehingga backslash diperlakukan sebagai karakter biasa.
+Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai escape sequence. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
 
 ## Referensi Escape Sequence
 
@@ -100,21 +100,23 @@ Berikut adalah escape sequence yang sering digunakan dalam pemrograman:
 | `\t` | Tab horizontal |
 | `\b` | Backspace |
 | `\\` | Karakter backslash (\) |
-| `\u`, `\U`, `\N{}` | Karakter Unicode |
-| `\x` | Byte yang dikodekan dalam heksadesimal |
+| `\uxxxx` | Karakter Unicode dengan code point heksadesimal empat digit |
+| `\Uxxxxxxxx` | Karakter Unicode dengan code point heksadesimal delapan digit |
+| `\N{name}` | Karakter Unicode berdasarkan nama terdaftarnya |
+| `\xhh` | Karakter dengan nilai heksadesimal dua digit |
 
 Setiap escape sequence memiliki fungsi khusus untuk mengontrol tampilan atau format teks dalam program.
 
-### String Formatting dan Kurung Kurawal
+### Escape Kurung Kurawal dalam Format String
 
-Dalam string formatting, kurung kurawal memiliki makna khusus. Untuk menampilkan kurung kurawal sebagai karakter biasa, kamu perlu menggunakan escape sequence khusus.
+Dalam `str.format()` dan f-string, kurung kurawal membatasi replacement field. Kurung kurawal ganda meng-escape karakter itu dari sintaks pemformatan. Mekanisme ini berbeda dari escape sequence dengan backslash dalam literal string.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "escape_braces.py",
-      code: `# Escape sequence untuk kurung kurawal: {{ }}
+      code: `# Kurung kurawal yang di-escape dalam format string: {{ }}
 >>> '{{}}'.format('text')
 '{}'
 
@@ -125,7 +127,7 @@ Dalam string formatting, kurung kurawal memiliki makna khusus. Untuk menampilkan
   ]}
 />
 
-Untuk menampilkan satu kurung kurawal, kamu perlu menulis dua kurung kurawal berturut-turut. Escape sequence `{{}}` memberitahu Python bahwa kurung kurawal tersebut adalah karakter biasa, bukan penanda replacement field.
+Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi karakter literal, sedangkan `{}` di tengah tetap menjadi replacement field.
 
 ## Implementasi Praktis
 
@@ -155,4 +157,4 @@ print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
 
 Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` menampilkan path file Windows dengan benar.
 
-Escape sequence adalah alat penting dalam pemrograman yang memungkinkan kamu mengontrol format teks dan menampilkan karakter khusus dengan tepat. Dengan memahami cara kerjanya, kamu dapat membuat program yang menghasilkan output yang lebih profesional dan mudah dibaca.
+Hal terpenting adalah membedakan notasi dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.

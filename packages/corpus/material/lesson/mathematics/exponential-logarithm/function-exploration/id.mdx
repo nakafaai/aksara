@@ -1,89 +1,88 @@
 export const metadata = {
-  title: "Eksplorasi Fungsi",
-  description: "Pelajari fungsi eksponen melalui contoh penyebaran virus, lalu bandingkan pertumbuhan eksponensial dan linear dengan grafik.",
+  title: "Mengeksplorasi Fungsi Eksponensial",
+  description:
+    "Gunakan pohon penularan ideal untuk membedakan jumlah per fase dan kumulatif, membandingkan keluarga fungsi, serta menguji batas model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-02",
   subject: "Eksponen dan Logaritma",
 };
 
-## Pengenalan Fungsi Eksponen
+## Pohon Penularan Ideal
 
-Fungsi eksponen adalah fungsi matematika yang dapat menggambarkan pertumbuhan atau peluruhan yang sangat cepat. Mari kita eksplorasi sifat-sifat fungsi eksponen melalui contoh nyata.
+Anggap satu kasus awal menghasilkan tepat <InlineMath math="3" /> kasus baru dan setiap kasus baru menghasilkan tepat <InlineMath math="3" /> kasus lagi pada fase berikutnya. Anggap tidak ada kontak yang tumpang tindih, tidak ada yang pulih selama model berlangsung, dan faktornya tidak pernah berubah.
 
-## Penyebaran Virus
+Asumsi tersebut sengaja dibuat tidak realistis. Tujuannya adalah membentuk pola percabangan yang bersih untuk mempelajari fungsi eksponensial, bukan meramalkan wabah nyata.
 
-Bayangkan situasi berikut: Seseorang membawa virus dan menulari <InlineMath math="3 \text{ orang}" /> lainnya. Kemudian, setiap orang tersebut menulari <InlineMath math="3 \text{ orang}" /> lainnya lagi pada fase berikutnya.
+## Kasus Baru pada Setiap Fase
 
-### Pola Penyebaran
+Jumlah berikut menghitung **kasus baru pada fase tersebut**, bukan jumlah kumulatif:
 
-Jika kita melacak jumlah orang yang tertular pada setiap fase:
+- **Fase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> kasus baru
+- **Fase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> kasus baru
+- **Fase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> kasus baru
+- **Fase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> kasus baru
+- **Fase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> kasus baru
 
-- **Fase** <InlineMath math="1" />: <InlineMath math="3 = 3^1 \text{ orang}" /> tertular
-- **Fase** <InlineMath math="2" />: <InlineMath math="9 = 3^2 \text{ orang}" /> tertular
-- **Fase** <InlineMath math="3" />: <InlineMath math="27 = 3^3 \text{ orang}" /> tertular
-- **Fase** <InlineMath math="4" />: <InlineMath math="81 = 3^4 \text{ orang}" /> tertular
-- **Fase** <InlineMath math="5" />: <InlineMath math="243 = 3^5 \text{ orang}" /> tertular
+Jika <InlineMath math="N(x)" /> adalah jumlah kasus baru pada fase <InlineMath math="x" />, maka:
 
-### Pola Matematis
+<BlockMath math="N(x)=3^x" />
 
-Dari data di atas, terlihat pola yang jelas: jumlah orang yang tertular pada fase ke-<InlineMath math="x"/> adalah <InlineMath math="3^x"/>.
+Jumlah kumulatif kasus baru dari fase pertama hingga fase <InlineMath math="x" /> merupakan jumlah geometri:
 
-Jika <InlineMath math="f(x)"/> menyatakan banyaknya orang yang tertular pada fase ke-<InlineMath math="x"/>, maka:
+<BlockMath math="S(x)=3+3^2+\cdots+3^x=\frac{3^{x+1}-3}{2}" />
 
-<BlockMath math="f(x) = 3^x" />
+Memisahkan kedua besaran ini mencegah kesalahan pemodelan yang umum: <InlineMath math="N(x)" /> menjelaskan satu fase, sedangkan <InlineMath math="S(x)" /> menjumlahkan semua fase yang telah selesai.
 
-Ini adalah contoh fungsi eksponen.
+## Membandingkan Keluarga Fungsi
 
-### Visualisasi Penyebaran
+Grafik membandingkan tiga rumus pada nilai fase yang sama:
 
-1. **Grafik Eksponensial**: <InlineMath math="f(x) = 3^x"/>
-2. **Grafik Linear**: <InlineMath math="f(x) = 3x"/>
-3. **Grafik Logaritmik**: <InlineMath math="f(x) = \log(x+1) \cdot 20"/>
+1. **Eksponensial**: <InlineMath math="y=3^x" />
+2. **Linear**: <InlineMath math="y=3x" />
+3. **Logaritmik**: <InlineMath math="y=20\ln(x+1)" />
 
-Dengan menggunakan persamaan diatas, kita dapat memvisualisasikan penyebaran virus melalui grafik berikut:
+Hanya kurva eksponensial yang sesuai dengan aturan “dikalikan tiga pada setiap fase.” Kedua kurva lainnya hanya membandingkan bentuk, bukan menyatakan model penularan alternatif.
 
 <FunctionExplorationVirusChart
   labels={{
-    title: "Penyebaran Virus",
-    description: "Jumlah orang yang tertular pada setiap fase.",
-    exponential: "Fungsi Eksponensial",
-    linear: "Fungsi Linear",
-    logarithmic: "Fungsi Logaritmik",
-    yLabel: "Jumlah orang yang tertular",
+    title: "Pohon Penularan Ideal",
+    description: "Kasus baru yang dihasilkan pada setiap fase menurut aturan percabangan tetap.",
+    exponential: "Eksponensial",
+    linear: "Linear",
+    logarithmic: "Logaritmik",
+    yLabel: "Kasus baru pada fase",
     caption:
-      "Virus menyebar secara eksponensial, meningkat secara cepat setelah fase awal.",
+      "Kurva eksponensial sesuai dengan faktor tetap tiga; penularan nyata tidak mempertahankan asumsi ini tanpa batas.",
     phase: "Fase",
   }}
 />
 
-### Pertanyaan Analisis
+## Pembahasan Pertanyaan
 
-1. Berapakah jumlah orang yang tertular pada fase ke-<InlineMath math="20" />?
+1. Berapa banyak kasus baru yang dihasilkan model pada fase <InlineMath math="20" />?
 
-   <BlockMath math="f(20) = 3^{20} = 3.486.784.401" />
+   <BlockMath math="N(20)=3^{20}=3{.}486{.}784{.}401" />
 
-2. Fungsi mana yang mewakili penyebaran virus?
+2. Berapa jumlah kumulatif kasus baru dari fase <InlineMath math="1" /> hingga fase <InlineMath math="20" />?
 
-   Dari tiga grafik yang ditunjukkan, **grafik eksponensial** paling tepat menggambarkan penyebaran virus ini. Grafik ini menunjukkan pertumbuhan yang lambat di awal namun sangat cepat seiring bertambahnya fase.
+   <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{.}230{.}176{.}600" />
 
-## Sifat-sifat Fungsi Eksponen
+3. Mengapa kurva eksponensial, bukan kurva linear, sesuai dengan aturan hipotetis tersebut?
 
-Dari eksplorasi di atas, kita dapat menyimpulkan beberapa sifat fungsi eksponen <InlineMath math="f(x) = a^x"/> (dengan <InlineMath math="a > 0"/> dan <InlineMath math="a \neq 1"/>):
+   Model eksponensial mengalikan fase sebelumnya dengan <InlineMath math="3" />. Model linear akan menambahkan jumlah yang sama pada setiap fase. Perkalian dengan faktor tetap dan penambahan dengan jumlah tetap merupakan dua proses berbeda.
 
-1. **Pertumbuhan/Peluruhan Cepat**: Nilai fungsi meningkat/menurun dengan sangat cepat.
-2. **Domain dan Range**: Domain semua bilangan real, range semua bilangan positif.
-3. **Titik Potong**: Selalu melalui titik <InlineMath math="(0, 1)" /> karena <InlineMath math="a^0 = 1" />.
-4. **Sifat Grafik**:
-   - Jika <InlineMath math="a > 1"/>, fungsi meningkat (seperti kasus penyebaran virus dengan <InlineMath math="a = 3"/>)
-   - Jika <InlineMath math="0 < a < 1"/>, fungsi menurun
+Hasil yang sangat besar menunjukkan bahwa asumsi tersebut tidak boleh diperpanjang sembarangan. Nilai itu bukan ramalan jumlah kasus yang masuk akal.
 
-## Aplikasi Fungsi Eksponen
+## Sifat yang Terlihat dalam Eksplorasi
 
-Fungsi eksponen digunakan dalam berbagai bidang:
+Untuk <InlineMath math="f(x)=a^x" /> dengan <InlineMath math="a>0" /> dan <InlineMath math="a\neq1" />:
 
-- Pertumbuhan populasi
-- Bunga majemuk dalam ekonomi
-- Peluruhan radioaktif
-- Penyebaran penyakit (seperti contoh di atas)
+1. Domainnya <InlineMath math="\mathbb{R}" /> dan range-nya <InlineMath math="(0,\infty)" />.
+2. Grafik melalui <InlineMath math="(0,1)" /> karena <InlineMath math="a^0=1" />.
+3. Jika <InlineMath math="a>1" />, fungsi tersebut naik.
+4. Jika <InlineMath math="0<a<1" />, fungsi tersebut turun.
+5. Jarak <InlineMath math="a" /> dari <InlineMath math="1" /> memengaruhi seberapa cepat keluarannya berubah. Perilaku eksponensial tidak selalu berarti “sangat cepat.”
 
-Memahami fungsi eksponen membantu kita menganalisis dan memprediksi fenomena yang menunjukkan pertumbuhan atau peluruhan yang cepat.
+## Tempat Model Eksponensial Digunakan
+
+Fungsi eksponensial dapat memodelkan bunga majemuk, peluruhan radioaktif, penggandaan berulang, serta fase singkat perubahan populasi atau penularan. Sebelum menggunakannya, tentukan apakah proses tersebut memang menerapkan **faktor** yang kurang lebih tetap pada interval yang sama. Jika laju, sumber daya, atau interaksi berubah, modelnya juga harus berubah.

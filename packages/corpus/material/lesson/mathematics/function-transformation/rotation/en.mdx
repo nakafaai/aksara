@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Rotation",
-  description: "Learn function rotation around fixed points with worked examples. Learn rotation formulas, angles, and transformations for various function types.",
+  description: "Use formulas, graphs, and fully worked examples to rotate points and function curves around a fixed center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Function Transformation",
@@ -12,7 +12,7 @@ export const metadata = {
 
 Rotation is a geometric transformation that rotates an object around a specific center point with a determined rotation angle. In the context of functions, rotation changes the position of the function graph by rotating every point on the graph.
 
-Imagine rotating a wheel. Every point on the wheel will move following a circle with the rotation center as its center. Similarly with function graphs, every point will rotate following the same pattern.
+A wheel illustrates the geometry: every point travels along a circle centered at the axle. A graph rotates in the same point-by-point way, with every point keeping its distance from the rotation center.
 
 ## Rotation Formula Around Center Point
 
@@ -47,7 +47,7 @@ When rotation is performed around the origin <InlineMath math="(0, 0)" />, the f
 
 ## Visualization of Quadratic Function Rotation
 
-Let's see how rotation affects the quadratic function <InlineMath math="y = x^2" />:
+Rotate the quadratic curve <InlineMath math="y = x^2" /> around the origin:
 
 <LineEquation
   title={<>Rotation of Function <InlineMath math="y = x^2" /> Around Origin</>}
@@ -55,8 +55,8 @@ Let's see how rotation affects the quadratic function <InlineMath math="y = x^2"
   data={[
     {
       points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        const y = x * x * 0.25;
+        const x = (i - 10) * 0.25;
+        const y = x * x;
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
@@ -71,8 +71,8 @@ Let's see how rotation affects the quadratic function <InlineMath math="y = x^2"
     },
     {
       points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        const y = x * x * 0.25;
+        const x = (i - 10) * 0.25;
+        const y = x * x;
         // 90° rotation around origin: (x,y) → (-y,x)
         const xRotated = -y;
         const yRotated = x;
@@ -119,7 +119,7 @@ For linear function <InlineMath math="y = mx + c" />, rotation will change the s
       showPoints: false,
       labels: [
         {
-          text: <InlineMath math="y=2x+1" />,
+          text: <InlineMath math="y=2x + 1" />,
           at: 6,
           offset: [1, 0.5, 0],
         },
@@ -161,7 +161,7 @@ Rotation can also be applied to exponential functions with interesting results.
     {
       points: Array.from({ length: 15 }, (_, i) => {
         const x = (i - 7) * 0.5;
-        const y = Math.pow(2, x * 0.5);
+        const y = Math.pow(2, x);
         return { x, y, z: 0 };
       }),
       color: "#059669",
@@ -177,7 +177,7 @@ Rotation can also be applied to exponential functions with interesting results.
     {
       points: Array.from({ length: 15 }, (_, i) => {
         const x = (i - 7) * 0.5;
-        const y = Math.pow(2, x * 0.5);
+        const y = Math.pow(2, x);
         // 90° rotation around origin: (x,y) → (-y,x)
         const xRotated = -y;
         const yRotated = x;
@@ -203,7 +203,7 @@ To determine the rotation result of a function, follow these steps:
 - Determine the rotation center point and desired rotation angle
 - Select several points on the original function graph as samples
 - Apply the rotation formula to each sample point
-- Connect the rotation result points to form a new function graph
+- Connect the rotated points to trace the rotated curve, which may no longer be a function of x
 - Verify the result by checking several additional points
 
 ## Exercises
@@ -243,7 +243,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="(3,4)" />,
+             text: <InlineMath math="(3, 4)" />,
              at: 1,
              offset: [0.3, 0.3, 0],
            },
@@ -259,7 +259,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="(-4,3)" />,
+             text: <InlineMath math="(-4, 3)" />,
              at: 1,
              offset: [-0.5, 0.3, 0],
            },
@@ -293,7 +293,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="f(x)=x^2-2x+1" />,
+             text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
              at: 18,
              offset: [1, 0.5, 0],
            },
@@ -348,7 +348,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="y=3x-2" />,
+             text: <InlineMath math="y=3x - 2" />,
              at: 6,
              offset: [2, 0.5, 0],
            },
@@ -367,7 +367,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="y=-\frac{1}{3}x-⅔" />,
+             text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
              at: 5,
              offset: [-0.5, 1.5, 0],
            },
@@ -403,7 +403,7 @@ To determine the rotation result of a function, follow these steps:
          showPoints: false,
          labels: [
            {
-             text: <InlineMath math="(2,5)" />,
+             text: <InlineMath math="(2, 5)" />,
              at: 1,
              offset: [0.3, 0.3, 0],
            },
@@ -441,7 +441,7 @@ To determine the rotation result of a function, follow these steps:
    <BlockMath math="y = x^2 \text{ for} x \leq 0" />
    </MathContainer>
 
-   The rotation result graph forms a parabola that opens upward with domain <InlineMath math="x \leq 0" /> and range <InlineMath math="y \geq 0" />. This is a reflection of parabola <InlineMath math="y = x^2" /> across the <InlineMath math="y" />-axis.
+   The rotated curve is the left half of an upward-opening parabola. Its domain is <InlineMath math="x \leq 0" /> and its range is <InlineMath math="y \geq 0" />. It is obtained by reflecting the original right half of <InlineMath math="y = x^2" /> across the <InlineMath math="y" />-axis.
 
    <LineEquation
      title={<>Rotation of Function <InlineMath math="y = \sqrt{x}" /></>}

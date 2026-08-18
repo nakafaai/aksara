@@ -1,20 +1,20 @@
 export const metadata = {
-   title: "Permutation with Identical Objects",
-   description: "Learn permutation with identical objects using multinomial formula. Learn counting distinct arrangements when items are indistinguishable with examples.",
+   title: "Permutations with Identical Objects",
+   description: "Count distinct arrangements when some objects are indistinguishable. Worked examples derive the multinomial formula and apply it to letters, colors, and digits.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Combinatorics",
 };
 
-## Understanding Permutation with Identical Objects
+## Why identical objects change the count
 
-**Permutation with identical objects** is an arrangement of objects where there are several objects that are identical or the same. When there are identical objects, the number of different arrangements will decrease because **exchanging identical objects does not produce new arrangements**.
+A **permutation with identical objects** counts arrangements when some objects cannot be distinguished from one another. The count is smaller than an ordinary permutation because **exchanging identical objects does not produce a new arrangement**.
 
-Imagine arranging letters from the word "MAMA". Although there are <InlineMath math="4" /> letters, we cannot distinguish between the first <InlineMath math="M" /> and the second <InlineMath math="M" />, or the first <InlineMath math="A" /> and the second <InlineMath math="A" />. As a result, arrangements that look different but use the same letters in different positions are considered identical.
+Consider the letters in "MAMA". There are <InlineMath math="4" /> letters, but the two copies of <InlineMath math="M" /> are indistinguishable, as are the two copies of <InlineMath math="A" />. If we temporarily label the copies, swapping those labels would be counted as a different permutation even though the visible word stays the same.
 
 ## Formula for Identical Object Permutation
 
-For permutation of <InlineMath math="n" /> objects where there are identical objects, **the formula used** is:
+For <InlineMath math="n" /> objects divided into groups of identical objects, **the number of distinct arrangements** is:
 
 <MathContainer>
 <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
@@ -25,8 +25,9 @@ For permutation of <InlineMath math="n" /> objects where there are identical obj
 - <InlineMath math="n" /> = total number of objects
 - <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = number of identical objects in each group
 - <InlineMath math="k" /> = number of groups of identical objects
+- The frequencies include every object, so <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
 
-**How to identify identical objects**: Count how many times each object appears in the entire arrangement, not just looking at different objects.
+**How to identify the groups:** Count how often each distinct object appears. Dividing by each <InlineMath math="r_i!" /> removes the duplicate labelings within that group.
 
 ## Application to Words and Letters
 
@@ -59,7 +60,7 @@ Simplify the fraction by canceling common factors:
 Calculate step by step:
 - Divide <InlineMath math="10" /> by <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
 - So: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
-- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302{,}400" />
+- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
 
 ### Example Word PALAPA
 
@@ -117,8 +118,8 @@ Let's apply these steps to find arrangements of the word "BANANA":
 
    Count how many times each letter appears:
    - <InlineMath math="B" /> appears <InlineMath math="1 \text{ time}" />
-   - A appears <InlineMath math="3 \text{ times}" />
-   - N appears <InlineMath math="2 \text{ times}" />
+   - <InlineMath math="A" /> appears <InlineMath math="3 \text{ times}" />
+   - <InlineMath math="N" /> appears <InlineMath math="2 \text{ times}" />
 
 4. **Apply formula**
 
@@ -172,7 +173,7 @@ Identical objects **reduce** the number of arrangements because exchanging ident
 
 1. How many letter arrangements can be made from the word "MATEMATIKA"?
 
-2. A flower shop has <InlineMath math="8" /> roses where <InlineMath math="3" /> are red, <InlineMath math="3" /> are white, and <InlineMath math="2" /> are yellow. How many ways can these flowers be arranged in a row?
+2. A flower shop arranges <InlineMath math="8" /> roses in a row. Only color matters: <InlineMath math="3" /> are red, <InlineMath math="3" /> are white, and <InlineMath math="2" /> are yellow. How many color arrangements are possible?
 
 3. From the digits <InlineMath math="1, 1, 2, 2, 2, 3" />, how many <InlineMath math="6" />-digit numbers can be formed?
 
@@ -196,10 +197,10 @@ Identical objects **reduce** the number of arrangements because exchanging ident
    </MathContainer>
 
    Calculate with simplification:
-   - Complete calculation: <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604{,}800" />
-   - Divide by <InlineMath math="4" />: <InlineMath math="\frac{604{,}800}{4} = 151{,}200 \text{ arrangements}" />
+   - Complete calculation: <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604\,800" />
+   - Divide by <InlineMath math="4" />: <InlineMath math="\frac{604\,800}{4} = 151\,200 \text{ arrangements}" />
 
-2. Total <InlineMath math="8" /> flowers with red <InlineMath math="3" />, white <InlineMath math="3" />, and yellow <InlineMath math="2" />
+2. There are <InlineMath math="8" /> color positions: red appears <InlineMath math="3" /> times, white appears <InlineMath math="3" /> times, and yellow appears <InlineMath math="2" /> times.
 
    Simplify the fraction by canceling common factors:
 
@@ -251,4 +252,4 @@ Identical objects **reduce** the number of arrangements because exchanging ident
    Calculate with simplification:
    - Divide by <InlineMath math="2" />: <InlineMath math="\frac{8}{2} = 4" />
    - So: <InlineMath math="9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3" />
-   - <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90{,}720 \text{ arrangements}" />
+   - <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90\,720 \text{ arrangements}" />

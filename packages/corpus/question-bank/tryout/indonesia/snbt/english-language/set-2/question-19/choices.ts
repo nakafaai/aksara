@@ -3,28 +3,26 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "fears around automation and technology's impact on jobs continue to grow as innovations have the potential to change the employment landscape",
+      label: "GenAI has already eliminated one quarter of all jobs worldwide.",
       value: false,
     },
     {
       label:
-        "millions of jobs could be lost as a result of new technologies at the same time, millions of jobs will also be created",
+        "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
       value: true,
     },
     {
-      label:
-        "technological change has reduced the need for routine mechanized work and increased both the demand and pay for high-skilled technical and analytic work",
+      label: "Only low-income countries have occupations exposed to GenAI.",
       value: false,
     },
     {
       label:
-        "many growing health- and service-related jobs require skills that robots and automation can't replace",
+        "The ILO index predicts the exact date on which each worker will lose a job.",
       value: false,
     },
     {
       label:
-        "concerns about robots miss that the advent of technology is more likely to change jobs not eliminate them because there is some skills that robots and automation can't replace",
+        "Infrastructure and worker skills have no influence on technology adoption.",
       value: false,
     },
   ],

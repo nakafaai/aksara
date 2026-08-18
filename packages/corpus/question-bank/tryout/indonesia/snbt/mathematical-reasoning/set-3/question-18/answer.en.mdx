@@ -20,9 +20,10 @@ Observe the solution sketch:
   labels={{ helicopter: "Helicopter", observer: "Observer", building: "Building" }}
 />
 
-Observe the geometry:
+Read the geometry from the sketch:
 - <InlineMath math="AD = 16\text{ m}" /> (building height).
 - <InlineMath math="AB" /> is the distance from the building to the tip of the shadow.
+- <InlineMath math="AE = 32\text{ m}" /> and <InlineMath math="BE = x" />, so <InlineMath math="AB = 32 - x" />.
 - The angle of elevation to the top of the building is <InlineMath math="30^\circ" /> and to the helicopter is <InlineMath math="45^\circ" />.
 
 First, we calculate the distance <InlineMath math="AB" /> using <InlineMath math="\tan(30^\circ)" /> in triangle <InlineMath math="ABD" />.
@@ -32,6 +33,8 @@ First, we calculate the distance <InlineMath math="AB" /> using <InlineMath math
   <BlockMath math="\frac{1}{\sqrt{3}} = \frac{16}{AB}" />
   <BlockMath math="AB = 16\sqrt{3}" />
 </MathContainer>
+
+This also makes the shadow data consistent: <InlineMath math="x = 32 - 16\sqrt{3}" />, which is positive because <InlineMath math="16\sqrt{3} < 32" />. We do not need the numerical value of <InlineMath math="x" /> to find the helicopter's height.
 
 Next, use this distance <InlineMath math="AB" /> to find the total height of the helicopter from the ground (<InlineMath math="AC" />) using <InlineMath math="\tan(45^\circ)" /> in triangle <InlineMath math="ABC" />.
 

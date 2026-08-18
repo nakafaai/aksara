@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Ruang Vektor Kompleks",
-    description: "Pelajari ruang vektor kompleks dengan bilangan kompleks, teorema fundamental aljabar, dan delapan aksioma penting metode linear AI secara bertahap.",
+    description: "Bangun ruang vektor kompleks dari lapangan kompleks, pahami aksioma ruang vektor, dan lihat bagaimana pilihan skalar mengubah dimensi serta linearitas.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-12",
     subject: "Metode Linear AI",
@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Pengenalan Bilangan Kompleks
 
-Sebelum memahami ruang vektor kompleks, kita perlu memahami bilangan kompleks terlebih dahulu. Bayangkan kita memiliki unit imajiner <InlineMath math="i" /> dengan sifat khusus <InlineMath math="i^2 = -1" />. Bilangan kompleks adalah bilangan yang terdiri dari bagian real dan bagian imajiner.
+Unit imajiner <InlineMath math="i" /> memenuhi <InlineMath math="i^2=-1" />. Sebuah bilangan kompleks menggabungkan koordinat real dan imajiner, sehingga satu skalar dapat menyatakan penskalaan sekaligus rotasi.
 
 Himpunan bilangan kompleks didefinisikan sebagai <InlineMath math="\mathbb{C} := \{z = x + iy : x, y \in \mathbb{R}\}" />. Dalam setiap bilangan kompleks <InlineMath math="z = x + iy" />, bagian <InlineMath math="x = \text{Re}(z)" /> disebut **bagian real** dan bagian <InlineMath math="y = \text{Im}(z)" /> disebut **bagian imajiner**.
 
-Dengan menggunakan sifat <InlineMath math="i^2 = -1" />, kita dapat melakukan operasi aritmetika pada bilangan kompleks seperti penjumlahan, pengurangan, perkalian, dan pembagian. Himpunan <InlineMath math="(\mathbb{C}, +, \cdot)" /> membentuk sebuah **lapangan** (field).
+Penjumlahan, pengurangan, perkalian, serta pembagian dengan bilangan tak nol tetap berada di dalam <InlineMath math="\mathbb C" />. Dengan operasi tersebut, <InlineMath math="(\mathbb{C}, +, \cdot)" /> membentuk sebuah **lapangan**, sehingga anggotanya dapat digunakan sebagai skalar ruang vektor.
 
 ### Konjugat dan Modulus
 
-Untuk bilangan kompleks <InlineMath math="z = x + iy" />, **konjugat kompleks** didefinisikan sebagai <InlineMath math="\overline{z} = x - iy" />. Konjugat ini berguna dalam berbagai perhitungan.
+Untuk <InlineMath math="z=x+iy" />, **konjugat kompleksnya** adalah <InlineMath math="\overline z=x-iy" />. Karena <InlineMath math="z\overline z=x^2+y^2" />, konjugasi dapat dipakai untuk menghitung besar dan invers, misalnya <InlineMath math="z^{-1}=\overline z/|z|^2" /> ketika <InlineMath math="z\neq0" />.
 
 **Modulus** atau nilai mutlak dari bilangan kompleks dihitung dengan rumus:
 
@@ -26,7 +26,7 @@ Modulus ini memberikan "jarak" bilangan kompleks dari titik asal dalam bidang ko
 
 ## Teorema Fundamental Aljabar
 
-Teorema fundamental aljabar merupakan hasil penting yang membedakan polinomial kompleks dari polinomial real. Teorema ini menyatakan bahwa setiap polinomial tidak konstan dengan koefisien kompleks pasti memiliki akar kompleks.
+Teorema fundamental aljabar menyatakan bahwa setiap polinom tidak konstan dengan koefisien kompleks memiliki akar kompleks.
 
 Sekarang, mari kita lihat hasil yang sangat penting. Setiap polinomial tidak konstan
 
@@ -34,11 +34,15 @@ Sekarang, mari kita lihat hasil yang sangat penting. Setiap polinomial tidak kon
 
 dengan derajat <InlineMath math="n \geq 1" /> dan koefisien kompleks <InlineMath math="a_k \in \mathbb{C}" /> untuk <InlineMath math="k = 0, 1, \ldots, n" /> dengan <InlineMath math="a_n \neq 0" />, memiliki setidaknya satu akar kompleks. Ini berarti terdapat bilangan <InlineMath math="z_* \in \mathbb{C}" /> sehingga <InlineMath math="p(z_*) = 0" />.
 
-Teorema ini sangat penting karena menjamin bahwa dalam lapangan bilangan kompleks, setiap persamaan polinomial selalu memiliki solusi.
+Penerapan teorema secara berulang menunjukkan bahwa polinom berderajat <InlineMath math="n" /> dapat difaktorkan sepenuhnya di dalam <InlineMath math="\mathbb C" />:
+
+<BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
+
+Jadi, polinom tersebut memiliki tepat <InlineMath math="n" /> akar kompleks jika multiplisitas dihitung. Syarat "tidak konstan" penting: polinom konstanta tak nol tidak memiliki akar.
 
 ## Definisi dan Aksioma Ruang Vektor Kompleks
 
-Setelah memahami bilangan kompleks, kita dapat memperluas konsep ruang vektor dari skalar real ke skalar kompleks. Ruang vektor tidak hanya dapat didefinisikan dengan skalar dari <InlineMath math="\mathbb{R}" />, tetapi juga dari lapangan lain seperti <InlineMath math="\mathbb{C}" />.
+Ruang vektor kompleks memakai bilangan dari <InlineMath math="\mathbb C" /> sebagai skalar. Kedua operasinya harus tertutup pada himpunan yang dinyatakan dan mematuhi aturan kesesuaian aljabar yang sama seperti ruang vektor real.
 
 Suatu himpunan <InlineMath math="V" /> dengan operasi penjumlahan
 
@@ -74,8 +78,21 @@ disebut **ruang vektor kompleks** jika memenuhi aksioma-aksioma berikut:
 
 Elemen-elemen <InlineMath math="x \in V" /> disebut **vektor**, sementara elemen-elemen <InlineMath math="\lambda \in \mathbb{C}" /> disebut **skalar**.
 
+## Contoh Konkret
+
+Himpunan <InlineMath math="V=\mathbb C^2" /> adalah ruang vektor kompleks dengan operasi per komponen. Sebagai contoh,
+
+<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+
+Lapangan skalar mengubah cara kita menghitung dimensi. Himpunan <InlineMath math="\mathbb C" /> memiliki basis <InlineMath math="\{1\}" /> sebagai ruang vektor kompleks, tetapi basis <InlineMath math="\{1,i\}" /> sebagai ruang vektor real:
+
+| Himpunan vektor yang sama | Skalar yang diperbolehkan | Dimensi |
+|---|---|---|
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
 ## Perbedaan dengan Ruang Vektor Real
 
-Penting untuk memahami bahwa dalam ruang vektor kompleks, kita tidak menggunakan sifat-sifat khusus bilangan real seperti urutan atau analisis real. Semua hasil yang berlaku untuk ruang vektor tetap berlaku untuk ruang vektor kompleks, terutama yang berkaitan dengan matriks, sistem persamaan linear, dan determinan.
+Hasil aljabar murni yang diturunkan dari aksioma ruang vektor berlaku pada <InlineMath math="\mathbb R" /> maupun <InlineMath math="\mathbb C" />. Hasil yang menggunakan urutan atau produk skalar khusus real perlu menyesuaikan asumsinya. Sebagai contoh, produk skalar kompleks memerlukan konjugasi, dan bilangan kompleks tidak memiliki urutan lapangan yang sesuai dengan aritmetikanya.
 
-Perbedaan utama terletak pada **lapangan skalar** yang digunakan. Ruang vektor real menggunakan <InlineMath math="\mathbb{R}" /> sebagai lapangan skalar, sedangkan ruang vektor kompleks menggunakan <InlineMath math="\mathbb{C}" /> yang memberikan fleksibilitas lebih dalam perhitungan.
+Lapangan skalar juga menentukan pemetaan mana yang linear. Konjugasi kompleks bersifat linear terhadap <InlineMath math="\mathbb R" />, tetapi tidak terhadap <InlineMath math="\mathbb C" />, sebab <InlineMath math="\overline{iz}=-i\overline z" /> dan bukan <InlineMath math="i\overline z" />. Nyatakan selalu lapangan skalarnya sebelum membahas basis, dimensi, atau pemetaan linear.

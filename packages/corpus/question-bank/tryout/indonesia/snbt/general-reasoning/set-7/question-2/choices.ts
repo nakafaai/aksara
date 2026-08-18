@@ -3,46 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Teeth that are not routinely cleaned can form tartar.",
-      value: false,
-    },
-    { label: "Accumulated tartar can cause gingivitis.", value: false },
-    {
-      label:
-        "Food leftovers accumulating on the tooth surface have the potential to form tartar.",
+      label: "Plaque that is not removed can harden into tartar.",
       value: false,
     },
     {
-      label:
-        "Pain and swelling in the gums are always caused by accumulated food leftovers.",
+      label: "Tartar below the gumline can irritate the gums.",
+      value: false,
+    },
+    {
+      label: "Red, swollen, or bleeding gums can be signs of gingivitis.",
+      value: false,
+    },
+    {
+      label: "Every case of swollen gums is caused only by plaque or tartar.",
       value: true,
     },
     {
-      label: "Gum infection occurs due to the accumulation of tartar.",
+      label: "A dental professional must remove tartar after it has formed.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Gigi yang tidak rutin dibersihkan dapat membentuk karang gigi.",
+      label: "Plak yang tidak dibersihkan dapat mengeras menjadi karang gigi.",
       value: false,
     },
     {
-      label: "Karang gigi yang menumpuk dapat menyebabkan gingivitis.",
-      value: false,
-    },
-    {
-      label:
-        "Sisa makanan yang menumpuk di permukaan gigi berpotensi membentuk karang gigi.",
+      label: "Karang gigi di bawah garis gusi dapat mengiritasi gusi.",
       value: false,
     },
     {
       label:
-        "Nyeri dan bengkak di gusi selalu disebabkan oleh sisa makanan yang menumpuk.",
+        "Gusi merah, bengkak, atau berdarah dapat menjadi tanda gingivitis.",
+      value: false,
+    },
+    {
+      label:
+        "Setiap kasus gusi bengkak hanya disebabkan oleh plak atau karang gigi.",
       value: true,
     },
     {
-      label: "Infeksi gusi terjadi karena adanya penumpukan karang gigi.",
+      label:
+        "Tenaga kesehatan gigi harus membersihkan karang gigi yang sudah terbentuk.",
       value: false,
     },
   ],

@@ -2,56 +2,40 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "Both economic indicators increased.", value: false },
     {
-      label:
-        "Factors influencing poverty levels, such as real wages of farm laborers and farmers' exchange rates, experienced a significant increase.",
+      label: "Only the real wage of farmworkers failed to increase.",
       value: false,
     },
     {
-      label:
-        "Real wages of farm laborers and farmers' exchange rates did not increase.",
+      label: "Village poverty and rural-urban inequality will both decrease.",
       value: false,
     },
     {
-      label:
-        "Poverty occurring in villages and inequality between villages and cities will decrease.",
+      label: "The model provides no conclusion about poverty or inequality.",
       value: false,
     },
     {
-      label:
-        "Poverty is rife in villages and inequality between villages and cities continues.",
-      value: false,
-    },
-    {
-      label:
-        "Poverty and inequality between villages and cities are very high.",
+      label: "Village poverty and rural-urban inequality will both increase.",
       value: true,
     },
   ],
   id: [
+    { label: "Kedua indikator ekonomi tersebut meningkat.", value: false },
+    { label: "Hanya upah riil buruh tani yang tidak meningkat.", value: false },
     {
       label:
-        "Faktor yang memengaruhi tingkat kemiskinan, seperti upah riil buruh tani dan nilai tukar petani mengalami peningkatan yang signifikan.",
+        "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama menurun.",
       value: false,
     },
     {
       label:
-        "Upah riil buruh tani dan nilai tukar petani tidak mengalami kenaikan.",
+        "Model tersebut tidak memberikan simpulan tentang kemiskinan atau ketimpangan.",
       value: false,
     },
     {
       label:
-        "Kemiskinan yang terjadi di desa-desa dan ketimpangan antara desa serta kota akan berkurang.",
-      value: false,
-    },
-    {
-      label:
-        "Kemiskinan banyak terjadi di desa-desa dan ketimpangan antara desa serta kota masih berlanjut.",
-      value: false,
-    },
-    {
-      label:
-        "Kemiskinan dan ketimpangan antara desa dengan kota sangat tinggi.",
+        "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama meningkat.",
       value: true,
     },
   ],

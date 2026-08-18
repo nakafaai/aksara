@@ -1,66 +1,47 @@
 export const metadata = {
-  title: "Masalah Keseimbangan Linear",
-  description: "Selesaikan masalah keseimbangan linear: optimasi kuadrat terkecil untuk sistem over-determined dengan norm L1, L2, L∞ dan metode proyeksi geometris.",
+  title: "Masalah Kuadrat Terkecil Linear",
+  description: "Selesaikan sistem linear yang tidak konsisten dengan kuadrat terkecil, norma residual, proyeksi ortogonal, persamaan normal, dan metode numerik yang stabil.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-15",
   subject: "Metode Linear AI",
 };
 
+## Dari sistem tak konsisten menuju pencocokan terbaik
 
+Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" />, dan <InlineMath math="b \in \mathbb{R}^m" />. Jika <InlineMath math="b" /> tidak berada dalam ruang kolom <InlineMath math="A" />, sistem
 
-## Definisi Masalah
+<BlockMath math="Ax=b" />
 
-Bayangkan kamu sedang mencoba mencocokkan teka-teki yang tidak sempurna. Begitulah situasi yang kita hadapi dalam masalah keseimbangan linear. Kita memiliki matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dan vektor <InlineMath math="b \in \mathbb{R}^m" />, tetapi sistem persamaan <InlineMath math="A \cdot x = b" /> mungkin tidak memiliki solusi yang tepat.
+tidak memiliki solusi eksak. Keadaan ini lazim terjadi ketika sebuah model dicocokkan dengan pengukuran berderau atau ketika sistem berlebih tentu memiliki lebih banyak persamaan bebas daripada variabel yang tidak diketahui.
 
-Dalam kasus seperti ini, kita mencari solusi terbaik yang dapat kita peroleh dengan meminimumkan fungsi kesalahan
+Alih-alih memaksakan kesamaan, definisikan residual
 
-<BlockMath math="F(x) = \|A \cdot x - b\|_2^2" />
+<BlockMath math="e(x)=Ax-b" />
 
-Fungsi ini mengukur seberapa jauh hasil perkalian <InlineMath math="A \cdot x" /> dari target yang kita inginkan yaitu <InlineMath math="b" />.
+lalu pilih vektor dengan residual terkecil. Masalah kuadrat terkecil linear standar adalah
 
-## Masalah Optimasi
+<BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
-Sekarang kita pahami dulu apa yang sebenarnya ingin kita capai. Permasalahan minimisasi
+Karena residual memiliki <InlineMath math="m" /> komponen, fungsi objektifnya dapat diuraikan menjadi
 
-<BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
+<BlockMath math="\|Ax-b\|_2^2=\sum_{i=1}^{m}(Ax-b)_i^2" />
 
-adalah inti dari **masalah keseimbangan linear** atau yang sering disebut *masalah kuadrat terkecil linear*. Bayangkan seperti mencari posisi terbaik untuk melempar bola agar mendarat sedekat mungkin dengan target, meskipun tidak bisa tepat sasaran.
+Penguadratan membuat setiap kontribusi tidak negatif dan memberi penalti yang lebih besar kepada komponen residual yang besar.
 
-Mengapa kita menggunakan pendekatan ini? Karena dalam banyak situasi nyata, data yang kita miliki mengandung derau atau gangguan yang membuat solusi eksak tidak mungkin ditemukan.
+## Syarat geometris
 
-## Ekspansi Formula
-
-Sekarang coba kita uraikan formula ini untuk melihat apa yang sebenarnya terjadi di dalamnya
+Vektor <InlineMath math="A\hat{x}" /> adalah titik di <InlineMath math="\operatorname{col}(A)" /> yang paling dekat dengan <InlineMath math="b" /> menurut jarak Euklides. Pada solusi optimal, residual tegak lurus terhadap setiap kolom <InlineMath math="A" />:
 
 <MathContainer>
-<BlockMath math="\min_x \|A \cdot x - b\|_2^2 = \min_x \sum_{i=1}^{n} (A \cdot x - b)_i^2" />
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=0" />
+<BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
 </MathContainer>
 
-Bentuk ekspansi ini menunjukkan bahwa kita sebenarnya menjumlahkan kuadrat dari setiap komponen kesalahan. Mirip seperti menghitung total jarak kuadrat antara beberapa titik prediksi dengan titik target yang sebenarnya. Dengan mengkuadratkan setiap kesalahan, kita memberikan penalti yang lebih besar untuk kesalahan yang besar dibandingkan kesalahan kecil.
-
-## Norm Alternatif
-
-Ternyata ada beberapa cara berbeda untuk mengukur kesalahan, tergantung pada karakteristik masalah yang kita hadapi.
-
-**<InlineMath math="\ell_1" />-norm** bekerja dengan menjumlahkan nilai absolut kesalahan
-
-<BlockMath math="\min_x \|A \cdot x - b\|_1 = \min_x \sum_{i=1}^{n} |(A \cdot x - b)_i|" />
-
-Pendekatan ini seperti mengukur jarak dengan berjalan di kota yang jalanannya berbentuk grid. Kamu harus bergerak horizontal dan vertikal saja, tidak bisa diagonal. Metode ini lebih tahan terhadap data pencilan yang ekstrem.
-
-**<InlineMath math="\ell_\infty" />-norm** fokus pada kesalahan terbesar
-
-<BlockMath math="\min_x \|A \cdot x - b\|_\infty = \min_x \max_{i=1,\ldots,n} |(A \cdot x - b)_i|" />
-
-Bayangkan kamu sedang mengatur tinggi meja yang tidak rata. Metode ini akan fokus mengatasi kaki meja yang paling tinggi atau paling pendek, memastikan tidak ada satu bagian pun yang terlalu ekstrem.
-
-Pemilihan norm yang tepat tergantung pada jenis kesalahan yang paling ingin kita hindari dan karakteristik data yang kita miliki.
-
-## Interpretasi Geometris
+Persamaan kedua disebut **persamaan normal**.
 
 <LineEquation
-  title="Solusi Masalah Keseimbangan Linear"
-  description={<>Ilustrasi geometris menunjukkan hubungan antara vektor <InlineMath math="b" />, proyeksi <InlineMath math="A\hat{x}" />, dan vektor kesalahan.</>}
+  title="Proyeksi ortogonal pada masalah kuadrat terkecil"
+  description={<>Vektor biru berujung di <InlineMath math="A\hat{x}" />, vektor jingga berujung di <InlineMath math="b" />, dan vektor ungu adalah residual <InlineMath math="A\hat{x}-b" />.</>}
   data={[
     {
       points: [
@@ -72,7 +53,7 @@ Pemilihan norm yang tepat tergantung pada jenis kesalahan yang paling ingin kita
       cone: { position: "end" },
       showPoints: false,
       labels: [
-        { text: <InlineMath math="A\cdot \hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
       ]
     },
     {
@@ -98,20 +79,66 @@ Pemilihan norm yang tepat tergantung pada jenis kesalahan yang paling ingin kita
       cone: { position: "end" },
       showPoints: false,
       labels: [
-        { text: <InlineMath math="A\cdot \hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
+        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
       ]
     }
   ]}
 />
 
-Gambaran geometris ini membantu kita memahami apa yang sebenarnya terjadi. Bidang datar dalam diagram ini menrepresentasikan ruang kolom dari matriks <InlineMath math="A" /> (disebut *Citra A*), yaitu semua kemungkinan hasil perkalian <InlineMath math="A \cdot x" />.
+Adegan tersebut memperlihatkan target, proyeksinya, dan residual yang menghubungkan keduanya. Vektor biru merepresentasikan titik hasil proyeksi di ruang kolom, bukan seluruh subruangnya. Syarat ortogonal di atas adalah pernyataan eksak yang menjadikan <InlineMath math="A\hat{x}" /> titik terdekat.
 
-Vektor <InlineMath math="b" /> adalah target yang ingin kita capai, tetapi mungkin tidak berada dalam ruang kolom matriks <InlineMath math="A" />. Solusi optimal <InlineMath math="\hat{x}" /> menghasilkan <InlineMath math="A\hat{x}" /> yang merupakan titik terdekat dari <InlineMath math="b" /> dalam ruang kolom tersebut.
+## Contoh terurai sederhana
 
-Vektor <InlineMath math="A\hat{x} - b" /> menunjukkan vektor kesalahan yang menghubungkan proyeksi terbaik dengan target asli. Seperti bayangan benda yang jatuh ke lantai, <InlineMath math="A\hat{x}" /> adalah "bayangan" terdekat dari <InlineMath math="b" /> dalam ruang yang tersedia.
+Misalkan satu konstanta <InlineMath math="x" /> harus mencocokkan tiga pengamatan <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="6" />. Maka
 
-## Metode Penyelesaian
+<BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
 
-Setiap jenis norm membutuhkan pendekatan penyelesaian yang berbeda. Masalah <InlineMath math="\ell_1" />-norm dan <InlineMath math="\ell_\infty" />-norm bisa diselesaikan menggunakan teknik optimasi linear, dimana kita mengubah masalah menjadi bentuk yang bisa ditangani oleh algoritma pemrograman linear.
+dan fungsi objektifnya adalah
 
-Sementara itu, masalah kuadrat terkecil dengan norm Euklides memiliki keunggulan khusus. Ketika kesalahan dalam data mengikuti pola distribusi normal (seperti bel), maka solusi yang kita peroleh memberikan estimasi terbaik dalam arti statistik, yang disebut estimator kemungkinan maksimum.
+<MathContainer>
+<BlockMath math="F(x)=(x-1)^2+(x-2)^2+(x-6)^2" />
+<BlockMath math="F'(x)=2(x-1)+2(x-2)+2(x-6)=6x-18" />
+</MathContainer>
+
+Dengan menetapkan turunannya sama dengan nol, kita memperoleh <InlineMath math="\hat{x}=3" />. Vektor hasil pencocokan dan residualnya adalah
+
+<MathContainer>
+<BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
+<BlockMath math="A\hat{x}-b=\begin{pmatrix}2\\1\\-3\end{pmatrix}" />
+</MathContainer>
+
+Jumlah komponen residual sama dengan nol, sehingga
+
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=2+1-3=0" />
+
+sesuai dengan persamaan normal.
+
+## Norma residual lain
+
+Norma yang dipilih menentukan jenis galat yang diprioritaskan oleh pencocokan.
+
+| Fungsi objektif | Hal yang dikendalikan |
+| --- | --- |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_2^2=\min_x\sum_{i=1}^{m}(Ax-b)_i^2" /> | Memberi penalti kuadratik pada residual besar dan menghasilkan proyeksi kuadrat terkecil biasa. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_1=\min_x\sum_{i=1}^{m}\lvert(Ax-b)_i\rvert" /> | Menggunakan penalti linear, sehingga residual besar yang sesekali muncul tidak seberpengaruh pada kerugian kuadrat. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_\infty=\min_x\max_{1\le i\le m}\lvert(Ax-b)_i\rvert" /> | Meminimumkan residual absolut terburuk. |
+
+Formulasi <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_\infty" /> dapat ditulis ulang sebagai program linear. Kecocokannya tetap bergantung pada proses pembentukan data dan kriteria galat yang penting bagi penerapan tersebut.
+
+## Menyelesaikan kuadrat terkecil dengan andal
+
+Jika <InlineMath math="A" /> memiliki peringkat kolom penuh, peminimum kuadrat terkecil bersifat unik. Persamaan normal kemudian memberikan
+
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
+
+Identitas ini berguna untuk analisis, tetapi membentuk invers secara eksplisit bukan algoritma numerik yang dianjurkan. Dalam praktik:
+
+- gunakan faktorisasi QR untuk penyelesaian kuadrat terkecil berperingkat penuh yang stabil
+- gunakan SVD jika kekurangan peringkat atau kondisi buruk perlu diperhitungkan
+- gunakan invers semu untuk memilih solusi bernorma minimum ketika peminimum tidak unik
+
+Terdapat pula interpretasi statistik yang tepat. Dalam model
+
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+
+dengan <InlineMath math="A" /> tetap dan galat Gaussian bebas yang memiliki varians sama, kuadrat terkecil adalah estimator kemungkinan maksimum untuk <InlineMath math="x_*" />. Galat yang berkorelasi atau memiliki varians berbeda memerlukan pembobotan lain, bukan rumus kuadrat terkecil biasa tanpa penyesuaian.

@@ -10,15 +10,15 @@ export const metadata = {
 
 ## Mengenal Sistem Persamaan Linear
 
-Bayangkan kamu sedang membuat resep kue. Kamu tahu kue tersebut membutuhkan telur dan tepung dengan jumlah tertentu. Namun, kamu hanya tahu total bahan dan perbandingannya. Ini mirip seperti sistem persamaan linear - kita mencari nilai yang tidak diketahui berdasarkan informasi yang saling berhubungan.
+Satu nilai total harga dapat berasal dari berbagai kombinasi barang. Hubungan kedua, misalnya jumlah seluruh barang, mempersempit kemungkinan tersebut. Sistem persamaan linear menyatukan semua hubungan itu, sehingga solusinya harus memenuhi setiap persamaan sekaligus.
 
 ### Apa Itu Sistem Persamaan Linear?
 
 Sistem persamaan linear adalah kumpulan dua atau lebih persamaan linear yang harus dipenuhi secara bersamaan. Setiap persamaan linear berbentuk:
 
-<BlockMath math="a_1x_1 + a_2x_2 + ... + a_nx_n = b" />
+<BlockMath math="a_1x_1 + a_2x_2 + \ldots + a_nx_n = b" />
 
-Dimana <InlineMath math="a_1, a_2, ..., a_n" /> adalah koefisien, <InlineMath math="x_1, x_2, ..., x_n" /> adalah variabel, dan <InlineMath math="b" /> adalah konstanta.
+Di sini <InlineMath math="a_1, a_2, \ldots, a_n" /> adalah koefisien, <InlineMath math="x_1, x_2, \ldots, x_n" /> adalah variabel, dan <InlineMath math="b" /> adalah konstanta.
 
 ### Sistem Persamaan Linear Dua Variabel
 
@@ -28,13 +28,13 @@ Sistem persamaan linear dengan dua variabel terdiri dari dua persamaan dengan du
 
 **Contoh**:
 
-<BlockMath math="\begin{cases} 2x + 3y = 21 \\ x + y = 10 \end{cases}" />
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
 Solusi dari sistem ini adalah pasangan nilai <InlineMath math="(x,y)" /> yang memenuhi kedua persamaan tersebut.
 
 ### Sistem Persamaan Linear Tiga Variabel
 
-Untuk tiga variabel, kita membutuhkan minimal tiga persamaan:
+Sebuah sistem dapat memuat berapa pun jumlah persamaan. Namun, untuk menentukan nilai tunggal <InlineMath math="x,y,z" />, persamaan-persamaan tersebut harus memberikan tiga kendala yang saling bebas. Salah satu bentuk perseginya adalah:
 
 <BlockMath math="\begin{cases} a_1x + b_1y + c_1z = d_1 \\ a_2x + b_2y + c_2z = d_2 \\ a_3x + b_3y + c_3z = d_3 \end{cases}" />
 
@@ -113,6 +113,36 @@ Periksa:
 - Persamaan (<InlineMath math="1" />): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
 - Persamaan (<InlineMath math="2" />): <InlineMath math="9 + 1 = 10" /> ✓
 
+## Uji Pemahaman
+
+Selesaikan sistem berikut:
+
+<BlockMath math="\begin{cases} 3x+2y=16 \\ x-y=2 \end{cases}" />
+
+### Pembahasan Lengkap
+
+Persamaan kedua memberi <InlineMath math="x=y+2" />. Substitusikan bentuk ini ke persamaan pertama:
+
+<MathContainer>
+  <BlockMath math="3(y+2)+2y=16" />
+  <BlockMath math="5y+6=16" />
+  <BlockMath math="5y=10" />
+  <BlockMath math="y=2" />
+</MathContainer>
+
+Substitusikan kembali ke <InlineMath math="x=y+2" />:
+
+<BlockMath math="x=2+2=4" />
+
+Kedua persamaan awal mengonfirmasi hasilnya:
+
+<MathContainer>
+  <BlockMath math="3(4)+2(2)=16" />
+  <BlockMath math="4-2=2" />
+</MathContainer>
+
+Jadi, solusinya adalah <InlineMath math="(x,y)=(4,2)" />.
+
 ## Aplikasi dalam Kehidupan Sehari-hari
 
 ### Pemodelan Matematika
@@ -169,7 +199,7 @@ Sistem persamaan linear memiliki tiga kemungkinan solusi:
 2. **Tidak ada solusi**: Ketika garis-garis sejajar (atau bidang-bidang tidak berpotongan)
 3. **Banyak solusi**: Ketika garis-garis berimpit (atau bidang-bidang berpotongan pada garis atau bidang)
 
-Dalam tiga dimensi (tiga variabel), persamaan linear direpresentasikan sebagai bidang. Perpotongan dua bidang menghasilkan garis, dan perpotongan tiga bidang bisa berupa titik.
+Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua bidang berbeda yang tidak sejajar berpotongan pada sebuah garis. Untuk tiga bidang atau lebih, himpunan solusi bersama dapat berupa titik, garis, bidang, atau himpunan kosong.
 
 ### Visualisasi Sistem Persamaan Linear
 
@@ -180,8 +210,8 @@ Dalam tiga dimensi (tiga variabel), persamaan linear direpresentasikan sebagai b
     data={[
       {
         points: [
-          { x: -2, y: 8, z: 0 },
-          { x: 3.5, y: 4.5, z: 0 },
+          { x: -3, y: 9, z: 0 },
+          { x: 3, y: 5, z: 0 },
           { x: 9, y: 1, z: 0 },
         ],
         labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
@@ -204,18 +234,18 @@ Dalam tiga dimensi (tiga variabel), persamaan linear direpresentasikan sebagai b
     data={[
       {
         points: [
-          { x: -3, y: 1, z: 0 },
-          { x: 0, y: 4, z: 0 },
-          { x: 3, y: 7, z: 0 },
+          { x: -3, y: -4, z: 0 },
+          { x: 1, y: 2, z: 0 },
+          { x: 5, y: 8, z: 0 },
         ],
         labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
         color: "#db2777",
       },
       {
         points: [
-          { x: -2, y: -1, z: 0 },
-          { x: 1, y: 2, z: 0 },
-          { x: 4, y: 5, z: 0 },
+          { x: -3, y: -5, z: 0 },
+          { x: 1, y: 1, z: 0 },
+          { x: 5, y: 7, z: 0 },
         ],
         labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
         color: "#ca8a04",
@@ -228,18 +258,18 @@ Dalam tiga dimensi (tiga variabel), persamaan linear direpresentasikan sebagai b
     data={[
       {
         points: [
-          { x: -2, y: 1, z: 0 },
-          { x: 0, y: 0, z: 0 },
+          { x: -1, y: 1, z: 0 },
           { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
         ],
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
       },
       {
         points: [
-          { x: -2, y: 1, z: 0 },
-          { x: 0, y: 0, z: 0 },
+          { x: -1, y: 1, z: 0 },
           { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
         ],
         labels: [{ text: <InlineMath math="4x+6y=2" />, offset: [2, 1, 0] }],
         color: "#0891b2",

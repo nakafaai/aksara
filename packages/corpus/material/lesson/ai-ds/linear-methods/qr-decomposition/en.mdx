@@ -70,17 +70,41 @@ an orthonormal basis of <InlineMath math="\text{Kernel}A^T" />:
 
 <BlockMath math="A^T Q_2 = R_1^T Q_1^T Q_2 = 0" />
 
+Here, the kernel of <InlineMath math="A^T" /> is the set of all vectors <InlineMath math="x" /> that satisfy <InlineMath math="A^T x = 0" />.
+
 ### Uniqueness Property
 
 The economical QR decomposition <InlineMath math="A = Q_1 \cdot R_1" /> with condition <InlineMath math="r_{ii} > 0" />
 for all <InlineMath math="i = 1, \ldots, n" /> is unique for matrix <InlineMath math="A" />
 that has full rank.
 
+## Worked Thin QR Example
+
+Let
+
+
+<BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
+
+Gram-Schmidt first gives
+
+<MathContainer>
+<BlockMath math="q_1=\frac{a_1}{\|a_1\|_2}=\frac1{\sqrt2}\begin{pmatrix}1\\1\\0\end{pmatrix}" />
+<BlockMath math="r_{12}=q_1^Ta_2=\frac1{\sqrt2}" />
+<BlockMath math="\widetilde q_2=a_2-r_{12}q_1=\begin{pmatrix}1/2\\-1/2\\1\end{pmatrix}" />
+<BlockMath math="q_2=\frac1{\sqrt6}\begin{pmatrix}1\\-1\\2\end{pmatrix}" />
+</MathContainer>
+
+Therefore,
+
+<MathContainer>
+<BlockMath math="Q_1=\begin{pmatrix}1/\sqrt2&1/\sqrt6\\1/\sqrt2&-1/\sqrt6\\0&2/\sqrt6\end{pmatrix}" />
+<BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
+<BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
+</MathContainer>
+
 ## Householder Method for QR Decomposition
 
-Although the Gram-Schmidt process provides an elegant theoretical way to obtain QR decomposition,
-this method is not suitable for practical computation. The main problem is numerical instability due to cancellation,
-orthogonality of columns is quickly lost during computation.
+Classical Gram-Schmidt gives a clear derivation but can lose orthogonality in floating-point arithmetic when the columns are nearly dependent. Modified Gram-Schmidt improves that behavior. Householder QR is the usual dense, numerically stable implementation because it applies orthogonal reflectors directly.
 
 To overcome this problem, we need a method that is more numerically stable.
 One of the most successful approaches is the Householder procedure,
@@ -107,7 +131,7 @@ for vector <InlineMath math="v \in \mathbb{R}^m" /> with <InlineMath math="\|v\|
 
 2. <InlineMath math="S" /> is an orthogonal matrix: <InlineMath math="S^T S = I" />
 
-3. Multiplication <InlineMath math="S \cdot x" /> of <InlineMath math="S" /> from the left with vector <InlineMath math="x \in \mathbb{R}^n" />
+3. Multiplication <InlineMath math="S \cdot x" /> of <InlineMath math="S" /> from the left with vector <InlineMath math="x \in \mathbb{R}^m" />
    causes reflection of <InlineMath math="x" /> in the subspace <InlineMath math="\text{Span}(v)^{\perp}" />,
    that is, in the hyperplane with normal vector <InlineMath math="v" />
 
@@ -196,18 +220,19 @@ Compute:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
-<BlockMath math="u_i := \tilde{a}_i + \begin{pmatrix} \mp\sigma \\ 0 \\ \vdots \\ 0 \end{pmatrix} \in \mathbb{R}^{m-i+1}" />
+<BlockMath math="s_i:=\begin{cases}1,&\tilde a_{ii}\ge0,\\-1,&\tilde a_{ii}<0,\end{cases}" />
+<BlockMath math="u_i := \tilde{a}_i+s_i\sigma e_1 \in \mathbb{R}^{m-i+1}" />
 <BlockMath math="\hat{u}_i := \begin{pmatrix} 0 \\ \vdots \\ 0 \\ u_i \end{pmatrix} \in \mathbb{R}^m" />
 </MathContainer>
 
 and:
 
-<BlockMath math="\beta := 1/(\sigma(\sigma + |\tilde{a}_{ii}|))" />
+<BlockMath math="\beta := \frac{2}{u_i^Tu_i}=\frac{1}{\sigma(\sigma+|\tilde a_{ii}|)}" />
 
 Then:
 
 <MathContainer>
-<BlockMath math="v_i = \frac{\tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1}{\|\tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1\|_2} = \frac{u_i}{\|u_i\|_2}" />
+<BlockMath math="v_i=\frac{u_i}{\|u_i\|_2}" />
 <BlockMath math="\tilde{S}_i = I_{m-i+1} - 2v_i v_i^T = I_{m-i+1} - \beta u_i u_i^T" />
 <BlockMath math="S_i = I_m - \beta \hat{u}_i \hat{u}_i^T" />
 </MathContainer>
@@ -230,12 +255,11 @@ Finally we obtain:
 
 ### Computational Complexity
 
-The numerical complexity for computing QR decomposition of matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" />
-with Householder procedure is essentially:
+For <InlineMath math="m\ge n" />, Householder QR requires approximately
 
 <MathContainer>
-<BlockMath math="n^2 \cdot m \text{ arithmetic operations for } m \gg n" />
-<BlockMath math="\frac{2}{3}n^3 \text{ arithmetic operations for } m \approx n" />
+<BlockMath math="2mn^2-\frac{2}{3}n^3\text{ floating-point operations}" />
+<BlockMath math="\frac{4}{3}n^3\text{ floating-point operations when }m=n" />
 </MathContainer>
 
 ### Numerical Properties
@@ -245,19 +269,19 @@ with Householder procedure is essentially:
 2. The diagonal elements of <InlineMath math="R" /> are the numbers <InlineMath math="\pm\|\tilde{a}_i\|_2" />
    from the <InlineMath math="i" />-th step. Choosing the transformation so that all are positive gives the QR decomposition.
    If <InlineMath math="\|\tilde{a}_i\|_2 = 0" />, <InlineMath math="A" /> does not have full rank
-   and the algorithm stops.
+   and the full-rank uniqueness statement no longer applies. QR still exists, but rank-revealing QR with column pivoting is preferable when numerical rank matters.
 
    For numerical reasons choose the sign so that cancellation is avoided:
 
    <MathContainer>
-   <BlockMath math="u_i = \tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1 \text{ (general form)}" />
-   <BlockMath math="u_i = \tilde{a}_i + \text{sgn}(\tilde{a}_i) \cdot \|\tilde{a}_i\|_2 \cdot e_1 \text{ (optimal sign choice)}" />
+   <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
+   <BlockMath math="s_i=1\text{ when }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ otherwise}" />
    </MathContainer>
 
 3. Instead of constructing <InlineMath math="Q" />, in compact storage one can also store
    only the information needed for the transformation:
 
-   <BlockMath math="\text{Store vector } \tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1" />
+   <BlockMath math="\text{Store the Householder vector }u_i" />
 
    in the free space of <InlineMath math="A" /> below the diagonal and diagonal elements in an additional vector.
 

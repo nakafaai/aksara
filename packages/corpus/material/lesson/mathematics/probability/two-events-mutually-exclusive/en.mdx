@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Mutually Exclusive Events A and B",
-  description: "Learn mutually exclusive events that cannot occur together. Learn P(A or B) = P(A) + P(B) formula with coin, dice, and card examples plus calculations.",
+  description: "Learn how probabilities combine for mutually exclusive events through coin, die, and card examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-21",
   subject: "Probability",
@@ -8,17 +8,17 @@ export const metadata = {
 
 ## What Does Mutually Exclusive Mean?
 
-Imagine you have two choices, but you can only pick **one**, not both at the same time. Well, in the world of probability, this is similar to the concept of **Mutually Exclusive Events** (other cool names: _Disjoint Events_).
+Suppose one trial can produce either of two outcomes, but not both. In probability, events with this relationship are **mutually exclusive**, or _disjoint_.
 
-Two events (let's call them event <InlineMath math="A" /> and event <InlineMath math="B" />) are said to be **mutually exclusive** if both events **cannot possibly occur at the same time** in a single trial. Simply put, if <InlineMath math="A" /> happens, <InlineMath math="B" /> cannot happen. If <InlineMath math="B" /> happens, <InlineMath math="A" /> cannot happen.
+Events <InlineMath math="A" /> and <InlineMath math="B" /> are **mutually exclusive** when they **cannot occur together** in a single trial. If <InlineMath math="A" /> occurs, <InlineMath math="B" /> does not occur, and vice versa.
 
 ## Characteristics of Mutually Exclusive Events
 
-The main characteristic is just that: **cannot happen simultaneously**. There's no outcome that can belong to event <InlineMath math="A" /> and event <InlineMath math="B" /> at the same time.
+Their defining property is an empty intersection: no outcome belongs to both event <InlineMath math="A" /> and event <InlineMath math="B" />.
 
 ### Probability of Two Events Occurring Together
 
-Because events <InlineMath math="A" /> and <InlineMath math="B" /> cannot happen together if they are mutually exclusive, the probability of both occurring simultaneously is **zero**!
+Because events <InlineMath math="A" /> and <InlineMath math="B" /> cannot occur together, the probability of their intersection is **zero**.
 
 We can write the probability of event "<InlineMath math="A" /> **and** <InlineMath math="B" />" (both occurring) as:
 
@@ -28,15 +28,15 @@ Or using the intersection symbol:
 
 <BlockMath math="P(A \cap B) = 0" />
 
-Remember, if they are mutually exclusive, their intersection is empty, so the probability is zero!
+For mutually exclusive events, the intersection is empty, so its probability is zero.
 
 ## Calculating the Combined Probability for Mutually Exclusive Events
 
-So, how do we calculate the probability of event <InlineMath math="A" /> happening **OR** event <InlineMath math="B" /> happening if <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive?
+To calculate the probability that event <InlineMath math="A" /> **OR** event <InlineMath math="B" /> occurs, use the fact that the events have no shared outcomes.
 
-Since they can't happen together, we simply **add** the probabilities of each individual event.
+The two individual probabilities can therefore be **added** without double-counting.
 
-The formula becomes very easy:
+The formula is:
 
 <BlockMath math="P(A \text{ or} B) = P(A) + P(B)" />
 
@@ -44,15 +44,15 @@ Or using the union symbol:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
-This is the **Special Addition Rule** which applies ONLY to mutually exclusive events. (If the events are not mutually exclusive, there's a slightly different formula).
+This **special addition rule** applies only to mutually exclusive events. When events overlap, their intersection must also be included in the calculation.
 
 ## Examples of Mutually Exclusive Events
 
-To understand better, look at these examples:
+The following examples show when the special addition rule applies:
 
 1.  **Coin Toss:**
 
-    The event of getting "Heads" and the event of getting "Tails". They can't happen together, right?
+    A single coin toss produces either "Heads" or "Tails," but not both.
 
     - <InlineMath math="P(\text{Heads}) = 1/2" />
     - <InlineMath math="P(\text{Tails}) = 1/2" />
@@ -60,7 +60,7 @@ To understand better, look at these examples:
 
 2.  **Rolling a Die (once):**
 
-    Look at two pairs of events:
+    Consider two pairs of events:
 
     - Getting a <InlineMath math="3" /> and getting a <InlineMath math="5" /> cannot happen at once. Each has probability <InlineMath math="1/6" />, so the probability of getting a <InlineMath math="3" /> or <InlineMath math="5" /> is <InlineMath math="1/6 + 1/6 = 2/6 = 1/3" />.
     - Getting an even number <InlineMath math="\{2, 4, 6\}" /> and getting an odd number <InlineMath math="\{1, 3, 5\}" /> cannot happen at once. Each event has probability <InlineMath math="3/6 = 1/2" />, so the probability of getting even or odd is <InlineMath math="1/2 + 1/2 = 1" />.
@@ -71,3 +71,30 @@ To understand better, look at these examples:
 
     - Getting a King and getting a Queen are mutually exclusive. There are <InlineMath math="4" /> Kings and <InlineMath math="4" /> Queens in <InlineMath math="52 \text{ cards}" />, so the probability of getting a King or Queen is <InlineMath math="4/52 + 4/52 = 8/52 = 2/13" />.
     - Getting a red card and getting a club <InlineMath math="\clubsuit" /> are mutually exclusive because clubs are black. There are <InlineMath math="26" /> red cards and <InlineMath math="13" /> clubs, so the probability of getting red or club is <InlineMath math="26/52 + 13/52 = 39/52 = 3/4" />.
+
+## Exercise
+
+A fair six-sided die is rolled once. Let <InlineMath math="A=\{1,2\}" /> and <InlineMath math="B=\{5,6\}" />.
+
+1.  Show that <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive.
+2.  Find <InlineMath math="P(A \cup B)" />.
+3.  Find the probability that neither event occurs.
+
+### Worked Solution
+
+The two events have an **empty intersection** and therefore no shared outcome:
+
+<BlockMath math="A \cap B=\varnothing" />
+
+They are therefore **mutually exclusive**. Each event contains <InlineMath math="2" /> of the <InlineMath math="6" /> equally likely die outcomes, so the special addition rule gives
+
+<MathContainer>
+  <BlockMath math="P(A \cup B)=P(A)+P(B)" />
+  <BlockMath math="=\frac{2}{6}+\frac{2}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+The outcomes outside <InlineMath math="A \cup B=\{1,2,5,6\}" /> are <InlineMath math="\{3,4\}" />. Thus,
+
+<BlockMath math="P(\text{neither }A\text{ nor }B)=\frac{2}{6}=\frac{1}{3}" />
+
+As a check, the probability of the union and the probability of its complement add to <InlineMath math="2/3+1/3=1" />.

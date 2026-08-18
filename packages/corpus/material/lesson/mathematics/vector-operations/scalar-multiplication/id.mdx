@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Perkalian Skalar Vektor",
-  description: "Pelajari perkalian skalar vektor: skala magnitudo, ubah arah dengan nilai negatif. Pelajari sifat-sifat, perhitungan, dan aplikasi fisika.",
+  description: "Pelajari cara perkalian skalar mengubah besar dan arah vektor, lalu terapkan konsepnya dalam perhitungan, fisika, dan geometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vektor dan Operasinya",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Pengertian Perkalian Skalar dengan Vektor
 
-Perkalian skalar dengan vektor adalah operasi perkalian antara sebuah bilangan real (skalar) dengan sebuah vektor <InlineMath math="\vec{v}" />. Hasil dari perkalian ini adalah vektor baru dengan panjang yang diubah sesuai dengan nilai skalar, sementara arahnya dapat tetap sama atau berlawanan tergantung pada tanda dari skalar tersebut.
+Perkalian skalar menggabungkan bilangan real, yang disebut skalar, dengan sebuah vektor <InlineMath math="\vec{v}" />. Hasilnya adalah vektor baru yang besarnya dikalikan dengan nilai mutlak skalar. Untuk vektor asal tak nol, tanda skalar menentukan apakah arahnya tetap atau berbalik.
 
 Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math="\vec{v}" /> adalah vektor, maka perkalian skalar dengan vektor dilambangkan sebagai <InlineMath math="k \cdot \vec{v}" /> dan hasilnya adalah vektor baru.
 
@@ -16,19 +16,23 @@ Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math=
 
 Perkalian skalar dengan vektor memiliki beberapa sifat penting:
 
-1. Jika <InlineMath math="k > 0" /> (positif), maka vektor hasil memiliki arah yang sama dengan vektor asal.
-2. Jika <InlineMath math="k < 0" /> (negatif), maka vektor hasil memiliki arah yang berlawanan dengan vektor asal.
+1. Jika <InlineMath math="k > 0" /> dan vektor asal tak nol, vektor hasil memiliki arah yang sama.
+2. Jika <InlineMath math="k < 0" /> dan vektor asal tak nol, vektor hasil menunjuk ke arah berlawanan.
 3. Jika <InlineMath math="k = 0" />, maka vektor hasil adalah vektor nol.
-4. Besar (magnitudo) vektor hasil adalah <InlineMath math="|k| \text{ kali}" /> besar vektor asal.
+4. Besar vektor hasil adalah besar vektor asal yang dikalikan dengan faktor <InlineMath math="|k|" />.
 
 ## Representasi Perkalian Skalar dengan Vektor
 
 ### Secara Geometris
 
-Secara geometris, perkalian skalar dengan vektor mengubah panjang (magnitudo) vektor tersebut sebanyak <InlineMath math="|k| \text{ kali}" />. Arah vektor bergantung pada tanda <InlineMath math="k" />:
+Secara geometris, perkalian skalar mengubah besar vektor dengan faktor <InlineMath math="|k|" />. Untuk vektor tak nol, arah hasil bergantung pada tanda <InlineMath math="k" />:
 
 - Jika <InlineMath math="k > 0" />, arah vektor tidak berubah
-- Jika <InlineMath math="k < 0" />, arah vektor berlawanan dengan vektor asal <InlineMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
+- Jika <InlineMath math="k < 0" />, arah vektor berlawanan dengan vektor asal
+
+Pada kedua kasus tersebut, termasuk ketika <InlineMath math="k=0" />, besarnya memenuhi:
+
+<BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
 
 ### Secara Aljabar
 
@@ -76,9 +80,9 @@ Perkalian skalar dengan vektor memiliki banyak aplikasi dalam fisika dan matemat
 
 1. **Gaya dan Percepatan**: Jika sebuah benda bermassa <InlineMath math="m" /> mengalami percepatan <InlineMath math="\vec{a}" />, maka gaya yang bekerja pada benda tersebut adalah <InlineMath math="\vec{F} = m\vec{a}" />.
 
-2. **Kecepatan**: Jika sebuah benda bergerak dengan kecepatan <InlineMath math="\vec{v}" /> selama waktu <InlineMath math="t" />, maka perpindahan benda tersebut adalah <InlineMath math="\vec{s} = t\vec{v}" />.
+2. **Kecepatan**: Jika sebuah benda bergerak dengan kecepatan konstan <InlineMath math="\vec{v}" /> selama waktu <InlineMath math="t" />, perpindahannya adalah <InlineMath math="\vec{s} = t\vec{v}" />.
 
-3. **Penskalaan dalam Grafika Komputer**: Untuk mengubah ukuran objek dalam grafika komputer, koordinat titik-titik pada objek dikalikan dengan faktor skala.
+3. **Penskalaan dalam Grafika Komputer**: Mengalikan setiap vektor posisi dengan <InlineMath math="k" /> akan menskalakan objek terhadap titik asal koordinat. Untuk menskalakan terhadap pusat lain <InlineMath math="\vec{c}" />, setiap titik <InlineMath math="\vec{p}" /> harus digeser, diskalakan, lalu digeser kembali menurut <InlineMath math="\vec{p}'=\vec{c}+k(\vec{p}-\vec{c})" />.
 
 ## Latihan Soal
 
@@ -86,7 +90,7 @@ Perkalian skalar dengan vektor memiliki banyak aplikasi dalam fisika dan matemat
 
 2. Vektor <InlineMath math="\vec{u} = (2, -5, 1)" /> dan <InlineMath math="\vec{v} = (-4, 3, 6)" />. Tentukan vektor <InlineMath math="2\vec{u} - 3\vec{v}" />.
 
-3. Diketahui vektor <InlineMath math="\overrightarrow{BR} = 3{,}4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0{,}65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0{,}35 \cdot \overrightarrow{BR}" />, buktikan bahwa ketiga vektor tersebut memiliki arah yang sama.
+3. Diketahui <InlineMath math="|\overrightarrow{BR}| = 3{,}4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0{,}65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0{,}35 \cdot \overrightarrow{BR}" />, buktikan bahwa ketiga vektor tersebut memiliki arah yang sama.
 
 4. Vektor <InlineMath math="\vec{p}" /> memiliki panjang <InlineMath math="5 \text{ satuan}" /> dan vektor <InlineMath math="\vec{q} = 3\vec{p}" />. Tentukan panjang vektor <InlineMath math="\vec{q}" />.
 
@@ -126,7 +130,7 @@ Jadi, vektor <InlineMath math="2\vec{u} - 3\vec{v}" /> adalah <InlineMath math="
 
 ### Soal Ketiga
 
-Diketahui vektor <InlineMath math="\overrightarrow{BR} = 3{,}4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0{,}65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0{,}35 \cdot \overrightarrow{BR}" />, buktikan bahwa ketiga vektor tersebut memiliki arah yang sama.
+Diketahui <InlineMath math="|\overrightarrow{BR}| = 3{,}4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0{,}65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0{,}35 \cdot \overrightarrow{BR}" />, buktikan bahwa ketiga vektor tersebut memiliki arah yang sama.
 
 **Penyelesaian:**
 Untuk membuktikan bahwa ketiga vektor memiliki arah yang sama, kita perlu menunjukkan bahwa mereka merupakan perkalian skalar positif dari vektor yang sama.

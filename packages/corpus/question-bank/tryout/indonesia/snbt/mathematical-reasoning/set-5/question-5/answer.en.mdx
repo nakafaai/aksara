@@ -4,36 +4,34 @@ export const metadata = {
   date: "2026-02-09",
 };
 
-This problem can be solved using the concept of a geometric sequence, where bacteria divide into two every <InlineMath math="24\text{ hours}" /> (<InlineMath math="1 \text{ day }" />).
-
-For the **first <InlineMath math="5 \text{ days }" />** (day <InlineMath math="1" /> to day <InlineMath math="5" />), the number of bacteria follows a geometric sequence with an initial term <InlineMath math="a = 10" /> and a ratio <InlineMath math="r = 2" />. The number of bacteria on day <InlineMath math="5" /> is:
+The time reference matters here. The count <InlineMath math="10" /> is measured at the start of day <InlineMath math="1" />, so the start of day <InlineMath math="n" /> comes after <InlineMath math="n-1" /> periods of <InlineMath math="24\text{ hours}" />. Because <InlineMath math="120\text{ hours}" /> equals <InlineMath math="5\text{ days}" />, the first removal happens at the start of day <InlineMath math="6" />, after five divisions.
 
 <MathContainer>
-  <BlockMath math="U_5 = a \cdot r^{n-1} = 10 \cdot 2^{5-1} = 10 \cdot 16 = 160" />
+  <BlockMath math="10 \cdot 2^5 = 320" />
 </MathContainer>
 
-Every <InlineMath math="120\text{ hours}" /> (<InlineMath math="5 \text{ days }" />), half of the total bacteria are killed. Thus, the remaining bacteria at the end of day <InlineMath math="5" /> is:
+Immediately after that first <InlineMath math="120\text{-hour}" /> interval, half of the <InlineMath math="320" /> bacteria are removed. The count at the start of day <InlineMath math="6" /> is therefore:
 
 <MathContainer>
-  <BlockMath math="160 - \left(\frac{1}{2} \times 160\right) = 80" />
+  <BlockMath math="320 \cdot \frac{1}{2} = 160" />
 </MathContainer>
 
-For the **second <InlineMath math="5 \text{ days }" />** (day <InlineMath math="6" /> to day <InlineMath math="10" />), the cycle restarts with an initial count of <InlineMath math="80" />. On day <InlineMath math="6" />, the number of bacteria becomes <InlineMath math="80 \times 2 = 160" />. Thus, the number of bacteria on day <InlineMath math="10" /> (the <InlineMath math="5" />th term of the second phase) is:
+Five more <InlineMath math="24\text{-hour}" /> periods pass from the start of day <InlineMath math="6" /> to the start of day <InlineMath math="11" />. Before the second removal, the population is:
 
 <MathContainer>
-  <BlockMath math="U_5 = 160 \cdot 2^{5-1} = 160 \cdot 16 = 2560" />
+  <BlockMath math="160 \cdot 2^5 = 5120" />
 </MathContainer>
 
-At the end of day <InlineMath math="10" />, half of the bacteria are killed again:
+At the start of day <InlineMath math="11" />, the second <InlineMath math="120\text{-hour}" /> interval has ended, so half are removed again:
 
 <MathContainer>
-  <BlockMath math="2560 \times \frac{1}{2} = 1280" />
+  <BlockMath math="5120 \cdot \frac{1}{2} = 2560" />
 </MathContainer>
 
-Next, we calculate the growth for day <InlineMath math="11" /> and day <InlineMath math="12" />:
+One final <InlineMath math="24\text{-hour}" /> period leads to the start of day <InlineMath math="12" />:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} \text{Day 11} &= 1280 \times 2 = 2560 \\ \text{Day 12} &= 2560 \times 2 = 5120 \end{aligned}" />
+  <BlockMath math="2560 \cdot 2 = 5120" />
 </MathContainer>
 
-Thus, the number of bacteria on the <InlineMath math="12" />th day of observation is <InlineMath math="5120" />.
+Thus, there are <InlineMath math="5120" /> bacteria at the start of the <InlineMath math="12" />-th observation day.

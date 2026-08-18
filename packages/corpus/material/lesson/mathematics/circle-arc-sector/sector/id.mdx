@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Juring",
-  description: "Pelajari juring lingkaran, komponennya, hubungan dengan sudut pusat, serta perbedaan juring minor dan mayor.",
+  description: "Pelajari bagaimana dua jari-jari dan sebuah busur membatasi juring, bagaimana sudut pusat menentukan ukurannya, serta perbedaan juring kecil dan besar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Busur dan Juring Lingkaran",
@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Pengertian Juring
 
-Juring adalah daerah dalam lingkaran yang dibatasi oleh dua jari-jari dan satu busur lingkaran. Bayangkan seperti potongan pizza atau kue tart yang dipotong dari pusat hingga tepi lingkaran. Daerah yang terbentuk inilah yang disebut juring.
+Juring adalah daerah pada lingkaran yang dibatasi oleh dua jari-jari dan salah satu busur di antara kedua ujungnya. Potongan kue bundar yang dipotong dari pusat dapat menjadi model: kedua sisi lurusnya mewakili jari-jari, sedangkan sisi lengkungnya mewakili busur.
 
 Setiap juring memiliki tiga komponen utama yang saling terkait. Pertama adalah dua jari-jari yang bertemu di pusat lingkaran. Kedua adalah busur yang menghubungkan ujung kedua jari-jari tersebut. Ketiga adalah daerah yang terlingkupi oleh kedua jari-jari dan busur.
 
 <LineEquation
   title={<>Visualisasi Juring dalam Lingkaran</>}
-  description="Juring ditunjukkan sebagai daerah berwarna yang dibatasi oleh dua jari-jari dan satu busur."
+  description="Dua jari-jari dan busur berwarna jingga menandai batas sebuah juring."
   data={[
     {
       kind: "circle-outline", radius: 3,
@@ -56,17 +56,19 @@ Setiap juring memiliki tiga komponen utama yang saling terkait. Pertama adalah d
 
 ## Karakteristik Juring
 
-Juring memiliki sifat khusus yang membedakannya dari elemen lingkaran lainnya. Juring selalu berbentuk seperti irisan yang memiliki satu titik sudut di pusat lingkaran. Titik ini menjadi tempat bertemunya kedua jari-jari yang membentuk sudut pusat.
+Juring memiliki titik sudut di pusat lingkaran. Kedua jari-jari bertemu di sana dan membentuk sudut pusat, sedangkan busur yang menghubungkan ujungnya melengkapi batas juring.
 
-Besar kecilnya juring ditentukan oleh sudut pusat yang dibentuk oleh kedua jari-jari tersebut. Semakin besar sudut pusat, semakin luas daerah juring yang terbentuk. Sebaliknya, sudut pusat yang kecil akan menghasilkan juring yang sempit.
+Pada lingkaran yang tetap, sudut pusat menentukan bagian lingkaran yang menjadi juring. Sudut pusat yang lebih besar memilih bagian yang lebih besar; sudut yang lebih kecil memilih bagian yang lebih kecil.
 
-Setiap juring juga memiliki busur yang menjadi batas lengkungnya. Panjang busur ini sebanding dengan besar sudut pusat. Dalam satu lingkaran, juring dengan sudut pusat yang sama akan memiliki luas yang sama pula.
+Jika sudut pusat yang dipilih kurang dari <InlineMath math="180^\circ" />, daerah yang dibatasi disebut juring kecil. Jika sudutnya lebih dari <InlineMath math="180^\circ" />, daerah itu disebut juring besar. Sudut tepat <InlineMath math="180^\circ" /> menghasilkan setengah lingkaran.
+
+Dalam lingkaran yang sama, panjang busur dan luas juring sama-sama sebanding dengan sudut pusat. Karena itu, sudut pusat yang sama pada lingkaran tersebut menghasilkan panjang busur dan luas juring yang sama.
 
 ## Hubungan Sudut Pusat dengan Juring
 
-Sudut pusat merupakan faktor penentu utama dalam pembentukan juring. Sudut ini diukur dari pusat lingkaran dan dibentuk oleh dua jari-jari yang membatasi juring. Satuan pengukuran dapat menggunakan derajat atau radian.
+Sudut pusat diukur di pusat lingkaran, di antara dua jari-jari yang membatasi juring. Sudut ini dapat dinyatakan dalam derajat atau radian.
 
-Ketika sudut pusat bertambah besar, juring akan semakin melebar. Misalnya, juring dengan sudut pusat <InlineMath math="90^\circ" /> akan memiliki luas seperempat dari luas total lingkaran. Sedangkan juring dengan sudut pusat <InlineMath math="180^\circ" /> akan memiliki luas setengah lingkaran.
+Sebagai contoh, <InlineMath math="90^\circ" /> adalah seperempat putaran penuh sehingga luas juringnya seperempat luas lingkaran. Juring dengan sudut pusat <InlineMath math="180^\circ" /> memiliki setengah luas lingkaran.
 
 <LineEquation
   title={<>Perbandingan Juring dengan Sudut Pusat Berbeda</>}
@@ -106,6 +108,15 @@ Ketika sudut pusat bertambah besar, juring akan semakin melebar. Misalnya, jurin
     {
       points: [
         { x: 0, y: 0, z: 2 },
+        { x: 4, y: 0, z: 2 }
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 2 },
         { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
       ],
       color: "#4f46e5",
@@ -128,6 +139,15 @@ Ketika sudut pusat bertambah besar, juring akan semakin melebar. Misalnya, jurin
       labels: [
         { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.3, 0.5, 0] }
       ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 4 },
+        { x: 4, y: 0, z: 4 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2
     },
     {
       points: [
@@ -159,12 +179,12 @@ Ketika sudut pusat bertambah besar, juring akan semakin melebar. Misalnya, jurin
   showZAxis={true}
 />
 
-Hubungan matematis antara sudut pusat dan juring dapat dinyatakan dalam perbandingan sederhana. Jika sudut pusat adalah <InlineMath math="θ" /> dalam derajat, maka perbandingan luas juring terhadap luas lingkaran adalah <InlineMath math="\frac{θ}{360^\circ}" />. Untuk sudut dalam radian, perbandingannya menjadi <InlineMath math="\frac{θ}{2π}" />.
+Hubungan ini merupakan perbandingan bagian terhadap keseluruhan. Jika sudut pusat <InlineMath math="\theta" /> dinyatakan dalam derajat, perbandingan luas juring terhadap luas lingkaran adalah <InlineMath math="\frac{\theta}{360^\circ}" />. Jika <InlineMath math="\theta" /> dinyatakan dalam radian, perbandingannya adalah <InlineMath math="\frac{\theta}{2\pi}" />.
 
-## Aplikasi Juring dalam Kehidupan
+## Mengenali Juring dalam Berbagai Konteks
 
-Konsep juring banyak diterapkan dalam berbagai bidang praktis. Dalam arsitektur, juring digunakan untuk mendesain atap melengkung, jendela berbentuk lengkung, atau elemen dekoratif melingkar. Bentuk juring memberikan kesan elegan dan proporsional pada bangunan.
+Geometri juring dapat menggambarkan daerah yang disapu melalui sudut tertentu. Sebagai contoh, penyiram ideal dengan jangkauan <InlineMath math="r" /> dan sudut sapuan <InlineMath math="\theta" /> mencakup sebuah juring sebelum pengaruh penghalang, angin, dan sebaran air yang tidak merata diperhitungkan.
 
-Di bidang teknik, juring menjadi dasar perhitungan untuk roda gigi, kipas angin, dan komponen mesin yang berputar. Engineer menggunakan prinsip juring untuk menentukan distribusi beban dan efisiensi rotasi.
+Juring juga muncul pada diagram lingkaran dan pola radial. Perbandingan sudut pusat menentukan bagian yang bersesuaian dari seluruh cakram, tetapi geometri saja tidak menentukan beban atau efisiensi sebuah mesin.
 
-Dalam kehidupan sehari-hari, kita sering menjumpai juring pada jam dinding. Setiap angka jam membagi lingkaran menjadi <InlineMath math="12" /> juring yang sama besar, masing-masing dengan sudut pusat <InlineMath math="30^\circ" />. Potongan pizza atau kue tart juga merupakan contoh nyata aplikasi juring dalam kuliner.
+Pada muka jam yang tandanya berjarak sama, dua tanda jam yang berdekatan membatasi satu dari <InlineMath math="12" /> juring sama besar. Masing-masing memiliki sudut pusat <InlineMath math="30^\circ" />. Potongan pizza atau kue bundar juga menjadi model yang mudah dikenali, asalkan kedua sisinya mengikuti jari-jari.

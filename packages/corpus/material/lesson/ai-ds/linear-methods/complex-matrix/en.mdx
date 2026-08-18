@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Complex Matrix",
-    description: "Learn complex matrices with adjoint operations, Hermitian transpose, Euclidean norms, and essential properties for quantum computing and signal processing.",
+    description: "Work with complex matrices, compute conjugate transposes, and use the Hermitian inner product to measure complex vectors correctly.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-12",
     subject: "Linear Methods of AI",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Definition of Matrix with Complex Entries
 
-Just like matrices with real entries, we can also form matrices whose entries are complex numbers. Imagine a rectangular table containing complex numbers arranged neatly in rows and columns.
+Complex matrices use the same row, column, addition, and multiplication rules as real matrices. The difference is that every entry may have both a real and an imaginary part.
 
 A rectangular scheme of complex numbers with <InlineMath math="m \in \mathbb{N}" /> rows and <InlineMath math="n \in \mathbb{N}" /> columns is called a complex <InlineMath math="m \times n" /> matrix:
 
@@ -16,17 +16,24 @@ A rectangular scheme of complex numbers with <InlineMath math="m \in \mathbb{N}"
 
 with **coefficients** <InlineMath math="a_{ij} \in \mathbb{C}" /> for <InlineMath math="i = 1, \ldots, m" /> and <InlineMath math="j = 1, \ldots, n" />. The set of all complex <InlineMath math="m \times n" /> matrices is written as <InlineMath math="\mathbb{C}^{m \times n}" />.
 
-The main difference from real matrices is that each entry <InlineMath math="a_{ij}" /> can now be a complex number such as <InlineMath math="2 + 3i" /> or <InlineMath math="-1 - 4i" />.
+For example, entries such as <InlineMath math="2+3i" /> and <InlineMath math="-1-4i" /> belong to <InlineMath math="\mathbb C" />. Because conjugation matters for lengths and angles, a plain transpose is no longer the right operation for every geometric calculation.
 
 ## Adjoint Matrix
 
-In the context of complex matrices, the concept of matrix transpose is extended to a more general concept called the **adjoint matrix**. This concept is the complex generalization of the transpose matrix <InlineMath math="A^T" />.
+For complex matrices, the geometric counterpart of the transpose is the **adjoint**, also called the conjugate transpose. It transposes the matrix and conjugates every entry.
 
 Let <InlineMath math="A \in \mathbb{C}^{m \times n}" /> be a complex <InlineMath math="m \times n" /> matrix. The **adjoint matrix** (complex conjugate transpose matrix) <InlineMath math="A^H" /> of <InlineMath math="A" /> is the complex <InlineMath math="n \times m" /> matrix obtained by swapping the rows and columns of <InlineMath math="A" /> and taking the complex conjugate of each entry:
 
 <BlockMath math="A^H = \overline{A^T} = \overline{A}^T = \begin{pmatrix} \overline{a_{11}} & \cdots & \overline{a_{m1}} \\ \vdots & & \vdots \\ \overline{a_{1n}} & \cdots & \overline{a_{mn}} \end{pmatrix} \in \mathbb{C}^{n \times m}" />
 
-This process involves two steps: first transpose the matrix (swap rows and columns), then take the complex conjugate of each entry.
+For example,
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}1+i&2\\-i&3-2i\end{pmatrix}" />
+<BlockMath math="A^H=\begin{pmatrix}1-i&i\\2&3+2i\end{pmatrix}" />
+</MathContainer>
+
+The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <InlineMath math="A^H" /> is therefore <InlineMath math="\overline{a_{ij}}" />.
 
 ## Properties of Adjoint Matrix
 
@@ -46,29 +53,40 @@ If we take the adjoint of an adjoint, we return to the original matrix.
 
 3. **Linearity of addition**: <InlineMath math="(A + B)^H = A^H + B^H" />
 
-4. **Linearity of scalar multiplication**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
+4. **Conjugate linearity in a scalar**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
 
 Note that for scalar multiplication, we need to take the conjugate of the scalar <InlineMath math="\lambda" />.
 
 ### Multiplication Properties
 
-5. **Anticommutative property of multiplication**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
+5. **Order reversal for products**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
 
-This property shows that the adjoint of a matrix product is the product of the adjoints of those matrices in reverse order.
+This rule is not anticommutativity. It says that applying the adjoint to a product reverses the order of its factors, just as transposition does for real matrices.
 
 ## Euclidean Norm on Complex Spaces
 
-For vectors in complex spaces, we need a way to measure the "length" or norm of that vector. The concept of Euclidean norm is extended for complex spaces using the adjoint matrix.
+For <InlineMath math="v,w\in\mathbb C^n" />, the standard Hermitian inner product is
+
+<BlockMath math="\langle v,w\rangle=v^Hw=\sum_{i=1}^n\overline{v_i}w_i" />
+
+Conjugating the first argument ensures that the inner product of a vector with itself is real and nonnegative.
 
 For <InlineMath math="v \in \mathbb{C}^n" />, we define:
 
-<BlockMath math="v^H v = \sum_{i=1}^n \overline{v_i} v_i = \sum_{i=1}^n |v_i|^2 \in \mathbb{R}_0^+" />
+<BlockMath math="v^H v = \sum_{i=1}^n \overline{v_i} v_i = \sum_{i=1}^n |v_i|^2 \in \mathbb{R}_{\geq0}" />
 
 The **Euclidean norm** is calculated as:
 
 <BlockMath math="\|v\|_2 = \sqrt{v^H v}" />
 
-This defines a norm on <InlineMath math="\mathbb{C}^n" />, namely the **Euclidean norm** <InlineMath math="\|\cdot\|_2 : \mathbb{C}^n \to \mathbb{R} : v \mapsto \|v\|_2" />.
+For <InlineMath math="v=(1+i,2-i)^T" />, the calculation is concrete:
+
+<MathContainer>
+<BlockMath math="v^Hv=|1+i|^2+|2-i|^2=2+5=7" />
+<BlockMath math="\|v\|_2=\sqrt7" />
+</MathContainer>
+
+This is why using <InlineMath math="v^Tv" /> would be wrong in a complex space: without conjugation, the result need not be real or positive.
 
 ### Properties of Euclidean Norm
 
@@ -80,4 +98,4 @@ The Euclidean norm satisfies the following properties:
 
 **Triangle inequality**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
-These properties guarantee that <InlineMath math="\|\cdot\|_2" /> is truly a norm in the formal mathematical sense.
+These properties make <InlineMath math="\|\cdot\|_2" /> a genuine norm. The adjoint is therefore not decorative notation: it is the operation that keeps complex lengths, orthogonality, and projections consistent with their real counterparts.

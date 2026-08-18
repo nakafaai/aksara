@@ -36,12 +36,12 @@ For integrals containing square roots, we can use substitution. Let <InlineMath 
 <MathContainer>
 <BlockMath math="S = 2000 \int_{1}^{4} u^{1/2} \, du + 2400" />
 <BlockMath math="S = 2000 \left[\frac{2}{3}u^{3/2}\right]_{1}^{4} + 2400" />
-<BlockMath math="S = \frac{4000}{3}(8 - 1) + 2400 = \frac{28000}{3} + 2400" />
+<BlockMath math="S = \frac{4000}{3}(8 - 1) + 2400 = \frac{28000}{3} + \frac{7200}{3} = \frac{35200}{3}" />
 </MathContainer>
 
-The final result is <InlineMath math="S = 9333 + 2400 = 11733" /> smartphone units sold in the first <InlineMath math="3 \text{ months}" />.
+The continuous model predicts <InlineMath math="S = \frac{35200}{3} \approx 11733.33" /> smartphone units in the first <InlineMath math="3 \text{ months}" />. Interpreted as whole devices, that is approximately <InlineMath math="11733" /> smartphones.
 
-## Profit and Revenue Analysis
+## Revenue Growth Analysis
 
 Now let's look at a different example. Suppose a technology startup has a revenue growth rate that follows an exponential pattern <InlineMath math="R'(t) = 5000e^{0.1t}" /> thousand dollars per month, where <InlineMath math="t" /> is the time in months.
 
@@ -71,15 +71,17 @@ After we integrate and evaluate, we obtain:
 <BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
 </MathContainer>
 
-So, the total variable cost to produce <InlineMath math="20 \text{ units}" /> is <InlineMath math="2.4 \text{ million}" /> dollars.
+Assuming <InlineMath math="VC(0)=0" />, the total variable cost to produce <InlineMath math="20 \text{ units}" /> is <InlineMath math="2.4 \text{ million}" /> dollars. Any fixed cost is separate and is not included in this integral.
 
 > In economic applications, integrals help transform marginal concepts (rates of change) into total concepts (accumulation). This is very useful for making the right business decisions.
 
 ## Consumer Surplus Analysis
 
-The concept of consumer surplus can also be calculated using integrals. Imagine there's a market with demand function <InlineMath math="P = 100 - 0.5Q" /> and the equilibrium price is <InlineMath math="60 \text{ dollars per unit}" />.
+Consumer surplus can also be calculated with an integral. Consider a market with demand function <InlineMath math="P = 100 - 0.5Q" /> and equilibrium price <InlineMath math="60 \text{ dollars per unit}" />. The equilibrium quantity on this demand curve follows from:
 
-Consumer surplus shows the total benefit obtained by consumers above the price they pay. We can calculate it with:
+<BlockMath math="60=100-0.5Q\qquad\Longrightarrow\qquad Q=80" />
+
+Consumer surplus adds, across the <InlineMath math="80" /> units traded, the difference between buyers' willingness to pay given by the demand curve and the market price they actually pay:
 
 <BlockMath math="CS = \int_{0}^{80} (100 - 0.5Q - 60) \, dQ = \int_{0}^{80} (40 - 0.5Q) \, dQ" />
 
@@ -90,7 +92,7 @@ After evaluation:
 <BlockMath math="CS = 3200 - 1600 = 1600" />
 </MathContainer>
 
-A consumer surplus of <InlineMath math="1600 \text{ units}" /> shows the total benefit obtained by consumers above the equilibrium price.
+A consumer surplus of <InlineMath math="1600 \text{ dollars}" /> measures the total monetary benefit consumers receive above the equilibrium price.
 
 ## Exercises
 
@@ -100,7 +102,7 @@ A consumer surplus of <InlineMath math="1600 \text{ units}" /> shows the total b
 
 3. The investment growth rate function is <InlineMath math="I'(t) = 2000e^{0.05t}\text{ million}" /> dollars per year. Calculate the total investment growth in <InlineMath math="4 \text{ years}" />!
 
-### Answer Key
+### Worked Solutions
 
 1. **Calculating total sales**
 
@@ -142,7 +144,7 @@ A consumer surplus of <InlineMath math="1600 \text{ units}" /> shows the total b
 
    <MathContainer>
    <BlockMath math="I = 2000 \left[\frac{e^{0.05t}}{0.05}\right]_{0}^{4}" />
-   <BlockMath math="I = 40000(e^{0.2} - 1) \approx 40000(0.221) = 8856" />
+   <BlockMath math="I = 40000(e^{0.2} - 1) \approx 40000(0.2214) \approx 8856" />
    </MathContainer>
 
    Total investment growth in <InlineMath math="4 \text{ years}" /> is approximately <InlineMath math="8.86 \text{ billion dollars}" />.

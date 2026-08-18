@@ -3,55 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Appropriate programs from the government are needed so that agricultural production increases.",
+      label: "Replacing domestic food crops with imported commodities.",
       value: false,
     },
     {
       label:
-        "Food production is spurred, one of the ways is by narrowing the gap between farmers in Java and outside Java.",
+        "Funding irrigation, agricultural land, machinery, fertilizer, and improved seed.",
       value: true,
     },
     {
-      label:
-        "Spurring production by activating production plant programs that are in accordance with regional elements.",
+      label: "Using the entire ministry budget only for rice production.",
       value: false,
     },
     {
-      label:
-        "Farmers can freely cultivate agricultural land without being disturbed by the danger of imports from abroad.",
+      label: "Stopping every agricultural import through a new law.",
       value: false,
     },
     {
-      label:
-        "The government can concentrate more on encouraging farmers to produce agricultural land.",
+      label: "Reducing the amount of land cultivated outside Java.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Perlu program yang tepat dari pemerintah sehingga produksi pertanian meningkat.",
+      label: "Mengganti tanaman pangan dalam negeri dengan komoditas impor.",
       value: false,
     },
     {
       label:
-        "Produksi pangan dipacu, satu di antara caranya, dengan mempersempit kesenjangan antara petani di Jawa dan luar Jawa.",
+        "Mendanai irigasi, lahan pertanian, alat dan mesin, pupuk, serta benih unggul.",
       value: true,
     },
     {
       label:
-        "Memacu produksi dengan cara menggiatkan program tanaman produksi yang sesuai unsur kedaerahan.",
+        "Menggunakan seluruh anggaran kementerian hanya untuk produksi padi.",
       value: false,
     },
     {
-      label:
-        "Para petani dapat leluasa menggarap lahan pertanian tanpa terganggu bahaya impor dari luar negeri.",
+      label: "Menghentikan seluruh impor pertanian melalui undang-undang baru.",
       value: false,
     },
     {
-      label:
-        "Pemerintah bisa lebih berkonsentrasi dalam mendorong petani memproduksi lahan pertanian.",
+      label: "Mengurangi luas lahan yang digarap di luar Jawa.",
       value: false,
     },
   ],

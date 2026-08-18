@@ -4,21 +4,19 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Ingat bahwa <InlineMath math="\tan x = \frac{\sin x}{\cos x}" />
+Gunakan <InlineMath math="\tan x = \frac{\sin x}{\cos x}" />, lalu faktorkan <InlineMath math="\sin x" />.
 
 <BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = \lim_{x \to 0} \frac{\cos x \sin x - \frac{\sin x}{\cos x}}{x^2 \sin x}" />
-
-Buat faktorisasinya
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = \lim_{x \to 0} \frac{\sin x \left(\cos x - \frac{1}{\cos x}\right)}{x^2 \sin x}" />
 <BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = \lim_{x \to 0} \frac{\cos x - \frac{1}{\cos x}}{x^2}" />
 </MathContainer>
 
-Samakan penyebutnya
+Setelah menyamakan penyebut, gunakan <InlineMath math="\cos^2x-1=-\sin^2x" />.
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = \lim_{x \to 0} \frac{\cos^2 x - 1}{x^2 \cos x}" />
 <BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = \lim_{x \to 0} \frac{-\sin^2 x}{x^2 \cos x}" />
-<BlockMath math="\lim_{x \to 0} \frac{\cos x \sin x - \tan x}{x^2 \sin x} = -1" />
+<BlockMath math="=-\lim_{x\to0}\left(\frac{\sin x}{x}\right)^2\frac{1}{\cos x}=-1" />
 </MathContainer>

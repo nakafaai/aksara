@@ -1,143 +1,172 @@
 export const metadata = {
-    title: "Determining Minimum Area",
-    description: "Minimize areas and costs using quadratic functions with practical examples, efficient solutions, and business applications. Learn cost optimization techniques.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-04-19",
-    subject: "Quadratic Functions",
+  title: "Determining a Minimum Area",
+  description: "Build a quadratic model for a constrained area, locate its minimum, and check that the result is valid in the original problem.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratic Functions",
 };
 
-## What is Minimum Area?
+## Turning a constraint into a minimum
 
-Besides finding the largest value, quadratic functions can also be used to find the _smallest_ value (minimum). When might we need to find the minimum area? For example, when we have limited materials but need to make something with a certain area, and we want to use as little material as possible.
+Some optimization problems ask for the smallest possible value. A manufacturer may want the lowest cost, or a design may need the least total area under a fixed geometric condition. The objective changes, but the modeling process is the same: translate the constraint, build a function in one variable, and interpret its vertex.
 
-## Getting to Know Quadratic Functions Again
+Finding a minimum does not mean choosing zero automatically. The original problem determines which values are permitted, and the minimum must lie within that feasible domain.
 
-Remember, quadratic functions can look like a smile (<InlineMath math="ax^2 + bx + c" /> when <InlineMath math="a > 0" />) or a frown (<InlineMath math="ax^2 + bx + c" /> when <InlineMath math="a < 0" />).
+## Why an upward-opening quadratic has a minimum
 
-Now, if we want to find the _smallest_ value (minimum), we use the smile-shaped function, so the value of <InlineMath math="a" /> is positive (<InlineMath math="a > 0" />).
+A quadratic function has the form
 
-The general form remains the same:
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
 
-<BlockMath math="f(x) = ax^2 + bx + c" />
+When <InlineMath math="a>0" />, its graph opens upward. The vertex is therefore the lowest point of the graph. If the vertex lies inside the feasible domain, its function value is the minimum.
 
-(<InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> are numbers, <InlineMath math="a \neq 0" />).
+### Locating the vertex
 
-## How to Find the Lowest Point (Valley)
+For <InlineMath math="f(x)=ax^2+bx+c" />, use
 
-The smallest value is at the lowest point of the smiling graph. This point is also called the vertex (but it's at the bottom).
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
 
-The formula to find it is exactly the same as finding the highest point!
+The equivalent discriminant form is
 
-To find the _position_ of the valley (the <InlineMath math="x" /> value):
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
 
-<BlockMath math="x_p = -\frac{b}{2a}" />
+Always return to the context after calculating the vertex. Check the domain, units, and whether the variable must be an integer.
 
-To find the _smallest value_ (the <InlineMath math="y" /> or <InlineMath math="f(x)" /> value):
+## Worked example: one wire, two squares
 
-<BlockMath math="y_p = f(x_p) = a(x_p)^2 + b(x_p) + c" />
+A <InlineMath math="40\text{ cm}" /> wire is cut into two pieces. Each piece is bent into a square. Where should the wire be cut so that the sum of the two square areas is as small as possible?
 
-Or use the discriminant shortcut formula:
+1. **Name the side lengths.** Let the first square have side <InlineMath math="x\text{ cm}" /> and the second have side <InlineMath math="y\text{ cm}" />.
+2. **Translate the wire-length constraint.**
 
-<BlockMath math="y_p = -\frac{D}{4a}" />
+   <MathContainer>
+     <BlockMath math="4x+4y=40" />
+     <BlockMath math="x+y=10" />
+     <BlockMath math="y=10-x" />
+   </MathContainer>
 
-where <InlineMath math="D = b^2 - 4ac" />.
+3. **Build the total-area function.**
 
-## Example to Understand
+   <MathContainer>
+     <BlockMath math="A=x^2+y^2" />
+     <BlockMath math="A(x)=x^2+(10-x)^2" />
+     <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
+     <BlockMath math="A(x)=2x^2-20x+100" />
+   </MathContainer>
 
-Let's say we have a <InlineMath math="40 \text{ cm}" /> long wire. We want to cut this wire into two parts. The first part will be formed into a square, and the second part will also be formed into a square. What should the cuts be so that the _total area_ of both squares is as small as possible (minimum)?
+4. **State the feasible domain.** Both squares must have positive side lengths, so <InlineMath math="0<x<10" />. Because <InlineMath math="a=2>0" />, the graph opens upward.
+5. **Locate the vertex.**
 
-1.  **Name Things:** Let's say the side of the first square is <InlineMath math="x \text{ cm}" />, and the side of the second square is <InlineMath math="y \text{ cm}" />.
-2.  **Wire Length Relationship:**
+   <BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
 
-    - Wire for the first square: Perimeter is <InlineMath math="4x \text{ cm}" />.
-    - Wire for the second square: Perimeter is <InlineMath math="4y \text{ cm}" />.
-    - Total wire length:
+6. **Recover the second side length and evaluate the total area.**
 
-      <BlockMath math="4x + 4y = 40" />
+   <MathContainer>
+     <BlockMath math="y=10-x=10-5=5" />
+     <BlockMath math="A(5)=5^2+5^2=50" />
+   </MathContainer>
 
-      Simplify (divide by <InlineMath math="4" />):
+7. **Interpret the cut.** Each square needs perimeter <InlineMath math="4(5)=20\text{ cm}" />, so the wire is cut into two <InlineMath math="20\text{ cm}" /> pieces. The full <InlineMath math="40\text{ cm}" /> wire is still used. Only the sum of the enclosed areas is minimized.
 
-      <BlockMath math="x + y = 10" />
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Total-area model <InlineMath math="A(x)=2x^2-20x+100" />
+      </>
+    }
+    description={
+      <>
+        The graph is shown for <InlineMath math="0\le x\le10" />. Within the feasible interval <InlineMath math="0<x<10" />, it reaches its lowest point at <InlineMath math="(5,50)" />.
+      </>
+    }
+    showZAxis={false}
+    cameraPosition={[5, 24, 30]}
+    data={[
+      {
+        points: Array.from({ length: 11 }, (_, x) => ({
+          x,
+          y: 2 * x * x - 20 * x + 100,
+          z: 0,
+        })),
+        color: "#7c3aed",
+        labels: [
+          {
+            text: "Minimum point",
+            at: 5,
+            offset: [0, -4, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
 
-      This means:
+The minimum total area is <InlineMath math="50\text{ cm}^2" />, obtained when both squares have side length <InlineMath math="5\text{ cm}" />.
 
-      <BlockMath math="y = 10 - x" />
+## Reading the model at a glance
 
-3.  **Total Area Formula:** The total area of both squares is <InlineMath math="A = \text{Area}_1 + \text{Area}_2" />.
+| Part of the problem | Mathematical statement | Meaning |
+| ------------------- | ---------------------- | ------- |
+| Fixed wire length | <InlineMath math="4x+4y=40" /> | Both square perimeters use all <InlineMath math="40\text{ cm}" /> of wire. |
+| One-variable model | <InlineMath math="A(x)=2x^2-20x+100" /> | Each permitted first side length determines one total area. |
+| Feasible domain | <InlineMath math="0<x<10" /> | Both squares retain positive side lengths. |
+| Vertex | <InlineMath math="(5,50)" /> | Equal side lengths produce the smallest total area. |
 
-    <BlockMath math="A(x) = x^2 + y^2" />
+## Another application: production cost
 
-    Replace <InlineMath math="y" /> with <InlineMath math="10 - x" />:
+Suppose the cost of producing <InlineMath math="x" /> items, measured in thousands of rupiah, is
 
-    <MathContainer>
-      <BlockMath math="A(x) = x^2 + (10 - x)^2" />
-      <BlockMath math="A(x) = x^2 + (100 - 20x + x^2)" />
-      <BlockMath math="A(x) = 2x^2 - 20x + 100" />
-    </MathContainer>
+<BlockMath math="C(x)=3x^2-60x+500" />
 
-4.  **Quadratic Function Form:** We now have <InlineMath math="A(x) = 2x^2 - 20x + 100" />.
+Because <InlineMath math="a=3>0" />, the model has a minimum:
 
-    This is a quadratic function with <InlineMath math="a = 2" />, <InlineMath math="b = -20" />, <InlineMath math="c = 100" />. Since <InlineMath math="a" /> is positive, the graph is a smile, so there is a minimum value.
+<MathContainer>
+  <BlockMath math="x_v=-\frac{-60}{2(3)}=10" />
+  <BlockMath math="C(10)=3(10)^2-60(10)+500=300-600+500=200" />
+</MathContainer>
 
-5.  **Find Side x for Minimum Area:** Use the formula <InlineMath math="x_p = -b / (2a)" />:
+The model predicts a minimum cost of <InlineMath math="\text{IDR }200\,000" /> at <InlineMath math="10" /> items. A real production decision would also check whether the model's stated domain and operational constraints allow that quantity.
 
-    <BlockMath math="x_p = -\frac{-20}{2 \times 2} = \frac{20}{4} = 5" />
+## Practice
 
-    So, the side of the first square must be <InlineMath math="5 \text{ cm}" /> for the sum of areas to be minimal.
+The sum of two positive numbers is <InlineMath math="16" />. Determine the two numbers that minimize the sum of their squares, and find that minimum sum.
 
-6.  **Find Side y and Minimum Area:**
+### Worked solution
 
-    - Side of the second square: <InlineMath math="y = 10 - x = 10 - 5 = 5 \text{ cm}" />.
-    - Minimum Total Area: Plug <InlineMath math="x = 5" /> into <InlineMath math="A(x)" />:
+1. Let the first number be <InlineMath math="x" /> and the second be <InlineMath math="y" />.
+2. Translate the sum constraint.
 
-      <BlockMath math="A(5) = 2(5)^2 - 20(5) + 100 = 2(25) - 100 + 100 = 50" />
+   <MathContainer>
+     <BlockMath math="x+y=16" />
+     <BlockMath math="y=16-x" />
+   </MathContainer>
 
-      The minimum total area is <InlineMath math="50 \text{ cm}^2" />.
+3. Build the objective function.
 
-7.  **Conclusion:** For the total area of both squares to be minimal (<InlineMath math="50 \text{ cm}^2" />), the wire must be cut so that both squares have the same side length, which is <InlineMath math="5 \text{ cm}" />. (This means the wire is cut into two equal parts, <InlineMath math="20 \text{ cm}" /> and <InlineMath math="20 \text{ cm}" />).
+   <MathContainer>
+     <BlockMath math="S=x^2+y^2" />
+     <BlockMath math="S(x)=x^2+(16-x)^2" />
+     <BlockMath math="S(x)=x^2+(256-32x+x^2)" />
+     <BlockMath math="S(x)=2x^2-32x+256" />
+   </MathContainer>
 
-## Where Is It Used?
+4. The feasible domain is <InlineMath math="0<x<16" />, and <InlineMath math="a=2>0" />, so the vertex gives the minimum.
+5. Find the first number at the vertex.
 
-### Business & Economics
+   <BlockMath math="x_v=-\frac{-32}{2(2)}=\frac{32}{4}=8" />
 
-**Example:**
+6. Find the second number and evaluate the objective.
 
-The production cost of <InlineMath math="x \text{ units}" /> of goods (in thousands of rupiah) is <InlineMath math="C(x) = 3x^2 - 60x + 500" />. How many units should be produced to minimize the cost?
+   <MathContainer>
+     <BlockMath math="y=16-x=16-8=8" />
+     <BlockMath math="S(8)=8^2+8^2=128" />
+   </MathContainer>
 
-- Cost function: <InlineMath math="C(x) = 3x^2 - 60x + 500" /> (<InlineMath math="a=3, b=-60" />). <InlineMath math="a>0" />, so there is a minimum.
-- Number of units for minimum cost: <InlineMath math="x_p = -b / (2a) = -(-60) / (2 \times 3) = 60 / 6 = 10 \text{ units}" />.
-- Minimum cost: <InlineMath math="C(10) = 3(10)^2 - 60(10) + 500 = 3(100) - 600 + 500 = 300 - 600 + 500 = 200" /> thousand rupiah (or <InlineMath math="\text{Rp }200{,}000" />).
-
-## Exercise
-
-The sum of two positive numbers is <InlineMath math="16" />. Determine these two numbers so that the sum of their squares is minimum, and calculate the minimum sum of squares!
-
-### Answer Key
-
-1.  Let the first number be <InlineMath math="x" />, the second number be <InlineMath math="y" />. (<InlineMath math="x > 0, y > 0" />).
-2.  Relationship: <InlineMath math="x + y = 16" />. So <InlineMath math="y = 16 - x" />.
-3.  Sum of Squares: <InlineMath math="S = x^2 + y^2" />.
-
-    <MathContainer>
-      <BlockMath math="S(x) = x^2 + (16 - x)^2" />
-      <BlockMath math="S(x) = x^2 + (256 - 32x + x^2)" />
-      <BlockMath math="S(x) = 2x^2 - 32x + 256" />
-    </MathContainer>
-
-4.  Sum of Squares Function: <InlineMath math="S(x) = 2x^2 - 32x + 256" />.
-
-    (<InlineMath math="a = 2, b = -32" />). Since <InlineMath math="a > 0" />, there is a minimum value.
-
-5.  Value of <InlineMath math="x" /> for minimum sum of squares:
-
-    <BlockMath math="x_p = -b / (2a) = -(-32) / (2 \times 2) = 32 / 4 = 8" />
-
-6.  Value of <InlineMath math="y" />:
-
-    <BlockMath math="y = 16 - x = 16 - 8 = 8" />
-
-7.  Minimum Sum of Squares:
-
-    <BlockMath math="S(8) = 2(8)^2 - 32(8) + 256 = 2(64) - 256 + 256 = 128" />
-
-Therefore, the two numbers are <InlineMath math="8" /> and <InlineMath math="8" /> for the sum of their squares to be minimum (which is <InlineMath math="128" />).
+The two numbers are <InlineMath math="8" /> and <InlineMath math="8" />, and the minimum sum of their squares is <InlineMath math="128" />.

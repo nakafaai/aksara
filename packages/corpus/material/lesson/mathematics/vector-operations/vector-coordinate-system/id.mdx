@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Vektor dan Sistem Koordinat",
-  description: "Pelajari koordinat Kartesius 2D dan 3D. Pelajari vektor posisi, perpindahan, cara penulisan notasi, dan aplikasi nyata seperti GPS dan peta digital.",
+  description: "Pelajari koordinat Kartesius dalam dua dan tiga dimensi, lalu hubungkan titik, vektor posisi, vektor perpindahan, dan aplikasi peta.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-09",
   subject: "Vektor dan Operasinya",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Sistem Koordinat Kartesius
 
-Untuk menyatakan posisi suatu objek, seperti pesawat terbang yang sedang mengudara, kita memerlukan sebuah **kerangka acuan** atau **sistem koordinat**. Sistem yang paling umum digunakan adalah **Sistem Koordinat Kartesius**, yang dicetuskan oleh René Descartes.
+Untuk menyatakan posisi suatu objek, seperti pesawat yang sedang terbang, kita perlu menentukan **kerangka acuan** atau **sistem koordinat** terlebih dahulu. Salah satu sistem yang banyak digunakan adalah **sistem koordinat Kartesius**, yang namanya diambil dari René Descartes.
 
 Sistem Koordinat Kartesius menggunakan sumbu-sumbu yang saling tegak lurus untuk menentukan lokasi suatu titik.
 
@@ -42,9 +42,9 @@ Sistem Koordinat Kartesius menggunakan sumbu-sumbu yang saling tegak lurus untuk
     ]}
   />
 
-- Pada **tiga dimensi**, kita menambahkan sumbu <InlineMath math="z" /> yang tegak lurus terhadap bidang <InlineMath math="xy" />. Posisi titik dinyatakan sebagai <InlineMath math="(x, y, z)" />, seperti untuk menentukan posisi pesawat di udara.
+- Pada **tiga dimensi**, kita menambahkan sumbu <InlineMath math="z" /> yang tegak lurus terhadap bidang <InlineMath math="xy" />. Posisi titik dinyatakan sebagai <InlineMath math="(x, y, z)" />, sehingga kita dapat menjelaskan letak objek seperti pesawat dalam ruang tiga dimensi.
 
-  Kita bisa menganalogikan <InlineMath math="x" /> sebagai panjang, <InlineMath math="y" /> sebagai lebar, dan <InlineMath math="z" /> sebagai tinggi.
+  Dalam salah satu pemodelan ruang yang umum, <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> dapat menyatakan panjang, lebar, dan tinggi. Makna tersebut berasal dari model yang dipilih, bukan dari nama sumbunya sendiri.
 
   <Vector3d
     title={
@@ -63,20 +63,20 @@ Sistem Koordinat Kartesius menggunakan sumbu-sumbu yang saling tegak lurus untuk
         from: [0, 0, 0],
         to: [3, 4, 5],
         color: "#9333ea",
-        label: <InlineMath math="P(3,4,5)" />,
+        label: <InlineMath math="P(3, 4, 5)" />,
       },
     ]}
   />
 
 ## Beda Vektor dan Koordinat
 
-Berbeda dengan koordinat yang menyatakan _posisi_ suatu titik, **vektor** adalah besaran yang memiliki **besar (panjang)** dan **arah**. Bayangkan seekor lalat yang terbang dari titik <InlineMath math="P(3, 4)" /> ke titik <InlineMath math="Q(-2, -8)" />. Perpindahan lalat tersebut dapat digambarkan sebagai sebuah vektor.
+Koordinat menyatakan _posisi_ suatu titik terhadap sistem koordinat. Sebaliknya, **vektor** memiliki **besar** dan **arah**. Bayangkan seekor lalat terbang dari titik <InlineMath math="P(3, 4)" /> ke titik <InlineMath math="Q(-2, -8)" />. Perpindahannya dapat digambarkan dengan sebuah vektor.
 
 - **Vektor Posisi:** Vektor yang dimulai dari titik asal <InlineMath math="O(0, 0)" /> ke suatu titik <InlineMath math="P(x, y)" />. Vektor posisi <InlineMath math="P" /> ditulis sebagai <InlineMath math="\overrightarrow{OP}" />.
 
   Contohnya: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
 
-- **Vektor Perpindahan (atau Vektor Bebas):** Vektor yang menghubungkan dua titik sembarang, misalnya dari titik <InlineMath math="P(x_P, y_P)" /> ke titik <InlineMath math="Q(x_Q, y_Q)" />. Vektor ini ditulis sebagai <InlineMath math="\overrightarrow{PQ}" />. Vektor ini tidak harus dimulai dari titik asal.
+- **Vektor Perpindahan:** Vektor yang menghubungkan dua titik sembarang, misalnya dari titik <InlineMath math="P(x_P, y_P)" /> ke titik <InlineMath math="Q(x_Q, y_Q)" />. Vektor ini ditulis sebagai <InlineMath math="\overrightarrow{PQ}" /> dan tidak harus dimulai dari titik asal.
 
   Contohnya: vektor perpindahan dari <InlineMath math="P(3, 4)" /> ke <InlineMath math="Q(-2, -8)" /> atau dari <InlineMath math="Q(-2, -8)" /> ke <InlineMath math="R(1, 3)" />.
 
@@ -105,7 +105,6 @@ Berbeda dengan koordinat yang menyatakan _posisi_ suatu titik, **vektor** adalah
           { x: 3, y: 4 },
           { x: -2, y: -8 },
         ],
-        direction: "backward",
       },
     ]}
   />
@@ -128,11 +127,11 @@ Vektor dapat ditulis dalam beberapa cara:
 
 ## Mengapa Sistem Koordinat Penting?
 
-Coba bayangkan aplikasi peta di ponselmu. Aplikasi tersebut mengandalkan sistem koordinat untuk:
+Coba bayangkan aplikasi peta di ponselmu. Aplikasi tersebut menggunakan sistem koordinat untuk:
 
 1.  Menentukan lokasimu saat ini.
 2.  Mencari lokasi tujuanmu.
-3.  Menghitung rute terpendek atau tercepat.
+3.  Menghubungkan posisimu dengan jalan dan pilihan rute.
 4.  Memberikan instruksi arah (belok kiri, belok kanan, lurus).
 
-Tanpa sistem koordinat, mustahil bagi aplikasi untuk memahami posisi dan arah secara akurat. Setiap pergerakan, seperti pesawat yang mengubah ketinggian atau arah, perlu dilaporkan dan diproses menggunakan sistem koordinat dan konsep vektor.
+Koordinat menyediakan informasi lokasi, sedangkan data peta dan algoritma perutean menentukan rute yang sesuai. Vektor membantu menjelaskan perubahan posisi dan arah. Perbedaan yang sama berlaku ketika pesawat mengubah ketinggian atau arah: koordinat menjelaskan letaknya, sedangkan vektor perpindahan menjelaskan perubahan posisinya.

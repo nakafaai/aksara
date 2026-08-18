@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Trigonometric Function Graph",
-  description: "Learn trigonometric function graphs with interactive visualizations. Learn sine, cosine, tangent graphs, amplitude, period, transformations & conversions.",
+  description: "Read sine, cosine, and tangent graphs through interactive visualizations of radians, amplitude, period, and graph transformations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Functions and Their Modeling",
@@ -46,7 +46,7 @@ Before studying trigonometric function graphs, it's important to understand two 
 
 ### Amplitude
 
-Amplitude is the maximum distance from the center line (<InlineMath math="x" />-axis) to the peak or trough of the graph. For functions <InlineMath math="y = A \sin x" /> or <InlineMath math="y = A \cos x" />, the amplitude is <InlineMath math="|A|" />.
+Amplitude is the maximum vertical distance from a sinusoid's midline to a peak or trough. In the unshifted functions <InlineMath math="y = A \sin x" /> and <InlineMath math="y = A \cos x" />, that midline is the <InlineMath math="x" />-axis and the amplitude is <InlineMath math="|A|" />.
 
 <LineEquation
   title="Amplitude Concept"
@@ -129,13 +129,13 @@ For trigonometric functions in the form:
 
   <MathContainer>
     <BlockMath math="y = A \tan(Bx)" />
-    <BlockMath math="\text{Amplitude} = \text{undefined (infinite)}" />
+    <BlockMath math="\text{Amplitude} = \text{undefined}" />
     <BlockMath math="\text{Period} = \frac{\pi}{|B|}" />
   </MathContainer>
 
 ## Sine Function Graph
 
-The function <InlineMath math="y = \sin x" /> is a periodic function with period <InlineMath math="2\pi" />. This means its graph pattern repeats every <InlineMath math="2\pi \text{ interval}" />.
+The function <InlineMath math="y = \sin x" /> is periodic with period <InlineMath math="2\pi" />. Its graph pattern therefore repeats over every interval of length <InlineMath math="2\pi" />.
 
 <LineEquation
   title={
@@ -159,13 +159,13 @@ The function <InlineMath math="y = \sin x" /> is a periodic function with period
   showZAxis={false}
 />
 
-**Characteristics of** <InlineMath math="y = \sin x" /> **graph**:
+**Graph characteristics:** <InlineMath math="y = \sin x" />
 
 - **Period**: <InlineMath math="2\pi" /> (graph repeats every <InlineMath math="2\pi \text{ units}" />)
 - **Amplitude**: <InlineMath math="1" /> (maximum value minus minimum value, then divided by <InlineMath math="2" />)
 - **Domain**: All real numbers
 - **Range**: <InlineMath math="[-1, 1]" />
-- **x-intercepts**: <InlineMath math="x = n\pi" /> where <InlineMath math="n" /> is an integer
+- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = n\pi" /> where <InlineMath math="n" /> is an integer
 - **Maximum value**: <InlineMath math="1" /> at <InlineMath math="x = \frac{\pi}{2} + 2n\pi" />
 - **Minimum value**: <InlineMath math="-1" /> at <InlineMath math="x = \frac{3\pi}{2} + 2n\pi" />
 
@@ -195,13 +195,13 @@ The function <InlineMath math="y = \cos x" /> has a shape similar to sine, but s
   showZAxis={false}
 />
 
-**Characteristics of** <InlineMath math="y = \cos x" /> **graph**:
+**Graph characteristics:** <InlineMath math="y = \cos x" />
 
 - **Period**: <InlineMath math="2\pi" />
 - **Amplitude**: <InlineMath math="1" />
 - **Domain**: All real numbers
 - **Range**: <InlineMath math="[-1, 1]" />
-- **x-intercepts**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
 - **Maximum value**: <InlineMath math="1" /> at <InlineMath math="x = 2n\pi" />
 - **Minimum value**: <InlineMath math="-1" /> at <InlineMath math="x = \pi + 2n\pi" />
 
@@ -248,7 +248,7 @@ The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\si
       Graph of <InlineMath math="y = \tan x" />
     </>
   }
-  description="Notice the dashed lines showing vertical asymptotes."
+  description="The red vertical lines mark the asymptotes."
   data={[
     // Tangent function
     ...Array.from({ length: 3 }, (_, periodIndex) => {
@@ -277,7 +277,7 @@ The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\si
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 1 ? [{ text: `x = π/2`, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 1 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
@@ -285,14 +285,14 @@ The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\si
   showZAxis={false}
 />
 
-**Characteristics of** <InlineMath math="y = \tan x" /> **graph**:
+**Graph characteristics:** <InlineMath math="y = \tan x" />
 
 - **Period**: <InlineMath math="\pi" /> (shorter than <InlineMath math="\sin" /> and <InlineMath math="\cos" />)
 - **Amplitude**: Undefined
 - **Domain**: <InlineMath math="x \neq \frac{\pi}{2} + n\pi" />
 - **Range**: All real numbers
 - **Vertical asymptotes**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
-- **x-intercepts**: <InlineMath math="x = n\pi" />
+- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = n\pi" />
 
 ## Transformations of Trigonometric Functions
 

@@ -3,17 +3,26 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "advice for young men and women to examine their fasting habits",
+      label: "Ramadan fasting guarantees permanent weight loss.",
       value: false,
     },
     {
-      label: "suggestions for people on managing their body weight",
+      label:
+        "The 2025 review found large permanent losses of muscle and water.",
       value: false,
     },
-    { label: "people’s motives for engaging in Ramadan fasting", value: false },
-    { label: "reasons why people might fast for weight loss", value: false },
     {
-      label: "further explanation of desirable weight-loss interventions",
+      label:
+        "Religious fasting and clinical weight treatment have the same purpose.",
+      value: false,
+    },
+    {
+      label: "The studies prove that no participant experiences any change.",
+      value: false,
+    },
+    {
+      label:
+        "The studies show modest, varied, short-term average changes rather than a universal long-term result.",
       value: true,
     },
   ],

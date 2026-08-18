@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Position of a Tangent Line to a Circle",
-  description: "Learn tangent lines to circles: find equations through points, with given slopes, and from external points. Interactive examples and worked solutions.",
+  title: "Circle Tangents: Position and Equation",
+  description: "Construct circle tangents from a contact point, a given slope, or an outside point, with visual models and complete solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -10,19 +10,19 @@ export const metadata = {
 
 ## Understanding Tangent Lines to Circles
 
-Imagine you're riding a bicycle on a circular track. At some point, you decide to leave the track in a straight line. Well, that straight line you're traveling on is what we call a **tangent line** to the circular track.
+Imagine riding around a circular track. If you leave the track without turning the handlebars, your direction at that instant follows the track's **tangent line**. It is not just any line through that point: it is the unique line perpendicular to the radius there.
 
-Mathematically, a tangent line to a circle is a straight line that touches the circle at exactly one point. This point of contact is called the **point of tangency**. What's interesting is that the tangent line is always **perpendicular** to the radius of the circle at that point of tangency.
+Mathematically, a tangent line meets a circle at exactly one point, called the **point of tangency**. The tangent is always **perpendicular** to the radius drawn to that point.
 
-This concept is very useful in various applications, such as designing highways that exit from roundabouts, determining the trajectory of objects leaving circular orbits, or even in optics to determine the direction of light reflection.
+That perpendicular relationship is the thread through this lesson. We will use it to construct a tangent at a known point, find tangents with a given slope, and draw both tangents through a point outside the circle.
 
 ## Tangent Line Through a Point on the Circle
 
-Let's start with the simplest case. When we already know the point of tangency, determining the equation of the tangent line becomes relatively easy.
+Start by checking that the proposed point of tangency really lies on the circle. Its radius vector then becomes a normal vector for the tangent.
 
 <LineEquation
   title="Tangent Line Through a Point on the Circle"
-  description="Visualization of a tangent line passing through a specific point on the circle."
+  description="The radius to the known contact point is normal to the tangent."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -136,33 +136,33 @@ Let's start with the simplest case. When we already know the point of tangency, 
   showZAxis={false}
 />
 
-For a circle with equation <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" /> and point of tangency <InlineMath math="T(x_1, y_1)" />, we can determine the equation of the tangent line with the following steps:
+For the circle <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> and point of tangency <InlineMath math="T(x_1,y_1)" />, proceed as follows.
 
-**First step**: Calculate the slope of the radius from center <InlineMath math="O(a,b)" /> to the point of tangency <InlineMath math="T(x_1, y_1)" />:
+**Step** <InlineMath math="1" />: Verify that <InlineMath math="T" /> lies on the circle.
 
-<BlockMath math="m_{\text{radius}} = \frac{y_1 - b}{x_1 - a}" />
+<BlockMath math="(x_1-a)^2+(y_1-b)^2=r^2" />
 
-**Second step**: Since the tangent line is perpendicular to the radius, the slope of the tangent line is:
+**Step** <InlineMath math="2" />: The radius vector is normal to the tangent.
 
-<BlockMath math="m_{\text{tangent}} = -\frac{x_1 - a}{y_1 - b}" />
+<BlockMath math="\vec{OT}=(x_1-a,\,y_1-b)" />
 
-**Third step**: Use the formula for the equation of a line with slope and one point:
+**Step** <InlineMath math="3" />: Use that normal vector in the line equation through <InlineMath math="T" />.
 
-<BlockMath math="(y - y_1) = m_{\text{tangent}}(x - x_1)" />
+<BlockMath math="(x_1-a)(x-x_1)+(y_1-b)(y-y_1)=0" />
 
-After simplification, we get the **practical formula** for the tangent line to a circle:
+Using the point-on-circle condition from Step <InlineMath math="1" />, this becomes the **point-tangent form**:
 
 <BlockMath math="(x - a)(x_1 - a) + (y - b)(y_1 - b) = r^2" />
 
-> This formula is very practical because we just need to substitute the coordinates of the circle's center, the point of tangency, and the radius squared.
+> Because this derivation uses a normal vector instead of a slope, it also handles vertical and horizontal tangents without a special case.
 
 ## Tangent Line with Given Slope
 
-Sometimes we're not given the point of tangency, but asked to find a tangent line that has a specific slope. For example, we want to find a tangent line that's parallel to a certain line.
+If the point of tangency is unknown but the slope is given, the intercept must place the line exactly one radius away from the center. This often appears when the tangent must be parallel to another line.
 
 <LineEquation
   title="Tangent Line with Given Slope"
-  description="Two tangent lines with the same slope on a circle."
+  description="A given slope determines two parallel tangents, one on each side of the center."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -276,21 +276,21 @@ Since the line is tangent to the circle, the discriminant of this quadratic equa
   <BlockMath math="c^2 = (1 + m^2)r^2" />
 </MathContainer>
 
-Therefore, we obtain:
+Solving for the intercept gives:
 
 <BlockMath math="c = \pm r\sqrt{1 + m^2}" />
 
-So, for every slope <InlineMath math="m" />, there are always **two tangent lines** with the equation:
+Thus, for every finite slope <InlineMath math="m" />, the centered circle has **two parallel tangent lines**:
 
 <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-## Tangent Line from External Point
+## Tangents Through an Outside Point
 
-The most interesting case is when we're asked to find tangent lines drawn from a point outside the circle. From one point outside the circle, we can draw exactly **two tangent lines**.
+A point outside a circle determines exactly **two tangent lines**. Their two contact points lie on one useful auxiliary line, the polar of the outside point.
 
 <LineEquation
-  title="Tangent Line from Point Outside the Circle"
-  description="Two tangent lines drawn from an external point to the circle."
+  title="Tangents Through a Point Outside the Circle"
+  description="One outside point determines two contact points and two tangent lines."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -436,25 +436,23 @@ The most interesting case is when we're asked to find tangent lines drawn from a
   showZAxis={false}
 />
 
-To determine the equation of tangent lines from point <InlineMath math="P(x_0, y_0)" /> outside circle <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, we use the concept of **polar line**.
-
-The equation of the polar line of point <InlineMath math="P(x_0, y_0)" /> with respect to the circle is:
+Let <InlineMath math="P(x_0,y_0)" /> lie outside the circle <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Its **polar line** is:
 
 <BlockMath math="(x-a)(x_0-a) + (y-b)(y_0-b) = r^2" />
 
-This polar line is **the line connecting the two points of tangency** from point <InlineMath math="P" /> to the circle. So, to find the tangent points, we need to:
+For an outside point, this polar is the **chord of contact**, the line through both points of tangency. The construction is therefore:
 
-1. Determine the equation of the polar line
-2. Find the intersection points of the polar line with the circle
-3. Use both tangent points to determine the equations of the tangent lines
+1. Write the polar line.
+2. Intersect it with the circle to find both points of tangency.
+3. Use each contact point to construct one tangent through <InlineMath math="P" />.
 
-> This polar line concept is very elegant because it provides a systematic way to solve tangent line problems from external points.
+> The polar is not itself one of the two tangents. It is the line joining their contact points.
 
-## Application Example
+## Worked Example
 
-Let's look at a concrete example. Given circle <InlineMath math="L \equiv (x+1)^2 + (y-2)^2 = 9" /> and point <InlineMath math="B(2, 6)" /> which is outside the circle.
+Find both tangents from <InlineMath math="B(2,6)" /> to the circle <InlineMath math="L \equiv (x+1)^2+(y-2)^2=9" />.
 
-**Step** <InlineMath math="1" />: Determine the equation of the polar line of point <InlineMath math="B(2, 6)" /> with respect to the circle:
+**Step** <InlineMath math="1" />: Determine the polar line of <InlineMath math="B(2,6)" /> with respect to the circle.
 
 <MathContainer>
   <BlockMath math="(x-(-1))(2-(-1)) + (y-2)(6-2) = 9" />
@@ -470,7 +468,31 @@ Let's look at a concrete example. Given circle <InlineMath math="L \equiv (x+1)^
   <BlockMath math="(\frac{17-4y}{3})^2 + (y-2)^2 = 9" />
 </MathContainer>
 
-After solving, we'll get two tangent points. Then use those points to determine the equations of the tangent lines.
+**Step** <InlineMath math="3" />: Solve the quadratic for the two possible <InlineMath math="y" />-coordinates.
+
+<MathContainer>
+  <BlockMath math="(17-4y)^2+9(y-2)^2=81" />
+  <BlockMath math="25y^2-172y+244=0" />
+  <BlockMath math="y=\frac{172\pm\sqrt{172^2-4(25)(244)}}{50}=\frac{172\pm72}{50}" />
+  <BlockMath math="y_1=\frac{122}{25}\quad\text{and}\quad y_2=2" />
+</MathContainer>
+
+**Step** <InlineMath math="4" />: Substitute each value into the polar line to obtain the points of tangency.
+
+<MathContainer>
+  <BlockMath math="x_1=\frac{14-4\left(\frac{122}{25}\right)}{3}=-\frac{46}{25}" />
+  <BlockMath math="x_2=\frac{14-4(2)}{3}=2" />
+  <BlockMath math="T_1\left(-\frac{46}{25},\frac{122}{25}\right),\qquad T_2(2,2)" />
+</MathContainer>
+
+**Step** <InlineMath math="5" />: Use each point in the point-tangent form of the circle.
+
+<MathContainer>
+  <BlockMath math="-\frac{21}{25}(x+1)+\frac{72}{25}(y-2)=9\quad\Longrightarrow\quad -7x+24y=130" />
+  <BlockMath math="3(x+1)=9\quad\Longrightarrow\quad x=2" />
+</MathContainer>
+
+Both lines pass through <InlineMath math="B(2,6)" /> and touch the circle once, so these are the required tangents.
 
 ## Practice
 
@@ -482,7 +504,7 @@ After solving, we'll get two tangent points. Then use those points to determine 
 
 4. A circle has the equation <InlineMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />. Determine the equation of tangent lines that are perpendicular to line <InlineMath math="x + 2y = 7" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution**:
 
@@ -525,7 +547,28 @@ After solving, we'll get two tangent points. Then use those points to determine 
      <BlockMath math="3x + 4y = 3" />
    </MathContainer>
 
-   Find intersection points with the circle to get the tangent points, then determine the tangent line equations through each tangent point and point <InlineMath math="(4,2)" />.
+   Translate the center to the origin with <InlineMath math="u=x-1" /> and <InlineMath math="v=y+2" />. The circle and polar line become:
+
+   <MathContainer>
+     <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
+     <BlockMath math="u=\frac{8-4v}{3}" />
+     <BlockMath math="25v^2-64v-8=0" />
+     <BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
+   </MathContainer>
+
+   Substituting back gives the two points of tangency:
+
+   <MathContainer>
+     <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
+     <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
+   </MathContainer>
+
+   The slopes from <InlineMath math="(4,2)" /> to those points are <InlineMath math="12-2\sqrt{34}" /> and <InlineMath math="12+2\sqrt{34}" />. Therefore, the required tangent lines are:
+
+   <MathContainer>
+     <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
+     <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
+   </MathContainer>
 
 4. **Solution**:
 

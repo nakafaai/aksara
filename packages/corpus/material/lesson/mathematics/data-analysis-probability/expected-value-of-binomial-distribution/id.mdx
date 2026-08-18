@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Nilai Harapan Distribusi Binomial",
-    description: "Pahami nilai harapan distribusi binomial dengan penjelasan dan contoh jelas. Pelajari cara menghitung hasil rata-rata percobaan berulang dengan rumus E(X)=np.",
+    description: "Pahami nilai harapan distribusi binomial dan hitung rata-rata banyaknya keberhasilan dalam percobaan berulang.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Analisis Data dan Peluang",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Memahami Konsep Nilai Harapan
 
-Bayangkan kamu adalah seorang pemain basket. Secara rata-rata, dari <InlineMath math="10 \text{ kali}" /> lemparan bebas, kamu berhasil memasukkan bola sebanyak <InlineMath math="8 \text{ kali}" />. Nah, angka <InlineMath math="8" /> ini bisa kita sebut sebagai **nilai harapan** atau ekspektasi keberhasilanmu.
+Misalkan setiap lemparan bebas masuk secara independen dengan peluang <InlineMath math="p=0{,}8" />, dan <InlineMath math="X" /> menyatakan banyaknya bola yang masuk dalam <InlineMath math="n=10" /> percobaan. Maka <InlineMath math="E(X)=8" />: jika set berisi sepuluh lemparan diulang berkali-kali, rata-rata banyaknya bola yang masuk mendekati <InlineMath math="8" />.
 
-Secara sederhana, nilai harapan adalah **nilai rata-rata yang kita harapkan terjadi** dari sebuah percobaan jika percobaan itu diulang berkali-kali dalam kondisi yang sama. Ini bukan berarti kamu *pasti* akan mendapatkan hasil itu setiap kali, tapi ini adalah prediksi rata-rata jangka panjangnya.
+Nilai harapan adalah rata-rata berbobot peluang dari suatu variabel acak. Nilai ini menggambarkan rata-rata jangka panjang, bukan hasil yang pasti terjadi dalam satu set. Nilai harapan juga dapat berupa bilangan nonbulat meskipun variabel acaknya hanya bernilai bilangan bulat.
 
 ## Rumus Harapan untuk Binomial
 
-Konsep ini sangat berguna dalam distribusi binomial. Ingat, distribusi binomial dipakai untuk percobaan yang hasilnya hanya ada dua (sukses atau gagal) dan dilakukan berulang-ulang. Nilai harapan binomial membantu kita memprediksi berapa banyak keberhasilan yang paling mungkin kita dapatkan.
+Variabel acak binomial menghitung banyaknya keberhasilan dalam sejumlah percobaan independen yang tetap, dengan peluang keberhasilan yang sama pada setiap percobaan. Nilai harapannya menyatakan rata-rata jangka panjang banyaknya keberhasilan. Nilai ini tidak harus sama dengan banyaknya keberhasilan yang paling mungkin, karena hal itu dijelaskan oleh modus.
 
 Distribusi binomial <InlineMath math="b(x;n,p)" /> memiliki nilai harapan:
 
@@ -22,15 +22,15 @@ Distribusi binomial <InlineMath math="b(x;n,p)" /> memiliki nilai harapan:
 
 dengan <InlineMath math="n" /> adalah banyaknya percobaan dan <InlineMath math="p" /> adalah peluang keberhasilan.
 
-Rumus ini sangat intuitif. Jika peluang sukses dalam satu kali coba adalah <InlineMath math="p" />, maka dalam <InlineMath math="n \text{ kali}" /> percobaan, harapan suksesnya adalah:
+Jika peluang keberhasilan pada setiap percobaan adalah <InlineMath math="p" />, maka nilai harapan banyaknya keberhasilan dalam <InlineMath math="n" /> percobaan adalah:
 
 <BlockMath math="E(X) = n \times p" />
 
 ## Dari Mana Rumusnya Berasal?
 
-Mungkin kamu penasaran, kenapa rumusnya sesederhana itu? Mari kita bedah logikanya.
+Rumus tersebut diperoleh dengan menyatakan setiap percobaan sebagai variabel indikator.
 
-Setiap percobaan dalam distribusi binomial bisa kita anggap sebagai variabel acak kecil, sebut saja <InlineMath math="I_k" />. Variabel ini bernilai <InlineMath math="1" /> jika percobaan ke-<InlineMath math="k" /> **sukses**, dan <InlineMath math="0" /> jika **gagal**.
+Misalkan <InlineMath math="I_k" /> menyatakan percobaan ke-<InlineMath math="k" />. Variabel ini bernilai <InlineMath math="1" /> jika percobaan tersebut **berhasil** dan <InlineMath math="0" /> jika **gagal**.
 
 Nilai harapan untuk satu percobaan tunggal adalah:
 
@@ -40,33 +40,33 @@ Karena jumlah total keberhasilan (<InlineMath math="X" />) adalah jumlah dari se
 
 <BlockMath math="X = I_1 + I_2 + ... + I_n" />
 
-Dengan menggunakan sifat nilai harapan, kita bisa menjumlahkan semua nilai harapan dari setiap percobaan:
+Berdasarkan linearitas nilai harapan, semua nilai harapan tersebut dapat dijumlahkan:
 
 <MathContainer>
 <BlockMath math="E(X) = E(I_1) + E(I_2) + ... + E(I_n)" />
 <BlockMath math="E(X) = \underbrace{p + p + ... + p}_{n \text{ kali}} = np" />
 </MathContainer>
 
-Terbukti, kan? Nilai harapan totalnya adalah hasil kali dari jumlah percobaan dengan peluang keberhasilannya.
+Jadi, nilai harapan banyaknya keberhasilan adalah hasil kali jumlah percobaan dengan peluang keberhasilan.
 
 ## Studi Kasus Lempar Dadu
 
-Mari kita terapkan konsep ini pada sebuah contoh.
+Perhatikan contoh berikut.
 
 **Soal:**
 
-Sebuah dadu seimbang dilempar sebanyak <InlineMath math="7 \text{ kali}" />. Berapa nilai harapan untuk munculnya mata dadu lima dari seluruh lemparan tersebut?
+Sebuah dadu seimbang dilempar sebanyak <InlineMath math="7" /> kali. Berapa nilai harapan untuk munculnya mata dadu lima dari seluruh lemparan tersebut?
 
 **Penyelesaian:**
 
-Pertama, mari kita pastikan bahwa ini memenuhi syarat distribusi binomial:
+Pertama, pastikan percobaan ini memenuhi syarat binomial:
 
 - Hanya ada dua kemungkinan: **sukses** (keluar angka <InlineMath math="5" />) atau **gagal** (keluar angka selain <InlineMath math="5" />)
-- Jumlah percobaan tetap: <InlineMath math="7 \text{ kali}" />
+- Jumlah percobaan tetap: <InlineMath math="7" /> lemparan
 - Setiap lemparan independen: hasil lemparan sebelumnya tidak mempengaruhi lemparan berikutnya
 - Peluang sukses sama: <InlineMath math="p = \frac{1}{6}" /> di setiap lemparan
 
-Sekarang kita identifikasi parameternya:
+Parameternya adalah:
 
 <MathContainer>
 <BlockMath math="S = \{1, 2, 3, 4, 5, 6\}" />
@@ -74,12 +74,12 @@ Sekarang kita identifikasi parameternya:
 <BlockMath math="n = 7" />
 </MathContainer>
 
-Sekarang kita bisa langsung hitung nilai harapannya menggunakan rumus:
+Gunakan rumus nilai harapan:
 
-<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} = 1.167" />
+<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1{,}167" />
 
-**Jadi, apa artinya angka <InlineMath math="1.167" /> ini?**
+**Jadi, apa arti angka <InlineMath math="1{,}167" /> ini?**
 
-Nilai harapan <InlineMath math="1.167" /> bukan berarti kamu akan mendapat <InlineMath math="1.167 \text{ kali}" /> angka <InlineMath math="5" /> dalam satu eksperimen (karena itu tidak mungkin). Yang dimaksud adalah: jika kamu mengulangi eksperimen lempar dadu <InlineMath math="7 \text{ kali}" /> ini **ratusan atau ribuan kali**, maka rata-rata kamu akan mendapat angka <InlineMath math="5" /> sekitar <InlineMath math="1.167 \text{ kali}" /> per set <InlineMath math="7" /> lemparan.
+Nilai harapan <InlineMath math="1{,}167" /> bukan berarti angka <InlineMath math="5" /> dapat muncul tepat <InlineMath math="1{,}167" /> kali dalam satu percobaan. Artinya, jika percobaan yang terdiri atas <InlineMath math="7" /> lemparan ini diulang **ratusan atau ribuan kali**, angka <InlineMath math="5" /> akan muncul rata-rata sekitar <InlineMath math="1{,}167" /> kali per set.
 
-Dalam praktiknya, dalam satu set <InlineMath math="7" /> lemparan, kamu mungkin mendapat angka <InlineMath math="5" /> sebanyak <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, atau bahkan <InlineMath math="3 \text{ kali}" />. Tapi kalau dirata-ratakan dalam jangka panjang, hasilnya akan mendekati <InlineMath math="1.167" />.
+Dalam satu set <InlineMath math="7" /> lemparan, angka <InlineMath math="5" /> bisa muncul <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, atau bahkan <InlineMath math="3" /> kali. Namun, rata-rata jangka panjangnya akan mendekati <InlineMath math="1{,}167" />.

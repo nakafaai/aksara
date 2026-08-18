@@ -4,25 +4,23 @@ const choices: QuestionChoices = {
   id: [
     {
       label:
-        "Penulis mengajak pembaca agar menikmati keindahan senja dan meninggalkan sejenak pekerjaan untuk beristirahat",
+        "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
       value: true,
     },
     {
-      label: "Penulis mengajak pembaca untuk beristirahat",
+      label: "Menghentikan seluruh pekerjaan untuk beristirahat sepanjang hari",
       value: false,
     },
     {
-      label:
-        "Penulis mengajak pembaca untuk menikmati hidup dan tidak perlu khawatir dengan dunia sekitar",
+      label: "Mengabaikan keadaan sekitar agar dapat menikmati hidup",
       value: false,
     },
     {
-      label:
-        "Penulis mengajak pembaca untuk tidak terlalu sibuk dengan kerjaan",
+      label: "Menjauhi semua kesibukan di kota secara permanen",
       value: false,
     },
     {
-      label: "Penulis mengajak pembaca untuk menghargai waktu",
+      label: "Menghitung waktu yang tersisa sebelum malam",
       value: false,
     },
   ],

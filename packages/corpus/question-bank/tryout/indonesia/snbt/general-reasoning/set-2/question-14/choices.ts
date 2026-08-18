@@ -19,7 +19,7 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Weak stability function at the farmer level which results in the erosion of farmers' purchasing power and welfare",
+        "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
       value: true,
     },
     {
@@ -46,7 +46,7 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Lemahnya fungsi stabilitas di tingkat petani yang berakibat pada tergerusnya daya beli dan kesejahteraan petani",
+        "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
       value: true,
     },
     {

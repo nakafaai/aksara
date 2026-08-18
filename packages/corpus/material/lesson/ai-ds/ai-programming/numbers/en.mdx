@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Introduction to Number Data Types
 
-In Python programming, numbers are one of the most fundamental data types you'll use every day. Think of numbers as basic ingredients in cooking. Without good basic ingredients, the dish you create won't be perfect. Similarly with programming, without understanding numbers well, the programs you create will be difficult to develop.
+Python has built-in numeric types for whole numbers, approximate real-number calculations, and complex numbers. Choosing the right type matters because each one represents values and performs arithmetic differently.
 
 Python is very flexible in handling numbers. When you type numbers in the Python shell, Python immediately recognizes and displays them back. Let's see how Python works with numbers.
 
@@ -35,15 +35,15 @@ Python is very flexible in handling numbers. When you type numbers in the Python
   ]}
 />
 
-From the example above, you can see Python automatically recognizes various number formats. When you type <InlineMath math="4" />, Python knows it's an integer. When you type <InlineMath math="4." /> with a dot at the end, Python converts it to a decimal number <InlineMath math="4.0" />.
+Python parses each literal from its notation. <InlineMath math="4" /> creates an integer, while the decimal point in <InlineMath math="4." /> makes it a floating-point literal whose displayed value is <InlineMath math="4.0" />.
 
 ## Types of Number Data
 
-Python has three main categories for numbers, each with special characteristics you need to understand.
+Python's three core built-in numeric types are `int`, `float`, and `complex`.
 
 ### Integer
 
-Integer is a whole number without decimal points. This includes positive, negative, and zero numbers. In daily life, you use integers to count things that can't be broken down, like the number of students in one room or page numbers in a book.
+An integer is a whole number: positive, negative, or zero. Python integers have arbitrary precision, so their size is limited by available memory rather than a fixed 32-bit or 64-bit range.
 
 **Valid integer examples**
 
@@ -54,11 +54,11 @@ Integer is a whole number without decimal points. This includes positive, negati
 
 **Special features of integers in Python**
 
-Python allows you to use underscores to make large numbers easier to read. For example, <InlineMath math="123\_456\_789" /> is actually the same as <InlineMath math="123456789" />. This is like using commas in number writing in Indonesian language.
+Python allows underscores between digits to make long literals easier to scan. For example, <InlineMath math="123\_456\_789" /> has the same value as <InlineMath math="123456789" />. The underscores affect only the source notation.
 
 ### Float
 
-Float is a number that has decimal points. You'll often use floats for calculations that require precision, such as measuring distance, weight, or percentages.
+A `float` stores a binary floating-point approximation. Float literals can contain a decimal point or an exponent. They are useful for measurements and numerical calculations, but many decimal fractions cannot be represented exactly in binary.
 
 **Common float examples**
 
@@ -69,7 +69,7 @@ Float is a number that has decimal points. You'll often use floats for calculati
 
 **Scientific notation for very small or large numbers**
 
-Python uses scientific notation for very small or very large numbers. For example:
+The exponent notation `e` or `E` is convenient for very small or very large float literals. For example:
 
 <MathContainer>
 <BlockMath math="-3.2e5 = -3.2 \times 10^5" />
@@ -81,7 +81,7 @@ The notation <InlineMath math="e" /> or <InlineMath math="E" /> in Python is the
 
 ### Complex
 
-Complex numbers consist of real and imaginary parts. In Python, the letter <InlineMath math="j" /> is used to indicate the imaginary part. This is often used in advanced mathematics, signal processing, and machine learning.
+Complex numbers have real and imaginary parts. In a Python literal, the suffix <InlineMath math="j" /> marks the coefficient of the imaginary unit. Complex arithmetic is common in signal processing, electrical engineering, and scientific computing.
 
 **Complex number examples**
 
@@ -94,7 +94,7 @@ Imagine complex numbers like coordinates on a map. The real part is the horizont
 
 ## The type Function for Checking Data Types
 
-When you work with complex data, sometimes you need to ensure the data type you're handling. Python provides the `type()` function for this purpose.
+The `type()` function reports the exact class of an object. It is useful when exploring values in the Python shell or diagnosing unexpected data.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ When you work with complex data, sometimes you need to ensure the data type you'
   ]}
 />
 
-The `type()` function is useful when you're debugging programs or want to ensure the received data matches expectations. It's like checking labels on food packaging to make sure you get the right product.
+For a strict equality check you can compare `type(value)` with a class. In ordinary application code, `isinstance(value, SomeType)` is often more flexible because it also recognizes subclasses.
 
 ## Constructors for Creating Number Objects
 
@@ -141,7 +141,7 @@ When you call `float(2)`, Python converts the integer <InlineMath math="2" /> to
 
 ### Constructor int
 
-The `int()` constructor converts other numbers to integers by discarding the decimal part.
+The `int()` constructor converts a finite float to an integer by truncating toward zero.
 
 <CodeBlock
   data={[
@@ -152,12 +152,15 @@ The `int()` constructor converts other numbers to integers by discarding the dec
 2
 
 >>> int(2.9)
-2`
+2
+
+>>> int(-2.9)
+-2`
     }
   ]}
 />
 
-Note that `int()` doesn't round numbers, but truncates the decimal part. Both `int(2.1)` and `int(2.9)` result in <InlineMath math="2" />. This is like cutting off the tail of decimal numbers, not rounding them.
+`int()` does not round to the nearest integer. Both positive examples become <InlineMath math="2" />, while `int(-2.9)` becomes <InlineMath math="-2" /> because truncation moves toward zero.
 
 ### Constructor complex
 

@@ -10,7 +10,7 @@ export const metadata = {
 
 Dalam Python, list merupakan struktur data yang dapat diubah setelah dibuat. Mari kita pahami bagaimana perilaku list ketika kita melakukan operasi tertentu.
 
-Ketika kamu membuat sebuah list dan menyimpannya dalam variabel, Python tidak menyalin isi list tersebut. Sebaliknya, variabel tersebut menyimpan referensi atau alamat memori tempat list berada. Bayangkan seperti alamat rumah, variabel hanya menyimpan alamat, bukan rumahnya sendiri.
+Ketika sebuah list di-assign ke variabel, variabel itu merujuk ke objek list tersebut. Assignment tidak menyalin list. Karena itu, variabel atau container lain dapat merujuk ke objek yang sama persis.
 
 <CodeBlock
   data={[
@@ -32,9 +32,9 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
 
 Perhatikan bagaimana perubahan pada `list1` juga mempengaruhi `list2`. Ini terjadi karena `list2` tidak menyimpan salinan `list1`, melainkan referensi ke objek list yang sama di memori.
 
-### Operasi Slice Menciptakan Salinan Baru
+### Full Slice Membuat Shallow Copy
 
-Berbeda dengan assignment biasa, operasi slice pada list akan menciptakan objek list baru di memori. Kamu dapat membuktikan ini dengan menggunakan fungsi `id()` yang mengembalikan alamat memori objek.
+Full slice membuat list luar baru yang berisi referensi ke elemen-elemen yang sama. Hasilnya adalah shallow copy. Mengganti elemen luar tidak memengaruhi list asal, tetapi elemen mutable yang bertingkat tetap dipakai bersama.
 
 <CodeBlock
   data={[
@@ -51,7 +51,13 @@ print(id(list2))  # Contoh: 8864 (berbeda dari list1)
 # Mengubah elemen di list2 tidak mempengaruhi list1
 list2[0] = 'x'
 print(list1)  # [0, 1, 2] (tidak berubah)
-print(list2)  # ['x', 1, 2]`
+print(list2)  # ['x', 1, 2]
+
+# Elemen mutable bertingkat tetap dipakai bersama oleh shallow copy
+nested1 = [[1], [2]]
+nested2 = nested1[:]
+nested2[0].append(3)
+print(nested1)  # [[1, 3], [2]]`
     }
   ]}
 />
@@ -69,7 +75,7 @@ Setiap objek dalam Python memiliki tiga karakteristik penting yang membedakannya
         A --> C[Tipe]
         A --> D[Nilai]
 
-        B --> B1[Alamat memori unik]
+        B --> B1[Identitas tetap selama objek hidup]
         C --> C1[Menentukan operasi]
         D --> D1[Data yang disimpan]
   `}
@@ -77,7 +83,7 @@ Setiap objek dalam Python memiliki tiga karakteristik penting yang membedakannya
 
 ### Identitas Objek
 
-Identitas adalah alamat memori unik tempat objek disimpan. Python menyediakan fungsi `id()` untuk melihat identitas objek dan operator `is` untuk membandingkan identitas dua objek.
+Identitas menjawab apakah dua referensi menunjuk ke objek yang sama. `id()` mengembalikan integer yang unik di antara objek-objek yang hidup bersamaan, sedangkan `is` membandingkan identitas secara langsung. Bahasa Python tidak menjamin bahwa integer tersebut merupakan alamat memori fisik.
 
 <CodeBlock
   data={[
@@ -98,26 +104,23 @@ print(id(a))      # 10492 (berbeda dari sebelumnya)`
   ]}
 />
 
-### Perbandingan Identitas dan Nilai
+### Membandingkan Identitas dan Nilai
 
-Python memiliki optimisasi khusus untuk integer kecil (biasanya <InlineMath math="-5" /> sampai <InlineMath math="256" />). Integer dalam rentang ini menggunakan objek yang sama di memori untuk menghemat ruang.
+Gunakan `is` ketika yang ditanyakan adalah identitas objek, terutama pada pemeriksaan seperti `value is None`. Gunakan `==` ketika kamu membandingkan nilai. Cache interpreter dan constant folding dapat membuat nilai immutable yang sama berbagi identitas, tetapi logika aplikasi tidak boleh bergantung pada detail implementasi tersebut.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "identity_comparison.py",
-      code: `# Integer besar mungkin menggunakan objek berbeda
-a = 300
-b = 300
-print(a is b)      # Mungkin True atau False (tergantung implementasi)
-print(a == b)      # True (nilai sama)
+      code: `a = [1, 2]
+b = a
+c = [1, 2]
 
-# Integer dalam rentang -5 sampai 256 biasanya sama
-a = 100
-b = 100
-print(a is b)      # True (optimisasi untuk integer kecil)
-print(a == b)      # True (nilai sama)`
+print(a is b)  # True: objek yang sama
+print(a == b)  # True: nilai yang sama
+print(a is c)  # False: objek berbeda
+print(a == c)  # True: nilainya setara`
     }
   ]}
 />
@@ -152,13 +155,16 @@ print(id(str_var))  # 75568
   ]}
 />
 
-Tipe data immutable dalam Python meliputi:
-    - `bool` (boolean)
-    - `int` (integer)
-    - `float` (floating point)
-    - `complex` (bilangan kompleks)
-    - `str` (string)
-    - `tuple` (tuple)
+Tipe immutable yang umum dalam Python meliputi:
+
+- `bool` (boolean)
+- `int` (integer)
+- `float` (floating point)
+- `complex` (bilangan kompleks)
+- `str` (string)
+- `tuple` (tuple)
+
+Urutan referensi milik tuple tidak dapat diubah, tetapi objek yang dirujuk tuple masih dapat bersifat mutable.
 
 ### Objek Mutable
 
@@ -171,23 +177,29 @@ Objek mutable dapat diubah setelah dibuat tanpa menciptakan objek baru. Identita
       filename: "mutable_objects.py",
       code: `# List adalah mutable
 list_var = [0, 1, 2]
-print(id(list_var))  # 15296
+original_id = id(list_var)
 
-# Mengubah elemen tidak mengubah identitas objek
+# Mengubah elemen mempertahankan identitas list
+list_var[0] = 9
+print(id(list_var) == original_id)  # True
+
+# Assignment mengikat variabel ke objek baru
 list_var = [0, 0, 0]
-print(id(list_var))  # 60960 (objek baru karena assignment)
+print(id(list_var) == original_id)  # False
 
-# Modifikasi in-place mempertahankan identitas
+# Slice assignment memodifikasi list saat ini secara in-place
+current_id = id(list_var)
 list_var[:] = ['a', 'b', 'c']
-print(id(list_var))  # 60960 (sama)`
+print(id(list_var) == current_id)  # True`
     }
   ]}
 />
 
-Tipe data mutable dalam Python meliputi:
-    - `list` (list)
-    - `dict` (dictionary)
-    - `set` (set)
+Tipe mutable yang umum dalam Python meliputi:
+
+- `list` (list)
+- `dict` (dictionary)
+- `set` (set)
 
 ### Perilaku Assignment vs Modifikasi
 
@@ -236,4 +248,4 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
   `}
 />
 
-Pemahaman tentang mutabilitas sangat penting dalam pemrograman Python. Objek immutable lebih aman untuk digunakan dalam konteks multi-threading karena tidak dapat diubah, sedangkan objek mutable memberikan fleksibilitas untuk memodifikasi data secara efisien tanpa menciptakan objek baru setiap kali.
+Mutabilitas menentukan apakah suatu operasi mengubah objek yang sudah ada atau mengikat ulang nama ke objek lain. Immutability menghilangkan satu sumber bug pada shared state, tetapi tidak otomatis membuat program thread-safe. Objek mutable yang dirujuk, operasi majemuk, dan resource eksternal tetap memerlukan sinkronisasi yang disengaja.

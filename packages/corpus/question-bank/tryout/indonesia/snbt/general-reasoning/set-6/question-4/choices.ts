@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "slows down the digestion process",
+      label: "raises blood pressure",
       value: true,
     },
     {
-      label: "inhibits stroke symptoms",
+      label: "lowers blood pressure",
       value: false,
     },
     {
-      label: "causes prolonged kidney disease",
+      label: "prevents cardiovascular disease",
       value: false,
     },
     {
-      label: "reduces appetite",
+      label: "accelerates digestion",
       value: false,
     },
     {
-      label: "causes food to be undigested by the body",
+      label: "removes the body's need for potassium",
       value: false,
     },
   ],
   id: [
     {
-      label: "memperlambat proses pencernaan",
+      label: "meningkatkan tekanan darah",
       value: true,
     },
     {
-      label: "menghambat gejala stroke",
+      label: "menurunkan tekanan darah",
       value: false,
     },
     {
-      label: "mengalami penyakit ginjal dengan durasi yang lama",
+      label: "mencegah penyakit kardiovaskular",
       value: false,
     },
     {
-      label: "mengurangi nafsu makan",
+      label: "mempercepat pencernaan",
       value: false,
     },
     {
-      label: "menyebabkan makanan tidak tercerna oleh tubuh",
+      label: "menghilangkan kebutuhan tubuh akan kalium",
       value: false,
     },
   ],

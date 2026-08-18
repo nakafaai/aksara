@@ -1,154 +1,96 @@
 export const metadata = {
-    title: "Linear Model",
-    description: "Learn linear models: fundamental y=h(t)·x relationships, polynomial/trigonometric forms, data-to-model conversion, and linearization techniques for AI.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-14",
-    subject: "Linear Methods of AI",
+  title: "Linear Models",
+  description: "Build linear-in-parameter models from basis functions, stack measurements into a design matrix, and distinguish exact linear models from local linearization.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-14",
+  subject: "Linear Methods of AI",
 };
 
-## Understanding Linear Models
+## What linear means here
 
-Imagine we are trying to understand relationships between various things in the real world.
-Linear models are a very elegant way to describe these relationships in mathematical form.
+A linear model relates a known input <InlineMath math="t \in \mathbb{R}^k" /> to an observed response <InlineMath math="y \in \mathbb{R}^d" /> through unknown parameters <InlineMath math="x \in \mathbb{R}^n" />:
 
-The basic form is very simple:
+<BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
 
-<BlockMath math="y = h(t) \cdot x" />
+The important word is **linear in the parameters**. For fixed <InlineMath math="t" />, the map from <InlineMath math="x" /> to <InlineMath math="y" /> is linear. The dependence on <InlineMath math="t" /> may contain powers, logarithms, sines, or other nonlinear basis functions.
 
-Why is it called "linear"? Because if we look at the relationship between <InlineMath math="y" /> and <InlineMath math="x" />,
-the relationship forms a straight line. Here <InlineMath math="h(t)" /> acts as a "connector"
-with dimensions <InlineMath math="\mathbb{R}^{d \times n}" />.
+This distinction prevents a common misconception: a linear model does not have to draw a straight line as a function of its input. It has to combine the unknown parameters linearly.
 
-Let's get to know the three main players in this model:
-- <InlineMath math="y \in \mathbb{R}^d" /> is the **result we observe** (model response)
-- <InlineMath math="x \in \mathbb{R}^n" /> is the **value we want to find** (model parameters)
-- <InlineMath math="t \in \mathbb{R}^k" /> is the **input we provide** (independent variables)
+## From measurements to a design matrix
 
-What's interesting is that although we call it "linear", the relationship with input <InlineMath math="t" />
-can actually be complex or curved. Only the relationship with parameter <InlineMath math="x" /> is linear.
+Suppose we collect <InlineMath math="M" /> input-response pairs <InlineMath math="(t_i,y_i)" /> and model each observation as
 
-## From Data to Model
+<BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-Now, how do we use this model in real life?
-The process is actually like playing detective with data.
-
-First, we conduct a series of experiments or measurements:
-
-1. We choose various values for <InlineMath math="t" />
-2. For each of these values, we measure and obtain <InlineMath math="y" />
-3. Our goal is to find <InlineMath math="x" /> that can explain all this data
-
-Suppose we perform <InlineMath math="M" /> measurements.
-For each measurement <InlineMath math="i" />, we have:
-
-<BlockMath math="y_i \approx h(t_i) \cdot x, \quad i = 1, \ldots, M" />
-
-Why use the "approximately equal" sign instead of "equals"?
-Because in the real world, no measurement is perfect.
-There's always noise, instrument errors, or other random factors that affect the results.
-
-If we count the total of all data we collect, the amount is <InlineMath math="m = M \cdot d" />.
-Usually this number is much larger than the number of parameters we want to find (<InlineMath math="n" />),
-so <InlineMath math="m \gg n" />.
-
-Our challenge now is how to find the best value of <InlineMath math="x" />,
-so that the equation <InlineMath math="y_i = h(t_i) \cdot x" /> is satisfied as accurately as possible.
-
-When we arrange all this data, a system of equations is formed that looks like this:
+where <InlineMath math="\varepsilon_i" /> contains measurement noise and model mismatch. Stacking all responses and model blocks gives
 
 <MathContainer>
-<BlockMath math="b = \begin{pmatrix} y_1 \\ \vdots \\ y_M \end{pmatrix} = \begin{pmatrix} h(t_1) \\ \vdots \\ h(t_M) \end{pmatrix} \cdot \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = A(t) \cdot x" />
+<BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
+<BlockMath math="A=\begin{pmatrix}h(t_1)\\\vdots\\h(t_M)\end{pmatrix}\in\mathbb{R}^{Md\times n}" />
+<BlockMath math="b=Ax+\varepsilon" />
 </MathContainer>
 
-This produces a system with matrix <InlineMath math="A(t)" /> of size <InlineMath math="m \times n" />
-and vector <InlineMath math="b" /> of size <InlineMath math="m" />.
+The matrix <InlineMath math="A" /> is the **design matrix**. When the observations do not satisfy one parameter vector exactly, estimate <InlineMath math="x" /> with a least-squares or another residual model. Whether the parameters can be identified also depends on the rank and conditioning of <InlineMath math="A" />.
 
-## Various Forms of Linear Models
+## Basis functions create many model shapes
 
-Linear models turn out to be very flexible and can take various forms.
-Let's look at some examples that appear most frequently:
+Let <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> be known basis functions. A scalar-response model can be written as
 
-### Simple Straight Line
+<BlockMath math="y(t)=\sum_{j=1}^{n}x_j\phi_j(t)=\begin{pmatrix}\phi_1(t)&\cdots&\phi_n(t)\end{pmatrix}x" />
 
-The most basic form is a straight line:
+Different choices of basis functions create different shapes while preserving linearity in <InlineMath math="x" />.
 
-<BlockMath math="y = a + b \cdot t = (1 \quad t) \cdot \begin{pmatrix} a \\ b \end{pmatrix} = h(t) \cdot x" />
+| Model | Basis representation |
+| --- | --- |
+| Affine line | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
+| Polynomial of degree <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
+| Fourier basis | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
+| Two-input interaction | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
 
-Here we look for two parameters: <InlineMath math="a" /> (intercept) and <InlineMath math="b" /> (slope).
-This model is suitable when data forms a straight line pattern or nearly straight.
+Terms such as <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, and <InlineMath math="ts" /> may be nonlinear in the inputs. They are known coefficients once the inputs are observed, so the model remains linear in its unknown parameters.
 
-### Polynomial Curves
+## Multiple responses
 
-If data forms curved patterns, we can use polynomials:
+If every input produces several responses, place their parameter vectors in a matrix <InlineMath math="B" />. For a row of basis values <InlineMath math="\phi(t)^{\mathsf T}" />,
 
-<BlockMath math="y = a_0 + a_1 \cdot t + \ldots + a_n \cdot t^n = (1 \quad t \quad \ldots \quad t^n) \cdot \begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{pmatrix} = h(t) \cdot x" />
+<BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
 
-Although <InlineMath math="t^n" /> looks nonlinear, remember that what we mean by "linear"
-is the relationship with parameters <InlineMath math="a_0, a_1, \ldots, a_n" />.
+Each column of <InlineMath math="B" /> describes one response. This is still a linear model because every output is a linear combination of the same known basis values.
 
-### Repeating Patterns with Trigonometry
+## Physical example: the ideal gas law
 
-For data that has repeating or cyclic patterns, we can use sine and cosine functions:
+For an ideal gas,
 
-<BlockMath math="y = a_0 + \sum_{k=1}^{n} a_k \cos(k \cdot t) + \sum_{k=1}^{n} b_k \sin(k \cdot t)" />
+<BlockMath math="pV=nRT" />
 
-This model is very useful for analyzing data that has seasonal or periodic patterns.
+so at known temperature <InlineMath math="T" /> and volume <InlineMath math="V" />,
 
-### Multiple Inputs
+<BlockMath math="p=\frac{RT}{V}n" />
 
-If the output depends on several inputs simultaneously, we can combine them.
-For example with two inputs <InlineMath math="t" /> and <InlineMath math="s" />:
+Pressure <InlineMath math="p" /> is linear in the unknown amount of substance <InlineMath math="n" />, measured in moles. The quantity <InlineMath math="n" /> is not itself the number of molecules; the number of specified entities is <InlineMath math="N=nN_A" />.
 
-<MathContainer>
-<BlockMath math="y = a + b \cdot t + c \cdot s + d \cdot t \cdot s = (1 \quad t \quad s \quad t \cdot s) \cdot \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix} = h(t,s) \cdot x" />
-</MathContainer>
+Repeated pressure measurements at several known <InlineMath math="(T_i,V_i)" /> values yield one design-matrix row <InlineMath math="RT_i/V_i" /> per observation.
 
-The term <InlineMath math="t \cdot s" /> captures the interaction between the two inputs.
+## Local linearization of a nonlinear model
 
-### Multiple Outputs
+A genuinely nonlinear parameter model has the form
 
-Sometimes we want to predict several things simultaneously from the same input:
+<BlockMath math="y=g(t,x)" />
 
-<MathContainer>
-<BlockMath math="y = a + b \cdot t" />
-<BlockMath math="z = c + d \cdot t" />
-</MathContainer>
+where parameters may occur inside exponentials, powers, or products with one another. Near a current parameter value <InlineMath math="x_0" />, a first-order Taylor approximation gives
 
-This is like having two linear models running simultaneously.
+<BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
 
-## Real Example from Physics
+The Jacobian <InlineMath math="J_xg(t,x_0)" /> is known after choosing <InlineMath math="x_0" />, so the correction <InlineMath math="x-x_0" /> appears linearly. This approximation is local, not an exact conversion of the nonlinear model. Iterative methods such as Gauss-Newton repeatedly update the linearization point.
 
-The general gas equation in physics is:
+## Checks before fitting
 
-<BlockMath math="p = n \cdot R \cdot \frac{T}{V}" />
+Before interpreting fitted parameters, verify that:
 
-Here:
-- <InlineMath math="p" /> is the pressure we measure
-- <InlineMath math="T" /> is the temperature we set
-- <InlineMath math="V" /> is the volume we set
-- <InlineMath math="n" /> is the number of gas molecules (which we want to determine)
-- <InlineMath math="R" /> is a known constant
+- the design matrix columns represent the intended basis functions and units
+- the data contain enough independent information for the parameters, typically <InlineMath math="\operatorname{rank}(A)=n" />
+- feature scales and the condition number do not make the solve numerically fragile
+- the chosen residual loss matches the noise and outlier assumptions
+- a local linearization is checked again against the original nonlinear model
 
-If we consider <InlineMath math="T" /> and <InlineMath math="V" /> as inputs we can control,
-and <InlineMath math="p" /> as output we measure, then pressure depends linearly on <InlineMath math="n" />.
-This allows us to use linear models to determine the number of gas molecules.
-
-## When Models Are Initially Nonlinear
-
-Not all real-world problems are directly linear in form.
-Sometimes we encounter models where parameters appear in quadratic form, multiplication between parameters,
-or even in exponential functions:
-
-<BlockMath math="y = h(t, x)" />
-
-But don't despair! In many cases, we can "linearize" such models.
-The method is by using tangent line approximation around a certain point <InlineMath math="x_0" />:
-
-<BlockMath math="y \approx h(x_0, t) + \frac{\partial h}{\partial x}(x_0, t) \cdot (x - x_0)" />
-
-With this trick, we replace a complex curve with a straight line that approximates it.
-The result is an equation that is linear with respect to <InlineMath math="x" />, so it can be solved
-with standard linear algebra methods like least squares.
-
-However, this linearization method only works if the nonlinear model is not too "curved"
-around point <InlineMath math="x_0" />. Highly nonlinear models require numerical optimization techniques.
+A flexible basis can fit many shapes, but flexibility alone does not guarantee identifiability, numerical stability, or useful predictions.

@@ -1,8 +1,8 @@
 
 
 export const metadata = {
-  title: "Fungsi Naik, Turun, dan Stasioner",
-  description: "Pelajari cara mengidentifikasi fungsi naik, turun, dan stasioner menggunakan turunan. Pelajari analisis perilaku fungsi dan penentuan interval kemonotonan.",
+  title: "Fungsi Naik dan Turun",
+  description: "Gunakan tanda turunan pertama untuk menentukan interval fungsi naik dan turun serta menafsirkan titik stasioner.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Turunan Fungsi",
@@ -10,17 +10,17 @@ export const metadata = {
 
 ## Perilaku Fungsi dan Turunannya
 
-Pernahkah kamu memperhatikan bagaimana grafik sebuah fungsi bisa bergerak naik, turun, atau bahkan mendatar sejenak? Perilaku ini, yang disebut **kemonotonan fungsi**, ternyata punya kaitan erat dengan turunan pertamanya.
+Saat grafik dibaca dari kiri ke kanan, kurvanya dapat naik, turun, atau mendatar sesaat. Perilaku ini disebut **kemonotonan fungsi**, dan turunan pertama membantu kita mengelompokkannya.
 
-Bayangkan kamu sedang berjalan di sepanjang kurva grafik dari kiri ke kanan.
+Tanda gradien memberikan gambaran yang jelas:
 
--   Saat kamu **mendaki**, artinya fungsi tersebut sedang **naik**.
+-   Gradien positif berarti fungsi **naik**.
 
--   Saat kamu **menuruni lembah**, artinya fungsi tersebut sedang **turun**.
+-   Gradien negatif berarti fungsi **turun**.
 
--   Saat kamu berada di puncak bukit atau di dasar lembah, kamu berada di titik **diam** atau **stasioner**.
+-   Gradien nol menandai **titik stasioner**, tetapi titik tersebut belum tentu maksimum atau minimum.
 
-Secara geometris, turunan pertama, <InlineMath math="f'(x)" />, adalah gradien dari garis singgung pada kurva di titik tersebut. Jadi, perilaku fungsi bisa kita lihat dari tanda gradiennya.
+Secara geometris, <InlineMath math="f'(x)" /> adalah gradien garis singgung. Tandanya menunjukkan arah lokal kurva.
 
 ## Sifat Kemonotonan Fungsi
 
@@ -34,11 +34,11 @@ Misalkan fungsi <InlineMath math="y = f(x)" /> kontinu dan dapat diturunkan (dif
 
 -   Jika <InlineMath math="f'(x) = 0" /> pada titik tertentu, maka <InlineMath math="f(x)" /> memiliki **titik stasioner** di sana.
 
-Titik stasioner inilah yang menjadi kunci untuk menemukan di mana sebuah fungsi berubah dari naik menjadi turun, atau sebaliknya.
+Titik stasioner membagi domain menjadi beberapa interval yang dapat diuji. Titik ini merupakan calon tempat perubahan kemonotonan, tetapi fungsi hanya beralih dari naik ke turun atau sebaliknya jika tanda turunannya berubah.
 
 ## Menganalisis Interval Fungsi
 
-Mari kita bedah sebuah kasus untuk melihat bagaimana cara menentukan interval di mana sebuah fungsi naik atau turun.
+Contoh berikut menunjukkan seluruh proses analisis tanda.
 
 Tentukan interval agar fungsi <InlineMath math="f(x) = x^3 - 3x" /> merupakan fungsi naik dan fungsi turun.
 
@@ -174,9 +174,9 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
 
 1.  Tentukan interval fungsi naik dan interval fungsi turun pada kurva <InlineMath math="f(x) = x^3 - 3x^2 - 15" />.
 
-2.  Jika fungsi <InlineMath math="f(x) = ax^3 + x^2 + 5" /> selalu naik dalam interval <InlineMath math="0 < x < 2" />, tentukanlah nilai dari koefisien <InlineMath math="a" />!
+2.  Jika <InlineMath math="f(x) = ax^3 + x^2 + 5" /> naik di seluruh interval <InlineMath math="0 < x < 2" />, tentukan semua nilai <InlineMath math="a" /> yang mungkin.
 
-3.  Tentukan interval fungsi naik dan turun jika diketahui kurva <InlineMath math="f(x) = \sin 2x \cos 2x" />!
+3.  Tentukan interval ketika <InlineMath math="f(x) = \sin 2x \cos 2x" /> naik dan turun.
 
 ### Kunci Jawaban
 
@@ -202,7 +202,7 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
 
 2.  **Penyelesaian:**
 
-    Agar sebuah fungsi *selalu naik* pada suatu interval, turunan pertamanya harus non-negatif (<InlineMath math="f'(x) \ge 0" />) untuk setiap titik di dalam interval tersebut.
+    Agar fungsi ini naik di seluruh interval, cukup mensyaratkan <InlineMath math="f'(x) \ge 0" /> pada setiap titik dalam interval tersebut.
 
     <BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
 
@@ -210,13 +210,13 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
 
     <BlockMath math="3ax + 2 \ge 0" />
 
-    Ketidaksamaan ini harus terpenuhi untuk semua nilai <InlineMath math="x" /> dalam interval <InlineMath math="0 < x < 2" />. Karena <InlineMath math="h(x) = 3ax + 2" /> adalah fungsi linear, perilakunya monoton. Kita hanya perlu memastikan nilainya non-negatif pada titik ujung interval yang paling "kritis".
+    Ketidaksamaan ini harus berlaku untuk setiap <InlineMath math="x" /> pada <InlineMath math="0 < x < 2" />. Karena <InlineMath math="h(x) = 3ax + 2" /> linear, nilai batas terkecilnya didekati pada salah satu ujung interval.
 
-    -   Jika <InlineMath math="a \ge 0" />, maka <InlineMath math="3ax" /> juga non-negatif, sehingga <InlineMath math="3ax+2" /> pasti akan positif. Kondisi ini sudah terpenuhi.
+    -   Jika <InlineMath math="a \ge 0" />, maka <InlineMath math="3ax \ge 0" />, sehingga <InlineMath math="3ax+2" /> positif di seluruh interval.
 
-    -   Jika <InlineMath math="a < 0" />, maka <InlineMath math="h(x)" /> adalah fungsi yang menurun. Nilai terkecilnya akan berada di ujung kanan interval (<InlineMath math="x=2" />). Agar <InlineMath math="h(x)" /> selalu non-negatif, kita cukup pastikan nilai minimumnya ini lebih besar atau sama dengan nol.
+    -   Jika <InlineMath math="a < 0" />, maka <InlineMath math="h(x)" /> menurun. Karena <InlineMath math="x=2" /> tidak termasuk interval, <InlineMath math="h" /> tidak memiliki nilai minimum di sana. Namun, infimumnya adalah nilai batas saat <InlineMath math="x \to 2^-" />. Nilai batas tersebut harus non-negatif.
 
-    Kita uji pada batas kritis <InlineMath math="x=2" />:
+    Evaluasi syarat batas pada <InlineMath math="x=2" />:
 
     <MathContainer>
         <BlockMath math="3a(2) + 2 \ge 0" />
@@ -224,7 +224,7 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
         <BlockMath math="a \ge -1/3" />
     </MathContainer>
 
-    Dengan menggabungkan kedua kasus tersebut, syarat agar fungsi selalu naik pada interval yang diberikan adalah <InlineMath math="a \ge -1/3" />.
+    Dengan menggabungkan kedua kasus, fungsi naik di seluruh interval tepat ketika <InlineMath math="a \ge -1/3" />.
 
 3.  **Penyelesaian:**
 

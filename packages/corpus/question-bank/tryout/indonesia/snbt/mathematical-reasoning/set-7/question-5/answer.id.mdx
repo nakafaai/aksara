@@ -6,31 +6,31 @@ export const metadata = {
 
 #### Analisis Volume
 
-Volume air yang tersisa merupakan selisih dari volume tabung (air mula-mula) dengan total volume bola yang dimasukkan.
+Karena setiap bola terbenam seluruhnya, volume air yang dipindahkan sama dengan volume penuh bola. Jadi, volume air yang tersisa merupakan volume tabung dikurangi total volume seluruh bola.
 
 <MathContainer>
   <BlockMath math="V_{\text{sisa}} = V_{\text{tabung}} - n \cdot V_{\text{bola}}" />
-  <BlockMath math="64\pi = \pi r_1^2 t - n \left(\frac{4}{3} \pi r_2^3\right)" />
-  <BlockMath math="64\pi = \pi \left(r_1^2 t - n \cdot \frac{4}{3} r_2^3\right)" />
+  <BlockMath math="11{.}388\pi = \pi r_1^2 h - n \left(\frac{4}{3} \pi r_2^3\right)" />
+  <BlockMath math="11{.}388\pi = \pi \left(r_1^2 h - n \cdot \frac{4}{3} r_2^3\right)" />
 </MathContainer>
 
-Substitusikan <InlineMath math="r_1 = 16 \text{ cm}" /> dan <InlineMath math="t = 20 \text{ cm}" /> untuk tabung, serta <InlineMath math="r_2 = 6 \text{ cm}" /> untuk bola.
+Substitusikan <InlineMath math="r_1 = 20 \text{ cm}" /> dan <InlineMath math="h = 30 \text{ cm}" /> untuk tabung, serta <InlineMath math="r_2 = 3 \text{ cm}" /> untuk setiap bola.
 
 <MathContainer>
-  <BlockMath math="64 = (16)^2(20) - n \left(\frac{4}{3}(6)^3\right)" />
-  <BlockMath math="64 = 5120 - n \left(\frac{4}{3}(216)\right)" />
-  <BlockMath math="64 = 5120 - 288n" />
+  <BlockMath math="11{.}388 = (20)^2(30) - n \left(\frac{4}{3}(3)^3\right)" />
+  <BlockMath math="11{.}388 = 12{.}000 - n \left(\frac{4}{3}(27)\right)" />
+  <BlockMath math="11{.}388 = 12{.}000 - 36n" />
 </MathContainer>
 
-Sederhanakan persamaan dengan membagi kedua ruas dengan <InlineMath math="32" />:
+Selanjutnya, pisahkan <InlineMath math="n" />:
 
 <MathContainer>
-  <BlockMath math="2 = 160 - 9n" />
-  <BlockMath math="9n = 160 - 2" />
-  <BlockMath math="9n = 158" />
-  <BlockMath math="n = \frac{158}{9} = 17\frac{5}{9}" />
+  <BlockMath math="36n = 12{.}000 - 11{.}388" />
+  <BlockMath math="36n = 612" />
+  <BlockMath math="n = \frac{612}{36}" />
+  <BlockMath math="n = 17" />
 </MathContainer>
 
-Karena <InlineMath math="n" /> adalah banyaknya bola, maka <InlineMath math="n" /> harus bilangan bulat. Selain itu, total volume bola tidak boleh melebihi kapasitas yang memungkinkan sisa air <InlineMath math="64\pi" /> (jika <InlineMath math="n=18" />, maka sisa air akan negatif, yang tidak mungkin).
+Hasilnya berupa bilangan bulat positif. Sebagai pemeriksaan, seluruh bola menempati volume <InlineMath math="17 \cdot 36\pi = 612\pi\text{ cm}^3" />, sehingga air yang tersisa adalah <InlineMath math="12{.}000\pi - 612\pi = 11{.}388\pi\text{ cm}^3" />.
 
-Maka, banyaknya bola yang dimasukkan adalah <InlineMath math="17" /> bola.
+Jadi, ada <InlineMath math="17" /> bola yang dimasukkan.

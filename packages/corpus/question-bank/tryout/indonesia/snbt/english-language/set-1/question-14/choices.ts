@@ -3,10 +3,10 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     { label: "Prohibition", value: false },
-    { label: "Obligation", value: true },
-    { label: "Suggestion", value: false },
-    { label: "Conclusion", value: false },
-    { label: "Recommendation", value: false },
+    { label: "Necessity", value: true },
+    { label: "Possibility", value: false },
+    { label: "Permission", value: false },
+    { label: "Uncertainty", value: false },
   ],
 };
 

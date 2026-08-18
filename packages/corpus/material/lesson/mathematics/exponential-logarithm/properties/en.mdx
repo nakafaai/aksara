@@ -1,112 +1,126 @@
 export const metadata = {
-   title: "Exponent Properties",
-   description: "Learn 7 fundamental exponent rules with practical examples. Learn multiplication, division, power operations and rational exponents for problem solving.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   date: "2025-04-01",
-   subject: "Exponents and Logarithms",
+  title: "Exponent Properties",
+  description:
+    "Use seven exponent properties with correct domain conditions, a base-two pattern table, and worked integer and rational examples.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-01",
+  subject: "Exponents and Logarithms",
 };
 
-## Table of Exponent Values for Base Two
+## Reading Powers of Two
 
-| <InlineMath math="2^n" />    | Exponentiation Result |
-| ---------------------------- | --------------------- |
-| <InlineMath math="2^1" />    | <InlineMath math="2" /> |
-| <InlineMath math="2^2" />    | <InlineMath math="4" /> |
-| <InlineMath math="2^3" />    | <InlineMath math="8" /> |
-| <InlineMath math="2^4" />    | <InlineMath math="16" /> |
-| <InlineMath math="2^5" />    | <InlineMath math="32" /> |
-| <InlineMath math="2^6" />    | <InlineMath math="64" /> |
-| <InlineMath math="2^7" />    | <InlineMath math="128" /> |
-| <InlineMath math="2^8" />    | <InlineMath math="256" /> |
-| <InlineMath math="2^9" />    | <InlineMath math="512" /> |
+The table shows a repeated pattern. Moving down one row multiplies the value by <InlineMath math="2" /> because the exponent increases by one.
+
+| <InlineMath math="2^n" /> | Value |
+| ------------------------- | ----- |
+| <InlineMath math="2^1" /> | <InlineMath math="2" /> |
+| <InlineMath math="2^2" /> | <InlineMath math="4" /> |
+| <InlineMath math="2^3" /> | <InlineMath math="8" /> |
+| <InlineMath math="2^4" /> | <InlineMath math="16" /> |
+| <InlineMath math="2^5" /> | <InlineMath math="32" /> |
+| <InlineMath math="2^6" /> | <InlineMath math="64" /> |
+| <InlineMath math="2^7" /> | <InlineMath math="128" /> |
+| <InlineMath math="2^8" /> | <InlineMath math="256" /> |
+| <InlineMath math="2^9" /> | <InlineMath math="512" /> |
 | <InlineMath math="2^{10}" /> | <InlineMath math="1024" /> |
 
-## Exponent Properties
+For example, <InlineMath math="2^5\cdot2^3" /> combines five factors of two with three more factors. The result has eight factors of two, so <InlineMath math="2^5\cdot2^3=2^8" />.
 
-There are several exponent properties that need to be understood:
+## Seven Exponent Properties
 
-1. <InlineMath math="a^m \cdot a^n = a^{m+n}" />, where <InlineMath math="a \neq 0, m, n" /> are
-   integers
+| Situation | Property | Conditions used here |
+| --------- | -------- | -------------------- |
+| Multiply equal bases | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Divide equal bases | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Raise a power to a power | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Raise a product to a power | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Raise a quotient to a power | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Multiply rational powers with equal denominators | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Multiply general rational powers | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
-   This means multiplying two exponents with the same base results in a new exponent with the sum of the powers.
+The base stays the same when equal bases are multiplied or divided. Only the exponents are combined. By contrast, a power outside parentheses acts on the entire expression inside the parentheses.
 
-2. <InlineMath math="\frac{a^m}{a^n} = a^{m-n}" />, where <InlineMath math="a \neq 0, m, n" /> are
-   integers
+## Why the Conditions Matter
 
-   Dividing two exponents with the same base results in a new exponent with the difference of the powers.
+- A zero base works for some positive exponents, but not for negative exponents because <InlineMath math="0^{-1}" /> would require division by zero. The integer rules therefore use <InlineMath math="a\neq0" /> as one consistent condition.
+- A quotient also requires a nonzero denominator.
+- For rational exponents, using <InlineMath math="a>0" /> keeps every root and power real and unambiguous. Some individual negative-base examples are real, but one unrestricted rule would not cover all rational exponents.
 
-3. <InlineMath math="(a^m)^n = a^{m \times n}" />, where <InlineMath math="a \neq 0, m, n" /> are
-   integers
+The conditions are not decorations after a formula. Check them before applying the property.
 
-   An exponent of an exponent means multiplying the power by the outer power.
+## Choosing the Right Property
 
-4. <InlineMath math="(ab)^m = a^m \times b^m" />, where <InlineMath math="a, b \neq 0" />
-   , and <InlineMath math="m" /> is an integer
-
-   The exponent of a multiplication equals the multiplication of each base raised to the same power.
-
-5. <InlineMath math="\left(\frac{a}{b}\right)^m = \frac{a^m}{b^m}" />, where <InlineMath math="b \neq 0" />
-   , and <InlineMath math="m" /> is an integer
-
-   The exponent of a division equals the division of each base raised to the same power.
-
-6. <InlineMath math="(a^\frac{m}{n})^p \cdot (a^\frac{p}{n}) = (a)^\frac{m+p}{n}" />
-   , where <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> and <InlineMath math="\frac{p}{n}" /> are
-   rational numbers with <InlineMath math="n \neq 0" />
-
-7. <InlineMath math="(a^\frac{m}{n}) \cdot (a^\frac{p}{q}) = (a)^\frac{m \cdot q + p \cdot n}{n \cdot q}" />
-   , where <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> and <InlineMath math="\frac{p}{q}" /> are
-   rational numbers with <InlineMath math="n, q \neq 0" />
-
-## Importance of Conditions for Each Property
-
-Each exponent property has specific conditions:
-
-- In properties <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />, the value <InlineMath math="a \neq 0" /> because exponents with base <InlineMath math="0" /> are only defined for positive powers.
-- In property <InlineMath math="4" />, the values <InlineMath math="a, b \neq 0" /> to ensure the exponent is defined.
-- In property <InlineMath math="5" />, the value <InlineMath math="b \neq 0" /> to avoid division by zero.
-- In properties <InlineMath math="6" /> and <InlineMath math="7" />, the value <InlineMath math="a > 0" /> because rational exponents on negative numbers can result in complex numbers.
-
-Understanding these exponent properties is very important as a foundation for advanced mathematics learning, such as logarithms, exponential functions, and calculus.
+| Pattern in the expression | First move |
+| ------------------------- | ---------- |
+| Same base multiplied | Add the exponents |
+| Same base divided | Subtract the denominator exponent |
+| Power outside a power | Multiply the exponents |
+| Product or quotient inside parentheses | Distribute the outer exponent |
+| Rational exponents with different denominators | Rewrite them with a common denominator |
 
 ## Worked Examples
 
-1. **Simplify <InlineMath math="\frac{2^5 \times 2^3}{2^2}" />**
+### Combining Products and Quotients
 
-   <BlockMath math="\frac{2^5 \times 2^3}{2^2} = \frac{2^{5+3}}{2^2} = \frac{2^8}{2^2} = 2^{8-2} = 2^6 = 64" />
+1. Simplify <InlineMath math="\frac{2^5\cdot2^3}{2^2}" />.
 
-2. **Simplify <InlineMath math="2^2 \cdot 2^3" />**
+    <MathContainer>
+      <BlockMath math="\frac{2^5\cdot2^3}{2^2}=2^{5+3-2}" />
+      <BlockMath math="2^{5+3-2}=2^6=64" />
+    </MathContainer>
 
-   <BlockMath math="2^2 \cdot 2^3 = 2^{2+3} = 2^5 = 32" />
+2. Simplify <InlineMath math="2^2\cdot2^3" />.
 
-3. **Simplify <InlineMath math="2^5 \cdot 2^2" />**
+    <BlockMath math="2^2\cdot2^3=2^{2+3}=2^5=32" />
 
-   <BlockMath math="2^5 \cdot 2^2 = 2^{5+2} = 2^7 = 128" />
+3. Simplify <InlineMath math="2^5\cdot2^2" />.
 
-4. **Simplify <InlineMath math="2^3 \cdot 2^7" />**
+    <BlockMath math="2^5\cdot2^2=2^{5+2}=2^7=128" />
 
-   <BlockMath math="2^3 \cdot 2^7 = 2^{3+7} = 2^{10} = 1024" />
+4. Simplify <InlineMath math="2^3\cdot2^7" />.
 
-5. **Simplify <InlineMath math="\frac{2^8}{2^6}" />**
+    <BlockMath math="2^3\cdot2^7=2^{3+7}=2^{10}=1024" />
 
-   <BlockMath math="\frac{2^8}{2^6} = 2^{8-6} = 2^2 = 4" />
+5. Simplify <InlineMath math="\frac{2^8}{2^6}" />.
 
-6. **Simplify <InlineMath math="\frac{2^{10}}{2^3}" />**
+    <BlockMath math="\frac{2^8}{2^6}=2^{8-6}=2^2=4" />
 
-   <BlockMath math="\frac{2^{10}}{2^3} = 2^{10-3} = 2^7 = 128" />
+6. Simplify <InlineMath math="\frac{2^{10}}{2^3}" />.
 
-7. **Simplify <InlineMath math="\frac{2^6}{2^4}" />**
+    <BlockMath math="\frac{2^{10}}{2^3}=2^{10-3}=2^7=128" />
 
-   <BlockMath math="\frac{2^6}{2^4} = 2^{6-4} = 2^2 = 4" />
+7. Simplify <InlineMath math="\frac{2^6}{2^4}" />.
 
-8. **Simplify <InlineMath math="(2^3)^3" />**
+    <BlockMath math="\frac{2^6}{2^4}=2^{6-4}=2^2=4" />
 
-   <BlockMath math="(2^3)^3 = 2^{3 \times 3} = 2^9 = 512" />
+### Powers of Powers
 
-9. **Simplify <InlineMath math="(2^4)^2" />**
+8. Simplify <InlineMath math="(2^3)^3" />.
 
-   <BlockMath math="(2^4)^2 = 2^{4 \times 2} = 2^8 = 256" />
+    <BlockMath math="(2^3)^3=2^{3\cdot3}=2^9=512" />
 
-10. **Simplify <InlineMath math="(2^2)^5" />**
+9. Simplify <InlineMath math="(2^4)^2" />.
 
-    <BlockMath math="(2^2)^5 = 2^{2 \times 5} = 2^{10} = 1024" />
+    <BlockMath math="(2^4)^2=2^{4\cdot2}=2^8=256" />
+
+10. Simplify <InlineMath math="(2^2)^5" />.
+
+    <BlockMath math="(2^2)^5=2^{2\cdot5}=2^{10}=1024" />
+
+### Rational Exponents
+
+11. Simplify <InlineMath math="2^{1/3}2^{2/3}" />.
+
+    <MathContainer>
+      <BlockMath math="2^{1/3}2^{2/3}=2^{(1+2)/3}" />
+      <BlockMath math="2^{3/3}=2" />
+    </MathContainer>
+
+12. Simplify <InlineMath math="3^{1/2}3^{1/3}" />.
+
+    <MathContainer>
+      <BlockMath math="3^{1/2}3^{1/3}=3^{3/6+2/6}" />
+      <BlockMath math="3^{1/2}3^{1/3}=3^{5/6}" />
+    </MathContainer>
+
+In each example, the operation and the arrangement of the bases determine which property applies. Reading that structure first is more reliable than trying to recall a formula from memory.

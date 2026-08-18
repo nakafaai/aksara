@@ -14,7 +14,7 @@ Grafik fungsi polinomial memberikan gambaran visual tentang bagaimana nilai fung
 
 ## Metode Plotting Titik
 
-Cara paling mendasar untuk menggambar grafik adalah dengan menentukan beberapa pasangan titik <InlineMath math="(x, y)" /> yang memenuhi fungsi tersebut, lalu menghubungkannya dengan kurva yang mulus.
+Salah satu cara untuk mulai menggambar grafik adalah menghitung beberapa pasangan <InlineMath math="(x,y)" /> yang memenuhi fungsi. Titik-titik itu memandu sketsa, tetapi tabel kecil saja belum menentukan seluruh ciri grafik. Akar, titik balik, dan perilaku ujung memberi pemeriksaan tambahan.
 
 **Langkah-langkah:**
 
@@ -48,7 +48,7 @@ Plot titik-titik dan hubungkan:
       Grafik <InlineMath math="f(x) = 2x + 5" />
     </>
   }
-  description="Grafik fungsi linear derajat 1."
+  description={<>Grafik fungsi linear berderajat <InlineMath math="1" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 15]}
   data={[
@@ -86,7 +86,7 @@ Plot titik-titik dan hubungkan dengan kurva mulus (parabola):
       Grafik <InlineMath math="g(x) = x^2 - 2x - 3" />
     </>
   }
-  description="Grafik fungsi kuadrat derajat 2."
+  description={<>Grafik fungsi kuadrat berderajat <InlineMath math="2" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 10]}
   data={[
@@ -124,7 +124,7 @@ Plot titik-titik dan hubungkan dengan kurva mulus:
       Grafik <InlineMath math="h(x) = x^3 + 3x^2 - 4" />
     </>
   }
-  description="Grafik fungsi kubik derajat 3."
+  description={<>Grafik fungsi kubik berderajat <InlineMath math="3" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 12]}
   data={[
@@ -147,7 +147,7 @@ Grafik fungsi polinomial selalu **mulus** (tidak ada sudut tajam) dan **kontinu*
 - **Derajat** <InlineMath math="0" />: <InlineMath math="P(x) = c" />. Grafiknya berupa garis horizontal.
 - **Derajat** <InlineMath math="1" />: <InlineMath math="P(x) = ax + b" />. Grafiknya berupa garis lurus (miring).
 - **Derajat** <InlineMath math="2" />: <InlineMath math="P(x) = ax^2 + bx + c" />. Grafiknya berupa parabola.
-- **Derajat** <InlineMath math="3" />: <InlineMath math="P(x) = ax^3 + \dots" />. Grafiknya memiliki bentuk seperti huruf 'S' atau 'S' terbalik, bisa memiliki hingga dua 'puncak' atau 'lembah'.
+- **Derajat** <InlineMath math="3" />: <InlineMath math="P(x) = ax^3 + \dots" />. Kedua ujung grafik mengarah ke arah vertikal yang berlawanan, dan grafik dapat memiliki paling banyak dua titik balik.
 - **Derajat** <InlineMath math="4" />: Grafiknya bisa memiliki hingga tiga 'puncak' atau 'lembah'.
 - **Derajat** <InlineMath math="5" />: Grafiknya bisa memiliki hingga empat 'puncak' atau 'lembah'.
 
@@ -272,7 +272,7 @@ Ada <InlineMath math="4 \text{ kemungkinan}" /> kombinasi:
 
 ### Menggunakan Perilaku Ujung
 
-Mengetahui perilaku ujung sangat membantu dalam mengidentifikasi grafik fungsi polinomial tanpa harus menggambarnya secara detail.
+Perilaku ujung menunjukkan bentuk umum grafik polinomial tanpa perlu menggambarnya secara lengkap.
 
 **Contoh Aplikasi:**
 
@@ -431,3 +431,29 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
    </ContentBlock>
 
 Dengan menganalisis suku utama, kita bisa memperkirakan bentuk umum grafik di ujung-ujungnya.
+
+## Latihan
+
+Perhatikan fungsi
+
+<BlockMath math="p(x)=-(x-2)^2(x+1)" />
+
+Tentukan derajat, koefisien utama, akar real, perilaku grafik pada setiap akar, dan perilaku ujungnya. Setelah itu, jelaskan ciri-ciri yang wajib terlihat pada sketsa yang benar.
+
+### Pembahasan
+
+Hasil kali suku utama adalah <InlineMath math="-x^3" />, sehingga polinomial berderajat <InlineMath math="3" /> dan berkoefisien utama <InlineMath math="-1" />.
+
+Bentuk faktor langsung menunjukkan akar-akarnya:
+
+- <InlineMath math="x=-1" /> memiliki multiplisitas <InlineMath math="1" />, sehingga grafik memotong sumbu <InlineMath math="x" /> di titik itu.
+- <InlineMath math="x=2" /> memiliki multiplisitas <InlineMath math="2" />, sehingga grafik menyentuh sumbu <InlineMath math="x" /> lalu berbalik arah.
+
+Karena derajatnya ganjil dan koefisien utamanya negatif,
+
+<MathContainer>
+  <BlockMath math="x\to-\infty \implies p(x)\to\infty" />
+  <BlockMath math="x\to\infty \implies p(x)\to-\infty" />
+</MathContainer>
+
+Sebagai titik pemeriksaan tambahan, <InlineMath math="p(0)=-4" />. Jadi, sketsa yang benar naik di ujung kiri, memotong sumbu di <InlineMath math="(-1,0)" />, melalui <InlineMath math="(0,-4)" />, menyentuh sumbu di <InlineMath math="(2,0)" />, lalu turun di ujung kanan.

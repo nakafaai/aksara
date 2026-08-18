@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Arithmetic Sequence",
-  description: "Learn arithmetic sequences with worked examples, formulas, and real-world applications. Learn to find general terms and solve sequence problems.",
+  description: "Build arithmetic sequences from a constant difference, derive the general term, and solve complete applications and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-05",
   subject: "Sequence and Series",
@@ -32,10 +32,8 @@ The common difference (<InlineMath math="b" />) in an arithmetic sequence can be
 
 Where:
 
-- <InlineMath math="U_n" /> represents the <InlineMath math="n" />
-  th term
-- <InlineMath math="U_{n-1}" /> represents the (<InlineMath math="n-1" />
-  )th term
+- <InlineMath math="U_n" /> represents term number <InlineMath math="n" />
+- <InlineMath math="U_{n-1}" /> represents term number <InlineMath math="n-1" />
 
 ## Formula for the nth Term
 
@@ -47,8 +45,7 @@ To determine the <InlineMath math="n" />th term of an arithmetic sequence, we ca
 
 Where:
 
-- <InlineMath math="U_n" /> = the <InlineMath math="n" />
-  th term
+- <InlineMath math="U_n" /> = term number <InlineMath math="n" />
 - <InlineMath math="a" /> = first term
 - <InlineMath math="n" /> = term number
 - <InlineMath math="b" /> = common difference
@@ -66,6 +63,17 @@ If we write the first few terms of an arithmetic sequence:
 From this pattern, we can see that the <InlineMath math="n" />th term is:
 
 <BlockMath math="U_n = a + (n-1)b" />
+
+### Recursive Form
+
+The same arithmetic sequence can be defined from its first term and the rule that produces the next term:
+
+<MathContainer>
+  <BlockMath math="U_1=a" />
+  <BlockMath math="U_{n+1}=U_n+b" />
+</MathContainer>
+
+The explicit formula gives any term directly, while the recursive form builds the sequence one term at a time.
 
 ## Applications of Arithmetic Sequences
 
@@ -104,6 +112,16 @@ We can see that the difference between the number of seats in consecutive rows i
 </MathContainer>
 
 Therefore, there are <InlineMath math="76" /> seats in row <InlineMath math="15" />.
+
+This result describes only row <InlineMath math="15" />. Finding the total number of seats in the first fifteen rows requires the corresponding arithmetic series.
+
+## Increasing, Decreasing, and Constant Sequences
+
+An arithmetic sequence increases when <InlineMath math="b>0" />, decreases when <InlineMath math="b<0" />, and remains constant when <InlineMath math="b=0" />. For example:
+
+<BlockMath math="12,9,6,3,\ldots\qquad b=-3" />
+
+The sign of the common difference therefore describes the direction in which the sequence changes.
 
 ## First Exercise
 
@@ -147,13 +165,20 @@ With <InlineMath math="a = 3" /> and <InlineMath math="b = 3" />, we can formula
 
 Therefore, the formula for the general term of this sequence is <InlineMath math="U_n = 3n" />
 
+As a check, substituting <InlineMath math="n=3" /> and <InlineMath math="n=6" /> must reproduce the two given terms:
+
+<MathContainer>
+  <BlockMath math="U_3=3(3)=9" />
+  <BlockMath math="U_6=3(6)=18" />
+</MathContainer>
+
 ## Second Exercise
 
 Rudi saves money in a bank with a constant monthly increase. If in the <InlineMath math="5" />th month, he saves <InlineMath math="\text{Rp}70{,}000.00" /> and in the <InlineMath math="9" />th month, Rudi saves <InlineMath math="\text{Rp}90{,}000.00" />.
 
 1. What is the monthly increase in savings amount?
 
-2. How much money did Rudi save for the first time?
+2. How much did Rudi deposit in the first month?
 
 ### Solution to Second Exercise
 
@@ -179,7 +204,7 @@ Rudi's savings form an arithmetic sequence because the monthly increase is const
 
     Therefore, the monthly increase in Rudi's savings is <InlineMath math="\text{Rp}5{,}000.00" />.
 
-2. **Finding Rudi's initial savings**
+2. **Finding Rudi's first-month deposit**
 
     We have found <InlineMath math="b = 5{,}000" />, now we substitute it into equation <InlineMath math="(1)" /> to find <InlineMath math="a" />:
 
@@ -191,4 +216,4 @@ Rudi's savings form an arithmetic sequence because the monthly increase is const
       <BlockMath math="a = 50{,}000" />
     </MathContainer>
 
-    Therefore, Rudi's initial savings was <InlineMath math="\text{Rp}50{,}000.00" />.
+    Therefore, Rudi deposited <InlineMath math="\text{Rp}50{,}000.00" /> in the first month.

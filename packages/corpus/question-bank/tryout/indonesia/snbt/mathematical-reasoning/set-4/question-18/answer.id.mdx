@@ -15,28 +15,28 @@ export const metadata = {
   }
 />
 
-Misalkan <InlineMath math="A" /> puncak bukit, <InlineMath math="B" /> kaki bukit, <InlineMath math="C" /> posisi awal kapal, dan <InlineMath math="D" /> posisi dermaga. Tinggi bukit adalah <InlineMath math="AB = h" />. Gunakan segitiga siku-siku <InlineMath math="ABC" /> dan sudut elevasi di <InlineMath math="C" />.
+Misalkan <InlineMath math="A" /> puncak bukit, <InlineMath math="B" /> kaki bukit, <InlineMath math="C" /> posisi awal kapal, dan <InlineMath math="D" /> dermaga. Pada segitiga siku-siku <InlineMath math="ABC" />, tinggi bukit <InlineMath math="AB" /> merupakan sisi di depan sudut <InlineMath math="37^\circ" />.
 
 <MathContainer>
-  <BlockMath math="\cos 37^\circ = \frac{BC}{AC}" />
-  <BlockMath math="0{,}8 = \frac{BD + 2}{12}" />
-  <BlockMath math="BD = 7{,}6" />
+  <BlockMath math="\sin 37^\circ = \frac{AB}{AC}" />
+  <BlockMath math="0{,}6 = \frac{AB}{20}" />
+  <BlockMath math="AB = 12\text{ km}" />
 </MathContainer>
 
-Dengan sudut elevasi di <InlineMath math="D" />, gunakan cosinus untuk mendapatkan <InlineMath math="AD" />.
+Kita dapat memastikan bahwa pengamatan kedua menghasilkan tinggi yang sama. Hitung dahulu kedua jarak mendatar:
+
+<MathContainer>
+  <BlockMath math="BC = AC\cos 37^\circ = 20(0{,}8) = 16\text{ km}" />
+  <BlockMath math="BD = BC - CD = 16 - 7 = 9\text{ km}" />
+</MathContainer>
+
+Di titik <InlineMath math="D" />, panjang garis pandangnya adalah
 
 <MathContainer>
   <BlockMath math="\cos 53^\circ = \frac{BD}{AD}" />
-  <BlockMath math="0{,}6 = \frac{7{,}6}{AD}" />
-  <BlockMath math="AD = \frac{7{,}6}{0{,}6} = \frac{38}{3}" />
-</MathContainer>
-
-
-
-<MathContainer>
+  <BlockMath math="0{,}6 = \frac{9}{AD} \implies AD = 15\text{ km}" />
   <BlockMath math="\sin 53^\circ = \frac{AB}{AD}" />
-  <BlockMath math="0{,}8 = \frac{AB}{\frac{38}{3}}" />
-  <BlockMath math="AB = \frac{152}{15} = 10\frac{2}{15}" />
+  <BlockMath math="AB = 15(0{,}8) = 12\text{ km}" />
 </MathContainer>
 
-Jadi, tinggi bukit adalah <InlineMath math="10\frac{2}{15}\text{ km}" />.
+Kedua pengamatan memberikan hasil yang sama. Jadi, tinggi bukit adalah <InlineMath math="12\text{ km}" />.

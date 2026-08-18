@@ -3,7 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Berani mengambil resiko",
+      label: "Berani mengambil risiko",
       value: true,
     },
     {
@@ -15,7 +15,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "Sosok yang rapih",
+      label: "Sosok yang rapi",
       value: false,
     },
     {

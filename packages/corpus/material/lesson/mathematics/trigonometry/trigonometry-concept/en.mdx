@@ -1,7 +1,7 @@
 
 export const metadata = {
-  title: "Trigonometry Concept",
-  description: "Learn trigonometry fundamentals from the Pythagorean theorem to six basic ratios, similar triangles, and shadow measurements.",
+  title: "Foundations of Trigonometry",
+  description: "Build trigonometry from right triangles, similarity, the Pythagorean theorem, six ratios, and a checked shadow-measurement model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-13",
   subject: "Trigonometry",
@@ -9,59 +9,55 @@ export const metadata = {
 
 ## What is Trigonometry?
 
-Trigonometry comes from Greek, "trigon" meaning triangle and "metron" meaning measure. So, trigonometry is simply the study of the relationship between sides and angles in triangles.
+The word trigonometry is built from Greek words for triangle and measure. Right triangles provide a natural starting point because their side ratios are determined by their angles. Trigonometry later extends these ideas to the unit circle, periodic functions, and many settings beyond triangles.
 
 ### Recalling the Pythagorean Theorem
 
-Before studying trigonometry, we need to recall the Pythagorean theorem that applies to right triangles:
+For a right triangle with legs <InlineMath math="a" /> and <InlineMath math="b" /> and hypotenuse <InlineMath math="c" />, the Pythagorean theorem states:
 
 <BlockMath math="a^2 + b^2 = c^2" />
 
-Where:
-
-- <InlineMath math="a" /> and <InlineMath math="b" /> are the lengths of the two
-  sides that form the right angle
-- <InlineMath math="c" /> is the length of the hypotenuse
-
-This theorem becomes an important foundation in trigonometry because many trigonometric calculations involve right triangles.
+The hypotenuse is opposite the right angle. This theorem connects all three side lengths and supports the special-triangle values used later.
 
 ### Understanding Ratios and Proportions
 
-The concept of ratio or proportion is very important in trigonometry. A ratio is the relationship between two values expressed as a proportion.
+Trigonometric functions begin as ratios of side lengths. A ratio compares two quantities, while a proportion states that two ratios are equal.
 
-For example, imagine you are observing a tree and a ruler under sunlight. If the shadow of the ruler is <InlineMath math="3 \text{ cm}" /> and the height of the ruler is <InlineMath math="6 \text{ cm}" />, while the shadow of the tree is <InlineMath math="150 \text{ cm}" />, we can find the height of the tree using ratio:
+Suppose a vertical ruler and a vertical tree stand on the same level ground and their shadows are measured at the same time. Parallel sunlight makes the two height-shadow triangles similar. If the ruler is <InlineMath math="6 \text{ cm}" /> tall, its shadow is <InlineMath math="3 \text{ cm}" />, and the tree's shadow is <InlineMath math="150 \text{ cm}" />, let the tree height be <InlineMath math="h" />:
 
 <MathContainer>
   <BlockMath math="\frac{\text{ruler height}}{\text{ruler shadow}} = \frac{\text{tree height}}{\text{tree shadow}}" />
-  <BlockMath math="\frac{6 \text{ cm}}{3 \text{ cm}} = \frac{\text{tree height}}{150 \text{ cm}}" />
+  <BlockMath math="\frac{6}{3}=\frac{h}{150}" />
+  <BlockMath math="h=\frac{6}{3}\cdot150\text{ cm}=300\text{ cm}=3\text{ m}" />
 </MathContainer>
 
-So the tree height is <InlineMath math="6 \div 3 \times 150 = 300 \text{ cm} = 3 \text{ meters}" />
-
-This is the power of ratios in everyday life!
+The proportion works because the two triangles share the same two acute angles, not merely because both objects cast shadows.
 
 ## Similar Triangles
 
-Two triangles are said to be similar if they meet one of these conditions:
+Similar triangles have equal corresponding angles and proportional corresponding sides. Any one of these standard tests is sufficient to prove similarity:
 
-- The three angles in the triangles are equal, or
-- The three sides of the triangles are proportional (have the same ratio)
+| Test | Sufficient information |
+| --- | --- |
+| AA | Two pairs of corresponding angles are equal. The third pair is then equal automatically. |
+| SSS | All three pairs of corresponding sides are proportional. |
+| SAS | Two pairs of corresponding sides are proportional and their included angles are equal. |
 
-Similar triangles have the same shape even though their sizes may differ. It's like a photo that's enlarged or reduced - the proportions remain the same!
+Similar triangles have the same shape even when their sizes differ. Every corresponding length is multiplied by the same scale factor.
 
 ### Applications of Similar Triangles
 
 The concept of similar triangles is widely used in everyday life:
 
-1. **Height measurement**: By utilizing shadows, we can measure the height of buildings or trees without having to climb them.
+1. **Height measurement**: Shadows or sight lines can form similar triangles for objects that are difficult to measure directly.
 
-2. **Mapping**: Cartographers (map makers) use the concept of similar triangles to create accurate maps with specific scales.
+2. **Scale drawings**: A plan or model preserves proportions while every length is enlarged or reduced by one scale factor.
 
-3. **Architecture**: Architects use this concept to design building models that are similar to the actual buildings.
+3. **Geometry and construction**: Indirect measurements can be checked through corresponding angles and proportional sides.
 
 ## Trigonometric Ratios
 
-Trigonometric ratios are the ratios between sides in a right triangle related to a specific angle. This is the heart of trigonometry!
+Trigonometric ratios compare the sides of a right triangle relative to a chosen acute angle.
 
 Imagine a right triangle with an angle <InlineMath math="\theta" /> (theta). We name its sides as:
 
@@ -78,10 +74,15 @@ Imagine a right triangle with an angle <InlineMath math="\theta" /> (theta). We 
       </>
     }
     angle={45}
+    labels={{
+      opposite: "Opposite Side",
+      adjacent: "Adjacent Side",
+      hypotenuse: "Hypotenuse",
+    }}
   />
 </ContentBlock>
 
-From these three sides, we get six basic trigonometric ratios:
+From these three sides, we obtain six basic trigonometric ratios. For an acute angle in a nondegenerate right triangle, all three side lengths are positive, so every ratio below is defined:
 
 1. **Sine** (<InlineMath math="\sin" />):
 
@@ -107,13 +108,9 @@ From these three sides, we get six basic trigonometric ratios:
 
    <BlockMath math="\cot \theta = \frac{1}{\tan \theta} = \frac{\text{adjacent side}}{\text{opposite side}}" />
 
-### Why Are Trigonometric Ratios Always the Same?
+### Why Does Each Angle Have Fixed Ratios?
 
-The interesting thing about trigonometric ratios is that their values are always the same for the same angle, regardless of the size of the right triangle. This is because triangles with the same angles are similar!
-
-Let's understand this concept more clearly:
-
-Imagine we have two right triangles with the same angle (for example <InlineMath math="\theta = 30^\circ" />) but different sizes. Because both triangles have the same angle, they are similar. In similar triangles, the ratios of their sides are always proportional.
+Two right triangles with the same acute angle, for example <InlineMath math="\theta=30^\circ" />, also share the right angle. The AA test therefore proves that they are similar. Scaling every side by the same factor leaves each quotient of corresponding side lengths unchanged.
 
 Simple example:
 
@@ -125,27 +122,27 @@ If we calculate <InlineMath math="\sin \theta" /> for both triangles:
 - <InlineMath math="\sin \theta" /> for triangle <InlineMath math="A" /> is <InlineMath math="\frac{3}{6} = 0.5" />.
 - <InlineMath math="\sin \theta" /> for triangle <InlineMath math="B" /> is <InlineMath math="\frac{5}{10} = 0.5" />.
 
-Even though the triangle sizes are different, the value of <InlineMath math="\sin \theta" /> remains the same. This is why we can create trigonometric value tables that are universally applicable.
+Although the triangles have different sizes, <InlineMath math="\sin \theta" /> has the same value. The same reasoning applies to the other side ratios.
 
 <UnitCircle
   title="Visualizing Trigonometric Ratios"
-  description="Move the angle to see how trigonometric ratios are determined by the angle, not by the size of the triangle."
+  description="Move the angle to see how sine and cosine are determined by the point on the unit circle."
   angle={30}
 />
 
-The unit circle visualization above shows how trigonometric ratio values are determined by the angle, not by the size of the triangle. On the unit circle (with radius <InlineMath math="1" />), the coordinates of a point on the circle directly represent the <InlineMath math="\sin" /> and <InlineMath math="\cos" /> values for that angle.
+On the unit circle, the point corresponding to <InlineMath math="\theta" /> has coordinates <InlineMath math="(\cos \theta,\sin \theta)" />. This definition extends sine and cosine beyond the acute angles of a right triangle.
 
-This concept is very important because it allows us to use the same trigonometric values to solve problems of different sizes, as long as the angle is the same.
+The right-triangle ratios and the unit-circle coordinates agree for acute angles, so the same values can be used in problems with triangles of different sizes.
 
 ## Applications of Trigonometry in Real Life
 
-Trigonometry may seem complex, but it's actually used in many aspects of everyday life:
+Trigonometry connects angles with lengths and periodic change, so it appears in measurement, navigation, construction, and wave models.
 
 ### Measuring Height Using Shadows
 
-Have you ever noticed shadows? The shadow of a tall person will be longer than the shadow of a short person at the same time. However, the ratio of height to shadow length remains the same as long as the position of the sun is the same!
+For nearby vertical objects on level ground, height divided by shadow length is the same when the shadows are measured at the same time. This follows from parallel sunlight and similar triangles.
 
-This principle was used by ancient scientists to make extraordinary measurements. For example, a Greek mathematician named Eratosthenes successfully measured the circumference of the earth quite accurately about <InlineMath math="2000 \text{ years}" /> ago, just by observing shadow differences in different locations.
+More than <InlineMath math="2200 \text{ years}" /> ago, Eratosthenes estimated Earth's circumference by comparing the Sun's angle at two locations and combining the angular difference with the distance between those locations. The distance was essential; the shadows alone were not enough.
 
 ### Navigation
 
@@ -161,16 +158,21 @@ Sound waves, radio waves, and alternating electric currents can be modeled using
 
 ## Simple Experiment
 
-You can try a simple experiment to better understand trigonometry:
+Choose nearby vertical objects on level ground and measure their shadows at nearly the same time. This keeps the solar angle effectively the same.
 
-1. Measure your height and the length of your shadow under sunlight (make sure the time is fixed, for example <InlineMath math="10" /> AM)
+1. Measure a reference height <InlineMath math="h_r" /> and its horizontal shadow length <InlineMath math="s_r" />.
 
-2. Calculate the ratio of your height to your shadow length
+2. Calculate the common ratio <InlineMath math="k=h_r/s_r" />.
 
-3. Use this ratio to estimate the height of other objects (trees, poles, buildings) by measuring just their shadow length
+3. Measure another object's shadow length <InlineMath math="s" /> and estimate its height with <InlineMath math="h=ks" />.
 
-4. Mark your position, the object's position, and draw a line from the top of your head to the end of your shadow
+4. If desired, calculate the Sun's elevation angle with <InlineMath math="\theta=\arctan k" />.
 
-5. Measure the angle formed with a protractor. This angle will be the same for all objects at the same time!
+For example, if a <InlineMath math="1.5 \text{ m}" /> reference object casts a <InlineMath math="2.0 \text{ m}" /> shadow, then <InlineMath math="k=0.75" />. An object with an <InlineMath math="8.0 \text{ m}" /> shadow has the estimated height
 
-With this simple experiment, you have applied the basic principles of trigonometry!
+<MathContainer>
+  <BlockMath math="h=0.75\times8.0\text{ m}=6.0\text{ m}" />
+  <BlockMath math="\theta=\arctan(0.75)\approx36.87^\circ" />
+</MathContainer>
+
+If the ground slopes, an object is not vertical, or the measurement times differ substantially, this simple model no longer applies without adjustment.

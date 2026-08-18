@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Dictionary",
-    description: "Pelajari struktur data dictionary dalam Python, metode keys(), values(), items(), indexing, for loops, dan metode get() dengan contoh praktis.",
+    description: "Pelajari cara dictionary Python menyimpan, memperbarui, mengiterasi, dan mencari pasangan kunci-nilai dengan aman.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-09-18",
     subject: "Pemrograman AI",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Definisi dan Pembuatan Dictionary
 
-Dictionary adalah struktur data yang menyimpan pasangan kunci-nilai (key-value pairs). Bayangkan seperti kamus bahasa dimana setiap kata (kunci) memiliki arti (nilai) yang terkait dengannya.
+Dictionary adalah pemetaan yang dapat diubah dari kunci unik ke nilai. Alih-alih meminta item berdasarkan posisi angka, kamu mencarinya melalui kunci yang bermakna seperti nama, pengenal, atau tanggal.
 
 ### Cara Membuat Dictionary
 
@@ -50,7 +50,7 @@ print("Dictionary mass:", mass)
 
 ### Sintaks Dictionary
 
-Dictionary ditulis dengan kurung kurawal `{}` dan berisi daftar pasangan kunci-nilai yang dipisahkan koma. Setiap pasangan kunci dan nilai dipisahkan oleh titik dua.
+Tampilan dictionary memakai kurung kurawal. Koma memisahkan setiap entri, sedangkan titik dua memisahkan kunci dari nilainya. Tampilan kosong `{}` membuat dictionary kosong.
 
 <CodeBlock
   data={[
@@ -65,15 +65,15 @@ print(phone)
   ]}
 />
 
-Dictionary dibungkus dalam kurung kurawal, berisi daftar pasangan kunci-nilai yang dipisahkan koma, dan setiap pasangan kunci dengan nilai dipisahkan oleh titik dua.
+Kunci harus hashable, sehingga nilai yang tidak berubah seperti string, angka, dan tuple yang sesuai lazim dipakai. Nilai dictionary boleh berupa objek Python apa pun, termasuk dictionary lain.
 
 ## Dictionary sebagai Container
 
-Dictionary termasuk dalam kategori container, yaitu objek yang dapat menyimpan kumpulan item lainnya. Container berbeda dalam cara mereka mengorganisasi dan memanipulasi item yang disimpan.
+Dictionary termasuk container karena menyimpan kumpulan objek lain. Perilaku utamanya adalah memetakan setiap kunci ke satu nilai sambil mempertahankan urutan pertama kali kunci disisipkan.
 
 <Mermaid
   title="Dictionary Menyimpan Pasangan Berdasarkan Key"
-  description="Lihat bagaimana key membawa program langsung ke value tertentu tanpa bergantung pada urutan posisi."
+  description="Lihat bagaimana kunci memilih nilai pasangannya tanpa memakai posisi angka."
   chart={`
     flowchart TD
         A[Container Python] --> B[String]
@@ -85,19 +85,19 @@ Dictionary termasuk dalam kategori container, yaitu objek yang dapat menyimpan k
         E --> E1[Pasangan kunci-nilai]
         E --> E2[Kunci unik]
         E --> E3[Dapat diubah]
-        E --> E4[Tidak berurutan]
+        E --> E4[Berurutan menurut penyisipan]
   `}
 />
 
-Dictionary memiliki karakteristik khusus sebagai container. Dictionary menyimpan kumpulan item dalam bentuk pasangan kunci-nilai. Container berbeda dalam cara item diorganisasi dan dimanipulasi.
+List dan tuple mengatur item berdasarkan posisi, sedangkan dictionary mengatur entri berdasarkan kunci. Perbedaan ini menentukan cara kamu membaca, memperbarui, dan mengiterasi isinya.
 
 ## Karakteristik Dictionary
 
-Dictionary memiliki beberapa karakteristik penting yang membedakannya dari struktur data lain dalam Python.
+Dictionary dapat diubah, kuncinya unik dan hashable, serta urutan iterasinya mengikuti urutan penyisipan kunci.
 
 ### Urutan Penyisipan dan Kunci Unik
 
-Sejak Python <InlineMath math="3.6" />, dictionary mempertahankan urutan penyisipan elemen. Ketika kamu mendefinisikan ulang nilai dari kunci yang sudah ada, hanya nilai terbaru yang tersimpan tanpa mengubah urutan penyisipan kunci.
+Spesifikasi bahasa Python menjamin urutan penyisipan dictionary sejak Python `3.7`. Menetapkan nilai baru ke kunci yang sudah ada memperbarui entri tanpa memindahkan kuncinya. Jika kunci dihapus lalu disisipkan kembali, posisinya berpindah ke akhir.
 
 <CodeBlock
   data={[
@@ -114,11 +114,11 @@ print(phone)
   ]}
 />
 
-Kunci dalam dictionary bersifat unik, hanya nilai yang paling baru ditugaskan yang akan bertahan. Mendefinisikan ulang nilai tidak mengubah urutan penyisipan kunci.
+Karena kunci bersifat unik, kunci berulang dalam tampilan dictionary hanya menyimpan nilai terakhir yang diberikan. Kunci yang bertahan tetap menempati posisi yang ditetapkan oleh kemunculan pertamanya.
 
 ## Mengakses Dictionary
 
-Dictionary menggunakan sistem indexing berdasarkan kunci untuk mengakses nilai yang tersimpan.
+Dictionary mengambil nilai berdasarkan kunci, bukan indeks angka yang berurutan.
 
 ### Indexing dengan Kunci
 
@@ -148,11 +148,11 @@ print(phone)
   ]}
 />
 
-Dictionary menggunakan kunci untuk mengindeks nilai. Kamu dapat mengambil nilai dengan menyebutkan kunci dalam kurung siku, mengubah nilai kunci yang sudah ada, atau menambah pasangan kunci-nilai baru.
+Akses kurung siku mengambil nilai yang sudah ada. Penugasan dengan kurung siku memperbarui kunci lama atau menambahkan pasangan kunci-nilai baru ke urutan penyisipan.
 
 ## Iterasi Dictionary
 
-Dictionary dapat diiterasi dengan berbagai cara tergantung pada informasi yang ingin kamu akses.
+Pilih bentuk iterasi sesuai kebutuhanmu: kunci saja, nilai saja, atau kedua bagian setiap entri.
 
 ### For Loop Sederhana
 
@@ -198,11 +198,11 @@ for key, val in phone.items():
   ]}
 />
 
-Metode `items()` mengambil pasangan kunci-nilai secara bersamaan, memungkinkan kamu mengakses keduanya dalam satu iterasi.
+View `items()` menghasilkan kunci dan nilai bersama-sama, sehingga tuple unpacking dapat memberi nama keduanya dalam satu perulangan.
 
 ## Metode Dictionary
 
-Dictionary menyediakan beberapa metode untuk mengakses kunci, nilai, dan pasangan kunci-nilai.
+Dictionary menyediakan view dinamis untuk kunci, nilai, dan pasangan kunci-nilainya.
 
 ### Metode keys(), values(), dan items()
 
@@ -232,11 +232,11 @@ print("Items:", list(items))
   ]}
 />
 
-Metode ini mengembalikan objek view yang dinamis. View object bukan list dan tidak dapat diindeks atau ditugaskan. List dapat diperoleh melalui constructor `list()`. View object mempertahankan referensi ke dictionary induk dan efisien untuk iterasi.
+Metode tersebut mengembalikan objek view dinamis, bukan list. View mencerminkan perubahan berikutnya pada dictionary dan dapat diiterasi, tetapi tidak mendukung indeks posisi atau penugasan item. Panggil `list()` hanya ketika kamu memang memerlukan snapshot list yang terpisah.
 
 ## Metode get()
 
-Metode `get()` menyediakan cara aman untuk mengakses nilai dictionary tanpa risiko error ketika kunci tidak ditemukan.
+Gunakan `get()` ketika kunci yang tidak ada merupakan keadaan wajar dan kamu menginginkan nilai pengganti. Gunakan akses kurung siku ketika kunci yang hilang seharusnya dianggap sebagai error.
 
 ### Masalah Indexing Biasa
 
@@ -287,4 +287,4 @@ print("Hasil get('ann'):", result)
   ]}
 />
 
-Metode `get()` mengambil nilai kunci jika ada, atau mengembalikan nilai default jika kunci tidak ditemukan. Ini mencegah program berhenti karena error dan memberikan kontrol lebih baik dalam penanganan data yang tidak lengkap.
+`get()` mengembalikan nilai tersimpan ketika kuncinya ada. Jika tidak, metode ini mengembalikan nilai default yang diberikan, atau `None` bila tidak ada default. Pilih default yang tidak dapat tertukar dengan nilai valid ketika perbedaannya penting.

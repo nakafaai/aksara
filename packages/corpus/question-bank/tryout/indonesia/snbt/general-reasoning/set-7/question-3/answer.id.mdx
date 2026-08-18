@@ -4,28 +4,24 @@ export const metadata = {
   date: "2026-01-26",
 };
 
-Berdasarkan bacaan tersebut, kita dapat menyusun rantai sebab-akibat (implikasi) dari setiap peristiwa yang dijelaskan. Mari kita definisikan pernyataan-pernyataan berikut:
+Nyatakan keempat kondisi sebagai berikut:
 
-- <InlineMath math="P" />: Tidak rutin menggosok gigi setiap hari.
-- <InlineMath math="Q" />: Serpihan sisa makanan tertinggal di mulut.
-- <InlineMath math="R" />: Bakteri tumbuh pada serpihan tersebut.
-- <InlineMath math="S" />: Mengeluarkan senyawa berbau tidak sedap penyebab bau mulut.
-- <InlineMath math="T" />: Membentuk plak gigi.
+- <InlineMath math="P" />: Pembersihan yang dijadwalkan dilewatkan.
+- <InlineMath math="Q" />: Residu tertinggal pada sensor.
+- <InlineMath math="R" />: Sensor mengalami gangguan.
+- <InlineMath math="S" />: Lampu peringatan menyala.
 
-Alur logika pada teks adalah berurutan: <InlineMath math="P \rightarrow Q \rightarrow R \rightarrow S \rightarrow T" />.
-
-Dengan menggunakan prinsip Silogisme Hipotetis, kita dapat menyimpulkan hubungan langsung antara penyebab awal dan akibat akhir:
+Protokol tersebut memberikan rangkaian implikasi berikut:
 
 <MathContainer>
-  <BlockMath math="P \rightarrow T" />
+  <BlockMath math="P \rightarrow Q \rightarrow R \rightarrow S" />
+  <BlockMath math="P \rightarrow S" />
 </MathContainer>
 
-Artinya, "Jika tidak rutin menggosok gigi setiap hari (<InlineMath math="P" />), maka akan terbentuk plak gigi (<InlineMath math="T" />)."
-
-Pertanyaan menanyakan simpulan jika **tidak terbentuk plak gigi** (<InlineMath math="\sim T" />). Kita dapat menggunakan aturan **Modus Tollens**:
+Hari ini lampu peringatan tidak menyala, sehingga <InlineMath math="\neg S" /> benar. Dengan menerapkan modus tollens pada <InlineMath math="P \rightarrow S" />, kita memperoleh:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &P \rightarrow T \\ &\sim T \\ \hline &\therefore \sim P \end{aligned}" />
+  <BlockMath math="\begin{aligned} P &\rightarrow S \\ \neg S &\\ \hline \therefore\ \neg P &\end{aligned}" />
 </MathContainer>
 
-Jadi, <InlineMath math="\sim P" /> (negasi dari <InlineMath math="P" />). Karena <InlineMath math="P" /> adalah "Tidak rutin menggosok gigi setiap hari", maka <InlineMath math="\sim P" /> adalah **"Rutin menggosok gigi setiap hari"**.
+Jadi, pembersihan harian yang dijadwalkan **tidak** dilewatkan. Jawaban yang tepat adalah pilihan kedua.

@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Invers Bilangan Kompleks",
-  description: "Hitung invers bilangan kompleks menggunakan rumus konjugat dan modulus. Pelajari z⁻¹ = z̄/|z|² untuk pembagian dan operasi kebalikan dengan contoh.",
+  description: "Hitung kebalikan bilangan kompleks dengan konjugat dan modulus, lalu terapkan caranya pada pembagian melalui contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Bilangan Kompleks",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Apa itu Invers Bilangan Kompleks?
 
-Setiap bilangan kompleks **tak nol** <InlineMath math="z = x + iy" /> memiliki teman "kebalikan" yang disebut **invers perkalian** (atau invers saja), yang kita tulis sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />.
+Setiap bilangan kompleks **tak nol** <InlineMath math="z = x + iy" /> memiliki **invers perkalian**, yang ditulis sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />.
 
 Ciri khas dari invers perkalian adalah jika kita kalikan bilangan kompleks <InlineMath math="z" /> dengan inversnya <InlineMath math="z^{-1}" />, hasilnya adalah <InlineMath math="1" /> (elemen identitas perkalian).
 
@@ -26,13 +26,13 @@ Rumus ini bisa juga ditulis sebagai pasangan terurut:
 
 <BlockMath math="z^{-1} = \left( \frac{x}{x^2+y^2}, -\frac{y}{x^2+y^2} \right)" />
 
-Ingat juga bentuk lain yang sering berguna, menggunakan konjugat (<InlineMath math="\bar{z} = x-iy" />) dan modulus (<InlineMath math="|z|^2 = x^2+y^2" />):
+Ingat juga bentuk lain yang sering berguna, menggunakan konjugat (<InlineMath math="\bar{z} = x-iy" />) dan kuadrat modulus (<InlineMath math="|z|^2 = x^2+y^2" />):
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
 
 ## Contoh Perhitungan Invers
 
-Misalkan diberikan bilangan kompleks <InlineMath math="z = 1 - i" />. Tentukan inversnya!
+Tentukan invers dari <InlineMath math="z = 1 - i" />.
 
 **Penyelesaian:**
 
@@ -61,6 +61,10 @@ Hasilnya sama, yaitu:
 
   <BlockMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i \text{ atau} \left( \frac{1}{2}, \frac{1}{2} \right)" />
 
+  Periksa hasilnya dengan mengalikannya dengan bilangan semula:
+
+  <BlockMath math="(1-i)\left(\frac{1}{2}+\frac{1}{2}i\right)=\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{2}-\frac{1}{2}\right)i=1" />
+
   <LineEquation
     title={
       <>
@@ -69,9 +73,9 @@ Hasilnya sama, yaitu:
     }
     description={
       <>
-        Visualisasi dari <InlineMath math="z = 1-i" /> dan inversnya{" "}
-        <InlineMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i" />. Perhatikan
-        bagaimana posisi mereka relatif terhadap titik asal.
+        Bilangan <InlineMath math="z = 1-i" /> dan inversnya{" "}
+        <InlineMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i" /> berada pada
+        sisi yang berlawanan dari sumbu real; nilai mutlaknya saling berkebalikan.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -109,7 +113,7 @@ Hasilnya sama, yaitu:
 
 Diberikan bilangan kompleks <InlineMath math="z_1 = 1-i" /> dan <InlineMath math="z_2 = 2+3i" />. Tentukan invers dari <InlineMath math="z_1 + z_2" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 Langkah <InlineMath math="1" />: Cari <InlineMath math="z_1 + z_2" />.
 

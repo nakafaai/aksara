@@ -76,8 +76,16 @@ const selectedPaths = new Set([
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
     base: {
-      authoringComponents: [{ name: "InlineMath", version: 1 }],
-      supportedComponents: [{ name: "InlineMath", version: 1 }],
+      authoringComponents: [
+        { name: "BlockMath", version: 1 },
+        { name: "InlineMath", version: 1 },
+        { name: "MathContainer", version: 1 },
+      ],
+      supportedComponents: [
+        { name: "BlockMath", version: 1 },
+        { name: "InlineMath", version: 1 },
+        { name: "MathContainer", version: 1 },
+      ],
     },
     domains: RENDERER_DOMAINS.map((name) => {
       if (name === "chemistry") {

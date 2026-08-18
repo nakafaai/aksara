@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Vertical Dilation",
-  description: "Learn vertical dilation of functions with clear examples. Learn how to stretch or compress graphs vertically using scale factors and apply transformations.",
+  description: "Use graphs and examples to understand how a scale factor stretches, compresses, or reflects a function vertically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Function Transformation",
@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Basic Concepts of Vertical Dilation
 
-Vertical dilation is a geometric transformation that changes the size of a function graph vertically, like stretching or compressing a rubber band up and down. Imagine pulling a photo with both hands, one above and one below, then stretching or compressing it vertically without changing the width of the photo.
+Vertical dilation changes a function graph's height without changing its horizontal coordinates. Picture a photograph pulled outward from its top and bottom edges or pressed toward the <InlineMath math="x" />-axis.
 
-If we have a function <InlineMath math="f(x)" />, then vertical dilation produces a new function <InlineMath math="g(x) = k \cdot f(x)" /> where <InlineMath math="k" /> is the scale factor that determines how much the vertical size changes.
+If we have a function <InlineMath math="f(x)" />, then vertical dilation produces a new function <InlineMath math="g(x) = k \cdot f(x)" /> where <InlineMath math="k \ne 0" /> is the scale factor that determines how much the vertical size changes.
 
 ### Rules of Vertical Dilation
 
-For any function <InlineMath math="f(x)" />, vertical dilation is defined as:
+For any function <InlineMath math="f(x)" /> and nonzero scale factor <InlineMath math="k" />, vertical dilation is defined as:
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
@@ -26,9 +26,11 @@ Where <InlineMath math="k" /> is the scale factor that affects the transformatio
 - If <InlineMath math="k = 1" />, the graph does not change
 - If <InlineMath math="k < 0" />, the graph undergoes reflection as well as dilation
 
+The value <InlineMath math="k = 0" /> is excluded because it collapses every output to <InlineMath math="0" /> instead of dilating the graph.
+
 ## Visualization of Vertical Dilation
 
-Let's see how vertical dilation works on the quadratic function <InlineMath math="f(x) = x^2" /> with various scale factors.
+The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale factors change vertical distance from the <InlineMath math="x" />-axis.
 
 <LineEquation
   title={<>Vertical Dilation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
@@ -66,7 +68,7 @@ Let's see how vertical dilation works on the quadratic function <InlineMath math
   ]}
 />
 
-From the visualization above, we can observe:
+The graph shows:
 - The original function <InlineMath math="f(x) = x^2" /> as reference
 - Function <InlineMath math="g(x) = 2x^2" /> is vertically stretched by factor <InlineMath math="2" />
 - Function <InlineMath math="h(x) = 0.5x^2" /> is vertically compressed by factor <InlineMath math="0.5" />
@@ -74,11 +76,11 @@ From the visualization above, we can observe:
 
 ## Vertical Dilation on Linear Functions
 
-Now let's apply the same concept to the linear function <InlineMath math="f(x) = x + 1" />.
+The same rule applies to the linear function <InlineMath math="f(x) = x + 1" />.
 
 <LineEquation
   title={<>Vertical Dilation of Linear Function <InlineMath math="f(x) = x + 1" /></>}
-  description="The dilated line has slope that changes according to the scale factor."
+  description={<>The scale factor changes both the slope and the <InlineMath math="y" />-intercept.</>}
   showZAxis={false}
   cameraPosition={[10, 6, 10]}
   data={[
@@ -112,7 +114,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
   ]}
 />
 
-Notice that:
+The three lines show:
 - The original function <InlineMath math="f(x) = x + 1" /> has slope <InlineMath math="1" />
 - Function <InlineMath math="g(x) = 3(x + 1)" /> has slope <InlineMath math="3" /> (stretched)
 - Function <InlineMath math="h(x) = 0.5(x + 1)" /> has slope <InlineMath math="0.5" /> (compressed)
@@ -133,14 +135,14 @@ If the range of the original function is <InlineMath math="[c, d]" />, then the 
 
 ### Axis Intercepts
 
-- **<InlineMath math="x" />-intercept**: Does not change (except if <InlineMath math="k = 0" />)
+- **<InlineMath math="x" />-intercept**: Does not change
 - **<InlineMath math="y" />-intercept**: Changes according to the scale factor
 
 ## Application Examples
 
 ### Exponential Function
 
-Let's look at vertical dilation on the exponential function <InlineMath math="f(x) = 2^x" />.
+For the exponential function <InlineMath math="f(x) = 2^x" />, the scale factor multiplies every function value.
 
 <LineEquation
   title={<>Vertical Dilation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
@@ -172,11 +174,11 @@ Let's look at vertical dilation on the exponential function <InlineMath math="f(
 For exponential functions:
 - The horizontal asymptote remains at <InlineMath math="y = 0" /> for both functions
 - The <InlineMath math="y" />-intercept changes from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, 2)" />
-- The growth rate of the function increases according to the scale factor
+- Every function value doubles, while the exponential base and relative growth rate stay the same
 
 ## Vertical Dilation with Negative Factor
 
-Let's see what happens when the scale factor is negative.
+A negative scale factor combines vertical scaling with reflection across the <InlineMath math="x" />-axis.
 
 <LineEquation
   title={<>Vertical Dilation with Negative Factor <InlineMath math="f(x) = x^2" /></>}
@@ -259,7 +261,7 @@ When the scale factor is negative:
 2. Equation of the resulting dilated function:
 
    - Vertical dilation: <InlineMath math="g'(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-   - Range after dilation: <InlineMath math="[0, \infty)" /> becomes <InlineMath math="[0, \infty)" /> but with smaller maximum values
+   - Range after dilation: <InlineMath math="[0, \infty)" /> remains <InlineMath math="[0, \infty)" />; at each input, the positive function value is halved
 
    Visualization:
 
@@ -300,7 +302,7 @@ When the scale factor is negative:
 
    <LineEquation
      title={<>Function <InlineMath math="h(x) = |x - 1| + 2" /> and Its Dilation Result</>}
-     description={<>The absolute value function undergoes reflection and dilation with factor <InlineMath math="-1" />.</>}
+     description={<>Factor <InlineMath math="-1" /> reflects the absolute value function across the <InlineMath math="x" />-axis without changing its vertical scale.</>}
      showZAxis={false}
      cameraPosition={[10, 6, 10]}
      data={[

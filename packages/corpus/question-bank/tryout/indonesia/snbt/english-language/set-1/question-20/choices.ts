@@ -4,26 +4,26 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The study was conducted because coral reefs are threatened globally",
+        "The Kīholo Bay fishery can be harvested without ecological limits.",
       value: false,
     },
     {
       label:
-        "Sociocultural practices have burdened the sustainability of coral reef fishery",
+        "Every small-scale reef fishery distributes its catch in exactly the same way.",
       value: false,
     },
     {
       label:
-        "The benefits local people get from the existing coral reefs are immense",
+        "Most of the Kīholo Bay catch was sold through commercial markets.",
+      value: false,
+    },
+    {
+      label: "Sharing seafood at cultural events has no social value.",
       value: false,
     },
     {
       label:
-        "Coral reef fishery helps local people maintain their social relationship",
-      value: false,
-    },
-    {
-      label: "Coral reef fishery provides the world with food supplies",
+        "Commercial sales records alone would greatly underestimate the fishery's value to the community.",
       value: true,
     },
   ],

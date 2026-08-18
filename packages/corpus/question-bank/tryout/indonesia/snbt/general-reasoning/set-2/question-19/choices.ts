@@ -4,27 +4,26 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "On Sunday, the community service was cancelled because of the rain.",
+        "Sunday's entire neighborhood work day was cancelled because of the rain.",
       value: false,
     },
     {
       label:
-        "On Sunday, community service to collect used goods was carried out.",
+        "Reusable items were collected during Sunday's neighborhood work day.",
       value: true,
     },
     {
       label:
-        "On Sunday, community service to clean gutters and collect used goods was carried out.",
+        "Both the drainage ditch cleaning and the reusable-item collection took place on Sunday.",
       value: false,
     },
     {
       label:
-        "On Sunday, community service to collect used goods was carried out, and cleaning gutters was not carried out.",
+        "Only the drainage ditch was cleaned on Sunday; reusable items were not collected.",
       value: false,
     },
     {
-      label:
-        "On Sunday, community service was not carried out because of the rain.",
+      label: "No neighborhood work took place on Sunday because of the rain.",
       value: false,
     },
   ],
@@ -46,12 +45,12 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Pada Hari minggu kerja bakti mengumpulkan barang bekas dan membersihkan selokan tidak dilaksanakan.",
+        "Pada hari Minggu hanya selokan yang dibersihkan, sedangkan barang bekas tidak dikumpulkan.",
       value: false,
     },
     {
       label:
-        "Pada hari minggu kerja bakti tidak dilaksanakan karena turun hujan.",
+        "Pada hari Minggu kerja bakti tidak dilaksanakan karena turun hujan.",
       value: false,
     },
   ],

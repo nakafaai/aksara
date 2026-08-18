@@ -15,22 +15,22 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "The lowest number of smartphone users is from Company C",
+      label: "Company C has the lowest three-month total",
       value: true,
     },
     {
-      label: "The highest number of smartphone users is from Company B",
+      label: "Company B has the highest three-month total",
       value: false,
     },
   ],
   id: [
     {
-      label: "Persentase kenaikan tertinggi dialami oleh perusahaan B",
+      label: "Persentase kenaikan tertinggi dialami oleh Perusahaan B",
       value: false,
     },
     {
       label:
-        "Jumlah pengguna smartphone di setiap perusahaan bersifat fluktuatif",
+        "Jumlah pengguna smartphone di setiap perusahaan selalu berfluktuasi",
       value: false,
     },
     {
@@ -38,13 +38,11 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label:
-        "Jumlah pengguna smartphone terendah adalah smartphone dari Perusahaan C",
+      label: "Perusahaan C memiliki total tiga bulan terendah",
       value: true,
     },
     {
-      label:
-        "Jumlah pengguna smartphone tertinggi adalah smartphone dari Perusahaan B",
+      label: "Perusahaan B memiliki total tiga bulan tertinggi",
       value: false,
     },
   ],

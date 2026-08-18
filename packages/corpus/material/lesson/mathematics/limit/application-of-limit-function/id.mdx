@@ -1,53 +1,53 @@
 export const metadata = {
     title: "Aplikasi Limit Fungsi",
-    description: "Terapkan limit pada skenario dunia nyata: analisis penyebaran penyakit, strategi vaksinasi, model ekonomi, dan perhitungan biaya marginal dengan contoh.",
+    description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Limit",
 };
 
-## Penerapan dalam Masalah Kesehatan Masyarakat
+## Model Kesehatan Masyarakat yang Disederhanakan
 
-Salah satu aplikasi paling relevan dari limit fungsi adalah dalam **analisis penyebaran penyakit** dan program vaksinasi. Ketika pemerintah merancang strategi kesehatan masyarakat, mereka perlu memahami bagaimana jumlah kasus akan berubah seiring waktu dan berapa banyak sumber daya yang diperlukan.
+Limit dapat menggambarkan perilaku jangka panjang sebuah model matematika. Namun, dalam kesehatan masyarakat, suatu rumus harus disesuaikan dengan data yang andal dan divalidasi sebelum digunakan untuk mengambil keputusan nyata. Contoh berikut adalah **model pembelajaran fiktif** untuk berlatih menghitung limit dan memeriksa daerah berlakunya.
 
-### Model Penyebaran Virus
+### Memeriksa Daerah Berlaku Model
 
-Misalkan dalam suatu kota terdapat fungsi yang menggambarkan jumlah penduduk yang terinfeksi virus:
+Perhatikan fungsi yang sengaja disederhanakan berikut:
 
-<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
+<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
-dimana <InlineMath math="N(t)" /> mewakili jumlah penduduk yang terinfeksi dan <InlineMath math="t" /> mewakili waktu dalam satuan tertentu.
+Di sini, <InlineMath math="N(t)" /> ditafsirkan sebagai jumlah kasus dalam model, sedangkan <InlineMath math="t" /> adalah input tak negatif yang satuannya harus ditentukan sesuai skenario.
 
-Untuk memahami perilaku jangka panjang dari penyebaran ini, kita perlu menghitung:
+Untuk menguji apakah rumus ini tetap bermakna dalam jangka panjang, hitung:
 
-<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190.68)^3}\right)" />
+<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190{,}68)^3}\right)" />
 
-**Analisis perilaku jangka panjang:**
+**Perilaku jangka panjang:**
 
 Ketika <InlineMath math="t" /> sangat besar, suku <InlineMath math="t^2" /> akan mendominasi di dalam akar karena:
-- <InlineMath math="t^2" /> tumbuh lebih cepat dibanding <InlineMath math="t" /> dan konstanta <InlineMath math="(190.68)^3" />
-- Untuk <InlineMath math="t >> 1" />, maka <InlineMath math="t^2 - t + (190.68)^3 \approx t^2" />
+- <InlineMath math="t^2" /> tumbuh lebih cepat dibanding <InlineMath math="t" /> dan konstanta <InlineMath math="(190{,}68)^3" />
+- Untuk <InlineMath math="t \gg 1" />, berlaku <InlineMath math="t^2 - t + (190{,}68)^3 \approx t^2" />
 
 Jadi,
 
 <MathContainer>
-<BlockMath math="\sqrt{t^2 - t + (190.68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(untuk } t > 0\text{)}" />
+<BlockMath math="\sqrt{t^2 - t + (190{,}68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(untuk } t > 0\text{)}" />
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> Hasil negatif ini secara matematis menunjukkan bahwa model ini hanya berlaku untuk periode waktu terbatas. Dalam konteks nyata, jumlah penduduk terinfeksi tidak mungkin negatif, sehingga model ini valid hanya hingga titik dimana <InlineMath math="N(t) \geq 0" />.
+> Hasil negatif memperlihatkan bahwa **daerah berlaku model ini terbatas**. Jumlah kasus tidak mungkin negatif, sehingga rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Model fiktif ini bukan ramalan epidemiologis dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
 
-### Strategi Vaksinasi Optimal
+### Menafsirkan Target Vaksinasi
 
-Dalam konteks program vaksinasi, limit fungsi membantu menentukan **target vaksinasi yang efektif**. Jika kita tahu bahwa pada waktu tertentu jumlah kasus akan stabil atau menurun, kita dapat menghitung berapa banyak vaksin yang dibutuhkan.
+Dalam model pembelajaran, limit dan nilai fungsi dapat menunjukkan prediksi rumus di sekitar target vaksinasi tertentu. Keduanya tidak dapat membuktikan bahwa target tersebut efektif tanpa bukti empiris, asumsi penularan, dan data populasi nyata.
 
-Misalkan target vaksinasi untuk penduduk berusia di atas <InlineMath math="18 \text{ tahun}" /> adalah <InlineMath math="V \text{ orang}" />, dan kita ingin mencapai kondisi dimana jumlah kasus baru mendekati nol. Kita dapat menggunakan limit untuk menentukan strategi optimal.
+Misalkan sebuah latihan menetapkan target <InlineMath math="V \text{ orang}" /> bagi penduduk berusia di atas <InlineMath math="18 \text{ tahun}" />. Kita dapat mengevaluasi rumus pada target itu dan menafsirkan hasilnya di dalam model. Perhitungan tersebut tidak dengan sendirinya membuktikan strategi yang optimal.
 
 ## Aplikasi dalam Bidang Ekonomi
 
 ### Analisis Biaya Marginal
 
-Dalam ekonomi, **biaya marginal** adalah tambahan biaya untuk memproduksi satu unit tambahan. Secara praktis, ini menjawab pertanyaan: "Berapa tambahan biaya jika kita memproduksi <InlineMath math="1 \text{ unit}" /> lagi?"
+Dalam model biaya yang dapat diturunkan, **biaya marginal** adalah laju sesaat perubahan biaya total terhadap jumlah produksi. Besaran ini didefinisikan dengan turunan:
 
 **Definisi matematis menggunakan limit:**
 
@@ -58,35 +58,56 @@ dimana:
 - <InlineMath math="\Delta x" /> = perubahan kecil dalam jumlah produksi
 - Limit memberikan **laju perubahan sesaat** biaya terhadap produksi
 
+Jika hasil produksi dihitung dalam satuan utuh, tambahan biaya tepat untuk unit berikutnya adalah <InlineMath math="C(x+1)-C(x)" />. Turunan <InlineMath math="C'(x)" /> sering mendekati perubahan diskret tersebut, tetapi keduanya tidak selalu sama persis.
+
 ### Model Pertumbuhan Populasi
 
-Dalam studi demografi, model pertumbuhan populasi sering menggunakan fungsi yang melibatkan limit. Misalnya, model logistik:
+Salah satu bentuk model populasi logistik yang disederhanakan adalah:
 
-<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}" />
+<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}, \qquad K > 0,\ A > 0,\ r > 0" />
 
-Limit dari fungsi ini ketika <InlineMath math="t \to \infty" /> memberikan **kapasitas daya dukung** lingkungan:
+Karena <InlineMath math="e^{-rt} \to 0" /> ketika <InlineMath math="t \to \infty" />, model mendekati **parameter daya dukungnya**:
 
-<BlockMath math="\lim_{t \to \infty} P(t) = K" />
+<BlockMath math="\lim_{t \to \infty} P(t) = \frac{K}{1+A(0)}=K" />
+
+Di sini, <InlineMath math="K" /> adalah parameter dalam model yang disederhanakan. Daya dukung lingkungan nyata dapat berubah, sehingga limit tersebut tidak menyatakan bahwa setiap populasi terukur pasti menetap selamanya pada satu nilai tetap.
 
 ## Penerapan dalam Teknologi dan Sains
 
 ### Analisis Sinyal Digital
 
-Dalam pemrosesan sinyal digital, limit fungsi digunakan untuk menganalisis **respons sistem** terhadap input tertentu. Filter digital sering dievaluasi menggunakan limit untuk memahami perilaku frekuensi tinggi dan rendah.
+Untuk **model low-pass orde satu yang dinormalisasi** dengan frekuensi cutoff <InlineMath math="\omega_c > 0" />, besar respons frekuensinya adalah:
+
+<BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
+
+Nilai limitnya memperjelas perilaku ideal model:
+
+<MathContainer>
+<BlockMath math="\lim_{\omega \to 0}|H(i\omega)|=1" />
+<BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
+</MathContainer>
+
+Model ini meneruskan frekuensi yang sangat rendah dengan penguatan satu dan semakin meredam frekuensi tinggi. Ini adalah salah satu model matematis filter, bukan gambaran semua filter digital.
 
 ### Laju Reaksi Kimia
 
-Dalam kimia, laju reaksi dapat dimodelkan menggunakan fungsi eksponensial. Limit fungsi membantu menentukan **konsentrasi kesetimbangan** reaktan:
+Untuk **konsumsi ideal orde satu** dari reaktan <InlineMath math="A" />, hukum laju terintegrasinya adalah:
 
-<BlockMath math="\lim_{t \to \infty} [A](t) = [A]_{\text{kesetimbangan}}" />
+<BlockMath math="[A](t)=[A]_0e^{-kt}, \qquad k>0" />
 
-## Optimalisasi Program Vaksinasi Kota
+Oleh karena itu,
+
+<BlockMath math="\lim_{t \to \infty}[A](t)=[A]_0\lim_{t \to \infty}e^{-kt}=0" />
+
+Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik tersebut. Reaksi dapat balik pada kesetimbangan umumnya memerlukan model lain dan konsentrasi reaktannya tidak harus nol.
+
+## Mengevaluasi Target Vaksinasi Kota Fiktif
 
 1. **Deskripsi Masalah:**
 
-    Sebuah kota dengan populasi <InlineMath math="576{,}260 \text{ orang}" /> sedang menghadapi wabah penyakit. Pemerintah kota telah mengembangkan model matematika untuk memprediksi jumlah kasus positif berdasarkan jumlah orang yang telah divaksinasi. Model tersebut dinyatakan dalam fungsi:
+    Dalam skenario pembelajaran fiktif ini, sebuah kota berpenduduk <InlineMath math="576{.}260 \text{ orang}" />. Latihan memberikan rumus sederhana yang menghubungkan jumlah vaksinasi dengan jumlah kasus positif tersisa dalam model:
 
-    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
+    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
     dimana:
     - <InlineMath math="N(t)" /> = jumlah kasus positif yang tersisa
@@ -94,90 +115,96 @@ Dalam kimia, laju reaksi dapat dimodelkan menggunakan fungsi eksponensial. Limit
 
 2. **Pertanyaan:**
 
-    Jika target program vaksinasi adalah <InlineMath math="282{,}367 \text{ orang}" />, berapa jumlah kasus positif yang masih tersisa ketika target tercapai?
+    Jika target program vaksinasi adalah <InlineMath math="282{.}367 \text{ orang}" />, berapa jumlah kasus positif yang masih tersisa ketika target tercapai?
 
 3. **Data dan Asumsi:**
 
-    Berdasarkan survei demografis kota:
-    - Total populasi: <InlineMath math="576{,}260 \text{ orang}" />
+    Latihan mengasumsikan:
+    - Total populasi: <InlineMath math="576{.}260 \text{ orang}" />
     - Komposisi usia: <InlineMath math="21\%" /> anak-anak (<InlineMath math="\leq 18 \text{ tahun}" />), <InlineMath math="79\%" /> dewasa (<InlineMath math="\gt 18 \text{ tahun}" />)
-    - Status kesehatan: <InlineMath math="30\%" /> sudah terkonfirmasi positif
+    - Status kesehatan: <InlineMath math="30\%" /> sudah terkonfirmasi positif, dengan proporsi yang dianggap sama pada setiap kelompok usia
     - Kebijakan: Hanya dewasa yang belum positif yang dapat divaksinasi
 
-    Justifikasi Target Vaksinasi <InlineMath math="282{,}367 \text{ orang}" />:
+    Justifikasi Target Vaksinasi <InlineMath math="282{.}367 \text{ orang}" />:
 
     <MathContainer>
-    <BlockMath math="\text{Anak-anak} = 0.21 \times 576{,}260 = 121{,}015 \text{ orang}" />
-    <BlockMath math="\text{Dewasa} = 0.79 \times 576{,}260 = 455{,}245 \text{ orang}" />
-    <BlockMath math="\text{Total positif} = 0.3 \times 576{,}260 = 172{,}878 \text{ orang}" />
-    <BlockMath math="\text{Dewasa positif} = 0.79 \times 172{,}878 = 136{,}574 \text{ orang}" />
-    <BlockMath math="\text{Dewasa dapat divaksinasi} = 455{,}245 - 136{,}574 = 318{,}671 \text{ orang}" />
+    <BlockMath math="\text{Anak-anak} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{ orang}" />
+    <BlockMath math="\text{Dewasa} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{ orang}" />
+    <BlockMath math="\text{Total positif} = 0{,}3 \times 576{.}260 = 172{.}878 \text{ orang}" />
+    <BlockMath math="\text{Dewasa positif} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{ orang}" />
+    <BlockMath math="\text{Dewasa yang memenuhi syarat} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{ orang}" />
     </MathContainer>
 
-    Target vaksinasi <InlineMath math="282{,}367 \text{ orang}" /> merupakan <InlineMath math="89\%" /> dari dewasa yang memenuhi syarat, disesuaikan dengan ketersediaan vaksin dan kapasitas tenaga medis.
+    Hitung persentase target dari **jumlah yang belum dibulatkan**:
+
+    <BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
+
+    Jadi, target vaksinasi sekitar <InlineMath math="88{,}6\%" /> dari jumlah dewasa yang memenuhi syarat dalam skenario fiktif ini. Target tersebut diberikan oleh soal; perhitungan ini tidak membenarkan cara menetapkan target nyata.
 
 4. **Penyelesaian:**
 
-    Untuk menentukan jumlah kasus yang tersisa ketika <InlineMath math="t = 282{,}367" />, kita hitung:
+    Untuk menentukan jumlah kasus yang tersisa ketika <InlineMath math="t = 282{.}367" />, kita hitung:
 
-    <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{(282{,}367)^2 - 282{,}367 + (190.68)^3}" />
+    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
 
-    **Langkah** <InlineMath math="1" />: Hitung <InlineMath math="(190.68)^3" />
+    **Langkah** <InlineMath math="1" />: Hitung <InlineMath math="(190{,}68)^3" />
 
-    <BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
+    <BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
 
-    **Langkah** <InlineMath math="2" />: Hitung <InlineMath math="(282{,}367)^2" />
+    Nilai yang ditampilkan dibulatkan hingga dua angka desimal; perhitungan berikutnya tetap memakai nilai yang belum dibulatkan.
 
-    <BlockMath math="(282{,}367)^2 = 79{,}731{,}122{,}689" />
+    **Langkah** <InlineMath math="2" />: Hitung <InlineMath math="(282{.}367)^2" />
+
+    <BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
 
     **Langkah** <InlineMath math="3" />: Substitusi ke dalam akar
 
-    <BlockMath math="79{,}731{,}122{,}689 - 282{,}367 + 6{,}932{,}907.88 = 79{,}737{,}773{,}229.88" />
+    <BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
 
     **Langkah** <InlineMath math="4" />: Hitung hasil akhir
 
     <MathContainer>
-    <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{79{,}737{,}773{,}229.88}" />
-    <BlockMath math="= 285{,}000 - 282{,}378.78" />
-    <BlockMath math="= 2{,}621.22 \approx 2{,}621 \text{ orang}" />
+    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
+    <BlockMath math="= 285{.}000 - 282{.}378{,}78" />
+    <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
     </MathContainer>
 
 5. **Interpretasi Hasil:**
 
-    Ketika program vaksinasi mencapai target <InlineMath math="282{,}367 \text{ orang}" /> yang divaksinasi, model memprediksi bahwa akan tersisa **<InlineMath math="2{,}621 \text{ kasus}" /> positif** yang masih perlu ditangani. Hasil ini memberikan informasi penting untuk perencanaan sumber daya kesehatan selanjutnya.
+    Pada <InlineMath math="282{.}367" /> orang yang divaksinasi, rumus yang diberikan menghasilkan sekitar <InlineMath math="2{.}621" /> kasus positif tersisa. Nilai ini adalah keluaran model fiktif, **bukan ramalan dunia nyata** atau dasar yang cukup untuk mengalokasikan sumber daya kesehatan.
 
-## Interpretasi dan Pengambilan Keputusan
+## Menafsirkan Hasil secara Bertanggung Jawab
 
-**Pemahaman hasil limit** sangat penting dalam pengambilan keputusan. Dalam contoh di atas, hasil <InlineMath math="2{,}621 \text{ kasus}" /> memberikan informasi kepada pembuat kebijakan tentang:
+Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis dalam latihan. Keputusan nyata masih memerlukan bukti yang divalidasi secara terpisah mengenai:
 
-1. **Kapasitas rumah sakit** yang masih dibutuhkan
-2. **Jumlah tenaga medis** yang harus disiapkan
-3. **Alokasi sumber daya** untuk penanganan kasus tersisa
-4. **Strategi komunikasi** kepada masyarakat tentang ekspektasi realistis
+1. **Kapasitas rumah sakit** saat ini dan proyeksinya
+2. **Tenaga medis** yang tersedia dan beban kerjanya
+3. **Alokasi sumber daya** dalam beberapa skenario yang masuk akal
+4. Ketidakpastian dan **strategi komunikasi publik** yang jujur
 
-> Limit fungsi memberikan gambaran tentang perilaku jangka panjang sistem, memungkinkan perencanaan yang lebih efektif dan realistis.
+> Limit menggambarkan perilaku sebuah rumus. Apakah rumus itu menggambarkan kenyataan merupakan pertanyaan bukti yang berbeda. Nyatakan selalu asumsi, daerah berlaku, satuan, dan ketidakpastian model sebelum menafsirkan hasilnya.
 
 ## Latihan
 
-1. Sebuah perusahaan farmasi memodelkan produksi vaksin dengan fungsi <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" />. Tentukan kapasitas produksi maksimum menggunakan konsep limit.
+1. Sebuah perusahaan farmasi memodelkan produksi vaksin kumulatif dengan <InlineMath math="P(t) = 50000(1 - e^{-0{,}1t})" /> untuk <InlineMath math="t \geq 0" />. Tentukan batas produksi jangka panjang yang diprediksi model.
 
-2. Fungsi penyebaran informasi di media sosial dinyatakan sebagai <InlineMath math="I(t) = \frac{100000t}{t + 50}" />. Hitung limit ketika <InlineMath math="t \to \infty" /> dan interpretasikan hasilnya.
+2. Jangkauan kumulatif sebuah pesan media sosial dimodelkan dengan <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> untuk <InlineMath math="t \geq 0" />. Hitung limit ketika <InlineMath math="t \to \infty" /> dan tafsirkan hasilnya di dalam model.
 
-3. Biaya total produksi masker adalah <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Tentukan biaya marginal menggunakan definisi limit.
+3. Model biaya total untuk memproduksi <InlineMath math="x" /> masker adalah <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" />. Tentukan fungsi biaya marginal dengan definisi limit, lalu bandingkan dengan tambahan biaya tepat ketika produksi naik dari <InlineMath math="x" /> menjadi <InlineMath math="x+1" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 
-   Kapasitas produksi maksimum diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
+   Batas jangka panjang model diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
 
    <MathContainer>
-   <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
-   <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0.1t})" />
+   <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
+   <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0{,}1t})" />
    <BlockMath math="= 50000(1 - 0) = 50000 \text{ unit vaksin}" />
    </MathContainer>
 
-   Jadi, kapasitas produksi maksimum adalah <InlineMath math="50{,}000 \text{ unit}" /> vaksin.
+   Produksi kumulatif dalam model mendekati <InlineMath math="50{.}000" /> unit vaksin. Nilainya tidak pernah tepat sama dengan angka tersebut pada <InlineMath math="t" /> berhingga karena <InlineMath math="e^{-0{,}1t}>0" /> untuk setiap <InlineMath math="t" /> berhingga.
 
 2. **Penyelesaian:**
 
@@ -187,7 +214,7 @@ Dalam kimia, laju reaksi dapat dimodelkan menggunakan fungsi eksponensial. Limit
    <BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ orang}" />
    </MathContainer>
 
-   Dalam jangka panjang, informasi akan mencapai maksimal <InlineMath math="100{,}000 \text{ orang}" />, menunjukkan adanya saturasi dalam penyebaran informasi.
+   Di dalam model, jangkauan kumulatif mendekati <InlineMath math="100{.}000 \text{ orang}" /> seiring waktu bertambah. Limit ini adalah tingkat saturasi model, bukan bukti bahwa sebuah pesan nyata pasti menjangkau tepat sebanyak itu.
 
 3. **Penyelesaian:**
 
@@ -199,7 +226,7 @@ Dalam kimia, laju reaksi dapat dimodelkan menggunakan fungsi eksponensial. Limit
 
    **Langkah detail:**
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5(x + \Delta x) + 0.01(x + \Delta x)^2" />
+   <BlockMath math="C(x + \Delta x) = 1000 + 5(x + \Delta x) + 0{,}01(x + \Delta x)^2" />
 
    Kita ekspansi:
 
@@ -207,14 +234,24 @@ Dalam kimia, laju reaksi dapat dimodelkan menggunakan fungsi eksponensial. Limit
 
    Lalu kita substitusikan:
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5x + 5\Delta x + 0.01x^2 + 0.02x\Delta x + 0.01(\Delta x)^2" />
+   <BlockMath math="C(x + \Delta x) = 1000 + 5x + 5\Delta x + 0{,}01x^2 + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
 
    Maka,
 
    <MathContainer>
-   <BlockMath math="C(x + \Delta x) - C(x) = 5\Delta x + 0.02x\Delta x + 0.01(\Delta x)^2" />
-   <BlockMath math="\frac{C(x + \Delta x) - C(x)}{\Delta x} = 5 + 0.02x + 0.01\Delta x" />
-   <BlockMath math="\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) = 5 + 0.02x" />
+   <BlockMath math="C(x + \Delta x) - C(x) = 5\Delta x + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
+   <BlockMath math="\frac{C(x + \Delta x) - C(x)}{\Delta x} = 5 + 0{,}02x + 0{,}01\Delta x" />
+   <BlockMath math="\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) = 5 + 0{,}02x" />
    </MathContainer>
 
-   Biaya marginal adalah <InlineMath math="5 + 0.02x" /> rupiah per unit. Artinya, untuk memproduksi masker ke-<InlineMath math="x" />, tambahan biayanya adalah <InlineMath math="5 + 0.02x" /> rupiah. Semakin banyak produksi, biaya marginal semakin meningkat karena adanya suku <InlineMath math="0.02x" />.
+   Jadi, fungsi biaya marginalnya adalah <InlineMath math="C'(x)=5+0{,}02x" /> satuan mata uang per unit produksi.
+
+   Tambahan biaya tepat untuk unit utuh berikutnya adalah:
+
+   <MathContainer>
+   <BlockMath math="C(x+1)-C(x)" />
+   <BlockMath math="=1000+5(x+1)+0{,}01(x+1)^2-(1000+5x+0{,}01x^2)" />
+   <BlockMath math="=5{,}01+0{,}02x" />
+   </MathContainer>
+
+   Untuk model ini, turunan lebih kecil <InlineMath math="0{,}01" /> satuan mata uang daripada tambahan biaya satu unit yang sebenarnya. Perbandingan ini memperjelas bahwa biaya marginal adalah laju sesaat dan hanya mendekati biaya unit diskret berikutnya.

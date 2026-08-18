@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Quadratic Equation Factorization",
-  description: "Learn factoring quadratic equations into (x-p)(x-q) form. Learn systematic steps, grouping methods, and special cases with worked examples and practice problems.",
+  description: "Factor quadratic equations with the zero-product property, grouping, and special patterns, then check each result through worked examples and practice problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Quadratic Functions",
@@ -8,9 +8,9 @@ export const metadata = {
 
 ## What is Quadratic Equation Factorization?
 
-Quadratic equation factorization is the process of converting an equation from the form <InlineMath math="ax^2 + bx + c = 0" /> to the form <InlineMath math="a(x - p)(x - q) = 0" />, where <InlineMath math="p" /> and <InlineMath math="q" /> are the roots of the quadratic equation.
+Factoring rewrites a quadratic equation from <InlineMath math="ax^2 + bx + c = 0" /> as a product. When it can be written as <InlineMath math="a(x - p)(x - q) = 0" />, the numbers <InlineMath math="p" /> and <InlineMath math="q" /> are its roots.
 
-Note that the roots of a quadratic equation are the values of <InlineMath math="x" /> that make the equation equal to zero. When we convert the equation to its factored form, we can easily find its roots.
+The roots are the values of <InlineMath math="x" /> that make the equation equal to zero. Product form makes those values visible because each factor can be set equal to zero.
 
 ## Basic Principles of Factorization
 
@@ -20,7 +20,7 @@ A quadratic equation in standard form is written as:
 
 where <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> are constants and <InlineMath math="a \neq 0" />.
 
-Factorization is based on the following property: If a product equals zero, then at least one of its factors must equal zero.
+Factorization uses the zero-product property: if a product equals zero, at least one factor must equal zero.
 
 This means if <InlineMath math="(x - p)(x - q) = 0" />, then:
 
@@ -29,11 +29,11 @@ This means if <InlineMath math="(x - p)(x - q) = 0" />, then:
 
 ## Steps for Factoring Quadratic Equations
 
-Here are the general steps to factor a quadratic equation <InlineMath math="ax^2 + bx + c = 0" />:
+For a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> with integer coefficients, factoring by grouping follows these steps:
 
 1. Ensure the equation is in standard form with the right side equal to zero
 2. Find two numbers that when multiplied give <InlineMath math="ac" /> and when added give <InlineMath math="b" />
-3. Write the equation in factored form
+3. Split the middle term with those two numbers, then factor by grouping
 4. Determine the roots of the equation from these factors
 
 ### Examples of factoring quadratic equations
@@ -207,7 +207,7 @@ The roots of the equation are <InlineMath math="x = -\frac{1}{2}" /> and <Inline
 
 2. Form <InlineMath math="ax^2 - c = 0" />
 
-   For equations without an <InlineMath math="x" /> term, we can use the difference of squares pattern:
+   For equations without an <InlineMath math="x" /> term, first isolate <InlineMath math="x^2" />. Over the real numbers, the square-root step requires <InlineMath math="\frac{c}{a}\ge0" />:
 
    <MathContainer>
      <BlockMath math="ax^2 - c = 0" />
@@ -215,6 +215,10 @@ The roots of the equation are <InlineMath math="x = -\frac{1}{2}" /> and <Inline
      <BlockMath math="x^2 = \frac{c}{a}" />
      <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
    </MathContainer>
+
+   - If <InlineMath math="\frac{c}{a}>0" />, there are two distinct real roots and the expression factors into real linear factors.
+   - If <InlineMath math="\frac{c}{a}=0" />, <InlineMath math="x=0" /> is a repeated root.
+   - If <InlineMath math="\frac{c}{a}<0" />, there are no real roots and no factorization into real linear factors. Over the complex numbers, the roots are <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
 
    **Example:** <InlineMath math="2x^2 - 18 = 0" />
 
@@ -227,13 +231,13 @@ The roots of the equation are <InlineMath math="x = -\frac{1}{2}" /> and <Inline
 
    The roots are <InlineMath math="x = 3" /> and <InlineMath math="x = -3" />.
 
-## Quadratic Equations That Cannot Be Factored
+## When Integer Factor Pairs Do Not Work
 
-Not all quadratic equations can be easily factored using rational numbers. In such cases, we can use the quadratic formula:
+Not every quadratic equation has rational factors. When no suitable factor pair exists, use another method such as the quadratic formula:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-A quadratic equation can be factored with rational numbers if the discriminant <InlineMath math="b^2 - 4ac" /> is a perfect square.
+For integer coefficients, the quadratic has rational roots exactly when the discriminant <InlineMath math="b^2 - 4ac" /> is a nonnegative perfect square.
 
 ## Practice Problems
 
@@ -245,7 +249,7 @@ Factor the following quadratic equations:
 4. <InlineMath math="2x^2 - 8x + 6 = 0" />
 5. <InlineMath math="x^2 - 9 = 0" />
 
-### Answer Key
+### Worked Solutions
 
 1. <InlineMath math="x^2 + 6x + 5 = 0" />
 

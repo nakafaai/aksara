@@ -4,30 +4,30 @@ export const metadata = {
   date: "2026-02-09",
 };
 
-We need to calculate the total loan amount after interest, then divide it by the repayment period to find the monthly installment.
+Because the question specifies flat simple interest, the interest is calculated from the original principal. We first find the interest for <InlineMath math="15\text{ months}" />, then divide the total repayment equally across the loan term.
 
-First, calculate the total interest percentage for the loan period. Since the interest is given per year (<InlineMath math="12\text{ months}" />) and the loan duration is <InlineMath math="15\text{ months}" />, the time proportion is:
+The annual rate covers <InlineMath math="12\text{ months}" />. For <InlineMath math="15\text{ months}" />, the applicable simple-interest rate is:
 
 <MathContainer>
   <BlockMath math="\frac{15}{12} \times 16\% = 1.25 \times 16\% = 20\%" />
 </MathContainer>
 
-Next, calculate the nominal interest in Rupiah based on the principal loan of <InlineMath math="\text{Rp}4{,}500{,}000.00" />:
+Apply that rate to the original principal of <InlineMath math="\text{Rp}4{,}500{,}000.00" />:
 
 <MathContainer>
   <BlockMath math="\text{Interest} = 20\% \times 4{,}500{,}000 = 900{,}000" />
 </MathContainer>
 
-The total amount to be repaid is the sum of the principal and the interest:
+Add the interest to the principal:
 
 <MathContainer>
   <BlockMath math="\text{Total} = 4{,}500{,}000 + 900{,}000 = 5{,}400{,}000" />
 </MathContainer>
 
-Finally, divide the total loan by the repayment period (<InlineMath math="15\text{ months}" />) to get the monthly installment:
+Finally, divide the total repayment into <InlineMath math="15\text{ months}" /> of equal installments:
 
 <MathContainer>
   <BlockMath math="\text{Installment} = \frac{5{,}400{,}000}{15} = 360{,}000" />
 </MathContainer>
 
-Thus, Zul must pay <InlineMath math="\text{Rp}360{,}000.00" /> each month.
+Zul must therefore pay <InlineMath math="\text{Rp}360{,}000.00" /> each month.

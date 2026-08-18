@@ -9,9 +9,9 @@ export const metadata = {
 
 ## Understanding Chord
 
-A chord is a straight line segment that connects two points on a circle. Imagine it like a string stretched inside a circle, connecting two points on the edge of the circle. Each chord divides the circle into two parts, namely the minor arc and the major arc.
+A chord is a line segment whose endpoints lie on a circle. A taut string stretched between two points on the circumference is a useful model. Each chord determines a minor arc and a major arc, and it divides the disk into a minor segment and a major segment.
 
-Chords have special characteristics in a circle. The farther the chord is from the center of the circle, the shorter its length. Conversely, the longest chord is the one that passes through the center of the circle, which is called the diameter.
+Among chords of the same circle, a chord farther from the center is shorter. The longest chord passes through the center and is called a diameter.
 
 <LineEquation
   title={<>Chord Visualization in Circle</>}
@@ -73,21 +73,21 @@ Chords have special characteristics in a circle. The farther the chord is from t
   ]}
 />
 
-## Types of Chords
+## Useful Chord Configurations
 
-Based on their position and characteristics, chords can be distinguished into several types:
+The following configurations help organize chord problems:
 
-1. **Regular Chord** is a chord that does not pass through the center of the circle. Its length is always shorter than the diameter of the circle.
+1. **Non-diameter chord**: A chord that does not pass through the center. It is shorter than the diameter of the same circle.
 
-2. **Diameter** is a special chord that passes through the center of the circle. The diameter is the longest chord in the circle and divides the circle into two equal parts.
+2. **Diameter**: A chord that passes through the center. It is the longest chord in the circle and divides the disk into two semicircles.
 
-3. **Parallel Chords** are two or more chords that have the same direction and do not intersect inside the circle.
+3. **Parallel chords**: A relationship between two or more chords with parallel supporting lines. Their lengths are equal exactly when their perpendicular distances from the center are equal.
 
 ## Relationship Between Chord and Distance to Center
 
-There is an interesting relationship between the length of a chord and its distance from the center of the circle. The closer the chord is to the center of the circle, the longer the chord. This relationship can be expressed mathematically.
+The relevant distance is the perpendicular distance from the center to the chord. The perpendicular from the center bisects the chord, creating a right triangle with legs <InlineMath math="d" /> and <InlineMath math="l/2" /> and hypotenuse <InlineMath math="r" />.
 
-If <InlineMath math="d" /> is the distance from the center of the circle to the chord, <InlineMath math="r" /> is the radius of the circle, and <InlineMath math="l" /> is the length of the chord, then:
+If <InlineMath math="d" /> is that perpendicular distance, <InlineMath math="r" /> is the radius, and <InlineMath math="l" /> is the chord length, the Pythagorean theorem gives:
 
 <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
 
@@ -113,7 +113,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
       color: "#ea580c",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=0" />, at: 0, offset: [0, -0.5, 0] }]
+      labels: [{ text: <>Diameter: <InlineMath math="d=0" /></>, at: 0, offset: [0, -0.5, 0] }]
     },
     {
       points: [
@@ -123,7 +123,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
       color: "#9333ea",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=1" />, at: 0, offset: [0, 0.5, 0] }]
+      labels: []
     },
     {
       points: [
@@ -133,7 +133,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
       color: "#d97706",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=2" />, at: 0, offset: [0, 0.5, 0] }]
+      labels: []
     },
     {
       points: [
@@ -142,7 +142,8 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
       ],
       color: "#7c3aed",
       smooth: false,
-      showPoints: false
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=1" />, at: 1, offset: [0.5, 0, 0] }]
     },
     {
       points: [
@@ -151,20 +152,21 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
       ],
       color: "#7c3aed",
       smooth: false,
-      showPoints: false
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=2" />, at: 1, offset: [0.5, 0, 0] }]
     }
   ]}
 />
 
 ## Properties of Equal Length Chords
 
-Chords that have the same length in the same circle have special properties. They have the same distance from the center of the circle. Conversely, chords that have the same distance from the center of the circle will have the same length.
+Equal chords in the same circle have equal perpendicular distances from the center. Conversely, chords at equal perpendicular distances from the center have equal lengths.
 
 This property is very useful in solving various circle geometry problems. If two chords have the same length, then:
 
 1. The distance of both chords to the center of the circle is the same
-2. The arcs formed by both chords have the same length
-3. The central angles facing both chords have the same measure
+2. Their corresponding minor arcs have the same length
+3. Their subtended minor central angles have the same measure
 
 ## Intersecting Chords Theorem
 
@@ -186,7 +188,7 @@ This theorem is known as the intersecting chords theorem and is very useful in s
 
 5. A circle has a diameter of <InlineMath math="26 \text{ cm}" />. Determine the length of a chord that is <InlineMath math="12 \text{ cm}" /> away from the center of the circle.
 
-### Answer Key
+### Worked Solutions
 
 1. **Answer: <InlineMath math="24 \text{ cm}" />**
 

@@ -2,14 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "The Scientific Study of Swimming", value: false },
-    { label: "Swimming, The Only Sport Improving Our Health", value: false },
-    { label: "The Benefits of Swimming for Human Health", value: true },
+    { label: "Why Everyone Should Swim Every Day", value: false },
+    { label: "How Recreational Water Spreads Illness", value: false },
     {
-      label: "A new Study of Swimming and Its Effect on the Human Mind",
-      value: false,
+      label: "Swimming: Possible Benefits and Safety Considerations",
+      value: true,
     },
-    { label: "How Swimming Can Enhance Our Mood", value: false },
+    { label: "The Best Exercise for People with Arthritis", value: false },
+    { label: "Why Water Exercise Prevents Every Illness", value: false },
   ],
 };
 

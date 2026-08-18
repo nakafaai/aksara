@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Konsep Dasar Hubungan Busur dan Juring
 
-Dalam geometri lingkaran, terdapat hubungan yang sangat erat antara panjang busur dan luas juring. Bayangkan sebuah roda sepeda yang berputar, semakin besar sudut putaran roda tersebut, semakin panjang lintasan yang dilalui oleh titik di tepi roda dan semakin luas daerah yang disapu oleh jari-jari roda.
+Panjang busur dan luas juring dikendalikan oleh sudut pusat yang sama. Pada roda sepeda yang berputar, sudut yang lebih besar membuat titik di tepi roda menempuh lintasan lebih panjang dan jari-jari menyapu daerah lebih luas.
 
 Hubungan ini dapat dinyatakan dalam bentuk perbandingan yang konsisten. Ketika sudut pusat suatu lingkaran berubah, maka panjang busur dan luas juring akan berubah secara proporsional dengan perbandingan yang sama terhadap keliling dan luas total lingkaran.
 
@@ -307,15 +307,15 @@ Atau dalam bentuk rumus lengkap:
 <BlockMath math="\text{Luas Juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Penting untuk dipahami bahwa kedua rumus ini saling terkait. Dua busur dikatakan kongruen pada lingkaran yang sama jika sudut pusat yang bersesuaian sama besar. Selain itu, panjang busur yang dibuat oleh dua busur yang berdekatan dengan titik ujung yang berhimpit akan sama dengan jumlah panjang kedua busur tersebut.
+Pada lingkaran yang sama, sudut pusat yang sama menghasilkan busur dan juring yang kongruen. Untuk sudut-sudut yang bersebelahan, panjang busur dan luas juringnya juga dapat dijumlahkan.
 
 ## Aplikasi dalam Pengukuran Bumi
 
-Salah satu penerapan paling menarik dari hubungan panjang busur dan luas juring adalah pengukuran keliling Bumi oleh Eratosthenes sekitar tahun <InlineMath math="276\text{-}195 \text{ SM}" />. Dengan mengamati bahwa sinar matahari jatuh tegak lurus di Syene pada saat yang sama membentuk sudut <InlineMath math="7{,}2^\circ" /> di Alexandria yang berjarak <InlineMath math="500 \text{ mil}" />, ia dapat menghitung keliling Bumi.
+Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />, memakai gagasan perbandingan yang sama untuk memperkirakan keliling Bumi. Pada titik balik matahari musim panas, Matahari tepat di atas Syene, sedangkan benda tegak di Alexandria menunjukkan selisih sudut <InlineMath math="7{,}2^\circ" />. Jarak kedua kota saat itu diperkirakan <InlineMath math="5{.}000 \text{ stadia}" />.
 
 <LineEquation
   title={<>Pengukuran Keliling Bumi oleh Eratosthenes</>}
-  description={<>Visualisasi menunjukkan sudut <InlineMath math="7{,}2^\circ" /> antara Alexandria dan Syene dengan jarak <InlineMath math="500 \text{ mil}" />.</>}
+  description={<>Model menghubungkan sudut <InlineMath math="7{,}2^\circ" /> dengan jarak permukaan <InlineMath math="5{.}000 \text{ stadia}" />.</>}
   cameraPosition={[0, 0, 12]}
   showZAxis={false}
   data={[
@@ -411,7 +411,7 @@ Salah satu penerapan paling menarik dari hubungan panjang busur dan luas juring 
       lineWidth: 3,
       labels: [
         {
-          text: <InlineMath math="7.2^\circ" />,
+          text: <InlineMath math="7{,}2^\circ" />,
           at: 5,
           offset: [0.8, 0.3, 0],
         },
@@ -424,9 +424,11 @@ Menggunakan hubungan proporsional:
 
 <MathContainer>
 <BlockMath math="\frac{\text{Jarak Alexandria-Syene}}{\text{Keliling Bumi}} = \frac{7{,}2^\circ}{360^\circ}" />
-<BlockMath math="\frac{500 \text{ mil}}{\text{Keliling Bumi}} = \frac{7{,}2^\circ}{360^\circ} = \frac{1}{50}" />
-<BlockMath math="\text{Keliling Bumi} = 500 \times 50 = 25.000 \text{ mil}" />
+<BlockMath math="\frac{5{.}000 \text{ stadia}}{\text{Keliling Bumi}} = \frac{7{,}2^\circ}{360^\circ} = \frac{1}{50}" />
+<BlockMath math="\text{Keliling Bumi} = 5{.}000 \times 50 = 250{.}000 \text{ stadia}" />
 </MathContainer>
+
+Panjang satu stadion kuno tidak diketahui secara pasti. Dengan salah satu konversi yang umum dipakai, hasil tersebut kira-kira <InlineMath math="40{.}000 \text{ km}" />.
 
 ## Hubungan Antara Busur dan Juring
 
@@ -444,9 +446,9 @@ Hubungan ini menunjukkan bahwa rasio luas juring terhadap panjang busur selalu s
 
 2. Diketahui luas juring sebesar <InlineMath math="154 \text{ cm}^2" /> dan panjang busur <InlineMath math="22 \text{ cm}" />. Tentukan jari-jari lingkaran tersebut.
 
-3. Dua kota terletak pada garis lintang yang sama dengan jarak <InlineMath math="1.000 \text{ km}" />. Jika sudut yang dibentuk di pusat Bumi adalah <InlineMath math="9^\circ" />, tentukan perkiraan keliling Bumi.
+3. Dua kota terletak pada lingkaran besar yang sama dan berjarak <InlineMath math="1{.}000 \text{ km}" /> jika diukur sepanjang lingkaran tersebut. Jika sudut yang bersesuaian di pusat Bumi adalah <InlineMath math="9^\circ" />, tentukan perkiraan keliling Bumi.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Langkah Penyelesaian:**
 
@@ -475,12 +477,17 @@ Hubungan ini menunjukkan bahwa rasio luas juring terhadap panjang busur selalu s
 
 3. **Langkah Penyelesaian:**
 
-   Diketahui: jarak = <InlineMath math="1.000 \text{ km}" />, sudut = <InlineMath math="9^\circ" />
+   Diketahui: jarak = <InlineMath math="1{.}000 \text{ km}" />, sudut = <InlineMath math="9^\circ" />
 
    Menggunakan perbandingan: <InlineMath math="\frac{\text{Jarak}}{\text{Keliling Bumi}} = \frac{9^\circ}{360^\circ}" />
 
    <MathContainer>
-   <BlockMath math="\frac{1.000}{\text{Keliling Bumi}} = \frac{9^\circ}{360^\circ} = \frac{1}{40}" />
-   <BlockMath math="\text{Keliling Bumi} = 1.000 \times 40" />
-   <BlockMath math="= 40.000 \text{ km}" />
+   <BlockMath math="\frac{1{.}000}{\text{Keliling Bumi}} = \frac{9^\circ}{360^\circ} = \frac{1}{40}" />
+   <BlockMath math="\text{Keliling Bumi} = 1{.}000 \times 40" />
+   <BlockMath math="= 40{.}000 \text{ km}" />
    </MathContainer>
+
+## Sumber
+
+- [NASA Goddard: The Earth](https://imagine.gsfc.nasa.gov/features/cosmic/earth_info.html)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)

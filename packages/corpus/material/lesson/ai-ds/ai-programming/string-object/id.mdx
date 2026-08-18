@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Objek String",
-    description: "Pelajari objek string Python lewat definisi, multiline strings, concatenation literals, dan variabel. Pahami cara kerja tipe data str.",
+    description: "Pelajari cara string Python merepresentasikan teks, ditulis lintas baris, serta digabung sebagai literal atau variabel.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-09-16",
     subject: "Pemrograman AI",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Mendefinisikan Objek String
 
-String dalam Python adalah urutan karakter yang tersusun rapi, seperti rangkaian huruf yang membentuk kata atau kalimat. Bayangkan string seperti kalung manik-manik dimana setiap manik mewakili satu karakter.
+Dalam Python, string adalah urutan karakter Unicode yang tidak dapat diubah. Urutannya penting: setiap karakter memiliki posisi, dan operasi seperti pengindeksan serta pengirisan memakai urutan tersebut.
 
 String memiliki tiga karakteristik utama yang perlu kamu pahami:
 
-1. **Urutan karakter yang teratur** - setiap karakter memiliki posisi tetap
-2. **Dibungkus dengan tanda kutip** - bisa kutip tunggal atau ganda
-3. **Bertipe `str`** - Python mengenali ini sebagai tipe data string
+1. **Urutan karakter:** Setiap karakter memiliki posisi tetap.
+2. **Ditulis sebagai literal:** Tanda kutip tunggal atau ganda membatasi teks dalam kode sumber.
+3. **Bertipe `str`:** Python menyimpan nilai yang dihasilkan sebagai string.
 
 <CodeBlock
   data={[
@@ -41,7 +41,7 @@ hello
   ]}
 />
 
-Perhatikan bahwa ketika kamu mengetik string di Python, output akan selalu menampilkan kutip tunggal meskipun kamu menggunakan kutip ganda. Namun ketika menggunakan `print()`, string ditampilkan tanpa tanda kutip.
+Prompt interaktif menampilkan representasi string, sehingga Python dapat memilih kutip tunggal atau ganda agar representasinya mudah dibaca. `print()` menulis nilai string itu sendiri tanpa tanda kutip pembatas literal.
 
 ## String Kosong dan Fungsi str()
 
@@ -49,7 +49,7 @@ Python memungkinkan kamu membuat string kosong dan mengubah tipe data lain menja
 
 ### String Kosong
 
-String kosong seperti wadah kosong yang siap diisi karakter. Kamu bisa membuatnya dengan tanda kutip tanpa isi.
+String kosong tidak memuat karakter dan panjangnya nol. Kamu dapat menulisnya dengan sepasang tanda kutip tanpa isi.
 
 <CodeBlock
   data={[
@@ -57,8 +57,8 @@ String kosong seperti wadah kosong yang siap diisi karakter. Kamu bisa membuatny
       language: "python",
       filename: "empty_string.py",
       code: `# Membuat string kosong
->>> str = ""
->>> str
+>>> teks_kosong = ""
+>>> teks_kosong
 ''`
     }
   ]}
@@ -66,7 +66,7 @@ String kosong seperti wadah kosong yang siap diisi karakter. Kamu bisa membuatny
 
 ### Fungsi str()
 
-Fungsi `str()` berperan seperti penerjemah yang mengubah berbagai tipe data menjadi bentuk string. Ini sangat berguna ketika kamu perlu mengubah angka menjadi teks.
+Fungsi `str()` meminta bentuk string yang mudah dibaca dari suatu nilai. Gunakan fungsi ini ketika teks perlu memuat angka atau nilai non-string lainnya.
 
 <CodeBlock
   data={[
@@ -87,20 +87,20 @@ Fungsi `str()` berperan seperti penerjemah yang mengubah berbagai tipe data menj
 
 ## String Multi-baris
 
-Ketika kamu perlu menulis teks yang panjang atau terdiri dari beberapa baris, Python menyediakan beberapa cara untuk menanganinya.
+Python membedakan pemecahan kode sumber ke beberapa baris dari penyimpanan karakter baris baru di dalam string.
 
 ### Karakter Lanjutan Baris
 
-Kamu dapat menggunakan karakter backslash (`\`) untuk melanjutkan string ke baris berikutnya. Ini berguna ketika string terlalu panjang untuk satu baris.
+Backslash di akhir baris fisik kode sumber melanjutkan pernyataan secara eksplisit. Pada contoh ini, pernyataan yang dilanjutkan memuat dua literal berdekatan yang digabung Python tanpa menambahkan baris baru ke nilainya.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "line_continuation.py",
-      code: `# Menggunakan backslash untuk lanjutan baris
->>> text = 'xxx' \
-...: 'yyy'
+      code: `# Melanjutkan pernyataan dengan backslash
+>>> text = 'xxx' \\
+...     'yyy'
 
 >>> text
 'xxxyyy'
@@ -113,16 +113,18 @@ xxxyyy`
 
 ### Lanjutan Baris dengan Tanda Kurung
 
-Alternatif lain adalah menggunakan tanda kurung untuk mengelompokkan string multi-baris. Metode ini sering lebih mudah dibaca.
+Di dalam tanda kurung, Python melanjutkan pernyataan secara implisit. Cara ini biasanya lebih mudah dibaca dan lebih aman disunting daripada backslash eksplisit.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "parentheses_continuation.py",
-      code: `# Menggunakan tanda kurung untuk lanjutan baris
->>> text = ('xxx'
-...: 'yyy')
+      code: `# Melanjutkan pernyataan di dalam tanda kurung
+>>> text = (
+...     'xxx'
+...     'yyy'
+... )
 
 >>> text
 'xxxyyy'
@@ -135,17 +137,17 @@ xxxyyy`
 
 ### Triple Quotes
 
-Triple quotes (tiga tanda kutip) memungkinkan kamu menulis string yang benar-benar multi-baris dengan baris baru yang sesungguhnya.
+Literal dengan tiga tanda kutip dapat menyimpan baris baru yang sebenarnya. Baris baru tersebut menjadi karakter `\n` di dalam nilai string.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "triple_quotes.py",
-      code: `# Triple single quotes
+      code: `# String tiga kutip dengan baris baru sebenarnya
 >>> text = '''xxx
-...: yyy
-...: zzz'''
+... yyy
+... zzz'''
 
 >>> text
 'xxx\\nyyy\\nzzz'
@@ -158,15 +160,15 @@ zzz`
   ]}
 />
 
-Triple double quotes bekerja dengan cara yang sama seperti triple single quotes, memberikan fleksibilitas dalam pemilihan tanda kutip.
+Tiga kutip ganda bekerja dengan cara yang sama. Pilih pembatas yang membuat teks paling mudah dibaca dan tidak perlu banyak escape.
 
 ## Penggabungan String Literal
 
-Python memberikan beberapa cara untuk menggabungkan string, baik yang berupa literal maupun variabel.
+Python dapat menggabungkan literal string saat membaca kode sumber atau menggabungkan nilai string ketika program berjalan.
 
 ### Penggabungan Literal Berdekatan
 
-Ketika kamu meletakkan string literal bersebelahan tanpa operator, Python akan secara otomatis menggabungkannya. Ini seperti menyatukan dua kata tanpa perlu lem.
+Literal string yang bersebelahan digabung saat Python membaca kode sumber. Sintaks ini hanya berlaku untuk literal, bukan variabel.
 
 <CodeBlock
   data={[
@@ -186,7 +188,7 @@ Ketika kamu meletakkan string literal bersebelahan tanpa operator, Python akan s
 
 ### Operator Plus
 
-Operator plus berfungsi seperti perekat yang menggabungkan string menjadi satu kesatuan.
+Operator `+` menggabungkan dua nilai string saat program berjalan.
 
 <CodeBlock
   data={[
@@ -202,7 +204,7 @@ Operator plus berfungsi seperti perekat yang menggabungkan string menjadi satu k
 
 ### Operator Perkalian
 
-Operator perkalian memungkinkan kamu mengulang string sebanyak yang diinginkan, seperti menyalin teks berkali-kali.
+Operator `*` mengulang string sebanyak bilangan bulat yang diberikan.
 
 <CodeBlock
   data={[
@@ -218,11 +220,11 @@ Operator perkalian memungkinkan kamu mengulang string sebanyak yang diinginkan, 
 
 ## Penggabungan String Variabel
 
-Ketika bekerja dengan variabel string, ada aturan khusus yang perlu kamu pahami.
+Variabel menyimpan nilai, bukan token literal, sehingga penggabungannya memerlukan operator.
 
 ### Menggunakan Operator
 
-Untuk menggabungkan string yang tersimpan dalam variabel, kamu harus menggunakan operator `+` atau `*`. Tidak seperti string literal, variabel tidak dapat digabung hanya dengan meletakkannya berdekatan.
+Gunakan `+` untuk menggabungkan nilai string dan `*` bersama bilangan bulat untuk mengulangnya. Meletakkan nama variabel bersebelahan tanpa operator merupakan sintaks yang tidak valid.
 
 <CodeBlock
   data={[
@@ -236,7 +238,7 @@ Untuk menggabungkan string yang tersimpan dalam variabel, kamu harus menggunakan
 >>> a = 3
 
 # Menggabungkan dengan operator +
->>> text1 + ' world'
+>>> text1 + ' world!'
 'hello world!'
 
 >>> 'hello ' + text2
@@ -257,7 +259,7 @@ Untuk menggabungkan string yang tersimpan dalam variabel, kamu harus menggunakan
 
 ### Kesalahan Umum
 
-Penting untuk memahami bahwa meletakkan variabel string berdekatan tanpa operator akan menyebabkan error sintaks.
+Bentuk berikut gagal ketika Python membaca kode karena tidak ada operator di antara variabel dan ekspresi berikutnya.
 
 <CodeBlock
   data={[

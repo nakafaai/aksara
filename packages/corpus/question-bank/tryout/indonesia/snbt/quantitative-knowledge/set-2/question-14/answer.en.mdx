@@ -4,47 +4,43 @@ export const metadata = {
   date: "2025-11-22",
 };
 
-Given the recursive formula <InlineMath math="a_{n+1} = 4a_n + 1" /> and <InlineMath math="a_4 = 85" />.
+We need to determine exactly when <InlineMath math="a_n" /> is divisible by <InlineMath math="5" />. Checking a few terms can suggest a pattern, but it does not prove that the pattern continues. We therefore derive a formula for the entire sequence.
 
-We want to find the divisibility pattern of <InlineMath math="a_n" /> by <InlineMath math="5" />. Let's calculate the first few terms modulo <InlineMath math="5" />.
+#### Finding the First Term
 
-First, let's find <InlineMath math="a_3, a_2," /> and <InlineMath math="a_1" />:
-
-<MathContainer>
-  <BlockMath math="a_4 = 85 \implies a_4 \equiv 0 \pmod{5}" />
-  <BlockMath math="a_4 = 4a_3 + 1 \implies 85 = 4a_3 + 1 \implies 84 = 4a_3 \implies a_3 = 21" />
-  <BlockMath math="a_3 = 21 \implies a_3 \equiv 1 \pmod{5}" />
-</MathContainer>
-
-Continue backwards to <InlineMath math="a_2" />:
+Starting from <InlineMath math="a_4 = 85" /> and working backwards gives
 
 <MathContainer>
-  <BlockMath math="a_3 = 4a_2 + 1 \implies 21 = 4a_2 + 1 \implies 20 = 4a_2 \implies a_2 = 5" />
-  <BlockMath math="a_2 = 5 \implies a_2 \equiv 0 \pmod{5}" />
+  <BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+  <BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+  <BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
 </MathContainer>
 
-Continue backwards to <InlineMath math="a_1" />:
+#### Deriving a Formula for Every Term
+
+Multiplying the recurrence by <InlineMath math="3" /> and adding <InlineMath math="1" /> turns it into a geometric recurrence:
 
 <MathContainer>
-  <BlockMath math="a_2 = 4a_1 + 1 \implies 5 = 4a_1 + 1 \implies 4 = 4a_1 \implies a_1 = 1" />
-  <BlockMath math="a_1 = 1 \implies a_1 \equiv 1 \pmod{5}" />
+  <BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+  <BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
 </MathContainer>
 
-The pattern of remainders when <InlineMath math="a_n" /> is divided by <InlineMath math="5" /> is:
-- <InlineMath math="a_1 \equiv 1" />
-- <InlineMath math="a_2 \equiv 0" /> (divisible by <InlineMath math="5" />)
-- <InlineMath math="a_3 \equiv 1" />
-- <InlineMath math="a_4 \equiv 0" /> (divisible by <InlineMath math="5" />)
+Because <InlineMath math="3a_1 + 1 = 4" />, repeated multiplication by <InlineMath math="4" /> gives
 
-It appears that <InlineMath math="a_n" /> is divisible by <InlineMath math="5" /> if and only if <InlineMath math="n" /> is an **even** number.
+<MathContainer>
+  <BlockMath math="3a_n + 1 = 4^n" />
+  <BlockMath math="a_n = \frac{4^n - 1}{3}" />
+</MathContainer>
 
-Let's check the available options:
-- <InlineMath math="1" /> (Odd)
-- <InlineMath math="29" /> (Odd)
-- <InlineMath math="73" /> (Odd)
-- <InlineMath math="364" /> (Even)
-- <InlineMath math="473" /> (Odd)
+#### Checking Divisibility by Five
 
-The only even number among the choices is <InlineMath math="364" />.
+Modulo <InlineMath math="5" />, we have <InlineMath math="4 \equiv -1" />. Therefore
 
-Thus, the value of <InlineMath math="n" /> such that <InlineMath math="a_n" /> is divisible by <InlineMath math="5" /> is <InlineMath math="364" />.
+<BlockMath math="3a_n \equiv (-1)^n - 1 \pmod{5}" />
+
+- If <InlineMath math="n" /> is even, then <InlineMath math="(-1)^n - 1 = 0" />, so <InlineMath math="a_n \equiv 0 \pmod{5}" />.
+- If <InlineMath math="n" /> is odd, then <InlineMath math="(-1)^n - 1 \equiv 3 \pmod{5}" />, so <InlineMath math="a_n \equiv 1 \pmod{5}" />.
+
+Here we may cancel the factor <InlineMath math="3" /> because <InlineMath math="3" /> has a multiplicative inverse modulo <InlineMath math="5" />. Thus, <InlineMath math="a_n" /> is divisible by <InlineMath math="5" /> exactly when <InlineMath math="n" /> is even.
+
+Among <InlineMath math="1, 29, 73, 364" /> and <InlineMath math="473" />, only <InlineMath math="364" /> is even. Hence the required value is <InlineMath math="n = 364" />.

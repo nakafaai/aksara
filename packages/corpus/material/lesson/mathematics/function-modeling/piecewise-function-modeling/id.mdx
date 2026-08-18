@@ -62,7 +62,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=0.5x" />, at: 10, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -71,7 +71,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
 
 Fungsi di atas dapat ditulis sebagai:
 
-<BlockMath math="f(x) = \begin{cases} 2x + 3, & \text{jika } -2 \leq x < 0 \\ -x + 3, & \text{jika } 0 \leq x < 2 \\ 0.5x, & \text{jika } x \geq 2 \end{cases}" />
+<BlockMath math="f(x) = \begin{cases} 2x + 3, & \text{jika } -2 \leq x < 0 \\ -x + 3, & \text{jika } 0 \leq x < 2 \\ 0{,}5x, & \text{jika } x \geq 2 \end{cases}" />
 
 Perhatikan bahwa tiga baris pada rumus itu bukan tiga fungsi yang terpisah. Ketiganya bekerja sebagai satu fungsi, tetapi pilihan rumusnya bergantung pada nilai <InlineMath math="x" />.
 
@@ -130,6 +130,10 @@ Untuk kontinu di <InlineMath math="x = 2" />:
 
 Fungsi piecewise diskontinu memiliki "lompatan" atau "lubang" pada titik-titik tertentu.
 
+Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi mendekati nilai keluaran yang berbeda:
+
+<BlockMath math="f(x)=\begin{cases}x+2,&\text{jika }x<1\\2x-3,&\text{jika }x\geq1\end{cases}" />
+
 <LineEquation
   title="Fungsi Piecewise Diskontinu"
   description={
@@ -139,8 +143,8 @@ Fungsi piecewise diskontinu memiliki "lompatan" atau "lubang" pada titik-titik t
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = -2 + i * 0.1;
+      points: Array.from({ length: 20 }, (_, i) => {
+        const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
       color: "#e11d48",
@@ -171,21 +175,21 @@ Banyak situasi nyata dapat dimodelkan dengan fungsi piecewise karena aturannya b
 
 Perusahaan listrik menerapkan tarif bertingkat:
 
-- <InlineMath math="0\text{-}50 \text{ kWh}" />: <InlineMath math="\text{Rp }1.000/\text{kWh}" />
-- <InlineMath math="51\text{-}100 \text{ kWh}" />: <InlineMath math="\text{Rp }1.500/\text{kWh}" />
-- <InlineMath math=">100 \text{ kWh}" />: <InlineMath math="\text{Rp }2.000/\text{kWh}" />
+- <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp }1{.}000/\text{kWh}" />
+- <InlineMath math="50<x\leq100" /> kWh: <InlineMath math="\text{Rp }1{.}500/\text{kWh}" />
+- <InlineMath math="x>100" /> kWh: <InlineMath math="\text{Rp }2{.}000/\text{kWh}" />
 
 Model matematikanya:
 
 <BlockMath math="C(x) = \begin{cases} 1000x, & \text{jika } 0 \leq x \leq 50 \\ 50000 + 1500(x-50), & \text{jika } 50 < x \leq 100 \\ 125000 + 2000(x-100), & \text{jika } x > 100 \end{cases}" />
 
-Angka <InlineMath math="50.000" /> pada baris kedua berasal dari biaya <InlineMath math="50 \text{ kWh}" /> pertama. Angka <InlineMath math="125.000" /> pada baris ketiga berasal dari biaya sampai <InlineMath math="100 \text{ kWh}" /> pertama. Dengan cara ini, biaya tidak mulai dari nol lagi setiap masuk interval baru.
+Angka <InlineMath math="50{.}000" /> pada baris kedua berasal dari biaya <InlineMath math="50 \text{ kWh}" /> pertama. Angka <InlineMath math="125{.}000" /> pada baris ketiga berasal dari biaya sampai <InlineMath math="100 \text{ kWh}" /> pertama. Dengan cara ini, biaya tidak mulai dari <InlineMath math="0" /> lagi setiap masuk interval baru.
 
 **Tabel biaya listrik:**
 
 | Pemakaian (kWh) | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="75" /> | <InlineMath math="100" /> | <InlineMath math="150" /> |
 | --------------- | ------ | ------ | ------ | ------- | ------- |
-| Biaya (Rp)      | <InlineMath math="30.000" /> | <InlineMath math="50.000" /> | <InlineMath math="87.500" /> | <InlineMath math="125.000" /> | <InlineMath math="225.000" /> |
+| Biaya (Rp)      | <InlineMath math="30{.}000" /> | <InlineMath math="50{.}000" /> | <InlineMath math="87{.}500" /> | <InlineMath math="125{.}000" /> | <InlineMath math="225{.}000" /> |
 
 ### Kecepatan Bertahap
 
@@ -199,9 +203,9 @@ Seseorang melakukan perjalanan dengan:
 
 Fungsi jarak terhadap waktu:
 
-<BlockMath math="s(t) = \begin{cases} 5t, & \text{jika } 0 \leq t \leq 0.5 \\ 2.5 + 15(t-0.5), & \text{jika } 0.5 < t \leq 1.5 \\ 17.5 + 60(t-1.5), & \text{jika } 1.5 < t \leq 2 \end{cases}" />
+<BlockMath math="s(t) = \begin{cases} 5t, & \text{jika } 0 \leq t \leq 0{,}5 \\ 2{,}5 + 15(t-0{,}5), & \text{jika } 0{,}5 < t \leq 1{,}5 \\ 17{,}5 + 60(t-1{,}5), & \text{jika } 1{,}5 < t \leq 2 \end{cases}" />
 
-Konstanta <InlineMath math="2.5" /> dan <InlineMath math="17.5" /> menjaga agar jarak total terus bertambah dari posisi terakhir, bukan kembali ke <InlineMath math="0" /> saat moda transportasi berubah.
+Konstanta <InlineMath math="2{,}5" /> dan <InlineMath math="17{,}5" /> menjaga agar jarak total terus bertambah dari posisi terakhir, bukan kembali ke <InlineMath math="0" /> saat moda transportasi berubah.
 
 ## Menentukan Persamaan Fungsi Piecewise
 
@@ -240,7 +244,7 @@ Fungsi piecewise:
 
 2. Sebuah perusahaan taksi online menerapkan tarif:
 
-   Tarif dasar adalah <InlineMath math="\text{Rp }10.000" /> untuk <InlineMath math="2 \text{ km}" /> pertama. Km <InlineMath math="3\text{-}10" /> dikenai <InlineMath math="\text{Rp }4.000/\text{km}" />. Di atas <InlineMath math="10 \text{ km}" />, tarif tambahannya menjadi <InlineMath math="\text{Rp }3.000/\text{km}" />.
+   Tarif dasar adalah <InlineMath math="\text{Rp }10{.}000" /> untuk <InlineMath math="2 \text{ km}" /> pertama. Jarak di atas <InlineMath math="2 \text{ km}" /> sampai <InlineMath math="10 \text{ km}" /> dikenai <InlineMath math="\text{Rp }4{.}000/\text{km}" />. Di atas <InlineMath math="10 \text{ km}" />, tarif tambahannya menjadi <InlineMath math="\text{Rp }3{.}000/\text{km}" />.
 
    Buatlah model fungsi piecewise untuk total biaya!
 
@@ -254,9 +258,9 @@ Fungsi piecewise:
 
 5. Seorang pekerja dibayar dengan sistem:
 
-   <InlineMath math="8 \text{ jam}" /> pertama dibayar <InlineMath math="\text{Rp }50.000/\text{jam}" />. Lembur mulai jam ke-<InlineMath math="9" /> dibayar <InlineMath math="\text{Rp }75.000/\text{jam}" />.
+   <InlineMath math="8 \text{ jam}" /> pertama dibayar <InlineMath math="\text{Rp }50{.}000/\text{jam}" />. Setiap jam berikutnya dibayar <InlineMath math="\text{Rp }75{.}000/\text{jam}" />.
 
-   Jika maksimal kerja <InlineMath math="12 \text{ jam/hari}" />, buatlah fungsi upah harian!
+   Jika pekerja tersebut boleh bekerja paling lama <InlineMath math="12 \text{ jam/hari}" />, buatlah fungsi upah hariannya.
 
 ### Kunci Jawaban
 
@@ -352,11 +356,11 @@ Fungsi piecewise:
    Misalkan <InlineMath math="t" /> adalah jam kerja, maka:
 
    <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{jika } 0 < t \leq 8 \\ 400000 + 75000(t-8), & \text{jika } 8 < t \leq 12 \end{cases}" />
+     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{jika } 0 \leq t \leq 8 \\ 400000 + 75000(t-8), & \text{jika } 8 < t \leq 12 \end{cases}" />
    </MathContainer>
 
    Atau disederhanakan:
 
    <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{jika } 0 < t \leq 8 \\ 75000t - 200000, & \text{jika } 8 < t \leq 12 \end{cases}" />
+     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{jika } 0 \leq t \leq 8 \\ 75000t - 200000, & \text{jika } 8 < t \leq 12 \end{cases}" />
    </MathContainer>

@@ -4,15 +4,15 @@ export const metadata = {
   date: "2025-12-23",
 };
 
-Misalkan <InlineMath math="L" /> adalah anak laki-laki dan <InlineMath math="P" /> adalah anak perempuan.
+Misalkan <InlineMath math="L" /> menyatakan anak laki-laki dan <InlineMath math="P" /> menyatakan anak perempuan. Berdasarkan asumsi saling bebas dan peluang sama pada soal, setiap urutan kelahiran memiliki peluang yang sama.
 
-Ruang sampel untuk keluarga dengan <InlineMath math="3\text{ orang}" /> anak (tanpa syarat) memiliki <InlineMath math="2^3 = 8" /> kemungkinan:
+Sebelum syarat diterapkan, ruang sampelnya memiliki <InlineMath math="2^3 = 8" /> kemungkinan:
 
 <MathContainer>
-  <BlockMath math="S_{total} = \{LLL, LLP, LPL, LPP, PLL, PLP, PPL, PPP\}" />
+  <BlockMath math="S_{\text{semua}} = \{LLL, LLP, LPL, LPP, PLL, PLP, PPL, PPP\}" />
 </MathContainer>
 
-Diketahui syarat "salah satu anak berjenis kelamin perempuan". Artinya, kejadian "semua anak laki-laki" (<InlineMath math="LLL" />) tidak mungkin terjadi.
+Diketahui bahwa sedikitnya satu anak berjenis kelamin perempuan. Artinya, kejadian "semua anak laki-laki" (<InlineMath math="LLL" />) dikeluarkan dari ruang sampel bersyarat.
 
 Ruang sampel baru (<InlineMath math="S" />) adalah semua kemungkinan kecuali <InlineMath math="LLL" />:
 
@@ -22,7 +22,7 @@ Ruang sampel baru (<InlineMath math="S" />) adalah semua kemungkinan kecuali <In
 
 Banyaknya anggota ruang sampel adalah <InlineMath math="n(S) = 7" />.
 
-Kejadian yang diharapkan (<InlineMath math="A" />) adalah memiliki <InlineMath math="2" /> anak perempuan dan <InlineMath math="1" /> anak laki-laki.
+Misalkan kejadian <InlineMath math="A" /> adalah memiliki tepat <InlineMath math="2" /> anak perempuan dan <InlineMath math="1" /> anak laki-laki.
 
 Dari ruang sampel <InlineMath math="S" />, kemungkinan yang memenuhi syarat tersebut adalah:
 
@@ -30,9 +30,9 @@ Dari ruang sampel <InlineMath math="S" />, kemungkinan yang memenuhi syarat ters
   <BlockMath math="A = \{LPP, PLP, PPL\}" />
 </MathContainer>
 
-Banyaknya kejadian yang diharapkan adalah <InlineMath math="n(A) = 3" />.
+Banyaknya hasil yang mendukung kejadian tersebut adalah <InlineMath math="n(A) = 3" />.
 
-Peluang kejadian tersebut adalah:
+Karena <InlineMath math="7" /> hasil pada ruang sampel bersyarat tetap memiliki peluang yang sama, peluang kejadian tersebut adalah:
 
 <MathContainer>
   <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{3}{7}" />
