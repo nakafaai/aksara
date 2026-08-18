@@ -40,8 +40,8 @@ function firstBinding(): BoundTryoutPlacement {
 const binding = firstBinding();
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
-  "e1eb770b612627fdba611a347c6ebc58274ae0ba9d6dafdf81339502948d657c",
-  "cac1a04c72eb13dd8dfca5df4d3fd0a11a3886e2f939b28ca2e514965d532160",
+  "42b77c15eeed2fbfe0bc437e076529204ecd2ae72b30fa34e61ef8ffa26ecbaa",
+  "e37a3fcf4e0a903b6aeb46ef67a8eb818c2bff44273911404ec067b209aeff01",
 ];
 
 /** Collects exact artifact records through the real question inspection seam. */

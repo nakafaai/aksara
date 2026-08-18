@@ -12,7 +12,7 @@ Python provides several special statements to control the execution flow in loop
 
 ### Break, Continue, Pass, and Else
 
-The `break` statement is used to stop a loop completely when a certain condition is met. Think of it like an emergency button that immediately stops a machine.
+The `break` statement exits the nearest enclosing loop immediately when a condition is met. Execution then continues with the first statement after that loop.
 
 <CodeBlock
   data={[
@@ -60,7 +60,7 @@ The `pass` statement does nothing but is useful as a placeholder for code that h
     {
       language: "python",
       filename: "pass_example.py",
-      code: `# Using pass to skip certain numbers
+      code: `# pass is a no-op; it does not skip the iteration
 for i in range(1, 11):
     if i == 6:
         pass  # Do nothing for number 6
@@ -74,7 +74,7 @@ for i in range(1, 11):
   ]}
 />
 
-The `else` block in loops will be executed when the loop ends normally, not because of a `break`. This is useful for providing special actions when the loop completes without interruption.
+The `else` block runs when the loop finishes without executing `break`. This pattern is especially useful for searches: handle a match before `break`, and handle "not found" in `else`.
 
 <CodeBlock
   data={[
@@ -95,7 +95,7 @@ else:
 
 ## Enumerate Function
 
-The `enumerate()` function is very useful when you need both the index and value of each element during iteration. This function takes an iterable object and returns tuples containing (index, value) pairs.
+Use `enumerate()` when an iteration needs both a counter and each value. It returns an iterator that yields `(index, value)` tuples.
 
 <CodeBlock
   data={[
@@ -137,11 +137,11 @@ for i, fruit in enumerate(fruits, 5):
   ]}
 />
 
-It's important to remember that each tuple (item, count) in the for loop will be automatically unpacked into variables `i` and `fruit`.
+In `for i, fruit in enumerate(fruits)`, tuple unpacking binds the index to `i` and the corresponding value to `fruit` on every iteration.
 
 ## While Loop
 
-The `while` loop executes a code block as long as the given condition is `True`. Unlike `for` loops where the number of iterations is known, `while` loops are used when the number of iterations is unknown at the start.
+The `while` loop executes a block as long as its condition is truthy. A `for` loop consumes an iterable, while a `while` loop repeats from a condition that the body usually updates.
 
 <CodeBlock
   data={[
@@ -158,7 +158,7 @@ print(z)
   ]}
 />
 
-The `while` loop is suitable when you need to iterate until a certain condition is met and don't know how many iterations are required.
+A `while` loop fits condition-driven repetition, but its body must eventually change the condition or explicitly exit. Otherwise the loop can run forever.
 
 <Mermaid
   title="While Repeats While Condition Stays True"
@@ -200,7 +200,7 @@ for pair in zip(p, q):
   ]}
 />
 
-The `zip()` function returns an iterator containing tuples. Each tuple contains the i-th element from each input iterable. The iterator stops when the shortest iterable is exhausted.
+The `zip()` function returns an iterator of tuples. Each tuple contains corresponding elements from the inputs. By default it stops at the shortest iterable, which can hide a length mismatch; use `zip(..., strict=True)` when unequal lengths should be an error.
 
 ### Converting Zip Results
 
@@ -227,7 +227,7 @@ print(tuple(zipped_new))  # Convert to tuple
 
 ### Unzipping with the Asterisk Operator
 
-You can reverse the zip process using the unpacking operator `*`.
+The unpacking operator `*` can separate a nonempty collection of zipped tuples by position.
 
 <CodeBlock
   data={[
@@ -283,7 +283,7 @@ Range follows an arithmetic formula where each i-th element is `start + i * step
 
 ### Range vs List Efficiency
 
-Range is more efficient than creating a list containing all numbers because range generates numbers on-demand, rather than storing them all in memory.
+A `range` stores a compact start, stop, and step instead of materializing every integer. It computes values as they are requested, so its memory use does not grow with the number of represented integers.
 
 <CodeBlock
   data={[
@@ -294,8 +294,8 @@ Range is more efficient than creating a list containing all numbers because rang
 n = 10000
 k = 10
 
-# Inefficient - creates complete list in memory
-index = [0, 1, 2, ..., n]  # Memory wasteful
+# Materializes every integer in memory
+index = list(range(n))
 for i in index:
     if i < k:
         print(i)
@@ -314,7 +314,7 @@ for i in range(n):  # Doesn't store all numbers in memory
 
 ## Conditional Statements
 
-Conditional statements allow programs to make decisions based on certain conditions. Python uses indentation (spaces or tabs) to determine which code blocks belong to conditions.
+Conditional statements let a program choose a branch from evaluated conditions. Indentation is part of Python's syntax; use four spaces per level and never mix tabs and spaces in one block.
 
 ### If, Elif, and Else Syntax
 
@@ -339,7 +339,7 @@ else:
   ]}
 />
 
-Conditions don't need to be wrapped in parentheses, and a colon (:) after the condition is mandatory. Statement blocks must be indented with the same number of spaces.
+Conditions do not need surrounding parentheses, and the colon after each branch header is required. Every statement in one block must use a consistent indentation level.
 
 ### Nested If Statement
 
@@ -396,4 +396,4 @@ for char in text:
   ]}
 />
 
-Iterable objects are ordered sequences of items, where each item can be taken one by one. The `in` operator is used for membership testing, colons mark the beginning of statement blocks, and statement blocks must be indented with spaces.
+An iterable supplies values one at a time, but it is not necessarily ordered, indexable, reusable, or finite. A `for` loop asks its iterator for successive values. The `in` operator performs type-specific membership testing, while colons and consistent indentation define statement blocks.

@@ -12,20 +12,20 @@ export const metadata = {
 
 When a car starts moving, your body may feel pushed backward. When the car brakes, your body may feel pushed forward. Both moments point to the same physics idea: the car's velocity is changing.
 
-In physics, acceleration describes the change in velocity during a time interval. Since velocity has magnitude and direction, acceleration must also be read together with the positive direction we choose.
+In physics, average acceleration describes the change in velocity during a time interval. Since velocity has magnitude and direction, acceleration must also be read together with the positive direction we choose.
 
 > Acceleration does not always mean speeding up. Acceleration means velocity changes.
 
 <BlockMath math="\begin{aligned}
-\vec{a} &= \frac{\Delta \vec{v}}{\Delta t} \\
+\vec{a}_{\text{avg}} &= \frac{\Delta \vec{v}}{\Delta t} \\
 &= \frac{\vec{v}_t-\vec{v}_0}{t_t-t_0}
 \end{aligned}" />
 
-The unit of acceleration is <InlineMath math="\text{m/s}^2" />. If <InlineMath math="a=2\text{ m/s}^2" />, the velocity increases by <InlineMath math="2\text{ m/s}" /> every <InlineMath math="1\text{ s}" /> as long as the acceleration stays constant.
+The unit of acceleration is <InlineMath math="\text{m/s}^2" />. If acceleration is constant at <InlineMath math="a=2\text{ m/s}^2" />, the velocity increases by <InlineMath math="2\text{ m/s}" /> every <InlineMath math="1\text{ s}" />. In that special case, the average acceleration over any interval equals the acceleration at each instant.
 
 ## From Ticker Tape to Graph Slope
 
-A ticker timer marks a paper tape at equal time intervals. If the gaps between marks get wider, the object covers more distance in each equal time interval. Its velocity is increasing. If the gaps stay the same, its velocity is constant. If the gaps get smaller, its velocity is decreasing.
+A ticker timer marks a paper tape at equal time intervals. For motion along one straight line without reversing direction, wider gaps mean a larger speed, equal gaps mean constant speed, and narrower gaps mean a smaller speed. The gaps alone do not show the sign of velocity, so the chosen positive direction still matters.
 
 <AccelerationLab
   title={<>Rocket Acceleration Through Space</>}
@@ -53,7 +53,7 @@ A ticker timer marks a paper tape at equal time intervals. If the gaps between m
   }}
 />
 
-A velocity-time graph reads the same idea in a shorter way. The slope of the line shows how much velocity changes compared with the time it takes.
+A velocity-time graph reads the same idea in a shorter way. The slope of a segment gives average acceleration over that interval. On a straight segment, that slope is constant and also gives the acceleration at every instant within the segment.
 
 After the trace is visible, shift attention to the graph. The trace gives the motion a physical feel, while the graph makes the velocity change easier to calculate.
 
@@ -78,7 +78,7 @@ After the trace is visible, shift attention to the graph. The trace gives the mo
   }}
 />
 
-On the graph, the dashed line shows the full connected graph. The thick line is the segment being read. If the line rises, velocity increases. If it stays flat, velocity is constant. If it slopes downward, velocity decreases. Acceleration is the ratio of <InlineMath math="\Delta v" /> to <InlineMath math="\Delta t" />.
+On the graph, the dashed line shows the full connected graph. The thick line is the segment being read. If the line rises, velocity increases. If it stays flat, velocity is constant. If it slopes downward, velocity decreases. The segment's average acceleration is the ratio of <InlineMath math="\Delta v" /> to <InlineMath math="\Delta t" />.
 
 ## Reading the Sign of Acceleration
 
@@ -94,20 +94,20 @@ The last row is where many students trip up. Negative acceleration does not auto
 
 ## Calculating Velocity Change Each Second
 
-Suppose a car changes velocity from <InlineMath math="2\text{ m/s}" /> to <InlineMath math="18\text{ m/s}" /> in <InlineMath math="4\text{ s}" />. Its acceleration is:
+Suppose a car changes velocity from <InlineMath math="2\text{ m/s}" /> to <InlineMath math="18\text{ m/s}" /> in <InlineMath math="4\text{ s}" />. Its average acceleration is:
 
 <BlockMath math="\begin{aligned}
-a &= \frac{v_t-v_0}{\Delta t} \\
+a_{\text{avg}} &= \frac{v_t-v_0}{\Delta t} \\
 &= \frac{18-2}{4} \\
 &= 4\text{ m/s}^2
 \end{aligned}" />
 
 That result means the velocity increases by <InlineMath math="4\text{ m/s}" /> each second. The sequence becomes <InlineMath math="2\text{ m/s}" />, <InlineMath math="6\text{ m/s}" />, <InlineMath math="10\text{ m/s}" />, and so on if the acceleration remains constant.
 
-Now compare it with a car whose velocity changes from <InlineMath math="18\text{ m/s}" /> to <InlineMath math="2\text{ m/s}" /> in <InlineMath math="4\text{ s}" />.
+Because this example assumes constant acceleration, the same value applies at each instant. Now compare it with a car whose velocity changes from <InlineMath math="18\text{ m/s}" /> to <InlineMath math="2\text{ m/s}" /> in <InlineMath math="4\text{ s}" />.
 
 <BlockMath math="\begin{aligned}
-a &= \frac{2-18}{4} \\
+a_{\text{avg}} &= \frac{2-18}{4} \\
 &= -4\text{ m/s}^2
 \end{aligned}" />
 

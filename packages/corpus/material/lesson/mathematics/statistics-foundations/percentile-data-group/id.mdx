@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Persentil Data Kelompok",
-  description: "Hitung persentil data kelompok dengan rumus interpolasi. Pelajari cara menentukan posisi data dan interpretasi peringkat persentil dengan contoh.",
+  description: "Perkirakan persentil data kelompok dan tafsirkan nilainya dari tabel frekuensi kumulatif.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,65 +8,62 @@ export const metadata = {
 
 ## Apa Itu Persentil?
 
-Kamu sudah kenal [kuartil](/id/materi/matematika/statistika-dasar/kuartil-data-kelompok) yang membagi data jadi <InlineMath math="4 \text{ bagian}" /> sama besar, kan? Nah, **persentil** ini saudaranya kuartil, tapi dia lebih detail lagi!
+Kamu sudah mengenal [kuartil](/id/materi/matematika/statistika-dasar/kuartil-data-kelompok) yang membagi data terurut menjadi <InlineMath math="4" /> bagian dengan banyak data yang sama. **Persentil** melanjutkan gagasan tersebut.
 
-Kalau kuartil membagi data jadi <InlineMath math="4" /> potong, persentil membagi data yang sudah diurutin jadi <InlineMath math="100" /> potong yang sama besar. Banyak banget, ya? Kayak coklat batang dibagi jadi <InlineMath math="100" /> kotak kecil.
+Alih-alih <InlineMath math="4" /> bagian, persentil membagi posisi data terurut menjadi <InlineMath math="100" /> bagian dengan banyak data yang sama. Setiap bagian memuat proporsi data yang sama, tetapi rentang nilainya belum tentu sama lebar.
 
-Setiap potongan itu dibatasi oleh nilai persentil. Ada <InlineMath math="99" /> nilai persentil, mulai dari <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., sampai <InlineMath math="P_{99}" />.
+Sebanyak <InlineMath math="99" /> titik batas bagian dalam biasanya ditulis sebagai <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., hingga <InlineMath math="P_{99}" />. Nilai angkanya dapat berbeda menurut konvensi persentil, terutama pada sampel kecil.
 
-- <InlineMath math="P_{10}" /> (Persentil ke-<InlineMath math="10" />) artinya nilai ini membatasi <InlineMath math="10\%" />
-  data terkecil dari <InlineMath math="90\%" /> data sisanya.
-- <InlineMath math="P_{50}" /> (Persentil ke-<InlineMath math="50" />) ini sama persis dengan **Median**
-  atau **Kuartil ke-<InlineMath math="2" /> (<InlineMath math="Q_2" />
-  )**, karena dia membagi data pas di tengah (<InlineMath math="50\%" /> di bawah, <InlineMath math="50\%" /> di atas).
-- <InlineMath math="P_{85}" /> (Persentil ke-<InlineMath math="85" />) artinya nilai ini membatasi <InlineMath math="85\%" />
-  data terkecil dari <InlineMath math="15\%" /> data terbesar.
+- <InlineMath math="P_{10}" /> (persentil ke-<InlineMath math="10" />) menandai nilai yang membatasi sekitar
+  <InlineMath math="10\%" /> data pada atau di bawahnya dan <InlineMath math="90\%" /> data di atasnya.
+- <InlineMath math="P_{50}" /> (persentil ke-<InlineMath math="50" />) sama dengan **median**
+  atau **kuartil kedua (<InlineMath math="Q_2" />
+  )**. Nilai ini menandai peringkat tengah distribusi; jika ada nilai yang sama, belum tentu tepat setengah pengamatan berada secara ketat pada setiap sisinya.
+- <InlineMath math="P_{85}" /> (persentil ke-<InlineMath math="85" />) menandai nilai yang membatasi sekitar
+  <InlineMath math="85\%" /> data pada atau di bawahnya dan <InlineMath math="15\%" /> data di atasnya.
 
-Persentil ini berguna banget buat melihat posisi suatu nilai dibanding keseluruhan data, misalnya ranking nilai ujian dalam satu angkatan atau pertumbuhan anak dibanding anak seusianya.
+Persentil menunjukkan posisi relatif suatu nilai dalam distribusi. Contohnya, persentil dapat membandingkan nilai ujian dengan nilai satu angkatan atau ukuran pertumbuhan anak dengan kelompok acuan yang sesuai.
 
 ## Cara Mencari Nilai Persentil Data Kelompok
 
-Sama seperti mencari kuartil data kelompok, kita pakai cara **interpolasi** juga buat mencari nilai persentil (<InlineMath math="P_i" />) kalo datanya dikelompokkan.
+Seperti pada kuartil, data kelompok memerlukan **interpolasi** untuk memperkirakan nilai persentil <InlineMath math="P_i" /> di dalam kelasnya.
 
-Langkahnya mirip banget:
+Caranya terdiri dari dua tahap.
 
 ### Cari Letak Kelas Persentil
 
-Kita tentukan dulu persentil ke-<InlineMath math="i" /> itu ada di data urutan ke berapa. Rumusnya:
+Pertama, tentukan posisi yang berkaitan dengan persentil ke-<InlineMath math="i" />:
 
-<BlockMath math="\text{Letak } P_i = \text{data ke } \frac{i}{100} \times n" />
+<BlockMath math="\text{Posisi } P_i = \frac{i}{100} \times n" />
 
-- <InlineMath math="i" /> = Persentil ke berapa yang mau dicari (misal: <InlineMath math="10, 50, 85" />)
-- <InlineMath math="n" /> = Jumlah total data
+- <InlineMath math="i" /> = nomor persentil, misalnya <InlineMath math="10, 50, 85" />
+- <InlineMath math="n" /> = frekuensi total
 
-Setelah dapat letaknya, kita lihat tabel frekuensi kumulatif (<InlineMath math="F_k" />) buat tahu si persentil ini jatuh di kelas interval yang mana.
+Berikutnya, gunakan kolom frekuensi kumulatif <InlineMath math="F_k" /> untuk menemukan kelas interval yang memuat posisi tersebut.
 
 ### Hitung Nilai Persentil dengan Rumus Interpolasi
 
-Kalau sudah tahu kelasnya, kita pakai rumus sakti interpolasi ini:
+Setelah kelas persentil diketahui, lakukan interpolasi di dalamnya:
 
-<BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{kum}}{f_i} \right) p" />
+<BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{\text{kum}}}{f_i} \right) p" />
 
-Di mana:
+dengan:
 
-- <InlineMath math="P_i" /> = Nilai Persentil ke-
-  <InlineMath math="i" /> (yang kita cari)
-- <InlineMath math="T_b" /> = Tepi bawah kelas persentil ke-
-  <InlineMath math="i" />
-- <InlineMath math="i" /> = Persentil ke berapa (misal: <InlineMath math="10, 85" />)
-- <InlineMath math="n" /> = Jumlah seluruh frekuensi
-- <InlineMath math="F_{kum}" /> = Frekuensi kumulatif **SEBELUM** kelas persentil
-  ke-
-  <InlineMath math="i" />
-- <InlineMath math="f_i" /> = Frekuensi kelas persentil ke-
-  <InlineMath math="i" />
-- <InlineMath math="p" /> = Panjang kelas interval
+- <InlineMath math="P_i" /> = perkiraan nilai persentil yang dicari
+- <InlineMath math="T_b" /> = tepi bawah kelas persentil
+- <InlineMath math="i" /> = nomor persentil, misalnya <InlineMath math="10, 85" />
+- <InlineMath math="n" /> = frekuensi total
+- <InlineMath math="F_{\text{kum}}" /> = frekuensi kumulatif **sebelum** kelas persentil
+- <InlineMath math="f_i" /> = frekuensi kelas persentil
+- <InlineMath math="p" /> = panjang kelas
 
-Perhatikan deh, rumusnya mirip banget sama rumus kuartil, bedanya cuma di bagian <InlineMath math="\frac{i}{100}n" /> (kuartil pakai <InlineMath math="\frac{i}{4}n" />).
+Rumus ini sama dengan rumus interpolasi kuartil, tetapi menggunakan <InlineMath math="\frac{i}{100}n" /> sebagai pengganti <InlineMath math="\frac{i}{4}n" />.
+
+Interpolasi ini mengasumsikan bahwa data tersebar merata di dalam kelas terpilih. Hasilnya memperkirakan persentil berdasarkan model data kelompok, bukan mengembalikan nilai asli setiap data.
 
 ## Mencari Nilai Ujian Matematika
 
-Misalnya, kita punya data nilai ujian matematika <InlineMath math="40 \text{ siswa}" />:
+Tabel berikut mengelompokkan nilai ujian matematika dari <InlineMath math="40 \text{ siswa}" />:
 
 | Nilai Ujian | Frekuensi (<InlineMath math="f" />) | Frekuensi Kumulatif (<InlineMath math="F_k" />) | Tepi Bawah (<InlineMath math="T_b" />) | Panjang Kelas (<InlineMath math="p" />) |
 | :---------: | :---------------------------------: | :---------------------------------------------: | :------------------------------------: | :-------------------------------------: |
@@ -76,7 +73,7 @@ Misalnya, kita punya data nilai ujian matematika <InlineMath math="40 \text{ sis
 | <InlineMath math="91\text{-}100" /> | <InlineMath math="10" /> | <InlineMath math="40" /> | <InlineMath math="90{,}5" /> | <InlineMath math="10" /> |
 | **Jumlah**  | <InlineMath math="40" /> |                                                 |                                        |                                         |
 
-Kita mau cari nilai Persentil ke-<InlineMath math="85" /> (<InlineMath math="P_{85}" />).
+Kita akan memperkirakan persentil ke-<InlineMath math="85" />, yaitu <InlineMath math="P_{85}" />.
 
 1.  **Cari Letak <InlineMath math="P_{85}" />:**
 
@@ -84,14 +81,14 @@ Kita mau cari nilai Persentil ke-<InlineMath math="85" /> (<InlineMath math="P_{
 
 2.  **Tentukan Kelas <InlineMath math="P_{85}" />:**
 
-    Lihat kolom <InlineMath math="F_k" />. Data ke-<InlineMath math="34" /> ada di mana? Kelas <InlineMath math="81\text{-}90" /> memiliki <InlineMath math="F_k = 30" /> (belum cukup). Kelas <InlineMath math="91\text{-}100" /> memiliki <InlineMath math="F_k = 40" /> (data ke-<InlineMath math="31" /> sampai ke-<InlineMath math="40" /> ada di sini). Jadi, kelas <InlineMath math="P_{85}" /> adalah <InlineMath math="91\text{-}100" />.
+    Frekuensi kumulatifnya adalah <InlineMath math="F_k = 30" /> sampai kelas <InlineMath math="81\text{-}90" /> dan <InlineMath math="F_k = 40" /> sampai kelas <InlineMath math="91\text{-}100" />. Posisi <InlineMath math="31" /> hingga <InlineMath math="40" /> berarti berada di kelas terakhir, sehingga kelas <InlineMath math="P_{85}" /> adalah <InlineMath math="91\text{-}100" />.
 
-3.  **Kumpulkan Bahan untuk Rumus:**
+3.  **Catat nilai dalam rumus:**
 
     - <InlineMath math="T_b" /> (Tepi bawah kelas <InlineMath math="91\text{-}100" />) adalah <InlineMath math="90{,}5" />
     - <InlineMath math="i = 85" />
     - <InlineMath math="n = 40" />
-    - <InlineMath math="F_{kum}" /> (Frekuensi kumulatif sebelum kelas <InlineMath math="91\text{-}100" />) =
+    - <InlineMath math="F_{\text{kum}}" /> (Frekuensi kumulatif sebelum kelas <InlineMath math="91\text{-}100" />) =
       <InlineMath math="30" />
     - <InlineMath math="f_{85}" /> (Frekuensi kelas <InlineMath math="91\text{-}100" />) adalah <InlineMath math="10" />
     - <InlineMath math="p" /> (Panjang kelas) adalah <InlineMath math="10" />
@@ -99,20 +96,20 @@ Kita mau cari nilai Persentil ke-<InlineMath math="85" /> (<InlineMath math="P_{
 4.  **Hitung <InlineMath math="P_{85}" />:**
 
     <MathContainer>
-      <BlockMath math="P_{85} = T_b + \left( \frac{\frac{85}{100}n - F_{kum}}{f_{85}} \right) p" />
+      <BlockMath math="P_{85} = T_b + \left( \frac{\frac{85}{100}n - F_{\text{kum}}}{f_{85}} \right) p" />
       <BlockMath math="P_{85} = 90{,}5 + \left( \frac{34 - 30}{10} \right) 10" />
       <BlockMath math="P_{85} = 90{,}5 + \left( \frac{4}{10} \right) 10" />
       <BlockMath math="P_{85} = 90{,}5 + 4" />
       <BlockMath math="P_{85} = 94{,}5" />
     </MathContainer>
 
-Jadi, nilai Persentil ke-<InlineMath math="85" /> adalah <InlineMath math="94{,}5" />. Artinya, <InlineMath math="85\%" /> siswa mendapat nilai <InlineMath math="94{,}5" /> atau kurang, dan <InlineMath math="15\%" /> siswa mendapat nilai di atas <InlineMath math="94{,}5" />.
+Perkiraan persentil ke-<InlineMath math="85" /> adalah <InlineMath math="94{,}5" />. Dalam model interpolasi data kelompok, sekitar <InlineMath math="85\%" /> nilai berada pada atau di bawah <InlineMath math="94{,}5" />, sedangkan sekitar <InlineMath math="15\%" /> berada di atasnya.
 
 ## Latihan
 
-Coba kamu hitung nilai Persentil ke-<InlineMath math="20" /> (<InlineMath math="P_{20}" />) dari data nilai ujian matematika di atas!
+Sebelum membaca pembahasan, perkirakan persentil ke-<InlineMath math="20" />, yaitu <InlineMath math="P_{20}" />, dari tabel yang sama.
 
-### Kunci Jawaban
+### Pembahasan
 
 1.  **Letak <InlineMath math="P_{20}" />:**
 
@@ -122,23 +119,23 @@ Coba kamu hitung nilai Persentil ke-<InlineMath math="20" /> (<InlineMath math="
 
     Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="8" /> ada di kelas <InlineMath math="71\text{-}80" /> (karena <InlineMath math="F_k" /> kelas sebelumnya <InlineMath math="4" />, dan <InlineMath math="F_k" /> kelas ini <InlineMath math="14" />).
 
-3.  **Bahan Rumus:**
+3.  **Nilai dalam rumus:**
 
     - <InlineMath math="T_b = 70{,}5" />
     - <InlineMath math="i = 20" />
     - <InlineMath math="n = 40" />
-    - <InlineMath math="F_{kum} = 4" />
+    - <InlineMath math="F_{\text{kum}} = 4" />
     - <InlineMath math="f_{20} = 10" />
     - <InlineMath math="p = 10" />
 
 4.  **Hitung <InlineMath math="P_{20}" />:**
 
     <MathContainer>
-      <BlockMath math="P_{20} = T_b + \left( \frac{\frac{20}{100}n - F_{kum}}{f_{20}} \right) p" />
+      <BlockMath math="P_{20} = T_b + \left( \frac{\frac{20}{100}n - F_{\text{kum}}}{f_{20}} \right) p" />
       <BlockMath math="P_{20} = 70{,}5 + \left( \frac{8 - 4}{10} \right) 10" />
       <BlockMath math="P_{20} = 70{,}5 + \left( \frac{4}{10} \right) 10" />
       <BlockMath math="P_{20} = 70{,}5 + 4" />
       <BlockMath math="P_{20} = 74{,}5" />
     </MathContainer>
 
-Nilai Persentil ke-<InlineMath math="20" /> adalah <InlineMath math="74{,}5" />.
+Perkiraan persentil ke-<InlineMath math="20" /> adalah <InlineMath math="74{,}5" />. Hasil ini berada dalam kelas <InlineMath math="71\text{-}80" />, sesuai dengan kelas persentilnya.

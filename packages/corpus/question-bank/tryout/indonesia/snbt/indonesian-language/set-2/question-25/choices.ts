@@ -2,11 +2,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Longsor", value: false },
-    { label: "Badai", value: true },
-    { label: "Tsunami", value: false },
-    { label: "Perang", value: false },
-    { label: "Letusan Gunung Merapi", value: false },
+    { label: "Seluruh individu meninggal dalam badai yang sama", value: false },
+    {
+      label: "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
+      value: true,
+    },
+    {
+      label: "Kelompok Mediterania timur merupakan kelompok tertua",
+      value: false,
+    },
+    {
+      label: "Semua individu Asia Selatan meninggal pada hari yang sama",
+      value: false,
+    },
+    {
+      label: "Penanggalan radiokarbon membuktikan penyebab kematian",
+      value: false,
+    },
   ],
 };
 

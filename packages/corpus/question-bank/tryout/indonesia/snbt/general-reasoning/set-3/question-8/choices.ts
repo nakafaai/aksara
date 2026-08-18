@@ -3,49 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Not experiencing delirium or infected with Covid-19.",
+      label: "Delirium can occur in acute illnesses other than COVID-19.",
       value: false,
     },
     {
       label:
-        "Experiencing acute fluctuating changes in consciousness and not infected with Covid-19.",
+        "Everyone who experiences delirium must be infected with SARS-CoV-2.",
       value: true,
     },
     {
-      label: "Some Covid-19 patients experience delirium symptoms.",
+      label: "Some older adults with COVID-19 may present with delirium.",
       value: false,
     },
     {
-      label:
-        "Delirium sufferers experience deterioration of a person's medical condition.",
+      label: "Delirium develops acutely and its signs can fluctuate.",
       value: false,
     },
     {
-      label: "Some Covid-19 patients do not experience delirium symptoms.",
+      label: "Possible delirium should be assessed for an underlying cause.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Tidak mengalami delirium atau terinfeksi Covid-19.",
+      label: "Delirium dapat terjadi pada penyakit akut selain COVID-19.",
       value: false,
     },
     {
       label:
-        "Mengalami perubahan kesadaran akut terjadi secara fluktuatif dan tidak terinfeksi Covid-19.",
+        "Setiap orang yang mengalami delirium pasti terinfeksi SARS-CoV-2.",
       value: true,
     },
     {
-      label: "Beberapa pasien Covid-19 mengalami gejala delirium.",
+      label:
+        "Sebagian orang lanjut usia dengan COVID-19 dapat mengalami delirium.",
       value: false,
     },
     {
       label:
-        "Penderita delirium mengalami perburukan dari suatu medis seseorang.",
+        "Delirium muncul secara akut dan tanda-tandanya dapat berfluktuasi.",
       value: false,
     },
     {
-      label: "Beberapa pasien Covid-19 tidak mengalami gejala delirium.",
+      label: "Dugaan delirium perlu diperiksa untuk mencari penyebab dasarnya.",
       value: false,
     },
   ],

@@ -3,55 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Claire O’Neil asked the UK for help to assist Indonesia technically and financially in the energy transition from coal to renewable energy.",
+      label: "FOLU had a lower value than energy in the 2010 baseline.",
+      value: false,
+    },
+    {
+      label: "Agriculture had the highest value in the 2030 projection.",
+      value: false,
+    },
+    {
+      label: "The same sector had the highest value at both reference points.",
       value: false,
     },
     {
       label:
-        "Currently, Indonesia is struggling with the problem between using renewable energy or the cheapest energy.",
-      value: false,
-    },
-    {
-      label:
-        "The Deputy Minister of Environment and Forestry disagrees with the initiative of the President-designate of UNFCCC COP 26 offering assistance to Indonesia in energy matters.",
-      value: false,
-    },
-    {
-      label:
-        "The energy sector and the forestry sector are the largest contributors to carbon emissions according to Indonesia's national emission reduction target.",
+        "Energy and FOLU were the two largest values at both reference points, although their order changed.",
       value: true,
     },
     {
       label:
-        "The plan to add $$27$$ GW of new Coal Power Plants as an addition to $$28$$ GW of PLTU will produce $$200$$ million tons of carbon emissions per year.",
+        "Waste and industrial processes together exceeded energy in the 2010 baseline.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Claire O’Neil meminta bantuan Inggris untuk menolong Indonesia secara teknis dan finansial dalam transisi energi dari batubara ke energi terbarukan.",
+      label: "Nilai FOLU lebih rendah daripada energi pada tahun dasar 2010.",
+      value: false,
+    },
+    {
+      label: "Sektor pertanian memiliki nilai tertinggi pada proyeksi 2030.",
+      value: false,
+    },
+    {
+      label: "Sektor yang sama memiliki nilai tertinggi pada kedua acuan.",
       value: false,
     },
     {
       label:
-        "Saat ini Indonesia sedang bergulat dengan permasalahan antara penggunaan energi terbarukan atau energi termurah.",
-      value: false,
-    },
-    {
-      label:
-        "Wamen KLH kurang setuju dengan inisiatif calon Presiden UNFCCC COP 26 menawarkan bantuan untuk Indonesia dalam masalah energi.",
-      value: false,
-    },
-    {
-      label:
-        "Sektor energi dan sektor hutan merupakan penyumbang emisi karbon terbesar menurut target nasional penurunan emisi Indonesia.",
+        "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
       value: true,
     },
     {
       label:
-        "Rencana penambahan $$27$$ GW PLTU Batubara baru sebagai tambahan $$28$$ GW PLTU akan menghasilkan $$200$$ juta ton emisi karbon per tahun.",
+        "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar 2010.",
       value: false,
     },
   ],

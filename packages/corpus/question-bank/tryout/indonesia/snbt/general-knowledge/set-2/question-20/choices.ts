@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Besides that, the productivity of aquaculture businesses is also not yet optimal.",
+        "That is a large volume, but production cannot be judged sustainably by tonnage alone.",
       value: false,
     },
     {
       label:
-        "The knowledge of farmers and fishermen regarding aquaculture technology is still low, for example in the selection of broodstock, spawning, hatching, fertilization, larval rearing, nursery, and grow-out.",
+        "The FAO and ministry-backed IFish programme promotes ecosystem-based management, national competency standards, and community participation in inland fisheries.",
       value: false,
     },
     {
       label:
-        "There is also a lack of fisheries extension workers, so technological innovation is difficult to improve.",
+        "Fisheries managers need reliable data, so decisions can respond to local conditions.",
       value: true,
     },
     {
       label:
-        "Regarding land use, the clash between aquaculture businesses and other development activities (such as settlements, industry, and mining) often harms aquaculture businesses, including the deterioration of water quality.",
+        "Simply adding more fishing gear could intensify pressure without solving management or environmental problems.",
       value: false,
     },
     {
       label:
-        "The highest increase was dominated by marine fishing, which was from $$4{,}383{,}103$$ tons in $$2003$$ to $$4{,}647{,}730$$ tons in $$2007$$.",
+        "Long-term production depends on productive systems whose stocks and habitats remain healthy.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Di samping itu, produktivitas usaha perikanan budi daya juga belum optimal.",
+        "Volumenya besar, tetapi keberlanjutan produksi tidak dapat dinilai dari jumlah tonase saja.",
       value: false,
     },
     {
       label:
-        "Pengetahuan petani dan nelayan tentang teknologi budi daya masih rendah, misalnya dalam pemilihan induk ikan, pemijahan, penetesan, pembuahan, pemeliharaan larva, pendederan, dan pembesaran.",
+        "Program IFish yang didukung FAO dan kementerian mendorong pengelolaan berbasis ekosistem, standar kompetensi nasional, dan partisipasi masyarakat dalam perikanan darat.",
       value: false,
     },
     {
       label:
-        "Tenaga penyuluh perikanan juga masih kurang sehingga inovasi teknologi sulit ditingkatkan.",
+        "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
       value: true,
     },
     {
       label:
-        "Berkaitan dengan penggunaan lahan, antara usaha budi daya perikanan dan kegiatan pembangunan lainnya (seperti permukiman, industri, dan pertambangan) sering merugikan usaha budi daya perikanan, termasuk memburuknya kualitas air.",
+        "Sekadar menambah alat tangkap dapat meningkatkan tekanan tanpa menyelesaikan masalah pengelolaan atau lingkungan.",
       value: false,
     },
     {
       label:
-        "Peningkatan tertinggi didominasi penangkapan ikan di laut, yaitu dari $$4.383.103$$ ton pada tahun $$2003$$ menjadi $$4.647.730$$ ton pada tahun $$2007$$.",
+        "Produksi jangka panjang bergantung pada sistem produktif yang menjaga kesehatan stok dan habitat.",
       value: false,
     },
   ],

@@ -1,5 +1,5 @@
 export const metadata = {
-   title: "Difference between Arithmetic and Geometric Sequence",
+  title: "Difference between Arithmetic and Geometric Sequences",
    description: "Compare arithmetic and geometric sequences: constant differences vs ratios. Learn identification methods, formulas, and real-world applications.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-04-05",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Understanding Sequences
 
-A number sequence is an arrangement of numbers that follows a specific pattern. Two common types are [arithmetic sequences](/en/subjects/mathematics/sequence-series/arithmetic-sequence) and [geometric sequences](/en/subjects/mathematics/sequence-series/geometric-sequence).
+A number sequence is an arrangement of numbers that follows a specific pattern. Two common types are [arithmetic sequences](./arithmetic-sequence) and [geometric sequences](./geometric-sequence).
 
 ## Arithmetic Sequences
 
@@ -38,7 +38,7 @@ If we have a sequence <InlineMath math="a_1, a_2, a_3, ..., a_n" />, then it is 
 
 <BlockMath math="\frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ... = \frac{a_n}{a_{n-1}} = r" />
 
-where <InlineMath math="r" /> is the constant ratio.
+where <InlineMath math="r" /> is the constant ratio. If a denominator is zero, the quotient form is unavailable, but the equivalent multiplication rule <InlineMath math="a_{n+1}=ra_n" /> remains meaningful.
 
 ### Formula for the General Term of a Geometric Sequence
 
@@ -66,18 +66,56 @@ To determine whether a sequence is arithmetic or geometric:
 | ------------------------ | -------------------------------------- | -------------------------------------------- |
 | Pattern                  | Constant difference                    | Constant ratio                               |
 | Formula for the general term | <InlineMath math="U_n = a + (n-1)b" /> | <InlineMath math="U_n = a \times r^{n-1}" /> |
-| Growth                   | Linear                                 | Exponential                                  |
+| How the next term is formed | Add a constant                         | Multiply by a constant                       |
+
+### Worked Classification Examples
+
+The sequence <InlineMath math="7,11,15,19,\ldots" /> has constant differences:
+
+<BlockMath math="11-7=15-11=19-15=4" />
+
+so it is arithmetic. The sequence <InlineMath math="5,10,20,40,\ldots" /> satisfies:
+
+<BlockMath math="10=2\cdot5,\qquad20=2\cdot10,\qquad40=2\cdot20" />
+
+so it is geometric with <InlineMath math="r=2" />. The sequence <InlineMath math="1,2,4,7,\ldots" /> is neither: its differences <InlineMath math="1,2,3" /> are not constant, and neither are its ratios.
+
+### Linear and Exponential Models
+
+A non-constant arithmetic sequence depends linearly on its index. A geometric sequence with a positive ratio other than one depends exponentially on its index. These descriptions identify the mathematical form, but they do not imply that a real process continues unchanged forever.
+
+Adding the same amount each month creates an arithmetic model. Increasing by the same percentage each month creates a geometric model.
+
+### Special Cases
+
+The constant zero sequence is arithmetic with <InlineMath math="b=0" /> and also satisfies <InlineMath math="a_{n+1}=ra_n" /> for every ratio <InlineMath math="r" />. A constant non-zero sequence is arithmetic with <InlineMath math="b=0" /> and geometric with <InlineMath math="r=1" />.
+
+The arithmetic and geometric categories therefore overlap in these special cases.
 
 ## Applications in Daily Life
 
 ### Examples of Arithmetic Sequences
 
-1. **Regular Savings**: A student saves money in the school cooperative with an arithmetic pattern. In the first month, they save <InlineMath math="\text{Rp}5{,}000" />, in the second month <InlineMath math="\text{Rp}7{,}000" />, in the third month <InlineMath math="\text{Rp}9{,}000" />, and so on. With a difference of <InlineMath math="\text{Rp}2{,}000" />, the total savings in month <InlineMath math="10" /> can be calculated using the arithmetic sequence formula.
+1. **Regular Savings**: A student saves money in the school cooperative with an arithmetic pattern. In the first month, they save <InlineMath math="\text{Rp}5{,}000" />, in the second month <InlineMath math="\text{Rp}7{,}000" />, in the third month <InlineMath math="\text{Rp}9{,}000" />, and so on. With a difference of <InlineMath math="\text{Rp}2{,}000" />, the amount deposited in month <InlineMath math="10" /> can be calculated using the arithmetic sequence formula.
 
-2. **Plant Growth**: The height of a plant that increases at a constant rate each week. If a plant grows <InlineMath math="3 \text{ cm}" /> taller every week with an initial height of <InlineMath math="15 \text{ cm}" />, then its height follows an arithmetic sequence.
+2. **Plant Growth**: In a simplified model, a plant grows <InlineMath math="3 \text{ cm}" /> taller every week from an initial height of <InlineMath math="15 \text{ cm}" />. Its modeled height follows an arithmetic sequence.
 
 ### Examples of Geometric Sequences
 
-1. **Investment with Compound Interest**: If <InlineMath math="\text{Rp}1{,}000{,}000" /> is invested with a <InlineMath math="10\%" /> annual interest rate, the investment value will form a geometric sequence with a ratio of <InlineMath math="1.1" />.
+1. **Investment with Compound Interest**: Suppose <InlineMath math="\text{Rp}1{,}000{,}000" /> earns <InlineMath math="10\%" /> interest compounded annually, with no deposits or withdrawals. Its value at the end of each year forms a geometric sequence with a ratio of <InlineMath math="1.1" />.
 
-2. **Population Growth**: Bacteria that double in population every hour form a geometric sequence with a ratio of <InlineMath math="2" />.
+2. **Idealized Population Growth**: A model in which a bacterial population doubles every hour forms a geometric sequence with a ratio of <InlineMath math="2" />. Real populations eventually face limits that this simple model omits.
+
+## Exercise
+
+Classify each sequence and determine <InlineMath math="b" /> or <InlineMath math="r" /> when possible:
+
+1. <InlineMath math="18,12,6,0,\ldots" />
+2. <InlineMath math="81,-27,9,-3,\ldots" />
+3. <InlineMath math="2,4,8,14,\ldots" />
+
+### Solution
+
+1. The first sequence is arithmetic with <InlineMath math="b=-6" />.
+2. The second sequence is geometric with <InlineMath math="r=-1/3" />.
+3. The third sequence is neither arithmetic nor geometric because neither its differences nor its ratios are constant.

@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Atribut dan Metode Bilangan",
-    description: "Pelajari cara menggunakan atribut real, imag, dan metode conjugate() pada bilangan kompleks Python dengan contoh kode.",
+    description: "Jelajahi objek bilangan Python melalui tipe, atribut, metode, dan operasi bilangan kompleksnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-09-16",
     subject: "Pemrograman AI",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Konsep Dasar Bilangan sebagai Objek
 
-Dalam Python, setiap bilangan adalah sebuah objek yang memiliki atribut dan metode tersendiri. Konsep ini mungkin terdengar asing pada awalnya, tetapi sebenarnya sangat sederhana. Bayangkan bilangan seperti sebuah kotak yang tidak hanya berisi nilai, tetapi juga memiliki kemampuan khusus yang bisa kamu gunakan.
+Setiap bilangan Python adalah objek dengan tipe numerik. Tipe tersebut menentukan atribut dan metode yang tersedia selain operator aritmetika.
 
-Ketika kamu menulis <InlineMath math="5" /> atau <InlineMath math="3.14" />, Python tidak hanya menyimpan angka tersebut, tetapi juga menyediakan berbagai fungsi yang bisa kamu panggil untuk memanipulasi atau mendapatkan informasi dari bilangan tersebut.
+Sebagai contoh, <InlineMath math="5" /> membuat `int` dan <InlineMath math="3.14" /> membuat `float`. Objek numerik tidak dapat diubah, sehingga metodenya mengembalikan informasi atau nilai baru tanpa mengubah bilangan asal.
 
 ## Mengakses Atribut dan Metode
 
-Untuk mengakses atribut dari sebuah objek bilangan, kamu menggunakan sintaks `objek.atribut`. Sedangkan untuk memanggil metode, kamu menggunakan sintaks `objek.metode()`.
+Baca atribut dengan `objek.atribut`. Panggil metode dengan `objek.metode()`, termasuk tanda kurung yang menjalankan pemanggilan.
 
 Mari kita lihat contoh praktis dengan bilangan kompleks:
 
@@ -38,13 +38,13 @@ print(c.conjugate())  # Output: (2-3j)`
   ]}
 />
 
-## Cara Melihat Atribut dan Metode yang Tersedia
+## Mengenali Tipe Numerik
 
-Python menyediakan beberapa cara untuk melihat atribut dan metode apa saja yang tersedia pada sebuah objek bilangan.
+Sebelum memakai operasi khusus suatu tipe, kamu dapat memeriksa tipe numerik sebuah nilai.
 
 ### Menggunakan Fungsi type()
 
-Fungsi `type()` menunjukkan jenis objek yang sedang kamu tangani:
+Fungsi `type()` mengembalikan kelas nilai tersebut:
 
 <CodeBlock
   data={[
@@ -61,11 +61,11 @@ print(type(2+3j))      # Output: <class 'complex'>`
 
 ## Atribut Bilangan Kompleks
 
-Bilangan kompleks memiliki dua atribut utama yang sangat berguna:
+Bilangan kompleks menampilkan kedua komponennya melalui atribut `real` dan `imag`. Keduanya dikembalikan sebagai nilai floating-point.
 
 ### Atribut real
 
-Atribut `real` memberikan bagian riil dari bilangan kompleks:
+Atribut `real` mengembalikan komponen riil:
 
 <CodeBlock
   data={[
@@ -91,7 +91,7 @@ print(f"Bagian riil dari {z3} adalah {z3.real}")
 
 ### Atribut imag
 
-Atribut `imag` memberikan bagian imajiner dari bilangan kompleks:
+Atribut `imag` mengembalikan koefisien <InlineMath math="i" />. Python menulis satuan tersebut sebagai `j` dalam literal bilangan kompleks.
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ print(f"Bagian imajiner dari {z3} adalah {z3.imag}")
 
 ### Metode conjugate()
 
-Metode `conjugate()` mengembalikan konjugat kompleks dari bilangan. Konjugat kompleks adalah bilangan dengan bagian riil yang sama tetapi bagian imajiner yang berlawanan tanda.
+Untuk <InlineMath math="z=a+bi" />, `conjugate()` mengembalikan <InlineMath math="\overline{z}=a-bi" />. Bagian riilnya tetap, sedangkan tanda bagian imajinernya berubah.
 
 <CodeBlock
   data={[
@@ -145,7 +145,7 @@ print(f"Konjugat dari {z3} adalah {z3.conjugate()}")
 
 ### Penggunaan Praktis Konjugat
 
-Konjugat kompleks sangat berguna dalam berbagai perhitungan matematika, terutama untuk menghitung modulus bilangan kompleks:
+Identitas <InlineMath math="z\overline{z}=|z|^2" /> menghubungkan bilangan kompleks dengan modulusnya. Contoh berikut memperlihatkan hubungan itu secara eksplisit. Dalam kode Python biasa, `abs(z)` merupakan cara langsung untuk menghitung modulus.
 
 <CodeBlock
   data={[
@@ -163,19 +163,21 @@ print(f"Bilangan kompleks: {z}")
 print(f"Konjugatnya: {z.conjugate()}")
 print(f"z × z*: {modulus_squared}")
 print(f"Modulus |z|: {modulus}")
+print(f"abs(z) bawaan: {abs(z)}")
 
 # Output:
 # Bilangan kompleks: (3+4j)
 # Konjugatnya: (3-4j)
 # z × z*: (25+0j)
-# Modulus |z|: 5.0`
+# Modulus |z|: 5.0
+# abs(z) bawaan: 5.0`
     }
   ]}
 />
 
 ## Atribut dan Metode pada Bilangan Lain
 
-Meskipun contoh di atas fokus pada bilangan kompleks, bilangan integer dan float juga memiliki atribut dan metode tersendiri.
+Bilangan bulat dan floating-point juga menyediakan metode yang sesuai dengan representasinya.
 
 ### Bilangan Integer
 
@@ -196,10 +198,12 @@ print(f"Representasi byte dari {n}: {byte_representation}")
 
 # Output:
 # Jumlah bit untuk 42: 6
-# Representasi byte dari 42: b'\x00*'`
+# Representasi byte dari 42: b'\\x00*'`
     }
   ]}
 />
+
+`bit_length()` menghitung jumlah bit untuk nilai absolut bilangan bulat, tanpa tanda dan nol di depan. `to_bytes()` juga memerlukan panjang keluaran serta urutan byte, sehingga hasil dua byte di atas diawali byte nol.
 
 ### Bilangan Float
 
@@ -227,11 +231,13 @@ print(f"Rasio dari {f}: {ratio}")
   ]}
 />
 
+`is_integer()` memeriksa apakah float terbatas tidak memiliki bagian pecahan. `as_integer_ratio()` mengembalikan pecahan persis dari float biner yang tersimpan, yang dapat berbeda dari pecahan desimal yang dibayangkan pembaca.
+
 ## Aplikasi Praktis dalam Pemrograman
 
 ### Validasi Data
 
-Atribut dan metode bilangan sangat berguna untuk validasi data:
+Atribut dapat mendukung aturan validasi yang eksplisit. Fungsi berikut mengharuskan masukan berupa objek `complex`, lalu menerapkan dua contoh aturan domain pada komponennya.
 
 <CodeBlock
   data={[
@@ -291,4 +297,4 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Pemahaman tentang atribut dan metode bilangan akan sangat membantu ketika kamu bekerja dengan perhitungan matematika yang lebih kompleks, terutama dalam konteks pemrograman AI yang sering melibatkan operasi numerik tingkat lanjut.
+Pola pentingnya adalah mengenali tipe numerik, memilih operasi yang dimiliki tipe tersebut, dan memahami apakah hasilnya berupa komponen, representasi, atau nilai baru. Perbedaan ini makin penting saat kode numerik berkembang melampaui satu ekspresi.

@@ -4,54 +4,53 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Instant noodles are very good to consume if not excessive to increase body resistance",
+        "Instant noodles provide every nutrient the body needs when eaten daily.",
       value: false,
     },
     {
       label:
-        "Instant noodles must be eaten not in excess and sautéed with olive oil",
+        "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
       value: true,
     },
     {
       label:
-        "Instant noodles must be supplemented with fresh vegetables to boost the immune system",
+        "Replacing the cooking water removes all sodium from instant noodles.",
       value: false,
     },
     {
       label:
-        "Instant noodles, to be better for body health, must include favorite protein foods",
+        "Cooking instant noodles with olive oil makes unlimited portions healthy.",
       value: false,
     },
     {
       label:
-        "According to Endang L. Achmadi, Professor of Public Health Nutrition at the University of Indonesia, instant noodles are very good to consume as an alternative food",
+        "Adding vegetables completely cancels the sodium in the seasoning.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Mie instan sangat baik dikonsumsi bila tidak berlebihan untuk meningkatkan daya tahan tubuh",
+        "Mie instan menyediakan seluruh zat gizi yang dibutuhkan tubuh jika dimakan setiap hari.",
       value: false,
     },
     {
       label:
-        "Mie instan harus dimakan tidak berlebihan dan ditumis dengan minyak zaitun",
+        "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
       value: true,
     },
     {
       label:
-        "Mie instan harus dilengkapi sayuran yang segar untuk meningkatkan imun tubuh",
+        "Mengganti air rebusan menghilangkan seluruh natrium dari mie instan.",
       value: false,
     },
     {
       label:
-        "Mie instan agar lebih baik untuk kesehatan tubuh harus menambahkan makanan berprotein favorit",
+        "Memasak mie instan dengan minyak zaitun membuat porsi tanpa batas menjadi sehat.",
       value: false,
     },
     {
-      label:
-        "Menurut Endang L. Achmadi, Guru Besar Bidang Ilmu Gizi Kesehatan Masyarakat Universitas Indonesia, mie instan sangat baik dikonsumsi sebagai makanan alternatif",
+      label: "Menambahkan sayuran sepenuhnya meniadakan natrium dalam bumbu.",
       value: false,
     },
   ],

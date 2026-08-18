@@ -4,22 +4,18 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-#### Identify Information
+#### Convert the Averages into Totals
 
-Given:
-- Two study groups, let's call them <InlineMath math="A" /> and <InlineMath math="B" />.
-- Number of members is the same: <InlineMath math="n_A = n_B = 4" />.
-- Initial average weights: <InlineMath math="\bar{x}_A = 30" /> and <InlineMath math="\bar{x}_B = 33" />.
-- Initial total weights:
+Call the two groups <InlineMath math="A" /> and <InlineMath math="B" />. Each group has <InlineMath math="4" /> members, so multiply each average by <InlineMath math="4" /> to find its total weight:
 
-  <MathContainer>
-    <BlockMath math="\sum x_A = n_A \cdot \bar{x}_A = 4 \cdot 30 = 120" />
-    <BlockMath math="\sum x_B = n_B \cdot \bar{x}_B = 4 \cdot 33 = 132" />
-  </MathContainer>
+<MathContainer>
+  <BlockMath math="\sum x_A = n_A \cdot \bar{x}_A = 4 \cdot 30 = 120" />
+  <BlockMath math="\sum x_B = n_B \cdot \bar{x}_B = 4 \cdot 33 = 132" />
+</MathContainer>
 
-#### Analyze the Exchange
+#### Represent the Exchange
 
-Let the exchanged children be <InlineMath math="x_A" /> from group <InlineMath math="A" /> and <InlineMath math="x_B" /> from group <InlineMath math="B" />. After the exchange, the number of members remains the same (<InlineMath math="n = 4" />) and the averages become equal, which means the new total weights are also equal.
+Let the exchanged children have weights <InlineMath math="x_A" /> and <InlineMath math="x_B" />, where <InlineMath math="x_A" /> comes from group <InlineMath math="A" />. Both groups still have four members after the exchange. Therefore, equal averages also mean equal total weights.
 
 New total weight of group <InlineMath math="A" /> (<InlineMath math="\sum x_A'" />):
 
@@ -29,7 +25,7 @@ New total weight of group <InlineMath math="B" /> (<InlineMath math="\sum x_B'" 
 
 <BlockMath math="\sum x_B' = \sum x_B - x_B + x_A = 132 - x_B + x_A" />
 
-#### Calculate Weight Difference
+#### Find the Weight Difference
 
 Since the new averages are equal, the new total sums are also equal:
 
@@ -38,7 +34,7 @@ Since the new averages are equal, the new total sums are also equal:
   <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
 </MathContainer>
 
-Group similar variables:
+Collect the exchanged weights on one side:
 
 <MathContainer>
   <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />

@@ -7,19 +7,19 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "adding the word *of* before the word *subsector*.",
+      label: "replacing *provide* with *provides*.",
       value: false,
     },
     {
-      label: "replacing the word *share* with the word *portion*.",
+      label: "removing the word *also*.",
       value: false,
     },
     {
-      label: "removing the word *relatively*.",
+      label: "replacing *benchmark* with *estimate*.",
       value: false,
     },
     {
-      label: "adding the word *to* before the word *number*.",
+      label: "adding the word *the* before *current*.",
       value: false,
     },
   ],
@@ -29,19 +29,19 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
-      label: "menambahkan kata *daripada* sebelum kata *subsektor*.",
+      label: "mengganti *menyediakan* dengan *disediakan*.",
       value: false,
     },
     {
-      label: "mengganti kata *share* dengan kata *andil*.",
+      label: "menghilangkan kata *juga*.",
       value: false,
     },
     {
-      label: "menghilangkan kata *relatif*.",
+      label: "mengganti *tolok ukur* dengan *perkiraan*.",
       value: false,
     },
     {
-      label: "menambah kata *terhadap* sebelum kata *jumlah*.",
+      label: "menambahkan kata *yang* sebelum *terkini*.",
       value: false,
     },
   ],

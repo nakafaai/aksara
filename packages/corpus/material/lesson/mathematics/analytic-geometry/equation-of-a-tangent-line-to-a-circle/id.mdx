@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Persamaan Garis Singgung Lingkaran",
-  description: "Pelajari persamaan garis singgung dengan metode substitusi, jarak, dan kuadratik. Selesaikan soal dari titik eksternal dengan pembahasan bertahap.",
+  description: "Susun garis singgung lingkaran dari titik sentuh, gradien, atau titik di luar lingkaran, lengkap dengan pembahasan setiap langkah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Geometri Analitik",
@@ -10,18 +10,18 @@ export const metadata = {
 
 ## Memahami Persamaan Garis Singgung
 
-Pernahkah kamu memperhatikan bagaimana roda sepeda bergerak di jalan? Saat roda berputar, ada satu titik di tepi roda yang selalu menyentuh aspal dengan sempurna. Nah, kalau kita menarik garis lurus dari titik sentuh itu, garis tersebut disebut **garis singgung**.
+Bayangkan roda sepeda yang diam di atas jalan datar. Pada saat itu, jalan menyentuh lingkaran roda tepat di satu titik. Garis jalan itulah model **garis singgung**, sedangkan jari-jari menuju titik sentuh tegak lurus terhadapnya.
 
-Pelajaran ini berfokus pada cara menemukan **persamaan matematika eksplisit** dari garis singgung. Persamaan itu memberi tahu garis lurus mana yang menyentuh lingkaran tepat di satu titik.
+Kita akan menyusun persamaan garis tersebut dalam tiga keadaan: titik sentuh diketahui, gradien diketahui, atau garis harus melalui sebuah titik di luar lingkaran.
 
-Kemampuan menentukan persamaan garis singgung sangat berguna dalam rekayasa, fisika, dan bahkan seni. Bayangkan seorang arsitek yang merancang lengkungan jembatan, atau insinyur yang menghitung lintasan proyektil.
+Gagasan geometrinya tetap sama pada ketiga keadaan. Garis singgung berpotongan dengan lingkaran di satu titik, sedangkan jari-jari menuju titik itu memberi arah tegak lurus atau jarak yang dibutuhkan.
 
-## Substitusi untuk Titik Tertentu
+## Garis Singgung di Titik yang Diketahui
 
-Ketika kita sudah tahu titik mana di lingkaran yang akan disentuh garis singgung, pekerjaan kita menjadi lebih terarah. Mari kita lihat pendekatan sistematis untuk kasus ini.
+Jika titik sentuh diketahui, pastikan dahulu bahwa titik itu memang terletak pada lingkaran. Setelah itu, jari-jari menuju titik tersebut menjadi vektor normal garis singgung.
 
 <LineEquation
-  title="Garis Singgung pada Titik Tertentu"
+  title="Garis Singgung di Titik yang Diketahui"
   description="Mengkonstruksi persamaan garis singgung ketika titik sentuhnya sudah diketahui."
   data={[
     {
@@ -137,25 +137,25 @@ Ketika kita sudah tahu titik mana di lingkaran yang akan disentuh garis singgung
   showZAxis={false}
 />
 
-Untuk lingkaran <InlineMath math="x^2 + y^2 = r^2" /> dengan titik singgung <InlineMath math="M(p, q)" />, kita menggunakan **rumus substitusi langsung**:
+Untuk lingkaran <InlineMath math="x^2+y^2=r^2" /> dan titik singgung <InlineMath math="M(p,q)" /> yang berada pada lingkaran, **bentuk titik-singgung** adalah:
 
 <BlockMath math="px + qy = r^2" />
 
-Kenapa rumus ini bekerja? Karena garis singgung selalu tegak lurus dengan jari-jari di titik singgung. Jika jari-jari memiliki arah vektor <InlineMath math="(p, q)" />, maka garis singgung memiliki vektor normal yang sama, yaitu <InlineMath math="(p, q)" />.
+Mengapa rumus ini bekerja? Jari-jari <InlineMath math="OM" /> memiliki vektor arah <InlineMath math="(p,q)" />. Karena garis singgung tegak lurus terhadap <InlineMath math="OM" />, vektor tersebut menjadi vektor normal garis singgung. Ketika <InlineMath math="M" /> disubstitusikan, diperoleh <InlineMath math="p^2+q^2=r^2" />, sehingga garis itu benar-benar melalui titik sentuh.
 
-Untuk lingkaran umum <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> dengan titik singgung <InlineMath math="M(p, q)" />, rumusnya menjadi:
+Untuk lingkaran <InlineMath math="(x-h)^2+(y-k)^2=r^2" /> dengan titik singgung <InlineMath math="M(p,q)" />, terapkan gagasan yang sama terhadap pusat <InlineMath math="(h,k)" />:
 
 <BlockMath math="(p-h)(x-h) + (q-k)(y-k) = r^2" />
 
-> Keunggulan metode ini adalah kecepatan dan akurasi. Kita tidak perlu menghitung gradien secara terpisah atau melakukan manipulasi aljabar yang rumit.
+> Bentuk ini efisien karena langsung memakai jari-jari sebagai vektor normal. Bentuk ini juga tetap berlaku untuk garis singgung vertikal, ketika perhitungan gradien tidak dapat digunakan.
 
-## Pendekatan Jarak untuk Gradien Tertentu
+## Metode Jarak untuk Gradien yang Diketahui
 
-Sekarang kita beralih ke kasus yang lebih menantang: mencari persamaan garis singgung ketika hanya gradiennya yang diketahui. Di sini kita menggunakan prinsip bahwa jarak dari pusat lingkaran ke garis singgung harus sama dengan jari-jari.
+Jika gradien diketahui tetapi titik potong sumbu belum diketahui, gunakan syarat jarak: jarak tegak lurus dari pusat ke garis singgung sama dengan jari-jari.
 
 <LineEquation
-  title="Garis Singgung dengan Kemiringan Tertentu"
-  description="Menggunakan pendekatan jarak untuk menemukan persamaan dengan gradien yang diberikan."
+  title="Garis Singgung dengan Gradien yang Diketahui"
+  description="Jarak pusat ke garis menentukan dua titik potong sumbu yang mungkin."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -266,13 +266,13 @@ Sekarang kita beralih ke kasus yang lebih menantang: mencari persamaan garis sin
   showZAxis={false}
 />
 
-Misalkan kita memiliki lingkaran <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> dan ingin mencari garis singgung dengan gradien <InlineMath math="m" />. Garis singgung berbentuk <InlineMath math="y = mx + c" />.
+Misalkan lingkarannya <InlineMath math="(x-h)^2+(y-k)^2=r^2" /> dan garis singgung memiliki gradien <InlineMath math="m" />. Tuliskan garis sebagai <InlineMath math="y=mx+c" />.
 
-Kunci utama adalah menggunakan **rumus jarak titik ke garis**. Jarak dari pusat <InlineMath math="(h,k)" /> ke garis <InlineMath math="mx - y + c = 0" /> adalah:
+**Rumus jarak titik ke garis** memberi jarak dari pusat <InlineMath math="(h,k)" /> ke garis <InlineMath math="mx-y+c=0" />:
 
 <BlockMath math="d = \frac{|mh - k + c|}{\sqrt{m^2 + 1}}" />
 
-Karena garis menyinggung lingkaran, jarak ini harus tepat sama dengan jari-jari:
+Karena garis menyinggung lingkaran, jarak ini harus sama dengan jari-jari:
 
 <MathContainer>
   <BlockMath math="\frac{|mh - k + c|}{\sqrt{m^2 + 1}} = r" />
@@ -280,21 +280,21 @@ Karena garis menyinggung lingkaran, jarak ini harus tepat sama dengan jari-jari:
   <BlockMath math="mh - k + c = \pm r\sqrt{m^2 + 1}" />
 </MathContainer>
 
-Sehingga diperoleh dua nilai konstanta:
+Penyelesaian persamaan nilai mutlak menghasilkan dua titik potong sumbu:
 
 <BlockMath math="c = k - mh \pm r\sqrt{m^2 + 1}" />
 
-Dengan demikian, persamaan kedua garis singgung adalah:
+Jadi, dua garis singgung yang sejajar adalah:
 
 <BlockMath math="y = mx + k - mh \pm r\sqrt{m^2 + 1}" />
 
-## Metode Kuadratik untuk Titik Eksternal
+## Garis Singgung melalui Titik di Luar Lingkaran
 
-Kasus paling menantang adalah ketika kita ingin menarik garis singgung dari titik di luar lingkaran. Dari satu titik eksternal, kita bisa menarik tepat dua garis singgung dengan gradien yang berbeda.
+Dari sebuah titik di luar lingkaran dapat ditarik tepat dua garis singgung. Jika keduanya memiliki gradien berhingga, gradien tersebut dapat dicari melalui satu persamaan kuadrat.
 
 <LineEquation
-  title="Garis Singgung dari Titik Eksternal"
-  description="Menggunakan metode kuadratik dalam gradien untuk titik di luar lingkaran."
+  title="Garis Singgung melalui Titik di Luar Lingkaran"
+  description="Syarat perpotongan kembar menentukan dua gradien yang mungkin."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -324,7 +324,7 @@ Kasus paling menantang adalah ketika kita ingin menarik garis singgung dari titi
       ],
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: "Eksternal", at: 0, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: "Titik luar", at: 0, offset: [0.5, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -478,32 +478,32 @@ Kasus paling menantang adalah ketika kita ingin menarik garis singgung dari titi
   showZAxis={false}
 />
 
-Untuk menyelesaikan masalah ini, kita menggunakan pendekatan **persamaan kuadrat dalam gradien**. Misalkan titik eksternal adalah <InlineMath math="P(x_0, y_0)" /> dan lingkaran memiliki persamaan <InlineMath math="x^2 + y^2 = r^2" />.
+Misalkan titik luarnya <InlineMath math="P(x_0,y_0)" /> dan lingkarannya <InlineMath math="x^2+y^2=r^2" />. Garis tak vertikal yang melalui <InlineMath math="P" /> memiliki gradien <InlineMath math="m" />.
 
-Garis singgung dari titik <InlineMath math="P" /> berbentuk <InlineMath math="y - y_0 = m(x - x_0)" />, atau <InlineMath math="y = mx - mx_0 + y_0" />.
+Persamaannya ialah <InlineMath math="y-y_0=m(x-x_0)" />, atau <InlineMath math="y=mx-mx_0+y_0" />.
 
-Substitusikan ke persamaan lingkaran dan gunakan syarat diskriminan nol:
+Substitusikan bentuk tersebut ke persamaan lingkaran. Garis singgung bertemu lingkaran pada satu titik kembar, sehingga persamaan kuadrat dalam <InlineMath math="x" /> harus memiliki diskriminan nol:
 
 <MathContainer>
   <BlockMath math="x^2 + (mx - mx_0 + y_0)^2 = r^2" />
   <BlockMath math="(1 + m^2)x^2 + 2m(y_0 - mx_0)x + (y_0 - mx_0)^2 - r^2 = 0" />
 </MathContainer>
 
-Diskriminan sama dengan nol memberikan persamaan kuadrat dalam <InlineMath math="m" />:
+Setelah disederhanakan, syarat diskriminan menjadi:
 
 <BlockMath math="(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) = 0" />
 
-Dua akar persamaan ini adalah gradien kedua garis singgung.
+Akar-akarnya adalah gradien kedua garis singgung tak vertikal. Jika mungkin ada garis singgung vertikal, periksa <InlineMath math="x=x_0" /> secara terpisah karena garis itu tidak dapat ditulis sebagai <InlineMath math="y=mx+c" />.
 
-## Contoh Terapan Lengkap
+## Contoh dengan Pembahasan
 
-Mari kita selesaikan satu kasus konkret untuk memperjelas pemahaman. Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 25" /> yang melalui titik <InlineMath math="A(7, 1)" />.
+Tentukan kedua garis singgung lingkaran <InlineMath math="x^2+y^2=25" /> yang melalui titik <InlineMath math="A(7,1)" />.
 
-**Langkah** <InlineMath math="1" />: Verifikasi bahwa titik <InlineMath math="A" /> berada di luar lingkaran.
+**Langkah** <InlineMath math="1" />: Pastikan <InlineMath math="A" /> berada di luar lingkaran.
 
 <BlockMath math="7^2 + 1^2 = 49 + 1 = 50 > 25 \quad \checkmark" />
 
-**Langkah** <InlineMath math="2" />: Bentuk persamaan kuadrat dalam gradien dengan <InlineMath math="x_0 = 7" />, <InlineMath math="y_0 = 1" />, <InlineMath math="r^2 = 25" />:
+**Langkah** <InlineMath math="2" />: Substitusikan <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" />, dan <InlineMath math="r^2=25" /> ke persamaan kuadrat untuk <InlineMath math="m" />:
 
 <MathContainer>
   <BlockMath math="(49 - 25)m^2 - 2(7)(1)m + (1 - 25) = 0" />
@@ -511,13 +511,13 @@ Mari kita selesaikan satu kasus konkret untuk memperjelas pemahaman. Tentukan pe
   <BlockMath math="12m^2 - 7m - 12 = 0" />
 </MathContainer>
 
-**Langkah** <InlineMath math="3" />: Selesaikan dengan rumus kuadrat:
+**Langkah** <InlineMath math="3" />: Selesaikan persamaan kuadratnya.
 
 <BlockMath math="m = \frac{7 \pm \sqrt{49 + 576}}{24} = \frac{7 \pm \sqrt{625}}{24} = \frac{7 \pm 25}{24}" />
 
 Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath math="m_2 = \frac{-18}{24} = -\frac{3}{4}" />.
 
-**Langkah** <InlineMath math="4" />: Konstruksi persamaan akhir:
+**Langkah** <InlineMath math="4" />: Gunakan setiap gradien pada persamaan titik-gradien yang melalui <InlineMath math="A" />.
 
 <MathContainer>
   <BlockMath math="y - 1 = \frac{4}{3}(x - 7) \Rightarrow 4x - 3y = 25" />
@@ -528,13 +528,13 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
 1. Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 16" /> di titik <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />.
 
-2. Carilah persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 9" /> yang bergradien <InlineMath math="-\frac{1}{2}" />.
+2. Carilah kedua persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 9" /> yang bergradien <InlineMath math="-\frac{1}{2}" />.
 
-3. Tentukan persamaan garis singgung lingkaran <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> yang melalui titik <InlineMath math="(11, 10)" />.
+3. Tentukan kedua persamaan garis singgung lingkaran <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> yang melalui titik <InlineMath math="(11, 10)" />.
 
-4. Sebuah lingkaran memiliki persamaan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />. Tentukan persamaan garis singgung yang sejajar dengan garis <InlineMath math="3x + 4y = 7" />.
+4. Sebuah lingkaran memiliki persamaan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />. Tentukan kedua persamaan garis singgung yang sejajar dengan garis <InlineMath math="3x + 4y = 7" />.
 
-### Kunci Jawaban
+### Pembahasan Lengkap
 
 1. **Penyelesaian**:
 
@@ -581,33 +581,35 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
    Titik di luar lingkaran.
 
-   **Langkah** <InlineMath math="2" />: Gunakan persamaan kuadrat dalam gradien. Dengan translasi koordinat ke pusat lingkaran, titik <InlineMath math="(11,10)" /> menjadi <InlineMath math="(8,6)" /> relatif terhadap pusat.
+   **Langkah** <InlineMath math="2" />: Geser pusat ke titik asal. Relatif terhadap pusat, titik <InlineMath math="(11,10)" /> memiliki koordinat <InlineMath math="(8,6)" />.
 
-   **Langkah** <InlineMath math="3" />: Persamaan kuadrat dalam gradien untuk lingkaran <InlineMath math="x^2 + y^2 = 25" /> dari titik <InlineMath math="(8,6)" />:
+   **Langkah** <InlineMath math="3" />: Susun persamaan kuadrat untuk gradien dari <InlineMath math="(8,6)" /> ke lingkaran <InlineMath math="x^2 + y^2 = 25" />.
 
    <MathContainer>
      <BlockMath math="(8^2 - 25)m^2 - 2(8)(6)m + (6^2 - 25) = 0" />
      <BlockMath math="39m^2 - 96m + 11 = 0" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="4" />: Menggunakan rumus kuadrat:
+   **Langkah** <InlineMath math="4" />: Selesaikan dengan rumus kuadrat.
 
    <MathContainer>
      <BlockMath math="m = \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} = \frac{96 \pm \sqrt{9216 - 1716}}{78}" />
      <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="5" />: Sederhanakan gradien dan tentukan persamaan garis singgung melalui titik <InlineMath math="(11,10)" />:
+   **Langkah** <InlineMath math="5" />: Sederhanakan gradien dan gunakan bentuk titik-gradien melalui <InlineMath math="(11,10)" />.
 
    <MathContainer>
-     <BlockMath math="m_1 = \frac{96 + 50\sqrt{3}}{78} \text{ dan} m_2 = \frac{96 - 50\sqrt{3}}{78}" />
+     <BlockMath math="m_1 = \frac{48 + 25\sqrt{3}}{39} \quad \text{dan} \quad m_2 = \frac{48 - 25\sqrt{3}}{39}" />
+     <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
+     <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
    </MathContainer>
 
-   Persamaan kedua garis singgung dapat ditulis dalam bentuk <InlineMath math="y - 10 = m(x - 11)" />.
+   Inilah dua garis singgung yang melalui <InlineMath math="(11,10)" />.
 
 4. **Penyelesaian**:
 
-   **Langkah** <InlineMath math="1" />: Ubah persamaan lingkaran ke bentuk standar dengan melengkapkan kuadrat
+   **Langkah** <InlineMath math="1" />: Lengkapi kuadrat agar persamaan lingkaran berbentuk standar.
 
    <MathContainer>
      <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
@@ -617,11 +619,9 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
    Pusat <InlineMath math="(3,4)" />, jari-jari <InlineMath math="r = 5" />.
 
-   **Langkah** <InlineMath math="2" />: Garis <InlineMath math="3x + 4y = 7" /> dapat ditulis <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />
+   **Langkah** <InlineMath math="2" />: Baca gradien garis yang diberikan. Karena <InlineMath math="3x + 4y = 7" /> dapat ditulis sebagai <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, setiap garis sejajar memiliki gradien <InlineMath math="m = -\frac{3}{4}" />.
 
-   Gradien garis sejajar: <InlineMath math="m = -\frac{3}{4}" />
-
-   **Langkah** <InlineMath math="3" />: Untuk lingkaran dengan pusat <InlineMath math="(3,4)" />, persamaan garis singgung sejajar:
+   **Langkah** <InlineMath math="3" />: Substitusikan pusat <InlineMath math="(3,4)" />, jari-jari, dan gradien ke rumus garis singgung.
 
    <MathContainer>
      <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
@@ -629,7 +629,7 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
      <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="4" />: Sederhanakan kedua persamaan
+   **Langkah** <InlineMath math="4" />: Sederhanakan kedua persamaan.
 
    <MathContainer>
      <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />

@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Binomial Distribution Function",
-    description: "Learn binomial distribution formula with worked examples. Calculate probability of success in repeated trials with coin flips and practice problems.",
+    title: "Binomial Probability Mass Function",
+    description: "Learn the binomial probability mass function, verify its assumptions, and calculate exact probabilities in worked examples and exercises.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Data Analysis and Probability",
@@ -8,9 +8,7 @@ export const metadata = {
 
 ## Getting to Know Jacob Bernoulli
 
-Jacob Bernoulli, also known as James or Jacques, was one of the prominent mathematicians from the Bernoulli family. He was the first pioneer in Leibnizian analysis and supported Leibniz in the calculus debate against Newton.
-
-Jacob Bernoulli is famous for his many contributions to calculus. He was one of the founders of calculus of variations and proposed the first version of the law of large numbers in his book "Ars Conjectandi" published in <InlineMath math="1713" />. One of the important discussions in that book was about binomial experiments.
+Jacob Bernoulli's *Ars Conjectandi* was published posthumously in <InlineMath math="1713" />. The book developed foundational results in probability, including Bernoulli's law of large numbers, and studied repeated success-or-failure trials that now bear his name.
 
 ## Combination and Basic Probability
 
@@ -22,7 +20,9 @@ First, the combination formula for selecting objects:
 
 Second, factorial (sequential multiplication):
 
-<BlockMath math="n! = n \times (n-1) \times ... \times 3 \times 2 \times 1" />
+<BlockMath math="n! = n \times (n-1) \times \cdots \times 3 \times 2 \times 1" />
+
+By definition, <InlineMath math="0!=1" />.
 
 And third, the relationship between event probability and its complement:
 
@@ -32,9 +32,9 @@ where <InlineMath math="P(A)" /> is the probability of an event occurring and <I
 
 ## Binomial Distribution Concept
 
-Binomial distribution is actually a fairly simple concept if we understand it from the basics. Imagine you're conducting an experiment that only has two possible outcomes: success or failure. For example, like flipping a coin that can only result in heads or tails.
+A binomial random variable counts successes in repeated trials. Each trial has two mutually exclusive outcomes, such as heads or tails, and the label **success** identifies the outcome being counted.
 
-Binomial distribution is used when we perform the same experiment repeatedly under the same constant conditions. Importantly, each experiment is independent (they don't influence each other) - meaning the result of previous experiments doesn't affect subsequent experiments.
+The model applies only when the number of trials is fixed, the trials are independent, and the success probability stays constant. Independence means that an earlier result does not change the probability in a later trial.
 
 **Requirements for binomial experiments:**
 
@@ -46,31 +46,33 @@ Binomial distribution is used when we perform the same experiment repeatedly und
 
 - The probability of success is the same for each experiment
 
-## Binomial Distribution Formula
+## Binomial Probability Mass Function
 
-If there's a binomial experiment with probability of success <InlineMath math="p" /> and probability of failure <InlineMath math="q = 1 - p" />, then the formula to calculate the probability of getting exactly <InlineMath math="x" /> successes in <InlineMath math="n" /> independent experiments is:
+For a binomial experiment with success probability <InlineMath math="p" /> and failure probability <InlineMath math="q = 1-p" />, the probability mass function gives the probability of exactly <InlineMath math="x" /> successes in <InlineMath math="n" /> independent trials:
 
-<BlockMath math="b(x;n,p) = \binom{n}{x} p^x q^{n-x} \text{ for} x = 0{,}1{,}2,...,n" />
+<BlockMath math="P(X=x) = \binom{n}{x}p^xq^{n-x}, \qquad x=0{,}1{,}2{,}\ldots{,}n" />
 
 Where:
 
-- <InlineMath math="n" /> = number of experiments performed
+- <InlineMath math="n" /> = fixed number of trials
 
-- <InlineMath math="x" /> = number of successes we want
+- <InlineMath math="x" /> = number of successes being counted
 
-- <InlineMath math="p" /> = probability of success in one experiment
+- <InlineMath math="p" /> = success probability in one trial
 
-- <InlineMath math="q = 1-p" /> = probability of failure in one experiment
+- <InlineMath math="q = 1-p" /> = failure probability in one trial
 
-So, to use this formula, make sure first that the experiment we're dealing with meets the binomial requirements mentioned earlier.
+Before applying the formula, verify all four binomial conditions. Otherwise, this probability model may not describe the experiment.
 
 ## Coin Experiment
 
-Let's look at a simple example. Suppose we have a fair coin. We call heads as "H" and tails as "T", so the sample space is <InlineMath math="S = \{H,T\}" />.
+Let's look at a simple example. Suppose we have a fair coin. Its sample space contains heads and tails:
+
+<BlockMath math="S = \{\text{heads},\text{tails}\}" />
 
 If we consider getting tails as "success", then the probability of success is <InlineMath math="p = \frac{1}{2}" />. Automatically, the probability of failure (getting heads) is <InlineMath math="q = 1 - \frac{1}{2} = \frac{1}{2}" />.
 
-**Problem:** If we flip this coin <InlineMath math="7\text{ times}" /> in a row, what's the probability of getting tails exactly <InlineMath math="5\text{ times}" />?
+**Problem:** If we flip this coin <InlineMath math="7" /> times in a row, what's the probability of getting tails exactly <InlineMath math="5" /> times?
 
 **Solution:**
 
@@ -80,10 +82,10 @@ First, let's identify the parameters:
 - <InlineMath math="p = \frac{1}{2}" /> (probability of getting tails)
 - <InlineMath math="q = \frac{1}{2}" /> (probability of getting heads)
 
-Now we use the binomial distribution formula:
+Now use the binomial probability mass function:
 
 <MathContainer>
-<BlockMath math="b(5;7,\frac{1}{2}) = \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^{7-5}" />
+<BlockMath math="P(X=5) = \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^{7-5}" />
 <BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^2" />
 <BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^7" />
 </MathContainer>
@@ -98,16 +100,16 @@ Let's calculate <InlineMath math="\binom{7}{5}" /> first:
 So the complete calculation is:
 
 <MathContainer>
-<BlockMath math="b(5;7,\frac{1}{2}) = 21 \times \frac{1}{2^7} = 21 \times \frac{1}{128} = \frac{21}{128}" />
+<BlockMath math="P(X=5) = 21 \times \frac{1}{2^7} = 21 \times \frac{1}{128} = \frac{21}{128}" />
 </MathContainer>
 
 Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMath math="7" /> flips is <InlineMath math="\frac{21}{128}" /> or approximately <InlineMath math="16.4\%" />.
 
 ## Practice Problems
 
-1. In a bag there are <InlineMath math="10 \text{ balls}" /> that are exactly the same, except for their color: <InlineMath math="6" /> red balls and <InlineMath math="4" /> blue balls. If we draw <InlineMath math="5 \text{ balls}" /> one by one with replacement (each drawn ball is returned), what's the probability of drawing exactly <InlineMath math="3" /> red balls?
+1. In a bag there are <InlineMath math="10" /> balls that are exactly the same, except for their color: <InlineMath math="6" /> red balls and <InlineMath math="4" /> blue balls. If we draw <InlineMath math="5" /> balls one by one with replacement (each drawn ball is returned), what's the probability of drawing exactly <InlineMath math="3" /> red balls?
 
-2. An archer has an accuracy rate of <InlineMath math="80\%" /> for hitting targets. If he shoots <InlineMath math="6\text{ times}" />, what's the probability he hits the target exactly <InlineMath math="4\text{ times}" />?
+2. An archer has an accuracy rate of <InlineMath math="80\%" /> for hitting targets. If he takes <InlineMath math="6" /> shots, what's the probability he hits the target exactly <InlineMath math="4" /> times?
 
 3. There's a multiple choice exam with <InlineMath math="4" /> answer choices for each question. A student guesses all answers randomly for <InlineMath math="8" /> questions. What's the probability he answers exactly <InlineMath math="2" /> questions correctly?
 
@@ -122,10 +124,10 @@ Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMa
     - <InlineMath math="p = \frac{6}{10} = 0.6" /> (probability of drawing a red ball)
     - <InlineMath math="q = 1 - 0.6 = 0.4" /> (probability of drawing a blue ball)
 
-    **Step** <InlineMath math="2" />: Calculate using binomial distribution formula.
+    **Step** <InlineMath math="2" />: Calculate using the binomial probability mass function.
 
     <MathContainer>
-    <BlockMath math="b(3;5,0.6) = \binom{5}{3} (0.6)^3 (0.4)^2" />
+    <BlockMath math="P(X=3) = \binom{5}{3} (0.6)^3 (0.4)^2" />
     </MathContainer>
 
     Let's calculate <InlineMath math="\binom{5}{3}" /> first:
@@ -150,10 +152,10 @@ Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMa
     - <InlineMath math="p = 0.8" /> (probability of hitting target)
     - <InlineMath math="q = 0.2" /> (probability of missing)
 
-    **Step** <InlineMath math="2" />: Calculate using binomial distribution formula.
+    **Step** <InlineMath math="2" />: Calculate using the binomial probability mass function.
 
     <MathContainer>
-    <BlockMath math="b(4;6,0.8) = \binom{6}{4} (0.8)^4 (0.2)^2" />
+    <BlockMath math="P(X=4) = \binom{6}{4} (0.8)^4 (0.2)^2" />
     </MathContainer>
 
     Let's calculate <InlineMath math="\binom{6}{4}" /> first:
@@ -164,10 +166,10 @@ Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMa
 
     <MathContainer>
     <BlockMath math="= 15 \times (0.8)^4 \times (0.2)^2" />
-    <BlockMath math="= 15 \times 0.4096 \times 0.04 = 0.2458" />
+    <BlockMath math="= 15 \times 0.4096 \times 0.04 = 0.24576 \approx 0.2458" />
     </MathContainer>
 
-    Therefore, the probability of the archer hitting the target exactly <InlineMath math="4\text{ times}" /> is <InlineMath math="0.2458" /> or approximately <InlineMath math="24.6\%" />.
+    Therefore, the probability of the archer hitting the target exactly <InlineMath math="4" /> times is <InlineMath math="0.2458" /> or approximately <InlineMath math="24.6\%" />.
 
 3. **Multiple Choice Exam Problem Answer**
 
@@ -178,10 +180,10 @@ Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMa
     - <InlineMath math="p = \frac{1}{4} = 0.25" /> (probability of answering correctly by guessing)
     - <InlineMath math="q = \frac{3}{4} = 0.75" /> (probability of answering incorrectly)
 
-    **Step** <InlineMath math="2" />: Calculate using binomial distribution formula.
+    **Step** <InlineMath math="2" />: Calculate using the binomial probability mass function.
 
     <MathContainer>
-    <BlockMath math="b(2;8,0.25) = \binom{8}{2} (0.25)^2 (0.75)^6" />
+    <BlockMath math="P(X=2) = \binom{8}{2} (0.25)^2 (0.75)^6" />
     </MathContainer>
 
     Let's calculate <InlineMath math="\binom{8}{2}" /> first:
@@ -192,7 +194,7 @@ Therefore, the probability of getting <InlineMath math="5" /> tails in <InlineMa
 
     <MathContainer>
     <BlockMath math="= 28 \times (0.25)^2 \times (0.75)^6" />
-    <BlockMath math="= 28 \times 0.0625 \times 0.178 = 0.3115" />
+    <BlockMath math="= 28 \times 0.0625 \times 0.177978515625 = 0.31146240234375 \approx 0.3115" />
     </MathContainer>
 
-    Therefore, the probability of the student answering exactly <InlineMath math="2" /> questions correctly is <InlineMath math="0.3115" /> or approximately <InlineMath math="31.2\%" />.
+    Therefore, the probability of the student answering exactly <InlineMath math="2" /> questions correctly is approximately <InlineMath math="0.3115" />, or <InlineMath math="31.15\%" />.

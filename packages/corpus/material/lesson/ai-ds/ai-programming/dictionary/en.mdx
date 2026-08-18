@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Dictionary",
-    description: "Learn dictionary data structure in Python, keys(), values(), items() methods, indexing, for loops, and get() method with practical examples.",
+    description: "Learn how Python dictionaries store, update, iterate, and safely look up key-value pairs.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-09-18",
     subject: "AI Programming",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Definition and Creating Dictionaries
 
-Dictionary is a data structure that stores key-value pairs. Think of it like a language dictionary where each word (key) has a meaning (value) associated with it.
+A dictionary is a mutable mapping from unique keys to values. Instead of asking for an item by its numeric position, you look it up through a meaningful key such as a name, identifier, or date.
 
 ### Ways to Create Dictionaries
 
@@ -50,7 +50,7 @@ print("Dictionary mass:", mass)
 
 ### Dictionary Syntax
 
-Dictionaries are written with curly braces `{}` and contain a list of key-value pairs separated by commas. Each key and value pair is separated by a colon.
+A dictionary display uses curly braces. Commas separate its entries, and a colon separates each key from its value. The empty display `{}` creates an empty dictionary.
 
 <CodeBlock
   data={[
@@ -65,15 +65,15 @@ print(phone)
   ]}
 />
 
-Dictionaries are enclosed in curly braces, contain a list of key-value pairs separated by commas, and each key-value pair is separated by a colon.
+Keys must be hashable, so immutable values such as strings, numbers, and suitable tuples are common choices. Values may be any Python object, including another dictionary.
 
 ## Dictionary as Container
 
-Dictionary belongs to the container category, which are objects that can store collections of other items. Containers differ in how they organize and manipulate the stored items.
+A dictionary is a container because it holds a collection of other objects. Its defining behavior is mapping each key to one value while preserving the order in which keys were first inserted.
 
 <Mermaid
   title="Dictionary Stores Pairs by Key"
-  description="See how a key takes the program directly to a value without relying on positional order."
+  description="See how a key selects its associated value without using a numeric position."
   chart={`
     flowchart TD
         A[Python Containers] --> B[String]
@@ -85,19 +85,19 @@ Dictionary belongs to the container category, which are objects that can store c
         E --> E1[Key-value pairs]
         E --> E2[Unique keys]
         E --> E3[Mutable]
-        E --> E4[Unordered]
+        E --> E4[Insertion ordered]
   `}
 />
 
-Dictionary has special characteristics as a container. Dictionary stores collections of items in the form of key-value pairs. Containers differ in how items are organized and manipulated.
+Lists and tuples organize items by position, while dictionaries organize entries by key. This distinction determines how you read, update, and iterate through their contents.
 
 ## Dictionary Characteristics
 
-Dictionary has several important characteristics that distinguish it from other data structures in Python.
+A dictionary is mutable, its keys are unique and hashable, and its iteration order follows key insertion order.
 
 ### Insertion Order and Unique Keys
 
-Since Python <InlineMath math="3.6" />, dictionaries maintain the insertion order of elements. When you redefine the value of an existing key, only the latest value is stored without changing the key's insertion order.
+Python's language specification guarantees dictionary insertion order from Python `3.7` onward. Assigning a new value to an existing key updates that entry without moving the key. Deleting the key and inserting it again places it at the end.
 
 <CodeBlock
   data={[
@@ -114,11 +114,11 @@ print(phone)
   ]}
 />
 
-Keys in dictionaries are unique, only the most recently assigned value will persist. Redefining values does not change the insertion order of keys.
+Because keys are unique, a repeated key in a dictionary display keeps only its final assigned value. The surviving key retains the position established by its first occurrence.
 
 ## Accessing Dictionaries
 
-Dictionary uses a key-based indexing system to access stored values.
+A dictionary retrieves values by key rather than by a sequential numeric index.
 
 ### Indexing with Keys
 
@@ -148,11 +148,11 @@ print(phone)
   ]}
 />
 
-Dictionary uses keys to index values. You can retrieve values by specifying the key in square brackets, change values of existing keys, or add new key-value pairs.
+Square-bracket access retrieves an existing value. Assignment with brackets updates an existing key or appends a new key-value pair to the insertion order.
 
 ## Dictionary Iteration
 
-Dictionary can be iterated in various ways depending on the information you want to access.
+Choose the iteration form that matches whether you need keys alone, values alone, or both parts of each entry.
 
 ### Simple For Loop
 
@@ -198,11 +198,11 @@ for key, val in phone.items():
   ]}
 />
 
-The `items()` method retrieves key-value pairs simultaneously, allowing you to access both in a single iteration.
+The `items()` view yields each key and value together, so tuple unpacking can name both values in one loop.
 
 ## Dictionary Methods
 
-Dictionary provides several methods to access keys, values, and key-value pairs.
+A dictionary exposes dynamic views of its keys, values, and key-value pairs.
 
 ### keys(), values(), and items() Methods
 
@@ -232,11 +232,11 @@ print("Items:", list(items))
   ]}
 />
 
-These methods return dynamic view objects. View objects are not lists and cannot be indexed or assigned. Lists can be obtained through the `list()` constructor. View objects maintain reference to the parent dictionary and are efficient for iteration.
+These methods return dynamic view objects, not lists. A view reflects later changes to its dictionary and supports iteration, but it does not support positional indexing or item assignment. Call `list()` only when you specifically need a separate list snapshot.
 
 ## get() Method
 
-The `get()` method provides a safe way to access dictionary values without the risk of errors when keys are not found.
+Use `get()` when a missing key is an expected case and you want a fallback value. Use bracket access when a missing key should be treated as an error.
 
 ### Regular Indexing Problems
 
@@ -287,4 +287,4 @@ print("Result get('ann'):", result)
   ]}
 />
 
-The `get()` method retrieves the key's value if it exists, or returns a default value if the key is not found. This prevents the program from stopping due to errors and provides better control in handling incomplete data.
+`get()` returns the stored value when the key exists. Otherwise it returns the supplied default, or `None` when no default is supplied. Choose a default that cannot be confused with a valid stored value when that distinction matters.

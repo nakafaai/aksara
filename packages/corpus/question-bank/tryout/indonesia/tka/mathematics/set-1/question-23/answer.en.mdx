@@ -62,7 +62,7 @@ Given a regular square pyramid <InlineMath math="P.QRST" /> with base edge <Inli
       smooth: false,
       showPoints: false,
       labels: [
-        { text: <InlineMath math="4\sqrt{2}\,\mathrm{cm}" />, at: 0, offset: [1.5, -1.5, 0] },
+        { text: <InlineMath math="3\sqrt{2}\,\mathrm{cm}" />, at: 0, offset: [1.5, -1.5, 0] },
       ],
     },
     {
@@ -123,7 +123,7 @@ Given a regular square pyramid <InlineMath math="P.QRST" /> with base edge <Inli
       smooth: false,
       showPoints: false,
       labels: [
-        { text: <InlineMath math="4\,\mathrm{cm}" />, at: 0, offset: [1, -0.5, -0.5] },
+        { text: <InlineMath math="3\,\mathrm{cm}" />, at: 0, offset: [1, -0.5, -0.5] },
       ],
     },
     {
@@ -135,53 +135,38 @@ Given a regular square pyramid <InlineMath math="P.QRST" /> with base edge <Inli
       smooth: false,
       showPoints: false,
       labels: [
-        { text: <InlineMath math="4\,\mathrm{cm}" />, at: 0, offset: [-0.5, 0.5, -0.5] },
+        { text: <InlineMath math="3\,\mathrm{cm}" />, at: 0, offset: [-0.5, 0.5, -0.5] },
       ],
     },
   ]}
 />
 
-#### Consider the Base Triangle
+#### Find the horizontal projection
 
-Calculate the length of <InlineMath math="TR" /> using the Pythagorean theorem on the right triangle at the base
-
-<MathContainer>
-<BlockMath math="TR = \sqrt{QR^2 + QT^2}" />
-<BlockMath math="= \sqrt{3^2 + 3^2}" />
-<BlockMath math="= \sqrt{18} = 3\sqrt{2}" />
-</MathContainer>
-
-#### Calculating Half of the Base Diagonal
-
-Since <InlineMath math="O" /> is the center of the base, <InlineMath math="TO" /> is half of the diagonal <InlineMath math="TR" />
+Let <InlineMath math="O" /> be the center of the square base. Its diagonal is
 
 <MathContainer>
-<BlockMath math="TO = \frac{1}{2}TR" />
-<BlockMath math="= \frac{1}{2} \cdot 3\sqrt{2}" />
-<BlockMath math="= \frac{3}{2}\sqrt{2}" />
+<BlockMath math="TR=\sqrt{3^2+3^2}=3\sqrt{2}" />
+<BlockMath math="TO=\frac{TR}{2}=\frac{3\sqrt{2}}{2}" />
 </MathContainer>
 
-#### Calculating the Pyramid Height
+The segment <InlineMath math="TO" /> is the orthogonal projection of <InlineMath math="PT" /> onto the base. Therefore, the angle between <InlineMath math="PT" /> and the base is <InlineMath math="\angle PTO" />.
 
-Use the Pythagorean theorem on triangle <InlineMath math="PTO" />
+#### Find the pyramid height
+
+Triangle <InlineMath math="PTO" /> is right-angled at <InlineMath math="O" />. Using <InlineMath math="PT=3\sqrt{2}" />,
 
 <MathContainer>
-<BlockMath math="PO = \sqrt{PR^2 - RO^2}" />
-<BlockMath math="= \sqrt{(3\sqrt{2})^2 - \left(\frac{3}{2}\sqrt{2}\right)^2}" />
-<BlockMath math="= \sqrt{18 - \frac{9}{2}}" />
-<BlockMath math="= \sqrt{\frac{27}{2}}" />
+<BlockMath math="PO=\sqrt{PT^2-TO^2}" />
+<BlockMath math="PO=\sqrt{(3\sqrt{2})^2-\left(\frac{3\sqrt{2}}{2}\right)^2}" />
+<BlockMath math="PO=\sqrt{18-\frac{9}{2}}=\frac{3\sqrt{6}}{2}" />
 </MathContainer>
 
-#### Calculating Tangent of Angle
-
-The tangent of angle <InlineMath math="\alpha" /> between line <InlineMath math="PT" /> and base <InlineMath math="QRST" />
+#### Calculate the tangent
 
 <MathContainer>
-<BlockMath math="\tan \alpha = \frac{PO}{TO}" />
-<BlockMath math="= \frac{\sqrt{\frac{27}{2}}}{\frac{3}{2}\sqrt{2}}" />
-<BlockMath math="= \sqrt{\frac{27}{2}} \cdot \frac{2}{3\sqrt{2}}" />
-<BlockMath math="= \frac{2\sqrt{27}}{3\sqrt{2} \cdot \sqrt{2}}" />
-<BlockMath math="= \frac{2 \cdot 3\sqrt{3}}{3 \cdot 2} = \frac{3\sqrt{3}}{3} = \sqrt{3}" />
+<BlockMath math="\tan\alpha=\frac{PO}{TO}" />
+<BlockMath math="\tan\alpha=\frac{\frac{3\sqrt{6}}{2}}{\frac{3\sqrt{2}}{2}}=\sqrt{3}" />
 </MathContainer>
 
-Therefore, the tangent of the angle between line <InlineMath math="PT" /> and base <InlineMath math="QRST" /> is <InlineMath math="\sqrt{3}" />
+Therefore, the answer is <InlineMath math="\sqrt{3}" />.

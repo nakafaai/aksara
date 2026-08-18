@@ -4,27 +4,24 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-Lintasan dihitung mulai dari kotak hingga ke <InlineMath math="B10" /> sehingga didapatkan sebuah deret aritmetika dari jarak tempuh <InlineMath math="10, 18, 26, 34, \ldots" />
+Sepuluh botol berlabel <InlineMath math="B_1" /> hingga <InlineMath math="B_{10}" /> diletakkan segaris. Botol <InlineMath math="B_1" /> berjarak <InlineMath math="10\text{ m}" /> dari sebuah kotak, sedangkan jarak antara dua botol yang berdekatan adalah <InlineMath math="8\text{ m}" />.
 
 <Mermaid
-  title="Lintasan dari kotak ke B10"
-  description="Ikuti urutan titik untuk melihat pola jarak yang membentuk deret aritmetika."
+  title="Jarak kotak ke sepuluh botol"
+  description="Botol pertama berjarak 10 meter dari kotak. Setiap botol berikutnya berada 8 meter lebih jauh."
   chart={`
     graph LR
-      START[START] -->|mulai| B10[B10]
-      B10 -->|8m| B9[B9]
-      B9 -->|8m| B8[B8]
-      B8 -->|8m| B7[B7]
-      B7 -->|8m| B6[B6]
-      B6 -->|8m| B5[B5]
-      B5 -->|8m| B4[B4]
-      B4 -->|8m| B3[B3]
-      B3 -->|8m| B2[B2]
-      B2 -->|8m| B1[B1]
-      B1 -->|10m| KOTAK[KOTAK]
+      KOTAK[KOTAK] -->|10 m| B1[B1]
+      B1 -->|8 m| B2[B2]
+      B2 -->|8 m| B3[B3]
+      B3 -->|8 m| B4[B4]
+      B4 -->|8 m| B5[B5]
+      B5 -->|8 m| B6[B6]
+      B6 -->|8 m| B7[B7]
+      B7 -->|8 m| B8[B8]
+      B8 -->|8 m| B9[B9]
+      B9 -->|8 m| B10[B10]
   `}
 />
 
-Dalam kotak tersedia <InlineMath math="10" /> bendera dan harus dipindahkan ke dalam botol yang tersedia satu demi satu (tidak sekaligus). Semua peserta lomba mulai bergerak (start) dari botol nomor <InlineMath math="10" /> untuk mengambil bendera dalam kotak.
-
-Jarak start ke kotak adalah ....
+Berapa jumlah sepuluh jarak satu arah dari kotak ke <InlineMath math="B_1,B_2,\ldots,B_{10}" />?

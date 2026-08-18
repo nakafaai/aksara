@@ -3,55 +3,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Regular apple consumption can potentially cause someone to become obese.",
+      label: "Eating a whole apple before lunch always prevents obesity.",
+      value: false,
+    },
+    {
+      label: "All four apple preparations produced the same level of fullness.",
       value: false,
     },
     {
       label:
-        "Someone who consumes sweet foods excessively can be reduced by apple consumption.",
+        "Apple juice led to a lower total energy intake than the whole apple.",
       value: false,
     },
     {
       label:
-        "The sweet taste in apples has a high sugar level and potentially makes one full.",
-      value: false,
-    },
-    {
-      label:
-        "A longer sensation of fullness can be obtained from apple consumption due to the fiber and water content in it.",
+        "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
       value: true,
     },
     {
       label:
-        "Apples are the fruit that has the highest vitamin and mineral content compared to other fruits.",
+        "The study proved that fiber alone caused every difference between the apple preparations.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Konsumsi apel secara rutin dapat berpotensi menyebabkan seseorang obesitas.",
+      label: "Makan apel utuh sebelum makan siang selalu mencegah obesitas.",
+      value: false,
+    },
+    {
+      label: "Keempat olahan apel menghasilkan tingkat rasa kenyang yang sama.",
       value: false,
     },
     {
       label:
-        "Seseorang yang mengonsumsi makanan manis secara berlebihan dapat dikurangi dengan konsumsi apel.",
+        "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
       value: false,
     },
     {
       label:
-        "Rasa manis pada apel memiliki kadar gula yang tinggi dan berpotensi membuat kenyang.",
-      value: false,
-    },
-    {
-      label:
-        "Sensasi kenyang lebih lama bisa didapatkan dari konsumsi apel karena kandungan serat dan air di dalamnya.",
+        "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
       value: true,
     },
     {
       label:
-        "Apel adalah buah yang memiliki kandungan vitamin dan mineral yang paling tinggi dari buah lainnya.",
+        "Penelitian ini membuktikan bahwa serat saja menyebabkan seluruh perbedaan di antara olahan apel.",
       value: false,
     },
   ],

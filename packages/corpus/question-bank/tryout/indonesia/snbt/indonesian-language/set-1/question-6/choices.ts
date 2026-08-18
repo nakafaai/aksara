@@ -3,26 +3,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label:
-        "Data yang menunjukkan Indonesia memiliki penduduk terbesar sehingga menghasilkan sampah terbesar pula",
-      value: false,
-    },
-    {
-      label: "Letak laut Indonesia yang strategis",
-      value: false,
-    },
-    {
-      label: "Kenyataan bahwa masyarakat Indonesia membuang sampah di laut",
+      label: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
       value: false,
     },
     {
       label:
-        "Pengelolaan dan kebijakan penanggulangan sampah di Indonesia belum baik",
+        "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
+      value: false,
+    },
+    {
+      label: "Pernyataan seorang peneliti tanpa data pemodelan",
+      value: false,
+    },
+    {
+      label: "Penilaian umum terhadap kebijakan sampah Indonesia",
       value: false,
     },
     {
       label:
-        "Hasil penelitian dari jurnal yang diterbitkan di Jurnal Marine Debris Pollution",
+        "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
       value: true,
     },
   ],

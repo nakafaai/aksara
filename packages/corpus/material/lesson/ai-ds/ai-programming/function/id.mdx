@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Konsep Dasar Fungsi
 
-Fungsi dalam Python adalah blok kode yang dapat digunakan berulang kali untuk melakukan tugas tertentu. Bayangkan fungsi seperti mesin kopi otomatis yang kamu berikan bahan (input), kemudian mesin tersebut memproses dan menghasilkan kopi (output). Setiap kali kamu ingin kopi, kamu tidak perlu membuat mesin baru, cukup gunakan mesin yang sama.
+Fungsi memberi nama pada operasi yang dapat digunakan ulang. Parameter menjelaskan input yang diterima, body menjalankan pekerjaan, dan statement `return` dapat memberikan hasil kepada pemanggil.
 
 Dalam pemrograman, fungsi membantu kita menghindari penulisan kode yang sama berulang kali. Fungsi memiliki nama, dapat menerima parameter (data masukan), dan dapat mengembalikan nilai.
 
@@ -42,7 +42,7 @@ Komponen fungsi terdiri dari:
 
 ## Cara Kerja Pemanggilan Fungsi
 
-Ketika kamu memanggil fungsi, Python akan menjalankan kode di dalam fungsi tersebut. Mari kita lihat contoh sederhana bagaimana fungsi bekerja.
+Pemanggilan fungsi mengevaluasi ekspresi callable, mengikat argumen yang diberikan ke parameter, lalu mengeksekusi body fungsi di frame lokal baru.
 
 <CodeBlock
   data={[
@@ -66,10 +66,10 @@ print(sapa("Bob"))  # Output: Halo, Bob!`
 
 Proses yang terjadi saat pemanggilan fungsi:
 
-1. Python mencari definisi fungsi dengan nama yang dipanggil
-2. Argumen yang diberikan dikirim ke parameter fungsi
-3. Kode di dalam fungsi dieksekusi
-4. Jika ada `return`, nilai dikembalikan ke tempat pemanggilan
+1. Python me-resolve nama atau ekspresi menjadi objek callable
+2. Argument binding mencocokkan nilai yang diberikan dengan signature fungsi
+3. Python mengeksekusi body dalam scope lokal baru
+4. `return` mengakhiri pemanggilan dengan nilai; mencapai akhir fungsi mengembalikan `None`
 
 ## Parameter dan Argumen
 
@@ -109,7 +109,7 @@ Aturan penting dalam penggunaan parameter:
 
 ### Parameter dengan Jumlah Variabel
 
-Python memungkinkan fungsi menerima jumlah argumen yang tidak terbatas menggunakan `*args` dan `**kwargs`.
+Python memungkinkan signature mengumpulkan jumlah argumen yang bervariasi melalui `*args` dan `**kwargs`. Batas praktis tetap ditentukan oleh resource dan pekerjaan yang dilakukan fungsi.
 
 <CodeBlock
   data={[
@@ -290,7 +290,7 @@ Docstring adalah string literal yang muncul sebagai pernyataan pertama dalam def
     Menghitung faktorial dari bilangan bulat positif.
 
     Parameter:
-        n (int): Bilangan bulat positif
+        n (int): Bilangan bulat nonnegatif
 
     Returns:
         int: Nilai faktorial dari n
@@ -333,7 +333,7 @@ Konvensi penulisan docstring yang baik:
 
 ## Fungsi Bersarang dan Closure
 
-Python memungkinkan definisi fungsi di dalam fungsi lain. Fungsi dalam dapat mengakses variabel dari fungsi luar, menciptakan konsep yang disebut closure.
+Python mengizinkan definisi fungsi di dalam fungsi lain. Ketika inner function yang dikembalikan mempertahankan free variable dari enclosing scope, fungsi dan environment yang dipertahankan itu membentuk closure.
 
 <CodeBlock
   data={[
@@ -386,54 +386,39 @@ print(calc['kali'](6, 7))    # Output: 42`
 
 ## Penanganan Error dalam Fungsi
 
-Fungsi yang baik harus dapat menangani situasi error dengan graceful. Python menyediakan mekanisme exception handling untuk menangani kesalahan yang mungkin terjadi.
+Fungsi perlu menyatakan input yang diterima dan gagal secara eksplisit ketika kontrak itu dilanggar. Tangkap exception hanya ketika kode dapat memulihkan keadaan, menambah konteks yang berguna, atau menyajikan kegagalan kepada pengguna.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "error_handling.py",
-      code: `def bagi_aman(pembilang, penyebut):
-    """
-    Melakukan pembagian dengan penanganan error.
-
-    Returns:
-        tuple: (hasil, pesan_error)
-    """
-    try:
-        hasil = pembilang / penyebut
-        return hasil, None
-    except ZeroDivisionError:
-        return None, "Error: Tidak dapat membagi dengan nol"
-    except TypeError:
-        return None, "Error: Input harus berupa angka"
+      code: `def bagi(pembilang, penyebut):
+    """Membagi dua bilangan riil dengan kontrak input eksplisit."""
+    if not isinstance(pembilang, (int, float)):
+        raise TypeError("Pembilang harus berupa bilangan riil")
+    if not isinstance(penyebut, (int, float)):
+        raise TypeError("Penyebut harus berupa bilangan riil")
+    if penyebut == 0:
+        raise ValueError("Penyebut tidak boleh nol")
+    return pembilang / penyebut
 
 def konversi_ke_int(nilai):
-    """Konversi nilai ke integer dengan validasi"""
+    """Konversi nilai yang didukung dan pertahankan error dari Python."""
+    return int(nilai)
+
+# Pemanggilan yang berhasil tetap langsung
+print(f"Hasil pembagian: {bagi(10, 2)}")
+# Output: Hasil pembagian: 5.0
+print(konversi_ke_int("123"))
+# Output: 123
+
+# Tangkap di boundary presentasi tempat pemulihan memungkinkan
+for nilai in ("abc", [1, 2]):
     try:
-        return int(nilai)
-    except ValueError:
-        print(f"Warning: '{nilai}' tidak dapat dikonversi ke integer")
-        return None
-    except TypeError:
-        print("Error: Input tidak valid untuk konversi")
-        return None
-
-# Contoh penggunaan
-hasil, error = bagi_aman(10, 2)
-if error:
-    print(error)
-else:
-    print(f"Hasil pembagian: {hasil}")  # Output: Hasil pembagian: 5.0
-
-hasil, error = bagi_aman(10, 0)
-if error:
-    print(error)  # Output: Error: Tidak dapat membagi dengan nol
-
-# Test konversi
-angka1 = konversi_ke_int("123")    # Berhasil, return 123
-angka2 = konversi_ke_int("abc")    # Output: Warning: 'abc' tidak dapat dikonversi ke integer
-angka3 = konversi_ke_int([1, 2])   # Output: Error: Input tidak valid untuk konversi`
+        print(konversi_ke_int(nilai))
+    except (TypeError, ValueError) as error:
+        print(f"Tidak dapat mengonversi {nilai!r}: {error}")`
     }
   ]}
 />

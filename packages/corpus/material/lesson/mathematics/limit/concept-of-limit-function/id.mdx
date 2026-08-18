@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Konsep Limit Fungsi",
-    description: "Pahami limit fungsi melalui contoh intuitif dan tabel nilai. Pelajari limit kiri/kanan, definisi formal, dan selesaikan bentuk tak tentu.",
+    description: "Pahami limit melalui tabel nilai, perilaku satu sisi, definisi epsilon-delta, dan contoh yang dibahas tuntas.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Limit",
@@ -8,29 +8,29 @@ export const metadata = {
 
 ## Memahami Limit Secara Intuitif
 
-Bayangkan kamu sedang berjalan menuju pintu rumah. Semakin dekat kamu ke pintu, semakin jelas kamu bisa melihat detail pintunya. Dalam matematika, **limit** bekerja dengan cara yang serupa. Limit menggambarkan nilai yang didekati oleh suatu fungsi ketika variabel inputnya mendekati suatu nilai tertentu.
+**Limit** menanyakan perilaku nilai keluaran di sekitar suatu titik ketika input mendekati titik tersebut. Pertanyaan awalnya **bukan** nilai fungsi tepat di titik itu. Perbedaan ini memungkinkan kita membahas lubang yang dapat dihilangkan, lompatan, atau asimtot tegak tanpa menganggap fungsi harus terdefinisi di titik tersebut.
 
-Konsep limit sangat fundamental dalam kalkulus karena menjadi dasar untuk memahami turunan, integral, dan kontinuitas fungsi. Limit membantu kita memahami perilaku fungsi di sekitar titik tertentu, bahkan ketika fungsi tersebut tidak terdefinisi tepat di titik itu.
+Limit menjadi bahasa untuk mendefinisikan kontinuitas, turunan, dan integral tentu. Kita akan membaca perilakunya terlebih dahulu dari tabel nilai, lalu menghubungkan intuisi itu dengan limit satu sisi dan definisi epsilon-delta yang tepat.
 
 ## Pendekatan Melalui Tabel Nilai
 
 Untuk memahami limit secara lebih konkret, mari kita lihat bagaimana nilai fungsi berubah ketika variabel mendekati suatu titik. Misalkan kita memiliki fungsi <InlineMath math="f(x) = x + 2" /> dan ingin melihat apa yang terjadi ketika <InlineMath math="x" /> mendekati <InlineMath math="3" />.
 
-| <InlineMath math="x" /> | <InlineMath math="2.9" /> | <InlineMath math="2.99" /> | <InlineMath math="2.999" /> | ... | <InlineMath math="3.001" /> | <InlineMath math="3.01" /> | <InlineMath math="3.1" /> |
+| <InlineMath math="x" /> | <InlineMath math="2{,}9" /> | <InlineMath math="2{,}99" /> | <InlineMath math="2{,}999" /> | ... | <InlineMath math="3{,}001" /> | <InlineMath math="3{,}01" /> | <InlineMath math="3{,}1" /> |
 |-------------|-----|------|-------|-----|-------|------|-----|
-| <InlineMath math="f(x)" /> | <InlineMath math="4.9" /> | <InlineMath math="4.99" /> | <InlineMath math="4.999" /> | ... | <InlineMath math="5.001" /> | <InlineMath math="5.01" /> | <InlineMath math="5.1" /> |
+| <InlineMath math="f(x)" /> | <InlineMath math="4{,}9" /> | <InlineMath math="4{,}99" /> | <InlineMath math="4{,}999" /> | ... | <InlineMath math="5{,}001" /> | <InlineMath math="5{,}01" /> | <InlineMath math="5{,}1" /> |
 
 Dari tabel di atas, kita dapat melihat bahwa ketika <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kiri (nilai <InlineMath math="x < 3" />) maupun kanan (nilai <InlineMath math="x > 3" />), nilai <InlineMath math="f(x)" /> mendekati <InlineMath math="5" />. **Nilai pendekatan inilah yang disebut limit**.
 
-## Definisi Formal Limit
+## Notasi, Limit Satu Sisi, dan Makna Formal
 
-Secara matematis, limit dapat didefinisikan sebagai berikut:
+Notasi baku untuk limit adalah:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
-Definisi ini dibaca sebagai "**limit <InlineMath math="f(x)" /> ketika <InlineMath math="x" /> mendekati <InlineMath math="c" /> sama dengan <InlineMath math="L" />**".
+Notasi ini dibaca sebagai "**limit <InlineMath math="f(x)" /> ketika <InlineMath math="x" /> mendekati <InlineMath math="c" /> sama dengan <InlineMath math="L" />**".
 
-Syarat agar limit ini ada adalah:
+Jika <InlineMath math="c" /> merupakan titik interior dan fungsi terdefinisi pada kedua sisi di sekitar <InlineMath math="c" />, limit dua sisi ada tepat ketika:
 - **Limit kiri** dan **limit kanan** harus ada
 - Limit kiri harus **sama dengan** limit kanan
 - Nilai limit tersebut adalah <InlineMath math="L" />
@@ -42,7 +42,13 @@ Secara lebih formal, limit kiri dan kanan dapat ditulis sebagai:
 <BlockMath math="\lim_{x \to c^+} f(x) = L \quad \text{(limit kanan: } x \text{ mendekati} c \text{ dari kanan)}" />
 </MathContainer>
 
-Jika kedua limit ini sama, maka <InlineMath math="\lim_{x \to c} f(x) = L" />. Jika berbeda, maka limit tidak ada.
+Jika kedua limit ini sama, maka <InlineMath math="\lim_{x \to c} f(x) = L" />. Jika berbeda, limit dua sisi tidak ada. Pada ujung daerah asal, hanya limit satu sisi dari arah yang termasuk dalam daerah asal yang relevan.
+
+Definisi epsilon-delta berikut memberi makna matematis yang tepat pada kata "mendekati":
+
+<BlockMath math="\forall \varepsilon>0\;\exists\delta>0:\quad 0<|x-c|<\delta\;\Longrightarrow\;|f(x)-L|<\varepsilon" />
+
+Artinya, untuk setiap toleransi keluaran <InlineMath math="\varepsilon>0" /> sekecil apa pun, kita dapat memilih toleransi masukan <InlineMath math="\delta>0" /> sehingga <InlineMath math="f(x)" /> berjarak kurang dari <InlineMath math="\varepsilon" /> terhadap <InlineMath math="L" /> ketika <InlineMath math="x" /> berjarak kurang dari <InlineMath math="\delta" /> terhadap <InlineMath math="c" />, tetapi tidak sama dengannya. Syarat <InlineMath math="0<|x-c|" /> menjelaskan mengapa nilai <InlineMath math="f(c)" /> **tidak menentukan limit dengan sendirinya**.
 
 ## Penerapan Limit
 
@@ -69,7 +75,7 @@ Jika kita substitusi langsung <InlineMath math="x = 2" />, kita mendapat bentuk 
 <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Karena kita menghitung limit ketika <InlineMath math="x" /> **mendekati** <InlineMath math="2" /> (bukan **sama dengan** <InlineMath math="2" />), maka <InlineMath math="x \neq 2" /> dan kita dapat membatalkan <InlineMath math="(x - 2)" />:
+Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 2" />, kita dapat membatalkan <InlineMath math="(x - 2)" /> sebelum menilai bentuk yang telah disederhanakan:
 
 <BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
@@ -99,7 +105,7 @@ Beberapa sifat penting yang memudahkan perhitungan limit:
 
 4. Jika <InlineMath math="f(x) = \begin{cases} x + 1, & x < 2 \\ 3x - 2, & x \geq 2 \end{cases}" />, tentukan <InlineMath math="\lim_{x \to 2} f(x)" />
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -116,7 +122,7 @@ Beberapa sifat penting yang memudahkan perhitungan limit:
    <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
    </MathContainer>
 
-   Karena <InlineMath math="x" /> mendekati <InlineMath math="1" /> (bukan sama dengan <InlineMath math="1" />), maka <InlineMath math="x \neq 1" /> dan kita dapat membatalkan <InlineMath math="(x - 1)" />:
+   Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 1" />, kita dapat membatalkan <InlineMath math="(x - 1)" /> sebelum menilai bentuk yang telah disederhanakan:
 
    <BlockMath math="= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
@@ -136,7 +142,7 @@ Beberapa sifat penting yang memudahkan perhitungan limit:
 
    <BlockMath math="\lim_{x \to 2^-} f(x) = \lim_{x \to 2^-} (x + 1) = 2 + 1 = 3" />
 
-   **Limit kanan** (ketika <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kanan, maka <InlineMath math="x \geq 2" />):
+   **Limit kanan** (ketika <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kanan, sehingga input di sekitarnya memenuhi <InlineMath math="x > 2" />):
 
    <BlockMath math="\lim_{x \to 2^+} f(x) = \lim_{x \to 2^+} (3x - 2) = 3(2) - 2 = 6 - 2 = 4" />
 

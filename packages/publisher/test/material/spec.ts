@@ -64,10 +64,12 @@ export function materialManifest(input: {
         authoringComponents: [
           { name: "BlockMath", version: 1 },
           { name: "InlineMath", version: 1 },
+          { name: "MathContainer", version: 1 },
         ],
         supportedComponents: [
           { name: "BlockMath", version: 1 },
           { name: "InlineMath", version: 1 },
+          { name: "MathContainer", version: 1 },
         ],
       },
       domains: testRendererDomains({

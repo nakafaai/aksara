@@ -3,55 +3,51 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "It is definitely true that traditional clothing depicts a geographic region or historical time period",
+      label: "Every traditional costume must be made by a relative",
       value: false,
     },
     {
       label:
-        "It is possibly true that traditional clothing reflects a specific geographic culture",
+        "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
       value: true,
     },
     {
-      label:
-        "It is definitely false that traditional clothing is owned by a community that is a national cultural heritage",
+      label: "Traditional costumes are worn only at public celebrations",
       value: false,
     },
     {
       label:
-        "It is possibly false that weddings in a region wear traditional clothing to elevate social status",
+        "Local craftspeople have no role because knowledge is transmitted only within families",
       value: false,
     },
     {
       label:
-        "The existence of traditional clothing in a certain region does not depict its culture",
+        "Wearing different traditional costumes prevents people from feeling a sense of recognition",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Pasti benar bahwa pakaian adat itu menggambarkan wilayah geografis atau periode waktu bersejarah",
+      label: "Setiap busana tradisional harus dibuat oleh anggota keluarga",
       value: false,
     },
     {
       label:
-        "Mungkin benar bahwa pakaian adat itu mencerminkan budaya geografis tertentu",
+        "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
       value: true,
     },
     {
-      label:
-        "Pasti salah pakaian adat itu dimiliki oleh masyarakat yang merupakan warisan budaya bangsa",
+      label: "Busana tradisional hanya dikenakan dalam perayaan publik",
       value: false,
     },
     {
       label:
-        "Mungkin salah bahwa perkawinan di suatu daerah mengenakan pakaian adat untuk mengangkat status sosial",
+        "Perajin lokal tidak berperan karena pengetahuan hanya diwariskan dalam keluarga",
       value: false,
     },
     {
       label:
-        "Keberadaan pakaian adat di wilayah tertentu tidak menggambarkan budayanya",
+        "Penggunaan beragam busana tradisional menghalangi orang untuk merasa saling mengenali",
       value: false,
     },
   ],

@@ -10,16 +10,14 @@ export const metadata = {
 
 ## Konsep Vektor Dua Dimensi
 
-Pada sistem koordinat Kartesius, setiap titik pada bidang dapat dinyatakan dengan pasangan angka <InlineMath math="(x, y)" />, di mana <InlineMath math="x" /> adalah posisi horizontal dan <InlineMath math="y" /> adalah posisi vertikal. Titik pangkal koordinat adalah <InlineMath math="O(0, 0)" />.
+Pada sistem koordinat Kartesius, setiap titik pada bidang dapat dinyatakan dengan pasangan bilangan <InlineMath math="(x, y)" />. Nilai <InlineMath math="x" /> menunjukkan posisi horizontal, sedangkan <InlineMath math="y" /> menunjukkan posisi vertikal. Titik asal koordinat adalah <InlineMath math="O(0, 0)" />.
 
-Jika kita tarik garis lurus dari titik pangkal <InlineMath math="O" /> ke titik lain, misalnya <InlineMath math="Q(x, y)" />, kita mendapatkan sebuah **vektor**. Vektor ini sering ditulis sebagai <InlineMath math="\overrightarrow{OQ}" />. Vektor memiliki **besar** (panjang garis) dan **arah** (ditunjukkan oleh panah).
+Jika kita menggambar ruas garis berarah dari titik asal <InlineMath math="O" /> ke titik lain, misalnya <InlineMath math="Q(x, y)" />, kita memperoleh sebuah **vektor**. Vektor ini ditulis sebagai <InlineMath math="\overrightarrow{OQ}" />. **Besar** vektor adalah panjang ruas garisnya, sedangkan **arahnya** bergerak dari titik awal menuju ujung panah.
 
 Untuk memudahkan, kita gunakan **vektor satuan**. Vektor satuan adalah vektor yang panjangnya <InlineMath math="1 \text{ satuan}" />.
 
-- <InlineMath math="\mathbf{i}" /> adalah vektor satuan searah sumbu-
-  <InlineMath math="x" /> positif (horizontal).
-- <InlineMath math="\mathbf{j}" /> adalah vektor satuan searah sumbu-
-  <InlineMath math="y" /> positif (vertikal).
+- <InlineMath math="\mathbf{i}" /> adalah vektor satuan searah sumbu <InlineMath math="x" /> positif (horizontal).
+- <InlineMath math="\mathbf{j}" /> adalah vektor satuan searah sumbu <InlineMath math="y" /> positif (vertikal).
 
 Vektor <InlineMath math="\overrightarrow{OQ}" /> dapat dinyatakan sebagai kombinasi dari pergerakan horizontal sejauh <InlineMath math="x" /> dan pergerakan vertikal sejauh <InlineMath math="y" />. Dalam bentuk vektor satuan, kita tulis:
 
@@ -29,22 +27,18 @@ Vektor <InlineMath math="\overrightarrow{OQ}" /> dapat dinyatakan sebagai kombin
 
 Nilai <InlineMath math="x" /> dan <InlineMath math="y" /> pada vektor <InlineMath math="\overrightarrow{OQ} = x\mathbf{i} + y\mathbf{j}" /> disebut **komponen** vektor.
 
-- <InlineMath math="x" /> adalah **komponen horizontal**. Ini seperti bayangan vektor
-  pada sumbu-
-  <InlineMath math="x" /> jika disinari dari atas.
-- <InlineMath math="y" /> adalah **komponen vertikal**. Ini seperti bayangan vektor
-  pada sumbu-
-  <InlineMath math="y" /> jika disinari dari samping.
+- <InlineMath math="x" /> adalah **komponen skalar horizontal**. Proyeksi vektor yang bersesuaian pada sumbu <InlineMath math="x" /> adalah <InlineMath math="x\mathbf{i}" />.
+- <InlineMath math="y" /> adalah **komponen skalar vertikal**. Proyeksi vektor yang bersesuaian pada sumbu <InlineMath math="y" /> adalah <InlineMath math="y\mathbf{j}" />.
 
 Vektor yang memiliki dua komponen seperti ini disebut **vektor berdimensi dua**.
 
-**Panjang** atau **besar** vektor <InlineMath math="\overrightarrow{OQ}" />, ditulis sebagai <InlineMath math="|\overrightarrow{OQ}|" />, adalah jarak dari titik pangkal <InlineMath math="O" /> ke titik ujung <InlineMath math="Q" />. Jika <InlineMath math="Q(x,y)" /> adalah titik ujung vektor dan <InlineMath math="R(x,0)" /> adalah proyeksi titik <InlineMath math="Q" /> pada sumbu-<InlineMath math="x" />, kita bisa menghitungnya menggunakan teorema Pythagoras pada segitiga siku-siku <InlineMath math="ORQ" />:
+**Panjang** atau **besar** vektor <InlineMath math="\overrightarrow{OQ}" />, ditulis sebagai <InlineMath math="|\overrightarrow{OQ}|" />, adalah jarak dari titik asal <InlineMath math="O" /> ke titik ujung <InlineMath math="Q" />. Jika <InlineMath math="Q(x,y)" /> adalah titik ujung dan <InlineMath math="R(x,0)" /> adalah proyeksi <InlineMath math="Q" /> pada sumbu <InlineMath math="x" />, segitiga siku-siku <InlineMath math="ORQ" /> memberikan besar vektor melalui teorema Pythagoras:
 
 <BlockMath math="|\overrightarrow{OQ}| = \sqrt{x^2 + y^2}" />
 
 ## Visualisasi Vektor Dua Dimensi
 
-Perhatikan visualisasi vektor berikut untuk memahami konsep vektor pada bidang Kartesius:
+Visualisasi berikut menghubungkan vektor, komponen-komponennya, dan besarnya pada bidang Kartesius:
 
 <Vector3d
   title="Vektor pada Bidang Koordinat"
@@ -76,11 +70,11 @@ Perhatikan visualisasi vektor berikut untuk memahami konsep vektor pada bidang K
   ]}
 />
 
-Di visualisasi, kita tidak memakai sumbu-<InlineMath math="z" />, karena kita berada pada bidang dua dimensi.
+Sumbu <InlineMath math="z" /> tidak ditampilkan karena vektor seluruhnya berada pada bidang dua dimensi.
 
 Pada visualisasi di atas:
 
 - Vektor <InlineMath math="\overrightarrow{OQ}" /> (hijau muda) memiliki titik awal <InlineMath math="O(0,0)" /> dan titik akhir <InlineMath math="Q(4,3)" />
-- Komponen-<InlineMath math="X" /> (biru muda) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="x" />, yaitu <InlineMath math="4\mathbf{i}" />
-- Komponen-<InlineMath math="Y" /> (kuning) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="y" />, yaitu <InlineMath math="3\mathbf{j}" />
+- Komponen-<InlineMath math="x" /> (biru muda) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="x" />, yaitu <InlineMath math="4\mathbf{i}" />
+- Komponen-<InlineMath math="y" /> (kuning) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="y" />, yaitu <InlineMath math="3\mathbf{j}" />
 - Panjang vektor <InlineMath math="|\overrightarrow{OQ}| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5" />

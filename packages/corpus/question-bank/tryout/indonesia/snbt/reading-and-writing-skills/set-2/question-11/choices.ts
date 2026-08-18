@@ -3,46 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Development of the Agricultural Sector",
+      label: "The Development of Indonesian Agriculture",
       value: false,
     },
     {
-      label: "The Role of the Agricultural Sector in Indonesia",
+      label: "A Profile from Indonesia's 2023 Agricultural Census",
       value: true,
     },
     {
-      label: "Supporting the Movement of the Indonesian Economy",
+      label: "The Decline in Individual Agricultural Holdings",
       value: false,
     },
     {
-      label: "Why Must the Agricultural Sector Be Developed?",
+      label: "Why Does Indonesia Need Agricultural Modernization?",
       value: false,
     },
     {
-      label:
-        "Indonesia's National Economy is Supported by the Agricultural Sector",
+      label: "The 2023 Agricultural Census Was Conducted Across Indonesia",
       value: false,
     },
   ],
   id: [
     {
-      label: "Pengembangan Sektor Pertanian",
+      label: "Perkembangan Pertanian Indonesia",
       value: false,
     },
     {
-      label: "Peran Sektor Pertanian di Indonesia",
+      label: "Potret dari Sensus Pertanian Indonesia 2023",
       value: true,
     },
     {
-      label: "Menopang Pergerakan Perekonomian Indonesia",
+      label: "Penurunan Usaha Pertanian Perorangan",
       value: false,
     },
     {
-      label: "Mengapa Sektor Pertanian Harus Dikembangkan?",
+      label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
       value: false,
     },
     {
-      label: "Perekonomian Nasional Indonesia Ditopang oleh Sektor Pertanian",
+      label: "Sensus Pertanian 2023 Dilaksanakan di Seluruh Indonesia",
       value: false,
     },
   ],

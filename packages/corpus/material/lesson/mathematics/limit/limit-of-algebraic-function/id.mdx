@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Memahami Limit Fungsi Aljabar
 
-Bayangkan kamu sedang mengendarai mobil menuju suatu tempat. Semakin dekat kamu dengan tujuan, semakin jelas kamu dapat melihat detailnya. Dalam matematika, **limit fungsi aljabar** bekerja dengan cara serupa. Limit menunjukkan nilai yang didekati oleh fungsi aljabar ketika variabel inputnya mendekati nilai tertentu.
+Pada **limit fungsi aljabar**, bentuk ekspresi menentukan operasi yang dapat dibenarkan. Polinomial dapat dinilai dengan substitusi langsung. Sebaliknya, ekspresi rasional atau bentuk akar mungkin menyimpan faktor yang dapat dihilangkan, batas daerah asal, atau asimtot tegak yang harus dianalisis terlebih dahulu.
 
-Fungsi aljabar adalah fungsi yang terbentuk dari kombinasi operasi aljabar seperti penjumlahan, pengurangan, perkalian, pembagian, dan perpangkatan dengan pangkat rasional. Contohnya adalah fungsi polinomial seperti <InlineMath math="f(x) = x^2 + 3x - 2" /> dan fungsi rasional seperti <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />.
+Fungsi aljabar dibangun dari operasi seperti penjumlahan, pengurangan, perkalian, pembagian, dan pangkat bereksponen rasional. Contohnya adalah polinomial <InlineMath math="f(x) = x^2 + 3x - 2" /> dan fungsi rasional <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. Kita akan memakai substitusi sebagai langkah diagnosis, lalu memfaktorkan, merasionalkan, atau memeriksa perilaku satu sisi jika substitusi belum menentukan limit.
 
 ## Sifat Fundamental Limit Aljabar
 
@@ -30,11 +30,11 @@ Karena fungsi polinomial kontinu di semua titik, kita dapat mensubstitusi langsu
 
 ### Limit Fungsi Rasional
 
-Fungsi rasional memiliki bentuk <InlineMath math="\frac{P(x)}{Q(x)}" /> dimana <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> adalah polinomial. Perhitungan limitnya bergantung pada nilai penyebut:
+Fungsi rasional memiliki bentuk <InlineMath math="\frac{P(x)}{Q(x)}" />, dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> berupa polinomial. Substitusi langsung menunjukkan metode yang perlu dicoba berikutnya:
 
 - **Jika penyebut tidak nol:** Gunakan substitusi langsung seperti fungsi polinomial.
 
-- **Jika penyebut nol:** Kita memperoleh bentuk tak tentu yang memerlukan manipulasi aljabar.
+- **Jika penyebut nol:** Periksa pembilang, tanda, dan perilaku satu sisi. Hanya <InlineMath math="\frac{0}{0}" /> yang merupakan bentuk tak tentu dan mungkin dapat diselesaikan dengan penyederhanaan aljabar. Pembilang tak nol dibagi nol bukan bentuk tak tentu.
 
 ## Mengatasi Bentuk Tak Tentu
 
@@ -110,7 +110,14 @@ Sehingga:
 
 Substitusi <InlineMath math="x = 3" />: <InlineMath math="\frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
 
-> Jika pembilang bukan nol dan penyebut nol (seperti <InlineMath math="\frac{a}{0}" /> dengan <InlineMath math="a \neq 0" />), limit menuju tak hingga. Jika pembilang dan penyebut keduanya nol (bentuk <InlineMath math="\frac{0}{0}" />), gunakan teknik pemfaktoran atau rasionalisasi.
+> Jika substitusi langsung menghasilkan <InlineMath math="\frac{a}{0}" /> dengan <InlineMath math="a \neq 0" />, hasil itu saja belum cukup. Periksa tanda dan kedua limit satu sisi. Sebagai contoh:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
+<BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
+</MathContainer>
+
+Karena kedua limit satu sisi berbeda, <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> tidak ada sebagai limit dua sisi. Sebaliknya, jika substitusi menghasilkan <InlineMath math="\frac{0}{0}" />, faktorkan, rasionalkan, atau sederhanakan bentuknya terlebih dahulu.
 
 ## Kontinuitas dan Limit
 
@@ -120,7 +127,7 @@ Suatu fungsi <InlineMath math="f" /> dikatakan **kontinu** di <InlineMath math="
 2. <InlineMath math="\lim_{x \to c} f(x)" /> ada
 3. <InlineMath math="\lim_{x \to c} f(x) = f(c)" />
 
-Fungsi polinomial kontinu di semua titik, sedangkan fungsi rasional kontinu di semua titik kecuali dimana penyebutnya nol.
+Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di setiap titik dalam daerah asalnya, yaitu ketika penyebutnya tidak nol.
 
 ## Latihan
 
@@ -134,7 +141,7 @@ Fungsi polinomial kontinu di semua titik, sedangkan fungsi rasional kontinu di s
 
 5. Hitung <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 

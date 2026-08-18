@@ -9,9 +9,9 @@ export const metadata = {
 
 ## Konsep Dasar Tembereng
 
-Tembereng adalah salah satu bagian dari lingkaran yang sering kita jumpai dalam kehidupan sehari-hari. Bayangkan sebuah kue bundar yang dipotong dengan pisau lurus, bagian yang terpisah dari kue tersebut mirip dengan konsep tembereng dalam geometri lingkaran.
+Ketika sebuah daerah lingkaran dipotong oleh garis lurus, bagian yang terpisah menyerupai tembereng lingkaran.
 
-Tembereng merupakan daerah di dalam lingkaran yang dibatasi oleh sebuah tali busur dan busur lingkaran yang berada di depan tali busur tersebut. Dengan kata lain, tembereng adalah bagian lingkaran yang "terpotong" oleh garis lurus yang menghubungkan dua titik pada keliling lingkaran.
+Sebuah tali busur dan salah satu dari dua busur yang menghubungkan kedua ujungnya membatasi satu tembereng lingkaran. Busur kecil membatasi tembereng kecil, sedangkan busur besar yang tersisa membatasi tembereng besar. Diameter menjadi kasus batas ketika kedua tembereng berupa setengah lingkaran.
 
 ## Perbedaan Busur dan Tembereng
 
@@ -118,7 +118,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
 <ContentStack>
 
 <LineEquation
-  title={<>Tembereng Minor (Sudut Pusat &lt; <InlineMath math="180^\circ" />)</>}
+  title={<>Tembereng Minor (<InlineMath math="\theta < 180^\circ" />)</>}
   description={<>Tembereng yang luasnya lebih kecil dibandingkan setengah lingkaran, terbentuk ketika sudut pusat kurang dari <InlineMath math="180^\circ" />. Contoh ini menunjukkan tembereng dengan sudut pusat <InlineMath math="120^\circ" />.</>}
   cameraPosition={[0, 0, 12]}
   showZAxis={false}
@@ -176,7 +176,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
         },
       ],
     },
-    // Arc sudut pusat untuk menunjukkan 120°
+    // Busur sudut pusat untuk menunjukkan 120°
     { kind: "circle-arc", color: "#d97706",
       lineWidth: 3,
       label: {
@@ -209,7 +209,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
 />
 
 <LineEquation
-  title={<>Tembereng Mayor (Sudut Pusat &gt; <InlineMath math="180^\circ" />)</>}
+  title={<>Tembereng Mayor (<InlineMath math="\theta > 180^\circ" />)</>}
   description={<>Tembereng yang luasnya lebih besar dibandingkan setengah lingkaran, terbentuk ketika sudut pusat lebih dari <InlineMath math="180^\circ" />. Contoh ini menunjukkan tembereng dengan sudut pusat <InlineMath math="240^\circ" />.</>}
   cameraPosition={[0, 0, 12]}
   showZAxis={false}
@@ -237,7 +237,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
         },
       ],
     },
-    // Jari-jari OA (menggunakan sudut yang berbeda untuk mayor)
+    // Jari-jari OA dengan sudut lain untuk tembereng besar
     {
       kind: "circle-radius", radius: 4, degrees: 45,
       color: "#0891b2",
@@ -267,7 +267,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
         },
       ],
     },
-    // Arc sudut pusat untuk menunjukkan 240° (menggunakan arc yang lebih besar)
+    // Busur sudut pusat untuk menunjukkan 240° dengan busur yang lebih besar
     { kind: "circle-arc", color: "#d97706",
       lineWidth: 3,
       label: {
@@ -288,15 +288,15 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
       smooth: false,
       lineWidth: 3,
     },
-    // Tembereng mayor (area yang diarsir)
+    // Tembereng besar (area yang diarsir)
     { kind: "circle-segment", color: "#65a30d",
       radius: 4,
       startDegrees: 45,
       sweepDegrees: 240,
       label: {
-        progress: 2 / 3,
+        progress: 1 / 2,
         text: "Tembereng Mayor",
-        offset: [0, -1.5, 0],
+        offset: [2.2, 0, 0],
       } },
   ]}
 />
@@ -304,12 +304,12 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
 </ContentStack>
 
 **Perbedaan Kunci:**
-- **Tembereng Minor**: sudut pusat <InlineMath math="\lt 180^\circ" />, luas tembereng <InlineMath math="\lt" /> luas setengah lingkaran
-- **Tembereng Mayor**: sudut pusat <InlineMath math="\gt 180^\circ" />, luas tembereng <InlineMath math="\gt" /> luas setengah lingkaran
+- **Tembereng Minor**: sudut pusat <InlineMath math="< 180^\circ" />, luas tembereng <InlineMath math="< \frac{1}{2}\pi r^2" />
+- **Tembereng Mayor**: sudut pusat <InlineMath math="> 180^\circ" />, luas tembereng <InlineMath math="> \frac{1}{2}\pi r^2" />
 
 ## Rumus Luas Tembereng
 
-Untuk menghitung luas tembereng, kita perlu memahami bahwa tembereng terbentuk dari juring yang dikurangi dengan segitiga yang dibentuk oleh dua jari-jari dan tali busur.
+Untuk menghitung luas tembereng kecil, kurangi juringnya dengan segitiga yang dibentuk oleh dua jari-jari dan tali busur.
 
 **Mengapa berbeda dengan rumus panjang busur?**
 - **Panjang Busur** adalah <InlineMath math="\frac{\alpha}{360^\circ} \times 2\pi r" /> (satuan: cm, m, dll.)
@@ -325,7 +325,14 @@ Untuk menghitung luas tembereng, kita perlu memahami bahwa tembereng terbentuk d
     <BlockMath math="\text{Luas Tembereng} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
     </MathContainer>
 
-    Di mana <InlineMath math="\alpha" /> adalah sudut pusat dalam derajat dan <InlineMath math="r" /> adalah jari-jari lingkaran.
+    Di sini <InlineMath math="0^\circ < \alpha < 180^\circ" /> adalah sudut pusat kecil dalam derajat dan <InlineMath math="r" /> adalah jari-jari lingkaran.
+
+    Untuk tembereng besar, gunakan dahulu sudut kecil pelengkap <InlineMath math="\beta=360^\circ-\alpha" />, lalu kurangi luas seluruh lingkaran dengan luas tembereng kecil tersebut:
+
+    <MathContainer>
+    <BlockMath math="\beta=360^\circ-\alpha" />
+    <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
+    </MathContainer>
 
 **Perhatikan perbedaan satuan:**
 - Panjang busur: <InlineMath math="\text{cm}" />, <InlineMath math="\text{m}" /> (satuan panjang)
@@ -422,7 +429,7 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
 
 ## Perhitungan Luas Tembereng
 
-Untuk memahami cara menghitung luas tembereng, mari kita gunakan contoh dengan sudut pusat <InlineMath math="90^\circ" /> dan jari-jari <InlineMath math="r = 10 \text{ cm}" />, sesuai dengan visualisasi komponen pembentuk tembereng di atas.
+Kita akan menghitung luas tembereng untuk sudut pusat <InlineMath math="\alpha = 90^\circ" /> dan jari-jari <InlineMath math="r = 10 \text{ cm}" />, sesuai visualisasi di atas.
 
 **Langkah** <InlineMath math="1" />: Menghitung Luas Juring
 
@@ -430,7 +437,7 @@ Untuk memahami cara menghitung luas tembereng, mari kita gunakan contoh dengan s
 <BlockMath math="\text{Luas Juring} = \frac{90^\circ}{360^\circ} \times \pi r^2" />
 <BlockMath math="= \frac{1}{4} \times \pi \times 10^2" />
 <BlockMath math="= \frac{1}{4} \times \pi \times 100" />
-<BlockMath math="= 25\pi \text{ cm}^2 = 78{,}5398 \text{ cm}^2" />
+<BlockMath math="= 25\pi \text{ cm}^2 \approx 78{,}5398 \text{ cm}^2" />
 </MathContainer>
 
 **Langkah** <InlineMath math="2" />: Menghitung Luas Segitiga
@@ -449,19 +456,19 @@ Untuk sudut <InlineMath math="90^\circ" />, segitiga yang terbentuk adalah segit
 <MathContainer>
 <BlockMath math="\text{Luas Tembereng} = \text{Luas Juring} - \text{Luas Segitiga}" />
 <BlockMath math="= 25\pi - 50" />
-<BlockMath math="= 78{,}5398 - 50" />
-<BlockMath math="= 28{,}5398 \text{ cm}^2" />
+<BlockMath math="\approx 78{,}5398 - 50" />
+<BlockMath math="\approx 28{,}5398 \text{ cm}^2" />
 </MathContainer>
 
 ## Latihan
 
 1. Sebuah lingkaran memiliki jari-jari <InlineMath math="7 \text{ cm}" />. Jika terdapat tembereng dengan sudut pusat <InlineMath math="60^\circ" />, tentukan luas tembereng tersebut.
 
-2. Diketahui sebuah tembereng memiliki luas <InlineMath math="15{,}7 \text{ cm}^2" /> pada lingkaran dengan jari-jari <InlineMath math="5 \text{ cm}" />. Tentukan besar sudut pusat yang membentuk tembereng tersebut.
+2. Sebuah tembereng kecil memiliki luas sekitar <InlineMath math="15{,}3546 \text{ cm}^2" /> pada lingkaran berjari-jari <InlineMath math="5 \text{ cm}" />. Tentukan besar sudut pusat kecil yang membentuk tembereng tersebut.
 
-3. Sebuah tangki berbentuk silinder dengan jari-jari <InlineMath math="2 \text{ meter}" /> berisi air hingga kedalaman <InlineMath math="1{,}5 \text{ meter}" /> dari dasar tangki. Tentukan luas permukaan air yang terlihat dari atas.
+3. Sebuah tangki silinder horizontal berjari-jari <InlineMath math="2 \text{ m}" /> berisi air hingga kedalaman <InlineMath math="1{,}5 \text{ m}" /> dari dasar. Tentukan luas penampang tangki yang terisi air.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Langkah Penyelesaian:**
 
@@ -487,16 +494,16 @@ Untuk sudut <InlineMath math="90^\circ" />, segitiga yang terbentuk adalah segit
 
    <MathContainer>
    <BlockMath math="\text{Luas Tembereng} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
-   <BlockMath math="= 25{,}6563 - 21{,}2176 = 4{,}4387 \text{ cm}^2" />
+   <BlockMath math="\approx 25{,}6563 - 21{,}2176 = 4{,}4387 \text{ cm}^2" />
    </MathContainer>
 
 2. **Langkah Penyelesaian:**
 
-   Diketahui: luas tembereng = <InlineMath math="15{,}7 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
+   Diketahui: luas tembereng <InlineMath math="\approx 15{,}3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
 
    Menggunakan rumus: <InlineMath math="\text{Luas Tembereng} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
 
-   Dengan trial dan pendekatan numerik atau menggunakan kalkulator grafik, diperoleh:
+   Selesaikan persamaan ini secara numerik pada interval sudut kecil <InlineMath math="0^\circ<\alpha<180^\circ" />. Hasilnya:
    <InlineMath math="\alpha \approx 120^\circ" />
 
    Verifikasi:
@@ -507,13 +514,13 @@ Untuk sudut <InlineMath math="90^\circ" />, segitiga yang terbentuk adalah segit
    <BlockMath math="\text{Luas Tembereng} = \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \approx 26{,}1799 - 10{,}8253 = 15{,}3546 \text{ cm}^2" />
    </MathContainer>
 
-   Hasil perhitungan (<InlineMath math="15{,}3546 \text{ cm}^2" />) sedikit berbeda dengan yang diberikan di soal (<InlineMath math="15{,}7 \text{ cm}^2" />). Perbedaan ini disebabkan oleh presisi nilai <InlineMath math="\pi" /> dan <InlineMath math="\sqrt{3}" /> yang digunakan. Dalam matematika, hasil perhitungan <InlineMath math="15{,}3546 \text{ cm}^2" /> adalah yang paling akurat.
+   Hasil ini sesuai dengan luas pada soal setelah pembulatan, sehingga sudut pusatnya sekitar <InlineMath math="120^\circ" />.
 
 3. **Langkah Penyelesaian:**
 
    Diketahui: jari-jari tangki = <InlineMath math="2 \text{ m}" />, kedalaman air = <InlineMath math="1{,}5 \text{ m}" />
 
-   Karena kedalaman air (<InlineMath math="1{,}5 \text{ m}" />) kurang dari jari-jari (<InlineMath math="2 \text{ m}" />), permukaan air berbentuk tembereng.
+   Karena kedalaman air (<InlineMath math="1{,}5 \text{ m}" />) kurang dari jari-jari (<InlineMath math="2 \text{ m}" />), bagian penampang lingkaran yang terisi air berbentuk tembereng minor.
 
    Untuk tangki silinder horizontal, kita menggunakan rumus khusus tembereng dengan tinggi tertentu.
 
@@ -523,24 +530,26 @@ Untuk sudut <InlineMath math="90^\circ" />, segitiga yang terbentuk adalah segit
    <BlockMath math="h = 1{,}5 \text{ m (tinggi air dari dasar)}" />
    </MathContainer>
 
-   Menggunakan rumus luas tembereng untuk segmen air pada tangki horizontal:
+   Gunakan rumus luas tembereng air pada tangki horizontal:
 
    <MathContainer>
    <BlockMath math="\text{Luas} = r^2 \times \left[\arccos\left(\frac{r-h}{r}\right) - \frac{r-h}{r} \times \sqrt{1-\left(\frac{r-h}{r}\right)^2}\right]" />
    </MathContainer>
 
+   Sudut yang dihasilkan <InlineMath math="\arccos" /> dinyatakan dalam radian, sesuai dengan rumus luas tersebut.
+
    Substitusi nilai:
 
    <MathContainer>
    <BlockMath math="\frac{r-h}{r} = \frac{2-1{,}5}{2} = 0{,}25" />
-   <BlockMath math="\arccos(0{,}25) = 1{,}3181 \text{ radian}" />
-   <BlockMath math="\sqrt{1-0{,}25^2} = \sqrt{0{,}9375} = 0{,}9682" />
+   <BlockMath math="\arccos(0{,}25) \approx 1{,}3181 \text{ radian}" />
+   <BlockMath math="\sqrt{1-0{,}25^2} = \sqrt{0{,}9375} \approx 0{,}9682" />
    </MathContainer>
 
-   Menghitung luas permukaan air:
+   Menghitung luas penampang yang terisi air:
 
    <MathContainer>
-   <BlockMath math="\text{Luas} = 4 \times [1{,}3181 - 0{,}25 \times 0{,}9682]" />
-   <BlockMath math="= 4 \times [1{,}3181 - 0{,}2421]" />
-   <BlockMath math="= 4 \times 1{,}0760 = 4{,}3040 \text{ m}^2" />
+   <BlockMath math="\text{Luas} = 4 \times [\arccos(0{,}25) - 0{,}25\sqrt{0{,}9375}]" />
+   <BlockMath math="\approx 4 \times 1{,}0760546" />
+   <BlockMath math="\approx 4{,}3042 \text{ m}^2" />
    </MathContainer>

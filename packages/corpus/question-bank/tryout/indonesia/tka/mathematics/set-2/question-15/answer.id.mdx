@@ -4,27 +4,30 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-<BlockMath math="\lim_{x \to -3} \frac{\frac{1}{ax} + \frac{1}{3}}{bx^3 + 27} = -\frac{1}{3^5}" />
-
-Samakan penyebut dari pembilangnya
-
-<BlockMath math="\lim_{x \to -3} \frac{\frac{3 + ax}{3ax(bx^3 + 27)}} = -\frac{1}{3^5}" />
-
-Untuk <InlineMath math="x = -3" /> maka
+Bentuk tak tentu yang disebutkan dalam soal berarti pembilang dan penyebut sama-sama bernilai nol saat <InlineMath math="x = -3" />. Dari pembilang diperoleh
 
 <MathContainer>
-<BlockMath math="3 + ax = 0" />
-<BlockMath math="3 - 3a = 0" />
+<BlockMath math="\frac{1}{a(-3)} + \frac{1}{3} = 0" />
+<BlockMath math="-1 + a = 0" />
 <BlockMath math="a = 1" />
 </MathContainer>
 
-Substitusikan <InlineMath math="x = -3" /> ke penyebut
+Dari penyebut diperoleh
 
 <MathContainer>
-<BlockMath math="bx^3 + 27 = 0" />
 <BlockMath math="b(-3)^3 + 27 = 0" />
 <BlockMath math="-27b + 27 = 0" />
 <BlockMath math="b = 1" />
 </MathContainer>
 
-Maka nilai dari <InlineMath math="a + b = 1 + 1 = 2" />.
+Kita dapat memeriksa bahwa kedua nilai tersebut memang menghasilkan limit yang diberikan dengan memfaktorkan penyebut.
+
+<MathContainer>
+<BlockMath math="\lim_{x \to -3}\frac{\frac{1}{x}+\frac{1}{3}}{x^3+27}
+=\lim_{x \to -3}\frac{x+3}{3x(x+3)(x^2-3x+9)}" />
+<BlockMath math="=\frac{1}{3(-3)(9+9+9)}
+=-\frac{1}{243}
+=-\frac{1}{3^5}" />
+</MathContainer>
+
+Jadi, <InlineMath math="a + b = 1 + 1 = 2" />.

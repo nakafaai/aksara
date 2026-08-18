@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Lingkaran dan Tali Busur",
-  description: "Pelajari hubungan lingkaran dan tali busur, termasuk teorema, sifat, dan cara menghitung panjang tali busur lewat contoh serta pembahasan.",
+  description: "Hubungkan panjang tali busur dengan jari-jari, sudut pusat, dan jarak dari pusat, lalu terapkan teoremanya dalam pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Lingkaran",
@@ -219,9 +219,6 @@ Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan mem
     },
     {
       points: (() => {
-        const midAngle = (Math.PI / 4 + (3 * Math.PI) / 4) / 2;
-        const midX = 5 * Math.cos(midAngle);
-        const midY = 5 * Math.sin(midAngle);
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -242,8 +239,6 @@ Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan mem
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
           (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        const perpX = chordMidX + 0.5;
-        const perpY = chordMidY;
         return [
           { x: chordMidX - 0.3, y: chordMidY, z: 0 },
           { x: chordMidX - 0.3, y: chordMidY + 0.3, z: 0 },
@@ -272,7 +267,7 @@ Untuk menghitung panjang tali busur, kita dapat menggunakan rumus:
 Di mana:
 
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat yang menghadap tali busur (dalam radian)
+- <InlineMath math="\theta" /> = sudut pusat terkecil yang menghadap tali busur; gunakan mode kalkulator yang sesuai dengan satuan sudut
 
 Hubungan antara sudut pusat dan panjang tali busur dapat kita visualisasikan sebagai berikut:
 
@@ -474,16 +469,16 @@ showZAxis={false}
 
 Pada diagram di atas berlaku: <InlineMath math="PA \times PB = PC \times PD" />
 
-## Sudut Keliling yang Menghadap Tali Busur Sama
+## Sudut Keliling dalam Segmen yang Sama
 
-Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sama.
+Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sama jika titik sudutnya berada pada sisi yang sama terhadap tali busur tersebut.
 
 <LineEquation
-  title="Sudut Keliling Menghadap Tali Busur Sama"
+  title="Sudut Keliling dalam Segmen yang Sama"
   description={
     <>
-      Sudut keliling yang menghadap tali busur <InlineMath math="AB" /> memiliki
-      besar yang sama.
+      Kedua sudut keliling menghadap tali busur <InlineMath math="AB" /> dari
+      sisi yang sama, sehingga besarnya sama.
     </>
   }
   data={[
@@ -554,15 +549,15 @@ Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sam
   showZAxis={false}
 />
 
-Pada diagram di atas, <InlineMath math="\angle ACB = \angle ADB" /> karena keduanya menghadap tali busur <InlineMath math="AB" /> yang sama.
+Pada diagram di atas, <InlineMath math="\angle ACB = \angle ADB" /> karena kedua titik sudut berada pada sisi yang sama terhadap tali busur <InlineMath math="AB" /> dan kedua sudut menghadap tali busur tersebut.
 
 ## Apotema
 
-Apotema adalah jarak terpendek dari pusat lingkaran ke tali busur, yaitu garis yang tegak lurus dari pusat ke tali busur.
+Apotema tali busur adalah ruas garis yang ditarik tegak lurus dari pusat lingkaran ke tali busur. Panjangnya merupakan jarak terpendek antara pusat dan tali busur.
 
 <LineEquation
   title="Apotema pada Tali Busur"
-  description="Apotema adalah garis tegak lurus dari pusat ke tali busur."
+  description="Apotema tegak lurus terhadap tali busur dan menyatakan jaraknya dari pusat lingkaran."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -608,7 +603,7 @@ Apotema adalah jarak terpendek dari pusat lingkaran ke tali busur, yaitu garis y
       smooth: false,
       labels: [
         { text: <InlineMath math="M" />, at: 1, offset: [0.5, 0, 0] },
-        { text: "apotema", at: 0.5, offset: [1.2, 0, 0] },
+        { text: "apotema", at: 0, offset: [1.2, 1.5, 0] },
       ],
     },
     {
@@ -753,7 +748,7 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
 
 5. Buktikan bahwa tali busur terpanjang dalam lingkaran adalah diameter.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Menghitung panjang tali busur dan jaraknya dari pusat**
 
@@ -761,7 +756,7 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
 
    <MathContainer>
      <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right) = 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right)" />
-     <BlockMath math="l = 20 \times \sin(30^\circ) = 20 \times 0.5 = 10 \text{ cm}" />
+     <BlockMath math="l = 20 \times \sin(30^\circ) = 20 \times 0{,}5 = 10 \text{ cm}" />
      <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
      <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
    </MathContainer>
@@ -806,7 +801,7 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
 
 5. **Bukti diameter adalah tali busur terpanjang**
 
-   Untuk sebarang tali busur dengan sudut pusat <InlineMath math="\theta" />:
+   Untuk sebarang tali busur, ambil <InlineMath math="\theta" /> sebagai sudut pusat yang lebih kecil, sehingga <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
 
    <MathContainer>
      <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
@@ -817,7 +812,13 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
    Saat <InlineMath math="\theta = 180^\circ" />, tali busur melewati pusat lingkaran (diameter) dengan panjang:
 
    <MathContainer>
-     <BlockMath math="l_{max} = 2r \times 1 = 2r" />
+     <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
    </MathContainer>
 
    Terbukti bahwa diameter adalah tali busur terpanjang.
+
+## Sumber
+
+- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
+- [GeoGebra: Intersecting Chords Theorem](https://www.geogebra.org/m/JWQjwAgw)
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)

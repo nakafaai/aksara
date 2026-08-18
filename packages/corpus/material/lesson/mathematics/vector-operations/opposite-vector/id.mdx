@@ -1,114 +1,124 @@
-
-
 export const metadata = {
-  title: "Vektor Berkebalikan",
-  description: "Temukan vektor berkebalikan dengan magnitudo terbalik dan arah sama. Pelajari rumus, perhitungan, hubungan vektor satuan, dan aplikasi kristalografi.",
+  title: "Vektor Lawan",
+  description: "Pelajari cara vektor lawan mempertahankan panjang sambil membalik arah, lalu gunakan konsepnya pada penjumlahan, perpindahan, dan gaya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vektor dan Operasinya",
 };
 
-## Pengertian Vektor Berkebalikan
+## Memahami Vektor Lawan
 
-Vektor berkebalikan adalah vektor yang panjangnya merupakan kebalikan dari panjang vektor aslinya, tetapi arahnya tetap sama. Jika <InlineMath math="\vec{v}" /> adalah sebuah vektor, maka vektor berkebalikan dari <InlineMath math="\vec{v}" /> adalah vektor dengan panjang <InlineMath math="\frac{1}{|\vec{v}|}" />, di mana <InlineMath math="|\vec{v}|" /> adalah panjang vektor <InlineMath math="\vec{v}" />.
+Untuk vektor tak nol <InlineMath math="\vec{v}" />, **vektor lawannya** memiliki panjang yang sama, tetapi menunjuk ke arah yang tepat berlawanan. Vektor ini ditulis sebagai <InlineMath math="-\vec{v}" />.
 
-## Rumus Vektor Berkebalikan
+Jika <InlineMath math="\vec{v}" /> menyatakan perpindahan dari kiri ke kanan, maka <InlineMath math="-\vec{v}" /> menyatakan perpindahan yang sama panjangnya dari kanan ke kiri. Keduanya berbeda arah, bukan panjang.
 
-Jika kita memiliki sebuah vektor <InlineMath math="\vec{v}" />, maka vektor berkebalikan dari <InlineMath math="\vec{v}" /> dapat dirumuskan sebagai:
+## Rumus Vektor Lawan
 
-<BlockMath math="\vec{v}_{\text{berkebalikan}} = \frac{1}{|\vec{v}|^2} \cdot \vec{v}" />
+Mengalikan vektor dengan skalar <InlineMath math="-1" /> membalik tanda setiap komponennya:
 
-Dimana:
+<BlockMath math="-\vec{v}=(-1)\vec{v}" />
 
-- <InlineMath math="\vec{v}_{\text{berkebalikan}}" /> adalah vektor berkebalikan
-- <InlineMath math="\vec{v}" /> adalah vektor asli
-- <InlineMath math="|\vec{v}|" /> adalah panjang atau besar vektor <InlineMath math="\vec{v}" />
+Jika <InlineMath math="\vec{v}=(v_1,v_2,v_3)" />, maka:
+
+<BlockMath math="-\vec{v}=(-v_1,-v_2,-v_3)" />
+
+Keterangan:
+
+- <InlineMath math="\vec{v}" /> adalah vektor asli.
+- <InlineMath math="-\vec{v}" /> adalah vektor lawannya.
+- Faktor <InlineMath math="-1" /> membalik arah tanpa mengubah panjang.
 
 ## Contoh Perhitungan
 
-Misalkan kita memiliki vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />.
+Misalkan <InlineMath math="\overrightarrow{AB}=6\mathbf{i}+8\mathbf{j}" />.
 
-Pertama, kita hitung panjang vektor <InlineMath math="\overrightarrow{AB}" />:
+Panjangnya adalah:
 
-<BlockMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10" />
+<BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
 
-Kemudian, kita dapat mencari vektor berkebalikan dari <InlineMath math="\overrightarrow{AB}" />:
+Kalikan setiap komponen dengan <InlineMath math="-1" /> untuk mencari vektor lawannya:
 
-<BlockMath math="\overrightarrow{AB}_{\text{berkebalikan}} = \frac{1}{|\overrightarrow{AB}|^2} \cdot \overrightarrow{AB} = \frac{1}{10^2} \cdot (6\mathbf{i} + 8\mathbf{j}) = \frac{1}{100} (6\mathbf{i} + 8\mathbf{j})" />
+<BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
 
-Jadi vektor berkebalikan dari <InlineMath math="\overrightarrow{AB}" /> adalah <InlineMath math="\frac{1}{100}(6\mathbf{i} + 8\mathbf{j})" /> atau <InlineMath math="0{,}06\mathbf{i} + 0{,}08\mathbf{j}" />.
+Kedua vektor memiliki panjang <InlineMath math="10" />, tetapi arahnya berbeda sebesar <InlineMath math="180^\circ" />.
 
 <Vector3d
-  title="Visualisasi Vektor Berkebalikan"
-  description="Perbandingan antara vektor asli (merah) dan vektor berkebalikannya (biru)."
+  title="Vektor dan Vektor Lawannya"
+  description="Vektor merah dan biru memiliki panjang yang sama serta menunjuk ke arah berlawanan."
   vectors={[
     {
       from: [0, 0, 0],
       to: [6, 8, 0],
       color: "#dc2626",
-      label: <InlineMath math="AB" />,
+      label: <InlineMath math="\overrightarrow{AB}" />,
       labelPosition: "end",
     },
     {
       from: [0, 0, 0],
-      to: [0.06, 0.08, 0],
+      to: [-6, -8, 0],
       color: "#2563eb",
-      label: <><InlineMath math="\overrightarrow{AB}" /> berkebalikan</>,
+      label: <InlineMath math="-\overrightarrow{AB}" />,
       labelPosition: "end",
     },
   ]}
   cameraPosition={[12, 10, 12]}
 />
 
-## Sifat Vektor Berkebalikan
+## Sifat Vektor Lawan
 
-1. Panjang vektor berkebalikan adalah kebalikan dari panjang vektor asli:
+1. Panjang keduanya sama:
 
-   <BlockMath math="|\vec{v}_{\text{berkebalikan}}| = \frac{1}{|\vec{v}|}" />
+   <BlockMath math="|-\vec{v}|=|\vec{v}|" />
 
-2. Arah vektor berkebalikan sama dengan arah vektor asli.
+2. Untuk vektor tak nol, arah keduanya berbeda sebesar <InlineMath math="180^\circ" />.
 
-3. Perkalian titik (dot product) antara vektor dengan vektor berkebalikannya:
+3. Jumlah keduanya adalah vektor nol:
 
-   <BlockMath math="\vec{v} \cdot \vec{v}_{\text{berkebalikan}} = 1" />
+   <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
 
-4. Jika <InlineMath math="\vec{v}" /> adalah vektor dengan panjang <InlineMath math="1" /> (vektor satuan), maka vektor berkebalikannya adalah vektor itu sendiri.
+4. Mengambil lawan sebanyak dua kali menghasilkan vektor semula:
 
-## Aplikasi Vektor Berkebalikan
+   <BlockMath math="-(-\vec{v})=\vec{v}" />
 
-Vektor berkebalikan memiliki banyak aplikasi dalam bidang fisika, matematika, dan rekayasa. Beberapa aplikasi penting diantaranya:
+Vektor nol adalah lawan bagi dirinya sendiri karena <InlineMath math="-\vec{0}=\vec{0}" />.
 
-1. Dalam kristalografi, vektor berkebalikan digunakan untuk mempelajari kisi-kisi dari kristal zat padat.
+## Penerapan Vektor Lawan
 
-2. Dalam fisika quantum, vektor berkebalikan digunakan dalam perhitungan ruang momentum.
+Vektor lawan muncul setiap kali suatu arah dibalik:
 
-3. Dalam analisis vektor, vektor berkebalikan membantu menyelesaikan persamaan vektor.
+1. **Perpindahan:** perjalanan kembali pada lintasan lurus yang sama memiliki vektor perpindahan berlawanan.
 
-## Vektor Satuan dan Hubungannya dengan Vektor Berkebalikan
+2. **Kesetimbangan gaya:** dua gaya sama besar yang arahnya berlawanan berjumlah vektor nol.
+
+3. **Persamaan vektor:** pengurangan dapat ditulis sebagai penjumlahan dengan vektor lawan, <InlineMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />.
+
+## Vektor Satuan dan Arah Berlawanan
 
 ### Vektor Satuan
 
-Vektor satuan adalah vektor yang panjangnya tepat satu satuan. Vektor satuan dari sebuah vektor <InlineMath math="\vec{v}" /> biasanya dinotasikan dengan <InlineMath math="\hat{v}" /> dan dihitung dengan rumus:
+Untuk vektor tak nol <InlineMath math="\vec{v}" />, vektor satuannya adalah:
 
-<BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|}" />
+<BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
+
+Vektor tersebut memiliki panjang <InlineMath math="1" /> dan menunjuk searah dengan <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
   <Vector3d
-    title="Perbandingan Vektor Asli dan Vektor Satuan"
-    description="Vektor asli dan vektor satuan yang sesuai."
+    title="Arah Satuan yang Berlawanan"
+    description="Kedua vektor satuan memiliki panjang yang sama dan arah yang berlawanan."
     vectors={[
       {
         from: [0, 0, 0],
-        to: [6, 8, 0],
+        to: [0.6, 0.8, 0],
         color: "#16a34a",
-        label: <InlineMath math="v" />,
+        label: <InlineMath math="\hat{v}" />,
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
+        to: [-0.6, -0.8, 0],
         color: "#7c3aed",
-        label: <><InlineMath math="\hat{v}" /> (satuan)</>,
+        label: <InlineMath math="-\hat{v}" />,
         labelPosition: "end",
       },
     ]}
@@ -116,10 +126,10 @@ Vektor satuan adalah vektor yang panjangnya tepat satu satuan. Vektor satuan dar
   />
 </ContentBlock>
 
-### Hubungan dengan Vektor Berkebalikan
+### Hubungan dengan Vektor Lawan
 
-Terdapat hubungan menarik antara vektor satuan dan vektor berkebalikan. Jika <InlineMath math="\vec{v}" /> adalah sebuah vektor, maka:
+Vektor satuan yang arahnya berlawanan adalah <InlineMath math="-\hat{v}" />. Mengalikannya dengan panjang vektor asli menghasilkan vektor lawan:
 
-<BlockMath math="\vec{v}_{\text{berkebalikan}} = \frac{\hat{v}}{|\vec{v}|}" />
+<BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
 
-Ini menunjukkan bahwa vektor berkebalikan dapat diperoleh dengan membagi vektor satuan dengan panjang vektor asli.
+Pemisahan ini memperjelas dua peran: <InlineMath math="|\vec{v}|" /> menentukan panjang, sedangkan <InlineMath math="-\hat{v}" /> menentukan arah yang berlawanan.

@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Binomial Newton",
-  description: "Pelajari teorema binomial untuk mengembangkan (x+y)^n dengan cepat. Pahami koefisien, suku konstanta, dan strategi penyelesaian lewat contoh serta latihan.",
+  description: "Pelajari cara teorema binomial mengembangkan perpangkatan suatu jumlah, lalu gunakan koefisiennya untuk mencari suku tertentu dan suku konstanta.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Kombinatorik",
@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Apa itu Binomial Newton?
 
-Pernahkah kamu bertanya-tanya bagaimana cara cepat menghitung hasil dari <InlineMath math="(x + y)^{10}" /> tanpa harus mengalikan berkali-kali? **Binomial Newton** adalah teknik matematika yang memungkinkan kita mengembangkan bentuk <InlineMath math="(x + y)^n" /> menjadi penjumlahan suku-suku yang lebih sederhana.
+Mengembangkan <InlineMath math="(x + y)^{10}" /> dengan perkalian berulang akan memakan waktu. **Teorema binomial Newton** memberi kita cara langsung untuk menulis <InlineMath math="(x + y)^n" /> sebagai penjumlahan suku-suku yang lebih sederhana.
 
-Bayangkan seperti membuka kemasan hadiah berlapis. Setiap lapisan yang kita buka akan mengungkap pola tertentu yang konsisten dan dapat diprediksi. Begitu juga dengan binomial Newton, setiap pangkat memiliki pola koefisien yang unik namun dapat dihitung dengan rumus yang sama.
+Koefisiennya mengikuti pola yang dapat diprediksi. Setelah memahami pola tersebut, kita dapat memakai rumus yang sama untuk setiap pangkat bilangan bulat nonnegatif.
 
 Mari kita lihat pola dasar untuk beberapa pangkat pertama:
 
@@ -22,7 +22,7 @@ Mari kita lihat pola dasar untuk beberapa pangkat pertama:
 <BlockMath math="(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4" />
 </MathContainer>
 
-Dari pola ini, kita dapat melihat bahwa setiap suku memiliki **koefisien tertentu** yang mengikuti aturan matematika yang jelas.
+Koefisiennya berubah sesuai pangkat, tetapi posisinya mengikuti satu aturan yang konsisten.
 
 ## Rumus Umum dan Koefisien Binomial
 
@@ -60,10 +60,10 @@ Menghitung koefisien binomial:
 
 <MathContainer>
 <BlockMath math="\binom{2014}{2} = \frac{2014!}{2!(2014-2)!} = \frac{2014 \times 2013}{2 \times 1}" />
-<BlockMath math="= \frac{4{,}053{,}182}{2} = 2{,}026{,}591" />
+<BlockMath math="= \frac{4{.}054{.}182}{2} = 2{.}027{.}091" />
 </MathContainer>
 
-Jadi, koefisien dari <InlineMath math="x^2" /> adalah <InlineMath math="2{,}026{,}591" />.
+Jadi, koefisien dari <InlineMath math="x^2" /> adalah <InlineMath math="2{.}027{.}091" />.
 
 ## Mencari Suku Konstanta
 
@@ -92,12 +92,12 @@ Substitusi <InlineMath math="k = 6" />:
 <MathContainer>
 <BlockMath math="\binom{8}{6} \cdot 3^{8-6} \cdot (-2)^6 \cdot x^0 = \binom{8}{6} \cdot 3^2 \cdot (-2)^6" />
 <BlockMath math="= \frac{8!}{6! \cdot 2!} \cdot 9 \cdot 64 = \frac{8 \times 7}{2 \times 1} \cdot 9 \cdot 64" />
-<BlockMath math="= 28 \cdot 9 \cdot 64 = 252 \cdot 64 = 16{,}128" />
+<BlockMath math="= 28 \cdot 9 \cdot 64 = 252 \cdot 64 = 16{.}128" />
 </MathContainer>
 
 Perhatikan bahwa <InlineMath math="(-2)^6 = 64" /> karena pangkat genap selalu menghasilkan nilai positif, sama seperti <InlineMath math="(+2)^6 = 64" />.
 
-Jadi, suku konstanta adalah <InlineMath math="16{,}128" />.
+Jadi, suku konstanta adalah <InlineMath math="16{.}128" />.
 
 ## Strategi Penyelesaian Masalah
 
@@ -145,12 +145,12 @@ Tentukan koefisien dari <InlineMath math="x^5" /> dalam ekspansi <InlineMath mat
     <BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
     <BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
     <BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
-    <BlockMath math="= 1{,}792 \cdot 27 \cdot x^5 = 48{,}384x^5" />
+    <BlockMath math="= 1{.}792 \cdot 27 \cdot x^5 = 48{.}384x^5" />
     </MathContainer>
 
-    Jadi, koefisien dari <InlineMath math="x^5" /> adalah <InlineMath math="48{,}384" />.
+    Jadi, koefisien dari <InlineMath math="x^5" /> adalah <InlineMath math="48{.}384" />.
 
-Ingatlah bahwa **setiap suku dalam ekspansi binomial** memiliki total pangkat yang sama dengan pangkat awal, dan koefisien binomial selalu simetris: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
+Dua pemeriksaan membantu menemukan kesalahan: **setiap suku dalam ekspansi** memiliki derajat total <InlineMath math="n" />, dan koefisien binomial bersifat simetris: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
 
 ## Latihan
 
@@ -174,10 +174,10 @@ Ingatlah bahwa **setiap suku dalam ekspansi binomial** memiliki total pangkat ya
    <BlockMath math="\binom{7}{3} \cdot 2^{7-3} \cdot (-3)^3 = \binom{7}{3} \cdot 2^4 \cdot (-3)^3" />
    <BlockMath math="= \frac{7!}{3! \cdot 4!} \cdot 16 \cdot (-27)" />
    <BlockMath math="= \frac{7 \times 6 \times 5}{3 \times 2 \times 1} \cdot 16 \cdot (-27)" />
-   <BlockMath math="= 35 \cdot 16 \cdot (-27) = 560 \cdot (-27) = -15{,}120" />
+   <BlockMath math="= 35 \cdot 16 \cdot (-27) = 560 \cdot (-27) = -15{.}120" />
    </MathContainer>
 
-   Jadi, koefisien dari <InlineMath math="x^4" /> adalah <InlineMath math="-15{,}120" />.
+   Jadi, koefisien dari <InlineMath math="x^4" /> adalah <InlineMath math="-15{.}120" />.
 
 2. **Penyelesaian:**
 

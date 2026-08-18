@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Introduction to the Three Primary Trigonometric Ratios
 
-When ancient mathematicians studied triangles, they discovered useful patterns in the ratio of sides in right triangles. There are three primary trigonometric ratios that we will learn: sine (<InlineMath math="\sin" />), cosine (<InlineMath math="\cos" />), and tangent (<InlineMath math="\tan" />).
+For a fixed acute angle in a right triangle, corresponding side lengths always have the same ratios. The three primary ratios are sine (<InlineMath math="\sin" />), cosine (<InlineMath math="\cos" />), and tangent (<InlineMath math="\tan" />).
 
 <MathContainer>
   <BlockMath math="\sin \theta = \frac{\text{opposite side}}{\text{hypotenuse}}" />
@@ -63,7 +63,7 @@ The sine of angle <InlineMath math="\theta" /> is the ratio between the length o
 
 ### Examples of Sine Values
 
-| Angle                     | Sine Value                               | Decimal Value              |
+| Angle                     | Exact Sine Value                         | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
 | <InlineMath math="0^\circ" />  | <InlineMath math="0" />                  | <InlineMath math="0" />    |
 | <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0.5" />  |
@@ -96,7 +96,7 @@ The cosine of angle <InlineMath math="\theta" /> is the ratio between the length
 
 ### Examples of Cosine Values
 
-| Angle                     | Cosine Value                             | Decimal Value              |
+| Angle                     | Exact Cosine Value                       | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
 | <InlineMath math="0^\circ" />  | <InlineMath math="1" />                  | <InlineMath math="1" />    |
 | <InlineMath math="30^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0.87" /> |
@@ -106,9 +106,9 @@ The cosine of angle <InlineMath math="\theta" /> is the ratio between the length
 
 ## Tangent
 
-The tangent of angle <InlineMath math="\theta" /> is the ratio between the length of the opposite side and the length of the adjacent side. It can also be calculated as the ratio between the sine and cosine of the same angle.
+The tangent of angle <InlineMath math="\theta" /> is the ratio between the opposite and adjacent sides. It is also the quotient of sine and cosine whenever <InlineMath math="\cos \theta\ne0" />.
 
-<BlockMath math="\tan \theta = \frac{\text{opposite side}}{\text{adjacent side}} = \frac{\sin \theta}{\cos \theta}" />
+<BlockMath math="\tan \theta = \frac{\text{opposite side}}{\text{adjacent side}} = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta\ne0" />
 
 <ContentBlock>
   <Triangle
@@ -129,13 +129,13 @@ The tangent of angle <InlineMath math="\theta" /> is the ratio between the lengt
 
 ### Examples of Tangent Values
 
-| Angle                     | Tangent Value                            | Decimal Value              |
+| Angle                     | Exact Tangent Value                      | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
 | <InlineMath math="0^\circ" />  | <InlineMath math="0" />                  | <InlineMath math="0" />    |
 | <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{\sqrt{3}}" /> | <InlineMath math="0.58" /> |
 | <InlineMath math="45^\circ" /> | <InlineMath math="1" />                  | <InlineMath math="1" />    |
 | <InlineMath math="60^\circ" /> | <InlineMath math="\sqrt{3}" />           | <InlineMath math="1.73" /> |
-| <InlineMath math="90^\circ" /> | Undefined                                | Undefined                  |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\text{undefined}" /> | <InlineMath math="\text{undefined}" /> |
 
 ## Relationship between Sin, Cos, and Tan in the Unit Circle
 
@@ -151,20 +151,20 @@ In the unit circle:
 
 - The <InlineMath math="x" />-coordinate on the unit circle is <InlineMath math="\cos \theta" />.
 - The <InlineMath math="y" />-coordinate on the unit circle is <InlineMath math="\sin \theta" />.
-- <InlineMath math="\tan \theta" /> is the slope of the line from the center to the point on the unit circle.
+- When <InlineMath math="\cos \theta\ne0" />, <InlineMath math="\tan \theta" /> is the slope of the line from the center to the point on the unit circle. At <InlineMath math="90^\circ" />, that line is vertical, so its slope and tangent are undefined.
 
 ## Relationships Between the Three Trigonometric Ratios
 
 These three trigonometric ratios are related by the following formulas:
 
 <MathContainer>
-  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
+  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta\ne0" />
   <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
 </MathContainer>
 
 ## Exercise
 
-Consider the following triangle with a <InlineMath math="30^\circ" /> angle:
+The following right triangle has a <InlineMath math="30^\circ" /> angle and hypotenuse <InlineMath math="1" />. Determine the exact opposite and adjacent side lengths, then find <InlineMath math="\sin 30^\circ" />, <InlineMath math="\cos 30^\circ" />, and <InlineMath math="\tan 30^\circ" />.
 
 <Triangle
   title={
@@ -185,10 +185,14 @@ Consider the following triangle with a <InlineMath math="30^\circ" /> angle:
   }}
 />
 
-### Check Your Answer
+### Worked Solution
 
-If the length of the hypotenuse is <InlineMath math="1" />, then:
+The exact special-angle ratios give the two leg lengths directly:
 
-- The value of <InlineMath math="\sin 30^\circ" /> is the opposite-side length, <InlineMath math="0.5" />
-- The value of <InlineMath math="\cos 30^\circ" /> is the adjacent-side length, <InlineMath math="0.87" />
-- The value of <InlineMath math="\tan 30^\circ = \frac{\sin 30^\circ}{\cos 30^\circ} = \frac{0.5}{0.87} = 0.58" />
+<MathContainer>
+  <BlockMath math="\text{opposite side}=1\cdot\sin 30^\circ=\frac{1}{2}" />
+  <BlockMath math="\text{adjacent side}=1\cdot\cos 30^\circ=\frac{\sqrt{3}}{2}" />
+  <BlockMath math="\tan 30^\circ=\frac{1/2}{\sqrt{3}/2}=\frac{1}{\sqrt{3}}=\frac{\sqrt{3}}{3}\approx0.577" />
+</MathContainer>
+
+Using exact values before rounding preserves the identity <InlineMath math="\tan \theta=\sin \theta/\cos \theta" /> and avoids error from dividing already rounded decimals.

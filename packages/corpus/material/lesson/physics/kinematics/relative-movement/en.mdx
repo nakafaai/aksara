@@ -12,9 +12,9 @@ export const metadata = {
 
 Motion is always read relative to a frame of reference. An object that looks fast to an observer beside the road can look slow, still, or moving in the opposite direction to another observer who is also moving.
 
-If the observed object is named <InlineMath math="X" /> and the observer is named <InlineMath math="Y" />, the velocity of <InlineMath math="X" /> relative to <InlineMath math="Y" /> is:
+For ordinary vehicle speeds and parallel, nonrotating axes, we use the Galilean velocity rule. If both velocities are first measured relative to the same ground frame <InlineMath math="G" />, the velocity of object <InlineMath math="X" /> relative to observer <InlineMath math="Y" /> is:
 
-<BlockMath math="\vec{v}_{X/Y}=\vec{v}_X-\vec{v}_Y" />
+<BlockMath math="\vec{v}_{X/Y}=\vec{v}_{X/G}-\vec{v}_{Y/G}" />
 
 Positive and negative signs still matter because they show direction along the chosen axis.
 
@@ -61,21 +61,23 @@ When two vehicles move in the same direction, the faster observer can see the ot
 
 ## When the Observer Is Still
 
-If the observer is the ground or a stationary platform, relative velocity is the same as velocity relative to the ground.
+If the observer is stationary relative to the ground, relative velocity is the same as velocity relative to the ground.
 
-<BlockMath math="v_{\text{object/ground}}=v_{\text{object}}-0" />
+<BlockMath math="v_{\text{object/observer}}=v_{\text{object/ground}}-0=v_{\text{object/ground}}" />
 
 That is why, in many simple problems, a velocity with no extra frame stated is usually assumed to be relative to the ground.
 
+The important point is not the observer's name, but whether the observer is moving. If the observer is stationary, there is no observer velocity to subtract.
+
 ## When Both Are Moving
 
-If two objects move in opposite directions, the magnitude of relative velocity can be greater than each object's velocity relative to the ground. For example, a car moves right at <InlineMath math="+12 \text{ m/s}" />, while a truck moves left at <InlineMath math="-8 \text{ m/s}" />.
+If two objects move in opposite directions, their relative speed can be greater than either object's speed relative to the ground. For example, a car moves right at <InlineMath math="+12 \text{ m/s}" />, while a truck moves left at <InlineMath math="-8 \text{ m/s}" />.
 
 To the truck driver, the car's velocity is:
 
 <BlockMath math="v_{\text{car/truck}}=12-(-8)=+20 \text{ m/s}" />
 
-The value <InlineMath math="+20 \text{ m/s}" /> means the car appears to approach from the positive direction with a relative speed greater than either vehicle's speed relative to the ground.
+The value <InlineMath math="+20 \text{ m/s}" /> means the car's position relative to the truck changes rightward at a relative speed of <InlineMath math="20\text{ m/s}" />. Whether the vehicles are approaching or separating also depends on which one is initially to the left.
 
 Relative motion does not change the actual motion. It changes **how the motion is read** by different observers.
 

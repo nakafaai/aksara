@@ -2,25 +2,13 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    {
-      label: "Why do most people worry about technological advancement?",
-      value: false,
-    },
+    { label: "Who invented the first electronic computer?", value: false },
+    { label: "Which country has the cheapest office rent?", value: false },
+    { label: "How can every human task be removed immediately?", value: false },
+    { label: "Why should all workers avoid digital tools?", value: false },
     {
       label:
-        "What are the innovations of technology related with labor market?",
-      value: false,
-    },
-    {
-      label: "Is social and emotional skill can be replaced by robots?",
-      value: false,
-    },
-    {
-      label: "Does anyone who is innovative always have chance to get jobs?",
-      value: false,
-    },
-    {
-      label: "How is technological advancement changing the labor market?",
+        "How could GenAI transform occupational tasks, and what factors shape the outcome?",
       value: true,
     },
   ],

@@ -8,23 +8,25 @@ export const metadata = {
 
 ## Urutan Prioritas Operator
 
-Dalam pemrograman, komputer menjalankan operasi berdasarkan urutan prioritas tertentu. Bayangkan seperti aturan matematika dimana perkalian dikerjakan sebelum penjumlahan. Python memiliki aturan serupa untuk semua operatornya.
+Prioritas operator menentukan cara Python mengelompokkan ekspresi ketika tanda kurung tidak menyatakannya secara eksplisit. Ini adalah aturan parsing, bukan jaminan bahwa setiap operand dievaluasi mengikuti urutan visual yang sama.
 
 <Mermaid
   title="Operator Mana yang Dieksekusi Dulu"
   description="Baca urutan evaluasi dari tanda kurung sampai operator logika agar hasil ekspresi tidak ditebak."
   chart={`
     flowchart LR
-        A["** pangkat"] --> B["*, /, //, % aritmatika"]
-        B --> C["+, - tambah kurang"]
-        C --> D["operator pembanding"]
-        D --> E["not"]
-        E --> F["and"]
-        F --> G["or"]
+        A["tanda kurung, pemanggilan, pengindeksan"] --> B["** pangkat"]
+        B --> C["unary +, -, ~"]
+        C --> D["*, /, //, %"]
+        D --> E["+, -"]
+        E --> F["operator pembanding"]
+        F --> G["not"]
+        G --> H["and"]
+        H --> I["or"]
   `}
 />
 
-Ketika kamu menulis ekspresi kompleks, Python akan mengevaluasi operator dengan prioritas tinggi terlebih dahulu. Jika beberapa operator memiliki prioritas sama, evaluasi dilakukan dari kiri ke kanan.
+Operator dengan prioritas lebih tinggi mengikat operand lebih kuat. Sebagian besar operator biner pada level yang sama mengelompok dari kiri ke kanan, tetapi perpangkatan mengelompok dari kanan ke kiri dan perbandingan membentuk rantai. Gunakan tanda kurung jika pengelompokan yang dimaksud mungkin tidak langsung terbaca.
 
 ## Operator Perbandingan
 
@@ -37,7 +39,7 @@ Operator perbandingan digunakan untuk membandingkan dua nilai dan menghasilkan n
 - `>` lebih dari
 - `>=` lebih dari atau sama dengan
 
-Operator perbandingan memiliki sifat penting yaitu membandingkan nilai dari dua objek, objek tidak harus memiliki tipe data yang sama, semua operator perbandingan memiliki prioritas yang sama, dan selalu menghasilkan nilai `True` atau `False` dengan tipe `bool`.
+Operator ini menghasilkan `bool`. Kesetaraan dapat membandingkan objek dari tipe berbeda, tetapi perbandingan urutan seperti `<` membutuhkan tipe yang mendefinisikan urutan kompatibel dan dapat menghasilkan `TypeError` jika tidak. Operator perbandingan berbagi satu level prioritas dan dapat dirangkai.
 
 <CodeBlock
   data={[
@@ -48,7 +50,7 @@ Operator perbandingan memiliki sifat penting yaitu membandingkan nilai dari dua 
 >>> 4 == 5
 False
 
->>> 3 > 2.1  # integer 3 dipromosikan menjadi float untuk perbandingan dengan 2.1
+>>> 3 > 2.1  # Python mendukung perbandingan numerik campuran ini
 True`
     }
   ]}
@@ -147,7 +149,9 @@ Python memiliki aturan khusus untuk menentukan nilai mana yang dianggap `False` 
 
 **Nilai yang dianggap `True` (Truthy):**
 
-1. Semua nilai lainnya
+1. Nilai bawaan lain yang bukan nol dan bukan kosong
+
+Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, instance tersebut dianggap truthy secara default.
 
 ### Tipe Data Boolean
 
@@ -191,7 +195,7 @@ False
 True
 
 >>> not 0 < 2  # ⇔ not (0 < 2) ⇔ not True
-True
+False
 
 # Rantai perbandingan
 >>> 1 < 2 < 3  # ⇔ (1 < 2) and (2 < 3)
@@ -205,7 +209,7 @@ True`
 
 ## Perbandingan Bilangan Floating Point
 
-Membandingkan bilangan floating point memerlukan perhatian khusus karena keterbatasan presisi dalam representasi digital. Kehilangan presisi dapat menyebabkan hasil yang tidak terduga.
+Banyak pecahan desimal tidak memiliki representasi floating-point biner berhingga yang persis. Operasi aritmetika membulatkan hasil antara, sehingga dua perhitungan yang setara secara matematis dapat menghasilkan float yang berdekatan tetapi tidak sama.
 
 ### Masalah Presisi Float
 
@@ -258,4 +262,4 @@ True`
 
 Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesetaraan aproksimasi. Fungsi ini menggunakan toleransi relatif (rel_tol) dan toleransi absolut (abs_tol) untuk menentukan apakah dua nilai cukup dekat.
 
-> Hindari membandingkan floating point dengan `==` atau `!=`. Gunakan `math.isclose(a, b)` untuk menguji kesetaraan aproksimasi. Gunakan `abs_tol` jika salah satu angka mendekati nol.
+> Gunakan kesetaraan persis jika identitas nilai floating-point yang persis memang dibutuhkan. Untuk besaran hasil pengukuran atau perhitungan, pilih toleransi berdasarkan domain masalah dan gunakan `math.isclose()`. Di dekat nol, `abs_tol` yang sesuai sangat penting karena toleransi relatif ikut mengecil bersama nilai yang dibandingkan.

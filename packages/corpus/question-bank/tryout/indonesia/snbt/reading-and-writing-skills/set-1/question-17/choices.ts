@@ -4,7 +4,7 @@ const choices: QuestionChoices = {
   en: [
     {
       label: "between sentences $$(5)$$ and $$(6)$$.",
-      value: false,
+      value: true,
     },
     {
       label: "before sentence $$(7)$$.",
@@ -20,13 +20,13 @@ const choices: QuestionChoices = {
     },
     {
       label: "between sentences $$(4)$$ and $$(5)$$.",
-      value: true,
+      value: false,
     },
   ],
   id: [
     {
       label: "antara kalimat $$(5)$$ dan $$(6)$$.",
-      value: false,
+      value: true,
     },
     {
       label: "sebelum kalimat $$(7)$$.",
@@ -42,7 +42,7 @@ const choices: QuestionChoices = {
     },
     {
       label: "antara kalimat $$(4)$$ dan $$(5)$$.",
-      value: true,
+      value: false,
     },
   ],
 };

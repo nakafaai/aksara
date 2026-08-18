@@ -4,19 +4,15 @@ export const metadata = {
   date: "2026-01-22",
 };
 
-Mari kita gunakan logika **Silogisme Disjungtif** untuk memecahkan kasus ini. Bayangkan kejadian di Kampung Bambu sebagai sebuah pilihan biner yang pasti terjadi salah satunya:
+Misalkan <InlineMath math="P" /> berarti "terjadi perampokan" dan <InlineMath math="Q" /> berarti "terjadi pencurian." Kedua premisnya adalah:
 
 <MathContainer>
-  <BlockMath math="P \lor Q" />
+  <BlockMath math="P\lor Q" />
+  <BlockMath math="\neg P" />
 </MathContainer>
 
-Di mana:
-- <InlineMath math="P" />: Terjadi perampokan.
-- <InlineMath math="Q" />: Terjadi pencurian.
-- <InlineMath math="\lor" />: Artinya "atau" (salah satu harus benar).
+Premis kedua meniadakan perampokan. Agar premis pertama tetap benar, peristiwa yang terjadi haruslah pencurian:
 
-Premis kedua memberikan fakta kunci: **Tidak pernah terjadi perampokan** (<InlineMath math="\sim P" />).
+<BlockMath math="Q" />
 
-Karena opsi pertama (<InlineMath math="P" />) sudah dianulir atau dinyatakan salah, maka secara logika, satu-satunya kemungkinan yang tersisa agar pernyataan awal tetap benar adalah opsi kedua (<InlineMath math="Q" />) harus terjadi.
-
-Jadi, simpulan logisnya adalah **pada hari minggu yang lalu, di Kampung Bambu baru saja terjadi tindak kejahatan berupa pencurian**.
+Bentuk penalaran ini disebut silogisme disjungtif. Jadi, **terjadi pencurian di Kampung Bambu pada hari Minggu lalu**.

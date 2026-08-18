@@ -1,57 +1,75 @@
 export const metadata = {
-    title: "Perhitungan Semua Nilai Eigen",
-    description: "Pelajari metode QR untuk menghitung semua nilai eigen melalui iterasi dekomposisi matriks. Pahami sifat konvergensi dan elemen diagonal.",
+    title: "Menghitung Semua Nilai Eigen dengan Iterasi QR",
+    description: "Ikuti iterasi QR dari faktorisasi ortogonal sampai bentuk Schur, lalu baca nilai eigen real dan kompleks tanpa membentuk polinom karakteristik.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-17",
     subject: "Metode Linear AI",
 };
 
-## Metode QR untuk Semua Nilai Eigen
+## Dari Matriks ke Nilai Eigennya
 
-Dengan menggunakan metode QR, kamu dapat menghitung seluruh nilai eigen dari matriks <InlineMath math="A" />. Proses ini dilakukan melalui iterasi yang mengubah bentuk matriks secara bertahap, seperti mengasah pisau berulang kali sampai tajam. Setiap putaran iterasi membuat matriks semakin mendekati bentuk yang memudahkan kita membaca nilai eigennya.
+Algoritma QR menghitung seluruh nilai eigen matriks persegi dengan mengganti basis secara berulang. Nilai eigennya tidak berubah. Matriks hanya digerakkan menuju bentuk yang membuat nilai eigen lebih mudah dibaca.
 
-## Algoritma QR
+Versi di bawah adalah iterasi QR tanpa geseran. Versi ini memperlihatkan gagasan utamanya dengan jelas. Pencari nilai eigen untuk penggunaan nyata menambahkan geseran, lebih dahulu mereduksi matriks ke bentuk Hessenberg, dan memisahkan blok yang sudah konvergen agar gagasan yang sama berjalan lebih cepat dan andal.
 
-1. **Langkah awal** adalah menetapkan <InlineMath math="A_0 := A" /> dan <InlineMath math="k := 0" />
+## Satu Iterasi QR
 
-2. **Proses iterasi** yang diulang terus menerus. Pada setiap putaran, lakukan dekomposisi QR terhadap matriks <InlineMath math="A_k" />
+1. Mulai dengan <InlineMath math="A_0=A" />.
 
-   <MathContainer>
-   <BlockMath math="Q_k \cdot R_k = A_k" />
-   </MathContainer>
+2. Faktorkan matriks saat ini menjadi faktor uniter atau ortogonal <InlineMath math="Q_k" /> dan faktor segitiga atas <InlineMath math="R_k" />:
 
-   Setelah itu, susun matriks baru dengan mengalikan <InlineMath math="R_k" /> dan <InlineMath math="Q_k" /> secara terbalik
+   <BlockMath math="A_k=Q_kR_k" />
 
-   <MathContainer>
-   <BlockMath math="A_{k+1} := R_k \cdot Q_k" />
-   </MathContainer>
+3. Balik urutan kedua faktor untuk memperoleh iterasi berikutnya:
 
-   Tambahkan nilai <InlineMath math="k" /> dengan satu dan cek apakah iterasi sudah mencapai keadaan stabil
+   <BlockMath math="A_{k+1}=R_kQ_k" />
 
-   <MathContainer>
-   <BlockMath math="\max_{j=1,\ldots,n} |(A_k)_{jj} - (A_{k-1})_{jj}| \leq \text{toleransi}" />
-   </MathContainer>
+4. Ulangi faktorisasi dan perkalian terbalik tersebut. Elemen subdiagonal yang sangat kecil dibandingkan elemen diagonal di sekitarnya dapat ditetapkan menjadi nol. Pemisahan yang disebut **deflasi** ini mengisolasi nilai eigen atau blok yang sudah konvergen.
 
-   Iterasi berhenti saat perubahan terbesar pada elemen diagonal sudah sangat kecil.
+   <BlockMath math="|(A_k)_{j+1,j}|\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right)" />
 
-## Sifat Kemiripan dalam Iterasi
+Di sini <InlineMath math="\tau" /> adalah toleransi yang disesuaikan dengan presisi numerik dan skala masalah. Perubahan kecil pada diagonal saja belum cukup sebagai kriteria berhenti karena elemen di bawah diagonal mungkin masih bernilai signifikan.
 
-Setiap matriks <InlineMath math="A_k" /> yang muncul dalam iterasi QR memiliki kesamaan sifat dengan matriks awal <InlineMath math="A" />. Hal ini berarti nilai eigen tidak berubah selama proses iterasi berlangsung.
+## Mengapa Nilai Eigen Tidak Berubah
 
-Seperti menyusun puzzle yang sama dengan cara berbeda. Potongan puzzlenya tetap sama, tapi susunannya bisa berubah-ubah. Begitu juga dengan matriks kita, isinya secara matematis tetap sama meski bentuk susunannya berubah.
-
-## Konvergensi Elemen Diagonal
-
-Bila berlaku kondisi <InlineMath math="|\lambda_1| > |\lambda_2| > \cdots > |\lambda_n|" />, maka elemen pada diagonal utama matriks <InlineMath math="A_k" /> akan mendekati nilai eigen yang sesuai
+Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I" />. Dengan menyubstitusikan <InlineMath math="R_k=Q_k^{*}A_k" /> ke dalam perkalian terbalik, kita memperoleh
 
 <MathContainer>
-<BlockMath math="\lim_{k \to \infty} (A_k)_{jj} = \lambda_j, \quad j = 1, 2, \ldots, n" />
+<BlockMath math="A_{k+1}=R_kQ_k" />
+<BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
 </MathContainer>
 
-Proses ini seperti air yang mengalir ke tempat paling rendah. Nilai eigen "turun" dan menempati posisi diagonalnya masing-masing sesuai urutan besarnya.
+Jadi, <InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math="A_k" />. Matriks serupa memiliki polinom karakteristik dan nilai eigen yang sama. Iterasi QR mengubah koordinat, bukan transformasi linear yang mendasarinya.
 
-## Konvergensi Elemen Non-Diagonal
+## Bentuk Hasil Konvergensi
 
-Apabila matriks <InlineMath math="A" /> berbentuk simetrik, seluruh elemen di luar diagonal utama akan menuju nol ketika <InlineMath math="k \to \infty" />.
+Bentuk akhir bergantung pada jenis matriks dan sistem bilangan yang digunakan.
 
-Sebaliknya, jika matriks tidak simetrik, hanya elemen di bawah diagonal utama yang menuju nol, sementara elemen di atasnya tidak. Bayangkan seperti merapikan lemari. Kalau lemarinya simetris, semua barang bisa tertata rapi. Tapi kalau tidak simetris, ada bagian yang tetap berantakan.
+| Matriks | Bentuk konvergen | Cara membaca nilai eigen |
+|---|---|---|
+| Real simetris atau kompleks Hermitian | Matriks diagonal | Elemen diagonal adalah nilai eigen real |
+| Kompleks umum | Bentuk Schur segitiga atas | Elemen diagonal adalah nilai eigen |
+| Real umum | Bentuk Schur real kuasi-segitiga atas | Setiap blok <InlineMath math="1\times1" /> memberi satu nilai eigen real; setiap blok <InlineMath math="2\times2" /> memberi sepasang nilai eigen kompleks konjugat |
+
+Nilai eigen tidak harus muncul dalam urutan tertentu. Nilai eigen berulang dan susunan nilai eigen tertentu juga memerlukan perhatian lebih daripada sekadar syarat urutan besar mutlak yang ketat.
+
+## Contoh Kerja Matriks Simetris
+
+Perhatikan matriks simetris
+
+<BlockMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+
+Satu faktorisasi QR dan perkalian terbalik menghasilkan
+
+<MathContainer>
+<BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
+<BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
+</MathContainer>
+
+Besar elemen di luar diagonal sudah turun dari <InlineMath math="1" /> menjadi <InlineMath math="3/5" />. Iterasi berikutnya mendorong kedua elemen di luar diagonal menuju nol:
+
+<BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
+
+Diagonal hasil limit memperlihatkan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />. Karena setiap hasil iterasi serupa dengan <InlineMath math="A_0" />, keduanya adalah nilai eigen matriks semula, bukan pendekatan yang muncul karena masalahnya diubah.
+
+> Iterasi QR adalah proses keserupaan. Untuk matriks simetris, proses ini menuju bentuk diagonal; untuk matriks real umum, proses ini menuju bentuk Schur real yang mungkin memiliki blok <InlineMath math="2\times2" /> yang tidak boleh dihilangkan.

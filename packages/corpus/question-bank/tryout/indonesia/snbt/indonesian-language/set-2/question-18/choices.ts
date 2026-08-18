@@ -2,14 +2,17 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Manusia dan hewan diperbudak untuk membuat roti", value: true },
-    { label: "Penjara rahasia agar tidak ada kecurigaan", value: false },
-    { label: "Markas rahasia para koloni", value: false },
     {
-      label: "Brankas penjajah untuk penyimpanan senjata rahasia",
+      label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
+      value: true,
+    },
+    { label: "Menjaga pintu masuk rumah dari pencuri", value: false },
+    { label: "Membawa hasil panen dari luar kota", value: false },
+    {
+      label: "Menghias bagian hunian dengan lukisan dinding",
       value: false,
     },
-    { label: "Tempat dilakukannya pembunuhan dan pembrutalan", value: false },
+    { label: "Menjual roti langsung kepada pembeli di jalan", value: false },
   ],
 };
 

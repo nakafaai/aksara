@@ -1,6 +1,6 @@
 export const metadata = {
    title: "Kombinasi",
-   description: "Pelajari rumus kombinasi C(n,k), contoh pemilihan tanpa memperhatikan urutan, dan latihan soal dengan pembahasan.",
+   description: "Gunakan kombinasi untuk menghitung pemilihan tanpa memperhatikan urutan, termasuk kasus bersyarat.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Kombinatorik",
@@ -8,17 +8,17 @@ export const metadata = {
 
 ## Pengertian Kombinasi
 
-Bayangkan kamu diminta memilih <InlineMath math="3 \text{ orang}" /> teman untuk bergabung dalam tim futsal. Apakah urutan pemilihan mereka penting? Tentu tidak! Yang penting adalah **siapa saja** yang terpilih, bukan dalam urutan apa mereka dipilih.
+Misalkan kamu memilih <InlineMath math="3 \text{ orang}" /> teman untuk tim futsal. Memilih Ana, Budi, dan Citra menghasilkan tim yang sama dalam urutan apa pun. Yang penting adalah **siapa saja** yang terpilih.
 
-Inilah perbedaan mendasar antara kombinasi dan permutasi. **Kombinasi** adalah cara memilih sejumlah objek dari kumpulan objek yang lebih besar, dimana **urutan tidak diperhatikan**.
+Inilah perbedaan utama antara kombinasi dan permutasi. **Kombinasi** memilih sejumlah objek dari himpunan yang lebih besar ketika **urutan tidak diperhatikan**.
 
 Dalam kehidupan sehari-hari, kombinasi sering kita temui ketika:
-- Memilih menu makanan dari daftar pilihan
+- Memilih hidangan dari sebuah menu
 - Menentukan anggota tim untuk suatu kegiatan
-- Memilih mata pelajaran elective di sekolah
+- Memilih mata pelajaran pilihan di sekolah
 - Menentukan kombinasi warna untuk desain
 
-Perbedaan dengan permutasi sangat jelas: jika dalam permutasi <InlineMath math="ABC" /> berbeda dengan <InlineMath math="BAC" />, maka dalam kombinasi <InlineMath math="ABC" /> sama dengan <InlineMath math="BAC" /> karena anggotanya sama, hanya urutannya berbeda.
+Dalam permutasi, <InlineMath math="ABC" /> dan <InlineMath math="BAC" /> merupakan susunan yang berbeda. Dalam kombinasi, keduanya merupakan pilihan yang sama karena anggotanya tidak berubah.
 
 ## Rumus Kombinasi
 
@@ -26,7 +26,7 @@ Untuk menentukan banyaknya cara memilih <InlineMath math="k" /> objek dari <Inli
 
 <BlockMath math="C(n,k) = \binom{n}{k} = \frac{n!}{(n-k)! \times k!}" />
 
-Dimana:
+dengan:
 - <InlineMath math="C(n,k)" /> atau <InlineMath math="\binom{n}{k}" /> berarti kombinasi <InlineMath math="k" /> objek dari <InlineMath math="n" /> objek
 - <InlineMath math="n" /> adalah total objek yang tersedia
 - <InlineMath math="k" /> adalah banyaknya objek yang dipilih
@@ -34,11 +34,11 @@ Dimana:
 
 **Mengapa rumus ini berbeda dari permutasi?**
 
-Rumus kombinasi sebenarnya berasal dari rumus permutasi yang dibagi dengan <InlineMath math="k!" />:
+Rumus kombinasi diperoleh dengan membagi banyak permutasi dengan <InlineMath math="k!" />:
 
 <BlockMath math="C(n,k) = \frac{P(n,k)}{k!} = \frac{n!}{(n-k)! \times k!}" />
 
-Pembagian dengan <InlineMath math="k!" /> dilakukan karena dalam kombinasi, kita **tidak peduli urutan**. Setiap kelompok <InlineMath math="k" /> objek memiliki <InlineMath math="k! \text{ cara}" /> pengaturan yang berbeda, tetapi semuanya dianggap **sama** dalam kombinasi.
+Kita membagi dengan <InlineMath math="k!" /> karena pilihan berisi <InlineMath math="k" /> objek dapat disusun dalam <InlineMath math="k!" /> urutan. Kombinasi menghitung semua urutan itu sebagai **satu pilihan**.
 
 ## Penerapan dalam Situasi Nyata
 
@@ -48,7 +48,7 @@ Dari <InlineMath math="10 \text{ siswa}" /> yang tersedia, berapa cara memilih <
 
 <MathContainer>
 <BlockMath math="C(10,5) = \frac{10!}{5! \times 5!}" />
-<BlockMath math="C(10,5) = \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = \frac{30.240}{120} = 252 \text{ cara}" />
+<BlockMath math="C(10,5) = \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = \frac{30\,240}{120} = 252 \text{ cara}" />
 </MathContainer>
 
 **Pemilihan Menu Makanan:**
@@ -62,7 +62,7 @@ Sebuah restoran menawarkan <InlineMath math="8" /> jenis makanan dan kamu boleh 
 
 **Situasi dengan Syarat Khusus:**
 
-Kadang-kadang ada **pembatasan tertentu** dalam pemilihan. Misalnya, dari <InlineMath math="12 \text{ siswa}" /> (<InlineMath math="7 \text{ laki-laki}" /> dan <InlineMath math="5 \text{ perempuan}" />), kita harus memilih <InlineMath math="4 \text{ siswa}" /> dengan syarat minimal <InlineMath math="2 \text{ perempuan}" />.
+Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math="12 \text{ siswa}" /> (<InlineMath math="7 \text{ laki-laki}" /> dan <InlineMath math="5 \text{ perempuan}" />), pilih <InlineMath math="4 \text{ siswa}" /> dengan minimal <InlineMath math="2 \text{ perempuan}" />.
 
 **Strategi penyelesaian:**
 1. **Hitung semua kemungkinan** yang memenuhi syarat
@@ -95,15 +95,17 @@ Kadang-kadang ada **pembatasan tertentu** dalam pemilihan. Misalnya, dari <Inlin
 
 ## Latihan
 
+Kerjakan setiap soal sebelum membuka pembahasannya. Tentukan lebih dahulu apakah urutan berpengaruh, lalu daftarkan semua kasus yang memenuhi syarat tanpa tumpang tindih.
+
 1. Dari <InlineMath math="8 \text{ buku}" /> yang berbeda, berapa cara memilih <InlineMath math="3 \text{ buku}" /> untuk dibaca selama liburan?
 
 2. Sebuah tim futsal memiliki <InlineMath math="12 \text{ pemain}" />. Berapa cara memilih <InlineMath math="5 \text{ pemain}" /> untuk bermain di lapangan?
 
 3. Dalam sebuah kotak terdapat <InlineMath math="6 \text{ bola}" /> merah dan <InlineMath math="4 \text{ bola}" /> biru. Berapa cara mengambil <InlineMath math="5 \text{ bola}" /> dengan syarat minimal <InlineMath math="3 \text{ bola}" /> merah?
 
-4. Seorang siswa harus memilih <InlineMath math="4 \text{ mata pelajaran}" /> dari <InlineMath math="10 \text{ mata pelajaran}" /> yang tersedia. Jika <InlineMath math="6 \text{ mata pelajaran}" /> adalah wajib dan <InlineMath math="4 \text{ mata pelajaran}" /> adalah pilihan, berapa cara memilih jika harus ada minimal <InlineMath math="2 \text{ mata pelajaran wajib}" />?
+4. Seorang siswa memilih <InlineMath math="4 \text{ mata pelajaran}" /> dari <InlineMath math="10 \text{ mata pelajaran}" /> yang tersedia. Jika <InlineMath math="6 \text{ mata pelajaran}" /> adalah sains dan <InlineMath math="4 \text{ mata pelajaran}" /> adalah humaniora, berapa pilihan yang memuat minimal <InlineMath math="2 \text{ mata pelajaran sains}" />?
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Jawaban: <InlineMath math="56 \text{ cara}" />**
 
@@ -130,7 +132,7 @@ Kadang-kadang ada **pembatasan tertentu** dalam pemilihan. Misalnya, dari <Inlin
 
    <MathContainer>
       <BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
-      <BlockMath math="C(12,5) = \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} = \frac{95.040}{120} = 792" />
+      <BlockMath math="C(12,5) = \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} = \frac{95\,040}{120} = 792" />
    </MathContainer>
 
    Tim futsal dapat memilih <InlineMath math="5 \text{ pemain}" /> dari <InlineMath math="12 \text{ pemain}" /> dengan <InlineMath math="792 \text{ cara}" /> berbeda.
@@ -141,7 +143,7 @@ Kadang-kadang ada **pembatasan tertentu** dalam pemilihan. Misalnya, dari <Inlin
 
    Total bola: <InlineMath math="6 \text{ merah} + 4 \text{ biru}" /> adalah <InlineMath math="10 \text{ bola}" />
 
-   Ambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3 \text{ bola}" /> merah
+   Ambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah
 
    **Rincian perhitungan setiap kasus:**
 
@@ -168,33 +170,33 @@ Kadang-kadang ada **pembatasan tertentu** dalam pemilihan. Misalnya, dari <Inlin
 
    **Total:** <InlineMath math="120 + 60 + 6 = 186" />
 
-   Ada <InlineMath math="186 \text{ cara}" /> mengambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3 \text{ bola}" /> merah.
+   Ada <InlineMath math="186 \text{ cara}" /> mengambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah.
 
 4. **Jawaban: <InlineMath math="185 \text{ cara}" />**
 
    Langkah penyelesaian (**metode kasus**):
 
-   Mata pelajaran wajib: <InlineMath math="6" />, mata pelajaran pilihan: <InlineMath math="4" />
+   Mata pelajaran sains: <InlineMath math="6" />, mata pelajaran humaniora: <InlineMath math="4" />
 
-   Pilih <InlineMath math="4 \text{ mata pelajaran}" /> dengan minimal <InlineMath math="2 \text{ wajib}" />
+   Pilih <InlineMath math="4 \text{ mata pelajaran}" /> dengan minimal <InlineMath math="2 \text{ sains}" />
 
    **Rincian perhitungan setiap kasus:**
 
-   **Kasus** <InlineMath math="1" />: <InlineMath math="2 \text{ wajib} + 2 \text{ pilihan}" />
+   **Kasus** <InlineMath math="1" />: <InlineMath math="2 \text{ sains} + 2 \text{ humaniora}" />
 
    <MathContainer>
    <BlockMath math="C(6,2) \times C(4,2) = \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!}" />
    <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
    </MathContainer>
 
-   **Kasus** <InlineMath math="2" />: <InlineMath math="3 \text{ wajib} + 1 \text{ pilihan}" />
+   **Kasus** <InlineMath math="2" />: <InlineMath math="3 \text{ sains} + 1 \text{ humaniora}" />
 
    <MathContainer>
    <BlockMath math="C(6,3) \times C(4,1) = \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!}" />
    <BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
    </MathContainer>
 
-   **Kasus** <InlineMath math="3" />: <InlineMath math="4 \text{ wajib} + 0 \text{ pilihan}" />
+   **Kasus** <InlineMath math="3" />: <InlineMath math="4 \text{ sains} + 0 \text{ humaniora}" />
 
    <MathContainer>
    <BlockMath math="C(6,4) \times C(4,0) = \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!}" />

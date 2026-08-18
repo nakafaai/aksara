@@ -1,112 +1,126 @@
 export const metadata = {
-  title: "Normal Equation System Solution",
-  description: "Implement normal equation solutions using QR decomposition and pseudoinverse. Learn numerical methods, polynomial fitting, and stability comparisons.",
+  title: "Solving Normal Equations",
+  description: "Solve linear least-squares problems with QR decomposition and the Moore-Penrose pseudoinverse, then compare their numerical behavior with normal equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-15",
   subject: "Linear Methods of AI",
 };
 
+## What the System Solves
 
+Given <InlineMath math="A \in \mathbb{R}^{m \times n}" /> and <InlineMath math="b \in \mathbb{R}^m" />, a linear least-squares problem asks for the parameter vector that makes the residual as small as possible:
 
-## Fundamental Properties
+<BlockMath math="\min_x \|Ax-b\|_2^2" />
 
-Normal equation systems <InlineMath math="A^T A x = A^T b" /> have special characteristics that distinguish them from ordinary linear systems. Imagine finding the best point on a line to represent scattered data points, this system provides a mathematical way to find that optimal solution.
+Every minimizer satisfies the normal equation
 
-For a matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with <InlineMath math="m \geq n" />, the normal equation system <InlineMath math="A^T A x = A^T b" /> always has a solution. More specifically, this system has a unique solution exactly when matrix <InlineMath math="A" /> has full rank, that is when <InlineMath math="\text{Rank}(A) = n" />. Under this condition, the solution can be expressed as <InlineMath math="\hat{x} = (A^T A)^{-1} A^T b" />.
+<BlockMath math="A^T A\hat{x}=A^T b" />
 
-When matrix <InlineMath math="A" /> does not have full rank, the solution set of the normal equation system takes the form <InlineMath math="\hat{x} + \text{Kernel}(A)" />, where <InlineMath math="\hat{x}" /> is any particular solution of the system.
+This equation is always consistent. The minimizer is unique exactly when <InlineMath math="\operatorname{rank}(A)=n" />, which requires <InlineMath math="m\ge n" />. In that full-column-rank case,
 
-### Why the System is Always Solvable
+<BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
 
-The fundamental reason why normal equation systems always have a solution lies in the concept of orthogonal projection. The orthogonal projection of vector <InlineMath math="b" /> onto the column space <InlineMath math="\{Ax : x \in \mathbb{R}^n\}" /> always exists and is the solution to the linear least squares problem, which automatically is also a solution to the normal equation system.
+When <InlineMath math="A" /> is rank deficient, the fitted vector <InlineMath math="A\hat{x}" /> is still unique, but the parameter vector is not. If <InlineMath math="\hat{x}" /> is one solution, then every solution is in
 
-To understand why other solutions take the form <InlineMath math="\hat{x} + \text{Kernel}(A)" />, suppose <InlineMath math="\tilde{x}" /> is another solution of the system <InlineMath math="A^T A \tilde{x} = A^T b" />. Then <InlineMath math="\tilde{x}" /> is a solution to the normal equation system if and only if <InlineMath math="A^T A(\tilde{x} - \hat{x}) = 0" />, which is equivalent to <InlineMath math="(\tilde{x} - \hat{x})^T A^T A(\tilde{x} - \hat{x}) = 0" />, which is further equivalent to <InlineMath math="A(\tilde{x} - \hat{x}) = 0" />, or in other words <InlineMath math="\tilde{x} - \hat{x} \in \text{Kernel}(A)" />.
+<BlockMath math="\hat{x}+\ker(A)" />
+
+### Why a Solution Always Exists
+
+The column space of <InlineMath math="A" /> is a finite-dimensional closed subspace of <InlineMath math="\mathbb{R}^m" />. Therefore, <InlineMath math="b" /> has a unique orthogonal projection onto it. Any <InlineMath math="\hat{x}" /> satisfying <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> is a least-squares solution.
+
+The normal equation expresses the same geometry because
+
+<BlockMath math="A^T(A\hat{x}-b)=0" />
+
+says that the residual <InlineMath math="A\hat{x}-b" /> is orthogonal to every column of <InlineMath math="A" />.
 
 ## Moore-Penrose Pseudoinverse
 
-For a matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with <InlineMath math="m \geq n" /> and <InlineMath math="\text{Rank}(A) = n" />, we can define the Moore-Penrose pseudoinverse as
+The Moore-Penrose pseudoinverse is defined for every real matrix, including rectangular and rank-deficient matrices. If
 
-<BlockMath math="A^{\dagger} = (A^T A)^{-1} A^T" />
+<BlockMath math="A=U\Sigma V^T" />
 
-The Moore-Penrose pseudoinverse functions like the "best inverse" of a non-square matrix. It provides an optimal way to "cancel" linear transformations in the least squares context.
-
-The Moore-Penrose pseudoinverse satisfies four Penrose axioms that uniquely determine its characteristics
+is a singular value decomposition, replace every nonzero singular value <InlineMath math="\sigma_i" /> by <InlineMath math="1/\sigma_i" /> and leave every zero singular value at zero. This gives
 
 <MathContainer>
-<BlockMath math="AA^{\dagger}A = A" />
-<BlockMath math="A^{\dagger}AA^{\dagger} = A^{\dagger}" />
-<BlockMath math="(AA^{\dagger})^T = AA^{\dagger}" />
-<BlockMath math="(A^{\dagger}A)^T = A^{\dagger}A" />
+<BlockMath math="\Sigma^{\dagger}_{ii}=\begin{cases}1/\sigma_i,&\sigma_i>0,\\0,&\sigma_i=0,\end{cases}" />
+<BlockMath math="A^{\dagger}=V\Sigma^{\dagger}U^T" />
+<BlockMath math="x^{\dagger}=A^{\dagger}b" />
 </MathContainer>
 
-These four properties are unique, meaning if a matrix <InlineMath math="B" /> satisfies all four axioms, then automatically <InlineMath math="B = A^{\dagger}" />. The Moore-Penrose pseudoinverse thus functions as the unique solution operator for linear least squares problems.
+The vector <InlineMath math="x^{\dagger}" /> is the unique least-squares solution with minimum Euclidean norm. When <InlineMath math="A" /> has full column rank, the general definition simplifies to
 
-## Solution Using QR Decomposition
+<BlockMath math="A^{\dagger}=(A^T A)^{-1}A^T" />
 
-A more numerically stable approach to solving normal equation systems uses QR decomposition. For a matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with full rank and <InlineMath math="m \geq n" />, we can use the (thin) QR decomposition <InlineMath math="A = Q_1 R_1" />.
-
-With this decomposition, the normal equation system <InlineMath math="A^T A x = A^T b" /> can be solved through
-
-<BlockMath math="A^T A x = R_1^T Q_1^T Q_1 R_1 x = R_1^T R_1 x = R_1^T Q_1^T b = A^T b" />
-
-Since <InlineMath math="R_1" /> is an invertible upper triangular matrix, this equation is equivalent to
-
-<BlockMath math="R_1 x = Q_1^T b" />
-
-This upper triangular system can be solved using back substitution, providing the solution <InlineMath math="x" /> directly and efficiently.
-
-## Numerical Example
-
-Let's apply this method to a concrete example. Suppose we have experimental data that we want to fit with a quadratic polynomial. We will use the following data
+The pseudoinverse is uniquely characterized by the four Penrose identities:
 
 <MathContainer>
-<BlockMath math="A = \begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix}" />
-<BlockMath math="b = \begin{pmatrix} -2.2 \\ -4.2 \\ -4.2 \\ -1.8 \\ 1.8 \\ 8.2 \\ 15.8 \end{pmatrix}" />
+<BlockMath math="AA^{\dagger}A=A" />
+<BlockMath math="A^{\dagger}AA^{\dagger}=A^{\dagger}" />
+<BlockMath math="(AA^{\dagger})^T=AA^{\dagger}" />
+<BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
 </MathContainer>
 
-Each row in matrix <InlineMath math="A" /> has the format <InlineMath math="[t_i^2, t_i, 1]" /> to find the coefficients of polynomial <InlineMath math="y = at^2 + bt + c" />, while vector <InlineMath math="b" /> contains the corresponding observation values.
+## Direct Solution with QR Decomposition
 
-### QR Decomposition Process
+For a full-column-rank matrix with <InlineMath math="m\ge n" />, use the thin QR decomposition
 
-The QR decomposition of matrix <InlineMath math="A" /> yields
+<BlockMath math="A=Q_1R_1,\qquad Q_1^TQ_1=I" />
+
+The least-squares objective separates into
+
+<BlockMath math="\|Ax-b\|_2^2=\|R_1x-Q_1^Tb\|_2^2+\|(I-Q_1Q_1^T)b\|_2^2" />
+
+The second term does not depend on <InlineMath math="x" />. Therefore, the minimizer is obtained by solving the upper-triangular system
+
+<BlockMath math="R_1\hat{x}=Q_1^Tb" />
+
+This route solves the original least-squares problem directly. It does not form <InlineMath math="A^TA" /> and then solve the normal equation.
+
+## Worked Polynomial-Fit Example
+
+Fit <InlineMath math="y=at^2+bt+c" /> to seven observations. The design matrix and observation vector are
 
 <MathContainer>
-<BlockMath math="Q_1 = \begin{pmatrix} -0.64286 & -0.56695 & 0.16496 \\ -0.28571 & -0.37796 & -0.24744 \\ -0.07143 & -0.18898 & -0.49487 \\ -0.00000 & 0.00000 & -0.57735 \\ -0.07143 & 0.18898 & -0.49487 \\ -0.28571 & 0.37796 & -0.24744 \\ -0.64286 & 0.56695 & 0.16496 \end{pmatrix}" />
-<BlockMath math="R_1 = \begin{pmatrix} -14.00000 & -0.00000 & -2.00000 \\ 0.00000 & 5.29150 & 0.00000 \\ 0.00000 & 0.00000 & -1.73205 \end{pmatrix}" />
+<BlockMath math="A=\begin{pmatrix}9&-3&1\\4&-2&1\\1&-1&1\\0&0&1\\1&1&1\\4&2&1\\9&3&1\end{pmatrix}" />
+<BlockMath math="b=\begin{pmatrix}-2.2\\-4.2\\-4.2\\-1.8\\1.8\\8.2\\15.8\end{pmatrix}" />
 </MathContainer>
 
-### Solution Steps
+Each row of <InlineMath math="A" /> is <InlineMath math="[t_i^2,t_i,1]" />. One valid thin QR decomposition is
 
-First, we compute <InlineMath math="Q_1^T b" /> to obtain
+<MathContainer>
+<BlockMath math="Q_1=\begin{pmatrix}-0.64286&-0.56695&0.16496\\-0.28571&-0.37796&-0.24744\\-0.07143&-0.18898&-0.49487\\0&0&-0.57735\\-0.07143&0.18898&-0.49487\\-0.28571&0.37796&-0.24744\\-0.64286&0.56695&0.16496\end{pmatrix}" />
+<BlockMath math="R_1=\begin{pmatrix}-14&0&-2\\0&5.29150&0\\0&0&-1.73205\end{pmatrix}" />
+</MathContainer>
 
-<BlockMath math="Q_1^T b = \begin{pmatrix} -9.7143 \\ 16.0257 \\ 3.4806 \end{pmatrix}" />
+Signs of matching columns of <InlineMath math="Q_1" /> and rows of <InlineMath math="R_1" /> may change between valid QR implementations. The product <InlineMath math="Q_1R_1" /> and final fit do not change.
 
-Next, we solve the upper triangular system <InlineMath math="R_1 x = Q_1^T b" /> using back substitution. Since <InlineMath math="R_1" /> is upper triangular, we start from the bottom equation.
+First compute
 
-From the third equation, <InlineMath math="-1.73205 x_3 = 3.4806" />, so <InlineMath math="x_3 = -2.00952" />.
+<BlockMath math="Q_1^Tb=\begin{pmatrix}-9.71429\\16.02569\\3.48060\end{pmatrix}" />
 
-From the second equation, <InlineMath math="5.29150 x_2 = 16.0257" />, so <InlineMath math="x_2 = 3.02857" />.
+Then use back substitution:
 
-From the first equation, <InlineMath math="-14.00000 x_1 - 2.00000(-2.00952) = -9.7143" />, so <InlineMath math="x_1 = 0.98095" />.
+<MathContainer>
+<BlockMath math="-1.73205x_3=3.48060\quad\Longrightarrow\quad x_3=-2.00952" />
+<BlockMath math="5.29150x_2=16.02569\quad\Longrightarrow\quad x_2=3.02857" />
+<BlockMath math="-14x_1-2x_3=-9.71429\quad\Longrightarrow\quad x_1=0.98095" />
+</MathContainer>
 
-Thus, the complete solution is
+Thus,
 
-<BlockMath math="\hat{x} = \begin{pmatrix} 0.98095 \\ 3.02857 \\ -2.00952 \end{pmatrix}" />
-
-### Fitting Results
-
-Based on the obtained solution, the quadratic polynomial that best fits the data is
-
-<BlockMath math="y = 0.98095 \cdot t^2 + 3.02857 \cdot t - 2.00952" />
-
-The following visualization shows how well this polynomial represents the original data
+<MathContainer>
+<BlockMath math="\hat{x}=\begin{pmatrix}0.98095\\3.02857\\-2.00952\end{pmatrix}" />
+<BlockMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" />
+<BlockMath math="\|A\hat{x}-b\|_2\approx0.41861" />
+</MathContainer>
 
 <LineEquation
-  title="Quadratic Polynomial Fitting"
-  description="Polynomial curve generated from the normal equation system solution."
+  title={<>Least-squares fit <InlineMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" /></>}
+  description={<>The cyan curve is the fitted polynomial, while the orange points are the seven observations in <InlineMath math="b" />.</>}
   cameraPosition={[15, 10, 15]}
   data={(() => {
-    // Original data from matrix A (column t) and vector b
+    // Observations encoded by A and b
     const originalData = [
       [-3, -2.2],
       [-2, -4.2],
@@ -117,7 +131,7 @@ The following visualization shows how well this polynomial represents the origin
       [3, 15.8]
     ];
 
-    // Polynomial coefficients from normal equation system solution
+    // Coefficients obtained from the QR solve
     const a = 0.98095;
     const b = 3.02857;
     const c = -2.00952;
@@ -143,12 +157,12 @@ The following visualization shows how well this polynomial represents the origin
   })()}
 />
 
-## Method Comparison
+## Choosing a Numerical Method
 
-To solve normal equation systems, there are two main approaches that can be compared in terms of computation and numerical stability.
+| Method | Approximate dense cost for <InlineMath math="m\ge n" /> | Main strength | Main limitation |
+| --- | --- | --- | --- |
+| Normal equations and Cholesky | form <InlineMath math="A^TA" /> in <InlineMath math="O(mn^2)" />, then factor in about <InlineMath math="\frac{1}{3}n^3" /> flops | fast when the problem is well conditioned and full rank | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
+| Householder QR | about <InlineMath math="2mn^2-\frac{2}{3}n^3" /> flops | avoids forming <InlineMath math="A^TA" /> and is usually more stable | requires a rank-aware variant when columns are dependent |
+| SVD | more work than QR | exposes rank and gives the minimum-norm solution | highest cost of the three |
 
-The Cholesky approach involves explicitly forming the matrix <InlineMath math="A^T A" /> first, then applying Cholesky decomposition since this matrix is positive definite. This method requires approximately <InlineMath math="n^2 \cdot m + \frac{1}{6}n^3 + O(n^2) + O(m \cdot n)" /> arithmetic operations. However, multiplication and decomposition can become sources of large error propagation, especially when <InlineMath math="m = n" /> where <InlineMath math="\text{cond}(A^T A) \approx \text{cond}(A)^2" />.
-
-The QR approach, conversely, can solve this problem with better numerical stability and comparable computational complexity. The main complexity is determined by <InlineMath math="n^2 \cdot m" /> operations for QR decomposition, making it comparable to the Cholesky approach. However, the significant advantage of QR lies in the fact that orthogonal transformations do not worsen the problem condition, unlike forming <InlineMath math="A^T A" /> in the Cholesky method.
-
-The choice of the appropriate method depends on the data characteristics and the level of accuracy required in the specific application.
+Use QR as the usual dense full-rank method. Use SVD when rank deficiency, severe ill-conditioning, or the minimum-norm solution matters. Form the normal matrix only when its speed advantage is worth the loss of numerical robustness, and never compute the inverse explicitly in production code.

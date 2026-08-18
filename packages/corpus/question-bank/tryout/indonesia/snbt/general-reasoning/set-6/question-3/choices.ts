@@ -3,52 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Community service is not held on Sunday because it rained",
+      label: "Both activities are canceled because of the rain",
       value: false,
     },
     {
-      label: "Community service to collect used goods is held on Sunday",
+      label: "Recyclable materials are collected on Sunday",
       value: true,
     },
     {
-      label:
-        "Community service to clean gutters and collect used goods is held on Sunday",
+      label: "Both activities are carried out on Sunday",
       value: false,
     },
     {
-      label:
-        "Community service to collect used goods is held on Sunday and cleaning gutters is not implemented",
+      label: "Only the drains are cleaned on Sunday",
       value: false,
     },
     {
-      label: "Community service is not held on Sunday because it rained",
+      label: "The activity is postponed without choosing an alternative",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Pada hari Minggu tidak jadi dilaksanakan kerja bakti karena turun hujan",
+      label: "Kedua kegiatan dibatalkan karena hujan",
       value: false,
     },
     {
-      label:
-        "Pada hari Minggu dilaksanakan kerja bakti mengumpulkan barang bekas",
+      label: "Barang daur ulang dikumpulkan pada hari Minggu",
       value: true,
     },
     {
-      label:
-        "Pada hari Minggu dilaksanakan kerja bakti membersihkan selokan dan mengumpulkan barang bekas",
+      label: "Kedua kegiatan dilaksanakan pada hari Minggu",
       value: false,
     },
     {
-      label:
-        "Pada Hari minggu kerja bakti mengumpulkan barang bekas dan membersihkan selokan tidak dilaksanakan",
+      label: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
       value: false,
     },
     {
-      label:
-        "Pada hari minggu kerja bakti tidak dilaksanakan karena turun hujan",
+      label: "Kerja bakti ditunda tanpa memilih kegiatan pengganti",
       value: false,
     },
   ],

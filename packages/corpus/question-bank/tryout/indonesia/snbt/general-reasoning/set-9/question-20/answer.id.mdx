@@ -4,11 +4,14 @@ export const metadata = {
   date: "2026-01-30",
 };
 
-Berdasarkan informasi pada bacaan, Sekolah A menetapkan tiga syarat mutlak bagi siswa untuk mendapatkan beasiswa ke luar negeri:
-1.  Memiliki nilai yang sangat baik.
-2.  Tidak memiliki catatan kenakalan.
-3.  Disetujui oleh setidaknya <InlineMath math="70\%" /> guru.
+Frasa **ketiga syarat** menjadi kunci. Misalkan <InlineMath math="G" />, <InlineMath math="M" />, dan <InlineMath math="T" /> menyatakan syarat nilai, catatan pelanggaran, dan persetujuan guru. Seorang siswa dinyatakan memenuhi syarat hanya jika konjungsi berikut benar:
 
-Ali memenuhi syarat nilai yang sangat baik, namun ia **hanya disetujui oleh <InlineMath math="50\%" /> guru**.
+<BlockMath math="G\land M\land T." />
 
-Karena ada satu syarat yang tidak terpenuhi (persentase persetujuan guru kurang dari <InlineMath math="70\%" />), maka Ali secara otomatis tidak memenuhi kriteria untuk mendapatkan beasiswa. Oleh karena itu, simpulan yang menyatakan bahwa Ali tidak layak mendapat beasiswa adalah **pasti benar**.
+Ali memiliki nilai yang sangat baik, tetapi persetujuan yang ia peroleh berada di bawah batas wajib:
+
+<BlockMath math="50\%<70\%." />
+
+Jadi, <InlineMath math="T" /> bernilai salah dan seluruh konjungsi gagal. Informasi yang belum diketahui tentang catatan pelanggaran tidak dapat membuat Ali memenuhi syarat, karena satu syarat wajib yang gagal sudah cukup untuk menggugurkan kelayakannya.
+
+> Simpulan bahwa Ali tidak memenuhi syarat adalah **pasti benar**.

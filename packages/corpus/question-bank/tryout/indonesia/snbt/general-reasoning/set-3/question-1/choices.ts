@@ -3,7 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Interest in basketball increases every year",
+      label: "Interest in basketball increases at every grade level",
       value: false,
     },
     {
@@ -28,7 +28,7 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "Peminat bola basket semakin meningkat setiap tahunnya",
+      label: "Peminat bola basket meningkat pada setiap jenjang kelas",
       value: false,
     },
     {

@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Sistem Persamaan Linear",
-    description: "Selesaikan sistem linear berlebih dengan metode kuadrat terkecil. Pelajari curve fitting, model polinomial, dan solusi matriks untuk data nyata.",
+    title: "Sistem Linear Berlebih",
+    description: "Bangun sistem linear berlebih dari data dan pahami mengapa kuadrat terkecil menghasilkan polinom terbaik ketika solusi tepat tidak ada.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-15",
     subject: "Metode Linear AI",
@@ -8,109 +8,112 @@ export const metadata = {
 
 ## Sistem Persamaan Linear Berlebih
 
-Bayangkan kita sedang mencoba mencocokkan sebuah kurva dengan sekumpulan data.
-Dalam banyak kasus praktis, kita memiliki lebih banyak data daripada parameter yang ingin kita cari.
-Situasi seperti ini menciptakan apa yang disebut **sistem persamaan linear berlebih**.
+Misalkan kita ingin mencocokkan kurva dengan data hasil pengukuran. Sering kali jumlah pengamatan lebih banyak daripada parameter model. Jika setiap pengamatan ditulis sebagai satu persamaan, terbentuklah **sistem linear berlebih**.
 
-Sistem ini memiliki karakteristik khusus. Jumlah persamaan lebih banyak daripada jumlah variabel yang tidak diketahui.
-Secara matematis, jika kita punya <InlineMath math="m" /> persamaan dan <InlineMath math="n" /> variabel,
-maka kondisi <InlineMath math="m > n" /> membuat sistem ini "berlebih".
+Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Kondisi ini tidak otomatis meniadakan solusi tepat, tetapi data pengukuran biasanya tidak persis mengikuti model yang dipilih.
 
 ## Contoh Nyata dengan Model Polinomial Kuadrat
 
-Mari kita lihat contoh konkret. Misalkan kita memiliki <InlineMath math="7" /> titik data yang ingin kita cocokkan
-dengan sebuah parabola atau kurva kuadrat.
+Perhatikan <InlineMath math="7" /> titik data yang akan dicocokkan dengan sebuah polinom kuadrat.
 
-Data yang kita miliki adalah sebagai berikut.
+Data pengamatannya adalah:
 
 | <InlineMath math="i" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> |
 |---|---|---|---|---|---|---|---|
 | <InlineMath math="t_i" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
-| <InlineMath math="y_i" /> | <InlineMath math="-2.2" /> | <InlineMath math="-4.2" /> | <InlineMath math="-4.2" /> | <InlineMath math="-1.8" /> | <InlineMath math="1.8" /> | <InlineMath math="8.2" /> | <InlineMath math="15.8" /> |
+| <InlineMath math="y_i" /> | <InlineMath math="-2{,}2" /> | <InlineMath math="-4{,}2" /> | <InlineMath math="-4{,}2" /> | <InlineMath math="-1{,}8" /> | <InlineMath math="1{,}8" /> | <InlineMath math="8{,}2" /> | <InlineMath math="15{,}8" /> |
 
-Kita ingin mencari sebuah parabola yang bentuknya seperti ini.
+Kita mencari parabola berbentuk:
 
 <BlockMath math="y = a_2 \cdot t^2 + a_1 \cdot t + a_0" />
 
-Di sini kita mencari <InlineMath math="3" /> parameter, yaitu <InlineMath math="a_2" /> (koefisien kuadrat),
-<InlineMath math="a_1" /> (koefisien linear), dan <InlineMath math="a_0" /> (konstanta).
+Parameter yang belum diketahui berjumlah <InlineMath math="3" />, yaitu <InlineMath math="a_2" /> (koefisien kuadrat), <InlineMath math="a_1" /> (koefisien linear), dan <InlineMath math="a_0" /> (suku konstanta).
 
 ## Menyusun Sistem Persamaan
 
-Sekarang, bagaimana kita menggunakan data ini untuk mencari parameter parabola?
-Idenya sederhana. Untuk setiap titik data, kita bisa menuliskan satu persamaan.
-Dengan <InlineMath math="7" /> titik data, kita akan mendapatkan <InlineMath math="7" /> persamaan.
+Substitusi setiap pasangan <InlineMath math="(t_i,y_i)" /> ke dalam polinom menghasilkan satu persamaan. Jadi, <InlineMath math="7" /> pengamatan memberikan <InlineMath math="7" /> persamaan untuk hanya <InlineMath math="3" /> koefisien yang belum diketahui.
 
 <MathContainer>
-<BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2.2" />
-<BlockMath math="a_2 \cdot (-2)^2 + a_1 \cdot (-2) + a_0 = -4.2" />
-<BlockMath math="a_2 \cdot (-1)^2 + a_1 \cdot (-1) + a_0 = -4.2" />
-<BlockMath math="a_2 \cdot 0^2 + a_1 \cdot 0 + a_0 = -1.8" />
-<BlockMath math="a_2 \cdot 1^2 + a_1 \cdot 1 + a_0 = 1.8" />
-<BlockMath math="a_2 \cdot 2^2 + a_1 \cdot 2 + a_0 = 8.2" />
-<BlockMath math="a_2 \cdot 3^2 + a_1 \cdot 3 + a_0 = 15.8" />
+<BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2{,}2" />
+<BlockMath math="a_2 \cdot (-2)^2 + a_1 \cdot (-2) + a_0 = -4{,}2" />
+<BlockMath math="a_2 \cdot (-1)^2 + a_1 \cdot (-1) + a_0 = -4{,}2" />
+<BlockMath math="a_2 \cdot 0^2 + a_1 \cdot 0 + a_0 = -1{,}8" />
+<BlockMath math="a_2 \cdot 1^2 + a_1 \cdot 1 + a_0 = 1{,}8" />
+<BlockMath math="a_2 \cdot 2^2 + a_1 \cdot 2 + a_0 = 8{,}2" />
+<BlockMath math="a_2 \cdot 3^2 + a_1 \cdot 3 + a_0 = 15{,}8" />
 </MathContainer>
 
-Sekarang mari kita hitung nilai kuadrat untuk setiap <InlineMath math="t_i" />.
-Misalnya, untuk <InlineMath math="t_1 = -3" />, kita punya <InlineMath math="(-3)^2 = 9" />.
-Begitu juga dengan yang lain. Setelah dihitung semua, persamaan kita menjadi seperti ini.
+Setelah menghitung pangkat setiap <InlineMath math="t_i" />, sistemnya menjadi:
 
 <MathContainer>
-<BlockMath math="9a_2 - 3a_1 + a_0 = -2.2" />
-<BlockMath math="4a_2 - 2a_1 + a_0 = -4.2" />
-<BlockMath math="1a_2 - 1a_1 + a_0 = -4.2" />
-<BlockMath math="0a_2 + 0a_1 + a_0 = -1.8" />
-<BlockMath math="1a_2 + 1a_1 + a_0 = 1.8" />
-<BlockMath math="4a_2 + 2a_1 + a_0 = 8.2" />
-<BlockMath math="9a_2 + 3a_1 + a_0 = 15.8" />
+<BlockMath math="9a_2 - 3a_1 + a_0 = -2{,}2" />
+<BlockMath math="4a_2 - 2a_1 + a_0 = -4{,}2" />
+<BlockMath math="1a_2 - 1a_1 + a_0 = -4{,}2" />
+<BlockMath math="0a_2 + 0a_1 + a_0 = -1{,}8" />
+<BlockMath math="1a_2 + 1a_1 + a_0 = 1{,}8" />
+<BlockMath math="4a_2 + 2a_1 + a_0 = 8{,}2" />
+<BlockMath math="9a_2 + 3a_1 + a_0 = 15{,}8" />
 </MathContainer>
 
 ## Bentuk Matriks
 
 Sistem persamaan di atas bisa ditulis dalam bentuk matriks <InlineMath math="A \cdot x = b" />.
 
-<MathContainer>
-<BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2.2 \\ -4.2 \\ -4.2 \\ -1.8 \\ 1.8 \\ 8.2 \\ 15.8 \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2{,}2 \\ -4{,}2 \\ -4{,}2 \\ -1{,}8 \\ 1{,}8 \\ 8{,}2 \\ 15{,}8 \end{pmatrix}" />
 
-Secara umum, untuk model polinomial kuadrat dengan <InlineMath math="m" /> titik data,
-bentuk matriksnya adalah sebagai berikut.
+Untuk model kuadrat dengan <InlineMath math="m" /> titik data, susunan yang sama menghasilkan bentuk umum:
 
-<MathContainer>
 <BlockMath math="\begin{pmatrix} t_1^2 & t_1 & 1 \\ \vdots & \vdots & \vdots \\ t_m^2 & t_m & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} y_1 \\ \vdots \\ y_m \end{pmatrix}" />
-</MathContainer>
 
 ## Mengapa Tidak Ada Solusi Tepat
 
-Sekarang kita hadapi situasi yang menarik. Dalam contoh kita, matriks <InlineMath math="A" /> berukuran <InlineMath math="7 \times 3" />
-dan vektor <InlineMath math="x" /> berukuran <InlineMath math="3 \times 1" />.
-Artinya, kita memiliki <InlineMath math="7" /> persamaan tetapi hanya <InlineMath math="3" /> variabel yang tidak diketahui.
+Dalam contoh ini, matriks <InlineMath math="A" /> berukuran <InlineMath math="7 \times 3" /> dan vektor koefisien <InlineMath math="x" /> berukuran <InlineMath math="3 \times 1" />. Jadi, ada <InlineMath math="7" /> persamaan untuk <InlineMath math="3" /> variabel.
 
-Apakah ini berarti sistemnya tidak bisa diselesaikan? Mari kita periksa lebih teliti.
+Ukuran matriks saja belum menentukan ada atau tidaknya solusi tepat. Penentunya adalah peringkat matriks.
 
-Ketiga kolom matriks <InlineMath math="A" /> saling bebas linear, sehingga peringkat matriks <InlineMath math="A" /> adalah <InlineMath math="3" />.
-Namun ketika kita menambahkan vektor <InlineMath math="b" /> ke matriks <InlineMath math="A" />
-untuk membentuk matriks diperluas <InlineMath math="(A|b)" />, peringkatnya menjadi <InlineMath math="4" />.
+Ketiga kolom <InlineMath math="A" /> bebas linear. Alasannya, polinom <InlineMath math="c_2t^2+c_1t+c_0" /> berderajat paling tinggi <InlineMath math="2" /> yang bernilai nol pada ketujuh nilai <InlineMath math="t_i" /> yang berbeda harus merupakan polinom nol. Jadi <InlineMath math="\operatorname{rank}(A)=3" />.
 
-Kondisi ini memberitahu kita sesuatu yang penting. Sistem ini **tidak memiliki solusi tepat**.
-Dalam bahasa sederhana, tidak ada parabola tunggal yang bisa melewati ke-<InlineMath math="7" /> titik data secara sempurna.
+Setelah vektor <InlineMath math="b" /> ditambahkan, terbentuk matriks diperluas <InlineMath math="(A\mid b)" />. Empat baris pertama saja sudah menghasilkan minor tak nol
+
+<BlockMath math="\det\begin{pmatrix}9&-3&1&-2{,}2\\4&-2&1&-4{,}2\\1&-1&1&-4{,}2\\0&0&1&-1{,}8\end{pmatrix}=-\frac45" />
+
+sehingga <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+
+Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi tepat**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
 
 ## Solusi dengan Kuadrat Terkecil
 
-Lalu apa yang harus kita lakukan? Menyerah? Tentu tidak!
+Jika sistem berlebih tidak memiliki solusi tepat, kita dapat mencari polinom yang paling dekat dengan semua pengamatan menurut kriteria **kuadrat terkecil**.
 
-Ketika sistem persamaan linear berlebih tidak memiliki solusi tepat,
-kita menggunakan pendekatan **kuadrat terkecil**. Ide dasarnya sangat masuk akal.
-Jika kita tidak bisa menemukan parabola yang melewati semua titik,
-mari kita cari parabola yang "paling dekat" dengan semua titik.
+Untuk pengamatan ke-<InlineMath math="i" />, residual vertikalnya adalah <InlineMath math="r_i = y_i-(a_2t_i^2+a_1t_i+a_0)" />. Metode kuadrat terkecil memilih koefisien yang meminimalkan jumlah kuadrat residual:
 
-Secara matematis, metode ini mencari parameter yang meminimalkan jumlah kuadrat selisih
-antara nilai prediksi dan nilai observasi. Bayangkan kita menggambar parabola,
-lalu mengukur jarak vertikal dari setiap titik data ke parabola tersebut.
-Metode kuadrat terkecil mencari parabola yang membuat total kuadrat jarak-jarak ini paling kecil.
+<BlockMath math="\min_{a_2,a_1,a_0}\sum_{i=1}^{7}\left[y_i-(a_2t_i^2+a_1t_i+a_0)\right]^2" />
 
-> Sistem persamaan linear berlebih sangat umum dalam dunia nyata,
-> terutama ketika kita memiliki banyak data pengukuran tetapi model yang relatif sederhana.
+Kriteria ini memberi penalti lebih besar pada selisih yang besar dan menghasilkan tepat satu parabola terbaik karena <InlineMath math="A" /> memiliki rank kolom penuh. Persamaan normalnya adalah
 
-Pendekatan kuadrat terkecil memberikan solusi yang optimal dalam arti meminimalkan
-kesalahan secara keseluruhan, sehingga sangat praktis untuk aplikasi rekayasa dan sains.
+<MathContainer>
+<BlockMath math="A^TA=\begin{pmatrix}196&0&28\\0&28&0\\28&0&7\end{pmatrix}" />
+<BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
+</MathContainer>
+
+Penyelesaiannya memberikan
+
+<MathContainer>
+<BlockMath math="\hat x=\begin{pmatrix}\hat a_2\\\hat a_1\\\hat a_0\end{pmatrix}=\begin{pmatrix}\frac{103}{105}\\\frac{106}{35}\\-\frac{211}{105}\end{pmatrix}" />
+<BlockMath math="\hat y(t)=\frac{103}{105}t^2+\frac{106}{35}t-\frac{211}{105}" />
+</MathContainer>
+
+Nilai hasil pencocokan tidak sama dengan setiap observasi, dan memang itulah yang diharapkan. Vektor residualnya adalah
+
+<BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
+
+serta memenuhi
+
+<MathContainer>
+<BlockMath math="A^Tr=0" />
+<BlockMath math="\lVert r\rVert_2^2=\frac{92}{525}\approx0{,}17524" />
+</MathContainer>
+
+Persamaan <InlineMath math="A^Tr=0" /> berarti galat yang tersisa ortogonal terhadap setiap kolom <InlineMath math="A" />. Secara geometri, <InlineMath math="A\hat x" /> merupakan proyeksi ortogonal <InlineMath math="b" /> ke ruang kolom <InlineMath math="A" />.
+
+Sistem berlebih banyak muncul dalam rekayasa dan sains karena eksperimen biasanya menghasilkan banyak pengukuran untuk model dengan sedikit parameter. Kuadrat terkecil memanfaatkan seluruh pengukuran tanpa menganggap data yang berisik cocok sempurna dengan model.

@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Definisi Kesamaan Matriks
 
-Dalam aljabar linear, konsep kesamaan atau kemiripan matriks sangat penting untuk memahami bagaimana dua matriks yang berbeda dapat menggambarkan transformasi linear yang sama pada ruang yang berbeda. Bayangkan seperti dua potret yang berbeda dari objek yang sama, tapi diambil dari sudut pandang yang berbeda.
+Dalam aljabar linear, kesamaan matriks menjelaskan bagaimana dua matriks berbeda dapat merepresentasikan transformasi linear yang sama dalam basis berbeda. Entri matriks berubah mengikuti koordinat, tetapi transformasi dasarnya tetap sama.
 
-Dua matriks <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> dikatakan **serupa** atau **mirip** jika terdapat matriks yang dapat dibalik <InlineMath math="S \in \mathbb{K}^{n \times n}" /> sehingga:
+Dua matriks <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> dikatakan **serupa atau mirip** jika terdapat matriks yang dapat dibalik <InlineMath math="S \in \mathbb{K}^{n \times n}" /> sehingga:
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
@@ -61,18 +61,35 @@ Dalam basis <InlineMath math="v_1, \ldots, v_n" />, transformasi linear <InlineM
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-Inilah mengapa matriks serupa menggambarkan transformasi linear yang sama namun dilihat dari basis yang berbeda. Matriks serupa menggambarkan transformasi linear yang sama terhadap basis yang berbeda dari <InlineMath math="\mathbb{K}^n" />.
+Jadi, matriks serupa merepresentasikan satu transformasi linear terhadap basis yang berbeda dari <InlineMath math="\mathbb{K}^n" />.
+
+## Contoh Perubahan Basis Terurai
+
+Misalkan
+
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&0\\0&3\end{pmatrix}" />
+<BlockMath math="S=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad S^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}" />
+</MathContainer>
+
+Transformasi yang sama dalam basis yang dibentuk oleh kolom-kolom <InlineMath math="S" /> memiliki matriks
+
+<BlockMath math="B=S^{-1}AS=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />
+
+Meskipun entrinya berbeda, kedua matriks memiliki polinomial karakteristik <InlineMath math="(t-2)(t-3)" />, jejak <InlineMath math="5" />, dan determinan <InlineMath math="6" /> yang sama.
 
 ## Sifat Invarian Matriks Serupa
 
-Matriks serupa memiliki beberapa sifat mendasar yang sangat berguna. Karena mereka menggambarkan transformasi linear yang sama pada ruang berbeda, matriks serupa mempertahankan karakteristik bawaan yang sama.
+Karena matriks serupa menjelaskan transformasi yang sama dalam koordinat berbeda, sifat yang tidak bergantung pada basis tetap terjaga. Keduanya memiliki polinomial karakteristik, determinan, jejak, peringkat, nilai eigen beserta multiplisitas aljabar, polinomial minimal, dan ukuran blok Jordan yang sama.
 
-Berdasarkan teorema tentang matriks serupa, jika matriks <InlineMath math="A" /> dan <InlineMath math="B = S^{-1} \cdot A \cdot S" /> serupa, maka keduanya memiliki:
+Namun, keduanya tidak harus memiliki entri, koordinat vektor eigen, norma Euklides, sifat simetris, atau ortogonalitas yang sama. Sifat-sifat tersebut dapat bergantung pada basis yang dipilih. Perubahan basis uniter atau ortogonal mempertahankan lebih banyak struktur geometris daripada transformasi keserupaan umum.
 
-1. **Determinan yang sama**
-2. **Polinomial karakteristik yang sama**
-3. **Nilai eigen yang sama**
-4. **Jejak yang sama**
+| Dipertahankan oleh keserupaan | Tidak selalu dipertahankan |
+| --- | --- |
+| Polinomial karakteristik dan minimal | Entri matriks |
+| Nilai eigen dan ukuran blok Jordan | Vektor koordinat dari vektor eigen |
+| Determinan, jejak, dan peringkat | Norma Euklides dan sifat simetris |
 
 ### Pembuktian Kesamaan Determinan
 
@@ -90,7 +107,7 @@ Karena <InlineMath math="\det(S^{-1}) = \frac{1}{\det(S)}" />, maka:
 <BlockMath math="= \det(A)" />
 </MathContainer>
 
-### Kesamaan Nilai Eigen
+### Korespondensi Nilai Eigen
 
 Jika <InlineMath math="v \in \mathbb{K}^n" /> adalah vektor eigen dari <InlineMath math="A" /> dengan nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, sehingga <InlineMath math="A \cdot v = \lambda \cdot v" />, maka <InlineMath math="w = S^{-1} \cdot v" /> adalah vektor eigen dari <InlineMath math="B" /> dengan nilai eigen yang sama:
 
@@ -101,4 +118,4 @@ Jika <InlineMath math="v \in \mathbb{K}^n" /> adalah vektor eigen dari <InlineMa
 <BlockMath math="= \lambda \cdot w" />
 </MathContainer>
 
-Ini menunjukkan bahwa kesamaan matriks mempertahankan spektrum atau kumpulan nilai eigen, yang merupakan karakteristik dasar dari transformasi linear.
+Ini menunjukkan bahwa keserupaan matriks mempertahankan spektrum. Vektor koordinat sebuah vektor eigen berubah dari <InlineMath math="v" /> menjadi <InlineMath math="S^{-1}v" />, sedangkan arah geometris yang direpresentasikannya tetap terkait dengan transformasi dasar yang sama.

@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Number Attributes and Methods",
-    description: "Learn Python number attributes like real and imag, plus methods like conjugate() for complex numbers with code examples.",
+    description: "Explore Python numeric objects through their types, attributes, methods, and complex-number operations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-09-16",
     subject: "AI Programming",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Basic Concept of Numbers as Objects
 
-In Python, every number is an object that has its own attributes and methods. This concept might sound strange at first, but it's actually very simple. Think of numbers like a box that not only contains a value, but also has special capabilities that you can use.
+Every Python number is an object with a numeric type. That type determines which attributes and methods are available in addition to arithmetic operators.
 
-When you write <InlineMath math="5" /> or <InlineMath math="3.14" />, Python doesn't just store that number, but also provides various functions that you can call to manipulate or get information from that number.
+For example, <InlineMath math="5" /> creates an `int` and <InlineMath math="3.14" /> creates a `float`. Numeric objects are immutable, so their methods return information or new values rather than changing the original number.
 
 ## Accessing Attributes and Methods
 
-To access attributes from a number object, you use the syntax `object.attribute`. While to call methods, you use the syntax `object.method()`.
+Read an attribute with `object.attribute`. Call a method with `object.method()`, including the parentheses that perform the call.
 
 Let's look at a practical example with complex numbers:
 
@@ -38,13 +38,13 @@ print(c.conjugate())  # Output: (2-3j)`
   ]}
 />
 
-## Ways to View Available Attributes and Methods
+## Identifying the Numeric Type
 
-Python provides several ways to see what attributes and methods are available on a number object.
+Before using a type-specific operation, you can inspect which numeric type a value has.
 
 ### Using the type() Function
 
-The `type()` function shows the type of object you're dealing with:
+The `type()` function returns the value's class:
 
 <CodeBlock
   data={[
@@ -61,11 +61,11 @@ print(type(2+3j))      # Output: <class 'complex'>`
 
 ## Complex Number Attributes
 
-Complex numbers have two main attributes that are very useful:
+A complex number exposes its two components through the `real` and `imag` attributes. Both are returned as floating-point values.
 
 ### The real Attribute
 
-The `real` attribute gives the real part of a complex number:
+The `real` attribute returns the real component:
 
 <CodeBlock
   data={[
@@ -91,7 +91,7 @@ print(f"Real part of {z3} is {z3.real}")
 
 ### The imag Attribute
 
-The `imag` attribute gives the imaginary part of a complex number:
+The `imag` attribute returns the coefficient of <InlineMath math="i" />. Python writes that unit as `j` in complex literals.
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ print(f"Imaginary part of {z3} is {z3.imag}")
 
 ### The conjugate() Method
 
-The `conjugate()` method returns the complex conjugate of a number. A complex conjugate is a number with the same real part but opposite sign imaginary part.
+For <InlineMath math="z=a+bi" />, `conjugate()` returns <InlineMath math="\overline{z}=a-bi" />. The real part stays fixed while the sign of the imaginary part changes.
 
 <CodeBlock
   data={[
@@ -145,7 +145,7 @@ print(f"Conjugate of {z3} is {z3.conjugate()}")
 
 ### Practical Use of Conjugate
 
-Complex conjugates are very useful in various mathematical calculations, especially for calculating the modulus of complex numbers:
+The identity <InlineMath math="z\overline{z}=|z|^2" /> connects a complex number to its modulus. The example shows that relationship explicitly; in ordinary Python code, `abs(z)` is the direct way to compute the modulus.
 
 <CodeBlock
   data={[
@@ -163,19 +163,21 @@ print(f"Complex number: {z}")
 print(f"Its conjugate: {z.conjugate()}")
 print(f"z × z*: {modulus_squared}")
 print(f"Modulus |z|: {modulus}")
+print(f"Built-in abs(z): {abs(z)}")
 
 # Output:
 # Complex number: (3+4j)
 # Its conjugate: (3-4j)
 # z × z*: (25+0j)
-# Modulus |z|: 5.0`
+# Modulus |z|: 5.0
+# Built-in abs(z): 5.0`
     }
   ]}
 />
 
 ## Attributes and Methods on Other Numbers
 
-Although the examples above focus on complex numbers, integers and floats also have their own attributes and methods.
+Integers and floating-point numbers also expose methods suited to their representations.
 
 ### Integer Numbers
 
@@ -200,6 +202,8 @@ print(f"Byte representation of {n}: {byte_representation}")
     }
   ]}
 />
+
+`bit_length()` counts the bits needed for the absolute integer value, excluding its sign and leading zeros. `to_bytes()` additionally requires an output length and byte order, so the two-byte result above begins with a zero byte.
 
 ### Float Numbers
 
@@ -227,11 +231,13 @@ print(f"Ratio of {f}: {ratio}")
   ]}
 />
 
+`is_integer()` checks whether a finite float has no fractional part. `as_integer_ratio()` returns the exact fraction represented by the stored binary float, which may differ from the decimal fraction a reader expects.
+
 ## Practical Applications in Programming
 
 ### Data Validation
 
-Number attributes and methods are very useful for data validation:
+Attributes can support explicit validation rules. The following function requires the input to be a `complex` object, then applies two example domain rules to its components.
 
 <CodeBlock
   data={[
@@ -291,4 +297,4 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Understanding number attributes and methods will be very helpful when you work with more complex mathematical calculations, especially in the context of AI programming which often involves advanced numerical operations.
+The useful pattern is to identify the numeric type, choose the operation owned by that type, and remember whether it returns a component, a representation, or a new value. That distinction becomes increasingly important when numerical code grows beyond a single expression.

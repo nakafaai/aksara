@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Matrix and Transformation Connection",
-  description: "Learn how 2×2 matrices perform geometric transformations like rotations and reflections on points and shapes with worked examples.",
+  description: "Connect square matrices to rotations, reflections, and shears through position vectors and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-10",
   subject: "Geometric Transformation",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## What is the Connection between Matrices and Geometric Transformations?
 
-A <InlineMath math="2 \times 2" /> matrix can be associated with transformation operations on any point in the Cartesian plane.
+A <InlineMath math="2 \times 2" /> matrix defines a linear transformation of the Cartesian plane. It always maps the origin to itself, so a pure translation needs vector addition or homogeneous coordinates instead.
 
 A point in the Cartesian plane, often symbolized by the ordered pair <InlineMath math="(x,y)" />, can also be symbolized by the position vector <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />. This position vector notation will be frequently used in discussing the connection between matrices and transformations.
 
@@ -23,13 +23,13 @@ Thus, <InlineMath math="x' = ax + by" /> and <InlineMath math="y' = cx + dy" />.
 
 If <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> represents any point in the Cartesian plane, find the product of <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
 
-**Alternative Solution:**
+**Solution:**
 
 The matrix product is:
 
 <BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}" />
 
-It can be observed that the point <InlineMath math="(x,y)" /> is transformed by the matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> into the point <InlineMath math="(-y,x)" />. This is the formula for a <InlineMath math="90^\circ" /> counter-clockwise rotation about the origin.
+The matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,x)" />. This coordinate rule describes a <InlineMath math="90^\circ" /> counter-clockwise rotation about the origin.
 
 <LineEquation
   title={
@@ -86,9 +86,9 @@ It can be observed that the point <InlineMath math="(x,y)" /> is transformed by 
 
 Find the image of <InlineMath math="\triangle ABC" />, with vertices <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, and <InlineMath math="C(4,2)" /> transformed by the matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
-**Alternative Solution:**
+**Solution:**
 
-First, we can write the coordinates of the points as columns of a matrix, i.e., <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" /> (Columns A, B, C).
+First, we can write the coordinates of the points as columns of a matrix, i.e., <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />. The three columns correspond to <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, in that order.
 
 Next, multiply this matrix from the left by <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
@@ -165,13 +165,13 @@ The matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
 1.  Find the product of <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />. What transformation does this matrix represent?
 2.  A transformation is associated with the matrix <InlineMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />. Find the image of a triangle with vertices <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, and <InlineMath math="C(0,1)" /> under this transformation!
 
-### Key Answers
+### Solutions
 
 1.  <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} y \\ -x \end{pmatrix}" />
 
     The point <InlineMath math="(x,y)" /> is transformed into <InlineMath math="(y,-x)" />.
 
-    This is a <InlineMath math="-90^\circ" /> (or <InlineMath math="270^\circ" />) clockwise rotation about the origin.
+    This is a <InlineMath math="90^\circ" /> clockwise rotation, equivalently a <InlineMath math="270^\circ" /> counter-clockwise rotation, about the origin.
 
 2.  Transformation matrix <InlineMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />.
 
@@ -186,4 +186,4 @@ The matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
 
     Image vertices: <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" />, <InlineMath math="C'(2,1)" />.
 
-    (This transformation is known as a shear)
+    This is a horizontal shear: the <InlineMath math="x" />-coordinate changes by twice the <InlineMath math="y" />-coordinate, while <InlineMath math="y" /> remains unchanged.

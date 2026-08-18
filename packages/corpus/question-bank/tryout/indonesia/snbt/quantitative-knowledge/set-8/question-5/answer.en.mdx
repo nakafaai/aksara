@@ -4,30 +4,21 @@ export const metadata = {
   date: "2025-12-25",
 };
 
-Let:
-
-- <InlineMath math="P(h_1) =" /> Probability of black in box <InlineMath math="1" />
-- <InlineMath math="P(h_2) =" /> Probability of black in box <InlineMath math="2" />
-- <InlineMath math="P(p_1) =" /> Probability of white in box <InlineMath math="1" />
-- <InlineMath math="P(p_2) =" /> Probability of white in box <InlineMath math="2" />
-
-Given the probability of getting black balls from both boxes is <InlineMath math="\frac{3}{10}" />. Since taking balls from box <InlineMath math="1" /> and box <InlineMath math="2" /> are independent events:
+Let <InlineMath math="b_1" /> and <InlineMath math="b_2" /> be the numbers of black balls in the two boxes. The first box gives <InlineMath math="b_1=12" />. Because the draws come from different boxes, they are independent:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} P(h_1 \cap h_2) &= P(h_1) \times P(h_2) \\ \frac{3}{10} &= \frac{n(h_1)}{20} \times \frac{n(h_2)}{20} \\ \frac{3}{10} &= \frac{n(h_1) \times n(h_2)}{400} \\ n(h_1) \times n(h_2) &= 120 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \frac{3}{10} &= \frac{b_1}{20}\cdot\frac{b_2}{20} \\ &= \frac{12}{20}\cdot\frac{b_2}{20} \\ b_2 &= 10 \end{aligned}" />
 </MathContainer>
 
-We need to find a pair of factors of <InlineMath math="120" /> where both are less than or equal to <InlineMath math="20" /> (maximum number of balls). The possible pair is <InlineMath math="12" /> and <InlineMath math="10" /> (or vice versa). Let <InlineMath math="n(h_1) = 12" /> and <InlineMath math="n(h_2) = 10" />.
-
-Then the number of white balls is:
+The boxes therefore contain:
 
 - Box <InlineMath math="1" />: <InlineMath math="20 - 12 = 8" /> white balls
 - Box <InlineMath math="2" />: <InlineMath math="20 - 10 = 10" /> white balls
 
-The probability that both balls are white is:
+Multiplying the two white-ball probabilities gives:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} P(p_1 \cap p_2) &= P(p_1) \times P(p_2) \\ &= \frac{8}{20} \times \frac{10}{20} \\ &= \frac{2}{5} \times \frac{1}{2} \\ &= \frac{1}{5} \end{aligned}" />
+  <BlockMath math="\frac{8}{20}\cdot\frac{10}{20}=\frac{1}{5}" />
 </MathContainer>
 
-Given <InlineMath math="\frac{m}{n} = \frac{1}{5}" />. So <InlineMath math="m = 1" /> and <InlineMath math="n = 5" />. The value of <InlineMath math="m + n = 1 + 5 = 6" />.
+Since <InlineMath math="\frac{1}{5}" /> is already in lowest terms, <InlineMath math="m=1" /> and <InlineMath math="n=5" />. Hence <InlineMath math="m+n=6" />.

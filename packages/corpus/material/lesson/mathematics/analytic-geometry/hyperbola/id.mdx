@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Hiperbola",
-  description: "Pelajari konsep hiperbola: fokus, asimtot, dan persamaan x²/a² - y²/b² = 1. Pelajari eksentrisitas, puncak, dan selesaikan soal dengan contoh bertahap.",
+  description: "Pelajari fokus, asimtot, persamaan baku, eksentrisitas, dan puncak hiperbola melalui contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Geometri Analitik",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Apa itu Hiperbola?
 
-Kamu pernah lihat bentuk menara pendingin di pembangkit listrik? Atau mungkin pernah memperhatikan bayangan cahaya senter di dinding yang membentuk kurva terbuka? Nah, bentuk-bentuk seperti itu adalah contoh **hiperbola** dalam kehidupan nyata!
+Siluet vertikal menara pendingin sering menyerupai hiperbola. Gelombang kejut berbentuk kerucut dari pesawat supersonik juga dapat membentuk lintasan hiperbolik saat berpotongan dengan permukaan tanah. Kedua contoh ini memberi gambaran awal tentang kurva yang akan kita pelajari.
 
-Hiperbola adalah kurva yang terbentuk ketika sebuah bidang memotong kerucut ganda dengan sudut tertentu. Berbeda dengan elips yang membentuk kurva tertutup, hiperbola justru terbentuk dari **dua kurva terpisah** yang saling berhadapan.
+Secara geometris, hiperbola terbentuk ketika sebuah bidang memotong kedua bagian kerucut ganda. Berbeda dengan elips yang tertutup, hiperbola memiliki **dua cabang terpisah** yang membuka ke arah berlawanan.
 
 Secara matematis, hiperbola didefinisikan sebagai tempat kedudukan titik-titik yang **selisih absolut jaraknya terhadap dua titik tetap selalu konstan**. Kedua titik tetap ini disebut **fokus** hiperbola. Untuk setiap titik <InlineMath math="P" /> pada hiperbola, selisih <InlineMath math="|PF_1 - PF_2| = 2a" /> (konstan), sedangkan di [elips](/id/materi/matematika/geometri-analitik/elips) jumlah jaraknya yang konstan: <InlineMath math="PF_1 + PF_2 = 2a" />.
 
@@ -73,6 +73,53 @@ Secara matematis, hiperbola didefinisikan sebagai tempat kedudukan titik-titik y
       ],
     },
     {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const t = 0.7;
+        return [{
+          x: a * Math.cosh(t),
+          y: b * Math.sinh(t),
+          z: 0,
+        }];
+      })(),
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
       points: [
         { x: 0, y: 0, z: 0 }
       ],
@@ -103,15 +150,15 @@ Secara matematis, hiperbola didefinisikan sebagai tempat kedudukan titik-titik y
   showZAxis={false}
 />
 
-Lihat visualisasi di atas! Hiperbola punya dua cabang yang terpisah. Untuk setiap titik <InlineMath math="P" /> yang ada di hiperbola, selisih jarak dari <InlineMath math="P" /> ke kedua fokus <InlineMath math="F_1" /> dan <InlineMath math="F_2" /> selalu konstan.
+Visualisasi menunjukkan kedua cabang, kedua fokus, dan satu titik <InlineMath math="P" /> pada kurva. Kedua ruas memiliki panjang <InlineMath math="r_1=PF_1" /> dan <InlineMath math="r_2=PF_2" />. Saat <InlineMath math="P" /> bergerak di salah satu cabang, kedua panjang berubah, tetapi nilai mutlak selisihnya tetap <InlineMath math="|r_1-r_2|=2a" />.
 
 ## Komponen Hiperbola
 
-Sebelum masuk ke rumus-rumus, yuk kenalan dulu sama bagian-bagian penting dari hiperbola. Setiap komponen ini punya peran tersendiri dalam menentukan bentuk dan sifat hiperbola.
+Sebelum memakai rumus, kenali dahulu bagian-bagian yang menentukan bentuk dan posisi kurva.
 
 <LineEquation
   title="Bagian-bagian Hiperbola"
-  description="Komponen penting hiperbola dengan sumbu utama horizontal."
+  description="Komponen penting hiperbola dengan sumbu transversal horizontal."
   data={[
     {
       points: (() => {
@@ -209,15 +256,15 @@ Sebelum masuk ke rumus-rumus, yuk kenalan dulu sama bagian-bagian penting dari h
   showZAxis={false}
 />
 
-Komponen-komponen hiperbola yang perlu kamu ketahui:
+Baca grafik melalui lima bagian berikut:
 
 1. **Pusat hiperbola** adalah titik tengah antara kedua fokus, biasanya dilambangkan dengan <InlineMath math="O" />.
 
-2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) adalah dua titik tetap yang menjadi acuan definisi hiperbola. Jarak antara kedua fokus disebut jarak fokal.
+2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) adalah dua titik tetap dalam definisi hiperbola. Jika <InlineMath math="c" /> menyatakan jarak dari pusat ke salah satu fokus, jarak antara kedua fokus adalah <InlineMath math="2c" />.
 
-3. **Puncak** (<InlineMath math="A_1" /> dan <InlineMath math="A_2" />) adalah titik-titik terdekat antara kedua cabang hiperbola. Garis yang menghubungkan kedua puncak disebut sumbu utama.
+3. **Puncak** (<InlineMath math="A_1" /> dan <InlineMath math="A_2" />) adalah titik pada setiap cabang yang paling dekat dengan pusat. Keduanya terletak pada sumbu transversal.
 
-4. **Sumbu utama** adalah garis yang melewati pusat dan kedua fokus hiperbola.
+4. **Sumbu transversal** adalah ruas garis yang melalui pusat dengan kedua puncak sebagai titik ujung. Kedua fokus terletak pada garis yang memuat ruas tersebut.
 
 5. **Asimtot** adalah garis-garis yang didekati oleh cabang hiperbola saat menuju tak hingga. Hiperbola tidak pernah menyentuh asimtotnya, tapi semakin jauh dari pusat, kurva semakin mendekati garis asimtot.
 
@@ -225,15 +272,15 @@ Komponen-komponen hiperbola yang perlu kamu ketahui:
 
 ## Persamaan Hiperbola
 
-Ada beberapa bentuk tergantung orientasi dan posisi pusatnya. Kita akan bahas dua kasus:
+Persamaan baku bergantung pada arah bukaan cabang dan posisi pusat. Kita akan memakai dua kasus.
 
 ### Pusat di Titik Asal
 
 Kalau pusat hiperbola ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orientasi:
 
 <LineEquation
-  title="Sumbu Utama Horizontal"
-  description={<>Hiperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> dengan sumbu utama horizontal.</>}
+  title="Sumbu Transversal Horizontal"
+  description={<>Hiperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> dengan sumbu transversal horizontal.</>}
   data={[
     {
       points: (() => {
@@ -329,15 +376,15 @@ Kalau pusat hiperbola ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan o
   showZAxis={false}
 />
 
-Ketika sumbu utama sejajar dengan sumbu <InlineMath math="X" /> (horizontal), persamaan hiperbola adalah:
+Ketika sumbu transversal sejajar dengan sumbu <InlineMath math="x" />, persamaan hiperbola adalah:
 
 <BlockMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />
 
-Kalau kita visualisasikan, akan terlihat seperti ini:
+Grafik vertikal yang sesuai tampak seperti berikut:
 
 <LineEquation
-  title="Sumbu Utama Vertikal"
-  description={<>Hiperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> dengan sumbu utama vertikal.</>}
+  title="Sumbu Transversal Vertikal"
+  description={<>Hiperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> dengan sumbu transversal vertikal.</>}
   data={[
     {
       points: (() => {
@@ -433,7 +480,7 @@ Kalau kita visualisasikan, akan terlihat seperti ini:
   showZAxis={false}
 />
 
-Ketika sumbu utama sejajar dengan sumbu <InlineMath math="Y" /> (vertikal), persamaan hiperbola adalah:
+Ketika sumbu transversal sejajar dengan sumbu <InlineMath math="y" />, persamaan hiperbola adalah:
 
 <BlockMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" />
 
@@ -442,19 +489,19 @@ Ketika sumbu utama sejajar dengan sumbu <InlineMath math="Y" /> (vertikal), pers
 Kalau pusat hiperbola bukan di titik asal, tapi di titik <InlineMath math="(h, k)" />, persamaannya menjadi:
 
 <MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(sumbu utama horizontal)}" />
-  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(sumbu utama vertikal)}" />
+  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(sumbu transversal horizontal)}" />
+  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(sumbu transversal vertikal)}" />
 </MathContainer>
 
 ## Sifat Penting Hiperbola
 
-Ada beberapa hubungan matematika yang selalu berlaku untuk setiap hiperbola:
+Ketiga parameter pada setiap hiperbola memenuhi hubungan:
 
 <BlockMath math="c^2 = a^2 + b^2" />
 
-di mana:
-- <InlineMath math="a" /> adalah jarak dari pusat ke puncak (semi-sumbu utama)
-- <InlineMath math="b" /> adalah konstanta yang menentukan bentuk hiperbola (semi-sumbu konjugat)
+Pada notasi ini:
+- <InlineMath math="a" /> adalah jarak dari pusat ke puncak (setengah sumbu transversal)
+- <InlineMath math="b" /> adalah setengah sumbu konjugat yang menentukan kemiringan asimtot
 - <InlineMath math="c" /> adalah jarak dari pusat ke fokus
 
 Hubungan ini berbeda dengan elips yang menggunakan <InlineMath math="c^2 = a^2 - b^2" />.
@@ -463,16 +510,16 @@ Hubungan ini berbeda dengan elips yang menggunakan <InlineMath math="c^2 = a^2 -
 
 <BlockMath math="e = \frac{c}{a}" />
 
-Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <InlineMath math="c > a" /> (dari hubungan <InlineMath math="c^2 = a^2 + b^2" />, maka <InlineMath math="c = \sqrt{a^2 + b^2} > a" />). Semakin besar nilai <InlineMath math="e" />, hiperbola semakin "terbuka" atau lebar. Sebagai perbandingan: lingkaran memiliki <InlineMath math="e = 0" />, elips memiliki <InlineMath math="0 < e < 1" />, parabola memiliki <InlineMath math="e = 1" />, dan hiperbola memiliki <InlineMath math="e > 1" />.
+Eksentrisitas hiperbola selalu <InlineMath math="e > 1" /> karena <InlineMath math="c^2 = a^2 + b^2" /> mengakibatkan <InlineMath math="c > a" />. Secara lebih tepat, <InlineMath math="e^2 = 1 + \frac{b^2}{a^2}" />, sehingga kenaikan <InlineMath math="e" /> menaikkan rasio <InlineMath math="b/a" /> yang juga menentukan gradien asimtot. Sebagai perbandingan, lingkaran memiliki <InlineMath math="e = 0" />, elips memiliki <InlineMath math="0 < e < 1" />, parabola memiliki <InlineMath math="e = 1" />, dan hiperbola memiliki <InlineMath math="e > 1" />.
 
 **Persamaan asimtot** untuk hiperbola dengan pusat di <InlineMath math="(0,0)" />:
 
 <MathContainer>
-  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(sumbu utama horizontal)}" />
-  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(sumbu utama vertikal)}" />
+  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(sumbu transversal horizontal)}" />
+  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(sumbu transversal vertikal)}" />
 </MathContainer>
 
-> Asimtot adalah "panduan" bagi cabang hiperbola. Semakin jauh dari pusat, kurva hiperbola semakin mendekati garis asimtot, tapi tidak pernah menyentuhnya.
+> Asimtot menunjukkan arah batas kedua cabang. Semakin jauh dari pusat, setiap cabang semakin mendekati salah satu asimtot tanpa memotongnya.
 
 ## Latihan
 
@@ -480,11 +527,11 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
 
 2. Diketahui hiperbola <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />. Tentukan koordinat fokus, eksentrisitas, dan persamaan asimtot.
 
-3. Sebuah hiperbola memiliki pusat di <InlineMath math="(1, -2)" />, sumbu utama horizontal, <InlineMath math="a = 3" />, dan <InlineMath math="b = 4" />. Tentukan persamaan hiperbola tersebut.
+3. Sebuah hiperbola memiliki pusat di <InlineMath math="(1, -2)" />, sumbu transversal horizontal, <InlineMath math="a = 3" />, dan <InlineMath math="b = 4" />. Tentukan persamaan hiperbola tersebut.
 
 4. Tentukan persamaan asimtot dari hiperbola <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian**:
 
@@ -492,7 +539,7 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
    - Pusat di <InlineMath math="(0,0)" />
    - Puncak di <InlineMath math="(\pm 2, 0)" />, jadi <InlineMath math="a = 2" />
    - Fokus di <InlineMath math="(\pm 3, 0)" />, jadi <InlineMath math="c = 3" />
-   - Sumbu utama horizontal (karena puncak dan fokus di sumbu <InlineMath math="X" />)
+   - Sumbu transversal horizontal (karena puncak dan fokus berada pada sumbu <InlineMath math="x" />)
 
    Gunakan hubungan <InlineMath math="c^2 = a^2 + b^2" />:
 
@@ -502,7 +549,7 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
      <BlockMath math="b^2 = 5" />
    </MathContainer>
 
-   Persamaan hiperbola dengan sumbu utama horizontal:
+   Persamaan hiperbola dengan sumbu transversal horizontal:
 
    <BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
 
@@ -512,7 +559,7 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
    - <InlineMath math="a^2 = 25" />, jadi <InlineMath math="a = 5" />
    - <InlineMath math="b^2 = 9" />, jadi <InlineMath math="b = 3" />
 
-   Karena bentuk <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, sumbu utama horizontal.
+   Karena bentuknya <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, sumbu transversalnya horizontal.
 
    Hitung <InlineMath math="c" />:
 
@@ -527,7 +574,7 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
 
    <BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5{,}831}{5} \approx 1{,}166" />
 
-   Persamaan asimtot (sumbu utama horizontal):
+   Persamaan asimtot (sumbu transversal horizontal):
 
    <BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
 
@@ -535,11 +582,11 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
 
    Diketahui:
    - Pusat: <InlineMath math="(h,k) = (1, -2)" />
-   - Sumbu utama horizontal
+   - Sumbu transversal horizontal
    - <InlineMath math="a = 3" />, jadi <InlineMath math="a^2 = 9" />
    - <InlineMath math="b = 4" />, jadi <InlineMath math="b^2 = 16" />
 
-   Persamaan hiperbola dengan pusat <InlineMath math="(h,k)" /> dan sumbu utama horizontal:
+   Persamaan hiperbola dengan pusat <InlineMath math="(h,k)" /> dan sumbu transversal horizontal:
 
    <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
 
@@ -553,9 +600,9 @@ Nilai eksentrisitas hiperbola selalu <InlineMath math="e > 1" />. Ini karena <In
    - Pusat: <InlineMath math="(h,k) = (2, -1)" />
    - <InlineMath math="a^2 = 4" />, jadi <InlineMath math="a = 2" />
    - <InlineMath math="b^2 = 9" />, jadi <InlineMath math="b = 3" />
-   - Sumbu utama vertikal (karena bentuk <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
+   - Sumbu transversal vertikal (karena bentuknya <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
 
-   Untuk hiperbola dengan pusat <InlineMath math="(h,k)" /> dan sumbu utama vertikal, persamaan asimtot:
+   Untuk hiperbola dengan pusat <InlineMath math="(h,k)" /> dan sumbu transversal vertikal, persamaan asimtotnya:
 
    <BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
 

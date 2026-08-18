@@ -1,148 +1,157 @@
 export const metadata = {
-    title: "Polinomial Ortogonal",
-    description: "Pelajari polinomial Chebyshev dan Legendre dengan perkalian skalar berbobot, proses Gram-Schmidt, dan aproksimasi Gauss untuk analisis numerik.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-15",
-    subject: "Metode Linear AI",
+  title: "Polinomial Ortogonal",
+  description: "Bangun basis polinomial Chebyshev dan Legendre dari hasil kali dalam berbobot, proyeksikan fungsi, ubah interval, dan hubungkan akar-akarnya dengan kuadratur Gauss.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Metode Linear AI",
 };
 
-## Perkalian Skalar Berbobot
+## Ortogonalitas untuk Fungsi
 
-Dalam analisis numerik, kita sering perlu mengukur perbedaan antara dua fungsi menggunakan norma maksimum. Norma ini didefinisikan sebagai:
-
-<BlockMath math="\|f - g\|_\infty = \max_{x \in [-1,1]} |f(x) - g(x)|" />
-
-Secara umum, norma maksimum dapat menjadi sangat besar, terutama di dekat ujung interval dimana kesalahan besar sering muncul. Bayangkan seperti mengukur ketinggian gunung hanya dari puncak tertinggi saja tanpa mempertimbangkan kemiringan lerengnya.
-
-Untuk mengatasi masalah ini, kita dapat menggunakan perkalian skalar berbobot yang memberikan penekanan berbeda pada setiap bagian interval:
-
-<BlockMath math="\langle f, g \rangle_\omega = \int_{-1}^{1} f(x)g(x)\omega(x) \, dx" />
-
-dengan fungsi bobot:
-
-<BlockMath math="\omega(x) = \frac{1}{\sqrt{1-x^2}}" />
-
-Fungsi bobot ini memberikan penekanan yang lebih kuat pada ujung interval, sehingga dapat menekan kesalahan besar yang biasanya terjadi di daerah tersebut.
-
-## Ortogonalisasi dan Polinomial Chebyshev
-
-Ketika kita mengortogonalisasi basis monomial <InlineMath math="1, x, \ldots, x^n" /> terhadap perkalian skalar berbobot ini, kita memperoleh polinomial ortogonal <InlineMath math="p_k" /> yang memenuhi hubungan rekursi dua tingkat. Proses ini seperti mengatur ulang bangunan blok agar setiap lantai berdiri tegak lurus sempurna terhadap lantai lainnya:
+Misalkan <InlineMath math="w(x)>0" /> pada interval <InlineMath math="[a,b]" />. Hasil kali dalam berbobot dan norma yang diinduksinya adalah
 
 <MathContainer>
-<BlockMath math="p_0(x) = 1" />
-<BlockMath math="p_1(x) = x" />
-<BlockMath math="p_{k+1}(x) = 4xp_k(x) - 4p_{k-1}(x), \quad k = 1, \ldots, n" />
+<BlockMath math="\langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\,dx" />
+<BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
 </MathContainer>
 
-Norma dari polinomial ini adalah:
+Dua fungsi bersifat ortogonal ketika <InlineMath math="\langle f,g\rangle_w=0" />. Ini adalah geometri <InlineMath math="L^2" /> berbobot yang mengukur galat kuadrat terintegrasi, bukan galat maksimum
+
+<BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
+
+Perbedaan ini penting. Proyeksi ortogonal meminimumkan galat <InlineMath math="L^2" /> berbobot. Polinomial Chebyshev juga memiliki sifat minimaks yang terpisah, tetapi hasil kali dalam berbobot dan norma maksimum tidak dapat saling dipertukarkan.
+
+## Proyeksi pada Basis Ortogonal
+
+Misalkan <InlineMath math="p_0,ldots,p_n" /> saling ortogonal. Proyeksi berderajat <InlineMath math="n" /> dari <InlineMath math="f" /> adalah
 
 <MathContainer>
-<BlockMath math="\|p_k\|_\omega = \begin{cases}
-\sqrt{\pi}, & k = 0 \\
-\sqrt{\pi/2}, & k \neq 0
-\end{cases}" />
-<BlockMath math="p_k(1) = 2^{k-1}" />
+<BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
+<BlockMath math="c_k=\frac{\langle f,p_k\rangle_w}{\langle p_k,p_k\rangle_w}" />
 </MathContainer>
 
-Jika kita melakukan normalisasi pada <InlineMath math="x = 1" />, kita memperoleh polinomial Chebyshev yang sangat terkenal:
+Karena suku silang bernilai nol, setiap koefisien dapat dihitung secara terpisah. Ini merupakan padanan fungsional dari penguraian vektor sepanjang sumbu koordinat yang saling tegak lurus.
 
-<BlockMath math="T_k(x) = 2^{1-k}p_k(x) = \cos(k \arccos(x)), \quad k = 0, 1, 2, \ldots" />
+## Relasi Rekurensi Tiga Suku dari Gram-Schmidt
 
-Bentuk trigonometri ini menunjukkan bahwa polinomial Chebyshev pada dasarnya adalah transformasi dari fungsi kosinus yang disesuaikan untuk interval <InlineMath math="[-1, 1]" />.
-
-Terdapat suatu teorema yang menyatakan bahwa hubungan rekursi dua arah berlaku umum untuk polinomial yang berasal dari basis monomial pada ruang <InlineMath math="C([-1, 1])" /> dengan sifat simetri tertentu. Perkalian skalar memenuhi hubungan:
-
-<BlockMath math="\langle p, xq \rangle = \langle xp, q \rangle" />
-
-untuk semua polinomial <InlineMath math="p, q \in P" />.
-
-## Proses Gram-Schmidt
-
-Melalui proses ortogonalisasi Gram-Schmidt dari basis <InlineMath math="1, x, \ldots, x^n" />, kita memperoleh polinomial ortogonal <InlineMath math="\tilde{p}_k" /> dengan <InlineMath math="k = 0, \ldots, n" />. Proses ini seperti membuat kerangka bangunan dimana setiap balok diposisikan berdasarkan balok sebelumnya dengan perhitungan yang akurat:
+Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,ldots" /> menghasilkan barisan polinomial ortogonal monik <InlineMath math="\pi_k" />. Di bawah hasil kali dalam positif, barisan tersebut memenuhi
 
 <MathContainer>
-<BlockMath math="\tilde{p}_0(x) = 1" />
-<BlockMath math="\tilde{p}_1(x) = x - \beta_0" />
-<BlockMath math="\tilde{p}_{k+1}(x) = (x - \beta_k)\tilde{p}_k(x) - \gamma_k\tilde{p}_{k-1}(x), \quad k = 1, \ldots, n" />
+<BlockMath math="\pi_0(x)=1" />
+<BlockMath math="\pi_1(x)=x-\alpha_0" />
+<BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
 </MathContainer>
 
-dengan koefisien:
+dengan
 
 <MathContainer>
-<BlockMath math="\beta_k = \frac{\langle x\tilde{p}_k, \tilde{p}_k \rangle}{\|\tilde{p}_k\|^2}, \quad k = 0, \ldots, n" />
-<BlockMath math="\gamma_k = \frac{\|\tilde{p}_k\|^2}{\|\tilde{p}_{k-1}\|^2}, \quad k = 1, \ldots, n" />
+<BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
+<BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
 </MathContainer>
 
-Polinomial ortonormal kemudian diperoleh melalui:
+Bentuk tiga suku ini bukan jalan pintas sembarang. Perkalian dengan <InlineMath math="x" /> menaikkan derajat sebesar satu, sedangkan ortogonalitas menghilangkan semua komponen di bawah <InlineMath math="\pi_{k-1}" />.
 
-<BlockMath math="p_k = \|\tilde{p}_k\|^{-1}\tilde{p}_k, \quad k = 0, \ldots, n" />
+## Polinomial Chebyshev Jenis Pertama
+
+Pada <InlineMath math="[-1,1]" />, pilih
+
+<BlockMath math="w(x)=\frac{1}{\sqrt{1-x^2}}" />
+
+Polinomial Chebyshev jenis pertama adalah
+
+<MathContainer>
+<BlockMath math="T_0(x)=1,\qquad T_1(x)=x" />
+<BlockMath math="T_{k+1}(x)=2xT_k(x)-T_{k-1}(x)" />
+<BlockMath math="T_k(x)=\cos\bigl(k\arccos x\bigr)" />
+</MathContainer>
+
+Ortogonalitas berbobotnya adalah
+
+<BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
+
+Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan koefisien utamanya adalah <InlineMath math="2^{k-1}" /> untuk <InlineMath math="k\ge1" />, polinomial monik <InlineMath math="2^{1-k}T_k" /> memiliki norma maksimum terkecil di antara semua polinomial monik berderajat <InlineMath math="k" />. Inilah hubungan yang tepat dengan aproksimasi minimaks.
+
+<LineEquation
+  title={<>Polinomial Chebyshev pertama <InlineMath math="T_0,T_1,T_2,T_3" /></>}
+  description={<>Keempatnya tetap berada di antara <InlineMath math="-1" /> dan <InlineMath math="1" /> pada interval <InlineMath math="[-1,1]" />.</>}
+  cameraPosition={[3, 3, 5]}
+  data={(() => {
+    const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
+    const polynomials = [
+      { color: "#0891b2", evaluate: (x) => 1 },
+      { color: "#ea580c", evaluate: (x) => x },
+      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
+      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x }
+    ];
+
+    return polynomials.map(({ color, evaluate }) => ({
+      points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
+      color,
+      smooth: true,
+      showPoints: false
+    }));
+  })()}
+/>
 
 ## Polinomial Legendre
 
-Untuk ortonormalisasi basis <InlineMath math="1, x, \ldots, x^n" /> terhadap perkalian skalar standar:
+Untuk hasil kali dalam tanpa bobot pada <InlineMath math="[-1,1]" />,
 
-<BlockMath math="\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) \, dx" />
+<BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
 
-kita memperoleh polinomial yang terkait dengan polinomial Legendre:
-
-<BlockMath math="\varphi_k(x) = \frac{(2k-2)!}{(k-1)!^2} \sqrt{\frac{2k-1}{2^{k-1}}} L_{k-1}(x), \quad k = 1, \ldots, n+1" />
-
-dimana <InlineMath math="L_k(x)" /> adalah polinomial Legendre yang didefinisikan melalui hubungan rekursi dua tingkat.
-
-Polinomial Legendre sendiri didefinisikan sebagai:
+polinomial Legendre standar memenuhi
 
 <MathContainer>
-<BlockMath math="L_0(x) = 1" />
-<BlockMath math="L_1(x) = x" />
-<BlockMath math="L_{k+1}(x) = xL_k(x) - \frac{k^2}{4k^2-1}L_{k-1}(x), \quad k = 1, \ldots, n" />
+<BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
+<BlockMath math="(k+1)P_{k+1}(x)=(2k+1)xP_k(x)-kP_{k-1}(x)" />
 </MathContainer>
 
-Terhadap perkalian skalar standar, polinomial Legendre menghasilkan sistem ortonormal <InlineMath math="\varphi_i : [-1, 1] \to \mathbb{R}" /> dengan <InlineMath math="i = 0, \ldots, n" /> yang memenuhi:
-
-<BlockMath math="\langle \varphi_i, \varphi_j \rangle_t = \delta_{ij}" />
-
-## Transformasi ke Interval Berbeda
-
-Ketika kita memiliki interval aproksimasi lain <InlineMath math="[a, b]" /> yang berbeda dari interval standar, kita melakukan substitusi variabel linear. Proses ini seperti mengubah skala peta dari satu wilayah ke wilayah lain sambil mempertahankan proporsi yang tepat:
+Ortogonalitas dan normalisasinya adalah
 
 <MathContainer>
-<BlockMath math="x = a + \frac{b-a}{2}(t+1) \in [a, b]" />
-<BlockMath math="t = -1 + \frac{2}{b-a}(x-a) \in [-1, 1]" />
+<BlockMath math="\int_{-1}^{1}P_j(x)P_k(x)\,dx=\frac{2}{2k+1}\delta_{jk}" />
+<BlockMath math="\varphi_k(x)=\sqrt{\frac{2k+1}{2}}P_k(x)" />
+<BlockMath math="\langle\varphi_j,\varphi_k\rangle=\delta_{jk}" />
 </MathContainer>
 
-Maka diferensial menjadi:
-
-<BlockMath math="dx = \frac{b-a}{2}dt" />
-
-Pada interval <InlineMath math="[a, b]" /> terdapat polinomial <InlineMath math="\tilde{\varphi}_i : [a, b] \to \mathbb{R}" /> dengan <InlineMath math="i = 0, \ldots, n" /> yang dinyatakan sebagai:
-
-<BlockMath math="\tilde{\varphi}_i(x) = \sqrt{\frac{2}{b-a}}\varphi_i\left(-1 + \frac{2}{b-a}(x-a)\right) = \sqrt{\frac{2}{b-a}}\varphi_i(t)" />
-
-### Verifikasi Sifat Ortonormal
-
-Kita dapat memverifikasi bahwa sifat ortonormal tetap berlaku setelah transformasi:
+Sebagai contoh,
 
 <MathContainer>
-<BlockMath math="\langle \tilde{\varphi}_i, \tilde{\varphi}_j \rangle_x = \int_a^b \tilde{\varphi}_i(x)\tilde{\varphi}_j(x) \, dx" />
-<BlockMath math="= \int_a^b \sqrt{\frac{2}{b-a}}\varphi_i\left(-1 + \frac{2}{b-a}(x-a)\right)" />
-<BlockMath math="\times \sqrt{\frac{2}{b-a}}\varphi_j\left(-1 + \frac{2}{b-a}(x-a)\right) \, dx" />
+<BlockMath math="P_2(x)=\frac12(3x^2-1)" />
+<BlockMath math="x^2=\frac13P_0(x)+\frac23P_2(x)" />
 </MathContainer>
 
-Dengan substitusi, kita memperoleh:
+Identitas kedua merupakan ekspansi ortogonal yang eksak, bukan aproksimasi.
+
+## Berpindah dari <InlineMath math="[-1,1]" /> ke <InlineMath math="[a,b]" />
+
+Gunakan perubahan variabel afin
 
 <MathContainer>
-<BlockMath math="= \int_{-1}^1 \frac{2}{b-a}\varphi_i(t)\varphi_j(t) \frac{b-a}{2} \, dt" />
-<BlockMath math="= \int_{-1}^1 \varphi_i(t)\varphi_j(t) \, dt = \langle \varphi_i, \varphi_j \rangle_t = \delta_{ij}" />
+<BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />
+<BlockMath math="t=\frac{2x-a-b}{b-a}" />
+<BlockMath math="dx=\frac{b-a}{2}\,dt" />
 </MathContainer>
 
-Dengan demikian:
+Jika <InlineMath math="\varphi_k" /> ortonormal pada <InlineMath math="[-1,1]" />, maka
 
-<BlockMath math="\langle f, \tilde{\varphi}_i \rangle_x = \int_a^b f(x)\varphi_i\left(-1 + \frac{2}{b-a}(x-a)\right)\sqrt{\frac{2}{b-a}} \, dx" />
+<BlockMath math="\widetilde{\varphi}_k(x)=\sqrt{\frac{2}{b-a}}\,\varphi_k\left(\frac{2x-a-b}{b-a}\right)" />
 
-## Aproksimasi Gauss
+ortonormal pada <InlineMath math="[a,b]" /> karena
 
-Dalam aproksimasi Gauss dengan perkalian skalar:
+<BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
 
-<BlockMath math="\langle f, g \rangle = \int_{-1}^1 f(t)g(x) \, dx" />
+## Hubungan dengan Kuadratur Gauss
 
-metode ini memberikan fondasi yang sangat penting dalam analisis numerik. Polinomial ortogonal yang telah kita pelajari menjadi dasar fundamental dalam pengembangan metode kuadratur Gauss yang efisien untuk berbagai aplikasi komputasi yang memerlukan aproksimasi fungsi dengan akurasi tinggi.
+Misalkan <InlineMath math="p_n" /> adalah polinomial ortogonal berderajat <InlineMath math="n" /> untuk bobot positif dan interval yang sama dengan suatu integral. Sebanyak <InlineMath math="n" /> akarnya menjadi titik kuadratur Gauss. Bobot positif yang sesuai <InlineMath math="w_i" /> kemudian memberikan
+
+<BlockMath math="\int_a^b f(x)w(x)\,dx\approx\sum_{i=1}^n w_i f(x_i)" />
+
+Aturan ini eksak untuk setiap polinomial berderajat paling tinggi <InlineMath math="2n-1" />. Akar Legendre menghasilkan kuadratur Gauss-Legendre untuk bobot <InlineMath math="w(x)=1" />. Akar Chebyshev menghasilkan kuadratur Gauss-Chebyshev untuk <InlineMath math="w(x)=1/\sqrt{1-x^2}" />.
+
+| Basis | Bobot pada <InlineMath math="[-1,1]" /> | Paling sesuai untuk |
+| --- | --- | --- |
+| Chebyshev <InlineMath math="T_k" /> | <InlineMath math="1/\sqrt{1-x^2}" /> | grid interpolasi stabil, aproksimasi mendekati minimaks, metode spektral |
+| Legendre <InlineMath math="P_k" /> | <InlineMath math="1" /> | proyeksi <InlineMath math="L^2" /> tanpa bobot dan kuadratur Gauss-Legendre |
+
+Selalu selaraskan keluarga polinomial, hasil kali dalam, tujuan aproksimasi, dan bobot kuadratur. Mengubah salah satunya berarti mengubah masalah yang diselesaikan.

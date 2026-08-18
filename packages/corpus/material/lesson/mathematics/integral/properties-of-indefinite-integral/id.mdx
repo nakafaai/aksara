@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Sifat-Sifat Integral Tak Tentu",
-    description: "Pelajari aturan integral tak tentu: aturan pangkat, kelipatan konstanta, aturan jumlah/kurang, dan teknik substitusi-u dengan contoh bertahap.",
+    description: "Terapkan aturan pangkat, kelipatan konstanta, jumlah, selisih, dan substitusi pada integral tak tentu dengan pembahasan lengkap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integral",
@@ -8,15 +8,17 @@ export const metadata = {
 
 ## Aturan Pangkat
 
-Ini adalah salah satu aturan paling dasar dan penting dalam integral. Jika kamu menemukan integral dalam bentuk pangkat, gunakan formula ini:
+Untuk pangkat dari variabel integrasi, gunakan:
 
 <BlockMath math="\int x^n \, dx = \frac{1}{n+1}x^{n+1} + C, \quad \text{dengan } n \neq -1" />
 
-Sederhananya, tambahkan satu ke pangkatnya, lalu bagi dengan pangkat yang baru itu.
+Naikkan pangkatnya satu, lalu bagi dengan pangkat baru tersebut.
 
-Sebagai contoh, mari kita selesaikan <InlineMath math="\int x^5 \, dx" />.
+Nilai <InlineMath math="n=-1" /> dikecualikan karena akan membuat penyebut nol. Kasus itu mengikuti aturan logaritma <InlineMath math="\int x^{-1}\,dx=\ln|x|+C" />.
 
-Disini, <InlineMath math="n=5" />, jadi:
+Sebagai contoh, evaluasi <InlineMath math="\int x^5 \, dx" />.
+
+Di sini, <InlineMath math="n=5" />, sehingga:
 
 <MathContainer>
 <BlockMath math="\int x^5 \, dx = \frac{1}{5+1}x^{5+1} + C" />
@@ -25,15 +27,15 @@ Disini, <InlineMath math="n=5" />, jadi:
 
 ## Aturan Kelipatan Konstanta
 
-Jika fungsi yang akan diintegralkan memiliki koefisien atau konstanta, kamu bisa "mengeluarkan" konstanta itu dari integral untuk mempermudah perhitungan.
+Faktor konstan dapat dipindahkan ke luar integral:
 
 <BlockMath math="\int a \cdot f(x) \, dx = a \int f(x) \, dx" />
 
-> Ingat, <InlineMath math="a" /> adalah sebuah bilangan konstan. Sifat ini sangat berguna untuk menyederhanakan bentuk integral sebelum diselesaikan.
+> Aturan ini mensyaratkan <InlineMath math="a" /> konstan terhadap variabel integrasi.
 
 ## Aturan Penjumlahan dan Pengurangan
 
-Bagaimana jika kita harus mengintegralkan dua fungsi yang dijumlahkan atau dikurangkan? Gampang, kita bisa memisahkan mereka menjadi dua integral yang berbeda.
+Penjumlahan atau pengurangan dapat diintegralkan suku demi suku.
 
 <BlockMath math="\int [f(x) \pm g(x)] \, dx = \int f(x) \, dx \pm \int g(x) \, dx" />
 
@@ -45,11 +47,11 @@ Contohnya, untuk menyelesaikan <InlineMath math="\int (x^4 - x^3) \, dx" />, kit
 <BlockMath math="= \frac{1}{5}x^5 - \frac{1}{4}x^4 + C" />
 </MathContainer>
 
-Jangan lupa untuk hanya menambahkan satu konstanta **C** di akhir. Secara teknis, setiap integral akan menghasilkan konstantanya sendiri (misalnya, <InlineMath math="C_1" /> dan <InlineMath math="C_2" />). Namun, karena semua konstanta tersebut nilainya tak tentu, hasil penjumlahan atau pengurangannya pun akan menjadi sebuah konstanta tak tentu baru. Oleh karena itu, kita cukup menuliskannya sebagai satu **C** di akhir.
+Tuliskan satu konstanta **<InlineMath math="C" />** di akhir. Secara formal, kedua antiturunan dapat memiliki <InlineMath math="C_1" /> dan <InlineMath math="C_2" />, tetapi jumlah atau selisihnya kembali menjadi konstanta sembarang. Karena itu, satu **<InlineMath math="C" />** sudah mewakili seluruh keluarga.
 
 ## Aturan Substitusi
 
-Untuk integral yang kelihatannya rumit, seperti perkalian dua fungsi di mana salah satunya adalah turunan dari yang lain (atau kelipatannya), kita bisa menggunakan **aturan substitusi**. Ide dasarnya adalah menyederhanakan integral dengan mengganti sebagian dari fungsi dengan variabel baru, biasanya **u**.
+Jika integran memuat ekspresi komposit beserta turunannya atau kelipatan konstannya, **substitusi** dapat memperlihatkan bentuk yang lebih sederhana. Ganti ekspresi bagian dalam dengan variabel baru, biasanya **<InlineMath math="u" />**.
 
 <BlockMath math="\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du" />
 
@@ -61,7 +63,7 @@ Ini sering disebut juga sebagai **substitusi u**. Metode ini berguna untuk menye
 2.  Tentukan hasil dari <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />!
 3.  Selesaikan integral <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> menggunakan aturan substitusi!
 
-### Kunci Jawaban
+### Pembahasan Terperinci
 
 1.  Untuk menyelesaikan <InlineMath math="\int 6x^2 \, dx" />, kita bisa menggunakan **Aturan Kelipatan Konstanta** dan **Aturan Pangkat**.
 

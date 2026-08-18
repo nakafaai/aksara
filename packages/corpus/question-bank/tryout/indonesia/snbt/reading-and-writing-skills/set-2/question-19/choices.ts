@@ -3,46 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "processed sago products becoming a modern lifestyle.",
-      value: false,
-    },
-    {
-      label: "innovation as the key to familiarizing sago consumption.",
-      value: true,
-    },
-    {
-      label: "sago as a traditional food processed professionally.",
-      value: false,
-    },
-    {
-      label: "processing sago starch into various processed products.",
+      label: "the history of papeda in eastern Indonesia.",
       value: false,
     },
     {
       label:
-        "the difference in texture between sago noodles and wheat noodles.",
+        "developing sago through food diversification and product innovation.",
+      value: true,
+    },
+    {
+      label: "the procedure for extracting starch from sago trunks.",
+      value: false,
+    },
+    {
+      label: "the seven subsectors of Indonesia's Agricultural Census.",
+      value: false,
+    },
+    {
+      label: "the export price of Indonesian sago starch.",
       value: false,
     },
   ],
   id: [
     {
-      label: "produk olahan sagu menjadi gaya hidup kekinian.",
+      label: "sejarah papeda di Indonesia bagian timur.",
       value: false,
     },
     {
-      label: "inovasi sebagai kunci pembiasaan konsumsi sagu.",
+      label:
+        "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
       value: true,
     },
     {
-      label: "sagu makanan tradisional yang diolah profesional.",
+      label: "tata cara mengekstraksi pati dari batang sagu.",
       value: false,
     },
     {
-      label: "mengolah pati sagu menjadi aneka produk olahan.",
+      label: "tujuh subsektor dalam Sensus Pertanian Indonesia.",
       value: false,
     },
     {
-      label: "perbedaan tekstur mi sagu dengan mi terigu.",
+      label: "harga ekspor pati sagu Indonesia.",
       value: false,
     },
   ],

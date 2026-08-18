@@ -4,30 +4,24 @@ export const metadata = {
   date: "2026-01-19",
 };
 
-Mari kita terjemahkan pernyataan-pernyataan tersebut ke dalam logika matematika.
+#### Nyatakan premisnya
 
 Misalkan:
 
-*   <InlineMath math="p" />: Siswa Nakafa mengerjakan soal empati bersyarat.
-*   <InlineMath math="q" />: Siswa Nakafa dapat mengerjakan soal TOBK di aplikasi Nakafa.
-*   <InlineMath math="r" />: Siswa Nakafa mendapatkan hasil Evaluasi Prestasi Belajar (EPB).
+- <InlineMath math="p" />: Dito menyelesaikan latihan prasyarat.
+- <InlineMath math="q" />: Dito mengikuti tes latihan.
+- <InlineMath math="r" />: Dito menerima laporan evaluasi.
 
-Pernyataan-pernyataan yang diberikan adalah:
+Ketiga premisnya adalah <InlineMath math="p \rightarrow q" />, <InlineMath math="q \rightarrow r" />, dan <InlineMath math="\lnot r" />.
 
-1.  Jika siswa Nakafa mengerjakan soal empati bersyarat, maka dapat mengerjakan soal TOBK di aplikasi Nakafa (<InlineMath math="p \rightarrow q" />).
-2.  Jika siswa Nakafa mengerjakan soal TOBK di aplikasi Nakafa maka mendapatkan hasil Evaluasi Prestasi Belajar (EPB) (<InlineMath math="q \rightarrow r" />).
-3.  Dito tidak mendapatkan hasil Evaluasi Prestasi Belajar (EPB) (<InlineMath math="\sim r" />).
+#### Telusuri dari laporan yang tidak diterima
 
-Dari premis <InlineMath math="1" /> dan <InlineMath math="2" />, kita dapat menggunakan silogisme:
+Dari <InlineMath math="q \rightarrow r" /> dan <InlineMath math="\lnot r" />, modus tollens menghasilkan <InlineMath math="\lnot q" />. Jadi, Dito tidak mengikuti tes latihan.
 
-<MathContainer>
-  <BlockMath math="\begin{align*} & p \rightarrow q \\ & q \rightarrow r \\ \hline \therefore \ & p \rightarrow r \end{align*}" />
-</MathContainer>
-
-Selanjutnya, kita gunakan kesimpulan tersebut (<InlineMath math="p \rightarrow r" />) dengan premis <InlineMath math="3" /> (<InlineMath math="\sim r" />) menggunakan aturan Modus Tollens:
+Gabungkan <InlineMath math="p \rightarrow q" /> dengan <InlineMath math="\lnot q" />. Penerapan modus tollens sekali lagi menghasilkan:
 
 <MathContainer>
-  <BlockMath math="\begin{align*} & p \rightarrow r \\ & \sim r \\ \hline \therefore \ & \sim p \end{align*}" />
+  <BlockMath math="\begin{aligned}p &\rightarrow q\\ \lnot q&\\ \therefore\ \lnot p&\end{aligned}" />
 </MathContainer>
 
-Jadi, <InlineMath math="\sim p" />, yang berarti **Dito tidak mengerjakan soal empati bersyarat**.
+Jadi, Dito **tidak menyelesaikan latihan prasyarat**. Premis tidak menyatakan bahwa Dito bukan seorang siswa; premis hanya menentukan hal yang tidak ia selesaikan.

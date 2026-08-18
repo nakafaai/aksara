@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Characteristics of Quadratic Functions",
-  description: "Learn the key characteristics of quadratic functions, including vertex, axis of symmetry, and intercepts, through examples.",
+  description: "Read a quadratic graph from its leading coefficient, vertex, symmetry axis, intercepts, range, and worked graphing examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Quadratic Functions",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Shape of Quadratic Function Graphs
 
-The graph of a quadratic function always forms a parabola. This parabola can open upward or downward, depending on the value of the coefficient <InlineMath math="a" />.
+The graph of a quadratic function is a parabola. The leading coefficient <InlineMath math="a" /> controls its opening direction and how narrow or wide it appears.
 
 ## Influence of the Leading Coefficient on Graph Shape
 
@@ -20,10 +20,10 @@ If <InlineMath math="a > 0" />, the graph of the quadratic function will open up
 
 Examples of functions with <InlineMath math="a > 0" />:
 
-- <InlineMath math="f(x) = x^2" /> (the simplest function with <InlineMath math="a = 1" />
-  )
-- <InlineMath math="f(x) = 2x^2 + 1" /> (example with <InlineMath math="a = 2" />
-  )
+- <InlineMath math="f(x) = x^2" />, the simplest example with <InlineMath math="a = 1" />
+- <InlineMath math="f(x) = 2x^2 + 1" />, an example with <InlineMath math="a = 2" />
+
+The sign of <InlineMath math="a" /> controls the opening direction. Its magnitude controls the width: compared with <InlineMath math="y=x^2" />, the graph is narrower when <InlineMath math="|a|>1" /> and wider when <InlineMath math="0<|a|<1" />.
 
 <ContentBlock>
   <LineEquation
@@ -104,13 +104,13 @@ The vertex is the highest point (if <InlineMath math="a < 0" />) or the lowest p
 
 The axis of symmetry is a vertical line that divides the parabola into two symmetrical parts. The equation of the axis of symmetry is <InlineMath math="x = -\frac{b}{2a}" />.
 
-### Vertical Intercept
+### Vertical-Axis Intercept
 
 The <InlineMath math="y" />-intercept is obtained when <InlineMath math="x = 0" />. Its value is <InlineMath math="f(0) = c" />.
 
-### Horizontal Intercepts
+### Horizontal-Axis Intercepts
 
-The x-intercepts are obtained when <InlineMath math="f(x) = 0" />, i.e., when <InlineMath math="ax^2 + bx + c = 0" />. The solutions can be found using the formula:
+The intercepts on the <InlineMath math="x" />-axis are obtained when <InlineMath math="f(x) = 0" />, that is, when <InlineMath math="ax^2 + bx + c = 0" />. The solutions can be found using the formula:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
@@ -119,7 +119,7 @@ The x-intercepts are obtained when <InlineMath math="f(x) = 0" />, i.e., when <I
 1. Determine whether the parabola opens upward (<InlineMath math="a > 0" />) or downward (<InlineMath math="a < 0" />).
 2. Calculate the coordinates of the vertex <InlineMath math="(-\frac{b}{2a}, f(-\frac{b}{2a}))" />.
 3. Calculate the <InlineMath math="y" />-intercept: <InlineMath math="(0, c)" />.
-4. Calculate the x-intercepts (if any).
+4. Calculate the intercepts on the <InlineMath math="x" />-axis, if any.
 5. Choose several other <InlineMath math="x" /> values and calculate their corresponding <InlineMath math="y" /> values.
 6. Plot all points in the coordinate system.
 7. Connect the points with a parabolic curve.
@@ -146,7 +146,7 @@ Let's graph the function <InlineMath math="f(x) = x^2 - 2x - 3" />:
 
    So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, -3)" />.
 
-4. X-intercepts: <InlineMath math="f(x) = 0" /> or <InlineMath math="x^2 - 2x - 3 = 0" />
+4. Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="x^2 - 2x - 3 = 0" />
 
    Using the quadratic formula:
 
@@ -155,7 +155,7 @@ Let's graph the function <InlineMath math="f(x) = x^2 - 2x - 3" />:
      <BlockMath math="x = \frac{2 + 4}{2} = 3 \text{ or} x = \frac{2 - 4}{2} = -1" />
    </MathContainer>
 
-   So the x-intercepts are at <InlineMath math="(-1, 0)" /> and <InlineMath math="(3, 0)" />.
+   So the intercepts on the <InlineMath math="x" />-axis are <InlineMath math="(-1, 0)" /> and <InlineMath math="(3, 0)" />.
 
 5. Let's calculate some additional points:
 
@@ -173,8 +173,9 @@ Let's graph the function <InlineMath math="f(x) = x^2 - 2x - 3" />:
     }
     description={
       <>
-        Parabola opens upward with vertex at <InlineMath math="(1, -4)" /> and
-        x-intercepts at <InlineMath math="(-1, 0)" /> and{" "}
+        Parabola opens upward with vertex at{" "}
+        <InlineMath math="(1, -4)" /> and intercepts on the <InlineMath math="x" />-axis at{" "}
+        <InlineMath math="(-1, 0)" /> and
         <InlineMath math="(3, 0)" />.
       </>
     }
@@ -188,7 +189,7 @@ Let's graph the function <InlineMath math="f(x) = x^2 - 2x - 3" />:
         color: "#0d9488",
         labels: [
           {
-            text: <InlineMath math="f(x)=x^2-2x-3" />,
+            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
             at: 5,
             offset: [3, 2, 0],
           },
@@ -223,7 +224,7 @@ Let's graph the function <InlineMath math="f(x) = -x^2" />:
 
    So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, 0)" />.
 
-4. X-intercepts: <InlineMath math="f(x) = 0" /> or <InlineMath math="-x^2 = 0" />
+4. Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="-x^2 = 0" />
 
    <MathContainer>
      <BlockMath math="x^2 = 0" />
@@ -245,12 +246,13 @@ Let's graph the function <InlineMath math="f(x) = -x^2" />:
   <LineEquation
     title={
       <>
-        Graph of <InlineMath math="f(x) = -x²" />
+        Graph of <InlineMath math="f(x) = -x^2" />
       </>
     }
     description={
       <>
-        Parabola opens downward with vertex at <InlineMath math="(0, 0)" />.
+        Parabola opens downward with vertex at{" "}
+        <InlineMath math="(0, 0)" />.
       </>
     }
     cameraPosition={[2, 2, 12]}
@@ -278,9 +280,38 @@ Let's graph the function <InlineMath math="f(x) = -x^2" />:
   />
 </ContentBlock>
 
-## Table of Quadratic Function Graph Shapes
+## Reading the Shape at a Glance
 
-| Quadratic Function          | Graph Shape                                  |
-| --------------------------- | -------------------------------------------- |
-| <InlineMath math="a > 0" /> | Parabola opens upward, has a minimum point   |
-| <InlineMath math="a < 0" /> | Parabola opens downward, has a maximum point |
+Write the vertex as <InlineMath math="(x_v,y_v)" />, where <InlineMath math="y_v=f(x_v)" />.
+
+| Condition                    | Opening  | Vertex value | Range                                  |
+| ---------------------------- | -------- | ------------ | -------------------------------------- |
+| <InlineMath math="a > 0" />  | Upward   | Minimum      | <InlineMath math="[y_v,\infty)" />    |
+| <InlineMath math="a < 0" />  | Downward | Maximum      | <InlineMath math="(-\infty,y_v]" />   |
+
+## Practice Problem
+
+Analyze the graph of <InlineMath math="g(x)=-2(x+1)^2+8" />. Find its opening direction, vertex, symmetry axis, intercepts, and range.
+
+### Worked Solution
+
+The function is already in vertex form <InlineMath math="a(x-h)^2+k" />. Here <InlineMath math="a=-2" />, <InlineMath math="h=-1" />, and <InlineMath math="k=8" />.
+
+- Because <InlineMath math="a<0" />, the parabola opens downward.
+- The vertex is <InlineMath math="(-1,8)" />, so its maximum value is <InlineMath math="8" />.
+- The symmetry axis is <InlineMath math="x=-1" />.
+
+For the <InlineMath math="y" />-axis intercept, set <InlineMath math="x=0" />:
+
+<BlockMath math="g(0)=-2(0+1)^2+8=6" />
+
+Thus, the graph crosses the <InlineMath math="y" />-axis at <InlineMath math="(0,6)" />. For the <InlineMath math="x" />-axis intercepts, solve <InlineMath math="g(x)=0" />:
+
+<MathContainer>
+  <BlockMath math="-2(x+1)^2+8=0" />
+  <BlockMath math="(x+1)^2=4" />
+  <BlockMath math="x+1=\pm2" />
+  <BlockMath math="x=-3\quad\text{or}\quad x=1" />
+</MathContainer>
+
+The intercepts are <InlineMath math="(-3,0)" /> and <InlineMath math="(1,0)" />. Since the parabola opens downward from the maximum <InlineMath math="8" />, its range is <InlineMath math="(-\infty,8]" />.

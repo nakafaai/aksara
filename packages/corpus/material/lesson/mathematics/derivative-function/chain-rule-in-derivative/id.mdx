@@ -8,25 +8,25 @@ export const metadata = {
 
 ## Memahami Fungsi Bersusun
 
-Bayangkan kamu punya mesin yang mengubah sebuah angka (fungsi pertama), dan hasilnya langsung dimasukkan ke mesin lain untuk diolah lagi (fungsi kedua). Proses inilah yang disebut **fungsi komposisi** atau fungsi bersusun. Secara matematis, kalau kita punya <InlineMath math="g(x)" /> sebagai **fungsi dalam** dan <InlineMath math="f(u)" /> sebagai **fungsi luar**, maka komposisinya adalah <InlineMath math="y = f(g(x))" />.
+Pada **fungsi komposisi**, keluaran suatu fungsi menjadi masukan bagi fungsi lain. Jika <InlineMath math="g(x)" /> adalah **fungsi dalam** dan <InlineMath math="f(u)" /> adalah **fungsi luar**, komposisinya ditulis <InlineMath math="y = f(g(x))" />.
 
-Aturan rantai adalah metode untuk mencari turunan dari fungsi-fungsi seperti ini, di mana satu fungsi "terbungkus" di dalam fungsi lainnya.
+Aturan rantai menjelaskan cara menurunkan susunan ini tanpa mengabaikan pengaruh fungsi dalam.
 
 ## Teorema Aturan Rantai
 
-Untuk menurunkan fungsi komposisi, kita tidak bisa menurunkannya satu per satu begitu saja. Ada sebuah aturan elegan yang menghubungkan turunan fungsi luar dan fungsi dalamnya.
+Pada fungsi komposisi, kita menurunkan setiap lapisan secara berurutan lalu mengalikan turunannya.
 
-> Jika <InlineMath math="y = f(g(x))" />, maka turunannya ditentukan oleh perkalian antara turunan fungsi luar terhadap fungsi dalam dengan turunan fungsi dalam itu sendiri.
+> Jika <InlineMath math="y = f(g(x))" />, dengan <InlineMath math="g" /> dapat diturunkan di <InlineMath math="x" /> dan <InlineMath math="f" /> dapat diturunkan di <InlineMath math="g(x)" />, turunannya adalah turunan fungsi luar yang dihitung pada fungsi dalam, dikalikan dengan turunan fungsi dalam.
 
 Secara formal, jika kita memisalkan <InlineMath math="u = g(x)" />, maka <InlineMath math="y = f(u)" />. Turunannya didefinisikan sebagai:
 
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
-Rumus ini dikenal sebagai **aturan rantai**. Intinya, kita menurunkan dari "lapisan" terluar ke lapisan terdalam, lalu mengalikan hasilnya.
+Inilah **aturan rantai**. Kerjakan dari lapisan terluar ke dalam, pertahankan setiap ekspresi dalam sampai gilirannya diturunkan, lalu kalikan semua turunan.
 
 ## Penerapan Aturan Rantai
 
-Yuk, kita coba terapkan teorema ini pada beberapa kasus biar lebih kebayang.
+Contoh berikut menunjukkan proses yang sama untuk susunan dua dan tiga lapisan.
 
 ### Fungsi Bentuk Pangkat
 

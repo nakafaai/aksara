@@ -2,18 +2,37 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Free radicals grow cancer cells", value: false },
-    { label: "Scientific definition of Matoa fruit", value: false },
-    { label: "Matoa trees do not bear fruit every year", value: false },
-    { label: "Matoa fruit has many benefits", value: true },
-    { label: "Matoa fruit does not resemble any fruit", value: false },
+    { label: "The species is native only to Papua", value: false },
+    {
+      label: "The species is introduced everywhere outside New Guinea",
+      value: false,
+    },
+    {
+      label: "The species grows primarily in a dry temperate biome",
+      value: false,
+    },
+    {
+      label: "The species' native range extends well beyond New Guinea",
+      value: true,
+    },
+    { label: "The species is an herb rather than a tree", value: false },
   ],
   id: [
-    { label: "Radikal bebas menumbuhkan sel kanker", value: false },
-    { label: "Definisi ilmiah tentang buah Matoa", value: false },
-    { label: "Pohon Matoa tidak berbuah setiap tahunnya", value: false },
-    { label: "Buah Matoa memiliki banyak khasiat", value: true },
-    { label: "Buah Matoa tidak menyerupai buah apapun", value: false },
+    { label: "Spesies ini hanya berasal dari Papua", value: false },
+    {
+      label:
+        "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
+      value: false,
+    },
+    {
+      label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
+      value: false,
+    },
+    {
+      label: "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
+      value: true,
+    },
+    { label: "Spesies ini merupakan herba, bukan pohon", value: false },
   ],
 };
 

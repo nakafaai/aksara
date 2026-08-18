@@ -3,28 +3,20 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "It is said that regular swimming helps older people stay mentally and physically fit",
+      label: "Water exercise can be helpful for some people with arthritis.",
       value: false,
     },
     {
-      label:
-        "The unique benefits of water make it the perfect place for people of all ages to exercise",
+      label: "Water exercise may improve older adults' quality of life.",
       value: false,
     },
     {
-      label:
-        "Swimming can only give benefits for the human mind that can improve our mood",
+      label: "Swimming has health benefits and therefore carries no risks.",
       value: true,
     },
+    { label: "Swimming may improve mood for some people.", value: false },
     {
-      label:
-        "The findings will further be used to identify other health benefits of swimming",
-      value: false,
-    },
-    {
-      label:
-        "The unique properties of water mean that unlike other activities, no one is restricted from taking part",
+      label: "A balanced decision includes suitable safety measures.",
       value: false,
     },
   ],

@@ -3,55 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Human body nature requires whole foods, not processed let alone refined products.",
+      label: "While rain falls, the streets become wet.",
+      value: false,
+    },
+    {
+      label: "If dinner is ready, the children can eat.",
+      value: false,
+    },
+    {
+      label: "Before sunrise, birds sing loudly.",
       value: false,
     },
     {
       label:
-        "Eggs can always be relied on for a practical and delicious breakfast ingredient.",
-      value: false,
-    },
-    {
-      label:
-        "Besides that, the price of eggs is also quite affordable and easy to get anywhere.",
-      value: false,
-    },
-    {
-      label:
-        "When compared to other high-protein foods, such as meat, eggs are a relatively affordable source of protein.",
+        "After the lesson ends, each student should submit the assignment promptly.",
       value: true,
     },
     {
-      label:
-        "One whole egg contains complete protein, meaning the egg contains all the essential amino acids needed by the body.",
+      label: "When the bell rings, the school corridor becomes noisy.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Kodrat tubuh manusia membutuhkan pangan utuh, bukan produk proses apalagi rafinasi.",
+      label: "Ketika hujan turun, jalan menjadi basah.",
+      value: false,
+    },
+    {
+      label: "Jika makan malam sudah siap, anak-anak dapat makan.",
+      value: false,
+    },
+    {
+      label: "Sebelum matahari terbit, burung berkicau nyaring.",
       value: false,
     },
     {
       label:
-        "Telur selalu bisa jadi andalan untuk bahan sarapan yang praktis dan lezat.",
-      value: false,
-    },
-    {
-      label:
-        "Selain itu harga telur juga cukup terjangkau dan mudah didapat di mana saja.",
-      value: false,
-    },
-    {
-      label:
-        "Jika dibandingkan dengan makanan berprotein tinggi lainnya, seperti daging, telur adalah sumber protein yang relatif terjangkau.",
+        "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
       value: true,
     },
     {
-      label:
-        "Satu butir telur utuh mengandung protein lengkap, artinya telur mengandung semua asam amino esensial yang diperlukan oleh tubuh.",
+      label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
       value: false,
     },
   ],

@@ -4,28 +4,21 @@ export const metadata = {
   date: "2026-01-21",
 };
 
-Let's analyze the logic of the key statement in the text:
+The meter rule is the implication
 
-*"If consumption exceeds reasonable limits, the house electricity will automatically be cut off."*
+<BlockMath math="p \rightarrow q." />
 
-We can break this statement down into two propositions:
-*   <InlineMath math="p" />: Consumption exceeds reasonable limits.
-*   <InlineMath math="q" />: House electricity will be cut off.
+An implication fails in exactly one case: its condition is true while its consequence is false.
 
-The logical implication form is:
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p\rightarrow q" /> |
+| :---: | :---: | :---: |
+| True | True | True |
+| True | False | **False** |
+| False | True | True |
+| False | False | True |
 
-<MathContainer>
-  <BlockMath math="p \rightarrow q" />
-</MathContainer>
+The contradictory case is therefore
 
-The question asks us to find the **wrong conclusion**. In mathematical logic, a statement that is false (contradictory) to an implication is its **negation**.
+<BlockMath math="p\land\neg q." />
 
-The formula for the negation of the implication <InlineMath math="p \rightarrow q" /> is:
-
-<MathContainer>
-  <BlockMath math="\sim(p \rightarrow q) \equiv p \land \sim q" />
-</MathContainer>
-
-Meaning: **Consumption exceeds reasonable limits AND house electricity is NOT cut off.**
-
-This statement directly contradicts the premise provided in the text, making it the wrong conclusion.
+In words, **use exceeds the limit and the power is not cut**.

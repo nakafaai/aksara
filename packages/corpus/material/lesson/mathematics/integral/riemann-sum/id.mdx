@@ -12,7 +12,7 @@ export const metadata = {
 
 Bayangkan kamu memiliki sebidang tanah dengan satu sisi yang bentuknya melengkung tidak beraturan. Bagaimana cara menghitung luasnya? Salah satu cara paling praktis adalah dengan membagi tanah itu menjadi beberapa potong persegi panjang dengan lebar yang sama, menghitung luas setiap potongan, lalu menjumlahkan semuanya.
 
-Itulah ide dasar di balik **Jumlahan Riemann**. Ini adalah metode untuk **memperkirakan luas daerah di bawah kurva** dengan cara membaginya menjadi beberapa persegi panjang dan menjumlahkan luasnya. Semakin banyak persegi panjang yang kita gunakan, semakin akurat perkiraan luas yang kita dapatkan.
+Itulah ide dasar **jumlahan Riemann**. Metode ini memperkirakan **akumulasi bertanda** dengan membagi interval menjadi beberapa subinterval, lalu menjumlahkan kontribusi setiap persegi panjang. Jika fungsinya tidak negatif, akumulasi tersebut sama dengan luas daerah di bawah kurva. Untuk fungsi yang terintegralkan secara Riemann, jumlahan ini konvergen ke integral tentu ketika lebar subinterval terbesarnya mendekati nol. Pada partisi sama lebar, menambah jumlah persegi panjang akan memperkecil lebarnya, meskipun setiap penambahan belum tentu langsung menghasilkan taksiran yang lebih dekat.
 
 ## Komponen Utama
 
@@ -121,13 +121,13 @@ Mari kita terapkan konsep ini pada sebuah contoh.
 
     Jadi, perkiraan luas daerah di bawah kurva <InlineMath math="f(x)=x" /> dari <InlineMath math="0" /> sampai <InlineMath math="7" /> adalah <InlineMath math="21" />.
 
-> Perhatikan bahwa karena fungsi <InlineMath math="f(x)=x" /> terus naik (monoton naik), penggunaan titik ujung kiri akan selalu menghasilkan persegi panjang yang berada di bawah kurva, sehingga perkiraan luasnya lebih kecil dari luas sebenarnya (underestimate). Sebaliknya, jika kita menggunakan titik ujung kanan pada fungsi yang monoton naik, hasilnya akan selalu menjadi overestimate.
+> Pada <InlineMath math="[0,7]" />, fungsi <InlineMath math="f(x)=x" /> tidak negatif dan monoton naik secara ketat. Karena itu, persegi panjang dengan titik ujung kiri berada di bawah grafik dan menghasilkan taksiran luas yang terlalu kecil, sedangkan titik ujung kanan menghasilkan taksiran yang terlalu besar.
 
 ## Latihan
 
 1.  Hitung Jumlahan Riemann untuk fungsi <InlineMath math="f(x) = x^2 + 1" /> pada interval <InlineMath math="[0, 4]" /> menggunakan <InlineMath math="4" /> subinterval dengan lebar yang sama dan titik sampel berupa **titik ujung kanan**.
 
-### Kunci Jawaban
+### Pembahasan Terperinci
 
 1.  Kita akan menghitung Jumlahan Riemann untuk <InlineMath math="f(x) = x^2+1" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />.
 

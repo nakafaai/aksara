@@ -4,14 +4,14 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Define each absolute value
+First, write each absolute value according to the sign of the expression inside it.
 
 <MathContainer>
-<BlockMath math="|2x + 1| = \begin{cases} 2x + 1, & \text{for } 2x + 1 \geq 0 \text{ or} x \geq -\frac{1}{2} \\ -(2x + 1), & \text{for } 2x + 1 < 0 \text{ or} x < -\frac{1}{2} \end{cases}" />
-<BlockMath math="|2x| = \begin{cases} 2x, & \text{for } 2x \geq 0 \text{ or} x \geq 0 \\ -2x, & \text{for } 2x < 0 \text{ or} x < 0 \end{cases}" />
+<BlockMath math="|2x + 1| = \begin{cases} 2x + 1, & \text{if } x \geq -\frac{1}{2} \\ -(2x + 1), & \text{if } x < -\frac{1}{2} \end{cases}" />
+<BlockMath math="|2x| = \begin{cases} 2x, & \text{if } x \geq 0 \\ -2x, & \text{if } x < 0 \end{cases}" />
 </MathContainer>
 
-It is seen that the boundary values of <InlineMath math="x" /> from both absolute values are <InlineMath math="x = -\frac{1}{2}" /> and <InlineMath math="x = 0" />. This means the boundaries will form three regions, namely <InlineMath math="\text{Region I } (x < -\frac{1}{2})" />, <InlineMath math="\text{Region II } (-\frac{1}{2} \leq x < 0)" />, and <InlineMath math="\text{Region III } (x \geq 0)" />. Based on the regions and their definitions, the problem can be solved.
+The expressions change sign at <InlineMath math="x = -\frac{1}{2}" /> and <InlineMath math="x = 0" />. These two breakpoints divide the number line into three regions: <InlineMath math="\text{Region I } (x < -\frac{1}{2})" />, <InlineMath math="\text{Region II } (-\frac{1}{2} \leq x < 0)" />, and <InlineMath math="\text{Region III } (x \geq 0)" />. We solve the inequality in each region using the corresponding signs.
 
 <InlineMath math="\text{Region I:}" /> <InlineMath math="(x < -\frac{1}{2})" />
 
@@ -38,7 +38,7 @@ The solution for <InlineMath math="\text{Region I}" /> is <InlineMath math="\{x 
 <BlockMath math="1 < 5" />
 </MathContainer>
 
-All <InlineMath math="x" /> in <InlineMath math="\text{Region II}" /> are true, so the solution is <InlineMath math="\{-\frac{1}{2} \leq x < 0\}" />.
+The inequality reduces to the always true statement <InlineMath math="1 < 5" />. Therefore, every <InlineMath math="x" /> in <InlineMath math="\text{Region II}" /> is a solution, giving <InlineMath math="\{-\frac{1}{2} \leq x < 0\}" />.
 
 <InlineMath math="\text{Region III:}" /> <InlineMath math="(x \geq 0)" />
 
@@ -53,6 +53,6 @@ All <InlineMath math="x" /> in <InlineMath math="\text{Region II}" /> are true, 
 
 The solution is <InlineMath math="\{x \geq 0\} \cap \{x < 1\} = \{0 \leq x < 1\}" />.
 
-So the overall solution is the union
+Finally, take the union of the three regional solutions:
 
 <BlockMath math="\left\{-\frac{3}{2} < x < -\frac{1}{2}\right\} \cup \left\{-\frac{1}{2} \leq x < 0\right\} \cup \{0 \leq x < 1\} = \left\{-\frac{3}{2} < x < 1\right\}" />

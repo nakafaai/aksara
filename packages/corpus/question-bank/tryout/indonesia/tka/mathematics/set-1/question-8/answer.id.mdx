@@ -6,13 +6,13 @@ export const metadata = {
 
 
 
-Misalkan kapsul <InlineMath math="= x" />, tablet <InlineMath math="= y" />, dengan <InlineMath math="x \geq 0" /> dan <InlineMath math="y \geq 0" />
+Misalkan <InlineMath math="x" /> menyatakan jumlah paket A dan <InlineMath math="y" /> menyatakan jumlah paket B. Keduanya harus memenuhi <InlineMath math="x \geq 0" /> dan <InlineMath math="y \geq 0" />. Karena paket tidak dapat dibagi, <InlineMath math="x" /> dan <InlineMath math="y" /> merupakan bilangan bulat.
 
-Didapatkan model matematika
+Kita memperoleh model matematika berikut:
 
 <MathContainer>
-<BlockMath math="5x + 2y \leq 60 \quad \text{...(i)}" />
-<BlockMath math="2x + 2y \leq 30 \quad \text{...(ii)}" />
+<BlockMath math="5x + 2y \geq 60 \quad \text{...(i)}" />
+<BlockMath math="2x + 2y \geq 30 \quad \text{...(ii)}" />
 </MathContainer>
 
 #### Mencari Titik Potong
@@ -21,61 +21,71 @@ Jika kedua persamaan garis dieliminasi, didapatkan titik potong
 
 <BlockMath math="\begin{array}{rcrcrcl} 5x & + & 2y & = & 60 & & \\ 2x & + & 2y & = & 30 & & - \\ \hline 3x & & & = & 30 & & \\ x & & & = & 10 & \Rightarrow & y = 5 \end{array}" />
 
-#### Grafik Daerah Penyelesaian
+#### Garis Batas Kendala
 
-Dari pertidaksamaan didapatkan grafik
+Grafik berikut menunjukkan kedua garis batas dan tiga titik sudut pada batas bawah daerah layak. Karena kedua pertidaksamaan menggunakan <InlineMath math="\geq" />, daerah layak berada pada atau di atas batas tersebut.
 
 <LineEquation
-  title="Daerah Penyelesaian"
-  description="Grafik pertidaksamaan linear untuk kebutuhan kalsium dan zat besi."
+  title="Garis Batas Kendala"
+  description="Garis batas dan titik sudut batas bawah yang memenuhi kebutuhan kalsium dan zat besi."
   showZAxis={false}
   cameraPosition={[12, 12, 20]}
   data={[
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = i * 13.5;
-        const y = (60 - 5 * x) / 2;
-        return { x, y, z: 0 };
-      }),
+      points: [
+        { x: 0, y: 30, z: 0 },
+        { x: 12, y: 0, z: 0 },
+      ],
       color: "#9333ea",
       smooth: false,
       showPoints: false,
       labels: [
         {
-          text: <InlineMath math="5x+2y=60" />,
-          at: 1,
-          offset: [-5, 7, 0],
-        },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = i * 16.5;
-        const y = (30 - 2 * x) / 2;
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="2x+2y=30" />,
-          at: 1,
-          offset: [-10, 7, 0],
+          text: <InlineMath math="5x + 2y=60" />,
+          at: 0,
+          offset: [3, 2, 0],
         },
       ],
     },
     {
       points: [
+        { x: 0, y: 15, z: 0 },
+        { x: 15, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="2x + 2y=30" />,
+          at: 1,
+          offset: [-4, 2, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 30, z: 0 },
         { x: 10, y: 5, z: 0 },
+        { x: 15, y: 0, z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: true,
       labels: [
         {
-          text: <InlineMath math="(10,5)" />,
+          text: <InlineMath math="(0, 30)" />,
           at: 0,
+          offset: [1, 1, 0],
+        },
+        {
+          text: <InlineMath math="(10, 5)" />,
+          at: 1,
+          offset: [1, 1, 0],
+        },
+        {
+          text: <InlineMath math="(15, 0)" />,
+          at: 2,
           offset: [1, 1, 0],
         },
       ],
@@ -85,14 +95,14 @@ Dari pertidaksamaan didapatkan grafik
 
 #### Menentukan Biaya Minimum
 
-Fungsi biaya minimum untuk kapsul dan tablet adalah <InlineMath math="f(x, y) = 1.000x + 800y" />
+Fungsi biayanya adalah <InlineMath math="f(x, y) = 1{.}000x + 800y" />. Karena kedua koefisiennya positif, nilai minimum harus berada pada batas bawah daerah layak.
 
-Nilai dari setiap titik sudut
+Hitung biaya pada ketiga titik sudutnya:
 
 <MathContainer>
-<BlockMath math="f(12, 0) = 1.000(12) + 800(0) = 12.000" />
-<BlockMath math="f(10, 5) = 1.000(10) + 800(5) = 14.000" />
-<BlockMath math="f(0, 15) = 1.000(0) + 800(15) = 12.000" />
+<BlockMath math="f(0, 30) = 1{.}000(0) + 800(30) = 24{.}000" />
+<BlockMath math="f(10, 5) = 1{.}000(10) + 800(5) = 14{.}000" />
+<BlockMath math="f(15, 0) = 1{.}000(15) + 800(0) = 15{.}000" />
 </MathContainer>
 
-Jadi, biaya minimum yang harus dikeluarkan untuk memenuhi kebutuhan kalsium dan zat besi balita adalah <InlineMath math="\text{Rp}12.000" />
+Titik potong <InlineMath math="(10,5)" /> berkoordinat bulat sehingga juga memenuhi syarat paket yang tidak dapat dibagi. Jadi, biaya minimumnya adalah <InlineMath math="\text{Rp}14{.}000" />.

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Normal Distribution Function",
-  description: "Learn normal distribution function with bell curve visualization and examples. Understand z-score transformation and calculate probabilities one step at a time.",
+  title: "Normal Distribution Density Function",
+  description: "Understand the normal density through a bell-curve visualization, then standardize values with z-scores and calculate an interval probability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Data Analysis and Probability",
@@ -10,19 +10,23 @@ export const metadata = {
 
 ## Understanding Normal Distribution
 
-Did you know that the height of students in your school, national exam scores, or even the weight of apples in the supermarket all follow the same pattern? This pattern is called **normal distribution**.
+Measurements such as human height or repeated laboratory results often cluster around a central value. In some populations and under suitable conditions, a **normal distribution** can approximate that pattern. The model must still be checked against the data rather than assumed from the context alone.
 
-Normal distribution was first introduced by Abraham de Moivre in <InlineMath math="1733" /> as an approximation of the binomial distribution for large <InlineMath math="n" />. Later, Pierre-Simon Laplace developed it further and it became known as the Moivre-Laplace Theorem. Laplace used normal distribution to analyze errors in experiments.
+In <InlineMath math="1733" />, Abraham de Moivre derived a normal approximation to the binomial distribution for large <InlineMath math="n" />. Pierre-Simon Laplace later extended this result, which is now associated with the de Moivre-Laplace theorem and the development of the central limit theorem.
 
-> Normal distribution is very useful because many natural and social phenomena follow this pattern. From human height to scientific measurement results, everything tends to be normally distributed.
+> The normal distribution is a model, not a rule that every dataset follows. It is useful when observations are roughly symmetric around a mean and the model fits the data well enough for the question being studied.
 
 ## Characteristics of Normal Curve
 
-Imagine a very symmetrical hill, like an inverted bell. That's the shape of the normal distribution curve. Let's look at the visualization of a standard normal curve with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" />:
+The normal density has a symmetric bell shape. The visualization below shows the standard normal curve with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" />:
 
 <LineEquation
   title="Standard Normal Distribution Curve"
-  description="Bell-shaped curve that is symmetrical with characteristic features of normal distribution."
+  description={
+    <>
+      The standard normal density is centered at <InlineMath math="\mu=0" />. The vertical segments mark its inflection points <InlineMath math="\mu\pm\sigma" />.
+    </>
+  }
   cameraPosition={[0, 0, 5]}
   showZAxis={false}
   data={[
@@ -70,7 +74,7 @@ Imagine a very symmetrical hill, like an inverted bell. That's the shape of the 
   ]}
 />
 
-This curve has several unique characteristics that make it special:
+The curve has four defining characteristics:
 
 1. **Shape and Symmetry**
 
@@ -78,7 +82,7 @@ This curve has several unique characteristics that make it special:
 
 2. **Central Point**
 
-    The mean, median, and mode are all located at the same point, which is at the peak of the curve. This occurs because the distribution is symmetrical.
+    The normal density is symmetric and has one peak. Therefore, its mean, median, and mode all coincide at <InlineMath math="\mu" />.
 
 3. **Inflection Points**
 
@@ -86,13 +90,13 @@ This curve has several unique characteristics that make it special:
 
 4. **Horizontal Asymptote**
 
-    The curve approaches the <InlineMath math="x" /> axis but never touches it, both at the left and right ends.
+    The density remains positive for every finite <InlineMath math="x" /> and approaches <InlineMath math="0" /> as <InlineMath math="x" /> tends to either infinity.
 
-## Its Mathematical Function
+## Probability Density Function
 
-Now, let's look at its mathematical formula. Don't worry if it looks complicated, the important thing is that you understand the concept.
+The formula below gives the probability density at each value of <InlineMath math="x" />.
 
-If <InlineMath math="X" /> is a normal random variable with mean <InlineMath math="\mu" /> and variance <InlineMath math="\sigma^2" />, then the normal distribution function can be written as:
+If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" />, variance <InlineMath math="\sigma^2" />, and <InlineMath math="\sigma>0" />, its density function is:
 
 <BlockMath math="f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
 
@@ -100,12 +104,12 @@ for <InlineMath math="-\infty < x < \infty" />.
 
 Where:
 
-- <InlineMath math="\pi" /> is the constant <InlineMath math="3.1416" />
-- <InlineMath math="e" /> is the constant number <InlineMath math="2.7183" />
+- <InlineMath math="\pi \approx 3.1416" /> is the circle constant
+- <InlineMath math="e \approx 2.7183" /> is Euler's number
 - <InlineMath math="\mu" /> is the mean of the distribution
-- <InlineMath math="\sigma" /> is the standard deviation
+- <InlineMath math="\sigma>0" /> is the standard deviation
 
-> This formula looks complex, but you don't need to memorize it or calculate it manually. The important thing is to understand that the shape of the curve is determined by the values of <InlineMath math="\mu" /> and <InlineMath math="\sigma" />.
+> The parameter <InlineMath math="\mu" /> shifts the center of the curve, while <InlineMath math="\sigma" /> controls its spread. Probabilities come from areas under this density curve, not from the height <InlineMath math="f(x)" /> at one point.
 
 ## Transformation to Standard Normal
 
@@ -113,7 +117,7 @@ In practice, we often use the **standard normal distribution** with mean <Inline
 
 <BlockMath math="Z = \frac{x - \mu}{\sigma}" />
 
-This variable <InlineMath math="Z" /> is called the **standard score** or **z-score**. This transformation is very useful because it allows us to use the readily available standard normal distribution table.
+The variable <InlineMath math="Z" /> is the **standard score**, or **z-score**. It measures how many standard deviations <InlineMath math="x" /> lies above or below the mean and lets us use one standard normal table for any normal distribution.
 
 **Why use z-score?**
 
@@ -121,7 +125,7 @@ With this transformation, we can compare data from different distributions. For 
 
 ## Calculation Example
 
-Let's look at a practical example. Suppose we have a normal distribution with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. We want to find the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" />.
+Suppose <InlineMath math="X" /> is normally distributed with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. Find the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" />.
 
 **Step** <InlineMath math="1" />: Transform to z-score
 
@@ -132,7 +136,7 @@ Let's look at a practical example. Suppose we have a normal distribution with <I
 
 **Step** <InlineMath math="2" />: Use the standard normal distribution table
 
-We need to find <InlineMath math="P(-0.5 < Z < 1.2)" />. Remember that for interval probability, we use the formula:
+The transformed interval is <InlineMath math="P(-0.5 < Z < 1.2)" />. Subtract the cumulative probability at the lower boundary from the cumulative probability at the upper boundary:
 
 <BlockMath math="P(a < Z < b) = P(Z < b) - P(Z < a)" />
 

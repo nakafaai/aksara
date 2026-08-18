@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Penjumlahan Vektor",
-  description: "Pelajari penjumlahan vektor dengan metode segitiga, jajar genjang & poligon. Pelajari perhitungan resultan, komponen, dan aplikasi dunia nyata.",
+  description: "Pelajari penjumlahan vektor dengan metode segitiga, jajar genjang, poligon, dan komponen, lalu tafsirkan resultannya dalam situasi fisika.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vektor dan Operasinya",
@@ -214,6 +214,20 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
         labelPosition: "middle",
       },
       {
+        from: [0, 0, 0],
+        to: [4, 4, 0],
+        color: "#7c3aed",
+        label: <InlineMath math="A+B" />,
+        labelPosition: "middle",
+      },
+      {
+        from: [4, 4, 0],
+        to: [4, 5, 3],
+        color: "#65a30d",
+        label: <InlineMath math="C" />,
+        labelPosition: "middle",
+      },
+      {
         from: [3, 1, 0],
         to: [4, 5, 3],
         color: "#ea580c",
@@ -224,7 +238,7 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
         from: [0, 0, 0],
         to: [4, 5, 3],
         color: "#db2777",
-        label: <InlineMath math="A+(B+C)" />,
+        label: <InlineMath math="A+(B+C)=(A+B)+C" />,
         labelPosition: "end",
       },
     ]}
@@ -297,7 +311,7 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y)" /> dan <InlineMath math="\vec{b} = 
 
 Contoh:
 
-<BlockMath math="\vec{AC} + \vec{AB} = (-3, 3) + (4, 2) = (1, 5)" />
+<BlockMath math="\vec{a} + \vec{b} = (-3, 3) + (4, 2) = (1, 5)" />
 
 Penjumlahan secara komponen dan secara grafis memberikan hasil yang sama.
 
@@ -305,8 +319,8 @@ Penjumlahan secara komponen dan secara grafis memberikan hasil yang sama.
 
 Salah satu contoh aplikasi penjumlahan vektor adalah pada gerakan perahu menyeberangi sungai:
 
-1. Jika kelajuan arus sungai nol (tidak ada arus), maka gerak perahu tidak berubah arah, hanya mengikuti arah yang dituju
-2. Jika kelajuan arus sungai tidak nol, maka gerak perahu berubah, baik arah maupun kelajuannya
+1. Jika kecepatan arus sungai nol, kecepatan perahu relatif terhadap tepi sungai sama dengan kecepatannya relatif terhadap air
+2. Jika kecepatan arus sungai tak nol, kecepatan perahu relatif terhadap tepi sungai adalah jumlah vektor antara kecepatan perahu relatif terhadap air dan kecepatan arus. Arah, besar, atau keduanya dapat berubah, bergantung pada arah arus
 
 <ContentBlock>
   <Vector3d
@@ -339,11 +353,11 @@ Salah satu contoh aplikasi penjumlahan vektor adalah pada gerakan perahu menyebe
   />
 </ContentBlock>
 
-Gerak perahu merupakan hasil penjumlahan vektor antara kecepatan perahu sendiri dengan kecepatan arus sungai. Ini seperti contoh pada peta rute kendaraan, di mana kita perlu mempertimbangkan setiap vektor perpindahan dari satu lokasi ke lokasi lain untuk menentukan rute terpendek.
+Kecepatan perahu relatif terhadap tepi sungai adalah jumlah vektor antara kecepatan perahu relatif terhadap air dan kecepatan arus relatif terhadap tepi sungai. Deretan vektor perpindahan pada suatu perjalanan juga dapat dijumlahkan untuk memperoleh perpindahan bersih. Namun, resultan itu tidak langsung memberikan panjang rute atau menentukan rute terpendek.
 
 ## Perbedaan Penjumlahan Skalar dan Vektor
 
-Penjumlahan skalar hanya menghasilkan satu jawaban, sedangkan penjumlahan vektor menghasilkan berbagai jawaban karena vektor berkaitan dengan arah.
+Penjumlahan skalar dan penjumlahan vektor sama-sama menghasilkan satu jawaban untuk masukan yang tetap. Perbedaannya, skalar hanya memiliki besar, sedangkan vektor juga memiliki arah. Mengubah arah vektor berarti mengubah masukannya dan dapat mengubah resultan.
 
 **Contoh penjumlahan skalar**:
 

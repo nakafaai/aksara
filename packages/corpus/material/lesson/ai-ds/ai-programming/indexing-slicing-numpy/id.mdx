@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Konsep Dasar Indexing dan Slicing
 
-Indexing dan slicing adalah alat untuk mengekstrak data spesifik dari array NumPy. Bayangkan indexing sebagai penunjuk ke lokasi tepat, sedangkan slicing mengambil seluruh bagian sekaligus. Berbeda dengan list Python yang membuat copy, slicing NumPy membuat view yang berbagi memori dengan array asli.
+Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa axis. Slice pada list Python membuat list baru. Basic slicing NumPy biasanya membuat view yang berbagi data dengan array asal, sedangkan advanced indexing dengan array integer atau boolean membuat copy.
 
-Perilaku berbagi memori ini membuat NumPy efisien tetapi memerlukan perhatian khusus untuk menghindari modifikasi yang tidak diinginkan. [Dokumentasi indexing NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) menyediakan contoh ekstensif pola indexing lanjutan ketika kamu butuh seleksi data yang lebih rinci.
+View menghindari penyalinan data, tetapi penulisan melalui view juga mengubah nilai yang bersesuaian pada array asal. [Dokumentasi indexing NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) menjelaskan aturan tepat untuk seleksi dasar dan lanjutan.
 
 ## Operasi Array Satu Dimensi
 
-Array satu dimensi menggunakan sintaks yang sama dengan list Python. Slicing mengembalikan view dari data, bukan copy, sehingga perubahan pada view akan mempengaruhi array asli.
+Array satu dimensi memakai sintaks indexing Python yang sudah familier. Basic slice seperti `a[1:4]` mengembalikan view, sehingga perubahan pada view tersebut mengubah elemen yang sama di `a`.
 
 <CodeBlock
   data={[
@@ -25,7 +25,7 @@ Array satu dimensi menggunakan sintaks yang sama dengan list Python. Slicing men
 
 # Membuat array 1D
 a = np.linspace(0, 7, 8)
-print("Array original:", a)  # Output: Array original: [0. 1. 2. 3. 4. 5. 6. 7.]
+print("Array asal:", a)  # Output: Array asal: [0. 1. 2. 3. 4. 5. 6. 7.]
 
 # Indexing elemen tunggal
 print("Elemen ke-3:", a[3])  # Output: Elemen ke-3: 3.0
@@ -42,7 +42,7 @@ print("Setelah a[:3] = 0:", a)  # Output: Setelah a[:3] = 0: [0. 0. 0. 3. 4. 5. 
   ]}
 />
 
-Konsep penting dalam slicing NumPy adalah perbedaan antara view dan copy. View berbagi memori dengan array asli, sedangkan copy adalah duplikat independen.
+Contoh berikut memperjelas kepemilikan datanya: view berbagi penyimpanan, sedangkan `.copy()` mengalokasikan data yang mandiri.
 
 <CodeBlock
   data={[
@@ -70,14 +70,14 @@ copy_array = original[1:4].copy()
 copy_array[0] = 777
 print("Setelah mengubah copy:")
 print("Original:", original)  # Output: Original: [  1 999   3   4   5]
-print("Copy:", copy_array)  # Output: Copy: [777   3   4]`
+print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
     }
   ]}
 />
 
 ## Operasi Array Multidimensi
 
-Array multidimensi menggunakan tuple integer untuk indexing. Setiap dimensi dipisahkan dengan koma dalam tanda kurung siku. Assignment dan slicing dapat dikombinasikan untuk operasi yang kompleks.
+Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani axis berikutnya. Integer menghapus axis yang dipilih dari hasil, sedangkan slice mempertahankannya.
 
 <CodeBlock
   data={[
@@ -111,7 +111,7 @@ print("a[:,2]:", a[:,2])  # Output: a[:,2]: [ 3.  6.  9. 12.]`
   ]}
 />
 
-Slicing lanjutan memungkinkan pengambilan subarray dengan pola yang kompleks:
+Kombinasi slice pada beberapa axis memilih subarray berbentuk persegi atau berselang tanpa menulis loop:
 
 <CodeBlock
   data={[
@@ -165,7 +165,7 @@ print(a[:, ::2])
 
 ## Advanced Indexing
 
-Advanced indexing memungkinkan penggunaan array integer atau boolean untuk mengakses elemen dengan pola yang kompleks. Indexing dengan array integer membuat copy baru daripada view. Copy memiliki shape yang sama dengan index array.
+Advanced indexing memakai array integer atau boolean untuk memilih elemen secara bebas dan selalu mengembalikan copy. Pada sumber satu dimensi, array index menentukan shape hasil. Pada sumber multidimensi, NumPy melakukan broadcasting terhadap array index lalu menggabungkan shape-nya dengan dimensi yang tersisa dari basic slice.
 
 <CodeBlock
   data={[
@@ -176,11 +176,11 @@ Advanced indexing memungkinkan penggunaan array integer atau boolean untuk menga
 
 # Array untuk demonstrasi
 a = np.array([0, 1, 2, 3, 4])
-print("Array original:", a)  # Output: Array original: [0 1 2 3 4]
+print("Array asal:", a)  # Output: Array asal: [0 1 2 3 4]
 
 # Indexing dengan list indeks
 i = [1, 3, 2, 1, 4]
-print("Index array:", i)  # Output: Index array: [1, 3, 2, 1, 4]
+print("Array index:", i)  # Output: Array index: [1, 3, 2, 1, 4]
 print("a[i]:", a[i])  # Output: a[i]: [1 3 2 1 4]
 
 # Indexing dan reshaping dengan array 2D indeks
@@ -199,7 +199,7 @@ print(a[i])
   ]}
 />
 
-Boolean mask adalah teknik yang berguna untuk filtering data berdasarkan kondisi tertentu. Indexing dengan array boolean mengambil elemen di mana nilai True ditemukan.
+Boolean mask memilih posisi yang nilai mask-nya `True`. Jika shape mask sama dengan sumber, nilai yang terpilih dikembalikan sebagai copy satu dimensi.
 
 <CodeBlock
   data={[
@@ -214,23 +214,23 @@ print("Array:", a)  # Output: Array: [0. 1. 2. 3. 4. 5.]
 
 # Membuat boolean mask
 mask = np.array([True, False, True, False, True, False])
-print("Boolean mask:", mask)  # Output: Boolean mask: [ True False  True False  True False]
+print("Mask boolean:", mask)  # Output: Mask boolean: [ True False  True False  True False]
 print("a[mask]:", a[mask])  # Output: a[mask]: [0. 2. 4.]
 
 # Boolean mask dari kondisi
 condition_mask = a % 2 == 0
-print("Condition mask (a % 2 == 0):", condition_mask)  # Output: Condition mask (a % 2 == 0): [ True False  True False  True False]
+print("Mask kondisi (a % 2 == 0):", condition_mask)  # Output: Mask kondisi (a % 2 == 0): [ True False  True False  True False]
 print("a[condition_mask]:", a[condition_mask])  # Output: a[condition_mask]: [0. 2. 4.]
 
 # Boolean mask dengan kondisi kompleks
 complex_mask = (a > 1) & (a < 4)
-print("Complex mask (a > 1) & (a < 4):", complex_mask)  # Output: Complex mask (a > 1) & (a < 4): [False False  True  True False False]
+print("Mask gabungan (a > 1) & (a < 4):", complex_mask)  # Output: Mask gabungan (a > 1) & (a < 4): [False False  True  True False False]
 print("a[complex_mask]:", a[complex_mask])  # Output: a[complex_mask]: [2. 3.]`
     }
   ]}
 />
 
-Advanced indexing dapat dikombinasikan dengan slicing regular untuk operasi yang sangat fleksibel:
+Advanced index dan basic slice dapat dipakai dalam seleksi yang sama. Bagian advanced tetap membuat hasilnya berupa copy:
 
 <CodeBlock
   data={[
@@ -269,7 +269,7 @@ print(a[row_mask, 2:5])
 
 ## Teknik Lanjutan
 
-NumPy menyediakan berbagai teknik slicing yang memungkinkan manipulasi data yang efisien dan fleksibel. Step parameter memungkinkan kamu mengambil elemen dengan interval tertentu, seperti mengambil setiap elemen kedua atau ketiga.
+Bagian ketiga pada slice adalah step. Nilai ini memilih interval teratur, menerima nilai negatif untuk menelusuri urutan terbalik, dan dapat dipakai secara terpisah pada setiap axis.
 
 <CodeBlock
   data={[
@@ -305,7 +305,7 @@ print(b[::2, ::2])
   ]}
 />
 
-Ellipsis (`...`) adalah shorthand untuk slice penuh pada dimensi yang tidak disebutkan. Sangat berguna untuk array dengan dimensi tinggi.
+Ellipsis (`...`) mengisi sebanyak mungkin full slice untuk dimensi yang tidak disebutkan. Notasi ini menjaga seleksi array berdimensi tinggi tetap mudah dibaca.
 
 <CodeBlock
   data={[
@@ -344,7 +344,7 @@ print(a[1, ..., ::2])
 
 ## Boolean Indexing
 
-Boolean indexing menggunakan array boolean untuk memfilter elemen berdasarkan kondisi tertentu. True indexes mengambil elemen di target array, sedangkan False mengabaikannya.
+Boolean indexing mengevaluasi mask pada setiap posisi yang relevan. `True` memilih nilainya, sedangkan `False` melewatinya.
 
 <CodeBlock
   data={[
@@ -359,7 +359,7 @@ print("Array:", a)  # Output: Array: [0. 1. 2. 3. 4. 5.]
 
 # Boolean mask manual
 mask = np.array([True, False, True, False, True, False], dtype=bool)
-print("Manual mask:", mask)  # Output: Manual mask: [ True False  True False  True False]
+print("Mask manual:", mask)  # Output: Mask manual: [ True False  True False  True False]
 print("a[mask]:", a[mask])  # Output: a[mask]: [0. 2. 4.]
 
 # Boolean mask dari perbandingan
@@ -375,7 +375,7 @@ print("a[even_and_greater_than_1]:", a[even_and_greater_than_1])  # Output: a[ev
   ]}
 />
 
-Boolean indexing pada array dua dimensi dapat diterapkan untuk filtering elemen berdasarkan kondisi:
+Boolean mask dengan shape yang sama memilih elemen yang cocok dari array dua dimensi lalu mengembalikannya sebagai hasil satu dimensi:
 
 <CodeBlock
   data={[
@@ -395,7 +395,7 @@ print(a)
 
 # Boolean mask untuk elemen tertentu
 mask = a > 5
-print("Mask a > 5:")
+print("Mask untuk a > 5:")
 print(mask)
 # Output:
 # [[False False False False]
@@ -418,7 +418,7 @@ print(a)
 
 ## Fancy Indexing
 
-Fancy indexing menggunakan array integer untuk mengakses elemen dengan urutan atau pola tertentu. Teknik ini sangat berguna untuk data sampling dan reorganisasi.
+Fancy indexing adalah nama umum untuk advanced indexing dengan integer. Teknik ini dapat mengurutkan ulang posisi, mengulanginya, atau menyusun hasil mengikuti bentuk array index.
 
 <CodeBlock
   data={[
@@ -433,17 +433,17 @@ print("Array:", a)  # Output: Array: [10 20 30 40 50 60]
 
 # Fancy indexing dengan list indeks
 indices = [0, 2, 4, 1]
-print("Indices:", indices)  # Output: Indices: [0, 2, 4, 1]
+print("Index:", indices)  # Output: Index: [0, 2, 4, 1]
 print("a[indices]:", a[indices])  # Output: a[indices]: [10 30 50 20]
 
 # Fancy indexing dengan array NumPy
 np_indices = np.array([5, 1, 3, 1, 0])
-print("NumPy indices:", np_indices)  # Output: NumPy indices: [5 1 3 1 0]
+print("Index NumPy:", np_indices)  # Output: Index NumPy: [5 1 3 1 0]
 print("a[np_indices]:", a[np_indices])  # Output: a[np_indices]: [60 20 40 20 10]
 
 # Fancy indexing dengan array 2D indeks
 indices_2d = np.array([[0, 1], [2, 3]])
-print("Indices 2D:")
+print("Index 2D:")
 print(indices_2d)
 # Output:
 # [[0 1]
@@ -457,7 +457,7 @@ print(a[indices_2d])
   ]}
 />
 
-Fancy indexing pada array dua dimensi memungkinkan seleksi baris dan kolom dengan pola yang kompleks:
+Pada array dua dimensi, index integer dapat memilih seluruh baris atau memasangkan koordinat baris dan kolom elemen demi elemen:
 
 <CodeBlock
   data={[
@@ -502,9 +502,9 @@ print(a[[0, 2], 1:4])
 
 ## Aplikasi Praktis
 
-Indexing dan slicing memiliki banyak aplikasi praktis dalam analisis data dan machine learning.
+Aturan seleksi yang sama mendukung filtering, sampling, dan penyusunan ulang data tanpa loop buatan sendiri.
 
-Teknik filtering sangat berguna untuk preprocessing data dalam machine learning dan analisis statistik:
+Contoh ini memperlihatkan mask dan assignment. Dalam analisis nyata, ambang suhu dan aturan penggantian harus berasal dari konteks pengukuran, bukan dari resep cleaning umum:
 
 <CodeBlock
   data={[
@@ -536,7 +536,7 @@ print("Data setelah cleaning:", temperatures_cleaned)  # Output: Data setelah cl
   ]}
 />
 
-Sampling dan reorganisasi data adalah teknik penting untuk machine learning dan analisis dataset besar:
+Untuk sampling yang dapat direproduksi, buat generator acak lokal dengan seed eksplisit, bukan mengubah random state global lama milik NumPy:
 
 <CodeBlock
   data={[
@@ -547,29 +547,29 @@ Sampling dan reorganisasi data adalah teknik penting untuk machine learning dan 
 
 # Dataset simulasi
 data = np.arange(100).reshape(10, 10)
-print("Dataset shape:", data.shape)  # Output: Dataset shape: (10, 10)
+print("Shape dataset:", data.shape)  # Output: Shape dataset: (10, 10)
 
-# Random sampling baris
-np.random.seed(42)
-sample_indices = np.random.choice(10, size=5, replace=False)
+# Sampling baris acak dengan generator lokal
+rng = np.random.default_rng(42)
+sample_indices = rng.choice(10, size=5, replace=False)
 sample_indices.sort()
-print("Sample indices:", sample_indices)  # Output: Sample indices: [0 1 5 7 8]
+print("Index sampel:", sample_indices)  # Output: Index sampel: [0 3 4 5 7]
 
 sampled_data = data[sample_indices, :]
-print("Sampled data shape:", sampled_data.shape)  # Output: Sampled data shape: (5, 10)
-print("First 3 columns of sampled data:")
+print("Shape data sampel:", sampled_data.shape)  # Output: Shape data sampel: (5, 10)
+print("Tiga kolom pertama data sampel:")
 print(sampled_data[:, :3])
 # Output:
 # [[ 0  1  2]
-#  [10 11 12]
+#  [30 31 32]
+#  [40 41 42]
 #  [50 51 52]
-#  [70 71 72]
-#  [80 81 82]]
+#  [70 71 72]]
 
 # Reorganisasi kolom
 column_order = [9, 0, 5, 2, 7, 1, 8, 3, 6, 4]
 reorganized_data = data[:, column_order]
-print("Reorganized first row:", reorganized_data[0, :])  # Output: Reorganized first row: [9 0 5 2 7 1 8 3 6 4]`
+print("Baris pertama setelah ditata ulang:", reorganized_data[0, :])  # Output: Baris pertama setelah ditata ulang: [9 0 5 2 7 1 8 3 6 4]`
     }
   ]}
 />

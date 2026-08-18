@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Non-Mutually Exclusive Events A and B",
-  description: "Calculate overlapping events using P(A or B) = P(A) + P(B) - P(A and B). Avoid double counting with intersection examples and worked solutions.",
+  description: "Calculate probabilities for overlapping events and avoid double counting through intersection examples and worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-21",
   subject: "Probability",
@@ -25,15 +25,15 @@ This means it's possible to get an outcome that belongs to event <InlineMath mat
     - Event <InlineMath math="B" />: Getting a number **greater than** <InlineMath math="3" /> (<InlineMath math="\{4, 5, 6\}" />).
       Can these happen together? Yes! The numbers <InlineMath math="4" /> and <InlineMath math="6" /> are both even and greater than <InlineMath math="3" />. So, events <InlineMath math="A" /> and <InlineMath math="B" /> are **non-mutually exclusive**.
 
-## The Intersection is Important!
+## Why the Intersection Matters
 
-In non-mutually exclusive events, there's a part that belongs to both events simultaneously. This part is called the **intersection**.
+For non-mutually exclusive events, some outcomes may belong to both <InlineMath math="A" /> and <InlineMath math="B" />. These shared outcomes form the **intersection** <InlineMath math="A \cap B" />.
 
-Because there is an intersection, the probability of event <InlineMath math="A" /> **AND** B happening together is **greater than zero**.
+The definition is about the outcome sets themselves: the two events are not mutually exclusive when their intersection is nonempty.
 
-<BlockMath math="P(A \text{ and} B) > 0" />
+<BlockMath math="A \cap B \ne \varnothing" />
 
-Or using the intersection symbol:
+In a finite sample space where every elementary outcome has positive probability, a nonempty intersection also has positive probability:
 
 <BlockMath math="P(A \cap B) > 0" />
 
@@ -41,15 +41,15 @@ This is very different from mutually exclusive events, where <InlineMath math="P
 
 ## Calculating Combined Probability for Non-Mutually Exclusive Events
 
-Since there's a chance that events <InlineMath math="A" /> and <InlineMath math="B" /> can happen together, we can't just add <InlineMath math="P(A) + P(B)" /> to find <InlineMath math="P(A \text{ or} B)" />.
+Because <InlineMath math="A" /> and <InlineMath math="B" /> may occur together, we cannot simply add <InlineMath math="P(A) + P(B)" /> to find <InlineMath math="P(A \text{ or} B)" />.
 
-Why not? Because if we simply add them, the intersection part (<InlineMath math="A \cap B" />) gets **counted twice**, once in <InlineMath math="P(A)" /> and again in <InlineMath math="P(B)" />.
+That sum would **count the intersection** <InlineMath math="A \cap B" /> **twice**, once in <InlineMath math="P(A)" /> and once in <InlineMath math="P(B)" />.
 
-To get the correct calculation, we must **subtract** the probability of the intersection that was double-counted. This gives us the **General Addition Rule** for probability:
+We therefore subtract the probability of the intersection once. This gives the **general addition rule**:
 
 <BlockMath math="P(A \text{ or} B) = P(A) + P(B) - P(A \cap B)" />
 
-Or using the union and intersection symbols:
+Using union and intersection symbols:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
@@ -59,8 +59,8 @@ This formula works generally, for both mutually exclusive and non-mutually exclu
 
 Let's use the card example:
 
-- Event <InlineMath math="A" />: Getting a Heart (<InlineMath math="\heartsuit" />). There are <InlineMath math="13" /> Hearts in <InlineMath math="52 \text{ cards}" />. <InlineMath math="P(A) = 13/52" />.
-- Event <InlineMath math="B" />: Getting a King. There are <InlineMath math="4" /> Kings in <InlineMath math="52 \text{ cards}" />. <InlineMath math="P(B) = 4/52" />.
+- Event <InlineMath math="A" />: Getting a Heart (<InlineMath math="\heartsuit" />). There are <InlineMath math="13" /> Hearts among the <InlineMath math="52" /> cards. <InlineMath math="P(A) = 13/52" />.
+- Event <InlineMath math="B" />: Getting a King. There are <InlineMath math="4" /> Kings among the <InlineMath math="52" /> cards. <InlineMath math="P(B) = 4/52" />.
 - Event <InlineMath math="A" /> **and** B: Getting the King of Hearts (<InlineMath math="K\heartsuit" />). There is only <InlineMath math="1" /> King of Hearts. <InlineMath math="P(A \cap B) = 1/52" />.
 
 So, the probability of getting a Heart OR a King is:
@@ -72,3 +72,30 @@ So, the probability of getting a Heart OR a King is:
 </MathContainer>
 
 See? We subtract <InlineMath math="1/52" /> so the King of Hearts isn't counted twice.
+
+## Exercise
+
+A fair six-sided die is rolled once. Let <InlineMath math="A=\{2,4,6\}" /> be the event “the result is even” and <InlineMath math="B=\{5,6\}" /> the event “the result is greater than <InlineMath math="4" />.”
+
+1.  Explain why <InlineMath math="A" /> and <InlineMath math="B" /> are not mutually exclusive.
+2.  Find <InlineMath math="P(A \cup B)" /> using the general addition rule.
+3.  Check the result by listing the outcomes in the union.
+
+### Worked Solution
+
+The intersection contains **one shared outcome**, namely <InlineMath math="6" />:
+
+<BlockMath math="A \cap B=\{6\}" />
+
+The events are therefore **not mutually exclusive**. Their probabilities and the intersection probability are
+
+<BlockMath math="P(A)=\frac{3}{6},\qquad P(B)=\frac{2}{6},\qquad P(A \cap B)=\frac{1}{6}" />
+
+Apply the general addition rule:
+
+<MathContainer>
+  <BlockMath math="P(A \cup B)=P(A)+P(B)-P(A \cap B)" />
+  <BlockMath math="=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+Directly listing the union gives <InlineMath math="A \cup B=\{2,4,5,6\}" />, which also contains <InlineMath math="4" /> of the <InlineMath math="6" /> possible outcomes. Both methods therefore give <InlineMath math="2/3" />.

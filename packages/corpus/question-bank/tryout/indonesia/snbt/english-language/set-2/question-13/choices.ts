@@ -3,28 +3,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "It is hard to replace sugar with fresh fruit and vegetable for daily diet.",
+      label: "Vitamin C is the only nutrient involved in immune function.",
       value: false,
     },
     {
       label:
-        "Changing diet with salads for daily menu will strengthen the body immune system.",
+        "Sugar and vitamin C compete for physical space in white blood cells.",
+      value: false,
+    },
+    {
+      label: "One serving of fruit makes a person immune to infection.",
       value: false,
     },
     {
       label:
-        "Vitamins A and C are the most needed vitamins by our body to avoid sugar addiction.",
-      value: false,
-    },
-    {
-      label:
-        "Fresh fruit and vegetables can increase vitamin intake to strengthen our immune system.",
+        "A varied, balanced diet supports adequate nutrient intake without guaranteeing immunity from illness.",
       value: true,
     },
     {
-      label:
-        "Vitamin C and sugar both taste sweet but vitamin C contains nutrients.",
+      label: "Dietary change is useful only when completed in one day.",
       value: false,
     },
   ],

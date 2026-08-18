@@ -27,11 +27,11 @@ Science History Institute summarizes Lavoisier's role in establishing the law of
 Switch between a closed and an open system. The correct law always counts every substance, not only the part that is still visible inside the container.
 
 <MassConservationLab
-  title={<>Closed-System Balance</>}
+  title={<>System Balance</>}
   description={
     <>
-      Compare what the balance reads when all substances stay in the container
-      and when some substance leaves the system boundary.
+      Compare what the balance reads when all sulfur stays in the container and
+      when one modeled portion crosses the boundary before reacting.
     </>
   }
   labels={{
@@ -50,8 +50,8 @@ Switch between a closed and an open system. The correct law always counts every 
             part being weighed.
           </>
         ),
-        readoutBefore: <InlineMath math="12.00\\,\\mathrm{g}" />,
-        readoutAfter: <InlineMath math="12.00\\,\\mathrm{g}" />,
+        readoutBefore: <InlineMath math="12.00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="12.00\,\mathrm{g}" />,
         system: <>The container, products, and leftover reactants are one system.</>,
         calculation: (
           <>
@@ -64,17 +64,18 @@ Switch between a closed and an open system. The correct law always counts every 
         tab: "Open",
         helperCaption: (
           <>
-            In an open system, escaping gas makes the weighed part appear to lose
-            mass.
+            In the open model, sulfur vapor crosses the boundary, so the balance
+            no longer weighs the entire original system.
           </>
         ),
-        readoutBefore: <InlineMath math="12.00\\,\\mathrm{g}" />,
-        readoutAfter: <InlineMath math="<12.00\\,\\mathrm{g}" />,
-        system: <>The law still holds when the escaped gas is counted too.</>,
+        readoutBefore: <InlineMath math="12.00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="11.00\,\mathrm{g}" />,
+        system: <>The weighed container is an open control volume. The enlarged system also includes the escaped sulfur.</>,
         calculation: (
           <>
-            The reading drops because the system boundary is wrong, not because
-            mass disappeared.
+            <InlineMath math="12.00 - 1.00 = 11.00\ \mathrm{g}" /> remains on
+            the balance, while <InlineMath math="11.00 + 1.00 = 12.00\ \mathrm{g}" />
+            when the escaped sulfur is included.
           </>
         ),
       },
@@ -82,13 +83,28 @@ Switch between a closed and an open system. The correct law always counts every 
   }}
 />
 
+## What the Open View Counts
+
+The open view starts with the same <InlineMath math="10.00\ \mathrm{g}" /> of zinc and <InlineMath math="2.00\ \mathrm{g}" /> of sulfur. It then models <InlineMath math="1.00\ \mathrm{g}" /> of sulfur crossing the boundary as vapor before it reacts. Using the Commission on Isotopic Abundances and Atomic Weights [2024 abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm), <InlineMath math="A_r(\mathrm{Zn})=65.38" /> and <InlineMath math="A_r(\mathrm{S})=32.06" />, the remaining sulfur reacts with about <InlineMath math="2.04\ \mathrm{g}" /> of zinc.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{ZnS}} &\approx 2.04 + 1.00 = 3.04\ \mathrm{g} \\
+m_{\mathrm{Zn\ left}} &\approx 10.00 - 2.04 = 7.96\ \mathrm{g} \\
+m_{\mathrm{on\ balance}} &\approx 3.04 + 7.96 = 11.00\ \mathrm{g} \\
+m_{\mathrm{enlarged\ system}} &= 11.00 + 1.00 = 12.00\ \mathrm{g}
+\end{aligned}" />
+
+The balance reading changes because matter crosses the chosen boundary. The boundary is not wrong, and the law has not failed. We only have to state clearly which system the number describes.
+
 ## Zinc and Sulfur
 
 A student heats <InlineMath math="10.00\ \mathrm{g}" /> of zinc with <InlineMath math="2.00\ \mathrm{g}" /> of sulfur. After the reaction, <InlineMath math="6.08\ \mathrm{g}" /> of zinc sulfide forms and <InlineMath math="5.92\ \mathrm{g}" /> of zinc remains unreacted.
 
-The simplified equation is:
+The particle-level stoichiometric shorthand is:
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
+
+This shorthand tracks one zinc atom for each sulfur atom incorporated into zinc sulfide. It is a composition model for the calculation, not a claim that bulk elemental sulfur consists of isolated atoms.
 
 The product mass does not have to equal the mass of every starting substance if one reactant is left over. First count only the zinc that actually reacted.
 

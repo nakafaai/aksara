@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Sudut Pusat dan Sudut Keliling",
-  description: "Pelajari sudut pusat dan keliling lingkaran. Pahami hubungan, teorema, dan cara menghitung dengan contoh soal dan pembuktian matematis.",
+  description: "Hubungkan sudut pusat dan sudut keliling melalui busur yang sama, buktikan hubungannya, lalu terapkan pada diameter dan soal bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Lingkaran",
@@ -270,7 +270,7 @@ Mari kita buktikan hubungan antara sudut pusat dan sudut keliling dengan membuat
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 0 },
       ],
       color: "#ea580c",
       showPoints: true,
@@ -287,7 +287,7 @@ Mari kita buktikan hubungan antara sudut pusat dan sudut keliling dengan membuat
     },
     {
       points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 0 },
         { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
       ],
       color: "#0891b2",
@@ -316,6 +316,8 @@ Mari kita buktikan hubungan antara sudut pusat dan sudut keliling dengan membuat
 5. Karena segitiga sama kaki: <InlineMath math="\angle CAO = x" /> dan <InlineMath math="\angle CBO = y" />
 6. Sudut luar segitiga: <InlineMath math="\angle AOD = 2x" /> dan <InlineMath math="\angle BOD = 2y" />
 7. Maka: <InlineMath math="\angle AOB = 2x + 2y = 2(x + y) = 2 \times \angle ACB" />
+
+Konstruksi ini membuktikan susunan pada gambar, yaitu titik <InlineMath math="C" /> berada pada busur yang berseberangan dengan <InlineMath math="AB" />. Susunan lain dapat dipecah menjadi kasus segitiga sama kaki yang sama. Pada setiap kasus, sudut pusat dan sudut keliling yang dibandingkan harus menghadap busur yang sama.
 
 ## Sifat-sifat Sudut Pusat dan Sudut Keliling
 
@@ -494,7 +496,7 @@ Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Tentukan besa
 
 <LineEquation
   title="Visualisasi"
-  description={<>Sudut pusat <InlineMath math="AOB = 80^\circ" />, tentukan sudut keliling <InlineMath math="ACB" />.</>}
+  description={<>Dari sudut pusat <InlineMath math="\angle AOB = 80^\circ" />, tentukan sudut keliling <InlineMath math="\angle ACB" />.</>}
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -588,18 +590,34 @@ Diketahui sudut keliling <InlineMath math="\angle ACB = 35^\circ" />. Tentukan b
 
 1. Jika sudut pusat suatu lingkaran adalah <InlineMath math="120^\circ" />, berapakah besar sudut keliling yang menghadap busur yang sama?
 
-2. Sudut keliling <InlineMath math="\angle ABC = 45^\circ" />. Tentukan besar sudut pusat <InlineMath math="\angle AOB" />!
+2. Sudut keliling <InlineMath math="\angle ACB = 45^\circ" />. Tentukan besar sudut pusat <InlineMath math="\angle AOB" /> yang menghadap busur yang sama.
 
-3. Pada suatu lingkaran, sudut keliling PQR menghadap diameter. Berapakah besar sudut <InlineMath math="PQR" />?
+3. Pada suatu lingkaran, sudut keliling <InlineMath math="\angle PQR" /> menghadap diameter. Berapakah besar <InlineMath math="\angle PQR" />?
 
 4. Dua sudut keliling menghadap busur yang sama. Jika salah satu sudut besarnya <InlineMath math="25^\circ" />, tentukan besar sudut yang lain!
 
-### Kunci Jawaban
+### Pembahasan
 
-1. Sudut keliling adalah <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />
+#### 1. Mengambil setengah sudut pusat
 
-2. Sudut pusat <InlineMath math="\angle AOB = 2 \times 45^\circ = 90^\circ" />
+Sudut keliling menghadap busur yang sama dengan sudut pusat, sehingga besarnya setengah dari sudut pusat: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
 
-3. <InlineMath math="\angle PQR = 90^\circ" /> (sudut keliling yang menghadap diameter selalu <InlineMath math="90^\circ" />)
+#### 2. Mengambil dua kali sudut keliling
 
-4. Sudut yang lain adalah <InlineMath math="25^\circ" /> (sudut-sudut keliling yang menghadap busur yang sama besarnya sama)
+Sudut pusat dan <InlineMath math="\angle ACB" /> sama-sama menghadap busur <InlineMath math="AB" />. Sudut pusat besarnya dua kali sudut keliling:
+
+<BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+
+#### 3. Mengenali diameter
+
+Diameter membentuk setengah lingkaran dengan sudut pusat <InlineMath math="180^\circ" />. Sudut keliling besarnya setengah dari sudut tersebut, sehingga <InlineMath math="\angle PQR = 90^\circ" />.
+
+#### 4. Membandingkan sudut yang menghadap busur yang sama
+
+Dua sudut keliling yang menghadap busur yang sama memiliki besar yang sama. Jadi, sudut yang lain juga <InlineMath math="25^\circ" />.
+
+## Sumber
+
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)
+- [GeoGebra: Inscribed Angle Theorem](https://www.geogebra.org/m/nbepfdzb)

@@ -3,55 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Although Indonesia's GDP growth plummeted to $$4.88$$ percent, Indonesia's economic condition remained within encouraging limits",
+      label: "Growth remained above $$5%$$ in every year mentioned",
       value: true,
     },
     {
-      label:
-        "Indonesia's GDP growth slowly began to improve in $$2016$$ and at that time the economic condition turned for the better",
+      label: "Economic growth began improving again in $$2016$$",
       value: false,
     },
     {
       label:
-        "Indonesia's GDP per capita of $$\\text{Rp56 million}$$ occurred at the end of $$2018$$ with GDP almost reaching $$\\text{Rp15 thousand trillion}$$",
+        "GDP in $$2018$$ was $$\\text{Rp }14{,}837.4\\text{ trillion}$$ and GDP per capita was about $$\\text{Rp }56\\text{ million}$$",
       value: false,
     },
     {
-      label:
-        "Indonesia's economic growth reached its lowest point in $$2015$$, which was not reaching five percent",
+      label: "The lowest stated growth was $$4.88%$$ in $$2015$$",
       value: false,
     },
     {
-      label:
-        "In $$2018$$, Indonesia's economic growth continued the trend of improvement in the last five years, namely at $$5.7$$ percent",
+      label: "Economic growth in $$2018$$ was $$5.17%$$",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Meskipun pertumbuhan PDB Indonesia anjlok hingga $$4{,}88$$ persen, kondisi perekonomian Indonesia tetap dalam batas menggembirakan",
+        "Pertumbuhan tetap di atas $$5%$$ pada setiap tahun yang disebutkan",
       value: true,
     },
     {
-      label:
-        "Pertumbuhan PDB Indonesia perlahan mulai membaik tahun $$2016$$ dan saat itu pula kondisi perekonomian berbalik ke arah yang lebih baik",
+      label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
       value: false,
     },
     {
       label:
-        "PDB per kapita rakyat Indonesia sebesar $$\\text{Rp56 juta}$$ terjadi pada akhir tahun $$2018$$ dengan PDB hampir mencapai $$\\text{Rp15 ribu triliun}$$",
+        "PDB pada $$2018$$ sebesar $$\\text{Rp }14{.}837{,}4\\text{ triliun}$$ dan PDB per kapita sekitar $$\\text{Rp }56\\text{ juta}$$",
       value: false,
     },
     {
       label:
-        "Pertumbuhan perekonomian Indonesia mencapai titik terendah pada tahun $$2015$$, yakni tidak mencapai angka lima persen",
+        "Pertumbuhan terendah yang disebutkan adalah $$4{,}88%$$ pada $$2015$$",
       value: false,
     },
     {
-      label:
-        "Pada tahun $$2018$$, pertumbuhan perekonomian Indonesia melanjutkan tren perbaikan dalam lima tahun terakhir, yakni sebesar $$5{,}7$$ persen",
+      label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17%$$",
       value: false,
     },
   ],

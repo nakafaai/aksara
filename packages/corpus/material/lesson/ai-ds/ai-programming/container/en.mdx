@@ -8,12 +8,12 @@ export const metadata = {
 
 ## Container Concepts in Python
 
-Containers are data types that can store collections of items or elements. Imagine containers like storage boxes that can hold various kinds of items. Python provides several types of containers with different ways of organizing and manipulating data.
+Containers group values and define how code can access them. A sequence preserves positions, a mapping associates keys with values, and a set represents unique members. Choosing among them is a behavior decision, not merely a choice of brackets.
 
-Containers in Python have the main characteristic of being able to store various types of objects in one container. Each type of container has its own advantages depending on program needs.
+Some containers can mix object types, but each has its own constraints. Dictionary keys and set members must be hashable, strings contain text, and mutability differs by container.
 
 
-Python provides five main container types with different characteristics:
+This lesson compares five built-in collection forms:
 
 - **String** - sequence of characters that cannot be changed
 - **List** - sequence of items that can be changed and indexed
@@ -23,9 +23,9 @@ Python provides five main container types with different characteristics:
 
 ## Introduction to Lists
 
-List is the most flexible container in Python. List has three important characteristics: ordered (sequential), heterogeneous (can hold various data types), and mutable (can be changed).
+A list is an ordered, mutable sequence. It can hold values of different types, although collections with one clear element shape are usually easier to reason about.
 
-Lists in Python are similar to arrays in C or vectors in C++, but with more flexible capabilities because they can hold objects of different data types in the same list.
+Unlike a fixed-size low-level array, a Python list can grow and shrink. It stores references to Python objects, so mutating a nested object can be visible through every reference to that object.
 
 
 ### List Characteristics
@@ -133,7 +133,7 @@ print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1,
   ]}
 />
 
-Slicing is like cutting bread slices. If you have <InlineMath math="6" /> bread slices (indices <InlineMath math="0\text{-}5" />), then `x[1:4]` means taking slices <InlineMath math="2" /> to <InlineMath math="4" /> (not including slice <InlineMath math="5" />). While `x[1:4:2]` means taking only slices <InlineMath math="2" /> and <InlineMath math="4" /> (skipping <InlineMath math="1" /> slice).
+Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` returns the elements at indices <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. The end index <InlineMath math="4" /> is excluded. Adding a step with `x[1:4:2]` selects every second index, so the result comes from indices <InlineMath math="1" /> and <InlineMath math="3" />.
 
 ## Operations and Similarities with Strings
 
@@ -292,7 +292,7 @@ print('Nested structure:', nested)`
   ]}
 />
 
-Nested lists are very useful for representing structured data like tables, matrices, or other hierarchical data. Accessing elements in nested lists uses multiple indexing like `nested[1][2]` to access elements at deeper levels.
+Nested lists can represent rows, trees, or small table-like structures. They do not automatically guarantee a rectangular matrix, and repeated references can alias the same inner list. Multiple indexing such as `nested[1][2]` follows one container at a time.
 
 ## Other Containers
 
@@ -351,7 +351,7 @@ print('After modifying inner list:', t)     # Output: After modifying inner list
 
 ### Dictionary
 
-Dictionary stores data in key-value pairs. Each key must be unique and is used to access the associated value. Dictionary uses curly braces `{}`.
+A dictionary stores key-value pairs. Each key is unique and hashable, while values may repeat and may be mutable. A literal uses curly braces `{}` with a colon between each key and value.
 
 <CodeBlock
   data={[
@@ -376,7 +376,7 @@ print('After adding David:', kontak)
 
 ### Set
 
-Set is a collection of unique and unordered elements. Set automatically removes duplicates and supports mathematical set operations. Set uses curly braces `{}` without key-value pairs.
+A set stores unique, hashable elements and supports mathematical set operations. It has no semantic position or insertion-order contract. Nonempty set literals use `{}`, while an empty set must be created with `set()` because `{}` creates an empty dictionary.
 
 <CodeBlock
   data={[
@@ -385,18 +385,19 @@ Set is a collection of unique and unordered elements. Set automatically removes 
       filename: "set_examples.py",
       code: `# Creating set
 angka = {1, 2, 3, 4, 5}
-print('angka =', angka)                      # Output: angka = {1, 2, 3, 4, 5}
+print('angka =', sorted(angka))              # Output: angka = [1, 2, 3, 4, 5]
 
 # Adding elements to set
 angka.add(6)
-print('After adding 6:', angka)              # Output: After adding 6: {1, 2, 3, 4, 5, 6}
+print('After adding 6:', sorted(angka))      # Output: After adding 6: [1, 2, 3, 4, 5, 6]
 
 # Set operations
 genap = {2, 4, 6, 8}
 ganjil = {1, 3, 5, 7}
 
 # Union (combination)
-print('genap | ganjil =', genap | ganjil)    # Output: genap | ganjil = {1, 2, 3, 4, 5, 6, 7, 8}
+print('genap | ganjil =', sorted(genap | ganjil))
+# Output: genap | ganjil = [1, 2, 3, 4, 5, 6, 7, 8]
 
 # Intersection
 print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
@@ -413,4 +414,4 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
 | **Dictionary** | `{'a': 1}` | Yes* | Yes | No (keys) | Key-value mapping |
 | **Set** | `{1, 2, 3}` | No | Yes | No | Unique elements, set operations |
 
-> Dictionary maintains insertion order since Python `3.7+`
+> Dictionary iteration preserves insertion order as a language guarantee since Python `3.7`. Updating an existing key keeps its position; deleting and reinserting it places it at the end.

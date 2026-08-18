@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Varian dan Simpangan Baku Data Kelompok",
-  description: "Pelajari cara menghitung varian dan simpangan baku untuk data berkelompok dengan contoh perhitungan. Pelajari rumus statistika untuk interval kelas data.",
+  description: "Perkirakan varian dan simpangan baku populasi dari frekuensi dan nilai tengah kelas data kelompok.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,33 +8,33 @@ export const metadata = {
 
 ## Menghitung Sebaran Data Kelompok
 
-Bagaimana sebaran data yang disajikan dalam bentuk tabel frekuensi berkelompok? Misalnya, data durasi baterai HP yang dikelompokkan dalam interval jam (<InlineMath math="6\text{-}10 \text{ jam}" />, <InlineMath math="11\text{-}15 \text{ jam}" />, dst.).
+Tabel frekuensi kelompok dapat menunjukkan berapa banyak durasi baterai ponsel yang masuk ke interval seperti <InlineMath math="6\text{-}10 \text{ jam}" /> dan <InlineMath math="11\text{-}15 \text{ jam}" />. Kita tetap ingin mengetahui seberapa lebar durasi tersebut tersebar.
 
-Karena kita tidak tahu nilai pasti setiap data dalam satu kelas interval (misalnya, di kelas <InlineMath math="11\text{-}15 \text{ jam}" />, kita tidak tahu apakah durasinya pas <InlineMath math="11 \text{ jam}" />, <InlineMath math="12 \text{ jam}" />, atau lainnya), kita perlu asumsi.
+Tabel itu tidak lagi menyimpan setiap pengamatan secara tepat. Dalam kelas <InlineMath math="11\text{-}15 \text{ jam}" />, misalnya, kita tidak tahu apakah suatu baterai bertahan <InlineMath math="11 \text{ jam}" />, <InlineMath math="12 \text{ jam}" />, atau selama waktu lainnya.
 
-Asumsi yang paling umum adalah semua data dalam satu kelas interval itu terdistribusi merata, sehingga kita bisa **mewakili** semua data di kelas itu dengan **nilai tengah** (<InlineMath math="x_i" />) kelas tersebut.
+Untuk memperkirakan sebarannya, setiap pengamatan dalam satu kelas **diwakili** oleh **nilai tengah kelas** <InlineMath math="x_i" />. Ini merupakan pendekatan pemodelan, sehingga hasilnya memperkirakan varian dan simpangan baku yang akan diperoleh dari data tunggal.
 
 ## Rumus Varian dan Simpangan Baku Data Kelompok
 
-Dengan menggunakan nilai tengah (<InlineMath math="x_i" />) dan frekuensi (<InlineMath math="f" />) setiap kelas, rumusnya menjadi sedikit berbeda:
+Setiap nilai tengah <InlineMath math="x_i" /> diberi bobot sesuai frekuensi kelasnya <InlineMath math="f" />. Rumus berikut menganggap tabel sebagai populasi lengkap; data sampel memerlukan rumus varian sampel yang sesuai.
 
 1.  **Varian (<InlineMath math="\sigma^2" />)**
 
-    Rumus yang sering digunakan (dan lebih mudah untuk dihitung) adalah rumus komputasi yang disesuaikan untuk data kelompok:
+    Rumus komputasi berikut disesuaikan untuk data kelompok:
 
     <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
 
-    Rumus ini pada dasarnya menghitung rata-rata dari kuadrat nilai tengah dikali frekuensi, dikurangi kuadrat dari rata-rata nilai tengah dikali frekuensi (mean data kelompok).
+    Suku pertama adalah mean kuadrat nilai tengah yang dibobot frekuensi. Suku kedua adalah kuadrat mean yang dibobot frekuensi. Selisih keduanya merupakan perkiraan varian populasi.
 
 2.  **Simpangan Baku (<InlineMath math="\sigma" />)**
 
-    Sama seperti data tunggal, simpangan baku adalah akar kuadrat dari varian:
+    Seperti pada data tunggal, simpangan baku adalah akar kuadrat varian:
 
     <BlockMath math="\sigma = \sqrt{\sigma^2}" />
 
 ## Menghitung Varian dan Simpangan Baku Durasi Baterai HP
 
-Misalkan sebuah penelitian mengenai lamanya durasi baterai HP menghasilkan data berikut:
+Misalkan sebuah penelitian mencatat durasi baterai ponsel dalam interval berikut:
 
 | Durasi baterai (jam) | Frekuensi (<InlineMath math="f" />) |
 | :------------------: | :---------------------------------: |
@@ -44,11 +44,11 @@ Misalkan sebuah penelitian mengenai lamanya durasi baterai HP menghasilkan data 
 | <InlineMath math="21\text{-}25" /> | <InlineMath math="45" /> |
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="5" />  |
 
-Mari kita tentukan varian dan simpangan baku dari data durasi baterai ini.
+Kita akan memperkirakan varian dan simpangan baku populasi dari durasi tersebut.
 
 ### Buat Tabel Bantu
 
-Kita perlu menghitung nilai tengah (<InlineMath math="x_i" />) untuk setiap kelas, lalu menghitung <InlineMath math="f \cdot x_i" /> dan <InlineMath math="f \cdot x_i^2" />.
+Untuk setiap kelas, hitung nilai tengah <InlineMath math="x_i" />, lalu hitung <InlineMath math="f \cdot x_i" /> dan <InlineMath math="f \cdot x_i^2" />.
 
 | Durasi baterai (jam) | Nilai tengah, <InlineMath math="x_i" />  |  Frekuensi, <InlineMath math="f" />   |     <InlineMath math="f \cdot x_i" />      |      <InlineMath math="f \cdot x_i^2" />      |
 | :------------------: | :--------------------------------------: | :-----------------------------------: | :----------------------------------------: | :-------------------------------------------: |
@@ -71,7 +71,7 @@ Masukkan nilai-nilai total dari tabel ke dalam rumus varian:
   <BlockMath math="\sigma^2 \approx 19{,}37" />
 </MathContainer>
 
-Jadi, varian dari data durasi baterai adalah sekitar <InlineMath math="19{,}37" /> (dalam satuan jam kuadrat).
+Perkiraan variannya adalah <InlineMath math="19{,}37" /> jam kuadrat. Satuan varian dikuadratkan karena setiap jarak dari mean dikuadratkan sebelum dirata-ratakan.
 
 ### Hitung Simpangan Baku
 
@@ -79,6 +79,6 @@ Ambil akar kuadrat dari varian:
 
 <BlockMath math="\sigma = \sqrt{19{,}37} \approx 4{,}4" />
 
-Simpangan baku durasi baterai HP adalah sekitar <InlineMath math="4{,}4 \text{ jam}" />. Ini memberi kita gambaran bahwa rata-rata penyimpangan durasi baterai dari mean (yang bisa dihitung sebagai <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />) adalah sekitar <InlineMath math="4{,}4 \text{ jam}" />.
+Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Di sekitar perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />, durasi berbeda sekitar <InlineMath math="4{,}4 \text{ jam}" /> dalam pengertian akar rata-rata kuadrat.
 
-Semakin kecil simpangan baku, semakin seragam durasi baterai HP dalam penelitian tersebut.
+Untuk data dengan satuan dan skala yang sebanding, simpangan baku yang lebih kecil menunjukkan bahwa nilainya mengelompok lebih rapat di sekitar mean.

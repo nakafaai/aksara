@@ -3,54 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Consuming food containing excess fat will increase energy during the day.",
-      value: false,
-    },
-    {
-      label: "Weight gain due to fat has a good impact on body health.",
+      label: "Every component on rack C passed the initial inspection.",
       value: false,
     },
     {
       label:
-        "Excess calories due to fat can result in the body being difficult to move actively.",
+        "A component that fails the initial inspection never enters the durability test.",
+      value: false,
+    },
+    {
+      label: "Every component with a blue seal is placed on rack C.",
       value: true,
     },
     {
-      label:
-        "Lethargy during the day is always caused by consuming high-fat foods.",
+      label: "Only components with blue seals enter the durability test.",
       value: false,
     },
     {
-      label:
-        "Consuming enough fatty foods will make the body difficult to move actively.",
+      label: "Every component inspected initially receives a blue seal.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Mengonsumsi makanan yang mengandung lemak berlebih akan meningkatkan energi di siang hari.",
+      label: "Setiap komponen di rak C telah lolos pemeriksaan awal.",
       value: false,
     },
     {
       label:
-        "Penambahan berat badan karena lemak berdampak baik bagi Kesehatan tubuh.",
+        "Komponen yang gagal dalam pemeriksaan awal tidak pernah menjalani uji ketahanan.",
       value: false,
     },
     {
-      label:
-        "Kelebihan kalori akibat lemak dapat berdampak pada tubuh yang sulit untuk bergerak aktif.",
+      label: "Setiap komponen bersegel biru ditempatkan di rak C.",
       value: true,
     },
     {
-      label:
-        "Lesu di siang hari selalu disebabkan oleh konsumsi makanan tinggi lemak.",
+      label: "Hanya komponen bersegel biru yang menjalani uji ketahanan.",
       value: false,
     },
     {
       label:
-        "Mengonsumsi makanan lemak yang cukup akan membuat tubuh sulit untuk bergerak aktif.",
+        "Setiap komponen yang diperiksa pada tahap awal mendapat segel biru.",
       value: false,
     },
   ],

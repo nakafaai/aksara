@@ -17,14 +17,14 @@ Bilangan kompleks itu bentuknya <InlineMath math="z = x + iy" />, di mana <Inlin
 - <InlineMath math="x = \text{Re}(z)" /> (Bagian Real)
 - <InlineMath math="y = \text{Im}(z)" /> (Bagian Imajiner)
 
-Kita juga bisa melihat bilangan kompleks <InlineMath math="z = x + iy" /> sebagai pasangan terurut <InlineMath math="(x, y)" /> pada bidang koordinat. Bidang ini spesial lho, namanya **bidang kompleks** atau diagram Argand.
+Bilangan kompleks <InlineMath math="z = x + iy" /> juga dapat dipandang sebagai pasangan terurut <InlineMath math="(x, y)" />. Bidang koordinat yang memuat pasangan ini disebut **bidang kompleks** atau diagram Argand.
 
 - Sumbu horizontal (sumbu <InlineMath math="x" />) merepresentasikan bagian **real**.
 - Sumbu vertikal (sumbu <InlineMath math="y" />) merepresentasikan bagian **imajiner**.
 
 ### Visualisasi pada Bidang Kompleks
 
-Kita coba gambarkan beberapa bilangan kompleks di bidang kompleks. Setiap bilangan <InlineMath math="z = x + iy" /> digambarkan sebagai titik <InlineMath math="(x, y)" /> dan biasanya direpresentasikan sebagai vektor (panah) dari titik asal <InlineMath math="(0, 0)" /> ke titik tersebut.
+Setiap bilangan kompleks <InlineMath math="z = x + iy" /> dapat ditempatkan pada titik <InlineMath math="(x, y)" /> di bidang kompleks. Vektor posisi dari titik asal <InlineMath math="(0, 0)" /> ke titik tersebut mewakili bilangan yang sama secara geometris.
 
 <LineEquation
   title="Bilangan Kompleks di Bidang Kompleks"
@@ -74,6 +74,8 @@ Selain Kartesius, ada cara lain buat menyatakan bilangan kompleks, yaitu **bentu
 1.  **Modulus (<InlineMath math="r" />):** Jarak dari titik asal <InlineMath math="(0, 0)" /> ke titik <InlineMath math="(x, y)" /> di bidang kompleks. Nilainya selalu non-negatif.
 2.  **Argumen (<InlineMath math="\theta" />):** Sudut yang dibentuk oleh garis dari titik asal ke titik <InlineMath math="(x, y)" /> dengan sumbu real positif. Sudut ini biasanya diukur dalam radian atau derajat.
 
+Untuk <InlineMath math="z=0" />, modulusnya adalah <InlineMath math="0" />, tetapi arahnya tidak terdefinisi. Karena itu, nol tidak memiliki argumen dan harus diperlakukan terpisah ketika memakai bentuk polar atau eksponen.
+
 Hubungan antara bentuk Kartesius (<InlineMath math="x, y" />) dan bentuk Polar (<InlineMath math="r, \theta" />) bisa kita lihat dari trigonometri dasar:
 
 <MathContainer>
@@ -85,7 +87,7 @@ Dari sini, kita bisa cari <InlineMath math="r" /> dan <InlineMath math="\theta" 
 
 <MathContainer>
   <BlockMath math="r = |z| = \sqrt{x^2 + y^2}" />
-  <BlockMath math="\tan \theta = \frac{y}{x}" />
+  <BlockMath math="\tan \theta = \frac{y}{x} \quad (x \neq 0)" />
 </MathContainer>
 
 Saat mencari <InlineMath math="\theta" /> dari <InlineMath math="\tan \theta" />, perhatikan kuadran tempat titik <InlineMath math="(x, y)" /> berada untuk menentukan sudut yang tepat.
@@ -130,7 +132,7 @@ Nyatakan bilangan kompleks berikut dalam bentuk polar:
 1.  <InlineMath math="z = 1 + i\sqrt{3}" />
 2.  <InlineMath math="z = -i" />
 
-**Kunci Jawaban:**
+**Pembahasan:**
 
 1.  Untuk <InlineMath math="z = 1 + i\sqrt{3}" />:
 
@@ -151,37 +153,35 @@ Nyatakan bilangan kompleks berikut dalam bentuk polar:
       <BlockMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
 
 2.  Untuk <InlineMath math="z = -i" />:
-
     - Identifikasi <InlineMath math="x = 0" /> dan <InlineMath math="y = -1" />.
     - Hitung modulus <InlineMath math="r" />:
 
       <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
 
     - Tentukan argumen <InlineMath math="\theta" />:
+      Titik <InlineMath math="(0, -1)" /> berada pada sumbu imajiner negatif, sehingga Argumen Utamanya adalah <InlineMath math="\theta = -90^\circ" />.
 
-      Titik <InlineMath math="(0, -1)" /> berada pada sumbu imajiner negatif. Sudutnya adalah <InlineMath math="\theta = 270^\circ" /> atau bisa juga ditulis <InlineMath math="\theta = -90^\circ" />.
-
-    - Bentuk Polar (pilih salah satu sudut):
-
-      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
-
-      atau
+    - Bentuk polar dengan Argumen Utama:
 
       <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
 
+      Sudut koterminal <InlineMath math="270^\circ" /> memberikan bentuk yang setara:
+
+      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
 ## Bentuk Eksponen
 
-Ada satu lagi bentuk penting, yaitu **bentuk eksponen**. Bentuk ini berasal dari **Formula Euler** yang ajaib:
+Ada satu lagi bentuk penting, yaitu **bentuk eksponen**. Bentuk ini berasal dari **formula Euler**:
 
 <BlockMath math="e^{i\theta} = \cos \theta + i \sin \theta" />
 
-Di sini, <InlineMath math="e \approx 2.71828..." /> adalah bilangan Euler (basis logaritma natural).
+Di sini, <InlineMath math="e \approx 2{,}71828\ldots" /> adalah bilangan Euler, yaitu basis logaritma natural.
 
 Kalau kita substitusi Formula Euler ke bentuk polar <InlineMath math="z = r(\cos \theta + i \sin \theta)" />, kita dapatkan **bentuk eksponen**:
 
 <BlockMath math="z = r e^{i\theta}" />
 
-Bentuk ini sangat berguna dalam perkalian dan pembagian bilangan kompleks.
+Untuk faktor-faktor tak nol, bentuk ini mengubah perkalian menjadi perkalian modulus dan penjumlahan argumen; pembagian memakai hasil bagi modulus dan selisih argumen yang bersesuaian.
 
 ### Contoh Konversi ke Bentuk Eksponen
 
@@ -219,7 +219,7 @@ Nyatakan bilangan kompleks berikut dalam bentuk eksponen (gunakan sudut radian):
 1.  <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
 2.  <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />
 
-**Kunci Jawaban:**
+**Pembahasan:**
 
 1.  Untuk <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />:
 
@@ -242,6 +242,16 @@ Nyatakan bilangan kompleks berikut dalam bentuk eksponen (gunakan sudut radian):
     - Bentuk Eksponen:
 
       <BlockMath math="z = e^{i \pi/12}" />
+
+## Memilih Bentuk yang Tepat
+
+Bentuk Kartesius biasanya paling jelas untuk penjumlahan dan pengurangan. Bentuk polar atau eksponen memudahkan perkalian, pembagian, perpangkatan, dan penarikan akar karena modulus dan argumen dapat digabungkan secara langsung.
+
+Untuk kembali dari bentuk polar ke bentuk Kartesius, hitung nilai sinus dan kosinusnya. Sebagai contoh:
+
+<BlockMath math="w=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)=-2\sqrt{3}+2i" />
+
+Jadi, mengganti bentuk merupakan pilihan strategi untuk mempermudah soal, bukan operasi yang mengubah bilangannya.
 
 ## Kesamaan Dua Bilangan Kompleks
 
@@ -269,7 +279,7 @@ Tentukan apakah pasangan bilangan kompleks berikut sama atau berbeda:
 2.  <InlineMath math="z_1 = i" /> dan <InlineMath math="z_2 = 1 - i" />
 3.  <InlineMath math="z_1 = -1 + i" /> dan <InlineMath math="z_2 = i + 1" />
 
-**Kunci Jawaban:**
+**Pembahasan:**
 
 1.  <InlineMath math="z_1 = 4 - (-2i) = 4 + 2i" />.
 
@@ -290,17 +300,17 @@ Tentukan apakah pasangan bilangan kompleks berikut sama atau berbeda:
 ## Latihan
 
 1.  **Benar atau Salah.** Setiap bilangan real adalah bilangan kompleks.
-2.  **Benar atau Salah.** Bilangan kompleks mempunyai <InlineMath math="3" /> bentuk yakni bentuk kartesius, bentuk eksponen, dan bentuk logaritma.
+2.  **Benar atau Salah.** Tiga bentuk baku yang digunakan di sini adalah bentuk Kartesius, eksponen, dan logaritma.
 3.  **Benar atau Salah.** Bilangan kompleks <InlineMath math="z = 1 - 3i" /> jika digambarkan pada bidang kompleks, maka berada di kuadran III.
 4.  Nyatakan bilangan kompleks <InlineMath math="2+2i" /> dalam bentuk polar dan eksponen.
-5.  Tentukan bilangan <InlineMath math="x" /> dan <InlineMath math="y" /> dengan <InlineMath math="z_1 = x + 3i" /> dan <InlineMath math="z_2 = 3 - yi" /> agar <InlineMath math="z_1 = z_2" />!
-6.  Tentukan solusi dari persamaan kuadrat <InlineMath math="x^2 - 2x + 6 = 0" />!
-7.  Tentukan persamaan kuadrat yang mempunyai solusi <InlineMath math="x_1 = 1 + i" /> dan <InlineMath math="x_2 = 1 - i" />!
+5.  Tentukan bilangan <InlineMath math="x" /> dan <InlineMath math="y" /> dengan <InlineMath math="z_1 = x + 3i" /> dan <InlineMath math="z_2 = 3 - yi" /> agar <InlineMath math="z_1 = z_2" />.
+6.  Tentukan solusi dari persamaan kuadrat <InlineMath math="x^2 - 2x + 6 = 0" />.
+7.  Tentukan persamaan kuadrat yang mempunyai solusi <InlineMath math="x_1 = 1 + i" /> dan <InlineMath math="x_2 = 1 - i" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1.  **Benar.** Bilangan real <InlineMath math="a" /> dapat ditulis sebagai <InlineMath math="a + 0i" />.
-2.  **Salah.** Bentuk umum bilangan kompleks adalah Kartesius, Polar, dan Eksponen. Bentuk logaritma kompleks ada, tapi biasanya tidak termasuk <InlineMath math="3" /> bentuk utama yang dipelajari di level ini.
+2.  **Salah.** Tiga bentuk baku yang digunakan di sini adalah bentuk Kartesius, polar, dan eksponen. Logaritma merupakan operasi pada bilangan kompleks, bukan pengganti bentuk polar yang hilang dari daftar tersebut.
 3.  **Salah.** <InlineMath math="z = 1 - 3i" /> memiliki bagian real positif (<InlineMath math="x=1" />) dan bagian imajiner negatif (<InlineMath math="y=-3" />). Titik <InlineMath math="(1, -3)" /> berada di **Kuadran IV**.
 4.  Untuk <InlineMath math="z = 2 + 2i" />:
 
@@ -323,10 +333,8 @@ Tentukan apakah pasangan bilangan kompleks berikut sama atau berbeda:
       <BlockMath math="z = r e^{i\theta} = 2\sqrt{2} e^{i \pi/4}" />
 
 5.  Agar <InlineMath math="z_1 = x + 3i" /> sama dengan <InlineMath math="z_2 = 3 - yi" />, bagian real harus sama dan bagian imajiner harus sama:
-
     - Bagian Real: <InlineMath math="x = 3" />
     - Bagian Imajiner: <InlineMath math="3 = -y \implies y = -3" />
-
       Jadi, <InlineMath math="x=3" /> dan <InlineMath math="y=-3" />.
 
 6.  Untuk menyelesaikan <InlineMath math="x^2 - 2x + 6 = 0" />, gunakan rumus kuadratik (rumus ABC):
@@ -339,7 +347,7 @@ Tentukan apakah pasangan bilangan kompleks berikut sama atau berbeda:
       <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
       <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
       <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
-      <BlockMath math="x = \frac{2 \pm \sqrt{20}\sqrt{-1}}{2}" />
+      <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
       <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
       <BlockMath math="x = 1 \pm i\sqrt{5}" />
     </MathContainer>

@@ -4,11 +4,11 @@ const choices: QuestionChoices = {
   en: [
     {
       label: "definitely true",
-      value: true,
+      value: false,
     },
     {
       label: "possibly true",
-      value: false,
+      value: true,
     },
     {
       label: "definitely false",
@@ -25,12 +25,12 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "paling benar",
-      value: true,
+      label: "pasti benar",
+      value: false,
     },
     {
       label: "mungkin benar",
-      value: false,
+      value: true,
     },
     {
       label: "pasti salah",

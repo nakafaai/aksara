@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The room has been cleaned since yesterday.",
+      label: "The **storage room** was cleaned yesterday.",
       value: false,
     },
     {
-      label: "The writing will be published soon.",
+      label: "The **drawing** will be displayed tomorrow.",
       value: true,
     },
     {
-      label: "Dances from West Java are very diverse.",
+      label: "The **dance** begins at noon.",
       value: false,
     },
     {
-      label: "He heard a call from behind.",
+      label: "She heard a **call** from behind.",
       value: false,
     },
     {
-      label: "He received a lot of praise for his newly launched work.",
+      label: "The artist received **praise** for the new work.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Ruangan itu sudah dibersihkan sejak kemarin.",
+      label: "**Ruangan** itu dibersihkan kemarin.",
       value: false,
     },
     {
-      label: "Tulisan itu akan segera diterbitkan.",
+      label: "**Tulisan** itu akan segera diterbitkan.",
       value: true,
     },
     {
-      label: "Tarian dari Jawa Barat sangat beragam.",
+      label: "**Tarian** itu dimulai siang hari.",
       value: false,
     },
     {
-      label: "Dia mendengar panggilan dari arah belakang.",
+      label: "Ia mendengar **panggilan** dari arah belakang.",
       value: false,
     },
     {
-      label: "Dia mendapat banyak pujian atas karyanya yang baru diluncurkan.",
+      label: "Seniman itu menerima **pujian** atas karya barunya.",
       value: false,
     },
   ],

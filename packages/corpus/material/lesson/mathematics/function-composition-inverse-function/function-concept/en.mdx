@@ -1,45 +1,91 @@
 export const metadata = {
   title: "Function Concept",
-  description: "Understand functions as magic machines with interactive examples. Learn f(x) notation, input-output relationships, and the one-to-one rule.",
+  description:
+    "Understand functions as rules that assign exactly one output to every allowed input, then read notation, tables, and ordered pairs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Function Composition and Inverse Function",
 };
 
-## What is a Function?
+## What Makes a Relation a Function?
 
-Imagine you have a magic machine. This machine has a special task: every time you put something in (let's call it *input*), the machine will produce *exactly one* other item (let's call it *output*) according to a specific rule. Well, this magic machine is what we call a **function** in mathematics!
+A function assigns **exactly one output** to every input in its domain. If <InlineMath math="f" /> maps a set <InlineMath math="A" /> to a set <InlineMath math="B" />, we write:
 
-So, a function is a special rule that connects each member of one group (set) to **exactly one** member in another group. The key is the phrase "exactly one". Each input can only have one output.
+<BlockMath math="f:A\to B" />
 
-## Function Notation
+For each <InlineMath math="x\in A" />, there must be one value <InlineMath math="y\in B" /> with <InlineMath math="y=f(x)" />. Two different inputs may share an output. What is forbidden is one input receiving two different outputs.
 
-Usually, a function is written in the form <InlineMath math="f(x) = y" />.
+For example, the rule <InlineMath math="f(x)=x+2" /> assigns one value to every real input:
 
--   <InlineMath math="f" />: This is the **name of the function** (think of it as the name of the machine). You can also use other letters like <InlineMath math="g" /> or <InlineMath math="h" />.
+| Input <InlineMath math="x" /> | Output <InlineMath math="f(x)" /> |
+| ----------------------------- | -------------------------------- |
+| <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="2" /> |
 
--   <InlineMath math="x" />: This is the **input variable**. Think of this as the item you put into the machine.
+The same information can be written as ordered pairs:
 
--   <InlineMath math="y" />: This is the **output variable**. This is the item that comes out of the machine after processing. The value of <InlineMath math="y" /> depends on the value of <InlineMath math="x" /> entered and the rule <InlineMath math="f" />. So, <InlineMath math="y" /> is often written as <InlineMath math="f(x)" /> (read: "f of x").
+<BlockMath math="\{(3,5),(-1,1),(0,2)\}" />
 
-## Function Machine
+Each first coordinate appears with only one second coordinate, so these pairs describe a function on the displayed inputs.
 
-To make it easier to imagine, look at this machine.
+## Reading Function Notation
+
+In the equation <InlineMath math="f(x)=y" />:
+
+- <InlineMath math="f" /> names the function.
+- <InlineMath math="x" /> is an input from the domain.
+- <InlineMath math="f(x)" /> is the output produced by applying the rule to <InlineMath math="x" />.
+- <InlineMath math="y" /> is another name for that output.
+
+The notation <InlineMath math="f(3)" /> does not mean <InlineMath math="f\cdot3" />. It means “evaluate <InlineMath math="f" /> at the input <InlineMath math="3" />.” For <InlineMath math="f(x)=x+2" />:
+
+<MathContainer>
+  <BlockMath math="f(3)=3+2=5" />
+  <BlockMath math="f(-1)=-1+2=1" />
+  <BlockMath math="f(0)=0+2=2" />
+</MathContainer>
+
+## Explore One Rule
+
+The interactive function machine uses <InlineMath math="f(x)=2x+1" />. Change the input, predict the output, and then compare your prediction with the displayed result.
 
 <FunctionMachine
   title="Function Machine"
-  description="Input a number into the machine, and the machine will output the result."
-  inputLabel="Function machine input"
+  description="Enter a number to evaluate the fixed function rule."
+  inputLabel="Function input"
 />
 
-Above is an example of an interactive function machine. Try changing the input value (<InlineMath math="x" />) at the bottom, and observe how the output value (<InlineMath math="f(x)" />) changes according to the function rule <InlineMath math="f(x) = 2x + 1" />.
+The rule always follows the same two operations: multiply the input by <InlineMath math="2" />, then add <InlineMath math="1" />. For example:
 
-### Simple Example
+<BlockMath math="f(-4)=2(-4)+1=-8+1=-7" />
 
-Suppose we have the function <InlineMath math="f(x) = x + 2" />. This means the rule of the machine <InlineMath math="f" /> is "add <InlineMath math="2" />" to every input <InlineMath math="x" />.
+## Function or Not a Function?
 
--   If the input is <InlineMath math="x=3" />, the output is <InlineMath math="f(3) = 3 + 2 = 5" />.
--   If the input is <InlineMath math="x=-1" />, the output is <InlineMath math="f(-1) = -1 + 2 = 1" />.
--   If the input is <InlineMath math="x=0" />, the output is <InlineMath math="f(0) = 0 + 2 = 2" />.
+Compare these two relations:
 
-Each input <InlineMath math="(3, -1, 0)" /> has **exactly one** output <InlineMath math="(5, 1, 2)" />. This is the hallmark of a function!
+<MathContainer>
+  <BlockMath math="R=\{(1,4),(2,4),(3,7)\}" />
+  <BlockMath math="S=\{(1,4),(1,6),(3,7)\}" />
+</MathContainer>
+
+Relation <InlineMath math="R" /> is a function. Inputs <InlineMath math="1" /> and <InlineMath math="2" /> share the output <InlineMath math="4" />, which is allowed. Relation <InlineMath math="S" /> is not a function because input <InlineMath math="1" /> is paired with both <InlineMath math="4" /> and <InlineMath math="6" />.
+
+## Check Your Understanding
+
+1. Let <InlineMath math="g(x)=3x-2" />. Find <InlineMath math="g(0)" />, <InlineMath math="g(2)" />, and <InlineMath math="g(-3)" />.
+2. Does <InlineMath math="T=\{(-2,5),(0,1),(4,5)\}" /> define a function on the displayed inputs? Explain.
+3. Does <InlineMath math="U=\{(-2,5),(0,1),(-2,7)\}" /> define a function on the displayed inputs? Explain.
+
+### Worked Solutions
+
+1. Substitute each input into the same rule:
+
+   <MathContainer>
+     <BlockMath math="g(0)=3(0)-2=-2" />
+     <BlockMath math="g(2)=3(2)-2=4" />
+     <BlockMath math="g(-3)=3(-3)-2=-11" />
+   </MathContainer>
+
+2. Yes. Every first coordinate in <InlineMath math="T" /> has exactly one second coordinate. Reusing the output <InlineMath math="5" /> does not violate the definition.
+3. No. The input <InlineMath math="-2" /> is paired with two different outputs, <InlineMath math="5" /> and <InlineMath math="7" />.

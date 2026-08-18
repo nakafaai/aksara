@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Perbedaan Deret Aritmetika dan Geometri",
-  description: "Bedakan deret aritmetika vs geometri: pola pertumbuhan linear vs eksponensial. Pelajari rumus jumlah, perhitungan, dan pilih pendekatan tepat.",
+  description: "Bandingkan deret aritmetika dan geometri berdasarkan suku yang dijumlahkan, lalu pilih dan gunakan rumus jumlah berhingga yang tepat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-08",
   subject: "Barisan dan Deret",
@@ -40,7 +40,11 @@ Jumlah <InlineMath math="n" /> suku pertama (<InlineMath math="S_n" />) dari der
 
 untuk <InlineMath math="r \neq 1" />, di mana <InlineMath math="a" /> adalah suku pertama dan <InlineMath math="r" /> adalah rasio.
 
-Kembali ke contoh bakteri yang membelah diri (<InlineMath math="1" /> jadi <InlineMath math="2" />, <InlineMath math="2" /> jadi <InlineMath math="4" />, dst., rasio <InlineMath math="= 2" />). Deret geometri adalah **total** jumlah bakteri setelah <InlineMath math="n \text{ kali}" /> pembelahan. Misalnya, total bakteri setelah <InlineMath math="3 \text{ kali}" /> pembelahan adalah <InlineMath math="1 + 2 + 4 = 7" />.
+Jika <InlineMath math="r=1" />, setiap suku sama dengan <InlineMath math="a" />, sehingga jumlah untuk kasus khusus ini adalah:
+
+<BlockMath math="S_n=na" />
+
+Misalkan sebuah bengkel menghasilkan <InlineMath math="1" />, lalu <InlineMath math="2" />, lalu <InlineMath math="4" /> komponen baru pada jam-jam berturut-turut. Hasil produksi per jam memiliki rasio <InlineMath math="r=2" />. Deret geometri memberi jumlah **kumulatif** komponen baru yang diproduksi selama <InlineMath math="n \text{ jam}" />. Dalam <InlineMath math="3 \text{ jam}" /> pertama, bengkel tersebut menghasilkan total <InlineMath math="1+2+4=7 \text{ komponen}" />.
 
 ## Perbedaan Utama
 
@@ -49,3 +53,43 @@ Kembali ke contoh bakteri yang membelah diri (<InlineMath math="1" /> jadi <Inli
 | **Dasar**                                  | Penjumlahan suku barisan aritmetika (beda <InlineMath math="b" />) | Penjumlahan suku barisan geometri (rasio <InlineMath math="r" />) |
 | **Rumus Jumlah <InlineMath math="S_n" />** | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" />                     | <InlineMath math="\frac{a(r^n - 1)}{r-1}" />                      |
 | **Pola**                                   | Pertambahan/pengurangan tetap                                      | Perkalian/pembagian tetap                                         |
+
+## Contoh Bertahap
+
+Untuk deret aritmetika:
+
+<BlockMath math="5+8+11+14+17" />
+
+bedanya adalah <InlineMath math="b=3" />, sehingga:
+
+<BlockMath math="S_5=\frac52(5+17)=55" />
+
+Untuk deret geometri:
+
+<BlockMath math="5+10+20+40+80" />
+
+rasionya adalah <InlineMath math="r=2" />, sehingga:
+
+<BlockMath math="S_5=5\frac{2^5-1}{2-1}=155" />
+
+## Jangan Samakan Suku dan Jumlah Parsial
+
+Suku-suku deret aritmetika berubah secara linear terhadap indeksnya, sedangkan jumlah parsialnya umumnya berubah secara kuadratik. Suku-suku deret geometri berubah secara eksponensial, sedangkan jumlah parsial berhingganya mengikuti rumus jumlah deret geometri.
+
+Jadi, nama suatu deret mengacu pada barisan sukunya, bukan pada apakah <InlineMath math="S_1,S_2,S_3,\ldots" /> sendiri membentuk barisan aritmetika atau geometri.
+
+## Latihan
+
+Klasifikasikan setiap deret dan hitung jumlahnya:
+
+1. <InlineMath math="30+25+20+15+10" />
+2. <InlineMath math="2+6+18+54+162" />
+
+### Penyelesaian
+
+Deret pertama merupakan deret aritmetika dengan <InlineMath math="b=-5" />. Deret kedua merupakan deret geometri dengan <InlineMath math="r=3" />:
+
+<MathContainer>
+  <BlockMath math="S_5=\frac52(30+10)=100" />
+  <BlockMath math="S_5=2\frac{3^5-1}{3-1}=242" />
+</MathContainer>

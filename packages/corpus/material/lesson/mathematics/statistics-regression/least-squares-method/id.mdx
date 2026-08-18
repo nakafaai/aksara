@@ -9,27 +9,27 @@ export const metadata = {
 
 ## Apa Itu Metode Kuadrat Terkecil?
 
-Bayangkan kita punya sekumpulan data hasil pengamatan atau eksperimen yang terdiri dari pasangan nilai <InlineMath math="(x, y)" />. Jika kita plot titik-titik data ini di diagram pencar, kadang kita melihat adanya pola atau tren yang menyerupai garis lurus.
+Misalkan hasil pengamatan atau eksperimen terdiri dari pasangan nilai <InlineMath math="(x, y)" />. Ketika diagram pencarnya mengikuti tren yang mendekati garis lurus, ada banyak garis berbeda yang dapat digambar melalui kumpulan titik tersebut.
 
 Pertanyaannya, dari sekian banyak garis lurus yang bisa kita gambar melewati titik-titik itu, mana **garis lurus terbaik** yang paling mewakili keseluruhan data?
 
-Metode Kuadrat Terkecil (Least Squares Method) adalah sebuah **prosedur matematis** untuk menemukan **satu garis lurus unik** yang dianggap paling "pas" atau "cocok" (_best fit_) dengan kumpulan titik data tersebut.
+Metode Kuadrat Terkecil (Least Squares Method) adalah **prosedur matematis** untuk mencari garis yang paling cocok dengan kumpulan titik data menurut kriteria yang jelas: jumlah kuadrat residu vertikal harus sekecil mungkin. Kemiringan garisnya unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama.
 
-## Meminimalkan Kesalahan Kuadrat
+## Meminimalkan Kuadrat Residu
 
-Ide utamanya adalah meminimalkan **kesalahan** atau **residu** dari setiap titik data ke garis prediksi. Lalu bagaimana cara menentukan garis "yang paling pas"?
+Garis yang dipasang ditentukan dari **residu** vertikal pada setiap titik pengamatan:
 
 1.  **Garis Prediksi:** Kita coba gambar sebuah garis lurus (<InlineMath math="\hat{y} = a + bx" />) di antara titik-titik data.
-2.  **Kesalahan (Residual):** Untuk setiap titik data asli (<InlineMath math="y_i" />), akan ada jarak vertikal ke garis prediksi (<InlineMath math="\hat{y}_i" />). Jarak ini disebut **kesalahan** atau **residu**:
+2.  **Residu:** Untuk setiap nilai teramati <InlineMath math="y_i" />, garis memberikan nilai prediksi <InlineMath math="\hat{y}_i" />. Selisih vertikal bertandanya adalah **residu**:
 
     <BlockMath math="e_i = y_i - \hat{y}_i" />
 
-3.  **Minimalkan Jumlah Kuadrat Kesalahan:** Metode Kuadrat Terkecil bekerja dengan mencari garis lurus yang membuat **jumlah dari kuadrat semua kesalahan** (<InlineMath math="\sum e_i^2" />) menjadi **sekecil mungkin**. Inilah mengapa disebut "Kuadrat Terkecil".
+3.  **Minimalkan jumlah kuadrat residu:** Garis kuadrat terkecil membuat <InlineMath math="\sum e_i^2" /> sekecil mungkin di antara semua garis kandidat.
 
-**Kenapa dikuadratkan?**
+**Mengapa residu dikuadratkan?**
 
-- Mengkuadratkan kesalahan membuat semua nilai menjadi positif, sehingga kesalahan di atas garis dan di bawah garis tidak saling meniadakan.
-- Kesalahan yang lebih besar akan memberikan kontribusi yang jauh lebih besar pada jumlah total (karena dikuadratkan), sehingga metode ini sangat berusaha untuk meminimalkan kesalahan-kesalahan besar.
+- Pengkuadratan mencegah residu positif dan negatif saling meniadakan.
+- Residu dengan besar dua kali lipat memberi kontribusi empat kali lebih besar, sehingga penyimpangan besar mendapat bobot lebih besar.
 
 ## Contoh Visualisasi
 
@@ -100,4 +100,6 @@ Keterangan rumus:
 - <InlineMath math="\bar{y}" /> = Rata-rata <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
   ).
 
-Jadi, Metode Kuadrat Terkecil memberikan cara yang sistematis dan objektif untuk menemukan garis lurus terbaik yang mewakili tren linear dalam data berdasarkan prinsip meminimalkan jumlah kuadrat kesalahan.
+Dengan demikian, metode kuadrat terkecil memberi kriteria sistematis untuk garis yang mewakili tren linear: jumlah kuadrat residunya minimal.
+
+Jika semua nilai <InlineMath math="x" /> sama, maka <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> dan penyebut rumus kemiringan bernilai nol. Dalam keadaan ini, data tidak dapat menentukan satu kemiringan regresi linear yang unik.

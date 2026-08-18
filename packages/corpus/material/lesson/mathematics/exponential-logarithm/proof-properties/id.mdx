@@ -1,162 +1,142 @@
 export const metadata = {
-  title: "Pembuktian Sifat",
-  description: "Pelajari pembuktian ketat 7 sifat eksponen dengan demonstrasi bertahap. Pelajari aturan perkalian, pembagian, dan pangkat melalui contoh.",
+  title: "Membuktikan Sifat Eksponen",
+  description:
+    "Buktikan tujuh sifat eksponen dengan syarat domain yang tepat, lalu gunakan sifat tersebut dalam contoh penyederhanaan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-01",
   subject: "Eksponen dan Logaritma",
 };
 
-## Sifat Eksponen dan Pembuktiannya
+## Nyatakan Domain Sebelum Menggunakan Sifat
 
-Kita akan membahas sifat-sifat eksponen dan pembuktiannya. Sifat-sifat ini sangat penting untuk dipahami karena menjadi dasar dalam menyelesaikan berbagai persoalan eksponen dan logaritma.
+Sifat eksponen bergantung pada jenis pangkat dan tanda bilangan pokok. Tujuh identitas berikut berguna, tetapi syaratnya merupakan bagian dari setiap pernyataan.
 
-### Sifat Pertama
+| Sifat | Identitas | Syarat yang digunakan |
+| ----- | --------- | --------------------- |
+| Perkalian dengan bilangan pokok sama | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Pembagian dengan bilangan pokok sama | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Pangkat dari suatu pangkat | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Pangkat dari perkalian | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Pangkat dari pembagian | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Pangkat rasional berpenyebut sama | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Pangkat rasional umum | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
-<InlineMath math="a^m \cdot a^n = a^{m+n}" />
+Sifat untuk pangkat bulat kadang dapat diperluas ke domain lain, tetapi perluasan tersebut membutuhkan syarat tambahan. Syarat yang dinyatakan di sini membuat setiap bentuk dalam materi ini tidak ambigu pada bilangan real.
 
-Untuk setiap <InlineMath math="a \neq 0" /> dan <InlineMath math="m, n" /> bilangan real.
+## Pembuktian untuk Pangkat Bulat
 
-### Sifat Kedua
+### Perkalian dengan Bilangan Pokok Sama
 
-<InlineMath math="\frac{a^m}{a^n} = a^{m-n}" />
-
-Untuk setiap <InlineMath math="a \neq 0" /> dan <InlineMath math="m, n" /> bilangan real.
-
-### Sifat Ketiga
-
-<InlineMath math="(a^m)^n = a^{m \cdot n}" />
-
-Untuk setiap <InlineMath math="a \neq 0" /> dan <InlineMath math="m, n" /> bilangan real.
-
-### Sifat Keempat
-
-<InlineMath math="(ab)^m = a^m \cdot b^m" />
-
-Untuk setiap <InlineMath math="a, b \neq 0" /> dan <InlineMath math="m" /> bilangan bulat.
-
-**Pembuktian:**
-
-_Metode pertama:_
+Untuk bilangan bulat positif <InlineMath math="m" /> dan <InlineMath math="n" />, tuliskan setiap pangkat sebagai perkalian berulang:
 
 <MathContainer>
-  <BlockMath math="(ab)^m = \underbrace{ab \times ab \times ab \times \ldots \times ab}_{m\text{ faktor}}" />
-  <BlockMath math="(ab)^m = \underbrace{a \times a \times a \times \ldots \times a}_{m\text{ faktor}} \times \underbrace{b \times b \times b \times \ldots \times b}_{m\text{ faktor}}" />
-  <BlockMath math="(ab)^m = a^m \times b^m" />
+  <BlockMath math="a^m=\underbrace{a\cdot a\cdots a}_{m\text{ faktor}}" />
+  <BlockMath math="a^n=\underbrace{a\cdot a\cdots a}_{n\text{ faktor}}" />
+  <BlockMath math="a^m a^n=\underbrace{a\cdot a\cdots a}_{m+n\text{ faktor}}=a^{m+n}" />
 </MathContainer>
 
-_Metode kedua:_
+Kasus nol mengikuti <InlineMath math="a^0=1" />. Pangkat bulat negatif mengikuti <InlineMath math="a^{-k}=\frac1{a^k}" />. Karena itu, <InlineMath math="a" /> harus tidak nol.
 
-Kita dapat mengambil beberapa contoh dengan nilai <InlineMath math="m, a" /> dan <InlineMath math="b" /> tertentu
-untuk melihat pola yang terbentuk. Misalnya dengan <InlineMath math="m=2, a=3, b=4" />:
+### Pembagian dengan Bilangan Pokok Sama
+
+Pembagian menghapus <InlineMath math="n" /> faktor dari pembilang saat <InlineMath math="m\geq n" />:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac{\overbrace{a\cdots a}^{m\text{ faktor}}}{\underbrace{a\cdots a}_{n\text{ faktor}}}=a^{m-n}" />
+
+Jika <InlineMath math="m<n" />, faktor yang tersisa berada di penyebut. Definisi pangkat negatif memberikan hasil yang sama:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
+
+### Pangkat dari Suatu Pangkat
+
+Untuk <InlineMath math="n" /> positif, faktor <InlineMath math="a^m" /> muncul sebanyak <InlineMath math="n" /> kali:
+
+<BlockMath math="(a^m)^n=\underbrace{a^m a^m\cdots a^m}_{n\text{ faktor}}=a^{m+m+\cdots+m}=a^{mn}" />
+
+Seperti sebelumnya, <InlineMath math="n=0" /> mengikuti sifat pangkat nol, sedangkan <InlineMath math="n" /> negatif mengikuti kebalikannya.
+
+### Pangkat dari Perkalian dan Pembagian
+
+Untuk <InlineMath math="m" /> positif, pengelompokan ulang faktor memberi:
 
 <MathContainer>
-  <BlockMath math="(3 \cdot 4)^2 = 12^2 = 144" />
-  <BlockMath math="3^2 \cdot 4^2 = 9 \cdot 16 = 144" />
+  <BlockMath math="(ab)^m=\underbrace{(ab)(ab)\cdots(ab)}_{m\text{ faktor}}=a^m b^m" />
+  <BlockMath math="\left(\frac ab\right)^m=\underbrace{\frac ab\cdot\frac ab\cdots\frac ab}_{m\text{ faktor}}=\frac{a^m}{b^m}" />
 </MathContainer>
 
-### Sifat Kelima
+Kasus nol dan negatif kembali mengikuti <InlineMath math="x^0=1" /> dan <InlineMath math="x^{-k}=\frac1{x^k}" />. Syarat bilangan pokok tidak nol memastikan semua bentuk kebalikan terdefinisi.
 
-<InlineMath math="\left(\frac{a}{b}\right)^m = \frac{a^m}{b^m}" />
+## Pembuktian untuk Pangkat Rasional
 
-Untuk setiap <InlineMath math="a \neq 0, b \neq 0" /> dan <InlineMath math="m" /> bilangan bulat.
+Untuk pangkat rasional, gunakan bilangan pokok positif agar setiap akar real terdefinisi secara konsisten.
 
-**Pembuktian:**
+### Penyebut Sama
+
+Gunakan sifat perkalian dengan bilangan pokok sama, lalu jumlahkan pecahannya:
 
 <MathContainer>
-  <BlockMath math="\left(\frac{a}{b}\right)^m = \underbrace{\frac{a}{b} \times \frac{a}{b} \times \frac{a}{b} \times \ldots \times \frac{a}{b}}_{m\text{ faktor}}" />
-  <BlockMath math="\left(\frac{a}{b}\right)^m = \frac{\underbrace{a \times a \times a \times \ldots \times a}_{m\text{ faktor}}}{\underbrace{b \times b \times b \times \ldots \times b}_{m\text{ faktor}}}" />
-  <BlockMath math="\left(\frac{a}{b}\right)^m = \frac{a^m}{b^m}" />
+  <BlockMath math="a^{m/n}a^{p/n}=a^{m/n+p/n}" />
+  <BlockMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" />
 </MathContainer>
 
-### Sifat Keenam
+### Penyebut Berbeda
 
-<InlineMath math="(a^{\frac{m}{n}})(a^{\frac{p}{n}}) = a^{\frac{m+p}{n}}" />
-
-Untuk setiap <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> dan <InlineMath math="\frac{p}{n}" /> bilangan rasional dengan <InlineMath math="n \neq 0" />.
-
-**Pembuktian:**
-
-Dengan menggunakan Sifat <InlineMath math="1" />, kita memperoleh:
+Ubah pangkat ke penyebut bersama <InlineMath math="nq" /> terlebih dahulu:
 
 <MathContainer>
-  <BlockMath math="(a^{\frac{m}{n}})(a^{\frac{p}{n}}) = a^{\frac{m}{n} + \frac{p}{n}}" />
-  <BlockMath math="(a^{\frac{m}{n}})(a^{\frac{p}{n}}) = a^{\frac{m+p}{n}}" />
+  <BlockMath math="a^{m/n}a^{p/q}=a^{m/n+p/q}" />
+  <BlockMath math="a^{m/n}a^{p/q}=a^{mq/(nq)+pn/(nq)}" />
+  <BlockMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" />
 </MathContainer>
 
-### Sifat Ketujuh
+## Contoh Pembahasan
 
-<InlineMath math="(a^{\frac{m}{n}})(a^{\frac{p}{q}}) = a^{\frac{mq + pn}{nq}}" />
+### Menentukan Pangkat yang Belum Diketahui
 
-Untuk setiap <InlineMath math="a > 0" />, <InlineMath math="\frac{m}{n}" /> dan <InlineMath math="\frac{p}{q}" /> bilangan rasional dengan <InlineMath math="n, q \neq 0" />.
-
-**Pembuktian:**
-
-Dengan menggunakan Sifat <InlineMath math="1" />, kita perlu menyamakan penyebut dari pangkat:
-
-<MathContainer>
-  <BlockMath math="(a^{\frac{m}{n}})(a^{\frac{p}{q}}) = a^{\frac{m}{n} + \frac{p}{q}}" />
-  <BlockMath math="(a^{\frac{m}{n}})(a^{\frac{p}{q}}) = a^{\frac{mq}{nq} + \frac{pn}{nq}}" />
-  <BlockMath math="(a^{\frac{m}{n}})(a^{\frac{p}{q}}) = a^{\frac{mq + pn}{nq}}" />
-</MathContainer>
-
-## Contoh Soal
-
-### Menentukan Nilai dan Pembuktian
-
-1. <InlineMath math="(3^4)^2 = 3^p" />
-
-    Solusi: Menggunakan Sifat <InlineMath math="3" />, <InlineMath math="(a^m)^n = a^{m \cdot n}" />
+1. Tentukan <InlineMath math="p" /> pada <InlineMath math="(3^4)^2=3^p" />.
 
     <MathContainer>
-      <BlockMath math="(3^4)^2 = 3^{4 \cdot 2} = 3^8" />
-      <BlockMath math="p = 8" />
+      <BlockMath math="(3^4)^2=3^{4\cdot2}=3^8" />
+      <BlockMath math="p=8" />
     </MathContainer>
 
-2. <InlineMath math="b^4 \cdot b^5 = b^9" />
-
-    Solusi: Menggunakan Sifat <InlineMath math="1" />, <InlineMath math="a^m \cdot a^n = a^{m+n}" />
+2. Periksa <InlineMath math="b^4 b^5=b^9" /> untuk <InlineMath math="b\neq0" />.
 
     <MathContainer>
-      <BlockMath math="b^4 \cdot b^5 = b^{4+5} = b^9" />
-      <BlockMath math="\text{Sehingga persamaan terbukti benar.}" />
+      <BlockMath math="b^4 b^5=b^{4+5}" />
+      <BlockMath math="b^{4+5}=b^9" />
     </MathContainer>
 
-3. <InlineMath math="(3\pi)^p = 27\pi^3" />
+    Kedua ruas memiliki bilangan pokok dan pangkat yang sama, sehingga identitas tersebut terbukti.
 
-    Solusi: Mengubah <InlineMath math="27\pi^3" /> menjadi <InlineMath math="3^3 \cdot \pi^3" />
+3. Tentukan <InlineMath math="p" /> pada <InlineMath math="(3\pi)^p=27\pi^3" />.
 
     <MathContainer>
-      <BlockMath math="27\pi^3 = 3^3 \cdot \pi^3 = (3\pi)^3" />
-      <BlockMath math="p = 3" />
+      <BlockMath math="27\pi^3=3^3\pi^3=(3\pi)^3" />
+      <BlockMath math="p=3" />
     </MathContainer>
 
-### Menyederhanakan
+### Menyederhanakan Bentuk
 
-1. <InlineMath math="\left(\frac{2^4 \times 3^6}{2^3 \times 3^2}\right)^3" />
+1. Sederhanakan <InlineMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3" />.
 
     <MathContainer>
-      <BlockMath math="\left(\frac{2^4 \times 3^6}{2^3 \times 3^2}\right)^3 = \left(2^{4-3} \times 3^{6-2}\right)^3" />
-      <BlockMath math="= \left(2^1 \times 3^4\right)^3" />
-      <BlockMath math="= 2^{1 \cdot 3} \times 3^{4 \cdot 3}" />
-      <BlockMath math="= 2^3 \times 3^{12}" />
+      <BlockMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3=\left(2^{4-3}3^{6-2}\right)^3" />
+      <BlockMath math="=\left(2\cdot3^4\right)^3" />
+      <BlockMath math="=2^3 3^{12}" />
     </MathContainer>
 
-2. <InlineMath math="(3u^3v^5)(9u^4v)" />
+2. Sederhanakan <InlineMath math="(3u^3v^5)(9u^4v)" />.
 
     <MathContainer>
-      <BlockMath math="(3u^3v^5)(9u^4v) = 3 \cdot 9 \cdot u^{3+4} \cdot v^{5+1}" />
-      <BlockMath math="= 3^1 \cdot 3^2 \cdot u^7 \cdot v^6" />
-      <BlockMath math="= 3^{1+2} \cdot u^7 \cdot v^6" />
-      <BlockMath math="= 3^3 \cdot u^7 \cdot v^6" />
-      <BlockMath math="= 27u^7v^6" />
+      <BlockMath math="(3u^3v^5)(9u^4v)=27u^{3+4}v^{5+1}" />
+      <BlockMath math="=27u^7v^6" />
     </MathContainer>
 
-3. <InlineMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2" />
+3. Untuk <InlineMath math="n\neq0" /> dan <InlineMath math="r\neq0" />, sederhanakan <InlineMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2" />.
 
     <MathContainer>
-      <BlockMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2 = \left(\frac{n^{-1}r^4}{5} \cdot \frac{1}{n^{-6}r^{-4}}\right)^2" />
-      <BlockMath math="= \left(\frac{n^{-1}r^4}{5} \cdot n^6r^4\right)^2" />
-      <BlockMath math="= \left(\frac{n^{-1+6}r^{4+4}}{5}\right)^2" />
-      <BlockMath math="= \left(\frac{n^5r^8}{5}\right)^2" />
-      <BlockMath math="= \frac{n^{10}r^{16}}{25}" />
+      <BlockMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2=\left(\frac{n^{-1-(-6)}r^{4-(-4)}}5\right)^2" />
+      <BlockMath math="=\left(\frac{n^5r^8}{5}\right)^2" />
+      <BlockMath math="=\frac{n^{10}r^{16}}{25}" />
     </MathContainer>

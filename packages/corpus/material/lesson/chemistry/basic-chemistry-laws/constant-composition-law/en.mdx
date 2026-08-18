@@ -18,7 +18,7 @@ The phrase **pure compound** matters. Sugar water can be made sweeter or more di
 
 ## Water Keeps the Same Ratio
 
-The formula for water is <InlineMath math="\mathrm{H_2O}" />. That means each unit of water contains <InlineMath math="2" /> hydrogen atoms and <InlineMath math="1" /> oxygen atom. Using the simple relative atomic masses <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the hydrogen-to-oxygen mass ratio in water is:
+The formula for water is <InlineMath math="\mathrm{H_2O}" />. That means each molecule of water contains <InlineMath math="2" /> hydrogen atoms and <InlineMath math="1" /> oxygen atom. Using the simple relative atomic masses <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the hydrogen-to-oxygen mass ratio in water is:
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{H}} : m_{\mathrm{O}}
@@ -27,11 +27,17 @@ m_{\mathrm{H}} : m_{\mathrm{O}}
   &= 1 : 8
 \end{aligned}" />
 
-So even when different amounts of water form, the mass ratio of hydrogen to oxygen that actually reacts stays <InlineMath math="1:8" />. PubChem lists water as <InlineMath math="\mathrm{H_2O}" /> with a molecular weight of about <InlineMath math="18.015\ \mathrm{g/mol}" /> in its [water property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula,MolecularWeight/JSON).
+So even when different amounts of water form, the mass ratio of hydrogen to oxygen that actually reacts stays <InlineMath math="1:8" /> with those rounded classroom values. PubChem records the formula <InlineMath math="\mathrm{H_2O}" /> in its [water property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON). The CIAAW [2024 abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm), <InlineMath math="A_r\mathrm{(H)}=1.0080" /> and <InlineMath math="A_r\mathrm{(O)}=15.999" />, give the more precise molar mass:
+
+<BlockMath math="M(\mathrm{H_2O})=2(1.0080)+15.999=18.015\ \mathrm{g\,mol^{-1}}" />
 
 ## Extra Reactant Stays Extra
 
 Change the starting masses in the model. The leftover substance changes. The hydrogen-to-oxygen ratio that enters water does not.
+
+This is a mass-accounting model, not a literal molecular mechanism. Its <InlineMath math="\mathrm{H}" /> and <InlineMath math="\mathrm{O}" /> labels identify the element masses being counted. Elemental hydrogen and oxygen are represented in the balanced formation equation as <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="\mathrm{O_2}" />:
+
+<BlockMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow 2\mathrm{H_2O}" />
 
 <ConstantCompositionLab
   title={<>Water Ratio Gate</>}
@@ -58,8 +64,8 @@ Change the starting masses in the model. The leftover substance changes. The hyd
             already match the <InlineMath math="1:8" /> ratio.
           </>
         ),
-        readoutBefore: <InlineMath math="2\\,\\mathrm{g}\\,\\mathrm{H}+16\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}" />,
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}" />,
         ratio: (
           <>
             <InlineMath math="2:16 = 1:8" />, the water mass ratio.
@@ -80,8 +86,8 @@ Change the starting masses in the model. The leftover substance changes. The hyd
             hydrogen outside that ratio remains extra.
           </>
         ),
-        readoutBefore: <InlineMath math="3\\,\\mathrm{g}\\,\\mathrm{H}+16\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}+1\\,\\mathrm{g}\\,\\mathrm{H}" />,
+        readoutBefore: <InlineMath math="3\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+1\,\mathrm{g}\,\mathrm{H}" />,
         ratio: (
           <>
             Only <InlineMath math="2:16 = 1:8" /> reacts.
@@ -107,8 +113,8 @@ Change the starting masses in the model. The leftover substance changes. The hyd
             oxygen outside that ratio remains extra.
           </>
         ),
-        readoutBefore: <InlineMath math="2\\,\\mathrm{g}\\,\\mathrm{H}+20\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}+4\\,\\mathrm{g}\\,\\mathrm{O}" />,
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+20\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+4\,\mathrm{g}\,\mathrm{O}" />,
         ratio: (
           <>
             The reacting part is still <InlineMath math="2:16 = 1:8" />.
@@ -128,7 +134,7 @@ This law is often misread as "all starting material must be used up." Not quite.
 
 ## Testing Calcium Oxide Data
 
-Now read the data like a researcher. Calcium oxide has the formula <InlineMath math="\mathrm{CaO}" />. PubChem lists that formula and a molecular weight of <InlineMath math="56.08\ \mathrm{g/mol}" /> in its [calcium oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula,MolecularWeight/JSON).
+Now read the data like a researcher. PubChem lists calcium oxide as <InlineMath math="\mathrm{CaO}" /> in its [calcium oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula/JSON). The CIAAW values <InlineMath math="A_r\mathrm{(Ca)}=40.078" /> and <InlineMath math="A_r\mathrm{(O)}=15.999" /> give <InlineMath math="M(\mathrm{CaO})=56.077\ \mathrm{g\,mol^{-1}}" />, which rounds to <InlineMath math="56.08\ \mathrm{g\,mol^{-1}}" />.
 
 Suppose two experiments give the following data.
 
@@ -148,7 +154,7 @@ The two experiments form different masses of compound, but the calcium-to-oxygen
 
 ## Calculating Mass from a Formula
 
-For iron(III) oxide, the formula is <InlineMath math="\mathrm{Fe_2O_3}" />. PubChem's ferric oxide data also lists <InlineMath math="\mathrm{Fe_2O_3}" /> in its [ferric oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula,MolecularWeight/JSON).
+For iron(III) oxide, the formula is <InlineMath math="\mathrm{Fe_2O_3}" />. PubChem's ferric oxide data also lists <InlineMath math="\mathrm{Fe_2O_3}" /> in its [ferric oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula/JSON).
 
 Using <InlineMath math="A_r\mathrm{(Fe)} = 56" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the mass ratio of iron to oxygen is:
 

@@ -4,51 +4,52 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Grapes will help lower the blood pressure of someone suffering from high blood pressure",
+        "Potassium-rich foods can replace prescribed blood-pressure treatment",
       value: false,
     },
     {
-      label: "The more grapes consumed, the higher the blood pressure will be",
+      label:
+        "Potassium-rich foods may support blood-pressure management, but increasing potassium is not automatically safe for everyone",
       value: true,
     },
     {
-      label:
-        "The effects of sodium in the body can be eliminated by consuming grapes",
-      value: false,
-    },
-    {
-      label: "To lower blood pressure, one can consume grapes",
+      label: "Potassium removes all sodium from the body",
       value: false,
     },
     {
       label:
-        "The amount of grapes consumed must be adjusted to the blood pressure level",
+        "The more potassium someone consumes, the lower their blood pressure will always be",
+      value: false,
+    },
+    {
+      label:
+        "Everyone should take potassium supplements without professional advice",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Anggur akan membantu menurunkan tekanan darah seseorang yang menderita tekanan darah tinggi",
+        "Makanan kaya kalium dapat menggantikan pengobatan tekanan darah yang diresepkan",
       value: false,
     },
     {
-      label: "Semakin banyak konsumsi anggur tekanan darah akan semakin tinggi",
+      label:
+        "Makanan kaya kalium dapat membantu pengelolaan tekanan darah, tetapi menambah kalium tidak otomatis aman bagi semua orang",
       value: true,
     },
     {
-      label:
-        "Efek natrium dalam tubuh dapat dihilangkan dengan mengonsumsi anggur",
+      label: "Kalium menghilangkan seluruh natrium dari tubuh",
       value: false,
     },
     {
       label:
-        "Untuk menurunkan tekanan darah seseorang dapat mengonsumsi anggur",
+        "Semakin banyak kalium dikonsumsi, tekanan darah akan selalu semakin rendah",
       value: false,
     },
     {
       label:
-        "Jumlah anggur yang dikonsumsi harus disesuaikan dengan tingkat tekanan darah",
+        "Semua orang sebaiknya mengonsumsi suplemen kalium tanpa saran tenaga kesehatan",
       value: false,
     },
   ],

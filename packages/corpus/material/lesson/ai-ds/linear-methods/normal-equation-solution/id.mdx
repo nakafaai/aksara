@@ -1,112 +1,126 @@
 export const metadata = {
-  title: "Solusi Sistem Persamaan Normal",
-  description: "Implementasikan solusi persamaan normal dengan dekomposisi QR dan pseudoinverse. Pelajari metode numerik, fitting polynomial, dan perbandingan stabilitas.",
+  title: "Menyelesaikan Persamaan Normal",
+  description: "Selesaikan masalah kuadrat terkecil linear dengan dekomposisi QR dan pseudoinvers Moore-Penrose, lalu bandingkan perilaku numeriknya dengan persamaan normal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-15",
   subject: "Metode Linear AI",
 };
 
+## Masalah yang Diselesaikan
 
+Diberikan <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dan <InlineMath math="b \in \mathbb{R}^m" />, masalah kuadrat terkecil linear mencari vektor parameter yang membuat residual sekecil mungkin:
 
-## Sifat Fundamental
+<BlockMath math="\min_x \|Ax-b\|_2^2" />
 
-Sistem persamaan normal <InlineMath math="A^T A x = A^T b" /> memiliki karakteristik khusus yang membedakannya dari sistem linear biasa. Bayangkan seperti mencari titik terbaik pada sebuah garis untuk mewakili kumpulan data yang tersebar, sistem ini memberikan cara matematis untuk menemukan solusi optimal tersebut.
+Setiap peminimum memenuhi persamaan normal
 
-Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dengan <InlineMath math="m \geq n" />, sistem persamaan normal <InlineMath math="A^T A x = A^T b" /> selalu memiliki solusi. Lebih spesifik lagi, sistem ini memiliki solusi unik tepat ketika matriks <InlineMath math="A" /> memiliki peringkat penuh, yaitu ketika <InlineMath math="\text{Peringkat}(A) = n" />. Dalam kondisi ini, solusi dapat dinyatakan sebagai <InlineMath math="\hat{x} = (A^T A)^{-1} A^T b" />.
+<BlockMath math="A^T A\hat{x}=A^T b" />
 
-Ketika matriks <InlineMath math="A" /> tidak memiliki peringkat penuh, himpunan solusi sistem persamaan normal berbentuk <InlineMath math="\hat{x} + \text{Kernel}(A)" />, dimana <InlineMath math="\hat{x}" /> adalah sembarang solusi khusus dari sistem tersebut.
+Persamaan ini selalu konsisten. Peminimumnya unik tepat ketika <InlineMath math="\operatorname{rank}(A)=n" />, yang mensyaratkan <InlineMath math="m\ge n" />. Dalam kasus rank kolom penuh ini,
 
-### Mengapa Sistem Selalu Dapat Diselesaikan
+<BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
 
-Alasan mendasar mengapa sistem persamaan normal selalu memiliki solusi terletak pada konsep proyeksi ortogonal. Proyeksi ortogonal dari vektor <InlineMath math="b" /> ke ruang kolom <InlineMath math="\{Ax : x \in \mathbb{R}^n\}" /> selalu ada dan merupakan solusi dari masalah kuadrat terkecil linear, yang secara otomatis juga merupakan solusi sistem persamaan normal.
+Ketika <InlineMath math="A" /> kekurangan rank, vektor hasil fitting <InlineMath math="A\hat{x}" /> tetap unik, tetapi vektor parameternya tidak. Jika <InlineMath math="\hat{x}" /> adalah salah satu solusi, semua solusi berada dalam
 
-Untuk memahami mengapa solusi lain berbentuk <InlineMath math="\hat{x} + \text{Kernel}(A)" />, misalkan <InlineMath math="\tilde{x}" /> adalah solusi lain dari sistem <InlineMath math="A^T A \tilde{x} = A^T b" />. Maka <InlineMath math="\tilde{x}" /> adalah solusi sistem persamaan normal jika dan hanya jika <InlineMath math="A^T A(\tilde{x} - \hat{x}) = 0" />, yang ekuivalen dengan <InlineMath math="(\tilde{x} - \hat{x})^T A^T A(\tilde{x} - \hat{x}) = 0" />, yang selanjutnya ekuivalen dengan <InlineMath math="A(\tilde{x} - \hat{x}) = 0" />, atau dengan kata lain <InlineMath math="\tilde{x} - \hat{x} \in \text{Kernel}(A)" />.
+<BlockMath math="\hat{x}+\ker(A)" />
 
-## Moore-Penrose Pseudoinverse
+### Mengapa Solusi Selalu Ada
 
-Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dengan <InlineMath math="m \geq n" /> dan <InlineMath math="\text{Peringkat}(A) = n" />, kita dapat mendefinisikan Moore-Penrose pseudoinverse sebagai
+Ruang kolom <InlineMath math="A" /> adalah subruang tertutup berdimensi hingga dari <InlineMath math="\mathbb{R}^m" />. Karena itu, <InlineMath math="b" /> memiliki proyeksi ortogonal yang unik ke ruang tersebut. Setiap <InlineMath math="\hat{x}" /> yang memenuhi <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> merupakan solusi kuadrat terkecil.
 
-<BlockMath math="A^{\dagger} = (A^T A)^{-1} A^T" />
+Persamaan normal menyatakan geometri yang sama karena
 
-Moore-Penrose pseudoinverse berfungsi seperti "kebalikan terbaik" dari matriks yang tidak persegi. Ia memberikan cara optimal untuk "membatalkan" transformasi linear dalam konteks kuadrat terkecil.
+<BlockMath math="A^T(A\hat{x}-b)=0" />
 
-Moore-Penrose pseudoinverse memenuhi empat aksioma Penrose yang menentukan karakteristiknya secara unik
+berarti residual <InlineMath math="A\hat{x}-b" /> tegak lurus terhadap setiap kolom <InlineMath math="A" />.
 
-<MathContainer>
-<BlockMath math="AA^{\dagger}A = A" />
-<BlockMath math="A^{\dagger}AA^{\dagger} = A^{\dagger}" />
-<BlockMath math="(AA^{\dagger})^T = AA^{\dagger}" />
-<BlockMath math="(A^{\dagger}A)^T = A^{\dagger}A" />
-</MathContainer>
+## Pseudoinvers Moore-Penrose
 
-Keempat sifat ini bersifat unik, artinya jika matriks <InlineMath math="B" /> memenuhi keempat aksioma tersebut, maka secara otomatis <InlineMath math="B = A^{\dagger}" />. Moore-Penrose pseudoinverse dengan demikian berfungsi sebagai operator solusi tunggal untuk masalah kuadrat terkecil linear.
+Pseudoinvers Moore-Penrose didefinisikan untuk setiap matriks real, termasuk matriks persegi panjang dan matriks yang kekurangan rank. Jika
 
-## Penyelesaian Menggunakan Dekomposisi QR
+<BlockMath math="A=U\Sigma V^T" />
 
-Pendekatan yang lebih stabil secara numerik untuk menyelesaikan sistem persamaan normal menggunakan dekomposisi QR. Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dengan peringkat penuh dan <InlineMath math="m \geq n" />, kita dapat menggunakan dekomposisi QR (tipis) <InlineMath math="A = Q_1 R_1" />.
-
-Dengan dekomposisi ini, sistem persamaan normal <InlineMath math="A^T A x = A^T b" /> dapat diselesaikan melalui
-
-<BlockMath math="A^T A x = R_1^T Q_1^T Q_1 R_1 x = R_1^T R_1 x = R_1^T Q_1^T b = A^T b" />
-
-Karena <InlineMath math="R_1" /> adalah matriks segitiga atas yang dapat dibalik, persamaan ini ekuivalen dengan
-
-<BlockMath math="R_1 x = Q_1^T b" />
-
-Sistem segitiga atas ini dapat diselesaikan dengan substitusi mundur, memberikan solusi <InlineMath math="x" /> secara langsung dan efisien.
-
-## Contoh Numerik
-
-Mari kita terapkan metode ini pada contoh konkret. Misalkan kita memiliki data eksperimen yang ingin kita cocokkan dengan polynomial kuadrat. Kita akan menggunakan data berikut
+adalah dekomposisi nilai singular, ganti setiap nilai singular tak nol <InlineMath math="\sigma_i" /> dengan <InlineMath math="1/\sigma_i" /> dan biarkan setiap nilai singular nol tetap nol. Hasilnya adalah
 
 <MathContainer>
-<BlockMath math="A = \begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix}" />
-<BlockMath math="b = \begin{pmatrix} -2.2 \\ -4.2 \\ -4.2 \\ -1.8 \\ 1.8 \\ 8.2 \\ 15.8 \end{pmatrix}" />
+<BlockMath math="\Sigma^{\dagger}_{ii}=\begin{cases}1/\sigma_i,&\sigma_i>0,\\0,&\sigma_i=0,\end{cases}" />
+<BlockMath math="A^{\dagger}=V\Sigma^{\dagger}U^T" />
+<BlockMath math="x^{\dagger}=A^{\dagger}b" />
 </MathContainer>
 
-Setiap baris dalam matriks <InlineMath math="A" /> berformat <InlineMath math="[t_i^2, t_i, 1]" /> untuk mencari koefisien polynomial <InlineMath math="y = at^2 + bt + c" />, sedangkan vektor <InlineMath math="b" /> berisi nilai pengamatan yang bersesuaian.
+Vektor <InlineMath math="x^{\dagger}" /> adalah solusi kuadrat terkecil unik dengan norma Euklides minimum. Ketika <InlineMath math="A" /> memiliki rank kolom penuh, definisi umum tersebut menyederhana menjadi
 
-### Proses Dekomposisi QR
+<BlockMath math="A^{\dagger}=(A^T A)^{-1}A^T" />
 
-Dekomposisi QR dari matriks <InlineMath math="A" /> menghasilkan
+Pseudoinvers ditentukan secara unik oleh empat identitas Penrose:
 
 <MathContainer>
-<BlockMath math="Q_1 = \begin{pmatrix} -0.64286 & -0.56695 & 0.16496 \\ -0.28571 & -0.37796 & -0.24744 \\ -0.07143 & -0.18898 & -0.49487 \\ -0.00000 & 0.00000 & -0.57735 \\ -0.07143 & 0.18898 & -0.49487 \\ -0.28571 & 0.37796 & -0.24744 \\ -0.64286 & 0.56695 & 0.16496 \end{pmatrix}" />
-<BlockMath math="R_1 = \begin{pmatrix} -14.00000 & -0.00000 & -2.00000 \\ 0.00000 & 5.29150 & 0.00000 \\ 0.00000 & 0.00000 & -1.73205 \end{pmatrix}" />
+<BlockMath math="AA^{\dagger}A=A" />
+<BlockMath math="A^{\dagger}AA^{\dagger}=A^{\dagger}" />
+<BlockMath math="(AA^{\dagger})^T=AA^{\dagger}" />
+<BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
 </MathContainer>
 
-### Tahap Penyelesaian
+## Penyelesaian Langsung dengan Dekomposisi QR
 
-Pertama, kita menghitung <InlineMath math="Q_1^T b" /> untuk memperoleh
+Untuk matriks dengan rank kolom penuh dan <InlineMath math="m\ge n" />, gunakan dekomposisi QR tipis
 
-<BlockMath math="Q_1^T b = \begin{pmatrix} -9.7143 \\ 16.0257 \\ 3.4806 \end{pmatrix}" />
+<BlockMath math="A=Q_1R_1,\qquad Q_1^TQ_1=I" />
 
-Selanjutnya, kita menyelesaikan sistem segitiga atas <InlineMath math="R_1 x = Q_1^T b" /> menggunakan substitusi mundur. Karena <InlineMath math="R_1" /> berbentuk segitiga atas, kita mulai dari persamaan paling bawah.
+Objektif kuadrat terkecil terpisah menjadi
 
-Dari persamaan ketiga, <InlineMath math="-1.73205 x_3 = 3.4806" />, sehingga <InlineMath math="x_3 = -2.00952" />.
+<BlockMath math="\|Ax-b\|_2^2=\|R_1x-Q_1^Tb\|_2^2+\|(I-Q_1Q_1^T)b\|_2^2" />
 
-Dari persamaan kedua, <InlineMath math="5.29150 x_2 = 16.0257" />, sehingga <InlineMath math="x_2 = 3.02857" />.
+Suku kedua tidak bergantung pada <InlineMath math="x" />. Karena itu, peminimum diperoleh dengan menyelesaikan sistem segitiga atas
 
-Dari persamaan pertama, <InlineMath math="-14.00000 x_1 - 2.00000(-2.00952) = -9.7143" />, sehingga <InlineMath math="x_1 = 0.98095" />.
+<BlockMath math="R_1\hat{x}=Q_1^Tb" />
 
-Dengan demikian, solusi lengkap adalah
+Jalur ini menyelesaikan masalah kuadrat terkecil semula secara langsung. Kita tidak membentuk <InlineMath math="A^TA" /> lalu menyelesaikan persamaan normal.
 
-<BlockMath math="\hat{x} = \begin{pmatrix} 0.98095 \\ 3.02857 \\ -2.00952 \end{pmatrix}" />
+## Contoh Fitting Polinomial
 
-### Hasil Fitting
+Cocokkan <InlineMath math="y=at^2+bt+c" /> ke tujuh pengamatan. Matriks desain dan vektor pengamatannya adalah
 
-Berdasarkan solusi yang diperoleh, polynomial kuadrat yang paling sesuai dengan data adalah
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}9&-3&1\\4&-2&1\\1&-1&1\\0&0&1\\1&1&1\\4&2&1\\9&3&1\end{pmatrix}" />
+<BlockMath math="b=\begin{pmatrix}-2{,}2\\-4{,}2\\-4{,}2\\-1{,}8\\1{,}8\\8{,}2\\15{,}8\end{pmatrix}" />
+</MathContainer>
 
-<BlockMath math="y = 0.98095 \cdot t^2 + 3.02857 \cdot t - 2.00952" />
+Setiap baris <InlineMath math="A" /> adalah <InlineMath math="[t_i^2,t_i,1]" />. Salah satu dekomposisi QR tipis yang valid adalah
 
-Visualisasi berikut menunjukkan seberapa baik polynomial ini mewakili data asli
+<MathContainer>
+<BlockMath math="Q_1=\begin{pmatrix}-0{,}64286&-0{,}56695&0{,}16496\\-0{,}28571&-0{,}37796&-0{,}24744\\-0{,}07143&-0{,}18898&-0{,}49487\\0&0&-0{,}57735\\-0{,}07143&0{,}18898&-0{,}49487\\-0{,}28571&0{,}37796&-0{,}24744\\-0{,}64286&0{,}56695&0{,}16496\end{pmatrix}" />
+<BlockMath math="R_1=\begin{pmatrix}-14&0&-2\\0&5{,}29150&0\\0&0&-1{,}73205\end{pmatrix}" />
+</MathContainer>
+
+Tanda kolom <InlineMath math="Q_1" /> dan baris <InlineMath math="R_1" /> yang bersesuaian dapat berbeda antarimplementasi QR yang valid. Hasil kali <InlineMath math="Q_1R_1" /> dan hasil fitting akhirnya tidak berubah.
+
+Pertama, hitung
+
+<BlockMath math="Q_1^Tb=\begin{pmatrix}-9{,}71429\\16{,}02569\\3{,}48060\end{pmatrix}" />
+
+Kemudian gunakan substitusi mundur:
+
+<MathContainer>
+<BlockMath math="-1{,}73205x_3=3{,}48060\quad\Longrightarrow\quad x_3=-2{,}00952" />
+<BlockMath math="5{,}29150x_2=16{,}02569\quad\Longrightarrow\quad x_2=3{,}02857" />
+<BlockMath math="-14x_1-2x_3=-9{,}71429\quad\Longrightarrow\quad x_1=0{,}98095" />
+</MathContainer>
+
+Dengan demikian,
+
+<MathContainer>
+<BlockMath math="\hat{x}=\begin{pmatrix}0{,}98095\\3{,}02857\\-2{,}00952\end{pmatrix}" />
+<BlockMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" />
+<BlockMath math="\|A\hat{x}-b\|_2\approx0{,}41861" />
+</MathContainer>
 
 <LineEquation
-  title="Fitting Polynomial Kuadrat"
-  description="Kurva polynomial yang dihasilkan dari solusi sistem persamaan normal."
+  title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
+  description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
   cameraPosition={[15, 10, 15]}
   data={(() => {
-    // Data asli dari matriks A (kolom t) dan vektor b
+    // Pengamatan yang dikodekan oleh A dan b
     const originalData = [
       [-3, -2.2],
       [-2, -4.2],
@@ -117,7 +131,7 @@ Visualisasi berikut menunjukkan seberapa baik polynomial ini mewakili data asli
       [3, 15.8]
     ];
 
-    // Koefisien polynomial dari solusi sistem persamaan normal
+    // Koefisien yang diperoleh dari penyelesaian QR
     const a = 0.98095;
     const b = 3.02857;
     const c = -2.00952;
@@ -143,12 +157,12 @@ Visualisasi berikut menunjukkan seberapa baik polynomial ini mewakili data asli
   })()}
 />
 
-## Perbandingan Metode
+## Memilih Metode Numerik
 
-Untuk menyelesaikan sistem persamaan normal, terdapat dua pendekatan utama yang dapat dibandingkan dari segi komputasi dan stabilitas numerik.
+| Metode | Perkiraan biaya padat untuk <InlineMath math="m\ge n" /> | Kekuatan utama | Keterbatasan utama |
+| --- | --- | --- | --- |
+| Persamaan normal dan Cholesky | bentuk <InlineMath math="A^TA" /> dalam <InlineMath math="O(mn^2)" />, lalu faktorkan dalam sekitar <InlineMath math="\frac{1}{3}n^3" /> flop | cepat ketika masalah terkondisi baik dan ber-rank penuh | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
+| QR Householder | sekitar <InlineMath math="2mn^2-\frac{2}{3}n^3" /> flop | tidak membentuk <InlineMath math="A^TA" /> dan biasanya lebih stabil | memerlukan varian yang peka terhadap rank ketika kolom saling bergantung |
+| SVD | lebih mahal daripada QR | memperlihatkan rank dan memberikan solusi bernorma minimum | biaya tertinggi di antara ketiganya |
 
-Pendekatan Cholesky melibatkan pembentukan eksplisit matriks <InlineMath math="A^T A" /> terlebih dahulu, kemudian menerapkan dekomposisi Cholesky karena matriks ini bersifat positif definit. Metode ini memerlukan sekitar <InlineMath math="n^2 \cdot m + \frac{1}{6}n^3 + O(n^2) + O(m \cdot n)" /> operasi aritmatika. Namun, perkalian dan dekomposisi dapat menjadi sumber propagasi kesalahan yang besar, terutama ketika <InlineMath math="m = n" /> dimana <InlineMath math="\text{cond}(A^T A) \approx \text{cond}(A)^2" />.
-
-Pendekatan QR, sebaliknya, dapat menyelesaikan masalah ini dengan stabilitas numerik yang lebih baik dan kompleksitas komputasi yang sebanding. Kompleksitas utama ditentukan oleh <InlineMath math="n^2 \cdot m" /> operasi untuk dekomposisi QR, sehingga sebanding dengan pendekatan Cholesky. Namun, keunggulan signifikan QR terletak pada fakta bahwa transformasi ortogonal tidak memperburuk kondisi masalah, berbeda dengan pembentukan <InlineMath math="A^T A" /> dalam metode Cholesky.
-
-Pemilihan metode yang tepat bergantung pada karakteristik data dan tingkat akurasi yang dibutuhkan dalam aplikasi spesifik.
+Gunakan QR sebagai pilihan umum untuk masalah padat ber-rank penuh. Gunakan SVD ketika kekurangan rank, kondisi yang sangat buruk, atau solusi bernorma minimum penting. Bentuk matriks normal hanya ketika keuntungan kecepatannya sepadan dengan berkurangnya ketahanan numerik, dan jangan pernah menghitung invers secara eksplisit dalam kode produksi.

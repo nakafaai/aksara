@@ -1,114 +1,124 @@
-
-
 export const metadata = {
-  title: "Reciprocal Vector",
-  description: "Learn reciprocal vectors, including inverse magnitude, same direction, formulas, calculations, and unit vector relationships.",
+  title: "Opposite Vector",
+  description: "Learn how an opposite vector keeps the same magnitude while reversing direction, and use it in addition, displacement, and force problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
-  subject: "Vector and Operations",
+  subject: "Vectors and Operations",
 };
 
-## Understanding Reciprocal Vector
+## Understanding Opposite Vectors
 
-A reciprocal vector is a vector whose magnitude is the reciprocal of the magnitude of the original vector, while maintaining the same direction. If <InlineMath math="\vec{v}" /> is a vector, then the reciprocal vector of <InlineMath math="\vec{v}" /> is a vector with magnitude <InlineMath math="\frac{1}{|\vec{v}|}" />, where <InlineMath math="|\vec{v}|" /> is the magnitude of vector <InlineMath math="\vec{v}" />.
+For a nonzero vector <InlineMath math="\vec{v}" />, its **opposite vector** has the same magnitude but points in exactly the opposite direction. It is written as <InlineMath math="-\vec{v}" />.
 
-## Formula for Reciprocal Vector
+If <InlineMath math="\vec{v}" /> describes a displacement from left to right, then <InlineMath math="-\vec{v}" /> describes an equally long displacement from right to left. The two vectors differ in direction, not in length.
 
-If we have a vector <InlineMath math="\vec{v}" />, then the reciprocal vector of <InlineMath math="\vec{v}" /> can be formulated as:
+## Formula for an Opposite Vector
 
-<BlockMath math="\vec{v}_{\text{reciprocal}} = \frac{1}{|\vec{v}|^2} \cdot \vec{v}" />
+Multiplying a vector by the scalar <InlineMath math="-1" /> reverses every component:
 
-Where:
+<BlockMath math="-\vec{v}=(-1)\vec{v}" />
 
-- <InlineMath math="\vec{v}_{\text{reciprocal}}" /> is the reciprocal vector
-- <InlineMath math="\vec{v}" /> is the original vector
-- <InlineMath math="|\vec{v}|" /> is the magnitude or length of vector <InlineMath math="\vec{v}" />
+If <InlineMath math="\vec{v}=(v_1,v_2,v_3)" />, then:
+
+<BlockMath math="-\vec{v}=(-v_1,-v_2,-v_3)" />
+
+Here:
+
+- <InlineMath math="\vec{v}" /> is the original vector.
+- <InlineMath math="-\vec{v}" /> is its opposite vector.
+- The factor <InlineMath math="-1" /> reverses the direction without changing the magnitude.
 
 ## Calculation Example
 
-Let's say we have a vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />.
+Suppose <InlineMath math="\overrightarrow{AB}=6\mathbf{i}+8\mathbf{j}" />.
 
-First, we calculate the magnitude of vector <InlineMath math="\overrightarrow{AB}" />:
+Its magnitude is:
 
-<BlockMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10" />
+<BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
 
-Then, we can find the reciprocal vector of <InlineMath math="\overrightarrow{AB}" />:
+Multiply every component by <InlineMath math="-1" /> to find the opposite vector:
 
-<BlockMath math="\overrightarrow{AB}_{\text{reciprocal}} = \frac{1}{|\overrightarrow{AB}|^2} \cdot \overrightarrow{AB} = \frac{1}{10^2} \cdot (6\mathbf{i} + 8\mathbf{j}) = \frac{1}{100} (6\mathbf{i} + 8\mathbf{j})" />
+<BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
 
-Therefore, the reciprocal vector of <InlineMath math="\overrightarrow{AB}" /> is <InlineMath math="\frac{1}{100}(6\mathbf{i} + 8\mathbf{j})" /> or <InlineMath math="0.06\mathbf{i} + 0.08\mathbf{j}" />.
+Both vectors have magnitude <InlineMath math="10" />, but their directions differ by <InlineMath math="180^\circ" />.
 
 <Vector3d
-  title="Reciprocal Vector Visualization"
-  description="Comparison between the original vector (red) and its reciprocal vector (blue)."
+  title="A Vector and Its Opposite"
+  description="The red and blue vectors have equal lengths and point in opposite directions."
   vectors={[
     {
       from: [0, 0, 0],
       to: [6, 8, 0],
       color: "#dc2626",
-      label: <InlineMath math="AB" />,
+      label: <InlineMath math="\overrightarrow{AB}" />,
       labelPosition: "end",
     },
     {
       from: [0, 0, 0],
-      to: [0.06, 0.08, 0],
+      to: [-6, -8, 0],
       color: "#2563eb",
-      label: <><InlineMath math="\overrightarrow{AB}" /> reciprocal</>,
+      label: <InlineMath math="-\overrightarrow{AB}" />,
       labelPosition: "end",
     },
   ]}
   cameraPosition={[12, 10, 12]}
 />
 
-## Properties of Reciprocal Vector
+## Properties of Opposite Vectors
 
-1. The magnitude of a reciprocal vector is the reciprocal of the magnitude of the original vector:
+1. Their magnitudes are equal:
 
-   <BlockMath math="|\vec{v}_{\text{reciprocal}}| = \frac{1}{|\vec{v}|}" />
+   <BlockMath math="|-\vec{v}|=|\vec{v}|" />
 
-2. The direction of the reciprocal vector is the same as the direction of the original vector.
+2. For a nonzero vector, their directions differ by <InlineMath math="180^\circ" />.
 
-3. The dot product between a vector and its reciprocal vector:
+3. Their sum is the zero vector:
 
-   <BlockMath math="\vec{v} \cdot \vec{v}_{\text{reciprocal}} = 1" />
+   <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
 
-4. If <InlineMath math="\vec{v}" /> is a vector with magnitude <InlineMath math="1" /> (unit vector), then its reciprocal vector is the vector itself.
+4. Taking the opposite twice returns the original vector:
 
-## Applications of Reciprocal Vector
+   <BlockMath math="-(-\vec{v})=\vec{v}" />
 
-Reciprocal vectors have many applications in physics, mathematics, and engineering. Some important applications include:
+The zero vector is its own opposite because <InlineMath math="-\vec{0}=\vec{0}" />.
 
-1. In crystallography, reciprocal vectors are used to study the lattices of crystalline solids.
+## Applications of Opposite Vectors
 
-2. In quantum physics, reciprocal vectors are used in momentum space calculations.
+Opposite vectors appear whenever a direction is reversed:
 
-3. In vector analysis, reciprocal vectors help solve vector equations.
+1. **Displacement:** a return trip along the same straight path has the opposite displacement vector.
 
-## Unit Vector and Its Relationship with Reciprocal Vector
+2. **Force equilibrium:** two equal forces in opposite directions add to the zero vector.
+
+3. **Vector equations:** subtraction can be rewritten as addition of an opposite vector, <InlineMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />.
+
+## Unit Vectors and Opposite Direction
 
 ### Unit Vector
 
-A unit vector is a vector with a magnitude of exactly one unit. The unit vector of a vector <InlineMath math="\vec{v}" /> is usually denoted by <InlineMath math="\hat{v}" /> and is calculated using the formula:
+For a nonzero vector <InlineMath math="\vec{v}" />, its unit vector is:
 
-<BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|}" />
+<BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
+
+It has magnitude <InlineMath math="1" /> and points in the same direction as <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
   <Vector3d
-    title="Comparison of Original Vector and Unit Vector"
-    description="Original vector and its corresponding unit vector."
+    title="Opposite Unit Directions"
+    description="The two unit vectors have equal length and opposite direction."
     vectors={[
       {
         from: [0, 0, 0],
-        to: [6, 8, 0],
+        to: [0.6, 0.8, 0],
         color: "#16a34a",
-        label: <InlineMath math="v" />,
+        label: <InlineMath math="\hat{v}" />,
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
+        to: [-0.6, -0.8, 0],
         color: "#7c3aed",
-        label: <><InlineMath math="\hat{v}" /> (unit)</>,
+        label: <InlineMath math="-\hat{v}" />,
         labelPosition: "end",
       },
     ]}
@@ -116,10 +126,10 @@ A unit vector is a vector with a magnitude of exactly one unit. The unit vector 
   />
 </ContentBlock>
 
-### Relationship with Reciprocal Vector
+### Relationship with the Opposite Vector
 
-There is an interesting relationship between unit vectors and reciprocal vectors. If <InlineMath math="\vec{v}" /> is a vector, then:
+The unit vector in the opposite direction is <InlineMath math="-\hat{v}" />. Multiplying it by the original magnitude gives the opposite vector:
 
-<BlockMath math="\vec{v}_{\text{reciprocal}} = \frac{\hat{v}}{|\vec{v}|}" />
+<BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
 
-This shows that a reciprocal vector can be obtained by dividing the unit vector by the magnitude of the original vector.
+This separates the two ideas clearly: <InlineMath math="|\vec{v}|" /> determines the length, while <InlineMath math="-\hat{v}" /> determines the opposite direction.

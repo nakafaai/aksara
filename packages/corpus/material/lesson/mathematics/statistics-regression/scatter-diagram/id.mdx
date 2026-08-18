@@ -9,28 +9,28 @@ export const metadata = {
 
 ## Apa Itu Diagram Pencar?
 
-Diagram Pencar (Scatter Diagram) itu seperti peta yang menunjukkan hubungan antara dua jenis data. Misalnya, kita mau lihat hubungan antara lama waktu belajar (sumbu <InlineMath math="x" />) dengan nilai ujian (sumbu <InlineMath math="y" />).
+Diagram pencar memperlihatkan kemungkinan hubungan antara dua variabel numerik. Misalnya, kita dapat menempatkan lama belajar pada sumbu <InlineMath math="x" /> dan nilai ujian pada sumbu <InlineMath math="y" />.
 
-Setiap titik di diagram mewakili satu pasangan data (misalnya, data satu siswa). Dengan melihat pola titik-titiknya, kita bisa mengerti hubungannya.
+Setiap titik mewakili satu pengamatan berpasangan, misalnya lama belajar dan nilai seorang siswa. Kumpulan titik itu menunjukkan apakah pasangan data membentuk pola yang dapat dikenali.
 
 ### Kapan Diagram Pencar Digunakan?
 
-Diagram Pencar paling cocok dipakai kalau kita ingin:
+Diagram pencar terutama berguna ketika kita ingin:
 
-- Melihat apakah ada **hubungan (korelasi)** antara **dua variabel numerik (angka)**. (Contoh: hubungan antara tinggi badan dan berat badan, atau lama belajar dan nilai.)
-- Melihat **pola** dari hubungan tersebut (apakah positif, negatif, atau tidak ada pola).
+- memeriksa apakah tampak **hubungan** antara **dua variabel numerik**, seperti tinggi dan berat badan atau lama belajar dan nilai;
+- memeriksa **arah dan bentuk** pola tersebut, termasuk kecenderungan positif, negatif, atau tidak jelas.
 
 Ini berbeda dengan diagram lain:
 
-- **Diagram Batang:** Bagus untuk membandingkan jumlah atau nilai antar **kategori** (misal: jumlah siswa per kelas).
-- **Diagram Garis:** Bagus untuk melihat **tren** data seiring **waktu** atau urutan tertentu (misal: perubahan suhu harian).
-- **Diagram Lingkaran (Pie Chart):** Bagus untuk menunjukkan **proporsi** atau bagian dari keseluruhan (misal: persentase jenis buah favorit).
+- **Diagram batang:** membandingkan nilai antar **kategori**, misalnya jumlah siswa di beberapa kelas.
+- **Diagram garis:** menunjukkan perkembangan terhadap **waktu** atau urutan tetap lainnya, misalnya suhu harian.
+- **Diagram lingkaran:** menunjukkan **bagian dari keseluruhan**, misalnya distribusi jenis buah favorit.
 
-Jadi, kalau fokus utamamu adalah **melihat hubungan antara dua set angka**, diagram pencar adalah pilihan yang tepat!
+Jika pertanyaan utamanya menyangkut kemungkinan **hubungan antara dua variabel numerik**, diagram pencar merupakan titik awal yang sesuai.
 
 ## Contoh Diagram Pencar dan Pola Korelasi
 
-Mari kita lihat beberapa contoh diagram pencar dengan pola yang berbeda:
+Contoh berikut menunjukkan tiga pola titik yang umum.
 
 ### Korelasi Positif
 
@@ -92,9 +92,9 @@ Kalau titik-titik cenderung turun dari kiri atas ke kanan bawah, itu artinya ada
   ]}
 />
 
-### Tidak Ada Korelasi dengan Dua Grup
+### Tidak Ada Pola Linear yang Jelas pada Dua Grup
 
-Kalau titik-titiknya tersebar acak tanpa pola yang jelas, itu artinya **tidak ada korelasi** atau korelasinya sangat lemah. Kita juga bisa menampilkan grup yang berbeda dalam satu diagram.
+Kalau titik-titik tersebar tanpa pola garis lurus yang jelas, korelasi linearnya lemah atau tidak ada. Kita juga bisa menampilkan grup yang berbeda dalam satu diagram.
 
 <ScatterDiagram
   title={
@@ -102,7 +102,11 @@ Kalau titik-titiknya tersebar acak tanpa pola yang jelas, itu artinya **tidak ad
       Hubungan Tinggi Badan (<InlineMath math="\text{cm}" />) dan Waktu Lari <InlineMath math="100 \text{ m}" /> (detik) untuk Dua Sekolah
     </>
   }
-  description="Tidak ada korelasi antara tinggi badan dan kecepatan lari, dengan data dari dua sekolah berbeda."
+  description={
+    <>
+      Tidak tampak korelasi linear yang jelas antara tinggi badan dan waktu lari <InlineMath math="100 \text{ m}" /> pada data dari dua sekolah ini.
+    </>
+  }
   xAxisLabel="Tinggi Badan (cm)"
   yAxisLabel="Waktu Lari Sprint (detik)"
   xAxisDomain="min-max"
@@ -136,4 +140,4 @@ Kalau titik-titiknya tersebar acak tanpa pola yang jelas, itu artinya **tidak ad
   ]}
 />
 
-Jadi, dengan melihat arah sebaran titik-titik pada diagram pencar, kita bisa mendapatkan gambaran awal tentang bagaimana dua variabel saling berhubungan, bahkan untuk grup data yang berbeda sekalipun.
+Jadi, dengan melihat arah sebaran titik-titik pada diagram pencar, kita bisa mendapatkan gambaran awal tentang bagaimana dua variabel saling berhubungan, bahkan untuk grup data yang berbeda sekalipun. Diagram ini adalah langkah awal: pola yang terlihat belum membuktikan bahwa satu variabel menyebabkan perubahan pada variabel lain.

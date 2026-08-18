@@ -3,51 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Nitrogen and phosphorus are nutrients that can harm soil in the environment.",
+      label: "Nitrogen and phosphorus always harm floodplain soils",
       value: false,
     },
     {
-      label: "Organic matter can only be obtained when seasonal floods occur.",
+      label: "Floodplains can only export material and never retain it",
       value: false,
     },
     {
-      label:
-        "Seasonal floods transport many important nutrients to the surrounding soil.",
+      label: "Floodplains can retain sediment and nutrients",
       value: true,
     },
     {
-      label: "Soil greatly needs seasonal floods, whether natural or man-made.",
+      label:
+        "Floodplains only accumulate material and never lose it through erosion",
       value: false,
     },
     {
-      label:
-        "Soil fertility can only be obtained when the flood season arrives.",
+      label: "Every flood makes every floodplain soil more fertile",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Nitrogen dan fosfor adalah nutrisi yang dapat membahayakan tanah di lingkungan.",
-      value: false,
-    },
-    {
-      label: "Bahan organic hanya bisa didapat ketika banjir musiman terjadi.",
+      label: "Nitrogen dan fosfor selalu merusak tanah dataran banjir",
       value: false,
     },
     {
       label:
-        "Banjir yang terjadi musiman banyak mengangkut nutrisi penting bagi tanah sekitarnya.",
+        "Dataran banjir hanya dapat melepas bahan dan tidak pernah menahannya",
+      value: false,
+    },
+    {
+      label: "Dataran banjir dapat menahan sedimen dan unsur hara",
       value: true,
     },
     {
       label:
-        "Tanah sangat membutuhkan banjir musiman baik yang secara alami maupun karena ulah manusia.",
+        "Dataran banjir hanya menumpuk bahan dan tidak pernah kehilangannya akibat erosi",
       value: false,
     },
     {
-      label: "Kesuburan tanah hanya bisa didapat saat musim banjir tiba.",
+      label: "Setiap banjir membuat semua tanah dataran banjir lebih subur",
       value: false,
     },
   ],

@@ -2,40 +2,36 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Some stunting children experience malnutrition", value: false },
-    {
-      label: "Only environmental factors play a role in causing short stature",
-      value: false,
-    },
-    {
-      label: "Stunting is caused by overnutrition for a long period",
-      value: false,
-    },
-    { label: "Most stunting children are caused by malnutrition", value: true },
+    { label: "Stunting means low weight for height", value: false },
+    { label: "Only genetic factors can cause stunting", value: false },
+    { label: "Stunting always causes cognitive disability", value: false },
     {
       label:
-        "Some children who experience stunting have a shorter stature than their normal age and have cognitive delays",
-      value: false,
+        "Stunting is low height for age and is commonly linked to chronic or recurrent undernutrition",
+      value: true,
     },
+    { label: "Overnutrition is the only cause of stunting", value: false },
   ],
   id: [
-    { label: "Sebagian anak stunting mengalami kekurangan gizi", value: false },
+    {
+      label: "Stunting berarti berat badan rendah menurut tinggi badan",
+      value: false,
+    },
+    {
+      label: "Stunting hanya dapat disebabkan oleh faktor genetik",
+      value: false,
+    },
+    {
+      label: "Stunting selalu menyebabkan disabilitas kognitif",
+      value: false,
+    },
     {
       label:
-        "Hanya faktor lingkungan yang berperan dalam menyebabkan perawakan pendek",
-      value: false,
-    },
-    {
-      label: "Stunting diakibatkan kelebihan gizi dalam waktu yang lama",
-      value: false,
-    },
-    {
-      label: "Sebagian besar anak stunting disebabkan oleh kekurangan gizi",
+        "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
       value: true,
     },
     {
-      label:
-        "Sebagian anak yang mengalami stunting memiliki perawakan pendek dari usia normalnya dan memiliki keterlambatan dalam berpikir",
+      label: "Kelebihan gizi adalah satu-satunya penyebab stunting",
       value: false,
     },
   ],

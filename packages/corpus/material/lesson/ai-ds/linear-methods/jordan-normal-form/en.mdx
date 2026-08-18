@@ -1,49 +1,97 @@
 export const metadata = {
-    title: "Triangularization and Jordan Normal Form",
-    description: "Learn Jordan Normal Form and matrix triangularization: canonical decomposition for non-diagonalizable matrices with Jordan blocks and eigenvalues.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-17",
-    subject: "Linear Methods of AI",
+  title: "Triangularization and Jordan Normal Form",
+  description: "Understand triangularization, Jordan blocks, generalized eigenvector chains, and what Jordan form reveals about a non-diagonalizable matrix.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-17",
+  subject: "Linear Methods of AI",
 };
 
-## Matrix Triangularization
+## When diagonalization is not possible
 
-Even though matrix <InlineMath math="A" /> cannot be diagonalized, the following theorem still holds.
-
-For matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, if the characteristic polynomial of <InlineMath math="A" /> can be factored into linear factors, then <InlineMath math="A" /> is similar to an upper triangular matrix <InlineMath math="R \in \mathbb{K}^{n \times n}" />. The entries on the diagonal of this upper triangular matrix are all the eigenvalues of <InlineMath math="A" />.
-
-This similarity relationship is expressed as:
+Diagonalization asks for a basis consisting entirely of eigenvectors. Such a basis does not always exist. A weaker result is still available: if the characteristic polynomial of <InlineMath math="A \in \mathbb{K}^{n \times n}" /> splits into linear factors over <InlineMath math="\mathbb{K}" />, then an invertible matrix <InlineMath math="S" /> transforms <InlineMath math="A" /> into an upper triangular matrix.
 
 <MathContainer>
-<BlockMath math="R = S^{-1} \cdot A \cdot S" />
+<BlockMath math="R=S^{-1}AS" />
+<BlockMath math="R=\begin{pmatrix}\lambda_1&*&\cdots&*\\0&\lambda_2&\cdots&*\\\vdots&\ddots&\ddots&\vdots\\0&\cdots&0&\lambda_n\end{pmatrix}" />
 </MathContainer>
 
-where <InlineMath math="S \in \mathbb{K}^{n \times n}" /> is an invertible matrix.
+The diagonal entries are the eigenvalues, repeated according to their algebraic multiplicities. Over <InlineMath math="\mathbb{C}" />, every characteristic polynomial splits. Over <InlineMath math="\mathbb{R}" />, this condition can fail when nonreal eigenvalues occur.
 
-This upper triangular form can be described more precisely through the Jordan Normal Form.
+Jordan normal form sharpens this triangular description. It records not only the eigenvalues, but also exactly how the available eigenvectors fall short of a basis.
 
-## Jordan Normal Form
+## One Jordan block
 
-Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> with characteristic polynomial:
+A Jordan block of size <InlineMath math="s" /> for the eigenvalue <InlineMath math="\lambda" /> is
 
 <MathContainer>
-<BlockMath math="\chi_A(t) = (\lambda_1 - t)^{r_1} \cdot \ldots \cdot (\lambda_k - t)^{r_k}" />
+<BlockMath math="J_s(\lambda)=\begin{pmatrix}\lambda&1&0&\cdots&0\\0&\lambda&1&\ddots&\vdots\\\vdots&\ddots&\ddots&\ddots&0\\0&\cdots&0&\lambda&1\\0&\cdots&\cdots&0&\lambda\end{pmatrix}" />
+<BlockMath math="J_s(\lambda)=\lambda I_s+N_s,\qquad N_s^s=0" />
 </MathContainer>
 
-with distinct eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" />. Then there exists an invertible matrix <InlineMath math="S \in \mathbb{K}^{n \times n}" /> such that:
+The nilpotent matrix <InlineMath math="N_s" /> has ones on the superdiagonal and zeros elsewhere. A block of size <InlineMath math="1" /> is simply <InlineMath math="(\lambda)" />. A larger block signals that one eigenvector must be extended by generalized eigenvectors.
+
+## Generalized eigenvector chains
+
+Vectors <InlineMath math="v_1,\ldots,v_s" /> form a Jordan chain for <InlineMath math="\lambda" /> when
 
 <MathContainer>
-<BlockMath math="S^{-1} \cdot A \cdot S = \begin{pmatrix} \lambda_1 \cdot I_{r_1} + N_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_k \cdot I_{r_k} + N_k \end{pmatrix}" />
+<BlockMath math="(A-\lambda I)v_1=0" />
+<BlockMath math="(A-\lambda I)v_{j+1}=v_j,\qquad j=1,\ldots,s-1" />
 </MathContainer>
 
-This form shows how a matrix can be organized into simpler blocks, where each block is associated with one particular eigenvalue.
+The first vector is an ordinary eigenvector. Each following vector maps to the previous one after applying <InlineMath math="A-\lambda I" />. In the ordered basis <InlineMath math="(v_1,\ldots,v_s)" />, the restriction of <InlineMath math="A" /> to this chain is represented by <InlineMath math="J_s(\lambda)" />.
 
-## Jordan Block Structure
+## The complete Jordan form
 
-For each <InlineMath math="i = 1, \ldots, k" />, the Jordan block <InlineMath math="\lambda_i \cdot I_{r_i} + N_i" /> has a very distinctive structure. Imagine it like an almost perfect staircase, where each step has the same value (namely the eigenvalue <InlineMath math="\lambda_i" />), but there are "connectors" in the form of the number <InlineMath math="1" /> at certain positions that make this structure unique.
+Suppose
+
+<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
+
+splits over <InlineMath math="\mathbb{K}" />, with distinct eigenvalues <InlineMath math="\lambda_1,\ldots,\lambda_k" />. Then there is an invertible matrix <InlineMath math="S" /> such that
+
+<BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
+
+For each eigenvalue, the block sizes satisfy
+
+<BlockMath math="s_{i1}+\cdots+s_{iq_i}=a_i" />
+
+The number of blocks for <InlineMath math="\lambda_i" /> equals the geometric multiplicity <InlineMath math="\dim\ker(A-\lambda_iI)" />. The block sizes are uniquely determined by <InlineMath math="A" />, although their order along the diagonal is not.
+
+| Question | What the Jordan blocks show |
+| --- | --- |
+| Is <InlineMath math="A" /> diagonalizable? | Yes exactly when every Jordan block has size <InlineMath math="1" />. |
+| How many independent eigenvectors belong to <InlineMath math="\lambda_i" />? | One for each Jordan block associated with <InlineMath math="\lambda_i" />. |
+| Why is a repeated eigenvalue not enough to decide diagonalizability? | The same algebraic multiplicity can be split among blocks of different sizes. |
+
+## Worked example
+
+Consider
+
+<BlockMath math="A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&2\end{pmatrix}=J_2(1)\oplus J_1(2)" />
+
+Its characteristic polynomial is
+
+<BlockMath math="\chi_A(t)=(t-1)^2(t-2)" />
+
+For <InlineMath math="\lambda=1" />,
 
 <MathContainer>
-<BlockMath math="\lambda_i \cdot I_{r_i} + N_i = \begin{pmatrix} \lambda_i & 1 & & & \\ & \ddots & \ddots & & \\ & & \ddots & 1 & \\ & & & \lambda_i & 0 \\ & & & & \lambda_i & 1 \\ & & & & & \ddots & \ddots \\ & & & & & & \ddots & 1 \\ & & & & & & & \lambda_i & 0 \\ & & & & & & & & \ddots & \ddots \\ & & & & & & & & & \ddots & 0 \\ & & & & & & & & & & \lambda_i \end{pmatrix} \in \mathbb{K}^{r_i \times r_i}" />
+<BlockMath math="A-I=\begin{pmatrix}0&1&0\\0&0&0\\0&0&1\end{pmatrix}" />
+<BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-In this structure, the eigenvalue <InlineMath math="\lambda_i" /> dominates the main diagonal, while the number <InlineMath math="1" /> appears at certain positions above the diagonal (called the superdiagonal). The positions of <InlineMath math="0" /> and <InlineMath math="1" /> on the superdiagonal determine how the Jordan block is divided into smaller sub-blocks. This structure provides complete information about how the linear transformation operates on the vector space associated with that eigenvalue.
+The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath math="2" /> but only one independent eigenvector. Therefore <InlineMath math="A" /> is not diagonalizable. The vectors
+
+<BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
+
+form a chain because <InlineMath math="(A-I)v_1=0" /> and <InlineMath math="(A-I)v_2=v_1" />. The eigenvalue <InlineMath math="2" /> contributes the separate block <InlineMath math="J_1(2)" />.
+
+## Why the form is useful
+
+Writing <InlineMath math="J_s(\lambda)=\lambda I+N" /> with <InlineMath math="N^s=0" /> makes powers explicit:
+
+<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
+
+This formula explains why powers of a non-diagonalizable matrix contain polynomial factors in <InlineMath math="m" /> in addition to powers of the eigenvalues. It is useful for exact analysis of recurrences and differential equations.
+
+Jordan form is primarily an exact algebraic classification. It is highly sensitive to small numerical perturbations, so numerical software usually computes a Schur decomposition instead of a Jordan form.

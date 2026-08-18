@@ -4,13 +4,13 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-#### Visualisasi Masalah
+#### Membaca Geometri pada Gambar
 
-Berikut adalah ilustrasi posisi elang dan ikan berdasarkan informasi soal:
+Gambar menunjukkan satu garis pandang lurus yang memotong permukaan air. Ikan berada di bawah permukaan, sedangkan elang berada di atasnya.
 
 <Set7Question18Graph
   title="Posisi Elang dan Ikan"
-  description={<>Visualisasi jarak pandang elang ke ikan dengan sudut depresi <InlineMath math="30^\circ" />.</>}
+  description={<>Garis pandang sepanjang <InlineMath math="18\text{ m}" /> membentuk sudut <InlineMath math="30^\circ" /> terhadap permukaan air yang mendatar.</>}
   labels={{
     eagle: "Elang",
     fish: "Ikan",
@@ -19,46 +19,15 @@ Berikut adalah ilustrasi posisi elang dan ikan berdasarkan informasi soal:
   }}
 />
 
-#### Identifikasi Variabel
+Misalkan <InlineMath math="h" /> adalah tinggi elang di atas permukaan air. Selisih ketinggian elang dan ikan adalah <InlineMath math="h+3" /> meter. Pada segitiga siku-siku, selisih ketinggian ini merupakan sisi di depan sudut <InlineMath math="30^\circ" />, sedangkan garis pandang sepanjang <InlineMath math="18\text{ m}" /> merupakan sisi miring.
 
-Diketahui:
-- Kedalaman ikan dari permukaan air (<InlineMath math="y_1" />) adalah <InlineMath math="3 \text{ m}" />.
-- Jarak pandang total (Elang ke Ikan) adalah <InlineMath math="18 \text{ m}" />.
-- Sudut antara garis pandang dan permukaan air adalah <InlineMath math="30^\circ" />.
-
-Misalkan:
-- <InlineMath math="r_1" /> = jarak pandang ikan ke titik permukaan air.
-- <InlineMath math="r_2" /> = jarak pandang elang ke titik permukaan air.
-- <InlineMath math="y_2" /> = tinggi elang dari permukaan air.
-
-#### Menghitung Jarak Pandang Ikan ke Permukaan
-
-Perhatikan segitiga siku-siku yang dibentuk oleh posisi ikan dan permukaan air. Dengan menggunakan konsep sinus:
+#### Menggunakan Perbandingan Sinus
 
 <MathContainer>
-  <BlockMath math="\sin 30^\circ = \frac{y_1}{r_1}" />
-  <BlockMath math="\frac{1}{2} = \frac{3}{r_1}" />
-  <BlockMath math="r_1 = 3 \cdot 2 = 6 \text{ m}" />
+  <BlockMath math="\sin 30^\circ = \frac{h+3}{18}" />
+  <BlockMath math="\frac{1}{2} = \frac{h+3}{18}" />
+  <BlockMath math="h+3=9" />
+  <BlockMath math="h=6" />
 </MathContainer>
 
-#### Menghitung Jarak Pandang Elang ke Permukaan
-
-Jarak pandang total adalah jumlah dari jarak pandang ikan ke permukaan dan jarak pandang elang ke permukaan:
-
-<MathContainer>
-  <BlockMath math="R_{\text{total}} = r_1 + r_2" />
-  <BlockMath math="18 = 6 + r_2" />
-  <BlockMath math="r_2 = 18 - 6 = 12 \text{ m}" />
-</MathContainer>
-
-#### Menghitung Tinggi Elang
-
-Sekarang perhatikan segitiga siku-siku yang dibentuk oleh posisi elang dan permukaan air. Kembali gunakan konsep sinus:
-
-<MathContainer>
-  <BlockMath math="\sin 30^\circ = \frac{y_2}{r_2}" />
-  <BlockMath math="\frac{1}{2} = \frac{y_2}{12}" />
-  <BlockMath math="y_2 = 12 \cdot \frac{1}{2} = 6 \text{ m}" />
-</MathContainer>
-
-Jadi, tinggi elang terhadap permukaan sungai adalah <InlineMath math="6 \text{ m}" />.
+Jadi, elang berada pada ketinggian <InlineMath math="6\text{ m}" /> di atas permukaan sungai.

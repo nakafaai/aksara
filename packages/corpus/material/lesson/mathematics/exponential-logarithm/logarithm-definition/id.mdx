@@ -1,68 +1,72 @@
 export const metadata = {
-  title: "Definisi Logaritma",
+  title: "Mendefinisikan Logaritma",
   description:
-    "Logaritma membalik proses eksponen, sehingga definisi formal, bentuk eksponensial, dan masalah pertumbuhan dapat dibaca sebagai pencarian pangkat.",
+    "Pahami logaritma sebagai kebalikan pemangkatan, ubah bentuk eksponensial dan logaritmik, lalu tentukan pangkat yang belum diketahui.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-04",
   subject: "Eksponen dan Logaritma",
-
 };
 
-## Pengertian Logaritma
+## Logaritma Menjawab Pertanyaan tentang Pangkat
 
-Logaritma adalah operasi matematika yang merupakan kebalikan (invers) dari eksponen. Jika kita memiliki persamaan eksponensial <InlineMath math="b = a^c" />, maka bentuk logaritmanya adalah <InlineMath math="^a\log b = c" />.
+Logaritma membalik proses pemangkatan. Jika <InlineMath math="a^c=b" />, logaritma menanyakan: “Bilangan pokok <InlineMath math="a" /> harus dipangkatkan berapa agar menghasilkan <InlineMath math="b" />?”
 
-### Definisi Formal Logaritma
+<BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
 
-Misalkan <InlineMath math="a" /> adalah bilangan positif dengan <InlineMath math="0 < a < 1" /> atau <InlineMath math="a > 1" />, dan <InlineMath math="b > 0" />, maka:
+Untuk logaritma bernilai real, syaratnya adalah:
 
-<BlockMath math="^a\log b = c \text{ jika dan hanya jika} b = a^c" />
+<BlockMath math="a>0\qquad a\neq1\qquad b>0" />
 
-Di mana:
+- <InlineMath math="a" /> adalah **bilangan pokok**
+- <InlineMath math="b" /> adalah **argumen**
+- <InlineMath math="c" /> adalah pangkat yang dihasilkan logaritma
 
-- <InlineMath math="a" /> adalah bilangan pokok atau basis logaritma
-- <InlineMath math="b" /> adalah numerus (bilangan yang dicari logaritmanya)
-- <InlineMath math="c" /> adalah hasil logaritma
+Syarat tersebut mengikuti perilaku fungsi eksponensial. Bilangan pokok eksponensial yang sah harus positif dan tidak sama dengan satu. Selain itu, <InlineMath math="a^c" /> selalu positif, sehingga logaritma real tidak dapat memiliki argumen nol atau negatif.
 
-Kita bisa membaca <InlineMath math="^a\log b = c" /> juga seperti: <InlineMath math="a" /> pangkat berapa supaya menjadi <InlineMath math="b" />, jawabannya adalah <InlineMath math="c" />. Karena <InlineMath math="a^c = b" />.
+## Mengubah Kedua Bentuk
 
-## Hubungan Eksponen dan Logaritma
+Setiap baris menyatakan hubungan yang sama dengan dua cara:
 
-Logaritma dan eksponen saling terkait sebagai operasi yang saling berkebalikan. Perhatikan contoh berikut:
+| Bentuk eksponensial | Bentuk logaritmik |
+| ------------------- | ----------------- |
+| <InlineMath math="2^5=32" /> | <InlineMath math="\log_2 32=5" /> |
+| <InlineMath math="3^2=9" /> | <InlineMath math="\log_3 9=2" /> |
+| <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
+| <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
 
-| Bentuk Eksponen                             | Bentuk Logaritma                               |
-| ------------------------------------------- | ---------------------------------------------- |
-| <InlineMath math="2^5 = 32" />              | <InlineMath math="^2\log 32 = 5" />            |
-| <InlineMath math="3^2 = 9" />               | <InlineMath math="^3\log 9 = 2" />             |
-| <InlineMath math="5^{-2} = \frac{1}{25}" /> | <InlineMath math="^5\log \frac{1}{25} = -2" /> |
-| <InlineMath math="7^0 = 1" />               | <InlineMath math="^7\log 1 = 0" />             |
+Saat mengubah bentuk, pertahankan bilangan pokoknya. Hasil pemangkatan menjadi argumen logaritma, sedangkan pangkat menjadi nilai logaritma.
 
-## Logaritma Umum (Basis Sepuluh)
+## Logaritma Umum dan Alami
 
-Logaritma dengan basis <InlineMath math="10" /> disebut sebagai logaritma umum. Penulisannya sering disederhanakan dengan menghilangkan angka <InlineMath math="10" /> sebagai basis:
+Logaritma dengan bilangan pokok <InlineMath math="10" /> disebut **logaritma umum**. Bilangan pokoknya sering tidak ditulis:
 
-<BlockMath math="^{10}\log a = \log a" />
+<BlockMath math="\log_{10}x=\log x" />
 
-## Aplikasi Logaritma dalam Pertumbuhan Eksponensial
+Logaritma dengan bilangan pokok <InlineMath math="e" /> disebut **logaritma alami** dan ditulis <InlineMath math="\ln x" />. Kedua notasi tersebut merupakan kasus khusus dari <InlineMath math="\log_a x" />.
 
-### Menentukan Waktu untuk Mencapai Jumlah Tertentu
+## Menentukan Pangkat yang Belum Diketahui
 
-Sebuah koloni bakteri awalnya terdiri dari <InlineMath math="2.000 \text{ bakteri}" /> dengan kecepatan pembelahan setiap <InlineMath math="1 \text{ jam}" />. Pertumbuhan bakteri ini mengikuti fungsi eksponensial:
+Anggap suatu kultur ideal dimulai dengan <InlineMath math="2{.}000" /> bakteri dan menjadi dua kali lipat setiap jam:
 
-<BlockMath math="f(x) = 2.000(2^x)" />
+<BlockMath math="P(x)=2{.}000\cdot2^x" />
 
-di mana <InlineMath math="x" /> adalah waktu dalam jam.
+Untuk menentukan kapan model kontinu mencapai <InlineMath math="100{.}000" />, samakan keluarannya dengan target:
 
-Lalu, untuk menentukan waktu yang dibutuhkan agar bakteri mencapai jumlah tertentu, misalnya <InlineMath math="100.000 \text{ bakteri}" />, kita perlu mencari nilai <InlineMath math="x" /> yang memenuhi:
+<MathContainer>
+  <BlockMath math="100{.}000=2{.}000\cdot2^x" />
+  <BlockMath math="50=2^x" />
+  <BlockMath math="x=\log_2 50" />
+</MathContainer>
 
-<BlockMath math="100.000 = 2.000(2^x)" />
+Dengan kalkulator atau perubahan bilangan pokok:
 
-Dengan membagi kedua ruas dengan <InlineMath math="2.000" />:
+<BlockMath math="x=\frac{\ln50}{\ln2}\approx5{,}643856" />
 
-<BlockMath math="50 = 2^x" />
+Kurva kontinu mencapai <InlineMath math="100{.}000" /> pada sekitar <InlineMath math="5{,}64\text{ jam}" />. Jika kultur hanya dihitung setelah pembelahan satu jam selesai, penafsirannya berubah:
 
-Untuk mencari nilai <InlineMath math="x" />, kita menggunakan konsep logaritma:
+<MathContainer>
+  <BlockMath math="P(5)=2{.}000\cdot2^5=64{.}000" />
+  <BlockMath math="P(6)=2{.}000\cdot2^6=128{.}000" />
+</MathContainer>
 
-<BlockMath math="x = \log_2 50" />
-
-Ini menunjukkan bahwa logaritma adalah alat yang sangat berguna untuk menyelesaikan persamaan eksponensial, terutama saat mencari nilai eksponen yang menghasilkan nilai tertentu.
+Jadi, interval satu jam pertama yang mencapai atau melampaui target adalah <InlineMath math="6\text{ jam}" />. Logaritma menyelesaikan persamaannya, sedangkan konteks menentukan cara menafsirkan jawaban bernilai real tersebut.

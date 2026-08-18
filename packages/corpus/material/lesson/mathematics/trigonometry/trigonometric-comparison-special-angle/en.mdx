@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Special Angles in Trigonometric Comparisons",
-  description: "Memorize exact trigonometric values for 30°, 45°, and 60° angles. Get precise sin, cos, tan ratios without calculators using unit circle visualization.",
+  description: "Derive the exact sine, cosine, and tangent values for 0°, 30°, 45°, 60°, and 90° from special triangles and the unit circle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-14",
   subject: "Trigonometry",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## What are Special Angles?
 
-Special angles in trigonometric ratios are angles whose ratio values can be determined exactly (precise values) without using a calculator. These values are very important to remember and will be frequently used in various mathematical and physics calculations.
+Special angles are angles whose trigonometric values can be written exactly without a calculator. The goal is not merely to memorize a table. The values follow from two familiar right triangles and from coordinates on the unit circle.
 
 The most common special angles are <InlineMath math="0^\circ" />, <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, <InlineMath math="60^\circ" />, and <InlineMath math="90^\circ" />.
 
@@ -26,19 +26,36 @@ The most common special angles are <InlineMath math="0^\circ" />, <InlineMath ma
   angle={45}
 />
 
-## Exact Values of Trigonometric Ratios for Special Angles
+## Where the Exact Values Come From
 
-Below is a table of exact values for trigonometric ratios at special angles:
+### The <InlineMath math="45^\circ" /> Triangle
+
+Cutting a square along a diagonal produces an isosceles right triangle. If both legs have length <InlineMath math="1" />, the Pythagorean theorem gives a hypotenuse of <InlineMath math="\sqrt{2}" />:
+
+<MathContainer>
+  <BlockMath math="1^2+1^2=(\sqrt{2})^2" />
+  <BlockMath math="\sin 45^\circ=\cos 45^\circ=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2}" />
+  <BlockMath math="\tan 45^\circ=\frac{1}{1}=1" />
+</MathContainer>
+
+### The <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> Triangle
+
+Bisecting an equilateral triangle of side length <InlineMath math="2" /> produces two right triangles. Their side lengths, opposite <InlineMath math="30^\circ" />, opposite <InlineMath math="60^\circ" />, and along the hypotenuse, are <InlineMath math="1" />, <InlineMath math="\sqrt{3}" />, and <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="\sqrt{2^2-1^2}=\sqrt{3}" />
+  <BlockMath math="\sin 30^\circ=\cos 60^\circ=\frac{1}{2}" />
+  <BlockMath math="\cos 30^\circ=\sin 60^\circ=\frac{\sqrt{3}}{2}" />
+</MathContainer>
+
+The values at <InlineMath math="0^\circ" /> and <InlineMath math="90^\circ" /> come from the unit-circle points <InlineMath math="(1,0)" /> and <InlineMath math="(0,1)" />. Because tangent is <InlineMath math="\sin \theta/\cos \theta" />, <InlineMath math="\tan 90^\circ" /> is undefined: its denominator is zero.
+
+## Exact-Value Table
+
+The derivations above produce this table:
 
 | Ratio                             | <InlineMath math="0^\circ" /> | <InlineMath math="30^\circ" />                                     | <InlineMath math="45^\circ" />                                     | <InlineMath math="60^\circ" />                | <InlineMath math="90^\circ" /> |
 | --------------------------------- | ------------------------ | ------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------- | ------------------------- |
 | <InlineMath math="\sin \theta" /> | <InlineMath math="0" />  | <InlineMath math="\frac{1}{2}" />                             | <InlineMath math="\frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="1" />   |
 | <InlineMath math="\cos \theta" /> | <InlineMath math="1" />  | <InlineMath math="\frac{\sqrt{3}}{2}" />                      | <InlineMath math="\frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0" />   |
-| <InlineMath math="\tan \theta" /> | <InlineMath math="0" />  | <InlineMath math="\frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}" /> | <InlineMath math="1" />                                       | <InlineMath math="\sqrt{3}" />           | Undefined                 |
-
-## Origin of Exact Values
-
-The exact values for special angles are derived from:
-
-1. **Angles <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" />**: Obtained from a right triangle with side ratio <InlineMath math="1 : 2 : \sqrt{3}" />.
-2. **Angle <InlineMath math="45^\circ" />**: Obtained from an isosceles right triangle with side ratio <InlineMath math="1 : 1 : \sqrt{2}" />.
+| <InlineMath math="\tan \theta" /> | <InlineMath math="0" />  | <InlineMath math="\frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}" /> | <InlineMath math="1" />                                       | <InlineMath math="\sqrt{3}" />           | <InlineMath math="\text{undefined}" /> |

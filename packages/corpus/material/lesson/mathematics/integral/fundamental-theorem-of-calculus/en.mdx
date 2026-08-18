@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Fundamental Theorem of Calculus",
-    description: "Learn how the Fundamental Theorem of Calculus connects derivatives, integrals, and antiderivatives.",
+    description: "Connect derivatives, accumulation functions, and definite integrals through both parts of the Fundamental Theorem of Calculus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integrals",
@@ -8,19 +8,19 @@ export const metadata = {
 
 ## The Bridge Between Derivatives and Integrals
 
-The Fundamental Theorem of Calculus (FTC) is the central link between two ideas in calculus: **derivatives** and **integrals**. This theorem gives us a simpler way to calculate definite integrals without going through the long process of Riemann sum limits. The theorem is divided into two important parts.
+The Fundamental Theorem of Calculus (FTC) connects **derivatives** and **integrals**. It explains why differentiating an accumulation function recovers its rate and why antiderivatives can evaluate definite integrals without recomputing a Riemann-sum limit.
 
-These two parts complement each other: the first part shows that differentiation and integration are inverse operations, while the second part provides a practical way to calculate definite integrals using antiderivatives. This theorem is built upon the foundation of the **Mean Value Theorem for Integrals**, which guarantees the existence of a specific point within the integration interval.
+Assume <InlineMath math="f" /> is continuous on the interval being considered. Part One differentiates an integral whose upper bound varies; Part Two evaluates a fixed-bound integral with any antiderivative of the integrand. Continuity is a **sufficient hypothesis** that guarantees both statements apply here.
 
 ## Differentiating an Integral Function
 
-The first part of the FTC reveals that the processes of integration and differentiation are inverse operations. Formally, the theorem states:
+Part One states that accumulating a continuous rate and then differentiating returns the original rate:
 
 <BlockMath math="F(x) = \int_{a}^{x} f(t) \, dt \implies F'(x) = f(x)" />
 
 This means that the derivative of a function defined as an integral is the function inside the integral itself.
 
-> Imagine <InlineMath math="f(t)" /> is the rate at which water flows into a bucket at time <InlineMath math="t" />. Then, <InlineMath math="F(x)" /> is the total volume of water in the bucket at time <InlineMath math="x" />. This theorem says that the rate of change of the water's volume at that instant (<InlineMath math="F'(x)" />) is exactly equal to the flow rate at that instant (<InlineMath math="f(x)" />).
+> If <InlineMath math="f(t)" /> is the inflow rate at time <InlineMath math="t" />, then <InlineMath math="F(x)" /> is the volume added between the starting time and time <InlineMath math="x" />. Its instantaneous rate of change, <InlineMath math="F'(x)" />, equals the inflow rate <InlineMath math="f(x)" />.
 
 **Example:**
 
@@ -28,19 +28,19 @@ Find the derivative of <InlineMath math="F(x) = \int_{1}^{x} \sqrt{2+t} \, dt" /
 
 **Solution:**
 
-Based on FTC Part One, we don't need to integrate the function. We simply replace the variable <InlineMath math="t" /> in the integrand with the upper limit <InlineMath math="x" />.
+By FTC Part One, the derivative is obtained by evaluating the integrand at the variable upper bound: replace <InlineMath math="t" /> with <InlineMath math="x" />.
 
 <BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
 
-It's as simple as that. The derivative is the original function, evaluated at the upper limit.
+The result is the original integrand evaluated at the upper limit.
 
 ## Evaluating Integrals with Antiderivatives
 
-The second part, also known as the **Evaluation Theorem**, gives us a practical method for calculating the exact value of a definite integral. The theorem states:
+The **evaluation form of FTC** gives a practical method for calculating a definite integral. If <InlineMath math="F'(x)=f(x)" />, then:
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
 
-Where <InlineMath math="F(x)" /> is the **antiderivative** (indefinite integral) of <InlineMath math="f(x)" />. This means that to find the area under the curve of <InlineMath math="f(x)" /> from <InlineMath math="a" /> to <InlineMath math="b" />, we just need to find its antiderivative and then calculate the difference in its value at the two limits.
+Here <InlineMath math="F(x)" /> is an **antiderivative** of <InlineMath math="f(x)" />. Subtracting its endpoint values gives the signed accumulation of <InlineMath math="f(x)" /> from <InlineMath math="a" /> to <InlineMath math="b" />. For a nonnegative integrand, that value is also the geometric area.
 
 To write this, we often use the bracket notation <InlineMath math="[F(x)]_{a}^{b}" /> which means <InlineMath math="F(b) - F(a)" />.
 

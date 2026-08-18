@@ -4,67 +4,34 @@ export const metadata = {
   date: "2026-01-01",
 };
 
-Kita dapat menyelesaikan masalah ini menggunakan sistem pertidaksamaan linear.
+Misalkan <InlineMath math="A" />, <InlineMath math="I" />, dan <InlineMath math="K" /> berturut-turut menyatakan umur Ayah, Ibu, dan anak mereka.
 
-#### Mendefinisikan Variabel
+#### Membentuk model selisih umur
 
-Misalkan:
-- <InlineMath math="A =" /> Umur Ayah
-- <InlineMath math="I =" /> Umur Ibu
-- <InlineMath math="K =" /> Umur Anak
-
-#### Menerjemahkan Informasi ke Model Matematika
-
-1. "Selisih umur Ibu dan Ayah tidak lebih dari <InlineMath math="5 \text{ tahun}" />":
-
-   <MathContainer>
-     <BlockMath math="|A - I| \le 5" />
-   </MathContainer>
-
-   Ini dapat ditulis sebagai:
-
-   <MathContainer>
-     <BlockMath math="-5 \le A - I \le 5" />
-   </MathContainer>
-
-2. "Selisih umur Ayah dan anaknya adalah <InlineMath math="35 \text{ tahun}" />":
-
-   <MathContainer>
-     <BlockMath math="A - K = 35 \Rightarrow A = K + 35" />
-   </MathContainer>
-
-3. "Selisih umur Ibu dan anak adalah x":
-
-   <MathContainer>
-     <BlockMath math="x = I - K" />
-   </MathContainer>
-
-   (Kita asumsikan <InlineMath math="I > K" /> karena Ibu pasti lebih tua dari anak).
-
-#### Menyelesaikan Pertidaksamaan
-
-Substitusikan <InlineMath math="A = K + 35" /> ke dalam pertidaksamaan:
+Selisih umur Ibu dan Ayah paling besar <InlineMath math="5\text{ tahun}" />, sehingga
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 &\le A - I \le 5 \\ -5 &\le (K + 35) - I \le 5 \\ -5 &\le 35 - (I - K) \le 5 \end{aligned}" />
+  <BlockMath math="|A-I| \le 5" />
 </MathContainer>
 
-Karena <InlineMath math="x = I - K" />, maka persamaan menjadi:
+Ayah berusia <InlineMath math="35\text{ tahun}" /> lebih tua daripada anak, sedangkan Ibu berusia <InlineMath math="x\text{ tahun}" /> lebih tua daripada anak:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 &\le 35 - x \le 5 \end{aligned}" />
+  <BlockMath math="A-K=35 \qquad\text{dan}\qquad I-K=x" />
 </MathContainer>
 
-Kurangkan semua ruas dengan <InlineMath math="35" />:
+Selisih kedua persamaan tersebut memberi <InlineMath math="A-I=35-x" />. Oleh karena itu,
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} -5 - 35 &\le -x \le 5 - 35 \\ -40 &\le -x \le -30 \end{aligned}" />
+  <BlockMath math="|35-x| \le 5" />
 </MathContainer>
 
-Kalikan semua ruas dengan <InlineMath math="-1" /> (ingat, tanda pertidaksamaan berbalik):
+#### Menyelesaikan pertidaksamaan
+
+Pertidaksamaan nilai mutlak itu berarti <InlineMath math="35-x" /> berada di antara <InlineMath math="-5" /> dan <InlineMath math="5" />:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} 40 &\ge x \ge 30 \\ 30 &\le x \le 40 \end{aligned}" />
+  <BlockMath math="\begin{aligned} -5 &\le 35-x \le 5 \\ -40 &\le -x \le -30 \\ 30 &\le x \le 40 \end{aligned}" />
 </MathContainer>
 
-Jadi, nilai <InlineMath math="x" /> yang benar adalah <InlineMath math="30 \le x \le 40" />.
+Jadi, selisih umur Ibu dan anak harus memenuhi <InlineMath math="30 \le x \le 40" />.

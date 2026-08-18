@@ -3,27 +3,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Data yang menjelaskan jumlah sampah yang dihasilkan Indonesia",
+      label: "Daftar seluruh produk plastik yang dibuat di Indonesia",
+      value: false,
+    },
+    {
+      label: "Sejarah terbentuknya kepulauan Seychelles",
       value: false,
     },
     {
       label:
-        "Pembuktian lebih lanjut produk-produk Indonesia yang ditemukan di salah satu kepulauan di Afrika",
+        "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
       value: false,
     },
     {
       label:
-        "Penjelasan lebih logis kenapa sampah Indonesia bisa sampai ke Afrika",
-      value: false,
-    },
-    {
-      label:
-        "Penjelasan lebih lanjut terkait Indonesia sumber utama polusi di Seychelles",
+        "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
       value: true,
     },
     {
-      label:
-        "Bukti pengelolaan sampah di Indonesia belum baik beserta pembanding dengan regulasi pemerintah",
+      label: "Perbandingan jumlah penduduk Indonesia dan Seychelles",
       value: false,
     },
   ],

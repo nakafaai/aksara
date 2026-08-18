@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Cramer's Rule",
-    description: "Solve linear systems using determinants with Cramer's rule. Learn complementary matrices, inverse formulas, and worked examples for AI applications.",
+    description: "Solve linear systems with Cramer's rule. Connect determinants, the adjugate matrix, inverse formulas, and a complete worked example.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-12",
     subject: "Linear Methods of AI",
@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Solving Linear Systems
 
-Cramer's rule is a method for solving systems of linear equations using determinants. This method provides a direct way to calculate solutions of linear equation systems when the coefficient matrix is invertible.
+Cramer's rule solves a linear system directly from determinants when its coefficient matrix is invertible.
 
-This method is very useful for understanding the relationship between determinants and solutions of linear systems, although it is computationally less efficient compared to Gaussian elimination for large systems.
+The rule makes the relationship between determinants and the solution transparent. For large systems, however, Gaussian elimination is far more efficient.
 
-## Complementary Matrix
+## Adjugate Matrix
 
-Before discussing Cramer's rule, we need to understand the concept of **complementary matrix** which forms the basis of this method.
+The **adjugate matrix** connects the determinant to both the inverse formula and Cramer's rule.
 
-For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the complementary matrix is defined as:
+For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the adjugate matrix is defined as:
 
 <MathContainer>
 <BlockMath math="\tilde{A} = (\tilde{a}_{ij})_{i=1,\ldots,n \atop j=1,\ldots,n} \in \mathbb{R}^{n \times n}" />
@@ -28,11 +28,11 @@ with elements:
 
 Note that the indices in <InlineMath math="A_{ji}" /> are swapped (not <InlineMath math="A_{ij}" />).
 
-The complementary matrix <InlineMath math="\tilde{A}" /> is a matrix consisting of **cofactors** of matrix <InlineMath math="A" />, but with transposed positions.
+The adjugate matrix <InlineMath math="\tilde{A}" /> contains the **cofactors** of <InlineMath math="A" /> in transposed positions.
 
-### Structure of Complementary Matrix
+### Structure of the Adjugate Matrix
 
-The complementary matrix has the following structure:
+The adjugate matrix has the following structure:
 
 <MathContainer>
 <BlockMath math="\tilde{A} = \begin{pmatrix} \det A_{11} & -\det A_{21} & \det A_{31} & \cdots \\ -\det A_{12} & \det A_{22} & -\det A_{32} & \cdots \\ \det A_{13} & -\det A_{23} & \det A_{33} & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{pmatrix}" />
@@ -40,9 +40,9 @@ The complementary matrix has the following structure:
 
 Each element is calculated by taking the determinant of the corresponding submatrix, then given a sign based on the checkerboard pattern <InlineMath math="(-1)^{i+j}" />.
 
-## Fundamental Properties of Complementary Matrix
+## Fundamental Property of the Adjugate Matrix
 
-One of the most important properties of the complementary matrix is its relationship with the original matrix:
+The adjugate satisfies the following identity with the original matrix:
 
 <MathContainer>
 <BlockMath math="A \cdot \tilde{A} = \tilde{A} \cdot A = \begin{pmatrix} \det A & 0 & \cdots & 0 \\ 0 & \det A & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \det A \end{pmatrix}" />
@@ -52,11 +52,11 @@ In other words:
 
 <BlockMath math="A \cdot \tilde{A} = (\det A) \cdot I" />
 
-This property is very important because it provides a direct relationship between the matrix, its complementary matrix, and its determinant.
+This identity links the matrix, its adjugate, and its determinant directly.
 
 ## Matrix Inverse Formula
 
-From the fundamental property above, we can derive the **matrix inverse formula** using the complementary matrix.
+From this identity, we can derive the **matrix inverse formula** using the adjugate matrix.
 
 If matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> is invertible, then:
 
@@ -68,7 +68,7 @@ However, calculating matrix inverse using this formula is much less efficient co
 
 ### Example for a Two-by-Two Matrix
 
-For matrix <InlineMath math="n = 2" />:
+For a <InlineMath math="2\times2" /> matrix:
 
 <BlockMath math="A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
 
@@ -76,7 +76,7 @@ Its determinant is:
 
 <BlockMath math="\det A = a \cdot d - b \cdot c" />
 
-Its complementary matrix is:
+Its adjugate is:
 
 <BlockMath math="\tilde{A} = \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}" />
 
@@ -109,7 +109,7 @@ To calculate the <InlineMath math="j" />-th component of solution <InlineMath ma
 
 ## Proof Using Laplace Expansion
 
-The proof of Cramer's rule uses Laplace expansion and properties of the complementary matrix.
+The proof of Cramer's rule uses Laplace expansion and the adjugate identity.
 
 For <InlineMath math="j = 1, \ldots, n" />:
 
@@ -159,6 +159,6 @@ Verification shows that <InlineMath math="A \cdot x - b = 0" />.
 
 ## Solution Properties for Integer Matrices
 
-If <InlineMath math="A \in \mathbb{Z}^{n \times n}" /> is an invertible matrix with integer elements and <InlineMath math="b \in \mathbb{Z}^n" /> is a vector with integer elements, then the elements of the inverse <InlineMath math="A^{-1}" /> and solution <InlineMath math="x" /> of the system <InlineMath math="A \cdot x = b" /> are rational numbers with denominator that (if not reduced) equals <InlineMath math="|\det A|" />.
+If <InlineMath math="A \in \mathbb{Z}^{n \times n}" /> is invertible and <InlineMath math="b \in \mathbb{Z}^n" />, then the entries of <InlineMath math="A^{-1}" /> and the solution <InlineMath math="x" /> of <InlineMath math="A \cdot x = b" /> are rational. Before reduction, they can all be written over the common denominator <InlineMath math="|\det A|" />; each reduced denominator therefore divides <InlineMath math="|\det A|" />.
 
 This occurs because determinant calculation only involves addition, subtraction, and multiplication operations, so the determinant of an integer matrix is always an integer. In the inverse formula and Cramer's rule, the only division operation is division by <InlineMath math="\det A" />.

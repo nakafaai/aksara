@@ -3,46 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "car sales.",
+      label: "the pressure on Indonesia's car market during 2020.",
       value: false,
     },
     {
-      label: "the used car market.",
-      value: false,
-    },
-    {
-      label: "a drastic decline.",
-      value: false,
-    },
-    {
-      label: "the impact of the pandemic.",
-      value: false,
-    },
-    {
-      label: "vehicle sales.",
+      label: "the fall in wholesale sales from 2019 to 2020.",
       value: true,
+    },
+    {
+      label: "the number of vehicles shipped in April.",
+      value: false,
+    },
+    {
+      label: "the sales low reached in May.",
+      value: false,
+    },
+    {
+      label: "the recovery recorded in December.",
+      value: false,
     },
   ],
   id: [
     {
-      label: "penjualan mobil.",
+      label: "tekanan terhadap pasar mobil Indonesia selama 2020.",
       value: false,
     },
     {
-      label: "pasar mobil bekas.",
-      value: false,
-    },
-    {
-      label: "penurunan drastis.",
-      value: false,
-    },
-    {
-      label: "akibat pandemi.",
-      value: false,
-    },
-    {
-      label: "penjualan kendaraan.",
+      label: "turunnya penjualan wholesales dari 2019 ke 2020.",
       value: true,
+    },
+    {
+      label: "jumlah kendaraan yang dikirim pada April.",
+      value: false,
+    },
+    {
+      label: "titik terendah penjualan pada Mei.",
+      value: false,
+    },
+    {
+      label: "pemulihan penjualan pada Desember.",
+      value: false,
     },
   ],
 };

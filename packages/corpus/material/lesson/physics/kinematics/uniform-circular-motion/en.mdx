@@ -2,7 +2,7 @@
 export const metadata = {
   title: "Uniform Circular Motion",
   description:
-    "Learn uniform circular motion through angular displacement, period, frequency, linear velocity, and centripetal acceleration.",
+    "Learn uniform circular motion through angular displacement, period, frequency, tangential speed, and centripetal acceleration.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2026-06-01",
   subject: "Kinematics",
@@ -39,11 +39,11 @@ That is the key difference between speed and velocity. Speed only describes how 
 
 In straight-line motion, position is often read as distance from zero. In circular motion, position is easier to read with an angle. The angle swept by the object is called angular displacement.
 
-If an object moves from a reference line and sweeps an angle <InlineMath math="\Delta\theta" /> in time <InlineMath math="\Delta t" />, its angular velocity is:
+If an object moves from a reference line and sweeps a signed angle <InlineMath math="\Delta\theta" /> in time <InlineMath math="\Delta t" />, its average angular velocity is:
 
-<BlockMath math="\omega=\frac{\Delta\theta}{\Delta t}" />
+<BlockMath math="\omega_{\text{avg}}=\frac{\Delta\theta}{\Delta t}" />
 
-The symbol <InlineMath math="\omega" /> is called omega. Its unit is radians per second, written <InlineMath math="\text{rad/s}" />. Radians are used because one full turn equals <InlineMath math="2\pi" /> radians.
+The symbol <InlineMath math="\omega" /> is called omega. In uniform circular motion, angular velocity is constant, so its value equals the average over every interval. Its unit is radians per second, written <InlineMath math="\text{rad/s}" />. Radians are used because one full turn equals <InlineMath math="2\pi" /> radians.
 
 ## Period and Frequency Read the Same Turn
 
@@ -53,10 +53,10 @@ They are reciprocals:
 
 <MathContainer>
   <BlockMath math="f=\frac{1}{T}" />
-  <BlockMath math="\omega=\frac{2\pi}{T}=2\pi f" />
+  <BlockMath math="\lvert\omega\rvert=\frac{2\pi}{T}=2\pi f" />
 </MathContainer>
 
-When the period is smaller, the object completes a revolution faster. As a result, its frequency and angular velocity are larger.
+When the period is smaller, the object completes a revolution faster. As a result, its frequency and angular speed <InlineMath math="\lvert\omega\rvert" /> are larger. The sign of <InlineMath math="\omega" /> separately records the rotation direction.
 
 ## Velocity and Acceleration Directions on a Circle
 
@@ -64,24 +64,24 @@ At every point on a circular path, velocity points tangent to the circle. Centri
 
 Imagine a small object on the right side of the circle moving counterclockwise. Its velocity points upward along the path, while its acceleration points left toward the center. This direction pair is what makes circular motion different from ordinary straight-line motion.
 
-## Linear Velocity Connects to Angular Velocity
+## Tangential Speed Connects to Angular Speed
 
-Linear velocity is the object's speed along the circular path. If the radius is <InlineMath math="r" />, one full circumference is <InlineMath math="2\pi r" />. Because one revolution takes time <InlineMath math="T" />, the linear velocity is:
+Tangential speed is the magnitude of the object's velocity along the circular path. If the radius is <InlineMath math="r" />, one full circumference is <InlineMath math="2\pi r" />. Because one revolution takes time <InlineMath math="T" />, the tangential speed is:
 
 <MathContainer>
   <BlockMath math="v=\frac{2\pi r}{T}" />
-  <BlockMath math="v=\omega r" />
+  <BlockMath math="v=\lvert\omega\rvert r" />
 </MathContainer>
 
-The formula <InlineMath math="v=\omega r" /> means two objects with the same angular velocity do not always have the same linear velocity. The object farther from the center travels a longer path, so its linear velocity is larger.
+The formula <InlineMath math="v=\lvert\omega\rvert r" /> means two objects with the same angular speed do not always have the same tangential speed. The object farther from the center travels a longer path, so its tangential speed is larger.
 
 ## Centripetal Acceleration Always Points Inward
 
 Even though speed is constant, the velocity direction keeps turning. Changing the direction of velocity requires acceleration. In uniform circular motion, this acceleration is called centripetal acceleration.
 
 <MathContainer>
-  <BlockMath math="a_s=\frac{v^2}{r}" />
-  <BlockMath math="a_s=\omega^2 r" />
+  <BlockMath math="a_c=\frac{v^2}{r}" />
+  <BlockMath math="a_c=\omega^2 r" />
 </MathContainer>
 
 Centripetal acceleration always points toward the center of the circle. So do not think of this acceleration as pointing along the object's motion. Velocity is tangent to the path, while centripetal acceleration points inward.
@@ -92,14 +92,14 @@ Suppose a small car moves on a track with radius <InlineMath math="4\text{ m}" /
 
 Its angular velocity is:
 
-<BlockMath math="\omega=\frac{2\pi}{T}=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />
+<BlockMath math="\lvert\omega\rvert=\frac{2\pi}{T}=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />
 
-Its linear velocity is:
+Its tangential speed is:
 
-<BlockMath math="v=\omega r=\frac{\pi}{3}(4)=\frac{4\pi}{3}\text{ m/s}\approx4.19\text{ m/s}" />
+<BlockMath math="v=\lvert\omega\rvert r=\frac{\pi}{3}(4)=\frac{4\pi}{3}\text{ m/s}\approx4.19\text{ m/s}" />
 
 Its centripetal acceleration is:
 
-<BlockMath math="a_s=\frac{v^2}{r}=\frac{(4.19)^2}{4}\approx4.39\text{ m/s}^2" />
+<BlockMath math="a_c=\frac{v^2}{r}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4.39\text{ m/s}^2" />
 
 So the car moves with constant speed of about <InlineMath math="4.19\text{ m/s}" />, but it still has acceleration of about <InlineMath math="4.39\text{ m/s}^2" /> because the direction of its velocity keeps changing.

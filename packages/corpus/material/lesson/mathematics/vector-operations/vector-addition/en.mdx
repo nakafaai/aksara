@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Vector Addition",
-  description: "Learn vector addition using triangle, parallelogram & polygon methods. Learn resultant calculations, component addition, and real-world applications.",
+  description: "Learn vector addition with triangle, parallelogram, polygon, and component methods, then interpret resultants in physical situations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vector and Operations",
@@ -214,6 +214,20 @@ To add three vectors using the parallelogram method, we can:
         labelPosition: "middle",
       },
       {
+        from: [0, 0, 0],
+        to: [4, 4, 0],
+        color: "#7c3aed",
+        label: <InlineMath math="A+B" />,
+        labelPosition: "middle",
+      },
+      {
+        from: [4, 4, 0],
+        to: [4, 5, 3],
+        color: "#65a30d",
+        label: <InlineMath math="C" />,
+        labelPosition: "middle",
+      },
+      {
         from: [3, 1, 0],
         to: [4, 5, 3],
         color: "#ea580c",
@@ -224,7 +238,7 @@ To add three vectors using the parallelogram method, we can:
         from: [0, 0, 0],
         to: [4, 5, 3],
         color: "#db2777",
-        label: <InlineMath math="A+(B+C)" />,
+        label: <InlineMath math="A+(B+C)=(A+B)+C" />,
         labelPosition: "end",
       },
     ]}
@@ -297,7 +311,7 @@ If <InlineMath math="\vec{a} = (a_x, a_y)" /> and <InlineMath math="\vec{b} = (b
 
 Example:
 
-<BlockMath math="\vec{AC} + \vec{AB} = (-3, 3) + (4, 2) = (1, 5)" />
+<BlockMath math="\vec{a} + \vec{b} = (-3, 3) + (4, 2) = (1, 5)" />
 
 Addition by components gives the same result as graphical addition.
 
@@ -305,8 +319,8 @@ Addition by components gives the same result as graphical addition.
 
 One example of vector addition application is in the movement of a boat crossing a river:
 
-1. If the river current velocity is zero (no current), the boat's movement direction remains unchanged, only following the intended direction
-2. If the river current velocity is not zero, the boat's movement changes in both direction and speed
+1. If the river current velocity is zero, the boat's velocity relative to the shore equals its velocity relative to the water
+2. If the river current velocity is nonzero, the boat's velocity relative to the shore is the vector sum of its water-relative velocity and the current velocity. Whether its direction, magnitude, or both change depends on the current's direction
 
 <ContentBlock>
   <Vector3d
@@ -339,11 +353,11 @@ One example of vector addition application is in the movement of a boat crossing
   />
 </ContentBlock>
 
-The boat's motion is the result of adding the boat's own velocity vector to the river current velocity vector. This is similar to planning vehicle routes, where we need to consider each displacement vector from one location to another to determine the shortest route.
+The boat's velocity relative to the riverbank is the vector sum of its velocity relative to the water and the current's velocity relative to the riverbank. A sequence of displacement vectors can likewise be added to obtain a journey's net displacement, but that resultant does not by itself give the route length or determine the shortest route.
 
 ## Difference Between Scalar and Vector Addition
 
-Scalar addition produces only one answer, while vector addition can produce various answers because vectors are related to direction.
+Both scalar addition and vector addition produce a unique result for fixed inputs. The difference is that scalar inputs carry only magnitude, while vector inputs also carry direction. Changing a vector's direction therefore changes the input and can change the resultant.
 
 **Example of scalar addition**:
 

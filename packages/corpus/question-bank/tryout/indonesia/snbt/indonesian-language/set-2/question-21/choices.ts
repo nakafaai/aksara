@@ -3,23 +3,20 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label:
-        "Banyak mayat yang ditemukan di sekitar maupun di dalam danau tersebut",
+      label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
       value: true,
     },
-    { label: "Sering kejadian bunuh diri di danau tersebut", value: false },
+    { label: "Danau tersebut dahulu menjadi lokasi peperangan", value: false },
     {
-      label: "Zaman dulu disekitar danau tersebut adalah pemukiman",
+      label: "Semua jasad terbukti meninggal akibat badai es",
       value: false,
     },
     {
-      label:
-        "Perperangan terjadi di sekitar danau tersebut sehingga yang meninggal dibiarkan begitu saja",
+      label: "Danau tersebut pernah menjadi permukiman kuno",
       value: false,
     },
     {
-      label:
-        "Kutukan alam terhadap orang-orang yang merusak alam sekitar danau tersebut",
+      label: "Satu kelompok peziarah menamai danau tersebut",
       value: false,
     },
   ],

@@ -2,27 +2,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Employee homes are far from the company", value: false },
-    { label: "Employees are cared for by the company", value: true },
-    { label: "Employee families are far from the company", value: false },
     {
-      label:
-        "Employees are given additional transport incentives by the company",
+      label: "The new office is farther from most employees' homes.",
       value: false,
     },
-    { label: "Employees get transport fare from the company", value: false },
+    {
+      label:
+        "Most resignation letters had been submitted before the relocation was announced.",
+      value: true,
+    },
+    {
+      label: "The relocation doubled the average commuting time.",
+      value: false,
+    },
+    {
+      label: "The rent at the new office is lower than at the former office.",
+      value: false,
+    },
+    {
+      label: "The company moved after the former building lease expired.",
+      value: false,
+    },
   ],
   id: [
-    { label: "Rumah karyawan jauh dari perusahaan", value: false },
-    { label: "Karyawan diperhatikan oleh perusahaan", value: true },
-    { label: "Keluarga karyawan jauh dari perusahaan", value: false },
     {
-      label:
-        "Karyawan diberikan tambahan insentif transportasi oleh perusahaan",
+      label: "Kantor baru lebih jauh dari rumah sebagian besar karyawan.",
       value: false,
     },
     {
-      label: "Karyawan mendapatkan ongkos transportasi dari perusahaan",
+      label:
+        "Sebagian besar surat pengunduran diri telah diajukan sebelum rencana perpindahan diumumkan.",
+      value: true,
+    },
+    {
+      label:
+        "Perpindahan itu menggandakan rata-rata waktu perjalanan ke kantor.",
+      value: false,
+    },
+    {
+      label: "Biaya sewa kantor baru lebih rendah daripada kantor lama.",
+      value: false,
+    },
+    {
+      label: "Perusahaan pindah setelah masa sewa gedung lama berakhir.",
       value: false,
     },
   ],

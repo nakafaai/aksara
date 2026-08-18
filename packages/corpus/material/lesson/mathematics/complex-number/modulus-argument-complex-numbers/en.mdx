@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Modulus and Argument of Complex Numbers",
-  description: "Calculate modulus |z| = √(x²+y²) and argument θ using quadrant rules. Learn distance and angle measurements for polar form conversions.",
+  description: "Calculate the modulus and argument of a complex number, apply quadrant rules, and convert between Cartesian and polar forms.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Complex Number",
@@ -109,39 +109,40 @@ From basic trigonometry on the same right-angled triangle as in the modulus visu
   <BlockMath math="\tan \theta = \frac{y}{x} \quad (\text{if } x \neq 0)" />
 </MathContainer>
 
-To find <InlineMath math="\theta" />, we can use the arctangent function (or <InlineMath math="\tan^{-1}" />):
+When <InlineMath math="x" /> and <InlineMath math="y" /> are both nonzero, first calculate the positive reference angle:
 
-<BlockMath math="\theta = \arctan\left(\frac{y}{x}\right)" />
+<BlockMath math="\alpha = \arctan\left(\left|\frac{y}{x}\right|\right), \qquad 0^\circ < \alpha < 90^\circ" />
 
-Calculators usually give the <InlineMath math="\arctan" /> value in the range <InlineMath math="(-90^\circ, 90^\circ)" /> or <InlineMath math="(-\pi/2, \pi/2)" />. We need to **consider the quadrant** where the point <InlineMath math="(x, y)" /> lies to determine the correct argument.
+The signs of <InlineMath math="x" /> and <InlineMath math="y" /> locate the quadrant. They determine how the reference angle becomes the Principal Argument in <InlineMath math="(-180^\circ, 180^\circ]" />:
 
 - **Quadrant <InlineMath math="I" />** (<InlineMath math="x>0, y>0" />):
 
-  <BlockMath math="\theta = \arctan(y/x)" />
+  <BlockMath math="\text{Arg}(z) = \alpha" />
 
 - **Quadrant <InlineMath math="II" />** (<InlineMath math="x<0, y>0" />):
 
-  <BlockMath math="\theta = 180^\circ + \arctan(y/x) \text{ or} \theta = \pi + \arctan(y/x)" />
+  <BlockMath math="\text{Arg}(z) = 180^\circ - \alpha" />
 
 - **Quadrant <InlineMath math="III" />** (<InlineMath math="x<0, y<0" />):
 
-  <BlockMath math="\theta = 180^\circ + \arctan(y/x) \text{ or} \theta = \pi + \arctan(y/x)" />
+  <BlockMath math="\text{Arg}(z) = -180^\circ + \alpha" />
 
 - **Quadrant <InlineMath math="IV" />** (<InlineMath math="x>0, y<0" />):
 
-  <BlockMath math="\theta = 360^\circ + \arctan(y/x) \text{ or} \theta = 2\pi + \arctan(y/x)" />
+  <BlockMath math="\text{Arg}(z) = -\alpha" />
 
-  or simply
+Points on an axis do not require a quotient <InlineMath math="y/x" />. Read their direction directly:
 
-  <BlockMath math="\theta = \arctan(y/x)" />
-
-  if a negative angle is desired
-
-Often, we are interested in the **Principal Argument** (written <InlineMath math="\text{Arg}(z)" />), which is the argument value in the interval <InlineMath math="(-180^\circ, 180^\circ]" /> or <InlineMath math="(-\pi, \pi]" />.
+<MathContainer>
+  <BlockMath math="x>0,\ y=0 \Rightarrow \text{Arg}(z)=0^\circ" />
+  <BlockMath math="x=0,\ y>0 \Rightarrow \text{Arg}(z)=90^\circ" />
+  <BlockMath math="x<0,\ y=0 \Rightarrow \text{Arg}(z)=180^\circ" />
+  <BlockMath math="x=0,\ y<0 \Rightarrow \text{Arg}(z)=-90^\circ" />
+</MathContainer>
 
 ### Calculating the Argument
 
-1.  **Find the argument of <InlineMath math="z_1 = 1 + i" />**
+1.  **Find the Principal Argument of <InlineMath math="z_1 = 1 + i" />**
 
     The point <InlineMath math="(1, 1)" /> is in Quadrant <InlineMath math="I" />.
 
@@ -150,7 +151,7 @@ Often, we are interested in the **Principal Argument** (written <InlineMath math
       <BlockMath math="\theta = \arctan(1) = 45^\circ \text{ or} \frac{\pi}{4} \text{ radians}" />
     </MathContainer>
 
-2.  **Find the argument of <InlineMath math="z_2 = -\sqrt{3} + i" />**
+2.  **Find the Principal Argument of <InlineMath math="z_2 = -\sqrt{3} + i" />**
 
     The point <InlineMath math="(-\sqrt{3}, 1)" /> is in Quadrant <InlineMath math="II" />.
 
@@ -160,45 +161,41 @@ Often, we are interested in the **Principal Argument** (written <InlineMath math
       <BlockMath math="\theta = 180^\circ - 30^\circ = 150^\circ \text{ or} \frac{5\pi}{6} \text{ radians}" />
     </MathContainer>
 
-    (Because it's in Quadrant <InlineMath math="II" />, we use <InlineMath math="180^\circ - \text{base angle}" />)
+    Quadrant <InlineMath math="II" /> lies above the negative real axis, so subtract the reference angle from <InlineMath math="180^\circ" />.
 
-3.  **Find the argument of <InlineMath math="z_3 = -1 - i\sqrt{3}" />**
+3.  **Find the Principal Argument of <InlineMath math="z_3 = -1 - i\sqrt{3}" />**
 
     The point <InlineMath math="(-1, -\sqrt{3})" /> is in Quadrant <InlineMath math="III" />.
 
     <MathContainer>
       <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-\sqrt{3}}{-1} = \sqrt{3}" />
       <BlockMath math="\text{Base angle} = \arctan(\sqrt{3}) = 60^\circ" />
-      <BlockMath math="\theta = 180^\circ + 60^\circ = 240^\circ \text{ or} \frac{4\pi}{3} \text{ radians}" />
+      <BlockMath math="\text{Arg}(z_3) = -180^\circ + 60^\circ = -120^\circ = -\frac{2\pi}{3}" />
     </MathContainer>
 
-    (Because it's in Quadrant <InlineMath math="III" />, we use <InlineMath math="180^\circ + \text{base angle}" />
-    . Principal Argument: <InlineMath math="-120^\circ" /> or <InlineMath math="-2\pi/3" />
-    ).
+    Quadrant <InlineMath math="III" /> lies below the negative real axis, so its Principal Argument is negative.
 
-4.  **Find the argument of <InlineMath math="z_4 = 3 - 3i" />**
+4.  **Find the Principal Argument of <InlineMath math="z_4 = 3 - 3i" />**
 
     The point <InlineMath math="(3, -3)" /> is in Quadrant <InlineMath math="IV" />.
 
     <MathContainer>
       <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-3}{3} = -1" />
       <BlockMath math="\text{Base angle} = \arctan(|-1|) = \arctan(1) = 45^\circ" />
-      <BlockMath math="\theta = 360^\circ - 45^\circ = 315^\circ \text{ or} \frac{7\pi}{4} \text{ radians}" />
+      <BlockMath math="\text{Arg}(z_4) = -45^\circ = -\frac{\pi}{4}" />
     </MathContainer>
 
-    (Because it's in Quadrant <InlineMath math="IV" />, we use <InlineMath math="360^\circ - \text{base angle}" />
-    . Principal Argument: <InlineMath math="-45^\circ" /> or <InlineMath math="-\pi/4" />
-    ).
+    Quadrant <InlineMath math="IV" /> lies below the positive real axis, so its Principal Argument is negative.
 
 ## Exercise
 
-Find the modulus and argument (in degrees) of the following complex numbers:
+Find the modulus and Principal Argument (in degrees) of the following complex numbers:
 
 1.  <InlineMath math="z_a = 2 + 2i" />
 2.  <InlineMath math="z_b = -4" />
 3.  <InlineMath math="z_c = -i" />
 
-### Answer Key
+### Worked Solutions
 
 1.  **For <InlineMath math="z_a = 2 + 2i" />:**
 
@@ -230,6 +227,4 @@ Find the modulus and argument (in degrees) of the following complex numbers:
 
     Argument: The point is on the negative imaginary axis.
 
-    <BlockMath math="\theta = 270^\circ" />
-
-    or <InlineMath math="-90^\circ" /> (Principal Argument).
+    <BlockMath math="\text{Arg}(z_c) = -90^\circ" />

@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Karakteristik Fungsi Kuadrat",
-  description: "Pelajari karakteristik utama fungsi kuadrat, termasuk titik puncak, sumbu simetri, dan titik potong, dengan penjelasan jelas dan contoh visual.",
+  description: "Baca grafik fungsi kuadrat melalui koefisien utama, titik puncak, sumbu simetri, titik potong, daerah hasil, dan contoh penggambaran lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Persamaan dan Fungsi Kuadrat",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Bentuk Grafik Fungsi Kuadrat
 
-Grafik fungsi kuadrat selalu berbentuk parabola. Bentuk parabola ini bisa terbuka ke atas atau ke bawah, tergantung pada nilai koefisien <InlineMath math="a" />.
+Grafik fungsi kuadrat berbentuk parabola. Koefisien utama <InlineMath math="a" /> menentukan arah buka serta seberapa sempit atau lebar grafiknya.
 
 ## Pengaruh Nilai Koefisien Utama pada Bentuk Grafik
 
@@ -20,10 +20,10 @@ Jika <InlineMath math="a > 0" />, maka grafik fungsi kuadrat akan terbuka ke ata
 
 Contoh fungsi dengan <InlineMath math="a > 0" />:
 
-- <InlineMath math="f(x) = x^2" /> (fungsi paling sederhana dengan <InlineMath math="a = 1" />
-  )
-- <InlineMath math="f(x) = 2x^2 + 1" /> (contoh dengan <InlineMath math="a = 2" />
-  )
+- <InlineMath math="f(x) = x^2" />, contoh paling sederhana dengan <InlineMath math="a = 1" />
+- <InlineMath math="f(x) = 2x^2 + 1" />, contoh dengan <InlineMath math="a = 2" />
+
+Tanda <InlineMath math="a" /> menentukan arah buka. Nilai mutlaknya menentukan lebar: dibandingkan dengan <InlineMath math="y=x^2" />, grafik lebih sempit ketika <InlineMath math="|a|>1" /> dan lebih lebar ketika <InlineMath math="0<|a|<1" />.
 
 <ContentBlock>
   <LineEquation
@@ -104,11 +104,11 @@ Titik puncak adalah titik tertinggi (jika <InlineMath math="a < 0" />) atau titi
 
 Sumbu simetri adalah garis vertikal yang membagi parabola menjadi dua bagian yang simetris. Persamaan sumbu simetri adalah <InlineMath math="x = -\frac{b}{2a}" />.
 
-### Titik Potong Vertikal
+### Titik Potong dengan Sumbu Vertikal
 
 Titik potong dengan sumbu <InlineMath math="y" /> diperoleh saat <InlineMath math="x = 0" />. Nilainya adalah <InlineMath math="f(0) = c" />.
 
-### Titik Potong Horizontal
+### Titik Potong dengan Sumbu Horizontal
 
 Titik potong dengan sumbu <InlineMath math="x" /> diperoleh saat <InlineMath math="f(x) = 0" />, yaitu saat <InlineMath math="ax^2 + bx + c = 0" />. Solusinya dapat ditemukan menggunakan rumus:
 
@@ -174,10 +174,11 @@ Mari kita gambar grafik fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
     description={
       <>
         Parabola terbuka ke atas dengan titik puncak{" "}
-        <InlineMath math="(1, -4)" /> dan titik potong dengan sumbu <InlineMath math="x" />{" "}
+        <InlineMath math="(1, -4)" /> dan titik potong dengan sumbu <InlineMath math="x" /> di{" "}
         <InlineMath math="(-1, 0)" /> dan <InlineMath math="(3, 0)" />.
       </>
     }
+    cameraPosition={[2, 1, 15]}
     data={[
       {
         points: Array.from({ length: 7 }, (_, i) => {
@@ -187,7 +188,7 @@ Mari kita gambar grafik fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
         color: "#0d9488",
         labels: [
           {
-            text: <InlineMath math="f(x)=x^2-2x-3" />,
+            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
             at: 5,
             offset: [3, 2, 0],
           },
@@ -253,6 +254,7 @@ Mari kita gambar grafik fungsi <InlineMath math="f(x) = -x^2" />:
         <InlineMath math="(0, 0)" />.
       </>
     }
+    cameraPosition={[2, 2, 12]}
     data={[
       {
         points: Array.from({ length: 7 }, (_, i) => {
@@ -277,9 +279,38 @@ Mari kita gambar grafik fungsi <InlineMath math="f(x) = -x^2" />:
   />
 </ContentBlock>
 
-## Tabel Bentuk Grafik Fungsi Kuadrat
+## Membaca Bentuk Grafik dengan Cepat
 
-| Fungsi Kuadrat              | Bentuk Grafik                                      |
-| --------------------------- | -------------------------------------------------- |
-| <InlineMath math="a > 0" /> | Parabola terbuka ke atas, memiliki titik minimum   |
-| <InlineMath math="a < 0" /> | Parabola terbuka ke bawah, memiliki titik maksimum |
+Tuliskan titik puncak sebagai <InlineMath math="(x_v,y_v)" />, dengan <InlineMath math="y_v=f(x_v)" />.
+
+| Kondisi                      | Arah buka | Nilai puncak | Daerah hasil                            |
+| ---------------------------- | --------- | ------------ | --------------------------------------- |
+| <InlineMath math="a > 0" />  | Ke atas   | Minimum      | <InlineMath math="[y_v,\infty)" />     |
+| <InlineMath math="a < 0" />  | Ke bawah  | Maksimum     | <InlineMath math="(-\infty,y_v]" />    |
+
+## Latihan
+
+Analisis grafik <InlineMath math="g(x)=-2(x+1)^2+8" />. Tentukan arah buka, titik puncak, sumbu simetri, titik potong, dan daerah hasilnya.
+
+### Pembahasan Lengkap
+
+Fungsi sudah berbentuk puncak <InlineMath math="a(x-h)^2+k" />. Di sini <InlineMath math="a=-2" />, <InlineMath math="h=-1" />, dan <InlineMath math="k=8" />.
+
+- Karena <InlineMath math="a<0" />, parabola terbuka ke bawah.
+- Titik puncaknya adalah <InlineMath math="(-1,8)" />, sehingga nilai maksimumnya <InlineMath math="8" />.
+- Sumbu simetrinya adalah <InlineMath math="x=-1" />.
+
+Untuk mencari titik potong dengan sumbu <InlineMath math="y" />, substitusikan <InlineMath math="x=0" />:
+
+<BlockMath math="g(0)=-2(0+1)^2+8=6" />
+
+Jadi, grafik memotong sumbu <InlineMath math="y" /> di <InlineMath math="(0,6)" />. Untuk mencari titik potong dengan sumbu <InlineMath math="x" />, selesaikan <InlineMath math="g(x)=0" />:
+
+<MathContainer>
+  <BlockMath math="-2(x+1)^2+8=0" />
+  <BlockMath math="(x+1)^2=4" />
+  <BlockMath math="x+1=\pm2" />
+  <BlockMath math="x=-3\quad\text{atau}\quad x=1" />
+</MathContainer>
+
+Titik potongnya adalah <InlineMath math="(-3,0)" /> dan <InlineMath math="(1,0)" />. Karena parabola terbuka ke bawah dari nilai maksimum <InlineMath math="8" />, daerah hasilnya adalah <InlineMath math="(-\infty,8]" />.

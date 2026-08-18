@@ -3,55 +3,49 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "The increase in motorcycle sales at factory Y forms a second-level arithmetic sequence",
+      label: "Factory Y's sales have constant second differences",
+      value: false,
+    },
+    {
+      label: "Factory Z's sales form a geometric sequence",
+      value: false,
+    },
+    {
+      label: "Factory Z's sales fell by $$50%$$ in every interval",
       value: false,
     },
     {
       label:
-        "The increase in motorcycle sales at Factory Z forms a geometric sequence pattern",
+        "Factory Y's total sales exceed twice the combined totals of factories X and Z",
       value: false,
     },
     {
       label:
-        "One of the highest percentage decreases in motorcycle sales occurred at factory Z in $$2015\\text{-}2016$$",
-      value: false,
-    },
-    {
-      label:
-        "Motorcycle sales at factory Y are more than double the total sales of factory X and Z",
-      value: false,
-    },
-    {
-      label:
-        "The highest percentage decrease in motorcycle sales at factory X occurred in $$2014\\text{-}2015$$",
+        "Factory X's largest percentage decrease occurred in $$2014\\text{-}2015$$",
       value: true,
     },
   ],
   id: [
     {
-      label:
-        "Kenaikan penjualan sepeda motor di pabrik Y membentuk suatu barisan aritmatika tingkat dua",
+      label: "Penjualan Pabrik Y memiliki beda tingkat dua yang konstan",
+      value: false,
+    },
+    {
+      label: "Penjualan Pabrik Z membentuk barisan geometri",
+      value: false,
+    },
+    {
+      label: "Penjualan Pabrik Z turun $$50%$$ pada setiap selang tahun",
       value: false,
     },
     {
       label:
-        "Kenaikan penjualan sepeda motor di Pabrik Z membentuk pola barisan geometri",
+        "Total penjualan Pabrik Y lebih dari dua kali gabungan total Pabrik X dan Z",
       value: false,
     },
     {
       label:
-        "Persentase penurunan penjualan sepeda motor tertinggi salah satunya di pabrik Z pada tahun $$2015\\text{-}2016$$",
-      value: false,
-    },
-    {
-      label:
-        "Penjualan sepeda motor di pabrik Y lebih dari dua kali lipat jumlah penjualan sepeda motor di pabrik X dan Z",
-      value: false,
-    },
-    {
-      label:
-        "Persentase penurunan penjualan sepeda motor di pabrik X tertinggi pada tahun $$2014\\text{-}2015$$",
+        "Persentase penurunan terbesar Pabrik X terjadi pada $$2014\\text{-}2015$$",
       value: true,
     },
   ],

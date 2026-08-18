@@ -3,55 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "Pineapples are good to consume because they can prevent infectious diseases",
+      label: "Parcel M is sent to refrigerated storage.",
       value: false,
     },
     {
       label:
-        "The Vitamin C content in pineapples can trigger ulcer symptoms like nausea and bloating",
+        "Parcel M is sent to manual inspection because it has a blue label.",
       value: true,
     },
     {
-      label:
-        "The bromelain enzyme content in pineapples is not good for someone suffering from ulcers",
+      label: "A parcel with a red label is sent to manual inspection.",
       value: false,
     },
     {
-      label:
-        "Vitamin C in pineapples can prevent someone from catching seasonal diseases like the flu",
+      label: "Parcel M is not sent to manual inspection.",
       value: false,
     },
     {
-      label:
-        "Although it can trigger ulcer symptoms, consuming pineapples does not disturb digestion",
+      label: "No parcel is sent to both routes.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Buah nanas baik untuk dikonsumsi karena dapat mencegah infeksi penyakit",
+      label: "Paket M dikirim ke penyimpanan berpendingin.",
       value: false,
     },
     {
       label:
-        "Kandungan vitamin C pada nanas dapat memicu penyakit maag seperti perut mual dan kembung",
+        "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
       value: true,
     },
     {
-      label:
-        "Kandungan enzim bromelain pada nanas tidak baik bagi seseorang yang menderita maag",
+      label: "Paket berlabel merah dikirim ke pemeriksaan manual.",
       value: false,
     },
     {
-      label:
-        "Vitamin C pada nanas dapat mencegah seseorang tertular penyakit musiman seperti flu",
+      label: "Paket M tidak dikirim ke pemeriksaan manual.",
       value: false,
     },
     {
-      label:
-        "Walaupun dapat memicu gejala maag, mengonsumsi nanas tidak mengganggu pencernaan",
+      label: "Tidak ada paket yang dikirim ke kedua jalur.",
       value: false,
     },
   ],

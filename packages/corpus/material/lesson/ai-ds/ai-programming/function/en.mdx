@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Basic Function Concepts
 
-Functions in Python are blocks of code that can be used repeatedly to perform specific tasks. Imagine a function like an automatic coffee machine where you provide ingredients (input), then the machine processes and produces coffee (output). Every time you want coffee, you don't need to create a new machine, just use the same machine.
+A function names a reusable operation. Its parameters describe the inputs it accepts, its body performs the work, and a `return` statement can provide a result to the caller.
 
 In programming, functions help us avoid writing the same code repeatedly. Functions have names, can accept parameters (input data), and can return values.
 
@@ -42,7 +42,7 @@ Function components consist of:
 
 ## How Function Calls Work
 
-When you call a function, Python will execute the code inside that function. Let's look at a simple example of how functions work.
+Calling a function evaluates the callable expression, binds the supplied arguments to parameters, and executes the function body in a new local frame.
 
 <CodeBlock
   data={[
@@ -66,10 +66,10 @@ print(greet("Bob"))  # Output: Hello, Bob!`
 
 Process that occurs during function call:
 
-1. Python searches for the function definition with the called name
-2. Given arguments are sent to function parameters
-3. Code inside the function is executed
-4. If there's a `return`, the value is returned to the calling location
+1. Python resolves the name or expression to a callable object
+2. Argument binding matches supplied values to the function signature
+3. Python executes the body in a new local scope
+4. `return` ends the call with a value; reaching the end returns `None`
 
 ## Parameters and Arguments
 
@@ -109,7 +109,7 @@ Important rules in parameter usage:
 
 ### Variable Number of Parameters
 
-Python allows functions to accept unlimited number of arguments using `*args` and `**kwargs`.
+Python allows a signature to collect a variable number of arguments with `*args` and `**kwargs`. Practical limits still come from available resources and the work performed by the function.
 
 <CodeBlock
   data={[
@@ -290,7 +290,7 @@ Docstring is a string literal that appears as the first statement in a function 
     Calculate factorial of a positive integer.
 
     Parameters:
-        n (int): Positive integer
+        n (int): Nonnegative integer
 
     Returns:
         int: Factorial value of n
@@ -333,7 +333,7 @@ Good docstring writing conventions:
 
 ## Nested Functions and Closure
 
-Python allows function definitions inside other functions. Inner functions can access variables from outer functions, creating a concept called closure.
+Python allows a function definition inside another function. When the returned inner function retains a free variable from an enclosing scope, the function and that retained environment form a closure.
 
 <CodeBlock
   data={[
@@ -386,54 +386,39 @@ print(calc['multiply'](6, 7))    # Output: 42`
 
 ## Error Handling in Functions
 
-Good functions should be able to handle error situations gracefully. Python provides exception handling mechanisms to handle possible errors.
+A function should state which inputs it accepts and fail explicitly when that contract is violated. Catch an exception only where code can recover, add useful context, or present the failure to a user.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "error_handling.py",
-      code: `def safe_divide(numerator, denominator):
-    """
-    Perform division with error handling.
-
-    Returns:
-        tuple: (result, error_message)
-    """
-    try:
-        result = numerator / denominator
-        return result, None
-    except ZeroDivisionError:
-        return None, "Error: Cannot divide by zero"
-    except TypeError:
-        return None, "Error: Input must be numbers"
+      code: `def divide(numerator, denominator):
+    """Divide two real numbers with an explicit input contract."""
+    if not isinstance(numerator, (int, float)):
+        raise TypeError("Numerator must be a real number")
+    if not isinstance(denominator, (int, float)):
+        raise TypeError("Denominator must be a real number")
+    if denominator == 0:
+        raise ValueError("Denominator must not be zero")
+    return numerator / denominator
 
 def convert_to_int(value):
-    """Convert value to integer with validation"""
+    """Convert a supported value or preserve Python's conversion error."""
+    return int(value)
+
+# Successful calls stay direct
+print(f"Division result: {divide(10, 2)}")
+# Output: Division result: 5.0
+print(convert_to_int("123"))
+# Output: 123
+
+# Catch at the presentation boundary where recovery is possible
+for value in ("abc", [1, 2]):
     try:
-        return int(value)
-    except ValueError:
-        print(f"Warning: '{value}' cannot be converted to integer")
-        return None
-    except TypeError:
-        print("Error: Invalid input for conversion")
-        return None
-
-# Usage example
-result, error = safe_divide(10, 2)
-if error:
-    print(error)
-else:
-    print(f"Division result: {result}")  # Output: Division result: 5.0
-
-result, error = safe_divide(10, 0)
-if error:
-    print(error)  # Output: Error: Cannot divide by zero
-
-# Test conversion
-number1 = convert_to_int("123")    # Success, return 123
-number2 = convert_to_int("abc")    # Output: Warning: 'abc' cannot be converted to integer
-number3 = convert_to_int([1, 2])   # Output: Error: Invalid input for conversion`
+        print(convert_to_int(value))
+    except (TypeError, ValueError) as error:
+        print(f"Could not convert {value!r}: {error}")`
     }
   ]}
 />

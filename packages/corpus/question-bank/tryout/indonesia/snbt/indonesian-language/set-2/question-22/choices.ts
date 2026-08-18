@@ -3,26 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Para korban ditemukan dalam kondisi yang tidak biasa",
+      label: "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
       value: false,
     },
     {
-      label:
-        "Para korban ditemukan dengan perlengkapan alat tempur yang lengkap",
-      value: false,
-    },
-    {
-      label:
-        "Para korban yang ditemukan di danau Roopkund berdasarkan analisa terpaut jauh dan asal usul berbeda",
+      label: "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
       value: true,
     },
     {
-      label:
-        "Para korban memiliki bentuk kerangka yang unik dibanding dengan manusia saat ini",
+      label: "Seluruh individu merupakan anggota satu pasukan",
       value: false,
     },
     {
-      label: "Para korban diprediksi bukan berasal dari zaman sekarang ini",
+      label: "Penelitian hanya menganalisis satu kerangka manusia",
+      value: false,
+    },
+    {
+      label: "DNA membuktikan bahwa wabah menewaskan seluruh individu",
       value: false,
     },
   ],

@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "however.",
-      value: false,
-    },
-    {
-      label: "so.",
+      label: "because.",
       value: true,
     },
     {
-      label: "even.",
+      label: "although.",
       value: false,
     },
     {
-      label: "then.",
+      label: "so that.",
       value: false,
     },
     {
-      label: "therefore.",
+      label: "unless.",
+      value: false,
+    },
+    {
+      label: "after.",
       value: false,
     },
   ],
   id: [
     {
-      label: "namun.",
-      value: false,
-    },
-    {
-      label: "sehingga.",
+      label: "karena.",
       value: true,
     },
     {
-      label: "bahkan.",
+      label: "meskipun.",
       value: false,
     },
     {
-      label: "kemudian.",
+      label: "agar.",
       value: false,
     },
     {
-      label: "oleh karena itu.",
+      label: "kecuali.",
+      value: false,
+    },
+    {
+      label: "setelah.",
       value: false,
     },
   ],

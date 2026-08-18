@@ -3,45 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Most areas in Jakarta will be flooded",
+      label: "Every district in the city must enter flood status.",
       value: false,
     },
     {
-      label: "No areas in Jakarta will be flooded",
+      label: "District X cannot enter flood status.",
       value: false,
     },
     {
-      label: "Residents will be forced to evacuate to a safe place",
+      label: "Registered residents of District X receive an evacuation order.",
       value: true,
     },
     {
-      label: "Some residents will not evacuate",
+      label: "Every person in the city must leave immediately.",
       value: false,
     },
     {
-      label: "Cannot be concluded",
+      label:
+        "It cannot be determined whether registered residents of District X receive an evacuation order.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Sebagian besar wilayah di Jakarta akan terendam banjir",
+      label: "Setiap distrik di kota pasti berstatus banjir.",
       value: false,
     },
     {
-      label: "Tidak ada wilayah di Jakarta yang akan terendam banjir",
+      label: "Distrik X tidak mungkin berstatus banjir.",
       value: false,
     },
     {
-      label: "Penduduk terpaksa akan mengungsi ke tempat aman",
+      label: "Penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
       value: true,
     },
     {
-      label: "Sebagian penduduk tidak akan mengungsi",
+      label: "Semua warga kota harus segera meninggalkan kota.",
       value: false,
     },
     {
-      label: "Tidak dapat disimpulkan",
+      label:
+        "Tidak dapat ditentukan apakah penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
       value: false,
     },
   ],

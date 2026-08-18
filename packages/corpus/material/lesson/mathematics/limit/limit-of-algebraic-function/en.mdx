@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Understanding Limits of Algebraic Functions
 
-Imagine you are driving a car towards a destination. The closer you get to your destination, the clearer you can see its details. In mathematics, **limits of algebraic functions** work in a similar way. Limits show the value approached by an algebraic function when its input variable approaches a certain value.
+For an **algebraic limit**, the form of the expression tells us which operation is justified. A polynomial can be evaluated by direct substitution. A rational or radical expression may instead reveal a removable factor, a domain boundary, or a vertical asymptote that must be analyzed first.
 
-Algebraic functions are functions formed from combinations of algebraic operations such as addition, subtraction, multiplication, division, and exponentiation with rational exponents. Examples include polynomial functions like <InlineMath math="f(x) = x^2 + 3x - 2" /> and rational functions like <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />.
+Algebraic functions are built from operations such as addition, subtraction, multiplication, division, and powers with rational exponents. Examples include the polynomial <InlineMath math="f(x) = x^2 + 3x - 2" /> and the rational function <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. We will use substitution as a diagnostic step, then factor, rationalize, or check one-sided behavior when substitution does not settle the limit.
 
 ## Fundamental Properties of Algebraic Limits
 
@@ -30,11 +30,11 @@ Since polynomial functions are continuous at all points, we can substitute direc
 
 ### Limits of Rational Functions
 
-Rational functions have the form <InlineMath math="\frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials. Their limit calculation depends on the denominator value:
+Rational functions have the form <InlineMath math="\frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials. Direct substitution tells us which method to try next:
 
 - **If the denominator is not zero:** Use direct substitution like polynomial functions.
 
-- **If the denominator is zero:** We obtain an indeterminate form that requires algebraic manipulation.
+- **If the denominator is zero:** Check the numerator, signs, and one-sided behavior. Only <InlineMath math="\frac{0}{0}" /> is an indeterminate form that may be resolved by algebraic simplification. A nonzero numerator over zero is not indeterminate.
 
 ## Handling Indeterminate Forms
 
@@ -110,7 +110,14 @@ Therefore:
 
 Substitute <InlineMath math="x = 3" />: <InlineMath math="\frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
 
-> If the numerator is non-zero and the denominator is zero (like <InlineMath math="\frac{a}{0}" /> with <InlineMath math="a \neq 0" />), the limit approaches infinity. If both numerator and denominator are zero (the form <InlineMath math="\frac{0}{0}" />), use factoring or rationalization techniques.
+> If direct substitution gives <InlineMath math="\frac{a}{0}" /> with <InlineMath math="a \neq 0" />, that result alone is not enough. Check the sign and both one-sided limits. For example:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
+<BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
+</MathContainer>
+
+Because the one-sided limits differ, <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> does not exist as a two-sided limit. By contrast, if substitution gives <InlineMath math="\frac{0}{0}" />, first factor, rationalize, or otherwise simplify the expression.
 
 ## Continuity and Limits
 
@@ -120,7 +127,7 @@ A function <InlineMath math="f" /> is said to be **continuous** at <InlineMath m
 2. <InlineMath math="\lim_{x \to c} f(x)" /> exists
 3. <InlineMath math="\lim_{x \to c} f(x) = f(c)" />
 
-Polynomial functions are continuous at all points, while rational functions are continuous at all points except where their denominator is zero.
+Polynomial functions are continuous at every real number. A rational function is continuous at each point in its domain, namely wherever its denominator is nonzero.
 
 ## Exercises
 
@@ -134,7 +141,7 @@ Polynomial functions are continuous at all points, while rational functions are 
 
 5. Calculate <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 

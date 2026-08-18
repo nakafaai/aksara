@@ -2,18 +2,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Bacteria in the mouth multiply.", value: false },
-    { label: "Brush teeth regularly every day.", value: true },
-    { label: "Bad breath will get worse.", value: false },
-    { label: "Food debris remains in the mouth.", value: false },
-    { label: "Do not brush teeth regularly every day.", value: false },
+    { label: "The sensor developed a fault.", value: false },
+    { label: "The scheduled daily cleaning was not skipped.", value: true },
+    { label: "The warning light turned on.", value: false },
+    { label: "Residue remained on the sensor.", value: false },
+    { label: "The scheduled daily cleaning was skipped.", value: false },
   ],
   id: [
-    { label: "Bakteri pada mulut berkembang biak.", value: false },
-    { label: "Rutin menggosok gigi setiap hari.", value: true },
-    { label: "Bau mulut akan semakin parah.", value: false },
-    { label: "Serpihan sisa makanan tertinggal di mulut.", value: false },
-    { label: "Tidak rutin menggosok gigi setiap hari.", value: false },
+    { label: "Sensor mengalami gangguan.", value: false },
+    {
+      label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
+      value: true,
+    },
+    { label: "Lampu peringatan menyala.", value: false },
+    { label: "Residu tertinggal pada sensor.", value: false },
+    {
+      label: "Pembersihan harian yang dijadwalkan dilewatkan.",
+      value: false,
+    },
   ],
 };
 

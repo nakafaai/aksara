@@ -12,7 +12,7 @@ Python menyediakan beberapa statement khusus untuk mengendalikan alur eksekusi d
 
 ### Break, Continue, Pass, dan Else
 
-Statement `break` digunakan untuk menghentikan perulangan sepenuhnya ketika kondisi tertentu terpenuhi. Bayangkan seperti tombol darurat yang langsung menghentikan mesin.
+Statement `break` langsung keluar dari perulangan terdekat ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah perulangan tersebut.
 
 <CodeBlock
   data={[
@@ -60,7 +60,7 @@ Statement `pass` tidak melakukan apa-apa tetapi berguna sebagai placeholder untu
     {
       language: "python",
       filename: "pass_example.py",
-      code: `# Menggunakan pass untuk melewati angka tertentu
+      code: `# pass adalah no-op; iterasi tidak dilewati
 for i in range(1, 11):
     if i == 6:
         pass  # Tidak melakukan apa-apa untuk angka 6
@@ -74,7 +74,7 @@ for i in range(1, 11):
   ]}
 />
 
-Blok `else` pada perulangan akan dieksekusi ketika perulangan berakhir secara normal, bukan karena `break`. Ini berguna untuk memberikan aksi khusus ketika perulangan selesai tanpa interupsi.
+Blok `else` berjalan jika perulangan selesai tanpa mengeksekusi `break`. Pola ini berguna untuk pencarian: tangani hasil yang ditemukan sebelum `break`, lalu tangani "tidak ditemukan" di dalam `else`.
 
 <CodeBlock
   data={[
@@ -95,7 +95,7 @@ else:
 
 ## Fungsi Enumerate
 
-Fungsi `enumerate()` sangat berguna ketika kamu membutuhkan indeks dan nilai dari setiap elemen dalam iterasi. Fungsi ini mengambil objek iterable dan mengembalikan tuple berisi pasangan (indeks, nilai).
+Gunakan `enumerate()` ketika iterasi membutuhkan pencacah sekaligus nilai setiap elemen. Fungsi ini mengembalikan iterator yang menghasilkan tuple `(indeks, nilai)`.
 
 <CodeBlock
   data={[
@@ -137,11 +137,11 @@ for i, fruit in enumerate(fruits, 5):
   ]}
 />
 
-Penting untuk diingat bahwa setiap tuple (item, count) dalam perulangan for akan di-unpack secara otomatis menjadi variabel `i` dan `fruit`.
+Pada `for i, fruit in enumerate(fruits)`, tuple unpacking mengikat indeks ke `i` dan nilai yang bersesuaian ke `fruit` pada setiap iterasi.
 
 ## While Loop
 
-Perulangan `while` mengeksekusi blok kode selama kondisi yang diberikan bernilai `True`. Berbeda dengan `for` loop yang iterasi jumlahnya sudah diketahui, `while` loop digunakan ketika jumlah iterasi tidak diketahui di awal.
+Perulangan `while` mengeksekusi blok selama kondisinya truthy. Perulangan `for` mengonsumsi sebuah iterable, sedangkan `while` mengulang berdasarkan kondisi yang biasanya diperbarui oleh isi blok.
 
 <CodeBlock
   data={[
@@ -158,7 +158,7 @@ print(z)
   ]}
 />
 
-Perulangan `while` cocok digunakan ketika kamu perlu mengiterasi sampai kondisi tertentu terpenuhi dan tidak tahu berapa kali iterasi diperlukan.
+Perulangan `while` cocok untuk pengulangan berbasis kondisi, tetapi isi bloknya harus pada akhirnya mengubah kondisi atau keluar secara eksplisit. Jika tidak, loop dapat berjalan selamanya.
 
 <Mermaid
   title="Siklus Perulangan while"
@@ -200,7 +200,7 @@ for pair in zip(p, q):
   ]}
 />
 
-Fungsi `zip()` mengembalikan iterator yang berisi tuple. Setiap tuple berisi elemen ke-i dari setiap iterable input. Iterator berhenti ketika iterable terpendek habis.
+Fungsi `zip()` mengembalikan iterator berisi tuple. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default iterator berhenti saat iterable terpendek habis, sehingga perbedaan panjang dapat tersembunyi; gunakan `zip(..., strict=True)` jika panjang yang berbeda harus dianggap error.
 
 ### Mengonversi Hasil Zip
 
@@ -227,7 +227,7 @@ print(tuple(zipped_new))  # Mengonversi ke tuple
 
 ### Unzipping dengan Operator Asterisk
 
-Kamu dapat membalik proses zip dengan menggunakan operator unpacking `*`.
+Operator unpacking `*` dapat memisahkan kembali kumpulan tuple hasil zip yang tidak kosong berdasarkan posisinya.
 
 <CodeBlock
   data={[
@@ -283,7 +283,7 @@ Range mengikuti formula aritmatika dimana setiap elemen ke-i adalah `start + i *
 
 ### Efisiensi Range vs List
 
-Range lebih efisien dibandingkan membuat list berisi semua angka karena range menghasilkan angka sesuai kebutuhan (on-demand), bukan menyimpan semuanya di memori.
+`range` menyimpan nilai start, stop, dan step secara ringkas tanpa membuat seluruh bilangan menjadi list. Nilai dihitung saat diminta, sehingga penggunaan memorinya tidak bertambah mengikuti banyaknya bilangan yang direpresentasikan.
 
 <CodeBlock
   data={[
@@ -294,8 +294,8 @@ Range lebih efisien dibandingkan membuat list berisi semua angka karena range me
 n = 10000
 k = 10
 
-# Tidak efisien - membuat list lengkap di memori
-index = [0, 1, 2, ..., n]  # Boros memori
+# Membuat seluruh bilangan di memori
+index = list(range(n))
 for i in index:
     if i < k:
         print(i)
@@ -314,7 +314,7 @@ for i in range(n):  # Tidak menyimpan semua angka di memori
 
 ## Pernyataan Kondisional
 
-Pernyataan kondisional memungkinkan program membuat keputusan berdasarkan kondisi tertentu. Python menggunakan indentasi (spasi atau tab) untuk menentukan blok kode yang termasuk dalam kondisi.
+Pernyataan kondisional membuat program memilih cabang berdasarkan kondisi yang dievaluasi. Indentasi adalah bagian dari sintaks Python; gunakan empat spasi per tingkat dan jangan mencampur tab dengan spasi dalam satu blok.
 
 ### Sintaks If, Elif, dan Else
 
@@ -339,7 +339,7 @@ else:
   ]}
 />
 
-Kondisi tidak perlu dibungkus dalam tanda kurung, dan titik dua (:) setelah kondisi adalah wajib. Blok statement harus diindentasi dengan jumlah spasi yang sama.
+Kondisi tidak memerlukan tanda kurung, sedangkan titik dua setelah setiap kepala cabang wajib ada. Setiap statement dalam satu blok harus memakai tingkat indentasi yang konsisten.
 
 ### Nested If Statement
 
@@ -396,4 +396,4 @@ for char in text:
   ]}
 />
 
-Objek iterable adalah urutan item yang tersusun, dimana setiap item dapat diambil satu per satu. Operator `in` digunakan untuk tes keanggotaan, titik dua menandai awal blok statement, dan blok statement harus diindentasi dengan spasi.
+Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, dapat diindeks, dapat digunakan ulang, atau berhingga. Perulangan `for` meminta nilai berikutnya dari iterator. Operator `in` melakukan uji keanggotaan sesuai tipe, sedangkan titik dua dan indentasi yang konsisten membentuk blok statement.

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Dilatasi Vertikal",
-  description: "Pelajari dilatasi vertikal fungsi dengan contoh jelas. Pelajari cara meregangkan atau menekan grafik vertikal menggunakan faktor skala dan terapkan transformasi.",
+  description: "Gunakan grafik dan contoh untuk memahami bagaimana faktor skala meregangkan, memampatkan, atau mencerminkan fungsi secara vertikal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Transformasi Fungsi",
@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Konsep Dasar Dilatasi Vertikal
 
-Dilatasi vertikal adalah transformasi geometri yang mengubah ukuran grafik fungsi secara vertikal, seperti meregangkan atau menekan karet gelang ke atas dan ke bawah. Bayangkan menarik foto dengan kedua tangan, satu di atas dan satu di bawah, lalu meregangkan atau menekannya secara vertikal tanpa mengubah lebar foto tersebut.
+Dilatasi vertikal mengubah tinggi grafik fungsi tanpa mengubah koordinat horizontalnya. Bayangkan sebuah foto ditarik dari tepi atas dan bawah atau ditekan ke arah sumbu <InlineMath math="x" />.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = k \cdot f(x)" /> dimana <InlineMath math="k" /> adalah faktor skala yang menentukan seberapa besar perubahan ukuran vertikal.
+Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = k \cdot f(x)" /> di mana <InlineMath math="k \ne 0" /> adalah faktor skala yang menentukan seberapa besar perubahan ukuran vertikal.
 
 ### Aturan Dilatasi Vertikal
 
-Untuk setiap fungsi <InlineMath math="f(x)" />, dilatasi vertikal didefinisikan sebagai:
+Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor skala tak nol <InlineMath math="k" />, dilatasi vertikal didefinisikan sebagai:
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
@@ -26,9 +26,11 @@ Dimana <InlineMath math="k" /> adalah faktor skala yang mempengaruhi transformas
 - Jika <InlineMath math="k = 1" />, grafik tidak berubah
 - Jika <InlineMath math="k < 0" />, grafik mengalami refleksi sekaligus dilatasi
 
+Nilai <InlineMath math="k = 0" /> tidak termasuk karena semua nilai keluaran akan runtuh menjadi <InlineMath math="0" />, bukan mengalami dilatasi.
+
 ## Visualisasi Dilatasi Vertikal
 
-Mari kita lihat bagaimana dilatasi vertikal bekerja pada fungsi kuadrat <InlineMath math="f(x) = x^2" /> dengan berbagai faktor skala.
+Fungsi kuadrat <InlineMath math="f(x) = x^2" /> menunjukkan bagaimana beberapa faktor skala mengubah jarak vertikal dari sumbu <InlineMath math="x" />.
 
 <LineEquation
   title={<>Dilatasi Vertikal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
@@ -60,25 +62,25 @@ Mari kita lihat bagaimana dilatasi vertikal bekerja pada fungsi kuadrat <InlineM
         return { x, y: 0.5 * x * x, z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=0.5x^2" />, offset: [3.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0{,}5x^2" />, offset: [3.5, 0.5, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Dari visualisasi di atas, kita dapat mengamati:
+Grafik tersebut menunjukkan:
 - Fungsi asli <InlineMath math="f(x) = x^2" /> sebagai referensi
 - Fungsi <InlineMath math="g(x) = 2x^2" /> diregangkan vertikal dengan faktor <InlineMath math="2" />
-- Fungsi <InlineMath math="h(x) = 0.5x^2" /> ditekan vertikal dengan faktor <InlineMath math="0.5" />
+- Fungsi <InlineMath math="h(x) = 0{,}5x^2" /> ditekan vertikal dengan faktor <InlineMath math="0{,}5" />
 - Semua grafik memiliki titik puncak yang sama di <InlineMath math="(0, 0)" />
 
 ## Dilatasi Vertikal pada Fungsi Linear
 
-Sekarang mari kita terapkan konsep yang sama pada fungsi linear <InlineMath math="f(x) = x + 1" />.
+Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 1" />.
 
 <LineEquation
   title={<>Dilatasi Vertikal Fungsi Linear <InlineMath math="f(x) = x + 1" /></>}
-  description="Garis hasil dilatasi memiliki kemiringan yang berubah sesuai faktor skala."
+  description={<>Faktor skala mengubah gradien dan titik potong sumbu <InlineMath math="y" />.</>}
   showZAxis={false}
   cameraPosition={[10, 6, 10]}
   data={[
@@ -106,16 +108,16 @@ Sekarang mari kita terapkan konsep yang sama pada fungsi linear <InlineMath math
         return { x, y: 0.5 * (x + 1), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0.5(x+1)" />, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [2, 0.5, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Perhatikan bahwa:
+Ketiga garis menunjukkan:
 - Fungsi asli <InlineMath math="f(x) = x + 1" /> memiliki kemiringan <InlineMath math="1" />
 - Fungsi <InlineMath math="g(x) = 3(x + 1)" /> memiliki kemiringan <InlineMath math="3" /> (diregangkan)
-- Fungsi <InlineMath math="h(x) = 0.5(x + 1)" /> memiliki kemiringan <InlineMath math="0.5" /> (ditekan)
+- Fungsi <InlineMath math="h(x) = 0{,}5(x + 1)" /> memiliki kemiringan <InlineMath math="0{,}5" /> (ditekan)
 - Semua garis masih memotong sumbu <InlineMath math="y" />, tetapi di titik yang berbeda
 
 ## Sifat Penting Dilatasi Vertikal
@@ -133,14 +135,14 @@ Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah d
 
 ### Titik Potong Sumbu
 
-- **Titik potong sumbu <InlineMath math="x" />**: Tidak berubah (kecuali jika <InlineMath math="k = 0" />)
+- **Titik potong sumbu <InlineMath math="x" />**: Tidak berubah
 - **Titik potong sumbu <InlineMath math="y" />**: Berubah sesuai faktor skala
 
 ## Contoh Penerapan
 
 ### Fungsi Eksponensial
 
-Mari kita lihat dilatasi vertikal pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />.
+Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, faktor skala mengalikan setiap nilai fungsi.
 
 <LineEquation
   title={<>Dilatasi Vertikal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
@@ -172,11 +174,11 @@ Mari kita lihat dilatasi vertikal pada fungsi eksponensial <InlineMath math="f(x
 Pada fungsi eksponensial:
 - Asimtot horizontal tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
 - Titik potong dengan sumbu <InlineMath math="y" /> berubah dari <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(0, 2)" />
-- Laju pertumbuhan fungsi meningkat sesuai faktor skala
+- Setiap nilai fungsi menjadi dua kali lipat, sedangkan basis eksponensial dan laju pertumbuhan relatif tetap sama
 
 ## Dilatasi Vertikal dengan Faktor Negatif
 
-Mari kita lihat apa yang terjadi ketika faktor skala bernilai negatif.
+Faktor skala negatif menggabungkan penskalaan vertikal dengan pencerminan terhadap sumbu <InlineMath math="x" />.
 
 <LineEquation
   title={<>Dilatasi Vertikal dengan Faktor Negatif <InlineMath math="f(x) = x^2" /></>}
@@ -259,7 +261,7 @@ Ketika faktor skala negatif:
 2. Persamaan fungsi hasil dilatasi:
 
    - Dilatasi vertikal: <InlineMath math="g'(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-   - Range setelah dilatasi: <InlineMath math="[0, \infty)" /> menjadi <InlineMath math="[0, \infty)" /> tetapi dengan nilai maksimum yang lebih kecil
+   - Range setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" />; pada setiap input, nilai fungsi positif menjadi setengahnya
 
    Visualisasi:
 
@@ -289,7 +291,7 @@ Ketika faktor skala negatif:
            return { x, y: 0.5 * Math.sqrt(x), z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=0.5\sqrt{x}" />, offset: [2, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="g'(x)=0{,}5\sqrt{x}" />, offset: [2, 0.5, 0] }],
          showPoints: false,
        },
      ]}
@@ -300,7 +302,7 @@ Ketika faktor skala negatif:
 
    <LineEquation
      title={<>Fungsi <InlineMath math="h(x) = |x - 1| + 2" /> dan Hasil Dilatasinya</>}
-     description={<>Fungsi nilai mutlak mengalami refleksi dan dilatasi dengan faktor <InlineMath math="-1" />.</>}
+     description={<>Faktor <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="x" /> tanpa mengubah skala vertikalnya.</>}
      showZAxis={false}
      cameraPosition={[10, 6, 10]}
      data={[

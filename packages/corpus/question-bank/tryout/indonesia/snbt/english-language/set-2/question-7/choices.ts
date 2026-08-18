@@ -2,18 +2,16 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "the diseases of migratory and sedentary birds", value: false },
+    { label: "The anatomy of songbird wings", value: false },
+    { label: "Methods for treating immune disease in birds", value: false },
     {
-      label: "the complexity of the immune system of migratory birds",
+      label: "The seasonal routes of every European bird species",
       value: false,
     },
-    { label: "the origin of migratory and sedentary birds", value: false },
+    { label: "Human medical advice based on bird migration", value: false },
     {
-      label: "how the immune system of the birds responds to diseases",
-      value: false,
-    },
-    {
-      label: "how the immune system of birds change as they migrate",
+      label:
+        "The relationship between movement across pathogen regions and the evolution of MHC-I diversity",
       value: true,
     },
   ],

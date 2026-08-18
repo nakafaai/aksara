@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Characteristics of Sarcophagi Located in North Sumatra.",
+      label: "The Boat Form of the Tomok Sarcophagus.",
       value: false,
     },
     {
-      label: "The Existence of Sarcophagi in the North Sumatra Region.",
+      label: "Megalithic Remains around Lake Toba.",
       value: false,
     },
     {
-      label: "The Function of Sarcophagi for People with Social Strata.",
+      label: "Protective Figures on Toba Batak Graves.",
       value: false,
     },
     {
-      label: "Sarcophagus as a Tomb of the Megalithic Tradition.",
+      label: "The Tomok Sarcophagus in the Toba Batak Megalithic Tradition.",
       value: true,
     },
     {
-      label: "A Person's Social Level Seen from the Sarcophagus.",
+      label: "Burial Customs on Samosir Island.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Ciri Sarkofagus yang Berada di Sumatra Utara.",
+      label: "Bentuk Kapal pada Sarkofagus Tomok.",
       value: false,
     },
     {
-      label: "Keberadaan Sarkofagus di Wilayah Sumatra Utara.",
+      label: "Tinggalan Megalitik di Sekitar Danau Toba.",
       value: false,
     },
     {
-      label: "Fungsi Sarkofagus bagi Orang yang Berstrata Sosial.",
+      label: "Figur Pelindung pada Kubur Batak Toba.",
       value: false,
     },
     {
-      label: "Sarkofagus sebagai Makam dari Tradisi Megalitik.",
+      label: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
       value: true,
     },
     {
-      label: "Tingkat Sosial Seseorang Terlihat dari Sarkofagus.",
+      label: "Adat Penguburan di Pulau Samosir.",
       value: false,
     },
   ],

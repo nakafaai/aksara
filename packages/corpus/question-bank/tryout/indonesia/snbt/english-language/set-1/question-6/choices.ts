@@ -4,27 +4,27 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "the interactive media as a learning tool should be used to replace the existing classroom practice.",
+        "technology should replace established classroom practice whenever a digital option is available.",
       value: false,
     },
     {
       label:
-        "the successful integration of new technology in education requires helpful and good teacher.",
+        "successful integration depends on educators making informed judgments about when and how to use a tool.",
       value: true,
     },
     {
       label:
-        "the benefits of technology and media in childhood classrooms can be achieved by decreasing the use of those tools in teaching and learning.",
+        "reducing all technology use automatically improves every child's learning experience.",
       value: false,
     },
     {
       label:
-        "manipulating the colorful shapes to explore color and shapes using technology is the best way to develop interactive learning.",
+        "drawing on a touch screen always produces stronger learning than drawing on paper.",
       value: false,
     },
     {
       label:
-        "the use of paints, markers, crayons and other graphic art materials should be replaced by the integration of technology and media.",
+        "traditional art materials should be removed once digital tools become available.",
       value: false,
     },
   ],

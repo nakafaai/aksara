@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Combining Functions
 
-Imagine you have two function machines, let's call them machine <InlineMath math="f" /> and machine <InlineMath math="g" />. Each machine has its own rules, which are its function (<InlineMath math="f(x)" /> and <InlineMath math="g(x)" />) and the raw materials it can process (its domain, <InlineMath math="D_f" /> and <InlineMath math="D_g" />). We can combine these two machines to create a new machine using addition or subtraction operations.
+Two functions can be combined point by point. For the same input <InlineMath math="x" />, evaluate <InlineMath math="f(x)" /> and <InlineMath math="g(x)" />, then add or subtract those two outputs. The input must belong to both domains, <InlineMath math="D_f" /> and <InlineMath math="D_g" />.
 
 <LineEquation
   title="Function Addition Visualization"
@@ -50,11 +50,11 @@ Imagine you have two function machines, let's call them machine <InlineMath math
 
 ## Addition of Two Functions
 
-If we want to add function <InlineMath math="f" /> and function <InlineMath math="g" />, we simply add the results from each function for the same value of <InlineMath math="x" />. The result is a new function we call <InlineMath math="(f+g)" />.
+The sum function adds the two outputs at the same input:
 
 <BlockMath math="(f+g)(x) = f(x) + g(x)" />
 
-**Important note:** The combined machine <InlineMath math="(f+g)" /> can only process raw materials (values of <InlineMath math="x" />) that can be processed by _both_ original machines, <InlineMath math="f" /> and <InlineMath math="g" />. So, the domain (domain of origin) of the function <InlineMath math="(f+g)" /> is the intersection of the domain of <InlineMath math="f" /> and the domain of <InlineMath math="g" />.
+The sum <InlineMath math="(f+g)" /> is defined only where both original functions are defined. Its domain is therefore the intersection of their domains:
 
 <BlockMath math="D_{f+g} = D_f \cap D_g" />
 
@@ -67,8 +67,8 @@ Suppose we have two functions:
 1.  <InlineMath math="f(x) = x^2" />, with domain <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> (all
     real numbers).
 2.  <InlineMath math="g(x) = \sqrt{x+2}" />, with domain <InlineMath math="D_g = \{x | x \ge -2, x \in \mathbb{R}\}" /> (all
-    real numbers greater than or equal to <InlineMath math="-2" />, because the square root cannot be
-    negative).
+    real numbers greater than or equal to <InlineMath math="-2" />, because the radicand
+    <InlineMath math="x+2" /> cannot be negative).
 
 **Step** <InlineMath math="1" />: Determine the resulting function from addition
 

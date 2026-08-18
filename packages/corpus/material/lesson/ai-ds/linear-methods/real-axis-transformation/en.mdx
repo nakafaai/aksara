@@ -1,30 +1,28 @@
 export const metadata = {
-  title: "Real Axis Transformation",
-  description: "Learn quadratic forms, symmetric matrices, coordinate transformations from eigenvalues, and conic sections such as ellipses and hyperbolas.",
+  title: "Principal Axis Transformation",
+  description: "Diagonalize quadratic forms with an orthogonal change of coordinates, complete the square, and classify conic sections from their eigenvalues.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-16",
   subject: "Linear Methods of AI",
 };
 
-
-
 ## Quadratic Forms with Symmetric Matrices
 
-When you encounter a general quadratic equation, the best way to understand it is by looking at its structure in matrix form. Imagine you have a symmetric matrix <InlineMath math="A" /> with elements:
+The cross term in a quadratic equation can hide its geometry. Writing the equation as a quadratic form exposes the symmetric matrix that controls its principal directions. In two dimensions, let
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
 </MathContainer>
 
-This matrix has eigenvalues <InlineMath math="\lambda_1, \lambda_2 \in \mathbb{R}" /> and corresponding orthonormal eigenvectors <InlineMath math="v_1, v_2 \in \mathbb{R}^2" />. Something interesting happens when we use coordinate transformation through the matrix <InlineMath math="S = (v_1 \quad v_2) \in \mathbb{R}^{2 \times 2}" />.
+Because <InlineMath math="A" /> is real and symmetric, it has real eigenvalues <InlineMath math="\lambda_1,\lambda_2" /> and an orthonormal eigenbasis <InlineMath math="v_1,v_2" />. Put those eigenvectors into <InlineMath math="S=(v_1\quad v_2)" />. Then <InlineMath math="S^TS=I" /> and <InlineMath math="S^TAS=\operatorname{diag}(\lambda_1,\lambda_2)" />.
 
-For coordinate transformation, we use <InlineMath math="\begin{pmatrix} \delta \\ \epsilon \end{pmatrix} = S^T \begin{pmatrix} d \\ e \end{pmatrix}" />. In the new coordinates <InlineMath math="\xi = S^T x" />, the equation becomes:
+For the equation <InlineMath math="x^TAx+p^Tx+f=0" />, use the rotated coordinates <InlineMath math="\xi=S^Tx" /> and the rotated linear coefficient <InlineMath math="(\delta,\epsilon)^T=S^Tp" />. The cross term disappears:
 
 <MathContainer>
 <BlockMath math="\lambda_1 \xi_1^2 + \lambda_2 \xi_2^2 + \delta \xi_1 + \epsilon \xi_2 + f = 0" />
 </MathContainer>
 
-## Completing the Square Process
+## Completing the Square
 
 For both variables with <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, the completing the square process is performed separately:
 
@@ -32,23 +30,30 @@ For both variables with <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, the c
 <BlockMath math="\begin{aligned} 0 &= \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} \\ &\quad + \lambda_2 \left( \xi_2^2 + 2 \frac{\epsilon}{2\lambda_2} \xi_2 + \frac{\epsilon^2}{4\lambda_2^2} \right) - \frac{\epsilon^2}{4\lambda_2} + f \end{aligned}" />
 </MathContainer>
 
-The result of this process gives a simpler form:
+Collecting the completed squares gives
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &\quad + \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
-By determining the center point <InlineMath math="(m_1, m_2) = \left( -\frac{\delta}{2\lambda_1}, -\frac{\epsilon}{2\lambda_2} \right)" /> and the constant <InlineMath math="\gamma = \frac{\delta^2}{4\lambda_1} + \frac{\epsilon^2}{4\lambda_2} - f" />, we obtain:
+Define the center in rotated coordinates and the translated constant by
+
+<MathContainer>
+<BlockMath math="(m_1,m_2)=\left(-\frac{\delta}{2\lambda_1},-\frac{\epsilon}{2\lambda_2}\right)" />
+<BlockMath math="\gamma=\frac{\delta^2}{4\lambda_1}+\frac{\epsilon^2}{4\lambda_2}-f" />
+</MathContainer>
+
+Then
 
 <MathContainer>
 <BlockMath math="\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma = 0" />
 </MathContainer>
 
-For <InlineMath math="\gamma > 0" />, various curve forms can emerge depending on the signs of the eigenvalues.
+The signs of <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" />, and <InlineMath math="\gamma" /> determine whether the real solution set is an ellipse, a hyperbola, a parabola, a degenerate conic, or empty. The next two cases assume <InlineMath math="\gamma>0" />.
 
 ## Curve Classification
 
-### Both Eigenvalues Positive
+### Two Positive Eigenvalues
 
 If <InlineMath math="\lambda_1 > 0" /> and <InlineMath math="\lambda_2 > 0" />, then the conic section formed is an **ellipse**:
 
@@ -185,8 +190,8 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
         const gamma = 3;
         const r1 = Math.sqrt(gamma / lambda1);
         const r2 = Math.sqrt(gamma / (-lambda2));
-        const slope = r2 / r1; // slope asimptot
-        const x = (i - 0.5) * 6; // dari -3 ke 3
+        const slope = r2 / r1; // positive asymptote slope
+        const x = (i - 0.5) * 6; // from -3 to 3
         const y = slope * x;
         return { x, y, z: 0 };
       }),
@@ -208,8 +213,8 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
         const gamma = 3;
         const r1 = Math.sqrt(gamma / lambda1);
         const r2 = Math.sqrt(gamma / (-lambda2));
-        const slope = -r2 / r1; // slope asimptot negatif
-        const x = (i - 0.5) * 6; // dari -3 ke 3
+        const slope = -r2 / r1; // negative asymptote slope
+        const x = (i - 0.5) * 6; // from -3 to 3
         const y = slope * x;
         return { x, y, z: 0 };
       }),
@@ -261,9 +266,9 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
   showZAxis={false}
 />
 
-### One Eigenvalue Zero
+### One Zero Eigenvalue
 
-A special condition occurs when <InlineMath math="\lambda_1 \neq 0" /> and <InlineMath math="\lambda_2 = 0" />. Completing the square gives:
+A special case occurs when <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" />, and <InlineMath math="\epsilon\neq0" />. Completing the square gives
 
 <MathContainer>
 <BlockMath math="0 = \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} + \epsilon \xi_2 + f" />
@@ -271,7 +276,7 @@ A special condition occurs when <InlineMath math="\lambda_1 \neq 0" /> and <Inli
 <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-The conic section formed is a **parabola**:
+Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -333,19 +338,30 @@ The conic section formed is a **parabola**:
   showZAxis={false}
 />
 
-## Two-Dimensional Example
+## Worked Two-Dimensional Example
 
-Conic sections in <InlineMath math="\mathbb{R}^2" /> satisfy the general quadratic equation:
-
-<MathContainer>
-<BlockMath math="ax_1^2 + bx_1x_2 + cx_2^2 + dx_1 + ex_2 + f = 0" />
-</MathContainer>
-
-Which can be written in matrix form as:
+Consider
 
 <MathContainer>
-<BlockMath math="\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}^T \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} d \\ e \end{pmatrix}^T \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + f = 0" />
+<BlockMath math="5x_1^2+4x_1x_2+2x_2^2-6x_1-9=0" />
+<BlockMath math="A=\begin{pmatrix}5&2\\2&2\end{pmatrix},\qquad p=\begin{pmatrix}-6\\0\end{pmatrix}" />
 </MathContainer>
+
+The eigenpairs are
+
+<MathContainer>
+<BlockMath math="\lambda_1=6,\quad v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix},\qquad \lambda_2=1,\quad v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
+</MathContainer>
+
+The center in the original coordinates is <InlineMath math="h=(1,-1)^T" /> because <InlineMath math="2Ah+p=0" />. In rotated coordinates, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. With <InlineMath math="\eta=\xi-m" />, the equation becomes
+
+<MathContainer>
+<BlockMath math="6\eta_1^2+\eta_2^2=12" />
+<BlockMath math="\frac{\eta_1^2}{2}+\frac{\eta_2^2}{12}=1" />
+</MathContainer>
+
+It is an ellipse centered at <InlineMath math="(1,-1)" />. Its semiaxes have lengths <InlineMath math="\sqrt2" /> along <InlineMath math="v_1" /> and <InlineMath math="2\sqrt3" /> along <InlineMath math="v_2" />. Substituting the center into the original equation gives <InlineMath math="-12" />, which confirms the translated right-hand side.
 
 ## Quadratic Surfaces and Transformation
 
@@ -355,7 +371,7 @@ For a symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vect
 <BlockMath math="x^T A x + b^T x + c = 0" />
 </MathContainer>
 
-Which can be written in explicit form:
+Equivalently,
 
 <MathContainer>
 <BlockMath math="Q = \left\{ x \in \mathbb{R}^n : x^T A x + b^T x + c = 0 \right\}" />

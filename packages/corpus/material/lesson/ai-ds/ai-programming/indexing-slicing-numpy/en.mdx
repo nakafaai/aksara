@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Basic Indexing and Slicing Concepts
 
-Indexing and slicing are your tools for extracting specific data from NumPy arrays. Think of indexing as pointing to exact locations, while slicing grabs entire sections in one go. Unlike Python lists that create copies, NumPy slicing creates views that share memory with the original array.
+Indexing selects values at specific positions, while slicing selects a range along one or more axes. A Python list slice creates a new list. Basic NumPy slicing usually creates a view that shares the original array's data, whereas integer-array and boolean advanced indexing create copies.
 
-This memory-sharing behavior makes NumPy efficient but requires careful attention to avoid unintended modifications. The [NumPy indexing documentation](https://numpy.org/doc/stable/user/basics.indexing.html) provides extensive examples of advanced indexing patterns when you need more detailed data selection.
+Views avoid copying data, but a write through a view also changes the corresponding values in the original array. The [NumPy indexing documentation](https://numpy.org/doc/stable/user/basics.indexing.html) covers the exact rules for basic and advanced selections.
 
 ## One-Dimensional Array Operations
 
-One-dimensional arrays use the same syntax as Python lists. Slicing returns a view of the data, not a copy, so changes to the view will affect the original array.
+One-dimensional arrays use familiar Python indexing syntax. A basic slice such as `a[1:4]` returns a view, so changing that view changes the same elements in `a`.
 
 <CodeBlock
   data={[
@@ -42,7 +42,7 @@ print("After a[:3] = 0:", a)  # Output: After a[:3] = 0: [0. 0. 0. 3. 4. 5. 6. 7
   ]}
 />
 
-An important concept in NumPy slicing is the difference between view and copy. Views share memory with the original array, while copies are independent duplicates.
+The next example makes the ownership difference concrete: a view shares storage, while `.copy()` allocates independent data.
 
 <CodeBlock
   data={[
@@ -77,7 +77,7 @@ print("Copy:", copy_array)  # Output: Copy: [777   3   4]`
 
 ## Multidimensional Array Operations
 
-Multidimensional arrays use integer tuples for indexing. Each dimension is separated by commas within square brackets. Assignment and slicing can be combined for complex operations.
+In a multidimensional selection, comma-separated entries address successive axes. An integer removes the selected axis from the result, while a slice keeps it.
 
 <CodeBlock
   data={[
@@ -111,7 +111,7 @@ print("a[:,2]:", a[:,2])  # Output: a[:,2]: [ 3.  6.  9. 12.]`
   ]}
 />
 
-Advanced slicing allows extraction of subarrays with complex patterns:
+Combining slices across axes selects rectangular or strided subarrays without writing a loop:
 
 <CodeBlock
   data={[
@@ -165,7 +165,7 @@ print(a[:, ::2])
 
 ## Advanced Indexing
 
-Advanced indexing allows the use of integer or boolean arrays to access elements with complex patterns. Indexing with integer arrays creates new copies rather than views. Copies have the same shape as the index array.
+Advanced indexing uses integer or boolean arrays to select arbitrary elements and always returns a copy. For a one-dimensional source, an integer index array gives the result its shape. With multidimensional sources, NumPy broadcasts the index arrays and combines that shape with any dimensions left by basic slices.
 
 <CodeBlock
   data={[
@@ -199,7 +199,7 @@ print(a[i])
   ]}
 />
 
-Boolean masks are useful techniques for filtering data based on specific conditions. Indexing with boolean arrays takes elements where True values are found.
+A boolean mask selects the positions whose mask value is `True`. When the mask has the same shape as the source array, the selected values are returned as a one-dimensional copy.
 
 <CodeBlock
   data={[
@@ -230,7 +230,7 @@ print("a[complex_mask]:", a[complex_mask])  # Output: a[complex_mask]: [2. 3.]`
   ]}
 />
 
-Advanced indexing can be combined with regular slicing for very flexible operations:
+Advanced indexes and basic slices can appear in the same selection. The advanced part still makes the result a copy:
 
 <CodeBlock
   data={[
@@ -269,7 +269,7 @@ print(a[row_mask, 2:5])
 
 ## Advanced Techniques
 
-NumPy provides various slicing techniques that enable efficient and flexible data manipulation. Step parameters allow you to take elements at specific intervals, such as taking every second or third element.
+The third slice field is the step. It selects regular intervals, supports negative values for reverse traversal, and works independently on each axis.
 
 <CodeBlock
   data={[
@@ -305,7 +305,7 @@ print(b[::2, ::2])
   ]}
 />
 
-Ellipsis (`...`) is shorthand for full slice on unspecified dimensions. Very useful for high-dimensional arrays.
+An ellipsis (`...`) fills in as many full slices as needed for the unspecified dimensions. It keeps high-dimensional selections readable.
 
 <CodeBlock
   data={[
@@ -344,7 +344,7 @@ print(a[1, ..., ::2])
 
 ## Boolean Indexing
 
-Boolean indexing uses boolean arrays to filter elements based on specific conditions. True indexes take elements in the target array, while False ignores them.
+Boolean indexing evaluates a mask at each relevant position. `True` selects the value and `False` leaves it out.
 
 <CodeBlock
   data={[
@@ -375,7 +375,7 @@ print("a[even_and_greater_than_1]:", a[even_and_greater_than_1])  # Output: a[ev
   ]}
 />
 
-Boolean indexing on two-dimensional arrays can be applied for filtering elements based on conditions:
+A same-shaped boolean mask selects matching elements from a two-dimensional array and returns them in a one-dimensional result:
 
 <CodeBlock
   data={[
@@ -418,7 +418,7 @@ print(a)
 
 ## Fancy Indexing
 
-Fancy indexing uses integer arrays to access elements with specific order or patterns. This technique is very useful for data sampling and reorganization.
+Fancy indexing is a common name for advanced integer indexing. It can reorder positions, repeat them, or arrange the result according to an index array.
 
 <CodeBlock
   data={[
@@ -457,7 +457,7 @@ print(a[indices_2d])
   ]}
 />
 
-Fancy indexing on two-dimensional arrays enables selection of rows and columns with complex patterns:
+On a two-dimensional array, integer indexes can select whole rows or pair row and column coordinates element by element:
 
 <CodeBlock
   data={[
@@ -502,9 +502,9 @@ print(a[[0, 2], 1:4])
 
 ## Practical Applications
 
-Indexing and slicing have many practical applications in data analysis and machine learning.
+The same selection rules support filtering, sampling, and rearranging data without hand-written loops.
 
-Filtering techniques are very useful for data preprocessing in machine learning and statistical analysis:
+This example demonstrates masks and assignment. In a real analysis, the temperature thresholds and replacement rule must come from the measurement context rather than from a generic cleaning recipe:
 
 <CodeBlock
   data={[
@@ -536,7 +536,7 @@ print("Data after cleaning:", temperatures_cleaned)  # Output: Data after cleani
   ]}
 />
 
-Sampling and data reorganization are important techniques for machine learning and large dataset analysis:
+For reproducible sampling, create a local random generator with an explicit seed instead of changing NumPy's legacy global random state:
 
 <CodeBlock
   data={[
@@ -549,11 +549,11 @@ Sampling and data reorganization are important techniques for machine learning a
 data = np.arange(100).reshape(10, 10)
 print("Dataset shape:", data.shape)  # Output: Dataset shape: (10, 10)
 
-# Random row sampling
-np.random.seed(42)
-sample_indices = np.random.choice(10, size=5, replace=False)
+# Random row sampling with a local generator
+rng = np.random.default_rng(42)
+sample_indices = rng.choice(10, size=5, replace=False)
 sample_indices.sort()
-print("Sample indices:", sample_indices)  # Output: Sample indices: [0 1 5 7 8]
+print("Sample indices:", sample_indices)  # Output: Sample indices: [0 3 4 5 7]
 
 sampled_data = data[sample_indices, :]
 print("Sampled data shape:", sampled_data.shape)  # Output: Sampled data shape: (5, 10)
@@ -561,10 +561,10 @@ print("First 3 columns of sampled data:")
 print(sampled_data[:, :3])
 # Output:
 # [[ 0  1  2]
-#  [10 11 12]
+#  [30 31 32]
+#  [40 41 42]
 #  [50 51 52]
-#  [70 71 72]
-#  [80 81 82]]
+#  [70 71 72]]
 
 # Column reorganization
 column_order = [9, 0, 5, 2, 7, 1, 8, 3, 6, 4]

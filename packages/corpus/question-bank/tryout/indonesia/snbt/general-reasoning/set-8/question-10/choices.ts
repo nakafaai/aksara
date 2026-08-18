@@ -3,45 +3,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Floods in the Arabian region are getting wider",
+      label: "The overflow gate definitely opens automatically.",
       value: false,
     },
     {
-      label: "The soil in the Arabian region will remain dry",
+      label: "The western beds definitely remain dry.",
       value: false,
     },
     {
-      label: "There will be no major floods in the Arabian region",
+      label: "No water can reach the western beds.",
       value: false,
     },
     {
-      label: "Green vegetation will not appear in the Arabian region",
+      label: "The western beds cannot become green.",
       value: false,
     },
     {
-      label: "Cannot be concluded",
+      label: "It cannot be concluded whether the western beds receive water.",
       value: true,
     },
   ],
   id: [
     {
-      label: "Banjir di wilayah Arab semakin luas",
+      label: "Pintu pelimpah pasti terbuka secara otomatis.",
       value: false,
     },
     {
-      label: "Tanah di wilayah Arab akan tetap kering",
+      label: "Petak tanaman bagian barat pasti tetap kering.",
       value: false,
     },
     {
-      label: "Tidak akan terjadi banjir besar di wilayah Arab",
+      label: "Tidak ada air yang dapat mencapai petak tanaman bagian barat.",
       value: false,
     },
     {
-      label: "Tidak akan muncul vegetasi hijau di wilayah Arab",
+      label: "Petak tanaman bagian barat tidak mungkin menghijau.",
       value: false,
     },
     {
-      label: "Tidak dapat disimpulkan",
+      label:
+        "Tidak dapat disimpulkan apakah petak tanaman bagian barat menerima air.",
       value: true,
     },
   ],

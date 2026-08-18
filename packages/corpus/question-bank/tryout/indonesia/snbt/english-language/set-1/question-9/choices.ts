@@ -2,11 +2,17 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "how to educate people about stress.", value: false },
-    { label: "kinds of sports to reduce stress.", value: false },
-    { label: "eating healthy foods to avoid stress.", value: false },
-    { label: "how peaceful mind helps relieve stress.", value: true },
-    { label: "different types and levels of stress.", value: false },
+    { label: "a ranking of sports by the calories they burn.", value: false },
+    {
+      label: "replacing balanced meals with dietary supplements.",
+      value: false,
+    },
+    { label: "ways to eliminate every source of stress.", value: false },
+    {
+      label: "when and how to seek additional support for stress.",
+      value: true,
+    },
+    { label: "the history of international nutrition guidance.", value: false },
   ],
 };
 

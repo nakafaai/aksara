@@ -4,28 +4,10 @@ export const metadata = {
   date: "2026-01-22",
 };
 
-Mari kita analisis informasi yang diberikan menggunakan logika matematika.
-
-Pada soal disebutkan bahwa kegiatan yang akan dilaksanakan adalah **membersihkan selokan** (<InlineMath math="p" />) **atau** **mengumpulkan barang bekas** (<InlineMath math="q" />). Ini dapat ditulis sebagai disjungsi:
+Misalkan <InlineMath math="p" /> berarti “membersihkan selokan” dan <InlineMath math="q" /> berarti “mengumpulkan barang daur ulang.” Pengumuman dan keadaan saat hujan memberikan dua premis:
 
 <MathContainer>
-  <BlockMath math="p \lor q" />
+  <BlockMath math="\begin{aligned} p \lor q \\ \neg p \\ \hline \therefore q \end{aligned}" />
 </MathContainer>
 
-Kemudian, diketahui fakta bahwa **membersihkan selokan tidak dapat dilaksanakan** (<InlineMath math="\sim p" />) karena turun hujan.
-
-<MathContainer>
-  <BlockMath math="\sim p" />
-</MathContainer>
-
-Dalam logika, kondisi ini disebut **Silogisme Disjungtif**. Karena salah satu pilihan (membersihkan selokan) tidak terjadi, maka pilihan lainnya (mengumpulkan barang bekas) **harus terjadi** agar rencana kegiatan tetap terlaksana.
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} & p \lor q \\ & \sim p \\ \hline \therefore \ & q \end{aligned}" />
-</MathContainer>
-
-Maka, simpulannya adalah <InlineMath math="q" />: **Pada hari Minggu dilaksanakan kerja bakti mengumpulkan barang bekas.**
-
-> Pilihan yang menyatakan "kerja bakti tidak jadi dilaksanakan" salah karena opsi "mengumpulkan barang bekas" masih bisa (dan harus) dilakukan sesuai rencana awal.
-
-Jadi, jawaban yang tepat adalah **Pada hari Minggu dilaksanakan kerja bakti mengumpulkan barang bekas**.
+Ini adalah silogisme disjungtif: satu dari dua kegiatan harus dipilih, sedangkan membersihkan selokan tidak mungkin dilakukan. Jadi, yang tersisa adalah <InlineMath math="q" />, yaitu **mengumpulkan barang daur ulang pada hari Minggu**.

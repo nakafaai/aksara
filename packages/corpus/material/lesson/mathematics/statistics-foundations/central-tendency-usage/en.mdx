@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Applications of Measures of Central Tendency",
-  description: "Learn when to use mean, median, or mode in statistics and how outliers affect each measure in real data.",
+  description: "Learn when to use mean, median, or mode and how unusually large or small values affect each measure.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -10,37 +10,37 @@ export const metadata = {
 
 We know the three main measures of central tendency: Mean (average), Median (middle value), and Mode (most frequent value). All three tell us about the "center" or tendency of the data, but they have different properties and are suitable for different situations.
 
-Choosing the wrong measure can give a misleading picture of the data. So, let's understand when it's best to use each measure.
+Choosing the wrong measure can give a misleading picture of the data. The data type, distribution, and purpose of the summary determine which measure is most useful.
 
 ## Key Characteristics
 
 ### Mean (Average)
 
 - **How to Calculate:** Sum all data values, then divide by the number of data points.
-- **Property:** Uses _all_ data values in the calculation. Because of this, the Mean is **very sensitive to extreme values (outliers)**. A single very large or small value can significantly change the Mean.
-- **Sensitivity Example:** If your test scores are <InlineMath math="7, 8, 9, 8, 10" /> (Mean is <InlineMath math="8.4" />), and then one additional score of <InlineMath math="1" /> (an outlier) is added, the new Mean becomes <InlineMath math="(7+8+9+8+10+1)/6 = 7.17" />. The Mean drops drastically due to the outlier.
+- **Property:** Uses _all_ data values in the calculation. Because of this, the Mean is **very sensitive to extreme values**. A single unusually large or small value can significantly change the Mean.
+- **Sensitivity Example:** If your test scores are <InlineMath math="7, 8, 9, 8, 10" /> (Mean is <InlineMath math="8.4" />), and then one unusually low score of <InlineMath math="1" /> is added, the new Mean becomes <InlineMath math="(7+8+9+8+10+1)/6 = 7.17" />. The Mean drops substantially because every value contributes to it.
 
 ### Median (Middle Value)
 
 - **How to Calculate:** Sort the data, then find the value exactly in the middle position.
-- **Property:** Only considers the middle position of the data. Therefore, the Median is **not sensitive to extreme values (outliers)**.
-- **Outlier Example:** For data <InlineMath math="7, 8, 9, 8, 10" /> (sorted: <InlineMath math="7, 8, 8, 9, 10" />), the median is <InlineMath math="8" />. If a score of <InlineMath math="1" /> is added (sorted: <InlineMath math="1, 7, 8, 8, 9, 10" />), the median is <InlineMath math="(8+8)/2=8" />. The median hardly changes despite the outlier.
+- **Property:** Depends on the middle position of the ordered data. Therefore, the Median is **far less sensitive to extreme values** than the Mean.
+- **Extreme-value Example:** For data <InlineMath math="7, 8, 9, 8, 10" /> (sorted: <InlineMath math="7, 8, 8, 9, 10" />), the median is <InlineMath math="8" />. If a score of <InlineMath math="1" /> is added (sorted: <InlineMath math="1, 7, 8, 8, 9, 10" />), the median is <InlineMath math="(8+8)/2=8" />. The median remains unchanged in this example.
 
 ### Mode (Most Frequent Value)
 
 - **How to Calculate:** Find the data value with the highest frequency.
-- **Property:** Focuses on the most popular value. Like the Median, the Mode is **not sensitive to extreme values (outliers)**. Also, the Mode is the only measure of central tendency that can be used for **qualitative data** (non-numerical).
-- **Outlier & Qualitative Example:** For data <InlineMath math="7, 8, 9, 8, 10" />, the mode is <InlineMath math="8" />. If a score of <InlineMath math="1" /> is added, the mode remains <InlineMath math="8" />. If the data is favorite colors (red, blue, red, green), the mode is red.
+- **Property:** Focuses on the most frequent value. A single isolated extreme value usually does not change the Mode. Also, the Mode is the only measure of central tendency here that can be used for **qualitative data** (non-numerical).
+- **Extreme-value and Qualitative Example:** For data <InlineMath math="7, 8, 9, 8, 10" />, the mode is <InlineMath math="8" />. If a score of <InlineMath math="1" /> is added, the mode remains <InlineMath math="8" />. If the data is favorite colors (red, blue, red, green), the mode is red.
 
 ## Usage Guide
 
 Here's a concise guide on when to use each measure:
 
-| Measure    | Best Data Type             | Outlier Influence | When to Use?                                                                                                |
+| Measure    | Best Data Type             | Extreme-value Influence | When to Use?                                                                                                |
 | :--------- | :------------------------- | :---------------- | :---------------------------------------------------------------------------------------------------------- |
-| **Mean**   | Quantitative (Numbers)     | Highly Influenced | When data has **no significant outliers** & you want a representation involving all data values.            |
-| **Median** | Quantitative (Numbers)     | Not Influenced    | When data **has outliers** or the distribution is skewed (not symmetrical). Provides a stable middle value. |
-| **Mode**   | Qualitative & Quantitative | Not Influenced    | When you want to know the **most popular value/category** or the most frequent occurrence.                  |
+| **Mean**   | Quantitative (Numbers)     | High | When every magnitude should contribute and extreme values do not make the result misleading.            |
+| **Median** | Quantitative (Numbers)     | Low     | When the distribution is skewed or contains unusual tail values and a stable positional center is useful. |
+| **Mode**   | Qualitative & Quantitative | Low for one isolated value | When you want to know the **most popular value/category** or the most frequent occurrence.                  |
 
 **Example Scenarios:**
 

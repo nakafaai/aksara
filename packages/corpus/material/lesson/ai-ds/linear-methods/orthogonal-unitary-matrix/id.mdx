@@ -1,107 +1,129 @@
 export const metadata = {
-    title: "Matriks Ortogonal dan Uniter",
-    description: "Pelajari matriks ortogonal dan uniter melalui sifat determinan, nilai eigen, contoh rotasi, dan penggunaannya dalam aljabar linear.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-12",
-    subject: "Metode Linear AI",
+  title: "Matriks Ortogonal dan Uniter",
+  description: "Pahami matriks ortogonal dan uniter melalui pelestarian hasil kali dalam, struktur determinan dan nilai eigen, rotasi, refleksi, serta penggunaan numeriknya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-12",
+  subject: "Metode Linear AI",
 };
 
-## Mengenal Matriks Ortogonal dan Uniter
+## Definisi
 
-Matriks ortogonal dan uniter adalah jenis matriks yang sangat istimewa. Bayangkan mereka seperti transformasi yang sangat "bersih" yang tidak mengubah jarak dan sudut dalam ruang, hanya memutar atau memantulkan objek.
-
-Perbedaannya sederhana. Matriks ortogonal bekerja dengan bilangan real, sedangkan matriks uniter bekerja dengan bilangan kompleks. Keduanya punya sifat yang sama, cuma versi yang berbeda saja.
-
-## Definisi Matematis
-
-### Matriks Ortogonal
-
-Matriks kuadrat real <InlineMath math="A \in \mathbb{R}^{n \times n}" /> disebut **ortogonal** kalau:
-
-<BlockMath math="A^{-1} = A^T" />
-
-Artinya, untuk mendapat invers matriks ini, kita cukup transpose saja. Sangat praktis kan?
-
-Ini sama artinya dengan:
-
-<BlockMath math="A^T A = A A^T = I" />
-
-### Matriks Uniter
-
-Matriks kuadrat kompleks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> disebut **uniter** kalau:
-
-<BlockMath math="A^{-1} = A^H" />
-
-Di sini <InlineMath math="A^H" /> adalah conjugate transpose dari <InlineMath math="A" />. Konsepnya mirip, cuma untuk bilangan kompleks.
-
-Ini juga ekuivalen dengan:
-
-<BlockMath math="A^H A = A A^H = I" />
-
-> Matriks ortogonal real sebenarnya adalah kasus khusus dari matriks uniter, karena <InlineMath math="\mathbb{R}^{n \times n} \subset \mathbb{C}^{n \times n}" />.
-
-## Sifat Determinan yang Menarik
-
-Yang menarik dari matriks ortogonal dan uniter adalah determinannya selalu punya nilai absolut <InlineMath math="1" />. Kenapa bisa begitu?
-
-Untuk matriks uniter <InlineMath math="A" />, kita punya <InlineMath math="A^H A = I" />. Kalau kita hitung determinannya:
+Matriks persegi real <InlineMath math="Q\in\mathbb{R}^{n\times n}" /> disebut ortogonal ketika
 
 <MathContainer>
-<BlockMath math="1 = \det I = \det(A^H A) = \det A^H \cdot \det A = \overline{\det A} \cdot \det A = |\det A|^2" />
+<BlockMath math="Q^TQ=QQ^T=I" />
+<BlockMath math="Q^{-1}=Q^T" />
 </MathContainer>
 
-Jadi <InlineMath math="|\det A| = 1" />. Untuk matriks ortogonal, cara buktikannya sama, cuma pakai <InlineMath math="A^T A = I" />.
-
-## Nilai Eigen yang Istimewa
-
-Nilai eigen dari matriks ortogonal dan uniter juga punya sifat khusus. Setiap nilai eigen <InlineMath math="\lambda" /> selalu memenuhi:
-
-<BlockMath math="|\lambda| = 1" />
-
-Mengapa demikian? Misalkan <InlineMath math="A \cdot v = \lambda \cdot v" /> untuk vektor eigen <InlineMath math="v \neq 0" />. Untuk kasus kompleks, kita bisa hitung:
+Matriks persegi kompleks <InlineMath math="U\in\mathbb{C}^{n\times n}" /> disebut uniter ketika
 
 <MathContainer>
-<BlockMath math="v^H v = v^H A^H A v = (A \cdot v)^H (A \cdot v) = (\lambda \cdot v)^H (\lambda \cdot v)" />
-<BlockMath math="= \overline{\lambda} \cdot \lambda \cdot v^H v = |\lambda|^2 \cdot v^H v" />
+<BlockMath math="U^HU=UU^H=I" />
+<BlockMath math="U^{-1}=U^H" />
 </MathContainer>
 
-Karena <InlineMath math="v^H v \neq 0" />, maka <InlineMath math="|\lambda|^2 = 1" />, sehingga <InlineMath math="|\lambda| = 1" />.
+Di sini, <InlineMath math="U^H=\overline{U}^{,T}" /> adalah transpos konjugat. Matriks ortogonal real merupakan matriks uniter yang semua entrinya real.
 
-## Bentuk Nilai Eigen
+Persamaan definisi tersebut setara dengan pernyataan bahwa kolom-kolomnya membentuk basis ortonormal. Baris-barisnya juga ortonormal.
 
-Untuk matriks ortogonal real, nilai eigennya bisa <InlineMath math="1" /> atau <InlineMath math="-1" /> kalau real. Tapi kalau kompleks, bentuknya bisa ditulis sebagai:
+## Besaran yang Dipertahankan
 
-<BlockMath math="\lambda = \exp(i\varphi) = \cos \varphi + i \sin \varphi" />
-
-Ini artinya nilai eigen kompleks terletak di lingkaran unit di bidang kompleks.
-
-## Contoh Konkret Matriks Rotasi
-
-Mari lihat contoh yang familiar yaitu matriks rotasi:
-
-<BlockMath math="A = \begin{pmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{pmatrix}" />
-
-Kita bisa cek bahwa ini matriks ortogonal:
+Untuk vektor real <InlineMath math="x,y" /> dan matriks ortogonal <InlineMath math="Q" />,
 
 <MathContainer>
-<BlockMath math="A^T A = \begin{pmatrix} \cos \alpha & \sin \alpha \\ -\sin \alpha & \cos \alpha \end{pmatrix} \begin{pmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{pmatrix}" />
-<BlockMath math="= \begin{pmatrix} \cos^2 \alpha + \sin^2 \alpha & \cos \alpha(-\sin \alpha) + \sin \alpha \cos \alpha \\ (-\sin \alpha) \cos \alpha + \cos \alpha \sin \alpha & (-\sin \alpha)(-\sin \alpha) + \cos^2 \alpha \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
+<BlockMath math="\langle Qx,Qy\rangle=(Qx)^T(Qy)=x^TQ^TQy=x^Ty" />
+<BlockMath math="\|Qx\|_2=\|x\|_2" />
+<BlockMath math="\|Qx-Qy\|_2=\|x-y\|_2" />
 </MathContainer>
 
-### Mencari Nilai Eigen
+Pernyataan yang sama berlaku pada <InlineMath math="\mathbb{C}" /> dengan hasil kali dalam konjugat dan <InlineMath math="U^H" />. Jadi, transformasi ortogonal dan uniter mempertahankan panjang, jarak, sudut, dan ortogonalitas.
 
-Polinomial karakteristiknya adalah:
+Semua nilai singularnya sama dengan <InlineMath math="1" />, sehingga
+
+<BlockMath math="\|Q\|_2=1,\qquad\kappa_2(Q)=1" />
+
+Perkalian dengan matriks tersebut tidak memperbesar galat relatif dalam norma Euklides. Inilah alasan faktorisasi QR menggunakan reflektor Householder dan rotasi Givens.
+
+## Determinan dan Orientasi
+
+Untuk matriks uniter,
 
 <MathContainer>
-<BlockMath math="\chi_A(t) = \det \begin{pmatrix} \cos \alpha - t & -\sin \alpha \\ \sin \alpha & \cos \alpha - t \end{pmatrix}" />
-<BlockMath math="= (\cos \alpha - t)^2 + \sin^2 \alpha = \cos^2 \alpha + \sin^2 \alpha - 2t \cos \alpha + t^2" />
-<BlockMath math="= 1 - 2t \cos \alpha + t^2" />
+<BlockMath math="1=\det(U^HU)=\overline{\det U}\det U=|\det U|^2" />
+<BlockMath math="|\det U|=1" />
 </MathContainer>
 
-Nilai eigennya adalah:
+Untuk matriks ortogonal real, determinannya real, sehingga
 
-<BlockMath math="\lambda_{1,2} = \cos \alpha \pm \sqrt{\cos^2 \alpha - 1} = \cos \alpha \pm \sqrt{-\sin^2 \alpha} = \cos \alpha \pm i \sin \alpha" />
+<BlockMath math="\det Q\in\{-1,1\}" />
 
-Hasilnya adalah <InlineMath math="\lambda_{1,2} = e^{\pm i\alpha}" />.
+Kasus <InlineMath math="\det Q=1" /> mempertahankan orientasi. Kasus <InlineMath math="\det Q=-1" /> membalik orientasi dan mengandung komponen refleksi.
 
-Transformasi <InlineMath math="\mathbb{R}^2 \to \mathbb{R}^2 : x \mapsto A \cdot x" /> menggambarkan rotasi sebesar sudut <InlineMath math="\alpha" />. Untuk <InlineMath math="\alpha \neq 0" /> dan <InlineMath math="\alpha \neq \pi" />, matriks ini tidak punya nilai eigen real, tapi punya dua nilai eigen kompleks.
+## Nilai Eigen dan Struktur Spektral
+
+Jika <InlineMath math="Uv=\lambda v" /> dengan <InlineMath math="v\ne0" />, maka
+
+<MathContainer>
+<BlockMath math="\|v\|_2=\|Uv\|_2=\|\lambda v\|_2=|\lambda|\|v\|_2" />
+<BlockMath math="|\lambda|=1" />
+</MathContainer>
+
+Jadi, setiap nilai eigen berada pada lingkaran satuan kompleks. Nilai eigen tak real dari matriks ortogonal real muncul sebagai pasangan konjugat. Matriks uniter bersifat normal, sehingga teorema spektral kompleks memberikan
+
+<BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},ldots,e^{i\theta_n})V^H" />
+
+dengan <InlineMath math="V" /> uniter. Di atas bilangan real, matriks ortogonal dapat direduksi menjadi blok-blok yang terdiri atas <InlineMath math="1" />, <InlineMath math="-1" />, dan rotasi bidang.
+
+## Contoh Rotasi
+
+Rotasi bidang berlawanan arah jarum jam sebesar <InlineMath math="\alpha" /> adalah
+
+<BlockMath math="R(\alpha)=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}" />
+
+Kolom-kolomnya ortonormal, dan perkalian langsung memberikan
+
+<BlockMath math="R(\alpha)^TR(\alpha)=I" />
+
+Polinomial karakteristiknya adalah
+
+<MathContainer>
+<BlockMath math="\chi_R(t)=t^2-2t\cos\alpha+1" />
+<BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
+</MathContainer>
+
+Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini tidak memiliki vektor eigen real. Hal ini wajar karena tidak ada arah real tak nol yang tetap atau hanya berubah tanda di bawah rotasi bidang sejati.
+
+## Contoh Refleksi
+
+Untuk vektor satuan <InlineMath math="u\in\mathbb{R}^n" />, matriks Householder
+
+<BlockMath math="H=I-2uu^T" />
+
+merefleksikan vektor terhadap hiperbidang yang tegak lurus pada <InlineMath math="u" />. Karena
+
+<MathContainer>
+<BlockMath math="H^T=H" />
+<BlockMath math="H^2=(I-2uu^T)^2=I" />
+</MathContainer>
+
+kita memperoleh <InlineMath math="H^TH=I" />. Nilai eigennya pada arah <InlineMath math="u" /> adalah <InlineMath math="-1" />, sedangkan setiap vektor yang tegak lurus pada <InlineMath math="u" /> memiliki nilai eigen <InlineMath math="1" />. Karena itu, <InlineMath math="\det H=-1" />.
+
+## Pemeriksaan Ekuivalen dan Konsekuensi
+
+| Pernyataan | Kasus ortogonal | Kasus uniter |
+| --- | --- | --- |
+| Invers | <InlineMath math="Q^{-1}=Q^T" /> | <InlineMath math="U^{-1}=U^H" /> |
+| Kolom | basis ortonormal real | basis ortonormal kompleks |
+| Determinan | <InlineMath math="\pm1" /> | bermodulus <InlineMath math="1" /> |
+| Nilai eigen | lingkaran satuan, berpasangan konjugat jika tak real | lingkaran satuan |
+| Nilai singular | semuanya <InlineMath math="1" /> | semuanya <InlineMath math="1" /> |
+| Bilangan kondisi norma dua | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+Hasil kali dan invers tetap berada dalam kelas yang sama:
+
+<MathContainer>
+<BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />
+<BlockMath math="Q^{-1}=Q^T" />
+</MathContainer>
+
+Sifat ketertutupan dan kestabilan ini menjadikan matriks ortogonal dan uniter penting dalam algoritma QR, penyelesaian kuadrat terkecil, transformasi Fourier, mekanika kuantum, dan pemrosesan geometri.

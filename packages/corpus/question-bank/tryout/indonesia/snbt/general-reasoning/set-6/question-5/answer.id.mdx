@@ -4,13 +4,14 @@ export const metadata = {
   date: "2026-01-22",
 };
 
-Mari kita uji validitas setiap pernyataan dengan membandingkannya langsung terhadap data tabel:
+Uji setiap pernyataan langsung terhadap data tabel:
 
 | Pernyataan (Klaim) | Cek Fakta Data | Status |
 | :--- | :--- | :--- |
-| **Peminat basket selalu meningkat** | Data: <InlineMath math="100 \to 150 \to 120" />. Terjadi penurunan di Kelas XII. | Salah |
-| **Seni tari/lukis prospek terbaik** | Seni lukis menurun (<InlineMath math="68 \to 44" />). Seni tari naik, tapi jumlah totalnya jauh di bawah Basket. | Salah |
+| **Peminat basket selalu meningkat** | <InlineMath math="100 \to 150 \to 120" /> turun di Kelas XII. | Salah |
+| **Seni tari selalu di bawah menyanyi** | Peminat tari <InlineMath math="75, 78, 80" />, semuanya lebih tinggi daripada menyanyi <InlineMath math="57, 46, 44" />. | Salah |
+| **Peminat melukis selalu meningkat** | <InlineMath math="68 \to 54 \to 44" /> justru menurun. | Salah |
 | **Menyanyi paling sedikit peminatnya** | Di semua kelas, angka Seni Peran selalu lebih rendah daripada Menyanyi. | Salah |
 | **Seni peran paling tidak diminati** | Angka Seni Peran (<InlineMath math="40, 7, 18" />) adalah yang **terendah** di setiap kolom kelas. | **Benar** |
 
-> Data secara konsisten menunjukkan bahwa Seni Peran menempati urutan terbawah dalam jumlah peminat di setiap jenjang kelas, menjadikannya pernyataan yang paling sesuai dengan isi tabel.
+Seni peran memiliki <InlineMath math="40, 7, 18" /> peminat. Setiap angka merupakan nilai terendah pada kolomnya, sehingga pernyataan terakhir menjadi satu-satunya yang didukung seluruh tabel.

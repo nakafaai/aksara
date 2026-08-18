@@ -22,7 +22,7 @@ Mari selesaikan pertidaksamaannya
 
 <MathContainer>
 <BlockMath math="\log|x + 1| \geq \log 3 + \log|2x - 1|" />
-<BlockMath math="\log|x + 1| \geq \log 3|2x - 1|" />
+<BlockMath math="\log|x + 1| \geq \log\left(3|2x - 1|\right)" />
 <BlockMath math="\log|x + 1| \geq \log|6x - 3|" />
 <BlockMath math="|x + 1| \geq |6x - 3|" />
 </MathContainer>
@@ -39,7 +39,7 @@ Garis bilangannya
 
 <NumberLine
   title={<>Garis Bilangan Penyelesaian</>}
-  description={<>Interval <InlineMath math="\left[\frac{2}{7}, \frac{4}{5}\right]" /> menunjukkan kedua ujung termasuk dalam himpunan penyelesaian.</>}
+  description={<>Batas <InlineMath math="\frac{2}{7}" /> dan <InlineMath math="\frac{4}{5}" /> termasuk, sedangkan <InlineMath math="\frac{1}{2}" /> dikeluarkan oleh domain logaritma.</>}
   segments={[
     {
       start: Number.NEGATIVE_INFINITY,
@@ -50,10 +50,20 @@ Garis bilangannya
     },
     {
       start: 2/7,
-      end: 4/5,
+      end: 1/2,
       startLabel: <InlineMath math="\frac{2}{7}" />,
-      endLabel: <InlineMath math="\frac{4}{5}" />,
+      endLabel: <InlineMath math="\frac{1}{2}" />,
       startInclusive: true,
+      endInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 1/2,
+      end: 4/5,
+      startLabel: <InlineMath math="\frac{1}{2}" />,
+      endLabel: <InlineMath math="\frac{4}{5}" />,
+      startInclusive: false,
       endInclusive: true,
       shaded: true,
       label: <InlineMath math="+" />,

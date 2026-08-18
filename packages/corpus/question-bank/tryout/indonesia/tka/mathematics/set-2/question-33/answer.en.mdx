@@ -4,19 +4,22 @@ export const metadata = {
   date: "2025-11-11",
 };
 
-Substitute the value <InlineMath math="x = 10" /> into the given equation.
+Substitute <InlineMath math="x = 10" /> into the given equation.
 
 <MathContainer>
-<BlockMath math="p(x)h(x) = \left(\frac{p(x)}{g(x)} - 1\right)(p(x) + g(x))" />
-<BlockMath math="p(10)h(10) = \left(\frac{p(10)}{g(10)} - 1\right)(p(10) + g(10))" />
-<BlockMath math="m\left(-\frac{16}{15}\right) = \left(\frac{m}{n} - 1\right)(m + n)" />
-<BlockMath math="m\left(-\frac{16}{15}\right) = \left(\frac{m - n}{n}\right)(m + n)" />
-<BlockMath math="m\left(-\frac{16}{15}\right) = \left(\frac{(m - n)(m + n)}{n}\right)" />
-<BlockMath math="-\frac{16}{15} = \left(\frac{(m - n)(m + n)}{mn}\right)" />
-<BlockMath math="\frac{16}{15} = \left(\frac{(n - m)(n + m)}{mn}\right)" />
-<BlockMath math="\frac{2 \times 8}{5 \times 3} = \left(\frac{(n - m)(n + m)}{mn}\right)" />
+<BlockMath math="-\frac{16}{15}m = \left(\frac{m}{n}-1\right)(m+n)" />
+<BlockMath math="-\frac{16}{15}m = \frac{m^2-n^2}{n}" />
 </MathContainer>
 
-From the form above, we obtain that <InlineMath math="n = 5, m = 3" /> or <InlineMath math="n = -5" /> and <InlineMath math="m = -3" />.
+Because <InlineMath math="m" /> and <InlineMath math="n" /> are nonzero, divide by <InlineMath math="m" /> and set <InlineMath math="r=\frac{m}{n}" />.
 
-Therefore, the value of <InlineMath math="|m + n| = |3 + 5| = 8" />.
+<MathContainer>
+<BlockMath math="-\frac{16}{15}=r-\frac{1}{r}" />
+<BlockMath math="15r^2+16r-15=0" />
+<BlockMath math="(5r-3)(3r+5)=0" />
+<BlockMath math="r=\frac{3}{5}\quad\text{or}\quad r=-\frac{5}{3}" />
+</MathContainer>
+
+Since <InlineMath math="m" /> and <InlineMath math="n" /> are coprime integers, the first ratio gives <InlineMath math="(m,n)=(3,5)" /> or <InlineMath math="(-3,-5)" />, while the second gives <InlineMath math="(-5,3)" /> or <InlineMath math="(5,-3)" />.
+
+The corresponding values of <InlineMath math="|m+n|" /> are <InlineMath math="8" /> and <InlineMath math="2" />. Therefore, the maximum is <InlineMath math="8" />.

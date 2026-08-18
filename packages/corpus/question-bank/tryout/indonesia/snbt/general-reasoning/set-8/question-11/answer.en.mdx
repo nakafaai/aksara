@@ -4,34 +4,16 @@ export const metadata = {
   date: "2026-01-29",
 };
 
-To answer this question, we need to map the cause-and-effect logical flow presented in the text. Let's define the premises:
-
-*   <InlineMath math="P" />: The Jakarta area and its surroundings are experiencing the rainy season.
-*   <InlineMath math="Q" />: Rivers cannot accommodate rainwater and floods occur.
-*   <InlineMath math="R" />: Residents are forced to evacuate to a safe place.
-
-#### Logical Analysis
-
-Based on the text, the relationship between premises can be depicted as a chain implication:
+Let <InlineMath math="P" /> mean “River A exceeds the alert level,” <InlineMath math="Q" /> mean “District X enters flood status,” and <InlineMath math="R" /> mean “registered residents of District X receive an evacuation order.” The protocol gives:
 
 <MathContainer>
-  <BlockMath math="P \rightarrow Q \rightarrow R" />
+  <BlockMath math="P \rightarrow Q" />
+  <BlockMath math="Q \rightarrow R" />
+  <BlockMath math="P" />
 </MathContainer>
 
-This means:
-1.  **If** it is the rainy season (<InlineMath math="P" />), **then** rivers overflow and flood (<InlineMath math="Q" />).
-2.  **If** it floods (<InlineMath math="Q" />), **then** residents evacuate (<InlineMath math="R" />).
+Applying modus ponens twice yields:
 
-#### Syllogism Conclusion
+<BlockMath math="P \rightarrow Q \rightarrow R" />
 
-Using the principle of hypothetical syllogism, we can draw a direct conclusion from start to finish:
-
-<MathContainer>
-  <BlockMath math="(P \rightarrow Q) \land (Q \rightarrow R) \implies P \rightarrow R" />
-</MathContainer>
-
-The question states that **it is currently the rainy season** (<InlineMath math="P" /> occurs).
-
-Therefore, based on the logic above, the inevitable conclusion is **residents are forced to evacuate to a safe place** (<InlineMath math="R" />).
-
-> Residents will be forced to evacuate to a safe place.
+Therefore, the registered residents of District X receive an evacuation order. The rules say nothing about every other district or every person in the city, so those broader claims do not follow.

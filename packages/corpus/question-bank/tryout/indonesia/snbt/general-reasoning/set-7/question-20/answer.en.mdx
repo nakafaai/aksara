@@ -4,43 +4,21 @@ export const metadata = {
   date: "2026-01-26",
 };
 
-Let's break down the logic of the statements using mathematical symbols to make the structure clearer.
+Let:
 
-Suppose we define the following three statements:
-- <InlineMath math="P" />: Routinely jogs in the morning and has a good diet.
-- <InlineMath math="Q" />: Has a strong physique.
-- <InlineMath math="R" />: Healthier body.
+- <InlineMath math="T" />: The proposal passes the technical review.
+- <InlineMath math="B" />: The proposal passes the budget review.
+- <InlineMath math="A" />: The proposal is approved.
+- <InlineMath math="S" />: The proposal is placed on the publication schedule.
 
-Based on the question text, we get the following logical premises:
-
-**Premise** <InlineMath math="1" />: Someone will have a strong physique if they routinely jog in the morning and have a good diet.
+The workflow and the stated fact are:
 
 <MathContainer>
-  <BlockMath math="P \rightarrow Q" />
+  <BlockMath math="(T \land B) \rightarrow A" />
+  <BlockMath math="A \rightarrow S" />
+  <BlockMath math="T \land B" />
 </MathContainer>
 
-**Premise** <InlineMath math="2" />: A strong physique makes the body healthier.
+From <InlineMath math="T \land B" />, the first rule gives <InlineMath math="A" />. The second rule then gives <InlineMath math="S" />. Both steps are direct applications of modus ponens.
 
-<MathContainer>
-  <BlockMath math="Q \rightarrow R" />
-</MathContainer>
-
-**Fact**: Andi routinely jogs in the morning and has a good diet.
-
-<MathContainer>
-  <BlockMath math="\text{Andi} = P" />
-</MathContainer>
-
-**Conclusion Analysis**
-
-We can combine Premise <InlineMath math="1" /> and Premise <InlineMath math="2" /> using the **Hypothetical Syllogism** principle:
-
-<MathContainer>
-  <BlockMath math="(P \rightarrow Q) \land (Q \rightarrow R) \Rightarrow (P \rightarrow R)" />
-</MathContainer>
-
-This means: **"If someone routinely jogs in the morning and has a good diet, then their body will be healthier."**
-
-Since Andi satisfies condition <InlineMath math="P" /> (routinely jogs and eats well), he automatically satisfies condition <InlineMath math="R" /> (has a healthy body).
-
-Therefore, the conclusion that "Andi has a healthy body" is **valid** and **definitely true** based on deductive logic.
+Therefore, the conclusion follows necessarily from the premises and is **definitely true**.

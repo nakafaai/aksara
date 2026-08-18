@@ -3,24 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label: "Informasi terkait bibi Norma Jeane",
+      label: "Merekrutnya langsung sebagai pemeran utama film",
       value: false,
     },
     {
-      label: "Informasi Norma Jeane masa kecil",
+      label: "Menjadi wali yang membiayai hidupnya",
       value: false,
     },
     {
-      label: "Informasi terkait sosok James Dougherty",
+      label: "Mengatur pernikahannya dengan James Dougherty",
       value: false,
     },
     {
-      label: "Informasi Norma Jeane saat tinggal di panti asuhan",
+      label: "Mengajarinya berakting di Actors Studio",
       value: false,
     },
     {
       label:
-        "Informasi terkait David Conover dan hubungannya dengan Norma Jeane",
+        "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
       value: true,
     },
   ],

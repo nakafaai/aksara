@@ -4,54 +4,51 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Are crossbreeding methods and selection methods used by researchers in exploring mango germplasm collections?",
+        "Researchers use both selection and crossbreeding to develop the mango germplasm collection.",
       value: true,
     },
     {
-      label:
-        "Type $$65$$ F1 was obtained through mango exploration with selection methods and crossbreeding methods by local farmers.",
+      label: "Local farmers created Agri Gardina 45 through selection alone.",
       value: false,
     },
     {
       label:
-        "Denarum agrihorti mango is a mango resulting from selection among the best mangoes in California, USA.",
+        "Denarum Agrihorti was selected from commercial mangoes grown in California.",
       value: false,
     },
     {
       label:
-        "Agri gardina-45 mango type has the characteristics of medium fruit flesh texture, low fiber quantity, sweet slightly sour taste, and high vitamin C content.",
+        "Denarum Agrihorti is characterized by a high amount of coarse fruit fiber.",
       value: false,
     },
     {
       label:
-        "Indonesia has become a world reference in mango cultivation because it is able to produce high-quality mangoes.",
+        "Every accession in the Cukurgondang collection is ready for export.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Metode persilangan dan metode seleksi digunakan oleh periset dalam mengeksplorasi koleksi plasma nutfah mangga?",
+        "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
       value: true,
     },
     {
       label:
-        "Jenis $$65$$ F1 diperoleh melalui eksplorasi mangga dengan metode seleksi dan metode persilangan oleh petani setempat.",
+        "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
       value: false,
     },
     {
       label:
-        "Mangga denarum agrihorti merupakan mangga hasil seleksi di antara mangga terbaik yang ada di California, AS.",
+        "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
       value: false,
     },
     {
-      label:
-        "Mangga jenis agri gardina-45 memiliki ciri tekstur daging buah sedang, kuantitas serat rendah, berasa manis agak asam, dan kadar vitamin C tinggi.",
+      label: "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
       value: false,
     },
     {
-      label:
-        "Indonesia menjadi acuan dunia dalam pembudidayaan mangga karena mampu menghasilkan mangga berkualitas tinggi.",
+      label: "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
       value: false,
     },
   ],

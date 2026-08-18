@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Gadget Usage Regulations.",
+      label: "The One Safe Age for a Child's First Device.",
       value: false,
     },
     {
-      label: "The Importance of Parental Supervision.",
-      value: false,
-    },
-    {
-      label: "The Age of Children Using Gadgets.",
+      label: "Age-Appropriate Family Media Use.",
       value: true,
     },
     {
-      label: "The Impact of Gadget Usage.",
+      label: "Why All Screen Time Is Harmful.",
       value: false,
     },
     {
-      label: "Gadget Supervision in Children.",
+      label: "How to Buy a Child's First Smartphone.",
+      value: false,
+    },
+    {
+      label: "A One-Hour Rule for Every Family Member.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Regulasi Penggunaan Gawai.",
+      label: "Satu Usia Aman untuk Gawai Pertama Anak.",
       value: false,
     },
     {
-      label: "Pentingnya Pengawasan Orang Tua.",
-      value: false,
-    },
-    {
-      label: "Usia Anak Pengguna Gawai.",
+      label: "Penggunaan Media Keluarga Sesuai Usia.",
       value: true,
     },
     {
-      label: "Dampak Penggunaan Gawai.",
+      label: "Mengapa Semua Waktu Layar Berbahaya.",
       value: false,
     },
     {
-      label: "Pengawasan Gawai pada Anak.",
+      label: "Cara Membeli Ponsel Pertama Anak.",
+      value: false,
+    },
+    {
+      label: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
       value: false,
     },
   ],

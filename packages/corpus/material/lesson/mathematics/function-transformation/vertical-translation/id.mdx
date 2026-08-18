@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Translasi Vertikal",
-  description: "Pelajari bagaimana translasi vertikal menggeser grafik fungsi ke atas atau ke bawah tanpa mengubah bentuknya.",
+  description: "Geser grafik fungsi ke atas atau bawah sambil menelusuri koordinat, asimtot, dan range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Transformasi Fungsi",
@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Konsep Dasar Translasi Vertikal
 
-Translasi vertikal adalah transformasi geometri yang menggeser grafik fungsi ke atas atau ke bawah sepanjang sumbu <InlineMath math="y" /> tanpa mengubah bentuk grafik tersebut. Bayangkan seperti mengangkat atau menurunkan sebuah objek secara vertikal: bentuknya tetap sama, hanya posisinya yang berubah.
+Translasi vertikal menggeser grafik fungsi ke atas atau ke bawah sepanjang sumbu <InlineMath math="y" /> tanpa mengubah bentuknya. Setiap titik berpindah sejauh jarak vertikal yang sama, seolah seluruh grafik diangkat atau diturunkan.
 
 Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" /> dimana <InlineMath math="k" /> adalah konstanta translasi.
 
@@ -27,11 +27,11 @@ Dimana:
 
 ## Visualisasi Translasi Vertikal
 
-Mari kita lihat bagaimana translasi vertikal bekerja pada fungsi linear <InlineMath math="f(x) = 2x" />.
+Fungsi linear <InlineMath math="f(x) = 2x" /> menunjukkan bahwa translasi vertikal tidak mengubah gradien.
 
 <LineEquation
   title={<>Translasi Vertikal Fungsi Linear <InlineMath math="f(x) = 2x" /></>}
-  description="Perhatikan bagaimana grafik bergeser vertikal tanpa mengubah kemiringan garis."
+  description={<>Ketiga garis memiliki gradien yang sama dan titik potong sumbu <InlineMath math="y" /> yang berbeda.</>}
   showZAxis={false}
   data={[
     {
@@ -58,20 +58,20 @@ Mari kita lihat bagaimana translasi vertikal bekerja pada fungsi linear <InlineM
         return { x, y: 2 * x - 2, z: 0 };
       }),
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=2x+(-2)" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Dari visualisasi di atas, kita dapat mengamati:
+Grafik tersebut menunjukkan:
 - Fungsi asli <InlineMath math="f(x) = 2x" /> melewati titik asal
 - Fungsi <InlineMath math="g(x) = 2x + 3" /> adalah hasil translasi ke atas <InlineMath math="3 \text{ satuan}" />
-- Fungsi <InlineMath math="h(x) = 2x + (-2)" /> adalah hasil translasi ke bawah <InlineMath math="2 \text{ satuan}" />
+- Fungsi <InlineMath math="h(x) = 2x - 2" /> adalah hasil translasi ke bawah <InlineMath math="2 \text{ satuan}" />
 
 ## Translasi Vertikal pada Fungsi Kuadrat
 
-Sekarang mari kita terapkan konsep yang sama pada fungsi kuadrat <InlineMath math="f(x) = x^2" />.
+Aturan translasi yang sama berlaku pada fungsi kuadrat <InlineMath math="f(x) = x^2" />.
 
 <LineEquation
   title={<>Translasi Vertikal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
@@ -102,16 +102,16 @@ Sekarang mari kita terapkan konsep yang sama pada fungsi kuadrat <InlineMath mat
         return { x, y: x * x - 3, z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=x^2+(-3)" />, offset: [1, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=x^2-3" />, offset: [1, 1, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Perhatikan bahwa:
+Titik-titik puncaknya memperjelas perpindahan:
 - Titik puncak parabola asli <InlineMath math="f(x) = x^2" /> berada di <InlineMath math="(0, 0)" />
 - Setelah translasi vertikal <InlineMath math="+4" />, titik puncak <InlineMath math="g(x) = x^2 + 4" /> berada di <InlineMath math="(0, 4)" />
-- Setelah translasi vertikal <InlineMath math="+(-3)" />, titik puncak <InlineMath math="h(x) = x^2 + (-3)" /> berada di <InlineMath math="(0, -3)" />
+- Setelah translasi vertikal <InlineMath math="-3" />, titik puncak <InlineMath math="h(x) = x^2 - 3" /> berada di <InlineMath math="(0, -3)" />
 
 ## Sifat Penting Translasi Vertikal
 
@@ -134,7 +134,7 @@ Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah t
 
 ### Contoh Fungsi Eksponensial
 
-Mari kita lihat translasi vertikal pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />.
+Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, translasi vertikal juga memindahkan asimtot horizontal.
 
 <LineEquation
   title={<>Translasi Vertikal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
@@ -165,7 +165,7 @@ Mari kita lihat translasi vertikal pada fungsi eksponensial <InlineMath math="f(
         return { x, y: Math.pow(2, x) - 1, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x+(-1)" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0] }],
       showPoints: false,
     },
   ]}
@@ -217,8 +217,8 @@ Pada fungsi eksponensial:
 
 2. Persamaan fungsi hasil translasi:
 
-   - Translasi ke bawah <InlineMath math="7 \text{ satuan}" />: <InlineMath math="g'(x) = g(x) + (-7) = 3x + 2 + (-7) = 3x + (-5)" />
-   - Titik potong dengan sumbu <InlineMath math="y" />: substitusi <InlineMath math="x = 0" /> ke <InlineMath math="g'(x) = 3(0) + (-5) = -5" />, jadi titik potongnya adalah <InlineMath math="(0, -5)" />
+   - Translasi ke bawah <InlineMath math="7 \text{ satuan}" />: <InlineMath math="g'(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
+   - Titik potong dengan sumbu <InlineMath math="y" />: substitusi <InlineMath math="x = 0" /> ke <InlineMath math="g'(x) = 3(0) - 5 = -5" />, jadi titik potongnya adalah <InlineMath math="(0, -5)" />
 
    Visualisasi:
 
@@ -242,7 +242,7 @@ Pada fungsi eksponensial:
            return { x, y: 3 * x + 2 - 7, z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=3x+(-5)" />, offset: [1, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
      ]}

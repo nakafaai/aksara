@@ -4,50 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Young workers will still choose the boarding house with the closest distance.",
+        "Many young workers prefer a room near work even when its rent is slightly higher.",
       value: false,
     },
     {
       label:
-        "Closest distance and cheap cost can increase many prospective boarding house residents.",
+        "Low rent and a short commute make a rented room more attractive to prospective tenants.",
       value: false,
     },
     {
       label:
-        "Young workers choose a distant boarding house for the reason of saving costs.",
+        "In many office districts, the rent premium near work is larger than the extra transport cost from a more distant room, so the distant option has a lower total monthly cost.",
       value: true,
     },
     {
-      label: "Young workers choose a boarding house with cheap costs.",
+      label:
+        "Young workers compare rent and transport when estimating their total monthly cost.",
       value: false,
     },
     {
       label:
-        "The chosen boarding house is the one with the closest travel distance.",
+        "A shorter commute reduces both travel time and the number of transport fares paid.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Pekerja muda akan tetap memilih kostan dengan jarak terdekat.",
+      label:
+        "Banyak pekerja muda memilih kos dekat tempat kerja meskipun sewanya sedikit lebih tinggi.",
       value: false,
     },
     {
       label:
-        "Jarak terdekat dan biaya murah itu dapat meningkatkan banyak calon penghuni kos.",
+        "Sewa murah dan perjalanan singkat membuat kamar kos lebih menarik bagi calon penghuni.",
       value: false,
     },
     {
-      label: "Pekerja muda memilih tempat kos jauh dengan alasan hemat biaya.",
+      label:
+        "Di banyak kawasan perkantoran, selisih sewa kos dekat tempat kerja lebih besar daripada tambahan ongkos transportasi dari kos yang lebih jauh, sehingga biaya bulanan total kos jauh justru lebih rendah.",
       value: true,
     },
     {
-      label: "Pekerja muda memilih tempat kos dengan biaya yang murah.",
+      label:
+        "Pekerja muda membandingkan biaya sewa dan transportasi saat menghitung biaya bulanan total.",
       value: false,
     },
     {
       label:
-        "Tempat kos yang dipilih adalah tempat kost yang memiliki jarak tempuh terdekat.",
+        "Perjalanan yang lebih singkat mengurangi waktu tempuh dan jumlah ongkos transportasi yang dibayar.",
       value: false,
     },
   ],

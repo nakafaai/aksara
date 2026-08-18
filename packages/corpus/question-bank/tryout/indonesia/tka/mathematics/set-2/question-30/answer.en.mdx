@@ -48,58 +48,34 @@ From this quadratic equation, the sum of its roots is
 
 <BlockMath math="x_1 + x_2 = -2" />
 
-#### Finding the Variable Value
+#### Finding the Sum of the Ordinates
 
-Substitute the value <InlineMath math="k = 3" /> into functions <InlineMath math="f(x)" /> and <InlineMath math="g(x)" />.
+For <InlineMath math="k=3" />, either function gives the ordinates at the intersection points. Use
 
-For <InlineMath math="f(x)" />
+<BlockMath math="y_i=f(x_i)=2x_i^2+3x_i-1" />
 
-<MathContainer>
-<BlockMath math="f(x) = (k - 1)x^2 + kx - 1" />
-<BlockMath math="f(3) = (3 - 1)x^2 + 3x - 1" />
-<BlockMath math="f(3) = 2x^2 + 3x - 1" />
-</MathContainer>
-
-For <InlineMath math="g(x)" />
+Let <InlineMath math="S_x=x_1+x_2=-2" /> and <InlineMath math="P_x=x_1x_2=-7" />. First compute the sum of the squared abscissas.
 
 <MathContainer>
-<BlockMath math="g(x) = (k - 2)x^2 + x + 2k" />
-<BlockMath math="g(3) = (3 - 2)x^2 + x + 2(3)" />
-<BlockMath math="g(3) = x^2 + x + 6" />
+<BlockMath math="x_1^2+x_2^2=(x_1+x_2)^2-2x_1x_2" />
+<BlockMath math="x_1^2+x_2^2=S_x^2-2P_x=(-2)^2-2(-7)=18" />
 </MathContainer>
 
-Then find the value of <InlineMath math="x" /> by eliminating <InlineMath math="x^2" />.
+Now add <InlineMath math="y_1" /> and <InlineMath math="y_2" />.
 
 <MathContainer>
-<BlockMath math="y = 2x^2 + 3x - 1 \quad |\times 1|" />
-<BlockMath math="y = x^2 + x + 6 \quad |\times 2|" />
-<BlockMath math="y = 2x^2 + 3x - 1" />
-<BlockMath math="2y = 2x^2 + 2x + 12 \quad -" />
-<BlockMath math="-y = x - 13" />
-<BlockMath math="x = 13 - y" />
+<BlockMath math="y_1+y_2=2(x_1^2+x_2^2)+3(x_1+x_2)-2" />
+<BlockMath math="y_1+y_2=2(18)+3(-2)-2=28" />
 </MathContainer>
-
-Substitute <InlineMath math="x = 13 - y" /> into <InlineMath math="g(x)" />.
-
-<MathContainer>
-<BlockMath math="y = x^2 + x + 6" />
-<BlockMath math="y = (13 - y)^2 + (13 - y) + 6" />
-<BlockMath math="y = 169 - 26y + y^2 + 13 - y + 6" />
-<BlockMath math="y^2 - 28y + 176 = 0" />
-</MathContainer>
-
-From this quadratic equation, the sum of its roots is
-
-<BlockMath math="y_1 + y_2 = 28" />
 
 #### Forming the New Quadratic Equation
 
-The new quadratic equation with roots <InlineMath math="x_1 + x_2" /> and <InlineMath math="y_1 + y_2" /> is
+The new roots are <InlineMath math="r_1=x_1+x_2=-2" /> and <InlineMath math="r_2=y_1+y_2=28" />. Use a new variable <InlineMath math="t" /> to avoid confusing this equation with the original abscissas.
 
 <MathContainer>
-<BlockMath math="x^2 - ((x_1 + x_2) + (y_1 + y_2))x + ((x_1 x_2)(y_1 y_2)) = 0" />
-<BlockMath math="x^2 - (-2 + 28)x + (-2)(28) = 0" />
-<BlockMath math="x^2 - 26x - 56 = 0" />
+<BlockMath math="t^2-(r_1+r_2)t+r_1r_2=0" />
+<BlockMath math="t^2-(-2+28)t+(-2)(28)=0" />
+<BlockMath math="t^2-26t-56=0" />
 </MathContainer>
 
-Therefore, the quadratic equation with roots <InlineMath math="x_1 + x_2" /> and <InlineMath math="y_1 + y_2" /> is <InlineMath math="x^2 - 26x - 56 = 0" />.
+Therefore, the requested equation is <InlineMath math="x^2-26x-56=0" />, matching the variable used in the answer choices.

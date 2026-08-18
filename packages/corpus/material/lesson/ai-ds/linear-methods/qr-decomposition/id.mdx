@@ -78,11 +78,32 @@ QR dekomposisi ekonomis <InlineMath math="A = Q_1 \cdot R_1" /> dengan kondisi <
 untuk semua <InlineMath math="i = 1, \ldots, n" /> adalah unik untuk matriks <InlineMath math="A" />
 yang memiliki peringkat penuh.
 
+## Contoh QR Tipis
+
+Misalkan
+
+<BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
+
+Gram-Schmidt mula-mula memberikan
+
+<MathContainer>
+<BlockMath math="q_1=\frac{a_1}{\|a_1\|_2}=\frac1{\sqrt2}\begin{pmatrix}1\\1\\0\end{pmatrix}" />
+<BlockMath math="r_{12}=q_1^Ta_2=\frac1{\sqrt2}" />
+<BlockMath math="\widetilde q_2=a_2-r_{12}q_1=\begin{pmatrix}1/2\\-1/2\\1\end{pmatrix}" />
+<BlockMath math="q_2=\frac1{\sqrt6}\begin{pmatrix}1\\-1\\2\end{pmatrix}" />
+</MathContainer>
+
+Dengan demikian,
+
+<MathContainer>
+<BlockMath math="Q_1=\begin{pmatrix}1/\sqrt2&1/\sqrt6\\1/\sqrt2&-1/\sqrt6\\0&2/\sqrt6\end{pmatrix}" />
+<BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
+<BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
+</MathContainer>
+
 ## Metode Householder untuk QR Dekomposisi
 
-Meskipun proses Gram-Schmidt memberikan cara teoretis yang elegan untuk memperoleh QR dekomposisi,
-metode ini tidak cocok untuk perhitungan praktis. Masalah utamanya adalah ketidakstabilan numerik akibat pembatalan,
-ortogonalitas kolom-kolom cepat hilang selama komputasi.
+Gram-Schmidt klasik memberikan penurunan yang jelas, tetapi dapat kehilangan ortogonalitas dalam aritmetika titik mengambang ketika kolom-kolomnya hampir bergantung linear. Gram-Schmidt termodifikasi memperbaiki perilaku tersebut. QR Householder merupakan implementasi padat yang lazim dan stabil secara numerik karena menerapkan reflektor ortogonal secara langsung.
 
 Untuk mengatasi masalah ini, kita memerlukan metode yang lebih stabil secara numerik.
 Salah satu pendekatan yang paling berhasil adalah prosedur Householder,
@@ -97,7 +118,7 @@ kita dapat mendefinisikan matriks transformasi Householder:
 
 Perhatikan bahwa <InlineMath math="vv^T" /> adalah produk diadik (outer product), yaitu perkalian vektor kolom
 <InlineMath math="v \in \mathbb{R}^{m \times 1}" /> dengan vektor baris <InlineMath math="v^T \in \mathbb{R}^{1 \times m}" />.
-Hasil perkalian ini adalah matriks <InlineMath math="m \times m" /> dengan peringkat 1 untuk <InlineMath math="v \neq 0" />.
+Hasil perkalian ini adalah matriks <InlineMath math="m \times m" /> dengan peringkat <InlineMath math="1" /> untuk <InlineMath math="v \neq 0" />.
 Jangan sampai tertukar dengan perkalian skalar <InlineMath math="v^T v \in \mathbb{R}" /> yang menghasilkan bilangan tunggal.
 
 ## Sifat-sifat Transformasi Householder
@@ -109,7 +130,7 @@ untuk vektor <InlineMath math="v \in \mathbb{R}^m" /> dengan <InlineMath math="\
 
 2. <InlineMath math="S" /> adalah matriks ortogonal: <InlineMath math="S^T S = I" />
 
-3. Perkalian <InlineMath math="S \cdot x" /> dari <InlineMath math="S" /> dari kiri dengan vektor <InlineMath math="x \in \mathbb{R}^n" />
+3. Perkalian <InlineMath math="S \cdot x" /> dari <InlineMath math="S" /> dari kiri dengan vektor <InlineMath math="x \in \mathbb{R}^m" />
    menyebabkan refleksi <InlineMath math="x" /> pada subruang <InlineMath math="\text{rentang}(v)^{\perp}" />,
    yaitu pada hiperplane (bidang datar berdimensi tinggi) dengan vektor normal <InlineMath math="v" />
 
@@ -198,18 +219,19 @@ Hitung:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
-<BlockMath math="u_i := \tilde{a}_i + \begin{pmatrix} \mp\sigma \\ 0 \\ \vdots \\ 0 \end{pmatrix} \in \mathbb{R}^{m-i+1}" />
+<BlockMath math="s_i:=\begin{cases}1,&\tilde a_{ii}\ge0,\\-1,&\tilde a_{ii}<0,\end{cases}" />
+<BlockMath math="u_i := \tilde{a}_i+s_i\sigma e_1 \in \mathbb{R}^{m-i+1}" />
 <BlockMath math="\hat{u}_i := \begin{pmatrix} 0 \\ \vdots \\ 0 \\ u_i \end{pmatrix} \in \mathbb{R}^m" />
 </MathContainer>
 
 dan:
 
-<BlockMath math="\beta := 1/(\sigma(\sigma + |\tilde{a}_{ii}|))" />
+<BlockMath math="\beta := \frac{2}{u_i^Tu_i}=\frac{1}{\sigma(\sigma+|\tilde a_{ii}|)}" />
 
 Kemudian:
 
 <MathContainer>
-<BlockMath math="v_i = \frac{\tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1}{\|\tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1\|_2} = \frac{u_i}{\|u_i\|_2}" />
+<BlockMath math="v_i=\frac{u_i}{\|u_i\|_2}" />
 <BlockMath math="\tilde{S}_i = I_{m-i+1} - 2v_i v_i^T = I_{m-i+1} - \beta u_i u_i^T" />
 <BlockMath math="S_i = I_m - \beta \hat{u}_i \hat{u}_i^T" />
 </MathContainer>
@@ -232,12 +254,11 @@ Akhirnya diperoleh:
 
 ### Kompleksitas Komputasi
 
-Kompleksitas numerik untuk perhitungan QR dekomposisi matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" />
-dengan prosedur Householder pada dasarnya adalah:
+Untuk <InlineMath math="m\ge n" />, QR Householder memerlukan kira-kira
 
 <MathContainer>
-<BlockMath math="n^2 \cdot m \text{ operasi aritmetika untuk } m \gg n" />
-<BlockMath math="\frac{2}{3}n^3 \text{ operasi aritmetika untuk } m \approx n" />
+<BlockMath math="2mn^2-\frac{2}{3}n^3\text{ operasi titik mengambang}" />
+<BlockMath math="\frac{4}{3}n^3\text{ operasi titik mengambang ketika }m=n" />
 </MathContainer>
 
 ### Sifat Numerik
@@ -247,19 +268,19 @@ dengan prosedur Householder pada dasarnya adalah:
 2. Elemen diagonal <InlineMath math="R" /> adalah bilangan <InlineMath math="\pm\|\tilde{a}_i\|_2" />
    dari langkah ke-<InlineMath math="i" />. Memilih transformasi sehingga semuanya positif memberikan QR dekomposisi.
    Jika <InlineMath math="\|\tilde{a}_i\|_2 = 0" />, <InlineMath math="A" /> tidak memiliki peringkat penuh
-   dan algoritma berhenti.
+   dan pernyataan keunikan untuk peringkat penuh tidak lagi berlaku. QR tetap ada, tetapi QR penyingkap-rank dengan pivot kolom lebih tepat ketika peringkat numerik penting.
 
    Untuk alasan numerik memilih tanda sehingga pembatalan dihindari:
 
    <MathContainer>
-   <BlockMath math="u_i = \tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1 \text{ (bentuk umum)}" />
-   <BlockMath math="u_i = \tilde{a}_i + \text{sgn}(\tilde{a}_i) \cdot \|\tilde{a}_i\|_2 \cdot e_1 \text{ (pilihan tanda optimal)}" />
+   <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
+   <BlockMath math="s_i=1\text{ ketika }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ untuk kasus lainnya}" />
    </MathContainer>
 
 3. Sebagai pengganti membangun <InlineMath math="Q" />, dalam penyimpanan kompak juga dapat menyimpan
    hanya informasi yang diperlukan untuk transformasi:
 
-   <BlockMath math="\text{Simpan vektor } \tilde{a}_i \mp \|\tilde{a}_i\|_2 \cdot e_1" />
+   <BlockMath math="\text{Simpan vektor Householder }u_i" />
 
    di tempat bebas dari <InlineMath math="A" /> di bawah diagonal dan elemen diagonal dalam vektor tambahan.
 

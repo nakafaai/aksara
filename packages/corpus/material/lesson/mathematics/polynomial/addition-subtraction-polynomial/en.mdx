@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Basic Concepts
 
-The operations of addition and subtraction on polynomials are essentially the same as for other algebraic forms: we can only add or subtract **like terms**.
+Polynomial addition and subtraction combine only **like terms**, just as they do in other algebraic expressions.
 
 ### What Are Like Terms?
 
@@ -41,7 +41,7 @@ The operations of addition and subtraction on polynomials are essentially the sa
 
 ## Polynomial Addition
 
-To add two polynomials, we simply **add the coefficients of like terms**.
+To add two polynomials, **add the coefficients of like terms** while keeping their variable parts unchanged.
 
 **Horizontal Method:**
 
@@ -136,7 +136,7 @@ Suppose we have three graphs of polynomial functions:
         Graph of <InlineMath math="f(x) = x + 1" />
       </>
     }
-    description="Linear Function (Degree 1)"
+    description={<>Linear function of degree <InlineMath math="1" /></>}
     showZAxis={false}
     cameraPosition={[0, 0, 15]}
     data={[
@@ -156,7 +156,7 @@ Suppose we have three graphs of polynomial functions:
         Graph of <InlineMath math="g(x) = 0.5x^4 - 2x^2 + 1" />
       </>
     }
-    description="Degree 4 Function"
+    description={<>Function of degree <InlineMath math="4" /></>}
     showZAxis={false}
     cameraPosition={[0, 0, 15]}
     data={[
@@ -176,7 +176,7 @@ Suppose we have three graphs of polynomial functions:
         Graph of <InlineMath math="h(x) = -0.5x^3 + 1.5x" />
       </>
     }
-    description="Degree 3 Function"
+    description={<>Function of degree <InlineMath math="3" /></>}
     showZAxis={false}
     cameraPosition={[0, 0, 15]}
     data={[
@@ -210,7 +210,7 @@ Because the definition of function addition or subtraction is to add or subtract
 
 ### Example Sketches
 
-Here are example sketches of the graphs resulting from the sum <InlineMath math="f(x) + g(x)" /> and difference <InlineMath math="f(x) - g(x)" />, obtained by vertically adding/subtracting the y-values for each x.
+Here are example sketches of the graphs resulting from the sum <InlineMath math="f(x) + g(x)" /> and difference <InlineMath math="f(x) - g(x)" />, obtained by vertically adding or subtracting the <InlineMath math="y" />-values for each <InlineMath math="x" />.
 
 <ContentStack>
   <LineEquation
@@ -269,4 +269,34 @@ Here are example sketches of the graphs resulting from the sum <InlineMath math=
   />
 </ContentStack>
 
-In the same way, you can sketch the graphs of <InlineMath math="f(x) + h(x), \space g(x) + h(x), \space f(x) - h(x), \space \text{and} \space g(x) - h(x)" />. The key is to add or subtract the heights (y-values) of the original graphs at each corresponding x-value.
+In the same way, you can sketch the graphs of <InlineMath math="f(x) + h(x), \space g(x) + h(x), \space f(x) - h(x), \space \text{and} \space g(x) - h(x)" />. The key is to add or subtract the heights (<InlineMath math="y" />-values) of the original graphs at each corresponding <InlineMath math="x" />-value.
+
+## Exercise
+
+Let
+
+<MathContainer>
+  <BlockMath math="A(x)=3x^3-2x^2+5x-4" />
+  <BlockMath math="B(x)=-x^3+6x^2-3x+7" />
+</MathContainer>
+
+Find <InlineMath math="A(x)+B(x)" /> and <InlineMath math="A(x)-B(x)" />.
+
+### Worked Solution
+
+For addition, combine coefficients of like powers:
+
+<MathContainer>
+  <BlockMath math="A(x)+B(x)" />
+  <BlockMath math="=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7)" />
+  <BlockMath math="=2x^3+4x^2+2x+3" />
+</MathContainer>
+
+For subtraction, distribute the negative sign to every term of <InlineMath math="B(x)" /> before combining like terms:
+
+<MathContainer>
+  <BlockMath math="A(x)-B(x)" />
+  <BlockMath math="=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7)" />
+  <BlockMath math="=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7)" />
+  <BlockMath math="=4x^3-8x^2+8x-11" />
+</MathContainer>

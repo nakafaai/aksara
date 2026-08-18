@@ -4,21 +4,21 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "The most recent viral DNA from ancient smallpox dates back to $$603$$ BCE.",
+        "The youngest ancient DNA samples in the study date to around $$600$$ CE.",
       value: false,
     },
     {
-      label: "Traces of the smallpox disease are no longer visible.",
+      label: "The archaeological remains contained no detectable variola DNA.",
       value: false,
     },
     {
       label:
-        "The $$1{,}400$$-year-old genetic information plays an important role because it teaches us about the evolutionary history of the variola virus that causes smallpox.",
+        "Genetic evidence about $$1{,}400$$ years old helps reconstruct the evolutionary history of the variola virus.",
       value: true,
     },
     {
       label:
-        "The discovery of viral DNA from ancient smallpox provides evidence that the origin emerged more than $$1{,}400$$ years earlier.",
+        "The study proves that smallpox originated in Viking Age northern Europe.",
       value: false,
     },
     {
@@ -29,21 +29,22 @@ const choices: QuestionChoices = {
   id: [
     {
       label:
-        "DNA virus dari jenis cacar purba yang paling akhir tertanggal $$603$$ SM.",
-      value: false,
-    },
-    {
-      label: "Jejak penyakit cacar sudah tidak terlihat lagi.",
+        "Sampel DNA purba termuda dalam penelitian tersebut berasal dari sekitar tahun $$600$$ M.",
       value: false,
     },
     {
       label:
-        "Informasi genetika berusia $$1.400$$ tahun memiliki peranan penting karena mengajarkan kita tentang sejarah evolusi virus variola yang menjadi penyebab cacar.",
+        "Sisa arkeologis tersebut tidak mengandung DNA variola yang dapat dideteksi.",
+      value: false,
+    },
+    {
+      label:
+        "Bukti genetik berusia sekitar $$1{.}400$$ tahun membantu merekonstruksi sejarah evolusi virus variola.",
       value: true,
     },
     {
       label:
-        "Temuan tentang penemuan DNA virus dari jenis cacar purba memberi bukti bahwa asal-usul sudah muncul lebih dari $$1.400$$ tahun lebih awal.",
+        "Penelitian tersebut membuktikan bahwa cacar berasal dari Eropa utara pada Zaman Viking.",
       value: false,
     },
     {

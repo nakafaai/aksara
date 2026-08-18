@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Position of a Line to a Circle",
+  title: "Position of a Line Relative to a Circle",
   description: "Learn how lines intersect, touch, or miss circles using discriminants, intersection points, and tangent conditions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
@@ -10,15 +10,15 @@ export const metadata = {
 
 ## Understanding the Relationship Between Lines and Circles
 
-Imagine you have a circle and a straight line on the same plane. Interesting, right? How can these two geometric objects interact? It turns out there are three possibilities that can occur.
+Draw a circle and a straight line in the same plane. Exactly three positional relationships are possible.
 
-The line can **intersect the circle at two points**, **be tangent to the circle at one point only**, or even **not touch the circle at all**. Just like when you throw a pencil toward a ring, the pencil can go through the ring, touch the edge of the ring, or miss completely.
+The line can **intersect the circle at two points**, **be tangent at one point**, or **miss the circle entirely**. A pencil laid across a ring gives a simple picture: it can cross the ring, touch only its rim, or remain outside it.
 
-This concept is very important in analytic geometry because it helps us understand various situations in real life. For example, to determine whether a highway will pass through a circular protected area, or to analyze satellite trajectories relative to certain zones.
+Analytic geometry turns this picture into a reliable calculation. The same method can test whether a planned road crosses a circular protected area or whether a path reaches a defined zone.
 
 ## Three Possible Positions
 
-Let's look at the three possible positions of a line relative to a circle visually:
+The visualization compares all three cases:
 
 <LineEquation
   title="Position of Line to Circle"
@@ -131,21 +131,21 @@ Let's look at the three possible positions of a line relative to a circle visual
   showZAxis={false}
 />
 
-From the visualization above, we can see three different situations. The first line doesn't touch the circle at all, the second line touches the circle at exactly one point, and the third line penetrates the circle so it intersects at two points.
+The upper line has no point in common with the circle. The middle line touches it once. The lower line passes through the circle and therefore has two intersection points.
 
-1. **Line intersects the circle** occurs when a straight line passes through the interior of the circle so that it meets the circumference of the circle at two different points.
+1. A **secant** passes through the interior and meets the circumference at two different points.
 
-2. **Line is tangent to the circle** occurs when a straight line only touches the circumference of the circle at exactly one point. Such a line is called a tangent line.
+2. A **tangent** touches the circumference at exactly one point.
 
-3. **Line does not intersect** occurs when a straight line is outside the circle so there is no point of intersection between the line and the circle.
+3. An **exterior line** lies completely outside the circle and has no intersection point with it.
 
 ## Discriminant Method
 
-To determine the position of a line relative to a circle mathematically, we use the substitution method which produces a quadratic equation. Then, we analyze the **discriminant** of that quadratic equation.
+To determine the case algebraically, substitute the line equation into the circle equation. The result is a quadratic equation whose **discriminant** counts the real intersection points.
 
 Suppose we have a line with equation <InlineMath math="y = mx + c" /> and a circle with equation <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
 
-The first step is to substitute the line equation into the circle equation. It's easy, just replace all <InlineMath math="y" /> in the circle equation with <InlineMath math="mx + c" />:
+Replace every <InlineMath math="y" /> in the circle equation with <InlineMath math="mx+c" />:
 
 <MathContainer>
   <BlockMath math="x^2 + (mx + c)^2 + Dx + E(mx + c) + F = 0" />
@@ -153,21 +153,21 @@ The first step is to substitute the line equation into the circle equation. It's
   <BlockMath math="(1 + m^2)x^2 + (2mc + D + Em)x + (c^2 + Ec + F) = 0" />
 </MathContainer>
 
-This substitution result forms a quadratic equation in the form <InlineMath math="ax^2 + bx + c = 0" /> with coefficients:
+This substitution result forms a quadratic equation in the form <InlineMath math="Ax^2 + Bx + C = 0" />. Capital letters keep these coefficients distinct from the line intercept <InlineMath math="c" />:
 
 <MathContainer>
-  <BlockMath math="a = 1 + m^2" />
-  <BlockMath math="b = 2mc + D + Em" />
-  <BlockMath math="c = c^2 + Ec + F" />
+  <BlockMath math="A = 1 + m^2" />
+  <BlockMath math="B = 2mc + D + Em" />
+  <BlockMath math="C = c^2 + Ec + F" />
 </MathContainer>
 
-Now, we calculate the **discriminant** of this quadratic equation. The discriminant is a value that determines the type of roots of a quadratic equation:
+Now calculate the **discriminant**, whose sign determines the number of real roots:
 
-<BlockMath math="\Delta = b^2 - 4ac" />
+<BlockMath math="\Delta = B^2 - 4AC" />
 
 ## Interpretation of Discriminant Value
 
-This discriminant value will tell us the position of the line relative to the circle. The concept is simple:
+Each real solution for <InlineMath math="x" /> corresponds to an intersection point. The discriminant therefore gives three cases:
 
 1. **Positive discriminant** (<InlineMath math="\Delta > 0" />) means the quadratic equation has two different real roots. In geometric context, this means the line **intersects the circle at two points**.
 
@@ -175,9 +175,9 @@ This discriminant value will tell us the position of the line relative to the ci
 
 3. **Negative discriminant** (<InlineMath math="\Delta < 0" />) means the quadratic equation has no real roots. Geometrically, the line **does not intersect the circle**.
 
-## Calculation Example
+## Worked Example
 
-Let's look at a concrete example to make it clearer. Say we have line <InlineMath math="y = 2x - 1" /> and circle <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />.
+Determine the position of line <InlineMath math="y=2x-1" /> relative to circle <InlineMath math="x^2+y^2-4x+2y-4=0" />.
 
 We substitute <InlineMath math="y = 2x - 1" /> into the circle equation:
 
@@ -198,7 +198,7 @@ Calculate the discriminant:
 
 Since <InlineMath math="\Delta = 116 > 0" />, the line <InlineMath math="y = 2x - 1" /> **intersects the circle at two points**.
 
-> This discriminant value not only tells us the position of the line, but also shows how many intersection points there are. The larger the positive discriminant value, the "farther" the line is from the tangent condition.
+> The sign of the discriminant determines the number of intersection points. Its magnitude alone is not a geometric distance from the tangent condition because scaling the equation also scales the discriminant.
 
 ## Standard Circle Case
 
@@ -222,7 +222,7 @@ After simplification:
 
 The interpretation remains the same based on the sign of the discriminant.
 
-## Practice
+## Practice with Complete Solutions
 
 1. Determine the position of line <InlineMath math="y = x + 3" /> relative to circle <InlineMath math="x^2 + y^2 = 8" />.
 
@@ -232,7 +232,7 @@ The interpretation remains the same based on the sign of the discriminant.
 
 4. Determine the value of <InlineMath math="k" /> so that line <InlineMath math="y = x + k" /> is tangent to circle <InlineMath math="x^2 + y^2 = 18" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution**:
 
@@ -264,7 +264,7 @@ The interpretation remains the same based on the sign of the discriminant.
 
 3. **Solution**:
 
-   Change line <InlineMath math="2x + y - 4 = 0" /> to <InlineMath math="y = -2x + 4" />.
+   Solve the line <InlineMath math="2x + y - 4 = 0" /> for <InlineMath math="y" /> to obtain <InlineMath math="y = -2x + 4" />.
 
    Substitute into <InlineMath math="x^2 + y^2 = 5" />:
 

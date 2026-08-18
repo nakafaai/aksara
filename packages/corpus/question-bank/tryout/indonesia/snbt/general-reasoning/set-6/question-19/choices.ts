@@ -3,52 +3,55 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "the higher the paddy production, the lower the rice imports",
+      label:
+        "Across these four rows, higher paddy production is paired with lower rice imports.",
       value: false,
     },
     {
       label:
-        "the highest rice imports occurred during the highest rice procurement",
+        "The highest rice imports and the highest rice procurement both occur in 1999.",
       value: false,
     },
     {
-      label: "high rice production is consistent with high rice procurement",
+      label:
+        "The highest rice production and the highest rice procurement occur in the same year.",
       value: true,
     },
     {
       label:
-        "the condition of highest rice production corresponds to the lowest rice procurement",
+        "The highest rice production occurs in the same row as the lowest rice procurement.",
       value: false,
     },
     {
       label:
-        "the lowest rice imports occurred when the lowest rice procurement occurred",
+        "The lowest rice imports and the lowest rice procurement both occur in 2004.",
       value: false,
     },
   ],
   id: [
     {
-      label: "semakin tinggi produksi padi, semakin rendah impor beras",
+      label:
+        "Pada keempat baris tersebut, produksi padi yang lebih tinggi berpasangan dengan impor beras yang lebih rendah.",
       value: false,
     },
     {
       label:
-        "impor beras tertinggi terjadi pada kondisi pengadaan beras tertinggi",
+        "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada 1999.",
       value: false,
     },
     {
       label:
-        "tingginya produksi beras seiring dengan tingginya pengadaan beras",
+        "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
       value: true,
     },
     {
       label:
-        "kondisi produksi beras paling tinggi justru pengadaan beras terendah",
+        "Produksi beras tertinggi terjadi pada baris yang sama dengan pengadaan beras terendah.",
       value: false,
     },
     {
       label:
-        "impor beras terendah terjadi ketika terjadi pengadaan beras terendah",
+        "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada 2004.",
       value: false,
     },
   ],

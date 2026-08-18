@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Cholesky Dekomposisi",
+    title: "Dekomposisi Cholesky",
     description: "Pelajari dekomposisi Cholesky untuk matriks positif definit dengan algoritma efisien, faktorisasi segitiga bawah, dan analisis kompleksitas komputasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-13",
@@ -8,7 +8,11 @@ export const metadata = {
 
 ## Dekomposisi LU untuk Matriks Positif Definit
 
-Untuk matriks positif definit, ada sifat khusus yang membuat dekomposisi menjadi lebih sederhana. [Dekomposisi LU](/id/materi/ai-ds/metode-linear-ai/lu-dekomposisi) dapat dilakukan tanpa menggunakan matriks permutasi <InlineMath math="P" /> karena eliminasi Gauss dapat berjalan tanpa pertukaran baris, dan semua elemen pivot yang dihasilkan dijamin positif.
+Misalkan <InlineMath math="A\in\mathbb{R}^{n\times n}" /> simetris positif definit, yang berarti
+
+<BlockMath math="x^TAx>0\qquad\text{untuk setiap }x\neq0" />
+
+Syarat ini membuat faktorisasi berperilaku sangat baik. [Dekomposisi LU](/id/materi/ai-ds/metode-linear-ai/lu-dekomposisi) dapat berjalan tanpa pertukaran baris, dan setiap pivot yang dihasilkan eliminasi Gauss dalam aritmetika eksak bernilai positif.
 
 Hal ini berarti kita memperoleh faktorisasi dalam bentuk <InlineMath math="A = L \cdot U" />, di mana elemen diagonal dari <InlineMath math="U" /> adalah elemen pivot yang positif untuk semua indeks diagonal.
 
@@ -25,7 +29,7 @@ di mana <InlineMath math="\tilde{U}" /> adalah matriks yang diagonal utamanya di
 <BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
 </MathContainer>
 
-Karena dekomposisi LU tanpa <InlineMath math="P" /> adalah unik, maka:
+Ketika <InlineMath math="L" /> dan <InlineMath math="\tilde U" /> berdiagonal satu, dekomposisi LU ini unik. Perbandingan kedua faktorisasi menghasilkan
 
 <MathContainer>
 <BlockMath math="A = L \cdot U = \tilde{U}^T \cdot (D \cdot L^T)" />
@@ -40,11 +44,11 @@ maka <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
 ## Dekomposisi Cholesky
 
-Matriks positif definit <InlineMath math="A \in \mathbb{R}^{n \times n}" /> memungkinkan adanya dekomposisi Cholesky:
+Setiap matriks real simetris positif definit <InlineMath math="A \in \mathbb{R}^{n \times n}" /> memiliki faktor Cholesky tunggal dengan elemen diagonal positif:
 
 <BlockMath math="A = L \cdot D \cdot L^T = \tilde{L} \cdot \tilde{L}^T" />
 
-dengan <InlineMath math="\tilde{L} = L \cdot D^{\frac{1}{2}}" /> adalah matriks segitiga bawah reguler. Matriks ini dapat dihitung menggunakan algoritma Cholesky.
+dengan <InlineMath math="\tilde{L} = L \cdot D^{\frac{1}{2}}" /> merupakan matriks segitiga bawah yang dapat diinversi. Akar positif dari setiap pivot menetapkan tanda diagonal dan membuat faktornya tunggal.
 
 Perhitungan matriks <InlineMath math="\tilde{L}" /> dilakukan dengan:
 
@@ -70,16 +74,41 @@ Untuk <InlineMath math="i = 2, \ldots, n" />:
 
 untuk <InlineMath math="j = i + 1, \ldots, n" />.
 
-Setelah menjalankan algoritma ini, kita akan mendapatkan faktor Cholesky yang merupakan matriks segitiga bawah:
+Besaran di dalam setiap akar harus tetap positif. Nilai nol atau negatif tidak boleh disamarkan dengan nilai mutlak: nilai tersebut menunjukkan bahwa masukan tidak positif definit atau aritmetika presisi hingga memerlukan penanganan numerik yang lebih hati-hati.
+
+Setelah algoritma selesai, kita memperoleh faktor Cholesky segitiga bawah:
 
 <BlockMath math="\tilde{L} = \begin{pmatrix} \tilde{l}_{11} & 0 \\ \vdots & \ddots \\ \tilde{l}_{n1} & \cdots & \tilde{l}_{nn} \end{pmatrix}" />
+
+## Contoh Kerja
+
+Faktorkan matriks
+
+<BlockMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />
+
+Elemen faktor segitiga bawah diperoleh langsung dari algoritma:
+
+<MathContainer>
+<BlockMath math="\tilde l_{11}=\sqrt4=2" />
+<BlockMath math="\tilde l_{21}=\frac2{\tilde l_{11}}=1" />
+<BlockMath math="\tilde l_{22}=\sqrt{5-\tilde l_{21}^2}=2" />
+</MathContainer>
+
+Jadi,
+
+<MathContainer>
+<BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
+<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+</MathContainer>
+
+Setelah faktor diketahui, penyelesaian <InlineMath math="Ax=b" /> cukup memakai dua substitusi segitiga, bukan invers matriks: selesaikan <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian selesaikan <InlineMath math="\tilde L^Tx=y" />.
 
 ## Kompleksitas Algoritma Cholesky
 
 Algoritma Cholesky untuk menghitung faktor Cholesky <InlineMath math="\tilde{L}" /> dari <InlineMath math="A \in \mathbb{R}^{n \times n}" /> memerlukan:
 
-<BlockMath math="\frac{1}{6}n^3 + O(n^2)" />
+<BlockMath math="\frac{1}{3}n^3 + O(n^2)\quad\text{flops}" />
 
 operasi aritmetika.
 
-Hal ini merupakan setengah dari jumlah operasi yang diperlukan untuk menghitung dekomposisi LU, karena penggunaan simetri memungkinkan kita melakukan perhitungan tanpa pertukaran baris dalam urutan yang berbeda.
+Suku utamanya terdiri atas sekitar <InlineMath math="n^3/6" /> perkalian dan <InlineMath math="n^3/6" /> penjumlahan. Jika digabungkan, jumlahnya sekitar <InlineMath math="n^3/3" /> operasi titik mengambang, kira-kira separuh biaya utama <InlineMath math="2n^3/3" /> untuk faktorisasi LU matriks rapat umum. Cholesky menghemat kerja dengan memanfaatkan kesimetrian dan hanya menyimpan satu bagian segitiga dari faktorisasi.

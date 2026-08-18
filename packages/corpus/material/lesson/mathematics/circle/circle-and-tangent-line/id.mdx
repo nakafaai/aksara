@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Lingkaran dan Garis Singgung",
-  description: "Temukan garis singgung lingkaran. Pelajari persamaan, sifat, dan selesaikan soal titik luar serta garis singgung persekutuan dengan solusi detail.",
+  description: "Bangun persamaan garis singgung dari jari-jari yang tegak lurus, lalu selesaikan soal titik luar dan garis singgung persekutuan secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Lingkaran",
@@ -174,7 +174,7 @@ showZAxis={false}
 
 ### Panjang Garis Singgung
 
-Jika <InlineMath math="P(x_1, y_1)" /> adalah titik di luar lingkaran dengan pusat <InlineMath math="O(a, b)" /> dan jari-jari <InlineMath math="r" />, maka panjang garis singgung dari P ke lingkaran adalah:
+Jika <InlineMath math="P(x_1, y_1)" /> adalah titik di luar lingkaran dengan pusat <InlineMath math="O(a, b)" /> dan jari-jari <InlineMath math="r" />, maka panjang ruas garis singgung dari <InlineMath math="P" /> ke titik singgung adalah:
 
 <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
 
@@ -239,12 +239,12 @@ Garis singgung persekutuan luar adalah garis yang menyinggung kedua lingkaran da
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 - alpha);
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 + alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 - alpha);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 - alpha);
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 + alpha);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 + alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -277,12 +277,12 @@ Garis singgung persekutuan luar adalah garis yang menyinggung kedua lingkaran da
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 + alpha);
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 - alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 + alpha);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 + alpha);
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 - alpha);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 - alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -311,6 +311,8 @@ Panjang garis singgung persekutuan luar:
 <BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
 
 di mana <InlineMath math="d" /> adalah jarak antara kedua pusat lingkaran.
+
+Ruas garis singgung luar dengan panjang positif hanya ada jika <InlineMath math="d>|r_1-r_2|" />. Pada saat sama dengan, kedua lingkaran bersinggungan dalam dan ruas antara kedua titik singgung menyusut menjadi nol.
 
 ### Garis Singgung Persekutuan Dalam
 
@@ -444,6 +446,8 @@ Panjang garis singgung persekutuan dalam:
 
 <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
 
+Ruas garis singgung dalam dengan panjang positif hanya ada jika <InlineMath math="d>r_1+r_2" />. Pada saat sama dengan, kedua lingkaran bersinggungan luar dan ruas antara kedua titik singgung panjangnya nol.
+
 ## Menentukan Persamaan Garis Singgung
 
 ### Menentukan Garis Singgung Melalui Titik pada Lingkaran
@@ -514,7 +518,7 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
 
 5. Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" /> yang melalui titik <InlineMath math="(8, -2)" />!
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Persamaan garis singgung di titik pada lingkaran**
 
@@ -546,7 +550,7 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
      <BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
    </MathContainer>
 
-   Jadi: <InlineMath math="x - 2y - 4 \pm 5\sqrt{5} = 0" />
+   Jadi: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
 
 3. **Garis singgung dari titik luar**
 
@@ -556,7 +560,17 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
        <BlockMath math="AT = \sqrt{10^2 + 0^2 - 36} = \sqrt{100 - 36} = \sqrt{64} = 8" />
      </MathContainer>
 
-   - Koordinat titik singgung dapat dicari dengan persamaan garis singgung dari titik luar.
+   - Untuk mencari titik singgung, misalkan <InlineMath math="T(x,y)" /> salah satunya. Karena jari-jari <InlineMath math="OT" /> tegak lurus garis singgung <InlineMath math="AT" />, hasil kali titik kedua vektor arahnya sama dengan nol:
+
+     <MathContainer>
+       <BlockMath math="(A-T)\cdot T=0" />
+       <BlockMath math="(10-x)x-y^2=0" />
+       <BlockMath math="10x-(x^2+y^2)=0" />
+       <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+       <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+     </MathContainer>
+
+     Jadi, titik singgungnya adalah <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> dan <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
 
 4. **Garis singgung persekutuan luar**
 
@@ -565,17 +579,17 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
      <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2} = \sqrt{64 - 1} = \sqrt{63} = 3\sqrt{7}" />
    </MathContainer>
 
-5. **Garis singgung melalui titik luar**
+5. **Garis singgung melalui titik pada lingkaran**
 
    Lingkaran: <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />
 
    Pusat <InlineMath math="(3, -2)" />, jari-jari <InlineMath math="r = 5" />
 
-   Verifikasi titik <InlineMath math="(8, -2)" /> di luar lingkaran:
+   Periksa bahwa titik <InlineMath math="(8, -2)" /> terletak pada lingkaran:
 
    <BlockMath math="(8-3)^2 + (-2+2)^2 = 25 + 0 = 25" />
 
-   Titik tepat pada lingkaran! Maka persamaan garis singgungnya:
+   Ruas kiri bernilai <InlineMath math="r^2=25" />, sehingga titik tersebut berada pada lingkaran. Maka persamaan garis singgungnya:
 
    <MathContainer>
      <BlockMath math="(8-3)(x-3) + (-2+2)(y+2) = 25" />
@@ -583,3 +597,9 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
      <BlockMath math="x - 3 = 5" />
      <BlockMath math="x = 8" />
    </MathContainer>
+
+## Sumber
+
+- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
+- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
+- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)

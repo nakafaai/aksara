@@ -11,7 +11,7 @@ export const metadata = {
 
 Pernahkah kalian memperhatikan bahwa beberapa persamaan matematika selalu benar untuk setiap nilai variabelnya? Misalnya, <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> selalu benar untuk sembarang nilai <InlineMath math="a" /> dan <InlineMath math="b" />. Persamaan seperti ini disebut identitas.
 
-Dalam trigonometri, kita juga memiliki persamaan-persamaan yang selalu benar untuk setiap nilai sudutnya. Inilah yang disebut **identitas trigonometri**. Identitas ini sangat berguna untuk menyederhanakan ekspresi trigonometri dan menyelesaikan persamaan.
+Dalam trigonometri, persamaan yang benar untuk setiap sudut dalam domainnya disebut **identitas trigonometri**. Identitas memungkinkan kita menulis ulang ekspresi, membuktikan bentuk yang setara, dan menyelesaikan persamaan tanpa mengubah nilainya.
 
 ## Identitas Trigonometri Dasar
 
@@ -33,9 +33,9 @@ Mari kita mulai dengan identitas paling fundamental. Perhatikan lingkaran satuan
 
 Pada lingkaran satuan:
 
-- <InlineMath math="\text{jari-jari} = 1" />
-- Koordinat <InlineMath math="x = \cos \theta" />
-- Koordinat <InlineMath math="y = \sin \theta" />
+- Jari-jari: <InlineMath math="r = 1" />
+- Koordinat <InlineMath math="x" /> adalah <InlineMath math="\cos \theta" />
+- Koordinat <InlineMath math="y" /> adalah <InlineMath math="\sin \theta" />
 
 Menggunakan teorema Pythagoras untuk titik <InlineMath math="P" />:
 
@@ -79,7 +79,7 @@ Setiap fungsi trigonometri memiliki kebalikannya. Hubungan ini membentuk identit
   <BlockMath math="\tan \theta = \frac{1}{\cot \theta}" />
 </MathContainer>
 
-Atau dalam bentuk sebaliknya:
+Secara setara:
 
 <MathContainer>
   <BlockMath math="\csc \theta = \frac{1}{\sin \theta}" />
@@ -87,15 +87,21 @@ Atau dalam bentuk sebaliknya:
   <BlockMath math="\cot \theta = \frac{1}{\tan \theta}" />
 </MathContainer>
 
+Setiap identitas kebalikan berlaku pada nilai sudut yang membuat kedua ruasnya terdefinisi.
+
 ### Identitas Hasil Bagi
 
 Identitas hasil bagi menghubungkan tangen dan kotangen dengan sinus dan kosinus:
 
 <ContentStack>
 
+  <MathContainer>
   <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
 
-  <BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+    <BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+</MathContainer>
+
+Bentuk hasil bagi juga mensyaratkan penyebut yang tidak sama dengan nol.
 
   <Triangle
     title="Visualisasi Fungsi Trigonometri"
@@ -109,7 +115,7 @@ Identitas hasil bagi menghubungkan tangen dan kotangen dengan sinus dan kosinus:
   />
 </ContentStack>
 
-Kedua identitas ini dapat dibuktikan langsung dari definisi fungsi trigonometri pada lingkaran satuan.
+Kedua identitas hasil bagi tersebut langsung mengikuti definisi fungsi trigonometri pada lingkaran satuan.
 
 ### Identitas Fungsi Genap dan Ganjil
 
@@ -123,9 +129,11 @@ Ketika sudut bernilai negatif, fungsi trigonometri memiliki sifat khusus:
 
 <ContentStack>
 
+  <MathContainer>
   <BlockMath math="\sin(-\theta) = -\sin \theta" />
 
-  <BlockMath math="\tan(-\theta) = -\tan \theta" />
+    <BlockMath math="\tan(-\theta) = -\tan \theta" />
+</MathContainer>
 
   <UnitCircle
     title="Eksplorasi Sifat Genap dan Ganjil"
@@ -164,7 +172,7 @@ Kita mulai dari ruas kiri:
   <BlockMath math="= \sec \theta" />
 </MathContainer>
 
-Terbukti bahwa ruas kiri sama dengan ruas kanan.
+Ruas kiri telah berubah menjadi ruas kanan, sehingga identitas berlaku pada domain bersama kedua ruas.
 
 ## Menentukan Nilai Fungsi Trigonometri
 
@@ -219,6 +227,8 @@ Selanjutnya, hitung fungsi trigonometri lainnya:
      <BlockMath math="= \frac{\sin \theta}{\sin \theta} = 1" />
    </MathContainer>
 
+   Hasil ini berlaku pada domain ekspresi semula, yaitu saat <InlineMath math="\sin\theta \neq 0" /> dan <InlineMath math="\cos\theta \neq 0" />.
+
 2. Untuk membuktikan identitas, kita akan mengubah ruas kiri:
 
    <MathContainer>
@@ -228,6 +238,8 @@ Selanjutnya, hitung fungsi trigonometri lainnya:
      <BlockMath math="= \frac{\sin \theta (1 - \cos \theta)}{\sin^2 \theta}" />
      <BlockMath math="= \frac{1 - \cos \theta}{\sin \theta}" />
    </MathContainer>
+
+   Ini membuktikan kesamaan pada setiap sudut yang membuat kedua ruas semula terdefinisi.
 
 3. Diketahui <InlineMath math="\cos \theta = \frac{5}{13}" /> di kuadran IV.
 

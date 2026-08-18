@@ -3,55 +3,53 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "If there is no rise in ocean temperature then fish in the tropics do not move towards the poles to find a cool place",
+      label: "Every tropical fish population moves toward the poles",
       value: false,
     },
     {
       label:
-        "If fish in the tropics do not move towards the poles to find a cooler place then there is no rise in ocean temperature",
+        "Warming has shifted the distributions of many marine species toward the poles",
       value: true,
     },
     {
       label:
-        "If fish in the tropics move towards the poles to find a cooler place then there is a rise in ocean temperature",
+        "Observing one fish move toward a pole is enough to prove ocean warming",
       value: false,
     },
     {
       label:
-        "The decline in food production does not affect human population growth in the next $$50$$ years",
+        "Climate change affects fisheries productivity equally in every region",
       value: false,
     },
     {
       label:
-        "Human population in the next $$50$$ years is strongly influenced by the decline in food production",
+        "Tropical and subtropical fisheries are projected to gain more productivity than poleward regions",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Jika tidak terjadi kenaikan suhu lautan maka ikan-ikan di tropis tidak bergerak kearah kutub mencari tempat dingin",
+      label: "Setiap populasi ikan tropis berpindah ke arah kutub",
       value: false,
     },
     {
       label:
-        "Jika ikan-ikan di tropis tidak bergerak kearah kutub mencari tempat yang lebih dingin maka tidak terjadi kenaikan suhu lautan",
+        "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
       value: true,
     },
     {
       label:
-        "Jika ikan-ikan di tropis bergerak kearah kutub mencari tempat yang lebih dingin maka terjadi kenaikan suhu lautan",
+        "Mengamati satu ikan bergerak ke arah kutub sudah cukup untuk membuktikan pemanasan laut",
       value: false,
     },
     {
       label:
-        "Penurunan produksi pangan tidak mempengaruhi pertumbuhan populasi manusia $$50$$ tahun ke depan",
+        "Perubahan iklim memengaruhi produktivitas perikanan secara sama di setiap wilayah",
       value: false,
     },
     {
       label:
-        "Populasi manusia dalam $$50$$ tahun ke depan sangat dipengaruhi oleh penurunan produksi pangan",
+        "Perikanan tropis dan subtropis diproyeksikan memperoleh kenaikan produktivitas yang lebih besar daripada wilayah dekat kutub",
       value: false,
     },
   ],

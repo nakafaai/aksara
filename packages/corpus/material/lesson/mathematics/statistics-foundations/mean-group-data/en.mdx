@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Mean for Grouped Data",
-  description: "Calculate mean for grouped data using class intervals and midpoints. Learn the formula with worked examples and frequency distribution tables.",
+  description: "Estimate the mean of grouped data from class midpoints and frequencies through a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -8,39 +8,35 @@ export const metadata = {
 
 ## Mean for Grouped Data
 
-You already know how to calculate the mean for individual data, right? Just sum up all the values and divide by the number of data points.
+For ungrouped data, we calculate the mean by adding all values and dividing by the number of values.
 
 <BlockMath math="\bar{x} = \frac{\sum x_i}{n}" />
 
-But what if the data is presented in **groups** or **intervals**, like in a frequency distribution table? For example, test scores grouped into <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, and <InlineMath math="90\text{-}100" />.
+In a frequency distribution, however, values may be presented as **groups** or **intervals**. Test scores might be grouped into <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, and <InlineMath math="90\text{-}99" />.
 
-When data is grouped, we **don't know the exact value** of each data point within that group. For instance, if there are <InlineMath math="5" /> students in the <InlineMath math="70\text{-}79" /> group, we don't know if their scores are exactly <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" />, or some other value within that range.
+Once data is grouped, we **no longer know each exact value**. If <InlineMath math="5" /> students belong to the <InlineMath math="70\text{-}79" /> interval, for example, we cannot tell whether their individual scores were <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" />, or other values in that interval.
 
 ## Using the Class Midpoint
 
-Since we don't know the exact values, we use an **assumption** or **approximation**. We assume that all data points within a group are **represented by the midpoint** of that group (class interval).
+Because the exact values are unavailable, we make an **approximation**: the midpoint of each class **represents every value** in that interval.
 
-The class midpoint (often symbolized as <InlineMath math="x_i" />) is calculated as:
+The class midpoint, denoted by <InlineMath math="x_i" />, is:
 
 <BlockMath math="x_i = \frac{\text{Lower Class Limit} + \text{Upper Class Limit}}{2}" />
 
 ## Formula for Mean of Grouped Data
 
-Once we have the midpoint for each class, we can calculate the mean of the grouped data using the formula:
+After finding each midpoint, calculate the estimated mean with:
 
 <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i}" />
 
-Where:
+where:
 
-- <InlineMath math="\bar{x}" /> = Mean of the grouped data
-- <InlineMath math="f_i" /> = Frequency of the <InlineMath math="i" />
-  -th class (how many data points are in that group)
-- <InlineMath math="x_i" /> = Midpoint of the <InlineMath math="i" />
-  -th class
-- <InlineMath math="\sum (f_i \times x_i)" /> = Sum of the products of the frequency
-  and midpoint for each class
-- <InlineMath math="\sum f_i" /> = Sum of all frequencies (equal to the total number
-  of data points, <InlineMath math="n" />)
+- <InlineMath math="\bar{x}" /> is the estimated mean of the grouped data.
+- <InlineMath math="f_i" /> is the frequency of class <InlineMath math="i" />.
+- <InlineMath math="x_i" /> is the midpoint of class <InlineMath math="i" />.
+- <InlineMath math="\sum (f_i \times x_i)" /> is the sum of each class frequency multiplied by its midpoint.
+- <InlineMath math="\sum f_i" /> is the sum of all frequencies, equal to the total number of values <InlineMath math="n" />.
 
 ## Example: Average Shoe Size
 
@@ -54,16 +50,16 @@ Consider the grouped data for shoe sales at Store A:
 | <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
 | **Total**                  | **<InlineMath math="n=30" />**        |
 
-**Steps to calculate the Mean:**
+**Calculation:**
 
-1.  **Find the Midpoint (<InlineMath math="x_i" />) for each class:**
+1.  **Find the midpoint (<InlineMath math="x_i" />) of each class:**
 
     - Class <InlineMath math="37\text{-}39" />: <InlineMath math="x_1 = (37+39)/2 = 38" />
     - Class <InlineMath math="40\text{-}42" />: <InlineMath math="x_2 = (40+42)/2 = 41" />
     - Class <InlineMath math="43\text{-}45" />: <InlineMath math="x_3 = (43+45)/2 = 44" />
     - Class <InlineMath math="46\text{-}48" />: <InlineMath math="x_4 = (46+48)/2 = 47" />
 
-2.  **Multiply Frequency by Midpoint (<InlineMath math="f_i \times x_i" />) for each class:**
+2.  **Multiply each frequency by its midpoint (<InlineMath math="f_i \times x_i" />):**
 
     - Class <InlineMath math="37\text{-}39" />: <InlineMath math="2 \times 38 = 76" />
     - Class <InlineMath math="40\text{-}42" />: <InlineMath math="11 \times 41 = 451" />
@@ -78,10 +74,10 @@ Consider the grouped data for shoe sales at Store A:
 
     <BlockMath math="\sum f_i = 2 + 11 + 16 + 1 = 30" />
 
-5.  **Calculate the Mean (<InlineMath math="\bar{x}" />):**
+5.  **Calculate the mean (<InlineMath math="\bar{x}" />):**
 
     <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42.6" />
 
-**Therefore, the average shoe size sold at Store A is <InlineMath math="42.6" />.**
+**The estimated average shoe size sold at Store A is therefore <InlineMath math="42.6" />.**
 
-Remember, this result is an **estimate** of the mean because we use midpoints to represent the data within each group. However, this is the standard and most common way to calculate the mean for grouped data.
+This result is an **estimate** because the midpoint stands in for every value within its class. It is the standard estimate when only grouped frequencies are available.

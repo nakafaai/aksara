@@ -20,7 +20,7 @@ Python has seven arithmetic operators grouped into three precedence levels. This
 
 **Exponentiation Operator `**`**
 
-The `**` operator is used for exponentiation and has the highest precedence. This operator also has right associativity, unlike other operators.
+The `**` operator is used for exponentiation and has the highest precedence among the seven binary arithmetic operators discussed here. Unlike the others, it is right-associative.
 
 <CodeBlock
   data={[
@@ -78,9 +78,9 @@ The `/` operator performs division and always produces a float result, even when
 
 Note that even though `4 / 2` produces a whole number mathematically, Python still returns <InlineMath math="2.0" /> as a float.
 
-**Integer Division Operator**
+**Floor Division Operator**
 
-The `//` operator performs integer division which rounds the result to the nearest smaller integer.
+The `//` operator performs floor division. It rounds the quotient down to the greatest integer that is less than or equal to the exact result.
 
 <CodeBlock
   data={[
@@ -102,7 +102,7 @@ The `//` operator performs integer division which rounds the result to the neare
   ]}
 />
 
-Integer division works by rounding the result to the nearest smaller integer. For negative numbers like `-7 // 2`, the result is `-4`, not `-3`.
+Floor division rounds toward negative infinity. For a negative quotient such as `-7 // 2`, the result is `-4`, not `-3`. If either operand is a float, Python still applies the floor operation but returns a float.
 
 **Modulo Operator `%`**
 
@@ -128,7 +128,7 @@ The `%` operator returns the remainder of division. This operator follows the ma
   ]}
 />
 
-To understand modulo with negative numbers, note that `5 % 4` produces `1`, while `-5 % 4` produces `3`. The modulo operator is very useful for determining whether a number is divisible or for getting the last digit of a number.
+For negative numbers, remember that Python keeps the identity above. That is why `5 % 4` produces `1`, while `-5 % 4` produces `3`. Modulo is useful for divisibility checks and, for nonnegative integers, for finding the last digit.
 
 ### Lowest Precedence
 
@@ -226,7 +226,7 @@ Important things to remember are that the `/` operator always produces a float e
 | **Highest** | `**` | Exponentiation | Right |
 | **Middle** | `*` | Multiplication | Left |
 | **Middle** | `/` | Division | Left |
-| **Middle** | `//` | Integer division | Left |
+| **Middle** | `//` | Floor division | Left |
 | **Middle** | `%` | Modulo | Left |
 | **Lowest** | `+` | Addition | Left |
 | **Lowest** | `-` | Subtraction | Left |

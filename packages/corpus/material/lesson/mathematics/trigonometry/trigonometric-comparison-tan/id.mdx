@@ -38,11 +38,11 @@ Pada segitiga siku-siku, kita bisa melihat bahwa:
 
 ### Contoh Nilai Tangen
 
-Nilai tangen untuk sudut-sudut tertentu dapat dihitung secara pasti. Misalnya:
+Nilai tangen untuk sudut istimewa dapat ditulis secara eksak. Bentuk desimal berikut hanya merupakan pendekatan:
 
-- <InlineMath math="\tan 30^\circ = 0{,}57 \text{ atau} \frac{1}{\sqrt{3}}" />
+- <InlineMath math="\tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0{,}577" />
 - <InlineMath math="\tan 45^\circ = 1" />
-- <InlineMath math="\tan 60^\circ = 1{,}73 \text{ atau} \sqrt{3}" />
+- <InlineMath math="\tan 60^\circ = \sqrt{3} \approx 1{,}732" />
 
 Nilai tangen ini bisa didapatkan dengan melakukan perhitungan perbandingan sisi-sisi pada segitiga yang memiliki sudut tersebut.
 
@@ -50,7 +50,7 @@ Nilai tangen ini bisa didapatkan dengan melakukan perhitungan perbandingan sisi-
 
 ### Contoh Menghitung Tangen
 
-Misalnya kita memiliki sebuah segitiga siku-siku dengan sudut <InlineMath math="30^\circ" />, sisi depan <InlineMath math="15 \text{ cm}" />, dan sisi samping <InlineMath math="26 \text{ cm}" />.
+Perhatikan segitiga siku-siku tepat <InlineMath math="30^\circ" /> dengan sisi depan <InlineMath math="15 \text{ cm}" />, sisi samping <InlineMath math="15\sqrt{3} \text{ cm}" />, dan sisi miring <InlineMath math="30 \text{ cm}" />.
 
 <Triangle
   title={
@@ -61,20 +61,20 @@ Misalnya kita memiliki sebuah segitiga siku-siku dengan sudut <InlineMath math="
   description={
     <>
       Perbandingan sisi depan (<InlineMath math="15 \text{ cm}" />) dengan sisi
-      samping (<InlineMath math="26 \text{ cm}" />).
+      samping (<InlineMath math="15\sqrt{3} \text{ cm}" />).
     </>
   }
   angle={30}
   labels={{
     opposite: <InlineMath math="15\,\mathrm{cm}" />,
-    adjacent: <InlineMath math="26\,\mathrm{cm}" />,
-    hypotenuse: "sisi miring",
+    adjacent: <InlineMath math="15\sqrt{3}\,\mathrm{cm}" />,
+    hypotenuse: <InlineMath math="30\,\mathrm{cm}" />,
   }}
 />
 
 Maka nilai tangen dari sudut tersebut adalah:
 
-<BlockMath math="\tan 30^\circ = \frac{\text{sisi depan}}{\text{sisi samping}} = \frac{15 \text{ cm}}{26 \text{ cm}} = 0{,}57" />
+<BlockMath math="\tan 30^\circ = \frac{\text{sisi depan}}{\text{sisi samping}} = \frac{15}{15\sqrt{3}} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3} \approx 0{,}577" />
 
 ### Aplikasi dalam Kehidupan Sehari-hari
 
@@ -87,12 +87,12 @@ Tangen sangat berguna dalam kehidupan sehari-hari, terutama untuk:
 
 ## Latihan Soal
 
-Perhatikan segitiga siku-siku berikut dengan sudut <InlineMath math="70^\circ" />, sisi depan <InlineMath math="15 \text{ cm}" />, dan sisi samping <InlineMath math="7 \text{ cm}" />.
+Perhatikan segitiga siku-siku berikut. Sudut lancipnya adalah <InlineMath math="\theta" />, sisi depannya <InlineMath math="15 \text{ cm}" />, dan sisi sampingnya <InlineMath math="7 \text{ cm}" />.
 
 <Triangle
   title={
     <>
-      Segitiga dengan Sudut <InlineMath math="70^\circ" />
+      Segitiga dengan Sudut <InlineMath math="\theta" />
     </>
   }
   description={
@@ -101,7 +101,7 @@ Perhatikan segitiga siku-siku berikut dengan sudut <InlineMath math="70^\circ" /
       samping <InlineMath math="7 \text{ cm}" />.
     </>
   }
-  angle={70}
+  angle={65}
   labels={{
     opposite: <InlineMath math="15\,\mathrm{cm}" />,
     adjacent: <InlineMath math="7\,\mathrm{cm}" />,
@@ -109,12 +109,14 @@ Perhatikan segitiga siku-siku berikut dengan sudut <InlineMath math="70^\circ" /
   }}
 />
 
-Apakah kalian dapat mencari nilai perbandingan <InlineMath math="\tan 70^\circ" />? Jelaskan mengapa!
+Tentukan <InlineMath math="\tan \theta" /> dan jelaskan dua sisi mana yang membentuk perbandingannya.
 
-### Kunci Jawaban
+### Pembahasan
 
-Ya, kita dapat mencari nilai <InlineMath math="\tan 70^\circ" /> dengan membagi sisi depan dengan sisi samping:
+Terhadap sudut <InlineMath math="\theta" />, sisi sepanjang <InlineMath math="15 \text{ cm}" /> merupakan sisi depan dan sisi sepanjang <InlineMath math="7 \text{ cm}" /> merupakan sisi samping. Tangen membandingkan tepat kedua sisi tersebut:
 
-<BlockMath math="\tan 70^\circ = \frac{\text{sisi depan}}{\text{sisi samping}} = \frac{15 \text{ cm}}{7 \text{ cm}} = 2{,}14" />
+<BlockMath math="\tan \theta = \frac{\text{sisi depan}}{\text{sisi samping}} = \frac{15 \text{ cm}}{7 \text{ cm}} = \frac{15}{7} \approx 2{,}14" />
 
-Jadi nilai <InlineMath math="\tan 70^\circ = 2{,}14" />.
+Satuan sentimeter saling habis karena tangen adalah sebuah perbandingan. Jadi, <InlineMath math="\tan \theta \approx 2{,}14" />. Nilainya lebih besar dari <InlineMath math="1" />, sesuai dengan sisi depan yang lebih panjang daripada sisi samping.
+
+Sebagai pemeriksaan, <InlineMath math="\theta=\arctan(15/7)\approx65{,}0^\circ" />, sesuai dengan sudut lancip pada diagram.

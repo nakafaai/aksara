@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Understanding Limits of Trigonometric Functions
 
-Imagine you observe a clock pendulum swinging very slowly approaching its equilibrium point. This motion is similar to the behavior of trigonometric functions when their variable approaches a certain value. **Limits of trigonometric functions** examine how the values of sine, cosine, and tangent functions behave when the input approaches critical points.
+**Trigonometric limits** ask the same local question as algebraic limits: what value does an expression approach near a chosen input? Sine and cosine are continuous everywhere, while tangent is continuous wherever cosine is nonzero, so direct substitution still works whenever the resulting expression is defined.
 
-Unlike limits of algebraic functions that can often be solved by direct substitution, trigonometric functions have special characteristics due to their periodic and oscillating nature. This makes us need to use **theorems and special properties** to solve trigonometric limits.
+The special work begins when substitution produces an indeterminate form such as <InlineMath math="\frac{0}{0}" />. Near zero, one **fundamental sine limit** and familiar trigonometric identities let us rewrite those expressions into forms we can evaluate.
 
 ## Fundamental Theorem of Trigonometric Limits
 
-The most important foundation in trigonometric limits is the theorem stating that the sine function approaches its gradient when the angle approaches zero.
+The key result for trigonometric limits states that the ratio between the sine of an angle and the angle itself approaches one as the angle approaches zero.
 
 ### Basic Sine Limit
 
@@ -32,8 +32,15 @@ From the fundamental limit above, we can derive several other important limits:
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(because } \tan x = \frac{\sin x}{\cos x} \text{ and} \cos x \to 1\text{)}" />
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(use L'Hôpital or Taylor expansion)}" />
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(identity } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
 <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2} \quad \text{(identity } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
+</MathContainer>
+
+The identity gives both cosine limits directly, without using derivative rules that are developed later:
+
+<MathContainer>
+<BlockMath math="\frac{1-\cos x}{x}=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\longrightarrow\;0\cdot 1=0" />
+<BlockMath math="\frac{1-\cos x}{x^2}=\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\;\longrightarrow\;\frac{1}{2}" />
 </MathContainer>
 
 ## Properties of Trigonometric Limits
@@ -42,7 +49,7 @@ Based on the fundamental theorem, we can build a series of very useful propertie
 
 ### Trigonometric Ratios
 
-For constants <InlineMath math="a \neq 0" /> and <InlineMath math="b \neq 0" />, and **all following limits when <InlineMath math="x \to 0" />**:
+For real constants <InlineMath math="a" /> and <InlineMath math="b \neq 0" />, **all following limits are taken as <InlineMath math="x \to 0" />**:
 
 | Limit | Result | Notes |
 |-------|--------|-------|
@@ -131,7 +138,7 @@ Using the definition of cotangent:
 
 5. Calculate <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 

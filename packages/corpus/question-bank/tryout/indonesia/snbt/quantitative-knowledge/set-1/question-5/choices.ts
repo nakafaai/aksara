@@ -8,11 +8,11 @@ const choices: QuestionChoices = {
     },
     {
       label: "$$\\frac{3}{4}$$",
-      value: true,
+      value: false,
     },
     {
       label: "$$-\\frac{3}{4}$$",
-      value: false,
+      value: true,
     },
     {
       label: "$$\\frac{4}{3}$$",
@@ -30,11 +30,11 @@ const choices: QuestionChoices = {
     },
     {
       label: "$$\\frac{3}{4}$$",
-      value: true,
+      value: false,
     },
     {
       label: "$$-\\frac{3}{4}$$",
-      value: false,
+      value: true,
     },
     {
       label: "$$\\frac{4}{3}$$",

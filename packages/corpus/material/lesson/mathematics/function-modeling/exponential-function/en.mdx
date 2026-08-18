@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Understanding Exponential Functions
 
-An exponential function is a mathematical function that has a variable as the exponent of a constant number. The general form of an exponential function is <InlineMath math="f(x) = a \cdot b^x" /> with <InlineMath math="a \neq 0" />, <InlineMath math="b > 0" />, and <InlineMath math="b \neq 1" />.
+An exponential function has its independent variable in the exponent. For the growth and decay models in this lesson, its general form is <InlineMath math="f(x) = a \cdot b^x" /> with <InlineMath math="a > 0" />, <InlineMath math="b > 0" />, and <InlineMath math="b \neq 1" />.
 
 **Components of exponential functions:**
 
@@ -140,7 +140,7 @@ Exponential functions are widely used in daily life:
 
 ### Population Growth
 
-Living organism populations often follow exponential growth patterns. If the initial population is <InlineMath math="P_0" /> and the growth rate is <InlineMath math="r" /> per time period, then:
+When a population has a constant proportional growth rate and its conditions do not change, an exponential model can describe its growth. If the initial population is <InlineMath math="P_0" /> and the growth rate is <InlineMath math="r" /> per time period, then:
 
 <BlockMath math="P(t) = P_0 \cdot (1 + r)^t" />
 
@@ -155,6 +155,8 @@ Living organism populations often follow exponential growth patterns. If the ini
 | Time (hours) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
 | ------------ | ---- | ---- | ---- | ---- | ---- | ---- |
 | Population   | <InlineMath math="1000" /> | <InlineMath math="1200" /> | <InlineMath math="1440" /> | <InlineMath math="1728" /> | <InlineMath math="2074" /> | <InlineMath math="2488" /> |
+
+The model gives <InlineMath math="2073.6" /> and <InlineMath math="2488.32" /> at hours <InlineMath math="4" /> and <InlineMath math="5" />. The table rounds those populations to the nearest whole bacterium.
 
 ### Radioactive Decay
 
@@ -191,7 +193,7 @@ If <InlineMath math="b^{f(x)} = b^{g(x)}" />, then <InlineMath math="f(x) = g(x)
 
 **Method <InlineMath math="2" />: Using Logarithms**
 
-To solve <InlineMath math="b^x = c" />, use logarithms:
+For <InlineMath math="b>0" />, <InlineMath math="b\neq1" />, and <InlineMath math="c>0" />, solve <InlineMath math="b^x = c" /> with logarithms:
 
 <BlockMath math="x = \log_b c = \frac{\log c}{\log b}" />
 
@@ -205,13 +207,47 @@ To solve <InlineMath math="b^x = c" />, use logarithms:
 
 4. A radioactive substance has a half-life of <InlineMath math="5 \text{ years}" />. If the initial mass is <InlineMath math="100 \text{ grams}" />, how much mass remains after <InlineMath math="15 \text{ years}" />?
 
-### Answer Key
+### Worked Solutions
 
-1. <InlineMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
+#### Evaluate the function
 
-2. <InlineMath math="3^{2x-1} = 27 = 3^3" />, so <InlineMath math="2x - 1 = 3" />
-   , therefore <InlineMath math="x = 2" />
+Substitute <InlineMath math="x = 3" /> into <InlineMath math="f(x) = 5 \cdot 2^x" />. Evaluate the exponent before multiplying by the initial factor.
 
-3. <InlineMath math="P(10) = 50000 \cdot (1.03)^{10} = 50000 \cdot 1.344 = 67.195 \text{ people}" />
+<BlockMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
 
-4. <InlineMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^{15/5} = 100 \cdot \left(\frac{1}{2}\right)^3 = 100 \cdot \frac{1}{8} = 12.5 \text{ grams}" />
+Thus, <InlineMath math="f(3) = 40" />.
+
+#### Match equal bases
+
+Rewrite <InlineMath math="27" /> as <InlineMath math="3^3" />. Equal positive bases have equal exponents.
+
+<MathContainer>
+  <BlockMath math="3^{2x-1} = 3^3" />
+  <BlockMath math="2x - 1 = 3" />
+  <BlockMath math="x = 2" />
+</MathContainer>
+
+Checking gives <InlineMath math="3^{2(2)-1} = 3^3 = 27" />, so the solution is correct.
+
+#### Model population growth
+
+The initial population is <InlineMath math="P_0 = 50{,}000" />, the annual growth rate is <InlineMath math="r = 0.03" />, and the time is <InlineMath math="t = 10" /> years. Use the annual growth factor <InlineMath math="1 + r = 1.03" />.
+
+<MathContainer>
+  <BlockMath math="P(10) = 50{,}000 \cdot (1.03)^{10}" />
+  <BlockMath math="P(10) \approx 50{,}000 \cdot 1.343916 = 67{,}195.82" />
+  <BlockMath math="P(10) \approx 67{,}196 \text{ people}" />
+</MathContainer>
+
+The population is rounded to the nearest whole person.
+
+#### Apply the half-life
+
+Fifteen years contain <InlineMath math="15/5 = 3" /> half-life periods. The mass is therefore multiplied by <InlineMath math="1/2" /> three times.
+
+<MathContainer>
+  <BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
+  <BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12.5 \text{ grams}" />
+</MathContainer>
+
+After <InlineMath math="15 \text{ years}" />, <InlineMath math="12.5 \text{ grams}" /> remains.

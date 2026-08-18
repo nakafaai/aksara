@@ -4,7 +4,7 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Given quadratic equation
+Start with the quadratic equation
 
 <BlockMath math="x^2 - (2k + 4)x + (3k + 4) = 0" />
 
@@ -16,36 +16,31 @@ With roots <InlineMath math="x_1" /> and <InlineMath math="x_2" />, the product 
 <BlockMath math="x_1 \cdot x_2 = 3k + 4" />
 </MathContainer>
 
-So the geometric sequence is <InlineMath math="x_1, k, x_2" />.
-
-The ratio between terms is
+For any three consecutive terms of a geometric sequence, the square of the middle term equals the product of its neighbors. Hence
 
 <MathContainer>
-<BlockMath math="\frac{k}{x_1} = \frac{x_2}{k}" />
 <BlockMath math="k^2 = x_1 \cdot x_2" />
 <BlockMath math="k^2 = 3k + 4" />
 <BlockMath math="k^2 - 3k - 4 = 0" />
 </MathContainer>
 
-Factorize
+Factor the resulting quadratic.
 
 <MathContainer>
 <BlockMath math="(k - 4)(k + 1) = 0" />
 <BlockMath math="k = 4 \vee k = -1" />
 </MathContainer>
 
-Determine the form of the quadratic equation based on the obtained value of <InlineMath math="k" />.
-
-<InlineMath math="k = 4" />
+Now test both candidates against the requirement that <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are integers. For <InlineMath math="k = 4" />:
 
 <MathContainer>
 <BlockMath math="x^2 - (2 \cdot 4 + 4)x + (3 \cdot 4 + 4) = 0" />
 <BlockMath math="x^2 - 12x + 16 = 0" />
+<BlockMath math="\Delta = (-12)^2 - 4(1)(16) = 80" />
+<BlockMath math="x = 6 \pm 2\sqrt{5}" />
 </MathContainer>
 
-Check the discriminant value, the roots are not integers.
-
-<InlineMath math="k = -1" />
+These roots are not integers, so <InlineMath math="k = 4" /> is invalid. For <InlineMath math="k = -1" />:
 
 <MathContainer>
 <BlockMath math="x^2 - (2(-1) + 4)x + (3(-1) + 4) = 0" />

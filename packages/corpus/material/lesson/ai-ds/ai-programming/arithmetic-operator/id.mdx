@@ -20,7 +20,7 @@ Python memiliki tujuh operator aritmatika yang dikelompokkan dalam tiga tingkat 
 
 **Operator Perpangkatan `**`**
 
-Operator `**` digunakan untuk perpangkatan dan memiliki prioritas tertinggi. Operator ini juga memiliki asosiativitas kanan, berbeda dengan operator lainnya.
+Operator `**` digunakan untuk perpangkatan dan memiliki prioritas tertinggi di antara tujuh operator aritmatika biner yang dibahas di sini. Berbeda dari operator lainnya, operator ini memiliki asosiativitas kanan.
 
 <CodeBlock
   data={[
@@ -78,9 +78,9 @@ Operator `/` melakukan pembagian dan selalu menghasilkan bilangan float, bahkan 
 
 Perhatikan bahwa meskipun `4 / 2` menghasilkan angka bulat secara matematis, Python tetap mengembalikan <InlineMath math="2.0" /> sebagai float.
 
-**Operator Pembagian Integer**
+**Operator Pembagian Lantai**
 
-Operator `//` melakukan pembagian integer yang membulatkan hasil ke bilangan bulat terdekat yang lebih kecil.
+Operator `//` melakukan pembagian lantai. Hasil bagi dibulatkan ke bawah, yaitu ke bilangan bulat terbesar yang lebih kecil atau sama dengan hasil tepatnya.
 
 <CodeBlock
   data={[
@@ -102,7 +102,7 @@ Operator `//` melakukan pembagian integer yang membulatkan hasil ke bilangan bul
   ]}
 />
 
-Pembagian integer bekerja dengan membulatkan hasil ke bilangan bulat terdekat yang lebih kecil. Untuk angka negatif seperti `-7 // 2`, hasilnya adalah `-4`, bukan `-3`.
+Pembagian lantai selalu membulatkan ke arah negatif tak hingga. Karena itu, `-7 // 2` menghasilkan `-4`, bukan `-3`. Jika salah satu operand berupa float, Python tetap menerapkan pembulatan lantai, tetapi mengembalikan float.
 
 **Operator Modulo `%`**
 
@@ -128,7 +128,7 @@ Operator `%` mengembalikan sisa pembagian. Operator ini mengikuti rumus matemati
   ]}
 />
 
-Untuk memahami modulo dengan angka negatif, perhatikan bahwa `5 % 4` menghasilkan `1`, sedangkan `-5 % 4` menghasilkan `3`. Operator modulo sangat berguna untuk menentukan apakah suatu angka habis dibagi atau untuk mendapatkan digit terakhir dari sebuah angka.
+Untuk bilangan negatif, ingatlah bahwa Python tetap mempertahankan identitas di atas. Itulah sebabnya `5 % 4` menghasilkan `1`, sedangkan `-5 % 4` menghasilkan `3`. Modulo berguna untuk memeriksa keterbagian dan, pada bilangan bulat tak negatif, mengambil digit terakhir.
 
 ### Prioritas Terendah
 
@@ -226,7 +226,7 @@ Hal penting yang perlu diingat adalah operator `/` selalu menghasilkan float bah
 | **Tertinggi** | `**` | Perpangkatan | Kanan |
 | **Menengah** | `*` | Perkalian | Kiri |
 | **Menengah** | `/` | Pembagian | Kiri |
-| **Menengah** | `//` | Pembagian integer | Kiri |
+| **Menengah** | `//` | Pembagian lantai | Kiri |
 | **Menengah** | `%` | Modulo | Kiri |
 | **Terendah** | `+` | Penjumlahan | Kiri |
 | **Terendah** | `-` | Pengurangan | Kiri |

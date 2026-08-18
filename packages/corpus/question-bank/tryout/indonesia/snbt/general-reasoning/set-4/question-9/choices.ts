@@ -3,49 +3,54 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "If consuming tempeh, then one will get little fat",
-      value: false,
-    },
-    {
-      label: "If consuming meat, then the nutrients obtained are only few",
+      label:
+        "Tempeh contains $$72\\text{ kcal}$$ more energy and $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$",
       value: false,
     },
     {
       label:
-        "If consuming tempeh, then the nutrients obtained are more than the nutrients in beef",
+        "Fatty beef contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$",
       value: false,
     },
     {
-      label: "If consuming tempeh, then one will get little energy",
+      label: "Tempeh and fatty beef contain the same amount of protein",
       value: false,
     },
     {
-      label: "If consuming meat, then one will get a lot of energy and fat",
+      label:
+        "Fatty beef contains $$82\\text{ kcal}$$ more energy per $$100\\text{ g}$$",
+      value: false,
+    },
+    {
+      label:
+        "Fatty beef contains $$72\\text{ kcal}$$ more energy and $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$",
       value: true,
     },
   ],
   id: [
     {
-      label: "Jika mengkonsumsi tempe, maka akan mendapatkan sedikit lemak",
+      label:
+        "Tempe mengandung energi $$72\\text{ kkal}$$ lebih banyak dan lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$",
       value: false,
     },
     {
       label:
-        "Jika mengkonsumsi daging, maka nutrisi yang didapat hanya sedikit",
+        "Daging sapi gemuk mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$",
       value: false,
     },
     {
       label:
-        "Jika mengkonsumsi tempe, maka nutrisi yang didapat lebih banyak dibandingkan nutrisi dalam daging sapi",
-      value: false,
-    },
-    {
-      label: "Jika mengkonsumsi tempe maka akan mendapatkan sedikit energi",
+        "Tempe dan daging sapi gemuk mengandung protein dalam jumlah yang sama",
       value: false,
     },
     {
       label:
-        "Jika mengkonsumsi daging maka akan mendapatkan banyak energi dan lemak",
+        "Daging sapi gemuk mengandung energi $$82\\text{ kkal}$$ lebih banyak per $$100\\text{ g}$$",
+      value: false,
+    },
+    {
+      label:
+        "Daging sapi gemuk mengandung energi $$72\\text{ kkal}$$ lebih banyak dan lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$",
       value: true,
     },
   ],

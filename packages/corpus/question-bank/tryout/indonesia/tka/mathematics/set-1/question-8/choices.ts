@@ -8,7 +8,7 @@ const choices: QuestionChoices = {
     },
     {
       label: "$$\\text{Rp}12{,}000$$",
-      value: true,
+      value: false,
     },
     {
       label: "$$\\text{Rp}13{,}000$$",
@@ -16,7 +16,7 @@ const choices: QuestionChoices = {
     },
     {
       label: "$$\\text{Rp}14{,}000$$",
-      value: false,
+      value: true,
     },
     {
       label: "$$\\text{Rp}15{,}000$$",
@@ -25,23 +25,23 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "$$\\text{Rp}10.000$$",
+      label: "$$\\text{Rp}10{.}000$$",
       value: false,
     },
     {
-      label: "$$\\text{Rp}12.000$$",
+      label: "$$\\text{Rp}12{.}000$$",
+      value: false,
+    },
+    {
+      label: "$$\\text{Rp}13{.}000$$",
+      value: false,
+    },
+    {
+      label: "$$\\text{Rp}14{.}000$$",
       value: true,
     },
     {
-      label: "$$\\text{Rp}13.000$$",
-      value: false,
-    },
-    {
-      label: "$$\\text{Rp}14.000$$",
-      value: false,
-    },
-    {
-      label: "$$\\text{Rp}15.000$$",
+      label: "$$\\text{Rp}15{.}000$$",
       value: false,
     },
   ],

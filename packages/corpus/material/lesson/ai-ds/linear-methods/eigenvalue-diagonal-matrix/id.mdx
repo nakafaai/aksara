@@ -8,14 +8,14 @@ export const metadata = {
 
 ## Matriks Diagonal dan Sifat Khususnya
 
-Untuk matriks diagonal, nilai eigen bisa langsung dibaca dari entri diagonal utamanya. Ini adalah salah satu keistimewaan paling menarik dalam aljabar linear.
+Untuk matriks diagonal dan segitiga, setiap nilai eigen dapat dibaca langsung dari diagonal utama beserta multiplisitas aljabarnya. Matriksnya dapat memiliki salah satu bentuk berikut:
 
 Nilai eigen dari matriks diagonal kuadrat atau matriks segitiga <InlineMath math="A \in \mathbb{K}^{n \times n}" />
 
 <MathContainer>
-<BlockMath math="A = \begin{pmatrix} a_{11} & & 0 \\ & \ddots & \\ 0 & & a_{nn} \end{pmatrix}" />
-<BlockMath math="\text{atau } A = \begin{pmatrix} a_{11} & * \\ & \ddots & \\ 0 & & a_{nn} \end{pmatrix}" />
-<BlockMath math="\text{atau } A = \begin{pmatrix} a_{11} & & 0 \\ & \ddots & \\ * & & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & * & \cdots & * \\ 0 & a_{22} & \cdots & * \\ \vdots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
 </MathContainer>
 
 adalah entri diagonal utamanya:
@@ -24,7 +24,7 @@ adalah entri diagonal utamanya:
 
 Mengapa hal ini benar? Karena <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{11} - t) \cdots (a_{nn} - t)" /> dengan akar-akar <InlineMath math="a_{11}, \ldots, a_{nn}" />.
 
-Sifat ini sangat memudahkan kita karena tidak perlu menghitung determinan atau menyelesaikan persamaan karakteristik yang kompleks.
+Dengan demikian, kita tidak memerlukan ekspansi determinan lengkap atau prosedur pencarian akar untuk matriks segitiga.
 
 ## Matriks Segitiga Atas dan Bawah
 
@@ -34,7 +34,7 @@ Hal ini terjadi karena ketika kita menghitung <InlineMath math="\det(A - tI)" />
 
 ## Contoh Perhitungan Langsung
 
-Mari kita lihat beberapa contoh konkret untuk memahami konsep ini dengan lebih baik.
+Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Sebagai pembanding, dua matriks nonsegitiga berikut mengharuskan kita menghitung polinomial karakteristiknya.
 
 ### Nilai Eigen Kompleks
 
@@ -60,17 +60,17 @@ dengan akar <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 
 
 ## Faktorisasi Polinomial Karakteristik
 
-Ketika matriks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> memiliki <InlineMath math="n" /> nilai eigen yang tidak harus berbeda <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{C}" />, polinomial karakteristik <InlineMath math="\chi_A(t)" /> bisa difaktorkan sebagai:
+Ketika <InlineMath math="A \in \mathbb{C}^{n \times n}" /> memiliki nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> yang dihitung menurut multiplisitas aljabar, polinomial karakteristiknya dapat difaktorkan sebagai:
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-Jumlah multiplisitas aljabar dari semua nilai eigen adalah <InlineMath math="n" />:
+Misalkan <InlineMath math="\sigma(A)" /> menyatakan himpunan berhingga semua nilai eigen berbeda dari <InlineMath math="A" />. Jumlah multiplisitas aljabarnya adalah <InlineMath math="n" />:
 
-<BlockMath math="\sum_{\lambda \in \mathbb{C}} \mu_A(\lambda) = n" />
+<BlockMath math="\sum_{\lambda \in \sigma(A)} \mu_A(\lambda) = n" />
 
 Dalam bentuk yang lebih kompak:
 
-<BlockMath math="\chi_A(t) = \prod_{\lambda \in \mathbb{C}} (\lambda - t)^{\mu_A(\lambda)}" />
+<BlockMath math="\chi_A(t) = \prod_{\lambda \in \sigma(A)} (\lambda - t)^{\mu_A(\lambda)}" />
 
 Sifat ini berlaku secara alami untuk nilai eigen kompleks dari matriks dengan entri real. Nilai eigen bisa berupa bilangan real atau berpasangan kompleks konjugat.
 
@@ -101,4 +101,8 @@ Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> de
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
-Hubungan ini sangat berguna untuk verifikasi perhitungan dan memberikan wawasan geometris tentang transformasi linear yang diwakili oleh matriks.
+Kedua identitas ini berguna untuk memeriksa hasil, tetapi belum menentukan semua nilai eigen matriks umum ketika <InlineMath math="n > 2" />. Salah satu akibat langsungnya adalah:
+
+<BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
+
+Jadi, matriks persegi singular tepat ketika nol merupakan salah satu nilai eigennya.

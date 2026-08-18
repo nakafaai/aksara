@@ -8,9 +8,9 @@ export const metadata = {
 
 ## How to Find Quartiles in Grouped Data
 
-For single data, we just sort it and find the middle position. Now, if the data is grouped in a frequency table (like test scores grouped as <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, etc.), the method is slightly different. We don't know the exact value of each data point, only how many data points are in each group (class interval).
+For ungrouped data, we can sort every observation and read its position directly. In a grouped frequency table, however, we know only the intervals, such as <InlineMath math="70\text{-}79" /> and <InlineMath math="80\text{-}89" />, and the number of observations in each interval. The individual values are no longer visible.
 
-Similar to the [median for grouped data](/en/subjects/mathematics/statistics-foundations/median-mode-group-data), to find quartiles (<InlineMath math="Q_1" />, <InlineMath math="Q_2" />, <InlineMath math="Q_3" />), we also use **interpolation**. Essentially, we "estimate" the quartile's position within the class interval where it falls.
+As with the [median for grouped data](/en/subjects/mathematics/statistics-foundations/median-mode-group-data), we therefore estimate <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> by **interpolation**. The calculation places each quartile within the class interval that contains its target position.
 
 We determine the position of the quartile using this formula:
 
@@ -22,7 +22,7 @@ Where <InlineMath math="n" /> is the total number of data points.
 
 ## Steps to Find the Value of Quartiles for Grouped Data
 
-Let's assume we have shoe sales data from Store A in a grouped frequency table format.
+Consider the grouped shoe-sales data from Store A.
 
 ### Create a Cumulative Frequency Table
 
@@ -47,13 +47,13 @@ For example, here is the shoe sales table:
 
 ### Determine the Quartile Class Position
 
-First, let's find the position of the data point for the quartile.
+First, locate each quartile position.
 
 Total data (<InlineMath math="n" />) is <InlineMath math="30" />.
 
 - **Position of <InlineMath math="Q_1" />:** the <InlineMath math="\frac{1}{4} \times 30 = 7.5" />-th data point.
 
-  Look at the <InlineMath math="F_k" /> column. Which class contains the <InlineMath math="7.5" />th data point? The first class has <InlineMath math="F_k = 2" /> (not enough). The second class has <InlineMath math="F_k = 13" /> (data points <InlineMath math="3" /> through <InlineMath math="13" /> are here). So, the <InlineMath math="7.5" />th data point is in the <InlineMath math="40\text{-}42" /> class.
+  In the <InlineMath math="F_k" /> column, the first class ends at position <InlineMath math="2" /> and the second ends at position <InlineMath math="13" />. Positions <InlineMath math="3" /> through <InlineMath math="13" /> belong to the second class, so position <InlineMath math="7.5" /> lies in <InlineMath math="40\text{-}42" />.
 
 - **Position of <InlineMath math="Q_2" /> (Median):** the <InlineMath math="\frac{1}{2} \times 30 = 15" />-th data point.
 
@@ -63,38 +63,40 @@ Total data (<InlineMath math="n" />) is <InlineMath math="30" />.
 
   Look at <InlineMath math="F_k" />. The <InlineMath math="22.5" />th data point is also in the <InlineMath math="43\text{-}45" /> class (because the previous <InlineMath math="F_k" /> was <InlineMath math="13" />, and this class's <InlineMath math="F_k" /> is <InlineMath math="23" />).
 
-### Calculate the Quartile Value using the Interpolation Formula
+### Estimate the Quartile Value by Interpolation
 
-Once we know the class, we use this formula to find the exact value:
+Once the quartile class is known, estimate the value within that interval with:
 
-<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{kum}}{f_i} \right) p" />
+<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{cum}}}{f_i} \right) p" />
 
 Where:
 
 - <InlineMath math="Q_i" /> = Value of the i-th Quartile (what we're looking for)
 - <InlineMath math="T_b" /> = Lower boundary of the i-th quartile class
 - <InlineMath math="n" /> = Total frequency
-- <InlineMath math="F_{kum}" /> = Cumulative frequency **BEFORE** the i-th quartile
+- <InlineMath math="F_{\text{cum}}" /> = cumulative frequency **before** the <InlineMath math="i" />-th quartile
   class
 - <InlineMath math="f_i" /> = Frequency of the i-th quartile class
 - <InlineMath math="p" /> = Class width
 
+This interpolation assumes that observations are distributed uniformly within the selected class. It is a model-based estimate and cannot recover the original values hidden by grouping.
+
 ## Finding the Shoe Sales Quartile
 
-Let's calculate <InlineMath math="Q_1" /> from the table above.
+Calculate <InlineMath math="Q_1" /> from the table above.
 
 1.  **Position of <InlineMath math="Q_1" />:** <InlineMath math="7.5" />th data point.
 2.  **Class of <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
-3.  **Let's gather the ingredients:**
+3.  **Record the formula values:**
     - Lower boundary of <InlineMath math="Q_1" /> class (<InlineMath math="T_b" />) is <InlineMath math="39.5" />
     - Total data (<InlineMath math="n" />) is <InlineMath math="30" />
-    - Cumulative frequency before <InlineMath math="Q_1" /> class (<InlineMath math="F_{kum}" />) is <InlineMath math="2" /> (see <InlineMath math="F_k" /> for class <InlineMath math="37\text{-}39" />)
+    - Cumulative frequency before <InlineMath math="Q_1" /> class (<InlineMath math="F_{\text{cum}}" />) is <InlineMath math="2" /> (see <InlineMath math="F_k" /> for class <InlineMath math="37\text{-}39" />)
     - Frequency of <InlineMath math="Q_1" /> class (<InlineMath math="f_1" />) is <InlineMath math="11" />
     - Class width (<InlineMath math="p" />) is <InlineMath math="3" />
 4.  **Plug into the formula:**
 
     <MathContainer>
-      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{kum}}{f_1} \right) p" />
+      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{cum}}}{f_1} \right) p" />
       <BlockMath math="Q_1 = 39.5 + \left( \frac{7.5 - 2}{11} \right) 3" />
       <BlockMath math="Q_1 = 39.5 + \left( \frac{5.5}{11} \right) 3" />
       <BlockMath math="Q_1 = 39.5 + (0.5) \times 3" />
@@ -106,9 +108,9 @@ So, the value of <InlineMath math="Q_1" /> is <InlineMath math="41" />. This mea
 
 ## Exercise
 
-Try calculating <InlineMath math="Q_3" /> from the shoe sales data in the table above.
+Calculate <InlineMath math="Q_3" /> from the shoe sales data in the table above.
 
-After getting the result, compare it with the method for finding quartiles for single data learned earlier. What's the difference, and why might the results be similar or different?
+Then compare the method with quartile calculation for ungrouped data. Why does the grouped table provide only an estimate?
 
 ### Answer Key
 
@@ -118,7 +120,7 @@ After getting the result, compare it with the method for finding quartiles for s
 
     - <InlineMath math="T_b = 42.5" /> (lower boundary of <InlineMath math="Q_3" /> class)
     - <InlineMath math="n = 30" /> (total data)
-    - <InlineMath math="F_{kum} = 13" /> (see <InlineMath math="F_k" /> for class
+    - <InlineMath math="F_{\text{cum}} = 13" /> (see <InlineMath math="F_k" /> for class
       <InlineMath math="40\text{-}42" />)
     - <InlineMath math="f_3 = 10" /> (frequency of <InlineMath math="Q_3" /> class)
     - <InlineMath math="p = 3" /> (class width)
@@ -126,7 +128,7 @@ After getting the result, compare it with the method for finding quartiles for s
 4.  **Plug into the formula:**
 
     <MathContainer>
-      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{kum}}{f_3} \right) p" />
+      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{cum}}}{f_3} \right) p" />
       <BlockMath math="Q_3 = 42.5 + \left( \frac{22.5 - 13}{10} \right) 3" />
       <BlockMath math="Q_3 = 42.5 + \left( \frac{9.5}{10} \right) 3" />
       <BlockMath math="Q_3 = 42.5 + (0.95) \times 3" />
@@ -138,6 +140,6 @@ So, the value of <InlineMath math="Q_3" /> is <InlineMath math="45.35" />. This 
 
 **Comparison with Single Data:**
 
-Finding quartiles for grouped data uses **interpolation** because we don't know the exact value of each data point, only its range. The result is an estimated quartile value.
+Finding quartiles for grouped data uses **interpolation** because we know only the intervals, not the individual observations. The result is an estimated quartile value.
 
-For single data, we can directly point to which data point is the quartile (or the average of two data points), so the result is more precise (if the data is indeed single). Quartiles for grouped data provide a good overview for large datasets that have already been grouped.
+For ungrouped data, the ordered observations are known, so the declared quartile convention can select one value or interpolate directly between two known values. Grouped interpolation is less precise because the observations inside each class are no longer available.

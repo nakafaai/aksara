@@ -1,24 +1,22 @@
 export const metadata = {
-  title: "Transformasi Sumbu Nyata",
-  description: "Pelajari bentuk kuadrat dengan matriks simetris, transformasi koordinat berbasis nilai eigen, dan klasifikasi irisan kerucut meliputi elips, hiperbola, dan parabola.",
+  title: "Transformasi Sumbu Utama",
+  description: "Diagonalkan bentuk kuadrat melalui perubahan koordinat ortogonal, lengkapkan kuadrat, dan klasifikasikan irisan kerucut dari nilai eigennya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-16",
   subject: "Metode Linear AI",
 };
 
-
-
 ## Bentuk Kuadrat dengan Matriks Simetris
 
-Ketika kamu menghadapi persamaan kuadrat umum, cara terbaik untuk memahaminya adalah dengan melihat strukturnya dalam bentuk matriks. Bayangkan kamu memiliki matriks simetris <InlineMath math="A" /> dengan elemen-elemen:
+Suku silang dalam persamaan kuadrat dapat menyamarkan bentuk geometrinya. Menulis persamaan sebagai bentuk kuadrat memperlihatkan matriks simetris yang menentukan arah sumbu utamanya. Dalam dua dimensi, misalkan
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
 </MathContainer>
 
-Matriks ini memiliki nilai eigen <InlineMath math="\lambda_1, \lambda_2 \in \mathbb{R}" /> dan vektor eigen ortonormal yang sesuai <InlineMath math="v_1, v_2 \in \mathbb{R}^2" />. Hal yang menarik terjadi ketika kita menggunakan transformasi koordinat melalui matriks <InlineMath math="S = (v_1 \quad v_2) \in \mathbb{R}^{2 \times 2}" />.
+Karena <InlineMath math="A" /> real dan simetris, matriks tersebut memiliki nilai eigen real <InlineMath math="\lambda_1,\lambda_2" /> serta basis eigen ortonormal <InlineMath math="v_1,v_2" />. Susun vektor eigen itu menjadi <InlineMath math="S=(v_1\quad v_2)" />. Maka <InlineMath math="S^TS=I" /> dan <InlineMath math="S^TAS=\operatorname{diag}(\lambda_1,\lambda_2)" />.
 
-Untuk transformasi koordinat, kita menggunakan <InlineMath math="\begin{pmatrix} \delta \\ \epsilon \end{pmatrix} = S^T \begin{pmatrix} d \\ e \end{pmatrix}" />. Dalam koordinat baru <InlineMath math="\xi = S^T x" />, persamaan berubah menjadi:
+Untuk persamaan <InlineMath math="x^TAx+p^Tx+f=0" />, gunakan koordinat hasil rotasi <InlineMath math="\xi=S^Tx" /> dan koefisien linear hasil rotasi <InlineMath math="(\delta,\epsilon)^T=S^Tp" />. Suku silang pun hilang:
 
 <MathContainer>
 <BlockMath math="\lambda_1 \xi_1^2 + \lambda_2 \xi_2^2 + \delta \xi_1 + \epsilon \xi_2 + f = 0" />
@@ -32,19 +30,26 @@ Untuk kedua variabel dengan <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, p
 <BlockMath math="\begin{aligned} 0 &= \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} \\ &\quad + \lambda_2 \left( \xi_2^2 + 2 \frac{\epsilon}{2\lambda_2} \xi_2 + \frac{\epsilon^2}{4\lambda_2^2} \right) - \frac{\epsilon^2}{4\lambda_2} + f \end{aligned}" />
 </MathContainer>
 
-Hasil dari proses ini memberikan bentuk yang lebih sederhana:
+Setelah suku-sukunya dikumpulkan, kita memperoleh
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &\quad + \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
-Dengan menentukan titik pusat <InlineMath math="(m_1, m_2) = \left( -\frac{\delta}{2\lambda_1}, -\frac{\epsilon}{2\lambda_2} \right)" /> dan konstanta <InlineMath math="\gamma = \frac{\delta^2}{4\lambda_1} + \frac{\epsilon^2}{4\lambda_2} - f" />, kita memperoleh:
+Definisikan pusat dalam koordinat hasil rotasi dan konstanta setelah translasi sebagai
+
+<MathContainer>
+<BlockMath math="(m_1,m_2)=\left(-\frac{\delta}{2\lambda_1},-\frac{\epsilon}{2\lambda_2}\right)" />
+<BlockMath math="\gamma=\frac{\delta^2}{4\lambda_1}+\frac{\epsilon^2}{4\lambda_2}-f" />
+</MathContainer>
+
+Dengan demikian,
 
 <MathContainer>
 <BlockMath math="\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma = 0" />
 </MathContainer>
 
-Untuk <InlineMath math="\gamma > 0" />, berbagai bentuk kurva dapat muncul tergantung tanda nilai eigen.
+Tanda <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" />, dan <InlineMath math="\gamma" /> menentukan apakah himpunan solusi realnya berupa elips, hiperbola, parabola, irisan kerucut degenerat, atau himpunan kosong. Dua kasus berikut mengasumsikan <InlineMath math="\gamma>0" />.
 
 ## Klasifikasi Kurva
 
@@ -263,7 +268,7 @@ Dengan panjang sumbu setengah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambd
 
 ### Salah Satu Nilai Eigen Nol
 
-Kondisi khusus terjadi ketika <InlineMath math="\lambda_1 \neq 0" /> dan <InlineMath math="\lambda_2 = 0" />. Melengkapkan kuadrat memberikan:
+Kasus khusus terjadi ketika <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" />, dan <InlineMath math="\epsilon\neq0" />. Melengkapkan kuadrat memberikan
 
 <MathContainer>
 <BlockMath math="0 = \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} + \epsilon \xi_2 + f" />
@@ -271,7 +276,7 @@ Kondisi khusus terjadi ketika <InlineMath math="\lambda_1 \neq 0" /> dan <Inline
 <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-Irisan kerucut yang terbentuk adalah **parabola**:
+Dengan menyelesaikan persamaan terhadap <InlineMath math="\xi_2" />, bentuk parabolanya terlihat langsung:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -333,19 +338,30 @@ Irisan kerucut yang terbentuk adalah **parabola**:
   showZAxis={false}
 />
 
-## Contoh Dua Dimensi
+## Contoh Dua Dimensi Terhitung
 
-Irisan kerucut dalam <InlineMath math="\mathbb{R}^2" /> memenuhi persamaan kuadrat umum:
-
-<MathContainer>
-<BlockMath math="ax_1^2 + bx_1x_2 + cx_2^2 + dx_1 + ex_2 + f = 0" />
-</MathContainer>
-
-Yang dapat ditulis dalam bentuk matriks sebagai:
+Perhatikan persamaan
 
 <MathContainer>
-<BlockMath math="\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}^T \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} d \\ e \end{pmatrix}^T \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + f = 0" />
+<BlockMath math="5x_1^2+4x_1x_2+2x_2^2-6x_1-9=0" />
+<BlockMath math="A=\begin{pmatrix}5&2\\2&2\end{pmatrix},\qquad p=\begin{pmatrix}-6\\0\end{pmatrix}" />
 </MathContainer>
+
+Pasangan eigennya adalah
+
+<MathContainer>
+<BlockMath math="\lambda_1=6,\quad v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix},\qquad \lambda_2=1,\quad v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
+</MathContainer>
+
+Pusat dalam koordinat semula adalah <InlineMath math="h=(1,-1)^T" /> karena <InlineMath math="2Ah+p=0" />. Dalam koordinat hasil rotasi, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Dengan <InlineMath math="\eta=\xi-m" />, persamaannya menjadi
+
+<MathContainer>
+<BlockMath math="6\eta_1^2+\eta_2^2=12" />
+<BlockMath math="\frac{\eta_1^2}{2}+\frac{\eta_2^2}{12}=1" />
+</MathContainer>
+
+Kurva tersebut adalah elips yang berpusat di <InlineMath math="(1,-1)" />. Panjang setengah sumbunya adalah <InlineMath math="\sqrt2" /> sepanjang <InlineMath math="v_1" /> dan <InlineMath math="2\sqrt3" /> sepanjang <InlineMath math="v_2" />. Substitusi titik pusat ke persamaan semula menghasilkan <InlineMath math="-12" />, sesuai dengan ruas kanan setelah translasi.
 
 ## Permukaan Kuadrat dan Transformasi
 
@@ -355,7 +371,7 @@ Untuk matriks simetris <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vekt
 <BlockMath math="x^T A x + b^T x + c = 0" />
 </MathContainer>
 
-Yang dapat ditulis dalam bentuk eksplisit:
+Secara ekuivalen,
 
 <MathContainer>
 <BlockMath math="Q = \left\{ x \in \mathbb{R}^n : x^T A x + b^T x + c = 0 \right\}" />

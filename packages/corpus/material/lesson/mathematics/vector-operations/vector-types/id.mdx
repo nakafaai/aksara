@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Jenis-jenis Vektor",
-  description: "Temukan vektor nol, negatif, ekuivalen dan sifat-sifatnya. Pelajari konsep panjang, arah dengan visualisasi interaktif dan latihan soal.",
+  description: "Bandingkan besar dan arah vektor, lalu pelajari vektor lawan, vektor nol, dan vektor ekuivalen melalui diagram dan latihan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-08",
   subject: "Vektor dan Operasinya",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Panjang dan Arah Vektor
 
-Setiap vektor memiliki dua komponen utama: **panjang (besar)** dan **arah**.
+Setiap vektor tak nol memiliki dua ciri utama: **besar** dan **arah**. Vektor nol merupakan kasus khusus yang akan dibahas kemudian.
 
 Perhatikan contoh vektor <InlineMath math="\overrightarrow{CD}" /> di bawah ini.
 
@@ -31,20 +31,20 @@ Perhatikan contoh vektor <InlineMath math="\overrightarrow{CD}" /> di bawah ini.
       name: "CD",
       points: [
         { x: 0, y: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, // <InlineMath math="4 \text{ cm }" /> at 45 degrees
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) },
       ],
     },
   ]}
 />
 
-- **Panjang vektor** <InlineMath math="\overrightarrow{CD}" /> adalah <InlineMath math="4 \text{ cm}" />. Ini menunjukkan _besar_ atau _nilai_ dari vektor tersebut. Panjang vektor <InlineMath math="\vec{v}" /> biasanya dinotasikan sebagai <InlineMath math="|\vec{v}|" />. Jadi, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
+- **Besar vektor** <InlineMath math="\overrightarrow{CD}" /> adalah <InlineMath math="4 \text{ cm}" />. Nilai ini menunjukkan _besar_ vektor, bukan _arahnya_. Besar vektor <InlineMath math="\vec{v}" /> dinotasikan dengan <InlineMath math="|\vec{v}|" />. Jadi, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
 - **Arah vektor** <InlineMath math="\overrightarrow{CD}" /> adalah <InlineMath math="45^\circ" /> terhadap garis horizontal. Arah ini sangat penting dan membedakan vektor dari besaran skalar (yang hanya punya nilai). Arah bisa dinyatakan dengan sudut, mata angin (seperti Timur Laut), atau acuan lainnya.
 
 ## Vektor Negatif (Vektor Lawan)
 
-Vektor negatif atau vektor lawan adalah vektor yang memiliki **panjang sama** tetapi **arahnya berlawanan** dengan vektor aslinya.
+Untuk vektor tak nol, vektor negatif atau vektor lawannya memiliki **panjang yang sama** tetapi **arah yang berlawanan**.
 
-Bayangkan Andi berjalan sejauh <InlineMath math="100 \text{ m}" /> dengan arah <InlineMath math="30^\circ" /> (kita sebut perpindahan ini sebagai vektor <InlineMath math="\vec{A}" />). Kemudian, Andi kembali ke posisi semula. Perpindahan kedua ini adalah vektor lawan dari <InlineMath math="\vec{A}" />, yang kita tulis sebagai <InlineMath math="-\vec{A}" />.
+Bayangkan Andi berjalan sejauh <InlineMath math="100 \text{ m}" /> dengan sudut <InlineMath math="30^\circ" />. Kita sebut perpindahan ini <InlineMath math="\vec{A}" />. Jika Andi kemudian kembali langsung melalui lintasan yang sama, perpindahan pulangnya adalah vektor lawan dari <InlineMath math="\vec{A}" />, yang ditulis sebagai <InlineMath math="-\vec{A}" />.
 
 <VectorChart
   title="Vektor dan Vektor Lawan"
@@ -90,7 +90,7 @@ Jika Andi berjalan <InlineMath math="100 \text{ m}" /> ke timur, kemudian berjal
 
 ## Vektor Ekuivalen (Vektor yang Sama)
 
-Dua vektor atau lebih dikatakan **ekuivalen** atau **sama** jika memiliki **panjang (besar) dan arah yang sama**, meskipun titik pangkalnya berbeda.
+Dua vektor dikatakan **ekuivalen** atau **sama** jika komponen-komponen yang bersesuaian sama, meskipun titik pangkalnya berbeda. Untuk vektor tak nol, syarat ini setara dengan memiliki **besar dan arah yang sama**. Definisi berdasarkan komponen juga mencakup vektor nol yang tidak memiliki arah terdefinisi.
 
 Perhatikan grafik di bawah ini yang menunjukkan tiga vektor ekuivalen: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" />, dan <InlineMath math="\overrightarrow{KL}" />.
 
@@ -134,7 +134,7 @@ Ketiga vektor di atas memiliki panjang dan arah yang sama, sehingga mereka ekuiv
 
 <BlockMath math="\overrightarrow{CD} = \overrightarrow{EF} = \overrightarrow{KL}" />
 
-Suatu vektor dikatakan ekuivalen dengan vektor lain jika ia mempunyai besar dan arah yang sama dengan vektor lain tersebut.
+Titik pangkalnya berbeda, tetapi setiap anak panah berpindah tiga satuan ke kanan dan dua satuan ke atas. Ketiganya memiliki vektor komponen yang sama, yaitu <InlineMath math="(3, 2)" />.
 
 ## Latihan
 
@@ -158,17 +158,17 @@ Perhatikan kedua vektor berikut:
       id: "A",
       name: "A",
       points: [
-        { x: 1, y: 4 }, // Start point for A (visually)
-        { x: 0, y: 0 }, // End point for A (visually, pointing towards origin? Let's adjust)
+        { x: 1, y: 4 },
+        { x: 0, y: 0 },
       ],
-      direction: "backward", // Arrow points towards the end point specified last
+      direction: "backward",
     },
     {
       id: "B",
       name: "B",
       points: [
-        { x: 1, y: 4 }, // Start point for B (same as A starts)
-        { x: 5, y: 5 }, // End point for B
+        { x: 1, y: 4 },
+        { x: 5, y: 5 },
       ],
     },
   ]}
@@ -178,16 +178,16 @@ Apakah vektor <InlineMath math="\vec{A}" /> merupakan vektor lawan dari <InlineM
 
 **Jawaban:**
 
-Vektor <InlineMath math="\vec{A}" /> **bukan** merupakan vektor lawan dari <InlineMath math="\vec{B}" />. Agar menjadi vektor lawan, dua syarat harus terpenuhi:
+Vektor <InlineMath math="\vec{A}" /> **bukan** vektor lawan dari <InlineMath math="\vec{B}" />. Mari periksa kedua syarat yang diperlukan:
 
-1.  **Panjangnya harus sama:** Secara visual, <InlineMath math="|\vec{A}| \neq |\vec{B}|" /> (panjangnya terlihat berbeda).
-2.  **Arahnya harus tepat berlawanan (<InlineMath math="180^\circ" />):** Arah <InlineMath math="\vec{A}" /> tidak berlawanan arah dengan <InlineMath math="\vec{B}" />.
+1.  **Besarnya harus sama:** Diagram memberikan <InlineMath math="\vec{A} = (-1, -4)" /> dan <InlineMath math="\vec{B} = (4, 1)" />, sehingga <InlineMath math="|\vec{A}| = |\vec{B}| = \sqrt{17}" />. Syarat ini terpenuhi.
+2.  **Arahnya harus tepat berlawanan, atau berbeda <InlineMath math="180^\circ" />:** Vektor lawan dari <InlineMath math="\vec{A}" /> adalah <InlineMath math="-\vec{A} = (1, 4)" />, bukan <InlineMath math="\vec{B} = (4, 1)" />. Syarat ini tidak terpenuhi.
 
-Karena kedua syarat ini tidak terpenuhi, <InlineMath math="\vec{A}" /> bukanlah vektor lawan dari <InlineMath math="\vec{B}" />.
+Karena syarat kedua tidak terpenuhi, <InlineMath math="\vec{A}" /> bukanlah vektor lawan dari <InlineMath math="\vec{B}" />.
 
 **Bagaimana cara membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> berlawanan?**
 
-Untuk membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> berlawanan, kamu bisa membuat vektor nya seperti ini:
+Dengan mempertahankan <InlineMath math="\vec{A}" />, kita dapat membuat <InlineMath math="\vec{B}" /> menjadi vektor lawannya dengan mengubah titik ujung <InlineMath math="\vec{B}" />:
 
 <VectorChart
   title={
@@ -215,7 +215,7 @@ Untuk membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}
       name: "B",
       points: [
         { x: 1, y: 4 },
-        { x: 4, y: 8 },
+        { x: 2, y: 8 },
       ],
       direction: "forward",
     },

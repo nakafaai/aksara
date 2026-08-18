@@ -4,54 +4,54 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Shanti emphasized that children under the age of $$12$$ are still allowed to use gadgets, but their use must be accompanied by parents.",
+        "A family media plan should set boundaries for children, but the same boundaries should also apply to adults.",
       value: true,
     },
     {
       label:
-        "Shanti emphasized that children under the age of $$12$$ are still allowed to use gadgets, however their use must be accompanied from parents.",
+        "A family media plan should set boundaries for children, because the same boundaries should also apply to adults.",
       value: false,
     },
     {
       label:
-        "Shanti emphasized children under the age of $$12$$ are still allowed to use gadgets and their use must be accompanied from parents.",
+        "A family media plan should set boundaries for children, although the same boundaries should also apply to adults.",
       value: false,
     },
     {
       label:
-        "Shanti emphasized children under the age of $$12$$ are still allowed to use gadgets, although their use must be accompanied by parents.",
+        "A family media plan should set boundaries for children, the same boundaries should also apply to adults.",
       value: false,
     },
     {
       label:
-        "Shanti emphasized children under the age of $$12$$ are still allowed to use gadgets, provided that, their use must be accompanied from parents.",
+        "A family media plan should set boundaries for children; therefore, the same boundaries should also apply to adults.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Shanti menegaskan bahwa anak-anak di bawah usia $$12$$ tahun tetap boleh menggunakan gawai, tetapi penggunaannya harus didampingi oleh orang tua.",
+        "Rencana media keluarga perlu menetapkan batas bagi anak, tetapi batas yang sama juga perlu berlaku bagi orang dewasa.",
       value: true,
     },
     {
       label:
-        "Shanti menegaskan bahwa anak-anak di bawah usia $$12$$ tahun tetap boleh menggunakan gawai, akan tetapi penggunaannya harus didampingi dari orang tua.",
+        "Rencana media keluarga perlu menetapkan batas bagi anak, karena batas yang sama juga perlu berlaku bagi orang dewasa.",
       value: false,
     },
     {
       label:
-        "Shanti menegaskan anak-anak di bawah usia $$12$$ tahun tetap boleh menggunakan gawai dan penggunaannya harus didampingi dari orang tua.",
+        "Rencana media keluarga perlu menetapkan batas bagi anak, meskipun batas yang sama juga perlu berlaku bagi orang dewasa.",
       value: false,
     },
     {
       label:
-        "Shanti menegaskan anak-anak di bawah usia $$12$$ tahun tetap boleh menggunakan gawai, meskipun penggunaannya harus didampingi oleh orang tua.",
+        "Rencana media keluarga perlu menetapkan batas bagi anak, batas yang sama juga perlu berlaku bagi orang dewasa.",
       value: false,
     },
     {
       label:
-        "Shanti menegaskan anak-anak di bawah usia $$12$$ tahun tetap boleh menggunakan gawai, asalkan, penggunaannya harus didampingi dari orang tua.",
+        "Rencana media keluarga perlu menetapkan batas bagi anak; oleh karena itu, batas yang sama juga perlu berlaku bagi orang dewasa.",
       value: false,
     },
   ],

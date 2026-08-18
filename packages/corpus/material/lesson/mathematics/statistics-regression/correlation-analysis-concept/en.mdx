@@ -1,61 +1,74 @@
 export const metadata = {
   title: "Correlation Analysis Concept",
-  description: "Learn how correlation analysis measures relationships between variables, including Pearson's r and why correlation is not causation.",
+  description:
+    "Learn how correlation describes the direction and strength of a linear relationship, how to interpret Pearson's r, and why correlation is not causation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-30",
   subject: "Statistics",
 };
 
-## What Is Correlation Analysis?
+## What Correlation Tells Us
 
-We often want to know if there's a relationship between two things we can measure with numbers (two quantitative variables). For example:
+Suppose we record two numerical variables for the same observations, such as a student's study time and exam score or a car's age and selling price. A scatter plot helps us see whether the paired values form a pattern. **Correlation analysis** summarizes the direction and strength of a linear, or straight-line, pattern.
 
-- Is there a relationship between students' height and weight?
-- Do study hours affect exam scores?
-- Is the age of a car related to its price?
+Correlation answers a descriptive question: how do the two variables vary together? It does not yet tell us why the pattern exists.
 
-**Correlation Analysis** is a statistical method used to measure **how strong** and in **what direction** the linear relationship (straight-line pattern) is between two such variables.
+## The Correlation Coefficient
 
-## Correlation Coefficient
+Pearson's correlation coefficient is denoted by <InlineMath math="r" />. Its sign describes direction, while its distance from zero describes the strength of the linear pattern.
 
-Just saying "there's a relationship" isn't enough. We need a definite measure so everyone has the same understanding. This standard measure is called the **Correlation Coefficient**, usually denoted by the letter <InlineMath math="r" />.
+| Value | Interpretation |
+| --- | --- |
+| <InlineMath math="r>0" /> | Larger values of one variable tend to occur with larger values of the other. |
+| <InlineMath math="r<0" /> | Larger values of one variable tend to occur with smaller values of the other. |
+| <InlineMath math="\lvert r\rvert\approx1" /> | The points lie close to a straight line. |
+| <InlineMath math="r\approx0" /> | There is little or no linear pattern. |
 
-The correlation coefficient (<InlineMath math="r" />) gives us two important pieces of information:
+Whenever both variables have nonzero variation and <InlineMath math="r" /> is defined, the coefficient lies in this interval:
 
-1.  **Direction of the Relationship:**
-    - **Positive (<InlineMath math="r > 0" />):** If one variable increases, the other variable _tends_ to increase as well (and vice versa). Example: Taller people _usually_ weigh more.
-    - **Negative (<InlineMath math="r < 0" />):** If one variable increases, the other variable _tends_ to decrease (and vice versa). Example: The older a car is, the _usually_ lower its price.
-2.  **Strength of the Relationship:**
-    - How close the value of <InlineMath math="r" /> is to <InlineMath math="+1" /> or <InlineMath math="-1" /> indicates how strong the linear relationship is. The closer to <InlineMath math="+1" /> or <InlineMath math="-1" />, the stronger the relationship (the data points cluster more closely around a straight line).
-    - If the value of <InlineMath math="r" /> is close to <InlineMath math="0" />, it means the linear relationship is **weak** or even **non-existent** (the data points are scattered randomly).
+<BlockMath math="-1\le r\le1" />
 
-**Range of <InlineMath math="r" /> Values:**
-The value of the correlation coefficient always lies between <InlineMath math="-1" /> and <InlineMath math="+1" />.
+- <InlineMath math="r=1" /> means a perfect positive linear correlation.
+- <InlineMath math="r=-1" /> means a perfect negative linear correlation.
+- <InlineMath math="r=0" /> means no linear correlation.
 
-<BlockMath math="-1 \le r \le +1" />
+A value near zero does not rule out every relationship. Points may follow a clear curve while their linear correlation remains small. The scatter plot and the context must therefore be read together with <InlineMath math="r" />.
 
-- <InlineMath math="r = +1" />: Perfect positive linear correlation.
-- <InlineMath math="r = -1" />: Perfect negative linear correlation.
-- <InlineMath math="r = 0" />: No linear correlation.
+## Swapping Variables and Changing Units
 
-## Coefficient of Determination
+Correlation treats the two variables symmetrically. Swapping the horizontal and vertical variables does not change its value:
 
-Sometimes, we want to know how much of the variation (ups and downs in value) in one variable can be explained by the other variable. This measure is called the **Coefficient of Determination**, which is the square of the correlation coefficient (<InlineMath math="r^2" />).
+<BlockMath math="r_{xy}=r_{yx}" />
 
-For example, if <InlineMath math="r = 0.8" /> between study hours and exam scores, then <InlineMath math="r^2 = (0.8)^2 = 0.64" />. This means about <InlineMath math="64\%" /> of the variation in students' exam scores _can be explained_ by the differences in their study hours. The rest (<InlineMath math="36\%" />) might be influenced by other factors (intelligence, study methods, etc.).
+Changing a positive unit scale also leaves <InlineMath math="r" /> unchanged. Measuring height in centimeters instead of meters produces the same coefficient. This differs from regression, where one variable is deliberately used to predict the other.
 
-The value of <InlineMath math="r^2" /> is always between <InlineMath math="0" /> and <InlineMath math="1" />.
+## The Coefficient of Determination
 
-<BlockMath math="0 \le r^2 \le 1" />
+The square of the correlation coefficient, <InlineMath math="r^2" />, is called the **coefficient of determination**. In simple linear regression with an intercept, it gives the proportion of variation in the response that is accounted for by the fitted linear model.
 
-The closer <InlineMath math="r^2" /> is to <InlineMath math="1" />, the better variable <InlineMath math="X" /> explains the variation in variable <InlineMath math="Y" />.
+If study time and exam score have <InlineMath math="r=0.8" />, then:
 
-## Correlation Does Not Imply Causation
+<BlockMath math="r^2=(0.8)^2=0.64" />
 
-Just because two variables are strongly correlated doesn't mean one variable _causes_ the change in the other. There might be other unmeasured factors affecting both.
+The linear association accounts for <InlineMath math="64\%" /> of the observed variation in scores in that data set. The remaining <InlineMath math="36\%" /> is not accounted for by this linear relationship. This statement describes model fit, not proof that study time alone caused the score differences.
 
-**Example:**
+The coefficient of determination satisfies:
 
-Ice cream sales and drowning incidents might be positively correlated (both increase in the summer), but it doesn't mean eating ice cream causes drowning. The underlying cause is the summer season (hot weather).
+<BlockMath math="0\le r^2\le1" />
 
-So, correlation analysis helps us understand the _strength_ and _direction_ of a linear relationship, but it doesn't explain _why_ that relationship exists.
+## Correlation Is Not Causation
+
+A strong correlation does not establish that one variable causes the other. Several explanations can produce the same pattern:
+
+- the first variable may influence the second;
+- the second may influence the first;
+- a third variable may influence both;
+- sampling, measurement, or an unusual observation may distort the pattern.
+
+For example, ice cream sales and drowning incidents may both rise during hot weather. The correlation does not mean that buying ice cream causes drowning. Summer weather and increased swimming activity affect both observations.
+
+Use correlation to describe a linear pattern. A causal conclusion needs additional evidence from the study design, temporal order, plausible mechanisms, and alternative explanations.
+
+## Check Your Interpretation
+
+Suppose a data set has <InlineMath math="r=-0.9" />. This indicates a strong negative linear relationship: larger values of one variable tend to accompany smaller values of the other. It does not, by itself, identify a cause or guarantee that every point lies on the same line.

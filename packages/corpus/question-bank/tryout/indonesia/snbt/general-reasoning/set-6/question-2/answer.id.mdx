@@ -4,7 +4,7 @@ export const metadata = {
   date: "2026-01-22",
 };
 
-Mari kita analisis tingkat keramaian lalu lintas pelayaran pada setiap bulan berdasarkan informasi yang diberikan. Kita gunakan tanda pertidaksamaan untuk membandingkan keramaian antar bulan.
+Gunakan <InlineMath math="A > B" /> untuk menyatakan bahwa lalu lintas bulan <InlineMath math="A" /> lebih ramai daripada bulan <InlineMath math="B" />.
 
 | Pernyataan | Analisis Matematis |
 | :--- | :--- |
@@ -13,33 +13,10 @@ Mari kita analisis tingkat keramaian lalu lintas pelayaran pada setiap bulan ber
 | Januari tidak lebih ramai daripada November | <InlineMath math="\text{Januari} \le \text{November}" /> |
 | Januari lebih ramai daripada Februari | <InlineMath math="\text{Januari} > \text{Februari}" /> |
 
-Berdasarkan poin-poin di atas, kita dapat menyusun urutan keramaian dari yang **paling ramai** ke yang **paling sepi**:
-
-1.  Dari dua poin pertama, kita dapatkan urutan:
-
-    <MathContainer>
-      <BlockMath math="\text{Oktober} > \text{Desember} > \text{November}" />
-    </MathContainer>
-
-2.  Dari dua poin terakhir, kita tahu bahwa posisi Januari ada di bawah atau sama dengan November, dan Februari di bawah Januari:
-
-    <MathContainer>
-      <BlockMath math="\text{November} \ge \text{Januari} > \text{Februari}" />
-    </MathContainer>
-
-Jika kita gabungkan seluruh informasi tersebut, maka urutan lengkapnya adalah:
+Seluruh perbandingan membentuk urutan berikut:
 
 <MathContainer>
-  <BlockMath math="\text{Oktober} \xrightarrow{\text{lebih ramai}} \text{Desember} \xrightarrow{\text{lebih ramai}} \text{November} \xrightarrow{\text{lebih/sama ramai}} \text{Januari} \xrightarrow{\text{lebih ramai}} \text{Februari}" />
+  <BlockMath math="\text{Oktober} > \text{Desember} > \text{November} \ge \text{Januari} > \text{Februari}" />
 </MathContainer>
 
-Dari urutan tersebut, kita dapat menentukan peringkat keramaiannya:
-1.  **Paling ramai:** Oktober
-2.  **Kedua paling ramai:** Desember
-3.  Ketiga: November
-4.  Keempat: Januari
-5.  Kelim: Februari
-
-> **Kesimpulan:** Lalu lintas pelayaran yang diperkirakan **kedua paling ramai** terjadi pada bulan **Desember**.
-
-Jadi, jawaban yang tepat adalah **Desember**.
+Hanya Oktober yang berada di atas Desember. Jadi, **Desember** menempati urutan kedua, baik November dan Januari sama ramai maupun tidak.

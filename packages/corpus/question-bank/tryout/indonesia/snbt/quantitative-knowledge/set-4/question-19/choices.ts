@@ -25,7 +25,7 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "$$2.5$$ liter",
+      label: "$$2{,}5$$ liter",
       value: false,
     },
     {
@@ -33,7 +33,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "$$7.5$$ liter",
+      label: "$$7{,}5$$ liter",
       value: false,
     },
     {
@@ -41,7 +41,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "$$12.5$$ liter",
+      label: "$$12{,}5$$ liter",
       value: true,
     },
   ],

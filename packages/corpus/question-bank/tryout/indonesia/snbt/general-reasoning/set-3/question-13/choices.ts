@@ -3,24 +3,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The number of bergo veils sold is $$24$$ pieces.",
+      label: "The shop sells $$24$$ bergo headscarves.",
       value: false,
     },
     {
       label:
-        "Pashmina veils are the best-selling type with $$35$$ pieces sold.",
+        "Pashmina is the best-selling style, with $$35$$ headscarves sold.",
       value: false,
     },
     {
-      label: "Sales of square veils are $$42$$ pieces.",
+      label: "The shop sells $$42$$ square headscarves.",
       value: true,
     },
     {
-      label: "Pashmina veils are sold less than bergo veils.",
+      label: "The shop sells fewer pashmina than bergo headscarves.",
       value: false,
     },
     {
-      label: "Bergo veils are the best-selling type of veil.",
+      label: "Bergo is the best-selling headscarf style.",
       value: false,
     },
   ],

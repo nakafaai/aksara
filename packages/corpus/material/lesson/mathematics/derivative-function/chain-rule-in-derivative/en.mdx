@@ -8,25 +8,25 @@ export const metadata = {
 
 ## Understanding Composite Functions
 
-Imagine you have a machine that transforms a number (the first function), and its result is immediately fed into another machine to be processed again (the second function). This process is called a **composite function**. Mathematically, if we have <InlineMath math="g(x)" /> as the **inner function** and <InlineMath math="f(u)" /> as the **outer function**, their composition is <InlineMath math="y = f(g(x))" />.
+In a **composite function**, the output of one function becomes the input of another. If <InlineMath math="g(x)" /> is the **inner function** and <InlineMath math="f(u)" /> is the **outer function**, their composition is <InlineMath math="y = f(g(x))" />.
 
-The chain rule is a method for finding the derivative of functions like this, where one function is "nested" inside another.
+The chain rule tells us how to differentiate this nested structure without losing the effect of the inner function.
 
 ## The Chain Rule Theorem
 
-To differentiate a composite function, we can't just differentiate it piece by piece. There's an elegant rule that connects the derivative of the outer function with the derivative of the inner function.
+For a composite function, we differentiate each layer in order and multiply the resulting derivatives.
 
-> If <InlineMath math="y = f(g(x))" />, then its derivative is the product of the derivative of the outer function with respect to the inner function and the derivative of the inner function itself.
+> If <InlineMath math="y = f(g(x))" />, with <InlineMath math="g" /> differentiable at <InlineMath math="x" /> and <InlineMath math="f" /> differentiable at <InlineMath math="g(x)" />, then the derivative is the derivative of the outer function evaluated at the inner function, multiplied by the derivative of the inner function.
 
 Formally, if we let <InlineMath math="u = g(x)" />, then <InlineMath math="y = f(u)" />. Its derivative is defined as:
 
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
-This formula is known as the **chain rule**. Essentially, we differentiate from the outermost "layer" to the innermost layer and then multiply the results.
+This is the **chain rule**. Work from the outermost layer inward, keep each inner expression in place until its turn, and multiply the derivatives.
 
 ## Applying the Chain Rule
 
-Let's try applying this theorem to a few cases to get a better feel for it.
+The following examples show how the same process works with two and three layers.
 
 ### Power Form Functions
 

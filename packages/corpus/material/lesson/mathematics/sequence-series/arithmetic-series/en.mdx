@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Understanding Arithmetic Series
 
-Ever heard the story about Carl Friedrich Gauss, the math genius? When he was in elementary school, his teacher assigned the task of summing all numbers from <InlineMath math="1" /> to <InlineMath math="100" />: <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" />. The teacher hoped this would keep the students busy for a while.
+A well-known classroom anecdote about Carl Friedrich Gauss illustrates a useful summation idea. In the story, his teacher asks the class to add all the numbers from <InlineMath math="1" /> to <InlineMath math="100" />: <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" />.
 
-But Gauss had a brilliant idea! He didn't sum them one by one. This sequential summation of terms from an _arithmetic sequence_ (a sequence with a constant difference between terms) is what we call an **Arithmetic Series**.
+Gauss did not add the terms one by one. He paired the beginning of the list with the end. A sum formed from the terms of an _arithmetic sequence_ is called an **arithmetic series**.
 
 For example, <InlineMath math="1, 2, 3, \dots, 100" /> is an arithmetic sequence with the first term <InlineMath math="a=1" /> and a common difference <InlineMath math="b=1" />. The corresponding arithmetic series is <InlineMath math="1 + 2 + 3 + \dots + 100" />.
 
@@ -21,19 +21,19 @@ Gauss noticed an interesting pattern:
 - If the first term <InlineMath math="(1)" /> is added to the last term <InlineMath math="(100)" />, the result is <InlineMath math="101" />.
 - If the second term <InlineMath math="(2)" /> is added to the second-to-last term <InlineMath math="(99)" />, the result is also <InlineMath math="101" />.
 - If the third term <InlineMath math="(3)" /> is added to the third-to-last term <InlineMath math="(98)" />, the result is still <InlineMath math="101" />.
-- This pattern continues!
+- The same pattern continues to the middle of the list.
 
 <MathContainer>
   <BlockMath math="\underbrace{1+100}_{101}, \underbrace{2+99}_{101}, \underbrace{3+98}_{101}, \dots, \underbrace{50+51}_{101}" />
 </MathContainer>
 
-It turns out there are <InlineMath math="50" /> pairs of numbers, each summing to <InlineMath math="101" />. So, the total sum is <InlineMath math="50 \times 101 = 5050" />. Clever, right?
+There are <InlineMath math="50" /> pairs, and every pair sums to <InlineMath math="101" />. Therefore, the total is <InlineMath math="50 \times 101 = 5050" />.
 
 ## Finding the General Formula
 
 We can use Gauss's method to derive a general formula for the sum of the first <InlineMath math="n" /> terms of an arithmetic series, usually denoted by <InlineMath math="S_n" />.
 
-Let's say we have an arithmetic series:
+Begin with an arithmetic series:
 
 <BlockMath math="S_n = U_1 + U_2 + U_3 + \dots + U_{n-1} + U_n" />
 
@@ -41,7 +41,7 @@ If written out with the first term <InlineMath math="(a)" /> and the common diff
 
 <BlockMath math="S_n = a + (a+b) + (a+2b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
 
-Now, let's rewrite the series <InlineMath math="S_n" /> in reverse order, from the last term to the first:
+Write the same series <InlineMath math="S_n" /> in reverse order, from the last term to the first:
 
 <BlockMath math="S_n = U_n + U_{n-1} + \dots + U_2 + U_1" />
 
@@ -49,7 +49,7 @@ Or:
 
 <BlockMath math="S_n = (a+(n-1)b) + (a+(n-2)b) + \dots + (a+b) + a" />
 
-Next, let's add these two versions of <InlineMath math="S_n" /> together, term by term:
+Add the two representations of <InlineMath math="S_n" /> term by term:
 
 <MathContainer>
   <BlockMath math="S_n = a + (a+b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
@@ -57,7 +57,7 @@ Next, let's add these two versions of <InlineMath math="S_n" /> together, term b
   <BlockMath math="2S_n = [2a+(n-1)b] + [2a+(n-1)b] + \dots + [2a+(n-1)b] + [2a+(n-1)b]" />
 </MathContainer>
 
-Notice! The sum of each pair of terms (top and bottom) is always the same, which is <InlineMath math="2a + (n-1)b" />. Since there are <InlineMath math="n" /> terms, there are <InlineMath math="n" /> such identical sums.
+Each vertical pair has the same sum, <InlineMath math="2a + (n-1)b" />. Since each row contains <InlineMath math="n" /> terms, the addition produces <InlineMath math="n" /> identical pair sums.
 
 So, we get:
 
@@ -66,6 +66,8 @@ So, we get:
 By dividing both sides by <InlineMath math="2" />, we obtain the formula for the sum of the first <InlineMath math="n" /> terms of an arithmetic series:
 
 <BlockMath math="S_n = \frac{n}{2} (2a + (n-1)b)" />
+
+The derivation works for both even and odd <InlineMath math="n" />. When <InlineMath math="n" /> is odd, reversing and adding the series counts the middle term correctly because both copies of the series are included.
 
 ## Practical Formulas for Arithmetic Series
 
@@ -91,8 +93,7 @@ There are two main formulas commonly used to calculate <InlineMath math="S_n" />
 - <InlineMath math="n" /> = Number of terms
 - <InlineMath math="a" /> = First term (<InlineMath math="U_1" />)
 - <InlineMath math="b" /> = Common difference (difference between terms)
-- <InlineMath math="U_n" /> = The <InlineMath math="n" />
-  -th term
+- <InlineMath math="U_n" /> = Term number <InlineMath math="n" />
 
 ## Example Problems
 
@@ -115,7 +116,7 @@ Since <InlineMath math="a" /> and <InlineMath math="U_n" /> are known, we use th
   <BlockMath math="S_{100} = 5050" />
 </MathContainer>
 
-The result is exactly the same as Gauss's calculation!
+This agrees with the earlier pairing calculation.
 
 ### Second Problem
 
@@ -139,3 +140,32 @@ Since <InlineMath math="a" /> and <InlineMath math="b" /> are known, we use the 
 </MathContainer>
 
 So, the sum of the first <InlineMath math="30" /> terms of this series is <InlineMath math="1695" />.
+
+## Application: Theater Seating
+
+A theater has <InlineMath math="20" /> seats in the first row and <InlineMath math="4" /> more seats in each following row. The number of seats in row <InlineMath math="15" /> and the total in the first fifteen rows are:
+
+<MathContainer>
+  <BlockMath math="U_{15}=20+14\cdot4=76" />
+  <BlockMath math="S_{15}=\frac{15}{2}(20+76)=720" />
+</MathContainer>
+
+The first result describes only row <InlineMath math="15" />. The second result describes all seats across the first fifteen rows, so the sequence term and the series sum answer different questions.
+
+## Exercise
+
+Calculate the finite arithmetic series:
+
+<BlockMath math="8+13+18+\dots+103" />
+
+### Solution
+
+First determine how many terms the series contains. The common difference is <InlineMath math="5" />:
+
+<MathContainer>
+  <BlockMath math="103=8+(n-1)5" />
+  <BlockMath math="n=20" />
+  <BlockMath math="S_{20}=\frac{20}{2}(8+103)=1110" />
+</MathContainer>
+
+Therefore, the sum is <InlineMath math="1110" />.

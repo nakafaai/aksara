@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Sifat-Sifat Integral Tentu",
-    description: "Pelajari sifat penting integral tentu: batas identik, pembalikan batas, faktor konstanta, aturan jumlah, dan teknik pemecahan interval.",
+    description: "Gunakan sifat interval nol, pembalikan batas, linearitas, dan penambahan interval pada integral tentu.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integral",
@@ -12,7 +12,7 @@ Jika batas atas dan bawah dari suatu integral tentu sama, maka hasilnya adalah n
 
 <BlockMath math="\int_{a}^{a} f(x) \, dx = 0" />
 
-Ini sangat masuk akal secara intuitif. Karena integral tentu menghitung luas di bawah kurva pada suatu interval, jika intervalnya tidak memiliki lebar (dari <InlineMath math="a" /> ke <InlineMath math="a" />), maka tidak ada area yang bisa dihitung. Ini seperti mencoba menghitung luas sebuah garis lurus, yang tentu saja adalah nol.
+Integral tentu mengakumulasi suatu besaran pada interval berarah. Dari <InlineMath math="a" /> kembali ke titik <InlineMath math="a" /> yang sama, intervalnya tidak memiliki lebar. Karena itu, hasil akumulasinya nol berapa pun nilai integrannya.
 
 ## Penukaran Batas Integrasi
 
@@ -20,7 +20,7 @@ Ketika kita menukar batas bawah dan batas atas dari suatu integral, hasilnya aka
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = - \int_{b}^{a} f(x) \, dx" />
 
-Bayangkan kita sedang mengukur perpindahan. Jarak dari titik <InlineMath math="A" /> ke <InlineMath math="B" /> sama dengan jarak dari <InlineMath math="B" /> ke <InlineMath math="A" />, tetapi arahnya berlawanan. Tanda negatif di sini merepresentasikan "arah" yang berlawanan dalam konteks integrasi.
+Batas integral memberi arah pada interval. Membalik perjalanan dari titik <InlineMath math="A" /> ke titik <InlineMath math="B" /> menghasilkan **perpindahan** yang berlawanan, sehingga perjalanan pulang dari <InlineMath math="B" /> ke <InlineMath math="A" /> membalik tanda nilai akumulasinya. Ini berbeda dari jarak biasa yang selalu tidak negatif.
 
 ## Aturan Kelipatan Konstanta
 
@@ -28,7 +28,7 @@ Sama seperti pada integral tak tentu, konstanta dapat dikeluarkan dari integral 
 
 <BlockMath math="\int_{a}^{b} kf(x) \, dx = k \int_{a}^{b} f(x) \, dx" />
 
-Jika kita memiliki fungsi yang "diperbesar" atau "diperkecil" oleh faktor konstan <InlineMath math="k" />, kita bisa menghitung luas dasarnya terlebih dahulu (<InlineMath math="\int f(x)dx" />), lalu mengalikan hasilnya dengan faktor <InlineMath math="k" /> tersebut.
+Jika setiap nilai fungsi dikalikan konstanta <InlineMath math="k" />, nilai integralnya juga dikalikan faktor yang sama. Karena itu, kita dapat menghitung <InlineMath math="\int f(x)dx" /> terlebih dahulu, lalu mengalikan hasilnya dengan <InlineMath math="k" />.
 
 ## Aturan Penjumlahan dan Pengurangan
 
@@ -39,12 +39,12 @@ Integral dari penjumlahan atau pengurangan dua fungsi adalah sama dengan jumlah 
 <BlockMath math="\int_{a}^{b} [f(x) - g(x)] \, dx = \int_{a}^{b} f(x) \, dx - \int_{a}^{b} g(x) \, dx" />
 </MathContainer>
 
-Sifat ini memungkinkan kita untuk memecah integral dari fungsi yang kompleks menjadi beberapa integral yang lebih sederhana. Kita bisa menghitung luas di bawah <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" /> secara terpisah, lalu menjumlahkan atau mengurangkannya.
+Sifat linearitas ini memungkinkan integran yang rumit dipecah menjadi bagian lebih sederhana. Kita mengintegralkan <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" /> secara terpisah, lalu menggabungkan akumulasi bertandanya dengan operasi yang sama.
 
 ## Sifat Penambahan Interval
 
-Suatu interval integrasi dapat dipecah menjadi beberapa sub-interval. Luas total pada interval besar sama dengan jumlah luas pada sub-interval yang menyusunnya.
+Interval integrasi dapat dipecah pada sebuah titik antara. Akumulasi bertanda pada seluruh interval sama dengan jumlah akumulasi pada kedua bagiannya.
 
 <BlockMath math="\int_{a}^{c} f(x) \, dx = \int_{a}^{b} f(x) \, dx + \int_{b}^{c} f(x) \, dx" />
 
-Sifat ini berlaku tidak peduli urutan <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Ini seperti mengatakan bahwa perjalanan dari kota <InlineMath math="A" /> ke kota <InlineMath math="C" /> sama dengan perjalanan dari <InlineMath math="A" /> ke <InlineMath math="B" />, ditambah perjalanan dari <InlineMath math="B" /> ke <InlineMath math="C" />. Ini adalah alat yang sangat berguna untuk menangani fungsi yang didefinisikan secara berbeda pada interval yang berbeda.
+Identitas ini berlaku untuk urutan <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> apa pun, selama fungsi dapat diintegralkan pada interval yang diperlukan. Dengan kata lain, akumulasi dari <InlineMath math="a" /> ke <InlineMath math="c" /> sama dengan akumulasi dari <InlineMath math="a" /> ke <InlineMath math="b" /> ditambah akumulasi dari <InlineMath math="b" /> ke <InlineMath math="c" />. Sifat ini sangat berguna pada fungsi bagian demi bagian karena setiap rumus dapat diintegralkan pada interval tempatnya berlaku.

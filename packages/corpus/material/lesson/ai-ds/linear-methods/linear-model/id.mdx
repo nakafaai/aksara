@@ -1,154 +1,96 @@
 export const metadata = {
-    title: "Linear Model",
-    description: "Pelajari model linear: hubungan fundamental y=h(t)·x, bentuk polinomial/trigonometri, konversi data-ke-model, dan teknik linearisasi untuk AI.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-14",
-    subject: "Metode Linear AI",
+  title: "Model Linear",
+  description: "Bangun model yang linear terhadap parameter dari fungsi basis, susun pengukuran menjadi matriks desain, dan bedakan model linear eksak dari linearisasi lokal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-14",
+  subject: "Metode Linear AI",
 };
 
-## Memahami Model Linear
+## Arti linear dalam model ini
 
-Bayangkan kita sedang mencoba memahami hubungan antara beberapa hal dalam dunia nyata.
-Model linear adalah cara yang sangat elegan untuk menggambarkan hubungan tersebut dalam bentuk matematika.
+Model linear menghubungkan masukan yang diketahui <InlineMath math="t \in \mathbb{R}^k" /> dengan respons yang diamati <InlineMath math="y \in \mathbb{R}^d" /> melalui parameter yang belum diketahui <InlineMath math="x \in \mathbb{R}^n" />:
 
-Bentuk dasarnya sangat sederhana:
+<BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
 
-<BlockMath math="y = h(t) \cdot x" />
+Istilah pentingnya adalah **linear terhadap parameter**. Untuk <InlineMath math="t" /> yang tetap, pemetaan dari <InlineMath math="x" /> ke <InlineMath math="y" /> bersifat linear. Ketergantungan pada <InlineMath math="t" /> boleh memuat pangkat, logaritma, sinus, atau fungsi basis nonlinear lainnya.
 
-Mengapa disebut "linear"? Karena jika kita lihat hubungan antara <InlineMath math="y" /> dan <InlineMath math="x" />,
-hubungannya berbentuk garis lurus. Di sini <InlineMath math="h(t)" /> berperan sebagai "penghubung"
-yang ukurannya <InlineMath math="\mathbb{R}^{d \times n}" />.
+Pembedaan ini mencegah kekeliruan umum: model linear tidak harus membentuk garis lurus sebagai fungsi masukannya. Model tersebut harus menggabungkan parameter yang belum diketahui secara linear.
 
-Mari kita kenali ketiga pemain utama dalam model ini:
-- <InlineMath math="y \in \mathbb{R}^d" /> adalah **hasil yang kita amati** (respons model)
-- <InlineMath math="x \in \mathbb{R}^n" /> adalah **nilai yang ingin kita cari** (parameter model)
-- <InlineMath math="t \in \mathbb{R}^k" /> adalah **masukan yang kita berikan** (variabel independen)
+## Dari pengukuran ke matriks desain
 
-Yang menarik adalah meskipun kita sebut "linear", hubungan dengan masukan <InlineMath math="t" />
-sebenarnya boleh rumit atau melengkung. Yang linear hanya hubungannya dengan parameter <InlineMath math="x" />.
+Misalkan kita mengumpulkan <InlineMath math="M" /> pasangan masukan-respons <InlineMath math="(t_i,y_i)" /> dan memodelkan setiap pengamatan sebagai
 
-## Dari Data ke Model
+<BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-Sekarang, bagaimana kita menggunakan model ini dalam kehidupan nyata?
-Prosesnya sebenarnya seperti bermain detektif dengan data.
-
-Pertama, kita melakukan rangkaian eksperimen atau pengukuran:
-
-1. Kita memilih berbagai nilai untuk <InlineMath math="t" />
-2. Untuk setiap nilai tersebut, kita mengukur dan mendapatkan <InlineMath math="y" />
-3. Tujuan kita adalah mencari <InlineMath math="x" /> yang bisa menjelaskan semua data ini
-
-Misalkan kita melakukan <InlineMath math="M" /> kali pengukuran.
-Untuk setiap pengukuran ke-<InlineMath math="i" />, kita punya:
-
-<BlockMath math="y_i \approx h(t_i) \cdot x, \quad i = 1, \ldots, M" />
-
-Kenapa menggunakan tanda "kurang lebih" dan bukan "sama dengan"?
-Karena dalam dunia nyata, tidak ada pengukuran yang sempurna.
-Selalu ada derau, kesalahan alat, atau faktor acak lainnya yang mempengaruhi hasil.
-
-Kalau kita hitung total semua data yang kita kumpulkan, jumlahnya <InlineMath math="m = M \cdot d" />.
-Biasanya angka ini jauh lebih besar dari jumlah parameter yang ingin kita cari (<InlineMath math="n" />),
-jadi <InlineMath math="m \gg n" />.
-
-Tantangan kita sekarang adalah bagaimana mencari nilai <InlineMath math="x" /> yang terbaik,
-sehingga persamaan <InlineMath math="y_i = h(t_i) \cdot x" /> terpenuhi seakurat mungkin.
-
-Ketika kita menyusun semua data ini, terbentuklah sistem persamaan yang terlihat seperti ini:
+dengan <InlineMath math="\varepsilon_i" /> memuat derau pengukuran dan ketidakcocokan model. Penyusunan seluruh respons dan blok model menghasilkan
 
 <MathContainer>
-<BlockMath math="b = \begin{pmatrix} y_1 \\ \vdots \\ y_M \end{pmatrix} = \begin{pmatrix} h(t_1) \\ \vdots \\ h(t_M) \end{pmatrix} \cdot \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = A(t) \cdot x" />
+<BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
+<BlockMath math="A=\begin{pmatrix}h(t_1)\\\vdots\\h(t_M)\end{pmatrix}\in\mathbb{R}^{Md\times n}" />
+<BlockMath math="b=Ax+\varepsilon" />
 </MathContainer>
 
-Ini menghasilkan sebuah sistem dengan matriks <InlineMath math="A(t)" /> berukuran <InlineMath math="m \times n" />
-dan vektor <InlineMath math="b" /> berukuran <InlineMath math="m" />.
+Matriks <InlineMath math="A" /> disebut **matriks desain**. Jika seluruh pengamatan tidak dapat dipenuhi secara eksak oleh satu vektor parameter, estimasikan <InlineMath math="x" /> dengan kuadrat terkecil atau model residual lain. Keteridentifikasian parameter juga bergantung pada peringkat dan kondisi <InlineMath math="A" />.
 
-## Berbagai Bentuk Model Linear
+## Fungsi basis membentuk beragam model
 
-Model linear ternyata sangat fleksibel dan bisa mengambil berbagai bentuk.
-Mari kita lihat beberapa contoh yang paling sering muncul:
+Misalkan <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> adalah fungsi-fungsi basis yang diketahui. Model dengan respons skalar dapat ditulis sebagai
 
-### Garis Lurus Sederhana
+<BlockMath math="y(t)=\sum_{j=1}^{n}x_j\phi_j(t)=\begin{pmatrix}\phi_1(t)&\cdots&\phi_n(t)\end{pmatrix}x" />
 
-Bentuk paling dasar adalah garis lurus:
+Pilihan fungsi basis yang berbeda menghasilkan bentuk model yang berbeda tanpa menghilangkan linearitas terhadap <InlineMath math="x" />.
 
-<BlockMath math="y = a + b \cdot t = (1 \quad t) \cdot \begin{pmatrix} a \\ b \end{pmatrix} = h(t) \cdot x" />
+| Model | Representasi basis |
+| --- | --- |
+| Garis afin | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
+| Polinomial berderajat <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
+| Basis Fourier | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
+| Interaksi dua masukan | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
 
-Di sini kita mencari dua parameter: <InlineMath math="a" /> (titik potong) dan <InlineMath math="b" /> (kemiringan).
-Model ini cocok ketika data membentuk pola garis lurus atau hampir lurus.
+Suku seperti <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, dan <InlineMath math="ts" /> boleh bersifat nonlinear terhadap masukan. Setelah masukannya diamati, suku-suku tersebut menjadi koefisien yang diketahui, sehingga model tetap linear terhadap parameter yang belum diketahui.
 
-### Kurva Polinomial
+## Respons berganda
 
-Jika data membentuk kurva melengkung, kita bisa menggunakan polinomial:
+Jika setiap masukan menghasilkan beberapa respons, letakkan vektor-vektor parameternya dalam matriks <InlineMath math="B" />. Untuk baris nilai basis <InlineMath math="\phi(t)^{\mathsf T}" />,
 
-<BlockMath math="y = a_0 + a_1 \cdot t + \ldots + a_n \cdot t^n = (1 \quad t \quad \ldots \quad t^n) \cdot \begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{pmatrix} = h(t) \cdot x" />
+<BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
 
-Meskipun <InlineMath math="t^n" /> terlihat nonlinear, ingat bahwa yang kita maksud "linear"
-adalah hubungannya dengan parameter <InlineMath math="a_0, a_1, \ldots, a_n" />.
+Setiap kolom <InlineMath math="B" /> menjelaskan satu respons. Bentuk ini tetap merupakan model linear karena setiap keluaran adalah kombinasi linear dari nilai basis yang sama dan telah diketahui.
 
-### Pola Berulang dengan Trigonometri
+## Contoh fisika: hukum gas ideal
 
-Untuk data yang memiliki pola berulang atau siklik, kita bisa menggunakan fungsi sinus dan cosinus:
+Untuk gas ideal,
 
-<BlockMath math="y = a_0 + \sum_{k=1}^{n} a_k \cos(k \cdot t) + \sum_{k=1}^{n} b_k \sin(k \cdot t)" />
+<BlockMath math="pV=nRT" />
 
-Model ini sangat berguna untuk menganalisis data yang memiliki pola musiman atau periodik.
+sehingga pada suhu <InlineMath math="T" /> dan volume <InlineMath math="V" /> yang diketahui,
 
-### Masukan Berganda
+<BlockMath math="p=\frac{RT}{V}n" />
 
-Jika keluaran bergantung pada beberapa masukan sekaligus, kita bisa menggabungkannya.
-Contohnya dengan dua masukan <InlineMath math="t" /> dan <InlineMath math="s" />:
+Tekanan <InlineMath math="p" /> bersifat linear terhadap jumlah zat yang belum diketahui <InlineMath math="n" />, yang diukur dalam mol. Besaran <InlineMath math="n" /> bukan jumlah molekul secara langsung; jumlah entitas yang ditentukan adalah <InlineMath math="N=nN_A" />.
 
-<MathContainer>
-<BlockMath math="y = a + b \cdot t + c \cdot s + d \cdot t \cdot s = (1 \quad t \quad s \quad t \cdot s) \cdot \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix} = h(t,s) \cdot x" />
-</MathContainer>
+Pengukuran tekanan berulang pada beberapa nilai <InlineMath math="(T_i,V_i)" /> yang diketahui menghasilkan satu baris matriks desain <InlineMath math="RT_i/V_i" /> untuk setiap pengamatan.
 
-Suku <InlineMath math="t \cdot s" /> menangkap interaksi antara kedua masukan.
+## Linearisasi lokal model nonlinear
 
-### Keluaran Berganda
+Model parameter yang benar-benar nonlinear berbentuk
 
-Terkadang kita ingin memprediksi beberapa hal sekaligus dari masukan yang sama:
+<BlockMath math="y=g(t,x)" />
 
-<MathContainer>
-<BlockMath math="y = a + b \cdot t" />
-<BlockMath math="z = c + d \cdot t" />
-</MathContainer>
+dengan parameter yang dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter saat ini <InlineMath math="x_0" />, aproksimasi Taylor orde pertama memberikan
 
-Ini seperti memiliki dua model linear yang berjalan bersamaan.
+<BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
 
-## Contoh Nyata dari Fisika
+Jacobian <InlineMath math="J_xg(t,x_0)" /> diketahui setelah <InlineMath math="x_0" /> dipilih, sehingga koreksi <InlineMath math="x-x_0" /> muncul secara linear. Aproksimasi ini bersifat lokal, bukan pengubahan eksak model nonlinear. Metode iteratif seperti Gauss-Newton memperbarui titik linearisasi secara berulang.
 
-Persamaan gas umum dalam fisika adalah:
+## Pemeriksaan sebelum pencocokan
 
-<BlockMath math="p = n \cdot R \cdot \frac{T}{V}" />
+Sebelum menafsirkan parameter hasil pencocokan, pastikan bahwa:
 
-Di sini:
-- <InlineMath math="p" /> adalah tekanan yang kita ukur
-- <InlineMath math="T" /> adalah suhu yang kita atur
-- <InlineMath math="V" /> adalah volume yang kita atur
-- <InlineMath math="n" /> adalah jumlah molekul gas (yang ingin kita tentukan)
-- <InlineMath math="R" /> adalah konstanta yang sudah diketahui
+- kolom matriks desain merepresentasikan fungsi basis dan satuan yang dimaksud
+- data memuat cukup informasi bebas untuk menentukan parameter, biasanya <InlineMath math="\operatorname{rank}(A)=n" />
+- skala fitur dan bilangan kondisi tidak membuat penyelesaian rapuh secara numerik
+- kerugian residual yang dipilih sesuai dengan asumsi derau dan pencilan
+- linearisasi lokal diperiksa kembali terhadap model nonlinear aslinya
 
-Jika kita menganggap <InlineMath math="T" /> dan <InlineMath math="V" /> sebagai masukan yang bisa kita kontrol,
-dan <InlineMath math="p" /> sebagai keluaran yang kita ukur, maka tekanan bergantung secara linear pada <InlineMath math="n" />.
-Ini memungkinkan kita menggunakan model linear untuk menentukan jumlah molekul gas.
-
-## Ketika Model Awalnya Nonlinear
-
-Tidak semua masalah dunia nyata langsung berbentuk linear.
-Kadang kita menemui model yang parameternya muncul dalam bentuk kuadrat, perkalian antar parameter,
-atau bahkan dalam fungsi eksponensial:
-
-<BlockMath math="y = h(t, x)" />
-
-Tapi jangan putus asa! Dalam banyak kasus, kita bisa "melinearkan" model tersebut.
-Caranya dengan menggunakan aproksimasi garis singgung di sekitar titik tertentu <InlineMath math="x_0" />:
-
-<BlockMath math="y \approx h(x_0, t) + \frac{\partial h}{\partial x}(x_0, t) \cdot (x - x_0)" />
-
-Dengan trik ini, kita mengganti kurva yang rumit dengan garis lurus yang mendekatinya.
-Hasilnya adalah persamaan yang linear terhadap <InlineMath math="x" />, sehingga bisa diselesaikan
-dengan metode aljabar linear standar seperti kuadrat terkecil.
-
-Namun metode linearisasi ini hanya bekerja jika model nonlinear tidak terlalu "melengkung"
-di sekitar titik <InlineMath math="x_0" />. Model yang sangat nonlinear membutuhkan teknik optimisasi numerik.
+Basis yang fleksibel dapat mencocokkan banyak bentuk, tetapi fleksibilitas saja tidak menjamin keteridentifikasian, stabilitas numerik, atau prediksi yang berguna.

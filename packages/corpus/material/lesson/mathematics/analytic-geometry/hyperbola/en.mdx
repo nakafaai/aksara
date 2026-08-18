@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Hyperbola",
-  description: "Learn hyperbola concepts: foci, asymptotes, and equations x²/a² - y²/b² = 1. Learn eccentricity, vertices, and solve problems with worked examples.",
+  description: "Learn the foci, asymptotes, standard equations, eccentricity, and vertices of hyperbolas through worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## What is a Hyperbola?
 
-Have you ever seen the shape of cooling towers at power plants? Or perhaps noticed the shadow of a flashlight on the wall forming an open curve? Well, shapes like these are examples of **hyperbolas** in real life!
+The vertical outline of a cooling tower often resembles a hyperbola. A conical shock wave from a supersonic aircraft can also trace a hyperbolic path where it intersects the ground. These examples give us a first picture of an otherwise abstract curve.
 
-A hyperbola is a curve formed when a plane cuts through a double cone at a certain angle. Unlike an ellipse which forms a closed curve, a hyperbola is actually formed from **two separate curves** that face each other.
+Geometrically, a hyperbola appears when a plane cuts both halves of a double cone. Unlike an ellipse, which is closed, a hyperbola has **two separate branches** facing away from one another.
 
 Mathematically, a hyperbola is defined as the locus of points where **the absolute difference of distances to two fixed points is always constant**. These two fixed points are called the **foci** of the hyperbola. For every point <InlineMath math="P" /> on the hyperbola, the difference <InlineMath math="|PF_1 - PF_2| = 2a" /> (constant), whereas in an [ellipse](/en/subjects/mathematics/analytic-geometry/ellipse) the sum of distances is constant: <InlineMath math="PF_1 + PF_2 = 2a" />.
 
@@ -73,6 +73,53 @@ Mathematically, a hyperbola is defined as the locus of points where **the absolu
       ],
     },
     {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const t = 0.7;
+        return [{
+          x: a * Math.cosh(t),
+          y: b * Math.sinh(t),
+          z: 0,
+        }];
+      })(),
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
       points: [
         { x: 0, y: 0, z: 0 }
       ],
@@ -103,15 +150,15 @@ Mathematically, a hyperbola is defined as the locus of points where **the absolu
   showZAxis={false}
 />
 
-Look at the visualization above! A hyperbola has two separate branches. For every point <InlineMath math="P" /> on the hyperbola, the difference in distance from <InlineMath math="P" /> to both foci <InlineMath math="F_1" /> and <InlineMath math="F_2" /> is always constant.
+The visualization shows both branches, the two foci, and one point <InlineMath math="P" /> on the curve. The two segments have lengths <InlineMath math="r_1=PF_1" /> and <InlineMath math="r_2=PF_2" />. Moving <InlineMath math="P" /> along either branch changes both lengths, but their absolute difference remains <InlineMath math="|r_1-r_2|=2a" />.
 
 ## Components of a Hyperbola
 
-Before diving into formulas, let's get acquainted with the important parts of a hyperbola. Each component has its own role in determining the shape and properties of the hyperbola.
+Before using the formulas, identify the parts that control the shape and position of the curve.
 
 <LineEquation
   title="Parts of a Hyperbola"
-  description="Important components of a hyperbola with horizontal major axis."
+  description="Important components of a hyperbola with a horizontal transverse axis."
   data={[
     {
       points: (() => {
@@ -209,15 +256,15 @@ Before diving into formulas, let's get acquainted with the important parts of a 
   showZAxis={false}
 />
 
-The components of a hyperbola you need to know:
+Read the graph through these five features:
 
 1. **Center of hyperbola** is the midpoint between the two foci, usually denoted by <InlineMath math="O" />.
 
-2. **Foci** (<InlineMath math="F_1" /> and <InlineMath math="F_2" />) are two fixed points that serve as the reference for the definition of a hyperbola. The distance between the two foci is called the focal distance.
+2. **Foci** (<InlineMath math="F_1" /> and <InlineMath math="F_2" />) are the two fixed points in the definition of a hyperbola. If <InlineMath math="c" /> is the distance from the center to either focus, the distance between the foci is <InlineMath math="2c" />.
 
-3. **Vertices** (<InlineMath math="A_1" /> and <InlineMath math="A_2" />) are the closest points between the two branches of the hyperbola. The line connecting the two vertices is called the major axis.
+3. **Vertices** (<InlineMath math="A_1" /> and <InlineMath math="A_2" />) are the points where each branch comes closest to the center. They lie on the transverse axis.
 
-4. **Major axis** is the line that passes through the center and both foci of the hyperbola.
+4. **Transverse axis** is the line segment through the center whose endpoints are the two vertices. The foci lie on the line containing this segment.
 
 5. **Asymptotes** are lines that are approached by the branches of the hyperbola as they extend to infinity. The hyperbola never touches its asymptotes, but the farther from the center, the closer the curve approaches the asymptote lines.
 
@@ -225,15 +272,15 @@ The components of a hyperbola you need to know:
 
 ## Equation of a Hyperbola
 
-There are several forms depending on orientation and center position. We will discuss two cases:
+The standard equation depends on the orientation of the branches and the position of the center. We will use two cases.
 
 ### Center at the Origin
 
 If the center of the hyperbola is at <InlineMath math="O(0,0)" />, there are two possible orientations:
 
 <LineEquation
-  title="Horizontal Major Axis"
-  description={<>Hyperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> with horizontal major axis.</>}
+  title="Horizontal Transverse Axis"
+  description={<>Hyperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> with a horizontal transverse axis.</>}
   data={[
     {
       points: (() => {
@@ -329,15 +376,15 @@ If the center of the hyperbola is at <InlineMath math="O(0,0)" />, there are two
   showZAxis={false}
 />
 
-When the major axis is parallel to the <InlineMath math="X" /> axis (horizontal), the equation of the hyperbola is:
+When the transverse axis is parallel to the <InlineMath math="x" /> axis, the equation of the hyperbola is:
 
 <BlockMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />
 
-If we visualize it, it will look like this:
+The corresponding vertical graph is shown below:
 
 <LineEquation
-  title="Vertical Major Axis"
-  description={<>Hyperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> with vertical major axis.</>}
+  title="Vertical Transverse Axis"
+  description={<>Hyperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> with a vertical transverse axis.</>}
   data={[
     {
       points: (() => {
@@ -433,7 +480,7 @@ If we visualize it, it will look like this:
   showZAxis={false}
 />
 
-When the major axis is parallel to the <InlineMath math="Y" /> axis (vertical), the equation of the hyperbola is:
+When the transverse axis is parallel to the <InlineMath math="y" /> axis, the equation of the hyperbola is:
 
 <BlockMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" />
 
@@ -442,19 +489,19 @@ When the major axis is parallel to the <InlineMath math="Y" /> axis (vertical), 
 If the center of the hyperbola is not at the origin, but at point <InlineMath math="(h, k)" />, the equation becomes:
 
 <MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontal major axis)}" />
-  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(vertical major axis)}" />
+  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontal transverse axis)}" />
+  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(vertical transverse axis)}" />
 </MathContainer>
 
 ## Important Properties of Hyperbola
 
-There are several mathematical relationships that always hold for every hyperbola:
+The three parameters of every hyperbola satisfy:
 
 <BlockMath math="c^2 = a^2 + b^2" />
 
-where:
-- <InlineMath math="a" /> is the distance from center to vertex (semi-major axis)
-- <InlineMath math="b" /> is the constant that determines the shape of the hyperbola (semi-conjugate axis)
+In this notation:
+- <InlineMath math="a" /> is the distance from center to vertex (transverse semiaxis)
+- <InlineMath math="b" /> is the conjugate semiaxis that determines the asymptote slopes
 - <InlineMath math="c" /> is the distance from center to focus
 
 This relationship is different from an ellipse which uses <InlineMath math="c^2 = a^2 - b^2" />.
@@ -463,16 +510,16 @@ This relationship is different from an ellipse which uses <InlineMath math="c^2 
 
 <BlockMath math="e = \frac{c}{a}" />
 
-The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. This is because <InlineMath math="c > a" /> (from the relationship <InlineMath math="c^2 = a^2 + b^2" />, so <InlineMath math="c = \sqrt{a^2 + b^2} > a" />). The larger the value of <InlineMath math="e" />, the more "open" or wide the hyperbola becomes. For comparison: a circle has <InlineMath math="e = 0" />, an ellipse has <InlineMath math="0 < e < 1" />, a parabola has <InlineMath math="e = 1" />, and a hyperbola has <InlineMath math="e > 1" />.
+The eccentricity of a hyperbola is always <InlineMath math="e > 1" /> because <InlineMath math="c^2 = a^2 + b^2" /> implies <InlineMath math="c > a" />. More precisely, <InlineMath math="e^2 = 1 + \frac{b^2}{a^2}" />, so increasing <InlineMath math="e" /> increases the ratio <InlineMath math="b/a" /> that also determines the asymptote slopes. For comparison, a circle has <InlineMath math="e = 0" />, an ellipse has <InlineMath math="0 < e < 1" />, a parabola has <InlineMath math="e = 1" />, and a hyperbola has <InlineMath math="e > 1" />.
 
 **Asymptote equations** for a hyperbola with center at <InlineMath math="(0,0)" />:
 
 <MathContainer>
-  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(horizontal major axis)}" />
-  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(vertical major axis)}" />
+  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(horizontal transverse axis)}" />
+  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(vertical transverse axis)}" />
 </MathContainer>
 
-> Asymptotes are "guides" for the hyperbola branches. The farther from the center, the closer the hyperbola curve approaches the asymptote lines, but never touches them.
+> The asymptotes describe the limiting directions of the two branches. As the distance from the center grows, each branch approaches an asymptote without intersecting it.
 
 ## Exercises
 
@@ -480,11 +527,11 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
 
 2. Given the hyperbola <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />. Determine the coordinates of the foci, eccentricity, and asymptote equations.
 
-3. A hyperbola has its center at <InlineMath math="(1, -2)" />, horizontal major axis, <InlineMath math="a = 3" />, and <InlineMath math="b = 4" />. Determine the equation of the hyperbola.
+3. A hyperbola has its center at <InlineMath math="(1, -2)" />, horizontal transverse axis, <InlineMath math="a = 3" />, and <InlineMath math="b = 4" />. Determine the equation of the hyperbola.
 
 4. Determine the asymptote equations of the hyperbola <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution**:
 
@@ -492,7 +539,7 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
    - Center at <InlineMath math="(0,0)" />
    - Vertices at <InlineMath math="(\pm 2, 0)" />, so <InlineMath math="a = 2" />
    - Foci at <InlineMath math="(\pm 3, 0)" />, so <InlineMath math="c = 3" />
-   - Horizontal major axis (since vertices and foci are on the <InlineMath math="X" /> axis)
+   - Horizontal transverse axis (since vertices and foci are on the <InlineMath math="x" /> axis)
 
    Use the relationship <InlineMath math="c^2 = a^2 + b^2" />:
 
@@ -502,7 +549,7 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
      <BlockMath math="b^2 = 5" />
    </MathContainer>
 
-   Equation of hyperbola with horizontal major axis:
+   Equation of a hyperbola with a horizontal transverse axis:
 
    <BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
 
@@ -512,22 +559,22 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
    - <InlineMath math="a^2 = 25" />, so <InlineMath math="a = 5" />
    - <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
 
-   Since it's in the form <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, the major axis is horizontal.
+   Since it has the form <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, the transverse axis is horizontal.
 
    Calculate <InlineMath math="c" />:
 
    <MathContainer>
      <BlockMath math="c^2 = a^2 + b^2 = 25 + 9 = 34" />
-     <BlockMath math="c = \sqrt{34} \approx 5{,}831" />
+     <BlockMath math="c = \sqrt{34} \approx 5.831" />
    </MathContainer>
 
    Coordinates of foci: <InlineMath math="(\pm \sqrt{34}, 0)" />
 
    Eccentricity:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5{,}831}{5} \approx 1{,}166" />
+   <BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5.831}{5} \approx 1.166" />
 
-   Asymptote equations (horizontal major axis):
+   Asymptote equations (horizontal transverse axis):
 
    <BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
 
@@ -535,11 +582,11 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
 
    Given:
    - Center: <InlineMath math="(h,k) = (1, -2)" />
-   - Horizontal major axis
+   - Horizontal transverse axis
    - <InlineMath math="a = 3" />, so <InlineMath math="a^2 = 9" />
    - <InlineMath math="b = 4" />, so <InlineMath math="b^2 = 16" />
 
-   Equation of hyperbola with center <InlineMath math="(h,k)" /> and horizontal major axis:
+   Equation of a hyperbola with center <InlineMath math="(h,k)" /> and a horizontal transverse axis:
 
    <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
 
@@ -553,9 +600,9 @@ The eccentricity value of a hyperbola is always <InlineMath math="e > 1" />. Thi
    - Center: <InlineMath math="(h,k) = (2, -1)" />
    - <InlineMath math="a^2 = 4" />, so <InlineMath math="a = 2" />
    - <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
-   - Vertical major axis (since it's in the form <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
+   - Vertical transverse axis (since it has the form <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
 
-   For a hyperbola with center <InlineMath math="(h,k)" /> and vertical major axis, the asymptote equations:
+   For a hyperbola with center <InlineMath math="(h,k)" /> and a vertical transverse axis, the asymptote equations are:
 
    <BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
 

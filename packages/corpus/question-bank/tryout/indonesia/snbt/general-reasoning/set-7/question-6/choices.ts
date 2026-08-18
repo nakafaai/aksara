@@ -3,48 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "More durable and more expensive than the terrace light.",
+      label: "It is more durable and more expensive than the terrace lamp.",
       value: false,
     },
     {
-      label: "Not more durable and more expensive than the terrace light.",
+      label: "It is less durable but more expensive than the terrace lamp.",
       value: false,
     },
     {
-      label: "Not more durable and not more expensive than the terrace light.",
+      label: "It is less durable and less expensive than the terrace lamp.",
       value: true,
     },
     {
-      label: "More durable and not more expensive than the terrace light.",
+      label: "It is more durable but less expensive than the terrace lamp.",
       value: false,
     },
     {
-      label: "Equally durable and equally expensive as the terrace light.",
+      label: "It is equally durable and equally expensive as the terrace lamp.",
       value: false,
     },
   ],
   id: [
     {
-      label: "Lebih tahan lama dan lebih mahal daripada lampu di teras rumah.",
+      label: "Lampu itu lebih tahan lama dan lebih mahal daripada lampu teras.",
       value: false,
     },
     {
       label:
-        "Tidak lebih tahan lama dan lebih mahal daripada lampu di teras rumah.",
+        "Lampu itu kurang tahan lama, tetapi lebih mahal daripada lampu teras.",
       value: false,
     },
     {
       label:
-        "Tidak lebih tahan lama dan tidak lebih mahal daripada lampu di teras rumah.",
+        "Lampu itu kurang tahan lama dan lebih murah daripada lampu teras.",
       value: true,
     },
     {
       label:
-        "Lebih tahan lama dan tidak lebih mahal daripada lampu di teras rumah.",
+        "Lampu itu lebih tahan lama, tetapi lebih murah daripada lampu teras.",
       value: false,
     },
     {
-      label: "Sama tahan lama dan sama mahalnya dengan di teras rumah.",
+      label: "Lampu itu sama tahan lama dan sama mahalnya dengan lampu teras.",
       value: false,
     },
   ],

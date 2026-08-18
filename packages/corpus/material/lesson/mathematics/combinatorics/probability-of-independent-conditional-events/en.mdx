@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Probability of Independent Conditional Events",
-    description: "Learn conditional probability and independence concepts with formulas and real-world examples.",
+    title: "Conditional Probability and Independence",
+    description: "Use conditional probability correctly, distinguish dependence from independence, and solve sequential selection problems.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Combinatorics",
@@ -8,76 +8,78 @@ export const metadata = {
 
 ## Understanding Basic Concepts
 
-Imagine you're playing cards with a friend. You draw one card from the deck, then your friend draws the next card. Does the probability of your friend getting a certain card depend on the card you drew earlier? **Of course!** This is what we call conditional probability in independent events.
+Imagine drawing a card from a deck before a friend draws the next one. Does your card change the probability of what your friend can draw? Without replacement, it often does. **Conditional probability** lets us calculate the second probability using what is already known.
 
-**Probability of independent conditional compound events** is the calculation of the probability of an event occurring by considering that another event has already occurred, where both events are fundamentally independent but mutually influence each other in the sequence of events.
+The **conditional probability** of event <InlineMath math="B" /> given event <InlineMath math="A" /> asks: among the outcomes where <InlineMath math="A" /> occurred, what fraction also satisfy <InlineMath math="B" />? The answer may change after <InlineMath math="A" />, which signals dependence, or stay the same, which signals independence.
 
-This concept differs from ordinary probability because we must consider **conditions that have already occurred** before calculating the probability of the next event.
+The key is to update the possible outcomes using the **condition that is already known** before calculating the next probability.
 
 ## Mathematical Formula and Notation
 
-For two events <InlineMath math="A" /> and <InlineMath math="B" /> that are independent but sequential, the conditional probability formula is:
+For events <InlineMath math="A" /> and <InlineMath math="B" /> with <InlineMath math="P(A) > 0" />, conditional probability is defined by:
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
-Where:
-- <InlineMath math="P(B|A)" /> is the probability of event <InlineMath math="B" /> occurring after event <InlineMath math="A" /> has occurred
-- <InlineMath math="P(A \cap B)" /> is the probability of both events <InlineMath math="A" /> and <InlineMath math="B" /> occurring together
-- <InlineMath math="P(A)" /> is the probability of event <InlineMath math="A" /> occurring
+where:
+- <InlineMath math="P(B|A)" /> is the probability of <InlineMath math="B" /> under the condition that <InlineMath math="A" /> occurred
+- <InlineMath math="P(A \cap B)" /> is the probability that <InlineMath math="A" /> and <InlineMath math="B" /> both occur
+- <InlineMath math="P(A)" /> is the probability of the conditioning event <InlineMath math="A" />
 
-Since the events are independent, we can write:
-
-<BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
-
-Therefore, for the joint probability of both events:
+Rearranging the definition gives the general multiplication rule:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
+
+If the events are independent, learning <InlineMath math="A" /> does not change the probability of <InlineMath math="B" />:
+
+<BlockMath math="P(B|A) = P(B)" />
 
 ## Application to Card Drawing
 
-### Red Card and Heart Scenario
+### Ace and King Scenario
 
-A standard deck of cards has <InlineMath math="52 \text{ cards}" />. There are <InlineMath math="26 \text{ red cards}" /> and <InlineMath math="13" /> heart cards. If we draw two cards sequentially without replacement, how do we calculate the probability of getting a red card first and a heart card second?
+A standard deck has <InlineMath math="52 \text{ cards}" />. It contains <InlineMath math="4 \text{ Aces}" /> and <InlineMath math="4 \text{ Kings}" />. Two cards are drawn without replacement. What is the probability of drawing an Ace first and a King second?
 
 **Step-by-step analysis:**
 
 Let:
-- Event <InlineMath math="C" /> is getting a red card on the first draw
-- Event <InlineMath math="D" /> is getting a heart card on the second draw
+- Event <InlineMath math="C" /> is drawing an Ace first
+- Event <InlineMath math="D" /> is drawing a King second
 
 Probability calculation:
 
 <MathContainer>
-<BlockMath math="P(C) = \frac{26}{52} = \frac{1}{2}" />
-<BlockMath math="P(D|C) = \frac{13}{51}" />
-<BlockMath math="P(C \cap D) = P(C) \times P(D|C) = \frac{26}{52} \times \frac{13}{51} = \frac{1}{2} \times \frac{13}{51} = \frac{13}{102}" />
+<BlockMath math="P(C) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(D|C) = \frac{4}{51}" />
+<BlockMath math="P(C \cap D) = P(C) \times P(D|C) = \frac{4}{52} \times \frac{4}{51} = \frac{1}{13} \times \frac{4}{51} = \frac{4}{663}" />
 </MathContainer>
 
-After drawing one red card, there are <InlineMath math="51 \text{ cards}" /> remaining in total. The number of heart cards remains <InlineMath math="13" /> because heart cards are part of red cards, so the probability of drawing a heart card becomes <InlineMath math="\frac{13}{51}" />.
+After one Ace is drawn, <InlineMath math="51 \text{ cards}" /> remain. All <InlineMath math="4 \text{ Kings}" /> are still present, so the conditional probability of drawing a King is <InlineMath math="\frac{4}{51}" />.
 
 ### Specific Heart Card Calculation
 
-If we focus on drawing heart cards sequentially, then:
+To see how the favorable count can change, consider drawing two Hearts in a row:
 
 - First draw: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
 - Second draw after getting a heart: <InlineMath math="P(B|A) = \frac{12}{51}" />
 
-Therefore, the probability of getting a second heart card is:
+The probability of drawing Hearts on both draws is therefore:
 
 <BlockMath math="P(A \cap B) = \frac{13}{52} \times \frac{12}{51} = \frac{156}{2652} = \frac{1}{17}" />
 
 ## Application in Management Selection
 
-A multinational company is conducting an **internal audit** to evaluate the distribution of managers based on gender and job level. Data obtained from the HR department shows the following composition:
+Consider a hypothetical company that reviews the distribution of managers by gender and job level. Its data has the following composition:
 
-| Management Position | Male (L) | Female (P) | Total |
+| Management Position | Male | Female | Total |
 |------------------|---------------|---------------|-------|
 | Senior (S)       | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
 | Middle (M)     | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
 | Junior (J)       | <InlineMath math="44" /> | <InlineMath math="156" /> | <InlineMath math="200" /> |
 | **Total**        | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
 
-From this data, the company wants to analyze the probability in a **random selection** process for a special committee to be formed. If two managers are randomly selected without replacement, the probability of getting a male manager on the first and second selection is:
+Let <InlineMath math="L" /> denote the event that a selected manager is male.
+
+The company randomly selects two managers without replacement for a committee. The probability that both selected managers are male is:
 
 <MathContainer>
 <BlockMath math="P(L_1) = \frac{200}{600} = \frac{1}{3}" />
@@ -91,7 +93,7 @@ After selecting one male manager, there are <InlineMath math="599" /> total mana
 
 ### Systematic Steps
 
-To solve independent conditional probability problems:
+To solve conditional probability problems:
 
 1. **Identify the events** first and second clearly
 2. **Determine the conditions** after the first event occurs
@@ -101,9 +103,9 @@ To solve independent conditional probability problems:
 
 ### Difference from Ordinary Probability
 
-**Conditional probability** considers changes in conditions after the first event, while **ordinary independent probability** does not consider the sequence of events.
+For **independent events**, the condition does not change the next probability. For **dependent events**, the known outcome changes either the favorable count, the total count, or both.
 
-**Concrete Example: Drawing Two Ace Cards**
+**Concrete example: drawing two Aces**
 
 Suppose we want to calculate the probability of getting two Ace cards in succession from a standard deck (<InlineMath math="52 \text{ cards}" />, <InlineMath math="4" /> Aces).
 
@@ -117,7 +119,7 @@ Suppose we want to calculate the probability of getting two Ace cards in success
     <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{4}{52} = \frac{1}{13} \times \frac{1}{13} = \frac{1}{169}" />
     </MathContainer>
 
-2. **Conditional Probability (Without Replacement):**
+2. **Dependent Draw (Without Replacement):**
 
     If the first card is not returned:
 
@@ -131,7 +133,7 @@ Suppose we want to calculate the probability of getting two Ace cards in success
 - Independent probability: <InlineMath math="\frac{1}{169} = 0.00592" />
 - Conditional probability: <InlineMath math="\frac{1}{221} = 0.00452" />
 
-Conditional probability gives a **smaller** result because after drawing one Ace, the number of remaining Aces decreases from <InlineMath math="4" /> to <InlineMath math="3" />, while the total cards also decrease from <InlineMath math="52" /> to <InlineMath math="51" />.
+In this example, drawing without replacement gives a **smaller** result because the number of remaining Aces decreases from <InlineMath math="4" /> to <InlineMath math="3" />, while the total cards decrease from <InlineMath math="52" /> to <InlineMath math="51" />.
 
 ## Exercises
 
@@ -139,7 +141,9 @@ Conditional probability gives a **smaller** result because after drawing one Ace
 
 2. A deck of cards is shuffled randomly. Three cards are drawn successively without replacement. What is the probability of getting an Ace on the first draw, a King on the second draw, and a Queen on the third draw?
 
-### Answer Key
+Try each exercise before reading its worked solution. At every draw, write both the favorable count and the new total before multiplying.
+
+### Worked Solutions
 
 1. **Solution:**
 
@@ -159,7 +163,7 @@ Conditional probability gives a **smaller** result because after drawing one Ace
 
    Let <InlineMath math="A" /> be getting an Ace first, let <InlineMath math="K" /> be getting a King second, and let <InlineMath math="Q" /> be getting a Queen third
 
-   A standard deck has <InlineMath math="52 \text{ cards}" /> with each: <InlineMath math="4" /> Aces, <InlineMath math="4" /> Kings, <InlineMath math="4" /> Queens
+   A standard deck has <InlineMath math="52 \text{ cards}" />, including <InlineMath math="4" /> Aces, <InlineMath math="4" /> Kings, and <InlineMath math="4" /> Queens.
 
    <MathContainer>
    <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
@@ -168,4 +172,4 @@ Conditional probability gives a **smaller** result because after drawing one Ace
    <BlockMath math="P(A \cap K \cap Q) = \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} = \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} = \frac{8}{16575}" />
    </MathContainer>
 
-   Each draw reduces the total cards (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />), but the number of Aces, Kings, and Queens each remains <InlineMath math="4" /> because the types of cards drawn are different at each step.
+   Each draw reduces the total number of cards (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.

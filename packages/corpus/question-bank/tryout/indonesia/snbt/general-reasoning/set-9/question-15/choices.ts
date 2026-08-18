@@ -3,54 +3,48 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "During the rainy season, the potential for infectious diseases due to stagnant water increases.",
+      label: "Floods can contaminate drinking-water supplies",
+      value: false,
+    },
+    {
+      label: "Standing water can provide breeding sites for mosquitoes",
+      value: false,
+    },
+    {
+      label: "A flood by itself does not prove that an outbreak will occur",
       value: false,
     },
     {
       label:
-        "Hepatitis A and cholera are widely transmitted during the rainy season.",
-      value: false,
-    },
-    {
-      label:
-        "Infectious diseases like hepatitis A and cholera are not transmitted other than through water.",
-      value: false,
-    },
-    {
-      label:
-        "The more stagnant water pools formed after the flood recedes, the lower the potential for malaria.",
+        "More standing water always lowers the potential for mosquito breeding",
       value: true,
     },
     {
-      label:
-        "The spread of infectious diseases will be more massive during the rainy season.",
+      label: "Local conditions and control measures can affect outbreak risk",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Saat musim hujan potensi penyakit menular akibat genangan air semakin tinggi.",
+      label: "Banjir dapat mencemari sumber air minum",
       value: false,
     },
     {
-      label: "Hepatitis A dan kolera banyak menular saat sedang musim hujan.",
+      label: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
       value: false,
     },
     {
-      label:
-        "Penyakit menular seperti hepatitis A dan kolera tidak ditularkan selain melalui air.",
+      label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
       value: false,
     },
     {
       label:
-        "Semakin banyak genangan yang terbentuk setelah banjir surut potensi penyakit malaria semakin rendah.",
+        "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
       value: true,
     },
     {
       label:
-        "Penyakit menular akan semakin masif persebarannya saat sedang musim hujan.",
+        "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
       value: false,
     },
   ],

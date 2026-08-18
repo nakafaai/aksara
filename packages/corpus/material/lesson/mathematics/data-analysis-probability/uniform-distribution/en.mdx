@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Uniform Distribution",
-  description: "Learn uniform distribution with equal probability examples using dice and cards. Understand f(x)=1/k formula and solve probability problems one step at a time.",
+  title: "Discrete Uniform Distribution",
+  description: "Learn the discrete uniform probability mass function through equally likely outcomes with dice and cards, then solve problems step by step.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Data Analysis and Probability",
@@ -8,39 +8,39 @@ export const metadata = {
 
 ## Understanding Simple Probability
 
-In everyday life, we often face situations with uncertain outcomes. A simple example is when flipping a coin. There are two possible outcomes: heads or tails. Well, if the coin is balanced and there's no cheating, then both sides have the same chance of appearing. This concept is the foundation of probability.
+Many everyday situations have uncertain outcomes. A fair coin, for example, can land heads or tails, and the two outcomes are equally likely.
 
-Mathematically, the probability of an event <InlineMath math="A" /> can be calculated in a fairly simple way: just divide the number of desired outcomes by the total number of all possible outcomes.
+When a finite sample space contains equally likely outcomes, the probability of an event <InlineMath math="A" /> is the number of outcomes in <InlineMath math="A" /> divided by the total number of outcomes in the sample space <InlineMath math="S" />.
 
 <BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
 
 ## Concept of Uniform Distribution
 
-Uniform distribution is actually the simplest concept in the world of probability. Its characteristic is that **every possible outcome has exactly the same probability** of occurring. Imagine dividing a pizza into equal slices for everyone - no one gets a bigger or smaller piece.
+In a discrete uniform distribution, **every possible outcome has exactly the same probability**. This lesson concerns the discrete model on a finite set; a continuous uniform distribution instead uses a density over an interval.
 
-Let's take an example of a fair six-sided die. The numbers that can appear are <InlineMath math="1, 2, 3, 4, 5, 6" />. The probability of getting a <InlineMath math="1" /> is exactly the same as the probability of getting a <InlineMath math="6" />, which is one out of six possibilities. No number is "luckier" than the others. This is what we mean by uniform distribution - all outcomes have the same chance.
+For a fair six-sided die, the possible outcomes are <InlineMath math="1, 2, 3, 4, 5, 6" />. Rolling a <InlineMath math="1" /> is just as likely as rolling a <InlineMath math="6" />. Each outcome therefore has probability <InlineMath math="\frac{1}{6}" />.
 
 ## Mathematical Formula
 
-To express uniform distribution mathematically, we have a very simple formula. If a random variable <InlineMath math="X" /> can produce <InlineMath math="k" /> different possibilities, and each possibility has the same probability, then the formula is:
+Suppose a random variable <InlineMath math="X" /> has a finite set <InlineMath math="S" /> of <InlineMath math="k" /> possible values and all of them are equally likely. Then its probability mass function is:
 
-<BlockMath math="f(x;k) = \frac{1}{k}" />
+<BlockMath math="P(X=x) = \frac{1}{k}, \qquad x \in S" />
 
 Where:
 
-- <InlineMath math="f(x;k)" /> is the probability function for a specific outcome when there are <InlineMath math="k" /> total possibilities
+- <InlineMath math="P(X=x)" /> is the probability that <InlineMath math="X" /> takes the particular value <InlineMath math="x" />
 
 - <InlineMath math="x" /> is one of the possible outcomes (for example, the number <InlineMath math="3" /> on a die)
 
 - <InlineMath math="k" /> is the total number of possible outcomes (for example, <InlineMath math="6" /> for a die)
 
-> In other words, the probability for each outcome is **one divided by the total number of possible outcomes**. Pretty easy, right?
+> Each outcome receives an equal share of the total probability: one divided by the number of possible outcomes.
 
 ## Practical Applications
 
-Now let's see how this concept works in real situations.
+The following examples apply the definition to finite sample spaces.
 
-### Die Rolling
+### Rolling a Die
 
 For example, we have a balanced six-sided die that is rolled once. How do we determine its uniform distribution?
 
@@ -48,31 +48,31 @@ For example, we have a balanced six-sided die that is rolled once. How do we det
 
 - **Total Number of Outcomes:** There are <InlineMath math="6" /> possible outcomes, so <InlineMath math="k=6" />
 
-- **Distribution Function:** Using our formula:
+- **Probability Mass Function:**
 
-  <BlockMath math="f(x;6) = \frac{1}{6}" />
+  <BlockMath math="P(X=x) = \frac{1}{6}, \qquad x \in \{1,2,3,4,5,6\}" />
 
-- **Meaning:** The probability of getting the numbers <InlineMath math="1, 2, 3, 4, 5, 6" /> is each <InlineMath math="\frac{1}{6}" /> or approximately <InlineMath math="16{,}67\%" />
+- **Meaning:** The probability of getting the numbers <InlineMath math="1, 2, 3, 4, 5, 6" /> is each <InlineMath math="\frac{1}{6}" /> or approximately <InlineMath math="16.67\%" />
 
 ### Prize Wheel
 
-Another example, suppose there's a spinning wheel divided into <InlineMath math="8" /> equal sections, each numbered <InlineMath math="1" /> to <InlineMath math="8" />. What's the probability that the wheel stops on number <InlineMath math="5" />?
+Suppose a fair spinner is divided into <InlineMath math="8" /> equal sections, numbered <InlineMath math="1" /> through <InlineMath math="8" />. What is the probability that it stops on <InlineMath math="5" />?
 
 - **Possible Outcomes:** <InlineMath math="\{1, 2, 3, 4, 5, 6, 7, 8\}" />
 
 - **Total Number of Outcomes:** There are <InlineMath math="8" /> sections, so <InlineMath math="k=8" />
 
-- **Distribution Function:**
+- **Probability Mass Function:**
 
-  <BlockMath math="f(x;8) = \frac{1}{8}" />
+  <BlockMath math="P(X=x) = \frac{1}{8}, \qquad x \in \{1,2,3,4,5,6,7,8\}" />
 
-- **Meaning:** The probability that the wheel stops on number <InlineMath math="5" /> (or any other number) is <InlineMath math="\frac{1}{8}" /> or <InlineMath math="12{,}5\%" />
+- **Meaning:** The probability that the wheel stops on number <InlineMath math="5" /> (or any other number) is <InlineMath math="\frac{1}{8}" /> or <InlineMath math="12.5\%" />
 
 ## Exercises
 
-1. A bag contains <InlineMath math="10" /> identical balls except for their colors: <InlineMath math="1 \text{ red ball}" />, <InlineMath math="1 \text{ blue ball}" />, <InlineMath math="1 \text{ green ball}" />, and so on up to <InlineMath math="10" /> different colors. If one ball is drawn randomly, what is the probability of drawing a yellow ball? Also write the uniform distribution function.
+1. A bag contains <InlineMath math="10" /> identical balls except for their colors: <InlineMath math="1 \text{ red ball}" />, <InlineMath math="1 \text{ blue ball}" />, <InlineMath math="1 \text{ green ball}" />, and so on up to <InlineMath math="10" /> different colors. If one ball is drawn randomly, what is the probability of drawing a yellow ball? Also write the probability mass function.
 
-2. In a standard bridge card set containing <InlineMath math="52 \text{ cards}" />, each card has the same probability of being drawn. What can you conclude about the probability distribution of drawing one card from that deck? What is the probability of drawing the King of Hearts?
+2. In a standard bridge card set containing <InlineMath math="52" /> cards, each card has the same probability of being drawn. What can you conclude about the probability distribution of drawing one card from that deck? What is the probability of drawing the King of Hearts?
 
 ### Answer Key
 
@@ -80,19 +80,19 @@ Another example, suppose there's a spinning wheel divided into <InlineMath math=
 
     - **Step** <InlineMath math="1" />: Calculate total possibilities.
 
-      There are <InlineMath math="10 \text{ balls}" /> with different colors, so the total possible outcomes is <InlineMath math="k=10" />
+      There are <InlineMath math="10" /> balls with different colors, so the total possible outcomes is <InlineMath math="k=10" />.
 
-    - **Step** <InlineMath math="2" />: Determine the uniform distribution function.
+    - **Step** <InlineMath math="2" />: Determine the probability mass function.
 
-      Since each ball has the same probability of being drawn (no ball is "special"), we use the uniform distribution formula:
+      Because the balls are identical except for color, each one has the same probability of being drawn. Use the discrete uniform formula:
 
-      <BlockMath math="f(x;10) = \frac{1}{10}" />
+      <BlockMath math="P(X=x) = \frac{1}{10}, \qquad x \in S" />
 
-      Where <InlineMath math="x" /> represents one of the <InlineMath math="10 \text{ ball}" /> colors available
+      Here <InlineMath math="x" /> represents one of the <InlineMath math="10" /> available ball colors.
 
     - **Step** <InlineMath math="3" />: Calculate the probability of the yellow ball.
 
-      The yellow ball is one of the <InlineMath math="10 \text{ balls}" />, so its probability is the same as other colored balls:
+      The yellow ball is one of the <InlineMath math="10" /> balls, so its probability is the same as that of every other ball:
 
       <BlockMath math="P(\text{Yellow Ball}) = \frac{1}{10}" />
 
@@ -102,7 +102,7 @@ Another example, suppose there's a spinning wheel divided into <InlineMath math=
 
     - **Step** <InlineMath math="1" />: Analyze the type of distribution.
 
-      Since each card has the same probability of being drawn (no card is easier to draw), the probability distribution is **uniform distribution**
+      Since every card has the same probability of being drawn, the probability distribution is a **discrete uniform distribution**.
 
     - **Step** <InlineMath math="2" />: Calculate total possibilities.
 
@@ -110,8 +110,8 @@ Another example, suppose there's a spinning wheel divided into <InlineMath math=
 
     - **Step** <InlineMath math="3" />: Calculate the probability of King of Hearts.
 
-      The King of Hearts is one of the <InlineMath math="52 \text{ cards}" /> available, so using the uniform distribution principle:
+      The King of Hearts is one of the <InlineMath math="52" /> available cards, so using the uniform distribution principle:
 
       <BlockMath math="P(\text{King of Hearts}) = \frac{1}{52}" />
 
-      Therefore, the probability of drawing the King of Hearts is **<InlineMath math="\frac{1}{52}" />** or approximately **<InlineMath math="1{,}92\%" />**
+      Therefore, the probability of drawing the King of Hearts is **<InlineMath math="\frac{1}{52}" />** or approximately **<InlineMath math="1.92\%" />**

@@ -2,51 +2,46 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "Every school snack is unsafe", value: false },
     {
-      label:
-        "All school children's snacks are unhealthy because they indicate misuse of hazardous ingredients and use of food additives exceeding the maximum permitted limit",
+      label: "Children should replace their main meals with snacks",
       value: false,
     },
     {
       label:
-        "Not consuming unhealthy snacks or it will not have a negative impact on children",
+        "Microbiological and chemical safety can be ignored when a snack provides enough energy",
       value: false,
     },
     {
       label:
-        "According to the chairman of IDAI, Dr.dr,Rini S,SpA(K), main nutrition can only be fulfilled from children's snacks",
-      value: false,
-    },
-    {
-      label: "Health impacts will definitely occur in adulthood",
+        "Energy is the only nutritional consideration when choosing a snack",
       value: false,
     },
     {
       label:
-        "Snacks including children's snacks can be used as a source of nutrition",
+        "Safe, nutritionally balanced school snacks can contribute to children's nutrient intake",
       value: true,
     },
   ],
   id: [
+    { label: "Semua jajanan sekolah tidak aman", value: false },
     {
-      label:
-        "Semua jajanan anak sekolah tidak sehat karena terindikasi penyalahgunaan bahan berbahaya dan penggunaan bahan tambahan pangan yang melebihi batas maksimal yang diizinkan",
+      label: "Anak sebaiknya mengganti makanan utama dengan jajanan",
       value: false,
     },
     {
       label:
-        "Tidak mengonsumsi jajanan yang tidak sehat atau tidak akan berdampak negatif pada anak-anak",
+        "Keamanan mikrobiologis dan kimia boleh diabaikan jika jajanan menyediakan cukup energi",
       value: false,
     },
     {
       label:
-        "Menurut ketua IDAI, Dr.dr,Rini S,SpA(K), nutrisi utama hanya dapat dipenuhi dari jajanan anak",
+        "Energi merupakan satu-satunya pertimbangan gizi saat memilih makanan selingan",
       value: false,
     },
-    { label: "Dampak kesehatan pasti terjadi pada saat dewasa", value: false },
     {
       label:
-        "Makanan selingan termasuk jajanan anak bisa dijadikan sumber nutrisi",
+        "Makanan selingan sekolah yang aman dan bergizi seimbang dapat membantu memenuhi asupan zat gizi anak",
       value: true,
     },
   ],

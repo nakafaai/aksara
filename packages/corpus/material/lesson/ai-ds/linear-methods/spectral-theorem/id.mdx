@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Teorema Spektral",
-    description: "Pelajari kapan matriks dapat didiagonalisasi dengan vektor eigen ortonormal. Pelajari matriks normal, hermitian, dan kesatuan untuk AI.",
+    description: "Pelajari kapan matriks dapat didiagonalisasi dengan vektor eigen ortonormal serta hubungan antara matriks normal, Hermitian, dan uniter.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-16",
     subject: "Metode Linear AI",
@@ -8,57 +8,84 @@ export const metadata = {
 
 ## Konsep Dasar Matriks Normal
 
-Teorema spektral menjawab pertanyaan penting kapan sebuah matriks dapat didiagonalisasi menggunakan basis ortonormal dari vektor eigen. Bayangkan kamu ingin mengubah matriks rumit menjadi matriks diagonal sederhana, tetapi menggunakan vektor basis yang saling tegak lurus. Teorema spektral memberikan kondisi yang tepat kapan transformasi ini dimungkinkan.
+Teorema spektral kompleks menyatakan bahwa sebuah matriks dapat didiagonalisasi menggunakan basis ortonormal yang terdiri atas vektor eigen tepat ketika matriks tersebut normal. Dalam bentuk matriks,
 
-Ketika kondisi ini terpenuhi, matriks transformasi basis akan menjadi kesatuan dengan sifat <InlineMath math="S^{-1} = S^H" /> atau ortogonal dengan sifat <InlineMath math="S^{-1} = S^T" /> untuk kasus riil. Kita akan mulai dengan mempelajari kasus kompleks terlebih dahulu.
+<BlockMath math="A\text{ normal}\qquad\Longleftrightarrow\qquad A=U\Lambda U^H" />
+
+dengan <InlineMath math="U" /> uniter dan <InlineMath math="\Lambda" /> diagonal. Basis ini memisahkan transformasi ke arah-arah vektor eigen yang bebas sambil mempertahankan panjang dan sudut. Pada kasus simetris real, <InlineMath math="U" /> dapat dipilih real dan ortogonal sehingga <InlineMath math="U^{-1}=U^T" />.
 
 Sebuah matriks kompleks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> disebut normal jika memenuhi kondisi komutativitas dengan konjugat transposnya:
 
 <BlockMath math="A \cdot A^H = A^H \cdot A" />
 
-Kondisi ini terlihat sederhana, tetapi memiliki makna geometri yang kuat. Matriks yang dapat "bertukar tempat" dengan konjugat transposnya memiliki sifat geometri yang istimewa.
+Kondisi aljabar ini memiliki konsekuensi geometri yang kuat: ruang eigen untuk nilai eigen yang berbeda saling ortogonal dan, atas <InlineMath math="\mathbb{C}" />, matriksnya dapat didiagonalisasi secara uniter.
 
 ## Sifat Khusus Ruang Eigen Matriks Normal
 
 Matriks normal memiliki sifat menarik yang tidak dimiliki matriks sembarang. Untuk matriks normal, ruang nol dari matriks dan ruang nol dari konjugat transposnya ternyata identik.
 
-Mari kita lihat mengapa hal ini terjadi. Ruang nol (kernel) adalah himpunan semua vektor <InlineMath math="x" /> yang menghasilkan <InlineMath math="Ax = 0" />. Jika <InlineMath math="A^H A = A A^H" /> dan <InlineMath math="Ax = 0" />, maka kita dapat menganalisis seperti ini:
+Ruang nol (kernel) adalah himpunan semua vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=0" />. Normalitas memberikan identitas norma berikut untuk setiap <InlineMath math="x" />:
 
 <MathContainer>
-<BlockMath math="0 = (Ax)^H (Ax) = x^H A^H Ax = x^H A A^H x = (A^H x)^H (A^H x)" />
+<BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
+<BlockMath math="=x^HAA^Hx=\lVert A^Hx\rVert_2^2" />
 </MathContainer>
 
-Dari perhitungan ini, kita menyimpulkan bahwa <InlineMath math="A^H x = 0" />. Oleh karena itu, untuk matriks normal berlaku <InlineMath math="\text{Kern}A^H = \text{Kern}A" />.
+Jadi <InlineMath math="Ax=0" /> jika dan hanya jika <InlineMath math="A^Hx=0" />, sehingga
 
-Kesamaan ruang nol ini membawa konsekuensi penting pada ruang eigen. Untuk setiap nilai eigen <InlineMath math="\lambda \in \mathbb{C}" />, ruang eigen dari <InlineMath math="A" /> dan <InlineMath math="A^H" /> ternyata identik.
+<BlockMath math="\ker A=\ker A^H" />
 
-<BlockMath math="\text{Eig}_A(\lambda) = \text{Eig}_{A^H}(\lambda)" />
+Terapkan identitas ruang nol yang sama pada matriks normal <InlineMath math="A-\lambda I" />. Untuk setiap nilai eigen <InlineMath math="\lambda \in \mathbb{C}" />, kita memperoleh hubungan ruang eigen:
 
-Jadi setiap vektor eigen dari matriks normal <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda" /> juga merupakan vektor eigen dari <InlineMath math="A^H" /> dengan nilai eigen yang persis sama. Bayangkan seperti menemukan dua cermin yang memantulkan cahaya ke arah yang sama persis.
+<BlockMath math="E_A(\lambda)=E_{A^H}(\overline{\lambda})" />
 
-## Matriks Hermitian dan Kesatuan sebagai Contoh Normal
+Jadi, jika <InlineMath math="Av=\lambda v" />, maka <InlineMath math="A^H v=\overline{\lambda}v" />. Vektor eigennya sama, sedangkan nilai eigennya menjadi konjugat kompleks.
 
-Dua jenis matriks penting yang selalu normal adalah matriks hermitian dan matriks kesatuan. Mari kita pahami mengapa keduanya istimewa.
+Identitas ini juga membuktikan ortogonalitas. Jika <InlineMath math="Av=\lambda v" /> dan <InlineMath math="Aw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />, maka
+
+<MathContainer>
+<BlockMath math="\overline{\lambda}v^Hw=(Av)^Hw=v^HA^Hw" />
+<BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
+</MathContainer>
+
+## Matriks Hermitian dan Uniter sebagai Contoh Normal
+
+Dua jenis matriks penting yang selalu normal adalah matriks Hermitian dan matriks uniter. Berikut alasan keduanya memenuhi definisi normal.
 
 ### Matriks Hermitian dan Nilai Eigen Riil
 
 Matriks hermitian memiliki sifat <InlineMath math="A^H = A" />. Karena definisi normal <InlineMath math="A \cdot A^H = A^H \cdot A" />, maka untuk hermitian kita punya <InlineMath math="A \cdot A = A \cdot A" />, yang jelas selalu benar.
 
-Nilai eigen matriks hermitian selalu riil. Untuk memahami ini, kita gunakan fakta bahwa untuk matriks normal, ruang eigen <InlineMath math="A" /> dan <InlineMath math="A^H" /> untuk nilai eigen yang sama adalah identik.
+Nilai eigen matriks Hermitian selalu real. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat Hermitian memberikan:
 
-<BlockMath math="\text{Eig}_A(\lambda) = \text{Eig}_{A^H}(\lambda) = \text{Eig}_A(\overline{\lambda}) \Rightarrow \lambda = \overline{\lambda}" />
+<BlockMath math="\lambda v^H v = v^HAv = v^HA^Hv = (Av)^Hv = \overline{\lambda}v^Hv \Rightarrow \lambda=\overline{\lambda}" />
 
-Kondisi <InlineMath math="\lambda = \overline{\lambda}" /> berarti nilai eigen sama dengan konjugat kompleksnya, yang hanya terjadi jika <InlineMath math="\lambda" /> adalah bilangan riil murni. Jadi semua nilai eigen matriks hermitian selalu berupa bilangan riil, bukan bilangan kompleks dengan bagian imajiner.
+Kesamaan <InlineMath math="\lambda=\overline{\lambda}" /> menyatakan tepat bahwa <InlineMath math="\lambda" /> adalah bilangan real.
 
-### Matriks Kesatuan dan Nilai Eigen pada Lingkaran Satuan
+### Contoh Hermitian yang Dihitung Lengkap
 
-Matriks kesatuan memiliki sifat <InlineMath math="A^H = A^{-1}" />. Untuk membuktikan bahwa kesatuan juga normal, kita substitusi ke definisi dan dapatkan <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
+Perhatikan
 
-Nilai eigen matriks kesatuan memiliki besaran <InlineMath math="1" />, artinya terletak pada lingkaran satuan di bidang kompleks. Kita bisa menunjukkan hal ini dengan perhitungan berikut.
+<BlockMath math="H=\begin{pmatrix}2&i\\-i&2\end{pmatrix}" />
+
+Konjugat transposnya menghasilkan matriks yang sama, jadi <InlineMath math="H^H=H" />. Polinomial karakteristiknya adalah <InlineMath math="(2-\lambda)^2-1" />, sehingga nilai eigennya yang real adalah <InlineMath math="1" /> dan <InlineMath math="3" />. Vektor eigen ternormalisasi yang sesuai ialah
 
 <MathContainer>
-<BlockMath math="\text{Eig}_A(\lambda) = \text{Eig}_{A^H}(\lambda) = \text{Eig}_{A^{-1}}(\lambda) = \text{Eig}_A(\lambda^{-1})" />
-<BlockMath math="\Rightarrow \lambda = \lambda^{-1} \Rightarrow \lambda \cdot \overline{\lambda} = 1" />
+<BlockMath math="u_1=\frac1{\sqrt2}\begin{pmatrix}-i\\1\end{pmatrix},\qquad u_3=\frac1{\sqrt2}\begin{pmatrix}i\\1\end{pmatrix}" />
+<BlockMath math="U=(u_1\quad u_3),\qquad U^HHU=\operatorname{diag}(1,3)" />
 </MathContainer>
 
-Kondisi <InlineMath math="\lambda \cdot \overline{\lambda} = 1" /> secara matematis sama dengan <InlineMath math="|\lambda|^2 = 1" />, yang berarti <InlineMath math="|\lambda| = 1" />. Jadi semua nilai eigen matriks kesatuan memiliki modulus tepat sama dengan <InlineMath math="1" />. Modulus ini adalah jarak dari titik nol di bidang kompleks. Bayangkan seperti roda yang berputar, transformasi kesatuan hanya memutar vektor tanpa mengubah panjangnya.
+Kedua vektor itu ortonormal karena <InlineMath math="u_1^Hu_3=0" /> dan norma keduanya <InlineMath math="1" />. Inilah teorema spektral dalam contoh konkret berukuran <InlineMath math="2\times2" />.
+
+### Matriks Uniter dan Nilai Eigen pada Lingkaran Satuan
+
+Matriks uniter memiliki sifat <InlineMath math="A^H = A^{-1}" />. Substitusi ke definisi normal menghasilkan <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
+
+Nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />, sehingga terletak pada lingkaran satuan di bidang kompleks. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat uniter mempertahankan norma:
+
+<MathContainer>
+<BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />
+<BlockMath math="v\neq0 \Rightarrow \lVert v\rVert^2>0 \Rightarrow |\lambda|^2=1 \Rightarrow |\lambda|=1" />
+</MathContainer>
+
+Jadi setiap nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />. Secara geometri, transformasi uniter mempertahankan panjang vektor dan semua nilai eigennya berada pada lingkaran satuan.

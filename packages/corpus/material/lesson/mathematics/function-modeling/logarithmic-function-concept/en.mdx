@@ -1,25 +1,25 @@
 
 export const metadata = {
   title: "Logarithmic Function Concept",
-  description: "Learn logarithmic functions with graphs, properties, and real-world applications. Learn the inverse of exponentials through examples and practice problems.",
+  description: "Understand logarithms as inverse exponential functions through graphs, properties, worked examples, and practice problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Functions and Their Modeling",
 };
 
-## What is a Logarithmic Function?
+## What Does a Logarithmic Function Do?
 
-Have you ever wondered how long it takes for your investment to double? The answer lies in logarithmic functions! A logarithm is the "inverse" of an exponential. If exponential answers "what is the result?", then logarithm answers "what is the exponent?".
+A logarithm answers a specific question: which exponent produces a given value? In that sense, logarithmic and exponential functions undo each other.
 
-Let's start with a simple example. If we have:
+Start with this exponential equation:
 
 <BlockMath math="2^3 = 8" />
 
-Question: "What power of <InlineMath math="2" /> gives <InlineMath math="8" />?" The answer is <InlineMath math="3" />. This is what logarithm answers:
+The exponent that turns <InlineMath math="2" /> into <InlineMath math="8" /> is <InlineMath math="3" />. Logarithmic notation records the same relationship from the opposite direction:
 
 <BlockMath math="\log_2 8 = 3" />
 
-In general, the relationship between exponential and logarithm:
+In general, exponential and logarithmic notation are related by:
 
 <BlockMath math="y = b^x \quad \Leftrightarrow \quad x = \log_b y" />
 
@@ -29,7 +29,7 @@ A logarithmic function with base <InlineMath math="b" /> (where <InlineMath math
 
 <BlockMath math="f(x) = \log_b x \quad \text{for every } x > 0" />
 
-**Types of logarithms commonly used:**
+Three bases appear especially often:
 
 1. **Common Logarithm** (base <InlineMath math="10" />): <InlineMath math="f(x) = \log x" />
 
@@ -114,22 +114,24 @@ A logarithmic function with base <InlineMath math="b" /> (where <InlineMath math
   <BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(change of base)}" />
 </MathContainer>
 
-## COVID-19 Spread Model
+## An Illustrative Two-Point Growth Model
 
-In the early pandemic, COVID-19 spread in Indonesia could be modeled with an exponential function. If on March <InlineMath math="2" />, <InlineMath math="2020" /> there were <InlineMath math="2 \text{ cases}" /> and in <InlineMath math="60 \text{ days}" /> it reached <InlineMath math="10{,}118 \text{ cases}" />, then:
+The [Indonesian Ministry of Health reported two confirmed COVID-19 cases on 2 March 2020](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang). It then [reported 10,118 cumulative confirmed cases on 30 April 2020](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu), which is <InlineMath math="59 \text{ elapsed days}" /> later.
+
+To practise logarithms, we can fit a simple exponential curve through those two reported values. Let <InlineMath math="t" /> be the number of elapsed days after 2 March and <InlineMath math="P(t)" /> the fitted case count. Since <InlineMath math="P(0)=2" /> and <InlineMath math="P(59)=10{,}118" />, the model is:
 
 <ContentStack>
 
-  <BlockMath math="P(t) = 2e^{\frac{1}{60}\ln(5059)t}" />
+  <BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
 
   <LineEquation
-    title="COVID-19 Spread Model"
-    description="Exponential growth of COVID-19 cases"
+    title="Two-Point Exponential Fit"
+    description="A fitted curve through the two reported case counts, followed by a short extrapolation"
     data={[
       {
-        points: Array.from({ length: 61 }, (_, i) => {
+        points: Array.from({ length: 72 }, (_, i) => {
           const t = i;
-          const P = 2 * Math.exp((1 / 60) * Math.log(5059) * t);
+          const P = 2 * Math.exp((1 / 59) * Math.log(5059) * t);
           return { x: t, y: P, z: 0 };
         }),
         color: "#dc2626",
@@ -142,12 +144,14 @@ In the early pandemic, COVID-19 spread in Indonesia could be modeled with an exp
   />
 </ContentStack>
 
-**Using logarithms**, we can calculate when there will be <InlineMath math="50{,}000 \text{ cases}" />:
+If the same fitted rate were extended, logarithms would place the <InlineMath math="50{,}000" /> threshold at:
 
 <MathContainer>
-  <BlockMath math="50000 = 2e^{\frac{1}{60}\ln(5059)t}" />
-  <BlockMath math="t = \frac{60 \cdot \ln(25000)}{\ln(5059)} \approx 81.4 \text{ days}" />
+  <BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
+  <BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70.1 \text{ days}" />
 </MathContainer>
+
+This is a mathematical illustration, not an epidemiological forecast. Confirmed case counts also depend on testing, reporting, behaviour, and public-health measures, so one fixed exponential rate should not be extended indefinitely.
 
 ## Exercises
 
@@ -163,16 +167,32 @@ In the early pandemic, COVID-19 spread in Indonesia could be modeled with an exp
 
 4. An investment grows according to the formula <InlineMath math="A = 1000 \cdot 2^t" /> (in million rupiah). How many years are needed for the investment to become <InlineMath math="8 \text{ billion rupiah}" />?
 
-### Answer Key
+### Worked Solutions
 
-1. The values are:
+1. Read each logarithm as an exponent question. The required powers are:
 
-   - <InlineMath math="\log_3 27 = 3" />
-   - <InlineMath math="\log_5 \frac{1}{125} = -3" />
-   - <InlineMath math="\ln e^3 = 3" />
+   <MathContainer>
+     <BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
+     <BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
+     <BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
+   </MathContainer>
 
-2. <InlineMath math="x = 2^4 = 16" />
+2. Rewrite the logarithmic equation in exponential form:
 
-3. <InlineMath math="\log_2 8 + \log_2 4 - \log_2 2 = 3 + 2 - 1 = 4" />
+   <BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
 
-4. <InlineMath math="8000 = 1000 \cdot 2^t \Rightarrow 8 = 2^t \Rightarrow t = 3 \text{ years}" />
+   Substituting <InlineMath math="x=16" /> gives <InlineMath math="\log_2 16=4" />, so the result checks out.
+
+3. Evaluate the three powers of <InlineMath math="2" /> before combining them:
+
+   <BlockMath math="\log_2 8+\log_2 4-\log_2 2=3+2-1=4" />
+
+4. The formula measures <InlineMath math="A" /> in millions of rupiah, so <InlineMath math="8 \text{ billion rupiah}=8000 \text{ million rupiah}" />. Substitute the target and isolate the exponential term:
+
+   <MathContainer>
+     <BlockMath math="8000=1000\cdot2^t" />
+     <BlockMath math="8=2^t" />
+     <BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
+   </MathContainer>
+
+   The investment reaches the target after <InlineMath math="3 \text{ years}" />.

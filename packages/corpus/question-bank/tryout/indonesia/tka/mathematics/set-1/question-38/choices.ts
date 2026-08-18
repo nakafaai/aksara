@@ -3,23 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "$$66{,}5$$",
+      label: "$$66.5$$",
       value: false,
     },
     {
-      label: "$$68{,}5$$",
+      label: "$$68.5$$",
       value: false,
     },
     {
-      label: "$$70{,}0$$",
+      label: "$$70.0$$",
       value: false,
     },
     {
-      label: "$$74{,}5$$",
+      label: "$$74.5$$",
       value: true,
     },
     {
-      label: "$$75{,}5$$",
+      label: "$$75.5$$",
       value: false,
     },
   ],

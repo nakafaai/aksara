@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Apa itu Syntactic Sugar
 
-Syntactic sugar adalah fitur dalam bahasa pemrograman yang membuat kode lebih mudah dibaca dan ditulis tanpa mengubah fungsionalitas dasarnya. Bayangkan seperti menambahkan gula pada kopi, kamu masih mendapatkan kopi yang sama tetapi dengan rasa yang lebih manis dan menyenangkan.
+Syntactic sugar adalah notasi ringkas untuk perilaku yang juga dapat ditulis secara lebih eksplisit. Notasi ini dapat mengurangi bagian yang berulang, tetapi sintaks yang lebih pendek hanya berguna jika pembaca tetap memahami maksud kode.
 
-Dalam Python, syntactic sugar memungkinkan kamu menulis kode yang lebih ringkas dan elegan. Fitur ini dapat dihilangkan tanpa mempengaruhi hasil akhir program, tetapi kehadirannya membuat proses coding menjadi lebih efisien dan kode lebih mudah dipahami.
+Python menyediakan beberapa bentuk ringkas untuk pola yang umum. Bentuk tersebut tidak otomatis membuat program berjalan lebih cepat dan tidak selalu identik dalam setiap detail. Tujuannya adalah memperjelas maksud, bukan sekadar mengurangi jumlah karakter.
 
 ## List Comprehension
 
-List comprehension adalah salah satu bentuk syntactic sugar paling populer dalam Python. Fitur ini memungkinkan kamu membuat list baru berdasarkan list yang sudah ada dengan cara yang sangat ringkas.
+List comprehension membuat list baru dari iterable apa pun. Bentuk ini dapat mentransformasi nilai, memfilternya, atau menggabungkan kedua operasi dalam satu ekspresi.
 
 List comprehension memiliki beberapa bentuk sintaks:
 
@@ -49,10 +49,10 @@ Mari lihat bagaimana list comprehension bekerja dalam praktik:
       code: `# Data awal
 x = [1, 2, 3, 4, 5, 6]
 
-# List comprehension dengan kondisi if
-x2 = [i*2 if i%2 else 2*i for i in x]
-print(x2)
-# Output: [2, 4, 6, 8, 10, 12]
+# Ekspresi kondisional di dalam list comprehension
+parity = ["ganjil" if i % 2 else "genap" for i in x]
+print(parity)
+# Output: ['ganjil', 'genap', 'ganjil', 'genap', 'ganjil', 'genap']
 
 # Contoh lain dengan kondisi
 numbers = [1, 2, 3, 4, 5, 6]
@@ -91,15 +91,15 @@ print(y_standard)
   ]}
 />
 
-List comprehension memiliki beberapa keunggulan dibandingkan loop tradisional. Pertama, lebih ringkas karena mengurangi jumlah baris kode secara signifikan. Kedua, umumnya memiliki performa yang lebih baik dibanding loop biasa. Ketiga, setelah terbiasa, sintaksnya sangat intuitif dan mudah dibaca. Keempat, mirip dengan notasi matematika, menyerupai set notation.
+List comprehension dapat menyatakan transformasi atau filter sederhana secara ringkas. Bentuk ini sering efisien, tetapi keterbacaan lebih penting daripada menghemat baris. Gunakan loop biasa jika ekspresinya mulai sulit dipahami. Notasinya menyerupai notasi pembentuk himpunan, tetapi list Python mempertahankan urutan dan nilai duplikat, sedangkan himpunan matematika tidak.
 
 Sebagai contoh, `[i**2 for i in x]` dapat dibaca sebagai "kuadrat dari i untuk setiap i dalam x", yang sangat mirip dengan notasi matematika <InlineMath math="\{i^2 : i \in X\}" />.
 
 ## Lambda Functions
 
-Lambda adalah fungsi anonim dalam Python yang memungkinkan kamu membuat fungsi sederhana tanpa harus mendefinisikannya secara formal dengan kata kunci `def`.
+Ekspresi lambda membuat objek fungsi tanpa statement `def`. Lambda paling berguna untuk fungsi kecil yang langsung diberikan sebagai argumen.
 
-Lambda memiliki beberapa karakteristik khusus. Pertama, lambda adalah fungsi anonim yang tidak memiliki nama. Kedua, lambda mengembalikan objek fungsi yang dapat disimpan dalam variabel. Ketiga, body lambda harus berupa ekspresi, bukan statement. Keempat, lambda tidak boleh mengandung statement seperti `print`, `return`, atau assignment.
+Body lambda berisi tepat satu ekspresi, dan nilai ekspresi itu menjadi nilai kembalinya. Lambda boleh memanggil fungsi seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Lambda dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsinya akan digunakan kembali.
 
 ### Cara Menggunakan Lambda
 
@@ -131,7 +131,7 @@ def add_normal(x, y):
 
 ### Lambda dengan Built-in Functions
 
-Lambda sangat berguna ketika digunakan bersama dengan fungsi built-in seperti `map()`, `filter()`, dan `sorted()`:
+Lambda pendek cocok digunakan sebagai callback, terutama sebagai fungsi `key` untuk `sorted()`. `map()` dan `filter()` juga menerimanya, walaupun comprehension yang setara kadang lebih mudah dibaca:
 
 <CodeBlock
   data={[
@@ -157,7 +157,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Fitur Syntactic Sugar Lainnya
 
-Python memiliki berbagai bentuk syntactic sugar lainnya yang membuat kode lebih pythonic dan efisien.
+Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi tidak menjamin performa runtime yang lebih baik.
 
 ### Assignment Operators
 
@@ -184,6 +184,8 @@ print(a)  # Output: 9.0`
     }
   ]}
 />
+
+Untuk angka immutable, contoh ini menghasilkan nilai yang sama dengan bentuk panjangnya. Pada objek mutable atau class buatan sendiri, `+=` dapat menjalankan operasi in-place, sehingga perilakunya tidak selalu identik dengan pengikatan ulang melalui `a = a + value`.
 
 ### Negative Indexing
 
@@ -249,4 +251,4 @@ Untuk memahami keunggulan syntactic sugar, mari bandingkan cara penulisan yang b
 | Assignment | `a = a + 5` | `a += 5` |
 | Akses elemen terakhir | `data[len(data) - 1]` | `data[-1]` |
 
-Tabel ini menunjukkan bagaimana syntactic sugar membuat kode lebih ringkas dan mudah dibaca tanpa mengubah fungsionalitas dasar.
+Pilih bentuk ringkas jika operasinya menjadi lebih mudah dikenali. Jika bentuk tersebut justru menyembunyikan alur kontrol atau efek samping, bentuk eksplisit lebih baik untuk penjelasan dan sering juga lebih baik untuk programnya.

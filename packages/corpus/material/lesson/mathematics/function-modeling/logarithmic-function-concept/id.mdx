@@ -1,25 +1,25 @@
 
 export const metadata = {
   title: "Konsep Fungsi Logaritma",
-  description: "Pelajari fungsi logaritma lewat grafik, sifat-sifat, dan aplikasi nyata. Pahami hubungannya sebagai kebalikan dari fungsi eksponensial.",
+  description: "Pahami logaritma sebagai kebalikan fungsi eksponensial melalui grafik, sifat, contoh berpembahasan, dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Fungsi dan Pemodelannya",
 };
 
-## Apa itu Fungsi Logaritma?
+## Apa yang Dilakukan Fungsi Logaritma?
 
-Pernahkah kalian bertanya-tanya berapa lama waktu yang dibutuhkan untuk investasi kalian menjadi dua kali lipat? Jawabannya ada pada fungsi logaritma! Logaritma adalah "kebalikan" dari eksponensial. Jika eksponensial menjawab "berapa hasilnya?", maka logaritma menjawab "berapa pangkatnya?".
+Logaritma menjawab satu pertanyaan khusus: pangkat berapa yang menghasilkan suatu nilai? Karena itu, fungsi logaritma dan fungsi eksponensial saling membalikkan.
 
-Mari kita mulai dengan contoh sederhana. Jika kita memiliki:
+Mulailah dari persamaan eksponensial berikut:
 
 <BlockMath math="2^3 = 8" />
 
-Pertanyaan: "Berapa pangkat dari <InlineMath math="2" /> yang menghasilkan <InlineMath math="8" />?" Jawabannya adalah <InlineMath math="3" />. Inilah yang dijawab oleh logaritma:
+Pangkat yang mengubah <InlineMath math="2" /> menjadi <InlineMath math="8" /> adalah <InlineMath math="3" />. Notasi logaritma mencatat hubungan yang sama dari arah sebaliknya:
 
 <BlockMath math="\log_2 8 = 3" />
 
-Secara umum, hubungan antara eksponensial dan logaritma:
+Secara umum, notasi eksponensial dan logaritma berhubungan melalui:
 
 <BlockMath math="y = b^x \quad \Leftrightarrow \quad x = \log_b y" />
 
@@ -29,13 +29,13 @@ Fungsi logaritma dengan basis <InlineMath math="b" /> (dimana <InlineMath math="
 
 <BlockMath math="f(x) = \log_b x \quad \text{untuk setiap } x > 0" />
 
-**Jenis-jenis logaritma yang sering digunakan:**
+Tiga basis berikut sangat sering digunakan:
 
 1. **Logaritma Umum** (basis <InlineMath math="10" />): <InlineMath math="f(x) = \log x" />
 
    Contoh: <InlineMath math="\log 100 = 2" /> karena <InlineMath math="10^2 = 100" />
 
-2. **Logaritma Natural** (basis <InlineMath math="e \approx 2.7183" />): <InlineMath math="f(x) = \ln x" />
+2. **Logaritma Natural** (basis <InlineMath math="e \approx 2{,}7183" />): <InlineMath math="f(x) = \ln x" />
 
    Contoh: <InlineMath math="\ln e = 1" /> karena <InlineMath math="e^1 = e" />
 
@@ -114,22 +114,24 @@ Fungsi logaritma dengan basis <InlineMath math="b" /> (dimana <InlineMath math="
   <BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(perubahan basis)}" />
 </MathContainer>
 
-## Model Penyebaran COVID-19
+## Ilustrasi Model Pertumbuhan dari Dua Titik
 
-Pada awal pandemi, penyebaran COVID-19 di Indonesia dapat dimodelkan dengan fungsi eksponensial. Jika pada <InlineMath math="2" /> Maret <InlineMath math="2020" /> ada <InlineMath math="2 \text{ kasus}" /> dan dalam <InlineMath math="60 \text{ hari}" /> mencapai <InlineMath math="10.118 \text{ kasus}" />, maka:
+[Kementerian Kesehatan RI melaporkan dua kasus terkonfirmasi COVID-19 pada 2 Maret 2020](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang). Kemudian, [jumlah kumulatif kasus terkonfirmasi yang dilaporkan mencapai 10.118 pada 30 April 2020](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu), yaitu setelah <InlineMath math="59 \text{ hari berlalu}" />.
+
+Untuk berlatih menggunakan logaritma, kita dapat mencocokkan kurva eksponensial sederhana dengan dua nilai laporan tersebut. Misalkan <InlineMath math="t" /> menyatakan banyak hari yang telah berlalu sejak 2 Maret dan <InlineMath math="P(t)" /> menyatakan jumlah kasus pada kurva. Karena <InlineMath math="P(0)=2" /> dan <InlineMath math="P(59)=10{.}118" />, modelnya adalah:
 
 <ContentStack>
 
-  <BlockMath math="P(t) = 2e^{\frac{1}{60}\ln(5059)t}" />
+  <BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
 
   <LineEquation
-    title="Model Penyebaran COVID-19"
-    description="Pertumbuhan eksponensial kasus COVID-19"
+    title="Pencocokan Eksponensial dari Dua Titik"
+    description="Kurva yang melalui dua jumlah kasus laporan, lalu diteruskan sebagai ekstrapolasi singkat"
     data={[
       {
-        points: Array.from({ length: 61 }, (_, i) => {
+        points: Array.from({ length: 72 }, (_, i) => {
           const t = i;
-          const P = 2 * Math.exp((1 / 60) * Math.log(5059) * t);
+          const P = 2 * Math.exp((1 / 59) * Math.log(5059) * t);
           return { x: t, y: P, z: 0 };
         }),
         color: "#dc2626",
@@ -142,12 +144,14 @@ Pada awal pandemi, penyebaran COVID-19 di Indonesia dapat dimodelkan dengan fung
   />
 </ContentStack>
 
-**Menggunakan logaritma**, kita dapat menghitung kapan akan ada <InlineMath math="50.000 \text{ kasus}" />:
+Jika laju pada kurva tersebut diteruskan, logaritma menempatkan ambang <InlineMath math="50{.}000" /> pada:
 
 <MathContainer>
-  <BlockMath math="50000 = 2e^{\frac{1}{60}\ln(5059)t}" />
-  <BlockMath math="t = \frac{60 \cdot \ln(25000)}{\ln(5059)} \approx 81.4 \text{ hari}" />
+  <BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
+  <BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70{,}1 \text{ hari}" />
 </MathContainer>
+
+Ini adalah ilustrasi matematika, bukan ramalan epidemiologis. Jumlah kasus terkonfirmasi juga dipengaruhi oleh pengujian, pelaporan, perilaku masyarakat, dan kebijakan kesehatan. Karena itu, satu laju eksponensial tetap tidak boleh diteruskan tanpa batas.
 
 ## Latihan
 
@@ -163,16 +167,32 @@ Pada awal pandemi, penyebaran COVID-19 di Indonesia dapat dimodelkan dengan fung
 
 4. Sebuah investasi tumbuh mengikuti rumus <InlineMath math="A = 1000 \cdot 2^t" /> (dalam juta rupiah). Berapa tahun yang dibutuhkan agar investasi menjadi <InlineMath math="8 \text{ miliar}" /> rupiah?
 
-### Kunci Jawaban
+### Pembahasan
 
-1. Nilainya:
+1. Baca setiap logaritma sebagai pertanyaan tentang pangkat. Pangkat yang diperlukan adalah:
 
-   - <InlineMath math="\log_3 27 = 3" />
-   - <InlineMath math="\log_5 \frac{1}{125} = -3" />
-   - <InlineMath math="\ln e^3 = 3" />
+   <MathContainer>
+     <BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
+     <BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
+     <BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
+   </MathContainer>
 
-2. <InlineMath math="x = 2^4 = 16" />
+2. Ubah persamaan logaritma ke bentuk eksponensial:
 
-3. <InlineMath math="\log_2 8 + \log_2 4 - \log_2 2 = 3 + 2 - 1 = 4" />
+   <BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
 
-4. <InlineMath math="8000 = 1000 \cdot 2^t \Rightarrow 8 = 2^t \Rightarrow t = 3 \text{ tahun}" />
+   Substitusi <InlineMath math="x=16" /> menghasilkan <InlineMath math="\log_2 16=4" />, sehingga hasilnya benar.
+
+3. Hitung dahulu tiga pangkat berbasis <InlineMath math="2" />, kemudian gabungkan hasilnya:
+
+   <BlockMath math="\log_2 8+\log_2 4-\log_2 2=3+2-1=4" />
+
+4. Rumus menyatakan <InlineMath math="A" /> dalam juta rupiah, sehingga <InlineMath math="8 \text{ miliar rupiah}=8000 \text{ juta rupiah}" />. Substitusikan target tersebut, lalu pisahkan suku eksponensialnya:
+
+   <MathContainer>
+     <BlockMath math="8000=1000\cdot2^t" />
+     <BlockMath math="8=2^t" />
+     <BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
+   </MathContainer>
+
+   Investasi mencapai target setelah <InlineMath math="3 \text{ tahun}" />.

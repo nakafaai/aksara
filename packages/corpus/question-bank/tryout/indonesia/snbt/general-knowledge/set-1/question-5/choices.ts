@@ -12,7 +12,8 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "research on the origin of the smallpox virus.",
+      label:
+        "ancient-DNA research on the history and evolution of the variola virus.",
       value: true,
     },
     {
@@ -35,7 +36,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     {
-      label: "penelitian asal mula virus cacar.",
+      label: "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
       value: true,
     },
     {

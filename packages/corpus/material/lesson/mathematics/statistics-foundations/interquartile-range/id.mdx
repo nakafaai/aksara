@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Jangkauan Interkuartil",
-  description: "Hitung jangkauan interkuartil untuk mengukur sebaran data. Pelajari kuartil bawah dan atas, bandingkan dengan range, dan pahami variasi data tengah.",
+  description: "Hitung jangkauan interkuartil, bandingkan dengan jangkauan penuh, lalu tafsirkan sebaran separuh tengah suatu kumpulan data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistika",
@@ -8,24 +8,24 @@ export const metadata = {
 
 ## Apa Itu Jangkauan Interkuartil?
 
-Kita sudah tahu cara mencari [rata-rata (mean)](/id/materi/matematika/statistika-dasar/mean-rerata-atau-rata-rata) dari data. Tapi, rata-rata saja kadang nggak cukup buat menggambarkan data lho. Bayangin ada dua kelompok teman, rata-rata umurnya sama, tapi pas dilihat, anggota kelompoknya beda banget sebaran umurnya.
+[Mean](/id/materi/matematika/statistika-dasar/mean-rerata-atau-rata-rata) menggambarkan pusat suatu kumpulan data, tetapi tidak menunjukkan sebarannya. Dua kelompok dapat memiliki rata-rata umur yang sama meskipun penyebaran umurnya sangat berbeda.
 
-Nah, di sinilah **Jangkauan Interkuartil** atau **Interquartile Range** (<InlineMath math="\mathrm{IQR}" />) berperan! <InlineMath math="\mathrm{IQR}" /> ini adalah ukuran penyebaran data yang fokus pada **<InlineMath math="50\%" /> data yang ada di tengah**, setelah data diurutkan.
+**Jangkauan interkuartil (interquartile range)** (<InlineMath math="\mathrm{IQR}" />) mengukur sebaran tersebut dengan berfokus pada **<InlineMath math="50\%" /> data di tengah** setelah data diurutkan.
 
-Kenapa fokus ke tengah? Karena kadang ada data yang nilainya jauh banget di ujung (terlalu kecil atau terlalu besar, disebut pencilan/outlier), yang bisa bikin ukuran sebaran lain (kayak Jangkauan/Range) jadi kurang akurat. <InlineMath math="\mathrm{IQR}" /> ini lebih "kebal" sama data-data ekstrem itu.
+Mengapa berfokus pada bagian tengah? Nilai yang sangat kecil atau besar dapat mendominasi ukuran seperti jangkauan penuh. Sebagian nilai tersebut dapat digolongkan sebagai pencilan berdasarkan aturan yang dinyatakan atau pertimbangan bidang kajian. <InlineMath math="\mathrm{IQR}" /> tidak terlalu peka terhadap nilai ekstrem tersebut.
 
-Rumus <InlineMath math="\mathrm{IQR}" /> gampang banget:
+Rumusnya adalah:
 
 <BlockMath math="\mathrm{IQR} = Q_3 - Q_1" />
 
-- <InlineMath math="Q_3" /> adalah Kuartil Atas (nilai yang membatasi <InlineMath math="75\%" /> data terbawah).
-- <InlineMath math="Q_1" /> adalah Kuartil Bawah (nilai yang membatasi <InlineMath math="25\%" /> data terbawah).
+- <InlineMath math="Q_3" /> adalah kuartil atas (nilai yang membatasi <InlineMath math="75\%" /> data terbawah).
+- <InlineMath math="Q_1" /> adalah kuartil bawah (nilai yang membatasi <InlineMath math="25\%" /> data terbawah).
 
 Jadi, <InlineMath math="\mathrm{IQR}" /> itu selisih antara kuartil atas dan kuartil bawah.
 
 ## Membandingkan Sebaran Umur
 
-Biar lebih jelas, mari kita lihat sebuah contoh.
+Perhatikan dua kelompok yang memiliki mean sama, tetapi sebaran sangat berbeda.
 
 Ada dua kelompok, masing-masing <InlineMath math="12 \text{ orang}" />. Kita lihat data umurnya dalam tabel berikut:
 
@@ -44,7 +44,7 @@ Ada dua kelompok, masing-masing <InlineMath math="12 \text{ orang}" />. Kita lih
 | <InlineMath math="11" /> | <InlineMath math="17" /> | <InlineMath math="32" /> |
 | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
 
-Coba kita hitung beberapa ukuran statistik buat kedua kelompok ini.
+Kita akan membandingkan mean, kuartil, jangkauan, dan jangkauan interkuartilnya.
 
 ### Menghitung Mean dan Kuartil
 
@@ -65,7 +65,6 @@ Coba kita hitung beberapa ukuran statistik buat kedua kelompok ini.
     Setelah data diurutkan (seperti dalam tabel di atas), kita cari posisi kuartil.
 
     **Kelompok Pertama (<InlineMath math="n=12" />):**
-
     Letak <InlineMath math="Q_1" /> ada di data ke-<InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Ini berarti <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="3" /> (<InlineMath math="15" />) dan data ke-<InlineMath math="4" /> (<InlineMath math="15" />). Karena kedua data sama, maka
 
     <BlockMath math="Q_1 = 15" />
@@ -75,18 +74,17 @@ Coba kita hitung beberapa ukuran statistik buat kedua kelompok ini.
     <BlockMath math="Q_3 = 17" />
 
     **Kelompok Kedua (<InlineMath math="n=12" />):**
+    Posisi <InlineMath math="Q_1" /> adalah <InlineMath math="3{,}25" />. Posisi ini berada seperempat jarak dari nilai ke-<InlineMath math="3" /> (<InlineMath math="4" />) menuju nilai ke-<InlineMath math="4" /> (<InlineMath math="5" />), sehingga bobot interpolasinya <InlineMath math="0{,}25" />:
 
-    Letak <InlineMath math="Q_1" /> ada di data ke-<InlineMath math="3{,}25" />. Ini berarti <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="3" /> (<InlineMath math="4" />) dan data ke-<InlineMath math="4" /> (<InlineMath math="5" />). Untuk kasus ini, kita bisa mengambil rata-rata kedua data tersebut:
+    <BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
 
-    <BlockMath math="Q_1 = \frac{4+5}{2} = 4{,}5" />
+    Posisi <InlineMath math="Q_3" /> adalah <InlineMath math="9{,}75" />. Posisi ini berada tiga perempat jarak dari nilai ke-<InlineMath math="9" /> (<InlineMath math="28" />) menuju nilai ke-<InlineMath math="10" /> (<InlineMath math="29" />), sehingga bobot interpolasinya <InlineMath math="0{,}75" />:
 
-    Letak <InlineMath math="Q_3" /> ada di data ke-<InlineMath math="9{,}75" />. Ini berarti <InlineMath math="Q_3" /> ada di antara data ke-<InlineMath math="9" /> (<InlineMath math="28" />) dan data ke-<InlineMath math="10" /> (<InlineMath math="29" />). Dengan cara yang sama, kita ambil rata-ratanya:
-
-    <BlockMath math="Q_3 = \frac{28+29}{2} = 28{,}5" />
+    <BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
 
 ### Menghitung Jangkauan dan Simpangan Antarkuartil
 
-Sekarang kita hitung ukuran penyebarannya.
+Berikutnya, hitung ukuran penyebarannya.
 
 1.  **Jangkauan (Range):**
 
@@ -95,16 +93,16 @@ Sekarang kita hitung ukuran penyebarannya.
     - Range Kelompok Pertama adalah <InlineMath math="18 - 13 = 5" />
     - Range Kelompok Kedua adalah <InlineMath math="36 - 1 = 35" />
 
-      Wah, jangkauannya beda jauh! Kelompok kedua lebih menyebar datanya kalau dilihat dari nilai ekstremnya.
+      Jangkauan penuh sudah menunjukkan bahwa nilai ekstrem Kelompok Kedua tersebar jauh lebih lebar.
 
 2.  **Jangkauan Interkuartil** (<InlineMath math="\mathrm{IQR}" />):
 
     <InlineMath math="\mathrm{IQR} = Q_3 - Q_1" />
 
     - <InlineMath math="\mathrm{IQR}" /> Kelompok Pertama adalah <InlineMath math="17 - 15 = 2" />
-    - <InlineMath math="\mathrm{IQR}" /> Kelompok Kedua adalah <InlineMath math="28{,}5 - 4{,}5 = 24" />
+    - <InlineMath math="\mathrm{IQR}" /> Kelompok Kedua adalah <InlineMath math="28{,}75 - 4{,}25 = 24{,}5" />
 
-      <InlineMath math="\mathrm{IQR}" />-nya juga beda jauh!
+      Sebaran separuh tengah kedua kelompok juga sangat berbeda.
 
 ### Interpretasi Hasil
 
@@ -113,11 +111,11 @@ Mari kita rangkum dalam tabel agar mudah dibandingkan:
 | Kelompok | Mean | <InlineMath math="Q_1"/> | <InlineMath math="Q_3"/> | Range | Jangkauan Interkuartil (<InlineMath math="\mathrm{IQR}" />) |
 | :------: | :--: | :----------------------: | :----------------------: | :---: | :--------------------------: |
 | Pertama  | <InlineMath math="16" /> | <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="5" /> | <InlineMath math="2" /> |
-|  Kedua   | <InlineMath math="16" /> | <InlineMath math="4{,}5" /> | <InlineMath math="28{,}5" /> | <InlineMath math="35" /> | <InlineMath math="24" /> |
+|  Kedua   | <InlineMath math="16" /> | <InlineMath math="4{,}25" /> | <InlineMath math="28{,}75" /> | <InlineMath math="35" /> | <InlineMath math="24{,}5" /> |
 
 - Kedua kelompok punya **Mean (rata-rata) umur yang sama**, yaitu <InlineMath math="16" />.
 - Tapi **Range** dan <InlineMath math="\mathrm{IQR}" />-nya **beda banget**.
 - **Kelompok Pertama** punya Range kecil (<InlineMath math="5" />) dan <InlineMath math="\mathrm{IQR}" /> sangat kecil (<InlineMath math="2" />). Ini artinya, umur orang-orang di kelompok pertama itu **sangat berdekatan**, terutama yang <InlineMath math="50\%" /> di tengah, umurnya cuma beda <InlineMath math="2 \text{ tahun}" /> (<InlineMath math="Q_1=15, Q_3=17" />). Datanya **rapat** di sekitar rata-rata.
-- **Kelompok Kedua** punya Range besar (<InlineMath math="35" />) dan <InlineMath math="\mathrm{IQR}" /> besar (<InlineMath math="24" />). Ini artinya, umur orang-orang di kelompok kedua itu **jauh lebih menyebar**. Yang <InlineMath math="50\%" /> di tengah saja rentang umurnya <InlineMath math="24 \text{ tahun}" /> (<InlineMath math="Q_1=4{,}5, Q_3=28{,}5" />). Datanya **tidak serapat** kelompok pertama.
+- **Kelompok Kedua** memiliki jangkauan besar (<InlineMath math="35" />) dan <InlineMath math="\mathrm{IQR}" /> besar (<InlineMath math="24{,}5" />). Artinya, umur pada kelompok kedua **jauh lebih menyebar**. Bahkan, <InlineMath math="50\%" /> data di tengah membentang sepanjang <InlineMath math="24{,}5 \text{ tahun}" /> (<InlineMath math="Q_1=4{,}25, Q_3=28{,}75" />). Datanya **tidak serapat** Kelompok Pertama.
 
 Walaupun rata-ratanya sama, sebaran data bisa sangat berbeda. <InlineMath math="\mathrm{IQR}" /> membantu kita melihat seberapa menyebar data di bagian tengah, memberikan gambaran yang lebih baik tentang variasi data dibandingkan hanya melihat mean atau range saja, terutama jika ada data ekstrem.

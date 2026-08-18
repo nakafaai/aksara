@@ -3,53 +3,53 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Bats fly to hunt insects and other animals during the day.",
+      label: "No bat can take off from the ground.",
       value: false,
     },
     {
       label:
-        "All day long, bats stay awake upside down in secluded places, such as cave roofs, the underside of bridges, or inside hollow trees.",
+        "Bats must use continuous muscular effort to keep their claws closed around a perch.",
       value: false,
     },
     {
       label:
-        "The ideal position that helps bats fly is by sleeping upside down.",
+        "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
       value: true,
     },
     {
       label:
-        "In addition, bats' hind legs are small and highly developed so they cannot run to build up speed for takeoff.",
+        "Every bat species uses exactly the same roosting and takeoff behavior.",
       value: false,
     },
     {
-      label: "Bats use their hind claws to climb to a high place, then fly.",
+      label:
+        "An upside-down roost guarantees that no predator can reach a bat.",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Kelelawar terbang untuk berburu serangga dan hewan lainnya pada siang hari.",
+      label: "Tidak ada kelelawar yang dapat lepas landas dari tanah.",
       value: false,
     },
     {
       label:
-        "Sepanjang hari, kelelawar terjaga dengan posisi terbalik di tempat-tempat terpencil, seperti atap gua, bagian bawah jembatan, atau bagian dalam pohon yang berlubang.",
+        "Kelelawar harus terus memakai tenaga otot agar cakarnya mencengkeram tempat bertengger.",
       value: false,
     },
     {
       label:
-        "Posisi ideal yang membantu kelelawar terbang adalah dengan tidur terbalik.",
+        "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
       value: true,
     },
     {
       label:
-        "Selain itu, kaki belakang kelelawar kecil dan sangat berkembang sehingga mereka tidak bisa berlari untuk menambah kecepatan saat lepas landas.",
+        "Setiap spesies kelelawar memiliki cara bertengger dan lepas landas yang sama persis.",
       value: false,
     },
     {
       label:
-        "Kelelawar menggunakan cakar belakang untuk naik ke tempat yang tinggi, kemudian terbang.",
+        "Posisi bertengger terbalik menjamin bahwa tidak ada predator yang dapat menjangkau kelelawar.",
       value: false,
     },
   ],

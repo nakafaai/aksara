@@ -3,7 +3,7 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "sentence $$(3)$$.",
+      label: "sentence $$(2)$$.",
       value: false,
     },
     {
@@ -11,21 +11,21 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
+      label: "sentence $$(5)$$.",
+      value: false,
+    },
+    {
       label: "sentence $$(7)$$.",
       value: false,
     },
     {
-      label: "sentence $$(8)$$.",
-      value: false,
-    },
-    {
-      label: "sentence $$(11)$$.",
+      label: "sentence $$(9)$$.",
       value: false,
     },
   ],
   id: [
     {
-      label: "kalimat $$(3)$$.",
+      label: "kalimat $$(2)$$.",
       value: false,
     },
     {
@@ -33,15 +33,15 @@ const choices: QuestionChoices = {
       value: true,
     },
     {
+      label: "kalimat $$(5)$$.",
+      value: false,
+    },
+    {
       label: "kalimat $$(7)$$.",
       value: false,
     },
     {
-      label: "kalimat $$(8)$$.",
-      value: false,
-    },
-    {
-      label: "kalimat $$(11)$$.",
+      label: "kalimat $$(9)$$.",
       value: false,
     },
   ],

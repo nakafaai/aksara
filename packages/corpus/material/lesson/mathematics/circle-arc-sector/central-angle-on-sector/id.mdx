@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Konsep Sudut Pusat pada Juring
 
-Sudut pusat pada juring adalah sudut yang dibentuk oleh dua jari-jari lingkaran yang membatasi sebuah juring. Bayangkan seperti sudut yang terbentuk ketika kita membuka kipas atau memotong kue menjadi beberapa bagian. Sudut ini memiliki titik puncak di pusat lingkaran dan kedua kakinya adalah jari-jari yang menuju ke tepi lingkaran.
+Sebuah juring dibatasi oleh dua jari-jari dan busur di antaranya. Kedua jari-jari membentuk sudut yang titik sudutnya berada di pusat lingkaran. Sudut inilah yang disebut sudut pusat. Kipas yang terbuka atau sepotong kue bundar menunjukkan bentuk dasarnya.
 
-Sudut pusat memiliki peran khusus dalam menentukan ukuran juring. Semakin besar sudut pusat, semakin luas juring yang terbentuk. Sebaliknya, sudut pusat yang kecil akan menghasilkan juring yang sempit. Hubungan ini membuat sudut pusat menjadi kunci utama dalam perhitungan luas dan aplikasi juring.
+Sudut pusat menentukan bagian lingkaran yang ditempati juring. Pada jari-jari yang tetap, sudut yang lebih besar menghasilkan juring yang lebih luas, sedangkan sudut yang lebih kecil menghasilkan juring yang lebih sempit.
 
 <LineEquation
   title={<>Sudut Pusat yang Membentuk Juring</>}
@@ -109,7 +109,7 @@ Sudut pusat pada juring memiliki karakteristik yang membedakannya dari sudut lai
 - **Titik puncak sudut**: Selalu berada tepat di pusat lingkaran
 - **Proporsi terhadap lingkaran**: Besar sudut pusat menentukan proporsi juring terhadap keseluruhan lingkaran
 
-Dalam satu lingkaran, jika terdapat beberapa juring dengan sudut pusat yang sama, maka luas juring tersebut juga akan sama. Hal ini terjadi karena luas juring berbanding lurus dengan besar sudut pusat. Sifat ini sangat berguna dalam pembagian lingkaran menjadi bagian-bagian yang sama besar.
+Dalam lingkaran yang sama, sudut pusat yang sama menghasilkan luas juring yang sama. Karena itu, membagi satu putaran menjadi sudut-sudut yang sama juga membagi lingkaran menjadi bagian yang sama luas.
 
 ## Hubungan Sudut Pusat dengan Luas Juring
 
@@ -117,15 +117,15 @@ Hubungan antara sudut pusat dan luas juring dapat dinyatakan dalam bentuk perban
 
 **Untuk sudut dalam derajat:**
 
-<BlockMath math="L = \frac{\theta}{360^\circ} \times \pi r^2" />
+<BlockMath math="A = \frac{\theta}{360^\circ} \times \pi r^2" />
 
 **Untuk sudut dalam radian:**
 
-<BlockMath math="L = \frac{1}{2} \theta r^2" />
+<BlockMath math="A = \frac{1}{2} \theta r^2" />
 
-dimana:
-- <InlineMath math="L" /> = luas juring
-- <InlineMath math="\theta" /> = sudut pusat
+dengan:
+- <InlineMath math="A" /> = luas juring
+- <InlineMath math="\theta" /> = sudut pusat, dinyatakan dalam derajat pada rumus pertama dan radian pada rumus kedua
 - <InlineMath math="r" /> = jari-jari lingkaran
 
 Perbandingan ini menunjukkan bahwa luas juring sebanding dengan besar sudut pusat. Ketika sudut pusat digandakan, luas juring juga akan menjadi dua kali lipat. Begitu pula sebaliknya, jika sudut pusat dibagi dua, luas juring akan menjadi setengahnya.
@@ -188,6 +188,15 @@ Perbandingan ini menunjukkan bahwa luas juring sebanding dengan besar sudut pusa
     {
       points: [
         { x: 0, y: 0, z: 2 },
+        { x: 3.5, y: 0, z: 2 }
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 2 },
         { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
       ],
       color: "#4f46e5",
@@ -210,6 +219,15 @@ Perbandingan ini menunjukkan bahwa luas juring sebanding dengan besar sudut pusa
       labels: [
         { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.2, 0.4, 0] }
       ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 4 },
+        { x: 3.5, y: 0, z: 4 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2
     },
     {
       points: [
@@ -244,7 +262,7 @@ Perbandingan ini menunjukkan bahwa luas juring sebanding dengan besar sudut pusa
 
 ## Pengukuran dan Identifikasi Sudut Pusat
 
-Mengidentifikasi sudut pusat pada juring memerlukan kemampuan mengenali ciri khas geometrisnya. Sudut pusat selalu memiliki vertex tepat di pusat lingkaran dan kedua kakinya berupa jari-jari yang sama panjang. Berbeda dengan sudut keliling yang vertexnya berada di circumference, sudut pusat memiliki posisi sentral yang memberikan kontrol penuh terhadap pembentukan juring.
+Periksa dahulu letak titik sudutnya. Pada sudut pusat, titik itu berada di pusat lingkaran dan kedua kakinya merupakan jari-jari. Sebaliknya, titik sudut dari sudut keliling berada pada keliling lingkaran.
 
 **Metode pengukuran sudut pusat:**
 
@@ -343,10 +361,10 @@ Teorema fundamental sudut pusat menyatakan hubungan langsung antara sudut pusat 
 **Sifat-sifat penting:**
 
 - Dalam lingkaran yang sama, sudut pusat yang kongruen menghasilkan busur dan juring yang kongruen pula
-- Jika dua juring memiliki luas yang sama, maka sudut pusat yang membentuknya pasti sama besar
-- Operasi matematis pada sudut pusat mengikuti pola yang sama dengan busur yang dibentuk
+- Jika dua juring pada lingkaran yang sama memiliki luas yang sama, sudut pusatnya juga sama besar
+- Ketika sudut-sudut pusat yang bersebelahan dijumlahkan, besar busur yang bersesuaian juga dijumlahkan
 
-Teorema ini menjadi dasar dalam semua perhitungan yang melibatkan hubungan antara sudut pusat, busur, dan luas juring dalam geometri lingkaran.
+Sifat-sifat ini menghubungkan sudut pusat, besar busur, dan luas juring dalam satu lingkaran. Bedakan selalu besar busur dalam derajat dari panjang fisik busur tersebut.
 
 ## Perhitungan Sudut Pusat dari Informasi Juring
 
@@ -354,7 +372,7 @@ Menentukan besar sudut pusat dapat dilakukan melalui berbagai informasi yang dik
 
 1. **Dari luas juring dan jari-jari:**
 
-   <BlockMath math="\alpha = \frac{360^\circ \times L}{\pi r^2}" />
+   <BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
 
 2. **Dari panjang busur dan jari-jari:**
 
@@ -366,12 +384,12 @@ Menentukan besar sudut pusat dapat dilakukan melalui berbagai informasi yang dik
 
 dimana:
 - <InlineMath math="\alpha" /> = sudut pusat (dalam derajat)
-- <InlineMath math="L" /> = luas juring
+- <InlineMath math="A" /> = luas juring
 - <InlineMath math="s" /> = panjang busur
 - <InlineMath math="r" /> = jari-jari lingkaran
 - <InlineMath math="n" /> = jumlah bagian pembagian
 
-Ketiga rumus ini memberikan fleksibilitas dalam menyelesaikan berbagai jenis soal geometri lingkaran, tergantung pada informasi yang tersedia.
+Pilih rumus sesuai data yang tersedia: luas juring, panjang busur, atau jumlah bagian yang sama besar.
 
 <LineEquation
   title={<>Ilustrasi Parameter dalam Perhitungan Sudut Pusat</>}
@@ -453,8 +471,8 @@ Ketiga rumus ini memberikan fleksibilitas dalam menyelesaikan berbagai jenis soa
 
 **Contoh aplikasi rumus:**
 
-- Pizza dipotong menjadi <InlineMath math="8 \text{ bagian}" /> sama besar: <InlineMath math="\alpha = \frac{360^\circ}{8} = 45^\circ" />
-- Jam dinding dengan <InlineMath math="12" /> angka: <InlineMath math="\alpha = \frac{360^\circ}{12} = 30^\circ" />
-- Kue tart dipotong menjadi <InlineMath math="6 \text{ bagian}" />: <InlineMath math="\alpha = \frac{360^\circ}{6} = 60^\circ" />
+- Pizza bundar dipotong secara radial menjadi <InlineMath math="8" /> juring sama besar: <InlineMath math="\alpha = \frac{360^\circ}{8} = 45^\circ" />
+- Dua tanda jam berdekatan pada muka jam dengan <InlineMath math="12" /> pembagian sama besar: <InlineMath math="\alpha = \frac{360^\circ}{12} = 30^\circ" />
+- Kue bundar dipotong secara radial menjadi <InlineMath math="6 \text{ juring sama besar}" />: <InlineMath math="\alpha = \frac{360^\circ}{6} = 60^\circ" />
 
-Contoh-contoh ini menunjukkan penerapan langsung rumus pembagian lingkaran dalam kehidupan sehari-hari, dimana setiap bagian memiliki sudut pusat yang sama besar.
+Pada setiap contoh, bagian-bagiannya sama besar sehingga sudut pusatnya juga sama.

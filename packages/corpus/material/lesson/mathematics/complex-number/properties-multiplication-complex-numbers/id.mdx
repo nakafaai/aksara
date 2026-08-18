@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Sifat Perkalian Bilangan Kompleks",
-  description: "Pelajari sifat komutatif, asosiatif, distributif dan invers perkalian bilangan kompleks dengan contoh bertahap dan pembuktian aljabar.",
+  description: "Gunakan hukum perkalian dan invers perkalian untuk mengubah serta membuktikan ekspresi bilangan kompleks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Bilangan Kompleks",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Sifat-Sifat Operasi Perkalian
 
-Sama seperti operasi hitung pada bilangan real, operasi perkalian pada bilangan kompleks juga memiliki beberapa sifat penting. Misalkan <InlineMath math="z_1, z_2," /> dan <InlineMath math="z_3" /> adalah sembarang bilangan kompleks.
+Perkalian bilangan kompleks mengikuti hukum komutatif, asosiatif, identitas, dan distributif yang sudah dikenal. Misalkan <InlineMath math="z_1, z_2," /> dan <InlineMath math="z_3" /> adalah sembarang bilangan kompleks.
 
 ### Komutatif
 
@@ -25,7 +25,7 @@ Misal <InlineMath math="z_1 = 1+2i" /> dan <InlineMath math="z_2 = 3-i" />.
   <BlockMath math="z_2 \times z_1 = (3-i)(1+2i) = 3(1+2i) - i(1+2i) = 3+6i-i-2i^2 = 3+5i-2(-1) = 5+5i" />
 </MathContainer>
 
-Terbukti hasilnya sama.
+Kedua hasil kali bernilai <InlineMath math="5+5i" />, sehingga sifat komutatif terverifikasi pada contoh ini.
 
 ### Asosiatif
 
@@ -42,7 +42,7 @@ Misal <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, dan <InlineM
   <BlockMath math="z_1 \times (z_2 \times z_3) = i \times (2 \times (3-i)) = i \times (6-2i) = 6i - 2i^2 = 6i - 2(-1) = 2+6i" />
 </MathContainer>
 
-Terbukti hasilnya sama.
+Kedua pengelompokan bernilai <InlineMath math="2+6i" />, sehingga sifat asosiatif terverifikasi pada contoh ini.
 
 ### Identitas Perkalian
 
@@ -87,11 +87,11 @@ Misal <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath 
   <BlockMath math="= 8-2i" />
 </MathContainer>
 
-Terbukti hasilnya sama.
+Kedua ruas bernilai <InlineMath math="8-2i" />, sehingga hukum distributif terverifikasi pada contoh ini.
 
 ## Contoh Pembuktian Menggunakan Sifat
 
-Kita bisa membuktikan beberapa identitas aljabar menggunakan sifat-sifat ini. Mari kita buktikan bahwa <InlineMath math="(z_1 + z_2)^2 = z_1^2 + 2z_1z_2 + z_2^2" /> untuk sembarang <InlineMath math="z_1, z_2" />.
+Hukum yang sama dapat digunakan untuk membuktikan identitas aljabar. Untuk sembarang <InlineMath math="z_1, z_2" />, uraikan <InlineMath math="(z_1 + z_2)^2" /> sebagai berikut:
 
 <MathContainer>
   <BlockMath math="(z_1 + z_2)^2 = (z_1 + z_2)(z_1 + z_2) \quad \text{(Definisi kuadrat)}" />
@@ -119,7 +119,21 @@ Berdasarkan kesamaan dua bilangan kompleks, kita peroleh sistem persamaan:
 1.  <InlineMath math="xu - yv = 1" />
 2.  <InlineMath math="xv + uy = 0" />
 
-Dengan menyelesaikan sistem persamaan ini (misalnya dengan mengalikan persamaan <InlineMath math="1" /> dengan <InlineMath math="x" />, persamaan <InlineMath math="2" /> dengan <InlineMath math="y" />, lalu menjumlahkannya, dan metode substitusi), kita akan dapatkan:
+Untuk mengisolasi <InlineMath math="u" />, kalikan persamaan pertama dengan <InlineMath math="x" /> dan persamaan kedua dengan <InlineMath math="y" />, lalu jumlahkan:
+
+<MathContainer>
+  <BlockMath math="x^2u-xyv=x" />
+  <BlockMath math="xyv+y^2u=0" />
+  <BlockMath math="(x^2+y^2)u=x" />
+</MathContainer>
+
+Untuk mengisolasi <InlineMath math="v" />, kalikan persamaan pertama dengan <InlineMath math="-y" /> dan persamaan kedua dengan <InlineMath math="x" />, lalu jumlahkan. Karena <InlineMath math="z\neq0" />, berlaku <InlineMath math="x^2+y^2>0" /> sehingga kita boleh membagi dengan nilai tersebut:
+
+<MathContainer>
+  <BlockMath math="-xyu+y^2v=-y" />
+  <BlockMath math="x^2v+xyu=0" />
+  <BlockMath math="(x^2+y^2)v=-y" />
+</MathContainer>
 
 <MathContainer>
   <BlockMath math="u = \frac{x}{x^2+y^2}" />

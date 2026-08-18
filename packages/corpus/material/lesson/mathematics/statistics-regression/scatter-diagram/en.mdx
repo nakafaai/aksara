@@ -9,28 +9,28 @@ export const metadata = {
 
 ## What Is a Scatter Diagram?
 
-A Scatter Diagram is like a map that shows the relationship between two types of data. For example, we might want to see the relationship between study time (<InlineMath math="x" />-axis) and exam scores (<InlineMath math="y" />-axis).
+A scatter diagram makes a possible relationship between two numerical variables visible. For example, we can place study time on the <InlineMath math="x" />-axis and exam scores on the <InlineMath math="y" />-axis.
 
-Each point on the diagram represents one pair of data (e.g., one student's data). By looking at the pattern of the points, we can understand their relationship.
+Each point represents one paired observation, such as one student's study time and score. The point cloud shows whether the pairs form a recognizable pattern.
 
 ### When Should a Scatter Diagram Be Used?
 
-A Scatter Diagram is most suitable when we want to:
+A scatter diagram is especially useful when we want to:
 
-- See if there is a **relationship (correlation)** between **two numerical variables (numbers)**. (Example: the relationship between height and weight, or study time and scores.)
-- See the **pattern** of that relationship (whether it's positive, negative, or no pattern).
+- examine whether a **relationship** is visible between **two numerical variables**, such as height and weight or study time and scores;
+- examine the **direction and form** of that pattern, including a positive, negative, or unclear tendency.
 
 This differs from other diagrams:
 
-- **Bar Chart:** Good for comparing quantities or values between **categories** (e.g., number of students per class).
-- **Line Chart:** Good for seeing **trends** in data over **time** or a specific sequence (e.g., daily temperature changes).
-- **Pie Chart:** Good for showing **proportions** or parts of a whole (e.g., percentage of favorite fruit types).
+- **Bar chart:** compares values between **categories**, such as the number of students in different classes.
+- **Line chart:** shows development over **time** or another fixed sequence, such as daily temperatures.
+- **Pie chart:** shows **parts of a whole**, such as the distribution of preferred fruit types.
 
-So, if your main focus is **seeing the relationship between two sets of numbers**, a scatter diagram is the right choice!
+When the main question concerns a possible **relationship between two numerical variables**, a scatter diagram is an appropriate starting point.
 
 ## Scatter Diagram Examples and Correlation Patterns
 
-Let's look at some examples of scatter diagrams with different patterns:
+The following examples show three typical point patterns.
 
 ### Positive Correlation
 
@@ -92,9 +92,9 @@ If the points tend to fall from the top left to the bottom right, it means there
   ]}
 />
 
-### No Correlation with Two Groups
+### No Clear Linear Correlation with Two Groups
 
-If the points are scattered randomly without a clear pattern, it means there is **no correlation** or the correlation is very weak. We can also display different groups in one diagram.
+If the points are scattered without a clear straight-line pattern, the linear correlation is weak or absent. We can also display different groups in one diagram.
 
 <ScatterDiagram
   title={
@@ -102,7 +102,11 @@ If the points are scattered randomly without a clear pattern, it means there is 
       Relationship Between Height (<InlineMath math="\text{cm}" />) and <InlineMath math="100 \text{ m}" /> Run Time (seconds) for Two Schools
     </>
   }
-  description="Example of no correlation between height and running speed, with data from two different schools."
+  description={
+    <>
+      No clear linear correlation appears between height and <InlineMath math="100 \text{ m}" /> sprint time in these two-school data.
+    </>
+  }
   xAxisLabel="Height (cm)"
   yAxisLabel="Sprint Run Time (seconds)"
   xAxisDomain="min-max"
@@ -136,4 +140,4 @@ If the points are scattered randomly without a clear pattern, it means there is 
   ]}
 />
 
-So, by looking at the distribution pattern of the points on a scatter diagram, we can get an initial idea of how two variables are related, even for different groups of data.
+So, by looking at the distribution pattern of the points on a scatter diagram, we can get an initial idea of how two variables are related, even for different groups of data. The diagram is a starting point: it shows a pattern, but it does not by itself prove that one variable causes the other.

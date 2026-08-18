@@ -2,11 +2,14 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   id: [
-    { label: "Sosok yang melestraikan batik Lasem", value: true },
-    { label: "Proses pembuatan batik Lasem", value: false },
-    { label: "Keberadaan batik Lasem", value: false },
-    { label: "Museum sejarah terkait daerah Lasem", value: false },
-    { label: "Filosofi hadirnya batik Lasem", value: false },
+    {
+      label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
+      value: true,
+    },
+    { label: "Tahapan pembuatan motif batik Lasem", value: false },
+    { label: "Biografi seluruh pedagang batik dalam arsip", value: false },
+    { label: "Sejarah pendirian setiap museum di Rembang", value: false },
+    { label: "Perbandingan harga batik lama dan masa kini", value: false },
   ],
 };
 

@@ -3,12 +3,13 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "the increasing trend of exercise during the corona pandemic.",
+      label:
+        "the increase in exercise participation during the COVID-19 pandemic.",
       value: false,
     },
     {
       label:
-        "the increasing issue of health impacts from various sports during the pandemic.",
+        "the need to distinguish evidence-based exercise guidance from myths during the pandemic.",
       value: true,
     },
     {
@@ -26,12 +27,12 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "peningkatan tren olahraga saat masa pandemi corona.",
+      label: "peningkatan partisipasi olahraga selama pandemi COVID-19.",
       value: false,
     },
     {
       label:
-        "meningkatnya isu dampak kesehatan dari ragam olahraga pada masa pandemi.",
+        "perlunya membedakan panduan olahraga berbasis bukti dari mitos selama pandemi.",
       value: true,
     },
     {

@@ -3,27 +3,23 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   id: [
     {
-      label:
-        "Informasi terkait kondisi saat Norma Jeane menjadi anak angkat tidak diinformasikan",
+      label: "Nama ibu kandungnya",
       value: false,
     },
     {
-      label: "Kisah pernikahan Norma Jeane tidak diinformasikan",
+      label: "Tempat kelahirannya",
       value: false,
     },
     {
-      label:
-        "Tidak disampaikan kapan Norma Jeane mulai tinggal bersama bibinya",
+      label: "Tahun kelahirannya",
       value: false,
     },
     {
-      label:
-        "Informasi terkait orang tua Norma Jeane tidak diinformasikan secara jelas",
+      label: "Identitas ayah biologisnya",
       value: true,
     },
     {
-      label:
-        "Tidak diinformasikan secara jelas kenapa Norma Jeane masuk ke panti asuhan",
+      label: "Nama keluarga asuhnya",
       value: false,
     },
   ],

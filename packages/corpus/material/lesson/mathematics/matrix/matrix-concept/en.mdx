@@ -1,47 +1,44 @@
 export const metadata = {
-  title: "Matrix Concept",
-  description: "Understand matrix fundamentals from scratch. Learn rows, columns, elements, and matrix order with real-world examples and clear visual explanations.",
+  title: "Understanding Matrices",
+  description: "Understand matrices through rows, columns, elements, dimensions, and two familiar data-table examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-06-05",
   subject: "Matrix",
 };
 
-## What is a Matrix?
+## What Is a Matrix?
 
-Have you ever seen a list of test scores arranged in a table? Or perhaps a team duty roster? Unconsciously, we often encounter data presented in rows and columns. Well, this arrangement of numbers or information in rows and columns is the basis of the matrix concept.
+Tables often organize information into rows and columns. A class score sheet, for example, can place one student in each row and one subject in each column. A **matrix** uses the same rectangular arrangement to organize numbers for mathematical work.
 
-A matrix is a collection of numbers specially arranged in rows and
-columns to form a rectangular array. The numbers that make up
-this matrix are called **matrix elements**. Matrices are usually written
-within parentheses <InlineMath math="()" /> or square brackets <InlineMath math="[]" />.
+The numbers inside a matrix are its **elements** or **entries**. We usually enclose them in parentheses <InlineMath math="()" /> or square brackets <InlineMath math="[]" />. Their position matters: changing the row or column changes the meaning of an entry.
 
-For example, consider the Math and English test score data for the following three students:
+Consider the Mathematics and English scores of three students:
 
-| Student Name | Math Score | English Score |
-| :----------- | :--------- | :------------ |
-| Aisyah       | <InlineMath math="80" /> | <InlineMath math="75" /> |
-| Alex         | <InlineMath math="70" /> | <InlineMath math="95" /> |
-| Wayan        | <InlineMath math="95" /> | <InlineMath math="75" /> |
+| Student | Mathematics | English |
+| :------ | :---------- | :------ |
+| Aisyah  | <InlineMath math="80" /> | <InlineMath math="75" /> |
+| Alex    | <InlineMath math="70" /> | <InlineMath math="95" /> |
+| Wayan   | <InlineMath math="95" /> | <InlineMath math="75" /> |
 
-The data above can be presented in matrix form. If we only take the numbers, the matrix will look like this:
+Keeping only the numerical entries gives the matrix:
 
 <BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
 
-Or it can also be written with parentheses:
+The same matrix can also be written with parentheses:
 
 <BlockMath math="A = \begin{pmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{pmatrix}" />
 
-In this example, the numbers <InlineMath math="80, 75, 70, 95, 95, 75" /> are the elements of matrix <InlineMath math="A" />.
+Thus, <InlineMath math="80, 75, 70, 95, 95, 75" /> are the elements of matrix <InlineMath math="A" />.
 
-## Rows, Columns, and Matrix Elements
+## Rows, Columns, and Elements
 
-In a matrix, there are several important terms you need to know:
+Three terms describe a matrix's structure:
 
-1.  **Row**: An arrangement of elements horizontally.
-2.  **Column**: An arrangement of elements vertically.
-3.  **Matrix Element**: Each number or entry within the matrix.
+1.  A **row** is a horizontal sequence of elements.
+2.  A **column** is a vertical sequence of elements.
+3.  An **element** is one entry at a particular row and column.
 
-Let's look back at matrix <InlineMath math="A" /> from the previous example:
+For matrix <InlineMath math="A" />:
 
 <BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
 
@@ -52,64 +49,64 @@ Let's look back at matrix <InlineMath math="A" /> from the previous example:
 - **Column** <InlineMath math="1" /> is <InlineMath math="\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}" />
 - **Column** <InlineMath math="2" /> is <InlineMath math="\begin{bmatrix} 75 \\ 95 \\ 75 \end{bmatrix}" />
 
-Matrix elements are usually denoted by a lowercase letter corresponding to the matrix name, with two indices, for example <InlineMath math="a_{ij}" />. The first index (<InlineMath math="i" />) indicates the row position, and the second index (<InlineMath math="j" />) indicates the column position.
+An element of matrix <InlineMath math="A" /> is written <InlineMath math="a_{ij}" />. The first index <InlineMath math="i" /> gives the row, and the second index <InlineMath math="j" /> gives the column.
 
-So, for matrix <InlineMath math="A" /> above:
+<BlockMath math="A=[a_{ij}]_{m\times n},\qquad 1\le i\le m,\qquad 1\le j\le n" />
 
-- <InlineMath math="a_{11}" /> is the element in the <InlineMath math="1" />st row, <InlineMath math="1" />st column, which is <InlineMath math="80" />.
-- <InlineMath math="a_{12}" /> is the element in the <InlineMath math="1" />st row, <InlineMath math="2" />nd column, which is <InlineMath math="75" />.
-- <InlineMath math="a_{21}" /> is the element in the <InlineMath math="2" />nd row, <InlineMath math="1" />st column, which is <InlineMath math="70" />.
-- <InlineMath math="a_{22}" /> is the element in the <InlineMath math="2" />nd row, <InlineMath math="2" />nd column, which is <InlineMath math="95" />.
-- <InlineMath math="a_{31}" /> is the element in the <InlineMath math="3" />rd row, <InlineMath math="1" />st column, which is <InlineMath math="95" />.
-- <InlineMath math="a_{32}" /> is the element in the <InlineMath math="3" />rd row, <InlineMath math="2" />nd column, which is <InlineMath math="75" />.
+This notation also records the valid index range: a row index cannot exceed <InlineMath math="m" />, and a column index cannot exceed <InlineMath math="n" />.
 
-## Order of a Matrix
+For the matrix above:
 
-Every matrix has a size called its **order**. The order of a matrix is determined by the number of rows and columns it has. If a matrix has <InlineMath math="m" /> rows and <InlineMath math="n" /> columns, then the matrix is said to be of order <InlineMath math="m \times n" /> (read as "m by n").
+- <InlineMath math="a_{11}" /> is in row <InlineMath math="1" />, column <InlineMath math="1" />, so <InlineMath math="a_{11}=80" />.
+- <InlineMath math="a_{12}" /> is in row <InlineMath math="1" />, column <InlineMath math="2" />, so <InlineMath math="a_{12}=75" />.
+- <InlineMath math="a_{21}" /> is in row <InlineMath math="2" />, column <InlineMath math="1" />, so <InlineMath math="a_{21}=70" />.
+- <InlineMath math="a_{22}" /> is in row <InlineMath math="2" />, column <InlineMath math="2" />, so <InlineMath math="a_{22}=95" />.
+- <InlineMath math="a_{31}" /> is in row <InlineMath math="3" />, column <InlineMath math="1" />, so <InlineMath math="a_{31}=95" />.
+- <InlineMath math="a_{32}" /> is in row <InlineMath math="3" />, column <InlineMath math="2" />, so <InlineMath math="a_{32}=75" />.
 
-Consider our matrix <InlineMath math="A" /> again:
+## Dimensions of a Matrix
+
+The **dimensions** of a matrix state its number of rows first and columns second. A matrix with <InlineMath math="m" /> rows and <InlineMath math="n" /> columns has dimensions <InlineMath math="m \times n" />, read "<InlineMath math="m" /> by <InlineMath math="n" />."
+
+For matrix <InlineMath math="A" />:
 
 <BlockMath math="A = \underbrace{\begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}}_{\text{2 columns}} \hspace{0.1em} \left. \vphantom{\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}} \right\} \hspace{0.1em} \text{3 rows}" />
 
-Matrix <InlineMath math="A" /> has <InlineMath math="3" /> rows (indicated by the curly brace on the right) and <InlineMath math="2" /> columns (indicated by the curly brace below). So, the order of matrix <InlineMath math="A" /> is <InlineMath math="3 \times 2" />. We can write it as <InlineMath math="A_{3 \times 2}" />.
+Matrix <InlineMath math="A" /> has <InlineMath math="3" /> rows and <InlineMath math="2" /> columns, so its dimensions are <InlineMath math="3 \times 2" />. We may write this as <InlineMath math="A_{3 \times 2}" />.
 
-**Another Example:**
+**Another example:**
 
-Suppose we have student attendance data for one semester:
+Suppose a semester attendance table records excused, sick, and unexcused absences:
 
-| Student Name | Permitted | Sick | Unexcused |
-| :----------- | :-------- | :--- | :-------- |
-| Aisyah       | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
-| Alex         | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
-| Wayan        | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Student | Excused | Sick | Unexcused |
+| :------ | :------ | :--- | :-------- |
+| Aisyah  | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Alex    | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Wayan   | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
 
-If we convert this into matrix <InlineMath math="B" />:
+Its numerical entries form matrix <InlineMath math="B" />:
 
 <BlockMath math="B = \underbrace{\begin{bmatrix} 2 & 1 & 0 \\ 3 & 1 & 1 \\ 1 & 2 & 1 \end{bmatrix}}_{\text{3 columns}} \hspace{0.1em} \left. \vphantom{\begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}} \right\} \hspace{0.1em} \text{3 rows}" />
 
-Matrix <InlineMath math="B" /> has <InlineMath math="3" /> rows (indicated by the curly brace on the right) and <InlineMath math="3" /> columns (indicated by the curly brace below). Thus, the order of matrix <InlineMath math="B" /> is <InlineMath math="3 \times 3" />. We can write it as <InlineMath math="B_{3 \times 3}" />.
+Matrix <InlineMath math="B" /> has <InlineMath math="3" /> rows and <InlineMath math="3" /> columns. Its dimensions are therefore <InlineMath math="3 \times 3" />, written <InlineMath math="B_{3 \times 3}" />.
 
-Elements of matrix <InlineMath math="B" />, for example:
+For example:
 
-- <InlineMath math="b_{11} = 2" /> (element row <InlineMath math="1" />, column <InlineMath math="1" />)
-- <InlineMath math="b_{23} = 1" /> (element row <InlineMath math="2" />, column <InlineMath math="3" />)
-- <InlineMath math="b_{32} = 2" /> (element row <InlineMath math="3" />, column <InlineMath math="2" />)
+- <InlineMath math="b_{11} = 2" /> is the element in row <InlineMath math="1" />, column <InlineMath math="1" />.
+- <InlineMath math="b_{23} = 1" /> is the element in row <InlineMath math="2" />, column <InlineMath math="3" />.
+- <InlineMath math="b_{32} = 2" /> is the element in row <InlineMath math="3" />, column <InlineMath math="2" />.
 
-## General Notation of a Matrix
+## General Matrix Notation
 
-In general, a matrix <InlineMath math="A" /> with `m` rows and `n` columns can be written as follows:
+A matrix <InlineMath math="A" /> with <InlineMath math="m" /> rows and <InlineMath math="n" /> columns can be written as:
 
 <BlockMath math="A_{m \times n} = \underbrace{\begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{bmatrix}}_{\text{n columns}} \hspace{0.1em} \left. \vphantom{\begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}} \right\} \hspace{0.1em} \text{m rows}" />
 
-Key:
+The notation tells us:
 
-- <InlineMath math="A_{m \times n}" /> : Matrix <InlineMath math="A" /> of order <InlineMath math="m \times n" />
-  .
-- <InlineMath math="m" /> : Number of rows.
-- <InlineMath math="n" /> : Number of columns.
-- <InlineMath math="a_{ij}" /> : Element of matrix <InlineMath math="A" /> in the
-  <InlineMath math="i" />
-  -th row and <InlineMath math="j" />
-  -th column.
+- <InlineMath math="A_{m \times n}" /> is matrix <InlineMath math="A" /> with dimensions <InlineMath math="m \times n" />.
+- <InlineMath math="m" /> is the number of rows.
+- <InlineMath math="n" /> is the number of columns.
+- <InlineMath math="a_{ij}" /> is the element in row <InlineMath math="i" /> and column <InlineMath math="j" />.
 
-By understanding this basic concept, you are ready to learn more about the types of matrices and the operations that can be performed on them. Matrices are very useful tools in various fields, you know, from mathematics, physics, computer science, to economics!
+This row-and-column structure is the foundation for matrix types, operations, transformations, and applications in mathematics, science, computing, and economics.

@@ -3,19 +3,27 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "To describe the effectiveness of yoga for our health.",
+      label: "To prove that yoga cures every chronic illness.",
       value: false,
     },
-    { label: "To reveal that yoga can help us to sleep better.", value: false },
     {
-      label: "To inform the advantages of yoga mentally and physically.",
+      label: "To persuade readers to replace medical care with yoga.",
+      value: false,
+    },
+    {
+      label:
+        "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
       value: true,
     },
     {
-      label: "To determine the positive effects of yoga mentally.",
+      label:
+        "To compare the religious traditions behind different yoga styles.",
       value: false,
     },
-    { label: "To explain about the weaknesses of doing yoga.", value: false },
+    {
+      label: "To teach a complete sequence of advanced yoga poses.",
+      value: false,
+    },
   ],
 };
 

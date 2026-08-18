@@ -3,55 +3,54 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "If the government is not strict in enforcing herbal medicine laws, the public may become victims of the circulation of dangerous herbal medicines",
+      label: "Every authorized herbal product is proven to cure disease.",
       value: false,
     },
     {
       label:
-        "The distribution of herbal medicines in Indonesia is regulated by Law Number $$36$$ Article $$2$$ Number $$9$$",
+        "A marketing authorization guarantees that a herbal product is suitable for every person and condition.",
       value: false,
     },
     {
       label:
-        "Herbal medicines must be registered with the Ministry of Health before being distributed to the public",
+        "Consumers no longer need to check the label once a herbal product has a marketing authorization.",
       value: false,
     },
     {
       label:
-        "Herbal medicines have benefits in the form of guaranteed efficacy, safety, and quality",
+        "Government supervision ends as soon as a herbal product receives a marketing authorization.",
       value: false,
     },
     {
       label:
-        "The distribution and consumption of herbal medicines are inseparable from the role of the government",
+        "The circulation and use of herbal products depend on regulatory evaluation and continuing supervision.",
       value: true,
     },
   ],
   id: [
     {
       label:
-        "Apabila pemerintah tidak tegas menegakkan hukum obat herbal, masyarakat dapat menjadi korban peredaran obat herbal berbahaya",
+        "Setiap produk herbal berizin edar terbukti dapat menyembuhkan penyakit.",
       value: false,
     },
     {
       label:
-        "Penyebaran obat herbal di Indonesia diatur Undang-undang Nomor $$36$$ Pasal $$2$$ angka $$9$$",
+        "Izin edar menjamin bahwa suatu produk herbal cocok untuk setiap orang dan setiap kondisi.",
       value: false,
     },
     {
       label:
-        "Obat herbal harus terdaftar di Kementrian Kesehatan sebelum didistribusikan ke masyarakat",
+        "Konsumen tidak perlu lagi memeriksa label setelah suatu produk herbal memperoleh izin edar.",
       value: false,
     },
     {
       label:
-        "Obat herbal memiliki manfaat yang berupa khasiat, keamanan, mutu yang terjamin",
+        "Pengawasan pemerintah berakhir begitu suatu produk herbal memperoleh izin edar.",
       value: false,
     },
     {
       label:
-        "Pendistribusian dan pengonsumsian obat obat herbal tidak terlepas dari peran pemerintah",
+        "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
       value: true,
     },
   ],

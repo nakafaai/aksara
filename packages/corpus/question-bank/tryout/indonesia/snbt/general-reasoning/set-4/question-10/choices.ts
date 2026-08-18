@@ -2,46 +2,24 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Dito works on conditional empathy questions", value: false },
+    { label: "Dito completed the prerequisite exercises", value: false },
+    { label: "Dito did not take a mock test", value: false },
+    { label: "Dito receives no evaluation report", value: false },
+    { label: "Dito receives an evaluation report", value: true },
     {
       label:
-        "Dito works on conditional empathy questions or gets learning achievement evaluation results",
-      value: false,
-    },
-    {
-      label:
-        "Dito does not get learning achievement evaluation results even though Dito works on conditional empathy questions",
-      value: false,
-    },
-    {
-      label: "Dito gets Learning Achievement Evaluation (EPB) results",
-      value: true,
-    },
-    {
-      label:
-        "Dito gets Learning Achievement Evaluation (EPB) results and works on conditional empathy questions",
+        "Dito completed the prerequisite exercises and receives an evaluation report",
       value: false,
     },
   ],
   id: [
-    { label: "Dito mengerjakan soal empati bersyarat", value: false },
+    { label: "Dito telah menyelesaikan latihan prasyarat", value: false },
+    { label: "Dito tidak mengikuti tes simulasi", value: false },
+    { label: "Dito tidak menerima laporan evaluasi", value: false },
+    { label: "Dito menerima laporan evaluasi", value: true },
     {
       label:
-        "Dito mengerjakan soal empati atau mendapatkan hasil evaluasi prestasi belajar",
-      value: false,
-    },
-    {
-      label:
-        "Dito tidak mendapatkan hasil evaluasi belajar meskipun Dito mengerjakan soal empati bersyarat",
-      value: false,
-    },
-    {
-      label: "Dito mendapatkan hasil Evaluasi Prestasi Belajar (EPB)",
-      value: true,
-    },
-    {
-      label:
-        "Dito mendapatkan hasil Evaluasi Prestasi Belajar (EPB) dan mengerjakan soal empati bersyarat",
+        "Dito telah menyelesaikan latihan prasyarat dan menerima laporan evaluasi",
       value: false,
     },
   ],

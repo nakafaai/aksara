@@ -4,28 +4,24 @@ export const metadata = {
   date: "2026-01-26",
 };
 
-Based on the passage, we can construct a chain of cause and effect (implication) from the events described. Let's define the following statements:
+Represent the four statements as follows:
 
-- <InlineMath math="P" />: Not brushing teeth regularly every day.
-- <InlineMath math="Q" />: Food debris remains in the mouth.
-- <InlineMath math="R" />: Bacteria grow on the debris.
-- <InlineMath math="S" />: Releasing unpleasant-smelling compounds causing bad breath.
-- <InlineMath math="T" />: Forming dental plaque.
+- <InlineMath math="P" />: The scheduled cleaning is skipped.
+- <InlineMath math="Q" />: Residue remains on the sensor.
+- <InlineMath math="R" />: The sensor develops a fault.
+- <InlineMath math="S" />: The warning light turns on.
 
-The logical flow in the text is sequential: <InlineMath math="P \rightarrow Q \rightarrow R \rightarrow S \rightarrow T" />.
-
-Using the principle of Hypothetical Syllogism, we can deduce a direct relationship between the initial cause and the final effect:
+The protocol gives this implication chain:
 
 <MathContainer>
-  <BlockMath math="P \rightarrow T" />
+  <BlockMath math="P \rightarrow Q \rightarrow R \rightarrow S" />
+  <BlockMath math="P \rightarrow S" />
 </MathContainer>
 
-This means, "If one does not brush teeth regularly every day (<InlineMath math="P" />), then dental plaque will form (<InlineMath math="T" />)."
-
-The question asks for the conclusion if **dental plaque is not formed** (<InlineMath math="\sim T" />). We can use the **Modus Tollens** rule:
+Today the warning light did not turn on, so <InlineMath math="\neg S" /> is true. Applying modus tollens to <InlineMath math="P \rightarrow S" /> gives:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &P \rightarrow T \\ &\sim T \\ \hline &\therefore \sim P \end{aligned}" />
+  <BlockMath math="\begin{aligned} P &\rightarrow S \\ \neg S &\\ \hline \therefore\ \neg P &\end{aligned}" />
 </MathContainer>
 
-The conclusion is <InlineMath math="\sim P" /> (the negation of <InlineMath math="P" />). Since <InlineMath math="P" /> is "Not brushing teeth regularly every day", then <InlineMath math="\sim P" /> is **"Brushing teeth regularly every day"**.
+Therefore, the scheduled daily cleaning was **not** skipped. This is the second choice.

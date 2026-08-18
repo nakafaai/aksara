@@ -2,18 +2,18 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct.", value: false },
-    { label: "If $$(1)$$ and $$(3)$$ are correct.", value: true },
-    { label: "If $$(2)$$ and $$(4)$$ are correct.", value: false },
-    { label: "If only $$(4)$$ is correct.", value: false },
-    { label: "If all are correct.", value: false },
+    { label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct.", value: false },
+    { label: "$$(1)$$ and $$(3)$$ are correct.", value: true },
+    { label: "$$(2)$$ and $$(4)$$ are correct.", value: false },
+    { label: "Only $$(4)$$ is correct.", value: false },
+    { label: "All statements are correct.", value: false },
   ],
   id: [
-    { label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul.", value: false },
-    { label: "Jika $$(1)$$ dan $$(3)$$ yang betul.", value: true },
-    { label: "Jika $$(2)$$ dan $$(4)$$ yang betul.", value: false },
-    { label: "Jika hanya $$(4)$$ yang betul.", value: false },
-    { label: "Jika semuanya betul.", value: false },
+    { label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar.", value: false },
+    { label: "$$(1)$$ dan $$(3)$$ benar.", value: true },
+    { label: "$$(2)$$ dan $$(4)$$ benar.", value: false },
+    { label: "Hanya $$(4)$$ yang benar.", value: false },
+    { label: "Semua pernyataan benar.", value: false },
   ],
 };
 

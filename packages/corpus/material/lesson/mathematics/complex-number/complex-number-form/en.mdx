@@ -24,7 +24,7 @@ We can also view the complex number <InlineMath math="z = x + iy" /> as an order
 
 ### Visualization on the Complex Plane
 
-Let's try plotting some complex numbers on the complex plane. Each number <InlineMath math="z = x + iy" /> is plotted as the point <InlineMath math="(x, y)" /> and is usually represented as a vector (arrow) from the origin <InlineMath math="(0, 0)" /> to that point.
+Each complex number <InlineMath math="z = x + iy" /> can be placed at the point <InlineMath math="(x, y)" /> in the complex plane. The position vector from the origin <InlineMath math="(0, 0)" /> to that point represents the same number geometrically.
 
 <LineEquation
   title="Complex Numbers on the Complex Plane"
@@ -74,6 +74,8 @@ Besides Cartesian, there's another way to represent complex numbers: the **polar
 1.  **Modulus (<InlineMath math="r" />):** The distance from the origin <InlineMath math="(0, 0)" /> to the point <InlineMath math="(x, y)" /> on the complex plane. Its value is always non-negative.
 2.  **Argument (<InlineMath math="\theta" />):** The angle formed by the line from the origin to the point <InlineMath math="(x, y)" /> with the positive real axis. This angle is usually measured in radians or degrees.
 
+For <InlineMath math="z=0" />, the modulus is <InlineMath math="0" />, but no direction is defined. Therefore, zero has no argument and must be handled separately when using polar or exponential form.
+
 The relationship between Cartesian form (<InlineMath math="x, y" />) and Polar form (<InlineMath math="r, \theta" />) can be seen from basic trigonometry:
 
 <MathContainer>
@@ -85,7 +87,7 @@ From this, we can find <InlineMath math="r" /> and <InlineMath math="\theta" /> 
 
 <MathContainer>
   <BlockMath math="r = |z| = \sqrt{x^2 + y^2}" />
-  <BlockMath math="\tan \theta = \frac{y}{x}" />
+  <BlockMath math="\tan \theta = \frac{y}{x} \quad (x \neq 0)" />
 </MathContainer>
 
 When finding <InlineMath math="\theta" /> from <InlineMath math="\tan \theta" />, pay attention to the quadrant where the point <InlineMath math="(x, y)" /> lies to determine the correct angle.
@@ -129,7 +131,7 @@ Express the following complex numbers in polar form:
 1.  <InlineMath math="z = 1 + i\sqrt{3}" />
 2.  <InlineMath math="z = -i" />
 
-**Answer Key:**
+**Worked solutions:**
 
 1.  For <InlineMath math="z = 1 + i\sqrt{3}" />:
 
@@ -156,28 +158,28 @@ Express the following complex numbers in polar form:
       <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
 
     - Determine the argument <InlineMath math="\theta" />:
-      The point <InlineMath math="(0, -1)" /> lies on the negative imaginary axis. The angle is <InlineMath math="\theta = 270^\circ" /> or it can also be written as <InlineMath math="\theta = -90^\circ" />.
-    - Polar Form (choose one angle):
-
-      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
-
-      or
+      The point <InlineMath math="(0, -1)" /> lies on the negative imaginary axis, so its Principal Argument is <InlineMath math="\theta = -90^\circ" />.
+    - Polar form using the Principal Argument:
 
       <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
 
+      The coterminal angle <InlineMath math="270^\circ" /> gives the equivalent form
+
+      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
 ## Exponential Form
 
-There's one more important form: the **exponential form**. This form comes from the magical **Euler's Formula**:
+There is one more important form: the **exponential form**. It follows from **Euler's formula**:
 
 <BlockMath math="e^{i\theta} = \cos \theta + i \sin \theta" />
 
-Here, <InlineMath math="e \approx 2.71828..." /> is Euler's number (the base of the natural logarithm).
+Here, <InlineMath math="e \approx 2.71828\ldots" /> is Euler's number, the base of the natural logarithm.
 
 If we substitute Euler's Formula into the polar form <InlineMath math="z = r(\cos \theta + i \sin \theta)" />, we get the **exponential form**:
 
 <BlockMath math="z = r e^{i\theta}" />
 
-This form is very useful for multiplying and dividing complex numbers.
+For nonzero factors, this form turns multiplication into multiplying moduli and adding arguments; division uses the corresponding quotient of moduli and difference of arguments.
 
 ### Example: Conversion to Exponential Form
 
@@ -213,7 +215,7 @@ Express the following complex numbers in exponential form (use radian angles):
 1.  <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
 2.  <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />
 
-**Answer Key:**
+**Worked solutions:**
 
 1.  For <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />:
     - Modulus <InlineMath math="r = 2" />.
@@ -235,9 +237,19 @@ Express the following complex numbers in exponential form (use radian angles):
 
       <BlockMath math="z = e^{i \pi/12}" />
 
+## Choosing a Suitable Form
+
+Cartesian form is usually the clearest choice for addition and subtraction. Polar or exponential form makes multiplication, division, powers, and roots easier because moduli and arguments can be combined directly.
+
+To return from polar form to Cartesian form, evaluate the sine and cosine. For example:
+
+<BlockMath math="w=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)=-2\sqrt{3}+2i" />
+
+Changing form is therefore a problem-solving choice, not a separate operation on the number.
+
 ## Equality of Two Complex Numbers
 
-Two complex numbers <InlineMath math="z_1 = x_1 + iy_1" /> and <InlineMath math="z_2 = x_2 + iy_2" /> are said to be **equal** if and only if their real parts are equal AND their imaginary parts are also equal.
+Two complex numbers <InlineMath math="z_1 = x_1 + iy_1" /> and <InlineMath math="z_2 = x_2 + iy_2" /> are **equal** if and only if their real parts are equal and their imaginary parts are equal.
 
 <BlockMath math="z_1 = z_2 \quad \iff \quad x_1 = x_2 \text{ and} y_1 = y_2" />
 
@@ -259,7 +271,7 @@ Determine if the following pairs of complex numbers are equal or different:
 2.  <InlineMath math="z_1 = i" /> and <InlineMath math="z_2 = 1 - i" />
 3.  <InlineMath math="z_1 = -1 + i" /> and <InlineMath math="z_2 = i + 1" />
 
-**Answer Key:**
+**Worked solutions:**
 
 1.  <InlineMath math="z_1 = 4 - (-2i) = 4 + 2i" />.
 
@@ -280,17 +292,17 @@ Determine if the following pairs of complex numbers are equal or different:
 ## Exercises
 
 1.  **True or False.** Every real number is a complex number.
-2.  **True or False.** Complex numbers have <InlineMath math="3" /> forms: Cartesian, exponential, and logarithmic.
+2.  **True or False.** The three standard forms used here are Cartesian, exponential, and logarithmic.
 3.  **True or False.** If the complex number <InlineMath math="z = 1 - 3i" /> is plotted on the complex plane, it lies in quadrant III.
 4.  Express the complex number <InlineMath math="2+2i" /> in polar and exponential forms.
-5.  Find the numbers <InlineMath math="x" /> and <InlineMath math="y" /> such that <InlineMath math="z_1 = x + 3i" /> and <InlineMath math="z_2 = 3 - yi" /> satisfy <InlineMath math="z_1 = z_2" />!
-6.  Find the solutions to the quadratic equation <InlineMath math="x^2 - 2x + 6 = 0" />!
-7.  Find the quadratic equation whose solutions are <InlineMath math="x_1 = 1 + i" /> and <InlineMath math="x_2 = 1 - i" />!
+5.  Find the numbers <InlineMath math="x" /> and <InlineMath math="y" /> such that <InlineMath math="z_1 = x + 3i" /> and <InlineMath math="z_2 = 3 - yi" /> satisfy <InlineMath math="z_1 = z_2" />.
+6.  Find the solutions to the quadratic equation <InlineMath math="x^2 - 2x + 6 = 0" />.
+7.  Find the quadratic equation whose solutions are <InlineMath math="x_1 = 1 + i" /> and <InlineMath math="x_2 = 1 - i" />.
 
-### Answer Key
+### Worked Solutions
 
 1.  **True.** A real number <InlineMath math="a" /> can be written as <InlineMath math="a + 0i" />.
-2.  **False.** The common forms of complex numbers are Cartesian, Polar, and Exponential. The complex logarithm form exists but is not typically considered one of the three main forms studied at this level.
+2.  **False.** The three standard forms used here are Cartesian, polar, and exponential. A logarithm is an operation on a complex number, not a replacement for the omitted polar form in this list.
 3.  **False.** <InlineMath math="z = 1 - 3i" /> has a positive real part (<InlineMath math="x=1" />) and a negative imaginary part (<InlineMath math="y=-3" />). The point <InlineMath math="(1, -3)" /> lies in **Quadrant IV**.
 4.  For <InlineMath math="z = 2 + 2i" />:
     - Calculate the modulus <InlineMath math="r" />:
@@ -325,7 +337,7 @@ Determine if the following pairs of complex numbers are equal or different:
       <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
       <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
       <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
-      <BlockMath math="x = \frac{2 \pm \sqrt{20}\sqrt{-1}}{2}" />
+      <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
       <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
       <BlockMath math="x = 1 \pm i\sqrt{5}" />
     </MathContainer>

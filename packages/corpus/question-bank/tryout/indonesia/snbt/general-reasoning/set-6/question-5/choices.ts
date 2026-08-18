@@ -3,17 +3,15 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "Interest in basketball is increasing every year",
+      label: "Basketball participation increases at every grade level",
       value: false,
     },
     {
-      label:
-        "Dance has the best prospects because interest in it is always increasing",
+      label: "Dance has fewer participants than singing in every grade",
       value: false,
     },
     {
-      label:
-        "Painting has the best prospects because interest in it is always increasing",
+      label: "Painting participation increases at every grade level",
       value: false,
     },
     {
@@ -28,17 +26,16 @@ const choices: QuestionChoices = {
   ],
   id: [
     {
-      label: "Peminat bola basket semakin meningkat setiap tahunnya",
+      label: "Jumlah peminat basket meningkat pada setiap jenjang kelas",
       value: false,
     },
     {
       label:
-        "Seni tari memiliki prospek paling baik karena peminatnya selalu meningkat",
+        "Peminat seni tari lebih sedikit daripada menyanyi di setiap kelas",
       value: false,
     },
     {
-      label:
-        "Seni lukis memiliki prospek paling baik karena peminatnya selalu meningkat",
+      label: "Jumlah peminat melukis meningkat pada setiap jenjang kelas",
       value: false,
     },
     {

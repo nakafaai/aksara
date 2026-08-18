@@ -1,85 +1,98 @@
 export const metadata = {
-    title: "Kemampuan Identifikasi dan Pemeringkatan",
-    description: "Pelajari identifikasi matriks melalui dekomposisi nilai singular, keunikan parameter, defisiensi peringkat, dan solusi sistem.",
+    title: "Identifiabilitas dan Peringkat Matriks",
+    description: "Hubungkan identifiabilitas parameter dengan peringkat matriks, nilai singular, kondisi numerik, dan faktorisasi penyingkap peringkat.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-15",
     subject: "Metode Linear AI",
 };
 
-## Definisi Kemampuan Identifikasi
+## Identifiabilitas dalam Model Linear
 
-Kemampuan identifikasi menentukan apakah semua parameter dalam suatu model dapat ditentukan secara unik dari data yang tersedia. Bayangkan seperti seorang detektif yang mencoba mengidentifikasi tersangka dari petunjuk yang ada. Jika petunjuknya cukup dan tidak saling bertentangan, identifikasi dapat dilakukan dengan pasti.
+Identifiabilitas menanyakan apakah data yang tersedia menentukan parameter model secara unik. Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, dan <InlineMath math="m \geq n" />. Masalah kuadrat terkecil linear adalah
 
-Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" />, vektor <InlineMath math="b \in \mathbb{R}^m" />, dengan <InlineMath math="m \geq n" />, masalah kuadrat terkecil
+<BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
-<BlockMath math="\min_x \|Ax - b\|_2^2" />
+dengan persamaan normal
 
-bertujuan mengestimasi parameter <InlineMath math="x \in \mathbb{R}^n" /> melalui sistem persamaan normal yang bersesuaian
+<BlockMath math="A^T A x = A^T b" />
 
-<BlockMath math="A^T x = A^T b" />
+Vektor parameter <InlineMath math="x" /> dapat diidentifikasi secara unik tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh:
 
-Ketika sistem ini memiliki solusi yang unik, semua parameter dapat diidentifikasi.
+<MathContainer>
+<BlockMath math="\operatorname{rank}(A)=n" />
+<BlockMath math="\ker(A)=\{0\}" />
+</MathContainer>
 
-## Kondisi Identifikasi Penuh
+Kedua pernyataan ini ekuivalen. Jika terdapat <InlineMath math="z \in \ker(A)" /> yang tidak nol, maka
 
-Semua parameter dapat diidentifikasi dengan tepat ketika matriks <InlineMath math="A" /> memiliki peringkat penuh <InlineMath math="n" />.
+<BlockMath math="A(x+z)=Ax" />
 
-Secara matematis, kondisi ini dapat ditulis sebagai
+sehingga data tidak dapat membedakan <InlineMath math="x" /> dan <InlineMath math="x+z" />. Jika kernelnya trivial, <InlineMath math="A^TA" /> bersifat definit positif dan peminimum kuadrat terkecilnya unik.
 
-<BlockMath math="\text{Peringkat}(A) = \min(m, n) = n" />
+## Keunikan Tidak Sama dengan Kestabilan
 
-Kondisi peringkat penuh seperti memastikan bahwa setiap parameter memberikan informasi yang benar-benar baru dan tidak tumpang tindih. Mirip dengan kasus detektif yang memiliki cukup petunjuk independen untuk mengidentifikasi setiap tersangka tanpa kebingungan. Setiap parameter memberikan informasi yang tidak dapat diperoleh dari parameter lainnya, sehingga estimasi menjadi unik dan stabil.
+Peringkat kolom penuh menjamin solusi eksak yang unik, tetapi belum menjamin keandalan numerik. Nilai singular tak nol yang sangat kecil dapat membuat estimasi sangat sensitif terhadap perubahan kecil pada data.
 
-## Penentuan Peringkat Matriks
+| Pertanyaan | Diagnostik | Makna |
+| --- | --- | --- |
+| Apakah parameter dapat diidentifikasi secara struktural? | <InlineMath math="\operatorname{rank}(A)=n" /> | Tidak ada dua vektor parameter yang menghasilkan prediksi sama. |
+| Apakah estimasi ditentukan dengan baik secara numerik? | <InlineMath math="\sigma_n" /> tidak sangat kecil relatif terhadap <InlineMath math="\sigma_1" /> | Gangguan kecil tidak menimbulkan perubahan parameter yang besar. |
+| Seberapa sensitif masalahnya? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Bilangan kondisi besar menandakan sensitivitas tinggi. |
 
-Peringkat matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dapat diperoleh selama proses komputasi dekomposisi QR atau dekomposisi LU dari matriks <InlineMath math="A" />. Namun, pendekatan yang lebih mahal secara komputasi tetapi lebih stabil secara numerik adalah menentukan peringkat menggunakan dekomposisi nilai singular dari <InlineMath math="A" />.
+Pembedaan ini penting dalam model terapan: identifiabilitas struktural merupakan sifat aljabar eksak, sedangkan identifiabilitas praktis bergantung pada skala, derau, dan toleransi numerik yang digunakan.
 
-Perbedaan antara kedua pendekatan ini seperti membandingkan pengukuran dengan penggaris biasa dibandingkan dengan pengukuran menggunakan alat presisi tinggi. Dekomposisi nilai singular memberikan informasi yang lebih detail dan stabil tentang struktur numerik matriks, terutama untuk kasus mendekati singular.
+## Faktorisasi Penyingkap Peringkat
+
+Dua alat umum menyingkap peringkat tanpa mengandalkan perhitungan determinan yang rapuh:
+
+| Metode | Kekuatan | Penggunaan umum |
+| --- | --- | --- |
+| Faktorisasi QR dengan pivoting kolom | Biasanya lebih murah daripada SVD penuh | Penyelesaian kuadrat terkecil yang cepat dan deteksi peringkat praktis |
+| Dekomposisi nilai singular | Menampilkan langsung semua arah independen beserta skalanya | Diagnostik yang kuat ketika mendekati defisiensi peringkat |
+
+Faktorisasi LU biasa terutama ditujukan untuk sistem persegi. Untuk matriks desain persegi panjang, QR berpivot atau SVD merupakan pilihan penyingkap peringkat yang lebih alami.
 
 ## Dekomposisi Nilai Singular
 
-Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dengan <InlineMath math="\text{Peringkat}(A) = r" />, terdapat matriks ortogonal <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <InlineMath math="V \in \mathbb{R}^{n \times n}" /> serta matriks <InlineMath math="S = (s_{ij})_{i=1,\ldots,m}" /> dengan <InlineMath math="s_{ij} = 0" /> untuk semua <InlineMath math="i \neq j" /> dan entri diagonal non-negatif <InlineMath math="s_{11} \geq s_{22} \geq \cdots \geq 0" />, sehingga
+Misalkan <InlineMath math="q=\min(m,n)" />. Setiap matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> memiliki dekomposisi nilai singular
 
-<BlockMath math="A = USV^T" />
+<BlockMath math="A=U\Sigma V^T" />
 
-Representasi ini disebut dekomposisi nilai singular dari <InlineMath math="A" />. Nilai <InlineMath math="\sigma_i = s_{ii}" /> disebut nilai singular dari <InlineMath math="A" />. Matriks <InlineMath math="U" /> dan <InlineMath math="V" /> tidak ditentukan secara unik.
+dengan <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <InlineMath math="V \in \mathbb{R}^{n \times n}" /> ortogonal, sedangkan <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> memiliki elemen diagonal nonnegatif
 
-Dekomposisi ini seperti membongkar sebuah mesin kompleks menjadi komponen dasarnya. Kita dapat melihat bagaimana matriks mentransformasi ruang vektor, termasuk arah utama transformasi dan seberapa besar scaling yang terjadi dalam setiap arah.
+<BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
-## Hubungan Nilai Singular dengan Peringkat
+Peringkat eksak sama dengan banyaknya nilai singular positif:
 
-Jumlah nilai singular yang tidak nol dari matriks <InlineMath math="A" /> sama dengan <InlineMath math="\text{Peringkat}(A)" />.
+<BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
-Secara matematis, ini berarti
+Untuk <InlineMath math="m \geq n" />, peringkat kolom penuh ekuivalen dengan <InlineMath math="\sigma_n>0" />. Vektor singular kanan yang bersesuaian dengan nilai singular nol merentang <InlineMath math="\ker(A)" /> dan menunjukkan arah parameter yang tidak dapat diidentifikasi oleh data.
 
-<BlockMath math="\text{Peringkat}(A) = \#\{\sigma_i : \sigma_i > 0\}" />
+## Peringkat Eksak dan Peringkat Numerik
 
-dimana <InlineMath math="\#" /> menunjukkan jumlah elemen dalam himpunan.
+Jika peringkat eksaknya <InlineMath math="r" /> dengan <InlineMath math="0<r<q" />, maka
 
-Sifat fundamental ini memberikan cara numerik yang stabil untuk menentukan peringkat matriks. Nilai singular yang sangat kecil seperti sinyal radio yang lemah, masih ada tetapi hampir tidak terdeteksi.
+<BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
 
-### Kondisi Defisiensi Peringkat
+Data titik mengambang jarang memuat nol eksak. Peringkat numerik menghitung nilai singular yang melampaui ambang berskala <InlineMath math="\tau" />:
 
-Istilah defisiensi peringkat merujuk pada kondisi ketika matriks tidak memiliki peringkat penuh. Artinya, <InlineMath math="\text{Peringkat}(A) < \min(m, n)" />. Dalam konteks ini, beberapa baris atau kolom matriks saling bergantung secara linear.
+<MathContainer>
+<BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
+<BlockMath math="\operatorname{rank}_{\tau}(A)=\#\{i:\sigma_i>\tau\}" />
+</MathContainer>
 
-Ketika matriks mengalami defisiensi peringkat, beberapa nilai singular menjadi nol atau sangat mendekati nol
+Faktor <InlineMath math="c" /> mengikuti aplikasi dan model derau, sehingga tidak ada satu batas desimal yang berlaku universal. Jika <InlineMath math="A" /> mengalami defisiensi peringkat, nilai minimum kuadrat terkecil tetap ada, tetapi vektor parameter peminimumnya tidak unik. Pseudoinvers Moore-Penrose memilih solusi dengan norma minimum:
 
-<BlockMath math="\sigma_r > \sigma_{r+1} = \sigma_{r+2} = \cdots = \sigma_{\min(m,n)} = 0" />
+<BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-Kondisi ini menandakan bahwa sistem persamaan memiliki lebih dari satu solusi atau bahkan tidak memiliki solusi unik. Dalam praktik numerik, kita sering menggunakan ambang batas (threshold) <InlineMath math="\epsilon" /> untuk menentukan apakah nilai singular dianggap nol
+## Menghitung Dekomposisi dengan Aman
 
-<BlockMath math="\sigma_i \leq \epsilon \cdot \sigma_1" />
+Identitas
 
-dimana <InlineMath math="\epsilon" /> biasanya berkisar antara <InlineMath math="10^{-12}" /> hingga <InlineMath math="10^{-16}" /> tergantung presisi komputasi.
+<BlockMath math="A^TA=V\Sigma^2V^T" />
 
-## Komputasi Dekomposisi Nilai Singular
+menjelaskan bahwa kuadrat nilai singular merupakan nilai eigen dari <InlineMath math="A^TA" />. Identitas ini berguna dalam teori, tetapi membentuk <InlineMath math="A^TA" /> secara eksplisit akan menguadratkan bilangan kondisi:
 
-Dekomposisi nilai singular dapat dihitung menggunakan nilai eigen dan vektor eigen dari <InlineMath math="A^T A" />. Hubungan matematisnya adalah
+<BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 
-<BlockMath math="A^T A = V \Sigma^2 V^T" />
-
-dimana <InlineMath math="\Sigma^2 = \text{diag}(\sigma_1^2, \sigma_2^2, \ldots, \sigma_n^2)" /> adalah matriks diagonal yang memiliki nilai-nilai <InlineMath math="\sigma_i^2" /> pada diagonal utama dan nol di tempat lain
-
-<BlockMath math="\Sigma^2 = \begin{pmatrix} \sigma_1^2 & 0 & \cdots & 0 \\ 0 & \sigma_2^2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \sigma_n^2 \end{pmatrix}" />
-
-Dalam pustaka numerik, tersedia fungsi khusus untuk komputasi ini yang disebut SVD (singular value decomposition). Implementasi SVD dalam pustaka numerik modern menggunakan algoritma yang sangat efisien dan stabil, menjadikannya alat yang dapat diandalkan untuk berbagai aplikasi dalam analisis matriks dan komputasi ilmiah.
+Karena itu, perangkat lunak numerik memakai algoritma SVD atau QR penyingkap peringkat secara langsung, bukan membentuk <InlineMath math="A^TA" /> hanya untuk memperkirakan peringkat. Cara ini mempertahankan lebih banyak informasi pada arah yang sudah mendekati tidak teridentifikasi.

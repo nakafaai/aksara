@@ -4,34 +4,24 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-#### Vektor Posisi Titik Singgung
+Setiap titik pada garis yang melalui <InlineMath math="A" /> dapat ditulis sebagai
 
-Misalkan vektor posisi titik <InlineMath math="A" /> adalah <InlineMath math="\mathbf{a}" />
+<BlockMath math="\mathbf{x}(s)=\mathbf{a}+s\mathbf{t}" />
 
-Karena <InlineMath math="A" /> terletak pada lingkaran dengan pusat <InlineMath math="O" />, maka vektor <InlineMath math="\overrightarrow{OA} = \mathbf{a}" /> adalah radius lingkaran.
+Lingkaran memuat semua vektor yang panjang kuadratnya <InlineMath math="r^2" />. Karena <InlineMath math="A" /> terletak pada lingkaran, berlaku <InlineMath math="\mathbf{a}\cdot\mathbf{a}=r^2" />.
 
-#### Garis Singgung di Titik Diketahui
+#### Menguji garis terhadap lingkaran
 
-Garis singgung di titik <InlineMath math="A" /> adalah garis yang menyentuh lingkaran di titik <InlineMath math="A" /> dan tegak lurus terhadap radius <InlineMath math="OA" /> di titik tersebut.
+Substitusikan <InlineMath math="\mathbf{x}(s)" /> ke persamaan lingkaran:
 
-#### Vektor Arah Garis Singgung
+<MathContainer>
+<BlockMath math="(\mathbf{a}+s\mathbf{t})\cdot(\mathbf{a}+s\mathbf{t})=r^2" />
+<BlockMath math="\mathbf{a}\cdot\mathbf{a}+2s(\mathbf{a}\cdot\mathbf{t})+s^2(\mathbf{t}\cdot\mathbf{t})=r^2" />
+<BlockMath math="s\left(2\mathbf{a}\cdot\mathbf{t}+s\lVert\mathbf{t}\rVert^2\right)=0" />
+</MathContainer>
 
-Misalkan vektor arah garis singgung di titik <InlineMath math="A" /> adalah <InlineMath math="\mathbf{t}" />
+Akar <InlineMath math="s=0" /> menyatakan titik <InlineMath math="A" />. Jika <InlineMath math="\mathbf{a}\cdot\mathbf{t}\neq0" />, persamaan memiliki akar kedua sehingga garis memotong lingkaran di titik lain. Garis singgung hanya memiliki satu titik persekutuan, sehingga harus berlaku
 
-Karena garis singgung tegak lurus terhadap radius <InlineMath math="OA" /> (vektor <InlineMath math="\mathbf{a}" />), maka vektor arah garis singgung <InlineMath math="\mathbf{t}" /> harus tegak lurus terhadap vektor <InlineMath math="\mathbf{a}" />
+<BlockMath math="\mathbf{a}\cdot\mathbf{t}=0" />
 
-#### Kondisi Tegak Lurus Vektor
-
-Dua vektor tegak lurus jika dan hanya jika hasil kali titik mereka adalah nol
-
-<BlockMath math="\mathbf{a} \cdot \mathbf{t} = 0" />
-
-#### Kesimpulan
-
-Jadi, untuk membuktikan bahwa garis singgung di <InlineMath math="A" /> tegak lurus terhadap radius <InlineMath math="OA" />, kita perlu menunjukkan bahwa hasil kali titik vektor <InlineMath math="\mathbf{a}" /> dan vektor <InlineMath math="\mathbf{t}" /> adalah nol
-
-<BlockMath math="\mathbf{a} \cdot \mathbf{t} = 0" />
-
-Ini adalah representasi vektor untuk membuktikan bahwa garis singgung lingkaran di titik <InlineMath math="A" /> tegak lurus terhadap radius <InlineMath math="OA" />
-
-Jadi, representasi vektor yang tepat adalah menunjukkan bahwa hasil kali titik vektor posisi titik <InlineMath math="A" /> dan vektor arah garis singgung di titik <InlineMath math="A" /> bernilai nol.
+Hasil kali titik yang nol berarti <InlineMath math="\mathbf{a}\perp\mathbf{t}" />. Jadi, arah garis singgung tegak lurus terhadap jari-jari <InlineMath math="OA" />, dan pilihan ketiga benar.

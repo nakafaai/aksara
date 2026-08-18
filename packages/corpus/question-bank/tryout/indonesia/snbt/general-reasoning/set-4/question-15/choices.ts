@@ -2,51 +2,32 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
+    { label: "The price of Noodle A never decreased", value: false },
     {
-      label: "Product Noodle A never experienced a price decrease",
+      label: "The price of Noodle B increased in every interval",
       value: false,
     },
     {
-      label:
-        "The price increase of Noodle B in $$2019\\text{-}2020$$ was higher than the price increase of Noodle B from $$2017\\text{-}2019$$",
-      value: false,
-    },
-    {
-      label:
-        "There is a Noodle product that experienced only one price decrease",
+      label: "One noodle product experienced exactly one price decrease",
       value: true,
     },
+    { label: "Every product rose more often than it fell", value: false },
     {
-      label:
-        "Almost all Instant Noodle products frequently experience price increases",
-      value: false,
-    },
-    {
-      label: "The price of Noodle A did not experience a drastic decrease",
+      label: "The price of Noodle A stayed below Rp $$3000$$ every year",
       value: false,
     },
   ],
   id: [
-    {
-      label: "Produk Mie A tidak pernah mengalami penurunan harga",
-      value: false,
-    },
+    { label: "Harga Mie A tidak pernah turun", value: false },
+    { label: "Harga Mie B naik pada setiap periode", value: false },
     {
       label:
-        "Kenaikan harga Mie B pada tahun $$2019\\text{-}2020$$ lebih tinggi dibandingkan kenaikan harga Mie B dari tahun $$2017\\text{-}2019$$",
-      value: false,
-    },
-    {
-      label: "Ada produk Mie yang hanya mengalami satu kali penurunan harga",
+        "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
       value: true,
     },
+    { label: "Setiap produk lebih sering naik daripada turun", value: false },
     {
-      label:
-        "Hampir semua produk mie Instan sering kali mengalami kenaikan harga",
-      value: false,
-    },
-    {
-      label: "Harga Mie A tidak mengalami penurunan harga secara drastis",
+      label: "Harga Mie A selalu di bawah Rp $$3000$$ setiap tahun",
       value: false,
     },
   ],

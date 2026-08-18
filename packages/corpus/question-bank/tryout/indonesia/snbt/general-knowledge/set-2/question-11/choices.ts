@@ -3,45 +3,45 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "milk that does not contain sugar elements.",
+      label: "dairy that is guaranteed to contain no lactose.",
       value: false,
     },
     {
-      label: "milk specifically for the elderly.",
+      label: "dairy intended only for older adults.",
       value: false,
     },
     {
-      label: "a typical drink for certain diseases.",
+      label: "a medicine for treating digestive disease.",
       value: false,
     },
     {
-      label: "milk that has undergone fermentation.",
+      label: "dairy transformed by microorganisms through fermentation.",
       value: true,
     },
     {
-      label: "mixing milk with oxygen elements.",
+      label: "dairy mixed with oxygen before consumption.",
       value: false,
     },
   ],
   id: [
     {
-      label: "susu yang tidak mengandung unsur gula.",
+      label: "produk susu yang dijamin tidak mengandung laktosa.",
       value: false,
     },
     {
-      label: "susu yang dikhususkan untuk para manula.",
+      label: "produk susu yang hanya ditujukan bagi lansia.",
       value: false,
     },
     {
-      label: "minuman khas untuk penyakit tertentu.",
+      label: "obat untuk menangani penyakit pencernaan.",
       value: false,
     },
     {
-      label: "susu yang sudah mengalami peragian.",
+      label: "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
       value: true,
     },
     {
-      label: "pencampuran susu dengan unsur oksigen.",
+      label: "produk susu yang dicampur oksigen sebelum diminum.",
       value: false,
     },
   ],

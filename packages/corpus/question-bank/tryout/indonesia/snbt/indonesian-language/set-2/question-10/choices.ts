@@ -7,7 +7,7 @@ const choices: QuestionChoices = {
       value: false,
     },
     { label: "Mengapa buah ceri rasanya enak sekali?", value: false },
-    { label: "Mengapa Enji dan Ensi belum datang?", value: false },
+    { label: "Mengapa Enjin dan Ensi belum datang?", value: false },
     { label: "Mengapa siput bisa berjalan di atas duri?", value: true },
     { label: "Kenapa pohon ceri berduri?", value: false },
   ],

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Equation of Circle",
-  description: "Learn circle equations from (x-h)² + (y-k)² = r² to general form. Learn finding center, radius, and converting between forms with practice problems.",
+  description: "Learn how standard and general circle equations relate, then find the center and radius and convert between both forms.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Understanding Circle Equations
 
-Circle equation is a mathematical formula that describes all points forming a circle on a coordinate plane. Imagine you have a compass and want to draw a circle on coordinate paper. Well, the circle equation tells us which coordinates the compass pencil tip will pass through.
+A circle equation describes every point on a circle in the coordinate plane. Imagine drawing with a compass on graph paper: the needle fixes the center, the opening fixes the radius, and the pencil traces exactly the points that satisfy the equation.
 
 Why is this useful? Because by knowing the circle equation, we can immediately tell where the **center of the circle** is and what its **radius** is without having to draw the circle first.
 
 ## Circle Centered at Origin
 
-Let's start with the easiest case first: a circle whose center is at the origin <InlineMath math="O(0,0)" />.
+Start with the simplest case, a circle centered at the origin <InlineMath math="O(0,0)" />.
 
 If we have a circle with center at <InlineMath math="O(0,0)" /> and radius <InlineMath math="r" />, then every point <InlineMath math="(x,y)" /> on that circle has the same distance from the center, which is <InlineMath math="r" />.
 
@@ -28,7 +28,7 @@ If we square both sides, we get the circle equation with center at origin:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
-Let's visualize this first.
+The graph makes the radius constraint visible.
 
 <LineEquation
   title="Circle with Center at Origin"
@@ -109,11 +109,11 @@ Every point <InlineMath math="(x,y)" /> on this circle must have the same distan
 
 <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
 
-After squaring, we get the **general circle equation**:
+After squaring, we get the **standard equation for a circle with an arbitrary center**:
 
 <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
-If we visualize this, it will look like this:
+The shifted center is visible in the graph below.
 
 <LineEquation
   title="Circle with Arbitrary Center"
@@ -201,9 +201,17 @@ This last form is called the **general form of circle equation**:
 
 <BlockMath math="x^2 + y^2 + Dx + Ey + F = 0" />
 
-If we have an equation in general form, we can convert it back to standard form using **completing the square** technique.
+An equation in general form can be converted back to standard form by **completing the square**.
 
 > Not all equations of the form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> are circle equations. The condition is <InlineMath math="D^2 + E^2 - 4F > 0" />. If this value is zero, then it's just a single point, and if negative, then there's no curve at all.
+
+Completing the square shows where the center and radius formulas come from:
+
+<MathContainer>
+  <BlockMath math="x^2 + Dx = \left(x + \frac{D}{2}\right)^2 - \frac{D^2}{4}" />
+  <BlockMath math="y^2 + Ey = \left(y + \frac{E}{2}\right)^2 - \frac{E^2}{4}" />
+  <BlockMath math="\left(x + \frac{D}{2}\right)^2 + \left(y + \frac{E}{2}\right)^2 = \frac{D^2 + E^2 - 4F}{4}" />
+</MathContainer>
 
 ## Determining Center and Radius
 
@@ -228,7 +236,7 @@ While from the general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, w
 
 4. Determine the equation of a circle that has a diameter with endpoints at <InlineMath math="A(1,3)" /> and <InlineMath math="B(7,-1)" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution**:
 

@@ -3,55 +3,54 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "The description above shows that agriculture is a promising sector.",
+      label: "The census proves that most Indonesian farmers are young.",
       value: false,
     },
     {
       label:
-        "Therefore, agriculture is a sector that must be a priority for development in Indonesia.",
+        "Therefore, the 2023 Agricultural Census provides a broad, standardized evidence base for designing Indonesia's agricultural policies.",
       value: true,
     },
     {
       label:
-        "Thus, the agricultural sector has had a major influence on the Indonesian economy.",
+        "The decline in individual agricultural holdings proves that Indonesia's agricultural sector is shrinking.",
       value: false,
     },
     {
       label:
-        "Indonesia is an agricultural country, so the agricultural sector must be a development priority.",
+        "Urban farming is now the largest form of agriculture in Indonesia.",
       value: false,
     },
     {
       label:
-        "Problems in the agricultural sector must be resolved immediately so that the Indonesian economy can be supported.",
+        "Following international census standards will by itself improve farmer welfare.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "Uraian di atas menunjukkan bahwa pertanian merupakan sektor yang menjanjikan.",
+        "Sensus tersebut membuktikan bahwa sebagian besar petani Indonesia masih muda.",
       value: false,
     },
     {
       label:
-        "Oleh karena itu, pertanian merupakan sektor yang harus menjadi prioritas untuk dikembangkan di Indonesia.",
+        "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
       value: true,
     },
     {
       label:
-        "Dengan demikian, sektor pertanian telah memberikan pengaruh yang besar terhadap perekonomian Indonesia.",
+        "Penurunan usaha pertanian perorangan membuktikan bahwa sektor pertanian Indonesia sedang menyusut.",
       value: false,
     },
     {
       label:
-        "Indonesia merupakan negara agraris, sehingga sektor pertanian harus menjadi prioritas pengembangan.",
+        "Pertanian perkotaan kini menjadi bentuk pertanian terbesar di Indonesia.",
       value: false,
     },
     {
       label:
-        "Persoalan-persoalan di sektor pertanian harus segera diselesaikan agar perekonomian Indonesia dapat ditopang.",
+        "Penerapan standar sensus internasional dengan sendirinya akan meningkatkan kesejahteraan petani.",
       value: false,
     },
   ],

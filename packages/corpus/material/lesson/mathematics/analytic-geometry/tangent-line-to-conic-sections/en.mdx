@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Tangent Line to Conic Sections",
-  description: "Learn tangent lines for parabolas, ellipses, and hyperbolas using the division principle. Find equations for points on curves, given slopes, and external points.",
+  title: "Tangent Lines to Conic Sections",
+  description: "Find tangent lines to parabolas, ellipses, and hyperbolas from a point on the curve, a given slope, or an external point.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -8,21 +8,21 @@ export const metadata = {
 
 ## Concept of Tangent Lines
 
-Have you ever seen a basketball that touches the rim perfectly? At that point of contact, the ball just **touches one point** without going through the rim. This concept is what we call a tangent line in mathematics!
+A ruler placed against a smooth curve can meet it at just one point without crossing it nearby. The line along the ruler models a **tangent line** at that point.
 
-A tangent line to a conic section is **a line that touches the curve at exactly one point** only. Unlike a secant line that intersects the curve at two points, a tangent line only touches at one point and doesn't cut through the curve at all.
+For the conic sections in this lesson, a tangent line meets the curve at one repeated intersection point. A secant line, by contrast, cuts the curve at two distinct points.
 
-Just imagine if you have a parabola <InlineMath math="y = x^2" />. A tangent line will touch the parabola at one specific point, while a secant line will intersect the parabola at two different points.
+On the parabola <InlineMath math="y = x^2" />, the distinction is visible: a tangent has one repeated point of intersection, while a secant has two different intersections.
 
 For conic sections like parabolas, ellipses, and hyperbolas, there are several ways to determine the equation of their tangent lines depending on the information we have.
 
 ## Point on the Curve
 
-If we already know where the point of tangency is, determining the tangent line becomes really easy! The basic concept uses the **division principle** which is practical for conic sections.
+When the point of tangency is known, implicit differentiation gives the slope there. Combining that slope with the point-slope equation produces a direct point form.
 
-### Division Principle
+### Point Form from Implicit Differentiation
 
-To determine the tangent line through point <InlineMath math="T(x_1, y_1)" /> on a conic section, we can use the division principle. The method is simple, namely **divide each squared term into a linear term** at the point of tangency.
+For a point <InlineMath math="T(x_1, y_1)" /> on a conic, the resulting point form replaces each squared coordinate by a product with the corresponding tangent-point coordinate. Linear terms are shared symmetrically between the variable point and the tangent point. This is a compact algebraic form of the derivative calculation, not a substitute for checking that <InlineMath math="T" /> lies on the curve.
 
 For example, if we have a parabola <InlineMath math="y^2 = 4px" /> and tangent point <InlineMath math="T(x_1, y_1)" />, then the tangent line equation becomes:
 
@@ -38,37 +38,42 @@ From parabola <InlineMath math="y^2 = 8x" />, we know <InlineMath math="4p = 8" 
   <BlockMath math="y = x + 2" />
 </MathContainer>
 
-> This division principle makes calculations much easier! We don't need to bother calculating derivatives. Just "divide" each squared term into multiplication with the tangent point coordinates!
+> The point form is valid only after the stated point has been verified on the conic. It packages the derivative calculation into a reusable algebraic substitution.
 
-## Specific Gradient
+## Given Slope
 
 Sometimes we don't know the tangent point, but we know the **slope** or gradient of the tangent line. In cases like this, we substitute the line equation with gradient <InlineMath math="m" /> into the conic section equation.
 
-For example, we want to find the tangent line of hyperbola <InlineMath math="4x^2 - 9y^2 = 36" /> that is perpendicular to line <InlineMath math="x + 4y + 10 = 0" />.
+For example, we want to find the tangents to <InlineMath math="4x^2 - 9y^2 = 36" /> that are perpendicular to <InlineMath math="x + 4y + 10 = 0" />.
 
-First step, we determine the gradient of the tangent line. Since the tangent line is perpendicular to <InlineMath math="x + 4y + 10 = 0" />, then the original line's gradient <InlineMath math="m_g = -\frac{1}{4}" /> so the tangent line's gradient <InlineMath math="m_s = 4" />.
+First determine the required tangent slope. The line <InlineMath math="x + 4y + 10 = 0" /> has slope <InlineMath math="m_g = -\frac{1}{4}" />, so every perpendicular tangent must have slope <InlineMath math="m_s = 4" />.
 
-The tangent line equation of a hyperbola with gradient <InlineMath math="m" /> is <InlineMath math="y = mx + c" />. We substitute it into the hyperbola equation:
+A line with slope <InlineMath math="m" /> has the form <InlineMath math="y = mx + c" />. Substitute it into the hyperbola equation:
 
 <MathContainer>
   <BlockMath math="4x^2 - 9(4x + c)^2 = 36" />
   <BlockMath math="4x^2 - 9(16x^2 + 8cx + c^2) = 36" />
-  <BlockMath math="-140x^2 - 72cx - 9c^2 = 36" />
+  <BlockMath math="-140x^2 - 72cx - 9c^2 - 36 = 0" />
 </MathContainer>
 
 For a tangent line, the discriminant must be zero:
 
-<BlockMath math="D = (-72c)^2 - 4(-140)(-9c^2) = 0" />
+<MathContainer>
+  <BlockMath math="D = (-72c)^2 - 4(-140)(-9c^2-36) = 0" />
+  <BlockMath math="5184c^2 - 5040c^2 - 20160 = 0" />
+  <BlockMath math="144c^2 = 20160" />
+  <BlockMath math="c = \pm 2\sqrt{35}" />
+</MathContainer>
 
-So we get <InlineMath math="c = 0" /> and the tangent line equation is <InlineMath math="y = 4x" />.
+Therefore the two tangent lines are <InlineMath math="y = 4x + 2\sqrt{35}" /> and <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
-## Point Outside the Curve
+## Tangents Through an External Point
 
-If the point is outside the conic section, we can have **two tangent lines** that can be drawn from that point to the curve. The concept is similar to drawing lines from a point outside a circle.
+Depending on the conic and the point's location, zero, one, or two real tangents can pass through a given point. In the example below, there are two. Drawing tangents from a point outside a circle is a familiar special case.
 
 For example, take parabola <InlineMath math="y^2 = 8x" /> with point <InlineMath math="A(2, 5)" />. From point <InlineMath math="A" />, we can draw two different tangent lines to the parabola.
 
-To determine the tangent line equation through an external point, we use the polar or pole equation. For parabola <InlineMath math="y^2 = 8x" /> with point <InlineMath math="A(2,5)" />, the polar equation is:
+For an external point, the polar equation gives the **chord of contact**, the line joining the two tangent points. It is not itself either tangent. For <InlineMath math="y^2 = 8x" /> and <InlineMath math="A(2,5)" />, the polar is:
 
 <BlockMath math="yy_1 = 4(x + x_1)" />
 
@@ -90,40 +95,40 @@ Now we substitute into the parabola equation to find the tangent points:
   <BlockMath math="2x^2 - 17x + 8 = 0" />
 </MathContainer>
 
-Using the quadratic formula, we get <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />. So the tangent points are at <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />.
+Using the quadratic formula, we get <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />. The tangent points are <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />. Joining each one to <InlineMath math="A(2,5)" /> gives the two tangents <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \frac{1}{2}x + 4" />.
 
 ## Formula Summary
 
-Here's the complete table of conic section equations and their tangent line equations. Keep this well, because you'll use it frequently!
+The table collects the point-form tangent equations used in this lesson.
 
 | Conic Section | Tangent Line Equation |
 |---|---|
 | <InlineMath math="y^2 = 4px" /> | <InlineMath math="yy_1 = 2p(x + x_1)" /> |
 | <InlineMath math="x^2 = 4py" /> | <InlineMath math="xx_1 = 2p(y + y_1)" /> |
-| <InlineMath math="(x - m)^2 = 4p(y - n)" /> | <InlineMath math="(x - m)(x_1 - m) = 2p(y - n)(y_1 - n)" /> |
-| <InlineMath math="(y - m)^2 = 4p(x - n)" /> | <InlineMath math="(y - m)(y_1 - m) = 2p(x - n)(x_1 - n)" /> |
+| <InlineMath math="(x - h)^2 = 4p(y - k)" /> | <InlineMath math="(x - h)(x_1 - h) = 2p((y - k) + (y_1 - k))" /> |
+| <InlineMath math="(y - k)^2 = 4p(x - h)" /> | <InlineMath math="(y - k)(y_1 - k) = 2p((x - h) + (x_1 - h))" /> |
 | <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> | <InlineMath math="\frac{xx_1}{a^2} + \frac{yy_1}{b^2} = 1" /> |
 | <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> | <InlineMath math="\frac{xx_1}{a^2} - \frac{yy_1}{b^2} = 1" /> |
 | <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> | <InlineMath math="\frac{yy_1}{a^2} - \frac{xx_1}{b^2} = 1" /> |
-| <InlineMath math="\frac{(x-m)^2}{a^2} + \frac{(y-n)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-m)(x_1-m)}{a^2} + \frac{(y-n)(y_1-n)}{b^2} = 1" /> |
-| <InlineMath math="\frac{(x-m)^2}{a^2} - \frac{(y-n)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-m)(x_1-m)}{a^2} - \frac{(y-n)(y_1-n)}{b^2} = 1" /> |
-| <InlineMath math="\frac{(y-n)^2}{a^2} - \frac{(x-m)^2}{b^2} = 1" /> | <InlineMath math="\frac{(y-n)(y_1-n)}{a^2} - \frac{(x-m)(x_1-m)}{b^2} = 1" /> |
+| <InlineMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-h)(x_1-h)}{a^2} + \frac{(y-k)(y_1-k)}{b^2} = 1" /> |
+| <InlineMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-h)(x_1-h)}{a^2} - \frac{(y-k)(y_1-k)}{b^2} = 1" /> |
+| <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" /> | <InlineMath math="\frac{(y-k)(y_1-k)}{a^2} - \frac{(x-h)(x_1-h)}{b^2} = 1" /> |
 
-> All these formulas are based on the division principle that makes calculations easier! No need to mess around with calculus.
+> These formulas are the derivative-based point forms for common standard conics. Always verify first that the stated tangent point lies on the conic.
 
 ## Exercises
 
 1. Find the tangent line equation of parabola <InlineMath math="y^2 = 12x" /> at point <InlineMath math="(3, 6)" />.
 
-2. There's a hyperbola <InlineMath math="4x^2 - 9y^2 = 36" />. Find the tangent line equation that is perpendicular to line <InlineMath math="x + 4y + 10 = 0" />.
+2. Find the equations of the tangents to <InlineMath math="4x^2 - 9y^2 = 36" /> that are perpendicular to <InlineMath math="x + 4y + 10 = 0" />.
 
-3. Find the tangent line equation of ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> that passes through point <InlineMath math="A(1, 3)" />.
+3. Find the equations of the tangents to <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> that pass through <InlineMath math="A(1, 3)" />.
 
-4. There's a parabola <InlineMath math="y^2 = 8x" />. Find the tangent line equation of this parabola that passes through point <InlineMath math="A(2, 5)" />.
+4. Find the equations of the tangents to <InlineMath math="y^2 = 8x" /> that pass through <InlineMath math="A(2, 5)" />.
 
-### Answer Key
+### Worked Solutions
 
-1. **Answer**:
+1. **Solution**:
 
    Given: parabola <InlineMath math="y^2 = 12x" /> with tangent point <InlineMath math="(3, 6)" />.
 
@@ -141,7 +146,7 @@ Here's the complete table of conic section equations and their tangent line equa
 
    So the tangent line equation is <InlineMath math="y = x + 3" />.
 
-2. **Answer**:
+2. **Solution**:
 
    Given: hyperbola <InlineMath math="4x^2 - 9y^2 = 36" /> or <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
 
@@ -166,7 +171,7 @@ Here's the complete table of conic section equations and their tangent line equa
 
    So the tangent line equations are <InlineMath math="y = 4x + 2\sqrt{35}" /> or <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
-3. **Answer**:
+3. **Solution**:
 
    Given: ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> and point <InlineMath math="A(1, 3)" />.
 
@@ -176,25 +181,29 @@ Here's the complete table of conic section equations and their tangent line equa
 
    Since <InlineMath math="\frac{85}{36} > 1" />, point <InlineMath math="A" /> is outside the ellipse.
 
-   Use the ellipse polar equation:
+   Write a line through <InlineMath math="A(1,3)" /> with slope <InlineMath math="m" />:
 
-   <BlockMath math="\frac{xx_1}{a^2} + \frac{yy_1}{b^2} = 1" />
+   <BlockMath math="y-3=m(x-1)" />
 
-   Substitute <InlineMath math="x_1 = 1" /> and <InlineMath math="y_1 = 3" />:
+   Substituting this line into the ellipse and requiring a zero discriminant gives:
 
    <MathContainer>
-     <BlockMath math="\frac{x \cdot 1}{9} + \frac{y \cdot 3}{4} = 1" />
-     <BlockMath math="\frac{x}{9} + \frac{3y}{4} = 1" />
-     <BlockMath math="4x + 27y = 36" />
+     <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
+     <BlockMath math="8m^2 + 6m - 5 = 0" />
+     <BlockMath math="(4m+5)(2m-1)=0" />
+     <BlockMath math="m=-\frac{5}{4} \quad \text{or} \quad m=\frac{1}{2}" />
    </MathContainer>
 
-   If you want to find the tangent points, substitute this equation into the ellipse equation. From <InlineMath math="4x + 27y = 36" />, we get <InlineMath math="x = \frac{36 - 27y}{4}" />.
+   Insert each slope into the point-slope equation:
 
-   Substitute into the ellipse equation and solve to get two tangent points.
+   <MathContainer>
+     <BlockMath math="y-3=-\frac{5}{4}(x-1) \quad \Longrightarrow \quad 5x+4y-17=0" />
+     <BlockMath math="y-3=\frac{1}{2}(x-1) \quad \Longrightarrow \quad x-2y+5=0" />
+   </MathContainer>
 
-   So the tangent line equation is <InlineMath math="4x + 27y = 36" />.
+   Thus the two tangent lines are <InlineMath math="5x+4y-17=0" /> and <InlineMath math="x-2y+5=0" />.
 
-4. **Answer**:
+4. **Solution**:
 
    Given: parabola <InlineMath math="y^2 = 8x" /> and point <InlineMath math="A(2, 5)" />.
 

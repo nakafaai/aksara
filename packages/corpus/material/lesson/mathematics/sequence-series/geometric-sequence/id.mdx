@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Barisan Geometri",
-  description: "Pelajari barisan geometri dengan rasio tetap. Pelajari rumus, selesaikan soal pertumbuhan bakteri, dan temukan penerapan dalam kehidupan nyata.",
+  description: "Bangun barisan geometri dari rasio tetap, turunkan rumus suku umum, lalu uji model pertumbuhan ideal melalui contoh lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-05",
   subject: "Barisan dan Deret",
@@ -15,11 +15,13 @@ Jika kita memiliki barisan geometri <InlineMath math="U_1, U_2, U_3, ..., U_n" /
 
 <BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
 
-Dengan kata lain, setiap suku dalam barisan geometri diperoleh dengan mengalikan suku sebelumnya dengan rasio <InlineMath math="r" />.
+Dengan kata lain, setiap suku dalam barisan geometri diperoleh dengan mengalikan suku sebelumnya dengan rasio <InlineMath math="r" />. Bentuk pembagian di atas hanya berlaku jika penyebutnya tidak nol. Aturan perkalian tetap berlaku ketika suatu suku bernilai nol:
+
+<BlockMath math="U_{n+1}=rU_n" />
 
 ## Eksplorasi Melipat Kertas
 
-Mari kita lakukan eksplorasi sederhana untuk memahami konsep barisan geometri. Siapkan kertas berbentuk persegi panjang, lalu lipat beberapa kali.
+Model lipatan sederhana memperlihatkan rasio tetap dengan jelas. Lipat selembar kertas persegi panjang menjadi dua beberapa kali.
 
 Jika kertas dilipat <InlineMath math="1 \text{ kali}" />, maka kertas akan terbagi menjadi <InlineMath math="2 \text{ bagian}" /> sama besar. Jika dilipat lagi (<InlineMath math="2 \text{ kali}" />), akan terbentuk <InlineMath math="4 \text{ bagian}" /> sama besar. Berikut pola yang terbentuk:
 
@@ -47,22 +49,36 @@ Dimana:
 - <InlineMath math="r" /> = rasio
 - <InlineMath math="n" /> = nomor suku
 
-## Pembelahan Bakteri
+Eksponennya adalah <InlineMath math="n-1" /> karena perpindahan dari suku pertama ke suku ke-<InlineMath math="n" /> memerlukan tepat <InlineMath math="n-1" /> kali perkalian dengan <InlineMath math="r" />.
 
-Bakteri berkembang biak dengan cara membelah diri. Dalam waktu dua jam, satu sel bakteri membelah menjadi <InlineMath math="3 \text{ bagian}" />.
+## Makna Nilai Rasio
+
+Untuk suku pertama yang positif, rasio menentukan perilaku barisan secara umum:
+
+- Jika <InlineMath math="r>1" />, suku-suku positifnya bertambah.
+- Jika <InlineMath math="0<r<1" />, suku-suku positifnya mendekati nol.
+- Jika <InlineMath math="r=1" />, barisannya konstan.
+- Jika <InlineMath math="r=0" />, semua suku setelah suku pertama bernilai nol.
+- Jika <InlineMath math="r<0" />, tanda suku berganti-ganti, sedangkan nilai mutlaknya dapat bertambah, berkurang, atau tetap.
+
+Karena itu, barisan geometri tidak selalu menggambarkan pertumbuhan.
+
+## Model Ideal Pertumbuhan Bakteri
+
+Misalkan suatu kultur bakteri ideal bertambah menjadi tiga kali lipat setiap <InlineMath math="2 \text{ jam}" />. Ini adalah model matematika dengan faktor pertumbuhan tetap, bukan pernyataan bahwa satu sel bakteri secara harfiah membelah menjadi tiga sel.
 
 Jika jumlah awal bakteri adalah <InlineMath math="2 \text{ sel}" />, maka:
 
-- Suku pertama (<InlineMath math="U_1" />) <InlineMath math="= 2" />
-- Rasio (<InlineMath math="r" />) <InlineMath math="= 3" />
+- Jumlah awal (<InlineMath math="N_0" />) <InlineMath math="=2" />
+- Faktor pertumbuhan (<InlineMath math="r" />) <InlineMath math="=3" />
 
-Dalam <InlineMath math="20 \text{ jam}" />, terjadi pembelahan sebanyak <InlineMath math="10 \text{ kali}" /> (<InlineMath math="20 \div 2 = 10" />).
+Dalam <InlineMath math="20 \text{ jam}" />, kultur melewati <InlineMath math="10 \text{ interval pertumbuhan}" /> karena <InlineMath math="20 \div 2=10" />.
 
-Untuk menentukan jumlah bakteri setelah <InlineMath math="20 \text{ jam}" /> (suku ke-<InlineMath math="10" />), kita gunakan rumus:
+Penomoran yang dimulai dari indeks <InlineMath math="0" /> memisahkan jumlah awal dari interval pertumbuhan pertama yang sudah selesai. Setelah <InlineMath math="10" /> interval:
 
-<BlockMath math="U_{10} = 2 \cdot 3^{10-1} = 2 \cdot 3^9 = 2 \cdot 19.683 = 39.366" />
+<BlockMath math="N_{10}=N_0\cdot r^{10}=2\cdot3^{10}=118{.}098" />
 
-Jadi, setelah <InlineMath math="20 \text{ jam}" />, terdapat <InlineMath math="39.366 \text{ sel}" /> bakteri.
+Jadi, menurut model ideal ini, kultur tersebut berisi <InlineMath math="118{.}098 \text{ sel bakteri}" /> setelah <InlineMath math="20 \text{ jam}" />.
 
 <BacterialGrowth
   formulaType="geometric"
@@ -72,7 +88,7 @@ Jadi, setelah <InlineMath math="20 \text{ jam}" />, terdapat <InlineMath math="3
   timeInterval={2}
   timeUnit="jam"
   labels={{
-    title: "Pembelahan Bakteri",
+    title: "Pertumbuhan Bakteri Ideal",
     bacterial: "Bakteri",
     initialBacteria: "Bakteri Awal",
   }}
@@ -82,7 +98,7 @@ Jadi, setelah <InlineMath math="20 \text{ jam}" />, terdapat <InlineMath math="3
 
 ### Rasio Barisan Geometri
 
-Rasio (<InlineMath math="r" />) pada barisan geometri selalu tetap dan dapat dihitung dengan membagi suku berikutnya dengan suku sebelumnya:
+Faktor <InlineMath math="r" /> pada barisan geometri selalu tetap. Jika suku sebelumnya tidak nol, faktor yang sama dapat dihitung dengan membagi suku berikutnya dengan suku sebelumnya:
 
 <BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
 
@@ -102,6 +118,8 @@ Barisan geometri banyak diterapkan dalam berbagai bidang, seperti:
 4. Pertumbuhan sel dalam biologi
 
 Dengan memahami konsep barisan geometri, kita dapat memodelkan dan memprediksi berbagai fenomena yang melibatkan pertumbuhan atau penurunan dengan rasio tetap.
+
+Selalu periksa apakah model dengan faktor tetap masuk akal untuk situasi dan rentang waktu yang dikaji. Populasi nyata pada akhirnya menghadapi batas yang tidak dimuat dalam model sederhana ini.
 
 ## Contoh Soal
 
@@ -129,7 +147,7 @@ Jadi, rasio barisan geometri tersebut adalah <InlineMath math="3" />.
 
 ### Panjang Potongan Tali
 
-Seutas tali dibagi menjadi <InlineMath math="5 \text{ bagian}" /> dengan ukuran panjang membentuk suatu barisan geometri. Jika tali yang paling pendek adalah <InlineMath math="16 \text{ cm}" /> dan tali yang paling panjang adalah <InlineMath math="81 \text{ cm}" />, maka tentukan panjang tali pada potongan ketiga.
+Seutas tali dibagi menjadi <InlineMath math="5 \text{ bagian}" />. Panjang positifnya, jika diurutkan dari yang terpendek ke yang terpanjang, membentuk barisan geometri. Potongan terpendek panjangnya <InlineMath math="16 \text{ cm}" /> dan potongan terpanjang <InlineMath math="81 \text{ cm}" />. Tentukan panjang potongan ketiga.
 
 **Penyelesaian**:
 

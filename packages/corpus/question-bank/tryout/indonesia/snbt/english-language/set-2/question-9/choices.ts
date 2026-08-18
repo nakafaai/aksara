@@ -3,26 +3,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "The migratory birds have to cope with pathogens in two regions",
+      label: "The analysis included 1,311 Afro-Palaearctic songbird species.",
       value: false,
     },
     {
       label:
-        "Chronic inflammation is an example of the cost associated to advanced immune system",
+        "Colonization from a higher- to a lower-pathogen region was more frequent.",
+      value: false,
+    },
+    {
+      label: "MHC-I genes are involved in pathogen recognition.",
       value: false,
     },
     {
       label:
-        "The immune system of the ancestors of migratory birds was more advanced than that of the migratory birds",
-      value: false,
-    },
-    {
-      label: "Immune system diseases are more dangerous than pathogens",
+        "An individual bird immediately loses immune genes when it migrates.",
       value: true,
     },
     {
-      label:
-        "Migratory birds raise their litters in a region with fewer diseases",
+      label: "High MHC-I diversity may involve both benefits and costs.",
       value: false,
     },
   ],

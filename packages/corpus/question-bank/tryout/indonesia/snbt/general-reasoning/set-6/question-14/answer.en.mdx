@@ -4,19 +4,17 @@ export const metadata = {
   date: "2026-01-22",
 };
 
-We can analyze the logic behind this situation using the principle of **Disjunctive Syllogism**. Imagine there are two possible paths the Director of PT Batik must take this year:
+Let <InlineMath math="P" /> mean "PT Batik opens the new branch this year" and <InlineMath math="Q" /> mean "PT Batik sells the new product this year."
+
+The first premise requires at least one program, while the permit condition rules out the branch opening this year:
 
 <MathContainer>
-  <BlockMath math="P \lor Q" />
+  <BlockMath math="P\lor Q" />
+  <BlockMath math="\neg P" />
 </MathContainer>
 
-Where:
-- <InlineMath math="P" />: Opening a new branch.
-- <InlineMath math="Q" />: Selling a new product.
-- <InlineMath math="\lor" />: Represents "or" (one of them must happen).
+By disjunctive syllogism, eliminating <InlineMath math="P" /> leaves <InlineMath math="Q" />:
 
-The subsequent fact states that the new branch permit was not completed. This means the first path (<InlineMath math="P" />) is blocked or false (<InlineMath math="\sim P" />).
+<BlockMath math="Q" />
 
-Since one of these two plans **must** be executed (based on the initial "or" premise), and the branch opening plan failed, logic dictates that the **only remaining possibility** is that the second plan must proceed.
-
-Therefore, the absolutely correct conclusion is **PT Batik sells the new product this year**.
+Therefore, **PT Batik sells the new product this year**. The other choices contradict either the requirement to complete at least one program or the conclusion derived from it.

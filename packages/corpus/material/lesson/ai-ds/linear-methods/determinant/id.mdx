@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Definisi Determinan",
-    description: "Pahami determinan dengan 3 sifat kunci: linearitas, antisimetris, dan normalisasi. Pelajari keterbalikan matriks dan metode perhitungan untuk AI.",
+    description: "Pahami determinan sebagai faktor volume berorientasi, turunkan sifat penentunya, dan hubungkan determinan nol dengan peringkat serta keterbalikan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-10",
     subject: "Metode Linear AI",
@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Konsep Dasar Determinan
 
-Determinan adalah alat matematika yang sangat penting dalam aljabar linear. Bayangkan determinan sebagai pengukur "kekuatan" suatu matriks, ia memberitahu kita seberapa besar perubahan yang dialami suatu ruang ketika ditransformasi oleh matriks tersebut.
+Determinan matriks persegi mengukur faktor perubahan volume berorientasi dari transformasi linearnya. Nilai mutlaknya memberi faktor volume, sedangkan tandanya menunjukkan apakah orientasi dipertahankan atau dibalik.
 
-Setiap matriks persegi memiliki satu nilai determinan yang unik. Nilai ini bisa positif, negatif, atau nol, dan masing-masing memberitahu kita informasi yang berbeda tentang matriks tersebut.
+Setiap matriks persegi memiliki satu determinan. Nilai nol berarti setidaknya satu dimensi diruntuhkan, sehingga tidak ada transformasi invers yang dapat memulihkan vektor semula.
 
 Determinan adalah fungsi khusus yang mengambil matriks persegi dan menghasilkan satu bilangan real:
 
@@ -18,11 +18,17 @@ Determinan adalah fungsi khusus yang mengambil matriks persegi dan menghasilkan 
 
 Fungsi ini unik karena memiliki tiga sifat khas yang tidak dimiliki fungsi lain.
 
+| Determinan | Efek geometris | Keterbalikan |
+|---|---|---|
+| <InlineMath math="\det A>0" /> | Mengalikan volume dengan <InlineMath math="\lvert\det A\rvert" /> dan mempertahankan orientasi | Dapat dibalik |
+| <InlineMath math="\det A<0" /> | Mengalikan volume dengan <InlineMath math="\lvert\det A\rvert" /> dan membalik orientasi | Dapat dibalik |
+| <InlineMath math="\det A=0" /> | Meruntuhkan volume ke himpunan berdimensi lebih rendah | Tidak dapat dibalik |
+
 ## Tiga Sifat Penentu Determinan
 
 ### Sifat Linear pada Setiap Baris
 
-Determinan bersifat **linear** pada setiap baris matriks. Artinya, jika kita mengubah satu baris, determinan akan berubah secara linear.
+Determinan bersifat **linear pada setiap baris ketika baris lain tetap**. Sifat ini disebut multilinearitas.
 
 Ketika kita menjumlahkan dua vektor dalam satu baris:
 
@@ -38,13 +44,13 @@ Ketika kita mengalikan satu baris dengan skalar:
 <BlockMath math="= \lambda \cdot \det \begin{pmatrix} a_1 \\ \vdots \\ a_i \\ \vdots \\ a_n \end{pmatrix}" />
 </MathContainer>
 
-### Sifat Antisimetris
+### Sifat Berselang-seling
 
-Determinan bersifat **antisimetris**, jika ada dua baris yang identik, determinan langsung menjadi nol:
+Determinan bersifat **berselang-seling**: jika dua baris sama, nilainya nol.
 
 <BlockMath math="\det \begin{pmatrix} \vdots \\ a \\ \vdots \\ a \\ \vdots \end{pmatrix} = 0" />
 
-Ini masuk akal karena jika dua baris sama, matriks tidak dapat memiliki peringkat penuh.
+Secara ekuivalen, pertukaran dua baris membalik tanda determinan. Dua baris yang sama tidak berubah ketika ditukar, tetapi determinannya juga harus berganti tanda, sehingga satu-satunya nilai yang mungkin adalah nol.
 
 ### Sifat Normalisasi
 
@@ -52,7 +58,7 @@ Determinan **dinormalisasi** sehingga determinan matriks identitas selalu bernil
 
 <BlockMath math="\det I = 1" />
 
-Di mana <InlineMath math="I" /> adalah matriks identitas berukuran berapa pun.
+Di sini <InlineMath math="I" /> adalah matriks identitas dengan ukuran yang sesuai. Multilinearitas, sifat berselang-seling, dan normalisasi ini menentukan determinan secara tunggal.
 
 ## Operasi Matriks dan Determinan
 
@@ -66,7 +72,7 @@ Ketika kita menukar dua baris matriks, determinan berubah tanda:
 
 <BlockMath math="\det B = -\det A" />
 
-Yang menarik, ketika kita menambahkan kelipatan satu baris ke baris lain, determinan tidak berubah:
+Penambahan kelipatan satu baris ke baris lain yang berbeda tidak mengubah determinan:
 
 <MathContainer>
 <BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
@@ -77,11 +83,11 @@ Mengalikan baris dengan skalar <InlineMath math="\lambda \neq 0" /> mengubah det
 
 ## Hubungan dengan Keterbalikan Matriks
 
-Determinan adalah kunci untuk memahami apakah matriks dapat dibalik. Untuk matriks persegi A, kondisi berikut setara:
+Determinan menentukan apakah matriks persegi <InlineMath math="A" /> dapat dibalik. Kondisi berikut ekuivalen:
 
 1. **Matriks A dapat dibalik**
 2. **Terdapat matriks invers** <InlineMath math="A^{-1}" /> yang memenuhi <InlineMath math="AA^{-1} = I" />
-3. **Peringkat matriks penuh**: <InlineMath math="\text{peringkat}(A) = n" />
+3. **Matriks berperingkat penuh**: <InlineMath math="\operatorname{rank}(A) = n" />
 4. **Kernel hanya berisi nol**: <InlineMath math="\ker(A) = \{0\}" />
 5. **Kolom-kolom linear independen**
 6. **Baris-baris linear independen**
@@ -89,7 +95,7 @@ Determinan adalah kunci untuk memahami apakah matriks dapat dibalik. Untuk matri
 
 > Jika determinan nol, matriks "meratakan" ruang ke dimensi yang lebih rendah, sehingga transformasi tidak dapat dibalik.
 
-Jika baris-baris matriks saling bergantung secara linear, determinan pasti nol. Ini terjadi karena sifat antisimetris determinan, dependensi linear menciptakan situasi di mana kita bisa membuat baris yang identik melalui operasi linear.
+Jika baris-barisnya bergantung linear, satu baris merupakan kombinasi linear baris lain. Multilinearitas menguraikan determinan menjadi suku-suku dengan baris berulang, dan setiap suku tersebut nol karena sifat berselang-seling.
 
 ## Sifat Perkalian dan Matriks Similar
 
@@ -113,11 +119,11 @@ Matriks yang serupa memiliki determinan yang sama. Buktinya sederhana:
 <BlockMath math="= \frac{1}{\det S} \cdot \det A \cdot \det S = \det A" />
 </MathContainer>
 
-Ketika melakukan eliminasi Gauss dengan <InlineMath math="p" /> pertukaran baris, determinan matriks hasil <InlineMath math="R" /> adalah:
+Jika eliminasi Gauss hanya memakai penambahan baris dan <InlineMath math="p" /> pertukaran baris, determinan matriks segitiga atas hasil <InlineMath math="R" /> adalah
 
 <BlockMath math="\det R = (-1)^p \cdot \det A" />
 
-Ini memberikan metode praktis untuk menghitung determinan.
+Jika suatu baris juga diskalakan, faktor skalanya harus dicatat terpisah. Dengan jenis operasi yang dinyatakan secara jelas, proses membentuk matriks segitiga memberikan algoritma determinan yang praktis.
 
 ## Kesalahan Umum tentang Determinan
 

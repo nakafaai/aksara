@@ -20,6 +20,8 @@ Karena jumlah kolom matriks <InlineMath math="A" /> (<InlineMath math="n" />) sa
 
 Hasil perkaliannya, sebut saja matriks <InlineMath math="C = AB" />, akan memiliki ordo <InlineMath math="m \times p" />.
 
+Pemeriksaan ordo dapat diringkas dalam satu baris: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{n\times p}" /> menghasilkan <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. Ordo dalam <InlineMath math="n" /> dipakai pada setiap hasil kali titik, sedangkan ordo luar <InlineMath math="m" /> dan <InlineMath math="p" /> menentukan bentuk hasil.
+
 ### Cara Menghitung Elemen Hasil Perkalian
 
 Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />) dihitung dengan mengalikan setiap elemen pada baris ke-<InlineMath math="i" /> dari matriks <InlineMath math="A" /> dengan elemen yang bersesuaian pada kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="B" />, kemudian menjumlahkan semua hasil perkalian tersebut.
@@ -100,7 +102,7 @@ Perkalian matriks memiliki beberapa sifat penting:
 
 2.  **Asosiatif**:
 
-    Jika perkalian matriks <InlineMath math="A, B," /> dan <InlineMath math="C" /> terdefinisi, maka berlaku <InlineMath math="(AB)C = A(BC)" />. Artinya, urutan pengelompokan perkalian tidak mengubah hasil akhir.
+    Jika semua hasil kali pada kedua ruas terdefinisi, maka berlaku <InlineMath math="(AB)C = A(BC)" />. Artinya, urutan pengelompokan perkalian tidak mengubah hasil akhir.
 
 3.  **Distributif**:
 
@@ -115,9 +117,9 @@ Perkalian matriks memiliki beberapa sifat penting:
 
 4.  **Perkalian dengan Matriks Identitas (<InlineMath math="I" />)**:
 
-    Jika <InlineMath math="A" /> adalah matriks persegi berordo <InlineMath math="n \times n" /> dan <InlineMath math="I" /> adalah matriks identitas berordo <InlineMath math="n \times n" />, maka berlaku:
+    Jika <InlineMath math="A" /> berordo <InlineMath math="m \times n" />, identitas kiri <InlineMath math="I_m" /> berordo <InlineMath math="m \times m" />, sedangkan identitas kanan <InlineMath math="I_n" /> berordo <InlineMath math="n \times n" />:
 
-    <BlockMath math="AI = IA = A" />
+    <BlockMath math="I_mA=A=AI_n" />
 
     Matriks identitas berperan seperti angka <InlineMath math="1" /> dalam perkalian bilangan biasa.
 
@@ -129,55 +131,52 @@ Perkalian matriks memiliki beberapa sifat penting:
 
 ## Menghitung Pendapatan
 
-Perkalian matriks sangat berguna dalam berbagai bidang, salah satunya untuk mengelola data dan menghitung nilai agregat.
+Perkalian matriks dapat menggabungkan tabel jumlah barang dengan tabel harga yang sesuai. Label pada baris dan kolom sama pentingnya dengan ordo numeriknya.
 
-Bayangkan sebuah industri rumahan memproduksi tiga jenis makanan: keripik tempe, keripik pisang, dan keripik kentang.
+Misalkan sebuah industri rumahan menjual keripik tempe, keripik pisang, dan keripik kentang di Tempat A, Tempat B, dan Tempat C.
 
-Makanan tersebut dipasarkan ke tiga tempat: Tempat A, Tempat B, dan Tempat C.
-
-Banyaknya keripik (dalam toples) yang terjual di setiap tempat disajikan dalam matriks <InlineMath math="P" />. Kolom-kolom pada matriks <InlineMath math="P" /> berturut-turut menunjukkan Tempat A, Tempat B, dan Tempat C, sedangkan baris-barisnya berturut-turut menunjukkan keripik tempe, keripik pisang, dan keripik kentang.
+Matriks penjualan <InlineMath math="P" /> menggunakan jenis produk sebagai baris dan tempat sebagai kolom. Artinya, setiap elemen <InlineMath math="P" /> menyatakan banyak toples satu produk yang terjual di satu tempat.
 
 <BlockMath math="P = \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix} \begin{matrix} \text{Keripik Tempe} \\ \text{Keripik Pisang} \\ \text{Keripik Kentang} \end{matrix}" />
 
 Baris pertama (<InlineMath math="\begin{bmatrix} 15 & 12 & 20 \end{bmatrix}" />) berarti <InlineMath math="15" /> toples keripik tempe terjual di Tempat A, <InlineMath math="12" /> di Tempat B, dan <InlineMath math="20" /> di Tempat C.
 
-Harga untuk setiap toples keripik (dalam rupiah) dinyatakan dalam matriks kolom <InlineMath math="Q" /> berikut:
+Harga setiap toples, dalam rupiah, disimpan dalam matriks kolom <InlineMath math="Q" /> dengan urutan produk yang sama:
 
-<BlockMath math="Q = \begin{bmatrix} 20.000 \\ 15.000 \\ 30.000 \end{bmatrix} \begin{matrix} \text{Harga Keripik Tempe} \\ \text{Harga Keripik Pisang} \\ \text{Harga Keripik Kentang} \end{matrix}" />
+<BlockMath math="Q = \begin{bmatrix} 20{.}000 \\ 15{.}000 \\ 30{.}000 \end{bmatrix} \begin{matrix} \text{Harga Keripik Tempe} \\ \text{Harga Keripik Pisang} \\ \text{Harga Keripik Kentang} \end{matrix}" />
 
-Untuk menentukan total pendapatan dari setiap jenis keripik di semua tempat, kita bisa mengalikan matriks <InlineMath math="P" /> dengan matriks <InlineMath math="Q" />.
+Secara numerik, <InlineMath math="PQ" /> dapat dihitung karena kedua ordo dalamnya sama-sama <InlineMath math="3" />. Namun, perkalian itu tidak bermakna untuk model ini. Kolom <InlineMath math="P" /> menyatakan tempat, sedangkan baris <InlineMath math="Q" /> menyatakan produk. Label keduanya tidak cocok.
 
-Namun, perhatikan ordo matriks. Matriks <InlineMath math="P" /> berordo <InlineMath math="3 \times 3" /> dan matriks <InlineMath math="Q" /> berordo <InlineMath math="3 \times 1" />. Jumlah kolom <InlineMath math="P" /> (<InlineMath math="3" />) sama dengan jumlah baris <InlineMath math="Q" /> (<InlineMath math="3" />), sehingga <InlineMath math="PQ" /> dapat dihitung dan akan menghasilkan matriks <InlineMath math="R" /> berordo <InlineMath math="3 \times 1" />.
+Untuk menghitung pendapatan per tempat, transpos matriks harga lalu kalikan <InlineMath math="Q^T" /> dengan <InlineMath math="P" />. Perkalian <InlineMath math="S = Q^T P" /> memasangkan harga setiap produk dengan penjualan produk yang sama.
 
-Matriks <InlineMath math="R = PQ" /> akan menunjukkan total pendapatan untuk setiap jenis keripik.
-
-<MathContainer>
-  <BlockMath math="R = PQ = \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix} \begin{bmatrix} 20.000 \\ 15.000 \\ 30.000 \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} (15)(20.000) + (12)(15.000) + (20)(30.000) \\ (25)(20.000) + (10)(15.000) + (15)(30.000) \\ (15)(20.000) + (15)(15.000) + (20)(30.000) \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} 300.000 + 180.000 + 600.000 \\ 500.000 + 150.000 + 450.000 \\ 300.000 + 225.000 + 600.000 \end{bmatrix}" />
-  <BlockMath math="R = \begin{bmatrix} 1.080.000 \\ 1.100.000 \\ 1.125.000 \end{bmatrix} \begin{matrix} \text{Total Pendapatan Keripik Tempe} \\ \text{Total Pendapatan Keripik Pisang} \\ \text{Total Pendapatan Keripik Kentang} \end{matrix}" />
-</MathContainer>
-
-Dari matriks <InlineMath math="R" />, kita bisa melihat bahwa total pendapatan dari penjualan keripik tempe adalah <InlineMath math="\text{Rp}1.080.000" />, keripik pisang <InlineMath math="\text{Rp}1.100.000" />, dan keripik kentang <InlineMath math="\text{Rp}1.125.000" />.
-
-Jika pertanyaannya adalah "tentukan matriks pendapatan untuk setiap tempat", maka kita perlu mengatur matriks harga <InlineMath math="Q" /> secara berbeda atau melakukan perkalian dengan transpos dari <InlineMath math="P" />.
-
-Misalkan kita ingin mencari total pendapatan di Tempat A, Tempat B, dan Tempat C. Kita bisa menggunakan matriks harga sebagai matriks baris <InlineMath math="Q^T = \begin{bmatrix} 20.000 & 15.000 & 30.000 \end{bmatrix}" /> dan mengalikannya dengan matriks <InlineMath math="P" />: <InlineMath math="S = Q^T P" />.
-
-Matriks <InlineMath math="Q^T" /> berordo <InlineMath math="1 \times 3" /> dan <InlineMath math="P" /> berordo <InlineMath math="3 \times 3" />. Hasilnya <InlineMath math="S" /> akan berordo <InlineMath math="1 \times 3" />.
+Matriks <InlineMath math="Q^T" /> berordo <InlineMath math="1 \times 3" />, sedangkan <InlineMath math="P" /> berordo <InlineMath math="3 \times 3" />. Karena itu, <InlineMath math="S" /> berordo <InlineMath math="1 \times 3" /> dengan satu elemen untuk setiap tempat.
 
 <MathContainer>
-  <BlockMath math="S = \begin{bmatrix} 20.000 & 15.000 & 30.000 \end{bmatrix} \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix}" />
-  <BlockMath math="s_{11} = (20.000)(15) + (15.000)(25) + (30.000)(15) = 300.000 + 375.000 + 450.000 = 1.125.000" />
-  <BlockMath math="s_{12} = (20.000)(12) + (15.000)(10) + (30.000)(15) = 240.000 + 150.000 + 450.000 = 840.000" />
-  <BlockMath math="s_{13} = (20.000)(20) + (15.000)(15) + (30.000)(20) = 400.000 + 225.000 + 600.000 = 1.225.000" />
+  <BlockMath math="S = \begin{bmatrix} 20{.}000 & 15{.}000 & 30{.}000 \end{bmatrix} \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix}" />
+  <BlockMath math="s_{11} = (20{.}000)(15) + (15{.}000)(25) + (30{.}000)(15) = 300{.}000 + 375{.}000 + 450{.}000 = 1{.}125{.}000" />
+  <BlockMath math="s_{12} = (20{.}000)(12) + (15{.}000)(10) + (30{.}000)(15) = 240{.}000 + 150{.}000 + 450{.}000 = 840{.}000" />
+  <BlockMath math="s_{13} = (20{.}000)(20) + (15{.}000)(15) + (30{.}000)(20) = 400{.}000 + 225{.}000 + 600{.}000 = 1{.}225{.}000" />
 </MathContainer>
 
-Maka, <InlineMath math="S = \begin{bmatrix} 1.125.000 & 840.000 & 1.225.000 \end{bmatrix}" />.
+Maka, <InlineMath math="S = \begin{bmatrix} 1{.}125{.}000 & 840{.}000 & 1{.}225{.}000 \end{bmatrix}" />.
 
-Ini berarti total pendapatan dari Tempat A adalah <InlineMath math="\text{Rp}1.125.000" />, dari Tempat B adalah <InlineMath math="\text{Rp}840.000" />, dan dari Tempat C adalah <InlineMath math="\text{Rp}1.225.000" />.
+Ini berarti total pendapatan dari Tempat A adalah <InlineMath math="\text{Rp}1{.}125{.}000" />, dari Tempat B adalah <InlineMath math="\text{Rp}840{.}000" />, dan dari Tempat C adalah <InlineMath math="\text{Rp}1{.}225{.}000" />.
 
-Interpretasi elemen matriks hasil perkalian sangat bergantung pada bagaimana matriks awal didefinisikan dan bagaimana perkalian dilakukan.
+Pendapatan per produk memerlukan perkalian yang berbeda. Pertama, gunakan vektor satu <InlineMath math="U" /> untuk menjumlahkan setiap baris <InlineMath math="P" />, lalu kalikan hasilnya dengan matriks harga diagonal yang diturunkan dari <InlineMath math="Q" />.
+
+<MathContainer>
+  <BlockMath math="U = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}" />
+  <BlockMath math="T = PU = \begin{bmatrix} 15+12+20 \\ 25+10+15 \\ 15+15+20 \end{bmatrix}" />
+  <BlockMath math="T = \begin{bmatrix} 47 \\ 50 \\ 50 \end{bmatrix} \begin{matrix} \text{Toples Keripik Tempe} \\ \text{Toples Keripik Pisang} \\ \text{Toples Keripik Kentang} \end{matrix}" />
+  <BlockMath math="D = \operatorname{diag}(Q) = \begin{bmatrix} 20{.}000 & 0 & 0 \\ 0 & 15{.}000 & 0 \\ 0 & 0 & 30{.}000 \end{bmatrix}" />
+  <BlockMath math="R = DT = \begin{bmatrix} 940{.}000 \\ 750{.}000 \\ 1{.}500{.}000 \end{bmatrix}" />
+</MathContainer>
+
+Matriks <InlineMath math="R" /> menyatakan pendapatan per produk: <InlineMath math="\text{Rp}940{.}000" /> untuk keripik tempe, <InlineMath math="\text{Rp}750{.}000" /> untuk keripik pisang, dan <InlineMath math="\text{Rp}1{.}500{.}000" /> untuk keripik kentang.
+
+Jadi, syarat ordo saja belum cukup. Perkalian matriks yang bermakna juga harus memasangkan besaran dengan kategori yang sama dalam urutan yang sama.
+
+Pada contoh ini, <InlineMath math="Q^T" /> dan <InlineMath math="P" /> menghasilkan pendapatan per tempat dalam <InlineMath math="S" />, sedangkan matriks harga diagonal dan total produk menghasilkan pendapatan per produk dalam <InlineMath math="R" />. Keduanya menjawab pertanyaan yang berbeda sehingga memerlukan perkalian yang berbeda.
 
 ## Latihan
 
@@ -192,7 +191,7 @@ Tentukan matriks <InlineMath math="CD" /> dan matriks <InlineMath math="DC" />.
 
 Apakah <InlineMath math="CD = DC" />?
 
-### Kunci Jawaban
+### Pembahasan Lengkap
 
 1.  Menghitung <InlineMath math="CD" />:
 

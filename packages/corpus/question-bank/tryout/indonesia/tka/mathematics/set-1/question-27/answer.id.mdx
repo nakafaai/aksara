@@ -4,31 +4,27 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-Untuk menyelesaikan limit <InlineMath math="\lim_{x \to 0} \left(\frac{1 - \cos 2x}{x \tan 2x}\right)" />, gunakan identitas trigonometri
-
-#### Menggunakan Identitas Trigonometri
-
-Gunakan identitas <InlineMath math="1 - \cos 2x = 2\sin^2 x" />
+Gunakan dua identitas berikut:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \left(\frac{1 - \cos 2x}{x \tan 2x}\right) = \lim_{x \to 0} \left(\frac{2\sin^2 x}{x \tan 2x}\right)" />
-<BlockMath math="= \lim_{x \to 0} \left(\frac{2\sin^2 x}{x \tan 2x}\right)" />
+<BlockMath math="1-\cos(2x)=2\sin^2x" />
+<BlockMath math="\tan(2x)=\frac{\sin(2x)}{\cos(2x)}=\frac{2\sin x\cos x}{\cos(2x)}" />
 </MathContainer>
 
-#### Memisahkan Limit
-
-Pisahkan menjadi beberapa bagian menggunakan sifat limit
+Substitusi kedua identitas tersebut menghasilkan
 
 <MathContainer>
-<BlockMath math="= 2 \lim_{x \to 0} \left(\frac{\sin x}{x}\right) \cdot \left(\frac{\sin x}{x}\right) \cdot \frac{1}{2x} \cdot \left(\frac{2x}{\tan 2x}\right)" />
-<BlockMath math="= 2 \lim_{x \to 0} \left(\frac{\sin x}{x}\right) \cdot \left(\frac{\sin x}{x}\right) \cdot \frac{1}{2x} \cdot \left(\frac{2x}{\tan 2x}\right)" />
+<BlockMath math="\frac{1-\cos(2x)}{x\tan(2x)}=\frac{2\sin^2x}{x}\cdot\frac{\cos(2x)}{2\sin x\cos x}" />
+<BlockMath math="=\frac{\sin x}{x}\cdot\frac{\cos(2x)}{\cos x}" />
 </MathContainer>
 
-Gunakan fakta bahwa <InlineMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
+Sekarang hitung limit kedua faktornya:
 
 <MathContainer>
-<BlockMath math="= 2 \cdot 1 \cdot 1 \cdot \frac{1}{2x} \cdot \lim_{x \to 0} \left(\frac{2x}{\tan 2x}\right)" />
-<BlockMath math="= 2 \cdot \frac{1}{2x} \cdot x = 1" />
+<BlockMath math="\lim_{x\to0}\frac{\sin x}{x}=1" />
+<BlockMath math="\lim_{x\to0}\frac{\cos(2x)}{\cos x}=\frac{1}{1}=1" />
 </MathContainer>
 
-Jadi, nilai dari <InlineMath math="\lim_{x \to 0} \left(\frac{1 - \cos 2x}{x \tan 2x}\right) = 1" />
+Jadi,
+
+<BlockMath math="\lim_{x\to0}\frac{1-\cos(2x)}{x\tan(2x)}=1" />

@@ -5,13 +5,14 @@ export const metadata = {
 };
 
 Diketahui:
-*   Total siswa (<InlineMath math="S" />) adalah <InlineMath math="800\text{ orang}" />.
-*   Siswa suka Matematika (<InlineMath math="M" />) adalah <InlineMath math="400\text{ orang}" />.
-*   Siswa suka Fisika (<InlineMath math="F" />) adalah <InlineMath math="500\text{ orang}" />.
+
+- Jumlah seluruh siswa: <InlineMath math="S = 800" />
+- Siswa yang menyukai Matematika: <InlineMath math="M = 400" />
+- Siswa yang menyukai Fisika: <InlineMath math="F = 500" />
 
 Kita akan mencari nilai maksimum (<InlineMath math="x" />) dan minimum (<InlineMath math="y" />) dari irisan kedua himpunan tersebut (siswa yang menyukai keduanya).
 
-#### Mencari Nilai Maksimum x
+#### Mencari Irisan Maksimum
 
 Jumlah siswa yang menyukai keduanya akan maksimum jika himpunan yang lebih kecil merupakan bagian dari himpunan yang lebih besar.
 Di sini, jumlah siswa yang suka Matematika (<InlineMath math="400" />) lebih sedikit daripada Fisika (<InlineMath math="500" />).
@@ -21,13 +22,11 @@ Maka, nilai maksimum irisannya adalah jumlah siswa pada grup terkecil.
   <BlockMath math="x = 400" />
 </MathContainer>
 
-#### Mencari Nilai Minimum y
+#### Mencari Irisan Minimum
 
-Jumlah siswa yang menyukai keduanya akan minimum jika penyebarannya merata sebisa mungkin sehingga total gabungannya maksimal (sama dengan total siswa seluruhnya).
+Irisan menjadi paling kecil ketika gabungan kedua himpunan sebesar mungkin. Karena sekolah hanya memiliki <InlineMath math="800" /> siswa, nilai <InlineMath math="n(M \cup F)" /> tidak mungkin melebihi <InlineMath math="800" />.
 
-Gunakan rumus himpunan: <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />.
-
-Untuk mendapatkan irisan minimum, kita anggap semua siswa (<InlineMath math="800" />) menyukai setidaknya satu dari kedua pelajaran tersebut (tidak ada yang tidak suka keduanya).
+Dengan rumus <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, irisan minimum terjadi saat gabungan mencapai batas tersebut. Susunan ini mungkin terjadi jika setiap siswa menyukai setidaknya satu dari kedua pelajaran.
 
 <MathContainer>
   <BlockMath math="800 = 400 + 500 - y" />

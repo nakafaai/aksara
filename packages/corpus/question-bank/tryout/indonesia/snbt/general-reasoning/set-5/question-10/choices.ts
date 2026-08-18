@@ -3,45 +3,47 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label: "All bread from factory X contains carbohydrates or energy",
-      value: false,
-    },
-    {
-      label: "All bread from factory X is made from high-protein wheat flour",
-      value: false,
-    },
-    {
       label:
-        "Some bread from factory X is made from high-protein flour without containing carbohydrates",
+        "Some bread from Factory X contains neither carbohydrates nor energy",
       value: false,
     },
-    { label: "No bread is made from high-protein wheat flour", value: false },
     {
-      label: "Some bread from factory X is made from low-protein wheat flour",
+      label: "All bread from Factory X uses high-protein wheat flour",
+      value: false,
+    },
+    {
+      label: "Some high-protein bread contains no carbohydrates",
+      value: false,
+    },
+    {
+      label: "No bread from Factory X uses high-protein wheat flour",
+      value: false,
+    },
+    {
+      label: "Some bread from Factory X uses low-protein wheat flour",
       value: true,
     },
   ],
   id: [
     {
-      label: "Semua roti dari pabrik X mengandung karbohidrat atau energi",
-      value: false,
-    },
-    {
       label:
-        "Semua roti dari pabrik X terbuat dari tepung terigu protein tinggi",
+        "Sebagian roti Pabrik X tidak mengandung karbohidrat maupun energi",
       value: false,
     },
     {
-      label:
-        "Ada roti dari pabrik X terbuat dari protein tinggi tanpa mengandung karbohidrat",
+      label: "Semua roti Pabrik X menggunakan tepung terigu protein tinggi",
       value: false,
     },
     {
-      label: "Tidak ada roti yang terbuat dari tepung terigu protein tinggi",
+      label: "Sebagian roti berprotein tinggi tidak mengandung karbohidrat",
       value: false,
     },
     {
-      label: "Ada roti dari pabrik X terbuat dari tepung terigu protein rendah",
+      label: "Tidak ada roti Pabrik X yang menggunakan tepung protein tinggi",
+      value: false,
+    },
+    {
+      label: "Sebagian roti Pabrik X menggunakan tepung terigu protein rendah",
       value: true,
     },
   ],

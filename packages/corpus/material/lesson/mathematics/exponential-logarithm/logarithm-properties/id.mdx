@@ -1,228 +1,203 @@
 export const metadata = {
-    title: "Sifat Logaritma",
-description: "Temukan 8 sifat penting logaritma: perkalian, pembagian, pangkat, dan perubahan basis. Gunakan sifat itu untuk menyelesaikan persamaan logaritma.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-04-04",
-    subject: "Eksponen dan Logaritma",
+  title: "Sifat Logaritma",
+  description:
+    "Pahami delapan sifat logaritma, alasan sifat tersebut berlaku, dan cara menggunakannya dalam persamaan serta model pertumbuhan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-04",
+  subject: "Eksponen dan Logaritma",
 };
 
-## Sifat Dasar Logaritma
+## Delapan Sifat yang Berasal dari Aturan Eksponen
 
-Seperti halnya eksponen, logaritma juga memiliki beberapa sifat penting yang perlu dipahami. Sifat-sifat ini akan sangat membantu dalam menyelesaikan berbagai persoalan logaritma.
+Sifat logaritma bukan kumpulan rumus terpisah yang harus dihafalkan tanpa konteks. Setiap sifat berasal dari aturan eksponen yang bersesuaian.
 
-Misalkan <InlineMath math="a > 0" /> dan <InlineMath math="a \neq 1" />, <InlineMath math="b > 0" />, <InlineMath math="c > 0" />, <InlineMath math="m > 0" />, <InlineMath math="m \neq 1" />, di mana <InlineMath math="a, b, c, m, n" /> adalah bilangan real <InlineMath math="(a, b, c, m, n \in \mathbb{R})" />. Berikut adalah **sifat-sifat logaritma**:
+Dalam materi ini, gunakan syarat:
 
-1. <InlineMath math="^a\log a = 1" />
-2. <InlineMath math="^a\log 1 = 0" />
-3. <InlineMath math="^a\log a^n = n" />
-4. <InlineMath math="^a\log (b \times c) = ^a\log b + ^a\log c" />
-5. <InlineMath math="^a\log \left(\frac{b}{c}\right) = ^a\log b - ^a\log c" />
-6. <InlineMath math="^a\log b^n = n \cdot ^a\log b" />
-7. <InlineMath math="^a\log b = \frac{^m\log b}{^m\log a} = \frac{1}{^b\log a}" />
-8. <InlineMath math="^a\log b \times ^b\log c = ^a\log c" />
+<BlockMath math="a>0\qquad a\neq1\qquad b>0\qquad c>0\qquad n\in\mathbb{R}" />
 
-## Pembuktian Sifat Logaritma
+Jika <InlineMath math="m" /> atau <InlineMath math="b" /> digunakan sebagai bilangan pokok logaritma, bilangan pokok tersebut juga harus positif dan tidak sama dengan satu.
 
-### Logaritma Perkalian
+| Sifat | Identitas |
+| ----- | --------- |
+| Logaritma bilangan pokok | <InlineMath math="\log_a a=1" /> |
+| Logaritma satu | <InlineMath math="\log_a 1=0" /> |
+| Hubungan invers | <InlineMath math="\log_a(a^n)=n" /> |
+| Perkalian | <InlineMath math="\log_a(bc)=\log_a b+\log_a c" /> |
+| Pembagian | <InlineMath math="\log_a\left(\frac bc\right)=\log_a b-\log_a c" /> |
+| Pangkat | <InlineMath math="\log_a(b^n)=n\log_a b" /> |
+| Perubahan bilangan pokok | <InlineMath math="\log_a b=\frac{\log_m b}{\log_m a}=\frac1{\log_b a}" /> |
+| Berantai | <InlineMath math="(\log_a b)(\log_b c)=\log_a c" /> |
 
-**Sifat** <InlineMath math="4" />: <InlineMath math="^a\log (b \times c) = ^a\log b + ^a\log c" />
+Tiga sifat pertama langsung mengikuti <InlineMath math="a^1=a" />, <InlineMath math="a^0=1" />, dan hubungan invers antara logaritma dan eksponen. Bagian berikutnya menjelaskan sifat yang menggabungkan beberapa nilai.
 
-Bukti: Misalkan <InlineMath math="^a\log b = m" /> dan <InlineMath math="^a\log c = n" />
+## Alasan Setiap Sifat Berlaku
 
-Ini berarti:
+### Sifat Perkalian
 
-<InlineMath math="b = a^m" /> dan <InlineMath math="c = a^n" />
-
-Menggunakan sifat eksponen:
-
-<BlockMath math="b \times c = a^m \times a^n = a^{m+n}" />
-
-Dengan demikian:
-
-<BlockMath math="^a\log (b \times c) = ^a\log (a^{m+n}) = m + n = ^a\log b + ^a\log c" />
-
-### Logaritma Pembagian
-
-**Sifat** <InlineMath math="5" />: <InlineMath math="^a\log \left(\frac{b}{c}\right) = ^a\log b - ^a\log c" />
-
-Bukti: Misalkan <InlineMath math="^a\log b = m" /> dan <InlineMath math="^a\log c = n" />
-
-Maka <InlineMath math="b = a^m" /> dan <InlineMath math="c = a^n" />
-
-Ingat bahwa <InlineMath math="\frac{a^m}{a^n} = a^{m-n}" />, sehingga:
-
-<BlockMath math="\frac{b}{c} = \frac{a^m}{a^n} = a^{m-n}" />
-
-Oleh karena itu:
-
-<BlockMath math="^a\log \left(\frac{b}{c}\right) = ^a\log (a^{m-n}) = m - n = ^a\log b - ^a\log c" />
-
-### Logaritma Pangkat
-
-**Sifat** <InlineMath math="6" />: <InlineMath math="^a\log b^n = n \cdot ^a\log b" />
-
-Bukti: Misalkan <InlineMath math="^a\log b = m" />
-
-<InlineMath math="^a\log b^n" /> artinya logaritma dari <InlineMath math="b" /> pangkat <InlineMath math="n" />
-
-<InlineMath math="^a\log b^n = ^a\log (\underbrace{b \times b \times b \times \ldots \times b}_{n \text{ faktor}})" />
-
-Menggunakan sifat <InlineMath math="4" /> berulang kali:
-
-<BlockMath math="^a\log b^n = \underbrace{^a\log b + ^a\log b + ^a\log b + \ldots + ^a\log b}_{n \text{ faktor}} = n \cdot ^a\log b" />
-
-### Perubahan Basis Logaritma
-
-**Sifat** <InlineMath math="7" />: <InlineMath math="^a\log b = \frac{^m\log b}{^m\log a} = \frac{1}{^b\log a}" />
-
-Bukti:
-Berdasarkan definisi logaritma, <InlineMath math="^a\log b = c" /> jika dan hanya jika <InlineMath math="b = a^c" />
-
-Misalkan kita menggunakan basis <InlineMath math="m" /> untuk logaritma <InlineMath math="b" />:
-
-<BlockMath math="^m\log b = ^m\log a^c" />
-
-Menggunakan sifat <InlineMath math="6" />:
-
-<BlockMath math="^m\log b = c \cdot ^m\log a" />
-
-Karena <InlineMath math="c = ^a\log b" />, maka:
-
-<BlockMath math="^m\log b = ^a\log b \cdot ^m\log a" />
-
-Sehingga:
-
-<BlockMath math="^a\log b = \frac{^m\log b}{^m\log a}" />
-
-Jika <InlineMath math="m = b" />, maka:
-
-<BlockMath math="^a\log b = \frac{^b\log b}{^b\log a} = \frac{1}{^b\log a}" />
-
-### Logaritma Berantai
-
-**Sifat** <InlineMath math="8" />: <InlineMath math="^a\log b \times ^b\log c = ^a\log c" />
-
-Bukti:
-Berdasarkan definisi:
+Misalkan:
 
 <MathContainer>
-  <BlockMath math="^a\log b = m \Leftrightarrow b = a^m" />
-  <BlockMath math="^b\log c = n \Leftrightarrow c = b^n" />
+  <BlockMath math="x=\log_a b\quad\Longleftrightarrow\quad b=a^x" />
+  <BlockMath math="y=\log_a c\quad\Longleftrightarrow\quad c=a^y" />
 </MathContainer>
 
-Substitusi nilai <InlineMath math="b" /> ke persamaan <InlineMath math="c" />:
+Mengalikan <InlineMath math="b" /> dan <InlineMath math="c" /> berarti menjumlahkan pangkatnya:
 
-<BlockMath math="c = b^n = (a^m)^n = a^{mn}" />
+<BlockMath math="bc=a^x a^y=a^{x+y}" />
 
-Karena <InlineMath math="c = a^{mn}" />, maka:
+Ambil logaritma berbasis <InlineMath math="a" />:
 
-<BlockMath math="^a\log c = ^a\log (a^{mn}) = mn = ^a\log b \times ^b\log c" />
+<BlockMath math="\log_a(bc)=x+y=\log_a b+\log_a c" />
 
-## Contoh Penerapan
+### Sifat Pembagian
 
-Misalkan kita ingin menghitung <InlineMath math="^5\log 125" />.
+Dengan substitusi yang sama, pembagian mengurangkan pangkat:
 
-Menggunakan **sifat** <InlineMath math="6" />:
+<BlockMath math="\frac bc=\frac{a^x}{a^y}=a^{x-y}" />
 
-<BlockMath math="^5\log 125 = ^5\log 5^3 = 3 \cdot ^5\log 5 = 3 \cdot 1 = 3" />
+Jadi:
+
+<BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+### Sifat Pangkat
+
+Misalkan <InlineMath math="y=\log_a b" />, sehingga <InlineMath math="b=a^y" />. Untuk setiap <InlineMath math="n" /> real, syarat <InlineMath math="b>0" /> membuat <InlineMath math="b^n" /> terdefinisi:
+
+<MathContainer>
+  <BlockMath math="b^n=(a^y)^n=a^{ny}" />
+  <BlockMath math="\log_a(b^n)=ny=n\log_a b" />
+</MathContainer>
+
+Pembuktian ini langsung mencakup pangkat real. Perkalian berulang hanya dapat menjelaskan pangkat bulat positif.
+
+### Perubahan Bilangan Pokok dan Sifat Kebalikan
+
+Misalkan <InlineMath math="x=\log_a b" />, sehingga <InlineMath math="b=a^x" />. Ambil logaritma kedua ruas dengan bilangan pokok <InlineMath math="m" /> yang sah:
+
+<MathContainer>
+  <BlockMath math="\log_m b=\log_m(a^x)" />
+  <BlockMath math="\log_m b=x\log_m a" />
+  <BlockMath math="x=\frac{\log_m b}{\log_m a}" />
+</MathContainer>
+
+Karena <InlineMath math="x=\log_a b" />, rangkaian tersebut membuktikan rumus perubahan bilangan pokok. Dengan memilih <InlineMath math="m=b" />, kita memperoleh hubungan kebalikan:
+
+<BlockMath math="\log_a b=\frac{\log_b b}{\log_b a}=\frac1{\log_b a}" />
+
+### Sifat Berantai
+
+Menuliskan kedua logaritma dengan bilangan pokok sah yang sama memperlihatkan faktor yang saling menghapus:
+
+<BlockMath math="(\log_a b)(\log_b c)=\frac{\log_m b}{\log_m a}\cdot\frac{\log_m c}{\log_m b}=\frac{\log_m c}{\log_m a}=\log_a c" />
+
+## Contoh Pembahasan
+
+Hitung <InlineMath math="\log_5 125" />.
+
+Karena <InlineMath math="125=5^3" />, gunakan sifat pangkat dan hubungan invers:
+
+<MathContainer>
+  <BlockMath math="\log_5 125=\log_5(5^3)" />
+  <BlockMath math="\log_5(5^3)=3\log_5 5=3" />
+</MathContainer>
+
+Hasil tersebut juga menjawab pertanyaan pangkat semula: <InlineMath math="5^3=125" />.
 
 ## Latihan
 
-1. Sederhanakan bentuk akar berikut ini.
+1. Sederhanakan setiap bentuk.
 
-    1. <InlineMath math="^9\log 81" />
+    1. <InlineMath math="\log_9 81" />
 
-    2. <InlineMath math="^2\log 64 - ^2\log 16" />
+    2. <InlineMath math="\log_2 64-\log_2 16" />
 
-    3. <InlineMath math="^4\log 16^{10}" />
+    3. <InlineMath math="\log_4(16^{10})" />
 
-2. Jika <InlineMath math="^5\log 4 = m" />, <InlineMath math="^4\log 3 = n" />, nyatakan <InlineMath math="^{12}\log 100" /> dalam <InlineMath math="m" /> dan <InlineMath math="n" />.
+2. Jika <InlineMath math="\log_5 4=m" /> dan <InlineMath math="\log_4 3=n" />, nyatakan <InlineMath math="\log_{12}100" /> dalam <InlineMath math="m" /> dan <InlineMath math="n" />.
 
-3. Penduduk kota <InlineMath math="A" /> pada tahun <InlineMath math="2010" /> sebanyak <InlineMath math="300.000 \text{ jiwa}" />. Pertumbuhan penduduk kota <InlineMath math="A" /> rata-rata per tahun adalah <InlineMath math="6\%" />. Jika diasumsikan pertumbuhan penduduk setiap tahun sama, dalam berapa tahun penduduk kota <InlineMath math="A" /> menjadi <InlineMath math="1 \text{ juta jiwa}" />?
+3. Sebuah kota memiliki <InlineMath math="300{.}000" /> penduduk dan dimodelkan tumbuh <InlineMath math="6\%" /> pada akhir setiap tahun. Menurut model dengan laju tetap ini, setelah berapa tahun penuh jumlah penduduk pertama kali mencapai sekurang-kurangnya <InlineMath math="1{.}000{.}000" />?
 
-4. Berapa waktu yang dibutuhkan sehingga uang Dini yang tadinya <InlineMath math="\text{Rp}2.000.000{,}00" /> dapat menjadi <InlineMath math="\text{Rp}6.500.000{,}00" /> jika dia menabung di suatu bank yang memberinya bunga sebesar <InlineMath math="12\%" />?
+4. Dini menyimpan <InlineMath math="\text{Rp}\,2{.}000{.}000" /> di rekening dengan bunga majemuk tahunan <InlineMath math="12\%" />. Anggap tidak ada setoran tambahan, penarikan, biaya, atau perubahan suku bunga. Setelah berapa tahun penuh saldo pertama kali mencapai sekurang-kurangnya <InlineMath math="\text{Rp}\,6{.}500{.}000" />?
 
-### Kunci Jawaban
+### Pembahasan
 
-1. Menentukan nilai logaritma
+#### 1. Menyederhanakan Bentuk
 
-    1. Jawaban:
+1. Karena <InlineMath math="81=9^2" />:
 
-        <MathContainer>
-          <BlockMath math="^9\log 81 = ^9\log 9^2" />
-          <BlockMath math="^9\log 81 = 2 \cdot ^9\log 9" />
-          <BlockMath math="^9\log 81 = 2 \cdot 1 = 2" />
-        </MathContainer>
+    <MathContainer>
+      <BlockMath math="\log_9 81=\log_9(9^2)" />
+      <BlockMath math="\log_9(9^2)=2" />
+    </MathContainer>
 
-    2. Jawaban:
+2. Gunakan sifat pembagian:
 
-        <MathContainer>
-          <BlockMath math="^2\log 64 - ^2\log 16 = ^2\log \frac{64}{16}" />
-          <BlockMath math="^2\log 64 - ^2\log 16 = ^2\log 4" />
-          <BlockMath math="^2\log 64 - ^2\log 16 = 2" />
-        </MathContainer>
+    <MathContainer>
+      <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+      <BlockMath math="\log_2 4=2" />
+    </MathContainer>
 
-    3. Jawaban:
+3. Karena <InlineMath math="16=4^2" />:
 
-        <MathContainer>
-          <BlockMath math="^4\log 16^{10} = ^4\log (4^2)^{10}" />
-          <BlockMath math="^4\log 16^{10} = ^4\log 4^{20}" />
-          <BlockMath math="^4\log 16^{10} = 20" />
-        </MathContainer>
+    <MathContainer>
+      <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+      <BlockMath math="\log_4(4^{20})=20" />
+    </MathContainer>
 
-2. Dinyatakan bahwa <InlineMath math="^5\log 4 = m" />, <InlineMath math="^4\log 3 = n" />
+#### 2. Menggabungkan Hubungan Perubahan Bilangan Pokok
 
-   Maka:
+Gunakan bilangan pokok <InlineMath math="4" /> pada pembilang dan penyebut:
 
-   <MathContainer>
-     <BlockMath math="^{12}\log 100 = \frac{^4\log 100}{^4\log 12}" />
-     <BlockMath math="= \frac{^4\log(4 \times 25)}{^4\log(4 \times 3)}" />
-     <BlockMath math="= \frac{^4\log 4 + ^4\log 25}{^4\log 4 + ^4\log 3}" />
-     <BlockMath math="= \frac{^4\log 4 + 2 \cdot ^4\log 5}{^4\log 4 + ^4\log 3}" />
-     <BlockMath math="= \frac{1 + 2 \cdot \frac{1}{m}}{1 + n}" />
-     <BlockMath math="= \frac{1 + \frac{2}{m}}{1 + n}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+  <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
+  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+</MathContainer>
 
-3. Jumlah penduduk awal adalah <InlineMath math="300.000 \text{ jiwa}" />
+Sifat kebalikan memberi <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Jadi:
 
-   Pertumbuhan penduduk per tahun <InlineMath math="6\%" />.
+<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
 
-   Fungsi yang tepat untuk menggambarkan pertumbuhan penduduk dalam <InlineMath math="x \text{ tahun}" /> adalah:
+#### 3. Menafsirkan Ambang Jumlah Penduduk
 
-   <BlockMath math="f(x) = 300.000(1 + 0{,}06)^x" />
+Model dengan laju tetapnya adalah:
 
-   Untuk jumlah penduduk <InlineMath math="1.000.000 \text{ jiwa}" />:
+<BlockMath math="P(x)=300{.}000(1{,}06)^x" />
 
-   <MathContainer>
-     <BlockMath math="1.000.000 = 300.000(1 + 0{,}06)^x" />
-     <BlockMath math="1.000.000 = 300.000(1{,}06)^x" />
-     <BlockMath math="\frac{1.000.000}{300.000} = (1{,}06)^x" />
-     <BlockMath math="3{,}33 = (1{,}06)^x" />
-     <BlockMath math="x = ^{1{,}06}\log 3{,}33" />
-     <BlockMath math="x = 20{,}645" />
-   </MathContainer>
+Selesaikan persamaan kontinu terlebih dahulu:
 
-   Jadi penduduk akan mencapai <InlineMath math="1.000.000 \text{ jiwa}" /> dalam waktu <InlineMath math="20" /> atau <InlineMath math="21 \text{ tahun}" />.
+<MathContainer>
+  <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
+  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
+</MathContainer>
 
-4. Tabungan awal adalah <InlineMath math="\text{Rp}2.000.000{,}00" />
+Model diperbarui setelah satu tahun penuh, sehingga periksa dua bilangan bulat terdekat:
 
-   Tabungan akhir adalah <InlineMath math="\text{Rp}6.500.000{,}00" />
+<MathContainer>
+  <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
+  <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
+</MathContainer>
 
-   Bunga adalah <InlineMath math="12\%" />
+Jumlah penduduk pertama kali mencapai target setelah <InlineMath math="21\text{ tahun penuh}" />. Hasil ini adalah proyeksi matematis berdasarkan asumsi laju tetap yang dinyatakan, bukan ramalan demografi.
 
-   Fungsi yang tepat untuk menggambarkan tabungan Dini dalam <InlineMath math="x \text{ tahun}" /> adalah:
+#### 4. Menafsirkan Ambang Tabungan Tahunan
 
-   <BlockMath math="f(x) = 2.000.000(1 + 0{,}12)^x" />
+Model bunga majemuk tahunannya adalah:
 
-   Untuk tabungan akhir sebesar <InlineMath math="\text{Rp}6.500.000{,}00" />:
+<BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
 
-   <MathContainer>
-     <BlockMath math="6.500.000 = 2.000.000(1 + 0{,}12)^x" />
-     <BlockMath math="6.500.000 = 2.000.000(1{,}12)^x" />
-     <BlockMath math="\frac{6.500.000}{2.000.000} = (1{,}12)^x" />
-     <BlockMath math="3{,}25 = (1{,}12)^x" />
-     <BlockMath math="x = ^{1{,}12}\log 3{,}25" />
-     <BlockMath math="x = 10{,}4" />
-   </MathContainer>
+Selesaikan persamaan kontinu:
 
-   Jadi, tabungan Dini akan mencapai <InlineMath math="\text{Rp}6.500.000{,}00" /> dalam waktu <InlineMath math="10 \text{ tahun}" />.
+<MathContainer>
+  <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
+  <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
+</MathContainer>
+
+Bunga baru diberikan setelah setiap tahun penuh, sehingga bandingkan tahun <InlineMath math="10" /> dan <InlineMath math="11" />:
+
+<MathContainer>
+  <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
+  <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
+</MathContainer>
+
+Saldo pertama kali mencapai target setelah <InlineMath math="11\text{ tahun penuh}" />.

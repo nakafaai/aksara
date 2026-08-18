@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Expected Value of Binomial Distribution",
-    description: "Understand expected value in binomial distributions and calculate mean outcomes in repeated trials using E(X)=np.",
+    description: "Understand expected value in a binomial distribution and calculate the mean number of successes across repeated trials.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Data Analysis and Probability",
@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Understanding the Concept of Expected Value
 
-Imagine you are a basketball player. On average, out of <InlineMath math="10" /> free throw attempts, you successfully make <InlineMath math="8" /> shots. Well, this number <InlineMath math="8" /> can be called your **expected value** or expectation of success.
+Suppose each free throw goes in independently with probability <InlineMath math="p=0.8" />, and let <InlineMath math="X" /> count the baskets in <InlineMath math="n=10" /> attempts. Then <InlineMath math="E(X)=8" />: across many sets of ten attempts, the average number of baskets approaches <InlineMath math="8" />.
 
-Simply put, expected value is **the average value we expect to occur** from an experiment if that experiment is repeated many times under the same conditions. This doesn't mean you will *definitely* get that result every time, but it's a prediction of the long-term average.
+Expected value is the probability-weighted average of a random variable. It describes a long-run mean, not a guaranteed result in one set. An expected value can also be noninteger even when the random variable itself only takes integer values.
 
 ## Expected Value Formula for Binomial
 
-This concept is very useful in binomial distribution. Remember, binomial distribution is used for experiments that have only two possible outcomes (success or failure) and are performed repeatedly. Binomial expected value helps us predict how many successes we're most likely to get.
+A binomial random variable counts successes in a fixed number of independent trials, each with the same success probability. Its expected value gives the long-run mean number of successes. It is not necessarily the most likely count, which is described by the mode instead.
 
 Binomial distribution <InlineMath math="b(x;n,p)" /> has an expected value:
 
@@ -22,15 +22,15 @@ Binomial distribution <InlineMath math="b(x;n,p)" /> has an expected value:
 
 where <InlineMath math="n" /> is the number of trials and <InlineMath math="p" /> is the probability of success.
 
-This formula is very intuitive. If the probability of success in one trial is <InlineMath math="p" />, then in <InlineMath math="n" /> trials, the expected number of successes is:
+If the success probability in each trial is <InlineMath math="p" />, then the expected number of successes in <InlineMath math="n" /> trials is:
 
 <BlockMath math="E(X) = n \times p" />
 
 ## Where Does the Formula Come From?
 
-You might be curious, why is the formula so simple? Let's break down the logic.
+The formula follows by representing each trial with an indicator variable.
 
-Each trial in a binomial distribution can be thought of as a small random variable, let's call it <InlineMath math="I_k" />. This variable has a value of <InlineMath math="1" /> if the <InlineMath math="k" />-th trial is **successful**, and <InlineMath math="0" /> if it **fails**.
+Let <InlineMath math="I_k" /> represent the <InlineMath math="k" />-th trial. It equals <InlineMath math="1" /> for **success** and <InlineMath math="0" /> for **failure**.
 
 The expected value for a single trial is:
 
@@ -40,33 +40,33 @@ Since the total number of successes (<InlineMath math="X" />) is the sum of all 
 
 <BlockMath math="X = I_1 + I_2 + ... + I_n" />
 
-Using the properties of expected value, we can sum all expected values from each trial:
+By linearity of expectation, the expected values add:
 
 <MathContainer>
 <BlockMath math="E(X) = E(I_1) + E(I_2) + ... + E(I_n)" />
 <BlockMath math="E(X) = \underbrace{p + p + ... + p}_{n \text{ times}} = np" />
 </MathContainer>
 
-See? The total expected value is the product of the number of trials and the probability of success.
+Therefore, the expected number of successes is the number of trials multiplied by the success probability.
 
 ## Dice Rolling Case Study
 
-Let's apply this concept to an example.
+Consider a concrete example.
 
 **Problem:**
 
-A fair die is rolled <InlineMath math="7\text{ times}" />. What is the expected value for getting a five on the die from all the rolls?
+A fair die is rolled <InlineMath math="7" /> times. What is the expected value for getting a five on the die from all the rolls?
 
 **Solution:**
 
-First, let's make sure this meets the requirements for binomial distribution:
+First, verify that the experiment satisfies the binomial conditions:
 
 - There are only two possibilities: **success** (rolling a <InlineMath math="5" />) or **failure** (rolling a number other than <InlineMath math="5" />)
-- Fixed number of trials: <InlineMath math="7\text{ times}" />
+- Fixed number of trials: <InlineMath math="7" /> rolls
 - Each roll is independent: the result of previous rolls doesn't affect subsequent rolls
 - Same probability of success: <InlineMath math="p = \frac{1}{6}" /> on each roll
 
-Now we identify the parameters:
+The parameters are:
 
 <MathContainer>
 <BlockMath math="S = \{1, 2, 3, 4, 5, 6\}" />
@@ -74,12 +74,12 @@ Now we identify the parameters:
 <BlockMath math="n = 7" />
 </MathContainer>
 
-Now we can directly calculate the expected value using the formula:
+Apply the expected-value formula:
 
-<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} = 1.167" />
+<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1.167" />
 
 **So, what does this number <InlineMath math="1.167" /> mean?**
 
-Expected value <InlineMath math="1.167" /> doesn't mean you will get <InlineMath math="1.167 \text{ times}" /> the number <InlineMath math="5" /> in one experiment (because that's impossible). What it means is: if you repeat this experiment of rolling a die <InlineMath math="7 \text{ times}" /> **hundreds or thousands of times**, then on average you will get the number <InlineMath math="5" /> about <InlineMath math="1.167 \text{ times}" /> per set of <InlineMath math="7" /> rolls.
+Expected value <InlineMath math="1.167" /> doesn't mean you will get the number <InlineMath math="5" /> exactly <InlineMath math="1.167" /> times in one experiment (because that's impossible). It means that if you repeat the experiment with <InlineMath math="7" /> rolls **hundreds or thousands of times**, the number <InlineMath math="5" /> will appear about <InlineMath math="1.167" /> times per set on average.
 
-In practice, in one set of <InlineMath math="7" /> rolls, you might get the number <InlineMath math="5" /> as many as <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, or even <InlineMath math="3\text{ times}" />. But when averaged over the long term, the result will approach <InlineMath math="1.167" />.
+In practice, in one set of <InlineMath math="7" /> rolls, you might get the number <InlineMath math="5" /> as many as <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, or even <InlineMath math="3" /> times. But when averaged over the long term, the result will approach <InlineMath math="1.167" />.

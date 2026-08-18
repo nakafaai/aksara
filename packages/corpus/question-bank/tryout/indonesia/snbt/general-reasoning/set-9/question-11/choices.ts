@@ -2,18 +2,18 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "$$10$$ thousand", value: false },
-    { label: "$$30$$ thousand", value: true },
-    { label: "$$50$$ thousand", value: false },
-    { label: "$$60$$ thousand", value: false },
-    { label: "$$80$$ thousand", value: false },
+    { label: "$$10{,}000$$ votes", value: false },
+    { label: "$$30{,}000$$ votes", value: true },
+    { label: "$$50{,}000$$ votes", value: false },
+    { label: "$$60{,}000$$ votes", value: false },
+    { label: "$$80{,}000$$ votes", value: false },
   ],
   id: [
-    { label: "$$10$$ ribu", value: false },
-    { label: "$$30$$ ribu", value: true },
-    { label: "$$50$$ ribu", value: false },
-    { label: "$$60$$ ribu", value: false },
-    { label: "$$80$$ ribu", value: false },
+    { label: "$$10{.}000$$ suara", value: false },
+    { label: "$$30{.}000$$ suara", value: true },
+    { label: "$$50{.}000$$ suara", value: false },
+    { label: "$$60{.}000$$ suara", value: false },
+    { label: "$$80{.}000$$ suara", value: false },
   ],
 };
 

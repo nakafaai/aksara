@@ -2,22 +2,33 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   en: [
-    { label: "Budi does not diligently practice cycling.", value: true },
-    { label: "Budi does not like bicycle racing.", value: false },
-    { label: "Budi cannot win a bicycle race.", value: false },
-    { label: "Budi does not practice cycling to join the race.", value: false },
     {
-      label: "Budi cannot participate in a long-distance bicycle race.",
+      label:
+        "Budi did not complete every scheduled practice session this month.",
+      value: true,
+    },
+    { label: "Budi does not like bicycle racing.", value: false },
+    { label: "Budi can never win a bicycle race.", value: false },
+    { label: "Budi did not practice cycling at all this month.", value: false },
+    {
+      label: "Budi is barred from every long-distance bicycle race.",
       value: false,
     },
   ],
   id: [
-    { label: "Budi tidak rajin berlatih mengayuh sepeda.", value: true },
-    { label: "Budi tidak menyukai balap sepeda.", value: false },
-    { label: "Budi tidak bisa menang balap sepeda.", value: false },
-    { label: "Budi tidak berlatih sepeda untuk ikut lomba.", value: false },
     {
-      label: "Budi tidak dapat mengikuti lomba balap sepeda jarak jauh.",
+      label:
+        "Budi tidak menyelesaikan setiap sesi latihan yang dijadwalkan bulan ini.",
+      value: true,
+    },
+    { label: "Budi tidak menyukai balap sepeda.", value: false },
+    { label: "Budi tidak akan pernah bisa menang balap sepeda.", value: false },
+    {
+      label: "Budi sama sekali tidak berlatih sepeda bulan ini.",
+      value: false,
+    },
+    {
+      label: "Budi dilarang mengikuti semua balap sepeda jarak jauh.",
       value: false,
     },
   ],

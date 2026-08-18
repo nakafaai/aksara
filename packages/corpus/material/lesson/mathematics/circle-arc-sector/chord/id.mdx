@@ -9,9 +9,9 @@ export const metadata = {
 
 ## Pengertian Tali Busur
 
-Tali busur adalah ruas garis lurus yang menghubungkan dua titik pada lingkaran. Bayangkan seperti tali yang direntangkan di dalam lingkaran, menghubungkan dua titik di tepi lingkaran. Setiap tali busur membagi lingkaran menjadi dua bagian, yaitu busur kecil dan busur besar.
+Tali busur adalah ruas garis yang kedua ujungnya terletak pada lingkaran. Tali tegang yang direntangkan di antara dua titik pada keliling dapat menjadi modelnya. Setiap tali busur menentukan busur kecil dan busur besar, serta membagi cakram menjadi tembereng kecil dan tembereng besar.
 
-Tali busur memiliki karakteristik khusus dalam lingkaran. Semakin jauh tali busur dari pusat lingkaran, semakin pendek panjangnya. Sebaliknya, tali busur terpanjang adalah yang melalui pusat lingkaran, yang disebut diameter.
+Di antara tali busur pada lingkaran yang sama, tali busur yang lebih jauh dari pusat lebih pendek. Tali busur terpanjang melalui pusat dan disebut diameter.
 
 <LineEquation
   title={<>Visualisasi Tali Busur dalam Lingkaran</>}
@@ -73,21 +73,21 @@ Tali busur memiliki karakteristik khusus dalam lingkaran. Semakin jauh tali busu
   ]}
 />
 
-## Jenis Tali Busur
+## Konfigurasi Tali Busur yang Berguna
 
-Berdasarkan posisi dan karakteristiknya, tali busur dapat dibedakan menjadi beberapa jenis:
+Konfigurasi berikut membantu kita menata permasalahan tali busur:
 
-1. **Tali Busur Biasa** adalah tali busur yang tidak melalui pusat lingkaran. Panjangnya selalu lebih pendek dari diameter lingkaran.
+1. **Tali busur bukan diameter**: Tali busur yang tidak melalui pusat. Panjangnya lebih pendek daripada diameter lingkaran yang sama.
 
-2. **Diameter** adalah tali busur khusus yang melalui pusat lingkaran. Diameter merupakan tali busur terpanjang dalam lingkaran dan membagi lingkaran menjadi dua bagian yang sama besar.
+2. **Diameter**: Tali busur yang melalui pusat. Diameter adalah tali busur terpanjang dan membagi cakram menjadi dua setengah lingkaran.
 
-3. **Tali Busur Sejajar** adalah dua atau lebih tali busur yang memiliki arah yang sama dan tidak berpotongan di dalam lingkaran.
+3. **Tali busur sejajar**: Hubungan antara dua atau lebih tali busur yang garis pemuatnya sejajar. Panjangnya sama tepat ketika jarak tegak lurusnya dari pusat juga sama.
 
 ## Hubungan Tali Busur dengan Jarak ke Pusat
 
-Terdapat hubungan yang menarik antara panjang tali busur dengan jaraknya ke pusat lingkaran. Semakin dekat tali busur ke pusat lingkaran, semakin panjang tali busur tersebut. Hubungan ini dapat dinyatakan secara matematis.
+Jarak yang dipakai adalah jarak tegak lurus dari pusat ke tali busur. Garis tegak lurus dari pusat membagi tali busur menjadi dua sama panjang. Terbentuk segitiga siku-siku dengan sisi siku-siku <InlineMath math="d" /> dan <InlineMath math="l/2" />, serta sisi miring <InlineMath math="r" />.
 
-Jika <InlineMath math="d" /> adalah jarak dari pusat lingkaran ke tali busur, <InlineMath math="r" /> adalah jari-jari lingkaran, dan <InlineMath math="l" /> adalah panjang tali busur, maka:
+Jika <InlineMath math="d" /> adalah jarak tegak lurus tersebut, <InlineMath math="r" /> adalah jari-jari, dan <InlineMath math="l" /> adalah panjang tali busur, teorema Pythagoras memberikan:
 
 <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
 
@@ -113,7 +113,7 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
       color: "#ea580c",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=0" />, at: 0, offset: [0, -0.5, 0] }]
+      labels: [{ text: <>Diameter: <InlineMath math="d=0" /></>, at: 0, offset: [0, -0.5, 0] }]
     },
     {
       points: [
@@ -123,7 +123,7 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
       color: "#9333ea",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=1" />, at: 0, offset: [0, 0.5, 0] }]
+      labels: []
     },
     {
       points: [
@@ -133,7 +133,7 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
       color: "#d97706",
       smooth: false,
       showPoints: true,
-      labels: [{ text: <InlineMath math="d=2" />, at: 0, offset: [0, 0.5, 0] }]
+      labels: []
     },
     {
       points: [
@@ -142,7 +142,8 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
       ],
       color: "#7c3aed",
       smooth: false,
-      showPoints: false
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=1" />, at: 1, offset: [0.5, 0, 0] }]
     },
     {
       points: [
@@ -151,20 +152,21 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
       ],
       color: "#7c3aed",
       smooth: false,
-      showPoints: false
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=2" />, at: 1, offset: [0.5, 0, 0] }]
     }
   ]}
 />
 
 ## Sifat Tali Busur yang Sama Panjang
 
-Tali busur yang memiliki panjang sama dalam lingkaran yang sama memiliki sifat khusus. Mereka memiliki jarak yang sama dari pusat lingkaran. Sebaliknya, tali busur yang memiliki jarak sama dari pusat lingkaran akan memiliki panjang yang sama.
+Tali busur yang sama panjang pada lingkaran yang sama memiliki jarak tegak lurus yang sama dari pusat. Sebaliknya, tali busur dengan jarak tegak lurus yang sama dari pusat memiliki panjang yang sama.
 
 Sifat ini sangat berguna dalam menyelesaikan berbagai permasalahan geometri lingkaran. Jika dua tali busur memiliki panjang yang sama, maka:
 
 1. Jarak kedua tali busur ke pusat lingkaran adalah sama
-2. Busur yang dibentuk oleh kedua tali busur memiliki panjang yang sama
-3. Sudut pusat yang menghadap kedua tali busur memiliki besar yang sama
+2. Busur kecil yang bersesuaian memiliki panjang yang sama
+3. Sudut pusat kecil yang dibentang memiliki besar yang sama
 
 ## Teorema Tali Busur Berpotongan
 
@@ -186,7 +188,7 @@ Teorema ini dikenal sebagai teorema tali busur berpotongan dan sangat berguna da
 
 5. Sebuah lingkaran memiliki diameter <InlineMath math="26 \text{ cm}" />. Tentukan panjang tali busur yang berjarak <InlineMath math="12 \text{ cm}" /> dari pusat lingkaran.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Jawaban: <InlineMath math="24 \text{ cm}" />**
 

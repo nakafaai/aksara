@@ -35,12 +35,12 @@ const choices: QuestionChoices = {
     },
     {
       label:
-        "Jumlah siswa kelas $$\\text{XII}$$ sesuai kegemaran adalah $$468$$",
+        "Jumlah siswa kelas $$\\text{XII}$$ sesuai kegemaran adalah $$306$$",
       value: false,
     },
     {
       label:
-        "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{XI}$$",
+        "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{X}$$",
       value: false,
     },
     {

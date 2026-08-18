@@ -4,27 +4,27 @@ const choices: QuestionChoices = {
   en: [
     {
       label:
-        "Doing physical exercises and maintaining healthy diet can effectively lead to a better life. Avoiding too much stress in life is another important measure to take.",
+        "Regular activity, a varied diet, and practical stress management work together, while guidance should be adapted and additional help sought when needed.",
       value: true,
     },
     {
       label:
-        "Eating good food makes us healthier and more balanced. With lots of fibers in food, we can easily fight cancer including agents.",
+        "Eating one high-fiber food prevents disease and removes the need for exercise or stress management.",
       value: false,
     },
     {
       label:
-        "Critical thinking makes us stressed and uncontrolled. This will eventually erode our well-being and in the long run posing us to serious illness.",
+        "Vigorous exercise is the only reliable way to protect health, regardless of a person's circumstances.",
       value: false,
     },
     {
       label:
-        "To stay healthy, one should spend a lot of money on good food and going to the fitness center for well-controlled sports. This is also a way to reduce stress.",
+        "Healthy living requires expensive food, a gym membership, and the complete absence of uncomfortable feelings.",
       value: false,
     },
     {
       label:
-        "The way we think about life, food, sports and relationships determine the level of stress we have. We have to control our mind to stay healthy.",
+        "The same health advice applies to everyone, and people should manage persistent stress without seeking help.",
       value: false,
     },
   ],

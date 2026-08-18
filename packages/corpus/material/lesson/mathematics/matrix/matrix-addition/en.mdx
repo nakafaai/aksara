@@ -18,11 +18,13 @@ Two matrices, let's say matrix <InlineMath math="A" /> and matrix <InlineMath ma
 
 Suppose matrix <InlineMath math="A" /> is of order <InlineMath math="m \times n" /> with elements <InlineMath math="a_{ij}" /> (element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column), and matrix <InlineMath math="B" /> is also of order <InlineMath math="m \times n" /> with elements <InlineMath math="b_{ij}" />.
 
-Then, the sum of matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, which we call matrix <InlineMath math="C" />, is written as <InlineMath math="C = A + B" />. Matrix <InlineMath math="C" /> will also be of order <InlineMath math="m \times n" />, with elements <InlineMath math="c_{ij}" /> defined as:
+Call their sum matrix <InlineMath math="C" /> and write <InlineMath math="C = A + B" />. Matrix <InlineMath math="C" /> also has dimensions <InlineMath math="m \times n" />, with entries <InlineMath math="c_{ij}" /> defined by:
 
 <BlockMath math="c_{ij} = a_{ij} + b_{ij}" />
 
-This means that each element in the resulting matrix is obtained by adding the elements that are in the same position from the two matrices being added.
+For each position, the formula adds the entry from <InlineMath math="A" /> to the corresponding entry from <InlineMath math="B" />.
+
+In symbols, <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="B\in\mathbb{R}^{m\times n}" /> imply <InlineMath math="A+B\in\mathbb{R}^{m\times n}" />. Every output entry <InlineMath math="c_{ij}" /> therefore has one corresponding input entry in each matrix.
 
 ## How to Perform Matrix Addition
 
@@ -57,11 +59,11 @@ Thus, the sum of matrix <InlineMath math="P" /> and matrix <InlineMath math="Q" 
 
 Suppose matrix <InlineMath math="X = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" /> and matrix <InlineMath math="Y = \begin{bmatrix} 5 & 6 & 7 \\ 8 & 9 & 10 \end{bmatrix}" />.
 
-Matrix <InlineMath math="X" /> is of order <InlineMath math="2 \times 2" />, while matrix <InlineMath math="Y" /> is of order <InlineMath math="2 \times 3" />. Since their orders are different, matrix <InlineMath math="X" /> and matrix <InlineMath math="Y" /> cannot be added.
+Matrix <InlineMath math="X" /> has dimensions <InlineMath math="2 \times 2" />, while matrix <InlineMath math="Y" /> has dimensions <InlineMath math="2 \times 3" />. Their column counts differ, so <InlineMath math="X+Y" /> is not defined.
 
 ## Properties of Matrix Addition
 
-Matrix addition has several important properties, similar to the properties of addition for real numbers. Let <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> be matrices of the same order, and <InlineMath math="O" /> be the zero matrix (a matrix where all elements are zero) of the same order as <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />.
+Matrix addition follows the same basic laws as addition of real numbers. Let <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> have the same dimensions, and let <InlineMath math="O" /> be the zero matrix of those dimensions.
 
 1.  **Commutative Property**: The order of matrix addition does not affect the result.
 
@@ -121,7 +123,7 @@ Determine the values of <InlineMath math="x, y," /> and <InlineMath math="z" /> 
 
 If <InlineMath math="P = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix}" />, determine the matrix <InlineMath math="-P" /> (the additive inverse of <InlineMath math="P" />) and prove that <InlineMath math="P + (-P) = O" />, where <InlineMath math="O" /> is the zero matrix of the same order.
 
-### Answer Key
+### Worked Solutions
 
 **Problem** <InlineMath math="1" />
 

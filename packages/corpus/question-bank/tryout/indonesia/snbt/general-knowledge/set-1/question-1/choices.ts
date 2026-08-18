@@ -3,53 +3,50 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   en: [
     {
-      label:
-        "dreams considered as a sense of dissatisfaction when we were previously awake.",
+      label: "why unusual associations can feel normal inside a dream.",
       value: false,
     },
     {
       label:
-        "questions and hypotheses about the source of dreams during someone's sleep.",
+        "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
       value: true,
     },
     {
-      label: "cats' dreams which generally contain chasing something.",
+      label:
+        "the difficulty of knowing exactly what sleeping animals experience.",
       value: false,
     },
     {
-      label:
-        "someone's dream about important things, for example, birthdays or upcoming events.",
+      label: "the role of REM sleep in reducing deliberate control alone.",
       value: false,
     },
     {
-      label:
-        "children are advised to sleep so they can dream about things they have done.",
+      label: "the recommendation that children sleep after every lesson.",
       value: false,
     },
   ],
   id: [
     {
       label:
-        "mimpi yang dianggap sebagai rasa kurang puas saat kita terjaga sebelumnya.",
+        "alasan hubungan yang tidak biasa dapat terasa wajar di dalam mimpi.",
       value: false,
     },
     {
       label:
-        "pertanyaan dan dugaan sumber datangnya mimpi pada tidur seseorang.",
+        "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
       value: true,
     },
     {
-      label: "mimpi pada kucing yang umumnya berisi mengejar sesuatu.",
+      label:
+        "kesulitan mengetahui secara pasti pengalaman hewan yang sedang tidur.",
       value: false,
     },
     {
-      label:
-        "mimpi seseorang tentang hal-hal penting, misalnya, perayaan ulang tahun ataupun kejadian yang akan datang.",
+      label: "peran tidur REM dalam mengurangi pengendalian sadar saja.",
       value: false,
     },
     {
-      label:
-        "anak-anak dianjurkan untuk tidur agar mereka bisa memimpikan hal yang telah mereka lakukan.",
+      label: "anjuran agar anak-anak tidur setiap selesai belajar.",
       value: false,
     },
   ],
