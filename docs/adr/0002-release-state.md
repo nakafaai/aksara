@@ -158,11 +158,13 @@ Production trusts authenticated Convex state for route and head membership,
 delivery classification, and the active publication pointer. Nakafa still
 independently decodes and verifies the signed release, signed artifact,
 artifact hash, component requirements, and projection hash before execution.
-Public content is bound to the exact active signed release and is first
-verified against that release's frozen renderer manifest. If the deployed
-manifest hash differs, the selected artifact must also prove that its domain
-and component versions remain executable by the deployed renderer. Protected
-content applies the same directional compatibility check after binding the
+Public content execution is bound to the exact active signed release and is
+first verified against that release's frozen renderer manifest. If the
+deployed manifest hash differs, the selected artifact must also prove that its
+domain and component versions remain executable by the deployed renderer.
+Non-rendering public evidence reads authenticate the same active release,
+frozen renderer, and artifact without claiming live execution compatibility.
+Protected content applies the directional execution check after binding the
 artifact to its exact signed snapshot release.
 
 Frozen renderer manifests may contain a canonical subset of domains known to
