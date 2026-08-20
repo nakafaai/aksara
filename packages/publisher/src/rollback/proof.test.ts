@@ -2,8 +2,8 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { selectRollbackProof } from "#publisher/rollback/proof";
 import { makeRollbackRelease, makeSignedBundle } from "#test/publication/run";
 

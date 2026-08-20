@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
@@ -18,7 +18,7 @@ import {
 } from "#contracts/tryout/placement";
 import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
-const activeAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
@@ -30,7 +30,7 @@ function updateCatalog(
   fields: Readonly<Record<string, unknown>>
 ) {
   return makeTryoutCatalogRecord(
-    Schema.decodeUnknownSync(TryoutCatalogRowSchema)({
+    Schema.decodeSync(TryoutCatalogRowSchema)({
       ...record.row,
       ...fields,
     })
@@ -42,7 +42,7 @@ function englishPlacement(record: TryoutPlacementRecord) {
   const root =
     "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1";
   return makeTryoutPlacementRecord(
-    Schema.decodeUnknownSync(TryoutPlacementSchema)({
+    Schema.decodeSync(TryoutPlacementSchema)({
       ...record.row,
       answerContentKey: `${root}/answer`,
       deliveryLanguage: "en",
@@ -83,9 +83,11 @@ describe("try-out locale closure", () => {
   });
 
   it("accepts complete German rows independent of canonical stream order", async () => {
-    const germanAppLocales = Schema.decodeUnknownSync(
-      ActiveAppLocaleListSchema
-    )(["en", "id", "de"]);
+    const germanAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
+      "en",
+      "id",
+      "de",
+    ]);
     const germanRows = makeTryoutTestRows([
       AppLocaleSchema.make("de"),
       AppLocaleSchema.make("en"),
@@ -104,7 +106,7 @@ describe("try-out locale closure", () => {
   });
 
   it("rejects missing German catalog and placement rows", async () => {
-    const germanLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
       "en",
       "de",
     ]);
@@ -201,7 +203,7 @@ describe("try-out locale closure", () => {
     const changed = assessedPlacements.map((record) =>
       record.row.appLocale === "id"
         ? makeTryoutPlacementRecord(
-            Schema.decodeUnknownSync(TryoutPlacementSchema)({
+            Schema.decodeSync(TryoutPlacementSchema)({
               ...record.row,
               questionArtifactHash: `sha256:${"b".repeat(64)}`,
             })

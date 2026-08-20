@@ -1,6 +1,6 @@
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import { defineCurriculum, materialNode } from "#corpus/curriculum/schema";

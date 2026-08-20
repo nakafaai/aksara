@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -41,7 +41,7 @@ describe("historical primitives", () => {
   });
 
   it("rejects graph identities with displaced historical prefixes", () => {
-    const result = Schema.decodeUnknownEither(
+    const result = Schema.decodeExit(
       HistoricalPrimitive.LearningGraphIdentitySchema
     )({
       alignmentId: "asset:tryout-indonesia",
@@ -51,18 +51,18 @@ describe("historical primitives", () => {
       lensId: "lens:tryout-indonesia",
     });
 
-    expect(Either.isLeft(result)).toBe(true);
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result)).toBe(true);
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "historical prefixes"
     );
   });
 
   it("rejects a retained hash outside its exact old wire", () => {
-    const result = Schema.decodeUnknownEither(HistoricalSha256HashSchema)(
+    const result = Schema.decodeExit(HistoricalSha256HashSchema)(
       `sha256:${"g".repeat(64)}`
     );
 
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "exact SHA-256 wire format"
     );
   });

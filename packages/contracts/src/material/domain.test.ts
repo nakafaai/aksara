@@ -18,7 +18,7 @@ describe("material domain contract", () => {
 
   it("reports the protocol grammar at the strict decoding boundary", () => {
     expect(() =>
-      Schema.decodeUnknownSync(MaterialDomainSchema)("Earth-science")
+      Schema.decodeSync(MaterialDomainSchema)("Earth-science")
     ).toThrow("Invalid material domain. Expected lowercase kebab-case.");
   });
 

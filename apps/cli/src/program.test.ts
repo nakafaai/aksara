@@ -1,7 +1,8 @@
-import { NodeContext, NodeHttpClient } from "@effect/platform-node";
+import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { makeCliProgram } from "#cli/program";
 import { unusedExactProcess } from "#test/process";
 
@@ -193,10 +194,10 @@ vi.mock("#cli/status", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Records publication-state dispatch without contacting production. */
-    runStatusCommand: () => {
+    runStatusCommand: TestEffect.sync(() => {
       calls.status = true;
-      return TestEffect.succeed("status-complete");
-    },
+      return "status-complete";
+    }),
   };
 });
 
@@ -216,9 +217,9 @@ beforeEach(() => {
 function runProgram(args: readonly string[]) {
   return Effect.runPromise(
     makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
-      Effect.provide(NodeHttpClient.layer),
+      Effect.provide(NodeHttpClient.layerNodeHttp),
       Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
 }

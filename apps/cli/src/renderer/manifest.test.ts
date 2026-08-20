@@ -1,4 +1,3 @@
-import type { HttpClient, HttpClientRequest } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   computePreviewRendererProof,
@@ -7,8 +6,10 @@ import {
   PreviewRendererSecretSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import type { HttpClient, HttpClientRequest } from "effect/unstable/http";
+import { vi } from "vitest";
 import type { RendererCredentials } from "#cli/credentials";
 import { fetchRendererManifest, waitForRenderer } from "#cli/renderer/manifest";
 import { captureClient, runClient, webResponse } from "#test/http";

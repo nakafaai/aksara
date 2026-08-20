@@ -10,7 +10,7 @@ import { verifyContentRendererCompatibility } from "#contracts/renderer/compatib
 export const verifySignedContentArtifact = Effect.fn(
   "AksaraContracts.verifySignedContentArtifact"
 )((input: unknown) =>
-  Schema.decodeUnknown(ArtifactVerificationRequestSchema)(input, {
+  Schema.decodeUnknownEffect(ArtifactVerificationRequestSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

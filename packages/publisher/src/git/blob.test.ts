@@ -8,8 +8,8 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   makeGitProcess,
   readTestBlob,

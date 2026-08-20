@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { ArticleProjectionSchema } from "#contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
@@ -12,7 +12,7 @@ import {
 } from "#contracts/projection/spec";
 import { articleGraph, materialGraph } from "#contracts/test/graph";
 
-const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
+const article = Schema.decodeSync(ArticleProjectionSchema)({
   appLocale: "en",
   articleRouteSlug: "test-article",
   articleSlug: "test-article",
@@ -34,7 +34,7 @@ const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
   references: [],
   sitemap: true,
 });
-const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+const material = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: "en",
   artifactLocale: "en",
   contentKey: "test:material",
@@ -53,7 +53,7 @@ const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   sitemap: true,
   topicTitle: "Test Material",
 });
-const question = Schema.decodeUnknownSync(QuestionBodyProjectionSchema)({
+const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   artifactLocale: "en",
   bodyKind: "question",
   choices: [
@@ -80,12 +80,14 @@ describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
     expect(
       [article, material, question].map((value) =>
-        Schema.decodeUnknownSync(ContentProjectionSchema)(value)
+        Schema.decodeSync(ContentProjectionSchema)(value)
       )
     ).toEqual([article, material, question]);
     expect(
-      Schema.decodeUnknownEither(RoutedContentProjectionSchema)(question)._tag
-    ).toBe("Left");
+      Exit.isFailure(
+        Schema.decodeUnknownExit(RoutedContentProjectionSchema)(question)
+      )
+    ).toBe(true);
   });
 
   it("dispatches canonicalization and family selection exhaustively", () => {

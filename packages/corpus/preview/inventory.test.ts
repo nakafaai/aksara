@@ -1,10 +1,9 @@
 import { resolve } from "node:path";
-import { FileSystem, Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path } from "effect";
 import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import {
   bindQuestionInputs,
@@ -67,7 +66,7 @@ describe("candidate preview inventory", () => {
           readPhysicalCounts(checkoutRoot),
         ],
         { concurrency: 2 }
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
 
     expect(inventory).toMatchObject(physicalCounts);
@@ -124,7 +123,7 @@ describe("candidate preview inventory", () => {
             Effect.flip
           );
         })
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
 
     expect(error).toMatchObject({
@@ -152,7 +151,7 @@ describe("candidate preview inventory", () => {
           );
           return yield* validateCandidatePreviewInventory(root);
         })
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
 
     expect(inventory).toEqual({
@@ -168,7 +167,7 @@ describe("candidate preview inventory", () => {
     const error = await Effect.runPromise(
       validateCandidatePreviewInventory("/missing-candidate-checkout").pipe(
         Effect.flip,
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
 
@@ -231,7 +230,7 @@ describe("candidate preview inventory", () => {
             Effect.flip
           );
         })
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
 
     expect(error).toMatchObject({ family: "material", phase: "ownership" });
@@ -263,7 +262,7 @@ describe("candidate preview inventory", () => {
             Effect.flip
           );
         })
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
 
     expect(error).toMatchObject({

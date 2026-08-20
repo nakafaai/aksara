@@ -25,7 +25,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   releaseId: transportReleaseId,
 });
 
-const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
+const deletedItem = Schema.decodeSync(ContentReleaseItemSchema)({
   change: {
     artifactLocale: "id",
     contentKey: "test:deleted",
@@ -36,7 +36,7 @@ const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   releaseId: transportReleaseId,
 });
 
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: "en",
   artifactLocale: "en",
   contentKey: "test:http",
@@ -52,7 +52,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   topicTitle: "Test HTTP Topic",
 });
 
-const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
   artifactHash: transportArtifactHash,
   keyId: "test-http-key",
   payload: {

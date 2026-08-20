@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 
 import {
   classifyLearningGraphAssetId,
@@ -108,28 +108,24 @@ describe("classifyLearningGraphIdentity", () => {
   });
 
   it("owns the exact schema for asset-only dispatch identities", () => {
-    const accepted = Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
+    const accepted = Schema.decodeExit(LearningGraphAssetIdSchema)(
       "asset:de:article:politics:source"
     );
     const rejected = [
-      Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
-        "asset:de:article"
-      ),
-      Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
-        "asset:de:school:course:1"
-      ),
+      Schema.decodeExit(LearningGraphAssetIdSchema)("asset:de:article"),
+      Schema.decodeExit(LearningGraphAssetIdSchema)("asset:de:school:course:1"),
     ];
 
-    expect(Either.isRight(accepted)).toBe(true);
+    expect(Exit.isSuccess(accepted)).toBe(true);
     for (const result of rejected) {
-      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
         "asset:<appLocale>:<family>:<identity>"
       );
     }
   });
 
   it.each(fixtures)("classifies $expected identities", async (fixture) => {
-    const identity = Schema.decodeUnknownSync(LearningGraphIdentitySchema)(
+    const identity = Schema.decodeSync(LearningGraphIdentitySchema)(
       fixture.identity
     );
 
@@ -161,9 +157,7 @@ describe("classifyLearningGraphIdentity", () => {
       lensId: "lens:school",
     },
   ])("rejects an incoherent or unsupported identity", async (input) => {
-    const identity = Schema.decodeUnknownSync(LearningGraphIdentitySchema)(
-      input
-    );
+    const identity = Schema.decodeSync(LearningGraphIdentitySchema)(input);
     const error = await Effect.runPromise(
       classifyLearningGraphIdentity(identity).pipe(Effect.flip)
     );

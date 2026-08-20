@@ -1,4 +1,4 @@
-import { Effect, Option, Stream } from "effect";
+import { Effect, Result, Stream } from "effect";
 
 import { digestProgramRows } from "#contracts/program/snapshot/digest";
 import { verifyProgramSnapshotHash } from "#contracts/program/snapshot/hash";
@@ -8,14 +8,14 @@ import type {
 } from "#contracts/release/snapshot/data";
 import {
   requireSnapshotEvidence,
-  type SnapshotRowFactory,
+  type SnapshotRowSource,
 } from "#contracts/release/snapshot/evidence-requirement";
 
 /** Selects current program rows while preserving source failures. */
 function programRows<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "program" ? Option.some(row.record) : Option.none()
+      row.family === "program" ? Result.succeed(row.record) : Result.failVoid
     )
   );
 }
@@ -25,12 +25,12 @@ export const verifyProgramSnapshotRows = Effect.fn(
   "AksaraContracts.verifyProgramSnapshotRows"
 )(function* <E, R>(
   snapshot: Extract<ContentSnapshotManifest, { family: "program" }>,
-  rows: SnapshotRowFactory<E, R>
+  rows: SnapshotRowSource<E, R>
 ) {
   const summary = yield* digestProgramRows({
     activeAppLocales: snapshot.manifest.activeAppLocales,
     expected: snapshot.manifest,
-    rows: programRows(rows()),
+    rows: programRows(rows),
   });
   for (const field of [
     "curriculumRowCount",

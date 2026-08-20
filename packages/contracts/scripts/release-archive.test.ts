@@ -8,9 +8,9 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { verifyArchive, writeOutputs } from "#scripts/release-archive";
 import {
   type ContractReleaseError,
@@ -21,7 +21,7 @@ import {
 function run<A, E, R>(effect: Effect.Effect<A, E, R>) {
   return Effect.runPromise(
     effect.pipe(
-      Effect.provide(NodeContext.layer),
+      Effect.provide(NodeServices.layer),
       Effect.scoped
     ) as Effect.Effect<A, E>
   );

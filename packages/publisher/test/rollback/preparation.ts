@@ -1,7 +1,6 @@
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
@@ -26,7 +25,7 @@ import {
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Layer, Schema, Stream } from "effect";
+import { Effect, Layer, Path, Schema, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
@@ -77,7 +76,7 @@ const sourceRendererManifest = await Effect.runPromise(
 const sourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/test/rollback/forward.mdx"
 );
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: Buffer.byteLength(compiledCode, "utf8"),
   compiledCode,
@@ -100,7 +99,7 @@ const source = CompileDocumentSourceSchema.make({
   rendererDomain: payload.rendererDomain,
   sourcePath,
 });
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: rollbackAppLocale,
   artifactLocale: payload.artifactLocale,
   contentKey: payload.contentKey,
@@ -153,20 +152,19 @@ const sourcePrepared = await Effect.runPromise(
     aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    records: () =>
-      Stream.make({
-        prior: {
-          artifactLocale: payload.artifactLocale,
-          contentKey: payload.contentKey,
-          family: "material",
-          state: "absent" as const,
-        },
-        record: { change, payload, projection, source },
-      }),
+    records: Stream.make({
+      prior: {
+        artifactLocale: payload.artifactLocale,
+        contentKey: payload.contentKey,
+        family: "material",
+        state: "absent" as const,
+      },
+      record: { change, payload, projection, source },
+    }),
     releaseId: rollbackOf,
     rendererManifest: sourceRendererManifest,
-    result: () => Stream.make(head),
-    routes: () => Stream.empty,
+    result: Stream.make(head),
+    routes: Stream.empty,
     scope: {
       content: [
         {
@@ -180,7 +178,7 @@ const sourcePrepared = await Effect.runPromise(
     },
     ...snapshotPolicyBase("test-rollback-source-base"),
     ...emptySnapshotSources,
-  }).pipe(Effect.provide(NodeContext.layer))
+  }).pipe(Effect.provide(NodeServices.layer))
 );
 const sourceManifest = ContentReleaseManifestSchema.make({
   ...sourcePrepared.manifest,

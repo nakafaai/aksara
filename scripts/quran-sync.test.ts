@@ -1,8 +1,9 @@
 import { resolve } from "node:path";
 
-import { NodeContext, NodeHttpClient } from "@effect/platform-node";
+import { NodeHttpClient, NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));
 const sync = vi.hoisted(() => ({ repositoryRoots: [] as string[] }));
@@ -46,7 +47,7 @@ describe("German Quran source sync command", () => {
     await expect(
       Effect.runPromise(
         Effect.scoped(makeQuranSourceSyncProgram()).pipe(
-          Effect.provide([NodeContext.layer, NodeHttpClient.layer])
+          Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
         )
       )
     ).resolves.toBeUndefined();

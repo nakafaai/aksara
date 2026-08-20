@@ -56,18 +56,18 @@ function close(server: Server) {
 
 /** Creates the complete immutable provider state shared by transport tests. */
 function makeState(): PreviewHttpState {
-  const document = Schema.decodeUnknownSync(MaterialPreviewDocumentSchema)({
+  const document = Schema.decodeSync(MaterialPreviewDocumentSchema)({
     delivery: ENGLISH_ENTRY.delivery,
     family: "material",
     rendererDomain: ENGLISH_ENTRY.rendererDomain,
     route: ENGLISH_ENTRY.route,
     sourcePath: ENGLISH_ENTRY.sourcePath,
   });
-  const repository = Schema.decodeUnknownSync(PreviewRepositorySchema)({
+  const repository = Schema.decodeSync(PreviewRepositorySchema)({
     dirty: false,
     sha: "a".repeat(40),
   });
-  const manifest = Schema.decodeUnknownSync(LocalPreviewManifestSchema)({
+  const manifest = Schema.decodeSync(LocalPreviewManifestSchema)({
     document,
     format: LOCAL_PREVIEW_FORMAT,
     repositories: { aksara: repository, nakafa: repository },

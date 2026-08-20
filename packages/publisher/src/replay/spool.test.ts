@@ -1,13 +1,19 @@
 import { randomUUID } from "node:crypto";
 import { tmpdir } from "node:os";
-import { FileSystem, Error as PlatformError } from "@effect/platform";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
-import { Effect, Layer, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import {
+  Effect,
+  FileSystem,
+  Layer,
+  PlatformError,
+  Schema,
+  Stream,
+} from "effect";
 import { createReplaySpool } from "#publisher/replay/spool";
 
 const ReplayEntrySchema = Schema.Struct({
-  sequence: Schema.Number,
+  sequence: Schema.Finite,
   value: Schema.String,
 });
 const firstEntry = { sequence: 1, value: "test-first" };
@@ -36,8 +42,8 @@ function requireRoot(
     Effect.flatMap((roots) =>
       roots.length === 1
         ? Effect.succeed(`${tmpdir()}/${roots[0]}`)
-        : Effect.dieMessage(
-            `Expected one replay root, received ${roots.length}.`
+        : Effect.die(
+            new Error(`Expected one replay root, received ${roots.length}.`)
           )
     )
   );
@@ -48,7 +54,7 @@ function runNode<A, E>(
   program: Effect.Effect<
     A,
     E,
-    FileSystem.FileSystem | import("@effect/platform/Path").Path
+    FileSystem.FileSystem | import("effect/Path").Path
   >
 ) {
   return Effect.runPromise(program.pipe(Effect.provide(nodeLayer)));
@@ -56,10 +62,10 @@ function runNode<A, E>(
 
 /** Creates one deterministic platform error for filesystem mapping tests. */
 function fileFailure(method: string) {
-  return new PlatformError.SystemError({
+  return PlatformError.systemError({
+    _tag: "PermissionDenied",
     method,
     module: "FileSystem",
-    reason: "PermissionDenied",
   });
 }
 
@@ -83,8 +89,8 @@ describe("replay spool", () => {
             const hash = yield* fileSystem.stat(
               `${root}/000000/000000000000.sha256`
             );
-            const first = yield* spool.replay().pipe(Stream.runCollect);
-            const second = yield* spool.replay().pipe(Stream.runCollect);
+            const first = yield* spool.replay.pipe(Stream.runCollect);
+            const second = yield* spool.replay.pipe(Stream.runCollect);
             return {
               bytes: spool.bytes,
               count: spool.count,
@@ -118,7 +124,7 @@ describe("replay spool", () => {
             schema: ReplayEntrySchema,
             stream: Stream.empty,
           });
-          const records = yield* spool.replay().pipe(Stream.runCollect);
+          const records = yield* spool.replay.pipe(Stream.runCollect);
           return {
             bytes: spool.bytes,
             count: spool.count,
@@ -205,7 +211,7 @@ describe("replay spool", () => {
           });
           const root = yield* requireRoot(fileSystem, prefix);
           yield* fileSystem.remove(`${root}/000000/000000000000.json`);
-          return yield* spool.replay().pipe(Stream.runCollect, Effect.flip);
+          return yield* spool.replay.pipe(Stream.runCollect, Effect.flip);
         })
       )
     );

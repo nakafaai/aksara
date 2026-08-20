@@ -16,10 +16,13 @@ import {
   TryoutVisibilitySchema,
 } from "#contracts/tryout/spec";
 
-const PositiveCountSchema = Schema.Number.pipe(Schema.int(), Schema.positive());
-const NonNegativeCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const PositiveCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThan(0))
+);
+const NonNegativeCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 const LocalizedFields = {
   appLocale: AppLocaleSchema,
@@ -78,13 +81,13 @@ const TryoutSectionIdentitySchema = Schema.Struct({
 });
 
 /** Current semantic catalog key accepted before its signed row is loaded. */
-export const TryoutCatalogNodeIdentitySchema = Schema.Union(
+export const TryoutCatalogNodeIdentitySchema = Schema.Union([
   TryoutCountryIdentitySchema,
   TryoutExamIdentitySchema,
   TryoutTrackIdentitySchema,
   TryoutSetIdentitySchema,
-  TryoutSectionIdentitySchema
-);
+  TryoutSectionIdentitySchema,
+]);
 export type TryoutCatalogNodeIdentity =
   typeof TryoutCatalogNodeIdentitySchema.Type;
 
@@ -125,10 +128,12 @@ export const TryoutTrackSchema = Schema.Struct({
   trackKind: TryoutTrackKindSchema,
   visibleSectionCount: NonNegativeCountSchema,
 }).pipe(
-  Schema.filter(
-    ({ sectionCount, visibleSectionCount }) =>
-      visibleSectionCount <= sectionCount,
-    { message: () => "Visible track sections cannot exceed all sections." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ sectionCount, visibleSectionCount }) =>
+        visibleSectionCount <= sectionCount,
+      { message: "Visible track sections cannot exceed all sections." }
+    )
   )
 );
 export type TryoutTrack = typeof TryoutTrackSchema.Type;
@@ -148,12 +153,14 @@ export const TryoutSetSchema = Schema.Struct({
   trackKey: TryoutKeySchema,
   visibleSectionCount: NonNegativeCountSchema,
 }).pipe(
-  Schema.filter(
-    ({ internalEntrySectionKey, sectionCount, visibleSectionCount }) =>
-      internalEntrySectionKey === undefined
-        ? visibleSectionCount === sectionCount
-        : sectionCount === 1 && visibleSectionCount === 0,
-    { message: () => "Set section counts do not match their visibility." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ internalEntrySectionKey, sectionCount, visibleSectionCount }) =>
+        internalEntrySectionKey === undefined
+          ? visibleSectionCount === sectionCount
+          : sectionCount === 1 && visibleSectionCount === 0,
+      { message: "Set section counts do not match their visibility." }
+    )
   )
 );
 export type TryoutSet = typeof TryoutSetSchema.Type;
@@ -173,24 +180,26 @@ export const TryoutSectionSchema = Schema.Struct({
   trackKey: TryoutKeySchema,
   visibility: TryoutVisibilitySchema,
 }).pipe(
-  Schema.filter(
-    ({ publicPath, visibility }) =>
-      visibility === "visible"
-        ? publicPath !== undefined
-        : publicPath === undefined,
-    { message: () => "Section visibility does not match its public path." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ publicPath, visibility }) =>
+        visibility === "visible"
+          ? publicPath !== undefined
+          : publicPath === undefined,
+      { message: "Section visibility does not match its public path." }
+    )
   )
 );
 export type TryoutSection = typeof TryoutSectionSchema.Type;
 
 /** Complete hierarchy vocabulary for try-out publication. */
-export const TryoutCatalogRowSchema = Schema.Union(
+export const TryoutCatalogRowSchema = Schema.Union([
   TryoutCountrySchema,
   TryoutExamSchema,
   TryoutTrackSchema,
   TryoutSetSchema,
-  TryoutSectionSchema
-);
+  TryoutSectionSchema,
+]);
 export type TryoutCatalogRow = typeof TryoutCatalogRowSchema.Type;
 
 /** One hierarchy row bound to its deterministic hash. */

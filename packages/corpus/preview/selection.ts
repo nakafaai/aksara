@@ -13,7 +13,7 @@ const QUESTION_ROOT = "packages/corpus/question-bank/";
 export const selectPreviewDocument = Effect.fn(
   "AksaraCorpus.selectPreviewDocument"
 )(function* (corpusRoot: string, requestedPath: string, appLocale?: AppLocale) {
-  const sourcePath = yield* Schema.decodeUnknown(CorpusSourcePathSchema)(
+  const sourcePath = yield* Schema.decodeEffect(CorpusSourcePathSchema)(
     requestedPath
   ).pipe(
     Effect.mapError(

@@ -1,7 +1,7 @@
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { mergeRollbackResult } from "#publisher/rollback/catalog";
 import type { DerivedRollbackRecord } from "#publisher/rollback/records";
 import {

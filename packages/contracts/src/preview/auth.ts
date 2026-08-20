@@ -11,19 +11,19 @@ export const PREVIEW_RENDERER_AUTH_FORMAT = "aksara-renderer-auth-v1";
 
 /** Fresh parent-generated challenge bound to one renderer request. */
 export const PreviewRendererNonceSchema = Schema.String.pipe(
-  Schema.pattern(BASE64URL_SHA256_PATTERN)
+  Schema.check(Schema.isPattern(BASE64URL_SHA256_PATTERN))
 );
 export type PreviewRendererNonce = typeof PreviewRendererNonceSchema.Type;
 
 /** Process-local HMAC key available only to the spawned Nakafa child. */
 export const PreviewRendererSecretSchema = Schema.String.pipe(
-  Schema.pattern(BASE64URL_SHA256_PATTERN)
+  Schema.check(Schema.isPattern(BASE64URL_SHA256_PATTERN))
 );
 export type PreviewRendererSecret = typeof PreviewRendererSecretSchema.Type;
 
 /** HMAC-SHA256 proof returned by the exact spawned Nakafa child. */
 export const PreviewRendererProofSchema = Schema.String.pipe(
-  Schema.pattern(BASE64URL_SHA256_PATTERN)
+  Schema.check(Schema.isPattern(BASE64URL_SHA256_PATTERN))
 );
 export type PreviewRendererProof = typeof PreviewRendererProofSchema.Type;
 
@@ -38,7 +38,7 @@ export type PreviewRendererResponse = typeof PreviewRendererResponseSchema.Type;
 /** Renderer authentication could not be computed or did not match. */
 export class PreviewRendererAuthError extends Schema.TaggedError<PreviewRendererAuthError>()(
   "PreviewRendererAuthError",
-  { reason: Schema.Literal("compute", "invalid") }
+  { reason: Schema.Literals(["compute", "invalid"]) }
 ) {}
 
 /** Canonicalizes one challenge and exact validated renderer identity. */

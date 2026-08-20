@@ -2,8 +2,8 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   projectCandidateTryoutCatalog,
   projectTryoutCatalog,
@@ -22,7 +22,9 @@ function requireNode<Value>(value: Value | undefined, label: string): Value {
 describe("tryout catalog", () => {
   it("projects exact localized hierarchy counts and route ownership", async () => {
     const rows = await Effect.runPromise(
-      Effect.flatMap(decodeTryoutRegistry(), projectTryoutCatalog)
+      Effect.flatMap(decodeTryoutRegistry(), (sources) =>
+        projectTryoutCatalog(sources)
+      )
     );
     const counts = Object.fromEntries(
       ["country", "exam", "track", "set", "section"].map((kind) => [
@@ -109,9 +111,8 @@ describe("tryout catalog", () => {
 
   it("projects a complete German candidate hierarchy without activation", async () => {
     const rows = await Effect.runPromise(
-      Effect.flatMap(
-        decodeTryoutLocaleRegistry(),
-        projectCandidateTryoutCatalog
+      Effect.flatMap(decodeTryoutLocaleRegistry(), (sources) =>
+        projectCandidateTryoutCatalog(sources)
       )
     );
 

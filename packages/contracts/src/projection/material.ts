@@ -18,17 +18,19 @@ const MATERIAL_KEY_PATTERN =
 const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const MaterialPublicPathSchema = PublicPathSchema.pipe(
-  Schema.filter((value) => value.includes("/"), {
-    message: () => "Expected a material lesson path with a parent route.",
-  })
+  Schema.check(
+    Schema.makeFilter((value) => value.includes("/"), {
+      message: "Expected a material lesson path with a parent route.",
+    })
+  )
 );
 
 /** Locale-owned root namespace for public material routes. */
-export const MaterialPublicNamespaceSchema = Schema.Literal(
+export const MaterialPublicNamespaceSchema = Schema.Literals([
   "subjects",
   "materi",
-  "faecher"
-);
+  "faecher",
+]);
 export type MaterialPublicNamespace = typeof MaterialPublicNamespaceSchema.Type;
 
 /** Resolves the only public material namespace owned by one app locale. */
@@ -46,18 +48,20 @@ export function materialPublicNamespace(
 
 /** Stable reusable material identity preserved from Nakafa's source registry. */
 export const MaterialKeySchema = Schema.String.pipe(
-  Schema.pattern(MATERIAL_KEY_PATTERN, {
-    description: "Stable lesson key with domain and material segments.",
-    identifier: "MaterialKey",
-    message: () => "Invalid material key.",
-  }),
+  Schema.check(
+    Schema.isPattern(MATERIAL_KEY_PATTERN, {
+      description: "Stable lesson key with domain and material segments.",
+      identifier: "MaterialKey",
+      message: "Invalid material key.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraMaterialKey")
 );
 export type MaterialKey = typeof MaterialKeySchema.Type;
 
 /** Stable lesson-section identity preserved across localized public routes. */
 export const MaterialSectionSchema = Schema.String.pipe(
-  Schema.pattern(SECTION_KEY_PATTERN),
+  Schema.check(Schema.isPattern(SECTION_KEY_PATTERN)),
   Schema.brand("@NakafaAI/AksaraMaterialSection")
 );
 export type MaterialSection = typeof MaterialSectionSchema.Type;
@@ -79,7 +83,10 @@ const MaterialLessonRouteFields = {
   contentKey: ContentKeySchema,
   graph: LearningGraphIdentitySchema,
   materialKey: MaterialKeySchema,
-  order: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  order: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
   publicPath: MaterialPublicPathSchema,
   sectionKey: MaterialSectionSchema,
 };
@@ -151,18 +158,23 @@ export const MaterialLessonRouteSchema = Schema.Struct({
   ...MaterialLessonRouteFields,
   topicTitle: Schema.String,
 }).pipe(
-  Schema.filter(hasCoherentMaterialLocales, {
-    message: () =>
-      "Expected public material route and artifact locales to match.",
-  }),
-  Schema.filter(hasCoherentMaterialNamespace, {
-    message: () =>
-      "Expected the material public path to use its locale-owned namespace.",
-  }),
-  Schema.filter(hasCoherentMaterialGraph, {
-    message: () =>
-      "Expected material graph identities to match its stable source keys.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialLocales, {
+      message: "Expected public material route and artifact locales to match.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialNamespace, {
+      message:
+        "Expected the material public path to use its locale-owned namespace.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialGraph, {
+      message:
+        "Expected material graph identities to match its stable source keys.",
+    })
+  )
 );
 export type MaterialLessonRoute = typeof MaterialLessonRouteSchema.Type;
 
@@ -171,22 +183,29 @@ export const MaterialLessonProjectionSchema = Schema.Struct({
   ...MaterialLessonProjectionFields,
   topicTitle: Schema.String,
 }).pipe(
-  Schema.filter(hasCoherentMaterialLocales, {
-    message: () =>
-      "Expected public material route and artifact locales to match.",
-  }),
-  Schema.filter(hasCoherentParentPath, {
-    message: () =>
-      "Expected the material parent path to match the lesson public path.",
-  }),
-  Schema.filter(hasCoherentMaterialNamespace, {
-    message: () =>
-      "Expected the material public path to use its locale-owned namespace.",
-  }),
-  Schema.filter(hasCoherentMaterialGraph, {
-    message: () =>
-      "Expected material graph identities to match its stable source keys.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialLocales, {
+      message: "Expected public material route and artifact locales to match.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentParentPath, {
+      message:
+        "Expected the material parent path to match the lesson public path.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialNamespace, {
+      message:
+        "Expected the material public path to use its locale-owned namespace.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialGraph, {
+      message:
+        "Expected material graph identities to match its stable source keys.",
+    })
+  )
 );
 export type MaterialLessonProjection =
   typeof MaterialLessonProjectionSchema.Type;

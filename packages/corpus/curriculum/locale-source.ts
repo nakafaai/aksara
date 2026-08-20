@@ -47,7 +47,7 @@ export class CurriculumLocaleOwnershipError extends Schema.TaggedError<Curriculu
     appLocale: LocaleOverlayAppLocaleSchema,
     nodeKey: CurriculumNodeKeySchema,
     programKey: LearningProgramKeySchema,
-    scope: Schema.Literal("duplicate", "missing", "orphan", "shape"),
+    scope: Schema.Literals(["duplicate", "missing", "orphan", "shape"]),
   }
 ) {}
 
@@ -65,7 +65,7 @@ export function curriculumLocaleSourcePath(
 export const decodeCurriculumLocaleCatalog = Effect.fn(
   "AksaraCorpus.decodeCurriculumLocaleCatalog"
 )(function* (input: unknown = curriculumLocaleSources) {
-  return yield* Schema.decodeUnknown(
+  return yield* Schema.decodeUnknownEffect(
     Schema.Array(CurriculumLocaleSourceSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new CurriculumLocaleCatalogError({ cause })),

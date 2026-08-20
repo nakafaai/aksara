@@ -29,7 +29,7 @@ function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
     sourceRevision: "2026-08-12",
     title: "Test-only title",
   } as const;
-  return Schema.decodeUnknownSync(Schema.Array(TryoutCatalogRowSchema))([
+  return Schema.decodeSync(Schema.Array(TryoutCatalogRowSchema))([
     {
       ...common,
       countryCode: "ID",
@@ -107,7 +107,7 @@ function placement(appLocale: AppLocale): TryoutPlacementRecord {
   const root =
     "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1";
   return makeTryoutPlacementRecord(
-    Schema.decodeUnknownSync(TryoutPlacementSchema)({
+    Schema.decodeSync(TryoutPlacementSchema)({
       answerArtifactHash: artifactHash,
       answerArtifactLocale: ArtifactLocaleSchema.make(localeCode),
       answerContentKey: `${root}/answer`,

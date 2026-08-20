@@ -1,10 +1,10 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   loadPreviewSources,
   projectPreviewSource,
@@ -48,7 +48,7 @@ const [articleSelection, materialSelection, promptSelection, answerSelection] =
         selectPreviewDocument(checkoutRoot, answerEntry.sourcePath),
       ],
       { concurrency: 4 }
-    ).pipe(Effect.provide(NodeContext.layer))
+    ).pipe(Effect.provide(NodeServices.layer))
   );
 const [articleSource] = articleSelection.sources;
 const [materialSource] = materialSelection.sources;
@@ -77,7 +77,7 @@ function projectSource(
         rendererManifest,
       });
       return yield* projectPreviewSource(loaded, inspection.metadata);
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 }
 
@@ -104,7 +104,7 @@ describe("preview source", () => {
   it("parses one shared choices source for an ordered answer closure", async () => {
     const loaded = await Effect.runPromise(
       loadPreviewSources(checkoutRoot, [answerPromptSource, answerSource]).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const [prompt, answer] = loaded;
@@ -123,7 +123,7 @@ describe("preview source", () => {
   it("maps a missing choices dependency to the preview source boundary", async () => {
     const error = await Effect.runPromise(
       loadPreviewSources("/missing", [promptSource]).pipe(
-        Effect.provide(NodeContext.layer),
+        Effect.provide(NodeServices.layer),
         Effect.flip
       )
     );

@@ -7,7 +7,7 @@ import {
 } from "#cli/environment/error";
 
 const PreviewEnvironmentSchema = Schema.Struct({
-  nakafaAppDir: Schema.optional(Schema.NonEmptyTrimmedString),
+  nakafaAppDir: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),
 });
 export type PreviewEnvironment = typeof PreviewEnvironmentSchema.Type;
 
@@ -45,13 +45,17 @@ function productionError(variable: ProductionVariable) {
 
 /** Requires one non-empty bearer value without whitespace before redaction. */
 function tokenConfig(variable: ProductionVariable) {
-  const token = Config.string(variable).pipe(
-    Config.validate({
-      message: "Expected a non-empty bearer value without whitespace.",
-      validation: (value) => value.length > 0 && !TOKEN_WHITESPACE.test(value),
-    })
+  const token = Schema.String.pipe(
+    Schema.check(
+      Schema.makeFilter(
+        (value) => value.length > 0 && !TOKEN_WHITESPACE.test(value),
+        {
+          message: "Expected a non-empty bearer value without whitespace.",
+        }
+      )
+    )
   );
-  return Config.redacted(token);
+  return Config.schema(Schema.Redacted(token), variable);
 }
 
 /** Requires HTTPS without credentials, query parameters, or fragments. */
@@ -108,7 +112,7 @@ function readConfig<A>(config: Config.Config<A>, variable: ProductionVariable) {
 export const decodePreviewEnvironment = Effect.fn(
   "AksaraCli.decodeEnvironment"
 )((input: Readonly<Record<string, string | undefined>>) =>
-  Schema.decodeUnknown(PreviewEnvironmentSchema)(
+  Schema.decodeEffect(PreviewEnvironmentSchema)(
     input.NAKAFA_APP_DIR === undefined
       ? {}
       : { nakafaAppDir: input.NAKAFA_APP_DIR }
@@ -191,11 +195,11 @@ export const readProductionEnvironment = Effect.fn(
     Config.string("AKSARA_SIGNING_KEY_ID"),
     "AKSARA_SIGNING_KEY_ID"
   );
-  const keyId = yield* Schema.decodeUnknown(SigningKeyIdSchema)(
-    keyIdInput
-  ).pipe(Effect.mapError(() => productionError("AKSARA_SIGNING_KEY_ID")));
+  const keyId = yield* Schema.decodeEffect(SigningKeyIdSchema)(keyIdInput).pipe(
+    Effect.mapError(() => productionError("AKSARA_SIGNING_KEY_ID"))
+  );
   const privateKeyInput = yield* readConfig(
-    Config.redacted(Config.string("AKSARA_SIGNING_PRIVATE_KEY")),
+    Config.redacted("AKSARA_SIGNING_PRIVATE_KEY"),
     "AKSARA_SIGNING_PRIVATE_KEY"
   );
   const signingKey = yield* validatePrivateKey(privateKeyInput);

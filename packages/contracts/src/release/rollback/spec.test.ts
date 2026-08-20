@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
@@ -22,7 +22,7 @@ import {
 import { ContentUpsertSchema } from "#contracts/release/spec";
 import { materialGraph } from "#contracts/test/graph";
 
-const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
   artifactHash: `sha256:${"a".repeat(64)}`,
   keyId: "test-old-key",
   payload: {
@@ -42,7 +42,7 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   },
   signature: `${"A".repeat(85)}A`,
 });
-const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
+const change = Schema.decodeSync(ContentUpsertSchema)({
   artifactHash: artifact.artifactHash,
   artifactLocale: artifact.payload.artifactLocale,
   contentKey: artifact.payload.contentKey,
@@ -52,7 +52,7 @@ const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
   rendererDomain: artifact.payload.rendererDomain,
   sourcePath: "packages/corpus/test/rollback/en.mdx",
 });
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: "en",
   artifactLocale: artifact.payload.artifactLocale,
   contentKey: artifact.payload.contentKey,
@@ -67,7 +67,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   sitemap: true,
   topicTitle: "Test Material",
 });
-const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
+const head = Schema.decodeSync(MaterialHeadSchema)({
   artifactHash: artifact.artifactHash,
   artifactLocale: change.artifactLocale,
   compilerConfigHash: artifact.payload.compilerConfigHash,
@@ -81,7 +81,7 @@ const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
   sourcePath: change.sourcePath,
 });
 const upsert = RollbackUpsertStateSchema.make({ artifact, change, projection });
-const deletion = Schema.decodeUnknownSync(RollbackDeleteStateSchema)({
+const deletion = Schema.decodeSync(RollbackDeleteStateSchema)({
   change: {
     artifactLocale: change.artifactLocale,
     contentKey: change.contentKey,
@@ -100,7 +100,7 @@ const reverseRecord = RollbackRecordSchema.make({
   prior: upsert,
 });
 /** Strictly decodes one page with excess properties rejected. */
-const decodePage = Schema.decodeUnknownEither(RollbackPageSchema, {
+const decodePage = Schema.decodeUnknownExit(RollbackPageSchema, {
   onExcessProperty: "error",
 });
 /** Adds the immutable source identity shared by rollback-page fixtures. */
@@ -113,11 +113,11 @@ function page(input: object) {
 }
 describe("rollback contracts", () => {
   it("binds bounded page requests to an exact active manifest", () => {
-    const decode = Schema.decodeUnknownEither(RollbackPageRequestSchema, {
+    const decode = Schema.decodeUnknownExit(RollbackPageRequestSchema, {
       onExcessProperty: "error",
     });
     for (const limit of [1, MAX_ROLLBACK_PAGE_RECORDS]) {
-      expect(Either.isRight(decode(page({ afterIndex: -1, limit })))).toBe(
+      expect(Exit.isSuccess(decode(page({ afterIndex: -1, limit })))).toBe(
         true
       );
     }
@@ -127,16 +127,16 @@ describe("rollback contracts", () => {
       { afterIndex: -1, limit: MAX_ROLLBACK_PAGE_RECORDS + 1 },
       { afterIndex: -1, extra: true, limit: 1 },
     ]) {
-      expect(Either.isLeft(decode(page(input)))).toBe(true);
+      expect(Exit.isFailure(decode(page(input)))).toBe(true);
     }
     expect(
-      Either.isLeft(
+      Exit.isFailure(
         decode({ afterIndex: -1, limit: 1, rollbackOf: "release-active" })
       )
     ).toBe(true);
   });
   it("canonically serializes absent and implemented snapshot states", () => {
-    const questionHead = Schema.decodeUnknownSync(QuestionHeadSchema)({
+    const questionHead = Schema.decodeSync(QuestionHeadSchema)({
       ...head,
       delivery: "authenticated",
       family: "question",
@@ -144,7 +144,7 @@ describe("rollback contracts", () => {
       rendererDomain: "snbt-general",
     });
     const entries = [
-      Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
+      Schema.decodeSync(RollbackSnapshotEntrySchema)({
         index: 0,
         releaseId: "release-active",
         snapshot: {
@@ -154,12 +154,12 @@ describe("rollback contracts", () => {
           state: "absent",
         },
       }),
-      Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
+      Schema.decodeSync(RollbackSnapshotEntrySchema)({
         index: 1,
         releaseId: "release-active",
         snapshot: { head, state: "material" },
       }),
-      Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
+      Schema.decodeSync(RollbackSnapshotEntrySchema)({
         index: 2,
         releaseId: "release-active",
         snapshot: { head: questionHead, state: "question" },
@@ -189,7 +189,7 @@ describe("rollback contracts", () => {
   });
   it("accepts only one canonical empty final page", () => {
     expect(
-      Either.isRight(
+      Exit.isSuccess(
         decodePage(page({ done: true, nextIndex: -1, records: [], total: 0 }))
       )
     ).toBe(true);
@@ -198,7 +198,7 @@ describe("rollback contracts", () => {
       { done: true, nextIndex: 0, records: [], total: 0 },
       { done: true, nextIndex: -1, records: [], total: 1 },
     ]) {
-      expect(Either.isLeft(decodePage(page(input)))).toBe(true);
+      expect(Exit.isFailure(decodePage(page(input)))).toBe(true);
     }
   });
   it("rejects incoherent page progress and oversized pages", () => {
@@ -207,7 +207,7 @@ describe("rollback contracts", () => {
       (_, index) => ({ ...record, index })
     );
     expect(
-      Either.isRight(
+      Exit.isSuccess(
         decodePage(
           page({ done: false, nextIndex: 0, records: [record], total: 2 })
         )
@@ -224,14 +224,14 @@ describe("rollback contracts", () => {
       { done: true, nextIndex: 0, records: [record], total: 0 },
       { done: true, nextIndex: 8, records: indexed, total: 9 },
     ]) {
-      expect(Either.isLeft(decodePage(page(input)))).toBe(true);
+      expect(Exit.isFailure(decodePage(page(input)))).toBe(true);
     }
     const incoherent = decodePage(
       page({ done: true, nextIndex: 1, records: [record], total: 2 })
     );
-    expect(Either.isLeft(incoherent) ? String(incoherent.left) : "").toContain(
-      "Expected one contiguous rollback page"
-    );
+    expect(
+      Exit.isFailure(incoherent) ? String(incoherent.cause) : ""
+    ).toContain("Expected one contiguous rollback page");
   });
   it.each([
     ["artifact hash", { artifactHash: `sha256:${"d".repeat(64)}` }],
@@ -248,11 +248,11 @@ describe("rollback contracts", () => {
       { payload: { ...artifact.payload, rendererDomain: "chemistry" } },
     ],
   ])("rejects an upsert with mismatched %s", (_label, artifactChange) => {
-    const result = Schema.decodeUnknownEither(RollbackUpsertStateSchema)({
+    const result = Schema.decodeUnknownExit(RollbackUpsertStateSchema)({
       ...upsert,
       artifact: { ...artifact, ...artifactChange },
     });
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected rollback change, artifact, and projection identities to match"
     );
   });
@@ -262,8 +262,8 @@ describe("rollback contracts", () => {
     ["route", { publicPath: "subjects/test/other" }],
   ])("rejects a projection with mismatched %s", (_label, values) => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(RollbackUpsertStateSchema)({
+      Exit.isFailure(
+        Schema.decodeUnknownExit(RollbackUpsertStateSchema)({
           ...upsert,
           projection: { ...projection, ...values },
         })
@@ -275,12 +275,12 @@ describe("rollback contracts", () => {
       { change: { ...deletion.change, contentKey: "test:other" } },
       { change: { ...deletion.change, artifactLocale: "id" } },
     ].flatMap((prior) => {
-      const result = Schema.decodeUnknownEither(RollbackRecordSchema)({
+      const result = Schema.decodeUnknownExit(RollbackRecordSchema)({
         current: upsert,
         index: 0,
         prior,
       });
-      return Either.isLeft(result) ? [String(result.left)] : [];
+      return Exit.isFailure(result) ? [String(result.cause)] : [];
     });
     expect(errors).toHaveLength(2);
     expect(errors.join("\n")).toContain(
@@ -296,6 +296,6 @@ describe("rollback contracts", () => {
         total: 1,
       })
     );
-    expect(Either.isLeft(result)).toBe(true);
+    expect(Exit.isFailure(result)).toBe(true);
   });
 });

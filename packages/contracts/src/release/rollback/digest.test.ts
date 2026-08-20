@@ -1,7 +1,8 @@
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
-import { ReleaseIdSchema } from "#contracts/ids";
+import { vi } from "vitest";
+import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   createRollbackSnapshotDigest,
@@ -15,9 +16,7 @@ import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
-  "test-rollback-digest"
-);
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-rollback-digest");
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -58,7 +57,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 /** Builds one absent prior-state entry for rollback snapshot tests. */
 function entry(contentKey = "test:rollback") {
-  return Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
+  return Schema.decodeSync(RollbackSnapshotEntrySchema)({
     index: 0,
     releaseId,
     snapshot: {
@@ -71,8 +70,11 @@ function entry(contentKey = "test:rollback") {
 }
 
 /** Builds one exact manifest with supplied rollback snapshot evidence. */
-function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
-  return Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+function manifest(
+  rollbackCount: number,
+  rollbackDigest: typeof Sha256HashSchema.Type
+) {
+  return Schema.decodeSync(ContentReleaseManifestSchema)({
     activeAppLocales: ["en", "id"],
     baseActiveAppLocales: null,
     baseManifestHash: null,
@@ -155,7 +157,10 @@ describe("rollback snapshot digest", () => {
     const digest = await Effect.runPromise(
       verifyRollbackSnapshot({
         entries: stream,
-        manifest: manifest(1, `sha256:${"f".repeat(64)}`),
+        manifest: manifest(
+          1,
+          Sha256HashSchema.make(`sha256:${"f".repeat(64)}`)
+        ),
       }).pipe(Effect.flip)
     );
 

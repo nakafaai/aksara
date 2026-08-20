@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   previewTryoutRoute,
@@ -8,8 +8,8 @@ import { testPreviewTarget } from "#contracts/test/preview";
 
 /** Reports whether strict target decoding rejects one candidate. */
 function rejectsTarget(candidate: unknown) {
-  return Either.isLeft(
-    Schema.decodeUnknownEither(TryoutPreviewTargetSchema, {
+  return Exit.isFailure(
+    Schema.decodeUnknownExit(TryoutPreviewTargetSchema, {
       onExcessProperty: "error",
     })(candidate)
   );
@@ -18,7 +18,7 @@ function rejectsTarget(candidate: unknown) {
 describe("try-out preview target", () => {
   it("decodes one exact visible target and derives its section route", () => {
     expect(
-      Schema.decodeUnknownSync(TryoutPreviewTargetSchema)(testPreviewTarget)
+      Schema.decodeSync(TryoutPreviewTargetSchema)(testPreviewTarget)
     ).toEqual(testPreviewTarget);
     expect(previewTryoutRoute(testPreviewTarget)).toEqual({
       appLocale: "en",
@@ -27,7 +27,7 @@ describe("try-out preview target", () => {
   });
 
   it("derives the set route for one coherent internal-entry section", () => {
-    const target = Schema.decodeUnknownSync(TryoutPreviewTargetSchema)({
+    const target = Schema.decodeSync(TryoutPreviewTargetSchema)({
       ...testPreviewTarget,
       section: {
         ...testPreviewTarget.section,
@@ -106,7 +106,7 @@ describe("try-out preview target", () => {
     expect(invalidTargets.every(rejectsTarget)).toBe(true);
     expect(
       String(
-        Schema.decodeUnknownEither(TryoutPreviewTargetSchema)(invalidTargets[0])
+        Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[0])
       )
     ).toContain(
       "Expected preview target hierarchy keys, locale, and revision to agree."
@@ -162,7 +162,7 @@ describe("try-out preview target", () => {
     expect(invalidTargets.every(rejectsTarget)).toBe(true);
     expect(
       String(
-        Schema.decodeUnknownEither(TryoutPreviewTargetSchema)(invalidTargets[0])
+        Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[0])
       )
     ).toContain(
       "Expected preview target routes to form one reachable hierarchy."
@@ -197,7 +197,7 @@ describe("try-out preview target", () => {
     expect(invalidTargets.every(rejectsTarget)).toBe(true);
     expect(
       String(
-        Schema.decodeUnknownEither(TryoutPreviewTargetSchema)(invalidTargets[1])
+        Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[1])
       )
     ).toContain(
       "Expected preview placement to belong to the selected section source."

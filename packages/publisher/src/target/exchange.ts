@@ -1,10 +1,5 @@
 import { Buffer } from "node:buffer";
 import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "@effect/platform";
-import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ITEM_BATCH_BYTES,
   MAX_PROJECTION_BATCH_BYTES,
@@ -19,6 +14,11 @@ import {
 } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Schema } from "effect";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientRequest,
+} from "effect/unstable/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import {
   type PublicationTargetFailure,
@@ -116,8 +116,8 @@ export function sendPublicationRequest(
   request: PublicationRequest
 ): Effect.Effect<PublicationSuccess, PublicationTargetFailure> {
   return Effect.gen(function* () {
-    const body = yield* Schema.encode(
-      Schema.parseJson(PublicationRequestSchema),
+    const body = yield* Schema.encodeEffect(
+      Schema.fromJsonString(PublicationRequestSchema),
       { onExcessProperty: "error" }
     )(request).pipe(
       Effect.mapError(() => protocolError(request, "request-encoding"))
@@ -154,13 +154,15 @@ export function sendPublicationRequest(
       });
     });
     return yield* exchange.pipe(
-      Effect.timeoutFail({
+      Effect.timeoutOrElse({
         duration: config.timeout,
-        onTimeout: () =>
-          new PublicationTargetTransportError({
-            detail: { reason: "timeout" },
-            stage: targetStage(request.operation),
-          }),
+        orElse: () =>
+          Effect.fail(
+            new PublicationTargetTransportError({
+              detail: { reason: "timeout" },
+              stage: targetStage(request.operation),
+            })
+          ),
       }),
       Effect.scoped
     );

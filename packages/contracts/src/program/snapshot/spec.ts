@@ -6,7 +6,9 @@ import { ActiveAppLocaleListSchema } from "#contracts/locale";
 /** Semantic wire identity of the current localized program snapshot. */
 export const PROGRAM_SNAPSHOT_FORMAT = "localized-program-snapshot";
 
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 const ProgramCountFields = {
   curriculumRowCount: CountSchema,
   programRowCount: CountSchema,
@@ -46,10 +48,12 @@ const ProgramSnapshotFactFields = {
 export const ProgramSnapshotFactsSchema = Schema.Struct(
   ProgramSnapshotFactFields
 ).pipe(
-  Schema.filter(hasCompleteProgramSnapshot, {
-    message: () =>
-      "Expected self-consistent program and curriculum snapshot counts.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteProgramSnapshot, {
+      message:
+        "Expected self-consistent program and curriculum snapshot counts.",
+    })
+  )
 );
 export type ProgramSnapshotFacts = typeof ProgramSnapshotFactsSchema.Type;
 
@@ -59,9 +63,11 @@ export const ProgramSnapshotSchema = Schema.Struct({
   format: Schema.Literal(PROGRAM_SNAPSHOT_FORMAT),
   snapshotId: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCompleteProgramSnapshot, {
-    message: () =>
-      "Expected self-consistent program and curriculum snapshot counts.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteProgramSnapshot, {
+      message:
+        "Expected self-consistent program and curriculum snapshot counts.",
+    })
+  )
 );
 export type ProgramSnapshot = typeof ProgramSnapshotSchema.Type;

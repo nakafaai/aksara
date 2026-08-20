@@ -1,8 +1,9 @@
 import { resolve } from "node:path";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   atomEnglishPath,
   checkoutRoot,
@@ -68,8 +69,8 @@ const englishHead = await Effect.runPromise(
         contentKey === functionContentKey && artifactLocale === "en"
     );
     if (head === undefined) {
-      return yield* Effect.dieMessage(
-        "Expected the real English function-concept head."
+      return yield* Effect.die(
+        new Error("Expected the real English function-concept head.")
       );
     }
     return head;
@@ -261,7 +262,7 @@ describe("material plan", () => {
       sourcePath:
         "packages/corpus/material/lesson/mathematics/removed/lesson/en.mdx",
     });
-    const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
+    const scope = Schema.decodeSync(PublicationScopeSchema)({
       content: [
         {
           artifactLocale: stale.artifactLocale,

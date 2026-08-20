@@ -30,9 +30,11 @@ export const LearningProgramSourceSchema = Schema.Struct({
       appLocale: EmbeddedAppLocaleSchema,
     })
   ).pipe(
-    Schema.filter(hasEmbeddedProgramTranslations, {
-      identifier: "EmbeddedProgramTranslations",
-    })
+    Schema.check(
+      Schema.makeFilter(hasEmbeddedProgramTranslations, {
+        identifier: "EmbeddedProgramTranslations",
+      })
+    )
   ),
 });
 export type LearningProgramSource = typeof LearningProgramSourceSchema.Type;

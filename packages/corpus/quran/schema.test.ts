@@ -3,12 +3,12 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Chunk, Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Schema, Stream } from "effect";
 import { QuranSurahSchema } from "#corpus/quran/schema";
 import { testQuranSources } from "#corpus/test/quran";
 
-const decodeSurah = Schema.decodeUnknown(QuranSurahSchema);
+const decodeSurah = Schema.decodeUnknownEffect(QuranSurahSchema);
 
 /** Decodes one strict Quran source only at the Vitest runner boundary. */
 function decode(source: unknown) {
@@ -41,7 +41,7 @@ describe("Quran schema", () => {
         Stream.runCollect
       )
     );
-    const values = Chunk.toReadonlyArray(surahs);
+    const values = surahs;
 
     expect(values).toHaveLength(QURAN_SURAH_COUNT);
     expect(
@@ -100,7 +100,9 @@ describe("Quran schema", () => {
 
     expect(messages[1]).toContain("Quran text cannot be empty.");
     expect(
-      messages.filter((message) => message.includes("is unexpected"))
+      messages.filter((message) =>
+        message.includes("Expected no excess property")
+      )
     ).toHaveLength(4);
   });
 });

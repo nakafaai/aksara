@@ -15,8 +15,8 @@ export async function publicationRequirements() {
   );
   const gitEffect = publishGitRelease(git.prepared);
   const rollbackEffect = publishRollbackRelease(rollback.prepared);
-  type GitRequirements = Effect.Effect.Context<typeof gitEffect>;
-  type RollbackRequirements = Effect.Effect.Context<typeof rollbackEffect>;
+  type GitRequirements = Effect.Services<typeof gitEffect>;
+  type RollbackRequirements = Effect.Services<typeof rollbackEffect>;
   const requirements: {
     readonly git: PublicationSource extends GitRequirements ? true : false;
     readonly rollback: PublicationSource extends RollbackRequirements

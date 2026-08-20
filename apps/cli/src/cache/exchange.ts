@@ -1,17 +1,17 @@
 import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "@effect/platform";
-import {
   type ContentCacheRequest,
   ContentCacheRequestSchema,
 } from "@nakafa/aksara-contracts/cache/content";
 import { Effect, type Redacted, Schema } from "effect";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientRequest,
+} from "effect/unstable/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { readCacheReceipt } from "#cli/cache/receipt";
 
-const CacheRequestJsonSchema = Schema.parseJson(ContentCacheRequestSchema);
+const CacheRequestJsonSchema = Schema.fromJsonString(ContentCacheRequestSchema);
 
 /** Classifies statuses whose idempotent request may safely be retried. */
 function isRetryableStatus(status: number) {
@@ -29,7 +29,9 @@ export const invalidateContentCache = Effect.fn(
     input: ContentCacheRequest
   ) =>
     Effect.gen(function* () {
-      const body = yield* Schema.encode(CacheRequestJsonSchema)(input).pipe(
+      const body = yield* Schema.encodeEffect(CacheRequestJsonSchema)(
+        input
+      ).pipe(
         Effect.mapError(() => new ContentCacheError({ retryable: false }))
       );
       const request = HttpClientRequest.post(endpoint).pipe(

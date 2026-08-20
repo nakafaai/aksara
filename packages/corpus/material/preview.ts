@@ -84,7 +84,7 @@ export const decodeMaterialPreviewEntries = Effect.fn(
       }
     }
   }
-  const entries = yield* Schema.decodeUnknown(
+  const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(MaterialEntrySchema)
   )(projected, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new MaterialRegistryError({ cause }))

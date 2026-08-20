@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   composeTryoutLocaleExam,
@@ -9,7 +9,7 @@ import {
 import { decodeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
-type LocalizedTryoutSource = Effect.Effect.Success<
+type LocalizedTryoutSource = Effect.Success<
   ReturnType<typeof decodeTryoutLocaleRegistry>
 >[number];
 
@@ -24,7 +24,7 @@ function german(source: object) {
 
 /** Reconstructs the reviewed overlay shape from one composed real source. */
 function localeSource(source: LocalizedTryoutSource) {
-  return Schema.decodeUnknownSync(TryoutLocaleExamSchema)({
+  return Schema.decodeSync(TryoutLocaleExamSchema)({
     appLocale: "de",
     country: {
       key: source.countryKey,

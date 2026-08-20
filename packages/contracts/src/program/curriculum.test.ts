@@ -1,4 +1,4 @@
-import { Either, ParseResult, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { AppLocaleSchema } from "#contracts/locale";
@@ -26,16 +26,16 @@ const merdekaRoute = {
 } as const;
 
 /** Formats one expected strict schema failure for message assertions. */
-function formatFailure(result: Either.Either<unknown, ParseResult.ParseError>) {
-  if (Either.isRight(result)) {
+function formatFailure(result: Exit.Exit<unknown, Schema.SchemaError>) {
+  if (Exit.isSuccess(result)) {
     throw new Error("Expected curriculum schema decoding to fail.");
   }
-  return ParseResult.TreeFormatter.formatErrorSync(result.left);
+  return String(result.cause);
 }
 
 describe("curriculum route contract", () => {
   it("decodes and canonicalizes a real localized route", () => {
-    const route = Schema.decodeUnknownSync(CurriculumRouteSchema)(merdekaRoute);
+    const route = Schema.decodeSync(CurriculumRouteSchema)(merdekaRoute);
 
     expect(JSON.parse(canonicalizeCurriculumRoute(route))).toEqual(
       merdekaRoute
@@ -43,7 +43,7 @@ describe("curriculum route contract", () => {
   });
 
   it("accepts complete material ownership and optional card metadata", () => {
-    const route = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+    const route = Schema.decodeSync(CurriculumRouteSchema)({
       ...merdekaRoute,
       canonicalPath: "subjects/mathematics/linear-equation-inequality",
       displayGroupIconKey: "mathematics",
@@ -102,8 +102,8 @@ describe("curriculum route contract", () => {
     ["non-renderable sitemap row", { level: "lesson", sitemap: true }],
   ])("rejects %s", (_, change) => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(CurriculumRouteSchema)({
+      Exit.isFailure(
+        Schema.decodeUnknownExit(CurriculumRouteSchema)({
           ...merdekaRoute,
           ...change,
         })
@@ -112,7 +112,7 @@ describe("curriculum route contract", () => {
   });
 
   it("accepts the exact localized curriculum root shape", () => {
-    const root = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+    const root = Schema.decodeSync(CurriculumRouteSchema)({
       appLocale: "id",
       iconKey: "state",
       kind: "curriculum-context",
@@ -130,7 +130,7 @@ describe("curriculum route contract", () => {
   });
 
   it("owns the exact German namespace and current route policy", () => {
-    const root = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+    const root = Schema.decodeSync(CurriculumRouteSchema)({
       appLocale: "de",
       iconKey: "state",
       kind: "curriculum-context",
@@ -156,26 +156,24 @@ describe("curriculum route contract", () => {
       publicPath: "lehrplaene/merdeka/class-10/mathematik",
       title: "Mathematik",
     } as const;
-    const routeFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const routeFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...german,
       publicPath: merdekaRoute.publicPath,
     });
-    const materialFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const materialFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...german,
       materialKey: "lesson.mathematics.matrix",
     });
-    const sitemapFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const sitemapFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...german,
       level: "lesson",
     });
-    const draft = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)({
+    const draft = Schema.decodeSync(CurriculumRouteDraftSchema)({
       ...german,
       canonicalPath: "subjects/mathematics/matrix",
       materialKey: "lesson.mathematics.matrix",
     });
-    const contextFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)(
-      draft
-    );
+    const contextFailure = Schema.decodeExit(CurriculumRouteSchema)(draft);
 
     expect(formatFailure(routeFailure)).toContain(
       "Expected coherent localized curriculum route ownership."
@@ -192,15 +190,15 @@ describe("curriculum route contract", () => {
   });
 
   it("reports each exact curriculum ownership failure", () => {
-    const routeFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const routeFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...merdekaRoute,
       appLocale: "id",
     });
-    const materialFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const materialFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...merdekaRoute,
       materialKey: "lesson.mathematics.matrix",
     });
-    const sitemapFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+    const sitemapFailure = Schema.decodeExit(CurriculumRouteSchema)({
       ...merdekaRoute,
       level: "lesson",
     });
@@ -209,13 +207,11 @@ describe("curriculum route contract", () => {
       canonicalPath: "subjects/mathematics/matrix",
       materialKey: "lesson.mathematics.matrix",
     };
-    const draft = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)(
+    const draft = Schema.decodeSync(CurriculumRouteDraftSchema)(
       incompleteMaterial
     );
-    const contextFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)(
-      draft
-    );
-    const nodeFailure = Schema.decodeUnknownEither(CurriculumNodeKeySchema)(
+    const contextFailure = Schema.decodeExit(CurriculumRouteSchema)(draft);
+    const nodeFailure = Schema.decodeExit(CurriculumNodeKeySchema)(
       "Invalid Node"
     );
 

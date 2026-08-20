@@ -1,8 +1,9 @@
-import { NodeContext, NodeHttpClient } from "@effect/platform-node";
+import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { runCheckCommand } from "#cli/check";
 import { unusedExactProcess } from "#test/process";
 
@@ -126,9 +127,9 @@ beforeEach(() => {
 function check() {
   return Effect.runPromise(
     runCheckCommand("/code/aksara").pipe(
-      Effect.provide(NodeHttpClient.layer),
+      Effect.provide(NodeHttpClient.layerNodeHttp),
       Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
 }
@@ -138,9 +139,9 @@ function rejectCheck() {
   return Effect.runPromise(
     runCheckCommand("/code/aksara").pipe(
       Effect.flip,
-      Effect.provide(NodeHttpClient.layer),
+      Effect.provide(NodeHttpClient.layerNodeHttp),
       Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
 }

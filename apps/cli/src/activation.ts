@@ -1,4 +1,3 @@
-import { HttpClient } from "@effect/platform";
 import {
   type ContentCacheChange,
   type ContentCacheRequest,
@@ -12,7 +11,8 @@ import {
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { validateReleaseRendererManifest } from "@nakafa/aksara-publisher/release-validation";
-import { Chunk, Effect, type Redacted, Schedule, Stream } from "effect";
+import { Effect, type Redacted, Schedule, Stream } from "effect";
+import { HttpClient } from "effect/unstable/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { invalidateContentCache } from "#cli/cache/exchange";
 import {
@@ -47,19 +47,17 @@ function uniqueArtifactHashes(changes: readonly ContentCacheChange[]) {
 /** Streams bounded invalidation requests for each family touched by a release. */
 function makeCacheRequests<E, R>(input: {
   /** Replays the exact family-aware changes authenticated by the release. */
-  readonly cacheChanges: () => Stream.Stream<ContentCacheChange, E, R>;
+  readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
   readonly release: SignedContentRelease;
 }) {
   return Stream.fromIterable(ContentFamilySchema.literals).pipe(
     Stream.flatMap((family) =>
-      input.cacheChanges().pipe(
+      input.cacheChanges.pipe(
         Stream.filter((change) => change.family === family),
         Stream.grouped(MAX_CONTENT_CACHE_ARTIFACTS),
         Stream.map((changes) =>
           makeContentCacheRequest({
-            artifactHashes: uniqueArtifactHashes(
-              Chunk.toReadonlyArray(changes)
-            ),
+            artifactHashes: uniqueArtifactHashes(changes),
             family,
             releaseId: input.release.manifest.releaseId,
           })
@@ -95,7 +93,7 @@ export const makeProductionActivation = Effect.fn(
   /** Invalidates exact changed artifacts plus global and family cache tags. */
   const invalidate = <E, R>(input: {
     /** Replays the exact family-aware changes authenticated by the release. */
-    readonly cacheChanges: () => Stream.Stream<ContentCacheChange, E, R>;
+    readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
     readonly release: SignedContentRelease;
   }) => {
     const cacheEndpoint = makeCacheEndpoint(settings.endpoint);
@@ -120,9 +118,10 @@ export const makeProductionActivation = Effect.fn(
           times: RETRY_COUNT,
           while: (error) => error.retryable,
         }),
-        Effect.timeoutFail({
+        Effect.timeoutOrElse({
           duration: REQUEST_TIMEOUT,
-          onTimeout: () => new ContentCacheError({ retryable: false }),
+          orElse: () =>
+            Effect.fail(new ContentCacheError({ retryable: false })),
         }),
         Effect.mapError(
           () =>

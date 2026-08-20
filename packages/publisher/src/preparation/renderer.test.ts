@@ -1,6 +1,6 @@
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
 import { publicationPayload, rendererManifest } from "#test/publication";
 

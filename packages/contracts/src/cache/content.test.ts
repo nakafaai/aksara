@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   ArtifactCacheTagSchema,
   CONTENT_CACHE_GLOBAL_TAG,
@@ -14,8 +14,8 @@ import {
 } from "#contracts/cache/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 
-const decodeRequest = Schema.decodeUnknown(ContentCacheRequestSchema);
-const decodeReceipt = Schema.decodeUnknown(ContentCacheReceiptSchema);
+const decodeRequest = Schema.decodeUnknownEffect(ContentCacheRequestSchema);
+const decodeReceipt = Schema.decodeUnknownEffect(ContentCacheReceiptSchema);
 
 /** Returns whether one unknown value satisfies an exact cache contract. */
 function accepts(
@@ -30,13 +30,13 @@ describe("content cache contracts", () => {
     const artifactHash = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 
     expect(
-      Schema.decodeUnknownSync(ContentCacheChangeSchema)({
+      Schema.decodeSync(ContentCacheChangeSchema)({
         artifactHash,
         family: "article",
       })
     ).toEqual({ artifactHash, family: "article" });
     expect(
-      Schema.decodeUnknownSync(ContentCacheChangeSchema)({
+      Schema.decodeSync(ContentCacheChangeSchema)({
         family: "material",
       })
     ).toEqual({ family: "material" });
@@ -115,12 +115,10 @@ describe("content cache contracts", () => {
 
   it("rejects malformed family and artifact tags", () => {
     expect(() =>
-      Schema.decodeUnknownSync(ContentFamilyCacheTagSchema)(
-        "content-family:unknown"
-      )
+      Schema.decodeSync(ContentFamilyCacheTagSchema)("content-family:unknown")
     ).toThrow("Expected one canonical content-family cache tag.");
     expect(() =>
-      Schema.decodeUnknownSync(ArtifactCacheTagSchema)(
+      Schema.decodeSync(ArtifactCacheTagSchema)(
         "content-artifact:sha256:invalid"
       )
     ).toThrow(
@@ -138,11 +136,7 @@ describe("content cache contracts", () => {
     ] as const;
 
     expect(() =>
-      Schema.decodeUnknownSync(ContentCacheTagsSchema)([
-        ...base,
-        validTag,
-        validTag,
-      ])
+      Schema.decodeSync(ContentCacheTagsSchema)([...base, validTag, validTag])
     ).toThrow("Expected unique exact artifact cache tags.");
     expect(
       Schema.is(ContentCacheTagsSchema)([

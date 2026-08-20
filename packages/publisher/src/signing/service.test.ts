@@ -9,8 +9,9 @@ import {
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
   signingManifest as manifest,

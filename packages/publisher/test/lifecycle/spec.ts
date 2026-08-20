@@ -13,7 +13,10 @@ import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
+import type {
+  StageGroupInput,
+  StageOperation,
+} from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -114,7 +117,7 @@ export function makeTarget(release: {
     return stageSnapshotBatch(request);
   }
   /** Applies one authenticated group while preserving child transaction order. */
-  const stageGroup = vi.fn(({ requests }) =>
+  const stageGroup = vi.fn(({ requests }: StageGroupInput) =>
     Effect.forEach(requests, stageOperation, { discard: true })
   );
   const verify = vi.fn(
@@ -213,7 +216,7 @@ export function makeTarget(release: {
     activateRecovery: activate,
     cleanup: ({ releaseId }) =>
       Effect.succeed({ complete: true, deletedArtifacts: 0, releaseId }),
-    current,
+    current: Effect.suspend(current),
     headPage: (request) => Effect.succeed(rows.headPage(request)),
     recovery: ({ recoveryId }) => {
       const value = completed.get(recoveryId);
@@ -222,9 +225,7 @@ export function makeTarget(release: {
       }
       return Effect.succeed({
         kind: "completed" as const,
-        value: Schema.decodeUnknownSync(ActiveRollbackContentReleaseSchema)(
-          value
-        ),
+        value: Schema.decodeSync(ActiveRollbackContentReleaseSchema)(value),
       });
     },
     rollbackPage: (request) => Effect.succeed(rows.rollbackPage(request)),

@@ -5,7 +5,7 @@ import type {
   ContentReleaseManifest,
 } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Stream } from "effect";
+import { Effect, Option, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,
   validateArtifactForItem,
@@ -13,15 +13,15 @@ import {
 import type { PublicationSigner } from "#publisher/signing/service";
 import type { CompiledReleaseSource } from "#publisher/source-compilation";
 
-type ArtifactVerificationError = Effect.Effect.Error<
+type ArtifactVerificationError = Effect.Error<
   ReturnType<typeof verifySignedContentArtifact>
 >;
 
-type ArtifactVerificationContext = Effect.Effect.Context<
+type ArtifactVerificationContext = Effect.Services<
   ReturnType<typeof verifySignedContentArtifact>
 >;
 
-type ArtifactSigningError = Effect.Effect.Error<
+type ArtifactSigningError = Effect.Error<
   ReturnType<PublicationSigner["signArtifact"]>
 >;
 
@@ -33,6 +33,14 @@ type RollbackArtifactPair =
       readonly item: ContentReleaseItem;
       readonly kind: "both";
     };
+
+/** Extends a finite stream with explicit absence for a constant-space full zip. */
+function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
+  return stream.pipe(
+    Stream.map(Option.some),
+    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
+  );
+}
 
 /** Signs and verifies one reproducible exact-Git payload before staging. */
 function signGitArtifact(
@@ -119,20 +127,33 @@ export function makeRollbackArtifacts<E, R, E2, R2>(input: {
   E | E2 | ArtifactVerificationError | ReleaseArtifactMismatchError,
   R | R2 | ArtifactVerificationContext
 > {
-  return input.items.pipe(
-    Stream.zipAllWith({
-      onBoth: (item, artifact): RollbackArtifactPair => ({
-        artifact,
-        item,
-        kind: "both",
-      }),
-      onOther: (artifact): RollbackArtifactPair => ({
-        artifact,
-        kind: "extra",
-      }),
-      onSelf: (item): RollbackArtifactPair => ({ item, kind: "missing" }),
-      other: input.artifacts,
+  return withTrailingAbsence(input.items).pipe(
+    Stream.zip(withTrailingAbsence(input.artifacts)),
+    Stream.map(([item, artifact]): RollbackArtifactPair | undefined => {
+      if (Option.isSome(item) && Option.isSome(artifact)) {
+        return {
+          artifact: artifact.value,
+          item: item.value,
+          kind: "both",
+        };
+      }
+      if (Option.isSome(item)) {
+        return {
+          item: item.value,
+          kind: "missing",
+        };
+      }
+      if (Option.isSome(artifact)) {
+        return {
+          artifact: artifact.value,
+          kind: "extra",
+        };
+      }
+      return undefined;
     }),
+    Stream.takeWhile(
+      (pair): pair is RollbackArtifactPair => pair !== undefined
+    ),
     Stream.mapEffect((pair) =>
       verifyRollbackPair(pair, input.rendererManifest, input.manifest)
     )

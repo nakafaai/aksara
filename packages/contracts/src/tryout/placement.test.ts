@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -36,9 +36,7 @@ const placement = {
 
 describe("try-out placement", () => {
   it("keeps German explanations around assessed English content", () => {
-    const decoded = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)(
-      placement
-    );
+    const decoded = Schema.decodeSync(TryoutPlacementSourceSchema)(placement);
     expect(decoded.appLocale).toBe("de");
     expect(decoded.deliveryLanguage).toBe("en");
     expect(decoded.questionArtifactLocale).toBe("en");
@@ -46,11 +44,11 @@ describe("try-out placement", () => {
   });
 
   it("rejects translated assessed-language questions", () => {
-    const result = Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
+    const result = Schema.decodeExit(TryoutPlacementSourceSchema)({
       ...placement,
       questionArtifactLocale: "de",
     });
-    expect(Either.isLeft(result)).toBe(true);
+    expect(Exit.isFailure(result)).toBe(true);
     expect(String(result)).toContain(
       "Placement app, delivery, question, and answer languages must agree."
     );
@@ -58,8 +56,8 @@ describe("try-out placement", () => {
 
   it("rejects an explanation outside the app locale", () => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
+      Exit.isFailure(
+        Schema.decodeExit(TryoutPlacementSourceSchema)({
           ...placement,
           answerArtifactLocale: "en",
         })
@@ -68,7 +66,7 @@ describe("try-out placement", () => {
   });
 
   it("uses the app locale throughout non-language sections", () => {
-    const decoded = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
+    const decoded = Schema.decodeSync(TryoutPlacementSourceSchema)({
       ...placement,
       answerContentKey:
         "question-bank/tryout/indonesia/snbt/mathematical-reasoning/set-1/question-1/answer",
@@ -88,11 +86,11 @@ describe("try-out placement", () => {
       placement.questionContentKey.replace(QUESTION_SUFFIX_PATTERN, "/prompt"),
       "invalid/question",
     ]) {
-      const result = Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
+      const result = Schema.decodeExit(TryoutPlacementSourceSchema)({
         ...placement,
         questionContentKey,
       });
-      expect(Either.isLeft(result)).toBe(true);
+      expect(Exit.isFailure(result)).toBe(true);
       expect(String(result)).toContain(
         "Placement source, content keys, and authored order must agree."
       );
@@ -106,23 +104,23 @@ describe("try-out placement", () => {
       contentHash: "c".repeat(64),
       questionArtifactHash: `sha256:${"b".repeat(64)}`,
     };
-    const keyError = Schema.decodeUnknownEither(TryoutPlacementSchema)({
+    const keyError = Schema.decodeExit(TryoutPlacementSchema)({
       ...bound,
       questionContentKey: bound.questionContentKey.replace(
         QUESTION_SUFFIX_PATTERN,
         "/prompt"
       ),
     });
-    const languageError = Schema.decodeUnknownEither(TryoutPlacementSchema)({
+    const languageError = Schema.decodeExit(TryoutPlacementSchema)({
       ...bound,
       answerArtifactLocale: "en",
     });
 
-    expect(Either.isLeft(keyError)).toBe(true);
+    expect(Exit.isFailure(keyError)).toBe(true);
     expect(String(keyError)).toContain(
       "Placement source, content keys, and authored order must agree."
     );
-    expect(Either.isLeft(languageError)).toBe(true);
+    expect(Exit.isFailure(languageError)).toBe(true);
     expect(String(languageError)).toContain(
       "Placement app, delivery, question, and answer languages must agree."
     );

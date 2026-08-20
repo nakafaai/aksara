@@ -82,8 +82,8 @@ export class ArticleLocaleCatalogOwnershipError extends Schema.TaggedError<Artic
     appLocale: LocaleOverlayAppLocaleCodeSchema,
     articleSlug: Schema.optional(ArticleSlugSchema),
     category: ArticleCategorySchema,
-    reason: Schema.Literal("duplicate", "orphan"),
-    scope: Schema.Literal("article", "category"),
+    reason: Schema.Literals(["duplicate", "orphan"]),
+    scope: Schema.Literals(["article", "category"]),
   }
 ) {}
 
@@ -136,7 +136,7 @@ export const decodeArticleLocaleCatalog = Effect.fn(
     categories: articleLocaleCategories,
   }
 ) {
-  return yield* Schema.decodeUnknown(ArticleLocaleCatalogSchema)(input, {
+  return yield* Schema.decodeUnknownEffect(ArticleLocaleCatalogSchema)(input, {
     onExcessProperty: "error",
   }).pipe(Effect.mapError((cause) => new ArticleLocaleCatalogError({ cause })));
 });

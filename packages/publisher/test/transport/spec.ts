@@ -50,7 +50,7 @@ export const transportRenderer = await Effect.runPromise(
 );
 
 /** Test-only structured manifest used to prove exact HTTP staging. */
-export const transportSnapshot = Schema.decodeUnknownSync(
+export const transportSnapshot = Schema.decodeSync(
   ContentSnapshotManifestSchema
 )({
   family: "program",
@@ -68,50 +68,50 @@ export const transportSnapshot = Schema.decodeUnknownSync(
 });
 
 /** Test-only structured row carried by one bounded HTTP batch. */
-export const transportSnapshotRow = Schema.decodeUnknownSync(
-  ContentSnapshotRowSchema
-)({
-  family: "program",
-  record: {
-    kind: "program",
-    row: {
-      defaultCoverageStatus: "planned",
-      displayOrder: 1,
-      iconKey: "school",
-      key: "test-http-program",
-      kind: "school-curriculum",
-      navigation: {
-        levels: ["stage", "subject"],
-        model: "curriculum-tree",
+export const transportSnapshotRow = Schema.decodeSync(ContentSnapshotRowSchema)(
+  {
+    family: "program",
+    record: {
+      kind: "program",
+      row: {
+        defaultCoverageStatus: "planned",
+        displayOrder: 1,
+        iconKey: "school",
+        key: "test-http-program",
+        kind: "school-curriculum",
+        navigation: {
+          levels: ["stage", "subject"],
+          model: "curriculum-tree",
+        },
+        provider: { kind: "nakafa", name: "Nakafa test suite" },
+        sources: [
+          {
+            label: "Test-only publisher transport source",
+            retrievedAt: "2026-01-01",
+            type: "nakafa-editorial",
+            url: "https://example.test/publisher-transport",
+          },
+        ],
+        translations: [
+          {
+            appLocale: "en",
+            publicSlug: "test-http-program",
+            title: "Test HTTP Program",
+          },
+          {
+            appLocale: "id",
+            publicSlug: "program-http-uji",
+            title: "Program HTTP Uji",
+          },
+        ],
+        version: { label: "Test-only version" },
       },
-      provider: { kind: "nakafa", name: "Nakafa test suite" },
-      sources: [
-        {
-          label: "Test-only publisher transport source",
-          retrievedAt: "2026-01-01",
-          type: "nakafa-editorial",
-          url: "https://example.test/publisher-transport",
-        },
-      ],
-      translations: [
-        {
-          appLocale: "en",
-          publicSlug: "test-http-program",
-          title: "Test HTTP Program",
-        },
-        {
-          appLocale: "id",
-          publicSlug: "program-http-uji",
-          title: "Program HTTP Uji",
-        },
-      ],
-      version: { label: "Test-only version" },
+      rowHash: snapshotRowHash,
     },
-    rowHash: snapshotRowHash,
-  },
-});
+  }
+);
 
-export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
+export const transportRelease: SignedContentRelease = Schema.decodeSync(
   SignedContentReleaseSchema
 )({
   keyId: "test-http-key",
@@ -159,7 +159,7 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
 
 /** Exact signed inverse accepted by recovery-only transport operations. */
 export const transportRecovery: RollbackSignedContentRelease =
-  Schema.decodeUnknownSync(RollbackSignedContentReleaseSchema)({
+  Schema.decodeSync(RollbackSignedContentReleaseSchema)({
     ...transportRelease,
     manifest: {
       ...transportRelease.manifest,
@@ -232,7 +232,7 @@ const transportStageRequests = Schema.decodeUnknownSync(
 ]);
 
 export const transportRequests: readonly PublicationRequest[] =
-  Schema.decodeUnknownSync(Schema.Array(PublicationRequestSchema))([
+  Schema.decodeSync(Schema.Array(PublicationRequestSchema))([
     { operation: "current" },
     { operation: "accept", recoveryId, releaseId: transportReleaseId },
     { operation: "abort", releaseId: transportReleaseId },

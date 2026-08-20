@@ -53,7 +53,7 @@ export const rendererManifest = await Effect.runPromise(
   })
 );
 
-export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
+export const release = Schema.decodeSync(SignedContentReleaseSchema)({
   keyId: "test-transport-key",
   manifest: {
     activeAppLocales: ACTIVE_APP_LOCALES,
@@ -104,7 +104,7 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
 export const recoveryId = "test-recovery";
 
 /** Signed inverse fixture that restores the forward release's exact base. */
-export const recoveryRelease = Schema.decodeUnknownSync(
+export const recoveryRelease = Schema.decodeSync(
   RollbackSignedContentReleaseSchema
 )({
   ...release,
@@ -124,7 +124,7 @@ export const recoveryRelease = Schema.decodeUnknownSync(
   manifestHash: `sha256:${"c".repeat(64)}`,
 });
 
-export const items = Schema.decodeUnknownSync(
+export const items = Schema.decodeSync(
   Schema.NonEmptyArray(ContentReleaseItemSchema)
 )([
   {
@@ -153,7 +153,7 @@ export const items = Schema.decodeUnknownSync(
   },
 ]);
 
-export const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+export const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
   artifactHash: hash,
   keyId: "test-transport-key",
   payload: {
@@ -174,9 +174,7 @@ export const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   signature,
 });
 
-export const projection = Schema.decodeUnknownSync(
-  MaterialLessonProjectionSchema
-)({
+export const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: "en",
   artifactLocale: "en",
   contentKey: "test:transport",
@@ -192,7 +190,7 @@ export const projection = Schema.decodeUnknownSync(
   topicTitle: "Test Transport Topic",
 });
 
-export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({
+export const route = Schema.decodeSync(ContentRouteItemSchema)({
   change: {
     appLocale: "en",
     contentKey: "test:transport",
@@ -217,7 +215,7 @@ export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)(
   )
 );
 
-const stageOperations = Schema.decodeUnknownSync(
+const stageOperations = Schema.decodeSync(
   Schema.NonEmptyArray(StageOperationSchema)
 )([
   { operation: "stageSnapshot", releaseId, snapshot: snapshotManifest },

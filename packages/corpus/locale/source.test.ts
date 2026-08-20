@@ -2,8 +2,8 @@ import {
   APP_LOCALE_CODES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   EMBEDDED_APP_LOCALE_CODES,
@@ -15,7 +15,9 @@ import {
   traverseLocalizedSources,
 } from "#corpus/locale/source";
 
-const CopySchema = localizedSourceMapSchema(Schema.NonEmptyTrimmedString);
+const CopySchema = localizedSourceMapSchema(
+  Schema.Trimmed.check(Schema.isNonEmpty())
+);
 
 describe("localized source maps", () => {
   it("keeps historical embedded locales fixed and derives every overlay", () => {
@@ -36,7 +38,7 @@ describe("localized source maps", () => {
 
   it("requires embedded copy and admits permanent German overlay copy", () => {
     expect(
-      Schema.decodeUnknownSync(CopySchema)({
+      Schema.decodeSync(CopySchema)({
         de: "Deutsch",
         en: "English",
         id: "Indonesia",
@@ -54,7 +56,7 @@ describe("localized source maps", () => {
   });
 
   it("fails typed when requested copy is absent", async () => {
-    const source = Schema.decodeUnknownSync(CopySchema)({
+    const source = Schema.decodeSync(CopySchema)({
       en: "English",
       id: "Indonesia",
     });
@@ -72,7 +74,7 @@ describe("localized source maps", () => {
   });
 
   it("maps and traverses every present copy in canonical order", async () => {
-    const source = Schema.decodeUnknownSync(CopySchema)({
+    const source = Schema.decodeSync(CopySchema)({
       de: "Deutsch",
       en: "English",
       id: "Indonesia",

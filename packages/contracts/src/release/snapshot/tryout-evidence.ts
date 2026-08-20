@@ -1,4 +1,4 @@
-import { Effect, Option, Stream } from "effect";
+import { Effect, Result, Stream } from "effect";
 
 import type {
   ContentSnapshotManifest,
@@ -6,7 +6,7 @@ import type {
 } from "#contracts/release/snapshot/data";
 import {
   requireSnapshotEvidence,
-  type SnapshotRowFactory,
+  type SnapshotRowSource,
 } from "#contracts/release/snapshot/evidence-requirement";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import { digestTryoutCatalog } from "#contracts/tryout/catalog-hash";
@@ -27,8 +27,8 @@ function currentTryoutCatalog<E, R>(
   return rows.pipe(
     Stream.filterMap((row) =>
       row.family === "tryout" && row.rowKind === "catalog"
-        ? Option.some(row.record)
-        : Option.none()
+        ? Result.succeed(row.record)
+        : Result.failVoid
     )
   );
 }
@@ -40,8 +40,8 @@ function currentPlacements<E, R>(
   return rows.pipe(
     Stream.filterMap((row) =>
       row.family === "tryout" && row.rowKind === "placement"
-        ? Option.some(row.record)
-        : Option.none()
+        ? Result.succeed(row.record)
+        : Result.failVoid
     )
   );
 }
@@ -55,13 +55,16 @@ function summarizeTryoutCatalog<E, R>(
     routeCount: 0,
   };
   return records.pipe(
-    Stream.runFold(initial, (state, { row }) => ({
-      counts: {
-        ...state.counts,
-        [row.kind]: state.counts[row.kind] + 1,
-      },
-      routeCount: state.routeCount + (row.publicPath === undefined ? 0 : 1),
-    }))
+    Stream.runFold(
+      () => initial,
+      (state, { row }) => ({
+        counts: {
+          ...state.counts,
+          [row.kind]: state.counts[row.kind] + 1,
+        },
+        routeCount: state.routeCount + (row.publicPath === undefined ? 0 : 1),
+      })
+    )
   );
 }
 
@@ -70,17 +73,17 @@ export const verifyTryoutSnapshotRows = Effect.fn(
   "AksaraContracts.verifyTryoutSnapshotRows"
 )(function* <E, R>(
   snapshot: Extract<ContentSnapshotManifest, { family: "tryout" }>,
-  rows: SnapshotRowFactory<E, R>
+  rows: SnapshotRowSource<E, R>
 ) {
   const [placementDigest, catalogDigest, catalogEvidence] = yield* Effect.all([
-    digestTryoutPlacements(currentPlacements(rows())),
-    digestTryoutCatalog(currentTryoutCatalog(rows())),
-    summarizeTryoutCatalog(currentTryoutCatalog(rows())),
+    digestTryoutPlacements(currentPlacements(rows)),
+    digestTryoutCatalog(currentTryoutCatalog(rows)),
+    summarizeTryoutCatalog(currentTryoutCatalog(rows)),
   ]);
   yield* verifyTryoutLocaleClosure({
     activeAppLocales: snapshot.manifest.activeAppLocales,
-    catalog: currentTryoutCatalog(rows()),
-    placements: currentPlacements(rows()),
+    catalog: currentTryoutCatalog(rows),
+    placements: currentPlacements(rows),
   });
   yield* requireSnapshotEvidence({
     actual: catalogDigest.digest,

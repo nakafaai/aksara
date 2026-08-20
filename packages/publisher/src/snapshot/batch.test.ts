@@ -18,8 +18,8 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   canonicalizeSnapshotBatch,
   makeSnapshotBatches,
@@ -36,7 +36,7 @@ type QuranRow = Extract<ContentSnapshotRow, { readonly family: "quran" }>;
 function programRow(index: number, title = "Test Program"): ProgramRow {
   return {
     family: "program",
-    record: Schema.decodeUnknownSync(ProgramSnapshotRowSchema)({
+    record: Schema.decodeSync(ProgramSnapshotRowSchema)({
       kind: "program",
       row: {
         defaultCoverageStatus: "planned",
@@ -121,7 +121,7 @@ describe("snapshot batching", () => {
       operation: "stageSnapshotBatch",
     } as const;
     const encoded = Schema.encodeSync(
-      Schema.parseJson(PublicationRequestSchema),
+      Schema.fromJsonString(PublicationRequestSchema),
       { onExcessProperty: "error" }
     )(request);
     const canonical = canonicalizeSnapshotBatch(batch);

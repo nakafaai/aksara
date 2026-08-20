@@ -1,5 +1,4 @@
 import { randomBytes } from "node:crypto";
-import type { HttpClient } from "@effect/platform";
 import {
   PreviewRendererNonceSchema,
   PreviewRendererResponseSchema,
@@ -8,6 +7,7 @@ import {
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Schedule, Schema } from "effect";
+import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import type { RendererCredentials } from "#cli/credentials";
 import { isNakafaOrigin } from "#cli/origin";
@@ -45,7 +45,7 @@ const fetchPreviewRenderer = Effect.fn("AksaraCli.fetchPreviewRenderer")(
         nonce,
         token: credentials.token,
       });
-      const authenticated = yield* Schema.decodeUnknown(
+      const authenticated = yield* Schema.decodeUnknownEffect(
         PreviewRendererResponseSchema,
         { onExcessProperty: "error" }
       )(body).pipe(
@@ -83,9 +83,9 @@ export const waitForRenderer: FetchRenderer = Effect.fn(
       schedule: Schedule.spaced(RENDERER_RETRY_DELAY),
       while: (error) => error.retryable,
     }),
-    Effect.timeoutFail({
+    Effect.timeoutOrElse({
       duration: RENDERER_STARTUP_LIMIT,
-      onTimeout: () => makeNakafaAppError("timeout", false),
+      orElse: () => Effect.fail(makeNakafaAppError("timeout", false)),
     })
   )
 );

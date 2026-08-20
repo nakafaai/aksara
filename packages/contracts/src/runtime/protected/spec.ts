@@ -46,11 +46,13 @@ function hasProtectedBodyKind(input: {
 export const ProtectedContentRuntimeSelectorSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
-  delivery: Schema.Literal("authenticated", "entitled"),
+  delivery: Schema.Literals(["authenticated", "entitled"]),
 }).pipe(
-  Schema.filter(hasProtectedBodyKind, {
-    message: () => "Expected authenticated prompts and entitled answer bodies.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasProtectedBodyKind, {
+      message: "Expected authenticated prompts and entitled answer bodies.",
+    })
+  )
 );
 export type ProtectedContentRuntimeSelector =
   typeof ProtectedContentRuntimeSelectorSchema.Type;
@@ -66,11 +68,13 @@ function hasUniqueSelectors(
 const ProtectedContentRuntimeSelectorsSchema = Schema.Array(
   ProtectedContentRuntimeSelectorSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.maxItems(MAX_PROTECTED_RUNTIME_SELECTORS),
-  Schema.filter(hasUniqueSelectors, {
-    message: () => "Expected unique protected runtime artifact selectors.",
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(Schema.isMaxLength(MAX_PROTECTED_RUNTIME_SELECTORS)),
+  Schema.check(
+    Schema.makeFilter(hasUniqueSelectors, {
+      message: "Expected unique protected runtime artifact selectors.",
+    })
+  )
 );
 
 /** One bounded protected read sharing a retained snapshot and locale. */
@@ -86,7 +90,7 @@ export type ProtectedContentRuntimeRequest =
 /** One selected artifact inside a protected batch response. */
 export const ProtectedContentRuntimeItemSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
-  delivery: Schema.Literal("authenticated", "entitled"),
+  delivery: Schema.Literals(["authenticated", "entitled"]),
   sourcePath: CorpusSourcePathSchema,
 });
 export type ProtectedContentRuntimeItem =
@@ -103,11 +107,13 @@ function hasUniqueArtifacts(
 const ProtectedContentRuntimeItemsSchema = Schema.Array(
   ProtectedContentRuntimeItemSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.maxItems(MAX_PROTECTED_RUNTIME_SELECTORS),
-  Schema.filter(hasUniqueArtifacts, {
-    message: () => "Expected unique protected runtime artifacts.",
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(Schema.isMaxLength(MAX_PROTECTED_RUNTIME_SELECTORS)),
+  Schema.check(
+    Schema.makeFilter(hasUniqueArtifacts, {
+      message: "Expected unique protected runtime artifacts.",
+    })
+  )
 );
 
 /** Protected frozen bodies selected from one retained try-out snapshot. */
@@ -120,20 +126,22 @@ export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
   snapshotManifestHash: Sha256HashSchema,
   snapshotReleaseId: ReleaseIdSchema,
 }).pipe(
-  Schema.filter(hasBoundedProtectedRuntimeResponse, {
-    message: () =>
-      "Expected the protected runtime response to fit its wire ceiling.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundedProtectedRuntimeResponse, {
+      message:
+        "Expected the protected runtime response to fit its wire ceiling.",
+    })
+  )
 );
 export type ProtectedContentRuntimeFound =
   typeof ProtectedContentRuntimeFoundSchema.Type;
 
 /** Complete response vocabulary for the protected batch runtime seam. */
-export const ProtectedContentRuntimeResponseSchema = Schema.Union(
+export const ProtectedContentRuntimeResponseSchema = Schema.Union([
   ProtectedContentRuntimeFoundSchema,
   ContentRuntimeMissingSchema,
-  ContentRuntimeFailureSchema
-);
+  ContentRuntimeFailureSchema,
+]);
 export type ProtectedContentRuntimeResponse =
   typeof ProtectedContentRuntimeResponseSchema.Type;
 

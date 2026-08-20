@@ -6,8 +6,8 @@ import {
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { inverseRouteStream } from "#publisher/rollback/route-proof";
 
 const sourceId = ReleaseIdSchema.make("test-route-proof-source");
@@ -35,7 +35,7 @@ describe("inverseRouteStream", () => {
   it("restores a prior owner or deletes a previously unbound path", async () => {
     const routes = await Effect.runPromise(
       inverseRouteStream(
-        () => Stream.make(record(0, null), record(1, "test:prior")),
+        Stream.make(record(0, null), record(1, "test:prior")),
         releaseId
       ).pipe(Stream.runCollect)
     );

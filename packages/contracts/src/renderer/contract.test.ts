@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeRendererManifestContract,
@@ -66,9 +66,7 @@ function replaceDomain(name: RendererDomain, replacement: RendererDomainInput) {
 
 describe("renderer contract", () => {
   it("selects every route-owned registry without a binary domain branch", () => {
-    const decoded = Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)(
-      manifest
-    );
+    const decoded = Schema.decodeSync(RendererManifestEnvelopeSchema)(manifest);
     expect(
       RENDERER_DOMAINS.map(
         (name) => selectRendererDomainCapability(decoded, name).name
@@ -77,45 +75,45 @@ describe("renderer contract", () => {
   });
 
   it("requires every canonical domain while allowing empty capabilities", () => {
-    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
     const incomplete = decode({
       ...manifest,
       domains: domains.slice(0, -1),
     });
-    expect(Either.isRight(decode(manifest))).toBe(true);
+    expect(Exit.isSuccess(decode(manifest))).toBe(true);
     expect(
-      Either.isLeft(decode({ ...manifest, domains: [...domains].reverse() }))
+      Exit.isFailure(decode({ ...manifest, domains: [...domains].reverse() }))
     ).toBe(true);
-    expect(Either.isLeft(incomplete)).toBe(true);
-    if (Either.isLeft(incomplete)) {
-      expect(String(incomplete.left)).toContain(
+    expect(Exit.isFailure(incomplete)).toBe(true);
+    if (Exit.isFailure(incomplete)) {
+      expect(String(incomplete.cause)).toContain(
         "Expected every renderer domain in canonical order."
       );
     }
   });
 
   it("requires unique published domains in canonical order", () => {
-    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
     const outOfOrder = decode({
       ...manifest,
       publishedDomains: ["mathematics", "chemistry"],
     });
     expect(
-      Either.isRight(
+      Exit.isSuccess(
         decode({
           ...manifest,
           publishedDomains: ["chemistry", "mathematics"],
         })
       )
     ).toBe(true);
-    expect(Either.isLeft(outOfOrder)).toBe(true);
-    if (Either.isLeft(outOfOrder)) {
-      expect(String(outOfOrder.left)).toContain(
+    expect(Exit.isFailure(outOfOrder)).toBe(true);
+    if (Exit.isFailure(outOfOrder)) {
+      expect(String(outOfOrder.cause)).toContain(
         "Expected unique published renderer domains in canonical order."
       );
     }
     expect(
-      Either.isLeft(
+      Exit.isFailure(
         decode({
           ...manifest,
           publishedDomains: ["mathematics", "mathematics"],
@@ -125,14 +123,14 @@ describe("renderer contract", () => {
   });
 
   it("keeps base names disjoint while allowing cross-domain names", () => {
-    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
     const colliding = {
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       name: "chemistry",
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     } as const;
     expect(
-      Either.isLeft(
+      Exit.isFailure(
         decode({
           ...manifest,
           domains: replaceDomain("chemistry", colliding),
@@ -149,7 +147,7 @@ describe("renderer contract", () => {
       domain.name === "mathematics" ? sharedMathematics : domain
     );
     expect(
-      Either.isRight(decode({ ...manifest, domains: sharedDomains }))
+      Exit.isSuccess(decode({ ...manifest, domains: sharedDomains }))
     ).toBe(true);
   });
 
@@ -162,19 +160,20 @@ describe("renderer contract", () => {
         { name: "MissingChemistry", version: 1 },
       ],
     };
-    const capability = Schema.decodeUnknownEither(
-      RendererDomainCapabilitySchema
-    )(incomplete);
-    const envelope = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema)(
-      { ...manifest, domains: replaceDomain("chemistry", incomplete) }
+    const capability = Schema.decodeExit(RendererDomainCapabilitySchema)(
+      incomplete
     );
-    expect(Either.isLeft(capability)).toBe(true);
-    if (Either.isLeft(capability)) {
-      expect(String(capability.left)).toContain(
+    const envelope = Schema.decodeExit(RendererManifestEnvelopeSchema)({
+      ...manifest,
+      domains: replaceDomain("chemistry", incomplete),
+    });
+    expect(Exit.isFailure(capability)).toBe(true);
+    if (Exit.isFailure(capability)) {
+      expect(String(capability.cause)).toContain(
         "Expected one supported authoring selection"
       );
     }
-    expect(Either.isLeft(envelope)).toBe(true);
+    expect(Exit.isFailure(envelope)).toBe(true);
   });
 
   it("canonicalizes domain order independently from caller order", () => {

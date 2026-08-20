@@ -34,10 +34,9 @@ export function contractLocaleCodes(
       if (
         ts.isIdentifier(declaration.name) &&
         declaration.name.text === "AppLocaleCodeSchema" &&
-        declaration.initializer !== undefined &&
-        isSchemaCall(declaration.initializer, "Literal")
+        declaration.initializer !== undefined
       ) {
-        const codes = declaration.initializer.arguments
+        const codes = schemaLiteralNodes(declaration.initializer)
           .filter(ts.isStringLiteralLike)
           .map(({ text }) => text);
         if (codes.length > 0) {
@@ -69,6 +68,20 @@ function isSchemaCall(node: ts.Node, name: string): node is ts.CallExpression {
     node.expression.expression.text === "Schema" &&
     node.expression.name.text === name
   );
+}
+
+/** Returns literal value nodes from v4 singular and plural Schema APIs. */
+function schemaLiteralNodes(node: ts.Node): readonly ts.Node[] {
+  if (isSchemaCall(node, "Literal")) {
+    return [...node.arguments];
+  }
+  if (!isSchemaCall(node, "Literals")) {
+    return [];
+  }
+  const [values] = node.arguments;
+  return values && ts.isArrayLiteralExpression(values)
+    ? [...values.elements]
+    : [];
 }
 
 /** Returns distinct locale codes declared directly by syntax nodes. */
@@ -106,8 +119,9 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
   if (ts.isUnionTypeNode(node)) {
     return declaredLocaleCodes(node.types).size >= 2;
   }
-  if (isSchemaCall(node, "Literal")) {
-    return declaredLocaleCodes(node.arguments).size >= 2;
+  const literalNodes = schemaLiteralNodes(node);
+  if (literalNodes.length > 0) {
+    return declaredLocaleCodes(literalNodes).size >= 2;
   }
   if (duplicatedLocaleKeyof(node)) {
     return true;
@@ -115,14 +129,24 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
   if (!isSchemaCall(node, "Union")) {
     return false;
   }
-  const members = node.arguments.flatMap((argument) =>
-    isSchemaCall(argument, "Literal") ? [...argument.arguments] : []
+  const [members] = node.arguments;
+  if (!(members && ts.isArrayLiteralExpression(members))) {
+    return false;
+  }
+  const literals = members.elements.flatMap((member) =>
+    schemaLiteralNodes(member)
   );
-  return declaredLocaleCodes(members).size >= 2;
+  return declaredLocaleCodes(literals).size >= 2;
 }
 
 /** Detects a duplicated multi-locale policy array or tuple. */
 function duplicatedLocaleList(node: ts.Node) {
+  if (
+    ts.isArrayLiteralExpression(node) &&
+    isSchemaCall(node.parent, "Literals")
+  ) {
+    return false;
+  }
   let values: ts.NodeArray<ts.Node> | undefined;
   if (ts.isArrayLiteralExpression(node)) {
     values = node.elements;

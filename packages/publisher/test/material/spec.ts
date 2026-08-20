@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
@@ -14,7 +13,7 @@ import {
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
 import { materialSlicePaths } from "#test/material/slice";
@@ -102,7 +101,7 @@ export function collectMaterialPublication(input: {
           rendererManifest: input.renderer ?? rendererManifest,
           scope: input.scope,
         });
-        return yield* publication.records().pipe(
+        return yield* publication.records.pipe(
           Stream.runCollect,
           Effect.map((records) => [...records])
         );
@@ -128,7 +127,7 @@ export function collectMaterialResult(input: {
           rendererManifest,
           scope: input.scope,
         });
-        return yield* publication.result().pipe(
+        return yield* publication.result.pipe(
           Stream.runCollect,
           Effect.map((heads) => [...heads])
         );
@@ -155,7 +154,7 @@ export function collectMaterialRoutes(input: {
           rendererManifest: input.renderer ?? rendererManifest,
           scope: input.scope,
         });
-        return yield* publication.routes().pipe(
+        return yield* publication.routes.pipe(
           Stream.runCollect,
           Effect.map((routes) => [...routes])
         );
@@ -196,7 +195,7 @@ function collectMaterialRecords() {
           published: Stream.empty,
           rendererManifest,
         });
-        return yield* material.records().pipe(
+        return yield* material.records.pipe(
           Stream.runCollect,
           Effect.map((records) => [...records])
         );

@@ -88,7 +88,7 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
         projectTryoutExam(source, appLocale)
       )
     );
-    const rows = yield* Schema.decodeUnknown(
+    const rows = yield* Schema.decodeUnknownEffect(
       Schema.Array(TryoutCatalogRowSchema)
     )([...countries.flat(), ...exams.flat(2)], {
       onExcessProperty: "error",

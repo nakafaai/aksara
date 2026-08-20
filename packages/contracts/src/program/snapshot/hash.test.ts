@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
@@ -46,7 +46,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const facts = Schema.decodeUnknownSync(ProgramSnapshotFactsSchema)({
+const facts = Schema.decodeSync(ProgramSnapshotFactsSchema)({
   activeAppLocales: ActiveAppLocaleListSchema.make([
     AppLocaleSchema.make("en"),
     AppLocaleSchema.make("id"),

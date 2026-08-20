@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   PreviewDocumentSchema,
@@ -15,8 +15,8 @@ import {
 
 /** Reports whether strict preview document decoding rejects one candidate. */
 function rejectsDocument(candidate: unknown) {
-  return Either.isLeft(
-    Schema.decodeUnknownEither(PreviewDocumentSchema, {
+  return Exit.isFailure(
+    Schema.decodeUnknownExit(PreviewDocumentSchema, {
       onExcessProperty: "error",
     })(candidate)
   );
@@ -33,7 +33,7 @@ describe("preview document", () => {
 
     expect(
       documents.map((document) =>
-        Schema.decodeUnknownSync(PreviewDocumentSchema)(document)
+        Schema.decodeSync(PreviewDocumentSchema)(document)
       )
     ).toEqual(documents);
     expect(
@@ -113,8 +113,8 @@ describe("preview document", () => {
 
     for (const candidate of invalid) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionPromptPreviewDocumentSchema)(
+        Exit.isFailure(
+          Schema.decodeUnknownExit(QuestionPromptPreviewDocumentSchema)(
             candidate
           )
         )
@@ -122,7 +122,7 @@ describe("preview document", () => {
     }
     expect(
       String(
-        Schema.decodeUnknownEither(QuestionPromptPreviewDocumentSchema)(
+        Schema.decodeUnknownExit(QuestionPromptPreviewDocumentSchema)(
           invalid[0]
         )
       )
@@ -150,11 +150,11 @@ describe("preview document", () => {
     };
 
     const invalid = { ...testAnswerDocument, identity: secondQuestion };
-    const result = Schema.decodeUnknownEither(
-      QuestionAnswerPreviewDocumentSchema
-    )(invalid);
+    const result = Schema.decodeExit(QuestionAnswerPreviewDocumentSchema)(
+      invalid
+    );
 
-    expect(Either.isLeft(result)).toBe(true);
+    expect(Exit.isFailure(result)).toBe(true);
     expect(String(result)).toContain(
       "Expected question answer identity, placement, and source to agree."
     );

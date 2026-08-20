@@ -1,13 +1,12 @@
-import { FileSystem, Path } from "@effect/platform";
-import { Effect, Option, Predicate, Schema } from "effect";
+import { Effect, FileSystem, Option, Path, Predicate, Schema } from "effect";
 
 /** A required Aksara or Nakafa checkout failed exact identity validation. */
 export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutError>()(
   "PreviewCheckoutError",
   {
-    kind: Schema.Literal("aksara", "nakafa"),
+    kind: Schema.Literals(["aksara", "nakafa"]),
     path: Schema.String,
-    reason: Schema.Literal("identity", "missing", "symlink"),
+    reason: Schema.Literals(["identity", "missing", "symlink"]),
   }
 ) {}
 
@@ -27,7 +26,7 @@ const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
         manifest
       ),
       (value) =>
-        Predicate.isRecord(value) && typeof value.name === "string"
+        Predicate.isObject(value) && typeof value.name === "string"
           ? Option.some(value.name)
           : Option.none()
     )

@@ -47,21 +47,25 @@ function hasCoherentArtifactPath(input: {
 /** One signed artifact reference and its exact renderer projection. */
 export const PreviewArtifactSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
-  artifactPath: Schema.NonEmptyTrimmedString,
+  artifactPath: Schema.Trimmed.check(Schema.isNonEmpty()),
   projection: ContentProjectionSchema,
 }).pipe(
-  Schema.filter(hasCoherentArtifactPath, {
-    message: () => "Expected the artifact path to match its signed hash.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentArtifactPath, {
+      message: "Expected the artifact path to match its signed hash.",
+    })
+  )
 );
 export type PreviewArtifact = typeof PreviewArtifactSchema.Type;
 
 const PreviewArtifactListSchema = Schema.NonEmptyArray(
   PreviewArtifactSchema
 ).pipe(
-  Schema.filter((artifacts) => artifacts.length <= 2, {
-    message: () => "Expected at most two preview artifacts.",
-  })
+  Schema.check(
+    Schema.makeFilter((artifacts) => artifacts.length <= 2, {
+      message: "Expected at most two preview artifacts.",
+    })
+  )
 );
 type PreviewArtifactList = typeof PreviewArtifactListSchema.Type;
 
@@ -181,55 +185,65 @@ const PreviewBaseSchema = Schema.Struct({
     aksara: PreviewRepositorySchema,
     nakafa: PreviewRepositorySchema,
   }),
-  revision: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  revision: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 
 /** A changed route is intentionally unavailable while its source compiles. */
-export const PreviewPendingSchema = Schema.extend(
-  PreviewBaseSchema,
-  Schema.Struct({ status: Schema.Literal("pending") })
-);
+export const PreviewPendingSchema = Schema.Struct({
+  ...PreviewBaseSchema.fields,
+  status: Schema.Literal("pending"),
+});
 
 /** Exact bounded artifacts available to the real loopback Nakafa app. */
-export const PreviewReadySchema = Schema.extend(
-  PreviewBaseSchema,
-  Schema.Struct({
-    artifacts: PreviewArtifactListSchema,
-    rendererManifestHash: Sha256HashSchema,
-    status: Schema.Literal("ready"),
-  })
-).pipe(
-  Schema.filter(hasCoherentReadyArtifacts, {
-    message: () =>
-      "Expected preview artifacts to match the selected document exactly.",
-  })
+export const PreviewReadySchema = Schema.Struct({
+  ...PreviewBaseSchema.fields,
+  artifacts: PreviewArtifactListSchema,
+  rendererManifestHash: Sha256HashSchema,
+  status: Schema.Literal("ready"),
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(hasCoherentReadyArtifacts, {
+      message:
+        "Expected preview artifacts to match the selected document exactly.",
+    })
+  )
 );
 
 /** Sanitized compile failure that forbids fallback to an older route body. */
-export const PreviewFailedSchema = Schema.extend(
-  PreviewBaseSchema,
-  Schema.Struct({
-    failure: Schema.Struct({
-      code: Schema.String.pipe(Schema.minLength(1), Schema.maxLength(128)),
-      message: Schema.String.pipe(Schema.minLength(1), Schema.maxLength(512)),
-    }),
-    status: Schema.Literal("failed"),
-  })
-);
+export const PreviewFailedSchema = Schema.Struct({
+  ...PreviewBaseSchema.fields,
+  failure: Schema.Struct({
+    code: Schema.String.pipe(
+      Schema.check(Schema.isMinLength(1)),
+      Schema.check(Schema.isMaxLength(128))
+    ),
+    message: Schema.String.pipe(
+      Schema.check(Schema.isMinLength(1)),
+      Schema.check(Schema.isMaxLength(512))
+    ),
+  }),
+  status: Schema.Literal("failed"),
+});
 
 /** Complete current local source state returned by the manifest endpoint. */
-export const LocalPreviewManifestSchema = Schema.Union(
+export const LocalPreviewManifestSchema = Schema.Union([
   PreviewPendingSchema,
   PreviewReadySchema,
-  PreviewFailedSchema
-);
+  PreviewFailedSchema,
+]);
 export type LocalPreviewManifest = typeof LocalPreviewManifestSchema.Type;
 
 /** Minimal SSE signal carrying only the derived route and manifest revision. */
 export const PreviewEventSchema = Schema.Struct({
   format: Schema.Literal(LOCAL_PREVIEW_FORMAT),
-  revision: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  revision: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
   route: PreviewRouteSchema,
-  status: Schema.Literal("pending", "ready", "failed"),
+  status: Schema.Literals(["pending", "ready", "failed"]),
 });
 export type PreviewEvent = typeof PreviewEventSchema.Type;

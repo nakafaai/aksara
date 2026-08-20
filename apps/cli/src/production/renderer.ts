@@ -1,6 +1,6 @@
-import type { HttpClient } from "@effect/platform";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, type Redacted, Schedule } from "effect";
+import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 
@@ -37,9 +37,9 @@ export const fetchProductionRenderer: (
       schedule: Schedule.spaced(RETRY_DELAY),
       while: (error) => error.retryable,
     }),
-    Effect.timeoutFail({
+    Effect.timeoutOrElse({
       duration: RENDERER_TIMEOUT,
-      onTimeout: () => makeNakafaAppError("timeout", false),
+      orElse: () => Effect.fail(makeNakafaAppError("timeout", false)),
     })
   );
 });

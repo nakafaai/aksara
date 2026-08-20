@@ -1,4 +1,4 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Effect } from "effect";
 import {
@@ -13,7 +13,7 @@ export const tryoutPrompts = questionEntries.filter(
   ({ bodyKind }) => bodyKind === "question"
 );
 const tryoutContent = await Effect.runPromise(
-  loadTryoutContent(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
+  loadTryoutContent(checkoutRoot).pipe(Effect.provide(NodeServices.layer))
 );
 export const { catalog: tryoutCatalog, placements: tryoutPlacements } =
   selectTryoutSlice(tryoutContent.projection, tryoutPrompts);

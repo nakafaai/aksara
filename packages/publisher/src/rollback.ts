@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
@@ -7,6 +6,7 @@ import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/rout
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
 import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
@@ -44,8 +44,8 @@ type RollbackPageStream = ReturnType<typeof streamRollbackRecords>;
 type RoutePageStream = ReturnType<typeof streamRouteRecords>;
 type DerivedTransitionStream = ReturnType<
   typeof deriveRollbackRecords<
-    Stream.Stream.Error<RollbackPageStream>,
-    Stream.Stream.Context<RollbackPageStream>
+    Stream.Error<RollbackPageStream>,
+    Stream.Services<RollbackPageStream>
   >
 >;
 type ActiveHeadStream = ReturnType<typeof streamContentHeads>;
@@ -63,33 +63,33 @@ export interface PrepareRollbackInput {
 
 /** Every typed failure surfaced while authenticating and deriving a rollback. */
 export type PrepareRollbackError =
-  | Effect.Effect.Error<ReturnType<typeof validateRendererManifestHash>>
-  | Effect.Effect.Error<ReturnType<typeof validateReleaseRendererManifest>>
-  | Effect.Effect.Error<ReturnType<typeof verifyContentReleaseBundle>>
-  | Effect.Effect.Error<ReturnType<typeof verifyRollbackProof>>
-  | Effect.Effect.Error<
+  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | Effect.Error<ReturnType<typeof validateReleaseRendererManifest>>
+  | Effect.Error<ReturnType<typeof verifyContentReleaseBundle>>
+  | Effect.Error<ReturnType<typeof verifyRollbackProof>>
+  | Effect.Error<
       ReturnType<typeof verifyResultCatalog<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof buildRollbackRelease<ReplaySpoolError, never>>
     >
   | ReplaySpoolError
   | RollbackIdentityError
   | RollbackProofIdentityError
-  | Stream.Stream.Error<ActiveHeadStream>
-  | Stream.Stream.Error<DerivedTransitionStream>
-  | Stream.Stream.Error<ResultCatalogStream>
-  | Stream.Stream.Error<RoutePageStream>;
+  | Stream.Error<ActiveHeadStream>
+  | Stream.Error<DerivedTransitionStream>
+  | Stream.Error<ResultCatalogStream>
+  | Stream.Error<RoutePageStream>;
 
 /** Services required by secure rollback preparation. */
 export type PrepareRollbackContext =
-  | Effect.Effect.Context<ReturnType<typeof verifyContentReleaseBundle>>
+  | Effect.Services<ReturnType<typeof verifyContentReleaseBundle>>
   | FileSystem.FileSystem
   | Path.Path
   | Scope.Scope
-  | Stream.Stream.Context<ActiveHeadStream>
-  | Stream.Stream.Context<DerivedTransitionStream>
-  | Stream.Stream.Context<RoutePageStream>;
+  | Stream.Services<ActiveHeadStream>
+  | Stream.Services<DerivedTransitionStream>
+  | Stream.Services<RoutePageStream>;
 
 /** Complete Effect interface for secure rollback preparation. */
 export type PrepareRollback = (
@@ -233,15 +233,15 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   yield* verifyResultCatalog({
     expectedCount: policy.active.resultCount,
     expectedDigest: policy.active.resultDigest,
-    heads: activeSpool.replay(),
+    heads: activeSpool.replay,
     releaseId: policy.active.releaseId,
   });
   const resultSpool = yield* createReplaySpool({
     prefix: "aksara-rollback-result-",
     schema: ContentHeadSchema,
     stream: mergeRollbackResult({
-      active: activeSpool.replay(),
-      transitions: transitionSpool.replay(),
+      active: activeSpool.replay,
+      transitions: transitionSpool.replay,
     }),
   });
   return yield* buildRollbackRelease({
@@ -250,7 +250,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     releaseId: input.releaseId,
     rendererManifest,
     result: resultSpool.replay,
-    routes: () => inverseRouteStream(routeSpool.replay, input.releaseId),
+    routes: inverseRouteStream(routeSpool.replay, input.releaseId),
     scope: proof.release.manifest.scope,
     target: policy.target,
   });

@@ -1,6 +1,6 @@
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { composeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";

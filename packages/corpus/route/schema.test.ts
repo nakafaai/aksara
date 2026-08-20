@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -9,7 +9,7 @@ import {
 describe("public route schema", () => {
   it("decodes complete locale-owned slug maps", () => {
     expect(
-      Schema.decodeUnknownSync(PublicRouteSlugMapSchema)({
+      Schema.decodeSync(PublicRouteSlugMapSchema)({
         en: "function-concept",
         id: "konsep-fungsi",
       })
@@ -17,17 +17,17 @@ describe("public route schema", () => {
   });
 
   it("rejects invalid segments and missing supported locales", () => {
-    const invalidSegment = Schema.decodeUnknownEither(PublicRouteSegmentSchema)(
+    const invalidSegment = Schema.decodeExit(PublicRouteSegmentSchema)(
       "Invalid Segment"
     );
-    const incomplete = Schema.decodeUnknownEither(PublicRouteSlugMapSchema)({
+    const incomplete = Schema.decodeUnknownExit(PublicRouteSlugMapSchema)({
       en: "function-concept",
     });
 
-    expect(Either.isLeft(invalidSegment)).toBe(true);
-    expect(Either.isLeft(incomplete)).toBe(true);
-    if (Either.isLeft(invalidSegment)) {
-      expect(String(invalidSegment.left)).toContain(
+    expect(Exit.isFailure(invalidSegment)).toBe(true);
+    expect(Exit.isFailure(incomplete)).toBe(true);
+    if (Exit.isFailure(invalidSegment)) {
+      expect(String(invalidSegment.cause)).toContain(
         "Invalid public route segment."
       );
     }

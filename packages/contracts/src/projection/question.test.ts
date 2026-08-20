@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import { ContentKeySchema } from "#contracts/ids";
 import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import {
@@ -27,7 +27,7 @@ const metadata = {
   date: "2026-07-01",
   title: "Question 1",
 };
-const choices = Schema.decodeUnknownSync(QuestionChoicesSchema)({
+const choices = Schema.decodeSync(QuestionChoicesSchema)({
   en: [
     { label: "A", value: true },
     { label: "B", value: false },
@@ -85,7 +85,7 @@ describe("question projection", () => {
     expect("choices" in answer).toBe(false);
     expect(
       [prompt, answer].map((value) =>
-        Schema.decodeUnknownSync(QuestionBodyProjectionSchema)(value)
+        Schema.decodeSync(QuestionBodyProjectionSchema)(value)
       )
     ).toEqual([prompt, answer]);
   });
@@ -107,12 +107,12 @@ describe("question projection", () => {
         { label: "B", value: true },
       ],
     ]) {
-      const result = Schema.decodeUnknownEither(QuestionChoicesSchema)({
+      const result = Schema.decodeExit(QuestionChoicesSchema)({
         en: localized,
         id: choices.id,
       });
-      expect(Either.isLeft(result)).toBe(true);
-      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      expect(Exit.isFailure(result)).toBe(true);
+      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
         "Expected exactly one correct choice."
       );
     }
@@ -121,14 +121,14 @@ describe("question projection", () => {
   it("rejects invented metadata and answer choices", () => {
     const prompt = promptProjection(ArtifactLocaleSchema.make("en"));
     const answer = answerProjection(ArtifactLocaleSchema.make("en"));
-    const decode = Schema.decodeUnknownEither(QuestionBodyProjectionSchema, {
+    const decode = Schema.decodeUnknownExit(QuestionBodyProjectionSchema, {
       onExcessProperty: "error",
     });
 
-    expect(Either.isLeft(decode({ ...prompt, description: "Invented" }))).toBe(
+    expect(Exit.isFailure(decode({ ...prompt, description: "Invented" }))).toBe(
       true
     );
-    expect(Either.isLeft(decode({ ...answer, choices: choices.en }))).toBe(
+    expect(Exit.isFailure(decode({ ...answer, choices: choices.en }))).toBe(
       true
     );
   });

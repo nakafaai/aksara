@@ -28,11 +28,11 @@ const TryoutManifestSchema = Schema.Struct({
 });
 
 /** Complete structured snapshot manifest vocabulary staged before its rows. */
-export const ContentSnapshotManifestSchema = Schema.Union(
+export const ContentSnapshotManifestSchema = Schema.Union([
   ProgramManifestSchema,
   QuranManifestSchema,
-  TryoutManifestSchema
-);
+  TryoutManifestSchema,
+]);
 export type ContentSnapshotManifest = typeof ContentSnapshotManifestSchema.Type;
 
 /** One learning-program record staged under its snapshot identity. */
@@ -62,12 +62,12 @@ const TryoutPlacementRowSchema = Schema.Struct({
 });
 
 /** Complete current structured row vocabulary accepted by publication. */
-export const ContentSnapshotRowSchema = Schema.Union(
+export const ContentSnapshotRowSchema = Schema.Union([
   ProgramRowSchema,
   QuranRowSchema,
   TryoutCatalogRowSchema,
-  TryoutPlacementRowSchema
-);
+  TryoutPlacementRowSchema,
+]);
 export type ContentSnapshotRow = typeof ContentSnapshotRowSchema.Type;
 
 /** Returns the immutable content-addressed identity of one family manifest. */

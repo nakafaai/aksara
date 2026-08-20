@@ -1,4 +1,3 @@
-import type { FileSystem, HttpClient, Path } from "@effect/platform";
 import type {
   ContentReleaseManifest,
   PublicationReceipt,
@@ -25,7 +24,9 @@ import {
 import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import type { FileSystem, Path } from "effect";
 import { Effect } from "effect";
+import type { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
 import {
@@ -63,10 +64,8 @@ type ProductionCommand = Effect.Effect<
   ProductionError,
   ProductionServices
 >;
-type PreparedGit = Effect.Effect.Success<
-  ReturnType<typeof prepareProductionGit>
->;
-type PreparedRollback = Effect.Effect.Success<
+type PreparedGit = Effect.Success<ReturnType<typeof prepareProductionGit>>;
+type PreparedRollback = Effect.Success<
   ReturnType<typeof prepareProductionRollback>
 >;
 
@@ -138,9 +137,9 @@ export const runProductionCommand: (
       endpoint: recoveryEnvironment.rendererEndpoint,
       token: recoveryEnvironment.rendererToken,
     });
-    const current = yield* target
-      .current()
-      .pipe(Effect.mapError(mapProductionError("target")));
+    const current = yield* target.current.pipe(
+      Effect.mapError(mapProductionError("target"))
+    );
     const action = yield* selectProductionAction(input.args, current).pipe(
       Effect.mapError(mapProductionError("state"))
     );

@@ -1,5 +1,5 @@
-import { Effect, Either, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
@@ -19,9 +19,9 @@ import {
 import { makeReleaseItems } from "#contracts/test/items";
 import { release as gitRelease } from "#contracts/test/request";
 
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release");
 
-const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
+const changes = Schema.decodeSync(Schema.Array(ContentChangeSchema))([
   {
     artifactLocale: "id",
     contentKey: "test:content",
@@ -43,7 +43,7 @@ const items = makeReleaseItems(releaseId, changes);
 const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
-const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: null,
   baseManifestHash: null,
@@ -89,10 +89,10 @@ describe("release spec", () => {
   });
 
   it("rejects non-rollback envelopes at recovery boundaries", () => {
-    const result = Schema.decodeUnknownEither(
-      RollbackSignedContentReleaseSchema
-    )(gitRelease);
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    const result = Schema.decodeExit(RollbackSignedContentReleaseSchema)(
+      gitRelease
+    );
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected a signed rollback release."
     );
   });
@@ -110,12 +110,12 @@ describe("release spec", () => {
   });
 
   it("requires forward rollback provenance and permits rollback of rollback", async () => {
-    const firstId = Schema.decodeUnknownSync(ReleaseIdSchema)("rollback-first");
+    const firstId = Schema.decodeSync(ReleaseIdSchema)("rollback-first");
     const firstItems = makeReleaseItems(firstId, []);
     const firstSummary = await Effect.runPromise(
       digestItems(firstId, Stream.fromIterable(firstItems))
     );
-    const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+    const first = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...manifest,
       baseActiveAppLocales: manifest.activeAppLocales,
       baseManifestHash: `sha256:${"1".repeat(64)}`,
@@ -132,7 +132,7 @@ describe("release spec", () => {
       snapshots: invertContentSnapshots(manifest.snapshots),
       upsertCount: 0,
     });
-    const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
+    const second = Schema.decodeExit(ContentReleaseManifestSchema)({
       ...first,
       baseActiveAppLocales: first.activeAppLocales,
       baseManifestHash: `sha256:${"2".repeat(64)}`,
@@ -141,21 +141,19 @@ describe("release spec", () => {
       releaseId: "rollback-second",
       snapshots: invertContentSnapshots(first.snapshots),
     });
-    expect(Either.isRight(second)).toBe(true);
-    const gitRestore = Schema.decodeUnknownEither(ContentReleaseManifestSchema)(
-      {
-        ...first,
-        origin: { kind: "git", sha: "b".repeat(40) },
-        snapshots: {
-          ...first.snapshots,
-          program: restoreContentSnapshot(
-            manifest.resultDigest,
-            manifest.baseResultDigest
-          ),
-        },
-      }
-    );
-    expect(Either.isLeft(gitRestore)).toBe(true);
+    expect(Exit.isSuccess(second)).toBe(true);
+    const gitRestore = Schema.decodeExit(ContentReleaseManifestSchema)({
+      ...first,
+      origin: { kind: "git", sha: "b".repeat(40) },
+      snapshots: {
+        ...first.snapshots,
+        program: restoreContentSnapshot(
+          manifest.resultDigest,
+          manifest.baseResultDigest
+        ),
+      },
+    });
+    expect(Exit.isFailure(gitRestore)).toBe(true);
     for (const invalid of [
       { ...first, baseReleaseId: null },
       { ...first, baseManifestHash: null },
@@ -189,16 +187,17 @@ describe("release spec", () => {
       },
     ]) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(ContentReleaseManifestSchema)(invalid)
+        Exit.isFailure(
+          Schema.decodeUnknownExit(ContentReleaseManifestSchema)(invalid)
         )
       ).toBe(true);
     }
-    const incoherent = Schema.decodeUnknownEither(ContentReleaseManifestSchema)(
-      { ...first, baseReleaseId: null }
-    );
-    if (Either.isLeft(incoherent)) {
-      expect(String(incoherent.left)).toContain(
+    const incoherent = Schema.decodeExit(ContentReleaseManifestSchema)({
+      ...first,
+      baseReleaseId: null,
+    });
+    if (Exit.isFailure(incoherent)) {
+      expect(String(incoherent.cause)).toContain(
         "Expected a new release identity and a coherent source origin"
       );
     }

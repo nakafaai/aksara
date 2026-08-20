@@ -39,7 +39,7 @@ export interface PreparedQuranSnapshot {
   readonly manifest: QuranSnapshot;
   readonly provenance: QuranProvenanceManifest;
   /** Replays every content-addressed row bound to the snapshot identity. */
-  readonly rows: () => Stream.Stream<QuranSnapshotRow, PreparedQuranRowError>;
+  readonly rows: Stream.Stream<QuranSnapshotRow, PreparedQuranRowError>;
 }
 
 /** Computes row hashes while keeping the replayable corpus stream bounded. */
@@ -102,7 +102,6 @@ export const prepareQuranSnapshot = Effect.fn(
     manifest,
     provenance,
     /** Replays exact source rows and binds them to the finalized snapshot. */
-    rows: () =>
-      bindRows(manifest.snapshotId, streamQuranRows(verifiedSource.source)),
+    rows: bindRows(manifest.snapshotId, streamQuranRows(verifiedSource.source)),
   } satisfies PreparedQuranSnapshot;
 });

@@ -1,4 +1,3 @@
-import type { HttpClientResponse } from "@effect/platform";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import {
@@ -7,6 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/response";
 import { isJsonType, readText } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";
+import type { HttpClientResponse } from "effect/unstable/http";
 import {
   PublicationTargetProtocolError,
   type PublicationTargetTransportError,
@@ -14,7 +14,7 @@ import {
 } from "#publisher/target/errors";
 import { targetStage } from "#publisher/target/protocol";
 
-const PublicationResponseJsonSchema = Schema.parseJson(
+const PublicationResponseJsonSchema = Schema.fromJsonString(
   PublicationResponseSchema
 );
 
@@ -28,7 +28,7 @@ function responseError(request: PublicationRequest) {
 
 /** Decodes strict response text through the exact response contract. */
 function decodeResponse(request: PublicationRequest, source: string) {
-  return Schema.decode(PublicationResponseJsonSchema, {
+  return Schema.decodeEffect(PublicationResponseJsonSchema, {
     onExcessProperty: "error",
   })(source).pipe(Effect.mapError(() => responseError(request)));
 }

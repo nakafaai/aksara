@@ -1,5 +1,5 @@
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
@@ -17,13 +17,13 @@ describe("learning program keys", () => {
   });
 
   it("rejects route-shaped or locale-specific program identities", () => {
-    const result = Schema.decodeUnknownEither(LearningProgramKeySchema)(
+    const result = Schema.decodeExit(LearningProgramKeySchema)(
       "id/kurikulum-merdeka"
     );
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(String(result.left)).toContain("Invalid learning program key.");
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain("Invalid learning program key.");
     }
   });
 });

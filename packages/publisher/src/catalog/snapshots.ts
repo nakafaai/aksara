@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
@@ -7,10 +6,13 @@ import {
   decodeContentSnapshotManifests,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import { Chunk, Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Schema, type Scope, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Complete structured-catalog evidence produced without signing or staging. */
 export const CatalogSnapshotEvidenceSchema = Schema.Struct({
@@ -24,7 +26,7 @@ export const CatalogSnapshotEvidenceSchema = Schema.Struct({
     projectionCount: CountSchema,
     projectionDigest: Sha256HashSchema,
     provenanceDigest: Sha256HashSchema,
-    provenanceStatus: Schema.Literal("approved", "blocked"),
+    provenanceStatus: Schema.Literals(["approved", "blocked"]),
     runtimeCount: CountSchema,
     searchCount: CountSchema,
     snapshotId: Sha256HashSchema,
@@ -53,7 +55,7 @@ export class ContentCatalogSnapshotError extends Schema.TaggedError<ContentCatal
   "ContentCatalogSnapshotError",
   {
     cause: Schema.Unknown,
-    stage: Schema.Literal("decode", "prepare", "verify"),
+    stage: Schema.Literals(["decode", "prepare", "verify"]),
   }
 ) {}
 
@@ -61,7 +63,7 @@ export class ContentCatalogSnapshotError extends Schema.TaggedError<ContentCatal
 interface CatalogSnapshotInput<E, R> {
   readonly checkoutRoot: string;
   /** Replays validated question heads for exact try-out placement binding. */
-  readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
+  readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
 }
 
@@ -126,10 +128,9 @@ export const validateCatalogSnapshots: <E, R>(
     )
   );
   const manifests = yield* decodeContentSnapshotManifests(
-    prepared.manifests()
+    prepared.manifests
   ).pipe(
     Stream.runCollect,
-    Effect.map(Chunk.toReadonlyArray),
     Effect.mapError(
       (cause) => new ContentCatalogSnapshotError({ cause, stage: "decode" })
     )

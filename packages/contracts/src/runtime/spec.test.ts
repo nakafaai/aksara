@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import {
   decodePublicContentRuntimeRequest,
   decodePublicContentRuntimeResponse,
@@ -59,15 +59,13 @@ describe("content runtime contract", () => {
   });
 
   it("rejects mismatched identities and uncontracted response fields", () => {
-    const mismatch = Schema.decodeUnknownEither(
-      PublicContentRuntimeResponseSchema
-    )({
+    const mismatch = Schema.decodeExit(PublicContentRuntimeResponseSchema)({
       ...found,
       projection: { ...found.projection, contentKey: "test:other" },
     });
-    expect(Either.isLeft(mismatch)).toBe(true);
-    if (Either.isLeft(mismatch)) {
-      expect(String(mismatch.left)).toContain(
+    expect(Exit.isFailure(mismatch)).toBe(true);
+    if (Exit.isFailure(mismatch)) {
+      expect(String(mismatch.cause)).toContain(
         "Expected the runtime artifact and projection to share one identity."
       );
     }

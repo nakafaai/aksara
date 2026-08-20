@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -20,11 +20,10 @@ const facts = {
 describe("try-out snapshot", () => {
   it("decodes the current active locale and inventory identity", () => {
     expect(
-      Schema.decodeUnknownSync(TryoutSnapshotFactsSchema)(facts)
-        .activeAppLocales
+      Schema.decodeSync(TryoutSnapshotFactsSchema)(facts).activeAppLocales
     ).toEqual(["en", "id", "de"]);
     expect(
-      Schema.decodeUnknownSync(TryoutSnapshotSchema)({
+      Schema.decodeSync(TryoutSnapshotSchema)({
         ...facts,
         format: TRYOUT_SNAPSHOT_FORMAT,
         snapshotId: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
@@ -35,8 +34,8 @@ describe("try-out snapshot", () => {
   it("rejects duplicate, empty, and noncanonical locale sets", () => {
     for (const activeAppLocales of [[], ["en", "en"], ["id", "en"]]) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(TryoutSnapshotFactsSchema)({
+        Exit.isFailure(
+          Schema.decodeUnknownExit(TryoutSnapshotFactsSchema)({
             ...facts,
             activeAppLocales,
           })

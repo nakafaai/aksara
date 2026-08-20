@@ -81,7 +81,7 @@ export function makeQuestionCompileSource(source: QuestionDocumentSource) {
 const decodeQuestionMetadata = Effect.fn(
   "AksaraPublisher.decodeQuestionMetadata"
 )(function* (source: QuestionDocumentSource, metadata: unknown) {
-  return yield* Schema.decodeUnknown(QuestionMetadataSchema)(metadata, {
+  return yield* Schema.decodeUnknownEffect(QuestionMetadataSchema)(metadata, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

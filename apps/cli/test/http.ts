@@ -1,11 +1,11 @@
+import { Effect } from "effect";
 import {
   HttpClient,
   type HttpClientError,
   type HttpClientRequest,
   type HttpClientResponse,
   HttpClientResponse as Response,
-} from "@effect/platform";
-import { Effect } from "effect";
+} from "effect/unstable/http";
 
 /** Builds one official Effect HTTP response around an explicit web body. */
 export function webResponse(

@@ -1,7 +1,8 @@
 import { resolve } from "node:path";
 import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   articleEntries,
   checkoutRoot,
@@ -34,7 +35,7 @@ const englishEntry = await Effect.runPromise(
         route.artifactLocale === "en"
     );
     if (entry === undefined) {
-      return yield* Effect.dieMessage("Expected the real English article.");
+      return yield* Effect.die(new Error("Expected the real English article."));
     }
     return entry;
   })
@@ -46,8 +47,8 @@ const englishHead = await Effect.runPromise(
         contentKey === englishEntry.route.contentKey && artifactLocale === "en"
     );
     if (head === undefined) {
-      return yield* Effect.dieMessage(
-        "Expected the published English article."
+      return yield* Effect.die(
+        new Error("Expected the published English article.")
       );
     }
     return head;

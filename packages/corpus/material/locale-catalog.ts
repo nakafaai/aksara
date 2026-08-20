@@ -19,9 +19,9 @@ export class MaterialLocaleCatalogOwnershipError extends Schema.TaggedError<Mate
   "MaterialLocaleCatalogOwnershipError",
   {
     appLocale: LocaleOverlayAppLocaleCodeSchema,
-    key: Schema.NonEmptyTrimmedString,
-    reason: Schema.Literal("duplicate", "missing", "orphan"),
-    scope: Schema.Literal("domain", "material"),
+    key: Schema.Trimmed.check(Schema.isNonEmpty()),
+    reason: Schema.Literals(["duplicate", "missing", "orphan"]),
+    scope: Schema.Literals(["domain", "material"]),
   }
 ) {}
 

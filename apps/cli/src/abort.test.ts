@@ -1,8 +1,8 @@
-import type { HttpClientRequest } from "@effect/platform";
-import { HttpClient } from "@effect/platform";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import type { HttpClientRequest } from "effect/unstable/http";
+import { HttpClient } from "effect/unstable/http";
 import { runAbortCommand } from "#cli/abort";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
@@ -33,7 +33,10 @@ function abortResponse(
 function runAbort(client: HttpClient.HttpClient) {
   return Effect.runPromise(
     runAbortCommand({ command: "abort", releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(abortValues)),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(abortValues))
+      ),
       Effect.provideService(HttpClient.HttpClient, client)
     )
   );
@@ -43,7 +46,10 @@ function runAbort(client: HttpClient.HttpClient) {
 function rejectAbort(client: HttpClient.HttpClient) {
   return Effect.runPromise(
     runAbortCommand({ command: "abort", releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(abortValues)),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(abortValues))
+      ),
       Effect.provideService(HttpClient.HttpClient, client),
       Effect.flip
     )

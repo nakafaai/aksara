@@ -13,7 +13,7 @@ import {
 } from "#contracts/tryout/snapshot/spec";
 
 const SHA256_HASH_PATTERN = /^sha256:[a-f\d]{64}$/u;
-const input = Schema.decodeUnknownSync(TryoutSnapshotFactsSchema)({
+const input = Schema.decodeSync(TryoutSnapshotFactsSchema)({
   activeAppLocales: ["en", "id", "de"],
   catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
   counts: { country: 2, exam: 4, section: 34, set: 10, track: 4 },

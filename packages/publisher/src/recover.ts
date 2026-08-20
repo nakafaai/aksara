@@ -17,19 +17,15 @@ type RecoverContentRelease = (
   input: RetainedRecoveryInput
 ) => Effect.Effect<
   PublicationReceipt,
-  | Effect.Effect.Error<ReturnType<typeof verifyRollbackContentReleaseBundle>>
-  | Effect.Effect.Error<ReturnType<typeof validateManifestReceipt>>
-  | Effect.Effect.Error<ReturnType<typeof selectRetainedRecovery>>
-  | Effect.Effect.Error<
-      ReturnType<(typeof PublicationActivation.Service)["verify"]>
-    >
-  | Effect.Effect.Error<
+  | Effect.Error<ReturnType<typeof verifyRollbackContentReleaseBundle>>
+  | Effect.Error<ReturnType<typeof validateManifestReceipt>>
+  | Effect.Error<ReturnType<typeof selectRetainedRecovery>>
+  | Effect.Error<ReturnType<(typeof PublicationActivation.Service)["verify"]>>
+  | Effect.Error<
       ReturnType<(typeof PublicationActivation.Service)["invalidate"]>
     >
-  | Effect.Effect.Error<
-      ReturnType<(typeof PublicationTarget.Service)["current"]>
-    >
-  | Effect.Effect.Error<
+  | Effect.Error<(typeof PublicationTarget.Service)["current"]>
+  | Effect.Error<
       ReturnType<(typeof PublicationTarget.Service)["activateRecovery"]>
     >,
   ContentVerificationKeyResolver | PublicationActivation | PublicationTarget
@@ -58,7 +54,7 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
     });
     return receipt;
   }
-  const current = yield* target.current();
+  const current = yield* target.current;
   const retained = yield* selectRetainedRecovery(current, input, false);
   const bundle = yield* verifyRollbackContentReleaseBundle({
     release: retained.release,

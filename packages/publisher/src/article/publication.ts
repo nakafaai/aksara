@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
@@ -15,7 +14,9 @@ import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
-import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import { constUndefined } from "effect/Function";
 import {
   type ArticleMetadataError,
   type ArticleSourceError,
@@ -34,13 +35,13 @@ import {
   routeTransitionForContent,
 } from "#publisher/routes";
 
-const ArticleFamilyFieldSchema = Schema.Literal(
+const ArticleFamilyFieldSchema = Schema.Literals([
   "contentKey",
   "artifactLocale",
   "publicPath",
   "rendererDomain",
-  "sourcePath"
-);
+  "sourcePath",
+]);
 
 /** A target returned the same article identity more than once. */
 export class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
@@ -95,14 +96,11 @@ export type ArticlePublicationStreamError<E> =
 /** Authoritative article plan consumed by whole-catalog release composition. */
 export interface ArticlePublication {
   /** Replays the exact article delta against supplied active article heads. */
-  readonly records: () => Stream.Stream<
-    PreparedContentTransition,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired article head catalog in canonical order. */
-  readonly result: () => Stream.Stream<ArticleHead, ReplaySpoolError>;
+  readonly result: Stream.Stream<ArticleHead, ReplaySpoolError>;
   /** Replays route ownership independently from article body transitions. */
-  readonly routes: () => Stream.Stream<RouteTransition, ReplaySpoolError>;
+  readonly routes: Stream.Stream<RouteTransition, ReplaySpoolError>;
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and article-head stream. */
@@ -113,7 +111,7 @@ export interface ArticlePublicationInput<E, R> {
   readonly scope?: PublicationScope | undefined;
 }
 
-type RendererManifestError = Effect.Effect.Error<
+type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
@@ -201,7 +199,7 @@ function validatePublishedHead(
   ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
   rendererByCategory: ReadonlyMap<string, RendererDomain>
 ): Effect.Effect<
-  readonly [HeadOrderState, ArticleHead],
+  readonly [HeadOrderState, readonly ArticleHead[]],
   ArticleHeadDuplicateError | ArticleHeadFamilyError | ArticleHeadOrderError
 > {
   const field = mismatchedFamilyField(head, ownerByHead, rendererByCategory);
@@ -235,7 +233,7 @@ function validatePublishedHead(
       );
     }
   }
-  return Effect.succeed(Tuple.make({ previous: head }, head));
+  return Effect.succeed(Tuple.make({ previous: head }, [head]));
 }
 
 /** Proves every published article head before the constant-space merge. */
@@ -246,8 +244,10 @@ function validatePublishedHeads<E, R>(
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(
-    Stream.mapAccumEffect(initial, (state, head) =>
-      validatePublishedHead(state, head, ownerByHead, rendererByCategory)
+    Stream.mapAccumEffect(
+      () => initial,
+      (state, head) =>
+        validatePublishedHead(state, head, ownerByHead, rendererByCategory)
     )
   );
 }
@@ -294,16 +294,18 @@ export const prepareArticlePublication: <E, R>(
     stream: plans,
   });
   /** Replays canonical article transitions from the sealed spool. */
-  const records = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.record)));
+  const records = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.record, constUndefined)
+    )
+  );
   /** Replays the complete canonical article catalog from the sealed spool. */
-  const result = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.result)));
+  const result = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.result, constUndefined)
+    )
+  );
   /** Replays public-route changes derived from article transitions. */
-  const routes = () => records().pipe(Stream.map(routeTransitionForContent));
+  const routes = records.pipe(Stream.map(routeTransitionForContent));
   return { records, result, routes };
 });

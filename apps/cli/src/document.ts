@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import {
   compileIncremental,
   type IncrementalResult,
@@ -13,6 +12,7 @@ import {
   projectPreviewSource,
 } from "@nakafa/aksara-publisher/preview/source";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
+import type { FileSystem, Path } from "effect";
 import { Effect, HashMap, Option, Ref } from "effect";
 import {
   fingerprintSelectedDocument,
@@ -40,18 +40,18 @@ export interface PreviewDocumentResult {
 
 /** Every expected failure from one selected-document compilation closure. */
 export type PreviewDocumentError =
-  | Effect.Effect.Error<ReturnType<typeof compileIncremental>>
-  | Effect.Effect.Error<ReturnType<typeof fingerprintSelectedDocument>>
-  | Effect.Effect.Error<ReturnType<typeof loadPreviewSources>>
-  | Effect.Effect.Error<ReturnType<typeof projectPreviewSource>>
-  | Effect.Effect.Error<ReturnType<PublicationSigner["signArtifact"]>>
-  | Effect.Effect.Error<ReturnType<typeof verifySelectedFingerprint>>
-  | Effect.Effect.Error<ReturnType<typeof verifySelectedTopology>>;
+  | Effect.Error<ReturnType<typeof compileIncremental>>
+  | Effect.Error<ReturnType<typeof fingerprintSelectedDocument>>
+  | Effect.Error<ReturnType<typeof loadPreviewSources>>
+  | Effect.Error<ReturnType<typeof projectPreviewSource>>
+  | Effect.Error<ReturnType<PublicationSigner["signArtifact"]>>
+  | Effect.Error<ReturnType<typeof verifySelectedFingerprint>>
+  | Effect.Error<ReturnType<typeof verifySelectedTopology>>;
 
 /** Multi-body incremental compiler captured by one preview session. */
 export interface PreviewDocumentCompiler {
   /** Reads, compiles, validates, and signs the complete selected closure. */
-  readonly compile: () => Effect.Effect<
+  readonly compile: Effect.Effect<
     PreviewDocumentResult,
     PreviewDocumentError,
     FileSystem.FileSystem | Path.Path
@@ -120,7 +120,7 @@ export const makePreviewDocumentCompiler: (
 
   return {
     /** Compiles and signs every required body as one ordered preview state. */
-    compile: Effect.fn("AksaraCli.compileSelectedDocument")(function* () {
+    compile: Effect.gen(function* () {
       yield* verifySelectedTopology(input.selected);
       const fingerprint = yield* fingerprintSelectedDocument(input.selected);
       const [firstSource, ...remainingSources] = yield* loadPreviewSources(
@@ -148,7 +148,7 @@ export const makePreviewDocumentCompiler: (
         fingerprint,
         results: [first.result, ...remaining.map(({ result }) => result)],
       } satisfies PreviewDocumentResult;
-    }),
+    }).pipe(Effect.withSpan("AksaraCli.compileSelectedDocument")),
     /** Revalidates that repository evidence still describes compiled sources. */
     verify: (document) =>
       verifySelectedFingerprint(input.selected, document.fingerprint),

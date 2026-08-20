@@ -55,7 +55,7 @@ export const rollbackRendererManifest = await Effect.runPromise(
     publishedDomains: ["mathematics"],
   })
 );
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: Buffer.byteLength(compiledCode, "utf8"),
   compiledCode,
@@ -94,7 +94,7 @@ export function signRollbackPayload(value: typeof payload) {
 }
 
 export const rollbackArtifact = signRollbackPayload(payload);
-export const rollbackProjection = Schema.decodeUnknownSync(
+export const rollbackProjection = Schema.decodeSync(
   MaterialLessonProjectionSchema
 )({
   appLocale: rollbackAppLocale,

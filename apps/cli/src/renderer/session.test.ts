@@ -1,12 +1,12 @@
 import { realpathSync } from "node:fs";
 import { relative } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it } from "vitest";
 import { NakafaApp } from "#cli/nakafa";
 import {
   openRendererSession,
@@ -40,7 +40,9 @@ function openSession(input: {
   readonly nakafaRoot: string;
   readonly selection: RendererSessionSelection;
 }) {
-  const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
+  const capture: {
+    input?: Parameters<typeof NakafaApp.Service.start>[0];
+  } = {};
   return Effect.runPromise(
     Effect.scoped(
       openRendererSession({
@@ -64,7 +66,7 @@ function openSession(input: {
     ).pipe(
       Effect.provideService(NakafaApp, makeApp(capture)),
       Effect.provideService(ExactProcess, exactProcess),
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
 }

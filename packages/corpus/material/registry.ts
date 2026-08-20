@@ -264,7 +264,7 @@ export const decodeMaterialRegistry = Effect.fn(
     expandMaterial(binding, localeCatalog, appLocales)
   );
 
-  const entries = yield* Schema.decodeUnknown(
+  const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(MaterialEntrySchema)
   )(expanded.flat(), { onExcessProperty: "error" }).pipe(
     Effect.mapError(

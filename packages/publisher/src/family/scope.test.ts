@@ -3,8 +3,8 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { diffScopedFamilyHeads } from "#publisher/family/scope";
 
 const entry = {

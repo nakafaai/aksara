@@ -9,11 +9,11 @@ import {
   HistoricalTryoutPlacementEnvelopeSchema,
 } from "#contracts/history/tryout-row";
 
-const NonNegativeCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const NonNegativeCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
-const InventoryKindSchema = Schema.Literal(
+const InventoryKindSchema = Schema.Literals([
   "catalog",
   "country",
   "exam",
@@ -21,10 +21,10 @@ const InventoryKindSchema = Schema.Literal(
   "route",
   "section",
   "set",
-  "track"
-);
+  "track",
+]);
 type StoredTryoutInventoryKind = typeof InventoryKindSchema.Type;
-const InventoryRowKindSchema = Schema.Literal("catalog", "placement");
+const InventoryRowKindSchema = Schema.Literals(["catalog", "placement"]);
 
 export type { StoredTryoutInventoryKind };
 

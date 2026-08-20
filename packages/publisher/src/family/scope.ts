@@ -7,7 +7,8 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Order, Schema, Stream, Tuple } from "effect";
+import { Effect, Schema, Stream, Tuple } from "effect";
+import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
 
 /** One requested content identity is absent from both source and active state. */
 export class PublicationScopeIdentityError extends Schema.TaggedError<PublicationScopeIdentityError>()(
@@ -15,7 +16,7 @@ export class PublicationScopeIdentityError extends Schema.TaggedError<Publicatio
   {
     artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    family: Schema.Literal("article", "material", "question"),
+    family: Schema.Literals(["article", "material", "question"]),
   }
 ) {}
 
@@ -98,27 +99,25 @@ export function diffScopedFamilyHeads<
       const prior = input.published.pipe(
         Stream.map((head) => Tuple.make(markKnown(head), head))
       );
-      const merged = Stream.zipAllSortedByKeyWith(current, {
+      const merged = mergeSortedCatalogStreams(current, {
         onBoth: (entry, head): ScopedFamilyDiff<Entry, Head> => ({
           entry,
           head,
           kind: "matched",
           scoped: selected?.has(headIdentity(head)) ?? true,
         }),
-        onOther: (head): ScopedFamilyDiff<Entry, Head> => ({
-          head,
-          kind: "published",
-          scoped: selected?.has(headIdentity(head)) ?? true,
-        }),
-        onSelf: (entry): ScopedFamilyDiff<Entry, Head> => ({
+        onLeft: (entry): ScopedFamilyDiff<Entry, Head> => ({
           entry,
           kind: "current",
           scoped: true,
         }),
-        order: Order.string,
-        other: prior,
+        onRight: (head): ScopedFamilyDiff<Entry, Head> => ({
+          head,
+          kind: "published",
+          scoped: selected?.has(headIdentity(head)) ?? true,
+        }),
+        right: prior,
       }).pipe(
-        Stream.map(([, diff]) => diff),
         Stream.filter(
           (diff) =>
             diff.kind !== "current" ||
@@ -130,7 +129,9 @@ export function diffScopedFamilyHeads<
         return merged;
       }
       return merged.pipe(
-        Stream.concat(Stream.execute(validateKnownIdentities(selected, known)))
+        Stream.concat(
+          Stream.fromEffectDrain(validateKnownIdentities(selected, known))
+        )
       );
     })
   );

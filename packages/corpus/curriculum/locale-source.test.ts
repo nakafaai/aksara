@@ -1,8 +1,8 @@
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   CurriculumLocaleCatalogError,
@@ -33,7 +33,7 @@ const foundationNodeKey = CurriculumNodeKeySchema.make("foundation");
 function localeRow(
   input: Partial<typeof CurriculumLocaleSourceSchema.Encoded> = {}
 ) {
-  return Schema.decodeUnknownSync(CurriculumLocaleSourceSchema)({
+  return Schema.decodeSync(CurriculumLocaleSourceSchema)({
     appLocale: "de",
     nodeKey: "foundation",
     programKey: "merdeka",

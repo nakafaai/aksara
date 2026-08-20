@@ -18,12 +18,12 @@ export class QuranAttributionLocaleError extends Schema.TaggedError<QuranAttribu
   "QuranAttributionLocaleError",
   {
     activeAppLocales: Schema.Array(AppLocaleSchema),
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "duplicate-copy",
       "duplicate-source",
       "missing-copy",
-      "missing-source"
-    ),
+      "missing-source",
+    ]),
     sourceId: QuranSourceIdSchema,
   }
 ) {}
@@ -52,13 +52,17 @@ const requireAttributionSource = Effect.fn(
   const matches = sources.filter((candidate) => candidate.id === sourceId);
   const [source] = matches;
   if (source === undefined) {
-    return yield* Effect.fail(
-      attributionError(activeAppLocales, sourceId, "missing-source")
+    return yield* attributionError(
+      activeAppLocales,
+      sourceId,
+      "missing-source"
     );
   }
   if (matches.length > 1) {
-    return yield* Effect.fail(
-      attributionError(activeAppLocales, sourceId, "duplicate-source")
+    return yield* attributionError(
+      activeAppLocales,
+      sourceId,
+      "duplicate-source"
     );
   }
   return source;
@@ -77,13 +81,13 @@ const requireAttributionCopy = Effect.fn(
   );
   const [copy] = matches;
   if (copy === undefined) {
-    return yield* Effect.fail(
-      attributionError(activeAppLocales, source.id, "missing-copy")
-    );
+    return yield* attributionError(activeAppLocales, source.id, "missing-copy");
   }
   if (matches.length > 1) {
-    return yield* Effect.fail(
-      attributionError(activeAppLocales, source.id, "duplicate-copy")
+    return yield* attributionError(
+      activeAppLocales,
+      source.id,
+      "duplicate-copy"
     );
   }
   return copy;

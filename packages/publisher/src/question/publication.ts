@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
@@ -19,7 +18,9 @@ import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionBankIndex } from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import { constUndefined } from "effect/Function";
 import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import {
@@ -39,13 +40,13 @@ import {
   routeTransitionForContent,
 } from "#publisher/routes";
 
-const QuestionFamilyFieldSchema = Schema.Literal(
+const QuestionFamilyFieldSchema = Schema.Literals([
   "contentKey",
   "delivery",
   "artifactLocale",
   "rendererDomain",
-  "sourcePath"
-);
+  "sourcePath",
+]);
 
 /** A target returned the same question identity more than once. */
 export class QuestionHeadDuplicateError extends Schema.TaggedError<QuestionHeadDuplicateError>()(
@@ -89,14 +90,11 @@ export type QuestionPublicationStreamError<E> =
 /** Authoritative question plan consumed by whole-catalog release composition. */
 export interface QuestionPublication {
   /** Replays the exact question delta against supplied active question heads. */
-  readonly records: () => Stream.Stream<
-    PreparedContentTransition,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired question head catalog in canonical order. */
-  readonly result: () => Stream.Stream<QuestionHead, ReplaySpoolError>;
+  readonly result: Stream.Stream<QuestionHead, ReplaySpoolError>;
   /** Replays route-free transitions without inventing question paths. */
-  readonly routes: () => Stream.Stream<RouteTransition, ReplaySpoolError>;
+  readonly routes: Stream.Stream<RouteTransition, ReplaySpoolError>;
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and question-head stream. */
@@ -107,10 +105,10 @@ export interface QuestionPublicationInput<E, R> {
   readonly scope?: PublicationScope | undefined;
 }
 
-type RendererManifestError = Effect.Effect.Error<
+type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
-type TryoutRegistryError = Effect.Effect.Error<
+type TryoutRegistryError = Effect.Error<
   ReturnType<typeof decodeTryoutRegistry>
 >;
 /** Every failure possible before the replayable question plan is constructed. */
@@ -175,7 +173,7 @@ function validatePublishedHead(
   state: HeadOrderState,
   head: QuestionHead
 ): Effect.Effect<
-  readonly [HeadOrderState, QuestionHead],
+  readonly [HeadOrderState, readonly QuestionHead[]],
   QuestionHeadDuplicateError | QuestionHeadFamilyError | QuestionHeadOrderError
 > {
   const field = mismatchedFamilyField(questionBanks, head);
@@ -208,7 +206,7 @@ function validatePublishedHead(
       );
     }
   }
-  return Effect.succeed(Tuple.make({ previous: head }, head));
+  return Effect.succeed(Tuple.make({ previous: head }, [head]));
 }
 
 /** Proves every published question head before the constant-space merge. */
@@ -218,8 +216,9 @@ function validatePublishedHeads<E, R>(
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(
-    Stream.mapAccumEffect(initial, (state, head) =>
-      validatePublishedHead(questionBanks, state, head)
+    Stream.mapAccumEffect(
+      () => initial,
+      (state, head) => validatePublishedHead(questionBanks, state, head)
     )
   );
 }
@@ -257,16 +256,18 @@ export const prepareQuestionPublication: <E, R>(
     stream: plans,
   });
   /** Replays canonical question transitions from the sealed spool. */
-  const records = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.record)));
+  const records = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.record, constUndefined)
+    )
+  );
   /** Replays the complete canonical question catalog from the sealed spool. */
-  const result = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.result)));
+  const result = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.result, constUndefined)
+    )
+  );
   /** Replays route-free question changes for global route planning. */
-  const routes = () => records().pipe(Stream.map(routeTransitionForContent));
+  const routes = records.pipe(Stream.map(routeTransitionForContent));
   return { records, result, routes };
 });

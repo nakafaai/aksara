@@ -8,9 +8,10 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   type EffectSourceConfig,
   makeEffectSourceProgram,
@@ -74,12 +75,12 @@ function createRepository(input?: {
   writeManifest(
     root,
     installedManifest,
-    input?.installed ?? '{"version":"3.22.0"}'
+    input?.installed ?? '{"version":"4.0.0-rc.110"}'
   );
   writeManifest(
     root,
     vendoredManifest,
-    input?.vendored ?? '{"version":"3.22.0"}'
+    input?.vendored ?? '{"version":"4.0.0-rc.110"}'
   );
 
   git(root, "add", "--force", ".");
@@ -107,7 +108,7 @@ function createRepository(input?: {
 /** Builds one source command with the real Node platform layer. */
 function program(action: string | undefined, config?: EffectSourceConfig) {
   return makeEffectSourceProgram(action, config).pipe(
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   );
 }
 
@@ -223,7 +224,7 @@ describe("Effect source maintenance", () => {
 
   it("rejects unsupported operations and mismatched versions", async () => {
     const config = createRepository({
-      vendored: '{"version":"3.21.0"}',
+      vendored: '{"version":"4.0.0-rc.109"}',
     });
 
     await expectFailure("unknown", config, "EffectSourceUsageError");

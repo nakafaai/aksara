@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { digestRoutes } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import {
@@ -13,7 +13,7 @@ const { releaseId } = release.manifest;
 
 /** Builds one ordered route binding at a deterministic identity. */
 function route(index: number, publicPath = `subjects/test/${index}`) {
-  return Schema.decodeUnknownSync(ContentRouteItemSchema)({
+  return Schema.decodeSync(ContentRouteItemSchema)({
     change: {
       appLocale: "en",
       contentKey: `test:route-${index}`,

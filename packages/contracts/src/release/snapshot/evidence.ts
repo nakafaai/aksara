@@ -1,7 +1,7 @@
 import { Effect } from "effect";
 
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
-import type { SnapshotRowFactory } from "#contracts/release/snapshot/evidence-requirement";
+import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence-requirement";
 import { verifyProgramSnapshotRows } from "#contracts/release/snapshot/program-evidence";
 import { verifyQuranSnapshotRows } from "#contracts/release/snapshot/quran-evidence";
 import { verifyTryoutSnapshotRows } from "#contracts/release/snapshot/tryout-evidence";
@@ -11,7 +11,7 @@ export const verifySnapshotRows = Effect.fn(
   "AksaraContracts.verifySnapshotRows"
 )(function* <E, R>(
   snapshot: ContentSnapshotManifest,
-  rows: SnapshotRowFactory<E, R>
+  rows: SnapshotRowSource<E, R>
 ) {
   if (snapshot.family === "program") {
     return yield* verifyProgramSnapshotRows(snapshot, rows);

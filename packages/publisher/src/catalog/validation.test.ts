@@ -1,8 +1,9 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { validateContentCatalog } from "#publisher/catalog/validation";
 import {
   catalogHeads,
@@ -105,24 +106,22 @@ vi.mock("#publisher/catalog/publication", async () => {
       ];
       const routes = catalogRoutes(publicRows, control.routeMode === "replace");
       return TestEffect.succeed({
-        records: () =>
-          control.recordFailure
-            ? Stream.fail("records")
-            : Stream.fromIterable(
-                Array.from({ length: control.records }, () => undefined)
-              ),
-        result: () => {
+        records: control.recordFailure
+          ? Stream.fail("records")
+          : Stream.fromIterable(
+              Array.from({ length: control.records }, () => undefined)
+            ),
+        result: Stream.suspend(() => {
           control.resultCalls += 1;
           return control.resultFailure
             ? Stream.fail("result")
             : Stream.fromIterable(catalogResult(control.actual));
-        },
-        routes: () =>
-          control.routeFailure
-            ? Stream.fail("routes")
-            : Stream.fromIterable(
-                control.routeMode === "drop" ? routes.slice(0, -1) : routes
-              ),
+        }),
+        routes: control.routeFailure
+          ? Stream.fail("routes")
+          : Stream.fromIterable(
+              control.routeMode === "drop" ? routes.slice(0, -1) : routes
+            ),
       });
     },
   };
@@ -177,7 +176,7 @@ function validationProgram() {
       checkoutRoot: "/code/aksara",
       rendererManifest,
     })
-  ).pipe(Effect.provide(NodeContext.layer));
+  ).pipe(Effect.provide(NodeServices.layer));
 }
 
 /** Returns one typed validation failure without a FiberFailure wrapper. */

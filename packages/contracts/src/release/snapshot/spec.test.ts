@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
@@ -32,14 +32,14 @@ const rows = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 
 /** Strictly decodes one unknown transition for rejection assertions. */
 function decode(input: unknown) {
-  return Schema.decodeUnknownEither(ContentSnapshotStateSchema)(input, {
+  return Schema.decodeUnknownExit(ContentSnapshotStateSchema)(input, {
     onExcessProperty: "error",
   });
 }
 
 describe("content snapshot state", () => {
   it("decodes only non-empty canonical unique publication scopes", () => {
-    const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
+    const scope = Schema.decodeSync(PublicationScopeSchema)({
       content: [
         { artifactLocale: "en", contentKey: "test:a", family: "material" },
         { artifactLocale: "id", contentKey: "test:a", family: "material" },
@@ -102,12 +102,12 @@ describe("content snapshot state", () => {
       { content: [], families: [], snapshots: ["tryout", "quran"] },
       { content: [], families: [], snapshots: ["unknown"] },
     ].map((invalid) =>
-      Schema.decodeUnknownEither(PublicationScopeSchema)(invalid)
+      Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
     );
-    expect(failures.every(Either.isLeft)).toBe(true);
+    expect(failures.every(Exit.isFailure)).toBe(true);
     const [emptyFailure] = failures;
-    if (emptyFailure !== undefined && Either.isLeft(emptyFailure)) {
-      expect(String(emptyFailure.left)).toContain(
+    if (emptyFailure !== undefined && Exit.isFailure(emptyFailure)) {
+      expect(String(emptyFailure.cause)).toContain(
         "Expected a non-empty publication scope in canonical unique order."
       );
     }
@@ -189,11 +189,11 @@ describe("content snapshot state", () => {
 
     const failures = cases.map(decode);
 
-    expect(failures.every(Either.isLeft)).toBe(true);
+    expect(failures.every(Exit.isFailure)).toBe(true);
     const [firstFailure] = failures;
     expect(
-      firstFailure !== undefined && Either.isLeft(firstFailure)
-        ? String(firstFailure.left)
+      firstFailure !== undefined && Exit.isFailure(firstFailure)
+        ? String(firstFailure.cause)
         : ""
     ).toContain("Expected a coherent structured snapshot transition.");
   });
@@ -277,7 +277,7 @@ describe("content snapshot state", () => {
       quran: { resultSnapshotId: first },
       tryout: { resultSnapshotId: first },
     });
-    const materialOnly = Schema.decodeUnknownSync(PublicationScopeSchema)({
+    const materialOnly = Schema.decodeSync(PublicationScopeSchema)({
       content: [
         { artifactLocale: "en", contentKey: "test:a", family: "material" },
       ],
@@ -287,7 +287,7 @@ describe("content snapshot state", () => {
     expect(hasScopedSnapshotTransitions(materialOnly, snapshots)).toBe(false);
     expect(
       hasScopedSnapshotTransitions(
-        Schema.decodeUnknownSync(PublicationScopeSchema)({
+        Schema.decodeSync(PublicationScopeSchema)({
           content: materialOnly.content,
           families: [],
           snapshots: ["quran"],

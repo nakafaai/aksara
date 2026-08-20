@@ -12,8 +12,9 @@ import {
   RouteRollbackRecordSchema,
 } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRouteRecords } from "#publisher/rollback/route-page";
 import { PublicationTargetTransportError } from "#publisher/target/errors";

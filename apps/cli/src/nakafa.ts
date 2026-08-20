@@ -1,7 +1,7 @@
-import { HttpClient } from "@effect/platform";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Context, Effect, Layer } from "effect";
 import type * as Scope from "effect/Scope";
+import { HttpClient } from "effect/unstable/http";
 import type { NakafaAppError } from "#cli/app-error";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
@@ -13,7 +13,7 @@ import type { RendererCredentials } from "#cli/credentials";
 import { waitForRenderer } from "#cli/renderer/manifest";
 
 /** Injectable actual-app boundary used by the preview orchestration. */
-export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
+export class NakafaApp extends Context.Service<
   NakafaApp,
   {
     /** Fetches the exact live renderer envelope through its internal route. */
@@ -26,7 +26,7 @@ export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
       input: NakafaStartInput
     ) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;
   }
->() {}
+>()("AksaraCliNakafaApp") {}
 
 /** Actual Nakafa process and renderer endpoint implementation. */
 export const NakafaAppLive = Layer.effect(

@@ -3,7 +3,7 @@ import {
   type ActiveAppLocaleList,
 } from "@nakafa/aksara-contracts/locale";
 import type { QuranSourceArtifact } from "@nakafa/aksara-contracts/quran/source";
-import { Chunk, Effect, Stream } from "effect";
+import { Effect, Stream } from "effect";
 
 import type { QuranRegistrySource } from "#corpus/quran/projection";
 import { streamQuranRegistry } from "#corpus/quran/registry";
@@ -25,13 +25,11 @@ export const loadVerifiedQuranSource = Effect.fn(
 ) {
   const loaded = yield* loadPinnedQuranSources(checkoutRoot, activeAppLocales);
   const parsed = yield* parseQuranSources(loaded.sources);
-  const surahs = Chunk.toReadonlyArray(
-    yield* streamQuranRegistry(Stream.fromIterable(parsed)).pipe(
-      Stream.runCollect
-    )
+  const surahs = yield* streamQuranRegistry(Stream.fromIterable(parsed)).pipe(
+    Stream.runCollect
   );
   return {
-    source: () => streamQuranRegistry(Stream.fromIterable(surahs)),
+    source: streamQuranRegistry(Stream.fromIterable(surahs)),
     summary: loaded.summary,
   } satisfies VerifiedQuranSource;
 });

@@ -10,9 +10,7 @@ const activeManifestHash = `sha256:${"b".repeat(64)}`;
 const projectionHash = `sha256:${"c".repeat(64)}`;
 
 /** Canonical material-head request shared by target transport tests. */
-export const headRequest = Schema.decodeUnknownSync(
-  PublicationHeadPageRequestSchema
-)({
+export const headRequest = Schema.decodeSync(PublicationHeadPageRequestSchema)({
   activeManifestHash,
   activeReleaseId: "test-http-release",
   cursor: null,

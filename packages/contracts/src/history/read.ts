@@ -58,7 +58,7 @@ export class StoredReleaseHashMismatchError extends Schema.TaggedError<StoredRel
 /** Web Crypto could not hash one retained immutable object. */
 export class StoredContentHashError extends Schema.TaggedError<StoredContentHashError>()(
   "StoredContentHashError",
-  { subject: Schema.Literal("release", "tryout-row", "tryout-snapshot") }
+  { subject: Schema.Literals(["release", "tryout-row", "tryout-snapshot"]) }
 ) {
   /** Identifies which retained object could not be hashed. */
   get message() {
@@ -108,7 +108,7 @@ export class StoredTryoutRowHashMismatchError extends Schema.TaggedError<StoredT
   {
     actualHash: Sha256HashSchema,
     expectedHash: Sha256HashSchema,
-    rowKind: Schema.Literal("catalog", "placement"),
+    rowKind: Schema.Literals(["catalog", "placement"]),
   }
 ) {
   /** Identifies the retained row kind whose bytes did not authenticate. */
@@ -131,7 +131,7 @@ function hashStoredContent(
 export const decodeStoredRelease = Effect.fn(
   "AksaraContracts.decodeStoredRelease"
 )(function* (input: unknown) {
-  const release = yield* Schema.decodeUnknown(
+  const release = yield* Schema.decodeUnknownEffect(
     HistoricalSignedContentReleaseSchema
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new StoredReleaseDecodeError())
@@ -163,10 +163,11 @@ export const decodeStoredRelease = Effect.fn(
 export const decodeStoredTryoutSnapshot = Effect.fn(
   "AksaraContracts.decodeStoredTryoutSnapshot"
 )(function* (input: unknown) {
-  const snapshot = yield* Schema.decodeUnknown(HistoricalTryoutSnapshotSchema)(
-    input,
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError(() => new StoredTryoutSnapshotDecodeError()));
+  const snapshot = yield* Schema.decodeUnknownEffect(
+    HistoricalTryoutSnapshotSchema
+  )(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(() => new StoredTryoutSnapshotDecodeError())
+  );
   const actualHash = yield* hashStoredContent(
     [
       HISTORICAL_TRYOUT_SNAPSHOT_DOMAIN,
@@ -188,7 +189,7 @@ export const decodeStoredTryoutSnapshot = Effect.fn(
 export const decodeStoredTryoutRow = Effect.fn(
   "AksaraContracts.decodeStoredTryoutRow"
 )(function* (input: unknown) {
-  const envelope = yield* Schema.decodeUnknown(HistoricalTryoutRowSchema)(
+  const envelope = yield* Schema.decodeUnknownEffect(HistoricalTryoutRowSchema)(
     input,
     { onExcessProperty: "error" }
   ).pipe(Effect.mapError(() => new StoredTryoutRowDecodeError()));

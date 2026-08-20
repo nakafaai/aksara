@@ -91,7 +91,7 @@ const authenticateRelease = Effect.fn("AksaraContracts.authenticateRelease")(
 export const verifySignedContentRelease = Effect.fn(
   "AksaraContracts.verifySignedContentRelease"
 )((input: unknown) =>
-  Schema.decodeUnknown(SignedContentReleaseSchema)(input, {
+  Schema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(
@@ -107,10 +107,10 @@ export const verifySignedContentRelease = Effect.fn(
 
 /** Strictly decodes and authenticates one renderer-bound release bundle. */
 function verifyBundle<A extends ContentReleaseBundle, I>(
-  schema: Schema.Schema<A, I>,
+  schema: Schema.Codec<A, I>,
   input: unknown
 ) {
-  return Schema.decodeUnknown(schema)(input, {
+  return Schema.decodeUnknownEffect(schema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(
@@ -137,8 +137,8 @@ export const verifyContentReleaseBundle: (
   input: unknown
 ) => Effect.Effect<
   ContentReleaseBundle,
-  Effect.Effect.Error<ReturnType<typeof verifyBundle>>,
-  Effect.Effect.Context<ReturnType<typeof verifyBundle>>
+  Effect.Error<ReturnType<typeof verifyBundle>>,
+  Effect.Services<ReturnType<typeof verifyBundle>>
 > = Effect.fn("AksaraContracts.verifyContentReleaseBundle")((input: unknown) =>
   verifyBundle(ContentReleaseBundleSchema, input)
 );
@@ -148,8 +148,8 @@ export const verifyRollbackContentReleaseBundle: (
   input: unknown
 ) => Effect.Effect<
   RollbackContentReleaseBundle,
-  Effect.Effect.Error<ReturnType<typeof verifyBundle>>,
-  Effect.Effect.Context<ReturnType<typeof verifyBundle>>
+  Effect.Error<ReturnType<typeof verifyBundle>>,
+  Effect.Services<ReturnType<typeof verifyBundle>>
 > = Effect.fn("AksaraContracts.verifyRollbackContentReleaseBundle")(
   (input: unknown) => verifyBundle(RollbackContentReleaseBundleSchema, input)
 );

@@ -1,5 +1,11 @@
-import { FileSystem, Path } from "@effect/platform";
-import { Effect, type Schema, type Scope, Stream } from "effect";
+import {
+  Effect,
+  FileSystem,
+  Path,
+  type Schema,
+  type Scope,
+  Stream,
+} from "effect";
 import {
   type ReplaySpoolError,
   replaySpoolFailure,
@@ -17,7 +23,7 @@ export interface ReplaySpool<A> {
   readonly bytes: number;
   readonly count: number;
   /** Replays strictly decoded and hash-verified records in original order. */
-  readonly replay: () => Stream.Stream<A, ReplaySpoolError>;
+  readonly replay: Stream.Stream<A, ReplaySpoolError>;
 }
 
 interface SpoolState {
@@ -106,7 +112,7 @@ function readRecord<A, I>(input: {
   readonly index: number;
   readonly path: typeof Path.Path.Service;
   readonly root: string;
-  readonly schema: Schema.Schema<A, I, never>;
+  readonly schema: Schema.Codec<A, I, never>;
 }) {
   const coordinate = recordCoordinate(input.path, input.root, input.index);
   return Effect.all(
@@ -131,7 +137,7 @@ function readRecord<A, I>(input: {
 /** Materializes one bounded stream into scoped private files for exact replay. */
 export function createReplaySpool<A, I, E, R>(input: {
   readonly prefix: string;
-  readonly schema: Schema.Schema<A, I, never>;
+  readonly schema: Schema.Codec<A, I, never>;
   readonly stream: Stream.Stream<A, E, R>;
 }): Effect.Effect<
   ReplaySpool<A>,
@@ -146,34 +152,34 @@ export function createReplaySpool<A, I, E, R>(input: {
       .pipe(Effect.mapError((cause) => replaySpoolFailure("create", cause)));
     const state = yield* input.stream.pipe(
       Stream.zipWithIndex,
-      Stream.runFoldEffect({ bytes: 0, count: 0 }, (current, [value, index]) =>
-        writeRecord({
-          fileSystem,
-          index,
-          path,
-          root,
-          state: current,
-          value,
-        })
-      )
-    );
-    /** Replays each record only while the owning scope remains open. */
-    function replay() {
-      if (state.count === 0) {
-        return Stream.empty;
-      }
-      return Stream.range(0, state.count - 1).pipe(
-        Stream.mapEffect((index) =>
-          readRecord({
+      Stream.runFoldEffect(
+        () => ({ bytes: 0, count: 0 }),
+        (current, [value, index]) =>
+          writeRecord({
             fileSystem,
             index,
             path,
             root,
-            schema: input.schema,
+            state: current,
+            value,
           })
-        )
-      );
-    }
+      )
+    );
+    /** Replays each record only while the owning scope remains open. */
+    const replay =
+      state.count === 0
+        ? Stream.empty
+        : Stream.range(0, state.count - 1).pipe(
+            Stream.mapEffect((index) =>
+              readRecord({
+                fileSystem,
+                index,
+                path,
+                root,
+                schema: input.schema,
+              })
+            )
+          );
     return { bytes: state.bytes, count: state.count, replay };
   });
 }

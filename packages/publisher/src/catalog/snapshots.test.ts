@@ -1,4 +1,4 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
@@ -11,8 +11,9 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -89,11 +90,10 @@ vi.mock("#publisher/snapshot/release", async () => {
       control.prepareFailure
         ? TestEffect.fail("prepare")
         : TestEffect.succeed({
-            manifests: () =>
-              control.decodeFailure
-                ? TestStream.fail("decode")
-                : TestStream.fromIterable(control.manifests),
-            rows: () => TestStream.empty,
+            manifests: control.decodeFailure
+              ? TestStream.fail("decode")
+              : TestStream.fromIterable(control.manifests),
+            rows: TestStream.empty,
           }),
   };
 });
@@ -130,10 +130,10 @@ function validate() {
     Effect.scoped(
       validateCatalogSnapshots({
         checkoutRoot: "/code/aksara",
-        questionHeads: () => Stream.empty,
+        questionHeads: Stream.empty,
         rendererManifest: {},
       })
-    ).pipe(Effect.provide(NodeContext.layer))
+    ).pipe(Effect.provide(NodeServices.layer))
   );
 }
 
@@ -183,10 +183,10 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
-              questionHeads: () => Stream.empty,
+              questionHeads: Stream.empty,
               rendererManifest: {},
             })
-          ).pipe(Effect.flip, Effect.provide(NodeContext.layer))
+          ).pipe(Effect.flip, Effect.provide(NodeServices.layer))
         )
       ).resolves.toMatchObject({
         _tag: "CatalogSnapshotSetError",
@@ -209,10 +209,10 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
-              questionHeads: () => Stream.empty,
+              questionHeads: Stream.empty,
               rendererManifest: {},
             })
-          ).pipe(Effect.flip, Effect.provide(NodeContext.layer))
+          ).pipe(Effect.flip, Effect.provide(NodeServices.layer))
         )
       ).resolves.toMatchObject({
         _tag: "ContentCatalogSnapshotError",

@@ -1,10 +1,9 @@
-import { FileSystem, Path } from "@effect/platform";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { hasTypeScriptSyntaxError } from "@nakafa/aksara-utilities/typescript/syntax";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import ts from "typescript";
 
 const CORPUS_ALIAS = "#corpus/";
@@ -14,7 +13,7 @@ const MAX_SOURCE_FILES = 128;
 export class SourceDependencyError extends Schema.TaggedError<SourceDependencyError>()(
   "SourceDependencyError",
   {
-    reason: Schema.Literal("limit", "missing", "module", "syntax"),
+    reason: Schema.Literals(["limit", "missing", "module", "syntax"]),
     sourcePath: CorpusSourcePathSchema,
   }
 ) {}
@@ -72,7 +71,7 @@ const decodeCorpusImport = Effect.fn("AksaraCorpus.decodeCorpusImport")(
     if (!specifier.startsWith(CORPUS_ALIAS)) {
       return;
     }
-    return yield* Schema.decodeUnknown(CorpusSourcePathSchema)(
+    return yield* Schema.decodeEffect(CorpusSourcePathSchema)(
       `packages/corpus/${specifier.slice(CORPUS_ALIAS.length)}.ts`
     ).pipe(
       Effect.mapError(

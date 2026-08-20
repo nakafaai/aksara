@@ -11,9 +11,8 @@ const allFamilies = ContentFamilySchema.literals.map((family) =>
 );
 
 /** Replays safe family-wide invalidation when exact items are unavailable. */
-export function allContentCacheChanges() {
-  return Stream.fromIterable<ContentCacheChange>(allFamilies);
-}
+export const allContentCacheChanges =
+  Stream.fromIterable<ContentCacheChange>(allFamilies);
 
 /**
  * Replays the content families whose structured navigation changed.

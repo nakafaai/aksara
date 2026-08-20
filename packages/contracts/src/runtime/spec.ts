@@ -74,20 +74,22 @@ export const PublicContentRuntimeFoundSchema = Schema.Struct({
   projection: RoutedContentProjectionSchema,
   projectionHash: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCoherentContent, {
-    message: () =>
-      "Expected the runtime artifact and projection to share one identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentContent, {
+      message:
+        "Expected the runtime artifact and projection to share one identity.",
+    })
+  )
 );
 export type PublicContentRuntimeFound =
   typeof PublicContentRuntimeFoundSchema.Type;
 
 /** Complete response vocabulary for the public server-runtime seam. */
-export const PublicContentRuntimeResponseSchema = Schema.Union(
+export const PublicContentRuntimeResponseSchema = Schema.Union([
   PublicContentRuntimeFoundSchema,
   ContentRuntimeMissingSchema,
-  ContentRuntimeFailureSchema
-);
+  ContentRuntimeFailureSchema,
+]);
 export type PublicContentRuntimeResponse =
   typeof PublicContentRuntimeResponseSchema.Type;
 

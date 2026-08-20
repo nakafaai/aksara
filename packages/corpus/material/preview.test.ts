@@ -1,7 +1,7 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { decodeMaterialDomains } from "#corpus/material/domain";
 import {
@@ -82,7 +82,7 @@ describe("material preview projection", () => {
     }
     const selection = await Effect.runPromise(
       selectMaterialEntry(corpusRoot, selected).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
 

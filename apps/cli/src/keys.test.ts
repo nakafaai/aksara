@@ -7,8 +7,8 @@ import {
   TRUSTED_CONTENT_KEYS,
   TrustedKeySchema,
 } from "@nakafa/aksara-contracts/signature/trusted";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { verifySigningKey } from "#cli/keys";
 
 const rotatedKeyId = SigningKeyIdSchema.make("content-2027-01");

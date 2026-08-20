@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { Effect, Stream } from "effect";
 
 import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
@@ -14,11 +14,11 @@ const repositoryRoot = resolve(import.meta.dirname, "../../..");
 export const testQuranSources = await Effect.runPromise(
   loadPinnedQuranSources(repositoryRoot, AUTHORING_APP_LOCALES).pipe(
     Effect.flatMap(({ sources }) => parseQuranSources(sources)),
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   )
 );
 
 /** Replays the strict test registry from authenticated official source values. */
-export function testQuranRegistry() {
-  return streamQuranRegistry(Stream.fromIterable(testQuranSources));
-}
+export const testQuranRegistry = streamQuranRegistry(
+  Stream.fromIterable(testQuranSources)
+);

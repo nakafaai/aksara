@@ -2,8 +2,8 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 
 const blockedQuran = QuranSnapshotSchema.make({

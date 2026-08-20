@@ -1,6 +1,6 @@
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { composeCurriculumLocaleCatalog } from "#corpus/curriculum/locale";
 import {
@@ -80,7 +80,7 @@ function germanRow(
     };
   } = {}
 ) {
-  return Schema.decodeUnknownSync(CurriculumLocaleSourceSchema)({
+  return Schema.decodeSync(CurriculumLocaleSourceSchema)({
     appLocale: "de",
     ...input,
     nodeKey: "foundation",
@@ -268,7 +268,7 @@ describe("curriculum locale sources", () => {
     if (!(projected && child)) {
       throw new Error("Expected parent and child curriculum nodes.");
     }
-    const childRow = Schema.decodeUnknownSync(CurriculumLocaleSourceSchema)({
+    const childRow = Schema.decodeSync(CurriculumLocaleSourceSchema)({
       ...germanRow(),
       nodeKey: "advanced",
     });

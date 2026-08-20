@@ -22,20 +22,20 @@ const EMPTY_HISTORICAL_SNAPSHOT_DIGEST = Sha256HashSchema.make(
   "sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"
 );
 
-const HistoricalSnapshotKindSchema = Schema.Literal(
+const HistoricalSnapshotKindSchema = Schema.Literals([
   "program",
   "quran",
-  "tryout"
-);
+  "tryout",
+]);
 type HistoricalSnapshotKind = typeof HistoricalSnapshotKindSchema.Type;
 
-const HistoricalContentFamilySchema = Schema.Literal(
+const HistoricalContentFamilySchema = Schema.Literals([
   "article",
   "material",
-  "question"
-);
+  "question",
+]);
 
-const HistoricalReleaseOriginSchema = Schema.Union(
+const HistoricalReleaseOriginSchema = Schema.Union([
   Schema.Struct({
     kind: Schema.Literal("git"),
     sha: GitCommitShaSchema,
@@ -43,8 +43,8 @@ const HistoricalReleaseOriginSchema = Schema.Union(
   Schema.Struct({
     kind: Schema.Literal("rollback"),
     releaseId: ReleaseIdSchema,
-  })
-);
+  }),
+]);
 
 /** Checks one immutable old snapshot transition without current dependencies. */
 function hasCoherentHistoricalSnapshot(state: {
@@ -74,14 +74,16 @@ function hasCoherentHistoricalSnapshot(state: {
 
 const HistoricalSnapshotStateSchema = Schema.Struct({
   baseSnapshotId: Schema.NullOr(Sha256HashSchema),
-  mode: Schema.Literal("inherit", "replace", "restore"),
+  mode: Schema.Literals(["inherit", "replace", "restore"]),
   resultSnapshotId: Schema.NullOr(Sha256HashSchema),
-  rowCount: Schema.Int.pipe(Schema.nonNegative()),
+  rowCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   rowDigest: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCoherentHistoricalSnapshot, {
-    message: () => "Stored snapshot transition is not coherent.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentHistoricalSnapshot, {
+      message: "Stored snapshot transition is not coherent.",
+    })
+  )
 );
 
 const HistoricalSnapshotSetSchema = Schema.Struct({
@@ -161,13 +163,17 @@ const HistoricalPublicationScopeSchema = Schema.Struct({
   families: Schema.Array(HistoricalContentFamilySchema),
   snapshots: Schema.Array(HistoricalSnapshotKindSchema),
 }).pipe(
-  Schema.filter(hasCanonicalHistoricalScope, {
-    message: () => "Stored publication scope is not canonical.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalHistoricalScope, {
+      message: "Stored publication scope is not canonical.",
+    })
+  )
 );
 type HistoricalPublicationScope = typeof HistoricalPublicationScopeSchema.Type;
 
-const NonNegativeCountSchema = Schema.Int.pipe(Schema.nonNegative());
+const NonNegativeCountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Requires immutable stored release provenance to remain self-consistent. */
 function hasCoherentHistoricalRelease(input: {
@@ -251,9 +257,11 @@ export const HistoricalContentReleaseManifestSchema = Schema.Struct({
   snapshots: HistoricalSnapshotSetSchema,
   upsertCount: NonNegativeCountSchema,
 }).pipe(
-  Schema.filter(hasCoherentHistoricalRelease, {
-    message: () => "Stored release provenance is not coherent.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentHistoricalRelease, {
+      message: "Stored release provenance is not coherent.",
+    })
+  )
 );
 export type HistoricalContentReleaseManifest =
   typeof HistoricalContentReleaseManifestSchema.Type;

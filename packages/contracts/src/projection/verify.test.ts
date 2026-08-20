@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES, type AppLocaleCode } from "#contracts/locale";
 import { digestProjections } from "#contracts/projection/digest";
@@ -24,7 +24,7 @@ function projection(
   publicPath: string
 ) {
   const parentPath = publicPath.slice(0, publicPath.lastIndexOf("/"));
-  return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  return Schema.decodeSync(MaterialLessonProjectionSchema)({
     appLocale,
     artifactLocale: appLocale,
     contentKey,
@@ -48,9 +48,7 @@ function projection(
 const firstProjection = projection("test:a", "en", "subjects/test/material/a");
 const secondProjection = projection("test:b", "id", "materi/test/material/b");
 const projections = [firstProjection, secondProjection];
-const questionProjection = Schema.decodeUnknownSync(
-  QuestionBodyProjectionSchema
-)({
+const questionProjection = Schema.decodeSync(QuestionBodyProjectionSchema)({
   artifactLocale: "en",
   bodyKind: "answer",
   contentKey:
@@ -68,13 +66,13 @@ const questionProjection = Schema.decodeUnknownSync(
   questionNumber: 1,
   setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
 });
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
+const releaseId = Schema.decodeSync(ReleaseIdSchema)(
   "test-release-projections"
 );
 const projectionSummary = await Effect.runPromise(
   digestProjections(releaseId, Stream.fromIterable(projections))
 );
-const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ACTIVE_APP_LOCALES,
   baseActiveAppLocales: null,
   baseManifestHash: null,
@@ -143,7 +141,7 @@ describe("projection integrity", () => {
       reject([firstProjection]),
       reject(
         projections,
-        Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+        Schema.decodeSync(ContentReleaseManifestSchema)({
           ...manifest,
           projectionDigest: `sha256:${"d".repeat(64)}`,
         })

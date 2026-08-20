@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
+import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
@@ -70,7 +70,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const activeAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
@@ -164,7 +164,7 @@ describe("program aggregate digest", () => {
     const duplicateSlug = await Effect.runPromise(
       makeProgramSnapshotRow(duplicateSlugRow)
     );
-    const germanLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
       "en",
       "de",
     ]);
@@ -237,7 +237,7 @@ describe("program aggregate digest", () => {
         nodeKey: firstChild.row.nodeKey,
       })
     );
-    const germanRoute = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+    const germanRoute = Schema.decodeSync(CurriculumRouteSchema)({
       ...firstRoot.row,
       appLocale: "de",
       publicPath: `lehrplaene/${firstProgram.row.translations[0].publicSlug}`,

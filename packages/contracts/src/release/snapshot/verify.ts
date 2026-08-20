@@ -1,4 +1,4 @@
-import { Chunk, Effect, Schema, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import {
   type ContentSnapshotManifest,
   ContentSnapshotManifestSchema,
@@ -17,7 +17,9 @@ import {
 } from "#contracts/release/snapshot/spec";
 import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot/hash";
 
-const StreamIndexSchema = Schema.Int.pipe(Schema.nonNegative());
+const StreamIndexSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** One replacement manifest failed strict wire decoding. */
 export class SnapshotManifestDecodeError extends Schema.TaggedError<SnapshotManifestDecodeError>()(
@@ -105,7 +107,7 @@ function decodeManifest(
   source: unknown,
   manifestIndex: number
 ) {
-  return Schema.decodeUnknown(ContentSnapshotManifestSchema)(source, {
+  return Schema.decodeUnknownEffect(ContentSnapshotManifestSchema)(source, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(() => new SnapshotManifestDecodeError({ manifestIndex })),
@@ -153,7 +155,7 @@ export function decodeContentSnapshotRows<E, R>(
   return rows.pipe(
     Stream.zipWithIndex,
     Stream.mapEffect(([source, rowIndex]) =>
-      Schema.decodeUnknown(ContentSnapshotRowSchema)(source, {
+      Schema.decodeUnknownEffect(ContentSnapshotRowSchema)(source, {
         onExcessProperty: "error",
       }).pipe(Effect.mapError(() => new SnapshotRowDecodeError({ rowIndex })))
     )
@@ -189,7 +191,7 @@ function deriveSnapshotSet(
 ) {
   return Effect.reduce(
     manifests,
-    inheritContentSnapshots(previousSnapshots),
+    () => inheritContentSnapshots(previousSnapshots),
     replaceSnapshotState
   );
 }
@@ -201,14 +203,17 @@ function countOwnedRows<E, R>(
 ) {
   return rows.pipe(
     Stream.zipWithIndex,
-    Stream.runFoldEffect(0, (count, [row, rowIndex]) => {
-      if (snapshots[row.family].mode !== "replace") {
-        return Effect.fail(
-          new SnapshotRowFamilyError({ family: row.family, rowIndex })
-        );
+    Stream.runFoldEffect(
+      () => 0,
+      (count, [row, rowIndex]) => {
+        if (snapshots[row.family].mode !== "replace") {
+          return Effect.fail(
+            new SnapshotRowFamilyError({ family: row.family, rowIndex })
+          );
+        }
+        return Effect.succeed(count + 1);
       }
-      return Effect.succeed(count + 1);
-    })
+    )
   );
 }
 
@@ -231,38 +236,35 @@ export function verifyStagedSnapshotRows(
 }
 
 /**
- * Authenticates every replacement through explicit replay factories.
+ * Authenticates every replacement through replayable Stream values.
  * Global rows may interleave families; each filtered family order stays signed.
  */
 export const verifyContentSnapshots = Effect.fn(
   "AksaraContracts.verifyContentSnapshots"
 )(function* <ManifestError, ManifestContext, RowError, RowContext>(input: {
   readonly previousSnapshots: ContentSnapshotSet | null;
-  /** Creates one fresh canonical replacement-manifest replay. */
-  readonly manifests: () => Stream.Stream<
-    unknown,
-    ManifestError,
-    ManifestContext
-  >;
-  /** Creates one fresh structured-row replay for every verification pass. */
-  readonly rows: () => Stream.Stream<unknown, RowError, RowContext>;
+  /** Replays canonical replacement manifests. */
+  readonly manifests: Stream.Stream<unknown, ManifestError, ManifestContext>;
+  /** Replays structured rows for every verification pass. */
+  readonly rows: Stream.Stream<unknown, RowError, RowContext>;
 }) {
-  const decodedManifests = decodeContentSnapshotManifests(input.manifests());
-  const manifests = Chunk.toReadonlyArray(
-    yield* decodedManifests.pipe(Stream.runCollect)
-  );
+  const decodedManifests = decodeContentSnapshotManifests(input.manifests);
+  const manifests = yield* decodedManifests.pipe(Stream.runCollect);
   const snapshots = yield* deriveSnapshotSet(
     input.previousSnapshots,
     manifests
   );
   const actualRows = yield* countOwnedRows(
-    decodeContentSnapshotRows(input.rows()),
+    decodeContentSnapshotRows(input.rows),
     snapshots
   );
-  const verifiedRows = yield* Effect.reduce(manifests, 0, (count, manifest) =>
-    verifySnapshotRows(manifest, () =>
-      decodeContentSnapshotRows(input.rows())
-    ).pipe(Effect.map((verified) => count + verified))
+  const verifiedRows = yield* Effect.reduce(
+    manifests,
+    () => 0,
+    (count, manifest) =>
+      verifySnapshotRows(manifest, decodeContentSnapshotRows(input.rows)).pipe(
+        Effect.map((verified) => count + verified)
+      )
   );
   const expectedRows = snapshotRowCount(snapshots);
   yield* verifyStagedSnapshotRows(actualRows, verifiedRows, expectedRows);

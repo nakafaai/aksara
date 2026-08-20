@@ -1,11 +1,10 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import {
   loadQuestionContent,
   readQuestionDocument,
@@ -209,7 +208,7 @@ describe("question registry", () => {
             corpusRoot,
             realTryoutSources,
             CorpusSourcePathSchema.make(testCase.answer)
-          ).pipe(Effect.provide(NodeContext.layer))
+          ).pipe(Effect.provide(NodeServices.layer))
         ).then((selected) => ({ selected, testCase }))
       )
     );
@@ -228,7 +227,7 @@ describe("question registry", () => {
   }, async () => {
     const content = await Effect.runPromise(
       loadQuestionContent(corpusRoot, realTryoutSources).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const entry = content.entries.find(
@@ -244,7 +243,7 @@ describe("question registry", () => {
     const rawMdx = readFileSync(resolve(corpusRoot, entry.sourcePath), "utf8");
     const document = await Effect.runPromise(
       readQuestionDocument(corpusRoot, entry, source.choices).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const error = await Effect.runPromise(

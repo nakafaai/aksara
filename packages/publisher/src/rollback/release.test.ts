@@ -8,8 +8,8 @@ import {
   inheritContentSnapshots,
   invertContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { buildRollbackRelease } from "#publisher/rollback/release";
 import { rendererManifest } from "#test/publication";
 import {
@@ -45,11 +45,11 @@ describe("buildRollbackRelease", () => {
           resultCount: 0,
           resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
         },
-        records: () => Stream.make(record),
+        records: Stream.make(record),
         releaseId,
         rendererManifest,
-        result: () => Stream.make(prior.head),
-        routes: () => Stream.empty,
+        result: Stream.make(prior.head),
+        routes: Stream.empty,
         scope: {
           content: [
             {
@@ -69,9 +69,9 @@ describe("buildRollbackRelease", () => {
     );
     const [artifacts, items, projections] = await Effect.runPromise(
       Effect.all([
-        prepared.artifacts().pipe(Stream.runCollect),
-        prepared.items().pipe(Stream.runCollect),
-        prepared.projections().pipe(Stream.runCollect),
+        prepared.artifacts.pipe(Stream.runCollect),
+        prepared.items.pipe(Stream.runCollect),
+        prepared.projections.pipe(Stream.runCollect),
       ])
     );
 

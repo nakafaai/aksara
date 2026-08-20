@@ -1,5 +1,5 @@
-import type { HttpClientRequest } from "@effect/platform";
 import { Effect, Redacted } from "effect";
+import type { HttpClientRequest } from "effect/unstable/http";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { fetchProductionRenderer } from "#cli/production/renderer";
 import { captureClient, runClient, webResponse } from "#test/http";

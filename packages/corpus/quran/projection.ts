@@ -206,10 +206,7 @@ export type QuranProjectionError =
   | SourceLocaleUnavailableError;
 
 /** Replay factory for the complete strictly validated Quran registry. */
-export type QuranRegistrySource = () => Stream.Stream<
-  QuranSurah,
-  QuranRegistryError
->;
+export type QuranRegistrySource = Stream.Stream<QuranSurah, QuranRegistryError>;
 
 /** Emits all runtime rows first and all search rows second deterministically. */
 export function streamQuranRows(
@@ -229,12 +226,12 @@ export function streamQuranRows(
   );
   const runtime = attribution.pipe(
     Stream.concat(
-      source().pipe(
+      source.pipe(
         Stream.flatMap((surah) => streamSurahRuntime(surah, activeAppLocales))
       )
     )
   );
-  const search = source().pipe(
+  const search = source.pipe(
     Stream.flatMap((surah) => streamSurahSearch(surah, activeAppLocales))
   );
   return runtime.pipe(Stream.concat(search));

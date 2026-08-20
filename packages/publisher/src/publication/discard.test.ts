@@ -1,6 +1,7 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Cause, Effect, Exit } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   discardFailedCandidate,
   discardOnFailure,
@@ -101,7 +102,9 @@ describe("publication discard", () => {
     expect(Exit.isFailure(exit)).toBe(true);
     if (Exit.isFailure(exit)) {
       expect(
-        Array.from(Cause.failures(exit.cause)).map(({ _tag }) => _tag)
+        exit.cause.reasons
+          .filter(Cause.isFailReason)
+          .map(({ error }) => error._tag)
       ).toEqual([
         "PublicationActivationError",
         "PublicationRecoveryIdentityError",

@@ -77,7 +77,7 @@ function authenticateSignedArtifact(artifact: SignedContentArtifact) {
 export const verifySignedContentArtifactIntegrity = Effect.fn(
   "AksaraContracts.verifySignedContentArtifactIntegrity"
 )((input: unknown) =>
-  Schema.decodeUnknown(SignedContentArtifactSchema)(input, {
+  Schema.decodeUnknownEffect(SignedContentArtifactSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

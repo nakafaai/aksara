@@ -48,7 +48,7 @@ export class TryoutLocaleOwnershipError extends Schema.TaggedError<TryoutLocaleO
   {
     examKey: TryoutKeySchema,
     key: TryoutKeySchema,
-    scope: Schema.Literal("country", "exam", "track", "set", "section"),
+    scope: Schema.Literals(["country", "exam", "track", "set", "section"]),
   }
 ) {}
 

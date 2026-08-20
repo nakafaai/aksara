@@ -1,5 +1,5 @@
+import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { beforeAll, describe, expect, it } from "vitest";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -17,9 +17,7 @@ import {
 } from "#contracts/release/snapshot/verify";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
-let snapshotData: Effect.Effect.Success<
-  ReturnType<typeof makeSnapshotTestData>
->;
+let snapshotData: Effect.Success<ReturnType<typeof makeSnapshotTestData>>;
 
 beforeAll(async () => {
   snapshotData = await Effect.runPromise(makeSnapshotTestData());
@@ -63,9 +61,9 @@ function verify(input: {
   readonly rows: readonly unknown[];
 }) {
   return verifyContentSnapshots({
-    manifests: () => Stream.fromIterable(input.manifests),
+    manifests: Stream.fromIterable(input.manifests),
     previousSnapshots: input.previousSnapshots ?? null,
-    rows: () => Stream.fromIterable(input.rows),
+    rows: Stream.fromIterable(input.rows),
   });
 }
 
@@ -75,15 +73,15 @@ describe("structured snapshot verification", () => {
     let rowReplays = 0;
     const result = await Effect.runPromise(
       verifyContentSnapshots({
-        manifests: () => {
+        manifests: Stream.suspend(() => {
           manifestReplays += 1;
           return Stream.fromIterable(snapshotData.manifests);
-        },
+        }),
         previousSnapshots: null,
-        rows: () => {
+        rows: Stream.suspend(() => {
           rowReplays += 1;
           return Stream.fromIterable(interleaveRows(snapshotData.rows));
-        },
+        }),
       })
     );
 

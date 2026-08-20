@@ -1,6 +1,5 @@
-import { FileSystem, Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 
 import { lessonAiDsAiProgrammingMaterial } from "#corpus/material/lesson/ai-ds/ai-programming/source";
 import { lessonAiDsLinearMethodsMaterial } from "#corpus/material/lesson/ai-ds/linear-methods/source";
@@ -91,7 +90,7 @@ export const decodeMaterialSources = Effect.fn(
   "AksaraCorpus.decodeMaterialSources"
 )(function* (input?: unknown) {
   if (input !== undefined) {
-    return yield* Schema.decodeUnknown(
+    return yield* Schema.decodeUnknownEffect(
       Schema.Array(LessonMaterialSourceSchema)
     )(input, { onExcessProperty: "error" }).pipe(
       Effect.mapError(

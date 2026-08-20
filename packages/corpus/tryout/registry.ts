@@ -20,7 +20,7 @@ export class TryoutRegistryConflictError extends Schema.TaggedError<TryoutRegist
   "TryoutRegistryConflictError",
   {
     key: Schema.String,
-    kind: Schema.Literal("country", "exam"),
+    kind: Schema.Literals(["country", "exam"]),
   }
 ) {}
 
@@ -97,7 +97,7 @@ export const decodeTryoutRegistry = Effect.fn(
   const sources =
     input === undefined
       ? yield* Effect.all(tryoutPrograms)
-      : yield* Schema.decodeUnknown(Schema.Array(TryoutExamSourceSchema))(
+      : yield* Schema.decodeUnknownEffect(Schema.Array(TryoutExamSourceSchema))(
           input,
           { onExcessProperty: "error" }
         ).pipe(

@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
+import { vi } from "vitest";
 import {
   ACTIVE_APP_LOCALES,
   type ActiveAppLocaleList,
@@ -206,37 +206,36 @@ describe("Quran provenance", () => {
         )
       )
     );
-    const incoherentStatus = Schema.decodeUnknownEither(
-      QuranProvenanceManifestSchema
-    )({ ...manifest, status: "blocked" });
-    const wrongSource = Schema.decodeUnknownEither(QuranProvenanceRecordSchema)(
-      {
-        ...firstRecord,
-        attribution: {
-          ...firstRecord.attribution,
-          id: "tanzil-metadata",
-        },
-      }
-    );
-    const missingCoverage = Schema.decodeUnknownEither(
+    const incoherentStatus = Schema.decodeExit(QuranProvenanceManifestSchema)({
+      ...manifest,
+      status: "blocked",
+    });
+    const wrongSource = Schema.decodeExit(QuranProvenanceRecordSchema)({
+      ...firstRecord,
+      attribution: {
+        ...firstRecord.attribution,
+        id: "tanzil-metadata",
+      },
+    });
+    const missingCoverage = Schema.decodeUnknownExit(
       QuranProvenanceManifestSchema
     )({ ...manifest, records: canonical.slice(1) });
-    const missingCopy = Schema.decodeUnknownEither(
-      QuranProvenanceManifestSchema
-    )({
-      ...manifest,
-      records: canonical.map((candidate, index) =>
-        index === 0
-          ? {
-              ...candidate,
-              attribution: {
-                ...candidate.attribution,
-                copy: candidate.attribution.copy.slice(0, -1),
-              },
-            }
-          : candidate
-      ),
-    });
+    const missingCopy = Schema.decodeUnknownExit(QuranProvenanceManifestSchema)(
+      {
+        ...manifest,
+        records: canonical.map((candidate, index) =>
+          index === 0
+            ? {
+                ...candidate,
+                attribution: {
+                  ...candidate.attribution,
+                  copy: candidate.attribution.copy.slice(0, -1),
+                },
+              }
+            : candidate
+        ),
+      }
+    );
 
     expect(manifest.records.map(({ scope }) => scope)).toEqual(
       quranProvenanceScopes(germanLocales)
@@ -249,18 +248,18 @@ describe("Quran provenance", () => {
       "QuranProvenanceCoverageError",
       "QuranProvenanceCoverageError",
     ]);
-    expect(Either.isLeft(incoherentStatus)).toBe(true);
+    expect(Exit.isFailure(incoherentStatus)).toBe(true);
     expect(
-      Either.isLeft(wrongSource) ? String(wrongSource.left) : ""
+      Exit.isFailure(wrongSource) ? String(wrongSource.cause) : ""
     ).toContain("Expected each Quran scope to bind its official source.");
     expect(
-      Either.isLeft(missingCoverage) ? String(missingCoverage.left) : ""
+      Exit.isFailure(missingCoverage) ? String(missingCoverage.cause) : ""
     ).toContain(
       "Expected exact active-locale Quran provenance scope coverage."
     );
-    expect(Either.isLeft(missingCopy)).toBe(true);
+    expect(Exit.isFailure(missingCopy)).toBe(true);
     expect(
-      Either.isLeft(incoherentStatus) ? String(incoherentStatus.left) : ""
+      Exit.isFailure(incoherentStatus) ? String(incoherentStatus.cause) : ""
     ).toContain(
       "Expected Quran provenance status to match its complete evidence."
     );

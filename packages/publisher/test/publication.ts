@@ -1,4 +1,4 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
@@ -127,7 +127,7 @@ export const record = {
 /** Prepares one real publisher input through the only public constructor. */
 export async function makeRelease(
   releaseId: string,
-  records: () => Stream.Stream<unknown> = () => Stream.make(record),
+  records: Stream.Stream<unknown> = Stream.make(record),
   sha = "a".repeat(40)
 ) {
   const prepared = await Effect.runPromise(
@@ -138,23 +138,22 @@ export async function makeRelease(
       records,
       releaseId: ReleaseIdSchema.make(releaseId),
       rendererManifest,
-      result: () => Stream.make(head),
-      routes: () =>
-        Stream.make({
-          current: {
-            appLocale: projection.appLocale,
-            contentKey: contentRecord.change.contentKey,
-          },
-          next: {
-            appLocale: projection.appLocale,
-            contentKey: contentRecord.change.contentKey,
-            publicPath: projection.publicPath,
-          },
-        }),
+      result: Stream.make(head),
+      routes: Stream.make({
+        current: {
+          appLocale: projection.appLocale,
+          contentKey: contentRecord.change.contentKey,
+        },
+        next: {
+          appLocale: projection.appLocale,
+          contentKey: contentRecord.change.contentKey,
+          publicPath: projection.publicPath,
+        },
+      }),
       scope: publicationScope,
       ...snapshotPolicyBase(`${releaseId}-base`),
       ...emptySnapshotSources,
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
   return { manifest: prepared.manifest, prepared };
 }

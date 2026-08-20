@@ -4,7 +4,7 @@ import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
 
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   appLocale: "en",
   artifactLocale: "en",
   contentKey: "test:projection",

@@ -16,18 +16,18 @@ import {
 const MAX_GIT_TEXT_BYTES = 4096;
 const MAX_GIT_ERROR_BYTES = 16 * 1024;
 
-const GitBlobOperationSchema = Schema.Literal(
+const GitBlobOperationSchema = Schema.Literals([
   "resolve-commit",
   "size-blob",
   "decode-blob",
-  "read-blob"
-);
+  "read-blob",
+]);
 type GitBlobOperation = typeof GitBlobOperationSchema.Type;
 
-const GitBlobLimitSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.positive(),
-  Schema.lessThanOrEqualTo(MAX_RAW_MDX_BYTES)
+const GitBlobLimitSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThan(0)),
+  Schema.check(Schema.isLessThanOrEqualTo(MAX_RAW_MDX_BYTES))
 );
 
 /** A repository command or exact-revision validation step failed. */
@@ -35,7 +35,7 @@ export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
   "GitBlobError",
   {
     cause: Schema.Unknown,
-    message: Schema.NonEmptyTrimmedString,
+    message: Schema.Trimmed.check(Schema.isNonEmpty()),
     operation: GitBlobOperationSchema,
   }
 ) {}
@@ -48,7 +48,7 @@ export interface GitBlobInput {
 }
 
 /** Reads immutable corpus blobs through argument-safe Git commands. */
-export class GitBlob extends Context.Tag("AksaraGitBlob")<
+export class GitBlob extends Context.Service<
   GitBlob,
   {
     /** Returns the exact unmodified blob bytes at a verified commit. */
@@ -62,7 +62,7 @@ export class GitBlob extends Context.Tag("AksaraGitBlob")<
     /** Returns the exact unmodified UTF-8 blob at a verified commit. */
     readonly read: (input: GitBlobInput) => Effect.Effect<string, GitBlobError>;
   }
->() {}
+>()("AksaraGitBlob") {}
 
 /** Decodes trusted command bytes without accepting replacement characters. */
 function decodeGitText(
@@ -152,7 +152,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
           const revision = inputs[0]?.revision;
           const seenPaths = new Set<CorpusSourcePath>();
           const bounded = yield* Effect.forEach(inputs, (input) =>
-            Schema.decodeUnknown(GitBlobLimitSchema)(input.maxBytes).pipe(
+            Schema.decodeEffect(GitBlobLimitSchema)(input.maxBytes).pipe(
               Effect.mapError(
                 (cause) =>
                   new GitBlobError({
@@ -195,7 +195,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
             "resolve-commit",
             "Git could not resolve the authored Aksara revision."
           );
-          const commitSha = yield* Schema.decodeUnknown(GitCommitShaSchema)(
+          const commitSha = yield* Schema.decodeEffect(GitCommitShaSchema)(
             revisionOutput.trim()
           ).pipe(
             Effect.mapError(
@@ -269,9 +269,9 @@ export function makeGitBlobLive(repositoryRoot: string) {
         const readBytes = Effect.fn("AksaraPublisher.GitBlob.readBytes")(
           function* (input: GitBlobInput) {
             const blobs = yield* readManyBytes([input]);
-            return yield* Effect.fromNullable(blobs.get(input.sourcePath)).pipe(
-              Effect.orDie
-            );
+            return yield* Effect.fromNullishOr(
+              blobs.get(input.sourcePath)
+            ).pipe(Effect.orDie);
           }
         );
 

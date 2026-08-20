@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =

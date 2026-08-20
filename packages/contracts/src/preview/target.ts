@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Schema, Struct } from "effect";
 import { PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import {
@@ -24,7 +24,7 @@ export const PreviewRouteSchema = Schema.Struct({
  * Choices remain owned by the canonical question registry and projections.
  */
 export const TryoutPreviewPlacementSchema = TryoutPlacementSourceSchema.pipe(
-  Schema.omit("choices")
+  (schema) => schema.mapFields(Struct.omit(["choices"]))
 );
 type TryoutPreviewPlacement = typeof TryoutPreviewPlacementSchema.Type;
 
@@ -89,18 +89,24 @@ export const TryoutPreviewTargetSchema = Schema.Struct({
   set: TryoutSetSchema,
   track: TryoutTrackSchema,
 }).pipe(
-  Schema.filter(hasCoherentTryoutHierarchy, {
-    message: () =>
-      "Expected preview target hierarchy keys, locale, and revision to agree.",
-  }),
-  Schema.filter(hasCoherentTryoutRoutes, {
-    message: () =>
-      "Expected preview target routes to form one reachable hierarchy.",
-  }),
-  Schema.filter(hasCoherentTryoutPlacement, {
-    message: () =>
-      "Expected preview placement to belong to the selected section source.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentTryoutHierarchy, {
+      message:
+        "Expected preview target hierarchy keys, locale, and revision to agree.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentTryoutRoutes, {
+      message:
+        "Expected preview target routes to form one reachable hierarchy.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentTryoutPlacement, {
+      message:
+        "Expected preview placement to belong to the selected section source.",
+    })
+  )
 );
 export type TryoutPreviewTarget = typeof TryoutPreviewTargetSchema.Type;
 

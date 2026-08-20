@@ -13,18 +13,18 @@ import {
 } from "#contracts/projection/question";
 
 /** Complete projection vocabulary backed by implemented content families. */
-export const ContentProjectionSchema = Schema.Union(
+export const ContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
   MaterialLessonProjectionSchema,
-  QuestionBodyProjectionSchema
-);
+  QuestionBodyProjectionSchema,
+]);
 export type ContentProjection = typeof ContentProjectionSchema.Type;
 
 /** Public-route projections accepted by Nakafa's path-based runtime seam. */
-export const RoutedContentProjectionSchema = Schema.Union(
+export const RoutedContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
-  MaterialLessonProjectionSchema
-);
+  MaterialLessonProjectionSchema,
+]);
 export type RoutedContentProjection = typeof RoutedContentProjectionSchema.Type;
 
 /** Returns the release family that owns one discriminated projection. */

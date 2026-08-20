@@ -8,7 +8,7 @@ import {
   RollbackPageSchema,
   type RollbackRecord,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { Chunk, Effect, Option, Schema, Stream, Tuple } from "effect";
+import { Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   RollbackPageByteLimitError,
@@ -26,7 +26,7 @@ interface RollbackCursor {
 
 /** Strictly decodes one unknown target response with no excess properties. */
 function decodePage(source: unknown, afterIndex: number) {
-  return Schema.decodeUnknown(RollbackPageSchema)(source, {
+  return Schema.decodeUnknownEffect(RollbackPageSchema)(source, {
     onExcessProperty: "error",
   }).pipe(Effect.mapError(() => new RollbackPageDecodeError({ afterIndex })));
 }
@@ -113,7 +113,7 @@ function loadPage(
   rollbackOfManifestHash: Sha256Hash,
   cursor: RollbackCursor
 ): Effect.Effect<
-  readonly [Chunk.Chunk<RollbackRecord>, Option.Option<RollbackCursor>],
+  readonly [readonly RollbackRecord[], Option.Option<RollbackCursor>],
   | PublicationTargetFailure
   | RollbackPageByteLimitError
   | RollbackPageCursorError
@@ -143,9 +143,7 @@ function loadPage(
     ),
     Effect.tap((page) => validatePageTotal(page, cursor)),
     Effect.tap((page) => validatePageCursor(page, cursor.afterIndex)),
-    Effect.map((page) =>
-      Tuple.make(Chunk.fromIterable(page.records), nextCursor(page, cursor))
-    )
+    Effect.map((page) => Tuple.make(page.records, nextCursor(page, cursor)))
   );
 }
 
@@ -156,7 +154,7 @@ export function streamRollbackRecords(
   expectedTotal: number
 ) {
   const initial: RollbackCursor = { afterIndex: -1, total: expectedTotal };
-  return Stream.paginateChunkEffect(initial, (cursor) =>
+  return Stream.paginate(initial, (cursor) =>
     loadPage(rollbackOf, rollbackOfManifestHash, cursor)
   );
 }

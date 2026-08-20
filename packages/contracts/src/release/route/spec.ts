@@ -26,10 +26,10 @@ export const ContentRouteDeleteSchema = Schema.Struct({
 export type ContentRouteDelete = typeof ContentRouteDeleteSchema.Type;
 
 /** Complete immutable public-route change vocabulary for one release. */
-export const ContentRouteChangeSchema = Schema.Union(
+export const ContentRouteChangeSchema = Schema.Union([
   ContentRouteBindSchema,
-  ContentRouteDeleteSchema
-);
+  ContentRouteDeleteSchema,
+]);
 export type ContentRouteChange = typeof ContentRouteChangeSchema.Type;
 
 /** One ordered route change authenticated by the signed release manifest. */

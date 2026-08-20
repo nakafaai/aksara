@@ -1,6 +1,6 @@
-import { HttpClientRequest, HttpClientResponse } from "@effect/platform";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { HttpClientRequest, HttpClientResponse } from "effect/unstable/http";
 import {
   BodyError,
   hasDirectives,

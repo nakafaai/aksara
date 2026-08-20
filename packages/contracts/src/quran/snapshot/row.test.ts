@@ -1,4 +1,4 @@
-import { Either, ParseResult, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -24,12 +24,12 @@ function locales(input: readonly AppLocaleCode[]) {
 }
 
 /** Formats one expected current Quran row schema failure. */
-function formatFailure<A, I>(schema: Schema.Schema<A, I>, input: unknown) {
-  const result = Schema.decodeUnknownEither(schema)(input);
-  if (Either.isRight(result)) {
+function formatFailure<A, I>(schema: Schema.Codec<A, I>, input: unknown) {
+  const result = Schema.decodeUnknownExit(schema)(input);
+  if (Exit.isSuccess(result)) {
     throw new Error("Expected current Quran row decoding to fail.");
   }
-  return ParseResult.TreeFormatter.formatErrorSync(result.left);
+  return String(result.cause);
 }
 
 describe("Quran snapshot row contract", () => {

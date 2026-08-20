@@ -146,18 +146,28 @@ Turbo owns that dependency build order.
 GitHub Actions. Aksara does not duplicate that contract in `.npmrc`,
 `.node-version`, or `.nvmrc`.
 
-`pnpm bump-deps` updates ordinary workspace dependencies after the configured
-24-hour release-age gate. It deliberately leaves Effect, TypeScript, and Node
-types unchanged because those toolchain boundaries require a separately
-reviewed, coordinated update.
+`pnpm bump-deps` updates routine workspace dependencies after the configured
+24-hour release-age gate. Repository-owned policy reports every coordinated
+hold, checks its declared version against the approved cohort, verifies the
+reviewed registry channel again, and fails if a routine update or review hold
+remains unresolved. Effect, TypeScript, Node, pnpm, and lint-tooling versions
+therefore move only through an explicit coordinated review.
 
 Effect work follows the read-only workflow in
 [`AGENTS.md`](AGENTS.md#vendored-references): inspect the matching
 implementation and tests under `repos/effect` before writing or reviewing
-code, then run `pnpm effect:source:check`. A coordinated Effect dependency
-update keeps `effect`, `@effect/platform`, and `@effect/platform-node`
-compatible and updates the pinned subtree only through
-`pnpm effect:source:update`.
+code, then run `pnpm effect:source:check`. A coordinated Effect v4 dependency
+update keeps `effect`, `@effect/platform-node`, and `@effect/vitest` on one
+exact release cohort and updates the pinned subtree only through
+`pnpm effect:source:update`. Effect v4 platform APIs come from `effect`;
+`@effect/platform-node` remains the Node runtime integration package.
+
+The root `prepare` script patches the native TypeScript 7 compiler with
+`@effect/tsgo`. Repository and CI typechecks therefore use Effect diagnostics
+through `tsc`. Zed uses its official `typescript-ls` server as the only
+TypeScript and JavaScript language server; no second Effect-specific editor
+server runs beside it. The `@effect/language-service` tsconfig entry is the
+plugin identifier required by `@effect/tsgo`, not a standalone dependency.
 
 All non-MDX hand-written executable source and repository tooling is
 TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`

@@ -1,17 +1,18 @@
 import {
-  HttpClient,
-  HttpClientError,
-  type HttpClientRequest,
-  HttpClientResponse,
-} from "@effect/platform";
-import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Match, Redacted, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import {
+  HttpClient,
+  HttpClientError,
+  type HttpClientRequest,
+  HttpClientResponse,
+} from "effect/unstable/http";
+import { vi } from "vitest";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { HttpPublicationTargetConfig } from "#publisher/target/config";
 import { makeHttpPublicationTarget } from "#publisher/target/http";
@@ -38,7 +39,9 @@ function decodeRequest(request: HttpClientRequest.HttpClientRequest) {
     return Effect.die("Expected one encoded JSON request body.");
   }
   const source = Buffer.from(request.body.body).toString("utf8");
-  return Schema.decode(Schema.parseJson(PublicationRequestSchema))(source);
+  return Schema.decodeEffect(Schema.fromJsonString(PublicationRequestSchema))(
+    source
+  );
 }
 
 /** Builds one web response visible through Effect's official client adapter. */
@@ -81,6 +84,11 @@ function makeTarget(
   );
 }
 
+/** Runs one expected target failure at the explicit Vitest boundary. */
+function reject<Value, Error>(program: Effect.Effect<Value, Error>) {
+  return Effect.runPromise(Effect.flip(program));
+}
+
 /** Invokes the matching target operation for one decoded wire request. */
 function invokeTarget(
   target: typeof PublicationTarget.Service,
@@ -93,7 +101,7 @@ function invokeTarget(
       activate: (value) => target.activate(value.release),
       activateRecovery: (value) => target.activateRecovery(value.release),
       cleanup: (value) => target.cleanup(value),
-      current: () => target.current(),
+      current: () => target.current,
       headPage: (value) => target.headPage(value),
       recovery: (value) => target.recovery(value),
       rollbackPage: (value) => target.rollbackPage(value),
@@ -140,7 +148,10 @@ describe("HTTP publication target", () => {
       expect(request.url).toBe(endpoint.toString());
       expect(request.headers.authorization).toBe("Bearer test-secret-token");
       expect(request.headers.accept).toBe("application/json");
-      expect(request.body.contentType).toBe("application/json");
+      expect(request.body._tag).toBe("Uint8Array");
+      if (request.body._tag === "Uint8Array") {
+        expect(request.body.contentType).toBe("application/json");
+      }
     }
   });
 
@@ -155,21 +166,19 @@ describe("HTTP publication target", () => {
       return;
     }
     const [projection] = projectionRequest.projections;
-    const oversized = await Effect.runPromise(
-      target
-        .stageProjectionBatch({
-          ...projectionRequest,
-          projections: [
-            {
-              ...projection,
-              metadata: {
-                ...projection.metadata,
-                title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
-              },
+    const oversized = await reject(
+      target.stageProjectionBatch({
+        ...projectionRequest,
+        projections: [
+          {
+            ...projection,
+            metadata: {
+              ...projection.metadata,
+              title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
             },
-          ],
-        })
-        .pipe(Effect.flip)
+          },
+        ],
+      })
     );
     expect(oversized).toMatchObject({
       _tag: "PublicationTargetRejectedError",
@@ -184,7 +193,7 @@ describe("HTTP publication target", () => {
     vi.spyOn(JSON, "stringify").mockImplementationOnce(() =>
       "x".repeat(MAX_PUBLICATION_REQUEST_BYTES + 1)
     );
-    const error = await Effect.runPromise(Effect.flip(target.current()));
+    const error = await reject(target.current);
     vi.restoreAllMocks();
     expect(error).toMatchObject({
       _tag: "PublicationTargetRejectedError",
@@ -203,13 +212,11 @@ describe("HTTP publication target", () => {
     vi.spyOn(JSON, "stringify").mockImplementationOnce(() => {
       throw new TypeError("Test request encoding failure.");
     });
-    const error = await Effect.runPromise(
-      target
-        .stageRelease({
-          release: transportRelease,
-          rendererManifest: transportRenderer,
-        })
-        .pipe(Effect.flip)
+    const error = await reject(
+      target.stageRelease({
+        release: transportRelease,
+        rendererManifest: transportRenderer,
+      })
     );
     vi.restoreAllMocks();
     expect(error).toMatchObject({
@@ -229,30 +236,28 @@ describe("HTTP publication target", () => {
       );
     });
     const malformedTarget = await makeTarget(malformed);
-    const malformedError = await Effect.runPromise(
-      malformedTarget
-        .status({
-          manifestHash: transportRelease.manifestHash,
-          releaseId: transportRelease.manifest.releaseId,
-        })
-        .pipe(Effect.flip)
+    const malformedError = await reject(
+      malformedTarget.status({
+        manifestHash: transportRelease.manifestHash,
+        releaseId: transportRelease.manifest.releaseId,
+      })
     );
     expect(malformedError._tag).toBe("PublicationTargetProtocolError");
     expect(malformedSignal?.aborted).toBe(true);
 
     const failed = HttpClient.make((request) =>
       Effect.fail(
-        new HttpClientError.RequestError({ reason: "Transport", request })
+        new HttpClientError.HttpClientError({
+          reason: new HttpClientError.TransportError({ request }),
+        })
       )
     );
     const failedTarget = await makeTarget(failed);
-    const failedError = await Effect.runPromise(
-      failedTarget
-        .stageRelease({
-          release: transportRelease,
-          rendererManifest: transportRenderer,
-        })
-        .pipe(Effect.flip)
+    const failedError = await reject(
+      failedTarget.stageRelease({
+        release: transportRelease,
+        rendererManifest: transportRenderer,
+      })
     );
     expect(failedError).toMatchObject({
       _tag: "PublicationTargetTransportError",
@@ -271,13 +276,11 @@ describe("HTTP publication target", () => {
       );
     });
     const target = await makeTarget(transient);
-    const error = await Effect.runPromise(
-      target
-        .stageRelease({
-          release: transportRelease,
-          rendererManifest: transportRenderer,
-        })
-        .pipe(Effect.flip)
+    const error = await reject(
+      target.stageRelease({
+        release: transportRelease,
+        rendererManifest: transportRenderer,
+      })
     );
     expect(error).toMatchObject({
       _tag: "PublicationTargetTransportError",
@@ -290,9 +293,7 @@ describe("HTTP publication target", () => {
   it("times out a stalled ingress with the exact operation stage", async () => {
     const stalled = HttpClient.make(() => Effect.never);
     const target = await makeTarget(stalled, "1 millis");
-    const error = await Effect.runPromise(
-      Effect.flip(target.verify(transportRelease))
-    );
+    const error = await reject(target.verify(transportRelease));
     expect(error).toMatchObject({
       _tag: "PublicationTargetTransportError",
       detail: { reason: "timeout" },

@@ -1,6 +1,6 @@
 import { ArticleSlugSchema } from "@nakafa/aksara-contracts/projection/article";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   composeArticleLocaleSource,

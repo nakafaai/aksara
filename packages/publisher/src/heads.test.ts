@@ -4,8 +4,9 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { streamContentHeads } from "#publisher/heads";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { makePublicationTarget } from "#test/target";
@@ -16,7 +17,7 @@ const activeManifestHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 /** Creates one exact compact material head for pagination tests. */
 function makeHead(contentKey: string, hashCharacter: string) {
   const hash = `sha256:${hashCharacter.repeat(64)}`;
-  return Schema.decodeUnknownSync(MaterialHeadSchema)({
+  return Schema.decodeSync(MaterialHeadSchema)({
     artifactHash: hash,
     artifactLocale: "en",
     compilerConfigHash: hash,

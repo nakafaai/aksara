@@ -12,9 +12,9 @@ import {
 } from "#contracts/projection/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
-const ProjectionIndexSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const ProjectionIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 
 /** One streamed projection failed strict schema decoding. */
@@ -70,46 +70,37 @@ export interface VerifiedContentProjections {
 }
 
 /** Decodes one row and applies canonical order and route uniqueness rules. */
-function decodeProjection(
-  state: ProjectionState,
-  source: unknown,
-  projectionIndex: number
-) {
-  return Schema.decodeUnknown(ContentProjectionSchema)(source, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(() => new ProjectionDecodeError({ projectionIndex })),
-    Effect.tap((projection) => {
-      if (
-        state.previous &&
-        compareContentHeads(state.previous, projection) >= 0
-      ) {
-        return Effect.fail(new ProjectionOrderError({ projectionIndex }));
-      }
-      state.previous = projection;
-      if (projection.kind === "question-body") {
-        return Effect.void;
-      }
-      const { appLocale, publicPath } = projection;
-      const identity = routeIdentity({
-        appLocale,
+const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
+  function* (state: ProjectionState, source: unknown, projectionIndex: number) {
+    const projection = yield* Schema.decodeUnknownEffect(
+      ContentProjectionSchema
+    )(source, { onExcessProperty: "error" }).pipe(
+      Effect.mapError(() => new ProjectionDecodeError({ projectionIndex }))
+    );
+    if (
+      state.previous &&
+      compareContentHeads(state.previous, projection) >= 0
+    ) {
+      return yield* new ProjectionOrderError({ projectionIndex });
+    }
+    state.previous = projection;
+    if (projection.kind === "question-body") {
+      return projection;
+    }
+    const { appLocale, publicPath } = projection;
+    const identity = routeIdentity({ appLocale, publicPath });
+    const firstIndex = state.firstIndexByRoute.get(identity);
+    if (firstIndex !== undefined) {
+      return yield* new ProjectionRouteError({
+        duplicateIndex: projectionIndex,
+        firstIndex,
         publicPath,
       });
-      const firstIndex = state.firstIndexByRoute.get(identity);
-      if (firstIndex !== undefined) {
-        return Effect.fail(
-          new ProjectionRouteError({
-            duplicateIndex: projectionIndex,
-            firstIndex,
-            publicPath,
-          })
-        );
-      }
-      state.firstIndexByRoute.set(identity, projectionIndex);
-      return Effect.void;
-    })
-  );
-}
+    }
+    state.firstIndexByRoute.set(identity, projectionIndex);
+    return projection;
+  }
+);
 
 /** Strictly decodes a replayable canonical content projection stream. */
 export function decodeContentProjections<E, R>(

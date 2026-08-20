@@ -1,8 +1,7 @@
 import { createHash } from "node:crypto";
-
-import { FileSystem, HttpClient, Path } from "@effect/platform";
 import { readBytes } from "@nakafa/aksara-utilities/http/response";
-import { Duration, Effect, Either, Schema } from "effect";
+import { Duration, Effect, FileSystem, Path, Result, Schema } from "effect";
+import { HttpClient } from "effect/unstable/http";
 
 import {
   GERMAN_QURAN_PUBLICATION_URL,
@@ -24,8 +23,8 @@ export class GermanQuranSourceSyncError extends Schema.TaggedError<GermanQuranSo
   "GermanQuranSourceSyncError",
   {
     cause: Schema.Unknown,
-    phase: Schema.Literal("download", "integrity", "write"),
-    source: Schema.NonEmptyTrimmedString,
+    phase: Schema.Literals(["download", "integrity", "write"]),
+    source: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 
@@ -46,22 +45,22 @@ const replaceGermanSourcePair = Effect.fn(
 
   const installation = yield* fileSystem
     .rename(input.staging, input.target)
-    .pipe(Effect.either);
-  if (Either.isLeft(installation)) {
+    .pipe(Effect.result);
+  if (Result.isFailure(installation)) {
     if (!hasTarget) {
-      return yield* Effect.fail(installation.left);
+      return yield* installation.failure;
     }
 
     const restoration = yield* fileSystem
       .rename(input.backup, input.target)
-      .pipe(Effect.either);
-    if (Either.isLeft(restoration)) {
+      .pipe(Effect.result);
+    if (Result.isFailure(restoration)) {
       return yield* Effect.fail({
-        installation: installation.left,
-        restoration: restoration.left,
+        installation: installation.failure,
+        restoration: restoration.failure,
       });
     }
-    return yield* Effect.fail(installation.left);
+    return yield* installation.failure;
   }
 
   if (hasTarget) {
@@ -122,14 +121,16 @@ const downloadSource = Effect.fn("AksaraCorpus.downloadGermanQuranSource")(
       }
       return bytes;
     }).pipe(
-      Effect.timeoutFail({
+      Effect.timeoutOrElse({
         duration: SOURCE_DOWNLOAD_TIMEOUT,
-        onTimeout: () =>
-          new GermanQuranSourceSyncError({
-            cause: "Official source download exceeded 60 seconds.",
-            phase: "download",
-            source: source.name,
-          }),
+        orElse: () =>
+          Effect.fail(
+            new GermanQuranSourceSyncError({
+              cause: "Official source download exceeded 60 seconds.",
+              phase: "download",
+              source: source.name,
+            })
+          ),
       })
     )
 );

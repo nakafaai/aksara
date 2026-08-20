@@ -17,8 +17,8 @@ import {
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { compileReleaseSources } from "#publisher/source-compilation";
 import { testRendererDomains } from "#test/renderer";
 
@@ -35,7 +35,7 @@ const rendererManifest = await Effect.runPromise(
     publishedDomains: ["mathematics"],
   })
 );
-const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
+const source = Schema.decodeSync(CompileDocumentSourceSchema)({
   artifactLocale: "en",
   contentKey: "test:publication",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',

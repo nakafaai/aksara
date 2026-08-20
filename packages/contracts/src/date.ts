@@ -21,5 +21,7 @@ function isDateOnly(value: string) {
 }
 
 /** Exact source-authored calendar date shared by content projections. */
-export const DateOnlySchema = Schema.String.pipe(Schema.filter(isDateOnly));
+export const DateOnlySchema = Schema.String.pipe(
+  Schema.check(Schema.makeFilter(isDateOnly))
+);
 export type DateOnly = typeof DateOnlySchema.Type;

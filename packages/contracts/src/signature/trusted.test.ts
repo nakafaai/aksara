@@ -1,6 +1,6 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import {
   ACTIVE_SIGNING_KEY_ID,

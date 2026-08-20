@@ -300,10 +300,11 @@ export const decodeArticleRegistry = Effect.fn(
   const expanded = yield* Effect.forEach(sources, (source) =>
     expandArticle(source, localeCatalog, appLocales)
   );
-  const entries = yield* Schema.decodeUnknown(Schema.Array(ArticleEntrySchema))(
-    expanded.flat(),
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError((cause) => new ArticleRegistryError({ cause })));
+  const entries = yield* Schema.decodeUnknownEffect(
+    Schema.Array(ArticleEntrySchema)
+  )(expanded.flat(), { onExcessProperty: "error" }).pipe(
+    Effect.mapError((cause) => new ArticleRegistryError({ cause }))
+  );
   yield* validateArticleRoutes(entries);
   return [...entries].sort((left, right) =>
     compareContentHeads(left.route, right.route)

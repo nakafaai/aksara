@@ -8,14 +8,14 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Chunk, Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Schema, Stream } from "effect";
 import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { streamQuranRows } from "#corpus/quran/projection";
 import { testQuranRegistry } from "#corpus/test/quran";
 
 /** Replays the verified Quran fixture for each projection assertion. */
-const source = () => testQuranRegistry();
+const source = testQuranRegistry;
 
 type QuranChunkRow = Extract<QuranRowPayload, { readonly kind: "quran-chunk" }>;
 type QuranSearchRow = Extract<
@@ -35,8 +35,8 @@ function isSearch(row: QuranRowPayload): row is QuranSearchRow {
 
 describe("Quran projection", () => {
   it("emits the complete bounded runtime and locale search snapshot", async () => {
-    const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(Stream.runCollect(streamQuranRows(source)))
+    const rows = await Effect.runPromise(
+      Stream.runCollect(streamQuranRows(source))
     );
     const surahs = rows.filter(({ kind }) => kind === "quran-surah");
     const attributions = rows.filter(
@@ -110,13 +110,11 @@ describe("Quran projection", () => {
   }, 30_000);
 
   it("derives stable graph identities with locale-specific assets", async () => {
-    const searches = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        streamQuranRows(source).pipe(
-          Stream.filter(isSearch),
-          Stream.take(2),
-          Stream.runCollect
-        )
+    const searches = await Effect.runPromise(
+      streamQuranRows(source).pipe(
+        Stream.filter(isSearch),
+        Stream.take(2),
+        Stream.runCollect
       )
     );
     const [english, indonesian] = searches;
@@ -138,10 +136,8 @@ describe("Quran projection", () => {
   }, 30_000);
 
   it("projects German search and runtime rows only for the authoring locale set", async () => {
-    const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        streamQuranRows(source, AUTHORING_APP_LOCALES).pipe(Stream.runCollect)
-      )
+    const rows = await Effect.runPromise(
+      streamQuranRows(source, AUTHORING_APP_LOCALES).pipe(Stream.runCollect)
     );
     const attribution = rows.find(({ kind }) => kind === "quran-attribution");
     const firstChunk = rows.find(isChunk);
@@ -172,16 +168,12 @@ describe("Quran projection", () => {
   }, 30_000);
 
   it("omits Indonesian Tafsir when it is outside the selected locale policy", async () => {
-    const germanOnly = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
-      "de",
-    ]);
-    const [chunk] = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        streamQuranRows(source, germanOnly).pipe(
-          Stream.filter(isChunk),
-          Stream.take(1),
-          Stream.runCollect
-        )
+    const germanOnly = Schema.decodeSync(ActiveAppLocaleListSchema)(["de"]);
+    const [chunk] = await Effect.runPromise(
+      streamQuranRows(source, germanOnly).pipe(
+        Stream.filter(isChunk),
+        Stream.take(1),
+        Stream.runCollect
       )
     );
 
@@ -189,10 +181,8 @@ describe("Quran projection", () => {
   }, 30_000);
 
   it("preserves non-null Tafsir footnotes in Indonesian search text", async () => {
-    const [quranSource] = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        testQuranRegistry().pipe(Stream.take(1), Stream.runCollect)
-      )
+    const [quranSource] = await Effect.runPromise(
+      testQuranRegistry.pipe(Stream.take(1), Stream.runCollect)
     );
     const firstVerse = quranSource?.verses[0];
     if (!(quranSource && firstVerse)) {
@@ -210,12 +200,10 @@ describe("Quran projection", () => {
         ...quranSource.verses.slice(1),
       ],
     };
-    const searches = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        streamQuranRows(() => Stream.succeed(surah)).pipe(
-          Stream.filter(isSearch),
-          Stream.runCollect
-        )
+    const searches = await Effect.runPromise(
+      streamQuranRows(Stream.succeed(surah)).pipe(
+        Stream.filter(isSearch),
+        Stream.runCollect
       )
     );
 

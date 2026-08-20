@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import {
   type CompiledContentResult,
   compileContent,
@@ -23,6 +22,7 @@ import {
   readArticleDocument,
 } from "@nakafa/aksara-corpus/articles/source";
 import { teams } from "@nakafa/aksara-corpus/team/source";
+import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
@@ -69,9 +69,12 @@ export const makeArticleProjectionFromSource: (
 ) => Effect.Effect<ArticleProjection, ArticleMetadataError> = Effect.fn(
   "AksaraPublisher.makeArticleProjection"
 )(function* (source: ArticleDocumentSource, metadata: unknown) {
-  const decoded = yield* Schema.decodeUnknown(ArticleMetadataSchema)(metadata, {
-    onExcessProperty: "error",
-  }).pipe(
+  const decoded = yield* Schema.decodeUnknownEffect(ArticleMetadataSchema)(
+    metadata,
+    {
+      onExcessProperty: "error",
+    }
+  ).pipe(
     Effect.mapError(
       (cause) =>
         new ArticleMetadataError({ cause, sourcePath: source.sourcePath })

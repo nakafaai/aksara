@@ -1,4 +1,4 @@
-import { Effect, Option, Stream } from "effect";
+import { Effect, Result, Stream } from "effect";
 
 import type { Sha256Hash } from "#contracts/ids";
 import { digestQuranRows } from "#contracts/quran/snapshot/digest";
@@ -9,7 +9,7 @@ import type {
 } from "#contracts/release/snapshot/data";
 import {
   requireSnapshotEvidence,
-  type SnapshotRowFactory,
+  type SnapshotRowSource,
 } from "#contracts/release/snapshot/evidence-requirement";
 
 /** Selects and binds current Quran rows to the manifest identity. */
@@ -19,7 +19,7 @@ function quranRows<E, R>(
 ) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "quran" ? Option.some(row.record) : Option.none()
+      row.family === "quran" ? Result.succeed(row.record) : Result.failVoid
     ),
     Stream.mapEffect((record) =>
       requireSnapshotEvidence({
@@ -37,11 +37,11 @@ export const verifyQuranSnapshotRows = Effect.fn(
   "AksaraContracts.verifyQuranSnapshotRows"
 )(function* <E, R>(
   snapshot: Extract<ContentSnapshotManifest, { family: "quran" }>,
-  rows: SnapshotRowFactory<E, R>
+  rows: SnapshotRowSource<E, R>
 ) {
   const summary = yield* digestQuranRows({
     activeAppLocales: snapshot.manifest.activeAppLocales,
-    rows: quranRows(rows(), snapshot.manifest.snapshotId),
+    rows: quranRows(rows, snapshot.manifest.snapshotId),
   });
   for (const field of [
     "projectionCount",

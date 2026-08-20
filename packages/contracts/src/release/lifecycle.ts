@@ -7,18 +7,18 @@ import {
 } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 
-const CleanupCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const CleanupCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 
 /** Maximum rows the backend may delete in one cleanup transaction. */
 export const MAX_CLEANUP_PAGE_COUNT = 100;
 
-const CleanupRetrySchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative(),
-  Schema.finite()
+const CleanupRetrySchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0)),
+  Schema.check(Schema.isFinite())
 );
 
 /** Exact immutable release identity requested from durable target state. */
@@ -34,16 +34,18 @@ export const ContentReleaseBundleSchema = Schema.Struct({
   release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
 }).pipe(
-  Schema.filter(
-    (bundle) =>
-      bundle.release.manifest.rendererManifestHash ===
-        bundle.rendererManifest.hash &&
-      bundle.release.manifest.rendererContractVersion ===
-        bundle.rendererManifest.rendererContractVersion,
-    {
-      message: () =>
-        "Expected the signed release to bind the frozen renderer envelope.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      (bundle) =>
+        bundle.release.manifest.rendererManifestHash ===
+          bundle.rendererManifest.hash &&
+        bundle.release.manifest.rendererContractVersion ===
+          bundle.rendererManifest.rendererContractVersion,
+      {
+        message:
+          "Expected the signed release to bind the frozen renderer envelope.",
+      }
+    )
   )
 );
 export type ContentReleaseBundle = typeof ContentReleaseBundleSchema.Type;
@@ -56,10 +58,10 @@ export type RollbackContentReleaseBundle = ContentReleaseBundle & {
 /** Exact renderer-bound bundle accepted only for recovery publication. */
 export const RollbackContentReleaseBundleSchema =
   ContentReleaseBundleSchema.pipe(
-    Schema.filter(
+    Schema.refine(
       (bundle): bundle is RollbackContentReleaseBundle =>
         bundle.release.manifest.origin.kind === "rollback",
-      { message: () => "Expected a renderer-bound rollback release." }
+      { message: "Expected a renderer-bound rollback release." }
     )
   );
 
@@ -85,30 +87,32 @@ const CompletedReleaseStatusSchema = Schema.Struct({
   receipt: PublicationReceiptSchema,
   ...ContentReleaseStatusIdentity,
 }).pipe(
-  Schema.filter(hasBoundReceipt, {
-    message: () =>
-      "Expected the completed receipt to match the release status identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundReceipt, {
+      message:
+        "Expected the completed receipt to match the release status identity.",
+    })
+  )
 );
 
 /** Persisted release phase bound to one exact signed manifest identity. */
-export const ContentReleaseStatusSchema = Schema.Union(
+export const ContentReleaseStatusSchema = Schema.Union([
   Schema.Struct({
     phase: Schema.Literal("missing"),
     ...ContentReleaseStatusIdentity,
   }),
   Schema.Struct({
-    phase: Schema.Literal(
+    phase: Schema.Literals([
       "staging",
       "verifying",
       "verified",
       "aborting",
-      "aborted"
-    ),
+      "aborted",
+    ]),
     ...ContentReleaseStatusIdentity,
   }),
-  CompletedReleaseStatusSchema
-);
+  CompletedReleaseStatusSchema,
+]);
 export type ContentReleaseStatus = typeof ContentReleaseStatusSchema.Type;
 
 /** One invisible staged release whose rows should be abandoned. */
@@ -122,9 +126,11 @@ export const ReleaseAcceptRequestSchema = Schema.Struct({
   recoveryId: ReleaseIdSchema,
   releaseId: ReleaseIdSchema,
 }).pipe(
-  Schema.filter((request) => request.recoveryId !== request.releaseId, {
-    message: () => "Expected distinct active and recovery release identities.",
-  })
+  Schema.check(
+    Schema.makeFilter((request) => request.recoveryId !== request.releaseId, {
+      message: "Expected distinct active and recovery release identities.",
+    })
+  )
 );
 export type ReleaseAcceptRequest = typeof ReleaseAcceptRequestSchema.Type;
 
@@ -147,10 +153,12 @@ export const ReleaseAbortReceiptSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   totalItems: CleanupCountSchema,
 }).pipe(
-  Schema.filter(hasCoherentAbortReceipt, {
-    message: () =>
-      "Expected abort progress to match its durable release item total.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentAbortReceipt, {
+      message:
+        "Expected abort progress to match its durable release item total.",
+    })
+  )
 );
 export type ReleaseAbortReceipt = typeof ReleaseAbortReceiptSchema.Type;
 
@@ -167,12 +175,14 @@ export const ReleaseCleanupReceiptSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   retryAt: Schema.optional(CleanupRetrySchema),
 }).pipe(
-  Schema.filter(
-    (receipt) => !(receipt.complete && receipt.retryAt !== undefined),
-    {
-      message: () =>
-        "Expected completed cleanup evidence without a retry timestamp.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      (receipt) => !(receipt.complete && receipt.retryAt !== undefined),
+      {
+        message:
+          "Expected completed cleanup evidence without a retry timestamp.",
+      }
+    )
   )
 );
 export type ReleaseCleanupReceipt = typeof ReleaseCleanupReceiptSchema.Type;

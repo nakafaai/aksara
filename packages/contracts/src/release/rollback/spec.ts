@@ -34,9 +34,9 @@ export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
 /** Maximum byte-bounded rollback transitions requested from one target page. */
 export const MAX_ROLLBACK_PAGE_RECORDS = 512;
 
-const RollbackCursorSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.greaterThanOrEqualTo(-1)
+const RollbackCursorSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(-1))
 );
 
 /** Explicit proof that a changed content head did not previously exist. */
@@ -70,12 +70,12 @@ export const RollbackQuestionStateSchema = Schema.Struct({
 export type RollbackQuestionState = typeof RollbackQuestionStateSchema.Type;
 
 /** Complete compact state vocabulary authenticated for one future rollback. */
-export const RollbackSnapshotStateSchema = Schema.Union(
+export const RollbackSnapshotStateSchema = Schema.Union([
   RollbackAbsentStateSchema,
   RollbackArticleStateSchema,
   RollbackMaterialStateSchema,
-  RollbackQuestionStateSchema
-);
+  RollbackQuestionStateSchema,
+]);
 export type RollbackSnapshotState = typeof RollbackSnapshotStateSchema.Type;
 
 /** One ordered prior state covered by a signed release's rollback digest. */
@@ -122,10 +122,12 @@ export const RollbackUpsertStateSchema = Schema.Struct({
   change: ContentUpsertSchema,
   projection: ContentProjectionSchema,
 }).pipe(
-  Schema.filter(hasBoundRollbackUpsert, {
-    message: () =>
-      "Expected rollback change, artifact, and projection identities to match.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRollbackUpsert, {
+      message:
+        "Expected rollback change, artifact, and projection identities to match.",
+    })
+  )
 );
 export type RollbackUpsertState = typeof RollbackUpsertStateSchema.Type;
 
@@ -136,10 +138,10 @@ export const RollbackDeleteStateSchema = Schema.Struct({
 export type RollbackDeleteState = typeof RollbackDeleteStateSchema.Type;
 
 /** Complete full-state vocabulary used by one rollback transition. */
-export const RollbackStateSchema = Schema.Union(
+export const RollbackStateSchema = Schema.Union([
   RollbackUpsertStateSchema,
-  RollbackDeleteStateSchema
-);
+  RollbackDeleteStateSchema,
+]);
 export type RollbackState = typeof RollbackStateSchema.Type;
 
 /** Checks that current and prior states describe the same content head. */
@@ -160,19 +162,23 @@ export const RollbackRecordSchema = Schema.Struct({
   index: ReleaseItemIndexSchema,
   prior: RollbackStateSchema,
 }).pipe(
-  Schema.filter(hasBoundRollbackTransition, {
-    message: () =>
-      "Expected rollback current and prior states to share one identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRollbackTransition, {
+      message:
+        "Expected rollback current and prior states to share one identity.",
+    })
+  )
 );
 export type RollbackRecord = typeof RollbackRecordSchema.Type;
 
 /** Indexed request for one bounded page from the exact active release. */
 export const RollbackPageRequestSchema = Schema.Struct({
   afterIndex: RollbackCursorSchema,
-  limit: Schema.Number.pipe(
-    Schema.int(),
-    Schema.between(1, MAX_ROLLBACK_PAGE_RECORDS)
+  limit: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(
+      Schema.isBetween({ maximum: MAX_ROLLBACK_PAGE_RECORDS, minimum: 1 })
+    )
   ),
   rollbackOf: ReleaseIdSchema,
   rollbackOfManifestHash: Sha256HashSchema,
@@ -207,16 +213,21 @@ export const RollbackPageSchema = Schema.Struct({
   done: Schema.Boolean,
   nextIndex: RollbackCursorSchema,
   records: Schema.Array(RollbackRecordSchema).pipe(
-    Schema.maxItems(MAX_ROLLBACK_PAGE_RECORDS)
+    Schema.check(Schema.isMaxLength(MAX_ROLLBACK_PAGE_RECORDS))
   ),
   rollbackOf: ReleaseIdSchema,
   rollbackOfManifestHash: Sha256HashSchema,
-  total: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  total: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
 }).pipe(
-  Schema.filter(hasCoherentRollbackPage, {
-    message: () =>
-      "Expected one contiguous rollback page with coherent progress evidence.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentRollbackPage, {
+      message:
+        "Expected one contiguous rollback page with coherent progress evidence.",
+    })
+  )
 );
 export type RollbackPage = typeof RollbackPageSchema.Type;
 

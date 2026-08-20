@@ -14,11 +14,11 @@ export const GERMAN_GLOSSARY_SOURCE_PATHS = Object.freeze([
 ]);
 
 export const GermanGlossaryKeySchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab),
+  Schema.check(Schema.makeFilter(isLowerKebab)),
   Schema.brand("@NakafaAI/AksaraGermanGlossaryKey")
 );
 
-const GermanGlossaryScopeSchema = Schema.Literal(
+const GermanGlossaryScopeSchema = Schema.Literals([
   "accessibility",
   "account",
   "billing",
@@ -27,17 +27,17 @@ const GermanGlossaryScopeSchema = Schema.Literal(
   "mathematics",
   "navigation",
   "quran",
-  "science"
-);
+  "science",
+]);
 
 /** One evidence-backed German product term and its exact usage boundary. */
 export const GermanGlossaryEntrySchema = Schema.Struct({
   key: GermanGlossaryKeySchema,
-  note: Schema.optional(Schema.NonEmptyTrimmedString),
-  preferred: Schema.NonEmptyTrimmedString,
+  note: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),
+  preferred: Schema.Trimmed.check(Schema.isNonEmpty()),
   routeSlug: Schema.optional(PublicRouteSegmentSchema),
   scope: GermanGlossaryScopeSchema,
-  sourceUrl: Schema.String.pipe(Schema.filter(isHttpsUrl)),
+  sourceUrl: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
 export type GermanGlossaryEntry = typeof GermanGlossaryEntrySchema.Type;
 
@@ -54,9 +54,11 @@ function hasCanonicalKeys(entries: readonly GermanGlossaryEntry[]) {
 const GermanGlossarySchema = Schema.NonEmptyArray(
   GermanGlossaryEntrySchema
 ).pipe(
-  Schema.filter(hasCanonicalKeys, {
-    message: () => "German glossary keys must be unique and canonical.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalKeys, {
+      message: "German glossary keys must be unique and canonical.",
+    })
+  )
 );
 
 /** The source-controlled German terminology glossary is invalid. */
@@ -75,7 +77,7 @@ export const decodeGermanGlossary = Effect.fn(
       ...germanProductGlossarySource,
     ].sort((left, right) => compareCodeUnits(left.key, right.key))
   ) =>
-    Schema.decodeUnknown(GermanGlossarySchema)(input, {
+    Schema.decodeUnknownEffect(GermanGlossarySchema)(input, {
       onExcessProperty: "error",
     }).pipe(Effect.mapError((cause) => new GermanGlossaryError({ cause })))
 );

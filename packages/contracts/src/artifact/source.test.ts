@@ -1,6 +1,7 @@
 import { type BinaryLike, createHash } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import { CompiledContentPayloadSchema } from "#contracts/content";
 
@@ -33,7 +34,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 /** Builds one compiled payload with an authenticated raw source hash. */
 function payload(rawMdx: string, sourceHash?: string) {
-  return Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  return Schema.decodeSync(CompiledContentPayloadSchema)({
     artifactLocale: "en",
     byteLength: 10,
     compiledCode: "return {};",

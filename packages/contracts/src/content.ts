@@ -20,11 +20,11 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
 
 /** Published content families backed by real Aksara source registries. */
-export const ContentFamilySchema = Schema.Literal(
+export const ContentFamilySchema = Schema.Literals([
   "article",
   "material",
-  "question"
-);
+  "question",
+]);
 export type ContentFamily = typeof ContentFamilySchema.Type;
 
 /** Exact artifact identity selected for publication. */
@@ -106,7 +106,10 @@ export type CompileDocumentRequest = typeof CompileDocumentRequestSchema.Type;
 /** Precompiled trusted payload stored and signed before server-only execution. */
 export const CompiledContentPayloadSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
-  byteLength: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  byteLength: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
   compiledCode: Schema.String,
   compilerConfigHash: Sha256HashSchema,
   compilerVersion: Schema.Literal(AKSARA_COMPILER_VERSION),

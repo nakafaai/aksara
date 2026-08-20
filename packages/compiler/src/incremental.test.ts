@@ -1,7 +1,7 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
 import { testRendererDomains } from "#compiler/test/renderer";
 

@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   composeProgramLocale,
@@ -16,13 +16,9 @@ import { schoolProgramSources } from "#corpus/program/school";
 
 const [first, second] = schoolProgramSources;
 
-const firstSource = Schema.decodeUnknownSync(LearningProgramSourceSchema)(
-  first
-);
-const secondSource = Schema.decodeUnknownSync(LearningProgramSourceSchema)(
-  second
-);
-const german = Schema.decodeUnknownSync(ProgramLocaleSourceSchema)({
+const firstSource = Schema.decodeSync(LearningProgramSourceSchema)(first);
+const secondSource = Schema.decodeSync(LearningProgramSourceSchema)(second);
+const german = Schema.decodeSync(ProgramLocaleSourceSchema)({
   appLocale: "de" as const,
   programKey: firstSource.key,
   publicSlug: "merdeka-lehrplan",

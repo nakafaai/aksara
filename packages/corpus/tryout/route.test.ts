@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
@@ -15,7 +15,9 @@ function requireRoute<Value>(value: Value | undefined, label: string): Value {
 describe("tryout routes", () => {
   it("accepts canonical routes and rejects one exact locale collision", async () => {
     const rows = await Effect.runPromise(
-      Effect.flatMap(decodeTryoutRegistry(), projectTryoutCatalog)
+      Effect.flatMap(decodeTryoutRegistry(), (sources) =>
+        projectTryoutCatalog(sources)
+      )
     );
     await Effect.runPromise(validateTryoutRoutes(rows));
     const countries = rows.filter((row) => row.kind === "country");

@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import type { QuranRowPayload } from "#contracts/quran/snapshot/row";
 import { hashQuranRow } from "#contracts/quran/snapshot/row-hash";

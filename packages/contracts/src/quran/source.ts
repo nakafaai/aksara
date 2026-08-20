@@ -10,14 +10,14 @@ import { QURAN_SURAH_COUNT } from "#contracts/quran/spec";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
 /** Exact official Quran source identities in visible attribution order. */
-export const QuranSourceIdSchema = Schema.Literal(
+export const QuranSourceIdSchema = Schema.Literals([
   "tanzil-text",
   "tanzil-metadata",
   "quranenc-english",
   "quranenc-indonesian",
   "quranenc-german",
-  "quranenc-tafsir"
-);
+  "quranenc-tafsir",
+]);
 export type QuranSourceId = typeof QuranSourceIdSchema.Type;
 
 /** Canonical order of every official source supported by the contract. */
@@ -53,30 +53,34 @@ export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
 }
 
 const HttpsUrlSchema = Schema.String.pipe(
-  Schema.filter(isHttpsUrl, {
-    message: () => "Quran source links must use HTTPS.",
-  })
+  Schema.check(
+    Schema.makeFilter(isHttpsUrl, {
+      message: "Quran source links must use HTTPS.",
+    })
+  )
 );
 
 const RetrievedAtSchema = Schema.String.pipe(
-  Schema.pattern(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/u, {
-    message: () => "Expected an exact UTC Quran source retrieval time.",
-  })
+  Schema.check(
+    Schema.isPattern(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/u, {
+      message: "Expected an exact UTC Quran source retrieval time.",
+    })
+  )
 );
 
 /** Content identity of one pinned official source or legal evidence artifact. */
 export const QuranSourceArtifactSchema = Schema.Struct({
-  byteCount: Schema.Int.pipe(Schema.positive()),
+  byteCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   digest: Sha256HashSchema,
-  fileCount: Schema.Int.pipe(Schema.positive()),
+  fileCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
 });
 export type QuranSourceArtifact = typeof QuranSourceArtifactSchema.Type;
 
 /** Nakafa-owned source label and notice for one application locale. */
 export const QuranSourceCopySchema = Schema.Struct({
   appLocale: AppLocaleSchema,
-  notice: Schema.NonEmptyTrimmedString,
-  title: Schema.NonEmptyTrimmedString,
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  title: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 export type QuranSourceCopy = typeof QuranSourceCopySchema.Type;
 
@@ -85,7 +89,7 @@ export const QuranSourceAttributionSchema = Schema.Struct({
   artifact: QuranSourceArtifactSchema,
   copy: Schema.NonEmptyArray(QuranSourceCopySchema),
   id: QuranSourceIdSchema,
-  publisher: Schema.NonEmptyTrimmedString,
+  publisher: Schema.Trimmed.check(Schema.isNonEmpty()),
   retrievedAt: RetrievedAtSchema,
   sourceUrl: HttpsUrlSchema,
   terms: Schema.Struct({
@@ -93,7 +97,7 @@ export const QuranSourceAttributionSchema = Schema.Struct({
     url: HttpsUrlSchema,
   }),
   updateUrl: HttpsUrlSchema,
-  version: Schema.NonEmptyTrimmedString,
+  version: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 export type QuranSourceAttribution = typeof QuranSourceAttributionSchema.Type;
 
@@ -138,21 +142,27 @@ export const QuranAttributionRowSchema = Schema.Struct({
   kind: Schema.Literal("quran-attribution"),
   sources: Schema.NonEmptyArray(QuranSourceAttributionSchema),
 }).pipe(
-  Schema.filter(({ sources }) => hasCanonicalSources(sources), {
-    message: () => "Expected unique Quran sources in canonical order.",
-  }),
-  Schema.filter(
-    ({ activeAppLocales, sources }) =>
-      hasRequiredQuranSources(sources, activeAppLocales),
-    {
-      message: () =>
-        "Expected exact Quran source coverage for the active locale set.",
-    }
+  Schema.check(
+    Schema.makeFilter(({ sources }) => hasCanonicalSources(sources), {
+      message: "Expected unique Quran sources in canonical order.",
+    })
   ),
-  Schema.filter(hasCompleteLocalizedCopy, {
-    message: () =>
-      "Expected localized Quran attribution copy for every active locale.",
-  })
+  Schema.check(
+    Schema.makeFilter(
+      ({ activeAppLocales, sources }) =>
+        hasRequiredQuranSources(sources, activeAppLocales),
+      {
+        message:
+          "Expected exact Quran source coverage for the active locale set.",
+      }
+    )
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCompleteLocalizedCopy, {
+      message:
+        "Expected localized Quran attribution copy for every active locale.",
+    })
+  )
 );
 export type QuranAttributionRow = typeof QuranAttributionRowSchema.Type;
 

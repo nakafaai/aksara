@@ -1,9 +1,4 @@
 import {
-  HttpClient,
-  HttpClientError,
-  HttpClientRequest,
-} from "@effect/platform";
-import {
   CONTENT_CACHE_GLOBAL_TAG,
   type ContentCacheChange,
   ContentCacheRequestSchema,
@@ -12,8 +7,20 @@ import {
 } from "@nakafa/aksara-contracts/cache/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+} from "@nakafa/testing/effect";
 import { Effect, Redacted, Schema, Stream } from "effect";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  HttpClient,
+  HttpClientError,
+  HttpClientRequest,
+} from "effect/unstable/http";
+import { vi } from "vitest";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -91,7 +98,7 @@ function runFailure<E>(program: Effect.Effect<void, E>) {
 const cacheInput = (
   release = gitBundle("release-next").release,
   changes: readonly ContentCacheChange[] = [{ family: "material" }]
-) => ({ cacheChanges: () => Stream.fromIterable(changes), release });
+) => ({ cacheChanges: Stream.fromIterable(changes), release });
 afterEach(() => vi.useRealTimers());
 beforeEach(() => {
   calls.endpoint = "";
@@ -236,7 +243,9 @@ describe("production activation", () => {
     vi.useFakeTimers();
     const network = await makeActivation((request) =>
       Effect.fail(
-        new HttpClientError.RequestError({ reason: "Transport", request })
+        new HttpClientError.HttpClientError({
+          reason: new HttpClientError.TransportError({ request }),
+        })
       )
     );
     const networkFailure = Effect.runPromise(

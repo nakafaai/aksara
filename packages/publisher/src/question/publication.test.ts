@@ -3,8 +3,8 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { makeRouteItems } from "#publisher/routes";
 import {
   collectQuestionPublication,

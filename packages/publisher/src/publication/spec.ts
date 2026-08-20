@@ -57,7 +57,7 @@ export class PublicationSourceError extends Schema.TaggedError<PublicationSource
   {
     aksaraSha: GitCommitShaSchema,
     cause: Schema.Unknown,
-    message: Schema.NonEmptyTrimmedString,
+    message: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 /** A persisted target status belongs to another release identity. */
@@ -76,7 +76,10 @@ export class PublicationVerificationTimeoutError extends Schema.TaggedError<Publ
   "PublicationVerificationTimeoutError",
   {
     releaseId: ReleaseIdSchema,
-    timeoutSeconds: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    timeoutSeconds: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 /** A durably aborted immutable release cannot resume under the same identity. */
@@ -89,14 +92,14 @@ export class PublicationReleaseAbortedError extends Schema.TaggedError<Publicati
 export class PublicationResumePhaseError extends Schema.TaggedError<PublicationResumePhaseError>()(
   "PublicationResumePhaseError",
   {
-    phase: Schema.Literal(
+    phase: Schema.Literals([
       "missing",
       "staging",
       "verifying",
       "verified",
       "aborting",
-      "completed"
-    ),
+      "completed",
+    ]),
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -105,8 +108,8 @@ export class PublicationResumePhaseError extends Schema.TaggedError<PublicationR
 export class PublicationModeMismatchError extends Schema.TaggedError<PublicationModeMismatchError>()(
   "PublicationModeMismatchError",
   {
-    manifestMode: Schema.Literal("git", "rollback"),
-    preparedMode: Schema.Literal("git", "rollback"),
+    manifestMode: Schema.Literals(["git", "rollback"]),
+    preparedMode: Schema.Literals(["git", "rollback"]),
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -125,31 +128,28 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<Publica
 export class PublicationActivationError extends Schema.TaggedError<PublicationActivationError>()(
   "PublicationActivationError",
   {
-    phase: Schema.Literal("cache", "preflight"),
+    phase: Schema.Literals(["cache", "preflight"]),
     releaseId: ReleaseIdSchema,
   }
 ) {}
 
 /** Signing configuration injected only into the safe publication operation. */
-export class PublicationSigningKey extends Context.Tag(
-  "AksaraPublicationSigningKey"
-)<
+export class PublicationSigningKey extends Context.Service<
   PublicationSigningKey,
   {
     readonly keyId: string;
     readonly privateKeyPem: Redacted.Redacted<string>;
   }
->() {}
+>()("AksaraPublicationSigningKey") {}
 
 /** Operator-selected immutable identity for the pre-activation inverse release. */
-export class PublicationRecoveryId extends Context.Tag(
-  "AksaraPublicationRecoveryId"
-)<PublicationRecoveryId, typeof ReleaseIdSchema.Type>() {}
+export class PublicationRecoveryId extends Context.Service<
+  PublicationRecoveryId,
+  typeof ReleaseIdSchema.Type
+>()("AksaraPublicationRecoveryId") {}
 
 /** Owns renderer preflight and post-commit Nakafa cache convergence. */
-export class PublicationActivation extends Context.Tag(
-  "AksaraPublicationActivation"
-)<
+export class PublicationActivation extends Context.Service<
   PublicationActivation,
   {
     /**
@@ -160,7 +160,7 @@ export class PublicationActivation extends Context.Tag(
      */
     readonly invalidate: <E, R>(input: {
       /** Replays the exact family-aware cache transitions for this release. */
-      readonly cacheChanges: () => Stream.Stream<ContentCacheChange, E, R>;
+      readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
       readonly release: SignedContentRelease;
     }) => Effect.Effect<void, E | PublicationActivationError, R>;
     /** Fails closed when the live renderer differs from the signed release. */
@@ -168,10 +168,10 @@ export class PublicationActivation extends Context.Tag(
       release: SignedContentRelease
     ) => Effect.Effect<void, PublicationActivationError>;
   }
->() {}
+>()("AksaraPublicationActivation") {}
 
 /** Loads ordered sources only from one exact reviewed Aksara revision. */
-export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
+export class PublicationSource extends Context.Service<
   PublicationSource,
   {
     /** Streams sources in the same order as authenticated upsert items. */
@@ -180,10 +180,10 @@ export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
       readonly items: Stream.Stream<ContentReleaseItem, E, R>;
     }) => Stream.Stream<unknown, E | PublicationSourceError, R>;
   }
->() {}
+>()("AksaraPublicationSource") {}
 
 /** Idempotent invisible staging and atomic activation infrastructure seam. */
-export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
+export class PublicationTarget extends Context.Service<
   PublicationTarget,
   {
     /** Accepts one active release and discards its exact retained inverse. */
@@ -195,7 +195,7 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
       request: ReleaseAbortRequest
     ) => Effect.Effect<ReleaseAbortReceipt, PublicationTargetFailure>;
     /** Reads authoritative active and candidate publication identities. */
-    readonly current: () => Effect.Effect<
+    readonly current: Effect.Effect<
       ContentReleaseCurrent,
       PublicationTargetFailure
     >;
@@ -275,4 +275,4 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
       release: SignedContentRelease
     ) => Effect.Effect<ReleaseVerificationStatus, PublicationTargetFailure>;
   }
->() {}
+>()("AksaraPublicationTarget") {}

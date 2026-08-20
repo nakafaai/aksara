@@ -231,10 +231,11 @@ export function makeProductionTarget(
     activate: unused,
     activateRecovery: unused,
     cleanup: unused,
-    current: () =>
-      Schema.decodeUnknown(ContentReleaseCurrentSchema)(current()).pipe(
+    current: Effect.suspend(() =>
+      Schema.decodeUnknownEffect(ContentReleaseCurrentSchema)(current()).pipe(
         Effect.orDie
-      ),
+      )
+    ),
     headPage: unused,
     recovery: unused,
     rollbackPage: unused,

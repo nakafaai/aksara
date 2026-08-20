@@ -1,7 +1,7 @@
-import type { HttpClient } from "@effect/platform";
 import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
+import type { HttpClient } from "effect/unstable/http";
 import { readPublicationEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { retryPublicationTarget } from "#cli/retry";
@@ -41,23 +41,19 @@ function logCurrent(current: ContentReleaseCurrent) {
 }
 
 /** Reads authoritative publication state without requiring signing secrets. */
-export const runStatusCommand: () => StatusCommand = Effect.fn(
-  "AksaraCli.runStatusCommand"
-)(() =>
-  Effect.gen(function* () {
-    const environment = yield* readPublicationEnvironment().pipe(
-      Effect.mapError(mapProductionError("environment"))
-    );
-    const rawTarget = yield* makeHttpPublicationTarget({
-      allowInsecureLoopback: false,
-      endpoint: environment.publicationEndpoint,
-      timeout: STATUS_TIMEOUT,
-      token: environment.publicationToken,
-    }).pipe(Effect.mapError(mapProductionError("target")));
-    const target = retryPublicationTarget(rawTarget);
-    const current = yield* target
-      .current()
-      .pipe(Effect.mapError(mapProductionError("state")));
-    yield* logCurrent(current);
-  })
-);
+export const runStatusCommand: StatusCommand = Effect.gen(function* () {
+  const environment = yield* readPublicationEnvironment().pipe(
+    Effect.mapError(mapProductionError("environment"))
+  );
+  const rawTarget = yield* makeHttpPublicationTarget({
+    allowInsecureLoopback: false,
+    endpoint: environment.publicationEndpoint,
+    timeout: STATUS_TIMEOUT,
+    token: environment.publicationToken,
+  }).pipe(Effect.mapError(mapProductionError("target")));
+  const target = retryPublicationTarget(rawTarget);
+  const current = yield* target.current.pipe(
+    Effect.mapError(mapProductionError("state"))
+  );
+  yield* logCurrent(current);
+}).pipe(Effect.withSpan("AksaraCli.runStatusCommand"));

@@ -46,73 +46,84 @@ function isCorpusSourcePath(value: string) {
 
 /** Stable content identity shared across locales and immutable releases. */
 export const ContentKeySchema = Schema.String.pipe(
-  Schema.pattern(CONTENT_KEY_PATTERN),
-  Schema.maxLength(CONTENT_KEY_MAX_LENGTH),
+  Schema.check(Schema.isPattern(CONTENT_KEY_PATTERN)),
+  Schema.check(Schema.isMaxLength(CONTENT_KEY_MAX_LENGTH)),
   Schema.brand("@NakafaAI/AksaraContentKey")
 );
 export type ContentKey = typeof ContentKeySchema.Type;
 
 /** Immutable publication generation identity. */
 export const ReleaseIdSchema = Schema.String.pipe(
-  Schema.pattern(RELEASE_ID_PATTERN),
+  Schema.check(Schema.isPattern(RELEASE_ID_PATTERN)),
   Schema.brand("@NakafaAI/AksaraReleaseId")
 );
 export type ReleaseId = typeof ReleaseIdSchema.Type;
 
 /** Canonical stored public route without a locale or leading slash. */
 export const PublicPathSchema = Schema.String.pipe(
-  Schema.filter(isPublicPath, {
-    message: () => "Expected a canonical slashless public path.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isPublicPath, {
+      message: "Expected a canonical slashless public path.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraPublicPath")
 );
 export type PublicPath = typeof PublicPathSchema.Type;
 
 /** Reviewed Git path used to reproduce one exact authored source revision. */
 export const CorpusSourcePathSchema = Schema.String.pipe(
-  Schema.filter(isCorpusSourcePath, {
-    message: () =>
-      "Expected a safe relative source path below packages/corpus.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isCorpusSourcePath, {
+      message: "Expected a safe relative source path below packages/corpus.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraCorpusSourcePath")
 );
 export type CorpusSourcePath = typeof CorpusSourcePathSchema.Type;
 
 /** Full lowercase Git commit SHA recorded in a release manifest. */
 export const GitCommitShaSchema = Schema.String.pipe(
-  Schema.filter(isGitCommitSha, {
-    message: () => "Expected a 40-character lowercase Git commit SHA.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isGitCommitSha, {
+      message: "Expected a 40-character lowercase Git commit SHA.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraGitCommitSha")
 );
 export type GitCommitSha = typeof GitCommitShaSchema.Type;
 
 /** Canonical SHA-256 value with an explicit algorithm prefix. */
 export const Sha256HashSchema = Schema.String.pipe(
-  Schema.filter(isSha256Hash, {
-    message: () =>
-      "Expected sha256 followed by 64 lowercase hexadecimal characters.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isSha256Hash, {
+      message:
+        "Expected sha256 followed by 64 lowercase hexadecimal characters.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraSha256Hash")
 );
 export type Sha256Hash = typeof Sha256HashSchema.Type;
 
 /** Stable identifier selecting one trusted Ed25519 verification key. */
 export const SigningKeyIdSchema = Schema.String.pipe(
-  Schema.filter(isSigningKeyId, {
-    message: () =>
-      "Expected a lowercase wire-safe signing key identifier up to 64 characters.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isSigningKeyId, {
+      message:
+        "Expected a lowercase wire-safe signing key identifier up to 64 characters.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraSigningKeyId")
 );
 export type SigningKeyId = typeof SigningKeyIdSchema.Type;
 
 /** Unpadded base64url encoding of one 64-byte Ed25519 signature. */
 export const Ed25519SignatureSchema = Schema.String.pipe(
-  Schema.filter(isEd25519Signature, {
-    message: () =>
-      "Expected a canonical unpadded base64url 64-byte Ed25519 signature.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isEd25519Signature, {
+      message:
+        "Expected a canonical unpadded base64url 64-byte Ed25519 signature.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraEd25519Signature")
 );
 export type Ed25519Signature = typeof Ed25519SignatureSchema.Type;

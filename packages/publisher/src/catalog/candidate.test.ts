@@ -1,7 +1,8 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import {
   CandidateContentValidationError,
@@ -150,7 +151,7 @@ function runValidation() {
     validateCandidateContent({
       checkoutRoot,
       rendererManifest,
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 }
 
@@ -193,7 +194,7 @@ describe("candidate content validation", () => {
       validateCandidateContent({
         checkoutRoot,
         rendererManifest,
-      }).pipe(Effect.flip, Effect.provide(NodeContext.layer))
+      }).pipe(Effect.flip, Effect.provide(NodeServices.layer))
     );
     expect(error).toBeInstanceOf(CandidateContentValidationError);
     expect(error).toMatchObject({
@@ -219,7 +220,7 @@ describe("candidate content validation", () => {
         validateCandidateContent({
           checkoutRoot,
           rendererManifest,
-        }).pipe(Effect.flip, Effect.provide(NodeContext.layer))
+        }).pipe(Effect.flip, Effect.provide(NodeServices.layer))
       );
 
       expect(error).toBeInstanceOf(CandidateContentValidationError);

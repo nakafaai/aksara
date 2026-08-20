@@ -5,16 +5,20 @@ const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/;
 
 /** Renderer names are simple identifiers, never dotted member paths. */
 export const RendererComponentNameSchema = Schema.String.pipe(
-  Schema.filter((name) => COMPONENT_NAME_PATTERN.test(name), {
-    message: () =>
-      "Expected a component name matching /^[A-Za-z][A-Za-z0-9]*$/.",
-  })
+  Schema.check(
+    Schema.makeFilter((name) => COMPONENT_NAME_PATTERN.test(name), {
+      message: "Expected a component name matching /^[A-Za-z][A-Za-z0-9]*$/.",
+    })
+  )
 );
 
 /** One named renderer capability and its positive contract version. */
 export const RendererComponentRequirementSchema = Schema.Struct({
   name: RendererComponentNameSchema,
-  version: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  version: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 export type RendererComponentRequirement =
   typeof RendererComponentRequirementSchema.Type;
@@ -65,10 +69,12 @@ export function sortRendererComponentRequirements(
 const CanonicalRendererRequirementsSchema = Schema.Array(
   RendererComponentRequirementSchema
 ).pipe(
-  Schema.filter(hasCanonicalRequirementPairs, {
-    message: () =>
-      "Expected unique renderer requirement pairs sorted by name and version.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalRequirementPairs, {
+      message:
+        "Expected unique renderer requirement pairs sorted by name and version.",
+    })
+  )
 );
 
 /** Canonical runtime capabilities; an empty route domain is valid. */
@@ -78,27 +84,30 @@ export const RendererSupportedComponentsSchema =
 /** Canonical compiler choices; an empty route domain is valid. */
 export const RendererAuthoringComponentsSchema =
   CanonicalRendererRequirementsSchema.pipe(
-    Schema.filter(hasOneVersionPerComponent, {
-      message: () =>
-        "Expected exactly one authoring version for each component name.",
-    })
+    Schema.check(
+      Schema.makeFilter(hasOneVersionPerComponent, {
+        message:
+          "Expected exactly one authoring version for each component name.",
+      })
+    )
   );
 
 /** Canonical runtime capabilities; multiple versions per name are allowed. */
 export const RendererManifestSupportedComponentsSchema =
-  RendererSupportedComponentsSchema.pipe(Schema.minItems(1));
+  RendererSupportedComponentsSchema.pipe(Schema.check(Schema.isMinLength(1)));
 
 /** Canonical compiler choices; exactly one version exists for every name. */
 export const RendererManifestAuthoringComponentsSchema =
-  RendererAuthoringComponentsSchema.pipe(Schema.minItems(1));
+  RendererAuthoringComponentsSchema.pipe(Schema.check(Schema.isMinLength(1)));
 
 /** Canonical artifact requirements; an artifact chooses one version per name. */
 export const CompiledContentRequirementsSchema =
   CanonicalRendererRequirementsSchema.pipe(
-    Schema.filter(hasOneVersionPerComponent, {
-      message: () =>
-        "Expected at most one version for each required component.",
-    })
+    Schema.check(
+      Schema.makeFilter(hasOneVersionPerComponent, {
+        message: "Expected at most one version for each required component.",
+      })
+    )
   );
 
 /** Shared schema fields for one physical renderer registry capability. */
@@ -134,10 +143,12 @@ export function hasCompleteRendererSelection(
 
 /** One complete component contract owned by one physical registry scope. */
 export const RendererCapabilitySchema = RendererCapabilityStructSchema.pipe(
-  Schema.filter(hasCompleteRendererSelection, {
-    message: () =>
-      "Expected one supported authoring selection for every component name.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteRendererSelection, {
+      message:
+        "Expected one supported authoring selection for every component name.",
+    })
+  )
 );
 export type RendererCapability = typeof RendererCapabilitySchema.Type;
 
@@ -164,7 +175,10 @@ export class RendererAuthoringComponentUnsupportedError extends Schema.TaggedErr
   "RendererAuthoringComponentUnsupportedError",
   {
     componentName: RendererComponentNameSchema,
-    version: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    version: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -173,7 +187,10 @@ export class RendererAuthoringSelectionNonCanonicalError extends Schema.TaggedEr
   "RendererAuthoringSelectionNonCanonicalError",
   {
     componentName: RendererComponentNameSchema,
-    index: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    index: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 

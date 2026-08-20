@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { ContentFamily } from "@nakafa/aksara-contracts/content";
 import type { ContentKey, PublicPath } from "@nakafa/aksara-contracts/ids";
 import type {
@@ -8,6 +7,7 @@ import type {
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
+import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import type { RouteTransition } from "#publisher/routes";
 

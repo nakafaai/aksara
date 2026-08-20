@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -63,8 +63,8 @@ describe("Quran snapshot contract", () => {
       { tafsirLocales: [] },
     ]) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+        Exit.isFailure(
+          Schema.decodeUnknownExit(QuranSnapshotFactsSchema)({
             ...facts,
             ...change,
           })
@@ -73,7 +73,7 @@ describe("Quran snapshot contract", () => {
     }
     expect(
       String(
-        Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+        Schema.decodeUnknownExit(QuranSnapshotFactsSchema)({
           ...facts,
           sourceFileCount: 4,
         })
@@ -81,7 +81,7 @@ describe("Quran snapshot contract", () => {
     ).toContain("Expected complete active-locale Quran source counts.");
     expect(
       String(
-        Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+        Schema.decodeUnknownExit(QuranSnapshotFactsSchema)({
           ...facts,
           runtimeCount: 1199,
         })
@@ -91,7 +91,7 @@ describe("Quran snapshot contract", () => {
     );
     expect(
       String(
-        Schema.decodeUnknownEither(QuranSnapshotSchema)({
+        Schema.decodeUnknownExit(QuranSnapshotSchema)({
           ...facts,
           format: QURAN_SNAPSHOT_FORMAT,
           snapshotId: digest,
@@ -101,7 +101,7 @@ describe("Quran snapshot contract", () => {
     ).toContain("Expected complete active-locale Quran source counts.");
     expect(
       String(
-        Schema.decodeUnknownEither(QuranSnapshotSchema)({
+        Schema.decodeUnknownExit(QuranSnapshotSchema)({
           ...facts,
           format: QURAN_SNAPSHOT_FORMAT,
           projectionCount: 1427,

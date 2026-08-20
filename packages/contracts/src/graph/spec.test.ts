@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -16,9 +16,7 @@ const identity = {
 
 describe("learning graph contract", () => {
   it("decodes and serializes exact route projection identities", () => {
-    const decoded = Schema.decodeUnknownSync(LearningGraphIdentitySchema)(
-      identity
-    );
+    const decoded = Schema.decodeSync(LearningGraphIdentitySchema)(identity);
 
     expect(canonicalizeLearningGraphIdentity(decoded)).toEqual(identity);
   });
@@ -28,11 +26,9 @@ describe("learning graph contract", () => {
     { ...identity, conceptId: "concept:Article:politics" },
     { ...identity, lensId: "lens:" },
   ])("rejects invalid or cross-owned graph IDs", (input) => {
-    const result = Schema.decodeUnknownEither(LearningGraphIdentitySchema)(
-      input
-    );
+    const result = Schema.decodeExit(LearningGraphIdentitySchema)(input);
 
-    expect(Either.isLeft(result)).toBe(true);
+    expect(Exit.isFailure(result)).toBe(true);
     expect(String(result)).toContain("Expected");
   });
 });

@@ -234,7 +234,7 @@ export function decodeQuestionChoiceSource(
     return Effect.fail(new QuestionChoiceError({ sourcePath }));
   }
 
-  return Schema.decodeUnknown(QuestionChoicesSchema)(input, {
+  return Schema.decodeEffect(QuestionChoicesSchema)(input, {
     onExcessProperty: "error",
   }).pipe(Effect.mapError(() => new QuestionChoiceError({ sourcePath })));
 }

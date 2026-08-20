@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   CompiledContentRequirementsSchema,
@@ -32,13 +32,11 @@ describe("renderer component", () => {
       ],
     };
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(RendererCapabilitySchema)(capability)
-      )
+      Exit.isSuccess(Schema.decodeExit(RendererCapabilitySchema)(capability))
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(CompiledContentRequirementsSchema)(
+      Exit.isFailure(
+        Schema.decodeExit(CompiledContentRequirementsSchema)(
           capability.supportedComponents
         )
       )
@@ -47,26 +45,26 @@ describe("renderer component", () => {
 
   it("rejects invalid names, incomplete pins, duplicates, and empty sets", () => {
     expect(() =>
-      Schema.decodeUnknownSync(RendererCapabilitySchema)({
+      Schema.decodeSync(RendererCapabilitySchema)({
         authoringComponents: [{ name: "Block-Math", version: 1 }],
         supportedComponents: [{ name: "Block-Math", version: 1 }],
       })
     ).toThrow("Expected a component name matching");
     expect(() =>
-      Schema.decodeUnknownSync(RendererManifestAuthoringComponentsSchema)([
+      Schema.decodeSync(RendererManifestAuthoringComponentsSchema)([
         { name: "BlockMath", version: 1 },
         { name: "BlockMath", version: 2 },
       ])
     ).toThrow("Expected exactly one authoring version");
     expect(() =>
-      Schema.decodeUnknownSync(CompiledContentRequirementsSchema)([
+      Schema.decodeSync(CompiledContentRequirementsSchema)([
         { name: "BlockMath", version: 1 },
         { name: "BlockMath", version: 2 },
       ])
     ).toThrow("Expected at most one version");
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(RendererCapabilitySchema)({
+      Exit.isFailure(
+        Schema.decodeExit(RendererCapabilitySchema)({
           authoringComponents: [{ name: "BlockMath", version: 1 }],
           supportedComponents: [
             { name: "BlockMath", version: 1 },
@@ -76,8 +74,8 @@ describe("renderer component", () => {
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(RendererCapabilitySchema)({
+      Exit.isFailure(
+        Schema.decodeExit(RendererCapabilitySchema)({
           authoringComponents: [],
           supportedComponents: [],
         })
@@ -85,8 +83,8 @@ describe("renderer component", () => {
     ).toBe(true);
     for (const name of ["Chart.Axis", "block-math", "Block_Math", "$Block"]) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(RendererCapabilitySchema)({
+        Exit.isFailure(
+          Schema.decodeExit(RendererCapabilitySchema)({
             authoringComponents: [{ name, version: 1 }],
             supportedComponents: [{ name, version: 1 }],
           })

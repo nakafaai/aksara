@@ -1,6 +1,7 @@
 import { Server } from "node:net";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import {
   NakafaProcess,
@@ -286,6 +287,6 @@ describe("Nakafa child process", () => {
     );
 
     expect(close).toMatchObject({ reason: "start" });
-    expect(cancelled._tag).toBe("TimeoutException");
+    expect(cancelled._tag).toBe("TimeoutError");
   });
 });

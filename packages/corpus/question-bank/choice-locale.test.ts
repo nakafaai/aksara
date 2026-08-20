@@ -5,8 +5,8 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { QuestionChoicesSchema } from "@nakafa/aksara-contracts/projection/question";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   addQuestionChoiceOverlay,
@@ -25,11 +25,11 @@ const german = AppLocaleSchema.make("de");
 const sourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/question-bank/example/choices.ts"
 );
-const baseChoices = Schema.decodeUnknownSync(QuestionChoicesSchema)({
+const baseChoices = Schema.decodeSync(QuestionChoicesSchema)({
   en: [{ label: "A", value: true }],
   id: [{ label: "B", value: true }],
 });
-const germanChoices = Schema.decodeUnknownSync(QuestionChoicesSchema)({
+const germanChoices = Schema.decodeSync(QuestionChoicesSchema)({
   de: [{ label: "C", value: true }],
 });
 

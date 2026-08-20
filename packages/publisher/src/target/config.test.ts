@@ -1,5 +1,5 @@
-import { Effect, Either, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Duration, Effect, Redacted, Result } from "effect";
 import {
   type HttpPublicationTargetConfig,
   validateHttpConfig,
@@ -20,7 +20,7 @@ function config(
 
 /** Runs runtime configuration validation at the Vitest boundary. */
 function validate(input: HttpPublicationTargetConfig) {
-  return Effect.runPromise(validateHttpConfig(input).pipe(Effect.either));
+  return Effect.runPromise(validateHttpConfig(input).pipe(Effect.result));
 }
 
 describe("HTTP publication configuration", () => {
@@ -28,10 +28,10 @@ describe("HTTP publication configuration", () => {
     const source = new URL("https://publish.test.invalid/content");
     const secure = await validate(config({ endpoint: source }));
     source.pathname = "/mutated";
-    expect(Either.isRight(secure)).toBe(true);
-    if (Either.isRight(secure)) {
-      expect(secure.right.endpoint.pathname).toBe("/content");
-      expect(secure.right.timeout.toString()).toBe("Duration(1s)");
+    expect(Result.isSuccess(secure)).toBe(true);
+    if (Result.isSuccess(secure)) {
+      expect(secure.success.endpoint.pathname).toBe("/content");
+      expect(Duration.toMillis(secure.success.timeout)).toBe(1000);
     }
     const loopbacks = await Promise.all(
       ["127.0.0.1", "localhost", "[::1]"].map((hostname) =>
@@ -43,7 +43,7 @@ describe("HTTP publication configuration", () => {
         )
       )
     );
-    expect(loopbacks.every(Either.isRight)).toBe(true);
+    expect(loopbacks.every(Result.isSuccess)).toBe(true);
   });
 
   it("rejects insecure, credentialed, fragmented, or contradictory URLs", async () => {
@@ -64,15 +64,15 @@ describe("HTTP publication configuration", () => {
     expect(results).toHaveLength(invalid.length);
     for (const result of results) {
       expect(result).toMatchObject({
-        _tag: "Left",
-        left: { reason: "endpoint" },
+        _tag: "Failure",
+        failure: { reason: "endpoint" },
       });
     }
   });
 
   it("rejects empty, whitespace, and already-wiped bearer values", async () => {
     const wiped = Redacted.make("temporary-test-token");
-    expect(Redacted.unsafeWipe(wiped)).toBe(true);
+    expect(Redacted.wipeUnsafe(wiped)).toBe(true);
     const results = await Promise.all(
       [Redacted.make(""), Redacted.make("has space"), wiped].map((token) =>
         validate(config({ token }))
@@ -80,8 +80,8 @@ describe("HTTP publication configuration", () => {
     );
     for (const result of results) {
       expect(result).toMatchObject({
-        _tag: "Left",
-        left: { reason: "token" },
+        _tag: "Failure",
+        failure: { reason: "token" },
       });
     }
   });
@@ -94,8 +94,8 @@ describe("HTTP publication configuration", () => {
     );
     for (const result of results) {
       expect(result).toMatchObject({
-        _tag: "Left",
-        left: { reason: "timeout" },
+        _tag: "Failure",
+        failure: { reason: "timeout" },
       });
     }
   });

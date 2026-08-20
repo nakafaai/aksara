@@ -105,7 +105,7 @@ export function decodeReplayRecord<A, I>(input: {
   readonly data: string;
   readonly hash: string;
   readonly index: number;
-  readonly schema: Schema.Schema<A, I, never>;
+  readonly schema: Schema.Codec<A, I, never>;
 }) {
   const recordBytes =
     Buffer.byteLength(input.data) + Buffer.byteLength(input.hash);
@@ -115,8 +115,8 @@ export function decodeReplayRecord<A, I>(input: {
     recordBytes,
     totalBytes: recordBytes,
   }).pipe(
-    Effect.zipRight(
-      Schema.decodeUnknown(Sha256HashSchema)(input.hash).pipe(
+    Effect.andThen(
+      Schema.decodeEffect(Sha256HashSchema)(input.hash).pipe(
         Effect.mapError((cause) =>
           replaySpoolFailure("hash", cause, input.index)
         )
@@ -134,7 +134,7 @@ export function decodeReplayRecord<A, I>(input: {
         try: (): unknown => JSON.parse(input.data),
       }).pipe(
         Effect.flatMap((value) =>
-          Schema.decodeUnknown(input.schema)(value, {
+          Schema.decodeUnknownEffect(input.schema)(value, {
             onExcessProperty: "error",
           }).pipe(
             Effect.mapError((cause) =>

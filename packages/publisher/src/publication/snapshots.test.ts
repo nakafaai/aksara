@@ -1,4 +1,4 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -7,8 +7,8 @@ import {
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Chunk, Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Stream } from "effect";
 
 import { prepareContentRelease } from "#publisher/preparation";
 import {
@@ -41,27 +41,26 @@ async function prepareProgramRelease() {
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      records: () => Stream.make(record),
+      records: Stream.make(record),
       releaseId: ReleaseIdSchema.make("test-program-snapshot"),
       rendererManifest,
-      result: () => Stream.make(head),
-      routes: () =>
-        Stream.make({
-          current: {
-            appLocale: projection.appLocale,
-            contentKey: contentRecord.change.contentKey,
-          },
-          next: {
-            appLocale: projection.appLocale,
-            contentKey: contentRecord.change.contentKey,
-            publicPath: projection.publicPath,
-          },
-        }),
+      result: Stream.make(head),
+      routes: Stream.make({
+        current: {
+          appLocale: projection.appLocale,
+          contentKey: contentRecord.change.contentKey,
+        },
+        next: {
+          appLocale: projection.appLocale,
+          contentKey: contentRecord.change.contentKey,
+          publicPath: projection.publicPath,
+        },
+      }),
       scope: { ...publicationScope, snapshots: ["program"] },
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
       ...snapshotPolicyBase("test-program-snapshot-base"),
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
   return { prepared, snapshot };
 }
@@ -81,7 +80,7 @@ function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
     snapshots: invertContentSnapshots(source.manifest.snapshots),
   });
   return makePreparedRollbackRelease({
-    artifacts: () => Stream.empty,
+    artifacts: Stream.empty,
     items: source.items,
     manifest,
     projections: source.projections,
@@ -133,10 +132,8 @@ describe("publication snapshots", () => {
 
   it("stages one manifest before its bounded exact row batch", async () => {
     const { prepared, snapshot } = programRelease;
-    const requests = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        makeSnapshotRequests(prepared).pipe(Stream.runCollect)
-      )
+    const requests = await Effect.runPromise(
+      makeSnapshotRequests(prepared).pipe(Stream.runCollect)
     );
     const [manifest, ...batches] = requests;
 

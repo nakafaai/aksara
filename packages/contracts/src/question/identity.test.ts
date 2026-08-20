@@ -1,4 +1,4 @@
-import { Either, ParseResult, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   QuestionAnswerIdentitySchema,
@@ -33,23 +33,23 @@ const answer = {
 } as const;
 
 /** Formats one expected strict schema failure for message assertions. */
-function formatFailure(result: Either.Either<unknown, ParseResult.ParseError>) {
-  if (Either.isRight(result)) {
+function formatFailure(result: Exit.Exit<unknown, Schema.SchemaError>) {
+  if (Exit.isSuccess(result)) {
     throw new Error("Expected schema decoding to fail.");
   }
-  return ParseResult.TreeFormatter.formatErrorSync(result.left);
+  return String(result.cause);
 }
 
 describe("question body identity", () => {
   it("decodes exact prompt and answer identities", () => {
     expect(
       [prompt, answer].map((identity) =>
-        Schema.decodeUnknownSync(QuestionBodyIdentitySchema)(identity)
+        Schema.decodeSync(QuestionBodyIdentitySchema)(identity)
       )
     ).toEqual([prompt, answer]);
     expect(QuestionBodyKindSchema.literals).toEqual(["question", "answer"]);
     expect(
-      questionKeyParts(Schema.decodeUnknownSync(QuestionKeySchema)(questionKey))
+      questionKeyParts(Schema.decodeSync(QuestionKeySchema)(questionKey))
     ).toEqual({
       countryKey: "indonesia",
       examKey: "snbt",
@@ -61,14 +61,14 @@ describe("question body identity", () => {
     });
     expect(
       questionBankKey(
-        Schema.decodeUnknownSync(QuestionSetKeySchema)(
+        Schema.decodeSync(QuestionSetKeySchema)(
           "question-bank/tryout/germany/abitur/gymnasium/mathematics/foundation-set"
         )
       )
     ).toBe("question-bank/tryout/germany/abitur/gymnasium/mathematics");
     expect(
       questionSetKeyParts(
-        Schema.decodeUnknownSync(QuestionSetKeySchema)(
+        Schema.decodeSync(QuestionSetKeySchema)(
           "question-bank/tryout/germany/abitur/gymnasium/mathematics/foundation-set"
         )
       )
@@ -82,10 +82,10 @@ describe("question body identity", () => {
   });
 
   it("derives body and choice source identities from one grammar", () => {
-    const bodyPath = Schema.decodeUnknownSync(QuestionSourcePathSchema)(
+    const bodyPath = Schema.decodeSync(QuestionSourcePathSchema)(
       `packages/corpus/${questionKey}/answer.id.mdx`
     );
-    const choicePath = Schema.decodeUnknownSync(QuestionSourcePathSchema)(
+    const choicePath = Schema.decodeSync(QuestionSourcePathSchema)(
       `packages/corpus/${questionKey}/choices.ts`
     );
 
@@ -127,75 +127,73 @@ describe("question body identity", () => {
 
     for (const sourcePath of invalidPaths) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionSourcePathSchema)(sourcePath)
-        )
+        Exit.isFailure(Schema.decodeExit(QuestionSourcePathSchema)(sourcePath))
       ).toBe(true);
     }
     expect(
       formatFailure(
-        Schema.decodeUnknownEither(QuestionSourcePathSchema)(invalidPaths[1])
+        Schema.decodeUnknownExit(QuestionSourcePathSchema)(invalidPaths[1])
       )
     ).toContain("Invalid try-out question source path.");
   });
 
   it("rejects malformed question and set keys", () => {
     expect(
-      Schema.decodeUnknownSync(QuestionKeySchema)(
+      Schema.decodeSync(QuestionKeySchema)(
         "question-bank/tryout/germany/abitur/mathematics/foundation-set/question-12"
       )
     ).toBe(
       "question-bank/tryout/germany/abitur/mathematics/foundation-set/question-12"
     );
     expect(
-      Schema.decodeUnknownSync(QuestionSetKeySchema)(
+      Schema.decodeSync(QuestionSetKeySchema)(
         "question-bank/tryout/singapore/a-levels/mathematics/practice-set"
       )
     ).toBe("question-bank/tryout/singapore/a-levels/mathematics/practice-set");
     expect(
       formatFailure(
-        Schema.decodeUnknownEither(QuestionKeySchema)(
+        Schema.decodeExit(QuestionKeySchema)(
           "question-bank/tryout/indonesia/snbt/set-1/question-1"
         )
       )
     ).toContain("Invalid try-out question key.");
     expect(
       formatFailure(
-        Schema.decodeUnknownEither(QuestionSetKeySchema)(
+        Schema.decodeExit(QuestionSetKeySchema)(
           "question-bank/tryout/indonesia/snbt/General-Reasoning/set-1"
         )
       )
     ).toContain("Invalid try-out question-set key.");
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuestionSetKeySchema)(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionSetKeySchema)(
           "other/tryout/indonesia/snbt/general-reasoning/set-1"
         )
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuestionKeySchema)(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionKeySchema)(
           "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-0"
         )
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuestionKeySchema)(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionKeySchema)(
           "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-9999999999999999"
         )
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuestionKeySchema)(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionKeySchema)(
           "question-bank/tryout/indonesia/snbt/general-reasoning/question-1/question-2"
         )
       )
     ).toBe(true);
     expect(
-      Either.isLeft(Schema.decodeUnknownEither(QuestionKeySchema)("invalid"))
+      Exit.isFailure(Schema.decodeExit(QuestionKeySchema)("invalid"))
     ).toBe(true);
   });
 
@@ -209,15 +207,13 @@ describe("question body identity", () => {
 
     for (const identity of invalid) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionPromptIdentitySchema)(identity)
+        Exit.isFailure(
+          Schema.decodeExit(QuestionPromptIdentitySchema)(identity)
         )
       ).toBe(true);
     }
     expect(
-      String(
-        Schema.decodeUnknownEither(QuestionPromptIdentitySchema)(invalid[0])
-      )
+      String(Schema.decodeUnknownExit(QuestionPromptIdentitySchema)(invalid[0]))
     ).toContain(
       "Expected question body, peer, set, and number identities to agree."
     );
@@ -233,15 +229,13 @@ describe("question body identity", () => {
 
     for (const identity of invalid) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionAnswerIdentitySchema)(identity)
+        Exit.isFailure(
+          Schema.decodeExit(QuestionAnswerIdentitySchema)(identity)
         )
       ).toBe(true);
     }
     expect(
-      String(
-        Schema.decodeUnknownEither(QuestionAnswerIdentitySchema)(invalid[0])
-      )
+      String(Schema.decodeUnknownExit(QuestionAnswerIdentitySchema)(invalid[0]))
     ).toContain(
       "Expected answer body, peer, set, and number identities to agree."
     );
@@ -249,8 +243,8 @@ describe("question body identity", () => {
 
   it("rejects invented identity fields under strict decoding", () => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuestionBodyIdentitySchema, {
+      Exit.isFailure(
+        Schema.decodeUnknownExit(QuestionBodyIdentitySchema, {
           onExcessProperty: "error",
         })({ ...prompt, questionLanguage: "en" })
       )

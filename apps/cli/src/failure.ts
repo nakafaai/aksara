@@ -2,7 +2,7 @@ import {
   PublicationRejectedSchema,
   PublicationRejectionCodeSchema,
 } from "@nakafa/aksara-contracts/transport/failure";
-import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import { PublicationOperationSchema } from "@nakafa/aksara-contracts/transport/request";
 import {
   PublicationTargetTransportError,
   PublicationTransportDetailSchema,
@@ -11,7 +11,7 @@ import { Option, Predicate, Schema } from "effect";
 import { NakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 
-const ProductionStageSchema = Schema.Literal(
+const ProductionStageSchema = Schema.Literals([
   "abort",
   "accept",
   "cleanup",
@@ -22,14 +22,10 @@ const ProductionStageSchema = Schema.Literal(
   "renderer",
   "recover",
   "state",
-  "target"
-);
+  "target",
+]);
 export type ProductionStage = typeof ProductionStageSchema.Type;
-const ActivationPhaseSchema = Schema.Literal("cache", "preflight");
-const PublicationOperationSchema = Schema.pluck(
-  PublicationRequestSchema,
-  "operation"
-);
+const ActivationPhaseSchema = Schema.Literals(["cache", "preflight"]);
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 
 /** Sanitized production failure emitted by the outer CLI boundary. */
@@ -41,7 +37,7 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
     environmentVariable: Schema.optional(
       ProductionEnvironmentError.fields.variable
     ),
-    failure: Schema.NonEmptyTrimmedString,
+    failure: Schema.Trimmed.check(Schema.isNonEmpty()),
     phase: Schema.optional(ActivationPhaseSchema),
     rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
     stage: ProductionStageSchema,
@@ -72,7 +68,7 @@ function environmentEvidence(error: unknown) {
 
 /** Extracts only a bounded tagged-error identity, never nested secret data. */
 function failureName(error: unknown) {
-  if (!Predicate.isRecord(error)) {
+  if (!Predicate.isObject(error)) {
     return "UnknownFailure";
   }
   const tag = Reflect.get(error, "_tag");
@@ -84,7 +80,7 @@ function failureName(error: unknown) {
 /** Preserves only the safe activation phase needed for operator recovery. */
 function activationPhase(error: unknown) {
   if (
-    !Predicate.isRecord(error) ||
+    !Predicate.isObject(error) ||
     Reflect.get(error, "_tag") !== "PublicationActivationError"
   ) {
     return;
@@ -99,7 +95,7 @@ function targetEvidence(error: unknown) {
     return { targetStage: error.stage, transport: error.detail };
   }
   if (
-    !Predicate.isRecord(error) ||
+    !Predicate.isObject(error) ||
     Reflect.get(error, "_tag") !== "PublicationTargetRejectedError"
   ) {
     return {};

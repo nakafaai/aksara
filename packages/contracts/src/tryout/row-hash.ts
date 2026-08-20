@@ -9,7 +9,7 @@ import { compareCodeUnits } from "#contracts/text/order";
 export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
   "TryoutDigestError",
   {
-    code: Schema.Literal("integrity", "order"),
+    code: Schema.Literals(["integrity", "order"]),
     identity: Schema.String,
   }
 ) {}
@@ -79,7 +79,7 @@ export const digestTryoutRecords = Effect.fn(
 }) {
   const state = yield* input.records.pipe(
     Stream.runFoldEffect(
-      new TryoutDigestState(input.domain),
+      () => new TryoutDigestState(input.domain),
       (current, record) => {
         const canonical = input.canonicalize(record.row);
         return updateDigest(

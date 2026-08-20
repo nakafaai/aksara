@@ -111,7 +111,7 @@ const multiple = require("first", "second");
     ]);
   });
 
-  it("allows the shared testing package only from declared Vitest configs", () => {
+  it("allows the shared testing package only from declared test modules", () => {
     const resolveIdentity = createWorkspaceIdentityResolver(
       createManifestReader({
         "packages/compiler/package.json": {
@@ -125,6 +125,13 @@ const multiple = require("first", "second");
       importViolations(
         "packages/compiler/vitest.config.ts",
         'import config from "@nakafa/testing";',
+        resolveIdentity
+      )
+    ).toEqual([]);
+    expect(
+      importViolations(
+        "packages/compiler/src/compile.test.ts",
+        'import { it } from "@nakafa/testing/effect";',
         resolveIdentity
       )
     ).toEqual([]);
@@ -152,7 +159,7 @@ const multiple = require("first", "second");
         missingDependency
       )
     ).toEqual([
-      "packages/compiler/vitest.config.ts:1 @nakafa/testing: test config dependency is absent from package devDependencies",
+      "packages/compiler/vitest.config.ts:1 @nakafa/testing: test dependency is absent from package devDependencies",
     ]);
   });
 

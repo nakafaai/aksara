@@ -29,8 +29,8 @@ for clarity, measurable scale, and safe releases.
   caller.
 - Use the documented stable `Context.Tag` plus `Layer` pattern for dependency
   contracts. `Effect.Service` is an optional convenience only when a module
-  genuinely owns a default implementation and Aksara deliberately accepts its
-  experimental Effect 3.22 API.
+  genuinely owns a default implementation. Follow the matching vendored
+  Effect v4 source and its native Interfaces.
 - Keep authored MDX executable and trusted. Compile it ahead of time into a
   signed `function-body` artifact. Nakafa may evaluate only reviewed,
   source-controlled, hash-verified artifacts through official server-only

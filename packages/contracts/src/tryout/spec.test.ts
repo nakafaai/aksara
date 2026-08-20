@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
@@ -33,14 +33,14 @@ describe("try-out shared contracts", () => {
       [{ ...valid[0], optionKey: "option-2" }],
     ]) {
       expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(TryoutChoiceListSchema)(candidate)
+        Exit.isFailure(
+          Schema.decodeUnknownExit(TryoutChoiceListSchema)(candidate)
         )
       ).toBe(true);
     }
     expect(
       String(
-        Schema.decodeUnknownEither(TryoutChoiceListSchema)([
+        Schema.decodeUnknownExit(TryoutChoiceListSchema)([
           { ...valid[0], isCorrect: false },
         ])
       )
@@ -50,20 +50,18 @@ describe("try-out shared contracts", () => {
   });
 
   it("keeps revision and durable content hashes bounded", () => {
-    expect(
-      Schema.decodeUnknownSync(TryoutSourceRevisionSchema)("2026-08-12")
-    ).toBe("2026-08-12");
-    expect(
-      Schema.decodeUnknownSync(TryoutContentHashSchema)("a".repeat(64))
-    ).toBe("a".repeat(64));
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(TryoutContentHashSchema)("a".repeat(63))
-      )
-    ).toBe(true);
-    const invalidKey = Schema.decodeUnknownEither(TryoutKeySchema)("Not_Key");
-    expect(Either.isLeft(invalidKey) ? String(invalidKey.left) : "").toContain(
-      "Invalid try-out key."
+    expect(Schema.decodeSync(TryoutSourceRevisionSchema)("2026-08-12")).toBe(
+      "2026-08-12"
     );
+    expect(Schema.decodeSync(TryoutContentHashSchema)("a".repeat(64))).toBe(
+      "a".repeat(64)
+    );
+    expect(
+      Exit.isFailure(Schema.decodeExit(TryoutContentHashSchema)("a".repeat(63)))
+    ).toBe(true);
+    const invalidKey = Schema.decodeExit(TryoutKeySchema)("Not_Key");
+    expect(
+      Exit.isFailure(invalidKey) ? String(invalidKey.cause) : ""
+    ).toContain("Invalid try-out key.");
   });
 });

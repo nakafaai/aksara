@@ -1,8 +1,3 @@
-import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "@effect/platform";
 import type { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
@@ -11,6 +6,11 @@ import {
   readText,
 } from "@nakafa/aksara-utilities/http/response";
 import { Effect, type Redacted } from "effect";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientRequest,
+} from "effect/unstable/http";
 import { makeNakafaAppError } from "#cli/app-error";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;

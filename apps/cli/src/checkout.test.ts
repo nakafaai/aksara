@@ -1,8 +1,7 @@
 import { mkdirSync, realpathSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import { Effect } from "effect";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { findAksaraRoot, resolveNakafaRoot } from "#cli/checkout";
 import { runNode } from "#test/effect";
 import { makeRepositoryTracker } from "#test/real";
@@ -73,11 +72,11 @@ describe("preview checkout resolution", () => {
   });
 
   it("maps an identified Aksara root realpath failure", async () => {
-    const failure = new PlatformError.SystemError({
+    const failure = PlatformError.systemError({
+      _tag: "Unknown",
       method: "realPath",
       module: "FileSystem",
       pathOrDescriptor: "/virtual/aksara",
-      reason: "Unknown",
     });
     const fileLayer = FileSystem.layerNoop({
       exists: () => Effect.succeed(true),

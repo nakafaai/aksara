@@ -9,9 +9,9 @@ import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 /** Maximum route rollback records returned by one target page. */
 export const MAX_ROUTE_PAGE_RECORDS = 100;
 
-const RouteCursorSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.greaterThanOrEqualTo(-1)
+const RouteCursorSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(-1))
 );
 
 /** One signed route mutation paired with its exact prior owner. */
@@ -19,15 +19,16 @@ export const RouteRollbackRecordSchema = Schema.Struct({
   current: ContentRouteItemSchema,
   priorContentKey: Schema.NullOr(ContentKeySchema),
 }).pipe(
-  Schema.filter(
-    (record) =>
-      record.current.change.operation === "delete"
-        ? record.priorContentKey !== null
-        : record.priorContentKey !== record.current.change.contentKey,
-    {
-      message: () =>
-        "Expected a route change to alter the prior binding owner.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      (record) =>
+        record.current.change.operation === "delete"
+          ? record.priorContentKey !== null
+          : record.priorContentKey !== record.current.change.contentKey,
+      {
+        message: "Expected a route change to alter the prior binding owner.",
+      }
+    )
   )
 );
 export type RouteRollbackRecord = typeof RouteRollbackRecordSchema.Type;
@@ -35,9 +36,11 @@ export type RouteRollbackRecord = typeof RouteRollbackRecordSchema.Type;
 /** Indexed request for one bounded route rollback page. */
 export const RoutePageRequestSchema = Schema.Struct({
   afterIndex: RouteCursorSchema,
-  limit: Schema.Number.pipe(
-    Schema.int(),
-    Schema.between(1, MAX_ROUTE_PAGE_RECORDS)
+  limit: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(
+      Schema.isBetween({ maximum: MAX_ROUTE_PAGE_RECORDS, minimum: 1 })
+    )
   ),
   rollbackOf: ReleaseIdSchema,
   rollbackOfManifestHash: Sha256HashSchema,
@@ -72,15 +75,20 @@ export const RoutePageSchema = Schema.Struct({
   done: Schema.Boolean,
   nextIndex: RouteCursorSchema,
   records: Schema.Array(RouteRollbackRecordSchema).pipe(
-    Schema.maxItems(MAX_ROUTE_PAGE_RECORDS)
+    Schema.check(Schema.isMaxLength(MAX_ROUTE_PAGE_RECORDS))
   ),
   rollbackOf: ReleaseIdSchema,
   rollbackOfManifestHash: Sha256HashSchema,
-  total: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  total: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
 }).pipe(
-  Schema.filter(hasCoherentRoutePage, {
-    message: () =>
-      "Expected one contiguous route page with coherent progress evidence.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentRoutePage, {
+      message:
+        "Expected one contiguous route page with coherent progress evidence.",
+    })
+  )
 );
 export type RoutePage = typeof RoutePageSchema.Type;

@@ -184,13 +184,13 @@ export function historicalTryoutInventory(
   };
 }
 
-const retainedCatalog = Schema.decodeUnknownSync(
+const retainedCatalog = Schema.decodeSync(
   HistoricalTryoutCatalogEnvelopeSchema
 )(retainedTryoutCatalogRow, { onExcessProperty: "error" });
-const retainedPlacement = Schema.decodeUnknownSync(
+const retainedPlacement = Schema.decodeSync(
   HistoricalTryoutPlacementEnvelopeSchema
 )(retainedTryoutPlacementRow, { onExcessProperty: "error" });
-const retainedPlacementWithHash = Schema.decodeUnknownSync(
+const retainedPlacementWithHash = Schema.decodeSync(
   HistoricalTryoutPlacementEnvelopeSchema
 )(retainedTryoutPlacementWithHashRow, { onExcessProperty: "error" });
 

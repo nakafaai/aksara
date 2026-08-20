@@ -1,6 +1,5 @@
 import { parseArgs } from "node:util";
-import { FileSystem } from "@effect/platform";
-import { Effect } from "effect";
+import { Effect, FileSystem } from "effect";
 import { verifyArchive, writeOutputs } from "#scripts/release-archive";
 import {
   decideArchive,

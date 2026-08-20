@@ -1,9 +1,9 @@
 import { resolve } from "node:path";
 
 import {
-  NodeContext,
   NodeHttpClient,
   NodeRuntime,
+  NodeServices,
 } from "@effect/platform-node";
 import { syncGermanQuranSources } from "@nakafa/aksara-corpus/quran/source/sync";
 import { Effect } from "effect";
@@ -20,6 +20,6 @@ export const makeQuranSourceSyncProgram = Effect.fn(
 
 NodeRuntime.runMain(
   Effect.scoped(makeQuranSourceSyncProgram()).pipe(
-    Effect.provide([NodeContext.layer, NodeHttpClient.layer])
+    Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
   )
 );

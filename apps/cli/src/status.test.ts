@@ -1,7 +1,7 @@
-import type { HttpClientRequest } from "@effect/platform";
-import { HttpClient } from "@effect/platform";
-import { ConfigProvider, Effect, HashMap, Logger } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { ConfigProvider, Effect, Logger, References } from "effect";
+import type { HttpClientRequest } from "effect/unstable/http";
+import { HttpClient } from "effect/unstable/http";
 import { runStatusCommand } from "#cli/status";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";
@@ -34,21 +34,24 @@ function statusResponse(
 
 /** Runs status through isolated Config and HTTP capabilities. */
 function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
-  const program = runStatusCommand().pipe(
-    Effect.withConfigProvider(ConfigProvider.fromMap(statusValues)),
+  const program = runStatusCommand.pipe(
+    Effect.provideService(
+      ConfigProvider.ConfigProvider,
+      ConfigProvider.fromUnknown(Object.fromEntries(statusValues))
+    ),
     Effect.provideService(HttpClient.HttpClient, client)
   );
   if (logs === undefined) {
     return Effect.runPromise(program);
   }
-  const logger = Logger.make(({ annotations, message }) => {
+  const logger = Logger.make(({ fiber, message }) => {
     logs.push({
-      annotations: Object.fromEntries(HashMap.toEntries(annotations)),
+      annotations: { ...fiber.getRef(References.CurrentLogAnnotations) },
       message,
     });
   });
   return Effect.runPromise(
-    program.pipe(Effect.provide(Logger.replace(Logger.defaultLogger, logger)))
+    program.pipe(Effect.provide(Logger.layer([logger])))
   );
 }
 
@@ -80,8 +83,11 @@ describe("status command", () => {
 
     await expect(
       Effect.runPromise(
-        runStatusCommand().pipe(
-          Effect.withConfigProvider(ConfigProvider.fromMap(statusValues)),
+        runStatusCommand.pipe(
+          Effect.provideService(
+            ConfigProvider.ConfigProvider,
+            ConfigProvider.fromUnknown(Object.fromEntries(statusValues))
+          ),
           Effect.provideService(HttpClient.HttpClient, captured.client),
           Effect.flip
         )

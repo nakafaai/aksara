@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import { hash as manifestHash, releaseId } from "#contracts/test/request";
 import { evidence, receipt, successes } from "#contracts/test/response";
 import {
@@ -9,8 +9,8 @@ import {
 
 /** Strictly checks one transport response without allowing extra properties. */
 function accepts(input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(PublicationResponseSchema)(input, {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(PublicationResponseSchema)(input, {
       onExcessProperty: "error",
     })
   );
@@ -71,14 +71,14 @@ describe("publication responses", () => {
         },
       })
     ).toBe(false);
-    const missingStage = Schema.decodeUnknownEither(PublicationResponseSchema)({
+    const missingStage = Schema.decodeExit(PublicationResponseSchema)({
       ok: true,
       operation: "stageRelease",
       value: { manifestHash, phase: "missing", releaseId },
     });
-    expect(Either.isLeft(missingStage)).toBe(true);
-    if (Either.isLeft(missingStage)) {
-      expect(String(missingStage.left)).toContain(
+    expect(Exit.isFailure(missingStage)).toBe(true);
+    if (Exit.isFailure(missingStage)) {
+      expect(String(missingStage.cause)).toContain(
         "Expected stageRelease to return a stored release status."
       );
     }
@@ -103,7 +103,7 @@ describe("publication responses", () => {
     expect(error._tag).toBe("ContractDecodeError");
   });
   it("rejects verification evidence with contradictory staged counts", () => {
-    const invalidHeads = Schema.decodeUnknownEither(PublicationResponseSchema)({
+    const invalidHeads = Schema.decodeExit(PublicationResponseSchema)({
       ok: true,
       operation: "verify",
       value: {
@@ -111,9 +111,9 @@ describe("publication responses", () => {
         phase: "verified",
       },
     });
-    expect(Either.isLeft(invalidHeads)).toBe(true);
-    if (Either.isLeft(invalidHeads)) {
-      expect(String(invalidHeads.left)).toContain(
+    expect(Exit.isFailure(invalidHeads)).toBe(true);
+    if (Exit.isFailure(invalidHeads)) {
+      expect(String(invalidHeads.cause)).toContain(
         "Expected staged head and artifact counts to match the release items."
       );
     }
@@ -145,14 +145,14 @@ describe("publication responses", () => {
     ).toBe(false);
   });
   it("rejects activation receipts with contradictory staged counts", () => {
-    const invalid = Schema.decodeUnknownEither(PublicationResponseSchema)({
+    const invalid = Schema.decodeUnknownExit(PublicationResponseSchema)({
       ok: true,
       operation: "activate",
       value: { ...receipt, activatedHeads: 0 },
     });
-    expect(Either.isLeft(invalid)).toBe(true);
-    if (Either.isLeft(invalid)) {
-      expect(String(invalid.left)).toContain(
+    expect(Exit.isFailure(invalid)).toBe(true);
+    if (Exit.isFailure(invalid)) {
+      expect(String(invalid.cause)).toContain(
         "Expected activated head and artifact counts to match staged items."
       );
     }

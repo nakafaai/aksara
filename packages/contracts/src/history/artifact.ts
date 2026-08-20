@@ -134,7 +134,7 @@ function verifyHistoricalArtifactBytes(
 export const authenticateHistoricalArtifact = Effect.fn(
   "AksaraContracts.authenticateHistoricalArtifact"
 )(function* (input: unknown) {
-  const artifact = yield* Schema.decodeUnknown(
+  const artifact = yield* Schema.decodeUnknownEffect(
     HistoricalSignedContentArtifactSchema
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new StoredArtifactDecodeError())

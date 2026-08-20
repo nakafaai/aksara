@@ -73,20 +73,20 @@ export function selectRollbackState(
 
 /** Replays canonical items owned by one transition side. */
 export function rollbackItemStream(
-  records: () => Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
+  records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
   side: RollbackRecordSide
 ) {
-  return records().pipe(
+  return records.pipe(
     Stream.map((record) => selectRollbackState(record, side).item)
   );
 }
 
 /** Replays material projections owned by one transition side. */
 export function rollbackProjectionStream(
-  records: () => Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
+  records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
   side: RollbackRecordSide
 ) {
-  return records().pipe(
+  return records.pipe(
     Stream.map((record) => selectRollbackState(record, side)),
     Stream.filter(isDerivedRollbackUpsert),
     Stream.map((state) => state.projection)
@@ -95,11 +95,11 @@ export function rollbackProjectionStream(
 
 /** Replays compact snapshots under the selected release identity. */
 export function rollbackSnapshotStream(
-  records: () => Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
+  records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>,
   releaseId: ReleaseId,
   side: RollbackRecordSide
 ) {
-  return records().pipe(
+  return records.pipe(
     Stream.map((record) => {
       const state = selectRollbackState(record, side);
       return RollbackSnapshotEntrySchema.make({
@@ -112,13 +112,13 @@ export function rollbackSnapshotStream(
 }
 
 type VerifyRollbackProofError =
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof verifyContentReleaseItems<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof verifyContentProjections<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof verifyRollbackSnapshot<ReplaySpoolError, never>>
     >;
 
@@ -126,10 +126,7 @@ type VerifyRollbackProof = (input: {
   readonly manifest: ContentReleaseManifest;
   readonly mode: RollbackProofMode;
   /** Replays authenticated rollback records for every proof pass. */
-  readonly records: () => Stream.Stream<
-    DerivedRollbackRecord,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>;
 }) => Effect.Effect<void, VerifyRollbackProofError>;
 
 /** Authenticates every target transition against one signed proof release. */
@@ -139,10 +136,7 @@ export const verifyRollbackProof: VerifyRollbackProof = Effect.fn(
   readonly manifest: ContentReleaseManifest;
   readonly mode: RollbackProofMode;
   /** Replays authenticated rollback records for every proof pass. */
-  readonly records: () => Stream.Stream<
-    DerivedRollbackRecord,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>;
 }) {
   const side = input.mode === "source" ? "current" : "prior";
   const snapshotSide = input.mode === "source" ? "prior" : "current";

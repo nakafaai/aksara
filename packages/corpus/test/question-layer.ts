@@ -1,8 +1,7 @@
 import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { Effect, Layer } from "effect";
+import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
 import { questionChoiceOverlayLocale } from "#corpus/question-bank/choice-locale";
 import {
   indexQuestionBanks,
@@ -204,11 +203,11 @@ export function makeQuestionLayer(
 
 /** Creates one stable missing-path error for the controlled filesystem. */
 function missing(method: "readDirectory" | "readFileString", path: string) {
-  return new PlatformError.SystemError({
+  return PlatformError.systemError({
+    _tag: "NotFound",
     method,
     module: "FileSystem",
     pathOrDescriptor: path,
-    reason: "NotFound",
   });
 }
 

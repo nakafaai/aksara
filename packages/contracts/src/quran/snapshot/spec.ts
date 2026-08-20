@@ -16,14 +16,18 @@ import {
 /** Semantic wire identity of the current localized Quran snapshot. */
 export const QURAN_SNAPSHOT_FORMAT = "localized-quran-snapshot";
 
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
-const SourceBytesSchema = Schema.Int.pipe(Schema.positive());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
+const SourceBytesSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThan(0))
+);
 
 /** Production publication status derived from reviewed provenance records. */
-export const QuranProvenanceStatusSchema = Schema.Literal(
+export const QuranProvenanceStatusSchema = Schema.Literals([
   "approved",
-  "blocked"
-);
+  "blocked",
+]);
 export type QuranProvenanceStatus = typeof QuranProvenanceStatusSchema.Type;
 
 const QuranSnapshotFactFields = {
@@ -42,7 +46,9 @@ const QuranSnapshotFactFields = {
   sourceDigest: Sha256HashSchema,
   sourceFileCount: CountSchema,
   surahCount: CountSchema,
-  tafsirLocales: Schema.Array(Schema.Literal("id")).pipe(Schema.maxItems(1)),
+  tafsirLocales: Schema.Array(Schema.Literal("id")).pipe(
+    Schema.check(Schema.isMaxLength(1))
+  ),
   verseCount: CountSchema,
 };
 
@@ -90,13 +96,17 @@ function hasCoherentProjectionCounts(input: {
 export const QuranSnapshotFactsSchema = Schema.Struct(
   QuranSnapshotFactFields
 ).pipe(
-  Schema.filter(hasCompleteSnapshotCounts, {
-    message: () => "Expected complete active-locale Quran source counts.",
-  }),
-  Schema.filter(hasCoherentProjectionCounts, {
-    message: () =>
-      "Expected Quran runtime and search counts to cover every projection.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteSnapshotCounts, {
+      message: "Expected complete active-locale Quran source counts.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentProjectionCounts, {
+      message:
+        "Expected Quran runtime and search counts to cover every projection.",
+    })
+  )
 );
 export type QuranSnapshotFacts = typeof QuranSnapshotFactsSchema.Type;
 
@@ -106,12 +116,16 @@ export const QuranSnapshotSchema = Schema.Struct({
   format: Schema.Literal(QURAN_SNAPSHOT_FORMAT),
   snapshotId: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCompleteSnapshotCounts, {
-    message: () => "Expected complete active-locale Quran source counts.",
-  }),
-  Schema.filter(hasCoherentProjectionCounts, {
-    message: () =>
-      "Expected Quran runtime and search counts to cover every projection.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteSnapshotCounts, {
+      message: "Expected complete active-locale Quran source counts.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentProjectionCounts, {
+      message:
+        "Expected Quran runtime and search counts to cover every projection.",
+    })
+  )
 );
 export type QuranSnapshot = typeof QuranSnapshotSchema.Type;

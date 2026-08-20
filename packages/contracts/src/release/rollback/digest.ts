@@ -23,8 +23,14 @@ export class RollbackSnapshotHashError extends Schema.TaggedError<RollbackSnapsh
 export class RollbackSnapshotCountMismatchError extends Schema.TaggedError<RollbackSnapshotCountMismatchError>()(
   "RollbackSnapshotCountMismatchError",
   {
-    actualCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    expectedCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    expectedCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -106,8 +112,10 @@ export const digestRollbackSnapshot = Effect.fn(
 ) {
   const initial = yield* createRollbackSnapshotDigest(releaseId);
   const state = yield* entries.pipe(
-    Stream.runFoldEffect(initial, (current, entry) =>
-      updateRollbackSnapshotDigest(releaseId, current, entry)
+    Stream.runFoldEffect(
+      () => initial,
+      (current, entry) =>
+        updateRollbackSnapshotDigest(releaseId, current, entry)
     )
   );
   const digest = yield* finalizeRollbackSnapshotDigest(releaseId, state);

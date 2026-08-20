@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
-import { isRecord } from "effect/Predicate";
+import { isObject } from "effect/Predicate";
 import ts from "typescript";
-
+import { effectTestAdapterViolations } from "#scripts/effect-tests";
 import {
   enforceViolations,
   trackedFiles,
@@ -17,6 +17,7 @@ const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
 const IMPORT_WILDCARD_PATTERN = /\*$/u;
 const VITEST_CONFIG_PATTERN = /\/vitest\.config\.ts$/u;
+const TEST_MODULE_PATTERN = /(?:^|\/)(?:test\/.*|[^/]+\.test\.ts)$/u;
 const WORKSPACE_MANIFEST_PATTERN = /^(?:apps|packages)\/[^/]+\/package\.json$/u;
 const TESTING_PACKAGE = "@nakafa/testing";
 
@@ -124,7 +125,7 @@ function moduleSpecifiers(
 
 /** Returns declared package names from one manifest dependency section. */
 function dependencyNames(input: unknown): readonly string[] {
-  return isRecord(input) ? Object.keys(input) : [];
+  return isObject(input) ? Object.keys(input) : [];
 }
 
 /** Creates one cached workspace identity resolver from package manifests. */
@@ -146,7 +147,7 @@ export function createWorkspaceIdentityResolver(
     const manifest: unknown = JSON.parse(
       readManifest(`${workspaceRoot}/${workspace}/package.json`)
     );
-    if (!isRecord(manifest) || typeof manifest.name !== "string") {
+    if (!isObject(manifest) || typeof manifest.name !== "string") {
       throw new Error(
         `${workspaceRoot}/${workspace}/package.json has no package name`
       );
@@ -157,7 +158,7 @@ export function createWorkspaceIdentityResolver(
         `${workspaceRoot}/${workspace} has no import-boundary policy`
       );
     }
-    const imports = isRecord(manifest.imports)
+    const imports = isObject(manifest.imports)
       ? Object.keys(manifest.imports)
       : [];
     const identity = {
@@ -209,10 +210,13 @@ function importViolation(
     return;
   }
   const packageName = specifier.split("/").slice(0, 2).join("/");
-  if (packageName === TESTING_PACKAGE && VITEST_CONFIG_PATTERN.test(file)) {
+  if (
+    packageName === TESTING_PACKAGE &&
+    (VITEST_CONFIG_PATTERN.test(file) || TEST_MODULE_PATTERN.test(file))
+  ) {
     return identity.developmentDependencies.has(packageName)
       ? undefined
-      : "test config dependency is absent from package devDependencies";
+      : "test dependency is absent from package devDependencies";
   }
   if (!identity.allowedDependencies.has(packageName)) {
     return "workspace dependency violates the architecture graph";
@@ -253,6 +257,12 @@ enforceViolations(
   "TypeScript imports must respect workspace aliases",
   typescriptFiles().flatMap((file) =>
     importViolations(file, readFileSync(file, "utf8"), repositoryIdentity)
+  )
+);
+enforceViolations(
+  "Effect runtime tests must use the shared Effect Vitest adapter",
+  typescriptFiles().flatMap((file) =>
+    effectTestAdapterViolations(file, readFileSync(file, "utf8"))
   )
 );
 const workspaceSourceCondition = sourceConditionFromConfig(

@@ -8,8 +8,8 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   canonicalizeProjectionBatch,
   makeProjectionBatches,
@@ -21,7 +21,7 @@ const releaseId = ReleaseIdSchema.make("test-release-projections");
 /** Builds one unmistakably test-only material projection. */
 function projection(index: number, title = "Test Projection") {
   const appLocale = AppLocaleSchema.make("en");
-  return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  return Schema.decodeSync(MaterialLessonProjectionSchema)({
     appLocale,
     artifactLocale: "en",
     contentKey: `test:projection-${index.toString().padStart(4, "0")}`,

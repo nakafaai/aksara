@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { PublicPathSchema } from "#contracts/ids";
 import {
@@ -23,11 +23,11 @@ import {
 } from "#contracts/test/preview";
 
 const repositories = {
-  aksara: Schema.decodeUnknownSync(PreviewRepositorySchema)({
+  aksara: Schema.decodeSync(PreviewRepositorySchema)({
     dirty: true,
     sha: "a".repeat(40),
   }),
-  nakafa: Schema.decodeUnknownSync(PreviewRepositorySchema)({
+  nakafa: Schema.decodeSync(PreviewRepositorySchema)({
     dirty: false,
     sha: "b".repeat(40),
   }),
@@ -62,8 +62,8 @@ function manifestBase(document: typeof testArticleDocument) {
 
 /** Reports whether strict manifest decoding rejects one candidate. */
 function rejectsManifest(candidate: unknown) {
-  return Either.isLeft(
-    Schema.decodeUnknownEither(LocalPreviewManifestSchema, {
+  return Exit.isFailure(
+    Schema.decodeUnknownExit(LocalPreviewManifestSchema, {
       onExcessProperty: "error",
     })(candidate)
   );
@@ -166,9 +166,9 @@ describe("local preview manifest", () => {
       status: "ready",
     } as const;
 
-    expect(
-      Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
-    ).toEqual(manifest);
+    expect(Schema.decodeSync(LocalPreviewManifestSchema)(manifest)).toEqual(
+      manifest
+    );
     expect(
       rejectsManifest({
         ...manifest,
@@ -208,10 +208,10 @@ describe("local preview manifest", () => {
 
     expect(invalid.every(rejectsManifest)).toBe(true);
     expect(
-      String(Schema.decodeUnknownEither(LocalPreviewManifestSchema)(invalid[1]))
+      String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[1]))
     ).toContain("Expected at most two preview artifacts.");
     expect(
-      String(Schema.decodeUnknownEither(LocalPreviewManifestSchema)(invalid[4]))
+      String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[4]))
     ).toContain("Expected the artifact path to match its signed hash.");
   });
 
@@ -266,7 +266,7 @@ describe("local preview manifest", () => {
     ).toBe(true);
     expect(
       String(
-        Schema.decodeUnknownEither(LocalPreviewManifestSchema)({
+        Schema.decodeUnknownExit(LocalPreviewManifestSchema)({
           ...cases[2],
           format: LOCAL_PREVIEW_FORMAT,
           rendererManifestHash: `sha256:${"a".repeat(64)}`,
@@ -293,8 +293,8 @@ describe("local preview manifest", () => {
 
     expect(Schema.decodeUnknownSync(PreviewEventSchema)(event)).toEqual(event);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(PreviewEventSchema, {
+      Exit.isFailure(
+        Schema.decodeUnknownExit(PreviewEventSchema, {
           onExcessProperty: "error",
         })({ ...event, document: testArticleDocument })
       )

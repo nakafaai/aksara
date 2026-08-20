@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import type {
@@ -25,6 +24,7 @@ import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spe
 import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import {
   readCleanAksaraRevision,
@@ -76,12 +76,10 @@ type RollbackPreparationInput =
       readonly kind: "rebuild";
     });
 
-type PreparedGit = Effect.Effect.Success<
+type PreparedGit = Effect.Success<
   ReturnType<typeof prepareContentRelease<unknown, never>>
 >;
-type PreparedRollback = Effect.Effect.Success<
-  ReturnType<typeof prepareRollback>
->;
+type PreparedRollback = Effect.Success<ReturnType<typeof prepareRollback>>;
 type PreparationServices =
   | ContentVerificationKeyResolver
   | ExactProcess
@@ -192,15 +190,14 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     const snapshots =
       input.scope.snapshots.length === 0
         ? {
-            manifests: () => Stream.empty,
-            rows: () => Stream.empty,
+            manifests: Stream.empty,
+            rows: Stream.empty,
           }
         : yield* prepareReleaseSnapshots({
             checkoutRoot: input.checkoutRoot,
             families: input.scope.snapshots,
             previousSnapshots: base?.snapshots ?? null,
-            questionHeads: () =>
-              catalog.result().pipe(Stream.filter(isQuestionHead)),
+            questionHeads: catalog.result.pipe(Stream.filter(isQuestionHead)),
             rendererManifest,
           });
     const prepared = yield* prepareContentRelease({

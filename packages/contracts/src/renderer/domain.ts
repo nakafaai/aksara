@@ -16,5 +16,5 @@ export const RENDERER_DOMAINS = [
 ] as const;
 
 /** Exact route-domain identity carried by authored and compiled content. */
-export const RendererDomainSchema = Schema.Literal(...RENDERER_DOMAINS);
+export const RendererDomainSchema = Schema.Literals(RENDERER_DOMAINS);
 export type RendererDomain = typeof RendererDomainSchema.Type;

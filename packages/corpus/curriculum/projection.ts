@@ -51,7 +51,7 @@ export const ProjectedCurriculumNodeSchema = Schema.Struct({
   materialCard: Schema.optional(LocalizedCurriculumMaterialCardMapSchema),
   materialDomain: Schema.optional(MaterialDomainSchema),
   materialKeys: Schema.Array(MaterialKeySchema),
-  order: Schema.Int.pipe(Schema.nonNegative()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   parentKey: Schema.optional(CurriculumNodeKeySchema),
   path: Schema.NonEmptyArray(CurriculumPathNodeSchema),
   translations: LocalizedCurriculumNodeTranslationMapSchema,
@@ -111,7 +111,7 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
     const pending: PendingCurriculumNode[] = [...curriculum.tree]
       .reverse()
       .map((node) => ({ ancestors: [], inheritedDomain: undefined, node }));
-    while (EffectArray.isNonEmptyArray(pending)) {
+    while (EffectArray.isArrayNonEmpty(pending)) {
       const current = EffectArray.lastNonEmpty(pending);
       pending.pop();
       const { inheritedDomain, node } = current;

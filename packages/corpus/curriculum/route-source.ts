@@ -10,7 +10,7 @@ import { Effect, Schema } from "effect";
 export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
   "CurriculumRouteError",
   {
-    code: Schema.Literal("curriculum", "program", "translation"),
+    code: Schema.Literals(["curriculum", "program", "translation"]),
     programKey: LearningProgramKeySchema,
     value: Schema.String,
   }

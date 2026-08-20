@@ -1,7 +1,8 @@
 // @vitest-environment node
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { invertContentSnapshots } from "#contracts/release/snapshot/spec";

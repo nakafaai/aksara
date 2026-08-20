@@ -26,13 +26,13 @@ function hasSafeQuestionNumber(segment: string) {
 
 /** Canonical terminal directory identity for one numbered question. */
 export const QuestionSegmentSchema = Schema.String.pipe(
-  Schema.pattern(QUESTION_NUMBER_PATTERN),
-  Schema.filter(hasSafeQuestionNumber)
+  Schema.check(Schema.isPattern(QUESTION_NUMBER_PATTERN)),
+  Schema.check(Schema.makeFilter(hasSafeQuestionNumber))
 );
 const isQuestionSegment = Schema.is(QuestionSegmentSchema);
 
 /** Authored MDX body roles carried by each localized question. */
-export const QuestionBodyKindSchema = Schema.Literal("question", "answer");
+export const QuestionBodyKindSchema = Schema.Literals(["question", "answer"]);
 export type QuestionBodyKind = typeof QuestionBodyKindSchema.Type;
 
 /** Generic hierarchy derived from one canonical try-out question set. */
@@ -48,7 +48,10 @@ export type QuestionSetParts = typeof QuestionSetPartsSchema.Type;
 /** Generic hierarchy and authored order derived from one question key. */
 export const QuestionKeyPartsSchema = Schema.Struct({
   ...QuestionSetPartsSchema.fields,
-  questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  questionNumber: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 export type QuestionKeyParts = typeof QuestionKeyPartsSchema.Type;
 
@@ -93,22 +96,26 @@ function parseQuestionKeyParts(input: string): QuestionKeyParts | undefined {
 
 /** Stable logical identity shared by every locale and body of one question. */
 export const QuestionKeySchema = Schema.String.pipe(
-  Schema.maxLength(MAX_QUESTION_KEY_LENGTH),
-  Schema.filter((input) => parseQuestionKeyParts(input) !== undefined, {
-    identifier: "QuestionKey",
-    message: () => "Invalid try-out question key.",
-  }),
+  Schema.check(Schema.isMaxLength(MAX_QUESTION_KEY_LENGTH)),
+  Schema.check(
+    Schema.makeFilter((input) => parseQuestionKeyParts(input) !== undefined, {
+      identifier: "QuestionKey",
+      message: "Invalid try-out question key.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraQuestionKey")
 );
 export type QuestionKey = typeof QuestionKeySchema.Type;
 
 /** Stable logical identity shared by every question within one authored set. */
 export const QuestionSetKeySchema = Schema.String.pipe(
-  Schema.maxLength(MAX_QUESTION_SET_KEY_LENGTH),
-  Schema.filter((input) => parseQuestionSetParts(input) !== undefined, {
-    identifier: "QuestionSetKey",
-    message: () => "Invalid try-out question-set key.",
-  }),
+  Schema.check(Schema.isMaxLength(MAX_QUESTION_SET_KEY_LENGTH)),
+  Schema.check(
+    Schema.makeFilter((input) => parseQuestionSetParts(input) !== undefined, {
+      identifier: "QuestionSetKey",
+      message: "Invalid try-out question-set key.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraQuestionSetKey")
 );
 export type QuestionSetKey = typeof QuestionSetKeySchema.Type;
@@ -159,10 +166,10 @@ export const QuestionChoiceSourcePartsSchema = Schema.Struct({
 });
 
 /** Every direct authored source accepted inside one question directory. */
-export const QuestionSourcePartsSchema = Schema.Union(
+export const QuestionSourcePartsSchema = Schema.Union([
   QuestionBodySourcePartsSchema,
-  QuestionChoiceSourcePartsSchema
-);
+  QuestionChoiceSourcePartsSchema,
+]);
 export type QuestionSourceParts = typeof QuestionSourcePartsSchema.Type;
 
 /** Parses one exact body or choice source below the question corpus. */
@@ -181,7 +188,7 @@ function parseQuestionSourceParts(
   }
   const sourceFile = input.slice(fileSeparator + 1);
   if (sourceFile === "choices.ts") {
-    return Schema.decodeUnknownSync(QuestionChoiceSourcePartsSchema)({
+    return Schema.decodeSync(QuestionChoiceSourcePartsSchema)({
       ...questionParts,
       kind: "choices",
       questionKey,
@@ -207,7 +214,7 @@ function parseQuestionSourceParts(
   ) {
     return;
   }
-  return Schema.decodeUnknownSync(QuestionBodySourcePartsSchema)({
+  return Schema.decodeSync(QuestionBodySourcePartsSchema)({
     ...questionParts,
     artifactLocale,
     bodyKind,
@@ -220,9 +227,14 @@ function parseQuestionSourceParts(
 
 /** Exact direct authored source path below one Aksara question directory. */
 export const QuestionSourcePathSchema = CorpusSourcePathSchema.pipe(
-  Schema.filter((input) => parseQuestionSourceParts(input) !== undefined, {
-    message: () => "Invalid try-out question source path.",
-  }),
+  Schema.check(
+    Schema.makeFilter(
+      (input) => parseQuestionSourceParts(input) !== undefined,
+      {
+        message: "Invalid try-out question source path.",
+      }
+    )
+  ),
   Schema.brand("@NakafaAI/AksaraQuestionSourcePath")
 );
 export type QuestionSourcePath = typeof QuestionSourcePathSchema.Type;
@@ -239,7 +251,10 @@ const QuestionIdentityFields = {
   contentKey: ContentKeySchema,
   peerContentKey: ContentKeySchema,
   questionKey: QuestionKeySchema,
-  questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  questionNumber: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
   setKey: QuestionSetKeySchema,
 };
 
@@ -266,10 +281,12 @@ export const QuestionPromptIdentitySchema = Schema.Struct({
   ...QuestionIdentityFields,
   bodyKind: Schema.Literal("question"),
 }).pipe(
-  Schema.filter(hasCoherentQuestionIdentity, {
-    message: () =>
-      "Expected question body, peer, set, and number identities to agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentQuestionIdentity, {
+      message:
+        "Expected question body, peer, set, and number identities to agree.",
+    })
+  )
 );
 export type QuestionPromptIdentity = typeof QuestionPromptIdentitySchema.Type;
 
@@ -278,16 +295,18 @@ export const QuestionAnswerIdentitySchema = Schema.Struct({
   ...QuestionIdentityFields,
   bodyKind: Schema.Literal("answer"),
 }).pipe(
-  Schema.filter(hasCoherentQuestionIdentity, {
-    message: () =>
-      "Expected answer body, peer, set, and number identities to agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentQuestionIdentity, {
+      message:
+        "Expected answer body, peer, set, and number identities to agree.",
+    })
+  )
 );
 export type QuestionAnswerIdentity = typeof QuestionAnswerIdentitySchema.Type;
 
 /** Complete prompt and answer identity vocabulary for question bodies. */
-export const QuestionBodyIdentitySchema = Schema.Union(
+export const QuestionBodyIdentitySchema = Schema.Union([
   QuestionPromptIdentitySchema,
-  QuestionAnswerIdentitySchema
-);
+  QuestionAnswerIdentitySchema,
+]);
 export type QuestionBodyIdentity = typeof QuestionBodyIdentitySchema.Type;

@@ -15,20 +15,38 @@ type PublicationBatchKind =
 export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
   "PublicationBatchLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    actualCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    expectedCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    itemOffset: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    kind: Schema.Literal(
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    actualCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    expectedCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    itemOffset: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    kind: Schema.Literals([
       "artifact",
       "content-route",
       "content-projection",
       "release-item",
       "snapshot",
-      "stage-group"
+      "stage-group",
+    ]),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
     ),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
-    maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    maxCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -92,7 +110,7 @@ function packBatchValue<T>(input: {
     releaseId: ReleaseId
   ) => string;
 }) {
-  if (!EffectArray.isNonEmptyReadonlyArray(input.state.values)) {
+  if (!EffectArray.isReadonlyArrayNonEmpty(input.state.values)) {
     const standalone = EffectArray.of(input.value);
     const standaloneBytes = utf8Bytes(
       input.serializeBatch(standalone, Number.MAX_SAFE_INTEGER, input.releaseId)
@@ -112,11 +130,8 @@ function packBatchValue<T>(input: {
     }
     const transition: readonly [
       BatchState<T>,
-      Option.Option<NonEmptyReadonlyArray<T>>,
-    ] = [
-      { itemOffset: input.state.itemOffset + 1, values: standalone },
-      Option.none(),
-    ];
+      readonly NonEmptyReadonlyArray<T>[],
+    ] = [{ itemOffset: input.state.itemOffset + 1, values: standalone }, []];
     return Effect.succeed(transition);
   }
 
@@ -127,11 +142,8 @@ function packBatchValue<T>(input: {
   if (candidate.length <= input.maxCount && candidateBytes <= input.maxBytes) {
     const transition: readonly [
       BatchState<T>,
-      Option.Option<NonEmptyReadonlyArray<T>>,
-    ] = [
-      { itemOffset: input.state.itemOffset + 1, values: candidate },
-      Option.none(),
-    ];
+      readonly NonEmptyReadonlyArray<T>[],
+    ] = [{ itemOffset: input.state.itemOffset + 1, values: candidate }, []];
     return Effect.succeed(transition);
   }
 
@@ -154,10 +166,10 @@ function packBatchValue<T>(input: {
   }
   const transition: readonly [
     BatchState<T>,
-    Option.Option<NonEmptyReadonlyArray<T>>,
+    readonly NonEmptyReadonlyArray<T>[],
   ] = [
     { itemOffset: input.state.itemOffset + 1, values: standalone },
-    Option.some(input.state.values),
+    [input.state.values],
   ];
   return Effect.succeed(transition);
 }
@@ -198,28 +210,30 @@ export function streamBatches<T, B, E, R>(input: {
   );
 
   return sourceValues.pipe(
-    Stream.mapAccumEffect(initialState, (state, value) => {
-      if (Option.isSome(value)) {
-        return packBatchValue({
-          kind: input.kind,
-          maxBytes: input.maxBytes,
-          maxCount: input.maxCount,
-          releaseId: input.releaseId,
-          serializeBatch: buildCandidate,
-          state,
-          value: value.value,
-        });
+    Stream.mapAccumEffect(
+      () => initialState,
+      (state, value) => {
+        if (Option.isSome(value)) {
+          return packBatchValue({
+            kind: input.kind,
+            maxBytes: input.maxBytes,
+            maxCount: input.maxCount,
+            releaseId: input.releaseId,
+            serializeBatch: buildCandidate,
+            state,
+            value: value.value,
+          });
+        }
+        const output = EffectArray.isReadonlyArrayNonEmpty(state.values)
+          ? [state.values]
+          : [];
+        const transition: readonly [
+          BatchState<T>,
+          readonly NonEmptyReadonlyArray<T>[],
+        ] = [state, output];
+        return Effect.succeed(transition);
       }
-      const output = EffectArray.isNonEmptyReadonlyArray(state.values)
-        ? Option.some(state.values)
-        : Option.none();
-      const transition: readonly [
-        BatchState<T>,
-        Option.Option<NonEmptyReadonlyArray<T>>,
-      ] = [state, output];
-      return Effect.succeed(transition);
-    }),
-    Stream.filterMap((batch) => batch),
+    ),
     Stream.zipWithIndex,
     Stream.mapEffect(([values, batchIndex]) => {
       const batch = input.build(values, batchIndex, input.releaseId);

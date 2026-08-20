@@ -2,10 +2,10 @@ import { Context, type Effect, Schema } from "effect";
 import { type SigningKeyId, SigningKeyIdSchema } from "#contracts/ids";
 
 /** Authenticated object whose Ed25519 signature is being checked. */
-export const ContentSignatureSubjectSchema = Schema.Literal(
+export const ContentSignatureSubjectSchema = Schema.Literals([
   "artifact",
-  "release"
-);
+  "release",
+]);
 export type ContentSignatureSubject = typeof ContentSignatureSubjectSchema.Type;
 
 /** No trusted public key exists for the requested key identifier. */
@@ -45,9 +45,7 @@ export class SignatureInvalidError extends Schema.TaggedError<SignatureInvalidEr
 ) {}
 
 /** Server-side trust seam for resolving reviewed Ed25519 public keys. */
-export class ContentVerificationKeyResolver extends Context.Tag(
-  "AksaraContentVerificationKeyResolver"
-)<
+export class ContentVerificationKeyResolver extends Context.Service<
   ContentVerificationKeyResolver,
   {
     /** Resolves a reviewed public key without exposing key material in errors. */
@@ -58,4 +56,4 @@ export class ContentVerificationKeyResolver extends Context.Tag(
       SigningKeyNotFoundError | SigningKeyResolutionError
     >;
   }
->() {}
+>()("AksaraContentVerificationKeyResolver") {}

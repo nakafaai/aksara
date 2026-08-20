@@ -28,8 +28,8 @@ export interface CompiledContentResult {
 
 /** Every expected failure surfaced by trusted MDX compilation. */
 export type CompileContentError =
-  | Effect.Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
-  | Effect.Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
+  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
   | AuthoredMetadataDuplicateError
   | AuthoredMetadataMissingError
   | AuthoredMetadataSyntaxError

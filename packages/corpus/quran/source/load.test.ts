@@ -1,13 +1,11 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path, PlatformError, Schema } from "effect";
 
 import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
@@ -20,7 +18,7 @@ const sourceBytes = new Map<string, Uint8Array>(
     new Uint8Array(readFileSync(resolve(sourceRoot, relativePath))),
   ])
 );
-const germanOnly = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)(["de"]);
+const germanOnly = Schema.decodeSync(ActiveAppLocaleListSchema)(["de"]);
 
 /** Provides deterministic byte reads for every pinned Quran source. */
 function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
@@ -31,11 +29,11 @@ function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
         return Effect.succeed(bytes);
       }
       return Effect.fail(
-        new PlatformError.SystemError({
+        PlatformError.systemError({
+          _tag: "NotFound",
           method: "readFile",
           module: "FileSystem",
           pathOrDescriptor: path,
-          reason: "NotFound",
         })
       );
     },

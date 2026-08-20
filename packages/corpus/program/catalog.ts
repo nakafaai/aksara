@@ -29,8 +29,8 @@ export class ProgramCatalogError extends Schema.TaggedError<ProgramCatalogError>
 export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityError>()(
   "ProgramIdentityError",
   {
-    scope: Schema.Literal("key", "order", "slug", "translation"),
-    value: Schema.NonEmptyTrimmedString,
+    scope: Schema.Literals(["key", "order", "slug", "translation"]),
+    value: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 
@@ -76,7 +76,7 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
 export const decodeProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramCatalog"
 )(function* (input: unknown = programSources, localeInput?: unknown) {
-  const sources = yield* Schema.decodeUnknown(
+  const sources = yield* Schema.decodeUnknownEffect(
     Schema.Array(LearningProgramSourceSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
@@ -98,7 +98,7 @@ export const decodeProgramCatalog = Effect.fn(
 export const decodeAuthoringProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeAuthoringProgramCatalog"
 )(function* (input: unknown = programSources, localeInput?: unknown) {
-  const sources = yield* Schema.decodeUnknown(
+  const sources = yield* Schema.decodeUnknownEffect(
     Schema.Array(LearningProgramSourceSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))

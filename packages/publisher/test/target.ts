@@ -16,7 +16,7 @@ export function makePublicationTarget(overrides: TargetOverrides) {
     activate: unsupported,
     activateRecovery: unsupported,
     cleanup: unsupported,
-    current: unsupported,
+    current: Effect.die("Unexpected publication target call."),
     headPage: unsupported,
     recovery: unsupported,
     rollbackPage: unsupported,

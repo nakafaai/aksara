@@ -77,7 +77,7 @@ export type PreviewSelection =
 export class PreviewSelectionError extends Schema.TaggedError<PreviewSelectionError>()(
   "PreviewSelectionError",
   {
-    reason: Schema.Literal("locale", "missing", "path"),
+    reason: Schema.Literals(["locale", "missing", "path"]),
     sourcePath: Schema.String,
   }
 ) {}

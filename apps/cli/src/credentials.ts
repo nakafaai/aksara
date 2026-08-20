@@ -30,7 +30,7 @@ export interface PreviewCredentials {
 /** Local Ed25519 key or bearer-token generation failed before serving. */
 export class PreviewCredentialError extends Schema.TaggedError<PreviewCredentialError>()(
   "PreviewCredentialError",
-  { stage: Schema.Literal("generate", "signer") }
+  { stage: Schema.Literals(["generate", "signer"]) }
 ) {}
 
 /** Generates one process-local signer and independent preview credentials. */

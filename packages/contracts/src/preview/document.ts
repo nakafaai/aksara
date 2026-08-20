@@ -73,10 +73,12 @@ export const QuestionPromptPreviewDocumentSchema = Schema.Struct({
   sourcePath: CorpusSourcePathSchema,
   target: TryoutPreviewTargetSchema,
 }).pipe(
-  Schema.filter(hasCoherentQuestionDocument, {
-    message: () =>
-      "Expected question prompt identity, placement, and source to agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentQuestionDocument, {
+      message:
+        "Expected question prompt identity, placement, and source to agree.",
+    })
+  )
 );
 export type QuestionPromptPreviewDocument =
   typeof QuestionPromptPreviewDocumentSchema.Type;
@@ -90,21 +92,23 @@ export const QuestionAnswerPreviewDocumentSchema = Schema.Struct({
   sourcePath: CorpusSourcePathSchema,
   target: TryoutPreviewTargetSchema,
 }).pipe(
-  Schema.filter(hasCoherentQuestionDocument, {
-    message: () =>
-      "Expected question answer identity, placement, and source to agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentQuestionDocument, {
+      message:
+        "Expected question answer identity, placement, and source to agree.",
+    })
+  )
 );
 export type QuestionAnswerPreviewDocument =
   typeof QuestionAnswerPreviewDocumentSchema.Type;
 
 /** Complete discriminated document vocabulary supported by preview. */
-export const PreviewDocumentSchema = Schema.Union(
+export const PreviewDocumentSchema = Schema.Union([
   ArticlePreviewDocumentSchema,
   MaterialPreviewDocumentSchema,
   QuestionPromptPreviewDocumentSchema,
-  QuestionAnswerPreviewDocumentSchema
-);
+  QuestionAnswerPreviewDocumentSchema,
+]);
 export type PreviewDocument = typeof PreviewDocumentSchema.Type;
 
 /** Derives the one existing Nakafa route that renders a preview document. */

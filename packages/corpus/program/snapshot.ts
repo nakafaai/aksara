@@ -57,7 +57,7 @@ const prepareProgramSources = Effect.fn("AksaraCorpus.prepareProgramSources")(
   }
 );
 
-type PreparedProgramSources = Effect.Effect.Success<
+type PreparedProgramSources = Effect.Success<
   ReturnType<typeof prepareProgramSources>
 >;
 
@@ -94,7 +94,7 @@ function streamPreparedProgramRows({
 
 /** Errors emitted while replaying source-decoded aggregate program records. */
 export type ProgramRowError =
-  | Effect.Effect.Error<ReturnType<typeof prepareProgramSources>>
+  | Effect.Error<ReturnType<typeof prepareProgramSources>>
   | ProgramRowHashError;
 
 /** Failures emitted while deriving the aggregate manifest and row stream. */
@@ -107,7 +107,7 @@ export type ProgramSnapshotError =
 export interface PreparedProgramSnapshot {
   readonly manifest: ProgramSnapshot;
   /** Replays all catalog rows followed by canonical localized route rows. */
-  readonly rows: () => Stream.Stream<ProgramSnapshotRow, ProgramRowError>;
+  readonly rows: Stream.Stream<ProgramSnapshotRow, ProgramRowError>;
 }
 
 /** Streams catalog rows followed by canonical localized curriculum rows. */
@@ -134,11 +134,11 @@ export const prepareProgramSnapshot = Effect.fn(
     input.programLocaleInput
   );
   /** Replays the same decoded source rows used to derive the manifest. */
-  const rows = () => streamPreparedProgramRows(sources);
+  const rows = streamPreparedProgramRows(sources);
   const summary = yield* digestProgramRows({
     activeAppLocales: ACTIVE_APP_LOCALES,
     expected: programSourceCounts(sources),
-    rows: rows(),
+    rows,
   });
   const facts = ProgramSnapshotFactsSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,

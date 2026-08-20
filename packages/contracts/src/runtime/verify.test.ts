@@ -1,4 +1,4 @@
-import { Either } from "effect";
+import { Result } from "effect";
 import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { materialGraph } from "#contracts/test/graph";
@@ -15,7 +15,7 @@ import {
   found,
   rejectExchange,
   verifyExchange,
-  verifyExchangeEither,
+  verifyExchangeResult,
 } from "#contracts/test/runtime/public";
 
 describe("content runtime verification", () => {
@@ -57,13 +57,13 @@ describe("content runtime verification", () => {
       { ...found, projectionHash: hash },
     ];
     const outcomes = await Promise.all(
-      responses.map((response) => verifyExchangeEither({ response }))
+      responses.map((response) => verifyExchangeResult({ response }))
     );
     expect(
       outcomes.map((outcome) =>
-        Either.isLeft(outcome) &&
-        outcome.left._tag === "ContentRuntimeMismatchError"
-          ? outcome.left.reason
+        Result.isFailure(outcome) &&
+        outcome.failure._tag === "ContentRuntimeMismatchError"
+          ? outcome.failure.reason
           : "none"
       )
     ).toEqual([

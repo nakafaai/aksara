@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
 import { PROGRAM_SNAPSHOT_FORMAT } from "#contracts/program/snapshot/spec";
@@ -10,13 +10,11 @@ import {
 import { PublicationScopeSchema } from "#contracts/release/snapshot/spec";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
-const activeAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
-const priorAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
-  "en",
-]);
+const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)(["en"]);
 const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
   content: [],
@@ -121,12 +119,13 @@ describe("release policy", () => {
     ) {
       throw new Error("Expected the current program manifest.");
     }
-    const shortAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)(
-      ["en"]
-    );
-    const changedAppLocales = Schema.decodeUnknownSync(
-      ActiveAppLocaleListSchema
-    )(["en", "de"]);
+    const shortAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
+      "en",
+    ]);
+    const changedAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
+      "en",
+      "de",
+    ]);
     /** Returns the exact policy failure for one changed program manifest. */
     const reject = (manifest: typeof program) =>
       Effect.runPromise(

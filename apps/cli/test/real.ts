@@ -9,7 +9,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
@@ -66,7 +66,7 @@ export const REAL_SOURCE = readFileSync(
 );
 const selectedDocument = await Effect.runPromise(
   selectPreviewDocument(REPOSITORY_ROOT, ENGLISH_ENTRY.sourcePath).pipe(
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   )
 );
 const selectedPaths = new Set([

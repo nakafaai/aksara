@@ -1,5 +1,5 @@
-import { Effect, Either, ParseResult, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 
 import {
   defineLessonMaterial,
@@ -79,15 +79,11 @@ describe("material schema", () => {
       message: "Invalid material slug.",
     },
   ])("rejects an invalid $field", ({ input, message }) => {
-    const result = Schema.decodeUnknownEither(LessonMaterialSourceSchema)(
-      input
-    );
+    const result = Schema.decodeExit(LessonMaterialSourceSchema)(input);
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(ParseResult.TreeFormatter.formatErrorSync(result.left)).toContain(
-        message
-      );
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(message);
     }
   });
 

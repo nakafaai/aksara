@@ -3,8 +3,8 @@ import {
   inheritContentSnapshots,
   restoreContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   allContentCacheChanges,
   contentSnapshotCacheChanges,
@@ -13,7 +13,7 @@ import {
 describe("allContentCacheChanges", () => {
   it("replays one family-wide invalidation for every supported family", async () => {
     const changes = await Effect.runPromise(
-      allContentCacheChanges().pipe(Stream.runCollect)
+      allContentCacheChanges.pipe(Stream.runCollect)
     );
 
     expect([...changes]).toEqual([

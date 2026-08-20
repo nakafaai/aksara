@@ -1,8 +1,8 @@
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
 import { extractAuthoredBody, inspectContentSource } from "#compiler/inspect";
 import { testRendererDomains } from "#compiler/test/renderer";

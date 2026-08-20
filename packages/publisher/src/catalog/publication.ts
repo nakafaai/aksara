@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   type ArticleHead,
@@ -10,6 +9,7 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { FileSystem, Path } from "effect";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import {
   type PrepareArticlePublicationError,
@@ -39,24 +39,24 @@ export interface ContentCatalogBase {
 export class CatalogGenesisError extends Schema.TaggedError<CatalogGenesisError>()(
   "CatalogGenesisError",
   {
-    actualCount: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    actualCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
 /** Replayable whole-catalog plan consumed by generic release preparation. */
 export interface ContentCatalogPublication {
   /** Replays canonical article, material, then question transitions. */
-  readonly records: () => Stream.Stream<
-    PreparedContentTransition,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired catalog in canonical content-head order. */
-  readonly result: () => Stream.Stream<
+  readonly result: Stream.Stream<
     ArticleHead | MaterialHead | QuestionHead,
     ReplaySpoolError
   >;
   /** Replays every family route transition for global conflict resolution. */
-  readonly routes: () => Stream.Stream<RouteTransition, ReplaySpoolError>;
+  readonly routes: Stream.Stream<RouteTransition, ReplaySpoolError>;
 }
 
 /** Exact checkout, renderer, base, and family heads for one fresh release. */
@@ -72,7 +72,7 @@ export interface ContentCatalogPublicationInput<E, R> {
   readonly scope?: PublicationScope | undefined;
 }
 
-type ResultCatalogError = Effect.Effect.Error<
+type ResultCatalogError = Effect.Error<
   ReturnType<typeof verifyResultCatalog<ReplaySpoolError, never>>
 >;
 
@@ -90,7 +90,7 @@ export type PrepareContentCatalogError<E> =
 function verifyBaseCatalog(
   base: ContentCatalogBase | null,
   count: number,
-  heads: () => Stream.Stream<
+  heads: Stream.Stream<
     ArticleHead | MaterialHead | QuestionHead,
     ReplaySpoolError
   >
@@ -99,7 +99,7 @@ function verifyBaseCatalog(
     return verifyResultCatalog({
       expectedCount: base.count,
       expectedDigest: base.digest,
-      heads: heads(),
+      heads,
       releaseId: base.releaseId,
     });
   }
@@ -135,10 +135,9 @@ export const prepareContentCatalog: <E, R>(
     stream: input.published.question,
   });
   /** Replays the exact active catalog in canonical family-prefix order. */
-  const active = () =>
-    Stream.concat(articleHeads.replay(), materialHeads.replay()).pipe(
-      Stream.concat(questionHeads.replay())
-    );
+  const active = Stream.concat(articleHeads.replay, materialHeads.replay).pipe(
+    Stream.concat(questionHeads.replay)
+  );
   yield* verifyBaseCatalog(
     input.base,
     articleHeads.count + materialHeads.count + questionHeads.count,
@@ -146,36 +145,33 @@ export const prepareContentCatalog: <E, R>(
   );
   const article = yield* prepareArticlePublication({
     checkoutRoot: input.checkoutRoot,
-    published: articleHeads.replay(),
+    published: articleHeads.replay,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   const material = yield* prepareMaterialPublication({
     checkoutRoot: input.checkoutRoot,
-    published: materialHeads.replay(),
+    published: materialHeads.replay,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   const question = yield* prepareQuestionPublication({
     checkoutRoot: input.checkoutRoot,
-    published: questionHeads.replay(),
+    published: questionHeads.replay,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   /** Replays canonical transitions without collecting either family. */
-  const records = () =>
-    Stream.concat(article.records(), material.records()).pipe(
-      Stream.concat(question.records())
-    );
+  const records = Stream.concat(article.records, material.records).pipe(
+    Stream.concat(question.records)
+  );
   /** Replays the complete desired catalog without copying unchanged heads. */
-  const result = () =>
-    Stream.concat(article.result(), material.result()).pipe(
-      Stream.concat(question.result())
-    );
+  const result = Stream.concat(article.result, material.result).pipe(
+    Stream.concat(question.result)
+  );
   /** Replays all route transitions for one global conflict-resolution pass. */
-  const routes = () =>
-    Stream.concat(article.routes(), material.routes()).pipe(
-      Stream.concat(question.routes())
-    );
+  const routes = Stream.concat(article.routes, material.routes).pipe(
+    Stream.concat(question.routes)
+  );
   return { records, result, routes };
 });

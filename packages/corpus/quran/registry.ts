@@ -3,7 +3,7 @@ import {
   QURAN_VERSE_COUNT,
   QuranSurahNumberSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Option, Schema, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
 
 interface QuranRegistryState {
@@ -27,7 +27,7 @@ export class QuranSourceError extends Schema.TaggedError<QuranSourceError>()(
   "QuranSourceError",
   {
     cause: Schema.Unknown,
-    position: Schema.Int.pipe(Schema.positive()),
+    position: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   }
 ) {}
 
@@ -35,9 +35,9 @@ export class QuranSourceError extends Schema.TaggedError<QuranSourceError>()(
 export class QuranCountError extends Schema.TaggedError<QuranCountError>()(
   "QuranCountError",
   {
-    actual: Schema.Int.pipe(Schema.nonNegative()),
-    expected: Schema.Int.pipe(Schema.positive()),
-    scope: Schema.Literal("surahs", "surah-verses", "verses"),
+    actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
+    expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    scope: Schema.Literals(["surahs", "surah-verses", "verses"]),
     surahNumber: Schema.NullOr(QuranSurahNumberSchema),
   }
 ) {}
@@ -46,9 +46,9 @@ export class QuranCountError extends Schema.TaggedError<QuranCountError>()(
 export class QuranSequenceError extends Schema.TaggedError<QuranSequenceError>()(
   "QuranSequenceError",
   {
-    actual: Schema.Int.pipe(Schema.positive()),
-    expected: Schema.Int.pipe(Schema.positive()),
-    scope: Schema.Literal("surah", "surah-verse", "quran-verse"),
+    actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    scope: Schema.Literals(["surah", "surah-verse", "quran-verse"]),
     surahNumber: QuranSurahNumberSchema,
   }
 ) {}
@@ -129,7 +129,7 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
       nextVerse: state.nextVerse + surah.numberOfVerses,
       revelationOrders,
     },
-    Option.some(surah),
+    [surah],
   ] as const);
 }
 
@@ -138,7 +138,7 @@ const decodeSurah = Effect.fn("AksaraCorpus.decodeQuranSurah")(function* (
   state: QuranRegistryState,
   source: unknown
 ) {
-  const surah = yield* Schema.decodeUnknown(QuranSurahSchema)(source, {
+  const surah = yield* Schema.decodeUnknownEffect(QuranSurahSchema)(source, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(
@@ -178,7 +178,7 @@ function validateEnd(state: QuranRegistryState) {
     );
   }
 
-  return Effect.succeed([state, Option.none<QuranSurah>()] as const);
+  return Effect.succeed([state, []] as const);
 }
 
 /** Emits the complete strictly validated Quran corpus one surah at a time. */
@@ -191,11 +191,12 @@ export function streamQuranRegistry(source: Stream.Stream<unknown>) {
   );
 
   return items.pipe(
-    Stream.mapAccumEffect(INITIAL_STATE, (state, item) =>
-      item._tag === "Source"
-        ? decodeSurah(state, item.source)
-        : validateEnd(state)
-    ),
-    Stream.filterMap((surah) => surah)
+    Stream.mapAccumEffect(
+      () => INITIAL_STATE,
+      (state, item) =>
+        item._tag === "Source"
+          ? decodeSurah(state, item.source)
+          : validateEnd(state)
+    )
   );
 }

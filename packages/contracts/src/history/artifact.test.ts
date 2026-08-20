@@ -1,6 +1,8 @@
 // @vitest-environment node
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
+import { vi } from "vitest";
 
 import {
   authenticateHistoricalArtifact,
@@ -64,18 +66,14 @@ describe("retained signed artifact authentication", () => {
   it("rejects current, excess, noncanonical, and repeated requirement shapes", async () => {
     const current = await reject(protectedArtifact);
     const excess = await reject({ ...historicalArtifact, unexpected: true });
-    const reversed = Schema.decodeUnknownEither(
-      HistoricalCompiledContentPayloadSchema
-    )({
+    const reversed = Schema.decodeExit(HistoricalCompiledContentPayloadSchema)({
       ...historicalArtifact.payload,
       requiredComponents: [
         { name: "InlineMath", version: 1 },
         { name: "BlockMath", version: 1 },
       ],
     });
-    const repeated = Schema.decodeUnknownEither(
-      HistoricalCompiledContentPayloadSchema
-    )({
+    const repeated = Schema.decodeExit(HistoricalCompiledContentPayloadSchema)({
       ...historicalArtifact.payload,
       requiredComponents: [
         { name: "BlockMath", version: 1 },
@@ -85,9 +83,9 @@ describe("retained signed artifact authentication", () => {
 
     expect(current._tag).toBe("StoredArtifactDecodeError");
     expect(excess._tag).toBe("StoredArtifactDecodeError");
-    expect(Either.isLeft(reversed)).toBe(true);
-    expect(Either.isLeft(repeated)).toBe(true);
-    expect(Either.isLeft(reversed) ? String(reversed.left) : "").toContain(
+    expect(Exit.isFailure(reversed)).toBe(true);
+    expect(Exit.isFailure(repeated)).toBe(true);
+    expect(Exit.isFailure(reversed) ? String(reversed.cause) : "").toContain(
       "Stored renderer requirements are not canonical."
     );
   });
@@ -180,8 +178,8 @@ describe("retained signed artifact authentication", () => {
 
   it("strictly decodes its own complete old artifact schema", () => {
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(HistoricalSignedContentArtifactSchema)(
+      Exit.isSuccess(
+        Schema.decodeExit(HistoricalSignedContentArtifactSchema)(
           historicalArtifact,
           { onExcessProperty: "error" }
         )

@@ -17,17 +17,19 @@ export const QURAN_CHUNK_SIZE = 6;
 
 /** Non-empty Quran text shared by authored and published row contracts. */
 export const QuranMeaningfulTextSchema = Schema.String.pipe(
-  Schema.pattern(/\S/u, {
-    description:
-      "Authored Quran text containing at least one visible character.",
-    identifier: "QuranText",
-    message: () => "Quran text cannot be empty.",
-  })
+  Schema.check(
+    Schema.isPattern(/\S/u, {
+      description:
+        "Authored Quran text containing at least one visible character.",
+      identifier: "QuranText",
+      message: "Quran text cannot be empty.",
+    })
+  )
 );
 
 /** Valid Quran surah number in canonical order. */
 export const QuranSurahNumberSchema = Schema.Int.pipe(
-  Schema.between(1, QURAN_SURAH_COUNT)
+  Schema.check(Schema.isBetween({ maximum: QURAN_SURAH_COUNT, minimum: 1 }))
 );
 
 /** Verbatim Tanzil Arabic text without compatibility fields. */
@@ -49,10 +51,10 @@ export const QuranSurahMetadataSchema = Schema.Struct({
     transliteration: QuranMeaningfulTextSchema,
   }),
   number: QuranSurahNumberSchema,
-  numberOfVerses: Schema.Int.pipe(Schema.positive()),
+  numberOfVerses: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   revelation: Schema.Struct({
     order: QuranSurahNumberSchema,
-    place: Schema.Literal("Meccan", "Medinan"),
+    place: Schema.Literals(["Meccan", "Medinan"]),
   }),
 });
 

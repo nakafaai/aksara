@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 
 import {
   ContentSnapshotManifestSchema,
@@ -9,9 +9,7 @@ import {
 } from "#contracts/release/snapshot/data";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
-let snapshotData: Effect.Effect.Success<
-  ReturnType<typeof makeSnapshotTestData>
->;
+let snapshotData: Effect.Success<ReturnType<typeof makeSnapshotTestData>>;
 
 beforeAll(async () => {
   snapshotData = await Effect.runPromise(makeSnapshotTestData());
@@ -26,28 +24,28 @@ describe("structured snapshot data", () => {
   });
 
   it("strictly decodes each family envelope", () => {
-    const decode = Schema.decodeUnknownEither(ContentSnapshotManifestSchema, {
+    const decode = Schema.decodeUnknownExit(ContentSnapshotManifestSchema, {
       onExcessProperty: "error",
     });
 
     expect(
-      snapshotData.manifests.every((value) => Either.isRight(decode(value)))
+      snapshotData.manifests.every((value) => Exit.isSuccess(decode(value)))
     ).toBe(true);
     expect(
       snapshotData.manifests.every((value) =>
-        Either.isLeft(decode({ ...value, extra: true }))
+        Exit.isFailure(decode({ ...value, extra: true }))
       )
     ).toBe(true);
   });
 
   it("serializes every current row without ambiguous nesting", () => {
-    const decode = Schema.decodeUnknownEither(ContentSnapshotRowSchema, {
+    const decode = Schema.decodeUnknownExit(ContentSnapshotRowSchema, {
       onExcessProperty: "error",
     });
 
     expect(
       snapshotData.rows.every((row) =>
-        Either.isRight(decode(JSON.parse(canonicalizeContentSnapshotRow(row))))
+        Exit.isSuccess(decode(JSON.parse(canonicalizeContentSnapshotRow(row))))
       )
     ).toBe(true);
     expect(

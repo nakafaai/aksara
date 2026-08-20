@@ -3,47 +3,41 @@ import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
 
 /** Stable rejection codes that require no message parsing by clients. */
-export const PublicationDomainRejectionCodeSchema = Schema.Literal(
+export const PublicationDomainRejectionCodeSchema = Schema.Literals([
   "CONTENT_RELEASE_INTEGRITY",
   "CONTENT_RELEASE_LIMIT",
   "CONTENT_RELEASE_MISSING",
   "CONTENT_RELEASE_ROUTE",
   "CONTENT_RELEASE_SIZE",
   "CONTENT_RELEASE_STATE",
-  "CONTENT_RELEASE_UNSUPPORTED"
-);
+  "CONTENT_RELEASE_UNSUPPORTED",
+]);
 export type PublicationDomainRejectionCode =
   typeof PublicationDomainRejectionCodeSchema.Type;
 
 /** Stable rejection codes that require no message parsing by clients. */
-export const PublicationRejectionCodeSchema = Schema.Union(
+export const PublicationRejectionCodeSchema = Schema.Union([
   PublicationDomainRejectionCodeSchema,
-  Schema.Literal("CONTENT_RELEASE_INVALID_REQUEST")
-);
+  Schema.Literal("CONTENT_RELEASE_INVALID_REQUEST"),
+]);
 export type PublicationRejectionCode =
   typeof PublicationRejectionCodeSchema.Type;
 
 /** Complete stable code vocabulary with one canonical HTTP status mapping. */
-export const PublicationFailureCodeSchema = Schema.Union(
+export const PublicationFailureCodeSchema = Schema.Union([
   PublicationRejectionCodeSchema,
-  Schema.Literal(
+  Schema.Literals([
     "CONTENT_RELEASE_UNAUTHORIZED",
     "CONTENT_RELEASE_CONFLICT",
-    "CONTENT_RELEASE_STALE_BASE"
-  )
-);
+    "CONTENT_RELEASE_STALE_BASE",
+  ]),
+]);
 export type PublicationFailureCode = typeof PublicationFailureCodeSchema.Type;
 
 /** Exact HTTP statuses returned for stable publication failures. */
-export const PublicationFailureStatusSchema = Schema.Literal(
-  400,
-  401,
-  404,
-  409,
-  413,
-  415,
-  422
-);
+export const PublicationFailureStatusSchema = Schema.Literals([
+  400, 401, 404, 409, 413, 415, 422,
+]);
 export type PublicationFailureStatus =
   typeof PublicationFailureStatusSchema.Type;
 
@@ -85,7 +79,10 @@ const PublicationInvalidRequestSchema = Schema.Struct({
 
 /** Request body was rejected before a publication operation could be decoded. */
 export const PublicationPredecodeRejectedSchema = Schema.Struct({
-  code: Schema.Literal("CONTENT_RELEASE_SIZE", "CONTENT_RELEASE_UNSUPPORTED"),
+  code: Schema.Literals([
+    "CONTENT_RELEASE_SIZE",
+    "CONTENT_RELEASE_UNSUPPORTED",
+  ]),
   kind: Schema.Literal("rejected"),
   operation: Schema.Null,
   releaseId: Schema.Null,
@@ -96,7 +93,7 @@ export type PublicationPredecodeRejected =
 const PublicationReleaseRejectedSchema = Schema.Struct({
   code: PublicationDomainRejectionCodeSchema,
   kind: Schema.Literal("rejected"),
-  operation: Schema.Literal(
+  operation: Schema.Literals([
     "accept",
     "abort",
     "stageRelease",
@@ -116,8 +113,8 @@ const PublicationReleaseRejectedSchema = Schema.Struct({
     "activateRecovery",
     "rollbackPage",
     "routePage",
-    "cleanup"
-  ),
+    "cleanup",
+  ]),
   releaseId: ReleaseIdSchema,
 });
 
@@ -129,18 +126,18 @@ const PublicationCurrentRejectedSchema = Schema.Struct({
 });
 
 /** One request was invalid or rejected by a stable authenticated domain rule. */
-export const PublicationRejectedSchema = Schema.Union(
+export const PublicationRejectedSchema = Schema.Union([
   PublicationInvalidRequestSchema,
   PublicationPredecodeRejectedSchema,
   PublicationReleaseRejectedSchema,
-  PublicationCurrentRejectedSchema
-);
+  PublicationCurrentRejectedSchema,
+]);
 export type PublicationRejected = typeof PublicationRejectedSchema.Type;
 
 const ReleaseConflictSchema = Schema.Struct({
   code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
   kind: Schema.Literal("conflict"),
-  operation: Schema.Literal(
+  operation: Schema.Literals([
     "accept",
     "abort",
     "stageRelease",
@@ -152,21 +149,24 @@ const ReleaseConflictSchema = Schema.Struct({
     "activateRecovery",
     "rollbackPage",
     "routePage",
-    "cleanup"
-  ),
+    "cleanup",
+  ]),
   releaseId: ReleaseIdSchema,
 });
 
 const BatchConflictSchema = Schema.Struct({
-  batchIndex: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  batchIndex: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
   code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
   kind: Schema.Literal("conflict"),
-  operation: Schema.Literal(
+  operation: Schema.Literals([
     "stageItemBatch",
     "stageRouteBatch",
     "stageProjectionBatch",
-    "stageArtifactBatch"
-  ),
+    "stageArtifactBatch",
+  ]),
   releaseId: ReleaseIdSchema,
 });
 
@@ -180,7 +180,7 @@ const SnapshotManifestConflictSchema = Schema.Struct({
 });
 
 const SnapshotBatchConflictSchema = Schema.Struct({
-  batchIndex: Schema.Int.pipe(Schema.nonNegative()),
+  batchIndex: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
   family: ContentSnapshotKindSchema,
   kind: Schema.Literal("conflict"),
@@ -190,12 +190,12 @@ const SnapshotBatchConflictSchema = Schema.Struct({
 });
 
 /** Immutable request identity was reused with different persisted bytes. */
-export const PublicationConflictSchema = Schema.Union(
+export const PublicationConflictSchema = Schema.Union([
   ReleaseConflictSchema,
   BatchConflictSchema,
   SnapshotManifestConflictSchema,
-  SnapshotBatchConflictSchema
-);
+  SnapshotBatchConflictSchema,
+]);
 export type PublicationConflict = typeof PublicationConflictSchema.Type;
 
 /** Active publication state no longer matches the signed release base. */
@@ -204,26 +204,28 @@ export const PublicationStaleBaseSchema = Schema.Struct({
   code: Schema.Literal("CONTENT_RELEASE_STALE_BASE"),
   expectedBaseReleaseId: Schema.NullOr(ReleaseIdSchema),
   kind: Schema.Literal("stale-base"),
-  operation: Schema.Literal("stageRelease", "activate"),
+  operation: Schema.Literals(["stageRelease", "activate"]),
   releaseId: ReleaseIdSchema,
 }).pipe(
-  Schema.filter(
-    ({ activeReleaseId, expectedBaseReleaseId, releaseId }) =>
-      activeReleaseId !== expectedBaseReleaseId &&
-      activeReleaseId !== releaseId,
-    {
-      message: () =>
-        "Expected the active release to differ from the requested base and candidate.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      ({ activeReleaseId, expectedBaseReleaseId, releaseId }) =>
+        activeReleaseId !== expectedBaseReleaseId &&
+        activeReleaseId !== releaseId,
+      {
+        message:
+          "Expected the active release to differ from the requested base and candidate.",
+      }
+    )
   )
 );
 export type PublicationStaleBase = typeof PublicationStaleBaseSchema.Type;
 
 /** Complete stable publication failure vocabulary returned on the wire. */
-export const PublicationFailureSchema = Schema.Union(
+export const PublicationFailureSchema = Schema.Union([
   PublicationUnauthorizedSchema,
   PublicationRejectedSchema,
   PublicationConflictSchema,
-  PublicationStaleBaseSchema
-);
+  PublicationStaleBaseSchema,
+]);
 export type PublicationFailure = typeof PublicationFailureSchema.Type;

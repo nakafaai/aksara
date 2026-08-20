@@ -12,25 +12,27 @@ import { isLowerKebab } from "#contracts/text/syntax";
 
 /** Stable source-owned category segment used below the article route family. */
 export const ArticleCategorySchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab),
+  Schema.check(Schema.makeFilter(isLowerKebab)),
   Schema.brand("@NakafaAI/AksaraArticleCategory")
 );
 export type ArticleCategory = typeof ArticleCategorySchema.Type;
 
 /** Localized display title owned by one reviewed article category source. */
-export const ArticleCategoryTitleSchema = Schema.NonEmptyTrimmedString;
+export const ArticleCategoryTitleSchema = Schema.Trimmed.check(
+  Schema.isNonEmpty()
+);
 export type ArticleCategoryTitle = typeof ArticleCategoryTitleSchema.Type;
 
 /** Stable source-owned article segment used below its category route. */
 export const ArticleSlugSchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab),
+  Schema.check(Schema.makeFilter(isLowerKebab)),
   Schema.brand("@NakafaAI/AksaraArticleSlug")
 );
 export type ArticleSlug = typeof ArticleSlugSchema.Type;
 
 /** Locale-owned public route segment for one article category or body. */
 export const ArticleRouteSlugSchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab),
+  Schema.check(Schema.makeFilter(isLowerKebab)),
   Schema.brand("@NakafaAI/AksaraArticleRouteSlug")
 );
 export type ArticleRouteSlug = typeof ArticleRouteSlugSchema.Type;
@@ -43,7 +45,7 @@ export const ArticleReferenceSchema = Schema.Struct({
   publication: Schema.optional(Schema.String),
   title: Schema.String,
   url: Schema.optional(Schema.String),
-  year: Schema.Number,
+  year: Schema.Finite,
 });
 export type ArticleReference = typeof ArticleReferenceSchema.Type;
 
@@ -112,18 +114,23 @@ function hasCoherentArticleLocales(input: {
 
 /** Source-owned identity and public route for one localized article body. */
 export const ArticleRouteSchema = Schema.Struct(ArticleRouteFields).pipe(
-  Schema.filter(hasCoherentArticleLocales, {
-    message: () =>
-      "Expected public article route and artifact locales to match.",
-  }),
-  Schema.filter(hasCoherentArticleRoute, {
-    message: () =>
-      "Expected stable article identity and locale-owned public route to be coherent.",
-  }),
-  Schema.filter(hasCoherentArticleGraph, {
-    message: () =>
-      "Expected article graph identities to match its stable source keys.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleLocales, {
+      message: "Expected public article route and artifact locales to match.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleRoute, {
+      message:
+        "Expected stable article identity and locale-owned public route to be coherent.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleGraph, {
+      message:
+        "Expected article graph identities to match its stable source keys.",
+    })
+  )
 );
 export type ArticleRoute = typeof ArticleRouteSchema.Type;
 
@@ -138,26 +145,33 @@ export const ArticleProjectionSchema = Schema.Struct({
   references: Schema.Array(ArticleReferenceSchema),
   sitemap: Schema.Literal(true),
 }).pipe(
-  Schema.filter(hasCoherentArticleLocales, {
-    message: () =>
-      "Expected public article route and artifact locales to match.",
-  }),
-  Schema.filter(hasCoherentArticleRoute, {
-    message: () =>
-      "Expected stable article identity and locale-owned public route to be coherent.",
-  }),
-  Schema.filter(
-    (projection) =>
-      projection.parentPath === `articles/${projection.categoryRouteSlug}`,
-    {
-      message: () =>
-        "Expected the article parent path to match its category route.",
-    }
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleLocales, {
+      message: "Expected public article route and artifact locales to match.",
+    })
   ),
-  Schema.filter(hasCoherentArticleGraph, {
-    message: () =>
-      "Expected article graph identities to match its stable source keys.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleRoute, {
+      message:
+        "Expected stable article identity and locale-owned public route to be coherent.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(
+      (projection) =>
+        projection.parentPath === `articles/${projection.categoryRouteSlug}`,
+      {
+        message:
+          "Expected the article parent path to match its category route.",
+      }
+    )
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleGraph, {
+      message:
+        "Expected article graph identities to match its stable source keys.",
+    })
+  )
 );
 export type ArticleProjection = typeof ArticleProjectionSchema.Type;
 

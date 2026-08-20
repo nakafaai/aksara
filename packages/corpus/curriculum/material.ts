@@ -10,8 +10,7 @@ import type {
 import {
   AUTHORING_APP_LOCALES,
   addLocalizedSource,
-  LOCALE_OVERLAY_APP_LOCALE_CODES,
-  LocaleOverlayAppLocaleSchema,
+  LOCALE_OVERLAY_APP_LOCALE_ENTRIES,
   sourceLocaleValue,
 } from "#corpus/locale/source";
 import {
@@ -24,7 +23,7 @@ import type { LessonMaterialSource } from "#corpus/material/schema";
 export class CurriculumProjectionError extends Schema.TaggedError<CurriculumProjectionError>()(
   "CurriculumProjectionError",
   {
-    code: Schema.Literal("display", "domain", "material", "multi-material"),
+    code: Schema.Literals(["display", "domain", "material", "multi-material"]),
     nodeKey: CurriculumNodeKeySchema,
     programKey: LearningProgramKeySchema,
     value: Schema.String,
@@ -49,10 +48,7 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
           title: material.translations.id.title,
         },
       };
-    for (const appLocaleCode of LOCALE_OVERLAY_APP_LOCALE_CODES) {
-      const appLocale = Schema.decodeUnknownSync(LocaleOverlayAppLocaleSchema)(
-        appLocaleCode
-      );
+    for (const { appLocale } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
       const routeSlug = sourceLocaleValue(material.routeSlugs, appLocale);
       const translation = sourceLocaleValue(material.translations, appLocale);
       if ((routeSlug === undefined) !== (translation === undefined)) {

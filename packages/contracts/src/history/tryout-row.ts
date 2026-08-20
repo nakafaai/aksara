@@ -18,19 +18,22 @@ const {
 } = HistoricalPrimitive;
 
 const OptionKeySchema = Schema.String.pipe(
-  Schema.pattern(/^option-[1-9]\d*$/u)
+  Schema.check(Schema.isPattern(/^option-[1-9]\d*$/u))
 );
 const HistoricalContentHashSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-f\d]{64}$/u)
+  Schema.check(Schema.isPattern(/^[a-f\d]{64}$/u))
 );
-const PositiveCountSchema = Schema.Number.pipe(Schema.int(), Schema.positive());
-const NonNegativeCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const PositiveCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThan(0))
 );
-const HistoricalSourceRevisionSchema = Schema.NonEmptyTrimmedString.pipe(
-  Schema.maxLength(128)
+const NonNegativeCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
+const HistoricalSourceRevisionSchema = Schema.Trimmed.check(
+  Schema.isNonEmpty()
+).pipe(Schema.check(Schema.isMaxLength(128)));
 
 const LocalizedFields = {
   description: Schema.optional(Schema.String),
@@ -59,7 +62,7 @@ const HistoricalTryoutExamSchema = Schema.Struct({
   kind: Schema.Literal("exam"),
   order: PositiveCountSchema,
   publicPath: PublicPathSchema,
-  scoringStrategy: Schema.Literal("irt", "raw"),
+  scoringStrategy: Schema.Literals(["irt", "raw"]),
 });
 const HistoricalTryoutTrackSchema = Schema.Struct({
   ...LocalizedFields,
@@ -71,13 +74,15 @@ const HistoricalTryoutTrackSchema = Schema.Struct({
   sectionCount: PositiveCountSchema,
   setCount: PositiveCountSchema,
   trackKey: TryoutKeySchema,
-  trackKind: Schema.Literal("subject", "year"),
+  trackKind: Schema.Literals(["subject", "year"]),
   visibleSectionCount: NonNegativeCountSchema,
 }).pipe(
-  Schema.filter(
-    ({ sectionCount, visibleSectionCount }) =>
-      visibleSectionCount <= sectionCount,
-    { message: () => "Stored visible sections exceed the track section count." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ sectionCount, visibleSectionCount }) =>
+        visibleSectionCount <= sectionCount,
+      { message: "Stored visible sections exceed the track section count." }
+    )
   )
 );
 const HistoricalTryoutSetSchema = Schema.Struct({
@@ -88,18 +93,20 @@ const HistoricalTryoutSetSchema = Schema.Struct({
   order: PositiveCountSchema,
   publicPath: PublicPathSchema,
   questionCount: PositiveCountSchema,
-  scoringStrategy: Schema.Literal("irt", "raw"),
+  scoringStrategy: Schema.Literals(["irt", "raw"]),
   sectionCount: PositiveCountSchema,
   setKey: TryoutKeySchema,
   trackKey: TryoutKeySchema,
   visibleSectionCount: NonNegativeCountSchema,
 }).pipe(
-  Schema.filter(
-    ({ internalEntrySectionKey, sectionCount, visibleSectionCount }) =>
-      internalEntrySectionKey === undefined
-        ? visibleSectionCount === sectionCount
-        : sectionCount === 1 && visibleSectionCount === 0,
-    { message: () => "Stored set section counts are incoherent." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ internalEntrySectionKey, sectionCount, visibleSectionCount }) =>
+        internalEntrySectionKey === undefined
+          ? visibleSectionCount === sectionCount
+          : sectionCount === 1 && visibleSectionCount === 0,
+      { message: "Stored set section counts are incoherent." }
+    )
   )
 );
 const HistoricalTryoutSectionSchema = Schema.Struct({
@@ -114,24 +121,26 @@ const HistoricalTryoutSectionSchema = Schema.Struct({
   setKey: TryoutKeySchema,
   timeLimitSeconds: PositiveCountSchema,
   trackKey: TryoutKeySchema,
-  visibility: Schema.Literal("internal-entry", "visible"),
+  visibility: Schema.Literals(["internal-entry", "visible"]),
 }).pipe(
-  Schema.filter(
-    ({ publicPath, visibility }) =>
-      visibility === "visible"
-        ? publicPath !== undefined
-        : publicPath === undefined,
-    { message: () => "Stored section visibility and public path disagree." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ publicPath, visibility }) =>
+        visibility === "visible"
+          ? publicPath !== undefined
+          : publicPath === undefined,
+      { message: "Stored section visibility and public path disagree." }
+    )
   )
 );
 
-export const HistoricalTryoutCatalogRowSchema = Schema.Union(
+export const HistoricalTryoutCatalogRowSchema = Schema.Union([
   HistoricalTryoutCountrySchema,
   HistoricalTryoutExamSchema,
   HistoricalTryoutTrackSchema,
   HistoricalTryoutSetSchema,
-  HistoricalTryoutSectionSchema
-);
+  HistoricalTryoutSectionSchema,
+]);
 export type HistoricalTryoutCatalogRow =
   typeof HistoricalTryoutCatalogRowSchema.Type;
 
@@ -157,9 +166,11 @@ function hasCoherentChoices(choices: readonly HistoricalTryoutChoice[]) {
 const HistoricalTryoutChoiceListSchema = Schema.NonEmptyArray(
   HistoricalTryoutChoiceSchema
 ).pipe(
-  Schema.filter(hasCoherentChoices, {
-    message: () => "Stored choices have incoherent option identities.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentChoices, {
+      message: "Stored choices have incoherent option identities.",
+    })
+  )
 );
 
 const HistoricalPlacementFields = {
@@ -216,9 +227,11 @@ export const HistoricalTryoutPlacementSchema = Schema.Struct({
   questionArtifactHash: HistoricalSha256HashSchema,
   title: Schema.String,
 }).pipe(
-  Schema.filter(hasCoherentPlacementKeys, {
-    message: () => "Stored placement identities are incoherent.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementKeys, {
+      message: "Stored placement identities are incoherent.",
+    })
+  )
 );
 export type HistoricalTryoutPlacement =
   typeof HistoricalTryoutPlacementSchema.Type;
@@ -246,8 +259,8 @@ export type HistoricalTryoutPlacementEnvelope =
   typeof HistoricalTryoutPlacementEnvelopeSchema.Type;
 
 /** Exact retained row envelopes required by immutable try-out attempts. */
-export const HistoricalTryoutRowSchema = Schema.Union(
+export const HistoricalTryoutRowSchema = Schema.Union([
   HistoricalTryoutCatalogEnvelopeSchema,
-  HistoricalTryoutPlacementEnvelopeSchema
-);
+  HistoricalTryoutPlacementEnvelopeSchema,
+]);
 export type HistoricalTryoutRow = typeof HistoricalTryoutRowSchema.Type;

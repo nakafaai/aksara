@@ -45,14 +45,16 @@ function hasBoundCompletedReceipt(input: {
 }
 
 /** Exact active release retained for base selection and crash recovery. */
-export const ActiveContentReleaseSchema = Schema.extend(
-  ContentReleaseBundleSchema,
-  Schema.Struct({ receipt: PublicationReceiptSchema })
+export const ActiveContentReleaseSchema = ContentReleaseBundleSchema.mapFields(
+  (fields) => ({ ...fields, receipt: PublicationReceiptSchema }),
+  { unsafePreserveChecks: true }
 ).pipe(
-  Schema.filter(hasBoundCompletedReceipt, {
-    message: () =>
-      "Expected the active receipt to match its signed release manifest.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundCompletedReceipt, {
+      message:
+        "Expected the active receipt to match its signed release manifest.",
+    })
+  )
 );
 export type ActiveContentRelease = typeof ActiveContentReleaseSchema.Type;
 
@@ -63,24 +65,24 @@ export type ActiveRollbackContentRelease = ActiveContentRelease &
 /** Historical terminal release accepted only when it is a rollback. */
 export const ActiveRollbackContentReleaseSchema =
   ActiveContentReleaseSchema.pipe(
-    Schema.filter(
+    Schema.refine(
       (release): release is ActiveRollbackContentRelease =>
         release.release.manifest.origin.kind === "rollback",
-      { message: () => "Expected a completed rollback release." }
+      { message: "Expected a completed rollback release." }
     )
   );
 
-const StagedReleasePhaseSchema = Schema.Literal(
+const StagedReleasePhaseSchema = Schema.Literals([
   "staging",
   "verifying",
   "verified",
-  "aborting"
-);
+  "aborting",
+]);
 
 /** Exact durable release bundle currently owning one invisible slot. */
-export const StagedContentReleaseSchema = Schema.extend(
-  ContentReleaseBundleSchema,
-  Schema.Struct({ phase: StagedReleasePhaseSchema })
+export const StagedContentReleaseSchema = ContentReleaseBundleSchema.mapFields(
+  (fields) => ({ ...fields, phase: StagedReleasePhaseSchema }),
+  { unsafePreserveChecks: true }
 );
 export type StagedContentRelease = typeof StagedContentReleaseSchema.Type;
 
@@ -91,10 +93,10 @@ export type StagedRollbackContentRelease = StagedContentRelease &
 /** Candidate recovery slot accepted only when it contains a rollback. */
 export const StagedRollbackContentReleaseSchema =
   StagedContentReleaseSchema.pipe(
-    Schema.filter(
+    Schema.refine(
       (release): release is StagedRollbackContentRelease =>
         release.release.manifest.origin.kind === "rollback",
-      { message: () => "Expected a staged rollback release." }
+      { message: "Expected a staged rollback release." }
     )
   );
 
@@ -203,19 +205,21 @@ export const ContentReleaseCurrentSchema = Schema.Struct({
   candidate: Schema.NullOr(StagedContentReleaseSchema),
   recovery: Schema.NullOr(StagedRollbackContentReleaseSchema),
 }).pipe(
-  Schema.filter(hasCoherentCurrentState, {
-    message: () =>
-      "Expected active, candidate, and recovery identities to be coherent.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentCurrentState, {
+      message:
+        "Expected active, candidate, and recovery identities to be coherent.",
+    })
+  )
 );
 export type ContentReleaseCurrent = typeof ContentReleaseCurrentSchema.Type;
 
 /** Historical recovery lookup used for crash-safe terminal replay. */
-export const RecoveryLookupSchema = Schema.Union(
+export const RecoveryLookupSchema = Schema.Union([
   Schema.Struct({ kind: Schema.Literal("missing") }),
   Schema.Struct({
     kind: Schema.Literal("completed"),
     value: ActiveRollbackContentReleaseSchema,
-  })
-);
+  }),
+]);
 export type RecoveryLookup = typeof RecoveryLookupSchema.Type;

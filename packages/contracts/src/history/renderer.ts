@@ -12,15 +12,17 @@ import {
 const HISTORICAL_RENDERER_FORMAT = "nakafa-mdx-renderer-v1";
 const HISTORICAL_RENDERER_VERSION = "1.0.0";
 const HistoricalRendererComponentNameSchema = Schema.String.pipe(
-  Schema.pattern(/^[A-Za-z][A-Za-z0-9]*$/u)
+  Schema.check(Schema.isPattern(/^[A-Za-z][A-Za-z0-9]*$/u))
 );
 const HistoricalRendererRequirementSchema = Schema.Struct({
   name: HistoricalRendererComponentNameSchema,
-  version: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  version: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 type HistoricalRendererRequirement =
   typeof HistoricalRendererRequirementSchema.Type;
-
 /** Orders retained component requirements by exact old wire semantics. */
 function compareRequirements(
   left: HistoricalRendererRequirement,
@@ -48,12 +50,14 @@ function hasCanonicalRequirements(
 
 const HistoricalRendererRequirementsSchema = Schema.Array(
   HistoricalRendererRequirementSchema
-).pipe(Schema.filter(hasCanonicalRequirements));
+).pipe(Schema.check(Schema.makeFilter(hasCanonicalRequirements)));
 const HistoricalRendererAuthoringSchema =
   HistoricalRendererRequirementsSchema.pipe(
-    Schema.filter((requirements) =>
-      requirements.every(
-        ({ name }, index) => name !== requirements[index - 1]?.name
+    Schema.check(
+      Schema.makeFilter((requirements) =>
+        requirements.every(
+          ({ name }, index) => name !== requirements[index - 1]?.name
+        )
       )
     )
   );
@@ -86,16 +90,16 @@ function hasCompleteSelection(capability: HistoricalRendererCapability) {
 
 const HistoricalRendererBaseSchema = Schema.Struct({
   authoringComponents: HistoricalRendererAuthoringSchema.pipe(
-    Schema.minItems(1)
+    Schema.check(Schema.isMinLength(1))
   ),
   supportedComponents: HistoricalRendererRequirementsSchema.pipe(
-    Schema.minItems(1)
+    Schema.check(Schema.isMinLength(1))
   ),
-}).pipe(Schema.filter(hasCompleteSelection));
+}).pipe(Schema.check(Schema.makeFilter(hasCompleteSelection)));
 const HistoricalRendererDomainSchema = Schema.Struct({
   ...HistoricalRendererCapabilityStructSchema.fields,
   name: HistoricalPrimitive.RendererDomainSchema,
-}).pipe(Schema.filter(hasCompleteSelection));
+}).pipe(Schema.check(Schema.makeFilter(hasCompleteSelection)));
 type HistoricalRendererDomain = typeof HistoricalRendererDomainSchema.Type;
 
 /** Checks retained renderer domains use the exact frozen inventory. */
@@ -110,18 +114,20 @@ function hasCompleteDomains(domains: readonly HistoricalRendererDomain[]) {
 
 const HistoricalRendererDomainsSchema = Schema.Array(
   HistoricalRendererDomainSchema
-).pipe(Schema.filter(hasCompleteDomains));
+).pipe(Schema.check(Schema.makeFilter(hasCompleteDomains)));
 const HistoricalPublishedDomainsSchema = Schema.Array(
   HistoricalPrimitive.RendererDomainSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.filter((domains) => {
-    const canonical = [...domains].sort(compareHistoricalCodeUnits);
-    return domains.every(
-      (domain, index) =>
-        domain === canonical[index] && domain !== domains[index - 1]
-    );
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(
+    Schema.makeFilter((domains) => {
+      const canonical = [...domains].sort(compareHistoricalCodeUnits);
+      return domains.every(
+        (domain, index) =>
+          domain === canonical[index] && domain !== domains[index - 1]
+      );
+    })
+  )
 );
 
 /** Keeps retained base components separate from route-owned components. */
@@ -145,7 +151,7 @@ export const HistoricalRendererManifestSchema = Schema.Struct({
   hash: HistoricalSha256HashSchema,
   publishedDomains: HistoricalPublishedDomainsSchema,
   rendererContractVersion: Schema.Literal(HISTORICAL_RENDERER_VERSION),
-}).pipe(Schema.filter(hasDistinctBaseComponents));
+}).pipe(Schema.check(Schema.makeFilter(hasDistinctBaseComponents)));
 export type HistoricalRendererManifest =
   typeof HistoricalRendererManifestSchema.Type;
 
@@ -194,7 +200,10 @@ export class StoredRendererVersionUnsupportedError extends Schema.TaggedError<St
   {
     componentName: HistoricalRendererComponentNameSchema,
     contentKey: HistoricalPrimitive.ContentKeySchema,
-    requiredVersion: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    requiredVersion: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -232,7 +241,7 @@ export function canonicalizeHistoricalRendererManifest(
 export const validateHistoricalRendererManifestHash = Effect.fn(
   "AksaraContracts.validateHistoricalRendererManifestHash"
 )((input: unknown) =>
-  Schema.decodeUnknown(HistoricalRendererManifestSchema)(input, {
+  Schema.decodeUnknownEffect(HistoricalRendererManifestSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(() => new StoredRendererDecodeError()),

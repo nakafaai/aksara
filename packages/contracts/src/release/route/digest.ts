@@ -84,8 +84,9 @@ export const digestRoutes = Effect.fn("AksaraContracts.digestRoutes")(
   ) {
     const initial = yield* createRouteDigest(releaseId);
     const state = yield* routes.pipe(
-      Stream.runFoldEffect(initial, (current, route) =>
-        updateRouteDigest(releaseId, current, route)
+      Stream.runFoldEffect(
+        () => initial,
+        (current, route) => updateRouteDigest(releaseId, current, route)
       )
     );
     const digest = yield* completeRouteDigest(releaseId, state);

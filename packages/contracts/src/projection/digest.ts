@@ -84,8 +84,10 @@ export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
   ) {
     const initial = yield* createProjectionDigest(releaseId);
     const state = yield* projections.pipe(
-      Stream.runFoldEffect(initial, (current, projection) =>
-        updateProjectionDigest(releaseId, current, projection)
+      Stream.runFoldEffect(
+        () => initial,
+        (current, projection) =>
+          updateProjectionDigest(releaseId, current, projection)
       )
     );
     const digest = yield* finalizeProjectionDigest(releaseId, state);

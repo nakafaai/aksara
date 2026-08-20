@@ -1,12 +1,11 @@
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationSource } from "#publisher/publication/spec";
@@ -32,7 +31,7 @@ export async function publishMaterialRelease() {
           rendererManifest,
           scope: functionMaterialScope,
         });
-        const resultHeads = yield* material.result().pipe(Stream.runCollect);
+        const resultHeads = yield* material.result.pipe(Stream.runCollect);
         const prepared = yield* prepareContentRelease({
           aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
           baseResultCount: 0,
@@ -40,7 +39,7 @@ export async function publishMaterialRelease() {
           records: material.records,
           releaseId: ReleaseIdSchema.make("test-material-replay"),
           rendererManifest,
-          result: () => Stream.fromIterable(resultHeads),
+          result: Stream.fromIterable(resultHeads),
           routes: material.routes,
           scope: functionMaterialScope,
           ...snapshotPolicyBase("test-material-base"),
@@ -52,16 +51,20 @@ export async function publishMaterialRelease() {
             items.pipe(
               Stream.mapEffect((item) => {
                 if (item.change.operation === "delete") {
-                  return Effect.dieMessage(
-                    "Exact-Git source requested for a test tombstone."
+                  return Effect.die(
+                    new Error(
+                      "Exact-Git source requested for a test tombstone."
+                    )
                   );
                 }
                 const rawMdx = sourceByPath.get(
                   resolve(checkoutRoot, item.change.sourcePath)
                 );
                 if (rawMdx === undefined) {
-                  return Effect.dieMessage(
-                    `Missing exact test source ${item.change.sourcePath}.`
+                  return Effect.die(
+                    new Error(
+                      `Missing exact test source ${item.change.sourcePath}.`
+                    )
                   );
                 }
                 return Effect.succeed(

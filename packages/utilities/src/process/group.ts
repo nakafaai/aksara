@@ -1,11 +1,11 @@
 import { Deferred, Effect, Option } from "effect";
-import type { DurationInput } from "effect/Duration";
+import type * as Duration from "effect/Duration";
 
 /** Detached process group plus its caller-owned termination policy. */
 export interface ProcessGroupTermination<Exit, Failure> {
   readonly exit: Deferred.Deferred<Exit, Failure>;
-  readonly grace: DurationInput;
-  readonly limit: DurationInput;
+  readonly grace: Duration.Input;
+  readonly limit: Duration.Input;
   readonly pid: number;
 }
 
@@ -20,7 +20,7 @@ function signalProcessGroup(pid: number, signal: NodeJS.Signals) {
 /** Waits a bounded duration for either normal or signalled process exit. */
 function waitForProcess<Exit, Failure>(
   group: ProcessGroupTermination<Exit, Failure>,
-  duration: DurationInput
+  duration: Duration.Input
 ) {
   return Deferred.await(group.exit).pipe(
     Effect.interruptible,

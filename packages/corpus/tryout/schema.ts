@@ -20,37 +20,31 @@ import {
 
 const DEFAULT_SECTION_VISIBILITY = "visible";
 
-const TryoutTranslationMapSchema = Schema.Record({
-  key: EmbeddedAppLocaleCodeSchema,
-  value: Schema.Struct({
+const TryoutTranslationMapSchema = Schema.Record(
+  EmbeddedAppLocaleCodeSchema,
+  Schema.Struct({
     description: Schema.optional(Schema.String),
     title: Schema.String,
-  }),
-});
-
-type TryoutSectionVisibility = typeof TryoutVisibilitySchema.Type;
+  })
+);
 
 const TryoutSectionSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
-  order: Schema.Int.pipe(Schema.positive()),
-  questionCount: Schema.Int.pipe(Schema.positive()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+  questionCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionSourcePath: QuestionSetKeySchema,
   rendererDomain: RendererDomainSchema,
   routeSlugs: PublicRouteSlugMapSchema,
-  timeLimitSeconds: Schema.Int.pipe(Schema.positive()),
+  timeLimitSeconds: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   translations: TryoutTranslationMapSchema,
-  visibility: Schema.optionalWith(TryoutVisibilitySchema, {
-    default: () => DEFAULT_SECTION_VISIBILITY,
-  }),
+  visibility: TryoutVisibilitySchema.pipe(
+    Schema.withDecodingDefaultKey(Effect.succeed(DEFAULT_SECTION_VISIBILITY))
+  ),
 });
 export type TryoutSectionSourceInput = typeof TryoutSectionSourceSchema.Encoded;
 
 /** Requires visible sections or one direct-entry section in a try-out set. */
-function hasReachableTryoutSections(source: {
-  readonly sections: readonly {
-    readonly visibility: TryoutSectionVisibility;
-  }[];
-}): boolean {
+function hasReachableTryoutSections(source: TryoutSetSourceFields): boolean {
   const internalEntryCount = source.sections.filter(
     (section) => section.visibility === "internal-entry"
   ).length;
@@ -60,23 +54,28 @@ function hasReachableTryoutSections(source: {
   return internalEntryCount === 1 && source.sections.length === 1;
 }
 
-const TryoutSetSourceSchema = Schema.Struct({
+const TryoutSetSourceFieldsSchema = Schema.Struct({
   key: TryoutKeySchema,
-  order: Schema.Int.pipe(Schema.positive()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   routeSlugs: PublicRouteSlugMapSchema,
   sections: Schema.Array(TryoutSectionSourceSchema),
   translations: TryoutTranslationMapSchema,
-}).pipe(
-  Schema.filter(hasReachableTryoutSections, {
-    message: () =>
-      "Internal-entry try-out sections must be the only section in a set.",
-  })
+});
+type TryoutSetSourceFields = typeof TryoutSetSourceFieldsSchema.Type;
+
+const TryoutSetSourceSchema = TryoutSetSourceFieldsSchema.pipe(
+  Schema.check(
+    Schema.makeFilter(hasReachableTryoutSections, {
+      message:
+        "Internal-entry try-out sections must be the only section in a set.",
+    })
+  )
 );
 
 const TryoutTrackSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
   kind: TryoutTrackKindSchema,
-  order: Schema.Int.pipe(Schema.positive()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   routeSlugs: PublicRouteSlugMapSchema,
   sets: Schema.Array(TryoutSetSourceSchema),
   translations: TryoutTranslationMapSchema,
@@ -85,7 +84,7 @@ const TryoutTrackSourceSchema = Schema.Struct({
 const TryoutCountrySourceSchema = Schema.Struct({
   countryCode: CountryCodeSchema,
   countryKey: TryoutKeySchema,
-  countryOrder: Schema.Int.pipe(Schema.positive()),
+  countryOrder: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   countryRevision: PublicRouteSegmentSchema,
   countryRouteSlugs: PublicRouteSlugMapSchema,
   countryTranslations: TryoutTranslationMapSchema,
@@ -95,7 +94,7 @@ export type TryoutCountrySourceInput = typeof TryoutCountrySourceSchema.Encoded;
 const TryoutExamSourceFieldsSchema = Schema.Struct({
   ...TryoutCountrySourceSchema.fields,
   examKey: TryoutKeySchema,
-  examOrder: Schema.Int.pipe(Schema.positive()),
+  examOrder: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   examRouteSlugs: PublicRouteSlugMapSchema,
   examTranslations: TryoutTranslationMapSchema,
   scoringStrategy: TryoutScoringSchema,
@@ -124,10 +123,12 @@ function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
 
 /** Complete active contract for one imported try-out exam source. */
 export const TryoutExamSourceSchema = TryoutExamSourceFieldsSchema.pipe(
-  Schema.filter(hasOwnedQuestionSources, {
-    message: () =>
-      "Question sources must match their country, exam, section, and set.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasOwnedQuestionSources, {
+      message:
+        "Question sources must match their country, exam, section, and set.",
+    })
+  )
 );
 type TryoutExamSourceInput = typeof TryoutExamSourceSchema.Encoded;
 export type TryoutExamSource = typeof TryoutExamSourceSchema.Type;
@@ -135,7 +136,7 @@ export type TryoutExamSource = typeof TryoutExamSourceSchema.Type;
 /** One authored try-out catalog failed strict schema decoding. */
 export class TryoutDecodeError extends Schema.TaggedError<TryoutDecodeError>()(
   "TryoutDecodeError",
-  { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
+  { cause: Schema.Unknown, message: Schema.Trimmed.check(Schema.isNonEmpty()) }
 ) {}
 
 /** One authored try-out scope contains the same stable key twice. */
@@ -143,7 +144,7 @@ export class TryoutDuplicateError extends Schema.TaggedError<TryoutDuplicateErro
   "TryoutDuplicateError",
   {
     key: TryoutKeySchema,
-    scope: Schema.NonEmptyTrimmedString,
+    scope: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 
@@ -176,7 +177,7 @@ function validateUniqueKeys(
 export const defineTryoutExamSource = Effect.fn(
   "AksaraCorpus.defineTryoutExamSource"
 )(function* (input: TryoutExamSourceInput) {
-  const source = yield* Schema.decodeUnknown(TryoutExamSourceSchema)(input, {
+  const source = yield* Schema.decodeEffect(TryoutExamSourceSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

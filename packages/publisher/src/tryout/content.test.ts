@@ -1,12 +1,11 @@
-import { Path } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path, Stream } from "effect";
 import {
   type BoundTryoutPlacement,
   bindTryoutHeads,

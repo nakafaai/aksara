@@ -1,12 +1,11 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
 import { corpusRoot } from "#corpus/test/question-layer";
 
@@ -35,11 +34,11 @@ function sourceLayer(sources: ReadonlyMap<string, string>) {
         return Effect.succeed(source);
       }
       return Effect.fail(
-        new PlatformError.SystemError({
+        PlatformError.systemError({
+          _tag: "NotFound",
           method: "readFileString",
           module: "FileSystem",
           pathOrDescriptor: path,
-          reason: "NotFound",
         })
       );
     },

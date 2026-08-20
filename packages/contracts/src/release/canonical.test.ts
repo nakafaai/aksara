@@ -9,7 +9,7 @@ import {
 
 describe("release canonicalization", () => {
   it("serializes authenticated item fields in stable wire order", () => {
-    const change = Schema.decodeUnknownSync(ContentChangeSchema)({
+    const change = Schema.decodeSync(ContentChangeSchema)({
       artifactHash: `sha256:${"b".repeat(64)}`,
       artifactLocale: "en",
       contentKey: "test:content",

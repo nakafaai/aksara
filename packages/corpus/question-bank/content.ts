@@ -1,4 +1,3 @@
-import { FileSystem, Path } from "@effect/platform";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -21,7 +20,7 @@ import {
   questionArtifactLocaleForSection,
   questionArtifactLocalesForSection,
 } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema, Struct } from "effect";
 import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import {
   decodeQuestionDocumentPath,
@@ -36,39 +35,36 @@ import {
 } from "#corpus/question-bank/source";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
-const QuestionEntryBaseSchema = Schema.extend(
-  QuestionSourceSchema.pipe(Schema.omit("choices", "files")),
-  Schema.Struct({
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
-    peerContentKey: ContentKeySchema,
-    sourcePath: CorpusSourcePathSchema,
-  })
+const QuestionEntrySourceSchema = QuestionSourceSchema.mapFields(
+  Struct.omit(["choices", "files"])
 );
+const QuestionEntryBaseSchema = Schema.Struct({
+  ...QuestionEntrySourceSchema.fields,
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+  peerContentKey: ContentKeySchema,
+  sourcePath: CorpusSourcePathSchema,
+});
 
 /** Strict locale-specific prompt prepared for authenticated delivery. */
-const QuestionPromptEntrySchema = Schema.extend(
-  QuestionEntryBaseSchema,
-  Schema.Struct({
-    bodyKind: Schema.Literal("question"),
-    delivery: Schema.Literal("authenticated"),
-  })
-);
+const QuestionPromptEntrySchema = Schema.Struct({
+  ...QuestionEntryBaseSchema.fields,
+  bodyKind: Schema.Literal("question"),
+  delivery: Schema.Literal("authenticated"),
+});
 
 /** Strict locale-specific answer prepared for entitled delivery. */
-const QuestionAnswerEntrySchema = Schema.extend(
-  QuestionEntryBaseSchema,
-  Schema.Struct({
-    bodyKind: Schema.Literal("answer"),
-    delivery: Schema.Literal("entitled"),
-  })
-);
+const QuestionAnswerEntrySchema = Schema.Struct({
+  ...QuestionEntryBaseSchema.fields,
+  bodyKind: Schema.Literal("answer"),
+  delivery: Schema.Literal("entitled"),
+});
 
 /** Strict question-bank body prepared for its exact delivery boundary. */
-const QuestionEntrySchema = Schema.Union(
+const QuestionEntrySchema = Schema.Union([
   QuestionPromptEntrySchema,
-  QuestionAnswerEntrySchema
-);
+  QuestionAnswerEntrySchema,
+]);
 export type QuestionEntry = typeof QuestionEntrySchema.Type;
 
 /** Complete authored question or answer body joined with canonical choices. */

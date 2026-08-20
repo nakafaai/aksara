@@ -14,8 +14,8 @@ import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { bindTryoutHeads } from "#publisher/tryout/bind";
 
 const questionRoot =
@@ -26,7 +26,7 @@ const hash = Sha256HashSchema.make(`sha256:${"1".repeat(64)}`);
 
 /** Returns one strict test-owned active placement without authored body text. */
 function placement(artifactLocale: typeof ArtifactLocaleSchema.Encoded) {
-  return Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
+  return Schema.decodeSync(TryoutPlacementSourceSchema)({
     answerArtifactLocale: artifactLocale,
     answerContentKey: `${questionRoot}/answer`,
     appLocale: artifactLocale,

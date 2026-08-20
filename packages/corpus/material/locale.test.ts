@@ -1,7 +1,7 @@
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { decodeMaterialDomains } from "#corpus/material/domain";
 import {
   composeMaterialLocaleDomain,

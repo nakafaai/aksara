@@ -1,8 +1,9 @@
 import { existsSync, readFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Fiber } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   ExactProcess,
   type ExactProcessInput,

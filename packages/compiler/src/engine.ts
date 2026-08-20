@@ -48,8 +48,8 @@ import {
 import { enforceExecutablePolicy } from "#compiler/policy";
 
 type CompileRequestError =
-  | Effect.Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
-  | Effect.Effect.Error<ReturnType<typeof validateRendererManifestHash>>;
+  | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
+  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>;
 
 /** Captures the searchable plain-text projection from the parsed MDX tree. */
 function capturePlainText(

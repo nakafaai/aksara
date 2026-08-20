@@ -89,8 +89,9 @@ export const digestItems = Effect.fn("AksaraContracts.digestItems")(function* <
 >(releaseId: ReleaseId, items: Stream.Stream<ContentReleaseItem, E, R>) {
   const initial = yield* createReleaseItemsDigest(releaseId);
   const state = yield* items.pipe(
-    Stream.runFoldEffect(initial, (current, item) =>
-      updateReleaseItemsDigest(releaseId, current, item)
+    Stream.runFoldEffect(
+      () => initial,
+      (current, item) => updateReleaseItemsDigest(releaseId, current, item)
     )
   );
   const digest = yield* finalizeReleaseItemsDigest(releaseId, state);

@@ -6,7 +6,7 @@ import {
 import { Schema } from "effect";
 
 /** Publication capability whose infrastructure request did not complete. */
-export const PublicationTargetStageSchema = Schema.Literal(
+export const PublicationTargetStageSchema = Schema.Literals([
   "accept",
   "abort",
   "current",
@@ -23,22 +23,25 @@ export const PublicationTargetStageSchema = Schema.Literal(
   "recovery",
   "status",
   "cleanup",
-  "rollback"
-);
+  "rollback",
+]);
 export type PublicationTargetStage = typeof PublicationTargetStageSchema.Type;
 
 /** Sanitized transport evidence safe to expose at an operator boundary. */
-export const PublicationTransportDetailSchema = Schema.Union(
+export const PublicationTransportDetailSchema = Schema.Union([
   Schema.Struct({ reason: Schema.Literal("network") }),
   Schema.Struct({ reason: Schema.Literal("timeout") }),
   Schema.Struct({
     reason: Schema.Literal("transient-status"),
-    status: Schema.Union(
-      Schema.Literal(408, 429),
-      Schema.Number.pipe(Schema.int(), Schema.between(500, 599))
-    ),
-  })
-);
+    status: Schema.Union([
+      Schema.Literals([408, 429]),
+      Schema.Finite.pipe(
+        Schema.check(Schema.isInt()),
+        Schema.check(Schema.isBetween({ maximum: 599, minimum: 500 }))
+      ),
+    ]),
+  }),
+]);
 
 /** A target transport failed transiently and may be retried idempotently. */
 export class PublicationTargetTransportError extends Schema.TaggedError<PublicationTargetTransportError>()(
@@ -61,11 +64,11 @@ export function publicationNetworkError(stage: PublicationTargetStage) {
 export class PublicationTargetProtocolError extends Schema.TaggedError<PublicationTargetProtocolError>()(
   "PublicationTargetProtocolError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "request-encoding",
       "response-decoding",
-      "response-evidence"
-    ),
+      "response-evidence",
+    ]),
     stage: PublicationTargetStageSchema,
   }
 ) {}
@@ -73,7 +76,7 @@ export class PublicationTargetProtocolError extends Schema.TaggedError<Publicati
 /** Publication transport configuration is unsafe before any request is sent. */
 export class PublicationTargetConfigurationError extends Schema.TaggedError<PublicationTargetConfigurationError>()(
   "PublicationTargetConfigurationError",
-  { reason: Schema.Literal("endpoint", "timeout", "token") }
+  { reason: Schema.Literals(["endpoint", "timeout", "token"]) }
 ) {}
 
 /** Publication ingress rejected credentials before invoking a capability. */

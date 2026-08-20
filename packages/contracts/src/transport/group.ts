@@ -13,20 +13,20 @@ import {
 } from "#contracts/transport/snapshot";
 
 /** One existing safe transaction carried inside an authenticated group. */
-export const StageOperationSchema = Schema.Union(
+export const StageOperationSchema = Schema.Union([
   StageArtifactBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchRequestSchema,
   StageRouteBatchRequestSchema,
   StageSnapshotRequestSchema,
-  StageSnapshotBatchRequestSchema
-);
+  StageSnapshotBatchRequestSchema,
+]);
 export type StageOperation = typeof StageOperationSchema.Type;
 
 const StageGroupFields = {
   releaseId: ReleaseIdSchema,
   requests: Schema.NonEmptyArray(StageOperationSchema).pipe(
-    Schema.maxItems(MAX_STAGE_GROUP_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_STAGE_GROUP_COUNT))
   ),
 };
 
@@ -42,10 +42,11 @@ function hasBoundRequests(input: {
 
 /** Canonical target input for one bounded authenticated request group. */
 export const StageGroupInputSchema = Schema.Struct(StageGroupFields).pipe(
-  Schema.filter(hasBoundRequests, {
-    message: () =>
-      "Expected every staged request to share one release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRequests, {
+      message: "Expected every staged request to share one release identity.",
+    })
+  )
 );
 export type StageGroupInput = typeof StageGroupInputSchema.Type;
 
@@ -54,19 +55,22 @@ export const StageGroupRequestSchema = Schema.Struct({
   ...StageGroupFields,
   operation: Schema.Literal("stageGroup"),
 }).pipe(
-  Schema.filter(hasBoundRequests, {
-    message: () =>
-      "Expected every staged request to share one release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRequests, {
+      message: "Expected every staged request to share one release identity.",
+    })
+  )
 );
 export type StageGroupRequest = typeof StageGroupRequestSchema.Type;
 
 /** Confirms that every transaction in one grouped request completed. */
 export const StageGroupReceiptSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
-  requestCount: Schema.Number.pipe(
-    Schema.int(),
-    Schema.between(1, MAX_STAGE_GROUP_COUNT)
+  requestCount: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(
+      Schema.isBetween({ maximum: MAX_STAGE_GROUP_COUNT, minimum: 1 })
+    )
   ),
 });
 export type StageGroupReceipt = typeof StageGroupReceiptSchema.Type;

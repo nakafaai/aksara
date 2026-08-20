@@ -29,7 +29,7 @@ export class PreviewProviderError extends Schema.TaggedError<PreviewProviderErro
   "PreviewProviderError",
   {
     cause: Schema.optional(Schema.Unknown),
-    stage: Schema.Literal("coherence", "encode", "listen"),
+    stage: Schema.Literals(["coherence", "encode", "listen"]),
   }
 ) {}
 
@@ -83,7 +83,7 @@ interface PreviewProviderInput {
 /** Encodes one exact manifest before it can become visible to HTTP callbacks. */
 const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
   (manifest: LocalPreviewManifest) =>
-    Schema.decodeUnknown(LocalPreviewManifestSchema)(manifest, {
+    Schema.decodeEffect(LocalPreviewManifestSchema)(manifest, {
       onExcessProperty: "error",
     }).pipe(
       Effect.mapError(
@@ -98,7 +98,7 @@ const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
 
 /** Starts one HTTP server and proves it bound only to IPv4 loopback. */
 function listenLoopback(server: Server) {
-  return Effect.async<AddressInfo, PreviewProviderError>((resume) => {
+  return Effect.callback<AddressInfo, PreviewProviderError>((resume) => {
     server.once("error", () =>
       resume(Effect.fail(new PreviewProviderError({ stage: "listen" })))
     );
@@ -124,7 +124,7 @@ function listenLoopback(server: Server) {
 
 /** Closes event streams before stopping the scoped loopback server. */
 function closeServer(server: Server, http: PreviewHttp) {
-  return Effect.async<void>((resume) => {
+  return Effect.callback<void>((resume) => {
     http.close();
     server.close(() => resume(Effect.void));
   });

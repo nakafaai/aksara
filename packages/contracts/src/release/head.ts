@@ -13,7 +13,9 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
 const HeadCursorSchema = Schema.NullOr(
-  Schema.NonEmptyTrimmedString.pipe(Schema.maxLength(4096))
+  Schema.Trimmed.check(Schema.isNonEmpty()).pipe(
+    Schema.check(Schema.isMaxLength(4096))
+  )
 );
 
 const ContentHeadFields = {
@@ -48,18 +50,20 @@ export const QuestionHeadSchema = Schema.Struct({
   ...ContentHeadFields,
   family: Schema.Literal("question"),
 }).pipe(
-  Schema.filter(({ publicPath }) => publicPath === undefined, {
-    message: () => "Expected question heads to remain route-free.",
-  })
+  Schema.check(
+    Schema.makeFilter(({ publicPath }) => publicPath === undefined, {
+      message: "Expected question heads to remain route-free.",
+    })
+  )
 );
 export type QuestionHead = typeof QuestionHeadSchema.Type;
 
 /** Complete compact-head vocabulary backed by implemented content families. */
-export const ContentHeadSchema = Schema.Union(
+export const ContentHeadSchema = Schema.Union([
   ArticleHeadSchema,
   MaterialHeadSchema,
-  QuestionHeadSchema
-);
+  QuestionHeadSchema,
+]);
 export type ContentHead = typeof ContentHeadSchema.Type;
 
 /** Serializes one compact head in stable catalog field order. */
@@ -85,9 +89,9 @@ export const HeadPageRequestSchema = Schema.Struct({
   activeReleaseId: ReleaseIdSchema,
   cursor: HeadCursorSchema,
   family: ContentFamilySchema,
-  limit: Schema.Number.pipe(
-    Schema.int(),
-    Schema.between(1, MAX_HEAD_PAGE_COUNT)
+  limit: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isBetween({ maximum: MAX_HEAD_PAGE_COUNT, minimum: 1 }))
   ),
 });
 export type HeadPageRequest = typeof HeadPageRequestSchema.Type;
@@ -124,45 +128,51 @@ const ArticleHeadPageSchema = Schema.Struct({
   ...HeadPageFields,
   family: Schema.Literal("article"),
   heads: Schema.Array(ArticleHeadSchema).pipe(
-    Schema.maxItems(MAX_HEAD_PAGE_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
   ),
 }).pipe(
-  Schema.filter(hasCanonicalHeadPage, {
-    message: () =>
-      "Expected canonical article heads with coherent cursor progress.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalHeadPage, {
+      message:
+        "Expected canonical article heads with coherent cursor progress.",
+    })
+  )
 );
 
 const MaterialHeadPageSchema = Schema.Struct({
   ...HeadPageFields,
   family: Schema.Literal("material"),
   heads: Schema.Array(MaterialHeadSchema).pipe(
-    Schema.maxItems(MAX_HEAD_PAGE_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
   ),
 }).pipe(
-  Schema.filter(hasCanonicalHeadPage, {
-    message: () =>
-      "Expected canonical material heads with coherent cursor progress.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalHeadPage, {
+      message:
+        "Expected canonical material heads with coherent cursor progress.",
+    })
+  )
 );
 
 const QuestionHeadPageSchema = Schema.Struct({
   ...HeadPageFields,
   family: Schema.Literal("question"),
   heads: Schema.Array(QuestionHeadSchema).pipe(
-    Schema.maxItems(MAX_HEAD_PAGE_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
   ),
 }).pipe(
-  Schema.filter(hasCanonicalHeadPage, {
-    message: () =>
-      "Expected canonical question heads with coherent cursor progress.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalHeadPage, {
+      message:
+        "Expected canonical question heads with coherent cursor progress.",
+    })
+  )
 );
 
 /** Bounded canonical page proving one exact family-owned head inventory. */
-export const HeadPageSchema = Schema.Union(
+export const HeadPageSchema = Schema.Union([
   ArticleHeadPageSchema,
   MaterialHeadPageSchema,
-  QuestionHeadPageSchema
-);
+  QuestionHeadPageSchema,
+]);
 export type HeadPage = typeof HeadPageSchema.Type;

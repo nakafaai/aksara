@@ -1,5 +1,5 @@
 import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Cache, Effect } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
 import type { PreviewDependency } from "#corpus/preview/source";
 
@@ -34,7 +34,10 @@ export const restartDependencies = Effect.fn(
 export const makeRestartDependencyLookup = Effect.fn(
   "AksaraCorpus.makeRestartDependencyLookup"
 )(function* (corpusRoot: string) {
-  return yield* Effect.cachedFunction((sourcePath: CorpusSourcePath) =>
-    restartDependencies(corpusRoot, sourcePath)
-  );
+  const cache = yield* Cache.make({
+    capacity: Number.MAX_SAFE_INTEGER,
+    lookup: (sourcePath: CorpusSourcePath) =>
+      restartDependencies(corpusRoot, sourcePath),
+  });
+  return (sourcePath: CorpusSourcePath) => Cache.get(cache, sourcePath);
 });

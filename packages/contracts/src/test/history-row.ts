@@ -22,7 +22,7 @@ const localized = {
 } as const;
 
 /** One valid retained row for every historical catalog discriminator. */
-export const historicalCatalogRows = Schema.decodeUnknownSync(
+export const historicalCatalogRows = Schema.decodeSync(
   Schema.Array(HistoricalTryoutCatalogRowSchema)
 )([
   {
@@ -89,7 +89,7 @@ export const historicalCatalogRows = Schema.decodeUnknownSync(
 ]);
 
 /** One internal retained set whose entry section is not publicly routed. */
-export const historicalInternalSet = Schema.decodeUnknownSync(
+export const historicalInternalSet = Schema.decodeSync(
   HistoricalTryoutCatalogRowSchema
 )({
   ...localized,
@@ -108,7 +108,7 @@ export const historicalInternalSet = Schema.decodeUnknownSync(
 });
 
 /** One internal retained section without a public route. */
-export const historicalInternalSection = Schema.decodeUnknownSync(
+export const historicalInternalSection = Schema.decodeSync(
   HistoricalTryoutCatalogRowSchema
 )({
   ...localized,
@@ -127,7 +127,7 @@ export const historicalInternalSection = Schema.decodeUnknownSync(
 });
 
 /** One valid retained placement used to exercise historical identity checks. */
-export const historicalPlacement = Schema.decodeUnknownSync(
+export const historicalPlacement = Schema.decodeSync(
   HistoricalTryoutPlacementSchema
 )({
   answerArtifactHash:

@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -17,18 +17,18 @@ import {
 import { protectedArtifact } from "#contracts/test/runtime/protected";
 
 /** Strictly checks whether one unknown retained wire value is accepted. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
 /** Returns the owned parse message for one rejected retained wire value. */
-function rejection(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  const result = Schema.decodeUnknownEither(schema)(input, {
+function rejection(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  const result = Schema.decodeUnknownExit(schema)(input, {
     onExcessProperty: "error",
   });
-  return Either.isLeft(result) ? String(result.left) : "";
+  return Exit.isFailure(result) ? String(result.cause) : "";
 }
 
 describe("retained protected runtime contract", () => {

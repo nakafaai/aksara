@@ -5,12 +5,12 @@ import {
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Schema } from "effect";
 
-const RecordIndexSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const RecordIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 
-export const CoherenceFieldSchema = Schema.Literal(
+export const CoherenceFieldSchema = Schema.Literals([
   "artifactHash",
   "contentKey",
   "family",
@@ -18,8 +18,8 @@ export const CoherenceFieldSchema = Schema.Literal(
   "rendererDomain",
   "sourcePath",
   "rawMdx",
-  "priorState"
-);
+  "priorState",
+]);
 
 /** A release attempted to reuse its immutable base release identity. */
 export class PreparedReleaseIdentityError extends Schema.TaggedError<PreparedReleaseIdentityError>()(
@@ -42,12 +42,6 @@ export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<Prepare
 export class PreparedSnapshotScopeError extends Schema.TaggedError<PreparedSnapshotScopeError>()(
   "PreparedSnapshotScopeError",
   { family: ContentSnapshotKindSchema }
-) {}
-
-/** A replay factory threw before it could describe its authored stream. */
-export class PreparedContentReplayError extends Schema.TaggedError<PreparedContentReplayError>()(
-  "PreparedContentReplayError",
-  { cause: Schema.Unknown }
 ) {}
 
 /** One authored record failed its exact current schema. */

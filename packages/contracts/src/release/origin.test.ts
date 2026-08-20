@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeReleaseOrigin,
@@ -7,7 +7,7 @@ import {
 
 describe("release origin", () => {
   it("preserves exact Git provenance in canonical field order", () => {
-    const origin = Schema.decodeUnknownSync(ReleaseOriginSchema)({
+    const origin = Schema.decodeSync(ReleaseOriginSchema)({
       kind: "git",
       sha: "a".repeat(40),
     });
@@ -19,7 +19,7 @@ describe("release origin", () => {
   });
 
   it("preserves the exact rollback source without inventing a Git SHA", () => {
-    const origin = Schema.decodeUnknownSync(ReleaseOriginSchema)({
+    const origin = Schema.decodeSync(ReleaseOriginSchema)({
       kind: "rollback",
       releaseId: "release-active",
     });
@@ -31,16 +31,16 @@ describe("release origin", () => {
   });
 
   it("rejects invalid Git and rollback identities", () => {
-    const decode = Schema.decodeUnknownEither(ReleaseOriginSchema, {
+    const decode = Schema.decodeUnknownExit(ReleaseOriginSchema, {
       onExcessProperty: "error",
     });
 
-    expect(Either.isLeft(decode({ kind: "git", sha: "short" }))).toBe(true);
+    expect(Exit.isFailure(decode({ kind: "git", sha: "short" }))).toBe(true);
     expect(
-      Either.isLeft(decode({ kind: "rollback", releaseId: "INVALID" }))
+      Exit.isFailure(decode({ kind: "rollback", releaseId: "INVALID" }))
     ).toBe(true);
     expect(
-      Either.isLeft(
+      Exit.isFailure(
         decode({
           kind: "git",
           releaseId: "release-active",

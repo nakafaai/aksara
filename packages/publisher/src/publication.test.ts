@@ -1,7 +1,8 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   makePreparedGitRelease,
   makePreparedRollbackRelease,
@@ -67,7 +68,7 @@ describe("content publication", () => {
     let receivedRelease = "";
     const activation = PublicationActivation.of({
       invalidate: ({ cacheChanges: changes, release: signedRelease }) =>
-        Stream.runCollect(changes()).pipe(
+        Stream.runCollect(changes).pipe(
           Effect.tap((values) =>
             Effect.sync(() => {
               cacheChanges = [...values];
@@ -165,17 +166,20 @@ describe("content publication", () => {
       ...projection,
       metadata: { ...projection.metadata, title: "Changed test protocol" },
     };
-    const release = await makeRelease("test-release-replay", () => {
-      replayCount += 1;
-      return Stream.make(
-        replayCount < 7
-          ? record
-          : {
-              ...record,
-              record: { ...record.record, projection: changedProjection },
-            }
-      );
-    });
+    const release = await makeRelease(
+      "test-release-replay",
+      Stream.suspend(() => {
+        replayCount += 1;
+        return Stream.make(
+          replayCount < 7
+            ? record
+            : {
+                ...record,
+                record: { ...record.record, projection: changedProjection },
+              }
+        );
+      })
+    );
     const changedSummary = await Effect.runPromise(
       digestProjections(
         release.manifest.releaseId,
@@ -223,10 +227,10 @@ describe("content publication", () => {
     const state = makeTarget(release);
     let artifactReplays = 0;
     const prepared = makePreparedRollbackRelease({
-      artifacts: () => {
+      artifacts: Stream.suspend(() => {
         artifactReplays += 1;
-        return release.prepared.artifacts();
-      },
+        return release.prepared.artifacts;
+      }),
       items: release.prepared.items,
       manifest: release.prepared.manifest,
       projections: release.prepared.projections,
@@ -240,7 +244,7 @@ describe("content publication", () => {
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
       manifest: release.manifest,
-      projections: () => Stream.make(projection),
+      projections: Stream.make(projection),
       rendererManifest,
       routes: release.prepared.routes,
       ...emptySnapshotSources,

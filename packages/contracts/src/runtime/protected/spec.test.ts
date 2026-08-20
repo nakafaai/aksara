@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import {
   MAX_PROTECTED_RUNTIME_REQUEST_BYTES,
   MAX_PROTECTED_RUNTIME_RESPONSE_BYTES,
@@ -37,7 +37,7 @@ describe("protected content runtime contract", () => {
   });
 
   it("rejects mismatched, empty, duplicate, and oversized selectors", () => {
-    const mismatchedDelivery = Schema.decodeUnknownEither(
+    const mismatchedDelivery = Schema.decodeExit(
       ProtectedContentRuntimeRequestSchema
     )(
       {
@@ -46,9 +46,9 @@ describe("protected content runtime contract", () => {
       },
       { onExcessProperty: "error" }
     );
-    expect(Either.isLeft(mismatchedDelivery)).toBe(true);
-    if (Either.isLeft(mismatchedDelivery)) {
-      expect(String(mismatchedDelivery.left)).toContain(
+    expect(Exit.isFailure(mismatchedDelivery)).toBe(true);
+    if (Exit.isFailure(mismatchedDelivery)) {
+      expect(String(mismatchedDelivery.cause)).toContain(
         "Expected authenticated prompts and entitled answer bodies."
       );
     }
@@ -115,15 +115,15 @@ describe("protected content runtime contract", () => {
       Effect.runPromise(decodeProtectedContentRuntimeResponse(protectedFound))
     ).resolves.toEqual(protectedFound);
 
-    const duplicateArtifacts = Schema.decodeUnknownEither(
+    const duplicateArtifacts = Schema.decodeExit(
       ProtectedContentRuntimeResponseSchema
     )({
       ...protectedFound,
       items: [protectedFound.items[0], protectedFound.items[0]],
     });
-    expect(Either.isLeft(duplicateArtifacts)).toBe(true);
-    if (Either.isLeft(duplicateArtifacts)) {
-      expect(String(duplicateArtifacts.left)).toContain(
+    expect(Exit.isFailure(duplicateArtifacts)).toBe(true);
+    if (Exit.isFailure(duplicateArtifacts)) {
+      expect(String(duplicateArtifacts.cause)).toContain(
         "Expected unique protected runtime artifacts."
       );
     }

@@ -1,5 +1,4 @@
 import { generateKeyPairSync } from "node:crypto";
-import { Path } from "@effect/platform";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -10,7 +9,7 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Layer, Redacted, Schema, Stream } from "effect";
+import { Effect, Layer, Path, Redacted, Schema, Stream } from "effect";
 import {
   makePreparedRollbackRelease,
   type PreparedGitRelease,
@@ -89,7 +88,7 @@ export async function makeRollbackRelease(releaseId: string) {
     signer.signArtifact(publicationPayload)
   );
   const prepared = makePreparedRollbackRelease({
-    artifacts: () => Stream.make(artifact),
+    artifacts: Stream.make(artifact),
     items: git.prepared.items,
     manifest,
     projections: git.prepared.projections,
@@ -100,7 +99,9 @@ export async function makeRollbackRelease(releaseId: string) {
   const release = await Effect.runPromise(
     signer
       .signRelease(manifest)
-      .pipe(Effect.flatMap(Schema.decode(RollbackSignedContentReleaseSchema)))
+      .pipe(
+        Effect.flatMap(Schema.decodeEffect(RollbackSignedContentReleaseSchema))
+      )
   );
   return { manifest, prepared, release };
 }

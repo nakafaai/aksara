@@ -4,28 +4,34 @@ const HISTORICAL_QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
 const HISTORICAL_SHA256_HASH_PATTERN = /^sha256:[a-f\d]{64}$/u;
 
 const ContentKeySchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9][a-z0-9._:/-]*$/u),
-  Schema.maxLength(512),
+  Schema.check(Schema.isPattern(/^[a-z0-9][a-z0-9._:/-]*$/u)),
+  Schema.check(Schema.isMaxLength(512)),
   Schema.brand("@NakafaAI/AksaraContentKey")
 );
 const ReleaseIdSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9][a-z0-9._-]{0,127}$/u),
+  Schema.check(Schema.isPattern(/^[a-z0-9][a-z0-9._-]{0,127}$/u)),
   Schema.brand("@NakafaAI/AksaraReleaseId")
 );
 const PublicPathSchema = Schema.String.pipe(
-  Schema.maxLength(2048),
-  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u),
+  Schema.check(Schema.isMaxLength(2048)),
+  Schema.check(
+    Schema.isPattern(
+      /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u
+    )
+  ),
   Schema.brand("@NakafaAI/AksaraPublicPath")
 );
 const CorpusSourcePathSchema = Schema.String.pipe(
-  Schema.maxLength(2048),
-  Schema.pattern(
-    /^packages\/corpus\/[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)+$/u
+  Schema.check(Schema.isMaxLength(2048)),
+  Schema.check(
+    Schema.isPattern(
+      /^packages\/corpus\/[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)+$/u
+    )
   ),
   Schema.brand("@NakafaAI/AksaraCorpusSourcePath")
 );
 const GitCommitShaSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-f\d]{40}$/u),
+  Schema.check(Schema.isPattern(/^[a-f\d]{40}$/u)),
   Schema.brand("@NakafaAI/AksaraGitCommitSha")
 );
 /** Checks one exact historical hash wire while preserving its string shape. */
@@ -34,23 +40,27 @@ function isHistoricalSha256Hash(value: string): value is `sha256:${string}` {
 }
 
 export const HistoricalSha256HashSchema = Schema.String.pipe(
-  Schema.filter(isHistoricalSha256Hash, {
-    message: () => "Stored hash must use the exact SHA-256 wire format.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isHistoricalSha256Hash, {
+      message: "Stored hash must use the exact SHA-256 wire format.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraSha256Hash")
 );
 const SigningKeyIdSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9][a-z0-9._-]{0,63}$/u),
+  Schema.check(Schema.isPattern(/^[a-z0-9][a-z0-9._-]{0,63}$/u)),
   Schema.brand("@NakafaAI/AksaraSigningKeyId")
 );
 const Ed25519SignatureSchema = Schema.String.pipe(
-  Schema.pattern(/^[A-Za-z0-9_-]{85}[AQgw]$/u),
+  Schema.check(Schema.isPattern(/^[A-Za-z0-9_-]{85}[AQgw]$/u)),
   Schema.brand("@NakafaAI/AksaraEd25519Signature")
 );
-const CountryCodeSchema = Schema.String.pipe(Schema.pattern(/^[A-Z]{2}$/u));
+const CountryCodeSchema = Schema.String.pipe(
+  Schema.check(Schema.isPattern(/^[A-Z]{2}$/u))
+);
 const TryoutKeySchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u),
-  Schema.maxLength(128)
+  Schema.check(Schema.isPattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u)),
+  Schema.check(Schema.isMaxLength(128))
 );
 /** Exact renderer-domain inventory carried by retained signed manifests. */
 export const HISTORICAL_RENDERER_DOMAINS = [
@@ -66,10 +76,12 @@ export const HISTORICAL_RENDERER_DOMAINS = [
   "snbt-quant",
   "tka-math",
 ] as const;
-const RendererDomainSchema = Schema.Literal(...HISTORICAL_RENDERER_DOMAINS);
+const RendererDomainSchema = Schema.Literals(HISTORICAL_RENDERER_DOMAINS);
 const LearningGraphIdSchema = Schema.String.pipe(
-  Schema.pattern(
-    /^(?:alignment|asset|concept|lens|lo):[a-z0-9]+(?:-[a-z0-9]+)*(?::[a-z0-9]+(?:-[a-z0-9]+)*)*$/u
+  Schema.check(
+    Schema.isPattern(
+      /^(?:alignment|asset|concept|lens|lo):[a-z0-9]+(?:-[a-z0-9]+)*(?::[a-z0-9]+(?:-[a-z0-9]+)*)*$/u
+    )
   )
 );
 const LearningGraphIdentitySchema = Schema.Struct({
@@ -79,14 +91,16 @@ const LearningGraphIdentitySchema = Schema.Struct({
   learningObjectId: LearningGraphIdSchema,
   lensId: LearningGraphIdSchema,
 }).pipe(
-  Schema.filter(
-    ({ alignmentId, assetId, conceptId, learningObjectId, lensId }) =>
-      alignmentId.startsWith("alignment:") &&
-      assetId.startsWith("asset:") &&
-      conceptId.startsWith("concept:") &&
-      learningObjectId.startsWith("lo:") &&
-      lensId.startsWith("lens:"),
-    { message: () => "Stored graph identities lost their historical prefixes." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ alignmentId, assetId, conceptId, learningObjectId, lensId }) =>
+        alignmentId.startsWith("alignment:") &&
+        assetId.startsWith("asset:") &&
+        conceptId.startsWith("concept:") &&
+        learningObjectId.startsWith("lo:") &&
+        lensId.startsWith("lens:"),
+      { message: "Stored graph identities lost their historical prefixes." }
+    )
   )
 );
 

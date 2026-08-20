@@ -1,4 +1,3 @@
-import type { HttpClientResponse } from "@effect/platform";
 import {
   ContentCacheReceiptSchema,
   type ContentCacheRequest,
@@ -9,10 +8,11 @@ import {
   readText,
 } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";
+import type { HttpClientResponse } from "effect/unstable/http";
 import { ContentCacheError } from "#cli/cache/error";
 
 const MAX_CACHE_RECEIPT_BYTES = 32 * 1024;
-const CacheReceiptJsonSchema = Schema.parseJson(ContentCacheReceiptSchema);
+const CacheReceiptJsonSchema = Schema.fromJsonString(ContentCacheReceiptSchema);
 
 /** Checks that Nakafa acknowledged the exact ordered tags sent by Aksara. */
 function hasExactTags(
@@ -47,7 +47,7 @@ export const readCacheReceipt = Effect.fn("AksaraCli.readCacheReceipt")(
           new ContentCacheError({ retryable: error.reason === "stream" })
       )
     );
-    const receipt = yield* Schema.decode(CacheReceiptJsonSchema, {
+    const receipt = yield* Schema.decodeEffect(CacheReceiptJsonSchema, {
       onExcessProperty: "error",
     })(body).pipe(
       Effect.mapError(() => new ContentCacheError({ retryable: false }))

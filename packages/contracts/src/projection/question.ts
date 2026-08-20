@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Struct } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
 import { DateOnlySchema } from "#contracts/date";
 import type { ContentKeySchema } from "#contracts/ids";
@@ -19,7 +19,7 @@ import {
 export const QuestionChoiceSchema = Schema.Struct({
   label: Schema.String,
   value: Schema.Boolean,
-}).pipe(Schema.mutable);
+}).mapFields(Struct.map(Schema.mutableKey));
 export type QuestionChoice = typeof QuestionChoiceSchema.Type;
 
 /** Reports whether a localized choice list has exactly one correct answer. */
@@ -30,10 +30,12 @@ function hasExactlyOneCorrectChoice(choices: readonly QuestionChoice[]) {
 /** Canonical choices for one projected question locale. */
 export const QuestionChoiceListSchema = Schema.Array(QuestionChoiceSchema).pipe(
   Schema.mutable,
-  Schema.filter(hasExactlyOneCorrectChoice, {
-    identifier: "QuestionChoiceList",
-    message: () => "Expected exactly one correct choice.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasExactlyOneCorrectChoice, {
+      identifier: "QuestionChoiceList",
+      message: "Expected exactly one correct choice.",
+    })
+  )
 );
 export type QuestionChoiceList = typeof QuestionChoiceListSchema.Type;
 
@@ -47,15 +49,15 @@ function hasChoiceSet(choices: {
 }
 
 /** Localized single-answer choices available to authored prompts. */
-export const QuestionChoicesSchema = Schema.partial(
-  Schema.Record({
-    key: AppLocaleCodeSchema,
-    value: QuestionChoiceListSchema,
-  })
+export const QuestionChoicesSchema = Schema.Record(
+  AppLocaleCodeSchema,
+  Schema.optional(QuestionChoiceListSchema)
 ).pipe(
-  Schema.filter(hasChoiceSet, {
-    message: () => "Expected choices for at least one artifact locale.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasChoiceSet, {
+      message: "Expected choices for at least one artifact locale.",
+    })
+  )
 );
 export type QuestionChoices = typeof QuestionChoicesSchema.Type;
 
@@ -90,29 +92,32 @@ const QuestionProjectionFields = {
 };
 
 /** Published body and localized choices for one authored question prompt. */
-export const QuestionPromptProjectionSchema = Schema.extend(
-  QuestionPromptIdentitySchema,
-  Schema.Struct({
-    ...QuestionProjectionFields,
-    choices: QuestionChoiceListSchema,
-  })
-);
+export const QuestionPromptProjectionSchema =
+  QuestionPromptIdentitySchema.mapFields(
+    (fields) => ({
+      ...fields,
+      ...QuestionProjectionFields,
+      choices: QuestionChoiceListSchema,
+    }),
+    { unsafePreserveChecks: true }
+  );
 export type QuestionPromptProjection =
   typeof QuestionPromptProjectionSchema.Type;
 
 /** Published body for one entitled answer without duplicated choices. */
-export const QuestionAnswerProjectionSchema = Schema.extend(
-  QuestionAnswerIdentitySchema,
-  Schema.Struct(QuestionProjectionFields)
-);
+export const QuestionAnswerProjectionSchema =
+  QuestionAnswerIdentitySchema.mapFields(
+    (fields) => ({ ...fields, ...QuestionProjectionFields }),
+    { unsafePreserveChecks: true }
+  );
 export type QuestionAnswerProjection =
   typeof QuestionAnswerProjectionSchema.Type;
 
 /** Complete non-route projection vocabulary for question-bank MDX bodies. */
-export const QuestionBodyProjectionSchema = Schema.Union(
+export const QuestionBodyProjectionSchema = Schema.Union([
   QuestionPromptProjectionSchema,
-  QuestionAnswerProjectionSchema
-);
+  QuestionAnswerProjectionSchema,
+]);
 export type QuestionBodyProjection = typeof QuestionBodyProjectionSchema.Type;
 
 interface QuestionProjectionInput {

@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Ref, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { streamBatches } from "#publisher/batch/core";
 
 const releaseId = ReleaseIdSchema.make("test-batch-core");

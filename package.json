@@ -12,7 +12,7 @@
     "accept": "turbo run accept --filter=@nakafa/aksara-cli",
     "boundaries": "node scripts/check-imports.ts",
     "build": "turbo run build",
-    "bump-deps": "pnpm update --recursive --latest",
+    "bump-deps": "node scripts/bump-deps.ts",
     "check": "turbo run check --filter=@nakafa/aksara-cli",
     "clean": "turbo run clean",
     "clean:root": "git clean -xdf coverage",
@@ -28,6 +28,7 @@
     "lint": "pnpm effect:source:check && ultracite check",
     "locales": "node scripts/check-locales.ts",
     "names": "node scripts/check-paths.ts",
+    "prepare": "effect-tsgo patch --typescript-package @typescript/native",
     "quran:source:sync": "node --conditions=aksara-source scripts/quran-sync.ts",
     "recover": "turbo run recover --filter=@nakafa/aksara-cli",
     "release": "turbo run release --filter=@nakafa/aksara-cli",
@@ -42,10 +43,9 @@
     "workflows": "node scripts/check-workflows.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.7",
-    "@effect/language-service": "0.87.1",
-    "@effect/platform": "catalog:",
+    "@biomejs/biome": "2.5.9",
     "@effect/platform-node": "catalog:",
+    "@effect/tsgo": "0.36.5",
     "@nakafa/aksara-corpus": "workspace:*",
     "@nakafa/aksara-publisher": "workspace:*",
     "@nakafa/testing": "workspace:*",
@@ -53,13 +53,13 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",
-    "turbo": "2.10.8",
+    "turbo": "2.10.11",
     "typescript": "catalog:",
-    "ultracite": "7.10.1",
+    "ultracite": "7.10.5",
     "vitest": "catalog:",
     "yaml": "2.9.0"
   },
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "pnpm@11.22.0",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },

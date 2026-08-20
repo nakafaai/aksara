@@ -33,8 +33,14 @@ export class StoredArtifactDecodeError extends Schema.TaggedError<StoredArtifact
 export class StoredArtifactWireByteLimitError extends Schema.TaggedError<StoredArtifactWireByteLimitError>()(
   "StoredArtifactWireByteLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -42,9 +48,15 @@ export class StoredArtifactWireByteLimitError extends Schema.TaggedError<StoredA
 export class StoredArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<StoredArtifactCompiledByteLengthMismatchError>()(
   "StoredArtifactCompiledByteLengthMismatchError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     contentKey: ContentKeySchema,
-    declaredBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    declaredBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 
@@ -52,15 +64,21 @@ export class StoredArtifactCompiledByteLengthMismatchError extends Schema.Tagged
 export class StoredArtifactFieldByteLimitError extends Schema.TaggedError<StoredArtifactFieldByteLimitError>()(
   "StoredArtifactFieldByteLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     contentKey: ContentKeySchema,
-    field: Schema.Literal(
+    field: Schema.Literals([
       "rawMdx",
       "compiledCode",
       "plainText",
-      "canonicalPayload"
+      "canonicalPayload",
+    ]),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
     ),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }
 ) {}
 
@@ -97,8 +115,13 @@ export class StoredArtifactSourceHashMismatchError extends Schema.TaggedError<St
 ) {}
 
 const HistoricalComponentRequirementSchema = Schema.Struct({
-  name: Schema.String.pipe(Schema.pattern(/^[A-Za-z][A-Za-z0-9]*$/u)),
-  version: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  name: Schema.String.pipe(
+    Schema.check(Schema.isPattern(/^[A-Za-z][A-Za-z0-9]*$/u))
+  ),
+  version: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 type HistoricalComponentRequirement =
   typeof HistoricalComponentRequirementSchema.Type;
@@ -119,14 +142,19 @@ function hasCanonicalRequirements(
 const HistoricalRequirementsSchema = Schema.Array(
   HistoricalComponentRequirementSchema
 ).pipe(
-  Schema.filter(hasCanonicalRequirements, {
-    message: () => "Stored renderer requirements are not canonical.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalRequirements, {
+      message: "Stored renderer requirements are not canonical.",
+    })
+  )
 );
 
 /** Exact compiled payload shape signed before application-locale separation. */
 export const HistoricalCompiledContentPayloadSchema = Schema.Struct({
-  byteLength: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  byteLength: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
   compiledCode: Schema.String,
   compilerConfigHash: HistoricalSha256HashSchema,
   compilerVersion: Schema.Literal("0.1.0"),

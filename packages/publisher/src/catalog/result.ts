@@ -22,7 +22,9 @@ import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 
 const CHECK_RELEASE_ID = ReleaseIdSchema.make("catalog-check");
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 const CatalogHeadIdentitySchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
@@ -34,11 +36,11 @@ export interface CatalogResultEvidence {
   readonly articleCount: number;
   readonly digest: typeof Sha256HashSchema.Type;
   /** Replays every validated current content head in canonical family order. */
-  readonly heads: () => Stream.Stream<ContentHead, ReplaySpoolError>;
+  readonly heads: Stream.Stream<ContentHead, ReplaySpoolError>;
   readonly materialCount: number;
   readonly questionCount: number;
   /** Replays only validated question heads for structured try-out binding. */
-  readonly questionHeads: () => Stream.Stream<QuestionHead, ReplaySpoolError>;
+  readonly questionHeads: Stream.Stream<QuestionHead, ReplaySpoolError>;
   readonly totalCount: number;
 }
 
@@ -46,7 +48,7 @@ export interface CatalogResultEvidence {
 interface CatalogResultInput<E, R> {
   readonly expectedHeads: readonly ExpectedCatalogHead[];
   /** Replays the complete prepared result catalog exactly once. */
-  readonly result: () => Stream.Stream<ContentHead, E, R>;
+  readonly result: Stream.Stream<ContentHead, E, R>;
 }
 
 /** A result replay differs from its independently source-owned identity. */
@@ -145,7 +147,7 @@ export const validateCatalogResult = Effect.fn(
 )(function* <E, R>(input: CatalogResultInput<E, R>) {
   const counts = yield* Ref.make(EMPTY_RESULT_STATE);
   const digest = yield* createResultCatalogDigest(CHECK_RELEASE_ID);
-  const validated = input.result().pipe(
+  const validated = input.result.pipe(
     Stream.mapEffect((head) =>
       Effect.gen(function* () {
         const current = yield* Ref.get(counts);
@@ -164,13 +166,9 @@ export const validateCatalogResult = Effect.fn(
   const questions = yield* createReplaySpool({
     prefix: "aksara-catalog-questions-",
     schema: QuestionHeadSchema,
-    stream: heads
-      .replay()
-      .pipe(
-        Stream.filter(
-          (head): head is QuestionHead => head.family === "question"
-        )
-      ),
+    stream: heads.replay.pipe(
+      Stream.filter((head): head is QuestionHead => head.family === "question")
+    ),
   });
   const state = yield* Ref.get(counts);
   const resultDigest = yield* finalizeResultCatalogDigest(

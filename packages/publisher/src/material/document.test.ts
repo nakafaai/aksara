@@ -1,7 +1,6 @@
-import { Path } from "@effect/platform";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import {
   loadMaterialDocument,
   makeMaterialProjection,
@@ -16,7 +15,7 @@ const englishEntry = await Effect.runPromise(
         ({ sourcePath }) => sourcePath === englishPath
       );
       return entry === undefined
-        ? Effect.dieMessage("Expected the real English material entry.")
+        ? Effect.die(new Error("Expected the real English material entry."))
         : Effect.succeed(entry);
     })
   )

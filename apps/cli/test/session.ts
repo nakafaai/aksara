@@ -1,16 +1,18 @@
 import { relative } from "node:path";
-import {
-  FileSystem,
-  Path,
-  type Error as PlatformError,
-} from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Layer, type Stream } from "effect";
+import {
+  Effect,
+  FileSystem,
+  Layer,
+  Path,
+  type PlatformError,
+  type Stream,
+} from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
@@ -101,7 +103,7 @@ export function runWatch(
 
 /** Builds the actual-app test service used by session orchestration. */
 export function makeApp(
-  capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] },
+  capture: { input?: Parameters<typeof NakafaApp.Service.start>[0] },
   child: RunningNakafa = {
     awaitExit: Effect.never,
     origin: new URL(`http://${NAKAFA_LOOPBACK_HOST}:31234`),
@@ -120,7 +122,7 @@ export function makeApp(
 /** Runs a scoped local-preview session with real files and deterministic Git. */
 export function runLocal<A, E>(
   repository: TestRepositories,
-  app: NakafaApp["Type"],
+  app: typeof NakafaApp.Service,
   use: (
     session: LocalPreviewSession
   ) => Effect.Effect<A, E, FileSystem.FileSystem | Path.Path>,
@@ -152,7 +154,7 @@ export function runLocal<A, E>(
       Effect.provide([
         Layer.succeed(NakafaApp, app),
         Layer.succeed(ExactProcess, exactProcess),
-        NodeContext.layer,
+        NodeServices.layer,
       ])
     )
   );

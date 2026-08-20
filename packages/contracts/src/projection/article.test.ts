@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   ArticleCategorySchema,
@@ -11,7 +11,7 @@ import {
 } from "#contracts/projection/article";
 import { articleGraph } from "#contracts/test/graph";
 
-const route = Schema.decodeUnknownSync(ArticleRouteSchema)({
+const route = Schema.decodeSync(ArticleRouteSchema)({
   appLocale: "en",
   articleRouteSlug: "reviewed-article",
   articleSlug: "reviewed-article",
@@ -22,7 +22,7 @@ const route = Schema.decodeUnknownSync(ArticleRouteSchema)({
   graph: articleGraph("en", "politics", "reviewed-article"),
   publicPath: "articles/politics/reviewed-article",
 });
-const metadata = Schema.decodeUnknownSync(ArticleMetadataSchema)({
+const metadata = Schema.decodeSync(ArticleMetadataSchema)({
   authors: [{ name: "Test Author" }],
   date: "2024-02-29",
   description: "Protocol-only article metadata.",
@@ -54,7 +54,7 @@ describe("article projection", () => {
   });
 
   it("accepts a second test category through the generic route contract", () => {
-    const genericRoute = Schema.decodeUnknownSync(ArticleRouteSchema)({
+    const genericRoute = Schema.decodeSync(ArticleRouteSchema)({
       appLocale: "en",
       articleRouteSlug: "test-article",
       articleSlug: "test-group-test-article",
@@ -71,14 +71,12 @@ describe("article projection", () => {
 
   it("rejects article categories outside the stable kebab grammar", () => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ArticleCategorySchema)("Test_Category")
-      )
+      Exit.isFailure(Schema.decodeExit(ArticleCategorySchema)("Test_Category"))
     ).toBe(true);
   });
 
   it("supports a German route without changing stable article identity", () => {
-    const german = Schema.decodeUnknownSync(ArticleRouteSchema)({
+    const german = Schema.decodeSync(ArticleRouteSchema)({
       ...route,
       appLocale: "de",
       articleRouteSlug: "gepruefter-artikel",
@@ -94,9 +92,7 @@ describe("article projection", () => {
 
   it("rejects non-ASCII and non-kebab localized route segments", () => {
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ArticleRouteSlugSchema)("geprüft")
-      )
+      Exit.isFailure(Schema.decodeExit(ArticleRouteSlugSchema)("geprüft"))
     ).toBe(true);
   });
 
@@ -118,64 +114,67 @@ describe("article projection", () => {
   });
 
   it("rejects route identities that contradict the category or slug", () => {
-    const result = Schema.decodeUnknownEither(ArticleRouteSchema)({
+    const result = Schema.decodeExit(ArticleRouteSchema)({
       ...route,
       publicPath: "articles/politics/another-article",
     });
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(String(result.left)).toContain(
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(
         "Expected stable article identity and locale-owned public route"
       );
     }
   });
 
   it("rejects route and projection artifact locale drift", () => {
-    const routeResult = Schema.decodeUnknownEither(ArticleRouteSchema)({
+    const routeResult = Schema.decodeExit(ArticleRouteSchema)({
       ...route,
       artifactLocale: "id",
     });
-    const projectionResult = Schema.decodeUnknownEither(
-      ArticleProjectionSchema
-    )({ ...projection, artifactLocale: "id" });
+    const projectionResult = Schema.decodeExit(ArticleProjectionSchema)({
+      ...projection,
+      artifactLocale: "id",
+    });
 
     expect(
-      Either.isLeft(routeResult) ? String(routeResult.left) : ""
+      Exit.isFailure(routeResult) ? String(routeResult.cause) : ""
     ).toContain("Expected public article route and artifact locales to match.");
     expect(
-      Either.isLeft(projectionResult) ? String(projectionResult.left) : ""
+      Exit.isFailure(projectionResult) ? String(projectionResult.cause) : ""
     ).toContain("Expected public article route and artifact locales to match.");
   });
 
   it("rejects graph identities that contradict the signed source route", () => {
-    const result = Schema.decodeUnknownEither(ArticleRouteSchema)({
+    const result = Schema.decodeExit(ArticleRouteSchema)({
       ...route,
       graph: articleGraph("en", "politics", "another-article"),
     });
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(String(result.left)).toContain(
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(
         "Expected article graph identities"
       );
     }
   });
 
   it("rejects unrelated parent routes and impossible dates", () => {
-    const parent = Schema.decodeUnknownEither(ArticleProjectionSchema)({
+    const parent = Schema.decodeExit(ArticleProjectionSchema)({
       ...projection,
       parentPath: "articles/another",
     });
-    const date = Schema.decodeUnknownEither(ArticleProjectionSchema)({
+    const date = Schema.decodeExit(ArticleProjectionSchema)({
       ...projection,
       metadata: { ...projection.metadata, date: "2026-02-30" },
     });
 
-    expect(Either.isLeft(parent)).toBe(true);
-    expect(Either.isLeft(date)).toBe(true);
-    if (Either.isLeft(parent)) {
-      expect(String(parent.left)).toContain("Expected the article parent path");
+    expect(Exit.isFailure(parent)).toBe(true);
+    expect(Exit.isFailure(date)).toBe(true);
+    if (Exit.isFailure(parent)) {
+      expect(String(parent.cause)).toContain(
+        "Expected the article parent path"
+      );
     }
   });
 });
