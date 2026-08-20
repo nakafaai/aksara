@@ -8,6 +8,7 @@ export const RENDERER_DOMAINS = [
   "mathematics",
   "physics",
   "politics",
+  "site",
   "snbt-general",
   "snbt-math",
   "snbt-plain",

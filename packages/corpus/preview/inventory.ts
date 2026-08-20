@@ -18,9 +18,11 @@ import {
 import { decodeArticlePreviewEntries } from "#corpus/articles/preview";
 import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import { decodeMaterialPreviewEntries } from "#corpus/material/preview";
+import { decodePagePreviewEntries } from "#corpus/pages/preview";
 import {
   selectArticleEntries,
   selectMaterialEntries,
+  selectPageEntries,
 } from "#corpus/preview/public";
 import { selectQuestionPreviewSources } from "#corpus/preview/question-source";
 import type { PreviewSource } from "#corpus/preview/source";
@@ -30,6 +32,7 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 const FAMILY_ROOTS = {
   article: "packages/corpus/articles",
   material: "packages/corpus/material",
+  page: "packages/corpus/pages",
   question: "packages/corpus/question-bank",
 } as const;
 type CandidateFamily = keyof typeof FAMILY_ROOTS;
@@ -44,7 +47,7 @@ export class CandidatePreviewInventoryError extends Schema.TaggedError<Candidate
   "CandidatePreviewInventoryError",
   {
     cause: Schema.Unknown,
-    family: Schema.Literals(["article", "material", "question"]),
+    family: Schema.Literals(["article", "material", "page", "question"]),
     phase: Schema.Literals(["files", "ownership"]),
   }
 ) {}
@@ -53,6 +56,7 @@ export class CandidatePreviewInventoryError extends Schema.TaggedError<Candidate
 export interface CandidatePreviewInventory {
   readonly articleCount: number;
   readonly materialCount: number;
+  readonly pageCount: number;
   readonly questionCount: number;
   readonly sources: readonly PreviewSource[];
   readonly totalCount: number;
@@ -185,22 +189,27 @@ export const validateCandidatePreviewInventory = Effect.fn(
     {
       article: readCandidatePaths(checkoutRoot, "article"),
       material: readCandidatePaths(checkoutRoot, "material"),
+      page: readCandidatePaths(checkoutRoot, "page"),
       question: readCandidatePaths(checkoutRoot, "question"),
     },
-    { concurrency: 3 }
+    { concurrency: 4 }
   );
   const totalCount =
-    paths.article.length + paths.material.length + paths.question.length;
+    paths.article.length +
+    paths.material.length +
+    paths.page.length +
+    paths.question.length;
   if (totalCount === 0) {
     return {
       articleCount: 0,
       materialCount: 0,
+      pageCount: 0,
       questionCount: 0,
       sources: [],
       totalCount: 0,
     } satisfies CandidatePreviewInventory;
   }
-  const [articles, materials, questionContent] = yield* Effect.all(
+  const [articles, materials, pages, questionContent] = yield* Effect.all(
     [
       paths.article.length === 0
         ? Effect.succeed([])
@@ -211,6 +220,11 @@ export const validateCandidatePreviewInventory = Effect.fn(
         ? Effect.succeed([])
         : decodeMaterialPreviewEntries(
             paths.material.map(({ sourcePath }) => sourcePath)
+          ),
+      paths.page.length === 0
+        ? Effect.succeed([])
+        : decodePagePreviewEntries(
+            paths.page.map(({ sourcePath }) => sourcePath)
           ),
       paths.question.length === 0
         ? Effect.succeed({
@@ -231,7 +245,7 @@ export const validateCandidatePreviewInventory = Effect.fn(
             };
           }),
     ],
-    { concurrency: 3 }
+    { concurrency: 4 }
   );
   const questionInputs = yield* bindQuestionInputs(
     paths.question,
@@ -249,30 +263,42 @@ export const validateCandidatePreviewInventory = Effect.fn(
         paths.material.map(({ sourcePath }) => sourcePath),
         materials.map(({ sourcePath }) => sourcePath).sort(compareCodeUnits)
       ),
+      requireExactPaths(
+        "page",
+        paths.page.map(({ sourcePath }) => sourcePath),
+        pages.map(({ sourcePath }) => sourcePath).sort(compareCodeUnits)
+      ),
     ],
-    { concurrency: 2 }
+    { concurrency: 3 }
   );
-  const [articleSelections, materialSelections, questionSources] =
-    yield* Effect.all(
-      [
-        selectArticleEntries(checkoutRoot, articles),
-        selectMaterialEntries(checkoutRoot, materials),
-        selectQuestionPreviewSources(
-          checkoutRoot,
-          questionInputs,
-          questionContent.questionSources
-        ),
-      ],
-      { concurrency: 3 }
-    );
+  const [
+    articleSelections,
+    materialSelections,
+    pageSelections,
+    questionSources,
+  ] = yield* Effect.all(
+    [
+      selectArticleEntries(checkoutRoot, articles),
+      selectMaterialEntries(checkoutRoot, materials),
+      selectPageEntries(pages),
+      selectQuestionPreviewSources(
+        checkoutRoot,
+        questionInputs,
+        questionContent.questionSources
+      ),
+    ],
+    { concurrency: 4 }
+  );
   const sources = [
     ...articleSelections.flatMap(({ sources: selected }) => selected),
     ...materialSelections.flatMap(({ sources: selected }) => selected),
+    ...pageSelections.flatMap(({ sources: selected }) => selected),
     ...questionSources,
   ];
   return {
     articleCount: paths.article.length,
     materialCount: paths.material.length,
+    pageCount: paths.page.length,
     questionCount: paths.question.length,
     sources,
     totalCount,

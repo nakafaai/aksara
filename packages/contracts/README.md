@@ -29,6 +29,8 @@ Current consumers use unversioned semantic Interfaces:
   builds their pure lookup identities before complete signed rows are loaded.
 - `projection/material` owns the application-locale material namespace and
   validates every signed route and projection against it.
+- `projection/page` owns stable public page identities, localized paths, and
+  signed metadata for human, agent, and sitemap delivery.
 - `history/decode` is the single read-only boundary for immutable releases,
   try-out snapshots and rows, and attempt-bound protected content retained by
   existing user history.

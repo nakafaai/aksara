@@ -118,7 +118,7 @@ describe("renderer manifest", () => {
     );
 
     expect(production.hash).toBe(
-      "sha256:fb25869612144af7dd934bf32e3983a771debb565013f091c15793aa55d82d63"
+      "sha256:27011a899d841e9ca9479ad7f74a9207f09c3905165858e37a2040ecdd131d48"
     );
   });
 
@@ -203,7 +203,7 @@ describe("renderer manifest", () => {
     const incompleteCreation = await Effect.runPromise(
       createRendererManifest({
         ...creation(),
-        domains: DOMAINS.slice(0, -1),
+        domains: DOMAINS.filter(({ name }) => name !== "site"),
       }).pipe(Effect.flip)
     );
     expect(incompleteCreation._tag).toBe("ContractDecodeError");
@@ -211,7 +211,7 @@ describe("renderer manifest", () => {
     const manifest = await Effect.runPromise(
       createRendererManifest(creation())
     );
-    const domains = manifest.domains.slice(0, -1);
+    const domains = manifest.domains.filter(({ name }) => name !== "site");
     const historicalContract = {
       base: manifest.base,
       domains,

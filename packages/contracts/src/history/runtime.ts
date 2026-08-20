@@ -14,8 +14,8 @@ import { decodeStoredRelease } from "#contracts/history/read";
 import {
   type HistoricalRendererManifest,
   validateHistoricalRendererManifestHash,
-  verifyHistoricalRendererCompatibility,
 } from "#contracts/history/renderer";
+import { verifyHistoricalRendererCompatibility } from "#contracts/history/renderer-compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
 
@@ -137,12 +137,10 @@ const verifyHistoricalItem = Effect.fn(
     manifest: input.frozenRenderer,
     payload: artifact.payload,
   });
-  if (input.liveRenderer.hash !== input.frozenRenderer.hash) {
-    yield* verifyHistoricalRendererCompatibility({
-      manifest: input.liveRenderer,
-      payload: artifact.payload,
-    });
-  }
+  yield* verifyHistoricalRendererCompatibility({
+    manifest: input.liveRenderer,
+    payload: artifact.payload,
+  });
 });
 
 /** Binds retained snapshot facts to their exact authenticated old release. */

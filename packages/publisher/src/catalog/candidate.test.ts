@@ -119,6 +119,7 @@ vi.mock("@nakafa/aksara-corpus/preview/inventory", async () => {
           return {
             articleCount: 0,
             materialCount: 0,
+            pageCount: 0,
             questionCount: 0,
             sources: [],
             totalCount: 0,
@@ -137,6 +138,7 @@ vi.mock("@nakafa/aksara-corpus/preview/inventory", async () => {
         return {
           articleCount: 1,
           materialCount: 0,
+          pageCount: 0,
           questionCount: 0,
           sources: selection.sources,
           totalCount: 1,
@@ -171,6 +173,7 @@ describe("candidate content validation", () => {
         compiledBodyCount: articleCount,
         glossaryCount: 2,
         materialCount: 0,
+        pageCount: 0,
         programCurriculumLocaleCount: 3,
         programCurriculumRouteCount: 4,
         programLocaleCount: 5,

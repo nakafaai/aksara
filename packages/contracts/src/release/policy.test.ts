@@ -18,7 +18,7 @@ const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)(["en"]);
 const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
   content: [],
-  families: ["article", "material", "question"],
+  families: ["article", "material", "page", "question"],
   snapshots: ["program", "quran", "tryout"],
 });
 

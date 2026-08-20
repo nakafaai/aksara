@@ -1,72 +1,23 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import type { AppLocaleCode } from "#contracts/locale";
 import {
-  ArticleHeadSchema,
   canonicalizeContentHead,
   HeadPageRequestSchema,
   HeadPageSchema,
   MaterialHeadSchema,
+  PageHeadSchema,
   QuestionHeadSchema,
 } from "#contracts/release/head";
+import {
+  articleHead,
+  materialHead,
+  pageHead,
+  questionHead,
+} from "#contracts/test/head";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
-const hash = `sha256:${"a".repeat(64)}`;
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const releaseId = "test-active";
-
-/** Builds the shared immutable identity fields for one test head. */
-function headIdentity(contentKey: string, artifactLocale: AppLocaleCode) {
-  return {
-    artifactHash: hash,
-    artifactLocale,
-    compilerConfigHash: hash,
-    contentKey,
-    projectionHash: hash,
-    sourceHash: hash,
-  };
-}
-
-/** Builds one strict material-head sample at a deterministic identity. */
-function materialHead(
-  contentKey: string,
-  artifactLocale: AppLocaleCode = "en"
-) {
-  return Schema.decodeSync(MaterialHeadSchema)({
-    ...headIdentity(contentKey, artifactLocale),
-    delivery: "public",
-    family: "material",
-    publicPath: `subjects/test/${contentKey.replace(":", "-")}`,
-    rendererDomain: "mathematics",
-    sourcePath: `packages/corpus/test/${contentKey.replace(":", "-")}/${artifactLocale}.mdx`,
-  });
-}
-
-/** Builds one strict article-head sample at a deterministic identity. */
-function articleHead(contentKey: string, artifactLocale: AppLocaleCode = "en") {
-  return Schema.decodeSync(ArticleHeadSchema)({
-    ...headIdentity(contentKey, artifactLocale),
-    delivery: "public",
-    family: "article",
-    publicPath: contentKey,
-    rendererDomain: "politics",
-    sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
-  });
-}
-
-/** Builds one strict route-free question-head sample. */
-function questionHead(
-  contentKey: string,
-  artifactLocale: AppLocaleCode = "en"
-) {
-  return Schema.decodeSync(QuestionHeadSchema)({
-    ...headIdentity(contentKey, artifactLocale),
-    delivery: "authenticated",
-    family: "question",
-    rendererDomain: "snbt-general",
-    sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
-  });
-}
 
 /** Strictly checks one schema without accepting unknown wire fields. */
 function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
@@ -89,6 +40,8 @@ describe("content head pages", () => {
     expect(JSON.parse(canonicalizeContentHead(article))).toEqual(article);
     const question = questionHead("question-bank/test/question");
     expect(JSON.parse(canonicalizeContentHead(question))).toEqual(question);
+    const page = pageHead("pages/privacy-policy");
+    expect(JSON.parse(canonicalizeContentHead(page))).toEqual(page);
   });
 
   it("accepts bounded requests and canonical terminal pages", () => {
@@ -98,7 +51,7 @@ describe("content head pages", () => {
       cursor: null,
       limit: 1,
     };
-    for (const family of ["article", "material", "question"]) {
+    for (const family of ["article", "material", "page", "question"]) {
       expect(accepts(HeadPageRequestSchema, { ...request, family })).toBe(true);
     }
     expect(
@@ -189,6 +142,20 @@ describe("content head pages", () => {
         ...base,
         family: "article",
         heads: [materialHead("test:a")],
+      })
+    ).toBe(false);
+    expect(
+      accepts(HeadPageSchema, {
+        ...base,
+        family: "page",
+        heads: [pageHead("pages/privacy-policy")],
+      })
+    ).toBe(true);
+    expect(
+      accepts(HeadPageSchema, {
+        ...base,
+        family: "page",
+        heads: [articleHead("articles/politics/test")],
       })
     ).toBe(false);
     expect(
@@ -300,6 +267,17 @@ describe("content head pages", () => {
     });
     expect(Exit.isFailure(pageError) ? String(pageError.cause) : "").toContain(
       "Expected canonical question heads with coherent cursor progress."
+    );
+  });
+
+  it("requires public routes on page heads", () => {
+    const result = Schema.decodeExit(PageHeadSchema)({
+      ...pageHead("pages/privacy-policy"),
+      publicPath: undefined,
+    });
+
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
+      "Expected page heads to retain their public path."
     );
   });
 });

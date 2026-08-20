@@ -7,11 +7,14 @@ import {
   QuestionPromptPreviewDocumentSchema,
 } from "#contracts/preview/document";
 import {
-  testAnswerDocument,
   testArticleDocument,
   testMaterialDocument,
-  testPromptDocument,
+  testPageDocument,
 } from "#contracts/test/preview";
+import {
+  testAnswerDocument,
+  testPromptDocument,
+} from "#contracts/test/preview-question";
 
 /** Reports whether strict preview document decoding rejects one candidate. */
 function rejectsDocument(candidate: unknown) {
@@ -23,10 +26,11 @@ function rejectsDocument(candidate: unknown) {
 }
 
 describe("preview document", () => {
-  it("decodes all four exact discriminated document variants", () => {
+  it("decodes all five exact discriminated document variants", () => {
     const documents = [
       testArticleDocument,
       testMaterialDocument,
+      testPageDocument,
       testPromptDocument,
       testAnswerDocument,
     ];
@@ -41,16 +45,18 @@ describe("preview document", () => {
     ).toEqual([
       { delivery: "public", family: "article" },
       { delivery: "public", family: "material" },
+      { delivery: "public", family: "page" },
       { delivery: "authenticated", family: "question" },
       { delivery: "entitled", family: "question" },
     ]);
   });
 
-  it("derives the actual article, material, and try-out routes", () => {
+  it("derives the actual article, material, page, and try-out routes", () => {
     expect(
       [
         testArticleDocument,
         testMaterialDocument,
+        testPageDocument,
         testPromptDocument,
         testAnswerDocument,
       ].map(previewDocumentRoute)
@@ -62,6 +68,10 @@ describe("preview document", () => {
       {
         appLocale: testMaterialDocument.route.appLocale,
         publicPath: testMaterialDocument.route.publicPath,
+      },
+      {
+        appLocale: testPageDocument.route.appLocale,
+        publicPath: testPageDocument.route.publicPath,
       },
       {
         appLocale: testPromptDocument.target.section.appLocale,
@@ -165,6 +175,7 @@ describe("preview document", () => {
       [
         { ...testArticleDocument, delivery: "authenticated" },
         { ...testMaterialDocument, family: "article" },
+        { ...testPageDocument, rendererDomain: "politics" },
         { ...testPromptDocument, delivery: "entitled" },
         { ...testAnswerDocument, delivery: "authenticated" },
         { ...testPromptDocument, questionLanguage: "en" },

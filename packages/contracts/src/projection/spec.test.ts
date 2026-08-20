@@ -2,6 +2,7 @@ import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { ArticleProjectionSchema } from "#contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { PublicPageProjectionSchema } from "#contracts/projection/page";
 import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
 import {
   ContentProjectionSchema,
@@ -53,6 +54,20 @@ const material = Schema.decodeSync(MaterialLessonProjectionSchema)({
   sitemap: true,
   topicTitle: "Test Material",
 });
+const page = Schema.decodeSync(PublicPageProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
+  contentKey: "pages/privacy-policy",
+  kind: "public-page",
+  metadata: {
+    description: "How Nakafa processes personal data.",
+    lastModified: "2026-08-20",
+    title: "Privacy Policy",
+  },
+  pageKey: "privacy-policy",
+  publicPath: "privacy-policy",
+  sitemap: true,
+});
 const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   artifactLocale: "en",
   bodyKind: "question",
@@ -79,10 +94,10 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
 describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
     expect(
-      [article, material, question].map((value) =>
+      [article, material, page, question].map((value) =>
         Schema.decodeSync(ContentProjectionSchema)(value)
       )
-    ).toEqual([article, material, question]);
+    ).toEqual([article, material, page, question]);
     expect(
       Exit.isFailure(
         Schema.decodeUnknownExit(RoutedContentProjectionSchema)(question)
@@ -95,14 +110,17 @@ describe("content projection", () => {
     expect(JSON.parse(canonicalizeContentProjection(material))).toEqual(
       material
     );
+    expect(JSON.parse(canonicalizeContentProjection(page))).toEqual(page);
     expect(JSON.parse(canonicalizeContentProjection(question))).toEqual(
       question
     );
     expect(familyForProjection(article)).toBe("article");
     expect(familyForProjection(material)).toBe("material");
+    expect(familyForProjection(page)).toBe("page");
     expect(familyForProjection(question)).toBe("question");
     expect(projectionPublicPath(article)).toBe(article.publicPath);
     expect(projectionPublicPath(material)).toBe(material.publicPath);
+    expect(projectionPublicPath(page)).toBe(page.publicPath);
     expect(projectionPublicPath(question)).toBeUndefined();
   });
 });

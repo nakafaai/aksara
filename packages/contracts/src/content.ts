@@ -23,6 +23,7 @@ import { compareCodeUnits } from "#contracts/text/order";
 export const ContentFamilySchema = Schema.Literals([
   "article",
   "material",
+  "page",
   "question",
 ]);
 export type ContentFamily = typeof ContentFamilySchema.Type;

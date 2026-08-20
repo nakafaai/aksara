@@ -18,20 +18,20 @@ import { testRendererDomains } from "#test/renderer";
 const IDENTITY_FAILURE = { _tag: "ContentCatalogIdentityError" };
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const control = vi.hoisted(() => ({
-  actual: { article: 2, material: 3, question: 4 },
+  actual: { article: 2, material: 3, page: 1, question: 4 },
   catalogFailure: false,
   countMismatch: "none",
   expectedRouteConflict: false,
   identityMismatch: "none",
   recordFailure: false,
-  records: 9,
+  records: 10,
   registryFailure: false,
   resultCalls: 0,
   resultFailure: false,
   routeFailure: false,
   routeMode: "complete",
   snapshotFailure: false,
-  source: { article: 2, material: 3, question: 4 },
+  source: { article: 2, material: 3, page: 1, question: 4 },
 }));
 
 vi.mock("#publisher/catalog/expectation", async () => {
@@ -82,6 +82,8 @@ vi.mock("#publisher/catalog/expectation", async () => {
         materialCount:
           control.source.material +
           (control.countMismatch === "material" ? 1 : 0),
+        pageCount:
+          control.source.page + (control.countMismatch === "page" ? 1 : 0),
         questionCount:
           control.source.question +
           (control.countMismatch === "question" ? 1 : 0),
@@ -103,6 +105,7 @@ vi.mock("#publisher/catalog/publication", async () => {
       const publicRows = [
         ...catalogIdentities("article", control.actual.article),
         ...catalogIdentities("material", control.actual.material),
+        ...catalogIdentities("page", control.actual.page),
       ];
       const routes = catalogRoutes(publicRows, control.routeMode === "replace");
       return TestEffect.succeed({
@@ -153,20 +156,20 @@ const rendererManifest = await Effect.runPromise(
 );
 
 beforeEach(() => {
-  control.actual = { article: 2, material: 3, question: 4 };
+  control.actual = { article: 2, material: 3, page: 1, question: 4 };
   control.catalogFailure = false;
   control.countMismatch = "none";
   control.expectedRouteConflict = false;
   control.identityMismatch = "none";
   control.recordFailure = false;
-  control.records = 9;
+  control.records = 10;
   control.registryFailure = false;
   control.resultCalls = 0;
   control.resultFailure = false;
   control.routeFailure = false;
   control.routeMode = "complete";
   control.snapshotFailure = false;
-  control.source = { article: 2, material: 3, question: 4 };
+  control.source = { article: 2, material: 3, page: 1, question: 4 };
 });
 
 /** Builds full-catalog validation through scoped platform requirements. */
@@ -190,18 +193,19 @@ describe("content catalog validation", () => {
       {
         articleCount: 2,
         materialCount: 3,
+        pageCount: 1,
         questionCount: 4,
-        recordCount: 9,
+        recordCount: 10,
         rendererManifestHash: rendererManifest.hash,
         resultDigest: expect.stringMatching(SHA256_PATTERN),
-        routeCount: 5,
+        routeCount: 6,
         snapshots: catalogSnapshotEvidence,
-        totalCount: 9,
+        totalCount: 10,
       }
     );
     expect(control.resultCalls).toBe(1);
   });
-  it.each(["article", "material", "question"])(
+  it.each(["article", "material", "page", "question"])(
     "rejects an incomplete %s result family",
     async (kind) => {
       control.countMismatch = kind;
@@ -219,10 +223,10 @@ describe("content catalog validation", () => {
     await expect(rejectValidation()).resolves.toMatchObject(IDENTITY_FAILURE);
   });
   it("rejects a mismatched transition record count", async () => {
-    control.records = 8;
+    control.records = 9;
     await expect(rejectValidation()).resolves.toMatchObject({
       _tag: "ContentCatalogCountError",
-      actualCount: 8,
+      actualCount: 9,
       kind: "records",
     });
   });

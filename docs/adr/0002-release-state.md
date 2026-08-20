@@ -45,6 +45,11 @@ manifest, structured snapshot states, and provenance. Routes are a separate
 ordered signed stream; they are not reconstructed from projection metadata
 during publication or rollback.
 
+The global result catalog contains four body families: `article`, `material`,
+`page`, and `question`. Public pages participate in the same candidate,
+recovery, activation, acceptance, retention, and cleanup lifecycle. They do not
+have a family-specific active pointer, release protocol, or fallback source.
+
 ### Structured snapshots
 
 The same global release pointer selects three fixed structured families:

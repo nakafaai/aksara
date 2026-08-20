@@ -3,12 +3,14 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import type {
   ArticlePreviewDocument,
   MaterialPreviewDocument,
+  PagePreviewDocument,
   QuestionAnswerPreviewDocument,
   QuestionPromptPreviewDocument,
 } from "@nakafa/aksara-contracts/preview/document";
 import { Schema } from "effect";
 import type { ArticleEntry } from "#corpus/articles/registry";
 import type { MaterialEntry } from "#corpus/material/registry";
+import type { PageEntry } from "#corpus/pages/registry";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 
 /** One selected file whose change either reloads or restarts preview safely. */
@@ -39,6 +41,14 @@ export interface MaterialPreviewSource {
   readonly family: "material";
 }
 
+/** One selected public page source owned by the page registry. */
+export interface PagePreviewSource {
+  readonly dependencies: readonly [PreviewDependency, ...PreviewDependency[]];
+  readonly directories: readonly [];
+  readonly entry: PageEntry;
+  readonly family: "page";
+}
+
 /** One selected question body owned by the authored question corpus. */
 export interface QuestionPreviewSource {
   readonly appLocale: AppLocale;
@@ -52,6 +62,7 @@ export interface QuestionPreviewSource {
 export type PreviewSource =
   | ArticlePreviewSource
   | MaterialPreviewSource
+  | PagePreviewSource
   | QuestionPreviewSource;
 
 /** Exact registry selection and ordered compilation closure for preview. */
@@ -63,6 +74,10 @@ export type PreviewSelection =
   | {
       readonly document: MaterialPreviewDocument;
       readonly sources: readonly [MaterialPreviewSource];
+    }
+  | {
+      readonly document: PagePreviewDocument;
+      readonly sources: readonly [PagePreviewSource];
     }
   | {
       readonly document: QuestionPromptPreviewDocument;

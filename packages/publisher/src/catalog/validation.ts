@@ -27,6 +27,7 @@ const CountSchema = Schema.Int.pipe(
 export const ContentCatalogValidationSchema = Schema.Struct({
   articleCount: CountSchema,
   materialCount: CountSchema,
+  pageCount: CountSchema,
   questionCount: CountSchema,
   recordCount: CountSchema,
   rendererManifestHash: Sha256HashSchema,
@@ -48,6 +49,7 @@ export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogC
     kind: Schema.Literals([
       "article",
       "material",
+      "page",
       "question",
       "records",
       "routes",
@@ -142,6 +144,7 @@ export const validateContentCatalog: (input: {
     published: {
       article: Stream.empty,
       material: Stream.empty,
+      page: Stream.empty,
       question: Stream.empty,
     },
     rendererManifest: input.rendererManifest,
@@ -192,6 +195,7 @@ export const validateContentCatalog: (input: {
     result.materialCount,
     expectation.materialCount
   );
+  yield* requireCount("page", result.pageCount, expectation.pageCount);
   yield* requireCount(
     "question",
     result.questionCount,
@@ -204,6 +208,7 @@ export const validateContentCatalog: (input: {
   return ContentCatalogValidationSchema.make({
     articleCount: result.articleCount,
     materialCount: result.materialCount,
+    pageCount: result.pageCount,
     questionCount: result.questionCount,
     recordCount,
     rendererManifestHash: input.rendererManifest.hash,

@@ -6,13 +6,13 @@ import { HistoricalSha256HashSchema } from "#contracts/history/primitives";
 import {
   historicalArtifact,
   historicalFound,
+  historicalFrozenUnpublishedRenderer,
   historicalItem,
+  historicalLiveRenderer,
   historicalMissingRenderer,
-  historicalRelease,
   historicalRenderer,
   historicalRequest,
   historicalSelector,
-  historicalSnapshotId,
   historicalSubsetRenderer,
   historicalUnpublishedRenderer,
   historicalUnsupportedRenderer,
@@ -40,6 +40,10 @@ function mismatchReason(error: Awaited<ReturnType<typeof reject>>) {
 
 describe("retained protected runtime verification", () => {
   it("authenticates an exact found response and attempt-bound empty outcomes", async () => {
+    expect(
+      historicalLiveRenderer.domains.some(({ name }) => name === "site")
+    ).toBe(true);
+    expect(historicalLiveRenderer.hash).not.toBe(historicalRenderer.hash);
     await expect(
       Effect.runPromise(verifyHistoricalExchange())
     ).resolves.toEqual(historicalFound);
@@ -221,7 +225,7 @@ describe("retained protected runtime verification", () => {
     const renderer = await reject({
       response: {
         ...historicalFound,
-        rendererManifest: historicalUnpublishedRenderer,
+        rendererManifest: historicalFrozenUnpublishedRenderer,
       },
     });
 
@@ -288,14 +292,5 @@ describe("retained protected runtime verification", () => {
     });
 
     expect(error._tag).toBe("StoredArtifactHashMismatchError");
-  });
-
-  it("keeps fixture identities aligned with the signed retained release", () => {
-    expect(historicalRelease.manifest.snapshots.tryout.resultSnapshotId).toBe(
-      historicalSnapshotId
-    );
-    expect(historicalRelease.manifest.rendererManifestHash).toBe(
-      historicalRenderer.hash
-    );
   });
 });

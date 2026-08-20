@@ -20,6 +20,7 @@ import {
   ArticleHeadSchema,
   canonicalizeContentHead,
   MaterialHeadSchema,
+  PageHeadSchema,
   QuestionHeadSchema,
 } from "#contracts/release/head";
 import {
@@ -62,6 +63,13 @@ export const RollbackMaterialStateSchema = Schema.Struct({
 });
 export type RollbackMaterialState = typeof RollbackMaterialStateSchema.Type;
 
+/** Compact authoritative prior page head protected by one rollback digest. */
+export const RollbackPageStateSchema = Schema.Struct({
+  head: PageHeadSchema,
+  state: Schema.Literal("page"),
+});
+export type RollbackPageState = typeof RollbackPageStateSchema.Type;
+
 /** Compact authoritative prior question head protected by one rollback digest. */
 export const RollbackQuestionStateSchema = Schema.Struct({
   head: QuestionHeadSchema,
@@ -74,6 +82,7 @@ export const RollbackSnapshotStateSchema = Schema.Union([
   RollbackAbsentStateSchema,
   RollbackArticleStateSchema,
   RollbackMaterialStateSchema,
+  RollbackPageStateSchema,
   RollbackQuestionStateSchema,
 ]);
 export type RollbackSnapshotState = typeof RollbackSnapshotStateSchema.Type;

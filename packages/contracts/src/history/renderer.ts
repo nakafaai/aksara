@@ -1,7 +1,6 @@
 import { Effect, Schema } from "effect";
 
 import { hashText } from "#contracts/hash/text";
-import type { HistoricalCompiledContentPayload } from "#contracts/history/artifact-spec";
 import {
   compareHistoricalCodeUnits,
   HISTORICAL_RENDERER_DOMAINS,
@@ -11,11 +10,8 @@ import {
 
 const HISTORICAL_RENDERER_FORMAT = "nakafa-mdx-renderer-v1";
 const HISTORICAL_RENDERER_VERSION = "1.0.0";
-const HistoricalRendererComponentNameSchema = Schema.String.pipe(
-  Schema.check(Schema.isPattern(/^[A-Za-z][A-Za-z0-9]*$/u))
-);
 const HistoricalRendererRequirementSchema = Schema.Struct({
-  name: HistoricalRendererComponentNameSchema,
+  name: HistoricalPrimitive.RendererComponentNameSchema,
   version: Schema.Finite.pipe(
     Schema.check(Schema.isInt()),
     Schema.check(Schema.isGreaterThan(0))
@@ -176,37 +172,6 @@ export class StoredRendererHashMismatchError extends Schema.TaggedError<StoredRe
   }
 ) {}
 
-/** The retained or live renderer cannot route one old artifact domain. */
-export class StoredRendererDomainUnpublishedError extends Schema.TaggedError<StoredRendererDomainUnpublishedError>()(
-  "StoredRendererDomainUnpublishedError",
-  {
-    contentKey: HistoricalPrimitive.ContentKeySchema,
-    rendererDomain: HistoricalPrimitive.RendererDomainSchema,
-  }
-) {}
-
-/** A retained artifact component is absent from the selected renderer. */
-export class StoredRendererComponentMissingError extends Schema.TaggedError<StoredRendererComponentMissingError>()(
-  "StoredRendererComponentMissingError",
-  {
-    componentName: HistoricalRendererComponentNameSchema,
-    contentKey: HistoricalPrimitive.ContentKeySchema,
-  }
-) {}
-
-/** A renderer lacks the exact component version required by old bytes. */
-export class StoredRendererVersionUnsupportedError extends Schema.TaggedError<StoredRendererVersionUnsupportedError>()(
-  "StoredRendererVersionUnsupportedError",
-  {
-    componentName: HistoricalRendererComponentNameSchema,
-    contentKey: HistoricalPrimitive.ContentKeySchema,
-    requiredVersion: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
-
 /** Copies one retained renderer capability into exact canonical fields. */
 function canonicalCapability(value: HistoricalRendererCapability) {
   return {
@@ -263,54 +228,3 @@ export const validateHistoricalRendererManifestHash = Effect.fn(
     )
   )
 );
-
-interface RendererCompatibilityManifest {
-  readonly base: HistoricalRendererCapability;
-  readonly domains: readonly HistoricalRendererDomain[];
-  readonly publishedDomains: readonly string[];
-}
-
-/** Verifies one authenticated old payload against a hash-validated renderer. */
-export const verifyHistoricalRendererCompatibility = Effect.fn(
-  "AksaraContracts.verifyHistoricalRendererCompatibility"
-)(function* (input: {
-  readonly manifest: RendererCompatibilityManifest;
-  readonly payload: HistoricalCompiledContentPayload;
-}) {
-  const { manifest, payload } = input;
-  if (!manifest.publishedDomains.includes(payload.rendererDomain)) {
-    return yield* new StoredRendererDomainUnpublishedError({
-      contentKey: payload.contentKey,
-      rendererDomain: payload.rendererDomain,
-    });
-  }
-  const domain = manifest.domains.find(
-    ({ name }) => name === payload.rendererDomain
-  );
-  if (domain === undefined) {
-    return yield* new StoredRendererDomainUnpublishedError({
-      contentKey: payload.contentKey,
-      rendererDomain: payload.rendererDomain,
-    });
-  }
-  const supported = [
-    ...manifest.base.supportedComponents,
-    ...domain.supportedComponents,
-  ];
-  for (const requirement of payload.requiredComponents) {
-    const versions = supported.filter(({ name }) => name === requirement.name);
-    if (versions.length === 0) {
-      return yield* new StoredRendererComponentMissingError({
-        componentName: requirement.name,
-        contentKey: payload.contentKey,
-      });
-    }
-    if (!versions.some(({ version }) => version === requirement.version)) {
-      return yield* new StoredRendererVersionUnsupportedError({
-        componentName: requirement.name,
-        contentKey: payload.contentKey,
-        requiredVersion: requirement.version,
-      });
-    }
-  }
-});

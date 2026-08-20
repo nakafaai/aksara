@@ -5,6 +5,7 @@ import {
 import type {
   ArticlePreviewDocument,
   MaterialPreviewDocument,
+  PagePreviewDocument,
 } from "@nakafa/aksara-contracts/preview/document";
 import { Effect } from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
@@ -13,6 +14,8 @@ import { GERMAN_GLOSSARY_SOURCE_PATHS } from "#corpus/locale/german/glossary";
 import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import type { MaterialEntry } from "#corpus/material/registry";
+import { decodePagePreviewEntry } from "#corpus/pages/preview";
+import type { PageEntry } from "#corpus/pages/registry";
 import type { PreviewSelection } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import {
@@ -37,6 +40,15 @@ const MATERIAL_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
 );
 const MATERIAL_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/material/locale-registry.ts"
+);
+const PAGE_OWNER = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/source.ts"
+);
+const PAGE_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/locale.ts"
+);
+const PAGE_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/locale-registry.ts"
 );
 const GERMAN_GLOSSARY_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/locale/german/glossary.ts"
@@ -88,6 +100,18 @@ function materialLocaleDependencies(entry: MaterialEntry) {
   ];
 }
 
+/** Returns exact selected page overlay owners without expanding the registry. */
+function pageLocaleDependencies(entry: PageEntry) {
+  const appLocale = localeOverlayAppLocaleCode(entry.route.appLocale);
+  if (appLocale === undefined) {
+    return [];
+  }
+  return [
+    { mode: "restart" as const, sourcePath: PAGE_CANDIDATE_OWNER },
+    { mode: "restart" as const, sourcePath: PAGE_CANDIDATE_REGISTRY },
+  ];
+}
+
 /** Requires one source already made unique by its canonical registry. */
 const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
   function* <Value>(value: Value | undefined, sourcePath: CorpusSourcePath) {
@@ -98,6 +122,51 @@ const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
       });
     }
     return value;
+  }
+);
+
+/** Builds one public page selection from an already validated registry row. */
+export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
+  (entry: PageEntry) => {
+    const document = {
+      delivery: entry.delivery,
+      family: "page",
+      rendererDomain: entry.rendererDomain,
+      route: entry.route,
+      sourcePath: entry.sourcePath,
+    } satisfies PagePreviewDocument;
+    return Effect.succeed({
+      document,
+      sources: [
+        {
+          dependencies: [
+            { mode: "restart", sourcePath: PAGE_OWNER },
+            ...pageLocaleDependencies(entry),
+          ],
+          directories: [],
+          entry,
+          family: "page",
+        },
+      ],
+    } satisfies PreviewSelection);
+  }
+);
+
+/** Builds a public page batch from already validated registry rows. */
+export const selectPageEntries = Effect.fn(
+  "AksaraCorpus.selectPreviewPageEntries"
+)(function* (entries: readonly PageEntry[]) {
+  return yield* Effect.forEach(entries, selectPageEntry, { concurrency: 8 });
+});
+
+/** Selects one public page directly from its canonical page registry. */
+export const selectPage = Effect.fn("AksaraCorpus.selectPreviewPage")(
+  function* (_corpusRoot: string, sourcePath: CorpusSourcePath) {
+    const entry = yield* selectOne(
+      yield* decodePagePreviewEntry(sourcePath),
+      sourcePath
+    );
+    return yield* selectPageEntry(entry);
   }
 );
 

@@ -1,3 +1,4 @@
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
@@ -161,23 +162,26 @@ describe("HTTP publication target", () => {
     const projectionRequest = transportRequests.find(
       (request) => request.operation === "stageProjectionBatch"
     );
-    expect(projectionRequest?.operation).toBe("stageProjectionBatch");
     if (projectionRequest?.operation !== "stageProjectionBatch") {
-      return;
+      throw new Error("Expected the projection batch request fixture.");
     }
     const [projection] = projectionRequest.projections;
+    if (projection === undefined) {
+      throw new Error("Expected one projection fixture.");
+    }
+    const oversizedProjection = Schema.decodeUnknownSync(
+      ContentProjectionSchema
+    )({
+      ...projection,
+      metadata: {
+        ...projection.metadata,
+        title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
+      },
+    });
     const oversized = await reject(
       target.stageProjectionBatch({
         ...projectionRequest,
-        projections: [
-          {
-            ...projection,
-            metadata: {
-              ...projection.metadata,
-              title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
-            },
-          },
-        ],
+        projections: [oversizedProjection],
       })
     );
     expect(oversized).toMatchObject({

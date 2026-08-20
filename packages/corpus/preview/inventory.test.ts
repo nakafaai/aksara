@@ -16,7 +16,9 @@ const readPhysicalCounts = Effect.fn("AksaraCorpusTest.readPhysicalCounts")(
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
     /** Counts physical candidate bodies for one content family. */
-    const countFamily = (family: "articles" | "material" | "question-bank") =>
+    const countFamily = (
+      family: "articles" | "material" | "pages" | "question-bank"
+    ) =>
       fileSystem
         .readDirectory(path.join(checkoutRoot, "packages", "corpus", family), {
           recursive: true,
@@ -42,14 +44,18 @@ const readPhysicalCounts = Effect.fn("AksaraCorpusTest.readPhysicalCounts")(
       {
         articleCount: countFamily("articles"),
         materialCount: countFamily("material"),
+        pageCount: countFamily("pages"),
         questionCount: countFamily("question-bank"),
       },
-      { concurrency: 3 }
+      { concurrency: 4 }
     );
     return {
       ...counts,
       totalCount:
-        counts.articleCount + counts.materialCount + counts.questionCount,
+        counts.articleCount +
+        counts.materialCount +
+        counts.pageCount +
+        counts.questionCount,
     };
   }
 );
@@ -100,6 +106,7 @@ describe("candidate preview inventory", () => {
           const paths = [
             "packages/corpus/articles/unowned",
             "packages/corpus/material",
+            "packages/corpus/pages",
             "packages/corpus/question-bank",
           ];
           yield* Effect.forEach(
@@ -142,7 +149,7 @@ describe("candidate preview inventory", () => {
             prefix: "aksara-empty-candidate-inventory-",
           });
           yield* Effect.forEach(
-            ["articles", "material", "question-bank"],
+            ["articles", "material", "pages", "question-bank"],
             (family) =>
               fileSystem.makeDirectory(`${root}/packages/corpus/${family}`, {
                 recursive: true,
@@ -157,6 +164,7 @@ describe("candidate preview inventory", () => {
     expect(inventory).toEqual({
       articleCount: 0,
       materialCount: 0,
+      pageCount: 0,
       questionCount: 0,
       sources: [],
       totalCount: 0,
@@ -216,6 +224,7 @@ describe("candidate preview inventory", () => {
             [
               "packages/corpus/articles",
               "packages/corpus/material/unowned",
+              "packages/corpus/pages",
               "packages/corpus/question-bank",
             ],
             (path) =>
@@ -248,6 +257,7 @@ describe("candidate preview inventory", () => {
             [
               "packages/corpus/articles/invalid path",
               "packages/corpus/material",
+              "packages/corpus/pages",
               "packages/corpus/question-bank",
             ],
             (path) =>

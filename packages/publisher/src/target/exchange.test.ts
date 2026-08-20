@@ -1,8 +1,9 @@
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
 import { describe, expect, it } from "@nakafa/testing/effect";
-import { Duration, Effect, Redacted } from "effect";
+import { Duration, Effect, Redacted, Schema } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -113,21 +114,25 @@ describe("sendPublicationRequest", () => {
       return;
     }
     const [projection] = projectionRequest.projections;
+    if (projection === undefined) {
+      throw new Error("Expected one projection fixture.");
+    }
+    const oversizedProjection = Schema.decodeUnknownSync(
+      ContentProjectionSchema
+    )({
+      ...projection,
+      metadata: {
+        ...projection.metadata,
+        title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
+      },
+    });
     const oversized: StageGroupRequest = {
       operation: "stageGroup",
       releaseId: groupRequest.releaseId,
       requests: [
         {
           ...projectionRequest,
-          projections: [
-            {
-              ...projection,
-              metadata: {
-                ...projection.metadata,
-                title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
-              },
-            },
-          ],
+          projections: [oversizedProjection],
         },
       ],
     };

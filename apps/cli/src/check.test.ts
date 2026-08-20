@@ -77,11 +77,12 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
       return TestEffect.succeed({
         articleCount: 14,
         materialCount: 766,
+        pageCount: 6,
         questionCount: 3360,
-        recordCount: 4140,
+        recordCount: 4146,
         rendererManifestHash: hash,
         resultDigest: hash,
-        routeCount: 780,
+        routeCount: 786,
         routeDigest: hash,
         snapshots: {
           program: {
@@ -110,7 +111,7 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
             snapshotId: hash,
           },
         },
-        totalCount: 4140,
+        totalCount: 4146,
       });
     },
   };
@@ -156,7 +157,7 @@ describe("catalog check command", () => {
     });
     expect(result).toMatchObject({
       snapshots: { quran: { provenanceStatus: "approved" } },
-      totalCount: 4140,
+      totalCount: 4146,
     });
   });
 

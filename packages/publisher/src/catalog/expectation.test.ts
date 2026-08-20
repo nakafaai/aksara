@@ -26,6 +26,16 @@ const control = vi.hoisted(() => ({
       },
     },
   ],
+  pages: [
+    {
+      route: {
+        appLocale: "en",
+        artifactLocale: "en",
+        contentKey: "pages/privacy-policy",
+        publicPath: "privacy-policy",
+      },
+    },
+  ],
   questions: [
     {
       artifactLocale: "en",
@@ -51,6 +61,14 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async () => {
   return {
     /** Supplies controlled material identities without authored fixtures. */
     decodeMaterialRegistry: () => TestEffect.succeed(control.materials),
+  };
+});
+
+vi.mock("@nakafa/aksara-corpus/pages/registry", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Supplies controlled page identities without authored fixtures. */
+    decodePageRegistry: () => TestEffect.succeed(control.pages),
   };
 });
 
@@ -81,6 +99,16 @@ beforeEach(() => {
         artifactLocale: "id",
         contentKey: "material/lesson/mathematics/one",
         publicPath: "materi/matematika/one",
+      },
+    },
+  ];
+  control.pages = [
+    {
+      route: {
+        appLocale: "en",
+        artifactLocale: "en",
+        contentKey: "pages/privacy-policy",
+        publicPath: "privacy-policy",
       },
     },
   ];
@@ -119,12 +147,18 @@ describe("content catalog expectation", () => {
         },
         {
           artifactLocale: "en",
+          contentKey: "pages/privacy-policy",
+          family: "page",
+        },
+        {
+          artifactLocale: "en",
           contentKey:
             "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
           family: "question",
         },
       ],
       materialCount: 1,
+      pageCount: 1,
       questionCount: 1,
       routes: [
         {
@@ -149,8 +183,19 @@ describe("content catalog expectation", () => {
             publicPath: "materi/matematika/one",
           },
         },
+        {
+          current: {
+            appLocale: "en",
+            contentKey: "pages/privacy-policy",
+          },
+          next: {
+            appLocale: "en",
+            contentKey: "pages/privacy-policy",
+            publicPath: "privacy-policy",
+          },
+        },
       ],
-      totalCount: 3,
+      totalCount: 4,
     });
   });
 
@@ -165,8 +210,9 @@ describe("content catalog expectation", () => {
     await expect(readExpectation()).resolves.toMatchObject({
       articleCount: 0,
       materialCount: 1,
+      pageCount: 1,
       questionCount: 2,
-      totalCount: 3,
+      totalCount: 4,
     });
   });
 

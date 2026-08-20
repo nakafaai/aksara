@@ -100,12 +100,14 @@ function publishedContentHeads(base: BaseCatalogIdentity | null) {
     return {
       article: Stream.empty,
       material: Stream.empty,
+      page: Stream.empty,
       question: Stream.empty,
     };
   }
   return {
     article: streamContentHeads(base.releaseId, base.manifestHash, "article"),
     material: streamContentHeads(base.releaseId, base.manifestHash, "material"),
+    page: streamContentHeads(base.releaseId, base.manifestHash, "page"),
     question: streamContentHeads(base.releaseId, base.manifestHash, "question"),
   };
 }

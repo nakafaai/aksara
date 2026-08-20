@@ -1,0 +1,113 @@
+import {
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect } from "effect";
+import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
+import { germanPageSource, pageSource } from "#corpus/test/page";
+
+/** Returns one typed registry failure at the Vitest runner boundary. */
+function rejectRegistry(input: unknown, localeInput?: unknown) {
+  return Effect.runPromise(
+    decodePageRegistry(input, localeInput).pipe(Effect.flip)
+  );
+}
+
+describe("public page registry", () => {
+  it("projects every active locale from three stable source identities", async () => {
+    const entries = await Effect.runPromise(decodePageRegistry());
+
+    expect(entries).toHaveLength(6);
+    expect(entries.map(({ route }) => route.appLocale)).toEqual([
+      "en",
+      "id",
+      "en",
+      "id",
+      "en",
+      "id",
+    ]);
+    expect(entries[0]).toMatchObject({
+      delivery: "public",
+      rendererDomain: "site",
+      route: {
+        contentKey: "pages/privacy-policy",
+        pageKey: "privacy-policy",
+        publicPath: "privacy-policy",
+      },
+      sourcePath: "packages/corpus/pages/privacy-policy/en.mdx",
+      sourceRoot: "pages/privacy-policy",
+    });
+  });
+
+  it("projects permanent German overlays through the activation seam", async () => {
+    const entries = await Effect.runPromise(
+      decodePageRegistry(
+        [pageSource()],
+        [germanPageSource()],
+        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+      )
+    );
+
+    expect(entries).toEqual([
+      expect.objectContaining({
+        route: expect.objectContaining({
+          appLocale: "de",
+          publicPath: "privacy-policy",
+        }),
+        sourcePath: "packages/corpus/pages/privacy-policy/de.mdx",
+      }),
+    ]);
+  });
+
+  it("rejects duplicate page keys and locale route collisions", async () => {
+    const duplicate = await rejectRegistry([pageSource(), pageSource()]);
+    const collision = await rejectRegistry([
+      pageSource(),
+      pageSource({
+        pageKey: "security-policy",
+        sourceRoot: "pages/security-policy",
+      }),
+    ]);
+
+    expect(duplicate).toMatchObject({
+      _tag: "PageKeyDuplicateError",
+      pageKey: "privacy-policy",
+    });
+    expect(collision).toMatchObject({
+      _tag: "PageRouteCollisionError",
+      appLocale: "en",
+      conflictingContentKey: "pages/privacy-policy",
+      contentKey: "pages/security-policy",
+      publicPath: "privacy-policy",
+    });
+  });
+
+  it("maps malformed catalogs and invalid projected paths to typed failures", async () => {
+    const malformed = await rejectRegistry(null);
+    const oversizedPageKey = "a".repeat(507);
+    const invalid = pageSource({
+      pageKey: oversizedPageKey,
+      publicPaths: { en: "privacy-policy", id: "privacy-policy" },
+      sourceRoot: `pages/${oversizedPageKey}`,
+    });
+    const invalidPath = await rejectRegistry([invalid]);
+
+    expect(malformed._tag).toBe("PageCatalogError");
+    expect(invalidPath._tag).toBe("PageRegistryError");
+  });
+
+  it("accepts repeated identical route ownership and an empty catalog", async () => {
+    const [entry] = await Effect.runPromise(decodePageRegistry([pageSource()]));
+    if (entry === undefined) {
+      throw new Error("Expected one active page entry.");
+    }
+
+    await expect(
+      Effect.runPromise(validatePageRoutes([entry, entry]))
+    ).resolves.toEqual([entry, entry]);
+    await expect(Effect.runPromise(decodePageRegistry([]))).resolves.toEqual(
+      []
+    );
+  });
+});
