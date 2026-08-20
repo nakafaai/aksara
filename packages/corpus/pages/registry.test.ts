@@ -68,8 +68,15 @@ describe("public page registry", () => {
     ]);
   });
 
-  it("rejects duplicate page keys and locale route collisions", async () => {
+  it("rejects duplicate page keys, source roots, and locale routes", async () => {
     const duplicate = await rejectRegistry([pageSource(), pageSource()]);
+    const duplicateRoot = await rejectRegistry([
+      pageSource(),
+      pageSource({
+        pageKey: "security-policy",
+        publicPaths: { en: "security-policy", id: "security-policy" },
+      }),
+    ]);
     const collision = await rejectRegistry([
       pageSource(),
       pageSource({
@@ -81,6 +88,10 @@ describe("public page registry", () => {
     expect(duplicate).toMatchObject({
       _tag: "PageKeyDuplicateError",
       pageKey: "privacy-policy",
+    });
+    expect(duplicateRoot).toMatchObject({
+      _tag: "PageRootDuplicateError",
+      sourceRoot: "pages/privacy-policy",
     });
     expect(collision).toMatchObject({
       _tag: "PageRouteCollisionError",

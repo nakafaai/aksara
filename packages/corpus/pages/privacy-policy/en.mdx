@@ -38,7 +38,7 @@ The table below summarizes categories of Personal Data we collect, why we collec
 
 | Category of Personal Data (examples) | Purpose(s) for collection | Recipients and service roles |
 | --- | --- | --- |
-| Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for transactional messages - [Privacy Policy](https://resend.com/legal/privacy-policy) |
+| Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for the welcome email - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Account identifiers (authentication identifiers linked to your account) | Authentication and account security | Convex (database/hosting); Vercel (hosting) |
 | Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security and service reliability; product improvement only after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
 | Operational error data (sanitized stack frames, bounded technical context, and a random identifier for that one report, without an account or product-analytics identifier) | Diagnosing failures and maintaining service reliability and security | PostHog (identity-free operational error reporting) |
@@ -58,6 +58,8 @@ Checkout and subscription handling also follow the pinned revision. [`packages/b
 
 The listed learning and account-activity records are stored in domain-owned Convex schemas at the same revision. Class and membership records are defined in [`packages/backend/convex/classes/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/classes/schema.ts#L132-L180), bookmark and collection fields in [`packages/backend/convex/bookmarks/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/bookmarks/schema.ts#L5-L25), assessment attempts and responses in [`packages/backend/convex/assessments/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/assessments/schema.ts#L392-L440), and notification records and preferences in [`packages/backend/convex/notifications/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/notifications/schema.ts#L117-L175).
 
+The bounded account-deletion coordinator runs each domain-owned cleanup program in [`packages/backend/convex/auth/cleanup/impl.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/impl.ts#L14-L59). Those programs remove class memberships through [`schools.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/schools.ts#L10-L47), bookmarks and collections through [`social.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/social.ts#L14-L48), assessment attempts and responses through [`assessments.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/assessments.ts#L10-L151), and notification records and preferences through [`notifications.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/notifications.ts#L12-L96).
+
 ## Checkout and payment processing
 
 Polar is Nakafa's Merchant of Record and authorized reseller. When you complete checkout, you purchase the applicable product from Polar and enter a payment agreement with Polar under the [Polar Checkout Buyer Terms](https://polar.sh/legal/checkout-buyer-terms). Polar, or its payment processor, collects and processes the payment details needed for the transaction under the [Polar Privacy Policy](https://polar.sh/legal/privacy-policy).
@@ -66,7 +68,7 @@ Nakafa does not collect your full payment-card number. We receive the customer, 
 
 ## Why we collect and use Personal Data
 
-We collect and use Personal Data to operate, maintain, and improve the Services. This includes providing account and learning features, supporting subscriptions, communicating with you (including transactional emails), maintaining security and reliability, preventing abuse and scraping, and complying with legal obligations. We use optional product analytics only after you consent.
+We collect and use Personal Data to operate, maintain, and improve the Services. This includes providing account and learning features, supporting subscriptions, sending the welcome email, maintaining security and reliability, preventing abuse and scraping, and complying with legal obligations. We use optional product analytics only after you consent.
 
 ### Legal bases for processing (GDPR)
 
@@ -87,7 +89,7 @@ If you are in the EU/EEA, we process Personal Data under one or more of the foll
 
 We disclose Personal Data in the following circumstances:
 
-- Service Providers: Vercel hosts the Services, Convex provides the database and backend, PostHog processes product analytics after consent, Resend delivers transactional email, and OpenAI processes AI inputs to generate responses.
+- Service Providers: Vercel hosts the Services, Convex provides the database and backend, PostHog processes product analytics after consent, Resend delivers the welcome email, and OpenAI processes AI inputs to generate responses.
 - Polar: Polar independently processes checkout and payment data as Merchant of Record and authorized reseller. Nakafa receives the checkout and subscription records needed to provide and manage access.
 - AI processing: when you submit a prompt or chat message for an AI feature, we send the prompt and the related conversation context through Vercel AI Gateway to OpenAI. We receive the generated response and store the conversation data needed to provide the feature.
 - Legal and safety: we may disclose information if we believe in good faith that it is necessary to comply with law, respond to lawful requests, protect rights and safety, or investigate fraud or abuse.

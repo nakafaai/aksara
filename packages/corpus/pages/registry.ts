@@ -45,6 +45,12 @@ export class PageKeyDuplicateError extends Schema.TaggedError<PageKeyDuplicateEr
   { pageKey: PageKeySchema }
 ) {}
 
+/** Two stable page identities resolve to the same authored source root. */
+export class PageRootDuplicateError extends Schema.TaggedError<PageRootDuplicateError>()(
+  "PageRootDuplicateError",
+  { sourceRoot: PageRootSchema }
+) {}
+
 /** Two stable page identities project to the same locale-owned public path. */
 export class PageRouteCollisionError extends Schema.TaggedError<PageRouteCollisionError>()(
   "PageRouteCollisionError",
@@ -107,16 +113,23 @@ const expandPage = Effect.fn("AksaraCorpus.expandPage")(function* (
   });
 });
 
-/** Rejects stable page-key duplicates before locale projection. */
+/** Rejects duplicate stable identities and authored roots before projection. */
 export const validatePageSources = Effect.fn(
   "AksaraCorpus.validatePageSources"
 )(function* (sources: readonly PageSource[]) {
   const pageKeys = new Set<string>();
+  const sourceRoots = new Set<string>();
   for (const source of sources) {
     if (pageKeys.has(source.pageKey)) {
       return yield* new PageKeyDuplicateError({ pageKey: source.pageKey });
     }
+    if (sourceRoots.has(source.sourceRoot)) {
+      return yield* new PageRootDuplicateError({
+        sourceRoot: source.sourceRoot,
+      });
+    }
     pageKeys.add(source.pageKey);
+    sourceRoots.add(source.sourceRoot);
   }
   return sources;
 });

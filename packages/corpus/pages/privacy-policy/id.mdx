@@ -38,7 +38,7 @@ Tabel berikut merangkum kategori Data Pribadi yang kami kumpulkan, tujuan pengum
 
 | Kategori Data Pribadi (contoh) | Tujuan pengumpulan | Penerima dan peran layanan |
 | --- | --- | --- |
-| Data profil atau kontak (nama, email, foto profil opsional, peran opsional) | Pembuatan akun, dukungan, dan penyediaan layanan | Convex (hosting/database) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend hanya menerima nama dan email yang diperlukan untuk pesan transaksional - [Privacy Policy](https://resend.com/legal/privacy-policy) |
+| Data profil atau kontak (nama, email, foto profil opsional, peran opsional) | Pembuatan akun, dukungan, dan penyediaan layanan | Convex (hosting/database) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend hanya menerima nama dan email yang diperlukan untuk email selamat datang - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Pengenal akun (pengenal autentikasi yang terhubung dengan akun Anda) | Autentikasi dan keamanan akun | Convex (hosting/database); Vercel (hosting) |
 | Data perangkat dan penggunaan (alamat IP, peramban/OS, log keamanan, dan peristiwa penggunaan yang telah disetujui) | Keamanan dan keandalan layanan; peningkatan produk hanya setelah persetujuan | Vercel (hosting/log keamanan); PostHog (analitik produk berbasis persetujuan) - [Privacy Compliance](https://posthog.com/docs/privacy) |
 | Data kesalahan operasional (baris stack trace yang disanitasi, konteks teknis yang dibatasi, dan pengenal acak untuk satu laporan tersebut, tanpa pengenal akun atau analitik produk) | Mendiagnosis kegagalan serta menjaga keandalan dan keamanan layanan | PostHog (pelaporan kesalahan operasional tanpa identitas) |
@@ -58,6 +58,8 @@ Penanganan checkout dan langganan juga mengikuti revisi tersemat tersebut. [`pac
 
 Aktivitas pembelajaran dan akun milik pengguna disimpan dalam skema Convex yang dimiliki tiap domain pada revisi yang sama. Catatan kelas dan keanggotaan ditetapkan dalam [`packages/backend/convex/classes/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/classes/schema.ts#L132-L180), kolom bookmark dan koleksi dalam [`packages/backend/convex/bookmarks/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/bookmarks/schema.ts#L5-L25), percobaan dan respons asesmen dalam [`packages/backend/convex/assessments/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/assessments/schema.ts#L392-L440), serta catatan dan preferensi notifikasi dalam [`packages/backend/convex/notifications/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/notifications/schema.ts#L117-L175).
 
+Koordinator penghapusan akun yang terbatas menjalankan program pembersihan milik setiap domain dalam [`packages/backend/convex/auth/cleanup/impl.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/impl.ts#L14-L59). Program tersebut menghapus keanggotaan kelas melalui [`schools.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/schools.ts#L10-L47), bookmark dan koleksi melalui [`social.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/social.ts#L14-L48), percobaan dan respons asesmen melalui [`assessments.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/assessments.ts#L10-L151), serta catatan dan preferensi notifikasi melalui [`notifications.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/notifications.ts#L12-L96).
+
 ## Checkout dan pemrosesan pembayaran
 
 Polar adalah Merchant of Record dan penjual kembali resmi Nakafa. Ketika Anda menyelesaikan checkout, Anda membeli produk terkait dari Polar dan membuat perjanjian pembayaran dengan Polar berdasarkan [Ketentuan Pembeli Checkout Polar](https://polar.sh/legal/checkout-buyer-terms). Polar, atau pemroses pembayarannya, mengumpulkan dan memproses detail pembayaran yang diperlukan untuk transaksi berdasarkan [Kebijakan Privasi Polar](https://polar.sh/legal/privacy-policy).
@@ -66,7 +68,7 @@ Nakafa tidak mengumpulkan nomor lengkap kartu pembayaran Anda. Kami menerima met
 
 ## Mengapa kami mengumpulkan dan menggunakan Data Pribadi
 
-Kami mengumpulkan dan menggunakan Data Pribadi untuk mengoperasikan, memelihara, dan meningkatkan Layanan. Ini mencakup penyediaan fitur akun dan belajar, dukungan langganan, komunikasi dengan Anda (termasuk email transaksional), pemeliharaan keamanan dan keandalan, pencegahan penyalahgunaan dan scraping, serta kepatuhan hukum. Kami hanya menggunakan analitik produk opsional setelah Anda memberikan persetujuan.
+Kami mengumpulkan dan menggunakan Data Pribadi untuk mengoperasikan, memelihara, dan meningkatkan Layanan. Ini mencakup penyediaan fitur akun dan belajar, dukungan langganan, pengiriman email selamat datang, pemeliharaan keamanan dan keandalan, pencegahan penyalahgunaan dan scraping, serta kepatuhan hukum. Kami hanya menggunakan analitik produk opsional setelah Anda memberikan persetujuan.
 
 ### Dasar pemrosesan (GDPR)
 
@@ -87,7 +89,7 @@ Jika Anda berada di UE/EEA, kami memproses Data Pribadi berdasarkan satu atau le
 
 Kami mengungkapkan Data Pribadi dalam keadaan berikut:
 
-- Penyedia Layanan: Vercel menghosting Layanan, Convex menyediakan basis data dan backend, PostHog memproses analitik produk setelah persetujuan, Resend mengirim email transaksional, dan OpenAI memproses input AI untuk menghasilkan respons.
+- Penyedia Layanan: Vercel menghosting Layanan, Convex menyediakan basis data dan backend, PostHog memproses analitik produk setelah persetujuan, Resend mengirim email selamat datang, dan OpenAI memproses input AI untuk menghasilkan respons.
 - Polar: Polar secara independen memproses data checkout dan pembayaran sebagai Merchant of Record dan penjual kembali resmi. Nakafa menerima catatan checkout dan langganan yang diperlukan untuk menyediakan dan mengelola akses.
 - Pemrosesan AI: ketika Anda mengirim prompt atau pesan obrolan untuk fitur AI, kami mengirim prompt dan konteks percakapan terkait melalui Vercel AI Gateway ke OpenAI. Kami menerima respons yang dihasilkan dan menyimpan data percakapan yang diperlukan untuk menyediakan fitur tersebut.
 - Hukum dan keselamatan: kami dapat mengungkapkan informasi jika dengan itikad baik diperlukan untuk mematuhi hukum, menanggapi permintaan yang sah, melindungi hak dan keselamatan, atau menyelidiki penipuan atau penyalahgunaan.
