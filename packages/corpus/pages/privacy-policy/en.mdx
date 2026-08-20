@@ -8,7 +8,7 @@ export const metadata = {
 
 Last updated: August 20, 2026
 
-This Privacy Policy explains how PT. Nakafa Tekno Kreatif ("Nakafa," "we," "us," or "our") collects, uses, and discloses Personal Data when you access or use our websites, applications, and related services (collectively, the "Services").
+This Privacy Policy explains how PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") collects, uses, and discloses Personal Data when you access or use our websites, applications, and related services (collectively, the "Services").
 
 Your use of the Services is at all times subject to our [Terms of Service](/en/terms-of-service), which incorporates this Privacy Policy.
 
@@ -24,42 +24,38 @@ This Privacy Policy does not cover the practices of companies we do not own or c
 - User Content means information you submit through the Services, such as chat messages, comments, and other text you provide.
 - Service Providers means vendors that process Personal Data for us to provide a defined part of the Services. Their role and legal obligations depend on the service and applicable law.
 
-## Important notice about third-party data processing
+## How third parties process data
 
-This Privacy Policy covers how PT. Nakafa Tekno Kreatif acts as a data controller for Personal Data collected through the Services. However, we engage third-party service providers that act as data processors to provide core functionality, including hosting, database services, analytics, email delivery, subscription management, and AI processing.
+Third parties receive Personal Data in different legal roles. Vercel, Convex, PostHog, Resend, and OpenAI generally provide defined technical services to Nakafa under their applicable service and data-processing terms. The precise role of each party depends on the processing activity and applicable law.
 
-These third parties have their own privacy policies and data processing practices. Our use of a provider is governed by the provider's contract and data-processing terms. Where applicable law requires a data-processing agreement or a transfer safeguard, we must have the required terms in place before that processing occurs. We share Personal Data only for the stated service purpose and limit it to what the provider needs for that purpose.
+Polar acts as the Merchant of Record and authorized reseller for checkout transactions. Polar collects and processes checkout data under its own terms and privacy policy, while Nakafa receives the customer, transaction, and subscription information needed to provide and manage access to the purchased Service.
 
-**This Privacy Policy provides general information.** For complete details about how third parties process your data, including their data locations, subprocessors, and specific practices, we encourage you to review their privacy policies directly via the links provided throughout this document.
-
-The links provided in this Privacy Policy direct you to the third-party service providers' own privacy policies and data processing addendums. We make reasonable efforts to ensure these links remain accurate, but we cannot guarantee that third-party privacy policies will not change. You should periodically review third-party privacy policies for any updates.
-
-**This Privacy Policy is not legal advice.** Privacy and data protection laws are complex and vary by jurisdiction. If you have specific questions about how your Personal Data is processed or your rights under applicable law, we recommend seeking independent legal advice.
+We limit disclosures to the data needed for the stated purpose. Where applicable law requires a data-processing agreement or an international-transfer safeguard, the required terms must be in place before the relevant processing occurs. The provider links below identify the terms that govern their processing and may be updated by those providers.
 
 ## Personal Data we collect
 
 The table below summarizes categories of Personal Data we collect, why we collect it, and the categories of third parties with whom we disclose it. Details are explained in the sections that follow.
 
-| Category of Personal Data (examples) | Purpose(s) for collection | Disclosed to third-party data processors (see below for policy links) |
+| Category of Personal Data (examples) | Purpose(s) for collection | Recipients and service roles |
 | --- | --- | --- |
 | Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for transactional messages - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Account identifiers (authentication identifiers linked to your account) | Authentication and account security | Convex (database/hosting); Vercel (hosting) |
 | Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security, reliability, and product improvement after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
 | Account security device data (device identifiers and last-seen timestamps) | Session security and unusual-activity detection | Convex (database/hosting); Vercel (hosting) |
 | Education and activity data (classes, bookmarks, exercises, notifications) | Operating learning features and personalization | Convex (database/hosting); Vercel (hosting) |
-| User Content (chat messages, comments, prompts) | Providing interactive features and AI responses | Convex (database/hosting); Vercel AI Gateway (AI processing) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway) |
-| Payment and subscription data (customer/subscription IDs and related metadata) | Subscription management and compliance | Polar (subscriptions/payments) - [Privacy Policy](https://polar.sh/legal/privacy); Convex (database); Vercel (hosting) |
+| User Content (chat messages, comments, prompts, related conversation context, and generated responses) | Providing interactive features and AI responses | Convex (database/hosting); Vercel AI Gateway (AI routing) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway); OpenAI (AI model processing) - [Services Agreement](https://openai.com/policies/services-agreement/), [Data Processing Addendum](https://openai.com/policies/data-processing-addendum/), [Usage Policies](https://openai.com/policies/usage-policies/) |
+| Payment and subscription data (customer, transaction, and subscription identifiers and related metadata) | Checkout, subscription management, and compliance | Polar (Merchant of Record and authorized reseller) - [Privacy Policy](https://polar.sh/legal/privacy-policy), [Checkout Buyer Terms](https://polar.sh/legal/checkout-buyer-terms); Convex (subscription records); Vercel (hosting) |
 | Email delivery and event data (delivery events and related metadata) | Transactional emails and deliverability management | Resend (email delivery) - [Privacy Policy](https://resend.com/legal/privacy-policy), [DPA](https://resend.com/legal/dpa) |
 
 ### Implementation evidence for this revision
 
 We checked these data-flow statements against Nakafa commit [`802dac1d3f78a3d2f305d634d2b3970c57a03f57`](https://github.com/nakafaai/nakafa.com/commit/802dac1d3f78a3d2f305d634d2b3970c57a03f57). The implementation stores and synchronizes account profile data through Convex in [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/auth/client.ts#L37-L125), exposes the authentication boundary in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/app/api/auth/%5B...all%5D/route.ts), enables the web app's Vercel production deployment in [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/vercel.ts), and sends only the recipient name and email address to Resend for the welcome message in [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/emails/mutations.ts#L13-L40).
 
-## Payment Processing
+## Checkout and payment processing
 
-Payments are processed through our subscription management service. Our current payment processor is **Polar**, which implements appropriate security and privacy protections for payment processing.
+Polar is Nakafa's Merchant of Record and authorized reseller. When you complete checkout, you purchase the applicable product from Polar and enter a payment agreement with Polar under the [Polar Checkout Buyer Terms](https://polar.sh/legal/checkout-buyer-terms). Polar, or its payment processor, collects and processes the payment details needed for the transaction under the [Polar Privacy Policy](https://polar.sh/legal/privacy-policy).
 
-For current payment processing details and data practices, please review [Polar's Privacy Policy](https://polar.sh/legal/privacy).
+Nakafa does not collect your full payment-card number. We receive the customer, transaction, subscription, product, status, and related metadata needed to grant access, manage your subscription, provide support, and meet legal obligations.
 
 ## Why we collect and use Personal Data
 
@@ -84,18 +80,19 @@ If you are in the EU/EEA, we process Personal Data under one or more of the foll
 
 We disclose Personal Data in the following circumstances:
 
-- Service Providers: we use Service Providers to host and operate the Services, store data, deliver emails, and process payments and consent-based analytics. These include Vercel (hosting), Convex (database/backend), PostHog (product analytics after consent), Resend (email delivery), and Polar (payments/subscriptions).
-- AI processing: when you submit prompts or chat messages for AI features, we send that input to Vercel AI Gateway for processing, and we receive the model output back to provide the feature.
+- Service Providers: Vercel hosts the Services, Convex provides the database and backend, PostHog processes product analytics after consent, Resend delivers transactional email, and OpenAI processes AI inputs to generate responses.
+- Polar: Polar independently processes checkout and payment data as Merchant of Record and authorized reseller. Nakafa receives the transaction and subscription records needed to provide and manage access.
+- AI processing: when you submit a prompt or chat message for an AI feature, we send the prompt and the related conversation context through Vercel AI Gateway to OpenAI. We receive the generated response and store the conversation data needed to provide the feature.
 - Legal and safety: we may disclose information if we believe in good faith that it is necessary to comply with law, respond to lawful requests, protect rights and safety, or investigate fraud or abuse.
 - Business transfers: if we are involved in a merger, acquisition, financing, reorganization, bankruptcy, or sale of assets, information may be transferred as part of that transaction.
 
-## AI processing and Vercel AI Gateway
+## AI processing
 
-If you use AI features, your prompts and related context are processed through Vercel AI Gateway. The underlying model provider depends on the model selected and the gateway configuration.
+Nakafa currently routes AI requests through Vercel AI Gateway to OpenAI. When you use an AI feature, the prompt, related conversation context, and technical metadata needed to process the request are sent to those providers. The generated response is returned to Nakafa and may be stored with the conversation so that the feature works and the conversation remains available to you.
 
-Do not include sensitive personal data in prompts (for example government IDs, financial account numbers, or highly sensitive health information). You are responsible for the content you submit.
+Do not include government identifiers, financial-account numbers, highly sensitive health information, or other sensitive Personal Data in an AI prompt. AI output can be inaccurate and must not be treated as professional advice or as the sole basis for an important decision.
 
-For more information about Vercel AI Gateway terms, please review Vercel’s AI Product Terms for AI Gateway at [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway).
+The relevant provider terms are the [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [OpenAI Services Agreement](https://openai.com/policies/services-agreement/), [OpenAI Data Processing Addendum](https://openai.com/policies/data-processing-addendum/), and [OpenAI Usage Policies](https://openai.com/policies/usage-policies/).
 
 ## Cookies, local storage, and product analytics
 
@@ -119,7 +116,7 @@ Retention depends on the type and purpose of the data:
 
 - Account, profile, and learning data is kept while your account is active. An account-deletion request starts deletion of account-owned data from our active systems.
 - A current analytics-consent record is kept so we can enforce your choice. It is deleted with the account, subject to any record we must retain to demonstrate compliance.
-- Product analytics is retained according to the configured PostHog project retention period and is not collected before consent.
+- Product analytics is not collected before consent. When collected, it is retained only for the period configured for the PostHog project and needed to understand product reliability and use; we periodically review that configuration and shorten or delete data that is no longer needed.
 - Subscription and billing records are retained for the period required by accounting, tax, payment-dispute, and other applicable legal obligations.
 - Security, audit, and support records are retained for the operational window needed to investigate an incident or resolve a request, and longer only when a legal obligation or active dispute requires it.
 - Processor backups and deletion queues expire under the relevant provider's documented retention and deletion schedule.
@@ -140,7 +137,9 @@ We are based in Indonesia and may process and store Personal Data in Indonesia a
 
 The Services are not intended for children under 13 years of age. If you are under 13, do not use the Services or submit Personal Data.
 
-If you are under 18, you may use the Services only with the involvement and permission of a parent or legal guardian who agrees to this Privacy Policy and our Terms of Service.
+If you are under 18, you may use the non-AI parts of the Services only with the involvement and permission of a parent or legal guardian who agrees to this Privacy Policy and our Terms of Service.
+
+AI features are available only if you are at least 16 years old, or any higher minimum age required by the law where you live. If you are under 18, you also need the permission of a parent or legal guardian.
 
 If we learn that we collected Personal Data from a child under 13, we will take steps to delete that information.
 
@@ -173,6 +172,8 @@ If you are a resident of a US state with a comprehensive privacy law (for exampl
 - Right to correct inaccurate Personal Data (in certain jurisdictions).
 - Right to opt out of certain processing such as targeted advertising, sale/sharing, or profiling (where applicable).
 - Right not to receive discriminatory treatment for exercising your rights.
+
+Nakafa does not sell Personal Data and does not use Personal Data for cross-context behavioral or targeted advertising.
 
 ## Exercising your rights
 

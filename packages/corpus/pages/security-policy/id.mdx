@@ -8,7 +8,7 @@ export const metadata = {
 
 Terakhir diperbarui: 20 Agustus 2026
 
-Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT. Nakafa Tekno Kreatif ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
+Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
 
 Untuk informasi tentang cara kami mengumpulkan dan menggunakan Data Pribadi, silakan tinjau [Kebijakan Privasi](/id/privacy-policy).
 
@@ -31,11 +31,11 @@ Kami memelihara program keamanan yang dirancang untuk mengurangi risiko. Langkah
 
 ### Enkripsi saat transmisi
 
-Kami menggunakan HTTPS/TLS untuk data yang dikirimkan antara peramban atau klien Anda dan Layanan.
+Layanan web produksi kami menggunakan HTTPS. Nakafa juga menerapkan HTTP Strict Transport Security dan header keamanan peramban terkait pada seluruh jalur aplikasi. Implementasi dan dokumentasi penyedia untuk revisi ini ditautkan di bawah.
 
 ### Kontrol akses
 
-Kami membatasi akses ke sistem produksi dan data hanya untuk personel dan akun layanan yang berwenang. Kami menggunakan praktik kontrol akses yang dirancang untuk membatasi akses berdasarkan fungsi pekerjaan dan kebutuhan operasional.
+Pada batas aplikasi, kapabilitas pengguna yang memerlukan autentikasi mensyaratkan sesi yang tervalidasi dan pengguna aplikasi yang aktif. Endpoint konten internal hanya menerima kredensial bearer yang diperiksa dengan perbandingan waktu konstan. Pernyataan ini tidak menjelaskan cara masing-masing penyedia infrastruktur memberikan akses ke konsol administratif mereka.
 
 ### Penyimpanan dan pemrosesan data
 
@@ -53,6 +53,15 @@ Kami mengumpulkan log dan peristiwa yang diperlukan untuk mengoperasikan dan men
 
 Kami memelihara praktik pengembangan dan penerapan yang dirancang untuk mengurangi risiko kerentanan, termasuk meninjau perubahan, menerapkan pembaruan, dan menanggapi advisori keamanan untuk dependensi.
 
+### Bukti implementasi untuk revisi ini
+
+Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
+
+- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/next-config/index.ts#L40-L145)
+- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
+
 ## Keamanan layanan pihak ketiga
 
 Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol mereka berpengaruh pada keamanan keseluruhan Layanan. Layanan pihak ketiga inti kami meliputi:
@@ -63,6 +72,7 @@ Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol merek
 - Resend (pengiriman email)
 - PostHog (analitik produk berbasis persetujuan)
 - Vercel AI Gateway (perutean permintaan AI)
+- OpenAI (pemrosesan model AI)
 
 Setiap pihak ketiga dapat memproses data sebagai bagian dari penyediaan Layanan. Untuk rincian kategori data yang dibagikan dan tujuannya, silakan tinjau [Kebijakan Privasi](/id/privacy-policy).
 

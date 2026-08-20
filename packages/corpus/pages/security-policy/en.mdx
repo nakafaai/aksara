@@ -8,7 +8,7 @@ export const metadata = {
 
 Last updated: August 20, 2026
 
-This Security Policy describes the security measures PT. Nakafa Tekno Kreatif ("Nakafa," "we," "us," or "our") uses, and the measures we expect users to take, to help protect the confidentiality, integrity, and availability of the Services and related data.
+This Security Policy describes the security measures PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") uses, and the measures we expect users to take, to help protect the confidentiality, integrity, and availability of the Services and related data.
 
 For information about how we collect and use Personal Data, please review our [Privacy Policy](/en/privacy-policy).
 
@@ -31,11 +31,11 @@ We maintain a security program designed to reduce risk. Measures include the fol
 
 ### Encryption in transit
 
-We use HTTPS/TLS for data transmitted between your browser or client and the Services.
+Our production web delivery uses HTTPS. Nakafa also applies HTTP Strict Transport Security and related browser security headers across all application paths. The implementation and provider documentation for this revision are linked below.
 
 ### Access controls
 
-We restrict access to production systems and data to authorized personnel and service accounts. We use access control practices designed to limit access based on job function and operational need.
+At application boundaries, authenticated user capabilities require a validated session and an active application user. Internal content endpoints accept only a bearer credential checked with a timing-safe comparison. This statement does not describe how individual infrastructure providers assign access to their administrative consoles.
 
 ### Data storage and processing
 
@@ -53,6 +53,15 @@ We collect logs and events necessary to operate and secure the Services. We use 
 
 We maintain development and deployment practices designed to reduce the risk of vulnerabilities, including reviewing changes, applying updates, and responding to security advisories for dependencies.
 
+### Implementation evidence for this revision
+
+The technical statements above are bounded to the following exact Nakafa implementation revision and provider documentation:
+
+- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/next-config/index.ts#L40-L145)
+- [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Vercel HTTPS and certificate delivery documentation](https://vercel.com/docs/security#encryption)
+
 ## Third-party service security
 
 The Services rely on third-party services. Their security practices and controls are important to the overall security of the Services. Our core third-party services include:
@@ -63,6 +72,7 @@ The Services rely on third-party services. Their security practices and controls
 - Resend (email delivery)
 - PostHog (consent-based product analytics)
 - Vercel AI Gateway (AI request routing)
+- OpenAI (AI model processing)
 
 Each third party may process data as part of providing the Services. For details about categories of data shared and purposes, review our [Privacy Policy](/en/privacy-policy).
 

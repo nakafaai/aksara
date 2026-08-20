@@ -8,7 +8,7 @@ export const metadata = {
 
 Zuletzt aktualisiert: 20. August 2026
 
-Diese Sicherheitsrichtlinie beschreibt die Sicherheitsmaßnahmen, die PT. Nakafa Tekno Kreatif („Nakafa“, „wir“, „uns“ oder „unser“) einsetzt, und die Maßnahmen, die wir von den Nutzerinnen und Nutzern erwarten, um Vertraulichkeit, Integrität und Verfügbarkeit der Dienste und zugehörigen Daten zu schützen.
+Diese Sicherheitsrichtlinie beschreibt die Sicherheitsmaßnahmen, die PT NAKAFA TEKNO KREATIF („Nakafa“, „wir“, „uns“ oder „unser“) einsetzt, und die Maßnahmen, die wir von den Nutzerinnen und Nutzern erwarten, um Vertraulichkeit, Integrität und Verfügbarkeit der Dienste und zugehörigen Daten zu schützen.
 
 Informationen dazu, wie wir personenbezogene Daten erheben und verwenden, finden Sie in unserer [Datenschutzerklärung](/de/privacy-policy).
 
@@ -31,11 +31,11 @@ Wir unterhalten ein Sicherheitsprogramm zur Verringerung von Risiken. Es umfasst
 
 ### Verschlüsselung bei der Übertragung
 
-Wir verwenden HTTPS/TLS für Daten, die zwischen Ihrem Browser oder Client und den Diensten übertragen werden.
+Unsere produktive Webbereitstellung verwendet HTTPS. Nakafa setzt außerdem für alle Anwendungspfade HTTP Strict Transport Security und weitere Sicherheitsheader für Browser ein. Die Implementierung und die Anbieterdokumentation für diese Fassung sind unten verlinkt.
 
 ### Zugriffskontrollen
 
-Wir beschränken den Zugriff auf Produktionssysteme und Daten auf autorisiertes Personal und autorisierte Dienstkonten. Unsere Zugriffskontrollen sollen den Zugriff anhand der jeweiligen Aufgabe und betrieblichen Notwendigkeit begrenzen.
+An den Anwendungsgrenzen setzen authentifizierungspflichtige Nutzerfunktionen eine validierte Sitzung und ein aktives Anwendungskonto voraus. Interne Inhaltsendpunkte akzeptieren nur Bearer-Zugangsdaten, die mit einem zeitkonstanten Vergleich geprüft werden. Diese Aussage beschreibt nicht, wie einzelne Infrastrukturanbieter den Zugriff auf ihre Verwaltungsoberflächen vergeben.
 
 ### Datenspeicherung und Verarbeitung
 
@@ -53,6 +53,15 @@ Wir erfassen Protokolle und Ereignisse, die für den Betrieb und die Absicherung
 
 Wir setzen Entwicklungs- und Bereitstellungsverfahren ein, die das Risiko von Schwachstellen verringern sollen. Dazu gehören die Prüfung von Änderungen, das Einspielen von Aktualisierungen und die Reaktion auf Sicherheitshinweise zu Abhängigkeiten.
 
+### Implementierungsnachweise für diese Fassung
+
+Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierungsrevision und die Anbieterdokumentation begrenzt:
+
+- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/next-config/index.ts#L40-L145)
+- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
+
 ## Sicherheit externer Dienstleister
 
 Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und Kontrollen sind für die Sicherheit der gesamten Dienste relevant. Zu unseren wichtigsten externen Diensten gehören:
@@ -63,6 +72,7 @@ Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und
 - Resend (E-Mail-Versand)
 - PostHog (einwilligungsbasierte Produktanalyse)
 - Vercel AI Gateway (Weiterleitung von KI-Anfragen)
+- OpenAI (Verarbeitung durch KI-Modelle)
 
 Jeder dieser Anbieter kann im Rahmen der Bereitstellung der Dienste Daten verarbeiten. Einzelheiten zu Datenkategorien und Verarbeitungszwecken finden Sie in unserer [Datenschutzerklärung](/de/privacy-policy).
 
