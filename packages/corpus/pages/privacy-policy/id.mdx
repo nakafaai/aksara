@@ -42,7 +42,7 @@ Tabel berikut merangkum kategori Data Pribadi yang kami kumpulkan, tujuan pengum
 
 | Kategori Data Pribadi (contoh) | Tujuan pengumpulan | Diungkapkan ke pemroses data pihak ketiga (lihat tautan kebijakan di bawah) |
 | --- | --- | --- |
-| Data profil atau kontak (nama, email, foto profil opsional, peran opsional) | Pembuatan akun, dukungan, dan penyediaan layanan | Convex (hosting/database) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend (email) - [Privacy Policy](https://resend.com/legal/privacy-policy) |
+| Data profil atau kontak (nama, email, foto profil opsional, peran opsional) | Pembuatan akun, dukungan, dan penyediaan layanan | Convex (hosting/database) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend hanya menerima nama dan email yang diperlukan untuk pesan transaksional - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Pengenal akun (pengenal autentikasi yang terhubung dengan akun Anda) | Autentikasi dan keamanan akun | Convex (hosting/database); Vercel (hosting) |
 | Data perangkat dan penggunaan (alamat IP, peramban/OS, log keamanan, dan peristiwa penggunaan yang telah disetujui) | Keamanan, keandalan, dan peningkatan produk setelah persetujuan | Vercel (hosting/log keamanan); PostHog (analitik produk berbasis persetujuan) - [Privacy Compliance](https://posthog.com/docs/privacy) |
 | Data perangkat untuk keamanan akun (pengenal perangkat dan waktu terakhir terlihat) | Keamanan sesi dan deteksi aktivitas tidak wajar | Convex (hosting/database); Vercel (hosting) |
@@ -50,6 +50,10 @@ Tabel berikut merangkum kategori Data Pribadi yang kami kumpulkan, tujuan pengum
 | Konten Pengguna (pesan, komentar, prompt) | Menyediakan fitur interaktif dan respons AI | Convex (hosting/database); Vercel AI Gateway (pemrosesan AI) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway) |
 | Data pembayaran dan langganan (ID pelanggan/langganan dan metadata terkait) | Manajemen langganan dan kepatuhan | Polar (langganan/pembayaran) - [Privacy Policy](https://polar.sh/legal/privacy); Convex (database); Vercel (hosting) |
 | Data pengiriman email dan peristiwa (peristiwa pengiriman dan metadata terkait) | Email transaksional dan pengelolaan deliverability | Resend (email delivery) - [Privacy Policy](https://resend.com/legal/privacy-policy), [DPA](https://resend.com/legal/dpa) |
+
+### Bukti implementasi untuk revisi ini
+
+Kami memeriksa pernyataan aliran data ini terhadap commit Nakafa [`802dac1d3f78a3d2f305d634d2b3970c57a03f57`](https://github.com/nakafaai/nakafa.com/commit/802dac1d3f78a3d2f305d634d2b3970c57a03f57). Implementasi menyimpan dan menyinkronkan data profil akun melalui Convex dalam [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/auth/client.ts#L37-L125), membuka batas autentikasi dalam [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/app/api/auth/%5B...all%5D/route.ts), mengaktifkan deployment produksi aplikasi web di Vercel dalam [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/vercel.ts), dan hanya mengirim nama serta alamat email penerima ke Resend untuk pesan selamat datang dalam [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/emails/mutations.ts#L13-L40).
 
 ## Pemrosesan Pembayaran
 

@@ -76,7 +76,11 @@ export const makePageProjectionFromSource: (
       (cause) => new PageMetadataError({ cause, sourcePath: source.sourcePath })
     )
   );
-  return makePublicPageProjection({ metadata: decoded, route: source.route });
+  return makePublicPageProjection({
+    metadata: decoded,
+    route: source.route,
+    sourcePath: source.sourcePath,
+  });
 });
 
 /** Reads one registry-owned public page document from the supplied checkout. */

@@ -124,6 +124,7 @@ describe("content runtime verification", () => {
       "packages/corpus/pages/terms/id.mdx",
       "packages/corpus/pages/legal/terms/en.mdx",
       "packages/corpus/pages/terms.old/en.mdx",
+      "packages/corpus/pages/privacy-policy/en.mdx",
       "packages/corpus/articles/terms/en.mdx",
     ];
     const outcomes = await Promise.all(

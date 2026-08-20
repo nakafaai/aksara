@@ -42,7 +42,7 @@ The table below summarizes categories of Personal Data we collect, why we collec
 
 | Category of Personal Data (examples) | Purpose(s) for collection | Disclosed to third-party data processors (see below for policy links) |
 | --- | --- | --- |
-| Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend (email) - [Privacy Policy](https://resend.com/legal/privacy-policy) |
+| Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for transactional messages - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Account identifiers (authentication identifiers linked to your account) | Authentication and account security | Convex (database/hosting); Vercel (hosting) |
 | Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security, reliability, and product improvement after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
 | Account security device data (device identifiers and last-seen timestamps) | Session security and unusual-activity detection | Convex (database/hosting); Vercel (hosting) |
@@ -50,6 +50,10 @@ The table below summarizes categories of Personal Data we collect, why we collec
 | User Content (chat messages, comments, prompts) | Providing interactive features and AI responses | Convex (database/hosting); Vercel AI Gateway (AI processing) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway) |
 | Payment and subscription data (customer/subscription IDs and related metadata) | Subscription management and compliance | Polar (subscriptions/payments) - [Privacy Policy](https://polar.sh/legal/privacy); Convex (database); Vercel (hosting) |
 | Email delivery and event data (delivery events and related metadata) | Transactional emails and deliverability management | Resend (email delivery) - [Privacy Policy](https://resend.com/legal/privacy-policy), [DPA](https://resend.com/legal/dpa) |
+
+### Implementation evidence for this revision
+
+We checked these data-flow statements against Nakafa commit [`802dac1d3f78a3d2f305d634d2b3970c57a03f57`](https://github.com/nakafaai/nakafa.com/commit/802dac1d3f78a3d2f305d634d2b3970c57a03f57). The implementation stores and synchronizes account profile data through Convex in [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/auth/client.ts#L37-L125), exposes the authentication boundary in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/app/api/auth/%5B...all%5D/route.ts), enables the web app's Vercel production deployment in [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/vercel.ts), and sends only the recipient name and email address to Resend for the welcome message in [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/emails/mutations.ts#L13-L40).
 
 ## Payment Processing
 

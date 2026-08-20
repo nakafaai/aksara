@@ -118,6 +118,7 @@ const pageProjection = Schema.decodeSync(PublicPageProjectionSchema)({
   pageKey: "terms-of-service",
   publicPath: "terms-of-service",
   sitemap: true,
+  sourcePath: "packages/corpus/pages/terms/en.mdx",
 });
 export const pageArtifact = createSignedArtifact(pageContentKey);
 export const pageRequest = {

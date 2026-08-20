@@ -1,5 +1,6 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import { CorpusSourcePathSchema } from "#contracts/ids";
 import {
   canonicalizePublicPageProjection,
   makePublicPageProjection,
@@ -20,6 +21,9 @@ const metadata = Schema.decodeSync(PageMetadataSchema)({
   lastModified: "2026-08-20",
   title: "Privacy Policy",
 });
+const sourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/privacy-policy/en.mdx"
+);
 
 /** Strictly checks one page contract without allowing extra wire fields. */
 function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
@@ -30,13 +34,18 @@ function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
 
 describe("public page projection", () => {
   it("builds and canonically serializes one reviewed page", () => {
-    const projection = makePublicPageProjection({ metadata, route });
+    const projection = makePublicPageProjection({
+      metadata,
+      route,
+      sourcePath,
+    });
 
     expect(projection).toEqual({
       ...route,
       kind: "public-page",
       metadata,
       sitemap: true,
+      sourcePath,
     });
     expect(JSON.parse(canonicalizePublicPageProjection(projection))).toEqual(
       projection
@@ -53,7 +62,11 @@ describe("public page projection", () => {
   });
 
   it("requires narrow page keys and complete metadata", () => {
-    const projection = makePublicPageProjection({ metadata, route });
+    const projection = makePublicPageProjection({
+      metadata,
+      route,
+      sourcePath,
+    });
     expect(
       [
         { ...projection, pageKey: "Privacy Policy" },

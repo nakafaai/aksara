@@ -1,6 +1,10 @@
 import { Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
-import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+  PublicPathSchema,
+} from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 
@@ -64,6 +68,7 @@ export const PublicPageProjectionSchema = Schema.Struct({
   kind: Schema.Literal("public-page"),
   metadata: PageMetadataSchema,
   sitemap: Schema.Literal(true),
+  sourcePath: CorpusSourcePathSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentPageLocales, {
@@ -82,12 +87,14 @@ export type PublicPageProjection = typeof PublicPageProjectionSchema.Type;
 export function makePublicPageProjection(input: {
   readonly metadata: PageMetadata;
   readonly route: PublicPageRoute;
+  readonly sourcePath: typeof CorpusSourcePathSchema.Type;
 }) {
   return PublicPageProjectionSchema.make({
     ...input.route,
     kind: "public-page",
     metadata: input.metadata,
     sitemap: true,
+    sourcePath: input.sourcePath,
   });
 }
 
@@ -108,5 +115,6 @@ export function canonicalizePublicPageProjection(
     pageKey: projection.pageKey,
     publicPath: projection.publicPath,
     sitemap: projection.sitemap,
+    sourcePath: projection.sourcePath,
   });
 }

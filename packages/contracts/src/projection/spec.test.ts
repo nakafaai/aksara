@@ -67,6 +67,7 @@ const page = Schema.decodeSync(PublicPageProjectionSchema)({
   pageKey: "privacy-policy",
   publicPath: "privacy-policy",
   sitemap: true,
+  sourcePath: "packages/corpus/pages/privacy-policy/en.mdx",
 });
 const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   artifactLocale: "en",

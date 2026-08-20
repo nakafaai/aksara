@@ -110,5 +110,6 @@ export const testPageProjection = Schema.decodeSync(PublicPageProjectionSchema)(
       title: "Privacy Policy",
     },
     sitemap: true,
+    sourcePath: testPageDocument.sourcePath,
   }
 );
