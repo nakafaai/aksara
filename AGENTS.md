@@ -27,10 +27,11 @@ for clarity, measurable scale, and safe releases.
   returns, and small named steps. Avoid clever pipelines, nested ternaries,
   workaround types, wrapper-only functions, and abstractions without a real
   caller.
-- Use the documented stable `Context.Tag` plus `Layer` pattern for dependency
-  contracts. `Effect.Service` is an optional convenience only when a module
-  genuinely owns a default implementation. Follow the matching vendored
-  Effect v4 source and its native Interfaces.
+- Use Effect v4 `Context.Service` plus `Layer` for dependency contracts.
+  Function-style and class-style service keys are both native v4 patterns. A
+  service may own a `make` effect only when its module genuinely owns
+  construction. Only the matching v4 service Interface is valid. Follow the
+  vendored Effect source and its native Interfaces.
 - Keep authored MDX executable and trusted. Compile it ahead of time into a
   signed `function-body` artifact. Nakafa may evaluate only reviewed,
   source-controlled, hash-verified artifacts through official server-only

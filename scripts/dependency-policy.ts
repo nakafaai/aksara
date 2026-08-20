@@ -22,7 +22,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "4.0.0-rc.110",
     cohort: "Effect",
     dependency: "effect",
-    reason: "The migration cohort was locked when implementation began.",
+    reason:
+      "Published contracts 0.15.0 and its active Nakafa consumer require the exact RC110 peer cohort.",
     registry: "effect@rc",
     reviewedLatest: "4.0.0-rc.111",
     source: "catalog",
@@ -103,7 +104,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "7.10.5",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
-    reason: "The approved migration target remains locked for this PR.",
+    reason:
+      "The latest release must clear the workspace minimumReleaseAge gate before adoption.",
     registry: "ultracite@latest",
     reviewedLatest: "7.10.6",
     source: "root-dev-dependency",
