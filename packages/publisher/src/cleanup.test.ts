@@ -3,8 +3,9 @@ import type {
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   cleanupContentRelease,
   ReleaseCleanupContractError,

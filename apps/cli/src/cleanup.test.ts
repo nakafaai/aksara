@@ -1,8 +1,8 @@
-import type { HttpClientRequest } from "@effect/platform";
-import { HttpClient } from "@effect/platform";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import type { HttpClientRequest } from "effect/unstable/http";
+import { HttpClient } from "effect/unstable/http";
 import { runCleanupCommand } from "#cli/cleanup";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
@@ -33,7 +33,10 @@ function cleanupResponse(
 function runCleanup(client: HttpClient.HttpClient) {
   return Effect.runPromise(
     runCleanupCommand({ command: "cleanup", releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(cleanupValues)),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(cleanupValues))
+      ),
       Effect.provideService(HttpClient.HttpClient, client)
     )
   );
@@ -46,7 +49,12 @@ function rejectCleanup(
 ) {
   return Effect.runPromise(
     runCleanupCommand({ command: "cleanup", releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(new Map(values))),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(values), {
+          preserveEmptyStrings: true,
+        })
+      ),
       Effect.provideService(HttpClient.HttpClient, client),
       Effect.flip
     )

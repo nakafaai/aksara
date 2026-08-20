@@ -3,11 +3,11 @@ import { ContractDecodeError } from "#contracts/errors";
 
 /** Strictly decodes one named wire contract into the shared typed failure. */
 export function decodeContract<A, I>(
-  schema: Schema.Schema<A, I>,
+  schema: Schema.Codec<A, I>,
   contract: string,
   input: unknown
 ) {
-  return Schema.decodeUnknown(schema)(input, {
+  return Schema.decodeUnknownEffect(schema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

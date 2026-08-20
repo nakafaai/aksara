@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -46,7 +46,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const facts = Schema.decodeUnknownSync(QuranSnapshotFactsSchema)({
+const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
   activeAppLocales: ["en", "id"],
   attributionCount: 1,
   chunkCount: 1085,

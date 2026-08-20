@@ -7,35 +7,36 @@ import { isHttpsUrl, isLowerKebab } from "#contracts/text/syntax";
 
 /** Canonical language-neutral identity for one learning program. */
 export const LearningProgramKeySchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab, {
-    description: "Lowercase kebab-case canonical learning program key.",
-    identifier: "LearningProgramKey",
-    message: () =>
-      "Invalid learning program key. Expected lowercase kebab-case.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isLowerKebab, {
+      description: "Lowercase kebab-case canonical learning program key.",
+      identifier: "LearningProgramKey",
+      message: "Invalid learning program key. Expected lowercase kebab-case.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraLearningProgramKey")
 );
 export type LearningProgramKey = typeof LearningProgramKeySchema.Type;
 
 /** Product role of one reviewed learning program. */
-export const LearningProgramKindSchema = Schema.Literal(
+export const LearningProgramKindSchema = Schema.Literals([
   "admission-exam",
   "assessment",
   "custom-program",
   "institution-program",
-  "school-curriculum"
-);
+  "school-curriculum",
+]);
 
 /** Navigation model rendered by one learning program surface. */
-export const ProgramNavigationModelSchema = Schema.Literal(
+export const ProgramNavigationModelSchema = Schema.Literals([
   "course-unit-lesson",
   "curriculum-tree",
   "exam-domain-set",
-  "track-topic"
-);
+  "track-topic",
+]);
 
 /** Complete level vocabulary used by reviewed curriculum and exam sources. */
-export const ProgramNavigationLevelSchema = Schema.Literal(
+export const ProgramNavigationLevelSchema = Schema.Literals([
   "class",
   "course",
   "domain",
@@ -47,12 +48,12 @@ export const ProgramNavigationLevelSchema = Schema.Literal(
   "subject",
   "topic",
   "track",
-  "unit"
-);
+  "unit",
+]);
 export type ProgramNavigationLevel = typeof ProgramNavigationLevelSchema.Type;
 
 /** Complete icon vocabulary referenced by learning program sources. */
-export const ProgramNavigationIconKeySchema = Schema.Literal(
+export const ProgramNavigationIconKeySchema = Schema.Literals([
   "advanced",
   "assessment",
   "certificate",
@@ -79,43 +80,45 @@ export const ProgramNavigationIconKeySchema = Schema.Literal(
   "science",
   "school",
   "standards",
-  "state"
-);
+  "state",
+]);
 export type ProgramNavigationIconKey =
   typeof ProgramNavigationIconKeySchema.Type;
 
 /** Publication state derived from reviewed source coverage. */
-export const ProgramCoverageSchema = Schema.Literal(
+export const ProgramCoverageSchema = Schema.Literals([
   "archived",
   "available",
   "hidden",
   "partial",
-  "planned"
-);
+  "planned",
+]);
 
 /** Reviewed organization class behind one program. */
-export const ProgramProviderKindSchema = Schema.Literal(
+export const ProgramProviderKindSchema = Schema.Literals([
   "institution",
   "learner",
   "nakafa",
-  "official"
-);
+  "official",
+]);
 
 /** Provenance role of one cited program source. */
-export const ProgramSourceKindSchema = Schema.Literal(
+export const ProgramSourceKindSchema = Schema.Literals([
   "institution-document",
   "nakafa-editorial",
   "official-blueprint",
   "official-policy",
-  "official-portal"
-);
+  "official-portal",
+]);
 
-const ProgramSlugSchema = Schema.String.pipe(Schema.filter(isLowerKebab));
+const ProgramSlugSchema = Schema.String.pipe(
+  Schema.check(Schema.makeFilter(isLowerKebab))
+);
 /** One localized title and public slug owned by a learning program. */
 export const ProgramTranslationSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
   publicSlug: ProgramSlugSchema,
-  title: Schema.NonEmptyTrimmedString,
+  title: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
 
@@ -134,45 +137,49 @@ function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
 const ProgramTranslationListSchema = Schema.NonEmptyArray(
   ProgramTranslationSchema
 ).pipe(
-  Schema.filter(hasCanonicalTranslations, {
-    message: () =>
-      "Program translations must use unique canonical app-locale order.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalTranslations, {
+      message:
+        "Program translations must use unique canonical app-locale order.",
+    })
+  )
 );
 
 /** Reviewed provider identity attached to one learning program. */
 export const ProgramProviderSchema = Schema.Struct({
   homeCountry: Schema.optional(CountryCodeSchema),
   kind: ProgramProviderKindSchema,
-  name: Schema.NonEmptyTrimmedString,
+  name: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 
 /** Exact official or editorial source used by one program registry row. */
 export const ProgramSourceSchema = Schema.Struct({
-  label: Schema.NonEmptyTrimmedString,
+  label: Schema.Trimmed.check(Schema.isNonEmpty()),
   retrievedAt: DateOnlySchema,
   reviewAfter: Schema.optional(DateOnlySchema),
   type: ProgramSourceKindSchema,
-  url: Schema.String.pipe(Schema.filter(isHttpsUrl)),
+  url: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
 
 /** Version label and optional inclusive availability window. */
 export const ProgramVersionSchema = Schema.Struct({
   endsAt: Schema.optional(DateOnlySchema),
-  label: Schema.NonEmptyTrimmedString,
+  label: Schema.Trimmed.check(Schema.isNonEmpty()),
   startsAt: Schema.optional(DateOnlySchema),
 }).pipe(
-  Schema.filter(
-    ({ endsAt, startsAt }) =>
-      endsAt === undefined || startsAt === undefined || startsAt <= endsAt,
-    { message: () => "Expected a coherent learning program date window." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ endsAt, startsAt }) =>
+        endsAt === undefined || startsAt === undefined || startsAt <= endsAt,
+      { message: "Expected a coherent learning program date window." }
+    )
   )
 );
 
 /** Complete source-controlled wire contract for one learning program. */
 export const LearningProgramSchema = Schema.Struct({
   defaultCoverageStatus: ProgramCoverageSchema,
-  displayOrder: Schema.Int.pipe(Schema.positive()),
+  displayOrder: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   iconKey: ProgramNavigationIconKeySchema,
   key: LearningProgramKeySchema,
   kind: LearningProgramKindSchema,

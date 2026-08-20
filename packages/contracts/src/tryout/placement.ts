@@ -23,7 +23,10 @@ import {
   TryoutSourceRevisionSchema,
 } from "#contracts/tryout/spec";
 
-const PositiveCountSchema = Schema.Number.pipe(Schema.int(), Schema.positive());
+const PositiveCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThan(0))
+);
 
 const PlacementFields = {
   answerArtifactLocale: ArtifactLocaleSchema,
@@ -101,14 +104,17 @@ function hasCoherentPlacementLanguages(input: {
 
 /** Active placement before immutable artifact hashes are bound. */
 export const TryoutPlacementSourceSchema = Schema.Struct(PlacementFields).pipe(
-  Schema.filter(hasCoherentPlacementKeys, {
-    message: () =>
-      "Placement source, content keys, and authored order must agree.",
-  }),
-  Schema.filter(hasCoherentPlacementLanguages, {
-    message: () =>
-      "Placement app, delivery, question, and answer languages must agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementKeys, {
+      message: "Placement source, content keys, and authored order must agree.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementLanguages, {
+      message:
+        "Placement app, delivery, question, and answer languages must agree.",
+    })
+  )
 );
 export type TryoutPlacementSource = typeof TryoutPlacementSourceSchema.Type;
 
@@ -119,14 +125,17 @@ export const TryoutPlacementSchema = Schema.Struct({
   contentHash: TryoutContentHashSchema,
   questionArtifactHash: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCoherentPlacementKeys, {
-    message: () =>
-      "Placement source, content keys, and authored order must agree.",
-  }),
-  Schema.filter(hasCoherentPlacementLanguages, {
-    message: () =>
-      "Placement app, delivery, question, and answer languages must agree.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementKeys, {
+      message: "Placement source, content keys, and authored order must agree.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementLanguages, {
+      message:
+        "Placement app, delivery, question, and answer languages must agree.",
+    })
+  )
 );
 export type TryoutPlacement = typeof TryoutPlacementSchema.Type;
 

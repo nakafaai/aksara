@@ -1,7 +1,7 @@
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Data, Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { retryPublicationTarget, retryTransport } from "#cli/retry";
 
 /** Test-only typed failure that must bypass transient transport retries. */
@@ -97,7 +97,7 @@ describe("publication transport retry", () => {
 
   it("decorates every target operation and retries calls independently", async () => {
     let attempts = 0;
-    const target = makeTarget(() =>
+    const target = makeTarget(
       Effect.suspend(() => {
         attempts += 1;
         return attempts === 1
@@ -134,7 +134,7 @@ describe("publication transport retry", () => {
       [retried.verify, target.verify],
     ];
 
-    await expect(Effect.runPromise(retried.current())).resolves.toEqual({
+    await expect(Effect.runPromise(retried.current)).resolves.toEqual({
       active: null,
       candidate: null,
       recovery: null,

@@ -3,5 +3,6 @@ import { Effect } from "effect";
 
 /** Fails if a mocked CLI flow unexpectedly reaches the operating system. */
 export const unusedExactProcess = ExactProcess.of({
-  run: () => Effect.dieMessage("Unexpected exact process execution in test."),
+  run: () =>
+    Effect.die(new Error("Unexpected exact process execution in test.")),
 });

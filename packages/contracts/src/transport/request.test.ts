@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import {
   hash,
@@ -15,9 +15,9 @@ import {
 } from "#contracts/transport/request";
 
 /** Strictly tests one request schema without allowing extra properties. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
@@ -95,13 +95,13 @@ describe("publication requests", () => {
         rendererManifestHash: hash,
       },
     };
-    const inputError = Schema.decodeUnknownEither(ContentReleaseBundleSchema)({
+    const inputError = Schema.decodeExit(ContentReleaseBundleSchema)({
       release: mismatchedRelease,
       rendererManifest,
     });
-    expect(Either.isLeft(inputError)).toBe(true);
-    if (Either.isLeft(inputError)) {
-      expect(String(inputError.left)).toContain(
+    expect(Exit.isFailure(inputError)).toBe(true);
+    if (Exit.isFailure(inputError)) {
+      expect(String(inputError.cause)).toContain(
         "Expected the signed release to bind the frozen renderer envelope."
       );
     }

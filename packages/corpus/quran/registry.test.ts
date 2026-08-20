@@ -2,8 +2,8 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Chunk, Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Stream } from "effect";
 import {
   QuranCountError,
   QuranRevelationError,
@@ -14,7 +14,7 @@ import type { QuranSurah } from "#corpus/quran/schema";
 import { testQuranRegistry } from "#corpus/test/quran";
 
 /** Collects one registry stream only at the Vitest runner boundary. */
-function collect(source = testQuranRegistry()) {
+function collect(source = testQuranRegistry) {
   return Effect.runPromise(Stream.runCollect(source));
 }
 
@@ -25,9 +25,7 @@ function reject(source: ReturnType<typeof streamQuranRegistry>) {
 
 /** Returns the first two real decoded surahs for isolated invariant failures. */
 function firstTwoSurahs() {
-  return collect(testQuranRegistry().pipe(Stream.take(2))).then((chunk) =>
-    Chunk.toReadonlyArray(chunk)
-  );
+  return collect(testQuranRegistry.pipe(Stream.take(2)));
 }
 
 /** Replaces one verse while retaining the exact real surah fields. */
@@ -37,7 +35,7 @@ function withVerse(surah: QuranSurah, verse: QuranSurah["verses"][number]) {
 
 describe("Quran registry", () => {
   it("emits every canonical surah, verse, and revelation order", async () => {
-    const surahs = Chunk.toReadonlyArray(await collect());
+    const surahs = await collect();
     const verses = surahs.flatMap(({ verses: sourceVerses }) => sourceVerses);
 
     expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
@@ -59,7 +57,7 @@ describe("Quran registry", () => {
 
   it("maps strict source and corpus count failures to typed errors", async () => {
     const [first] = await firstTwoSurahs();
-    const surahs = Chunk.toReadonlyArray(await collect());
+    const surahs = await collect();
     const last = surahs.at(-1);
     if (first === undefined) {
       throw new Error("Expected the reviewed Quran source to contain a surah.");

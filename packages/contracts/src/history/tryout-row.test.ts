@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { HistoricalTryoutRowSchema } from "#contracts/history/tryout-row";
@@ -24,7 +24,7 @@ function placementEnvelope(row: unknown) {
 
 /** Strictly decodes one retained row envelope for contract assertions. */
 function decode(input: unknown) {
-  return Schema.decodeUnknownEither(HistoricalTryoutRowSchema)(input, {
+  return Schema.decodeUnknownExit(HistoricalTryoutRowSchema)(input, {
     onExcessProperty: "error",
   });
 }
@@ -32,8 +32,8 @@ function decode(input: unknown) {
 /** Requires one unknown retained row to fail with an exact contract reason. */
 function expectRejected(input: unknown, message: string) {
   const result = decode(input);
-  expect(Either.isLeft(result)).toBe(true);
-  expect(Either.isLeft(result) ? String(result.left) : "").toContain(message);
+  expect(Exit.isFailure(result)).toBe(true);
+  expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(message);
 }
 
 describe("historical try-out rows", () => {
@@ -45,7 +45,7 @@ describe("historical try-out rows", () => {
     ];
 
     expect(
-      rows.map((row) => Either.isRight(decode(catalogEnvelope(row))))
+      rows.map((row) => Exit.isSuccess(decode(catalogEnvelope(row))))
     ).toEqual(rows.map(() => true));
   });
 

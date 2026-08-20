@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   ContentReleaseStatusRequestSchema,
@@ -35,20 +35,23 @@ const statusReceipt = {
 };
 
 /** Asserts one accepted value against a context-free wire schema. */
-function expectAccepted(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  expect(Either.isRight(Schema.decodeUnknownEither(schema)(input))).toBe(true);
+function expectAccepted(
+  schema: Schema.ConstraintDecoder<unknown>,
+  input: unknown
+) {
+  expect(Exit.isSuccess(Schema.decodeUnknownExit(schema)(input))).toBe(true);
 }
 
 /** Asserts one rejected wire value and its stable diagnostic when supplied. */
 function expectRejected(
-  schema: Schema.Schema.AnyNoContext,
+  schema: Schema.ConstraintDecoder<unknown>,
   input: unknown,
   message?: string
 ) {
-  const result = Schema.decodeUnknownEither(schema)(input);
-  expect(Either.isLeft(result)).toBe(true);
-  if (message && Either.isLeft(result)) {
-    expect(String(result.left)).toContain(message);
+  const result = Schema.decodeUnknownExit(schema)(input);
+  expect(Exit.isFailure(result)).toBe(true);
+  if (message && Exit.isFailure(result)) {
+    expect(String(result.cause)).toContain(message);
   }
 }
 
@@ -130,12 +133,12 @@ describe("release lifecycle", () => {
       { recoveryId: releaseId, releaseId },
       "Expected distinct active and recovery release identities."
     );
+    expect(Schema.decodeSync(ReleaseAbortRequestSchema)({ releaseId })).toEqual(
+      { releaseId }
+    );
     expect(
-      Schema.decodeUnknownSync(ReleaseAbortRequestSchema)({ releaseId })
-    ).toEqual({ releaseId });
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ReleaseAbortRequestSchema)(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(ReleaseAbortRequestSchema)(
           { afterIndex: -1, releaseId },
           { onExcessProperty: "error" }
         )
@@ -171,8 +174,8 @@ describe("release lifecycle", () => {
   it("keeps cleanup cursors private and returns cumulative evidence", () => {
     expectAccepted(ReleaseCleanupRequestSchema, { releaseId });
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ReleaseCleanupRequestSchema)(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(ReleaseCleanupRequestSchema)(
           {
             cursor: "private-backend-state",
             releaseId,

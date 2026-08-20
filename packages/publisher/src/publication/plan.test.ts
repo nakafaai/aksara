@@ -1,6 +1,5 @@
 import { generateKeyPairSync } from "node:crypto";
-import { Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -16,8 +15,8 @@ import {
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Layer, Redacted, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Layer, Path, Redacted, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedGitRelease } from "#publisher/preparation/prepared";
 import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
@@ -78,36 +77,34 @@ async function prepareDeletion<E>(
       baseResultCount: base.count,
       baseResultDigest: base.digest,
       previousSnapshots: inheritContentSnapshots(null),
-      records: () =>
-        Stream.make({
-          prior: { head, state: "material" as const },
-          record: {
-            change: ContentDeleteSchema.make({
-              artifactLocale: contentRecord.change.artifactLocale,
-              contentKey: contentRecord.change.contentKey,
-              family: "material",
-              operation: "delete",
-            }),
-          },
-        }),
+      records: Stream.make({
+        prior: { head, state: "material" as const },
+        record: {
+          change: ContentDeleteSchema.make({
+            artifactLocale: contentRecord.change.artifactLocale,
+            contentKey: contentRecord.change.contentKey,
+            family: "material",
+            operation: "delete",
+          }),
+        },
+      }),
       releaseId: ReleaseIdSchema.make("test-plan-delete"),
       rendererManifest,
-      result: () => Stream.empty,
-      routes: () =>
-        Stream.make({
-          current: {
-            appLocale: projection.appLocale,
-            contentKey: head.contentKey,
-            publicPath: projection.publicPath,
-          },
-          next: {
-            appLocale: projection.appLocale,
-            contentKey: head.contentKey,
-          },
-        }),
+      result: Stream.empty,
+      routes: Stream.make({
+        current: {
+          appLocale: projection.appLocale,
+          contentKey: head.contentKey,
+          publicPath: projection.publicPath,
+        },
+        next: {
+          appLocale: projection.appLocale,
+          contentKey: head.contentKey,
+        },
+      }),
       scope: { ...publicationScope, snapshots },
       ...snapshotSources,
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 }
 
@@ -119,11 +116,11 @@ async function prepareProgramOnly() {
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      records: () => Stream.empty,
+      records: Stream.empty,
       releaseId: ReleaseIdSchema.make("test-plan-program-only"),
       rendererManifest,
-      result: () => Stream.empty,
-      routes: () => Stream.empty,
+      result: Stream.empty,
+      routes: Stream.empty,
       scope: PublicationScopeSchema.make({
         content: [],
         families: [],
@@ -132,7 +129,7 @@ async function prepareProgramOnly() {
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
       ...snapshotPolicyBase("test-plan-program-base"),
-    }).pipe(Effect.provide(NodeContext.layer))
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 }
 
@@ -149,7 +146,7 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
           kind: "git",
           source,
         });
-        return yield* plan.cacheChanges().pipe(Stream.runCollect);
+        return yield* plan.cacheChanges.pipe(Stream.runCollect);
       })
     ).pipe(
       Effect.provide([

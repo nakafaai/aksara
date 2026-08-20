@@ -16,11 +16,11 @@ export const EMPTY_SNAPSHOT_ROW_DIGEST = Sha256HashSchema.make(
 );
 
 /** Fixed structured families selected by the one global release pointer. */
-export const ContentSnapshotKindSchema = Schema.Literal(
+export const ContentSnapshotKindSchema = Schema.Literals([
   "program",
   "quran",
-  "tryout"
-);
+  "tryout",
+]);
 export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
 
 /** Checks strict canonical ordering for selected content and snapshot families. */
@@ -72,10 +72,12 @@ export const PublicationScopeSchema = Schema.Struct({
   families: Schema.Array(ContentFamilySchema),
   snapshots: Schema.Array(ContentSnapshotKindSchema),
 }).pipe(
-  Schema.filter(hasCanonicalPublicationScope, {
-    message: () =>
-      "Expected a non-empty publication scope in canonical unique order.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalPublicationScope, {
+      message:
+        "Expected a non-empty publication scope in canonical unique order.",
+    })
+  )
 );
 export type PublicationScope = typeof PublicationScopeSchema.Type;
 
@@ -116,19 +118,23 @@ export function canonicalizePublicationScope(scope: PublicationScope) {
   };
 }
 
-const RowCountSchema = Schema.Int.pipe(Schema.nonNegative());
+const RowCountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** One family's immutable snapshot transition authenticated by a release. */
 export const ContentSnapshotStateSchema = Schema.Struct({
   baseSnapshotId: Schema.NullOr(Sha256HashSchema),
-  mode: Schema.Literal("inherit", "replace", "restore"),
+  mode: Schema.Literals(["inherit", "replace", "restore"]),
   resultSnapshotId: Schema.NullOr(Sha256HashSchema),
   rowCount: RowCountSchema,
   rowDigest: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCoherentSnapshotState, {
-    message: () => "Expected a coherent structured snapshot transition.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentSnapshotState, {
+      message: "Expected a coherent structured snapshot transition.",
+    })
+  )
 );
 export type ContentSnapshotState = typeof ContentSnapshotStateSchema.Type;
 

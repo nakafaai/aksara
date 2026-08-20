@@ -207,29 +207,30 @@ export function isTransientPublicationStatus(status: number) {
 
 /** Validates HTTP status, operation, identity, and evidence as one protocol. */
 export const interpretPublicationResponse: InterpretPublicationResponse =
-  Effect.fn("AksaraPublisher.interpretPublicationResponse")(
-    (request: PublicationRequest, result: PublicationHttpResult) => {
-      if (isTransientPublicationStatus(result.status)) {
-        return Effect.fail(transientPublicationError(request, result.status));
-      }
-      if (result.body.ok) {
-        if (
-          result.status !== 200 ||
-          !hasBoundPublicationSuccess(request, result.body)
-        ) {
-          return Effect.fail(protocolError(request));
-        }
-        return Effect.succeed(result.body);
-      }
-      const { failure } = result.body;
-      if (
-        !(
-          hasFailureStatus(failure, result.status) &&
-          hasBoundFailure(request, failure)
-        )
-      ) {
-        return Effect.fail(protocolError(request));
-      }
-      return Effect.fail(mapFailure(failure));
+  Effect.fn("AksaraPublisher.interpretPublicationResponse")(function* (
+    request: PublicationRequest,
+    result: PublicationHttpResult
+  ) {
+    if (isTransientPublicationStatus(result.status)) {
+      return yield* transientPublicationError(request, result.status);
     }
-  );
+    if (result.body.ok) {
+      if (
+        result.status !== 200 ||
+        !hasBoundPublicationSuccess(request, result.body)
+      ) {
+        return yield* protocolError(request);
+      }
+      return result.body;
+    }
+    const { failure } = result.body;
+    if (
+      !(
+        hasFailureStatus(failure, result.status) &&
+        hasBoundFailure(request, failure)
+      )
+    ) {
+      return yield* protocolError(request);
+    }
+    return yield* mapFailure(failure);
+  });

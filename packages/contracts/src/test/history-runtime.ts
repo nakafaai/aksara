@@ -98,9 +98,7 @@ export function createHistoricalArtifact(
 ) {
   const rawMdx = overrides.rawMdx ?? defaultRawMdx;
   const compiledCode = overrides.compiledCode ?? defaultCompiledCode;
-  const payload = Schema.decodeUnknownSync(
-    HistoricalCompiledContentPayloadSchema
-  )({
+  const payload = Schema.decodeSync(HistoricalCompiledContentPayloadSchema)({
     byteLength:
       overrides.byteLength ?? new TextEncoder().encode(compiledCode).byteLength,
     compiledCode,
@@ -118,7 +116,7 @@ export function createHistoricalArtifact(
     ...overrides,
   });
   const artifactHash = hash(canonicalizeHistoricalContentPayload(payload));
-  return Schema.decodeUnknownSync(HistoricalSignedContentArtifactSchema)({
+  return Schema.decodeSync(HistoricalSignedContentArtifactSchema)({
     artifactHash,
     keyId: "retained-runtime-key",
     payload,
@@ -147,7 +145,7 @@ const manifest = Schema.decodeUnknownSync(
 const manifestHash = hash(
   canonicalizeHistoricalContentReleaseManifest(manifest)
 );
-export const historicalRelease = Schema.decodeUnknownSync(
+export const historicalRelease = Schema.decodeSync(
   HistoricalSignedContentReleaseSchema
 )({
   keyId: "retained-runtime-key",
@@ -156,7 +154,7 @@ export const historicalRelease = Schema.decodeUnknownSync(
   signature: sign(historicalReleaseSigningInput(manifestHash, manifest)),
 });
 
-export const historicalSelector = Schema.decodeUnknownSync(
+export const historicalSelector = Schema.decodeSync(
   StoredProtectedRuntimeSelectorSchema
 )({
   artifactHash: historicalArtifact.artifactHash,
@@ -165,7 +163,7 @@ export const historicalSelector = Schema.decodeUnknownSync(
   delivery: "authenticated",
 });
 
-export const historicalItem = Schema.decodeUnknownSync(
+export const historicalItem = Schema.decodeSync(
   StoredProtectedRuntimeItemSchema
 )({
   artifact: historicalArtifact,
@@ -173,7 +171,7 @@ export const historicalItem = Schema.decodeUnknownSync(
   sourcePath: `packages/corpus/${questionRoot}/question.en.mdx`,
 });
 
-export const historicalRequest = Schema.decodeUnknownSync(
+export const historicalRequest = Schema.decodeSync(
   StoredProtectedRuntimeRequestSchema
 )({
   appLocale: "en",
@@ -183,7 +181,7 @@ export const historicalRequest = Schema.decodeUnknownSync(
   snapshotReleaseId: historicalRelease.manifest.releaseId,
 });
 
-export const historicalFound = Schema.decodeUnknownSync(
+export const historicalFound = Schema.decodeSync(
   StoredProtectedRuntimeFoundSchema
 )({
   appLocale: historicalRequest.appLocale,

@@ -11,7 +11,7 @@ import type {
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
-import { Chunk, Effect, Option, Stream, Tuple } from "effect";
+import { Effect, Option, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type PublicationTargetFailure,
@@ -91,7 +91,7 @@ export function streamContentHeads(
   family: ContentFamily
 ): Stream.Stream<ContentHead, PublicationTargetFailure, PublicationTarget> {
   const initial: HeadPageState = { cursor: null, last: undefined };
-  return Stream.paginateChunkEffect(initial, (state) =>
+  return Stream.paginate(initial, (state) =>
     Effect.gen(function* () {
       const target = yield* PublicationTarget;
       const page = yield* target.headPage({
@@ -106,7 +106,8 @@ export function streamContentHeads(
       }
       yield* validatePageOrder(state.last, page.heads);
       const next = yield* nextPageState(state, page);
-      return Tuple.make(Chunk.fromIterable<ContentHead>(page.heads), next);
+      const heads: readonly ContentHead[] = page.heads;
+      return Tuple.make(heads, next);
     })
   );
 }

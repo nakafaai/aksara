@@ -1,4 +1,3 @@
-import { FileSystem, Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type AppLocale,
@@ -12,7 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import {
   addQuestionChoiceOverlay,
   embeddedQuestionChoiceLocales,
@@ -66,7 +65,7 @@ export class QuestionFileSetError extends Schema.TaggedError<QuestionFileSetErro
 export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceError>()(
   "QuestionSequenceError",
   {
-    questionNumbers: Schema.Array(Schema.Number),
+    questionNumbers: Schema.Array(Schema.Finite),
     setPath: QuestionSetKeySchema,
   }
 ) {}

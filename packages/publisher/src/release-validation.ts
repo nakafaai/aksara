@@ -28,19 +28,19 @@ import { Effect, Schema } from "effect";
 /** Signed payloads do not exactly satisfy their authenticated item stream. */
 export class ReleaseArtifactMismatchError extends Schema.TaggedError<ReleaseArtifactMismatchError>()(
   "ReleaseArtifactMismatchError",
-  { message: Schema.NonEmptyTrimmedString }
+  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
 ) {}
 
 /** Target activation evidence differs from the deterministic release request. */
 export class PublicationReceiptMismatchError extends Schema.TaggedError<PublicationReceiptMismatchError>()(
   "PublicationReceiptMismatchError",
-  { message: Schema.NonEmptyTrimmedString }
+  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
 ) {}
 
 /** Staged evidence differs from the release and activation must not proceed. */
 export class ReleaseVerificationMismatchError extends Schema.TaggedError<ReleaseVerificationMismatchError>()(
   "ReleaseVerificationMismatchError",
-  { message: Schema.NonEmptyTrimmedString }
+  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
 ) {}
 
 /** The release was prepared for a different exact Nakafa renderer manifest. */

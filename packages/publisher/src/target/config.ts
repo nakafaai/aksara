@@ -1,4 +1,4 @@
-import { Duration, Effect, Option, Redacted } from "effect";
+import { Duration, Effect, Option, Redacted, Schema } from "effect";
 import { PublicationTargetConfigurationError } from "#publisher/target/errors";
 
 /** Runtime configuration for one authenticated publication ingress. */
@@ -18,6 +18,11 @@ export interface ValidatedHttpConfig {
 
 const LOOPBACK_HOSTS = new Set(["127.0.0.1", "[::1]", "localhost"]);
 const TOKEN_WHITESPACE = /\s/u;
+const PublicationTimeoutSchema = Schema.Union([
+  Schema.Duration,
+  Schema.DurationFromMillis,
+  Schema.DurationFromString,
+]);
 
 /** Creates a permanent configuration failure without retaining secret input. */
 function configurationError(
@@ -52,7 +57,9 @@ export const validateHttpConfig = Effect.fn(
   if (token.length === 0 || TOKEN_WHITESPACE.test(token)) {
     return yield* configurationError("token");
   }
-  const decodedTimeout = Duration.decodeUnknown(config.timeout);
+  const decodedTimeout = Schema.decodeUnknownOption(PublicationTimeoutSchema)(
+    config.timeout
+  );
   if (Option.isNone(decodedTimeout)) {
     return yield* configurationError("timeout");
   }

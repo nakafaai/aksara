@@ -10,7 +10,7 @@ import {
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Option, Schema, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
@@ -30,6 +30,14 @@ type SourcePair =
       readonly kind: "both";
       readonly source: unknown;
     };
+
+/** Extends a finite stream with explicit absence for a constant-space full zip. */
+function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
+  return stream.pipe(
+    Stream.map(Option.some),
+    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
+  );
+}
 
 /** Strict disk-replay contract for one exact-Git compilation result. */
 export const CompiledReleaseSourceSchema = Schema.Struct({
@@ -98,13 +106,31 @@ export function compileReleaseSources<E, R, E2, R2>(input: {
   readonly rendererManifest: RendererManifestEnvelope;
   readonly sources: Stream.Stream<unknown, E2, R2>;
 }) {
-  return input.items.pipe(
-    Stream.zipAllWith({
-      onBoth: (item, source): SourcePair => ({ item, kind: "both", source }),
-      onOther: (source): SourcePair => ({ kind: "extra-source", source }),
-      onSelf: (item): SourcePair => ({ item, kind: "missing-source" }),
-      other: input.sources,
+  return withTrailingAbsence(input.items).pipe(
+    Stream.zip(withTrailingAbsence(input.sources)),
+    Stream.map(([item, source]): SourcePair | undefined => {
+      if (Option.isSome(item) && Option.isSome(source)) {
+        return {
+          item: item.value,
+          kind: "both",
+          source: source.value,
+        };
+      }
+      if (Option.isSome(item)) {
+        return {
+          item: item.value,
+          kind: "missing-source",
+        };
+      }
+      if (Option.isSome(source)) {
+        return {
+          kind: "extra-source",
+          source: source.value,
+        };
+      }
+      return undefined;
     }),
+    Stream.takeWhile((pair): pair is SourcePair => pair !== undefined),
     Stream.mapEffect((pair) => compileSource(input.rendererManifest, pair))
   );
 }

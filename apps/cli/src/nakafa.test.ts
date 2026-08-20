@@ -1,11 +1,11 @@
-import { HttpClient } from "@effect/platform";
 import {
   computePreviewRendererProof,
   PREVIEW_RENDERER_AUTH_FORMAT,
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+import { HttpClient } from "effect/unstable/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";

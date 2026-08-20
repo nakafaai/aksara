@@ -1,8 +1,9 @@
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { packageIdentity } from "#scripts/release-identity";
 
 it("executes the release identity CLI boundary", async () => {

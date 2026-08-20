@@ -23,8 +23,8 @@ import {
   MAX_ITEM_BATCH_BYTES,
   MAX_ITEM_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   canonicalizeArtifactBatch,
   canonicalizeReleaseItemBatch,

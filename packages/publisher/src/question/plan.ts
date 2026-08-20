@@ -27,20 +27,22 @@ export const QuestionPublicationPlanSchema = Schema.Struct({
   record: Schema.optional(PreparedContentTransitionSchema),
   result: Schema.optional(QuestionHeadSchema),
 }).pipe(
-  Schema.filter(
-    (plan) => plan.record !== undefined || plan.result !== undefined
+  Schema.check(
+    Schema.makeFilter(
+      (plan) => plan.record !== undefined || plan.result !== undefined
+    )
   )
 );
 export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
-  | Effect.Effect.Error<ReturnType<typeof compileQuestionDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectQuestionDocument>>
+  | Effect.Error<ReturnType<typeof compileQuestionDocument>>
+  | Effect.Error<ReturnType<typeof inspectQuestionDocument>>
   | PublicationScopeIdentityError;
 
 type PlanQuestionPublicationContext =
-  | Effect.Effect.Context<ReturnType<typeof compileQuestionDocument>>
-  | Effect.Effect.Context<ReturnType<typeof inspectQuestionDocument>>;
+  | Effect.Services<ReturnType<typeof compileQuestionDocument>>
+  | Effect.Services<ReturnType<typeof inspectQuestionDocument>>;
 
 /** A question body cannot join its canonical source-owned choices. */
 export class QuestionChoiceJoinError extends Schema.TaggedError<QuestionChoiceJoinError>()(

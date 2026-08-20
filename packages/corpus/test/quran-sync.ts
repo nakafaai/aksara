@@ -1,14 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-
-import {
-  FileSystem,
-  HttpClient,
-  HttpClientResponse,
-  Error as PlatformError,
-} from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
-import { Effect } from "effect";
+import { NodeServices } from "@effect/platform-node";
+import { Effect, FileSystem, PlatformError } from "effect";
+import { HttpClient, HttpClientResponse } from "effect/unstable/http";
 
 import {
   GERMAN_QURAN_PUBLICATION_URL,
@@ -54,10 +48,10 @@ function sourceClient(
 
 /** Creates one platform filesystem failure for a selected write operation. */
 export function quranSyncFileFailure(method: string) {
-  return new PlatformError.SystemError({
+  return PlatformError.systemError({
+    _tag: "PermissionDenied",
     method,
     module: "FileSystem",
-    reason: "PermissionDenied",
   });
 }
 
@@ -121,7 +115,7 @@ export function quranSyncTestProgram(
           HttpClient.HttpClient,
           sourceClient(sources, options.status, options.stalledUrl)
         ),
-        Effect.either
+        Effect.result
       );
       const publicationInstalled = yield* fileSystem.exists(
         targets.publication
@@ -155,6 +149,6 @@ export function runQuranSyncTest(
   ...arguments_: Parameters<typeof quranSyncTestProgram>
 ) {
   return Effect.runPromise(
-    quranSyncTestProgram(...arguments_).pipe(Effect.provide(NodeContext.layer))
+    quranSyncTestProgram(...arguments_).pipe(Effect.provide(NodeServices.layer))
   );
 }

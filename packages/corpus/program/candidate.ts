@@ -33,7 +33,9 @@ import { decodeMaterialSources } from "#corpus/material/source";
 import { decodeAuthoringProgramCatalog } from "#corpus/program/catalog";
 import { decodeProgramLocaleCatalog } from "#corpus/program/locale";
 
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Evidence for every present inactive Program and curriculum locale source. */
 export const CandidateProgramValidationSchema = Schema.Struct({
@@ -50,7 +52,7 @@ export class CandidateProgramOwnershipError extends Schema.TaggedError<Candidate
   "CandidateProgramOwnershipError",
   {
     appLocale: AppLocaleSchema,
-    owner: Schema.NonEmptyTrimmedString,
+    owner: Schema.Trimmed.check(Schema.isNonEmpty()),
     reason: Schema.Literal("curriculum-program"),
   }
 ) {}
@@ -101,11 +103,11 @@ const projectCandidateLocale = Effect.fn(
   readonly domains: readonly MaterialDomainDescriptor[];
   readonly materialCatalog: MaterialLocaleCatalog;
   readonly materials: readonly LessonMaterialSource[];
-  readonly programs: Effect.Effect.Success<
+  readonly programs: Effect.Success<
     ReturnType<typeof decodeAuthoringProgramCatalog>
   >;
 }) {
-  const overlayAppLocale = yield* Schema.decodeUnknown(
+  const overlayAppLocale = yield* Schema.decodeUnknownEffect(
     LocaleOverlayAppLocaleCodeSchema
   )(appLocaleCode(input.appLocale));
   const localized = yield* composeCompleteMaterialLocaleCatalog({

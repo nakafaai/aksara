@@ -10,13 +10,13 @@ describe("locale source policy", () => {
     expect(
       localePolicyViolations(
         "packages/contracts/src/locale.ts",
-        'const Current = Schema.Literal("en", "id", "de");\nconst Historical = Schema.Literal("en", "id");'
+        'const Current = Schema.Literals(["en", "id", "de"]);\nconst Historical = Schema.Literals(["en", "id"]);'
       )
     ).toEqual([]);
     expect(
       localePolicyViolations(
         "packages/contracts/src/history/locale.ts",
-        'const Historical = Schema.Literal("en", "id");'
+        'const Historical = Schema.Literals(["en", "id"]);'
       )
     ).toEqual([]);
     expect(
@@ -55,11 +55,12 @@ describe("locale source policy", () => {
   it("ignores malformed keyof shapes that do not declare locale fields", () => {
     const file = "packages/example/src/source.ts";
     const source = [
-      'const literal = Schema.keyof(Schema.Literal("en", "id"));',
+      'const literal = Schema.keyof(Schema.Literals(["en", "id"]));',
       "const empty = Schema.keyof(Schema.Struct());",
       "const spread = Schema.keyof(Schema.Struct({ ...base }));",
       'const computed = Schema.keyof(Schema.Struct({ ["en"]: Schema.Void, id: Schema.Void }));',
       "const unrelated = Schema.keyof(Schema.Struct({ en: Schema.Void, other: Schema.Void }));",
+      "const emptyUnion = Schema.Union();",
     ].join("\n");
 
     expect(localePolicyViolations(file, source)).toEqual([
@@ -70,8 +71,8 @@ describe("locale source policy", () => {
   it("rejects duplicated schema and TypeScript locale unions", () => {
     const file = "packages/example/src/locale.ts";
     const source = [
-      'const Locale = Schema.Literal("en", "id", "de");',
-      'const Union = Schema.Union(Schema.Literal("en"), Schema.Literal("id"));',
+      'const Locale = Schema.Literals(["en", "id", "de"]);',
+      'const Union = Schema.Union([Schema.Literal("en"), Schema.Literal("id")]);',
       'type LocaleCode = "en" | "id";',
     ].join("\n");
 

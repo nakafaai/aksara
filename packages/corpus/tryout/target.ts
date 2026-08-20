@@ -18,15 +18,18 @@ type TargetRowKind = Exclude<TryoutCatalogRow["kind"], "country">;
 export class TryoutTargetError extends Schema.TaggedError<TryoutTargetError>()(
   "TryoutTargetError",
   {
-    count: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    rowKind: Schema.Literal(
+    count: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    rowKind: Schema.Literals([
       "context",
       "exam",
       "section",
       "set",
       "target",
-      "track"
-    ),
+      "track",
+    ]),
     sourcePath: CorpusSourcePathSchema,
   }
 ) {}
@@ -145,7 +148,7 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
       selectCatalogRow(rows, placement, "section", entry.sourcePath),
     ]);
     const { choices: _choices, ...previewPlacement } = placement;
-    return yield* Schema.decodeUnknown(TryoutPreviewTargetSchema)(
+    return yield* Schema.decodeUnknownEffect(TryoutPreviewTargetSchema)(
       { exam, placement: previewPlacement, section, set, track },
       { onExcessProperty: "error" }
     ).pipe(

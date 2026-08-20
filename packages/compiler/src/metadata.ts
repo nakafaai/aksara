@@ -211,36 +211,30 @@ export function extractMetadata(
 
 /** Requires exactly one static metadata object before body compilation. */
 export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
-  (contentKey: ContentKey, collector: MetadataCollector) => {
+  function* (contentKey: ContentKey, collector: MetadataCollector) {
     if (collector.syntaxReasons.length > 0) {
-      return Effect.fail(
-        new AuthoredMetadataSyntaxError({
-          contentKey,
-          reasons: collector.syntaxReasons,
-        })
-      );
+      return yield* new AuthoredMetadataSyntaxError({
+        contentKey,
+        reasons: collector.syntaxReasons,
+      });
     }
     const [metadata] = collector.candidates;
     if (metadata === undefined) {
-      return Effect.fail(new AuthoredMetadataMissingError({ contentKey }));
+      return yield* new AuthoredMetadataMissingError({ contentKey });
     }
     if (collector.candidates.length > 1) {
-      return Effect.fail(
-        new AuthoredMetadataDuplicateError({
-          contentKey,
-          count: collector.candidates.length,
-        })
-      );
+      return yield* new AuthoredMetadataDuplicateError({
+        contentKey,
+        count: collector.candidates.length,
+      });
     }
-    if (!Predicate.isRecord(metadata)) {
-      return Effect.fail(
-        new AuthoredMetadataSyntaxError({
-          contentKey,
-          reasons: ["metadata-not-object"],
-        })
-      );
+    if (!Predicate.isObject(metadata)) {
+      return yield* new AuthoredMetadataSyntaxError({
+        contentKey,
+        reasons: ["metadata-not-object"],
+      });
     }
-    return Effect.succeed(metadata);
+    return metadata;
   }
 );
 

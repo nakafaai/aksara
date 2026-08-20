@@ -1,4 +1,4 @@
-import { NodeContext, NodeHttpClient } from "@effect/platform-node";
+import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -155,8 +155,8 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
         scope: input.scope,
       });
       return TestEffect.gen(function* () {
-        yield* input.snapshotManifests().pipe(TestStream.runDrain);
-        yield* input.snapshotRows().pipe(TestStream.runDrain);
+        yield* input.snapshotManifests.pipe(TestStream.runDrain);
+        yield* input.snapshotRows.pipe(TestStream.runDrain);
         return {
           kind: "git" as const,
           manifest: bundle.release.manifest,
@@ -207,7 +207,7 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
   return {
     verifyContentReleaseBundle: (input: unknown) => {
       calls.bundleVerifyCalls += 1;
-      return TestSchema.decodeUnknown(ContentReleaseBundleSchema)(input, {
+      return TestSchema.decodeUnknownEffect(ContentReleaseBundleSchema)(input, {
         onExcessProperty: "error",
       }).pipe(
         TestEffect.tap((bundle) =>
@@ -218,7 +218,7 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
       );
     },
     verifySignedContentRelease: (input: unknown) =>
-      TestSchema.decodeUnknown(SignedContentReleaseSchema)(input, {
+      TestSchema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
         onExcessProperty: "error",
       }),
   };
@@ -287,9 +287,9 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
 /** Builds one production Effect with the complete Node service boundary. */
 function productionProgram(args: ReleaseArguments | RollbackArguments) {
   return runProductionCommand({ args, cwd: "/code/aksara" }).pipe(
-    Effect.provide(NodeHttpClient.layer),
+    Effect.provide(NodeHttpClient.layerNodeHttp),
     Effect.provideService(ExactProcess, unusedExactProcess),
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   );
 }
 

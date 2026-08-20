@@ -33,9 +33,9 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 /** Semantic wire identity of the current localized content release. */
 export const CONTENT_RELEASE_FORMAT = "localized-content-release";
 /** Nonnegative release inventory count authenticated by one manifest. */
-export const ReleaseCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+export const ReleaseCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 /** Stable inventory and provenance fields owned by the current release. */
 const ContentReleaseManifestFields = {
@@ -128,14 +128,14 @@ export const ContentDeleteSchema = Schema.Struct({
   operation: Schema.Literal("delete"),
 });
 /** Complete tagged change vocabulary accepted by the current release. */
-export const ContentChangeSchema = Schema.Union(
+export const ContentChangeSchema = Schema.Union([
   ContentUpsertSchema,
-  ContentDeleteSchema
-);
+  ContentDeleteSchema,
+]);
 export type ContentChange = typeof ContentChangeSchema.Type;
-export const ReleaseItemIndexSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+export const ReleaseItemIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 /** One separately stored, ordered item authenticated by a release digest. */
 export const ContentReleaseItemSchema = Schema.Struct({
@@ -150,10 +150,11 @@ export const ContentReleaseManifestSchema = Schema.Struct({
   ...ContentReleaseManifestFields,
   format: Schema.Literal(CONTENT_RELEASE_FORMAT),
 }).pipe(
-  Schema.filter(hasCoherentReleaseOrigin, {
-    message: () =>
-      "Expected a new release identity and a coherent source origin.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentReleaseOrigin, {
+      message: "Expected a new release identity and a coherent source origin.",
+    })
+  )
 );
 export type ContentReleaseManifest = typeof ContentReleaseManifestSchema.Type;
 /** Immutable release manifest plus its asymmetric authenticity proof. */
@@ -183,10 +184,10 @@ export type RollbackSignedContentRelease = SignedContentRelease & {
 /** Signed release contract accepted only for rollback-owned operations. */
 export const RollbackSignedContentReleaseSchema =
   SignedContentReleaseSchema.pipe(
-    Schema.filter(
+    Schema.refine(
       (release): release is RollbackSignedContentRelease =>
         release.manifest.origin.kind === "rollback",
-      { message: () => "Expected a signed rollback release." }
+      { message: "Expected a signed rollback release." }
     )
   );
 
@@ -248,10 +249,12 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   stagedSnapshotRows: ReleaseCountSchema,
   upsertHeads: ReleaseCountSchema,
 }).pipe(
-  Schema.filter(hasCoherentVerificationCounts, {
-    message: () =>
-      "Expected staged head and artifact counts to match the release items.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentVerificationCounts, {
+      message:
+        "Expected staged head and artifact counts to match the release items.",
+    })
+  )
 );
 export type ReleaseVerificationEvidence =
   typeof ReleaseVerificationEvidenceSchema.Type;
@@ -270,10 +273,10 @@ export const ReleaseVerificationCompleteSchema = Schema.Struct({
 });
 
 /** Bounded status returned while durable verification progresses. */
-export const ReleaseVerificationStatusSchema = Schema.Union(
+export const ReleaseVerificationStatusSchema = Schema.Union([
   ReleaseVerificationPendingSchema,
-  ReleaseVerificationCompleteSchema
-);
+  ReleaseVerificationCompleteSchema,
+]);
 export type ReleaseVerificationStatus =
   typeof ReleaseVerificationStatusSchema.Type;
 
@@ -295,15 +298,17 @@ export const PublicationReceiptSchema = Schema.Struct({
   stagedRoutes: ReleaseCountSchema,
   stagedSnapshotRows: ReleaseCountSchema,
 }).pipe(
-  Schema.filter(
-    (receipt) =>
-      receipt.activatedHeads + receipt.deletedHeads === receipt.stagedItems &&
-      receipt.stagedArtifacts === receipt.activatedHeads &&
-      receipt.stagedSnapshotRows === snapshotRowCount(receipt.snapshots),
-    {
-      message: () =>
-        "Expected activated head and artifact counts to match staged items.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      (receipt) =>
+        receipt.activatedHeads + receipt.deletedHeads === receipt.stagedItems &&
+        receipt.stagedArtifacts === receipt.activatedHeads &&
+        receipt.stagedSnapshotRows === snapshotRowCount(receipt.snapshots),
+      {
+        message:
+          "Expected activated head and artifact counts to match staged items.",
+      }
+    )
   )
 );
 export type PublicationReceipt = typeof PublicationReceiptSchema.Type;

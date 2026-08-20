@@ -37,7 +37,7 @@ export function completedRecovery(
     manifest,
     manifestHash: `sha256:${"e".repeat(64)}`,
   };
-  return Schema.decodeUnknownSync(PublicationSuccessSchema)({
+  return Schema.decodeSync(PublicationSuccessSchema)({
     ok: true,
     operation: "recovery",
     value: {

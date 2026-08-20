@@ -1,4 +1,3 @@
-import { HttpClient } from "@effect/platform";
 import {
   type StageGroupRequest,
   StageGroupSuccessSchema,
@@ -40,6 +39,7 @@ import type {
   StageSnapshotRequest,
 } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Effect, Schema } from "effect";
+import { HttpClient } from "effect/unstable/http";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type HttpPublicationTargetConfig,
@@ -48,8 +48,8 @@ import {
 import { sendPublicationRequest } from "#publisher/target/exchange";
 
 /** Narrows validated success evidence without defecting target failures. */
-function decodeSuccess<A, I>(schema: Schema.Schema<A, I>, input: unknown) {
-  return Schema.decodeUnknown(schema)(input).pipe(Effect.orDie);
+function decodeSuccess<A, I>(schema: Schema.Codec<A, I>, input: unknown) {
+  return Schema.decodeUnknownEffect(schema)(input).pipe(Effect.orDie);
 }
 
 /** Builds the Effect service backed by one authenticated HTTP endpoint. */
@@ -122,15 +122,14 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
-    current: () => {
-      const request: PublicationCurrentRequest = { operation: "current" };
-      return send(request).pipe(
-        Effect.flatMap((response) =>
-          decodeSuccess(PublicationCurrentSuccessSchema, response)
-        ),
-        Effect.map((response) => response.value)
-      );
-    },
+    current: send({
+      operation: "current",
+    } satisfies PublicationCurrentRequest).pipe(
+      Effect.flatMap((response) =>
+        decodeSuccess(PublicationCurrentSuccessSchema, response)
+      ),
+      Effect.map((response) => response.value)
+    ),
     headPage: (input) => {
       const request: PublicationHeadPageRequest = {
         ...input,

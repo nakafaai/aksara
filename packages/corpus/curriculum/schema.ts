@@ -127,7 +127,7 @@ const CurriculumStructureNodeSchema = Schema.Struct({
   children: Schema.optional(
     Schema.Array(
       Schema.suspend(
-        (): Schema.Schema<CurriculumTreeNode, CurriculumTreeInput> =>
+        (): Schema.Codec<CurriculumTreeNode, CurriculumTreeInput> =>
           CurriculumTreeNodeSchema
       )
     )
@@ -139,7 +139,7 @@ const CurriculumStructureNodeSchema = Schema.Struct({
   level: ProgramNavigationLevelSchema,
   materialCard: Schema.optional(CurriculumMaterialCardMapSchema),
   materialDomain: Schema.optional(MaterialDomainSchema),
-  order: Schema.Int.pipe(Schema.nonNegative()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   translations: CurriculumNodeTranslationMapSchema,
 });
 
@@ -148,13 +148,13 @@ const CurriculumMaterialNodeSchema = Schema.Struct({
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
   materialKeys: Schema.NonEmptyArray(MaterialKeySchema),
-  order: Schema.Int.pipe(Schema.nonNegative()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
 });
 
-const CurriculumTreeNodeSchema: Schema.Schema<
+const CurriculumTreeNodeSchema: Schema.Codec<
   CurriculumTreeNode,
   CurriculumTreeInput
-> = Schema.Union(CurriculumMaterialNodeSchema, CurriculumStructureNodeSchema);
+> = Schema.Union([CurriculumMaterialNodeSchema, CurriculumStructureNodeSchema]);
 
 /** One complete source-controlled curriculum tree. */
 export const CurriculumSourceSchema = Schema.Struct({
@@ -179,7 +179,7 @@ type MaterialNodeInput = Omit<
 /** A curriculum source failed strict schema decoding at its definition seam. */
 export class CurriculumDecodeError extends Schema.TaggedError<CurriculumDecodeError>()(
   "CurriculumDecodeError",
-  { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
+  { cause: Schema.Unknown, message: Schema.Trimmed.check(Schema.isNonEmpty()) }
 ) {}
 
 /** A decoded curriculum contains the same stable node identity twice. */
@@ -252,7 +252,7 @@ function flattenCurriculumTree(
 /** Strictly decodes one authored curriculum and rejects duplicate node keys. */
 export const defineCurriculum = Effect.fn("AksaraCorpus.defineCurriculum")(
   function* (input: CurriculumSourceInput) {
-    const curriculum = yield* Schema.decodeUnknown(CurriculumSourceSchema)(
+    const curriculum = yield* Schema.decodeEffect(CurriculumSourceSchema)(
       input,
       { onExcessProperty: "error" }
     ).pipe(

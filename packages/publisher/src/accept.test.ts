@@ -1,6 +1,7 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   acceptContentRelease,
   ReleaseAcceptContractError,

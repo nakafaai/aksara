@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { batchCeilingCases, emptyBatchCases } from "#contracts/test/batch";
 import {
@@ -21,9 +21,9 @@ const itemError =
   "Expected contiguous release items bound to the batch release identity.";
 
 /** Strictly tests one batch transport schema without extra properties. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
@@ -48,21 +48,23 @@ describe("batch transport", () => {
         })
       ).toBe(false);
     }
-    const error = Schema.decodeUnknownEither(StageItemBatchRequestSchema)({
+    const error = Schema.decodeUnknownExit(StageItemBatchRequestSchema)({
       batchIndex: 0,
       items: skipped,
       operation: "stageItemBatch",
       releaseId,
     });
-    expect(Either.isLeft(error) ? String(error.left) : "").toContain(itemError);
-    const inputError = Schema.decodeUnknownEither(StageItemBatchInputSchema)({
+    expect(Exit.isFailure(error) ? String(error.cause) : "").toContain(
+      itemError
+    );
+    const inputError = Schema.decodeUnknownExit(StageItemBatchInputSchema)({
       batchIndex: 0,
       items: skipped,
       releaseId,
     });
-    expect(Either.isLeft(inputError) ? String(inputError.left) : "").toContain(
-      itemError
-    );
+    expect(
+      Exit.isFailure(inputError) ? String(inputError.cause) : ""
+    ).toContain(itemError);
   });
 
   it("shares exact operation-free inputs with wire requests", () => {
@@ -133,19 +135,19 @@ describe("batch transport", () => {
       ).toBe(false);
     }
     for (const result of [
-      Schema.decodeUnknownEither(StageRouteBatchInputSchema)({
+      Schema.decodeUnknownExit(StageRouteBatchInputSchema)({
         batchIndex: 0,
         releaseId,
         routes: skipped,
       }),
-      Schema.decodeUnknownEither(StageRouteBatchRequestSchema)({
+      Schema.decodeUnknownExit(StageRouteBatchRequestSchema)({
         batchIndex: 0,
         operation: "stageRouteBatch",
         releaseId,
         routes: skipped,
       }),
     ]) {
-      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
         "Expected contiguous route items bound to the batch release identity."
       );
     }

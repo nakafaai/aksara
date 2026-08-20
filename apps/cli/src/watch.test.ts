@@ -1,18 +1,17 @@
 import { realpathSync } from "node:fs";
 import { basename, relative } from "node:path";
-import { FileSystem, Error as PlatformError } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import {
   Deferred,
   Effect,
   Fiber,
-  Option,
+  type FileSystem,
+  PlatformError,
   Ref,
   Stream,
-  TestClock,
-  TestContext,
 } from "effect";
-import { afterEach, describe, expect, it } from "vitest";
+import { TestClock } from "effect/testing";
 import { PreviewProviderError } from "#cli/provider";
 import { selectPreviewDocument } from "#cli/repository";
 import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
@@ -28,42 +27,46 @@ afterEach(() => {
   repositories.clear();
 });
 
+/** Creates one portable filesystem update event. */
+function updateEvent(path: string): FileSystem.WatchEvent {
+  return { _tag: "Update", path };
+}
+
+/** Creates one portable filesystem create event. */
+function createEvent(path: string): FileSystem.WatchEvent {
+  return { _tag: "Create", path };
+}
+
 describe("selected document watch", () => {
-  it("filters siblings, refreshes the selected file, and stays active", async () => {
-    const repository = repositories.create();
-    const aksaraRoot = realpathSync(repository.aksaraRoot);
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(
-        aksaraRoot,
-        relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeContext.layer))
-    );
-    const events = Stream.concat(
-      Stream.make(
-        FileSystem.WatchEventUpdate({ path: "id.mdx" }),
-        FileSystem.WatchEventUpdate({
-          path: basename(selected.files[0].absolutePath),
-        })
-      ),
-      Stream.never
-    );
-    const result = await Effect.runPromise(
+  it.effect(
+    "filters siblings, refreshes the selected file, and stays active",
+    () =>
       Effect.gen(function* () {
+        const repository = repositories.create();
+        const aksaraRoot = realpathSync(repository.aksaraRoot);
+        const selected = yield* selectPreviewDocument(
+          aksaraRoot,
+          relative(aksaraRoot, realpathSync(repository.documentPath))
+        ).pipe(Effect.provide(NodeServices.layer));
+        const events = Stream.concat(
+          Stream.make(
+            updateEvent("id.mdx"),
+            updateEvent(basename(selected.files[0].absolutePath))
+          ),
+          Stream.never
+        );
         const count = yield* Ref.make(0);
         const watcher = yield* runWatch(selected, events, () =>
           Ref.update(count, (value) => value + 1)
-        ).pipe(Effect.fork);
-        yield* TestClock.adjust("75 millis");
+        ).pipe(Effect.forkChild({ startImmediately: true }));
+        yield* TestClock.adjust("150 millis");
         const refreshes = yield* Ref.get(count);
-        const watcherExit = yield* Fiber.poll(watcher);
+        const watcherRunning = watcher.pollUnsafe() === undefined;
         yield* Fiber.interrupt(watcher);
-        return { refreshes, watcherExit };
-      }).pipe(Effect.provide(TestContext.TestContext))
-    );
-
-    expect(result.refreshes).toBe(1);
-    expect(Option.isNone(result.watcherExit)).toBe(true);
-  });
+        expect(refreshes).toBe(1);
+        expect(watcherRunning).toBe(true);
+      })
+  );
 
   it("invalidates every burst save while retaining only the latest queued compile", {
     timeout: 10_000,
@@ -74,7 +77,7 @@ describe("selected document watch", () => {
       selectPreviewDocument(
         aksaraRoot,
         relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
     const focused = {
       directories: [],
@@ -82,9 +85,7 @@ describe("selected document watch", () => {
       files: [selected.files[0]],
       sources: [selected.sources[0]],
     } satisfies typeof selected;
-    const event = FileSystem.WatchEventUpdate({
-      path: basename(focused.files[0].absolutePath),
-    });
+    const event = updateEvent(basename(focused.files[0].absolutePath));
     const observed = await Effect.runPromise(
       Effect.gen(function* () {
         const firstStarted = yield* Deferred.make<void>();
@@ -117,14 +118,14 @@ describe("selected document watch", () => {
         /** Holds the active compile while later generations replace each other. */
         const refresh = (generation: number) =>
           Ref.update(refreshed, (all) => [...all, generation]).pipe(
-            Effect.zipRight(
+            Effect.andThen(
               generation === 1
                 ? Deferred.succeed(firstStarted, undefined).pipe(
-                    Effect.zipRight(Deferred.await(releaseFirst))
+                    Effect.andThen(Deferred.await(releaseFirst))
                   )
                 : Effect.when(
                     Deferred.succeed(latestRefreshed, undefined),
-                    () => generation === 5
+                    Effect.succeed(generation === 5)
                   )
             )
           );
@@ -134,7 +135,7 @@ describe("selected document watch", () => {
           refresh,
           new Map(),
           invalidate
-        ).pipe(Effect.fork);
+        ).pipe(Effect.forkChild);
         yield* Deferred.await(firstStarted);
         yield* Deferred.await(latestInvalidated);
         yield* Effect.sleep("150 millis");
@@ -152,49 +153,45 @@ describe("selected document watch", () => {
     expect(observed).toEqual({ generations: 5, refreshed: [1, 5] });
   });
 
-  it("watches one question body closure and its choices dependency", {
-    timeout: 30_000,
-  }, async () => {
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(realpathSync(REPOSITORY_ROOT), answerPath).pipe(
-        Effect.provide(NodeContext.layer)
-      )
-    );
-    const events = Stream.concat(
-      Stream.make(FileSystem.WatchEventUpdate({ path: "choices.ts" })),
-      Stream.never
-    );
-    const refreshes = await Effect.runPromise(
+  it.effect(
+    "watches one question body closure and its choices dependency",
+    () =>
       Effect.gen(function* () {
+        const selected = yield* selectPreviewDocument(
+          realpathSync(REPOSITORY_ROOT),
+          answerPath
+        ).pipe(Effect.provide(NodeServices.layer));
+        const events = Stream.concat(
+          Stream.make(updateEvent("choices.ts")),
+          Stream.never
+        );
         const count = yield* Ref.make(0);
         const watcher = yield* runWatch(selected, events, () =>
           Ref.update(count, (value) => value + 1)
-        ).pipe(Effect.fork);
+        ).pipe(Effect.forkChild({ startImmediately: true }));
         yield* TestClock.adjust("75 millis");
-        const result = yield* Ref.get(count);
+        const refreshes = yield* Ref.get(count);
         yield* Fiber.interrupt(watcher);
-        return result;
-      }).pipe(Effect.provide(TestContext.TestContext))
-    );
-
-    expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
-      questionPath,
-      "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/choices.ts",
-      "packages/corpus/tryout/registry.ts",
-      "packages/corpus/tryout/indonesia/snbt/source.ts",
-      "packages/corpus/tryout/indonesia/country.ts",
-      "packages/corpus/tryout/schema.ts",
-      "packages/corpus/locale/source.ts",
-      "packages/corpus/route/schema.ts",
-      answerPath,
-    ]);
-    expect(refreshes).toBe(1);
-  });
+        expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
+          questionPath,
+          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/choices.ts",
+          "packages/corpus/tryout/registry.ts",
+          "packages/corpus/tryout/indonesia/snbt/source.ts",
+          "packages/corpus/tryout/indonesia/country.ts",
+          "packages/corpus/tryout/schema.ts",
+          "packages/corpus/locale/source.ts",
+          "packages/corpus/route/schema.ts",
+          answerPath,
+        ]);
+        expect(refreshes).toBe(1);
+      }),
+    { timeout: 30_000 }
+  );
 
   it("requires a restart instead of compiling stale topology", async () => {
     const selected = await Effect.runPromise(
       selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const result = await Effect.runPromise(
@@ -202,7 +199,7 @@ describe("selected document watch", () => {
         const refreshes = yield* Ref.make(0);
         const error = yield* runWatch(
           selected,
-          Stream.make(FileSystem.WatchEventUpdate({ path: "source.ts" })),
+          Stream.make(updateEvent("source.ts")),
           () => Ref.update(refreshes, (value) => value + 1)
         ).pipe(Effect.flip);
         return { error, refreshes: yield* Ref.get(refreshes) };
@@ -219,7 +216,7 @@ describe("selected document watch", () => {
   it("rejects persistent strict-directory membership changes", async () => {
     const selected = await Effect.runPromise(
       selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const [directory] = selected.directories;
@@ -233,7 +230,7 @@ describe("selected document watch", () => {
     const error = await Effect.runPromise(
       runWatch(
         selected,
-        Stream.make(FileSystem.WatchEventCreate({ path: "draft.mdx" })),
+        Stream.make(createEvent("draft.mdx")),
         () => Effect.void,
         changedFiles
       ).pipe(Effect.flip)
@@ -248,14 +245,12 @@ describe("selected document watch", () => {
   it("ignores unselected events after stable membership is restored", async () => {
     const selected = await Effect.runPromise(
       selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     const error = await Effect.runPromise(
-      runWatch(
-        selected,
-        Stream.make(FileSystem.WatchEventCreate({ path: "draft.mdx" })),
-        () => Effect.die("refresh must not run")
+      runWatch(selected, Stream.make(createEvent("draft.mdx")), () =>
+        Effect.die("refresh must not run")
       ).pipe(Effect.flip)
     );
 
@@ -269,20 +264,18 @@ describe("selected document watch", () => {
       selectPreviewDocument(
         aksaraRoot,
         relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeContext.layer))
+      ).pipe(Effect.provide(NodeServices.layer))
     );
-    const selectedEvent = FileSystem.WatchEventUpdate({
-      path: basename(selected.files[0].absolutePath),
-    });
+    const selectedEvent = updateEvent(basename(selected.files[0].absolutePath));
     const provider = await Effect.runPromise(
       runWatch(selected, Stream.make(selectedEvent), () =>
         Effect.fail(new PreviewProviderError({ stage: "encode" }))
       ).pipe(Effect.flip)
     );
-    const fileError = new PlatformError.SystemError({
+    const fileError = PlatformError.systemError({
+      _tag: "Unknown",
       method: "watch",
       module: "FileSystem",
-      reason: "Unknown",
     });
     const filesystem = await Effect.runPromise(
       runWatch(selected, Stream.fail(fileError), () => Effect.void).pipe(

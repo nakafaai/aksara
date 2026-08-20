@@ -1,8 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path, PlatformError } from "effect";
 
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 import {
@@ -28,11 +27,11 @@ function fileLayer(sources: ReadonlyMap<string, string>) {
         return Effect.succeed(source);
       }
       return Effect.fail(
-        new PlatformError.SystemError({
+        PlatformError.systemError({
+          _tag: "NotFound",
           method: "readFileString",
           module: "FileSystem",
           pathOrDescriptor: path,
-          reason: "NotFound",
         })
       );
     },

@@ -45,7 +45,7 @@ export class RoutePlanConflictError extends Schema.TaggedError<RoutePlanConflict
     existingContentKey: ContentKeySchema,
     incomingContentKey: ContentKeySchema,
     publicPath: PublicPathSchema,
-    side: Schema.Literal("current", "next"),
+    side: Schema.Literals(["current", "next"]),
   }
 ) {}
 
@@ -189,18 +189,20 @@ export function makeRouteItems<E, R>(
   releaseId: ReleaseId,
   transitions: Stream.Stream<RouteTransition, E, R>
 ): Stream.Stream<ContentRouteItem, E | RoutePlanConflictError, R> {
-  const initial: RoutePlanState = { current: new Map(), next: new Map() };
-  return Stream.unwrap(
-    transitions.pipe(
-      Stream.runFoldEffect(initial, indexTransition),
-      Effect.map((state) =>
-        Stream.fromIterable(routeChanges(state)).pipe(
-          Stream.zipWithIndex,
-          Stream.map(([change, index]) =>
-            ContentRouteItemSchema.make({ change, index, releaseId })
+  return Stream.suspend(() => {
+    const initial: RoutePlanState = { current: new Map(), next: new Map() };
+    return Stream.unwrap(
+      transitions.pipe(
+        Stream.runFoldEffect(() => initial, indexTransition),
+        Effect.map((state) =>
+          Stream.fromIterable(routeChanges(state)).pipe(
+            Stream.zipWithIndex,
+            Stream.map(([change, index]) =>
+              ContentRouteItemSchema.make({ change, index, releaseId })
+            )
           )
         )
       )
-    )
-  );
+    );
+  });
 }

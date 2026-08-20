@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { AppLocaleCode } from "#contracts/locale";
@@ -23,7 +23,7 @@ const hashes = {
 /** Builds one current non-language placement for an application locale. */
 function placement(appLocale: AppLocaleCode, order: number) {
   const root = `question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-${order}`;
-  return Schema.decodeUnknownSync(TryoutPlacementSchema)({
+  return Schema.decodeSync(TryoutPlacementSchema)({
     answerArtifactHash: hashes.answer,
     answerArtifactLocale: appLocale,
     answerContentKey: `${root}/answer`,

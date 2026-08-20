@@ -9,7 +9,10 @@ import {
   type ContentReleaseManifest,
 } from "#contracts/release/spec";
 
-const ItemCountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
+const ItemCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** One release item failed strict wire decoding. */
 export class ReleaseItemDecodeError extends Schema.TaggedError<ReleaseItemDecodeError>()(
@@ -130,20 +133,20 @@ function validateItemOrder(
 }
 
 /** Decodes one item and applies stateful canonical stream invariants. */
-function decodeItem(
+const decodeItem = Effect.fn("AksaraContracts.decodeReleaseItem")(function* (
   manifest: ContentReleaseManifest,
   state: ItemValidationState,
   source: unknown,
   itemOffset: number
 ) {
-  return Schema.decodeUnknown(ContentReleaseItemSchema)(source, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })),
-    Effect.tap((item) => validateItemIdentity(manifest, item, itemOffset)),
-    Effect.tap((item) => validateItemOrder(state, item))
-  );
-}
+  const item = yield* Schema.decodeUnknownEffect(ContentReleaseItemSchema)(
+    source,
+    { onExcessProperty: "error" }
+  ).pipe(Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })));
+  yield* validateItemIdentity(manifest, item, itemOffset);
+  yield* validateItemOrder(state, item);
+  return item;
+});
 
 /**
  * Strictly decodes a replayable item stream without retaining its bodies.

@@ -87,10 +87,10 @@ export function verifyProtectedExchange(
 }
 
 /** Runs one protected batch while preserving typed success and failure values. */
-export function verifyProtectedExchangeEither(
+export function verifyProtectedExchangeResult(
   input: Parameters<typeof exchangeProgram>[0]
 ) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.either));
+  return Effect.runPromise(exchangeProgram(input).pipe(Effect.result));
 }
 
 /** Runs one protected batch expected to return a typed verification failure. */

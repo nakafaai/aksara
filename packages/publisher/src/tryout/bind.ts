@@ -51,7 +51,7 @@ function validateHeadOrder(
   state: HeadOrderState,
   head: QuestionHead
 ): Effect.Effect<
-  readonly [HeadOrderState, QuestionHead],
+  readonly [HeadOrderState, readonly QuestionHead[]],
   TryoutHeadDuplicateError | TryoutHeadOrderError
 > {
   const { previous } = state;
@@ -74,7 +74,7 @@ function validateHeadOrder(
       );
     }
   }
-  return Effect.succeed([{ previous: head }, head]);
+  return Effect.succeed([{ previous: head }, [head]]);
 }
 
 /** Derives both delivery-specific head requirements from one placement. */
@@ -119,7 +119,7 @@ function validateTryoutHeadStream<E, R>(
   heads: Stream.Stream<QuestionHead, E, R>
 ) {
   const initial: HeadOrderState = { previous: undefined };
-  return heads.pipe(Stream.mapAccumEffect(initial, validateHeadOrder));
+  return heads.pipe(Stream.mapAccumEffect(() => initial, validateHeadOrder));
 }
 
 /** Finds the first exact source-owned field that differs from a requirement. */
@@ -191,7 +191,7 @@ function indexTryoutHeads<E, R>(
   );
   return validateTryoutHeadStream(heads).pipe(
     Stream.runFoldEffect(
-      new Map<string, QuestionHead>(),
+      () => new Map<string, QuestionHead>(),
       (headsByIdentity, head) => {
         if (!activeRoots.has(questionRoot(head.contentKey))) {
           return Effect.succeed(headsByIdentity);
@@ -271,7 +271,7 @@ export function bindTryoutHeads<E, R>(
   const requirements = makeTryoutHeadRequirements(placements);
   return Stream.unwrap(
     validatePlacementPairs(placements).pipe(
-      Effect.zipRight(indexTryoutHeads(requirements, heads)),
+      Effect.andThen(indexTryoutHeads(requirements, heads)),
       Effect.map((headsByIdentity) =>
         Stream.fromIterable([...placements].sort(compareTryoutPlacements)).pipe(
           Stream.mapEffect((placement) =>

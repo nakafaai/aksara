@@ -1,4 +1,4 @@
-import { Either, ParseResult, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { AppLocaleSchema } from "#contracts/locale";
@@ -16,7 +16,7 @@ import {
 describe("program snapshot row contract", () => {
   it("canonicalizes both row kinds and optional program fields", () => {
     const base = makeTestProgram(1);
-    const complete = Schema.decodeUnknownSync(LearningProgramSchema)({
+    const complete = Schema.decodeSync(LearningProgramSchema)({
       ...base,
       provider: { ...base.provider, homeCountry: "ID" },
       recommendedCountry: "ID",
@@ -32,7 +32,7 @@ describe("program snapshot row contract", () => {
         startsAt: "2026-01-01",
       },
     });
-    const route = Schema.decodeUnknownSync(CurriculumRouteSchema)(
+    const route = Schema.decodeSync(CurriculumRouteSchema)(
       makeTestCurriculumRoot(base, AppLocaleSchema.make("en"))
     );
     expect(JSON.parse(canonicalizeLearningProgram(base))).not.toHaveProperty(
@@ -53,14 +53,14 @@ describe("program snapshot row contract", () => {
 
   it("rejects duplicated or unordered translation locales", () => {
     const program = makeTestProgram(1);
-    const result = Schema.decodeUnknownEither(LearningProgramSchema)({
+    const result = Schema.decodeUnknownExit(LearningProgramSchema)({
       ...program,
       translations: [program.translations[1], program.translations[0]],
     });
-    if (Either.isRight(result)) {
+    if (Exit.isSuccess(result)) {
       throw new Error("Expected unordered program translations.");
     }
-    expect(ParseResult.TreeFormatter.formatErrorSync(result.left)).toContain(
+    expect(String(result.cause)).toContain(
       "Program translations must use unique canonical app-locale order."
     );
   });

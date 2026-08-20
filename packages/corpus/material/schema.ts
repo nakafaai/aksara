@@ -10,19 +10,23 @@ import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSlugMapSchema } from "#corpus/route/schema";
 
 const MaterialSlugSchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab, {
-    description: "Lowercase kebab-case material segment.",
-    identifier: "MaterialSlug",
-    message: () => "Invalid material slug.",
-  })
+  Schema.check(
+    Schema.makeFilter(isLowerKebab, {
+      description: "Lowercase kebab-case material segment.",
+      identifier: "MaterialSlug",
+      message: "Invalid material slug.",
+    })
+  )
 );
 
 const MaterialRouteSchema = Schema.String.pipe(
-  Schema.filter(isLowerKebabPath, {
-    description: "Slash-separated material source path.",
-    identifier: "MaterialRoute",
-    message: () => "Invalid material source path.",
-  })
+  Schema.check(
+    Schema.makeFilter(isLowerKebabPath, {
+      description: "Slash-separated material source path.",
+      identifier: "MaterialRoute",
+      message: "Invalid material source path.",
+    })
+  )
 );
 
 const LocalizedDescriptionSchema = Schema.Struct({
@@ -30,10 +34,10 @@ const LocalizedDescriptionSchema = Schema.Struct({
   title: Schema.String,
 });
 
-const LocaleDescriptionMapSchema = Schema.Record({
-  key: EmbeddedAppLocaleCodeSchema,
-  value: LocalizedDescriptionSchema,
-});
+const LocaleDescriptionMapSchema = Schema.Record(
+  EmbeddedAppLocaleCodeSchema,
+  LocalizedDescriptionSchema
+);
 
 /** One ordered localized lesson section in a material source. */
 export const LessonMaterialSectionSchema = Schema.Struct({
@@ -70,7 +74,7 @@ export class LessonMaterialError extends Schema.TaggedError<LessonMaterialError>
 export const defineLessonMaterial = Effect.fn(
   "AksaraCorpus.defineLessonMaterial"
 )(function* (input: LessonMaterialSourceInput) {
-  return yield* Schema.decodeUnknown(LessonMaterialSourceSchema)(input, {
+  return yield* Schema.decodeEffect(LessonMaterialSourceSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

@@ -13,18 +13,18 @@ export function makeIncoherentResults(
 ) {
   const [compiled] = ready.result.results;
   const artifacts = [
-    Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+    Schema.decodeSync(SignedContentArtifactSchema)({
       ...compiled.artifact,
       payload: {
         ...compiled.artifact.payload,
         contentKey: `${compiled.artifact.payload.contentKey}-mismatch`,
       },
     }),
-    Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+    Schema.decodeSync(SignedContentArtifactSchema)({
       ...compiled.artifact,
       payload: { ...compiled.artifact.payload, artifactLocale: "id" },
     }),
-    Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+    Schema.decodeSync(SignedContentArtifactSchema)({
       ...compiled.artifact,
       payload: {
         ...compiled.artifact.payload,

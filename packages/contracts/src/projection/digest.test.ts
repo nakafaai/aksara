@@ -1,6 +1,7 @@
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createProjectionDigest,
@@ -12,9 +13,7 @@ import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
-  "test-release-projection"
-);
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-projection");
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -53,7 +52,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 /** Builds one unmistakably test-only material projection. */
 function projection(contentKey = "test:projection") {
-  return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  return Schema.decodeSync(MaterialLessonProjectionSchema)({
     appLocale: "en",
     artifactLocale: "en",
     contentKey,

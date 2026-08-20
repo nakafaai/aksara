@@ -24,12 +24,12 @@ import {
   validateArtifactForItem,
 } from "#publisher/release-validation";
 
-type ArtifactVerificationError = Effect.Effect.Error<
+type ArtifactVerificationError = Effect.Error<
   | ReturnType<typeof verifySignedContentArtifact>
   | ReturnType<typeof verifySignedContentArtifactIntegrity>
 >;
 
-type ArtifactVerificationContext = Effect.Effect.Context<
+type ArtifactVerificationContext = Effect.Services<
   | ReturnType<typeof verifySignedContentArtifact>
   | ReturnType<typeof verifySignedContentArtifactIntegrity>
 >;
@@ -55,7 +55,7 @@ const DerivedRollbackUpsertItemSchema = Schema.Struct({
 });
 
 /** Strict disk-replay contract for one authenticated rollback state. */
-export const DerivedRollbackStateSchema = Schema.Union(
+export const DerivedRollbackStateSchema = Schema.Union([
   Schema.Struct({
     item: DerivedRollbackDeleteItemSchema,
     kind: Schema.Literal("delete"),
@@ -65,8 +65,8 @@ export const DerivedRollbackStateSchema = Schema.Union(
     item: DerivedRollbackUpsertItemSchema,
     kind: Schema.Literal("upsert"),
     projection: ContentProjectionSchema,
-  })
-);
+  }),
+]);
 export type DerivedRollbackState = typeof DerivedRollbackStateSchema.Type;
 
 /** Current and prior full states derived from one target transition. */

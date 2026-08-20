@@ -1,4 +1,3 @@
-import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
@@ -7,8 +6,8 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";

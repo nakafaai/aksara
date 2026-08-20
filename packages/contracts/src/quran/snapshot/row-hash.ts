@@ -17,7 +17,7 @@ const ROW_DOMAIN = "nakafa.aksara.quran-row";
 /** Node could not compute a deterministic Quran row identity. */
 export class QuranRowHashError extends Schema.TaggedError<QuranRowHashError>()(
   "QuranRowHashError",
-  { scope: Schema.Literal("digest", "row") }
+  { scope: Schema.Literals(["digest", "row"]) }
 ) {}
 
 /** Serializes one current translation list in signed field order. */

@@ -1,4 +1,3 @@
-import { FileSystem, Path } from "@effect/platform";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
@@ -8,8 +7,14 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, Schema } from "effect";
-
+import {
+  Effect,
+  Array as EffectArray,
+  FileSystem,
+  Option,
+  Path,
+  Schema,
+} from "effect";
 import { decodeArticlePreviewEntries } from "#corpus/articles/preview";
 import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import { decodeMaterialPreviewEntries } from "#corpus/material/preview";
@@ -39,8 +44,8 @@ export class CandidatePreviewInventoryError extends Schema.TaggedError<Candidate
   "CandidatePreviewInventoryError",
   {
     cause: Schema.Unknown,
-    family: Schema.Literal("article", "material", "question"),
-    phase: Schema.Literal("files", "ownership"),
+    family: Schema.Literals(["article", "material", "question"]),
+    phase: Schema.Literals(["files", "ownership"]),
   }
 ) {}
 
@@ -90,10 +95,12 @@ const readCandidatePaths = Effect.fn("AksaraCorpus.readCandidatePreviewPaths")(
       (sourcePath) => {
         const appLocale = candidateBodyLocale(family, sourcePath);
         if (appLocale === undefined) {
-          return Effect.succeed<CandidateBodyPath | undefined>(undefined);
+          return Effect.succeed(Option.none<CandidateBodyPath>());
         }
-        return Schema.decodeUnknown(CorpusSourcePathSchema)(sourcePath).pipe(
-          Effect.map((decoded) => ({ appLocale, sourcePath: decoded })),
+        return Schema.decodeEffect(CorpusSourcePathSchema)(sourcePath).pipe(
+          Effect.map((decoded) =>
+            Option.some({ appLocale, sourcePath: decoded })
+          ),
           Effect.mapError(
             (cause) =>
               new CandidatePreviewInventoryError({
@@ -106,13 +113,9 @@ const readCandidatePaths = Effect.fn("AksaraCorpus.readCandidatePreviewPaths")(
       },
       { concurrency: 16 }
     );
-    return candidates
-      .filter(
-        (candidate): candidate is CandidateBodyPath => candidate !== undefined
-      )
-      .sort((left, right) =>
-        compareCodeUnits(left.sourcePath, right.sourcePath)
-      );
+    return EffectArray.getSomes(candidates).sort((left, right) =>
+      compareCodeUnits(left.sourcePath, right.sourcePath)
+    );
   }
 );
 

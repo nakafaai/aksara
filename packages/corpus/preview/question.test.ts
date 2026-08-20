@@ -1,12 +1,11 @@
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Layer } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Layer, Path } from "effect";
 import { selectQuestion } from "#corpus/preview/question";
 import {
   candidateQuestionChoicesSource,

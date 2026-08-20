@@ -185,7 +185,7 @@ export const retainedSnapshotId =
 
 /** Decodes one test-owned immutable envelope through the frozen schema. */
 export function decodeHistoricalEnvelope(manifest: unknown) {
-  return Schema.decodeUnknownEither(HistoricalSignedContentReleaseSchema)(
+  return Schema.decodeUnknownExit(HistoricalSignedContentReleaseSchema)(
     { ...retainedRelease, manifest },
     { onExcessProperty: "error" }
   );

@@ -4,7 +4,7 @@ import { Schema } from "effect";
 export class NakafaAppError extends Schema.TaggedError<NakafaAppError>()(
   "NakafaAppError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "auth",
       "body",
       "cache",
@@ -17,10 +17,10 @@ export class NakafaAppError extends Schema.TaggedError<NakafaAppError>()(
       "redirect",
       "start",
       "status",
-      "timeout"
-    ),
+      "timeout",
+    ]),
     retryable: Schema.Boolean,
-    status: Schema.optional(Schema.Number.pipe(Schema.int())),
+    status: Schema.optional(Schema.Finite.pipe(Schema.check(Schema.isInt()))),
   }
 ) {}
 

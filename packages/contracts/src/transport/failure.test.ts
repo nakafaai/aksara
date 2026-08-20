@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   PUBLICATION_FAILURE_STATUSES,
@@ -14,8 +14,8 @@ const snapshotId = `sha256:${"a".repeat(64)}`;
 
 /** Strictly checks one transport failure without allowing extra properties. */
 function accepts(input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(PublicationFailureSchema)(input, {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(PublicationFailureSchema)(input, {
       onExcessProperty: "error",
     })
   );
@@ -122,7 +122,7 @@ describe("publication failures", () => {
     )(Object.keys(PUBLICATION_FAILURE_STATUSES));
     for (const code of codes) {
       expect(
-        Schema.decodeUnknownSync(PublicationFailureStatusSchema)(
+        Schema.decodeSync(PublicationFailureStatusSchema)(
           publicationFailureStatus(code)
         )
       ).toBe(PUBLICATION_FAILURE_STATUSES[code]);
@@ -226,9 +226,7 @@ describe("publication failures", () => {
     ]) {
       expect(accepts(failure)).toBe(false);
     }
-    const invalidStaleBase = Schema.decodeUnknownEither(
-      PublicationStaleBaseSchema
-    )({
+    const invalidStaleBase = Schema.decodeExit(PublicationStaleBaseSchema)({
       activeReleaseId: releaseId,
       code: "CONTENT_RELEASE_STALE_BASE",
       expectedBaseReleaseId: null,
@@ -236,9 +234,9 @@ describe("publication failures", () => {
       operation: "activate",
       releaseId,
     });
-    expect(Either.isLeft(invalidStaleBase)).toBe(true);
-    if (Either.isLeft(invalidStaleBase)) {
-      expect(String(invalidStaleBase.left)).toContain(
+    expect(Exit.isFailure(invalidStaleBase)).toBe(true);
+    if (Exit.isFailure(invalidStaleBase)) {
+      expect(String(invalidStaleBase.cause)).toContain(
         "Expected the active release to differ from the requested base and candidate."
       );
     }

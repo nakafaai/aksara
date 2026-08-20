@@ -1,16 +1,16 @@
 import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientError,
-  HttpClientRequest,
-} from "@effect/platform";
-import {
   type ContentCacheRequest,
   makeContentCacheRequest,
 } from "@nakafa/aksara-contracts/cache/content";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientError,
+  HttpClientRequest,
+} from "effect/unstable/http";
 import { invalidateContentCache } from "#cli/cache/exchange";
 import { captureClient, requestJson, runClient, webResponse } from "#test/http";
 
@@ -154,7 +154,9 @@ describe("cache invalidation exchange", () => {
   it("rejects network and redirected request identities", async () => {
     const network = HttpClient.make((request) =>
       Effect.fail(
-        new HttpClientError.RequestError({ reason: "Transport", request })
+        new HttpClientError.HttpClientError({
+          reason: new HttpClientError.TransportError({ request }),
+        })
       )
     );
     const redirected = captureClient(() =>

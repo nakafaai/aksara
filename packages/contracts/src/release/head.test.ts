@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import type { AppLocaleCode } from "#contracts/locale";
 import {
@@ -32,7 +32,7 @@ function materialHead(
   contentKey: string,
   artifactLocale: AppLocaleCode = "en"
 ) {
-  return Schema.decodeUnknownSync(MaterialHeadSchema)({
+  return Schema.decodeSync(MaterialHeadSchema)({
     ...headIdentity(contentKey, artifactLocale),
     delivery: "public",
     family: "material",
@@ -44,7 +44,7 @@ function materialHead(
 
 /** Builds one strict article-head sample at a deterministic identity. */
 function articleHead(contentKey: string, artifactLocale: AppLocaleCode = "en") {
-  return Schema.decodeUnknownSync(ArticleHeadSchema)({
+  return Schema.decodeSync(ArticleHeadSchema)({
     ...headIdentity(contentKey, artifactLocale),
     delivery: "public",
     family: "article",
@@ -59,7 +59,7 @@ function questionHead(
   contentKey: string,
   artifactLocale: AppLocaleCode = "en"
 ) {
-  return Schema.decodeUnknownSync(QuestionHeadSchema)({
+  return Schema.decodeSync(QuestionHeadSchema)({
     ...headIdentity(contentKey, artifactLocale),
     delivery: "authenticated",
     family: "question",
@@ -69,16 +69,16 @@ function questionHead(
 }
 
 /** Strictly checks one schema without accepting unknown wire fields. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
 describe("content head pages", () => {
   it("canonically serializes routed and route-free heads", () => {
     const routed = materialHead("test:routed");
-    const routeFree = Schema.decodeUnknownSync(MaterialHeadSchema)({
+    const routeFree = Schema.decodeSync(MaterialHeadSchema)({
       ...routed,
       publicPath: undefined,
     });
@@ -212,7 +212,7 @@ describe("content head pages", () => {
         heads: [articleHead("articles/politics/test")],
       })
     ).toBe(false);
-    const unordered = Schema.decodeUnknownEither(HeadPageSchema)({
+    const unordered = Schema.decodeExit(HeadPageSchema)({
       ...base,
       family: "article",
       heads: [
@@ -220,8 +220,8 @@ describe("content head pages", () => {
         articleHead("articles/politics/a"),
       ],
     });
-    expect(Either.isLeft(unordered)).toBe(true);
-    expect(Either.isLeft(unordered) ? String(unordered.left) : "").toContain(
+    expect(Exit.isFailure(unordered)).toBe(true);
+    expect(Exit.isFailure(unordered) ? String(unordered.cause) : "").toContain(
       "Expected canonical article heads with coherent cursor progress."
     );
   });
@@ -241,11 +241,11 @@ describe("content head pages", () => {
         heads: [materialHead("test:b"), materialHead("test:a")],
       })
     ).toBe(false);
-    const error = Schema.decodeUnknownEither(HeadPageSchema)({
+    const error = Schema.decodeUnknownExit(HeadPageSchema)({
       ...page,
       heads: [materialHead("test:b"), materialHead("test:a")],
     });
-    expect(Either.isLeft(error) ? String(error.left) : "").toContain(
+    expect(Exit.isFailure(error) ? String(error.cause) : "").toContain(
       "Expected canonical material heads with coherent cursor progress."
     );
     expect(
@@ -282,14 +282,14 @@ describe("content head pages", () => {
   });
 
   it("rejects public routes on question heads", () => {
-    const routeError = Schema.decodeUnknownEither(QuestionHeadSchema)({
+    const routeError = Schema.decodeExit(QuestionHeadSchema)({
       ...questionHead("question-bank/test/question"),
       publicPath: "questions/test",
     });
-    expect(Either.isLeft(routeError) ? String(routeError.left) : "").toContain(
-      "Expected question heads to remain route-free."
-    );
-    const pageError = Schema.decodeUnknownEither(HeadPageSchema)({
+    expect(
+      Exit.isFailure(routeError) ? String(routeError.cause) : ""
+    ).toContain("Expected question heads to remain route-free.");
+    const pageError = Schema.decodeExit(HeadPageSchema)({
       activeManifestHash: manifestHash,
       activeReleaseId: releaseId,
       cursor: null,
@@ -298,7 +298,7 @@ describe("content head pages", () => {
       heads: [],
       nextCursor: null,
     });
-    expect(Either.isLeft(pageError) ? String(pageError.left) : "").toContain(
+    expect(Exit.isFailure(pageError) ? String(pageError.cause) : "").toContain(
       "Expected canonical question heads with coherent cursor progress."
     );
   });

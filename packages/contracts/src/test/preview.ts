@@ -27,9 +27,7 @@ const questionRoot =
   "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
 
 /** Exact visible try-out target used only by preview contract tests. */
-export const testPreviewTarget = Schema.decodeUnknownSync(
-  TryoutPreviewTargetSchema
-)({
+export const testPreviewTarget = Schema.decodeSync(TryoutPreviewTargetSchema)({
   exam: {
     appLocale: "en",
     countryKey: "indonesia",
@@ -115,9 +113,7 @@ export const testPreviewTarget = Schema.decodeUnknownSync(
   },
 });
 
-const testAssessedPreviewTarget = Schema.decodeUnknownSync(
-  TryoutPreviewTargetSchema
-)({
+const testAssessedPreviewTarget = Schema.decodeSync(TryoutPreviewTargetSchema)({
   ...testPreviewTarget,
   exam: { ...testPreviewTarget.exam, appLocale: "de" },
   placement: {
@@ -133,7 +129,7 @@ const testAssessedPreviewTarget = Schema.decodeUnknownSync(
 });
 
 /** Exact article document used only by preview contract tests. */
-export const testArticleDocument = Schema.decodeUnknownSync(
+export const testArticleDocument = Schema.decodeSync(
   ArticlePreviewDocumentSchema
 )({
   delivery: "public",
@@ -154,7 +150,7 @@ export const testArticleDocument = Schema.decodeUnknownSync(
 });
 
 /** Exact material document used only by preview contract tests. */
-export const testMaterialDocument = Schema.decodeUnknownSync(
+export const testMaterialDocument = Schema.decodeSync(
   MaterialPreviewDocumentSchema
 )({
   delivery: "public",
@@ -192,7 +188,7 @@ const answerIdentity = {
 } as const;
 
 /** Exact question prompt document used only by preview contract tests. */
-export const testPromptDocument = Schema.decodeUnknownSync(
+export const testPromptDocument = Schema.decodeSync(
   QuestionPromptPreviewDocumentSchema
 )({
   delivery: "authenticated",
@@ -204,7 +200,7 @@ export const testPromptDocument = Schema.decodeUnknownSync(
 });
 
 /** Exact entitled answer document used only by preview contract tests. */
-export const testAnswerDocument = Schema.decodeUnknownSync(
+export const testAnswerDocument = Schema.decodeSync(
   QuestionAnswerPreviewDocumentSchema
 )({
   delivery: "entitled",
@@ -216,7 +212,7 @@ export const testAnswerDocument = Schema.decodeUnknownSync(
 });
 
 /** German answer paired with the immutable English assessed-language prompt. */
-export const testAssessedAnswerDocument = Schema.decodeUnknownSync(
+export const testAssessedAnswerDocument = Schema.decodeSync(
   QuestionAnswerPreviewDocumentSchema
 )({
   ...testAnswerDocument,
@@ -232,21 +228,21 @@ const metadata = {
 };
 
 /** Exact article projection used only by preview contract tests. */
-export const testArticleProjection = Schema.decodeUnknownSync(
-  ArticleProjectionSchema
-)({
-  ...testArticleDocument.route,
-  categoryTitle: "Politics",
-  kind: "article",
-  metadata,
-  official: true,
-  parentPath: "articles/politics",
-  references: [],
-  sitemap: true,
-});
+export const testArticleProjection = Schema.decodeSync(ArticleProjectionSchema)(
+  {
+    ...testArticleDocument.route,
+    categoryTitle: "Politics",
+    kind: "article",
+    metadata,
+    official: true,
+    parentPath: "articles/politics",
+    references: [],
+    sitemap: true,
+  }
+);
 
 /** Exact material projection used only by preview contract tests. */
-export const testMaterialProjection = Schema.decodeUnknownSync(
+export const testMaterialProjection = Schema.decodeSync(
   MaterialLessonProjectionSchema
 )({
   ...testMaterialDocument.route,
@@ -257,7 +253,7 @@ export const testMaterialProjection = Schema.decodeUnknownSync(
 });
 
 /** Exact question prompt projection used only by preview contract tests. */
-export const testPromptProjection = Schema.decodeUnknownSync(
+export const testPromptProjection = Schema.decodeSync(
   QuestionPromptProjectionSchema
 )({
   ...promptIdentity,
@@ -270,7 +266,7 @@ export const testPromptProjection = Schema.decodeUnknownSync(
 });
 
 /** Invalid German prompt fixture for an English assessed-language document. */
-export const testGermanPromptProjection = Schema.decodeUnknownSync(
+export const testGermanPromptProjection = Schema.decodeSync(
   QuestionPromptProjectionSchema
 )({
   ...testPromptProjection,
@@ -278,7 +274,7 @@ export const testGermanPromptProjection = Schema.decodeUnknownSync(
 });
 
 /** Exact answer projection used only by preview contract tests. */
-export const testAnswerProjection = Schema.decodeUnknownSync(
+export const testAnswerProjection = Schema.decodeSync(
   QuestionAnswerProjectionSchema
 )({
   ...answerIdentity,
@@ -287,7 +283,7 @@ export const testAnswerProjection = Schema.decodeUnknownSync(
 });
 
 /** German answer projection paired with the immutable English test prompt. */
-export const testAssessedAnswerProjection = Schema.decodeUnknownSync(
+export const testAssessedAnswerProjection = Schema.decodeSync(
   QuestionAnswerProjectionSchema
 )({
   ...testAnswerProjection,

@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -17,6 +16,7 @@ import {
   type PreparedQuranSnapshot,
   prepareQuranSnapshot,
 } from "@nakafa/aksara-corpus/quran/snapshot";
+import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import {
@@ -30,27 +30,25 @@ export interface ReleaseSnapshotInput<E, R> {
   readonly families: PublicationScope["snapshots"];
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays the complete desired question catalog used by try-out placement. */
-  readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
+  readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
 }
 
 /** Replayable changed snapshots selected by one global release. */
 export interface PreparedReleaseSnapshots {
   /** Replays changed manifests in canonical program, Quran, try-out order. */
-  readonly manifests: () => Stream.Stream<ContentSnapshotManifest>;
+  readonly manifests: Stream.Stream<ContentSnapshotManifest>;
   /** Replays only rows owned by changed structured snapshots. */
-  readonly rows: () => Stream.Stream<
+  readonly rows: Stream.Stream<
     ContentSnapshotRow,
     ProgramRowError | PreparedQuranRowError | ReplaySpoolError
   >;
 }
 
-type PrepareQuranSnapshotError = Effect.Effect.Error<
+type PrepareQuranSnapshotError = Effect.Error<
   ReturnType<typeof prepareQuranSnapshot>
 >;
-type PreparedQuranRowError = Stream.Stream.Error<
-  ReturnType<PreparedQuranSnapshot["rows"]>
->;
+type PreparedQuranRowError = Stream.Error<PreparedQuranSnapshot["rows"]>;
 /** Every expected failure before structured release sources are replayable. */
 export type PrepareReleaseSnapshotError<E> =
   | E
@@ -118,41 +116,36 @@ export const prepareReleaseSnapshots: <E, R>(
     tryout !== undefined &&
     replacesActiveSnapshot(input.previousSnapshots, tryout.manifest);
   /** Replays only changed family manifests in signed canonical order. */
-  const manifests = () =>
-    Stream.fromIterable([
-      ...(programChanged && programManifest ? [programManifest] : []),
-      ...(quranChanged && quranManifest ? [quranManifest] : []),
-      ...(tryoutChanged && tryout ? [tryout.manifest] : []),
-    ]);
+  const manifests = Stream.fromIterable([
+    ...(programChanged && programManifest ? [programManifest] : []),
+    ...(quranChanged && quranManifest ? [quranManifest] : []),
+    ...(tryoutChanged && tryout ? [tryout.manifest] : []),
+  ]);
   /** Replays rows only for replacement manifests owned by this release. */
-  const rows = () => {
+  const rows = (() => {
     const programRows =
       programChanged && program
-        ? program
-            .rows()
-            .pipe(
-              Stream.map(
-                (record) =>
-                  ({ family: "program", record }) satisfies ContentSnapshotRow
-              )
+        ? program.rows.pipe(
+            Stream.map(
+              (record) =>
+                ({ family: "program", record }) satisfies ContentSnapshotRow
             )
+          )
         : Stream.empty;
     const quranRows =
       quranChanged && quran
-        ? quran
-            .rows()
-            .pipe(
-              Stream.map(
-                (record) =>
-                  ({ family: "quran", record }) satisfies ContentSnapshotRow
-              )
+        ? quran.rows.pipe(
+            Stream.map(
+              (record) =>
+                ({ family: "quran", record }) satisfies ContentSnapshotRow
             )
+          )
         : Stream.empty;
-    const tryoutRows = tryoutChanged && tryout ? tryout.rows() : Stream.empty;
+    const tryoutRows = tryoutChanged && tryout ? tryout.rows : Stream.empty;
     return programRows.pipe(
       Stream.concat(quranRows),
       Stream.concat(tryoutRows)
     );
-  };
+  })();
   return { manifests, rows };
 });

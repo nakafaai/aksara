@@ -51,7 +51,7 @@ export const verificationRendererManifest = await Effect.runPromise(
 );
 
 /** Complete current release manifest used by authenticity tests. */
-export const verificationManifest = Schema.decodeUnknownSync(
+export const verificationManifest = Schema.decodeSync(
   ContentReleaseManifestSchema
 )({
   activeAppLocales: ["en", "id"],

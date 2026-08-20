@@ -1,5 +1,4 @@
-import { Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   type QuestionHead,
@@ -11,8 +10,9 @@ import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/plac
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
-import { Effect, Stream } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path, Stream } from "effect";
+import { vi } from "vitest";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
 import { testFileLayer } from "#test/files";
 import {
@@ -46,7 +46,7 @@ vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
   return {
     loadTryoutContent: () =>
       contentState.current === undefined
-        ? RuntimeEffect.dieMessage("Expected configured test content.")
+        ? RuntimeEffect.die(new Error("Expected configured test content."))
         : RuntimeEffect.succeed(contentState.current),
   };
 });
@@ -56,7 +56,7 @@ const { loadTryoutContent: loadRealTryoutContent } = await vi.importActual<
   typeof import("@nakafa/aksara-corpus/tryout/content")
 >("@nakafa/aksara-corpus/tryout/content");
 const completeTryoutContent = await Effect.runPromise(
-  loadRealTryoutContent(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
+  loadRealTryoutContent(checkoutRoot).pipe(Effect.provide(NodeServices.layer))
 );
 const { catalog: tryoutCatalog, placements: tryoutPlacements } =
   selectTryoutSlice(
@@ -92,12 +92,12 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
       Effect.gen(function* () {
         const prepared = yield* prepareTryoutSnapshot({
           checkoutRoot,
-          questionHeads: () => Stream.fromIterable(inputHeads),
+          questionHeads: Stream.fromIterable(inputHeads),
           rendererManifest,
         });
         const [first, second] = yield* Effect.all([
-          prepared.rows().pipe(Stream.runCollect),
-          prepared.rows().pipe(Stream.runCollect),
+          prepared.rows.pipe(Stream.runCollect),
+          prepared.rows.pipe(Stream.runCollect),
         ]);
         return {
           first: [...first],
@@ -112,15 +112,14 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
 /** Returns one typed preparation failure without a FiberFailure wrapper. */
 function reject(input: {
   /** Supplies a replayable desired-head source when testing source failures. */
-  readonly questionHeads?: () => Stream.Stream<QuestionHead, string>;
+  readonly questionHeads?: Stream.Stream<QuestionHead, string>;
   readonly renderer?: unknown;
 }) {
   return Effect.runPromise(
     Effect.scoped(
       prepareTryoutSnapshot({
         checkoutRoot,
-        questionHeads:
-          input.questionHeads ?? (() => Stream.fromIterable(tryoutHeads)),
+        questionHeads: input.questionHeads ?? Stream.fromIterable(tryoutHeads),
         rendererManifest: input.renderer ?? rendererManifest,
       })
     ).pipe(
@@ -187,7 +186,7 @@ describe("try-out snapshot preparation", () => {
   it("preserves renderer and desired-head source failures", async () => {
     const rendererError = await reject({ renderer: {} });
     const sourceError = await reject({
-      questionHeads: () => Stream.fail("test-head-source"),
+      questionHeads: Stream.fail("test-head-source"),
     });
 
     expect(rendererError).toMatchObject({
@@ -207,8 +206,9 @@ describe("try-out snapshot preparation", () => {
       sourcePath: tryoutHeads[1]?.sourcePath ?? first.sourcePath,
     });
     const error = await reject({
-      questionHeads: () =>
-        Stream.fromIterable([altered, ...rest].sort(compareContentHeads)),
+      questionHeads: Stream.fromIterable(
+        [altered, ...rest].sort(compareContentHeads)
+      ),
     });
 
     expect(error).toMatchObject({

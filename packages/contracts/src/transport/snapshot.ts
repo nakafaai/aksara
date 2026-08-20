@@ -8,9 +8,13 @@ import {
 import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
 import { MAX_SNAPSHOT_BATCH_COUNT } from "#contracts/transport/limits";
 
-const BatchIndexSchema = Schema.Int.pipe(Schema.nonNegative());
-const BatchCountSchema = Schema.Int.pipe(Schema.nonNegative());
-const OutcomeCountSchema = Schema.Literal(0, 1);
+const BatchIndexSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
+const BatchCountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
+const OutcomeCountSchema = Schema.Literals([0, 1]);
 
 const StageSnapshotFields = {
   releaseId: ReleaseIdSchema,
@@ -30,7 +34,7 @@ export type StageSnapshotRequest = typeof StageSnapshotRequestSchema.Type;
 
 const SnapshotRowBatchSchema = Schema.NonEmptyArray(
   ContentSnapshotRowSchema
-).pipe(Schema.maxItems(MAX_SNAPSHOT_BATCH_COUNT));
+).pipe(Schema.check(Schema.isMaxLength(MAX_SNAPSHOT_BATCH_COUNT)));
 
 const StageSnapshotBatchFields = {
   batchIndex: BatchIndexSchema,
@@ -61,10 +65,12 @@ function hasBoundSnapshotRows(input: {
 }
 
 const BoundSnapshotBatchSchema = Schema.Struct(StageSnapshotBatchFields).pipe(
-  Schema.filter(hasBoundSnapshotRows, {
-    message: () =>
-      "Expected snapshot rows bound to one family and snapshot identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundSnapshotRows, {
+      message:
+        "Expected snapshot rows bound to one family and snapshot identity.",
+    })
+  )
 );
 
 /** Canonical input for one bounded structured-snapshot row batch. */
@@ -76,10 +82,12 @@ export const StageSnapshotBatchRequestSchema = Schema.Struct({
   ...StageSnapshotBatchFields,
   operation: Schema.Literal("stageSnapshotBatch"),
 }).pipe(
-  Schema.filter(hasBoundSnapshotRows, {
-    message: () =>
-      "Expected snapshot rows bound to one family and snapshot identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundSnapshotRows, {
+      message:
+        "Expected snapshot rows bound to one family and snapshot identity.",
+    })
+  )
 );
 export type StageSnapshotBatchRequest =
   typeof StageSnapshotBatchRequestSchema.Type;
@@ -104,9 +112,10 @@ export const StageSnapshotReceiptSchema = Schema.Struct({
   snapshotId: Sha256HashSchema,
   unchanged: OutcomeCountSchema,
 }).pipe(
-  Schema.filter(({ created, unchanged }) => created + unchanged === 1, {
-    message: () =>
-      "Expected exactly one created or unchanged snapshot manifest.",
-  })
+  Schema.check(
+    Schema.makeFilter(({ created, unchanged }) => created + unchanged === 1, {
+      message: "Expected exactly one created or unchanged snapshot manifest.",
+    })
+  )
 );
 export type StageSnapshotReceipt = typeof StageSnapshotReceiptSchema.Type;

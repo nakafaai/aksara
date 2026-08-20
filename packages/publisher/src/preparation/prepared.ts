@@ -19,13 +19,13 @@ const PreparedContentReleaseTypeId: unique symbol = Symbol(
 interface PreparedContentReleaseBase<E, R, Projection extends ContentProjection>
   extends PreparedSnapshotSources<E, R> {
   /** Replays canonical items authenticated by the immutable manifest. */
-  readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
+  readonly items: Stream.Stream<ContentReleaseItem, E, R>;
   readonly manifest: ContentReleaseManifest;
   /** Replays canonical projections authenticated by the same manifest. */
-  readonly projections: () => Stream.Stream<Projection, E, R>;
+  readonly projections: Stream.Stream<Projection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays canonical route changes authenticated by the same manifest. */
-  readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
+  readonly routes: Stream.Stream<ContentRouteItem, E, R>;
   /** Reuses one exact authenticated candidate envelope during deterministic rebuild. */
   readonly storedRelease: SignedContentRelease | null;
   readonly [PreparedContentReleaseTypeId]: true;
@@ -41,7 +41,7 @@ export interface PreparedGitRelease<E, R>
 export interface PreparedRollbackRelease<E, R>
   extends PreparedContentReleaseBase<E, R, ContentProjection> {
   /** Replays exact old signed envelopes for every ordered upsert item. */
-  readonly artifacts: () => Stream.Stream<SignedContentArtifact, E, R>;
+  readonly artifacts: Stream.Stream<SignedContentArtifact, E, R>;
   readonly kind: "rollback";
 }
 

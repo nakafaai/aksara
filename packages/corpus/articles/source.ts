@@ -1,6 +1,5 @@
-import { FileSystem, Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 
 import { dynasticPoliticsAsianValuesArticle } from "#corpus/articles/politics/dynastic-politics/asian-values/source";
 import { flawedLegalGeopoliticsArticle } from "#corpus/articles/politics/flawed-legal/geopolitics/source";
@@ -33,7 +32,7 @@ export const decodeArticleSources = Effect.fn(
   "AksaraCorpus.decodeArticleSources"
 )(function* (input?: unknown) {
   if (input !== undefined) {
-    return yield* Schema.decodeUnknown(Schema.Array(ArticleSourceSchema))(
+    return yield* Schema.decodeUnknownEffect(Schema.Array(ArticleSourceSchema))(
       input,
       { onExcessProperty: "error" }
     ).pipe(

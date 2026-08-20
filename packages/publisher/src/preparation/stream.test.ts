@@ -19,8 +19,8 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
 import { materialGraph } from "#test/graph";
@@ -99,8 +99,8 @@ function transition(record: unknown, identity = baseRecord.change) {
   };
 }
 
-/** Runs one replay factory through the canonical derived stream. */
-function derive<E, R>(records: () => Stream.Stream<unknown, E, R>) {
+/** Runs one replayable source through the canonical derived stream. */
+function derive<E, R>(records: Stream.Stream<unknown, E, R>) {
   return derivePreparedRecords({ records, releaseId }).pipe(Stream.runCollect);
 }
 
@@ -200,7 +200,7 @@ describe("derivePreparedRecords", () => {
   it.each(mismatchCases)("rejects %s incoherence", async (field, mutate) => {
     const candidate = mutate(baseRecord);
     const error = await Effect.runPromise(
-      derive(() => Stream.make(transition(candidate, candidate.change))).pipe(
+      derive(Stream.make(transition(candidate, candidate.change))).pipe(
         Effect.flip
       )
     );
@@ -216,7 +216,7 @@ describe("derivePreparedRecords", () => {
       sourceHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
     };
     const error = await Effect.runPromise(
-      derive(() =>
+      derive(
         Stream.make(
           transition({
             ...baseRecord,
@@ -236,10 +236,10 @@ describe("derivePreparedRecords", () => {
     const first = relocateRecord("test:stream:a", "subjects/test/shared");
     const second = relocateRecord("test:stream:b", "subjects/test/shared");
     const malformed = await Effect.runPromise(
-      derive(() => Stream.make(transition({ change: {} }))).pipe(Effect.flip)
+      derive(Stream.make(transition({ change: {} }))).pipe(Effect.flip)
     );
     const order = await Effect.runPromise(
-      derive(() =>
+      derive(
         Stream.make(
           transition(second, second.change),
           transition(first, first.change)
@@ -278,7 +278,7 @@ describe("derivePreparedRecords", () => {
     },
   ])("rejects a contradictory prior-state proof", async (record) => {
     const error = await Effect.runPromise(
-      derive(() => Stream.make(record)).pipe(Effect.flip)
+      derive(Stream.make(record)).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "PreparedContentCoherenceError",
@@ -286,18 +286,10 @@ describe("derivePreparedRecords", () => {
     });
   });
 
-  it("maps replay throws and preserves source stream failures", async () => {
-    /** Reproduces a replay factory that fails before producing its stream. */
-    const throwingRecords: () => Stream.Stream<unknown> = () => {
-      throw new Error("test replay failure");
-    };
-    const replay = await Effect.runPromise(
-      derive(throwingRecords).pipe(Effect.flip)
-    );
+  it("preserves source stream failures", async () => {
     const sourceFailure = await Effect.runPromise(
-      derive(() => Stream.fail("test-source-failure")).pipe(Effect.flip)
+      derive(Stream.fail("test-source-failure")).pipe(Effect.flip)
     );
-    expect(replay).toMatchObject({ _tag: "PreparedContentReplayError" });
     expect(sourceFailure).toBe("test-source-failure");
   });
 });

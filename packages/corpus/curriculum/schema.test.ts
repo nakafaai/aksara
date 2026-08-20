@@ -1,5 +1,5 @@
-import { Effect, Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -91,7 +91,7 @@ describe("curriculum schema", () => {
         ],
       }).pipe(Effect.flip)
     );
-    const emptyMaterial = Schema.decodeUnknownEither(CurriculumSourceSchema)({
+    const emptyMaterial = Schema.decodeUnknownExit(CurriculumSourceSchema)({
       programKey: "merdeka",
       tree: [
         {
@@ -105,7 +105,7 @@ describe("curriculum schema", () => {
 
     expect(invalidKey).toMatchObject({ _tag: "CurriculumDecodeError" });
     expect(String(invalidKey.cause)).toContain("Invalid curriculum node key.");
-    expect(Either.isLeft(emptyMaterial)).toBe(true);
+    expect(Exit.isFailure(emptyMaterial)).toBe(true);
   });
 
   it("reports duplicate identities anywhere in a recursive tree", async () => {

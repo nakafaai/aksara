@@ -5,7 +5,7 @@ import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 
 /** Builds one exact lesson source so tests change one identity at a time. */
 export function lessonMaterialSource() {
-  return Schema.decodeUnknownSync(LessonMaterialSourceSchema)({
+  return Schema.decodeSync(LessonMaterialSourceSchema)({
     assetRoot:
       "material/lesson/mathematics/function-composition-inverse-function",
     domain: "mathematics",
@@ -37,7 +37,7 @@ export function lessonMaterialSource() {
 
 /** Builds one generic material source for cross-domain projection tests. */
 export function earthScienceMaterialSource() {
-  return Schema.decodeUnknownSync(LessonMaterialSourceSchema)({
+  return Schema.decodeSync(LessonMaterialSourceSchema)({
     assetRoot: "material/lesson/earth-science/geology",
     domain: "earth-science",
     key: "lesson.earth-science.geology",

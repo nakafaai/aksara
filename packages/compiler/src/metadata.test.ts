@@ -1,9 +1,9 @@
 import { compile, createProcessor } from "@mdx-js/mdx";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
-import { describe, expect, it } from "vitest";
 import {
   extractMetadata,
   type MetadataCollector,

@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   CompiledContentPayloadSchema,
   ContentPublicationIdentitySchema,
@@ -75,7 +75,7 @@ describe("content", () => {
       )
     ).toBe(-1);
     expect(
-      Schema.decodeUnknownSync(ContentPublicationIdentitySchema)({
+      Schema.decodeSync(ContentPublicationIdentitySchema)({
         ...english,
         family: "material",
       })
@@ -83,10 +83,10 @@ describe("content", () => {
   });
 
   it("owns unambiguous content-head and public-route identities", () => {
-    const content = Schema.decodeUnknownSync(
+    const content = Schema.decodeSync(
       CompiledContentPayloadSchema.fields.contentKey
     )("test:content");
-    const publicPath = Schema.decodeUnknownSync(PublicPathSchema)(
+    const publicPath = Schema.decodeSync(PublicPathSchema)(
       "subjects/mathematics"
     );
 
@@ -133,7 +133,7 @@ describe("content", () => {
   });
 
   it("matches exact canonical artifact bytes and hashes", () => {
-    const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+    const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
       artifactLocale: "en",
       byteLength: 10,
       compiledCode: "return {};",
@@ -157,7 +157,7 @@ describe("content", () => {
     const artifactHash = `sha256:${createHash("sha256")
       .update(canonicalPayload)
       .digest("hex")}`;
-    const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+    const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
       artifactHash,
       keyId: "test-signing-key",
       payload,

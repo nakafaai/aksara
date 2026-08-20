@@ -64,7 +64,7 @@ export class MaterialDomainCatalogError extends Schema.TaggedError<MaterialDomai
 export class MaterialDomainConflictError extends Schema.TaggedError<MaterialDomainConflictError>()(
   "MaterialDomainConflictError",
   {
-    code: Schema.Literal("key", "route"),
+    code: Schema.Literals(["key", "route"]),
     key: MaterialDomainSchema,
     value: Schema.String,
   }
@@ -83,7 +83,7 @@ export class MaterialDomainMissingError extends Schema.TaggedError<MaterialDomai
 export const decodeMaterialDomains = Effect.fn(
   "AksaraCorpus.decodeMaterialDomains"
 )(function* (input: unknown = materialDomainSources) {
-  const descriptors = yield* Schema.decodeUnknown(
+  const descriptors = yield* Schema.decodeUnknownEffect(
     Schema.Array(MaterialDomainDescriptorSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(

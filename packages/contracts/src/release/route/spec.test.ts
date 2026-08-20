@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   ContentRouteChangeSchema,
@@ -10,21 +10,21 @@ import {
 const releaseId = "test-route";
 
 /** Strictly checks one schema without accepting unknown wire fields. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
 describe("content routes", () => {
   it("decodes and canonically serializes bind and delete changes", () => {
-    const bind = Schema.decodeUnknownSync(ContentRouteChangeSchema)({
+    const bind = Schema.decodeSync(ContentRouteChangeSchema)({
       appLocale: "en",
       contentKey: "test:route",
       operation: "bind",
       publicPath: "subjects/test/route",
     });
-    const deletion = Schema.decodeUnknownSync(ContentRouteChangeSchema)({
+    const deletion = Schema.decodeSync(ContentRouteChangeSchema)({
       appLocale: "id",
       operation: "delete",
       publicPath: "subjects/test/rute",
@@ -35,7 +35,7 @@ describe("content routes", () => {
       deletion
     );
 
-    const item = Schema.decodeUnknownSync(ContentRouteItemSchema)({
+    const item = Schema.decodeSync(ContentRouteItemSchema)({
       change: bind,
       index: 0,
       releaseId,

@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -50,7 +50,7 @@ const source = {
 
 describe("learning program contract", () => {
   it("decodes real localized program metadata and canonicalizes optional fields", () => {
-    const program = Schema.decodeUnknownSync(LearningProgramSchema)(source);
+    const program = Schema.decodeSync(LearningProgramSchema)(source);
     const canonical = canonicalizeLearningProgram(program);
 
     expect(JSON.parse(canonical)).toEqual(source);
@@ -59,7 +59,7 @@ describe("learning program contract", () => {
   });
 
   it("omits absent country and source dates from canonical bytes", () => {
-    const program = Schema.decodeUnknownSync(LearningProgramSchema)({
+    const program = Schema.decodeSync(LearningProgramSchema)({
       ...source,
       provider: { kind: "official", name: "Provider" },
       recommendedCountry: undefined,
@@ -87,7 +87,7 @@ describe("learning program contract", () => {
     });
     expect(canonicalizeLearningProgram(program)).not.toContain("reviewAfter");
 
-    const startsOnly = Schema.decodeUnknownSync(LearningProgramSchema)({
+    const startsOnly = Schema.decodeSync(LearningProgramSchema)({
       ...source,
       version: {
         label: "2026",
@@ -103,16 +103,14 @@ describe("learning program contract", () => {
   });
 
   it("requires localized program identity in canonical app-locale order", () => {
-    const canonical = Schema.decodeUnknownSync(LearningProgramSchema)(source);
+    const canonical = Schema.decodeSync(LearningProgramSchema)(source);
     const reordered = {
       ...canonical,
       translations: [canonical.translations[1], canonical.translations[0]],
     };
 
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(LearningProgramSchema)(reordered)
-      )
+      Exit.isFailure(Schema.decodeUnknownExit(LearningProgramSchema)(reordered))
     ).toBe(true);
   });
 
@@ -141,12 +139,12 @@ describe("learning program contract", () => {
       { navigation: { levels: [], model: "curriculum-tree" } },
     ],
   ])("rejects %s", (_, change) => {
-    const result = Schema.decodeUnknownEither(LearningProgramSchema)({
+    const result = Schema.decodeUnknownExit(LearningProgramSchema)({
       ...source,
       ...change,
     });
 
-    expect(Either.isLeft(result)).toBe(true);
+    expect(Exit.isFailure(result)).toBe(true);
     if ("key" in change) {
       expect(String(result)).toContain("Invalid learning program key.");
     }

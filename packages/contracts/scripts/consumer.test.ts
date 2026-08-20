@@ -47,8 +47,8 @@ describe("consumer tooling", () => {
   it("serializes an isolated pnpm consumer manifest", () => {
     const manifest = JSON.parse(
       createConsumerManifest({
-        effectVersion: "3.22.0",
-        packageManager: "pnpm@11.15.1",
+        effectVersion: "4.0.0-rc.110",
+        packageManager: "pnpm@11.22.0",
         packageName: "@nakafa/aksara-contracts",
         tarballPath: "/tmp/contracts.tgz",
       })
@@ -57,9 +57,9 @@ describe("consumer tooling", () => {
     expect(manifest).toMatchObject({
       dependencies: {
         "@nakafa/aksara-contracts": "file:/tmp/contracts.tgz",
-        effect: "3.22.0",
+        effect: "4.0.0-rc.110",
       },
-      packageManager: "pnpm@11.15.1",
+      packageManager: "pnpm@11.22.0",
       private: true,
     });
   });
@@ -84,6 +84,7 @@ describe("consumer tooling", () => {
   it("serializes strict compiler and runtime verifier boundaries", () => {
     expect(JSON.parse(createConsumerTsconfig())).toMatchObject({
       compilerOptions: {
+        lib: ["ES2022", "DOM", "ESNext.Disposable"],
         module: "NodeNext",
         moduleResolution: "NodeNext",
         strict: true,

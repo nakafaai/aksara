@@ -228,7 +228,7 @@ function authenticateRows(
 export const verifyStoredTryoutInventory = Effect.fn(
   "AksaraContracts.verifyStoredTryoutInventory"
 )(function* (input: unknown) {
-  const inventory = yield* Schema.decodeUnknown(
+  const inventory = yield* Schema.decodeUnknownEffect(
     HistoricalTryoutInventorySchema
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new StoredTryoutInventoryDecodeError())

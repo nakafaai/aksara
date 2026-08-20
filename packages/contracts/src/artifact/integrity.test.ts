@@ -2,8 +2,8 @@
 
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync, sign } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   hashCompiledContentPayload,
   verifySignedContentArtifactIntegrity,
@@ -29,7 +29,7 @@ const publicKey = signingKeys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
 const rawMdx = "## Integrity";
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: 10,
   compiledCode: "return {};",

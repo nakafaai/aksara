@@ -8,7 +8,7 @@ const TAG_PATTERN =
   /^contracts-v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/u;
 const LINE_PATTERN = /\r?\n/u;
 
-const PackageIdentitySchema = Schema.parseJson(
+const PackageIdentitySchema = Schema.fromJsonString(
   Schema.Struct({
     name: Schema.Literal(CONTRACT_NAME),
     version: Schema.String,
@@ -44,13 +44,13 @@ export class ContractReleaseError extends Schema.TaggedError<ContractReleaseErro
   "ContractReleaseError",
   {
     detail: Schema.String,
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "archive",
       "argument",
       "identity",
       "platform",
-      "release"
-    ),
+      "release",
+    ]),
   }
 ) {}
 
@@ -109,12 +109,9 @@ export function compareVersions(
 /** Decodes the one package name and version that own contract release identity. */
 export const packageIdentity = Effect.fn("AksaraContracts.packageIdentity")(
   function* (source: string) {
-    const manifest = yield* Schema.decodeUnknown(PackageIdentitySchema)(
-      source,
-      {
-        onExcessProperty: "ignore",
-      }
-    ).pipe(
+    const manifest = yield* Schema.decodeEffect(PackageIdentitySchema)(source, {
+      onExcessProperty: "ignore",
+    }).pipe(
       Effect.mapError(() =>
         releaseError(
           "identity",

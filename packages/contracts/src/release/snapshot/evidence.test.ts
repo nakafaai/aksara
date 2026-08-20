@@ -1,5 +1,5 @@
+import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { beforeAll, describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type {
@@ -10,9 +10,7 @@ import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
 const unrelatedHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
-let snapshotData: Effect.Effect.Success<
-  ReturnType<typeof makeSnapshotTestData>
->;
+let snapshotData: Effect.Success<ReturnType<typeof makeSnapshotTestData>>;
 
 beforeAll(async () => {
   snapshotData = await Effect.runPromise(makeSnapshotTestData());
@@ -36,7 +34,7 @@ function verify(
   rows: readonly ContentSnapshotRow[]
 ) {
   return Effect.runPromise(
-    verifySnapshotRows(manifest, () => Stream.fromIterable(rows))
+    verifySnapshotRows(manifest, Stream.fromIterable(rows))
   );
 }
 
@@ -46,9 +44,7 @@ function reject(
   rows: readonly ContentSnapshotRow[]
 ) {
   return Effect.runPromise(
-    verifySnapshotRows(manifest, () => Stream.fromIterable(rows)).pipe(
-      Effect.flip
-    )
+    verifySnapshotRows(manifest, Stream.fromIterable(rows)).pipe(Effect.flip)
   );
 }
 

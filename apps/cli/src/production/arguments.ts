@@ -64,29 +64,29 @@ export type ProductionArguments =
 export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgumentsError>()(
   "ProductionArgumentsError",
   {
-    command: Schema.Literal(
+    command: Schema.Literals([
       "abort",
       "accept",
       "cleanup",
       "recover",
       "release",
       "rollback",
-      "status"
-    ),
-    option: Schema.Literal(
+      "status",
+    ]),
+    option: Schema.Literals([
       "--recovery-id",
       "--release-id",
       "--rollback-of",
       "--scope",
-      "command"
-    ),
-    reason: Schema.Literal(
+      "command",
+    ]),
+    reason: Schema.Literals([
       "duplicate",
       "identity",
       "missing",
       "unknown",
-      "value"
-    ),
+      "value",
+    ]),
   }
 ) {}
 
@@ -170,7 +170,7 @@ function decodeReleaseId(
   option: UniqueProductionOption,
   value: string
 ) {
-  return Schema.decodeUnknown(ReleaseIdSchema)(value).pipe(
+  return Schema.decodeEffect(ReleaseIdSchema)(value).pipe(
     Effect.mapError(() => argumentError(command, option, "value"))
   );
 }

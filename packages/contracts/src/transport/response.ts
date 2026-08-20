@@ -61,9 +61,11 @@ export const PublicationRecoverySuccessSchema = Schema.Struct({
 
 /** Durable release status that proves stageRelease found or created a row. */
 export const StagedReleaseStatusSchema = ContentReleaseStatusSchema.pipe(
-  Schema.filter((status) => status.phase !== "missing", {
-    message: () => "Expected stageRelease to return a stored release status.",
-  })
+  Schema.check(
+    Schema.makeFilter((status) => status.phase !== "missing", {
+      message: "Expected stageRelease to return a stored release status.",
+    })
+  )
 );
 export type StagedReleaseStatus = typeof StagedReleaseStatusSchema.Type;
 
@@ -173,7 +175,7 @@ export const PublicationCleanupSuccessSchema = Schema.Struct({
 });
 
 /** Complete success vocabulary returned by publication ingress. */
-export const PublicationSuccessSchema = Schema.Union(
+export const PublicationSuccessSchema = Schema.Union([
   PublicationAcceptSuccessSchema,
   PublicationAbortSuccessSchema,
   PublicationCurrentSuccessSchema,
@@ -194,8 +196,8 @@ export const PublicationSuccessSchema = Schema.Union(
   ActivateRecoverySuccessSchema,
   PublicationRollbackSuccessSchema,
   PublicationRoutePageSuccessSchema,
-  PublicationCleanupSuccessSchema
-);
+  PublicationCleanupSuccessSchema,
+]);
 export type PublicationSuccess = typeof PublicationSuccessSchema.Type;
 
 /** Wraps one stable typed failure without exposing implementation messages. */
@@ -207,10 +209,10 @@ export type PublicationFailureResponse =
   typeof PublicationFailureResponseSchema.Type;
 
 /** Complete framework-neutral response vocabulary for publication ingress. */
-export const PublicationResponseSchema = Schema.Union(
+export const PublicationResponseSchema = Schema.Union([
   PublicationSuccessSchema,
-  PublicationFailureResponseSchema
-);
+  PublicationFailureResponseSchema,
+]);
 export type PublicationResponse = typeof PublicationResponseSchema.Type;
 
 /** Strictly decodes one unknown publication response without throwing. */

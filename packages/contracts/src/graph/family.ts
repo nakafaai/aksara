@@ -8,12 +8,12 @@ import {
 import { AppLocaleCodeSchema, AppLocaleSchema } from "#contracts/locale";
 
 /** Current semantic families addressable through learning-graph identities. */
-export const LearningGraphFamilySchema = Schema.Literal(
+export const LearningGraphFamilySchema = Schema.Literals([
   "article",
   "material",
   "quran",
-  "tryout"
-);
+  "tryout",
+]);
 export type LearningGraphFamily = typeof LearningGraphFamilySchema.Type;
 
 /** Checks one graph ID has the exact current asset dispatch prefix and shape. */
@@ -29,10 +29,11 @@ function hasAssetIdentityShape(assetId: string) {
 
 /** Current asset identity accepted by route and graph read-model dispatch. */
 export const LearningGraphAssetIdSchema = LearningGraphIdSchema.pipe(
-  Schema.filter(hasAssetIdentityShape, {
-    message: () =>
-      "Expected asset:<appLocale>:<family>:<identity> graph identity.",
-  }),
+  Schema.check(
+    Schema.makeFilter(hasAssetIdentityShape, {
+      message: "Expected asset:<appLocale>:<family>:<identity> graph identity.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraLearningGraphAssetId")
 );
 export type LearningGraphAssetId = typeof LearningGraphAssetIdSchema.Type;
@@ -107,7 +108,9 @@ export const classifyLearningGraphAssetId = Effect.fn(
   "AksaraContracts.classifyLearningGraphAssetId"
 )(function* (input: string) {
   const [, appLocale, family] = input.split(":");
-  const owner = yield* Schema.decodeUnknown(LearningGraphAssetOwnerSchema)({
+  const owner = yield* Schema.decodeUnknownEffect(
+    LearningGraphAssetOwnerSchema
+  )({
     appLocale,
     family,
   }).pipe(

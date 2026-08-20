@@ -121,10 +121,10 @@ export function verifyExchange(input: Parameters<typeof exchangeProgram>[0]) {
 }
 
 /** Runs one public exchange while preserving typed success and failure values. */
-export function verifyExchangeEither(
+export function verifyExchangeResult(
   input: Parameters<typeof exchangeProgram>[0]
 ) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.either));
+  return Effect.runPromise(exchangeProgram(input).pipe(Effect.result));
 }
 
 /** Runs one public runtime exchange expected to return a typed failure. */

@@ -5,7 +5,7 @@ const GRAPH_ID_PATTERN =
 
 /** Canonical colon-separated identity in Nakafa's learning graph. */
 export const LearningGraphIdSchema = Schema.String.pipe(
-  Schema.pattern(GRAPH_ID_PATTERN)
+  Schema.check(Schema.isPattern(GRAPH_ID_PATTERN))
 );
 
 /** Stable graph identities persisted with every route-bearing projection. */
@@ -16,14 +16,16 @@ export const LearningGraphIdentitySchema = Schema.Struct({
   learningObjectId: LearningGraphIdSchema,
   lensId: LearningGraphIdSchema,
 }).pipe(
-  Schema.filter(
-    ({ alignmentId, assetId, conceptId, learningObjectId, lensId }) =>
-      alignmentId.startsWith("alignment:") &&
-      assetId.startsWith("asset:") &&
-      conceptId.startsWith("concept:") &&
-      learningObjectId.startsWith("lo:") &&
-      lensId.startsWith("lens:"),
-    { message: () => "Expected each graph identity to use its owned prefix." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ alignmentId, assetId, conceptId, learningObjectId, lensId }) =>
+        alignmentId.startsWith("alignment:") &&
+        assetId.startsWith("asset:") &&
+        conceptId.startsWith("concept:") &&
+        learningObjectId.startsWith("lo:") &&
+        lensId.startsWith("lens:"),
+      { message: "Expected each graph identity to use its owned prefix." }
+    )
   )
 );
 export type LearningGraphIdentity = typeof LearningGraphIdentitySchema.Type;

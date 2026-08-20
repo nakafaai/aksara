@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import {
   type CompiledContentResult,
   compileContent,
@@ -22,6 +21,7 @@ import {
   type MaterialDocumentSource,
   readMaterialDocument,
 } from "@nakafa/aksara-corpus/material/source";
+import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
@@ -68,7 +68,7 @@ export const makeMaterialProjection: (
 ) => Effect.Effect<MaterialLessonProjection, MaterialMetadataError> = Effect.fn(
   "AksaraPublisher.makeMaterialProjection"
 )(function* (source: MaterialDocumentSource, metadata: unknown) {
-  const decoded = yield* Schema.decodeUnknown(MaterialMetadataSchema)(
+  const decoded = yield* Schema.decodeUnknownEffect(MaterialMetadataSchema)(
     metadata,
     {
       onExcessProperty: "error",

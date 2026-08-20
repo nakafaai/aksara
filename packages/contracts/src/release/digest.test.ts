@@ -1,6 +1,7 @@
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createReleaseItemsDigest,
@@ -11,9 +12,7 @@ import {
 import { ContentReleaseItemSchema } from "#contracts/release/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
-  "test-release-digest"
-);
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-digest");
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -52,7 +51,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 /** Builds one ordered tombstone for digest tests. */
 function item(contentKey = "test:digest") {
-  return Schema.decodeUnknownSync(ContentReleaseItemSchema)({
+  return Schema.decodeSync(ContentReleaseItemSchema)({
     change: {
       artifactLocale: "en",
       contentKey,

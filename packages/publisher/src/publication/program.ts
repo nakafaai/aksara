@@ -1,10 +1,9 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
 import type { ContractDecodeError } from "@nakafa/aksara-contracts/errors";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
-import type { Effect } from "effect";
+import type { Effect, FileSystem, Path } from "effect";
 import type { ReleaseAbortContractError } from "#publisher/abort";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
 import type {
@@ -88,8 +87,8 @@ type PublishReleaseRequirements<R> =
   | PublicationRecoveryId
   | PublicationActivation
   | PublicationTarget
-  | Effect.Effect.Context<ReturnType<typeof verifySignedContentArtifact>>
-  | Effect.Effect.Context<ReturnType<typeof verifySignedContentRelease>>
+  | Effect.Services<ReturnType<typeof verifySignedContentArtifact>>
+  | Effect.Services<ReturnType<typeof verifySignedContentRelease>>
   | R;
 
 /** Exact-Git publication requires the reviewed source adapter it recompiles. */

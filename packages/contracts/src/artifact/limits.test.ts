@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { validateArtifactByteIntegrity } from "#contracts/artifact/limits";
 import {
   type CompiledContentPayload,
@@ -11,7 +11,7 @@ import {
   MAX_SIGNED_ARTIFACT_BYTES,
 } from "#contracts/limits";
 
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: 10,
   compiledCode: "return {};",
@@ -29,7 +29,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
 
 /** Builds one schema-valid signed envelope for byte-policy tests. */
 function artifact(overrides: Partial<CompiledContentPayload> = {}) {
-  return Schema.decodeUnknownSync(SignedContentArtifactSchema)({
+  return Schema.decodeSync(SignedContentArtifactSchema)({
     artifactHash: `sha256:${"a".repeat(64)}`,
     keyId: "test-signing-key",
     payload: { ...payload, ...overrides },

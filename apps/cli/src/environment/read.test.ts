@@ -1,6 +1,6 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
-import { Cause, ConfigError, ConfigProvider, Effect, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { ConfigProvider, Effect, Redacted } from "effect";
 import {
   decodePreviewEnvironment,
   readPreviewEnvironment,
@@ -39,7 +39,12 @@ function provideConfig<A, E>(
 ) {
   return Effect.runPromise(
     program.pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(new Map(values)))
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(values), {
+          preserveEmptyStrings: true,
+        })
+      )
     )
   );
 }
@@ -95,21 +100,16 @@ describe("preview environment", () => {
   });
 
   it("sanitizes configuration-provider failures", async () => {
-    const empty = ConfigProvider.fromMap(new Map());
-    const unavailable = ConfigProvider.make({
-      flattened: empty.flattened,
-      load: () =>
-        Effect.fail(
-          ConfigError.SourceUnavailable(
-            [],
-            "Test-only unavailable provider.",
-            Cause.empty
-          )
-        ),
-    });
+    const unavailable = ConfigProvider.make(() =>
+      Effect.fail(
+        new ConfigProvider.SourceError({
+          message: "Test-only unavailable provider.",
+        })
+      )
+    );
     const error = await Effect.runPromise(
       readPreviewEnvironment().pipe(
-        Effect.withConfigProvider(unavailable),
+        Effect.provideService(ConfigProvider.ConfigProvider, unavailable),
         Effect.flip
       )
     );

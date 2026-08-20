@@ -17,8 +17,8 @@ import { Effect, Stream } from "effect";
 
 /** Replayable empty structured sources for body-only publisher fixtures. */
 export const emptySnapshotSources = {
-  snapshotManifests: () => Stream.empty,
-  snapshotRows: () => Stream.empty,
+  snapshotManifests: Stream.empty,
+  snapshotRows: Stream.empty,
 } as const;
 
 /** Builds one exact active policy for an incremental test release. */
@@ -50,15 +50,10 @@ export async function makeProgramSnapshotFixture(
     }),
   };
   /** Replays the exact program manifest selected by this fixture. */
-  const snapshotManifests = () => Stream.make(snapshot);
+  const snapshotManifests = Stream.make(snapshot);
   /** Replays exact source-owned program rows in canonical display order. */
-  const snapshotRows = () =>
-    prepared
-      .rows()
-      .pipe(
-        Stream.map(
-          (record): ContentSnapshotRow => ({ family: "program", record })
-        )
-      );
+  const snapshotRows = prepared.rows.pipe(
+    Stream.map((record): ContentSnapshotRow => ({ family: "program", record }))
+  );
   return { snapshot, snapshotManifests, snapshotRows, snapshots };
 }

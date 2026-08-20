@@ -144,7 +144,7 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
   "AksaraPublisher.makeEd25519PublicationSigner"
 )((input: { readonly keyId: string; readonly privateKeyPem: string }) =>
   Effect.gen(function* () {
-    const keyId = yield* Schema.decodeUnknown(SigningKeyIdSchema)(
+    const keyId = yield* Schema.decodeEffect(SigningKeyIdSchema)(
       input.keyId
     ).pipe(
       Effect.mapError(

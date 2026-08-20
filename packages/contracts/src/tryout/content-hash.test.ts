@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
@@ -8,7 +8,7 @@ import {
   TryoutContentInputSchema,
 } from "#contracts/tryout/content-hash";
 
-const source = Schema.decodeUnknownSync(TryoutContentInputSchema)({
+const source = Schema.decodeSync(TryoutContentInputSchema)({
   answerArtifactLocale: "de",
   answerBody: "\nAnswer\n\n\nDetail\n",
   appLocale: "de",
@@ -79,11 +79,11 @@ describe("try-out content hash", () => {
   });
 
   it("rejects app, answer, delivery, and question locale drift", () => {
-    const result = Schema.decodeUnknownEither(TryoutContentInputSchema)({
+    const result = Schema.decodeExit(TryoutContentInputSchema)({
       ...source,
       answerArtifactLocale: "id",
     });
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected answer locale to match app locale and question locale to match delivery language."
     );
   });

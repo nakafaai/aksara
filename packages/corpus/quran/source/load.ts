@@ -1,6 +1,4 @@
 import { createHash, type Hash } from "node:crypto";
-
-import { FileSystem, Path } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
@@ -12,7 +10,7 @@ import {
   QuranSourceArtifactSchema,
   quranSourceFileCount,
 } from "@nakafa/aksara-contracts/quran/source";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import {
   AUTHORING_APP_LOCALES,
   type LocalizedSourceMap,

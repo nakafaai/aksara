@@ -1,7 +1,7 @@
 // @vitest-environment node
 
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
@@ -13,8 +13,7 @@ import {
 } from "#contracts/release/spec";
 import { makeReleaseItems } from "#contracts/test/items";
 
-const releaseId =
-  Schema.decodeUnknownSync(ReleaseIdSchema)("test-release-items");
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-items");
 
 /** Builds one complete upsert change for item-integrity tests. */
 function upsertChange(
@@ -49,7 +48,7 @@ const items = makeReleaseItems(releaseId, changes);
 const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
-const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: ["en", "id"],
   baseManifestHash: `sha256:${"d".repeat(64)}`,
@@ -114,9 +113,7 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
   const summary = await Effect.runPromise(
     digestItems(manifest.releaseId, Stream.fromIterable(candidateItems))
   );
-  const candidateManifest = Schema.decodeUnknownSync(
-    ContentReleaseManifestSchema
-  )({
+  const candidateManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
     ...manifest,
     deleteCount: summary.deleteCount,
     itemCount: candidateItems.length,
@@ -144,13 +141,13 @@ describe("release item integrity", () => {
     expect(verified).not.toHaveProperty("items");
   });
   it("rejects operation totals that differ from the signed manifest", async () => {
-    const mismatched = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+    const mismatched = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...manifest,
       deleteCount: 0,
       upsertCount: 2,
     });
     const error = await reject(items, mismatched);
-    expect(error).toEqual({
+    expect(error).toMatchObject({
       _tag: "ReleaseItemOperationCountMismatchError",
       actualDeletes: 1,
       actualUpserts: 1,
@@ -159,7 +156,7 @@ describe("release item integrity", () => {
     });
   });
   it("rejects a signed item outside the exact publication scope", async () => {
-    const scoped = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+    const scoped = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...manifest,
       scope: {
         content: manifest.scope.content.slice(0, 1),
@@ -168,7 +165,7 @@ describe("release item integrity", () => {
       },
     });
     const error = await reject(items, scoped);
-    expect(error).toEqual({
+    expect(error).toMatchObject({
       _tag: "ReleaseItemScopeError",
       itemOffset: 1,
     });

@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -9,7 +8,7 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { prepareArticlePublication } from "#publisher/article/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
@@ -74,7 +73,7 @@ export function collectArticlePublication(input: {
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
         });
-        return yield* publication.records().pipe(
+        return yield* publication.records.pipe(
           Stream.runCollect,
           Effect.map((records) => [...records])
         );
@@ -98,7 +97,7 @@ export function collectArticleRoutes(input: {
           published: Stream.fromIterable(input.heads),
           rendererManifest,
         });
-        return yield* publication.routes().pipe(
+        return yield* publication.routes.pipe(
           Stream.runCollect,
           Effect.map((routes) => [...routes])
         );

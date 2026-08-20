@@ -6,7 +6,9 @@ import { ActiveAppLocaleListSchema } from "#contracts/locale";
 /** Semantic wire identity of the current localized try-out snapshot. */
 export const TRYOUT_SNAPSHOT_FORMAT = "localized-tryout-snapshot";
 
-const NonNegativeCountSchema = Schema.Int.pipe(Schema.nonNegative());
+const NonNegativeCountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Signed per-kind hierarchy counts for one immutable try-out snapshot. */
 export const TryoutCatalogCountsSchema = Schema.Struct({

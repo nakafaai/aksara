@@ -33,7 +33,7 @@ const rendererManifest = await Effect.runPromise(
   })
 );
 
-const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
+const source = Schema.decodeSync(CompileDocumentSourceSchema)({
   artifactLocale: "en",
   contentKey: "test:signing",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
@@ -46,7 +46,7 @@ export const signingPayload = (
   await Effect.runPromise(compileContent({ ...source, rendererManifest }))
 ).payload;
 
-const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release");
 
 /** Builds canonically ordered release items for signing fixtures. */
 function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
@@ -59,7 +59,7 @@ function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
 
 const items = makeItems(
   releaseId,
-  Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
+  Schema.decodeSync(Schema.Array(ContentChangeSchema))([
     {
       artifactHash: hashCompiledContentPayload(signingPayload),
       artifactLocale: signingPayload.artifactLocale,
@@ -78,9 +78,7 @@ const itemSummary = await Effect.runPromise(
 );
 
 /** Current release manifest used by publication signer tests. */
-export const signingManifest = Schema.decodeUnknownSync(
-  ContentReleaseManifestSchema
-)({
+export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: null,
   baseManifestHash: null,

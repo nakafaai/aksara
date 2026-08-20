@@ -1,7 +1,7 @@
-import { Command, FileSystem } from "@effect/platform";
-import type { PlatformError } from "@effect/platform/Error";
-import { NodeContext, NodeRuntime } from "@effect/platform-node";
-import { Effect, Schema, Stream } from "effect";
+import { NodeRuntime, NodeServices } from "@effect/platform-node";
+import { Effect, FileSystem, Schema, Stream } from "effect";
+import type { PlatformError } from "effect/PlatformError";
+import { ChildProcess } from "effect/unstable/process";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
@@ -20,7 +20,7 @@ const DEFAULT_CONFIG: EffectSourceConfig = {
 };
 
 const PackageManifest = Schema.Struct({
-  version: Schema.String.pipe(Schema.pattern(VERSION_PATTERN)),
+  version: Schema.String.pipe(Schema.check(Schema.isPattern(VERSION_PATTERN))),
 });
 
 class EffectSourceReadError extends Schema.TaggedError<EffectSourceReadError>()(
@@ -47,7 +47,10 @@ class EffectSourceUsageError extends Schema.TaggedError<EffectSourceUsageError>(
 function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
   return stream.pipe(
     Stream.decodeText(),
-    Stream.runFold("", (output, chunk) => output + chunk)
+    Stream.runFold(
+      () => "",
+      (output, chunk) => output + chunk
+    )
   );
 }
 
@@ -60,7 +63,7 @@ function gitPlatformError(error: PlatformError) {
 const runGit = Effect.fn("EffectSource.runGit")((args: readonly string[]) =>
   Effect.scoped(
     Effect.gen(function* () {
-      const command = yield* Command.start(Command.make("git", ...args)).pipe(
+      const command = yield* ChildProcess.make("git", args).pipe(
         Effect.mapError(gitPlatformError)
       );
       const [exitCode, stdout, stderr] = yield* Effect.all(
@@ -110,7 +113,7 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
     try: (): unknown => JSON.parse(source),
   });
 
-  return yield* Schema.decodeUnknown(PackageManifest)(input).pipe(
+  return yield* Schema.decodeUnknownEffect(PackageManifest)(input).pipe(
     Effect.mapError(
       () =>
         new EffectSourceReadError({
@@ -274,6 +277,6 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
 
 NodeRuntime.runMain(
   makeEffectSourceProgram(process.argv[2]).pipe(
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   )
 );

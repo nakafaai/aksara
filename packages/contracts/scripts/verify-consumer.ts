@@ -16,7 +16,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { isRecord } from "effect/Predicate";
+import { isObject } from "effect/Predicate";
 import {
   createConsumerManifest,
   createConsumerSource,
@@ -35,7 +35,8 @@ import {
   textField,
 } from "#scripts/manifest";
 
-const EXACT_VERSION_PATTERN = /^\d+\.\d+\.\d+$/u;
+const EXACT_VERSION_PATTERN =
+  /^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:\.[0-9A-Za-z]+)*)?$/u;
 
 /** Runs an executable without a shell so package paths cannot become commands. */
 function run(
@@ -121,7 +122,7 @@ export function verifyConsumer(args: readonly string[]): void {
     readFileSync(require.resolve("effect/package.json"), "utf8")
   );
   assert.ok(
-    isRecord(installedEffectManifest),
+    isObject(installedEffectManifest),
     "Effect package must be an object"
   );
   const effectVersion = textField(

@@ -63,10 +63,11 @@ export const decodeArticlePreviewEntries = Effect.fn(
       projected.push(yield* projectArticle(projectionSource, appLocale));
     }
   }
-  const entries = yield* Schema.decodeUnknown(Schema.Array(ArticleEntrySchema))(
-    projected,
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError((cause) => new ArticleRegistryError({ cause })));
+  const entries = yield* Schema.decodeUnknownEffect(
+    Schema.Array(ArticleEntrySchema)
+  )(projected, { onExcessProperty: "error" }).pipe(
+    Effect.mapError((cause) => new ArticleRegistryError({ cause }))
+  );
   return yield* validateArticleRoutes(entries);
 });
 

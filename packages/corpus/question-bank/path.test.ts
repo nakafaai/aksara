@@ -1,8 +1,8 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   decodeQuestionDocumentPath,
@@ -198,9 +198,7 @@ describe("question path", () => {
                   ? {
                       ...section,
                       rendererDomain:
-                        Schema.decodeUnknownSync(RendererDomainSchema)(
-                          "snbt-plain"
-                        ),
+                        Schema.decodeSync(RendererDomainSchema)("snbt-plain"),
                     }
                   : section
               ),

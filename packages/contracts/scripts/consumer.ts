@@ -132,6 +132,7 @@ export function createConsumerTsconfig() {
   return `${JSON.stringify(
     {
       compilerOptions: {
+        lib: ["ES2022", "DOM", "ESNext.Disposable"],
         module: "NodeNext",
         moduleResolution: "NodeNext",
         noEmit: true,

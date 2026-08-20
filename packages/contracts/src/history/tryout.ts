@@ -3,7 +3,9 @@ import { Schema } from "effect";
 import { HistoricalAppLocaleListSchema } from "#contracts/history/locale";
 import { HistoricalSha256HashSchema } from "#contracts/history/primitives";
 
-const NonNegativeCountSchema = Schema.Int.pipe(Schema.nonNegative());
+const NonNegativeCountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 const HistoricalTryoutCatalogCountsSchema = Schema.Struct({
   country: NonNegativeCountSchema,

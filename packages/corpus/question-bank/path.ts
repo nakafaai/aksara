@@ -34,7 +34,10 @@ const isQuestionSegment = Schema.is(QuestionSegmentSchema);
 /** Canonical logical identity derived from one physical question directory. */
 export const QuestionLocationSchema = Schema.Struct({
   questionKey: QuestionKeySchema,
-  questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  questionNumber: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
   rendererDomain: RendererDomainSchema,
   setKey: QuestionSetKeySchema,
   sourceRoot: CorpusSourcePathSchema,
@@ -122,7 +125,7 @@ export function locateQuestionEntry(entry: string, separator: string) {
 export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
   "QuestionPathError",
   {
-    reason: Schema.Literal("grammar", "renderer"),
+    reason: Schema.Literals(["grammar", "renderer"]),
     sourcePath: Schema.String,
   }
 ) {}
@@ -159,7 +162,7 @@ export const indexQuestionBanks = Effect.fn("AksaraCorpus.indexQuestionBanks")(
 export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
   function* (questionBanks: QuestionBankIndex, physicalRoot: string) {
     const sourcePath = `${QUESTION_BANK_ROOT}/${physicalRoot}`;
-    const questionKey = yield* Schema.decodeUnknown(QuestionKeySchema)(
+    const questionKey = yield* Schema.decodeEffect(QuestionKeySchema)(
       `${QUESTION_BANK_KEY_ROOT}/${physicalRoot}`
     ).pipe(
       Effect.mapError(
@@ -189,7 +192,7 @@ export const decodeQuestionDocumentPath = Effect.fn(
   questionBanks: QuestionBankIndex,
   sourcePath: typeof CorpusSourcePathSchema.Type
 ) {
-  const decodedPath = yield* Schema.decodeUnknown(QuestionSourcePathSchema)(
+  const decodedPath = yield* Schema.decodeEffect(QuestionSourcePathSchema)(
     sourcePath
   ).pipe(
     Effect.mapError(

@@ -12,7 +12,7 @@ import type { PublicationTargetFailure } from "#publisher/target/errors";
 /** Acceptance input or cumulative target evidence violated its exact contract. */
 export class ReleaseAcceptContractError extends Schema.TaggedError<ReleaseAcceptContractError>()(
   "ReleaseAcceptContractError",
-  { contract: Schema.Literal("request", "receipt") }
+  { contract: Schema.Literals(["request", "receipt"]) }
 ) {}
 
 type AcceptContentRelease = (

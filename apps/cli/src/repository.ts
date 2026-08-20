@@ -1,9 +1,8 @@
-import { type FileSystem, Path } from "@effect/platform";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { Effect } from "effect";
+import { Effect, type FileSystem, Path } from "effect";
 import {
   captureSelectedFiles,
   PreviewRepositoryError,

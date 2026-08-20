@@ -12,24 +12,24 @@ import { localizedSourceMapSchema } from "#corpus/locale/source";
 /** Exact authored contract for one Quran verse. */
 export const QuranVerseSchema = Schema.Struct({
   meta: Schema.Struct({
-    hizbQuarter: Schema.Int.pipe(Schema.positive()),
-    juz: Schema.Int.pipe(Schema.positive()),
-    manzil: Schema.Int.pipe(Schema.positive()),
-    page: Schema.Int.pipe(Schema.positive()),
-    ruku: Schema.Int.pipe(Schema.positive()),
-    sajda: Schema.NullOr(Schema.Literal("obligatory", "recommended")),
+    hizbQuarter: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    juz: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    manzil: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    page: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    ruku: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    sajda: Schema.NullOr(Schema.Literals(["obligatory", "recommended"])),
   }),
   number: Schema.Struct({
-    inQuran: Schema.Int.pipe(Schema.positive()),
-    inSurah: Schema.Int.pipe(Schema.positive()),
+    inQuran: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    inSurah: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   }),
-  tafsir: Schema.Record({
-    key: QuranTafsirLocaleSchema,
-    value: Schema.Struct({
+  tafsir: Schema.Record(
+    QuranTafsirLocaleSchema,
+    Schema.Struct({
       footnotes: Schema.NullOr(Schema.String),
       text: QuranMeaningfulTextSchema,
-    }),
-  }),
+    })
+  ),
   text: QuranTextSchema,
   translation: localizedSourceMapSchema(QuranTranslationSchema),
 });

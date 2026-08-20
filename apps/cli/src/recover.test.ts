@@ -1,7 +1,8 @@
-import { HttpClient } from "@effect/platform";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, type Redacted } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { HttpClient } from "effect/unstable/http";
+import { vi } from "vitest";
 import { runRecoverCommand } from "#cli/recover";
 import { captureClient } from "#test/http";
 

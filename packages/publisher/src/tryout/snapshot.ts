@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
@@ -14,7 +13,8 @@ import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placemen
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { Effect, Option, type Scope, Stream } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Result, type Scope, Stream } from "effect";
 import type { inspectQuestionDocument } from "#publisher/question/document";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -29,7 +29,7 @@ import type {
 export interface TryoutSnapshotPreparationInput<E, R> {
   readonly checkoutRoot: string;
   /** Replays the complete desired question-head catalog in canonical order. */
-  readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
+  readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
 }
 
@@ -42,19 +42,17 @@ type TryoutManifest = Extract<
 export interface PreparedTryoutSnapshot {
   readonly manifest: TryoutManifest;
   /** Replays immutable catalog rows followed by artifact-bound placements. */
-  readonly rows: () => Stream.Stream<ContentSnapshotRow, ReplaySpoolError>;
+  readonly rows: Stream.Stream<ContentSnapshotRow, ReplaySpoolError>;
 }
 
-type RendererManifestError = Effect.Effect.Error<
+type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
-type TryoutContentError = Effect.Effect.Error<
-  ReturnType<typeof loadTryoutContent>
->;
-type QuestionInspectionError = Effect.Effect.Error<
+type TryoutContentError = Effect.Error<ReturnType<typeof loadTryoutContent>>;
+type QuestionInspectionError = Effect.Error<
   ReturnType<typeof inspectQuestionDocument>
 >;
-type SnapshotVerificationError = Effect.Effect.Error<
+type SnapshotVerificationError = Effect.Error<
   ReturnType<
     typeof verifyContentSnapshots<never, never, ReplaySpoolError, never>
   >
@@ -78,8 +76,8 @@ function selectCatalogRows(
   return rows.pipe(
     Stream.filterMap((row) =>
       row.family === "tryout" && row.rowKind === "catalog"
-        ? Option.some(row.record)
-        : Option.none()
+        ? Result.succeed(row.record)
+        : Result.fail(undefined)
     )
   );
 }
@@ -91,8 +89,8 @@ function selectPlacementRows(
   return rows.pipe(
     Stream.filterMap((row) =>
       row.family === "tryout" && row.rowKind === "placement"
-        ? Option.some(row.record)
-        : Option.none()
+        ? Result.succeed(row.record)
+        : Result.fail(undefined)
     )
   );
 }
@@ -128,10 +126,7 @@ export const prepareTryoutSnapshot: <E, R>(
   const { entries, projection, sources } = yield* loadTryoutContent(
     input.checkoutRoot
   );
-  const bindings = bindTryoutHeads(
-    projection.placements,
-    input.questionHeads()
-  );
+  const bindings = bindTryoutHeads(projection.placements, input.questionHeads);
   const placements = bindTryoutContent({
     bindings,
     checkoutRoot: input.checkoutRoot,
@@ -167,10 +162,10 @@ export const prepareTryoutSnapshot: <E, R>(
     stream: sourceRows,
   });
   /** Replays the sealed rows used by every digest and release operation. */
-  const rows = () => spool.replay();
+  const rows = spool.replay;
   const [catalog, placement] = yield* Effect.all([
-    digestTryoutCatalog(selectCatalogRows(rows())),
-    digestTryoutPlacements(selectPlacementRows(rows())),
+    digestTryoutCatalog(selectCatalogRows(rows)),
+    digestTryoutPlacements(selectPlacementRows(rows)),
   ]);
   const manifest = {
     family: "tryout",
@@ -184,7 +179,7 @@ export const prepareTryoutSnapshot: <E, R>(
     }),
   } satisfies TryoutManifest;
   yield* verifyContentSnapshots({
-    manifests: () => Stream.make(manifest),
+    manifests: Stream.make(manifest),
     previousSnapshots: null,
     rows,
   });

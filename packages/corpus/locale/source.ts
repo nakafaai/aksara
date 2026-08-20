@@ -7,15 +7,8 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 
-const EmbeddedAppLocaleFields = {
-  en: Schema.Void,
-  id: Schema.Void,
-};
-
 /** Runtime contract for one locale embedded in the original source modules. */
-export const EmbeddedAppLocaleCodeSchema = Schema.keyof(
-  Schema.Struct(EmbeddedAppLocaleFields)
-);
+export const EmbeddedAppLocaleCodeSchema = Schema.Literals(["en", "id"]);
 export type EmbeddedAppLocaleCode = typeof EmbeddedAppLocaleCodeSchema.Type;
 
 /** Historical locales stored together in the original authored source modules. */
@@ -36,21 +29,27 @@ export const LOCALE_OVERLAY_APP_LOCALE_CODES = APP_LOCALE_CODES.filter(
 );
 
 /** Runtime contract for one locale stored in its own permanent overlay. */
-export const LocaleOverlayAppLocaleCodeSchema = Schema.Literal(
-  ...LOCALE_OVERLAY_APP_LOCALE_CODES
+export const LocaleOverlayAppLocaleCodeSchema = Schema.Literals(
+  LOCALE_OVERLAY_APP_LOCALE_CODES
 );
 
 /** Branded application locale stored inside original source modules. */
 export const EmbeddedAppLocaleSchema = AppLocaleSchema.pipe(
-  Schema.filter((appLocale) =>
-    EMBEDDED_APP_LOCALE_CODES.some((candidate) => candidate === appLocale)
+  Schema.check(
+    Schema.makeFilter((appLocale) =>
+      EMBEDDED_APP_LOCALE_CODES.some((candidate) => candidate === appLocale)
+    )
   )
 );
 
 /** Branded application locale stored in one permanent overlay module. */
 export const LocaleOverlayAppLocaleSchema = AppLocaleSchema.pipe(
-  Schema.filter((appLocale) =>
-    LOCALE_OVERLAY_APP_LOCALE_CODES.some((candidate) => candidate === appLocale)
+  Schema.check(
+    Schema.makeFilter((appLocale) =>
+      LOCALE_OVERLAY_APP_LOCALE_CODES.some(
+        (candidate) => candidate === appLocale
+      )
+    )
   )
 );
 export type LocaleOverlayAppLocale = typeof LocaleOverlayAppLocaleSchema.Type;
@@ -59,6 +58,13 @@ export type LocaleOverlayAppLocale = typeof LocaleOverlayAppLocaleSchema.Type;
 export const AUTHORING_APP_LOCALES = Schema.decodeUnknownSync(
   ActiveAppLocaleListSchema
 )(APP_LOCALE_CODES.map((appLocale) => AppLocaleSchema.make(appLocale)));
+
+/** Canonical locale codes and branded values for permanent overlay modules. */
+export const LOCALE_OVERLAY_APP_LOCALE_ENTRIES =
+  LOCALE_OVERLAY_APP_LOCALE_CODES.map((code) => ({
+    appLocale: AppLocaleSchema.make(code),
+    code,
+  }));
 
 /** Source map owned entirely by one existing multi-locale source module. */
 export type EmbeddedLocalizedSourceMap<Value> = Readonly<
@@ -73,21 +79,18 @@ export type LocalizedSourceMap<Value> = Readonly<
 
 /** Builds one source map containing exactly the embedded source locales. */
 export function embeddedLocalizedSourceMapSchema<
-  Value extends Schema.Schema.Any,
+  Value extends Schema.Constraint,
 >(value: Value) {
-  return Schema.Record({ key: EmbeddedAppLocaleCodeSchema, value });
+  return Schema.Record(EmbeddedAppLocaleCodeSchema, value);
 }
 
 /** Builds one composed map with required embedded copy and optional overlays. */
-export function localizedSourceMapSchema<Value extends Schema.Schema.Any>(
+export function localizedSourceMapSchema<Value extends Schema.Constraint>(
   value: Value
 ) {
-  return Schema.extend(
-    Schema.partial(
-      Schema.Record({ key: LocaleOverlayAppLocaleCodeSchema, value })
-    ),
-    embeddedLocalizedSourceMapSchema(value)
-  );
+  return Schema.StructWithRest(embeddedLocalizedSourceMapSchema(value), [
+    Schema.Record(LocaleOverlayAppLocaleCodeSchema, Schema.optional(value)),
+  ]);
 }
 
 /** Returns the plain source-map key for one contract-supported app locale. */
@@ -127,7 +130,7 @@ export class SourceLocaleUnavailableError extends Schema.TaggedError<SourceLocal
   "SourceLocaleUnavailableError",
   {
     appLocale: AppLocaleSchema,
-    owner: Schema.NonEmptyTrimmedString,
+    owner: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 
@@ -155,14 +158,11 @@ export function mapLocalizedSource<Value, Result>(
     en: transform(source.en, "en"),
     id: transform(source.id, "id"),
   };
-  for (const code of LOCALE_OVERLAY_APP_LOCALE_CODES) {
+  for (const { appLocale, code } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
     const value = source[code];
     if (value === undefined) {
       continue;
     }
-    const appLocale = Schema.decodeUnknownSync(LocaleOverlayAppLocaleSchema)(
-      code
-    );
     mapped = addLocalizedSource(mapped, appLocale, transform(value, code));
   }
   return mapped;
@@ -183,15 +183,12 @@ export const traverseLocalizedSources = Effect.fn(
     { concurrency: 2 }
   );
   let traversed: LocalizedSourceMap<Result> = { en, id };
-  for (const code of LOCALE_OVERLAY_APP_LOCALE_CODES) {
+  for (const { appLocale, code } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
     const value = source[code];
     if (value === undefined) {
       continue;
     }
     const result = yield* transform(value, code);
-    const appLocale = Schema.decodeUnknownSync(LocaleOverlayAppLocaleSchema)(
-      code
-    );
     traversed = addLocalizedSource(traversed, appLocale, result);
   }
   return traversed;

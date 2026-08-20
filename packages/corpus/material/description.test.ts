@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -9,19 +9,17 @@ import {
 describe("material card description", () => {
   it("trims non-empty authored card copy", () => {
     expect(
-      Schema.decodeUnknownSync(MaterialCardDescriptionSchema)("  Read this.  ")
+      Schema.decodeSync(MaterialCardDescriptionSchema)("  Read this.  ")
     ).toBe("Read this.");
   });
 
   it("rejects empty and overlong card copy", () => {
-    const empty = Schema.decodeUnknownEither(MaterialCardDescriptionSchema)(
-      "   "
-    );
-    const overlong = Schema.decodeUnknownEither(MaterialCardDescriptionSchema)(
+    const empty = Schema.decodeExit(MaterialCardDescriptionSchema)("   ");
+    const overlong = Schema.decodeExit(MaterialCardDescriptionSchema)(
       "a".repeat(MATERIAL_CARD_DESCRIPTION_MAX_LENGTH + 1)
     );
 
-    expect(Either.isLeft(empty)).toBe(true);
-    expect(Either.isLeft(overlong)).toBe(true);
+    expect(Exit.isFailure(empty)).toBe(true);
+    expect(Exit.isFailure(overlong)).toBe(true);
   });
 });

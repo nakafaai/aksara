@@ -2,14 +2,14 @@ import {
   CurriculumRouteDraftSchema,
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   addMaterialContext,
   CurriculumContextError,
 } from "#corpus/curriculum/context";
 
-const subject = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+const subject = Schema.decodeSync(CurriculumRouteSchema)({
   appLocale: "en",
   iconKey: "mathematics",
   kind: "curriculum-context",
@@ -23,7 +23,7 @@ const subject = Schema.decodeUnknownSync(CurriculumRouteSchema)({
   sourcePath: "packages/corpus/curriculum/merdeka",
   title: "Mathematics",
 });
-const group = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+const group = Schema.decodeSync(CurriculumRouteSchema)({
   ...subject,
   level: "topic",
   nodeKey: "class-10-mathematics-algebra",
@@ -35,7 +35,7 @@ const group = Schema.decodeUnknownSync(CurriculumRouteSchema)({
 
 describe("curriculum material context", () => {
   it("binds one material leaf to its nearest subject-owned group", async () => {
-    const leaf = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+    const leaf = Schema.decodeSync(CurriculumRouteSchema)({
       ...group,
       canonicalPath: "subjects/mathematics/matrix",
       materialContextNodeKey: group.nodeKey,
@@ -47,7 +47,7 @@ describe("curriculum material context", () => {
       publicPath: `${group.publicPath}/matrix`,
       title: "Matrices",
     });
-    const unresolved = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)({
+    const unresolved = Schema.decodeSync(CurriculumRouteDraftSchema)({
       ...leaf,
       materialContextNodeKey: undefined,
       materialContextParentPath: undefined,
@@ -66,7 +66,7 @@ describe("curriculum material context", () => {
   });
 
   it("rejects material leaves without a complete subject or course ancestry", async () => {
-    const leaf = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)({
+    const leaf = Schema.decodeSync(CurriculumRouteDraftSchema)({
       ...group,
       canonicalPath: "subjects/mathematics/matrix",
       materialKey: "lesson.mathematics.matrix",
@@ -82,7 +82,7 @@ describe("curriculum material context", () => {
   });
 
   it("rejects a material leaf without any parent route", async () => {
-    const leaf = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)({
+    const leaf = Schema.decodeSync(CurriculumRouteDraftSchema)({
       ...group,
       canonicalPath: "subjects/mathematics/matrix",
       level: "track",

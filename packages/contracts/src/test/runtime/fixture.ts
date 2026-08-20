@@ -4,7 +4,7 @@ import {
   generateKeyPairSync,
   sign as signBytes,
 } from "node:crypto";
-import { Effect, Either, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 import {
   type CompiledContentPayload,
   CompiledContentPayloadSchema,
@@ -152,8 +152,11 @@ export function tamperSignature(signature: string) {
 }
 
 /** Strictly tests one runtime contract without allowing extra properties. */
-export function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+export function accepts(
+  schema: Schema.ConstraintDecoder<unknown>,
+  input: unknown
+) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }

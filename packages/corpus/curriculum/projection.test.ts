@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
 import { projectCurriculumNodes } from "#corpus/curriculum/projection";
@@ -227,7 +227,7 @@ describe("curriculum node projection", () => {
     const mixedCurriculum = merdekaLeaf({
       materialKeys: [material.key, mathematics.key],
     });
-    const curriculum = Schema.decodeUnknownSync(CurriculumSourceSchema)({
+    const curriculum = Schema.decodeSync(CurriculumSourceSchema)({
       programKey: "merdeka",
       tree: [
         {

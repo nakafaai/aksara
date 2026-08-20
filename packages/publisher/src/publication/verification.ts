@@ -62,7 +62,7 @@ function pollVerification<E, R>(
         return Effect.succeed(verification.evidence);
       }
       return Effect.sleep(VERIFICATION_POLL_DELAY).pipe(
-        Effect.zipRight(Effect.suspend(() => pollVerification(plan)))
+        Effect.andThen(Effect.suspend(() => pollVerification(plan)))
       );
     })
   );
@@ -115,13 +115,15 @@ const awaitVerification = Effect.fn("AksaraPublisher.awaitVerification")(
   function* <E, R>(plan: PublicationPlan<E, R>) {
     const { release } = plan.bundle;
     return yield* pollVerification(plan).pipe(
-      Effect.timeoutFail({
+      Effect.timeoutOrElse({
         duration: VERIFICATION_TIMEOUT,
-        onTimeout: () =>
-          new PublicationVerificationTimeoutError({
-            releaseId: release.manifest.releaseId,
-            timeoutSeconds: VERIFICATION_TIMEOUT_SECONDS,
-          }),
+        orElse: () =>
+          Effect.fail(
+            new PublicationVerificationTimeoutError({
+              releaseId: release.manifest.releaseId,
+              timeoutSeconds: VERIFICATION_TIMEOUT_SECONDS,
+            })
+          ),
       })
     );
   }

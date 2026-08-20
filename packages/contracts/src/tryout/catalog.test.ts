@@ -1,4 +1,4 @@
-import { Either, ParseResult, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
@@ -13,17 +13,17 @@ const rows: readonly TryoutCatalogRow[] = makeTryoutTestRows().catalog.map(
 
 /** Formats one expected current catalog schema failure. */
 function formatFailure(input: unknown) {
-  const result = Schema.decodeUnknownEither(TryoutCatalogRowSchema)(input);
-  if (Either.isRight(result)) {
+  const result = Schema.decodeUnknownExit(TryoutCatalogRowSchema)(input);
+  if (Exit.isSuccess(result)) {
     throw new Error("Expected current try-out catalog decoding to fail.");
   }
-  return ParseResult.TreeFormatter.formatErrorSync(result.left);
+  return String(result.cause);
 }
 
 describe("try-out catalog contract", () => {
   it("decodes every current localized hierarchy kind", () => {
     const kinds = rows.map(
-      (row) => Schema.decodeUnknownSync(TryoutCatalogRowSchema)(row).kind
+      (row) => Schema.decodeSync(TryoutCatalogRowSchema)(row).kind
     );
 
     expect(new Set(kinds)).toEqual(
@@ -32,20 +32,18 @@ describe("try-out catalog contract", () => {
   });
 
   it("requires exact keys for each pre-read catalog identity", () => {
-    const valid = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)({
+    const valid = Schema.decodeExit(TryoutCatalogNodeIdentitySchema)({
       appLocale: "de",
       countryKey: "indonesia",
       examKey: "snbt",
       kind: "exam",
     });
-    const missing = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)(
-      {
-        appLocale: "de",
-        countryKey: "indonesia",
-        kind: "exam",
-      }
-    );
-    const excess = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)(
+    const missing = Schema.decodeUnknownExit(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "de",
+      countryKey: "indonesia",
+      kind: "exam",
+    });
+    const excess = Schema.decodeUnknownExit(TryoutCatalogNodeIdentitySchema)(
       {
         appLocale: "de",
         countryKey: "indonesia",
@@ -56,9 +54,9 @@ describe("try-out catalog contract", () => {
       { onExcessProperty: "error" }
     );
 
-    expect(Either.isRight(valid)).toBe(true);
-    expect(Either.isLeft(missing)).toBe(true);
-    expect(Either.isLeft(excess)).toBe(true);
+    expect(Exit.isSuccess(valid)).toBe(true);
+    expect(Exit.isFailure(missing)).toBe(true);
+    expect(Exit.isFailure(excess)).toBe(true);
   });
 
   it("reports track, set, and section inventory violations", () => {

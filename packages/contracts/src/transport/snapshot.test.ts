@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -21,7 +21,7 @@ import {
 
 const otherHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
-const quranRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
+const quranRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   family: "quran",
   record: {
     payload: {
@@ -39,9 +39,9 @@ const quranRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
 });
 
 /** Strictly tests one snapshot transport schema without extra properties. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
@@ -118,24 +118,24 @@ describe("snapshot transport", () => {
       false
     );
     for (const request of [mixedRequest, mismatchedQuran]) {
-      const result = Schema.decodeUnknownEither(
-        StageSnapshotBatchRequestSchema
-      )(request);
-      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      const result = Schema.decodeUnknownExit(StageSnapshotBatchRequestSchema)(
+        request
+      );
+      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
         "Expected snapshot rows bound to one family and snapshot identity."
       );
     }
-    const inputResult = Schema.decodeUnknownEither(
-      StageSnapshotBatchInputSchema
-    )({
-      batchIndex: mixedRequest.batchIndex,
-      family: mixedRequest.family,
-      releaseId: mixedRequest.releaseId,
-      rows: mixedRequest.rows,
-      snapshotId: mixedRequest.snapshotId,
-    });
+    const inputResult = Schema.decodeUnknownExit(StageSnapshotBatchInputSchema)(
+      {
+        batchIndex: mixedRequest.batchIndex,
+        family: mixedRequest.family,
+        releaseId: mixedRequest.releaseId,
+        rows: mixedRequest.rows,
+        snapshotId: mixedRequest.snapshotId,
+      }
+    );
     expect(
-      Either.isLeft(inputResult) ? String(inputResult.left) : ""
+      Exit.isFailure(inputResult) ? String(inputResult.cause) : ""
     ).toContain(
       "Expected snapshot rows bound to one family and snapshot identity."
     );
@@ -170,11 +170,11 @@ describe("snapshot transport", () => {
         })
       ).toBe(false);
     }
-    const invalid = Schema.decodeUnknownEither(StageSnapshotReceiptSchema)({
+    const invalid = Schema.decodeUnknownExit(StageSnapshotReceiptSchema)({
       ...receipt,
       created: 0,
     });
-    expect(Either.isLeft(invalid) ? String(invalid.left) : "").toContain(
+    expect(Exit.isFailure(invalid) ? String(invalid.cause) : "").toContain(
       "Expected exactly one created or unchanged snapshot manifest."
     );
   });

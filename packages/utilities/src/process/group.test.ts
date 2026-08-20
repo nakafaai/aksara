@@ -1,5 +1,6 @@
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Deferred, Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { terminateProcessGroup } from "#utilities/process/group";
 
 afterEach(() => vi.restoreAllMocks());
@@ -28,7 +29,7 @@ describe("detached process group termination", () => {
   it("stops after graceful termination completes", async () => {
     const group = await processGroup(41_241);
     const kill = vi.spyOn(process, "kill").mockImplementation(() => {
-      Deferred.unsafeDone(group.exit, Effect.succeed(0));
+      Deferred.doneUnsafe(group.exit, Effect.succeed(0));
       return true;
     });
 
@@ -45,7 +46,7 @@ describe("detached process group termination", () => {
         if (signal === "SIGTERM") {
           throw new Error("Process group changed before the signal.");
         }
-        Deferred.unsafeDone(group.exit, Effect.succeed(0));
+        Deferred.doneUnsafe(group.exit, Effect.succeed(0));
         return true;
       });
 

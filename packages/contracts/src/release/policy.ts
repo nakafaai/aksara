@@ -7,11 +7,11 @@ import {
   type PublicationScope,
 } from "#contracts/release/snapshot/spec";
 
-const ClosureFieldSchema = Schema.Literal(
+const ClosureFieldSchema = Schema.Literals([
   "activeAppLocales",
   "manifest",
-  "scope"
-);
+  "scope",
+]);
 
 /** Locale policy shared by one release and its structured snapshots. */
 export const ReleasePolicySchema = Schema.Struct({
@@ -25,7 +25,7 @@ export class ReleasePolicyClosureError extends Schema.TaggedError<ReleasePolicyC
   {
     actual: Schema.String,
     expected: Schema.String,
-    family: Schema.Union(ContentSnapshotKindSchema, ContentFamilySchema),
+    family: Schema.Union([ContentSnapshotKindSchema, ContentFamilySchema]),
     field: ClosureFieldSchema,
   }
 ) {}

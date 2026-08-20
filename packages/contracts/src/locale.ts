@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 
 /** Stable locale codes supported by the current Aksara contract. */
-export const AppLocaleCodeSchema = Schema.Literal("en", "id", "de");
+export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de"]);
 export type AppLocaleCode = typeof AppLocaleCodeSchema.Type;
 
 /** Application locale used for Nakafa-owned interface and explanation copy. */
@@ -26,7 +26,7 @@ export type ArtifactLocale = typeof ArtifactLocaleSchema.Type;
 export const APP_LOCALE_CODES = AppLocaleCodeSchema.literals;
 
 /** Source-controlled application locale codes included by this corpus. */
-export const ActiveAppLocaleCodeSchema = Schema.Literal("en", "id");
+export const ActiveAppLocaleCodeSchema = Schema.Literals(["en", "id"]);
 export type ActiveAppLocaleCode = typeof ActiveAppLocaleCodeSchema.Type;
 
 /** Source-controlled codes used to index the currently complete corpus. */
@@ -65,14 +65,15 @@ function hasCanonicalActiveAppLocales(locales: readonly AppLocale[]) {
 export const ActiveAppLocaleListSchema = Schema.NonEmptyArray(
   AppLocaleSchema
 ).pipe(
-  Schema.filter(hasCanonicalActiveAppLocales, {
-    message: () =>
-      "Active app locales must be unique and follow en, id, de order.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalActiveAppLocales, {
+      message: "Active app locales must be unique and follow en, id, de order.",
+    })
+  )
 );
 export type ActiveAppLocaleList = typeof ActiveAppLocaleListSchema.Type;
 
 /** Source-controlled application locales included by the current corpus. */
-export const ACTIVE_APP_LOCALES = Schema.decodeUnknownSync(
+export const ACTIVE_APP_LOCALES = Schema.decodeSync(
   Schema.NonEmptyArray(ActiveAppLocaleSchema)
 )(ACTIVE_APP_LOCALE_CODES);

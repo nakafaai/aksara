@@ -5,7 +5,7 @@ export class ContractDecodeError extends Schema.TaggedError<ContractDecodeError>
   "ContractDecodeError",
   {
     cause: Schema.Unknown,
-    contract: Schema.NonEmptyTrimmedString,
-    message: Schema.NonEmptyTrimmedString,
+    contract: Schema.Trimmed.check(Schema.isNonEmpty()),
+    message: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}

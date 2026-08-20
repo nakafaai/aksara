@@ -18,7 +18,7 @@ const ROW_DOMAIN = "nakafa.aksara.program-row";
 /** Node could not compute one deterministic program row identity. */
 export class ProgramRowHashError extends Schema.TaggedError<ProgramRowHashError>()(
   "ProgramRowHashError",
-  { scope: Schema.Literal("digest", "row") }
+  { scope: Schema.Literals(["digest", "row"]) }
 ) {}
 
 /** Hashes one current program or curriculum row. */

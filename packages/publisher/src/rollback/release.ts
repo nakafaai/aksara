@@ -71,48 +71,43 @@ export interface RollbackTargetPolicy {
 export interface BuildRollbackReleaseInput<E, R> {
   readonly active: RollbackActiveCatalog;
   /** Replays authenticated rollback transitions for release derivation. */
-  readonly records: () => Stream.Stream<
-    DerivedRollbackRecord,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>;
   readonly releaseId: ReleaseId;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays the complete catalog produced by applying this rollback. */
-  readonly result: () => Stream.Stream<ContentHead, E, R>;
+  readonly result: Stream.Stream<ContentHead, E, R>;
   /** Replays independent inverse route ownership changes. */
-  readonly routes: () => Stream.Stream<ContentRouteItem, ReplaySpoolError>;
+  readonly routes: Stream.Stream<ContentRouteItem, ReplaySpoolError>;
   readonly scope: PublicationScope;
   readonly target: RollbackTargetPolicy;
 }
 
 type BuildRollbackReleaseError<E, R> =
   | E
-  | Effect.Effect.Error<ReturnType<typeof createProjectionDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateProjectionDigest>>
-  | Effect.Effect.Error<ReturnType<typeof createReleaseItemsDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeReleaseItemsDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateReleaseItemsDigest>>
-  | Effect.Effect.Error<ReturnType<typeof createResultCatalogDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateResultCatalogDigest>>
-  | Effect.Effect.Error<ReturnType<typeof createRollbackSnapshotDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeRollbackSnapshotDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateRollbackSnapshotDigest>>
-  | Effect.Effect.Error<
-      ReturnType<typeof digestRoutes<ReplaySpoolError, never>>
-    >
-  | Effect.Effect.Error<
+  | Effect.Error<ReturnType<typeof createProjectionDigest>>
+  | Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
+  | Effect.Error<ReturnType<typeof updateProjectionDigest>>
+  | Effect.Error<ReturnType<typeof createReleaseItemsDigest>>
+  | Effect.Error<ReturnType<typeof finalizeReleaseItemsDigest>>
+  | Effect.Error<ReturnType<typeof updateReleaseItemsDigest>>
+  | Effect.Error<ReturnType<typeof createResultCatalogDigest>>
+  | Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
+  | Effect.Error<ReturnType<typeof updateResultCatalogDigest>>
+  | Effect.Error<ReturnType<typeof createRollbackSnapshotDigest>>
+  | Effect.Error<ReturnType<typeof finalizeRollbackSnapshotDigest>>
+  | Effect.Error<ReturnType<typeof updateRollbackSnapshotDigest>>
+  | Effect.Error<ReturnType<typeof digestRoutes<ReplaySpoolError, never>>>
+  | Effect.Error<
       ReturnType<typeof verifyContentReleaseItems<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof verifyContentProjections<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<ReturnType<typeof verifyResultCatalog<E, R>>>
-  | Effect.Effect.Error<
+  | Effect.Error<ReturnType<typeof verifyResultCatalog<E, R>>>
+  | Effect.Error<
       ReturnType<typeof verifyRollbackSnapshot<ReplaySpoolError, never>>
     >
-  | Effect.Effect.Error<
+  | Effect.Error<
       ReturnType<typeof verifyContentRoutes<ReplaySpoolError, never>>
     >;
 
@@ -129,26 +124,28 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
   "AksaraPublisher.buildRollbackRelease"
 )(function* <E, R>(input: BuildRollbackReleaseInput<E, R>) {
   /** Replays canonical prior-state release items. */
-  const items = () => rollbackItemStream(input.records, "prior");
+  const items = rollbackItemStream(input.records, "prior");
   /** Replays canonical prior-state content projections. */
-  const projections = () => rollbackProjectionStream(input.records, "prior");
+  const projections = rollbackProjectionStream(input.records, "prior");
   /** Replays current states as the next rollback snapshot. */
-  const rollback = () =>
-    rollbackSnapshotStream(input.records, input.releaseId, "current");
+  const rollback = rollbackSnapshotStream(
+    input.records,
+    input.releaseId,
+    "current"
+  );
   /** Replays canonical route changes that restore each prior state. */
   const { routes } = input;
   /** Replays authenticated prior-state content artifacts. */
-  const artifacts = () =>
-    input.records().pipe(
-      Stream.map((record) => record.prior),
-      Stream.filter(isDerivedRollbackUpsert),
-      Stream.map((state) => state.artifact)
-    );
+  const artifacts = input.records.pipe(
+    Stream.map((record) => record.prior),
+    Stream.filter(isDerivedRollbackUpsert),
+    Stream.map((state) => state.artifact)
+  );
   const itemState = yield* createReleaseItemsDigest(input.releaseId);
   const projectionState = yield* createProjectionDigest(input.releaseId);
   const resultState = yield* createResultCatalogDigest(input.releaseId);
   const rollbackState = yield* createRollbackSnapshotDigest(input.releaseId);
-  yield* input.records().pipe(
+  yield* input.records.pipe(
     Stream.runForEach((record) => {
       const { prior } = record;
       return updateReleaseItemsDigest(
@@ -156,7 +153,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
         itemState,
         prior.item
       ).pipe(
-        Effect.zipRight(
+        Effect.andThen(
           isDerivedRollbackUpsert(prior)
             ? updateProjectionDigest(
                 input.releaseId,
@@ -165,7 +162,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
               )
             : Effect.void
         ),
-        Effect.zipRight(
+        Effect.andThen(
           updateRollbackSnapshotDigest(
             input.releaseId,
             rollbackState,
@@ -179,13 +176,11 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
       );
     })
   );
-  yield* input
-    .result()
-    .pipe(
-      Stream.runForEach((head) =>
-        updateResultCatalogDigest(input.releaseId, resultState, head)
-      )
-    );
+  yield* input.result.pipe(
+    Stream.runForEach((head) =>
+      updateResultCatalogDigest(input.releaseId, resultState, head)
+    )
+  );
   const itemsDigest = yield* finalizeReleaseItemsDigest(
     input.releaseId,
     itemState
@@ -202,7 +197,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     input.releaseId,
     rollbackState
   );
-  const routeSummary = yield* digestRoutes(input.releaseId, routes());
+  const routeSummary = yield* digestRoutes(input.releaseId, routes);
   const manifest = ContentReleaseManifestSchema.make({
     activeAppLocales: input.target.activeAppLocales,
     baseActiveAppLocales: input.active.activeAppLocales,
@@ -230,16 +225,16 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     snapshots: input.target.snapshots,
     upsertCount: itemState.upsertCount,
   });
-  yield* verifyContentReleaseItems({ items: items(), manifest });
-  yield* verifyContentProjections({ manifest, projections: projections() });
-  yield* verifyContentRoutes({ manifest, routes: routes() });
+  yield* verifyContentReleaseItems({ items, manifest });
+  yield* verifyContentProjections({ manifest, projections });
+  yield* verifyContentRoutes({ manifest, routes });
   yield* verifyResultCatalog({
     expectedCount: manifest.resultCount,
     expectedDigest: manifest.resultDigest,
-    heads: input.result(),
+    heads: input.result,
     releaseId: manifest.releaseId,
   });
-  yield* verifyRollbackSnapshot({ entries: rollback(), manifest });
+  yield* verifyRollbackSnapshot({ entries: rollback, manifest });
   return makePreparedRollbackRelease({
     artifacts,
     items,
@@ -247,7 +242,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     projections,
     rendererManifest: input.rendererManifest,
     routes,
-    snapshotManifests: () => Stream.empty,
-    snapshotRows: () => Stream.empty,
+    snapshotManifests: Stream.empty,
+    snapshotRows: Stream.empty,
   });
 });

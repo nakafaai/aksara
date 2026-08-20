@@ -6,8 +6,9 @@ import {
   generateKeyPairSync,
   sign as signBytes,
 } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import {
   type CompiledContentPayload,
@@ -84,7 +85,7 @@ function manifestInput(
 const rendererManifest = await Effect.runPromise(
   createRendererManifest(manifestInput())
 );
-const basePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const basePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: 10,
   compiledCode: "return {};",

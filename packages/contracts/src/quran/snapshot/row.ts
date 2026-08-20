@@ -39,10 +39,11 @@ function hasCanonicalTranslations(
 const QuranTranslationListSchema = Schema.NonEmptyArray(
   QuranLocalizedTranslationSchema
 ).pipe(
-  Schema.filter(hasCanonicalTranslations, {
-    message: () =>
-      "Quran translations must use unique canonical app-locale order.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalTranslations, {
+      message: "Quran translations must use unique canonical app-locale order.",
+    })
+  )
 );
 
 /** Optional Tafsir entry available only for reviewed locales. */
@@ -55,18 +56,20 @@ const QuranRuntimeTafsirSchema = Schema.Struct({
 /** One exact verse with explicit translation locale entries. */
 export const QuranRuntimeVerseSchema = Schema.Struct({
   meta: Schema.Struct({
-    hizbQuarter: Schema.Int.pipe(Schema.positive()),
-    juz: Schema.Int.pipe(Schema.positive()),
-    manzil: Schema.Int.pipe(Schema.positive()),
-    page: Schema.Int.pipe(Schema.positive()),
-    ruku: Schema.Int.pipe(Schema.positive()),
-    sajda: Schema.NullOr(Schema.Literal("obligatory", "recommended")),
+    hizbQuarter: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    juz: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    manzil: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    page: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    ruku: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    sajda: Schema.NullOr(Schema.Literals(["obligatory", "recommended"])),
   }),
   number: Schema.Struct({
-    inQuran: Schema.Int.pipe(Schema.positive()),
-    inSurah: Schema.Int.pipe(Schema.positive()),
+    inQuran: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+    inSurah: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   }),
-  tafsir: Schema.Array(QuranRuntimeTafsirSchema).pipe(Schema.maxItems(1)),
+  tafsir: Schema.Array(QuranRuntimeTafsirSchema).pipe(
+    Schema.check(Schema.isMaxLength(1))
+  ),
   text: QuranTextSchema,
   translations: QuranTranslationListSchema,
 });
@@ -91,18 +94,20 @@ function hasCoherentChunk(input: {
 
 /** Immutable bounded runtime row containing ordered verses. */
 export const QuranChunkRowSchema = Schema.Struct({
-  firstQuranNumber: Schema.Int.pipe(Schema.positive()),
-  firstVerse: Schema.Int.pipe(Schema.positive()),
+  firstQuranNumber: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+  firstVerse: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   kind: Schema.Literal("quran-chunk"),
-  lastVerse: Schema.Int.pipe(Schema.positive()),
+  lastVerse: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   surahNumber: QuranSurahNumberSchema,
   verses: Schema.NonEmptyArray(QuranRuntimeVerseSchema).pipe(
-    Schema.maxItems(QURAN_CHUNK_SIZE)
+    Schema.check(Schema.isMaxLength(QURAN_CHUNK_SIZE))
   ),
 }).pipe(
-  Schema.filter(hasCoherentChunk, {
-    message: () => "Expected one contiguous Quran runtime chunk.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentChunk, {
+      message: "Expected one contiguous Quran runtime chunk.",
+    })
+  )
 );
 
 /** One locale-specific Quran route and full-text search document. */
@@ -117,12 +122,12 @@ export const QuranSearchRowSchema = Schema.Struct({
 });
 
 /** Complete structured Quran row vocabulary. */
-export const QuranRowPayloadSchema = Schema.Union(
+export const QuranRowPayloadSchema = Schema.Union([
   QuranAttributionRowSchema,
   QuranSurahRowSchema,
   QuranChunkRowSchema,
-  QuranSearchRowSchema
-);
+  QuranSearchRowSchema,
+]);
 export type QuranRowPayload = typeof QuranRowPayloadSchema.Type;
 
 /** One content-addressed row bound to an immutable Quran snapshot. */

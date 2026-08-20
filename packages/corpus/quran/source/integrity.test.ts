@@ -1,12 +1,12 @@
 import { resolve } from "node:path";
 
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Chunk, Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Stream } from "effect";
 
 import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
@@ -19,11 +19,11 @@ describe("Quran source integrity", () => {
   }, async () => {
     const verified = await Effect.runPromise(
       loadVerifiedQuranSource(repositoryRoot).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
-    const surahs = Chunk.toReadonlyArray(
-      await Effect.runPromise(verified.source().pipe(Stream.runCollect))
+    const surahs = await Effect.runPromise(
+      verified.source.pipe(Stream.runCollect)
     );
 
     expect(verified.summary).toMatchObject({
@@ -41,13 +41,11 @@ describe("Quran source integrity", () => {
   }, async () => {
     const verified = await Effect.runPromise(
       loadVerifiedQuranSource(repositoryRoot, AUTHORING_APP_LOCALES).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
-    const [first] = Chunk.toReadonlyArray(
-      await Effect.runPromise(
-        verified.source().pipe(Stream.take(1), Stream.runCollect)
-      )
+    const [first] = await Effect.runPromise(
+      verified.source.pipe(Stream.take(1), Stream.runCollect)
     );
 
     expect(verified.summary).toEqual({

@@ -31,12 +31,12 @@ describe("locale lifecycle", () => {
 
   it("accepts the exact candidate set and rejects noncanonical lists", () => {
     expect(
-      Schema.decodeUnknownSync(CandidateAppLocaleListSchema)([
+      Schema.decodeSync(CandidateAppLocaleListSchema)([
         ...CANDIDATE_APP_LOCALES,
       ])
     ).toEqual(CANDIDATE_APP_LOCALES);
     expect(() =>
-      Schema.decodeUnknownSync(CandidateAppLocaleListSchema)([
+      Schema.decodeSync(CandidateAppLocaleListSchema)([
         ...CANDIDATE_APP_LOCALES,
         "en",
       ])
@@ -46,7 +46,7 @@ describe("locale lifecycle", () => {
         index === 0 ? AppLocaleSchema.make("en") : appLocale
       );
       expect(() =>
-        Schema.decodeUnknownSync(CandidateAppLocaleListSchema)(wrongMember)
+        Schema.decodeSync(CandidateAppLocaleListSchema)(wrongMember)
       ).toThrow();
     }
   });

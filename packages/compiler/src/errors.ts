@@ -7,15 +7,21 @@ export class MdxCompilationError extends Schema.TaggedError<MdxCompilationError>
   {
     cause: Schema.Unknown,
     contentKey: ContentKeySchema,
-    message: Schema.NonEmptyTrimmedString,
+    message: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
 
 /** Redacted location and statement class for unsupported MDX module syntax. */
 export const UnsupportedMdxModuleOccurrenceSchema = Schema.Struct({
-  column: Schema.Number.pipe(Schema.int(), Schema.positive()),
-  kind: Schema.Literal("import", "export", "mixed", "unknown"),
-  line: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  column: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+  kind: Schema.Literals(["import", "export", "mixed", "unknown"]),
+  line: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
 });
 export type UnsupportedMdxModuleOccurrence =
   typeof UnsupportedMdxModuleOccurrenceSchema.Type;
@@ -26,7 +32,7 @@ export class UnsupportedMdxModuleSyntaxError extends Schema.TaggedError<Unsuppor
   {
     contentKey: ContentKeySchema,
     occurrences: Schema.Array(UnsupportedMdxModuleOccurrenceSchema).pipe(
-      Schema.minItems(1)
+      Schema.check(Schema.isMinLength(1))
     ),
   }
 ) {}
@@ -35,15 +41,15 @@ export class UnsupportedMdxModuleSyntaxError extends Schema.TaggedError<Unsuppor
 export class RendererComponentMissingError extends Schema.TaggedError<RendererComponentMissingError>()(
   "RendererComponentMissingError",
   {
-    componentName: Schema.NonEmptyTrimmedString,
+    componentName: Schema.Trimmed.check(Schema.isNonEmpty()),
     contentKey: ContentKeySchema,
   }
 ) {}
 
 /** One AST-level executable capability rejected by the trusted-author policy. */
 export const ExecutablePolicyViolationSchema = Schema.Struct({
-  identifier: Schema.optional(Schema.NonEmptyTrimmedString),
-  rule: Schema.Literal(
+  identifier: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),
+  rule: Schema.Literals([
     "dynamic-import",
     "import-meta",
     "require",
@@ -55,8 +61,8 @@ export const ExecutablePolicyViolationSchema = Schema.Struct({
     "prototype-chain-access",
     "dynamic-property-access",
     "dangerous-jsx-attribute",
-    "unknown-free-global"
-  ),
+    "unknown-free-global",
+  ]),
 });
 export type ExecutablePolicyViolation =
   typeof ExecutablePolicyViolationSchema.Type;
@@ -74,20 +80,26 @@ export class ExecutablePolicyError extends Schema.TaggedError<ExecutablePolicyEr
 export class ContentByteLimitExceededError extends Schema.TaggedError<ContentByteLimitExceededError>()(
   "ContentByteLimitExceededError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     contentKey: ContentKeySchema,
-    field: Schema.Literal(
+    field: Schema.Literals([
       "rawMdx",
       "compiledCode",
       "plainText",
-      "canonicalPayload"
+      "canonicalPayload",
+    ]),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
     ),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }
 ) {}
 
 /** Static metadata syntax rejected without evaluating authored JavaScript. */
-export const AuthoredMetadataSyntaxReasonSchema = Schema.Literal(
+export const AuthoredMetadataSyntaxReasonSchema = Schema.Literals([
   "array-hole",
   "computed-property",
   "duplicate-property",
@@ -96,8 +108,8 @@ export const AuthoredMetadataSyntaxReasonSchema = Schema.Literal(
   "mixed-metadata-module",
   "metadata-not-object",
   "spread",
-  "unsupported-property"
-);
+  "unsupported-property",
+]);
 export type AuthoredMetadataSyntaxReason =
   typeof AuthoredMetadataSyntaxReasonSchema.Type;
 
@@ -112,7 +124,10 @@ export class AuthoredMetadataDuplicateError extends Schema.TaggedError<AuthoredM
   "AuthoredMetadataDuplicateError",
   {
     contentKey: ContentKeySchema,
-    count: Schema.Number.pipe(Schema.int(), Schema.greaterThan(1)),
+    count: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(1))
+    ),
   }
 ) {}
 
@@ -122,7 +137,7 @@ export class AuthoredMetadataSyntaxError extends Schema.TaggedError<AuthoredMeta
   {
     contentKey: ContentKeySchema,
     reasons: Schema.Array(AuthoredMetadataSyntaxReasonSchema).pipe(
-      Schema.minItems(1)
+      Schema.check(Schema.isMinLength(1))
     ),
   }
 ) {}

@@ -10,46 +10,46 @@ import type { prepareRollback } from "#publisher/rollback";
 import type { PublicationSigner } from "#publisher/signing/service";
 
 /** Failure inferred from canonical release-item verification. */
-export type ReleaseItemVerificationError<E, R> = Effect.Effect.Error<
+export type ReleaseItemVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentReleaseItems<E, R>>
 >;
 
 /** Failure inferred from canonical projection verification. */
-export type ProjectionVerificationError<E, R> = Effect.Effect.Error<
+export type ProjectionVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentProjections<E, R>>
 >;
 
 /** Failure inferred from canonical route verification. */
-export type RouteVerificationError<E, R> = Effect.Effect.Error<
+export type RouteVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentRoutes<E, R>>
 >;
 
 /** Failure inferred from structured snapshot verification. */
-export type SnapshotVerificationError<E, R> = Effect.Effect.Error<
+export type SnapshotVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentSnapshots<E, R, E, R>>
 >;
 
 /** Failure inferred from renderer-manifest hash validation. */
-export type RendererManifestValidationError = Effect.Effect.Error<
+export type RendererManifestValidationError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
 /** Failure inferred from signed artifact verification. */
-export type ArtifactVerificationError = Effect.Effect.Error<
+export type ArtifactVerificationError = Effect.Error<
   ReturnType<typeof verifySignedContentArtifact>
 >;
 
 /** Failure inferred from signed release verification. */
-export type SignedReleaseVerificationError = Effect.Effect.Error<
+export type SignedReleaseVerificationError = Effect.Error<
   ReturnType<typeof verifySignedContentRelease>
 >;
 
 /** Failure inferred from publication artifact signing. */
-export type ArtifactSigningError = Effect.Effect.Error<
+export type ArtifactSigningError = Effect.Error<
   ReturnType<PublicationSigner["signArtifact"]>
 >;
 
 /** Failure inferred from authenticated rollback preparation. */
-export type RecoveryPreparationError = Effect.Effect.Error<
+export type RecoveryPreparationError = Effect.Error<
   ReturnType<typeof prepareRollback>
 >;

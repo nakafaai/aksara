@@ -25,10 +25,10 @@ export const CurriculumRouteRecordSchema = Schema.Struct({
 });
 
 /** Complete row vocabulary owned by the current program snapshot. */
-export const ProgramSnapshotRowSchema = Schema.Union(
+export const ProgramSnapshotRowSchema = Schema.Union([
   LearningProgramRecordSchema,
-  CurriculumRouteRecordSchema
-);
+  CurriculumRouteRecordSchema,
+]);
 export type ProgramSnapshotRow = typeof ProgramSnapshotRowSchema.Type;
 export type ProgramSnapshotRowInput =
   | Pick<typeof LearningProgramRecordSchema.Type, "kind" | "row">

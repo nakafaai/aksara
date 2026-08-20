@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
@@ -23,7 +23,7 @@ describe("release manifest hash", () => {
   });
 
   it("binds active application locales", () => {
-    const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+    const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...release.manifest,
       activeAppLocales: ["en", "id", "de"],
     });

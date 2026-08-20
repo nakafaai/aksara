@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { isRecord } from "effect/Predicate";
+import { isObject } from "effect/Predicate";
 
 export const DEPENDENCY_SECTIONS = [
   "dependencies",
@@ -69,10 +69,10 @@ export function assertPortableDependencies(manifest: PackageManifest): void {
 
 /** Removes repository-only source resolution from one released export map. */
 function releasedExports(value: unknown): Readonly<Record<string, unknown>> {
-  assert.ok(isRecord(value), "Package exports must be an object");
+  assert.ok(isObject(value), "Package exports must be an object");
   return Object.fromEntries(
     Object.entries(value).map(([subpath, descriptor]) => {
-      assert.ok(isRecord(descriptor), `Export ${subpath} must be an object`);
+      assert.ok(isObject(descriptor), `Export ${subpath} must be an object`);
       return [
         subpath,
         Object.fromEntries(
@@ -91,8 +91,8 @@ export function createReleaseManifest(
   effectVersion: string
 ): string {
   const parsed: unknown = JSON.parse(source);
-  assert.ok(isRecord(parsed), "The package manifest must be an object");
-  assert.ok(isRecord(parsed.peerDependencies), "peerDependencies must exist");
+  assert.ok(isObject(parsed), "The package manifest must be an object");
+  assert.ok(isObject(parsed.peerDependencies), "peerDependencies must exist");
   const {
     devDependencies: _devDependencies,
     exports: packageExports,
@@ -141,7 +141,7 @@ function exportConditions(
   value: unknown,
   subpath: string
 ): Readonly<Record<string, string>> {
-  assert.ok(isRecord(value), `Export ${subpath} must be an object`);
+  assert.ok(isObject(value), `Export ${subpath} must be an object`);
   const conditions: Record<string, string> = {};
   for (const [condition, target] of Object.entries(value)) {
     conditions[condition] = textField(
@@ -161,7 +161,7 @@ function dependencyMap(
   if (value === undefined) {
     return;
   }
-  assert.ok(isRecord(value), `${section} must be an object`);
+  assert.ok(isObject(value), `${section} must be an object`);
   const dependencies: Record<string, string> = {};
   for (const [name, version] of Object.entries(value)) {
     dependencies[name] = textField(version, `${name} must use a text version`);
@@ -172,7 +172,7 @@ function dependencyMap(
 /** Decodes package fields exercised by the tarball verifier. */
 export function parsePackageManifest(source: string): PackageManifest {
   const parsed: unknown = JSON.parse(source);
-  assert.ok(isRecord(parsed), "The package manifest must be an object");
+  assert.ok(isObject(parsed), "The package manifest must be an object");
   const name = textField(parsed.name, "Package name must be text");
   const description = textField(
     parsed.description,
@@ -186,11 +186,11 @@ export function parsePackageManifest(source: string): PackageManifest {
     imports: packageImports,
     repository,
   } = parsed;
-  assert.ok(isRecord(engines), "Package engines must be an object");
+  assert.ok(isObject(engines), "Package engines must be an object");
   const node = textField(engines.node, "Package Node engine must be text");
-  assert.ok(isRecord(packageExports), "Package exports must be an object");
-  assert.ok(isRecord(packageImports), "Package imports must be an object");
-  assert.ok(isRecord(repository), "Package repository must be an object");
+  assert.ok(isObject(packageExports), "Package exports must be an object");
+  assert.ok(isObject(packageImports), "Package imports must be an object");
+  assert.ok(isObject(repository), "Package repository must be an object");
   const repositoryType = textField(
     repository.type,
     "Package repository type must be text"
@@ -227,10 +227,10 @@ export function parsePackageManifest(source: string): PackageManifest {
 /** Decodes the installed package fields exercised by module resolution. */
 export function parseInstalledManifest(source: string): InstalledManifest {
   const parsed: unknown = JSON.parse(source);
-  assert.ok(isRecord(parsed), "The installed manifest must be an object");
+  assert.ok(isObject(parsed), "The installed manifest must be an object");
   const name = textField(parsed.name, "The package name must be text");
   const rawExports = parsed.exports;
-  assert.ok(isRecord(rawExports), "The package must declare exports");
+  assert.ok(isObject(rawExports), "The package must declare exports");
   const exports: Record<string, Readonly<Record<string, string>>> = {};
   for (const [subpath, descriptor] of Object.entries(rawExports)) {
     exports[subpath] = exportConditions(descriptor, subpath);
@@ -241,7 +241,7 @@ export function parseInstalledManifest(source: string): InstalledManifest {
 /** Decodes the root package-manager contract used by the consumer. */
 export function parseWorkspaceManifest(source: string): WorkspaceManifest {
   const parsed: unknown = JSON.parse(source);
-  assert.ok(isRecord(parsed), "The workspace manifest must be an object");
+  assert.ok(isObject(parsed), "The workspace manifest must be an object");
   const packageManager = textField(
     parsed.packageManager,
     "Workspace packageManager must be text"

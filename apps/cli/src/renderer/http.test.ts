@@ -1,12 +1,12 @@
+import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Redacted } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
   HttpClientError,
   HttpClientRequest,
-} from "@effect/platform";
-import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
-import { Effect, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+} from "effect/unstable/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
 import { captureClient, runClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -117,7 +117,9 @@ describe("renderer HTTP", () => {
   it("classifies network, status, redirect, and cache failures", async () => {
     const networkClient = HttpClient.make((request) =>
       Effect.fail(
-        new HttpClientError.RequestError({ reason: "Transport", request })
+        new HttpClientError.HttpClientError({
+          reason: new HttpClientError.TransportError({ request }),
+        })
       )
     );
     const network = await rejectRenderer(networkClient);

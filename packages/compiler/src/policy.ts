@@ -33,7 +33,7 @@ export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v6";
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
-    Predicate.isRecord(value) &&
+    Predicate.isObject(value) &&
     "type" in value &&
     typeof value.type === "string"
   );

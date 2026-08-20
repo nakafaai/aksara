@@ -1,8 +1,7 @@
 import { realpathSync, unlinkSync, writeFileSync } from "node:fs";
 import { relative } from "node:path";
-import { FileSystem, Error as PlatformError } from "@effect/platform";
-import { Effect } from "effect";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, PlatformError } from "effect";
 import {
   fingerprintSelectedDocument,
   verifySelectedDirectory,
@@ -60,11 +59,11 @@ describe("preview source integrity", () => {
     if (directory === undefined) {
       return;
     }
-    const systemError = new PlatformError.SystemError({
+    const systemError = PlatformError.systemError({
+      _tag: "NotFound",
       method: "realPath",
       module: "FileSystem",
       pathOrDescriptor: directory.absolutePath,
-      reason: "NotFound",
     });
     const failures = await Promise.all([
       Effect.runPromise(

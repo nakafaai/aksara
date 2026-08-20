@@ -1,14 +1,14 @@
+import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
+import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Duration, Effect, Redacted } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
   HttpClientRequest,
   HttpClientResponse,
-} from "@effect/platform";
-import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
-import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
-import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
-import { Duration, Effect, Redacted } from "effect";
-import { describe, expect, it } from "vitest";
+} from "effect/unstable/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
 import { transportRequests } from "#test/transport/spec";

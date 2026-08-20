@@ -21,7 +21,7 @@ export interface RunningProcess {
 }
 
 /** Infrastructure boundary that starts one environment-isolated Nakafa child. */
-export class NakafaProcess extends Context.Tag("AksaraCliNakafaProcess")<
+export class NakafaProcess extends Context.Service<
   NakafaProcess,
   {
     /** Starts one process using exactly the supplied environment entries. */
@@ -29,7 +29,7 @@ export class NakafaProcess extends Context.Tag("AksaraCliNakafaProcess")<
       input: NakafaProcessInput
     ) => Effect.Effect<RunningProcess, NakafaAppError, Scope.Scope>;
   }
->() {}
+>()("AksaraCliNakafaProcess") {}
 
 /** Opens one process and records exit before returning control to its caller. */
 const openProcess = Effect.fn("AksaraCli.openNakafaProcess")(function* (
@@ -47,13 +47,13 @@ const openProcess = Effect.fn("AksaraCli.openNakafaProcess")(function* (
         stdio: "inherit",
       }),
   });
-  yield* Effect.async<void, NakafaAppError>((resume) => {
+  yield* Effect.callback<void, NakafaAppError>((resume) => {
     child.once("error", () => {
-      Deferred.unsafeDone(exit, Effect.fail(makeNakafaAppError("exit", false)));
+      Deferred.doneUnsafe(exit, Effect.fail(makeNakafaAppError("exit", false)));
       resume(Effect.fail(makeNakafaAppError("start", false)));
     });
     child.once("exit", (code) => {
-      Deferred.unsafeDone(exit, Effect.succeed(code));
+      Deferred.doneUnsafe(exit, Effect.succeed(code));
     });
     child.once("spawn", () => resume(Effect.void));
   });

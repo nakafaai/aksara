@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { Path } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   type QuestionHead,
@@ -10,7 +9,7 @@ import {
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { prepareQuestionPublication } from "#publisher/question/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
@@ -21,7 +20,7 @@ const questionKey =
 const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
 const completeContent = await Effect.runPromise(
   loadQuestionContent(checkoutRoot, tryoutSources).pipe(
-    Effect.provide(NodeContext.layer)
+    Effect.provide(NodeServices.layer)
   )
 );
 export const questionEntries = completeContent.entries.filter(
@@ -74,7 +73,7 @@ export function collectQuestionPublication(input: {
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
         });
-        return yield* publication.records().pipe(
+        return yield* publication.records.pipe(
           Stream.runCollect,
           Effect.map((records) => [...records])
         );
@@ -95,7 +94,7 @@ export function collectQuestionRoutes(heads: readonly QuestionHead[]) {
           published: Stream.fromIterable(heads),
           rendererManifest,
         });
-        return yield* publication.routes().pipe(
+        return yield* publication.routes.pipe(
           Stream.runCollect,
           Effect.map((routes) => [...routes])
         );

@@ -19,8 +19,11 @@ export class SnapshotBatchBindingError extends Schema.TaggedError<SnapshotBatchB
     actual: Schema.String,
     expected: Schema.String,
     family: ContentSnapshotKindSchema,
-    field: Schema.Literal("family", "snapshotId"),
-    itemOffset: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    field: Schema.Literals(["family", "snapshotId"]),
+    itemOffset: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 

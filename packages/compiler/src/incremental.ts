@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Either, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 import type {
   CompileContentError,
   CompiledContentResult,
@@ -28,22 +28,22 @@ import type {
 
 const CACHE_FORMAT = "aksara-local-compile";
 
-const MetadataValueSchema: Schema.Schema<AuthoredMetadataValue> =
-  Schema.suspend(() =>
-    Schema.Union(
+const MetadataValueSchema: Schema.Codec<AuthoredMetadataValue> = Schema.suspend(
+  () =>
+    Schema.Union([
       Schema.Boolean,
       Schema.Null,
-      Schema.JsonNumber,
+      Schema.Finite,
       Schema.String,
       Schema.Array(MetadataValueSchema),
-      Schema.Record({ key: Schema.String, value: MetadataValueSchema })
-    )
-  );
+      Schema.Record(Schema.String, MetadataValueSchema),
+    ])
+);
 
-const MetadataSchema: Schema.Schema<AuthoredMetadata> = Schema.Record({
-  key: Schema.String,
-  value: MetadataValueSchema,
-});
+const MetadataSchema: Schema.Codec<AuthoredMetadata> = Schema.Record(
+  Schema.String,
+  MetadataValueSchema
+);
 
 /** Complete input identity that decides whether local compilation is reusable. */
 const CompileIdentitySchema = Schema.Struct({
@@ -199,16 +199,16 @@ function lookupCache(input: unknown, identity: CompileIdentity): CacheLookup {
   if (input === undefined) {
     return { kind: "miss", reason: "missing" };
   }
-  const decoded = Schema.decodeUnknownEither(LocalCacheSchema)(input, {
+  const decoded = Schema.decodeUnknownExit(LocalCacheSchema)(input, {
     onExcessProperty: "error",
   });
-  if (Either.isLeft(decoded) || !isIntact(decoded.right)) {
+  if (Exit.isFailure(decoded) || !isIntact(decoded.value)) {
     return { kind: "miss", reason: "corrupt" };
   }
-  if (decoded.right.identityHash !== hashUtf8(canonicalizeIdentity(identity))) {
+  if (decoded.value.identityHash !== hashUtf8(canonicalizeIdentity(identity))) {
     return { kind: "miss", reason: "changed" };
   }
-  return { entry: decoded.right, kind: "hit" };
+  return { entry: decoded.value, kind: "hit" };
 }
 
 /**

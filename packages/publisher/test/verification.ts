@@ -86,7 +86,7 @@ export function makeVerificationPlan(
   });
   const plan: PublicationPlan<never, never> = {
     bundle: selectedBundle,
-    cacheChanges: () => Stream.empty,
+    cacheChanges: Stream.empty,
     projectionSummary: { count: selectedManifest.projectionCount },
     routeSummary: { count: selectedManifest.routeCount },
     snapshotSummary: {

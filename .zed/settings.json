@@ -12,14 +12,12 @@
     "repos/**"
   ],
   "lsp": {
-    "vtsls": {
+    "typescript-ls": {
       "settings": {
+        "package_version": "7.0.2",
         "typescript": {
           "preferences": {
             "includePackageJsonAutoImports": "on"
-          },
-          "tsserver": {
-            "maxTsServerMemory": 8192
           }
         }
       }
@@ -27,10 +25,36 @@
   },
   "languages": {
     "JavaScript": {
-      "language_servers": ["vtsls", "!typescript-language-server", "..."]
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "..."
+      ]
+    },
+    "JSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "..."
+      ]
     },
     "TypeScript": {
-      "language_servers": ["vtsls", "!typescript-language-server", "..."]
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "..."
+      ]
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "..."
+      ]
     }
   }
 }

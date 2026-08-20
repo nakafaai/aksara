@@ -1,6 +1,7 @@
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { MaterialHeadSchema } from "#contracts/release/head";
 import {
@@ -12,8 +13,7 @@ import {
 } from "#contracts/release/result/digest";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
-const releaseId =
-  Schema.decodeUnknownSync(ReleaseIdSchema)("test-result-digest");
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-result-digest");
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -55,7 +55,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one canonical compact material head at a test-only identity. */
 function head(contentKey: string) {
   const slug = contentKey.replace(":", "-");
-  return Schema.decodeUnknownSync(MaterialHeadSchema)({
+  return Schema.decodeSync(MaterialHeadSchema)({
     artifactHash: `sha256:${"a".repeat(64)}`,
     artifactLocale: "en",
     compilerConfigHash: `sha256:${"b".repeat(64)}`,

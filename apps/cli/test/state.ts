@@ -41,7 +41,7 @@ export function stateBundle(
   },
   baseReleaseId = origin.kind === "rollback" ? origin.releaseId : null
 ) {
-  const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
+  const release = Schema.decodeSync(SignedContentReleaseSchema)({
     keyId: "test-state-key",
     manifest: {
       activeAppLocales: ["en", "id"],

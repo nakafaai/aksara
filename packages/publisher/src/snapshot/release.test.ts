@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   PublicPathSchema,
   Sha256HashSchema,
@@ -38,8 +38,9 @@ import {
 } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 import { materialGraph } from "#test/graph";
 
@@ -51,13 +52,13 @@ interface TryoutFixture {
   >;
   readonly rowCount: number;
   /** Replays the representative technical row used by this unit test. */
-  readonly rows: () => Stream.Stream<ContentSnapshotRow>;
+  readonly rows: Stream.Stream<ContentSnapshotRow>;
 }
 interface QuranFixture {
   readonly manifest: QuranSnapshot;
   readonly rowCount: number;
   /** Replays the representative technical Quran rows used by this unit test. */
-  readonly rows: () => Stream.Stream<QuranSnapshotRow>;
+  readonly rows: Stream.Stream<QuranSnapshotRow>;
 }
 const testHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranState = vi.hoisted((): { current: QuranFixture | undefined } => ({
@@ -72,7 +73,7 @@ vi.mock("@nakafa/aksara-corpus/quran/snapshot", async () => {
   return {
     prepareQuranSnapshot: () =>
       quranState.current === undefined
-        ? RuntimeEffect.dieMessage("Expected a configured Quran snapshot.")
+        ? RuntimeEffect.die(new Error("Expected a configured Quran snapshot."))
         : RuntimeEffect.succeed(quranState.current),
   };
 });
@@ -82,7 +83,9 @@ vi.mock("#publisher/tryout/snapshot", async () => {
   return {
     prepareTryoutSnapshot: () =>
       tryoutState.current === undefined
-        ? RuntimeEffect.dieMessage("Expected a configured try-out snapshot.")
+        ? RuntimeEffect.die(
+            new Error("Expected a configured try-out snapshot.")
+          )
         : RuntimeEffect.succeed(tryoutState.current),
   };
 });
@@ -130,7 +133,7 @@ function makeQuranFixture(): QuranFixture {
   return {
     manifest,
     rowCount: rows.length,
-    rows: () => Stream.fromIterable(rows),
+    rows: Stream.fromIterable(rows),
   };
 }
 
@@ -179,7 +182,7 @@ async function makeTryoutFixture(): Promise<TryoutFixture> {
   return {
     manifest,
     rowCount: rows.length,
-    rows: () => Stream.fromIterable(rows),
+    rows: Stream.fromIterable(rows),
   };
 }
 
@@ -197,16 +200,16 @@ function prepare(
           checkoutRoot,
           families,
           previousSnapshots,
-          questionHeads: () => Stream.empty,
+          questionHeads: Stream.empty,
           rendererManifest: {},
         });
         const [manifests, rows] = yield* Effect.all([
-          prepared.manifests().pipe(Stream.runCollect),
-          prepared.rows().pipe(Stream.runCollect),
+          prepared.manifests.pipe(Stream.runCollect),
+          prepared.rows.pipe(Stream.runCollect),
         ]);
         return { manifests: [...manifests], rows: [...rows] };
       })
-    ).pipe(Effect.provide(NodeContext.layer))
+    ).pipe(Effect.provide(NodeServices.layer))
   );
 }
 

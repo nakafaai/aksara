@@ -93,7 +93,7 @@ export class MaterialLocaleOwnershipError extends Schema.TaggedError<MaterialLoc
   {
     domain: MaterialDomainSchema,
     materialKey: Schema.optional(MaterialKeySchema),
-    scope: Schema.Literal("domain", "material", "section"),
+    scope: Schema.Literals(["domain", "material", "section"]),
   }
 ) {}
 
@@ -226,11 +226,12 @@ export const decodeMaterialLocaleCatalog = Effect.fn(
     );
     sourceInput = { domains, sources: materialLocaleSources };
   }
-  return yield* Schema.decodeUnknown(MaterialLocaleCatalogSchema)(sourceInput, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError((cause) => new MaterialLocaleCatalogError({ cause }))
-  );
+  return yield* Schema.decodeUnknownEffect(MaterialLocaleCatalogSchema)(
+    sourceInput,
+    {
+      onExcessProperty: "error",
+    }
+  ).pipe(Effect.mapError((cause) => new MaterialLocaleCatalogError({ cause })));
 });
 
 /** Resolves one exact candidate source and domain binding. */

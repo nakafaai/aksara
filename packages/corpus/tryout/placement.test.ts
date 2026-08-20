@@ -1,11 +1,10 @@
-import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ActiveAppLocaleSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
 import { makeTryoutPlacement } from "#corpus/tryout/placement";
@@ -24,17 +23,15 @@ async function loadPlacementFixture() {
     )
   );
   const source = sources.find(({ examKey }) => examKey === "snbt");
-  const track = source?.tracks.find(({ key }) => key === "2027");
+  if (source === undefined) {
+    throw new Error("Expected the canonical SNBT placement hierarchy.");
+  }
+  const track = source.tracks.find(({ key }) => key === "2027");
   const set = track?.sets.find(({ key }) => key === "set-1");
   const section = set?.sections.find(
     ({ key }) => key === "reading-and-writing-skills"
   );
-  if (
-    source === undefined ||
-    track === undefined ||
-    set === undefined ||
-    section === undefined
-  ) {
+  if (track === undefined || set === undefined || section === undefined) {
     throw new Error("Expected the canonical SNBT placement hierarchy.");
   }
   return {

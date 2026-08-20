@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 

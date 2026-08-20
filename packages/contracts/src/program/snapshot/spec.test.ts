@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -38,24 +38,22 @@ describe("program snapshot contract", () => {
       { sitemapCount: 6 },
       { slugCount: 5 },
     ]) {
-      const factResult = Schema.decodeUnknownEither(ProgramSnapshotFactsSchema)(
-        {
-          ...facts,
-          ...change,
-        }
-      );
-      const snapshotResult = Schema.decodeUnknownEither(ProgramSnapshotSchema)({
+      const factResult = Schema.decodeUnknownExit(ProgramSnapshotFactsSchema)({
+        ...facts,
+        ...change,
+      });
+      const snapshotResult = Schema.decodeUnknownExit(ProgramSnapshotSchema)({
         ...facts,
         ...change,
         format: PROGRAM_SNAPSHOT_FORMAT,
         snapshotId: digest,
       });
-      expect(Either.isLeft(factResult)).toBe(true);
-      expect(Either.isLeft(snapshotResult)).toBe(true);
+      expect(Exit.isFailure(factResult)).toBe(true);
+      expect(Exit.isFailure(snapshotResult)).toBe(true);
     }
     expect(
       String(
-        Schema.decodeUnknownEither(ProgramSnapshotFactsSchema)({
+        Schema.decodeUnknownExit(ProgramSnapshotFactsSchema)({
           ...facts,
           programRowCount: 0,
         })
@@ -65,7 +63,7 @@ describe("program snapshot contract", () => {
     );
     expect(
       String(
-        Schema.decodeUnknownEither(ProgramSnapshotSchema)({
+        Schema.decodeUnknownExit(ProgramSnapshotSchema)({
           ...facts,
           format: PROGRAM_SNAPSHOT_FORMAT,
           rowCount: 7,

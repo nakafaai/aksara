@@ -22,21 +22,23 @@ function isArticleRoot(sourceRoot: string) {
 
 /** Pair-grouped authored path containing one localized article pair. */
 export const ArticleRootSchema = Schema.String.pipe(
-  Schema.filter(isArticleRoot, {
-    description: "Pair-grouped article source path.",
-    identifier: "ArticleRoot",
-    message: () => "Invalid article source root.",
-  })
+  Schema.check(
+    Schema.makeFilter(isArticleRoot, {
+      description: "Pair-grouped article source path.",
+      identifier: "ArticleRoot",
+      message: "Invalid article source root.",
+    })
+  )
 );
 
-const ArticleCategoryTitlesSchema = Schema.Record({
-  key: EmbeddedAppLocaleCodeSchema,
-  value: ArticleCategoryTitleSchema,
-});
-const ArticleRouteSlugsSchema = Schema.Record({
-  key: EmbeddedAppLocaleCodeSchema,
-  value: ArticleRouteSlugSchema,
-});
+const ArticleCategoryTitlesSchema = Schema.Record(
+  EmbeddedAppLocaleCodeSchema,
+  ArticleCategoryTitleSchema
+);
+const ArticleRouteSlugsSchema = Schema.Record(
+  EmbeddedAppLocaleCodeSchema,
+  ArticleRouteSlugSchema
+);
 
 /** One source-owned category identity, renderer, and complete locale titles. */
 export const ArticleCategorySourceSchema = Schema.Struct({
@@ -70,10 +72,12 @@ export const ArticleSourceSchema = Schema.Struct({
   slug: ArticleSlugSchema,
   sourceRoot: ArticleRootSchema,
 }).pipe(
-  Schema.filter(hasCoherentArticleIdentity, {
-    message: () =>
-      "Expected the pair-grouped article source root to flatten to its slug.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentArticleIdentity, {
+      message:
+        "Expected the pair-grouped article source root to flatten to its slug.",
+    })
+  )
 );
 export type ArticleSource = typeof ArticleSourceSchema.Type;
 export type ArticleSourceInput = typeof ArticleSourceSchema.Encoded;
@@ -91,7 +95,7 @@ export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()
 export const defineArticleSource = Effect.fn(
   "AksaraCorpus.defineArticleSource"
 )(function* (input: ArticleSourceInput) {
-  return yield* Schema.decodeUnknown(ArticleSourceSchema)(input, {
+  return yield* Schema.decodeEffect(ArticleSourceSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

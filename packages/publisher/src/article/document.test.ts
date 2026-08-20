@@ -1,6 +1,5 @@
-import { Path } from "@effect/platform";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import {
   loadArticleDocument,
   makeArticleProjectionFromSource,

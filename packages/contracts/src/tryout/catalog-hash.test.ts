@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import type { TryoutCatalogRow } from "#contracts/tryout/catalog";

@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   type SignedContentArtifact,
@@ -28,6 +27,7 @@ import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/ver
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
 import type {
@@ -86,7 +86,7 @@ export interface PublicationPlan<E, R> {
     readonly rendererManifest: RendererManifestEnvelope;
   };
   /** Replays family-aware cache changes from the decoded release item stream. */
-  readonly cacheChanges: () => Stream.Stream<
+  readonly cacheChanges: Stream.Stream<
     ContentCacheChange,
     PublishContentReleaseError<E>,
     R
@@ -113,7 +113,7 @@ type PreparePublicationPlan = <E, R>(
   | Scope.Scope
   | PublicationSigningKey
   | PublicationTarget
-  | Effect.Effect.Context<ReturnType<typeof verifySignedContentRelease>>
+  | Effect.Services<ReturnType<typeof verifySignedContentRelease>>
   | R
 >;
 
@@ -175,35 +175,34 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     input.rendererManifest
   );
   /** Replays strictly decoded release items for bounded target staging. */
-  const decodedItems = () =>
-    decodeContentReleaseItems({
-      items: input.items(),
-      manifest: input.manifest,
-    });
+  const decodedItems = decodeContentReleaseItems({
+    items: input.items,
+    manifest: input.manifest,
+  });
   /** Replays strictly decoded projections for bounded target staging. */
-  const decodedProjections = () =>
-    decodeContentProjections(input.projections());
+  const decodedProjections = decodeContentProjections(input.projections);
   /** Replays strictly decoded routes for bounded target staging. */
-  const decodedRoutes = () =>
-    decodeContentRoutes({ manifest: input.manifest, routes: input.routes() });
+  const decodedRoutes = decodeContentRoutes({
+    manifest: input.manifest,
+    routes: input.routes,
+  });
   const summary = yield* verifyContentReleaseItems({
-    items: input.items(),
+    items: input.items,
     manifest: input.manifest,
   });
   const projectionSummary = yield* verifyContentProjections({
     manifest: input.manifest,
-    projections: input.projections(),
+    projections: input.projections,
   });
   const routeSummary = yield* verifyContentRoutes({
     manifest: input.manifest,
-    routes: input.routes(),
+    routes: input.routes,
   });
   const snapshotSummary = yield* verifyPublicationSnapshots(input);
   /** Replays every structured snapshot and body-item cache change. */
-  const cacheChanges = () =>
-    contentSnapshotCacheChanges(snapshotSummary.snapshots).pipe(
-      Stream.concat(contentCacheChanges(decodedItems()))
-    );
+  const cacheChanges = contentSnapshotCacheChanges(
+    snapshotSummary.snapshots
+  ).pipe(Stream.concat(contentCacheChanges(decodedItems)));
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
 
   let artifactPlan: PublicationArtifactPlan;
@@ -213,8 +212,8 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
       prefix: "aksara-rollback-artifacts-",
       schema: SignedContentArtifactSchema,
       stream: makeRollbackArtifacts({
-        artifacts: invocation.input.artifacts(),
-        items: upsertItems(decodedItems()),
+        artifacts: invocation.input.artifacts,
+        items: upsertItems(decodedItems),
         manifest: input.manifest,
         rendererManifest,
       }),
@@ -222,7 +221,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     artifactPlan = { artifacts, kind: "rollback" };
   } else {
     const aksaraSha = yield* validateGitMode(invocation.input);
-    const items = upsertItems(decodedItems());
+    const items = upsertItems(decodedItems);
     const compiled = yield* createReplaySpool({
       prefix: "aksara-exact-git-",
       schema: CompiledReleaseSourceSchema,
@@ -247,19 +246,19 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   const release = yield* verifySignedContentRelease(signedRelease);
   const artifacts =
     artifactPlan.kind === "rollback"
-      ? artifactPlan.artifacts.replay()
+      ? artifactPlan.artifacts.replay
       : makeGitArtifacts({
-          compiled: artifactPlan.compiled.replay(),
+          compiled: artifactPlan.compiled.replay,
           manifest: input.manifest,
           rendererManifest,
           signer,
         });
   const stage = stagePreparedRelease({
     artifacts,
-    items: decodedItems(),
+    items: decodedItems,
     prepared: input,
-    projections: decodedProjections(),
-    routes: decodedRoutes(),
+    projections: decodedProjections,
+    routes: decodedRoutes,
     target,
   });
   return {

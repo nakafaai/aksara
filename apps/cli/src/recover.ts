@@ -1,4 +1,3 @@
-import type { HttpClient } from "@effect/platform";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
@@ -12,6 +11,7 @@ import {
 import { recoverContentRelease } from "@nakafa/aksara-publisher/recover";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
+import type { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { readRecoveryEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";

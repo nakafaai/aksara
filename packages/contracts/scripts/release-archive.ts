@@ -1,5 +1,5 @@
-import { Command, FileSystem } from "@effect/platform";
-import { Effect, Stream } from "effect";
+import { Effect, FileSystem, Stream } from "effect";
+import { ChildProcess } from "effect/unstable/process";
 import {
   type ContractIdentity,
   type ContractReleaseError,
@@ -22,13 +22,15 @@ function commandText(
   stage: string
 ) {
   return Effect.gen(function* () {
-    const command = Command.make(executable, ...args).pipe(
-      Command.stderr("inherit")
-    );
-    const process = yield* Command.start(command);
+    const process = yield* ChildProcess.make(executable, args, {
+      stderr: "inherit",
+    });
     const output = yield* process.stdout.pipe(
-      Stream.decodeText("utf8"),
-      Stream.runFold("", (text, chunk) => text + chunk)
+      Stream.decodeText(),
+      Stream.runFold(
+        () => "",
+        (text, chunk) => text + chunk
+      )
     );
     const exitCode = yield* process.exitCode;
     if (exitCode !== 0) {

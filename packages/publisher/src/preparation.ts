@@ -37,7 +37,7 @@ import {
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Chunk, Effect, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
@@ -81,16 +81,17 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     input.rendererManifest
   );
   /** Replays strict replacement-manifest decoding and canonical order checks. */
-  const snapshotManifests = () =>
-    decodeContentSnapshotManifests(input.snapshotManifests());
+  const snapshotManifests = decodeContentSnapshotManifests(
+    input.snapshotManifests
+  );
   /** Replays strict immutable-row decoding without retaining row bodies. */
-  const snapshotRows = () => decodeContentSnapshotRows(input.snapshotRows());
-  const decodedSnapshotManifests = Chunk.toReadonlyArray(
-    yield* snapshotManifests().pipe(Stream.runCollect)
+  const snapshotRows = decodeContentSnapshotRows(input.snapshotRows);
+  const decodedSnapshotManifests = yield* snapshotManifests.pipe(
+    Stream.runCollect
   );
   yield* Effect.forEach(decodedSnapshotManifests, (snapshot) =>
     requireSnapshotProvenance(snapshot).pipe(
-      Effect.zipRight(requireScopedSnapshot(input.scope, snapshot.family))
+      Effect.andThen(requireScopedSnapshot(input.scope, snapshot.family))
     )
   );
   yield* verifyReleasePolicyTransition({
@@ -107,38 +108,35 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rows: input.snapshotRows,
   });
   /** Replays strict decoding, coherence, ordering, and route validation. */
-  const records = () =>
-    derivePreparedRecords({
-      records: input.records,
-      releaseId: input.releaseId,
-    });
+  const records = derivePreparedRecords({
+    records: input.records,
+    releaseId: input.releaseId,
+  });
   /** Replays canonical release items from the proven record source. */
-  const items = () => records().pipe(Stream.map((record) => record.item));
+  const items = records.pipe(Stream.map((record) => record.item));
   /** Replays canonical projections from the same proven upsert records. */
-  const projections = () =>
-    records().pipe(
-      Stream.filter(isDerivedUpsert),
-      Stream.map((record) => record.projection)
-    );
+  const projections = records.pipe(
+    Stream.filter(isDerivedUpsert),
+    Stream.map((record) => record.projection)
+  );
   /** Replays canonical route versions derived from the same transitions. */
-  const routes = () => makeRouteItems(input.releaseId, input.routes());
+  const routes = makeRouteItems(input.releaseId, input.routes);
   /** Replays exact prior states from the same proven transition records. */
-  const rollback = () =>
-    records().pipe(Stream.map((record) => record.rollback));
+  const rollback = records.pipe(Stream.map((record) => record.rollback));
   const itemState = yield* createReleaseItemsDigest(input.releaseId);
   const projectionState = yield* createProjectionDigest(input.releaseId);
   const rollbackState = yield* createRollbackSnapshotDigest(input.releaseId);
   const resultState = yield* createResultCatalogDigest(input.releaseId);
-  yield* records().pipe(
+  yield* records.pipe(
     Stream.runForEach((record) =>
       updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
-        Effect.zipRight(
+        Effect.andThen(
           isDerivedUpsert(record)
             ? requirePublishedRendererDomain(
                 record.payload,
                 rendererManifest
               ).pipe(
-                Effect.zipRight(
+                Effect.andThen(
                   updateProjectionDigest(
                     input.releaseId,
                     projectionState,
@@ -148,7 +146,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
               )
             : Effect.void
         ),
-        Effect.zipRight(
+        Effect.andThen(
           updateRollbackSnapshotDigest(
             input.releaseId,
             rollbackState,
@@ -158,13 +156,11 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       )
     )
   );
-  yield* input
-    .result()
-    .pipe(
-      Stream.runForEach((head) =>
-        updateResultCatalogDigest(input.releaseId, resultState, head)
-      )
-    );
+  yield* input.result.pipe(
+    Stream.runForEach((head) =>
+      updateResultCatalogDigest(input.releaseId, resultState, head)
+    )
+  );
   const itemsDigest = yield* finalizeReleaseItemsDigest(
     input.releaseId,
     itemState
@@ -181,7 +177,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     input.releaseId,
     resultState
   );
-  const routeSummary = yield* digestRoutes(input.releaseId, routes());
+  const routeSummary = yield* digestRoutes(input.releaseId, routes);
   const manifest = ContentReleaseManifestSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,
     baseActiveAppLocales: input.baseActiveAppLocales,
@@ -209,16 +205,16 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });
-  yield* verifyContentReleaseItems({ items: items(), manifest });
-  yield* verifyContentProjections({ manifest, projections: projections() });
-  yield* verifyContentRoutes({ manifest, routes: routes() });
+  yield* verifyContentReleaseItems({ items, manifest });
+  yield* verifyContentProjections({ manifest, projections });
+  yield* verifyContentRoutes({ manifest, routes });
   yield* verifyResultCatalog({
     expectedCount: manifest.resultCount,
     expectedDigest: manifest.resultDigest,
-    heads: input.result(),
+    heads: input.result,
     releaseId: manifest.releaseId,
   });
-  yield* verifyRollbackSnapshot({ entries: rollback(), manifest });
+  yield* verifyRollbackSnapshot({ entries: rollback, manifest });
   return makePreparedGitRelease<PreparedReleaseStreamError<E>, R>({
     items,
     manifest,

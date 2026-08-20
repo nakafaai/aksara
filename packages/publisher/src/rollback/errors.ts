@@ -4,9 +4,9 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
-const RollbackIndexSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.greaterThanOrEqualTo(-1)
+const RollbackIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(-1))
 );
 
 /** A forward rollback reused the immutable release identity it reverses. */
@@ -47,9 +47,15 @@ export class RollbackPageIdentityError extends Schema.TaggedError<RollbackPageId
 export class RollbackPageTotalError extends Schema.TaggedError<RollbackPageTotalError>()(
   "RollbackPageTotalError",
   {
-    actualTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualTotal: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     afterIndex: RollbackIndexSchema,
-    expectedTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    expectedTotal: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 
@@ -67,9 +73,15 @@ export class RollbackPageCursorError extends Schema.TaggedError<RollbackPageCurs
 export class RollbackPageByteLimitError extends Schema.TaggedError<RollbackPageByteLimitError>()(
   "RollbackPageByteLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     afterIndex: RollbackIndexSchema,
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -95,9 +107,15 @@ export class RoutePageIdentityError extends Schema.TaggedError<RoutePageIdentity
 export class RoutePageTotalError extends Schema.TaggedError<RoutePageTotalError>()(
   "RoutePageTotalError",
   {
-    actualTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualTotal: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     afterIndex: RollbackIndexSchema,
-    expectedTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    expectedTotal: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 

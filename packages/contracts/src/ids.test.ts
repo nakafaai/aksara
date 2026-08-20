@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   CONTENT_KEY_MAX_LENGTH,
@@ -18,16 +18,12 @@ describe("ids", () => {
     const sha = `sha256:${"a".repeat(64)}`;
     const signature = `${"a".repeat(85)}g`;
 
+    expect(Exit.isSuccess(Schema.decodeExit(Sha256HashSchema)(sha))).toBe(true);
     expect(
-      Either.isRight(Schema.decodeUnknownEither(Sha256HashSchema)(sha))
+      Exit.isSuccess(Schema.decodeExit(Ed25519SignatureSchema)(signature))
     ).toBe(true);
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(Ed25519SignatureSchema)(signature)
-      )
-    ).toBe(true);
-    expect(
-      Either.isLeft(Schema.decodeUnknownEither(Sha256HashSchema)("sha256:no"))
+      Exit.isFailure(Schema.decodeExit(Sha256HashSchema)("sha256:no"))
     ).toBe(true);
   });
 
@@ -41,30 +37,24 @@ describe("ids", () => {
     );
     for (const finalCharacter of ["A", "Q", "g", "w"]) {
       expect(
-        Either.isRight(
-          Schema.decodeUnknownEither(Ed25519SignatureSchema)(
+        Exit.isSuccess(
+          Schema.decodeExit(Ed25519SignatureSchema)(
             `${"A".repeat(85)}${finalCharacter}`
           )
         )
       ).toBe(true);
     }
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(Ed25519SignatureSchema)(nonCanonical)
-      )
+      Exit.isFailure(Schema.decodeExit(Ed25519SignatureSchema)(nonCanonical))
     ).toBe(true);
   });
 
   it("requires full lowercase Git commit SHAs", () => {
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(GitCommitShaSchema)("c".repeat(40))
-      )
+      Exit.isSuccess(Schema.decodeExit(GitCommitShaSchema)("c".repeat(40)))
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(GitCommitShaSchema)("C".repeat(40))
-      )
+      Exit.isFailure(Schema.decodeExit(GitCommitShaSchema)("C".repeat(40)))
     ).toBe(true);
   });
 
@@ -75,22 +65,18 @@ describe("ids", () => {
       "Uppercase",
       "a".repeat(CONTENT_KEY_MAX_LENGTH + 1),
     ]) {
-      expect(
-        Either.isLeft(Schema.decodeUnknownEither(ContentKeySchema)(value))
-      ).toBe(true);
+      expect(Exit.isFailure(Schema.decodeExit(ContentKeySchema)(value))).toBe(
+        true
+      );
     }
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ReleaseIdSchema)("release\nnext")
-      )
+      Exit.isFailure(Schema.decodeExit(ReleaseIdSchema)("release\nnext"))
     ).toBe(true);
   });
 
   it("accepts canonical public paths and rejects unsafe variants", () => {
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(PublicPathSchema)("subjects/test/route")
-      )
+      Exit.isSuccess(Schema.decodeExit(PublicPathSchema)("subjects/test/route"))
     ).toBe(true);
     for (const value of [
       "/subjects/test/route",
@@ -105,16 +91,16 @@ describe("ids", () => {
       "subjects/Uppercase",
       "subjects/dotted.path",
     ]) {
-      expect(
-        Either.isLeft(Schema.decodeUnknownEither(PublicPathSchema)(value))
-      ).toBe(true);
+      expect(Exit.isFailure(Schema.decodeExit(PublicPathSchema)(value))).toBe(
+        true
+      );
     }
   });
 
   it("accepts only safe reviewed paths below the corpus workspace", () => {
     expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(CorpusSourcePathSchema)(
+      Exit.isSuccess(
+        Schema.decodeExit(CorpusSourcePathSchema)(
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx"
         )
       )
@@ -128,31 +114,29 @@ describe("ids", () => {
       "packages/corpus/test\0secret.mdx",
     ]) {
       expect(
-        Either.isLeft(Schema.decodeUnknownEither(CorpusSourcePathSchema)(value))
+        Exit.isFailure(Schema.decodeExit(CorpusSourcePathSchema)(value))
       ).toBe(true);
     }
   });
 
   it("reports actionable diagnostics for each refined identifier", () => {
-    expect(() =>
-      Schema.decodeUnknownSync(PublicPathSchema)("/subjects/test")
-    ).toThrow("Expected a canonical slashless public path.");
-    expect(() => Schema.decodeUnknownSync(GitCommitShaSchema)("short")).toThrow(
+    expect(() => Schema.decodeSync(PublicPathSchema)("/subjects/test")).toThrow(
+      "Expected a canonical slashless public path."
+    );
+    expect(() => Schema.decodeSync(GitCommitShaSchema)("short")).toThrow(
       "Expected a 40-character lowercase Git commit SHA."
     );
-    expect(() => Schema.decodeUnknownSync(Sha256HashSchema)("invalid")).toThrow(
+    expect(() => Schema.decodeSync(Sha256HashSchema)("invalid")).toThrow(
       "Expected sha256 followed by 64 lowercase hexadecimal characters."
     );
-    expect(() => Schema.decodeUnknownSync(SigningKeyIdSchema)("UPPER")).toThrow(
+    expect(() => Schema.decodeSync(SigningKeyIdSchema)("UPPER")).toThrow(
       "Expected a lowercase wire-safe signing key identifier up to 64 characters."
     );
-    expect(() =>
-      Schema.decodeUnknownSync(Ed25519SignatureSchema)("invalid")
-    ).toThrow(
+    expect(() => Schema.decodeSync(Ed25519SignatureSchema)("invalid")).toThrow(
       "Expected a canonical unpadded base64url 64-byte Ed25519 signature."
     );
     expect(() =>
-      Schema.decodeUnknownSync(CorpusSourcePathSchema)("../secret.mdx")
+      Schema.decodeSync(CorpusSourcePathSchema)("../secret.mdx")
     ).toThrow("Expected a safe relative source path below packages/corpus.");
   });
 });

@@ -14,8 +14,8 @@ import {
   inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   validateCompiledPayloadForItem,
   validatePublicationReceipt,
@@ -25,7 +25,7 @@ import {
 } from "#publisher/release-validation";
 import { testRendererDomains } from "#test/renderer";
 
-const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ACTIVE_APP_LOCALES,
   baseActiveAppLocales: null,
   baseManifestHash: null,
@@ -52,13 +52,13 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });
-const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
+const release = Schema.decodeSync(SignedContentReleaseSchema)({
   keyId: "test-release-key",
   manifest,
   manifestHash: `sha256:${"e".repeat(64)}`,
   signature: `${"A".repeat(85)}A`,
 });
-const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
+const evidence = Schema.decodeSync(ReleaseVerificationEvidenceSchema)({
   activeAppLocales: manifest.activeAppLocales,
   baseActiveAppLocales: manifest.baseActiveAppLocales,
   baseManifestHash: manifest.baseManifestHash,
@@ -91,7 +91,7 @@ const projectionSummary = { count: manifest.projectionCount };
 const routeSummary = { count: manifest.routeCount };
 const snapshotSummary = { snapshots: manifest.snapshots, stagedRows: 0 };
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
+const item = Schema.decodeSync(ContentReleaseItemSchema)({
   change: {
     artifactHash,
     artifactLocale: "en",
@@ -105,7 +105,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   index: 0,
   releaseId: manifest.releaseId,
 });
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
   byteLength: 1,
   compiledCode: "x",

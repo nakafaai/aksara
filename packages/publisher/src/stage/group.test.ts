@@ -4,8 +4,8 @@ import {
   MAX_STAGE_GROUP_BYTES,
   MAX_STAGE_GROUP_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { makeStageGroups } from "#publisher/stage/group";
 import { transportRequests } from "#test/transport/spec";
 

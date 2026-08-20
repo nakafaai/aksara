@@ -43,16 +43,18 @@ function hasCanonicalCandidateAppLocales(locales: readonly AppLocale[]) {
 
 /** Exact possibly empty locale set admitted only for inactive authoring. */
 export const CandidateAppLocaleListSchema = Schema.Array(AppLocaleSchema).pipe(
-  Schema.filter(hasCanonicalCandidateAppLocales, {
-    message: () =>
-      "Candidate app locales must equal the supported inactive locale set.",
-  }),
+  Schema.check(
+    Schema.makeFilter(hasCanonicalCandidateAppLocales, {
+      message:
+        "Candidate app locales must equal the supported inactive locale set.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraCandidateAppLocaleList")
 );
 export type CandidateAppLocaleList = typeof CandidateAppLocaleListSchema.Type;
 
 /** Exact candidate locales derived from supported and active contracts. */
-export const CANDIDATE_APP_LOCALES = Schema.decodeUnknownSync(
+export const CANDIDATE_APP_LOCALES = Schema.decodeSync(
   CandidateAppLocaleListSchema
 )(
   CANDIDATE_APP_LOCALE_CODES.map((appLocale) => AppLocaleSchema.make(appLocale))

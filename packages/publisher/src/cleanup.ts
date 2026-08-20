@@ -9,15 +9,15 @@ import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 const CLEANUP_CALL_LIMIT = 100;
-const CleanupCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
+const CleanupCountSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 
 /** Cleanup input or target evidence failed its exact shared contract. */
 export class ReleaseCleanupContractError extends Schema.TaggedError<ReleaseCleanupContractError>()(
   "ReleaseCleanupContractError",
-  { contract: Schema.Literal("request", "receipt") }
+  { contract: Schema.Literals(["request", "receipt"]) }
 ) {}
 
 /** Durable retention prevents cleanup from advancing before this timestamp. */
@@ -25,10 +25,10 @@ export class ReleaseCleanupDeferredError extends Schema.TaggedError<ReleaseClean
   "ReleaseCleanupDeferredError",
   {
     releaseId: ReleaseIdSchema,
-    retryAt: Schema.Number.pipe(
-      Schema.int(),
-      Schema.nonNegative(),
-      Schema.finite()
+    retryAt: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0)),
+      Schema.check(Schema.isFinite())
     ),
   }
 ) {}
@@ -37,7 +37,10 @@ export class ReleaseCleanupDeferredError extends Schema.TaggedError<ReleaseClean
 export class ReleaseCleanupIncompleteError extends Schema.TaggedError<ReleaseCleanupIncompleteError>()(
   "ReleaseCleanupIncompleteError",
   {
-    attempts: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    attempts: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
     deletedArtifacts: CleanupCountSchema,
     releaseId: ReleaseIdSchema,
   }

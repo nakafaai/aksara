@@ -22,7 +22,7 @@ import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 /** Unknown retained runtime input does not satisfy its exact read contract. */
 export class StoredProtectedRuntimeDecodeError extends Schema.TaggedError<StoredProtectedRuntimeDecodeError>()(
   "StoredProtectedRuntimeDecodeError",
-  { subject: Schema.Literal("request", "response") }
+  { subject: Schema.Literals(["request", "response"]) }
 ) {
   /** Identifies which retained runtime boundary rejected unknown bytes. */
   get message() {
@@ -34,7 +34,7 @@ export class StoredProtectedRuntimeDecodeError extends Schema.TaggedError<Stored
 export class StoredProtectedRuntimeMismatchError extends Schema.TaggedError<StoredProtectedRuntimeMismatchError>()(
   "StoredProtectedRuntimeMismatchError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "appLocale",
       "artifactHash",
       "artifactLocale",
@@ -46,16 +46,19 @@ export class StoredProtectedRuntimeMismatchError extends Schema.TaggedError<Stor
       "snapshotId",
       "snapshotManifestHash",
       "snapshotReleaseId",
-      "sourcePath"
-    ),
+      "sourcePath",
+    ]),
   }
 ) {}
 
 /** Strictly decodes one attempt-bound retained runtime request. */
 function decodeRequest(input: unknown) {
-  return Schema.decodeUnknown(StoredProtectedRuntimeRequestSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
+  return Schema.decodeUnknownEffect(StoredProtectedRuntimeRequestSchema)(
+    input,
+    {
+      onExcessProperty: "error",
+    }
+  ).pipe(
     Effect.mapError(
       () => new StoredProtectedRuntimeDecodeError({ subject: "request" })
     )
@@ -64,9 +67,12 @@ function decodeRequest(input: unknown) {
 
 /** Strictly decodes one attempt-bound retained runtime response. */
 function decodeResponse(input: unknown) {
-  return Schema.decodeUnknown(StoredProtectedRuntimeResponseSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
+  return Schema.decodeUnknownEffect(StoredProtectedRuntimeResponseSchema)(
+    input,
+    {
+      onExcessProperty: "error",
+    }
+  ).pipe(
     Effect.mapError(
       () => new StoredProtectedRuntimeDecodeError({ subject: "response" })
     )

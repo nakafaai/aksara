@@ -11,11 +11,14 @@ import {
   MAX_ROUTE_BATCH_COUNT,
 } from "#contracts/transport/limits";
 
-const BatchIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
+const BatchIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 const ReleaseItemBatchSchema = Schema.NonEmptyArray(
   ContentReleaseItemSchema
-).pipe(Schema.maxItems(MAX_ITEM_BATCH_COUNT));
+).pipe(Schema.check(Schema.isMaxLength(MAX_ITEM_BATCH_COUNT)));
 
 const StageItemBatchFields = {
   batchIndex: BatchIndexSchema,
@@ -42,10 +45,12 @@ function hasBoundReleaseItems(input: {
 export const StageItemBatchInputSchema = Schema.Struct(
   StageItemBatchFields
 ).pipe(
-  Schema.filter(hasBoundReleaseItems, {
-    message: () =>
-      "Expected contiguous release items bound to the batch release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundReleaseItems, {
+      message:
+        "Expected contiguous release items bound to the batch release identity.",
+    })
+  )
 );
 export type StageItemBatchInput = typeof StageItemBatchInputSchema.Type;
 
@@ -59,15 +64,17 @@ export const StageItemBatchRequestSchema = Schema.Struct({
   ...StageItemBatchFields,
   operation: Schema.Literal("stageItemBatch"),
 }).pipe(
-  Schema.filter(hasBoundReleaseItems, {
-    message: () =>
-      "Expected contiguous release items bound to the batch release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundReleaseItems, {
+      message:
+        "Expected contiguous release items bound to the batch release identity.",
+    })
+  )
 );
 export type StageItemBatchRequest = typeof StageItemBatchRequestSchema.Type;
 
 const RouteItemBatchSchema = Schema.NonEmptyArray(ContentRouteItemSchema).pipe(
-  Schema.maxItems(MAX_ROUTE_BATCH_COUNT)
+  Schema.check(Schema.isMaxLength(MAX_ROUTE_BATCH_COUNT))
 );
 
 const StageRouteBatchFields = {
@@ -96,10 +103,12 @@ function hasBoundRouteItems(input: {
 export const StageRouteBatchInputSchema = Schema.Struct(
   StageRouteBatchFields
 ).pipe(
-  Schema.filter(hasBoundRouteItems, {
-    message: () =>
-      "Expected contiguous route items bound to the batch release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRouteItems, {
+      message:
+        "Expected contiguous route items bound to the batch release identity.",
+    })
+  )
 );
 export type StageRouteBatchInput = typeof StageRouteBatchInputSchema.Type;
 
@@ -108,17 +117,19 @@ export const StageRouteBatchRequestSchema = Schema.Struct({
   ...StageRouteBatchFields,
   operation: Schema.Literal("stageRouteBatch"),
 }).pipe(
-  Schema.filter(hasBoundRouteItems, {
-    message: () =>
-      "Expected contiguous route items bound to the batch release identity.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundRouteItems, {
+      message:
+        "Expected contiguous route items bound to the batch release identity.",
+    })
+  )
 );
 export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
   projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
-    Schema.maxItems(MAX_PROJECTION_BATCH_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_PROJECTION_BATCH_COUNT))
   ),
   releaseId: ReleaseIdSchema,
 };
@@ -140,7 +151,7 @@ export type StageProjectionBatchRequest =
 
 const StageArtifactBatchFields = {
   artifacts: Schema.NonEmptyArray(SignedContentArtifactSchema).pipe(
-    Schema.maxItems(MAX_ARTIFACT_BATCH_COUNT)
+    Schema.check(Schema.isMaxLength(MAX_ARTIFACT_BATCH_COUNT))
   ),
   batchIndex: BatchIndexSchema,
   releaseId: ReleaseIdSchema,
@@ -163,8 +174,14 @@ export type StageArtifactBatchRequest =
 /** Idempotent row counts returned by one bounded staging transaction. */
 export const StageBatchReceiptSchema = Schema.Struct({
   batchIndex: BatchIndexSchema,
-  created: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  created: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
   releaseId: ReleaseIdSchema,
-  unchanged: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  unchanged: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
 });
 export type StageBatchReceipt = typeof StageBatchReceiptSchema.Type;

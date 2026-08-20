@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -49,7 +49,7 @@ function source(id: ReturnType<typeof quranSourceIds>[number]) {
 
 describe("Quran source contracts", () => {
   it("derives exact source coverage from active application locales", () => {
-    const active = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+    const active = Schema.decodeSync(ActiveAppLocaleListSchema)([
       "en",
       "id",
       "de",
@@ -67,8 +67,8 @@ describe("Quran source contracts", () => {
       false
     );
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuranAttributionRowSchema)({
+      Exit.isFailure(
+        Schema.decodeUnknownExit(QuranAttributionRowSchema)({
           activeAppLocales: active,
           kind: "quran-attribution",
           sources: [...sources].reverse(),
@@ -76,8 +76,8 @@ describe("Quran source contracts", () => {
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(QuranAttributionRowSchema)({
+      Exit.isFailure(
+        Schema.decodeUnknownExit(QuranAttributionRowSchema)({
           activeAppLocales: active,
           kind: "quran-attribution",
           sources: sources.map((item) => ({
@@ -91,19 +91,19 @@ describe("Quran source contracts", () => {
 
   it("rejects imprecise retrieval metadata and insecure evidence", () => {
     const base = source("tanzil-text");
-    const retrieval = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
+    const retrieval = Schema.decodeExit(QuranSourceAttributionSchema)({
       ...base,
       retrievedAt: "2026-07-24",
     });
-    const sourceUrl = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
+    const sourceUrl = Schema.decodeExit(QuranSourceAttributionSchema)({
       ...base,
       sourceUrl: "http://example.test/source",
     });
 
-    expect(Either.isLeft(retrieval) ? String(retrieval.left) : "").toContain(
+    expect(Exit.isFailure(retrieval) ? String(retrieval.cause) : "").toContain(
       "Expected an exact UTC Quran source retrieval time."
     );
-    expect(Either.isLeft(sourceUrl) ? String(sourceUrl.left) : "").toContain(
+    expect(Exit.isFailure(sourceUrl) ? String(sourceUrl.cause) : "").toContain(
       "Quran source links must use HTTPS."
     );
   });

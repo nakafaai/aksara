@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { HistoricalSignedContentReleaseSchema } from "#contracts/history/release";
@@ -134,7 +134,7 @@ describe("stored release contract", () => {
         ...retainedRelease.manifest,
         snapshots: { ...retainedRelease.manifest.snapshots, program },
       });
-      expect(Either.isLeft(result)).toBe(true);
+      expect(Exit.isFailure(result)).toBe(true);
     }
     const message = decodeHistoricalEnvelope({
       ...retainedRelease.manifest,
@@ -143,7 +143,7 @@ describe("stored release contract", () => {
         program: invalidStates[0],
       },
     });
-    expect(Either.isLeft(message) ? String(message.left) : "").toContain(
+    expect(Exit.isFailure(message) ? String(message.cause) : "").toContain(
       "Stored snapshot transition is not coherent."
     );
   });
@@ -163,13 +163,13 @@ describe("stored release contract", () => {
         ...retainedRelease.manifest,
         scope,
       });
-      expect(Either.isLeft(result)).toBe(true);
+      expect(Exit.isFailure(result)).toBe(true);
     }
     const message = decodeHistoricalEnvelope({
       ...retainedRelease.manifest,
       scope: invalidScopes[0],
     });
-    expect(Either.isLeft(message) ? String(message.left) : "").toContain(
+    expect(Exit.isFailure(message) ? String(message.cause) : "").toContain(
       "Stored publication scope is not canonical."
     );
   });
@@ -238,10 +238,10 @@ describe("stored release contract", () => {
 
     for (const manifest of invalidManifests) {
       const result = decodeHistoricalEnvelope(manifest);
-      expect(Either.isLeft(result)).toBe(true);
+      expect(Exit.isFailure(result)).toBe(true);
     }
     const message = decodeHistoricalEnvelope(invalidManifests[0]);
-    expect(Either.isLeft(message) ? String(message.left) : "").toContain(
+    expect(Exit.isFailure(message) ? String(message.cause) : "").toContain(
       "Stored release provenance is not coherent."
     );
   });

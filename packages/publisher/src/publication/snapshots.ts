@@ -48,8 +48,8 @@ export const verifyPublicationSnapshots: VerifyPublicationSnapshots = Effect.fn(
     });
   } else {
     const [manifestCount, rowCount] = yield* Effect.all([
-      input.snapshotManifests().pipe(Stream.runCount),
-      input.snapshotRows().pipe(Stream.runCount),
+      input.snapshotManifests.pipe(Stream.runCount),
+      input.snapshotRows.pipe(Stream.runCount),
     ]);
     yield* requireEmptyRollbackSources(manifestCount, rowCount);
     summary = { snapshots: input.manifest.snapshots, stagedRows: 0 };
@@ -62,16 +62,16 @@ export const verifyPublicationSnapshots: VerifyPublicationSnapshots = Effect.fn(
 export function makeSnapshotRequests<E, R>(
   input: PreparedContentRelease<E, R>
 ) {
-  return input.snapshotManifests().pipe(
+  return input.snapshotManifests.pipe(
     Stream.flatMap((snapshot) => {
       const manifest: StageOperation = {
         operation: "stageSnapshot",
         releaseId: input.manifest.releaseId,
         snapshot,
       };
-      const rows = input
-        .snapshotRows()
-        .pipe(Stream.filter((row) => row.family === snapshot.family));
+      const rows = input.snapshotRows.pipe(
+        Stream.filter((row) => row.family === snapshot.family)
+      );
       const batches = makeSnapshotBatches(
         input.manifest.releaseId,
         snapshot.family,

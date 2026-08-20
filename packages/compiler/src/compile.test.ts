@@ -3,8 +3,8 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
 import { testRendererDomains } from "#compiler/test/renderer";
 

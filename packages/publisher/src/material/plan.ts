@@ -25,20 +25,22 @@ export const MaterialPublicationPlanSchema = Schema.Struct({
   record: Schema.optional(PreparedContentTransitionSchema),
   result: Schema.optional(MaterialHeadSchema),
 }).pipe(
-  Schema.filter(
-    (plan) => plan.record !== undefined || plan.result !== undefined
+  Schema.check(
+    Schema.makeFilter(
+      (plan) => plan.record !== undefined || plan.result !== undefined
+    )
   )
 );
 export type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
 
 type PlanMaterialPublicationError =
-  | Effect.Effect.Error<ReturnType<typeof compileMaterialDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectMaterialDocument>>
+  | Effect.Error<ReturnType<typeof compileMaterialDocument>>
+  | Effect.Error<ReturnType<typeof inspectMaterialDocument>>
   | PublicationScopeIdentityError;
 
 type PlanMaterialPublicationContext =
-  | Effect.Effect.Context<ReturnType<typeof compileMaterialDocument>>
-  | Effect.Effect.Context<ReturnType<typeof inspectMaterialDocument>>;
+  | Effect.Services<ReturnType<typeof compileMaterialDocument>>
+  | Effect.Services<ReturnType<typeof inspectMaterialDocument>>;
 
 /** Derives one complete material head from a newly compiled upsert. */
 function makeMaterialHead(record: PreparedContentUpsert): MaterialHead {

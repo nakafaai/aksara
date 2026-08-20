@@ -36,25 +36,23 @@ export interface RendererDomainInput extends RendererCapabilityInput {
 /** Rejects duplicate component names in one authoring selection. */
 const validateUniqueAuthoringNames = Effect.fn(
   "AksaraContracts.validateUniqueAuthoringNames"
-)((authoringComponents: readonly RendererComponentRequirement[]) => {
+)(function* (authoringComponents: readonly RendererComponentRequirement[]) {
   const selectedNames = new Set<string>();
   for (const selection of authoringComponents) {
     if (selectedNames.has(selection.name)) {
-      return Effect.fail(
-        new RendererAuthoringComponentDuplicateError({
-          componentName: selection.name,
-        })
-      );
+      return yield* new RendererAuthoringComponentDuplicateError({
+        componentName: selection.name,
+      });
     }
     selectedNames.add(selection.name);
   }
-  return Effect.succeed(selectedNames);
+  return selectedNames;
 });
 
 /** Rejects authoring selections that are not canonically ordered. */
 const validateCanonicalAuthoringOrder = Effect.fn(
   "AksaraContracts.validateCanonicalAuthoringOrder"
-)((authoringComponents: readonly RendererComponentRequirement[]) => {
+)(function* (authoringComponents: readonly RendererComponentRequirement[]) {
   const sorted = sortRendererComponentRequirements(authoringComponents);
   for (const [index, selection] of authoringComponents.entries()) {
     const canonical = sorted[index];
@@ -62,71 +60,56 @@ const validateCanonicalAuthoringOrder = Effect.fn(
       canonical?.name !== selection.name ||
       canonical.version !== selection.version
     ) {
-      return Effect.fail(
-        new RendererAuthoringSelectionNonCanonicalError({
-          componentName: selection.name,
-          index,
-        })
-      );
+      return yield* new RendererAuthoringSelectionNonCanonicalError({
+        componentName: selection.name,
+        index,
+      });
     }
   }
-  return Effect.void;
 });
 
 /** Rejects authoring pins that the selected registry cannot render. */
 const validateSupportedAuthoringSelections = Effect.fn(
   "AksaraContracts.validateSupportedAuthoringSelections"
-)(
-  (
-    supportedComponents: readonly RendererComponentRequirement[],
-    authoringComponents: readonly RendererComponentRequirement[]
-  ) => {
-    for (const selection of authoringComponents) {
-      const supportedVersions = supportedComponents.filter(
-        ({ name }) => name === selection.name
-      );
-      if (supportedVersions.length === 0) {
-        return Effect.fail(
-          new RendererAuthoringComponentExtraError({
-            componentName: selection.name,
-          })
-        );
-      }
-      if (
-        !supportedVersions.some(({ version }) => version === selection.version)
-      ) {
-        return Effect.fail(
-          new RendererAuthoringComponentUnsupportedError({
-            componentName: selection.name,
-            version: selection.version,
-          })
-        );
-      }
+)(function* (
+  supportedComponents: readonly RendererComponentRequirement[],
+  authoringComponents: readonly RendererComponentRequirement[]
+) {
+  for (const selection of authoringComponents) {
+    const supportedVersions = supportedComponents.filter(
+      ({ name }) => name === selection.name
+    );
+    if (supportedVersions.length === 0) {
+      return yield* new RendererAuthoringComponentExtraError({
+        componentName: selection.name,
+      });
     }
-    return Effect.void;
+    if (
+      !supportedVersions.some(({ version }) => version === selection.version)
+    ) {
+      return yield* new RendererAuthoringComponentUnsupportedError({
+        componentName: selection.name,
+        version: selection.version,
+      });
+    }
   }
-);
+});
 
 /** Requires one authoring version for every supported component name. */
 const validateCompleteAuthoringNames = Effect.fn(
   "AksaraContracts.validateCompleteAuthoringNames"
-)(
-  (
-    supportedComponents: readonly RendererComponentRequirement[],
-    selectedNames: ReadonlySet<string>
-  ) => {
-    for (const supported of supportedComponents) {
-      if (!selectedNames.has(supported.name)) {
-        return Effect.fail(
-          new RendererAuthoringComponentMissingError({
-            componentName: supported.name,
-          })
-        );
-      }
+)(function* (
+  supportedComponents: readonly RendererComponentRequirement[],
+  selectedNames: ReadonlySet<string>
+) {
+  for (const supported of supportedComponents) {
+    if (!selectedNames.has(supported.name)) {
+      return yield* new RendererAuthoringComponentMissingError({
+        componentName: supported.name,
+      });
     }
-    return Effect.void;
   }
-);
+});
 
 /** Normalizes one complete physical registry component contract. */
 const normalizeRendererCapability = Effect.fn(

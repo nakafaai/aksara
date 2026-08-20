@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   RENDERER_DOMAINS,
@@ -22,12 +22,12 @@ describe("renderer domain", () => {
     ]);
     expect(
       RENDERER_DOMAINS.every((domain) =>
-        Either.isRight(Schema.decodeUnknownEither(RendererDomainSchema)(domain))
+        Exit.isSuccess(Schema.decodeExit(RendererDomainSchema)(domain))
       )
     ).toBe(true);
     expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(RendererDomainSchema)("material-mathematics")
+      Exit.isFailure(
+        Schema.decodeUnknownExit(RendererDomainSchema)("material-mathematics")
       )
     ).toBe(true);
   });

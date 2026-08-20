@@ -25,7 +25,7 @@ export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer-v1";
 
 /** Canonical semantic version carried by a renderer runtime boundary. */
 export const RendererContractVersionSchema = Schema.String.pipe(
-  Schema.pattern(RENDERER_CONTRACT_VERSION_PATTERN)
+  Schema.check(Schema.isPattern(RENDERER_CONTRACT_VERSION_PATTERN))
 );
 export type RendererContractVersion = typeof RendererContractVersionSchema.Type;
 
@@ -35,10 +35,12 @@ export const RendererDomainCapabilitySchema = Schema.Struct({
   name: RendererDomainSchema,
   supportedComponents: RendererSupportedComponentsSchema,
 }).pipe(
-  Schema.filter(hasCompleteRendererSelection, {
-    message: () =>
-      "Expected one supported authoring selection for every domain component.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteRendererSelection, {
+      message:
+        "Expected one supported authoring selection for every domain component.",
+    })
+  )
 );
 export type RendererDomainCapability =
   typeof RendererDomainCapabilitySchema.Type;
@@ -57,11 +59,12 @@ function hasCanonicalPublishedDomains(domains: readonly RendererDomain[]) {
 export const RendererPublishedDomainsSchema = Schema.Array(
   RendererDomainSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.filter(hasCanonicalPublishedDomains, {
-    message: () =>
-      "Expected unique published renderer domains in canonical order.",
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(
+    Schema.makeFilter(hasCanonicalPublishedDomains, {
+      message: "Expected unique published renderer domains in canonical order.",
+    })
+  )
 );
 export type RendererPublishedDomains =
   typeof RendererPublishedDomainsSchema.Type;
@@ -79,11 +82,13 @@ export function sortRendererDomains<T extends RendererDomainCapability>(
 export const RendererManifestDomainsSchema = Schema.Array(
   RendererDomainCapabilitySchema
 ).pipe(
-  Schema.filter(
-    (domains) =>
-      domains.length === RENDERER_DOMAINS.length &&
-      domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
-    { message: () => "Expected every renderer domain in canonical order." }
+  Schema.check(
+    Schema.makeFilter(
+      (domains) =>
+        domains.length === RENDERER_DOMAINS.length &&
+        domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
+      { message: "Expected every renderer domain in canonical order." }
+    )
   )
 );
 
@@ -114,10 +119,11 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
   publishedDomains: RendererPublishedDomainsSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 }).pipe(
-  Schema.filter(hasDistinctBaseComponents, {
-    message: () =>
-      "Expected base and route-domain component names to be disjoint.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasDistinctBaseComponents, {
+      message: "Expected base and route-domain component names to be disjoint.",
+    })
+  )
 );
 export type RendererManifestEnvelope =
   typeof RendererManifestEnvelopeSchema.Type;

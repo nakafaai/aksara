@@ -1,4 +1,3 @@
-import { Path } from "@effect/platform";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -10,8 +9,9 @@ import type {
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path, Stream } from "effect";
+import { vi } from "vitest";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { sourceByPath as articleSources, checkoutRoot } from "#test/article";
 import { testFileLayer } from "#test/files";
@@ -125,9 +125,9 @@ function collectCatalog(input: CatalogTestInput) {
       Effect.gen(function* () {
         const publication = yield* catalogProgram(input);
         const [records, result, routes] = yield* Effect.all([
-          publication.records().pipe(Stream.runCollect),
-          publication.result().pipe(Stream.runCollect),
-          publication.routes().pipe(Stream.runCollect),
+          publication.records.pipe(Stream.runCollect),
+          publication.result.pipe(Stream.runCollect),
+          publication.routes.pipe(Stream.runCollect),
         ]);
         return {
           records: [...records],

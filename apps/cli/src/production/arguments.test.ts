@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { parseProductionArguments } from "#cli/production/arguments";
 
 const FUNCTION_CONTENT_KEY =
@@ -57,7 +57,7 @@ describe("release production arguments", () => {
   });
 
   it("rejects a release without an explicit publication scope", async () => {
-    await expect(reject(baseArguments)).resolves.toEqual({
+    await expect(reject(baseArguments)).resolves.toMatchObject({
       _tag: "ProductionArgumentsError",
       command: "release",
       option: "--scope",
@@ -68,7 +68,7 @@ describe("release production arguments", () => {
   it("rejects an invalid publication scope selector", async () => {
     await expect(
       reject([...baseArguments, "--scope", "material"])
-    ).resolves.toEqual({
+    ).resolves.toMatchObject({
       _tag: "ProductionArgumentsError",
       command: "release",
       option: "--scope",

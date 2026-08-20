@@ -11,8 +11,8 @@ const MAXIMUM_GIT_ERROR_BYTES = 16 * 1024;
 export class PreviewEvidenceError extends Schema.TaggedError<PreviewEvidenceError>()(
   "PreviewEvidenceError",
   {
-    repository: Schema.Literal("aksara", "nakafa"),
-    stage: Schema.Literal("sha", "status"),
+    repository: Schema.Literals(["aksara", "nakafa"]),
+    stage: Schema.Literals(["sha", "status"]),
   }
 ) {}
 
@@ -72,7 +72,7 @@ const decodeGitSha = Effect.fn("AksaraCli.decodeGitSha")(function* (
   repository: "aksara" | "nakafa",
   rawSha: string
 ) {
-  return yield* Schema.decodeUnknown(GitCommitShaSchema)(rawSha.trim()).pipe(
+  return yield* Schema.decodeEffect(GitCommitShaSchema)(rawSha.trim()).pipe(
     Effect.mapError(
       () => new PreviewEvidenceError({ repository, stage: "sha" })
     )

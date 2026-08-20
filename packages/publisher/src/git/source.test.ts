@@ -9,8 +9,8 @@ import {
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {
   PublicationSource,

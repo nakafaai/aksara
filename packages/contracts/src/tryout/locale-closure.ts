@@ -19,15 +19,15 @@ export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()
   "TryoutClosureError",
   {
     actual: Schema.String,
-    code: Schema.Literal(
+    code: Schema.Literals([
       "assessed-language",
       "duplicate-locale",
       "fact-mismatch",
       "inactive-locale",
       "missing-locale",
       "missing-section",
-      "question-count"
-    ),
+      "question-count",
+    ]),
     expected: Schema.String,
     identity: Schema.String,
   }
@@ -277,11 +277,12 @@ export const verifyTryoutLocaleClosure = Effect.fn(
 }) {
   const catalog = yield* input.catalog.pipe(
     Stream.runFoldEffect(
-      {
-        factsByIdentity: new Map(),
-        localesByIdentity: new Map(),
-        sections: new Map(),
-      } satisfies CatalogClosureState,
+      () =>
+        ({
+          factsByIdentity: new Map(),
+          localesByIdentity: new Map(),
+          sections: new Map(),
+        }) satisfies CatalogClosureState,
       (state, record) =>
         addCatalogRow(state, input.activeAppLocales, record.row)
     )
@@ -290,11 +291,12 @@ export const verifyTryoutLocaleClosure = Effect.fn(
 
   const placements = yield* input.placements.pipe(
     Stream.runFoldEffect(
-      {
-        assessedFacts: new Map(),
-        countsBySectionLocale: new Map(),
-        localesByIdentity: new Map(),
-      } satisfies PlacementClosureState,
+      () =>
+        ({
+          assessedFacts: new Map(),
+          countsBySectionLocale: new Map(),
+          localesByIdentity: new Map(),
+        }) satisfies PlacementClosureState,
       (state, record) =>
         addPlacement(state, catalog, input.activeAppLocales, record.row)
     )

@@ -7,8 +7,10 @@ import {
   ReleaseVerificationPendingSchema,
 } from "@nakafa/aksara-contracts/release";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Fiber, TestClock, TestContext } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Fiber } from "effect";
+import { TestClock } from "effect/testing";
+import { vi } from "vitest";
 import { stageCandidateRelease } from "#publisher/publication/verification";
 import {
   PublicationTargetConflictError,
@@ -68,7 +70,7 @@ describe("candidate verification", () => {
     expect(state.stage).not.toHaveBeenCalled();
   });
 
-  it("polls durable verification without replaying staged rows", async () => {
+  it.effect("polls durable verification without replaying staged rows", () => {
     let attempts = 0;
     const state = makeVerificationPlan("verifying", {
       verify: () =>
@@ -87,27 +89,26 @@ describe("candidate verification", () => {
           });
         }),
     });
-    const result = await Effect.runPromise(
-      Effect.gen(function* () {
-        const fiber = yield* stageCandidateRelease(state.plan).pipe(
-          Effect.fork
-        );
-        yield* TestClock.adjust("1 second");
-        return yield* Fiber.join(fiber);
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          testVerificationResolver
-        ),
-        Effect.provide(TestContext.TestContext)
+    return Effect.gen(function* () {
+      const fiber = yield* stageCandidateRelease(state.plan).pipe(
+        Effect.forkChild
+      );
+      yield* Effect.yieldNow;
+      yield* TestClock.adjust("1 second");
+      const result = yield* Fiber.join(fiber);
+
+      expect(result).toEqual({ kind: "verified" });
+      expect(attempts).toBe(2);
+      expect(state.stage).not.toHaveBeenCalled();
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        testVerificationResolver
       )
     );
-    expect(result).toEqual({ kind: "verified" });
-    expect(attempts).toBe(2);
-    expect(state.stage).not.toHaveBeenCalled();
   });
 
-  it("retries transient verification transport failures", async () => {
+  it.effect("retries transient verification transport failures", () => {
     let attempts = 0;
     const transport = new PublicationTargetTransportError({
       detail: { reason: "timeout" },
@@ -127,24 +128,23 @@ describe("candidate verification", () => {
               );
         }),
     });
-    const result = await Effect.runPromise(
-      Effect.gen(function* () {
-        const fiber = yield* stageCandidateRelease(state.plan).pipe(
-          Effect.fork
-        );
-        yield* TestClock.adjust("1 second");
-        return yield* Fiber.join(fiber);
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          testVerificationResolver
-        ),
-        Effect.provide(TestContext.TestContext)
+    return Effect.gen(function* () {
+      const fiber = yield* stageCandidateRelease(state.plan).pipe(
+        Effect.forkChild
+      );
+      yield* Effect.yieldNow;
+      yield* TestClock.adjust("1 second");
+      const result = yield* Fiber.join(fiber);
+
+      expect(result).toEqual({ kind: "verified" });
+      expect(attempts).toBe(2);
+      expect(state.stage).not.toHaveBeenCalled();
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        testVerificationResolver
       )
     );
-    expect(result).toEqual({ kind: "verified" });
-    expect(attempts).toBe(2);
-    expect(state.stage).not.toHaveBeenCalled();
   });
 
   it("does not retry permanent verification failures", async () => {
@@ -161,7 +161,7 @@ describe("candidate verification", () => {
     expect(state.stage).not.toHaveBeenCalled();
   });
 
-  it("fails when durable verification exceeds the release SLO", async () => {
+  it.effect("fails when durable verification exceeds the release SLO", () => {
     const state = makeVerificationPlan("verifying", {
       verify: () =>
         Effect.sleep("11 minutes").pipe(
@@ -174,27 +174,26 @@ describe("candidate verification", () => {
           )
         ),
     });
-    const error = await Effect.runPromise(
-      Effect.gen(function* () {
-        const fiber = yield* stageCandidateRelease(state.plan).pipe(
-          Effect.flip,
-          Effect.fork
-        );
-        yield* TestClock.adjust("10 minutes");
-        return yield* Fiber.join(fiber);
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          testVerificationResolver
-        ),
-        Effect.provide(TestContext.TestContext)
+    return Effect.gen(function* () {
+      const fiber = yield* stageCandidateRelease(state.plan).pipe(
+        Effect.flip,
+        Effect.forkChild
+      );
+      yield* Effect.yieldNow;
+      yield* TestClock.adjust("10 minutes");
+      const error = yield* Fiber.join(fiber);
+
+      expect(error).toMatchObject({
+        _tag: "PublicationVerificationTimeoutError",
+        releaseId: verificationRelease.manifest.releaseId,
+        timeoutSeconds: 600,
+      });
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        testVerificationResolver
       )
     );
-    expect(error).toMatchObject({
-      _tag: "PublicationVerificationTimeoutError",
-      releaseId: verificationRelease.manifest.releaseId,
-      timeoutSeconds: 600,
-    });
   });
 
   it("returns an authenticated completed candidate receipt", async () => {

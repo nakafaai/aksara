@@ -5,7 +5,7 @@ import {
   RoutePageSchema,
   type RouteRollbackRecord,
 } from "@nakafa/aksara-contracts/release/route/page";
-import { Chunk, Effect, Option, Schema, Stream, Tuple } from "effect";
+import { Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   RoutePageCursorError,
@@ -22,7 +22,7 @@ interface RouteCursor {
 
 /** Strictly decodes one unknown target route page. */
 function decodePage(source: unknown, afterIndex: number) {
-  return Schema.decodeUnknown(RoutePageSchema)(source, {
+  return Schema.decodeUnknownEffect(RoutePageSchema)(source, {
     onExcessProperty: "error",
   }).pipe(Effect.mapError(() => new RoutePageDecodeError({ afterIndex })));
 }
@@ -94,7 +94,7 @@ function loadPage(
   rollbackOfManifestHash: Sha256Hash,
   cursor: RouteCursor
 ): Effect.Effect<
-  readonly [Chunk.Chunk<RouteRollbackRecord>, Option.Option<RouteCursor>],
+  readonly [readonly RouteRollbackRecord[], Option.Option<RouteCursor>],
   | PublicationTargetFailure
   | RoutePageCursorError
   | RoutePageDecodeError
@@ -122,9 +122,7 @@ function loadPage(
     ),
     Effect.tap((page) => validateTotal(page, cursor)),
     Effect.tap((page) => validateCursor(page, cursor.afterIndex)),
-    Effect.map((page) =>
-      Tuple.make(Chunk.fromIterable(page.records), nextCursor(page, cursor))
-    )
+    Effect.map((page) => Tuple.make(page.records, nextCursor(page, cursor)))
   );
 }
 
@@ -135,7 +133,7 @@ export function streamRouteRecords(
   expectedTotal: number
 ) {
   const initial: RouteCursor = { afterIndex: -1, total: expectedTotal };
-  return Stream.paginateChunkEffect(initial, (cursor) =>
+  return Stream.paginate(initial, (cursor) =>
     loadPage(rollbackOf, rollbackOfManifestHash, cursor)
   );
 }

@@ -1,7 +1,6 @@
-import { Path } from "@effect/platform";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Path } from "effect";
 import {
   loadQuestionDocument,
   makeQuestionProjectionFromSource,

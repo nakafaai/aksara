@@ -1,7 +1,7 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Effect, Either, Fiber, Ref } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Fiber, Ref, Result, Semaphore } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import { describeDocumentFailure } from "#cli/diagnostic";
 import {
@@ -26,7 +26,7 @@ export interface LocalPreviewSession {
     | PreviewProviderError
     | PreviewRestartError
     | PreviewWatchError
-    | Effect.Effect.Error<RunningNakafa["awaitExit"]>,
+    | Effect.Error<RunningNakafa["awaitExit"]>,
     FileSystem.FileSystem | Path.Path
   >;
 }
@@ -98,35 +98,38 @@ export function refreshDocument(
   repositoryEvidence: Effect.Effect<PreviewRepositories, PreviewEvidenceError>
 ) {
   return Effect.gen(function* () {
-    const outcome = yield* compiler.compile().pipe(Effect.either);
-    if (Either.isLeft(outcome) && outcome.left instanceof PreviewRestartError) {
-      return yield* outcome.left;
+    const outcome = yield* compiler.compile.pipe(Effect.result);
+    if (
+      Result.isFailure(outcome) &&
+      outcome.failure instanceof PreviewRestartError
+    ) {
+      return yield* outcome.failure;
     }
     const currentRepositories = yield* repositoryEvidence;
-    if (Either.isLeft(outcome)) {
+    if (Result.isFailure(outcome)) {
       yield* publishDocumentFailure(
         provider,
         generation,
         currentRepositories,
-        outcome.left
+        outcome.failure
       );
       return currentRepositories;
     }
     const verification = yield* compiler
-      .verify(outcome.right)
-      .pipe(Effect.either);
+      .verify(outcome.success)
+      .pipe(Effect.result);
     if (
-      Either.isLeft(verification) &&
-      verification.left instanceof PreviewRestartError
+      Result.isFailure(verification) &&
+      verification.failure instanceof PreviewRestartError
     ) {
-      return yield* verification.left;
+      return yield* verification.failure;
     }
-    if (Either.isLeft(verification)) {
+    if (Result.isFailure(verification)) {
       yield* publishDocumentFailure(
         provider,
         generation,
         currentRepositories,
-        verification.left
+        verification.failure
       );
       return currentRepositories;
     }
@@ -134,10 +137,10 @@ export function refreshDocument(
       generation,
       rendererManifestHash,
       repositories: currentRepositories,
-      results: outcome.right.results,
+      results: outcome.success.results,
     });
     if (committed) {
-      yield* logDocumentCompilation(outcome.right);
+      yield* logDocumentCompilation(outcome.success);
     }
     return currentRepositories;
   });
@@ -164,7 +167,7 @@ export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
       selected: renderer.selected,
       signer: renderer.credentials.signer,
     });
-    const mutex = yield* Effect.makeSemaphore(1);
+    const mutex = yield* Semaphore.make(1);
     /** Serializes the active compile while the watcher retains its latest save. */
     const refresh = (generation: number) =>
       mutex.withPermits(1)(

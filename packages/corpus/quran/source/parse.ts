@@ -108,7 +108,7 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
         ),
       try: () => JSON.parse(source),
     });
-    const response = yield* Schema.decodeUnknown(TafsirResponseSchema)(
+    const response = yield* Schema.decodeUnknownEffect(TafsirResponseSchema)(
       unknownJson,
       { onExcessProperty: "error" }
     ).pipe(

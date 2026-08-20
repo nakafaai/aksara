@@ -1,17 +1,14 @@
 import {
-  NodeContext,
   NodeHttpClient,
   NodeRuntime,
+  NodeServices,
 } from "@effect/platform-node";
-import { layer as parcelWatcherLayer } from "@effect/platform-node/NodeFileSystem/ParcelWatcher";
 import { ExactProcessLive } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Layer } from "effect";
+import { Effect } from "effect";
 import { makeCliProgram } from "#cli/program";
 
-/** Node services with the installed lossless directory watcher backend. */
-export const cliNodeLayer = NodeContext.layer.pipe(
-  Layer.provide(parcelWatcherLayer)
-);
+/** Complete Node services, including the native filesystem watcher backend. */
+export const cliNodeLayer = NodeServices.layer;
 
 /** Builds the complete Node-backed CLI program before the runtime boundary. */
 export function makeMainProgram(input: {
@@ -19,7 +16,11 @@ export function makeMainProgram(input: {
   readonly cwd: string;
 }) {
   return makeCliProgram(input).pipe(
-    Effect.provide([NodeHttpClient.layer, ExactProcessLive, cliNodeLayer])
+    Effect.provide([
+      NodeHttpClient.layerNodeHttp,
+      ExactProcessLive,
+      cliNodeLayer,
+    ])
   );
 }
 

@@ -1,8 +1,8 @@
 // @vitest-environment node
 import { createHash } from "node:crypto";
-
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import { hashText } from "#contracts/hash/text";
 

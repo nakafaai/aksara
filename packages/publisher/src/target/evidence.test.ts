@@ -58,7 +58,7 @@ describe("publication success evidence", () => {
     if (head === undefined) {
       return;
     }
-    const wrongCursor = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+    const wrongCursor = Schema.decodeSync(PublicationSuccessSchema)({
       ...success,
       value: { ...success.value, cursor: "another-page" },
     });
@@ -76,7 +76,7 @@ describe("publication success evidence", () => {
         ],
       },
     });
-    const limited = Schema.decodeUnknownSync(PublicationRequestSchema)({
+    const limited = Schema.decodeSync(PublicationRequestSchema)({
       ...request,
       limit: 1,
     });
@@ -127,7 +127,7 @@ describe("publication success evidence", () => {
       evidenceCases.map((value) =>
         hasBoundPublicationSuccess(
           request,
-          Schema.decodeUnknownSync(PublicationSuccessSchema)({
+          Schema.decodeSync(PublicationSuccessSchema)({
             ...success,
             value: { evidence: value, phase: "verified" },
           })
@@ -142,7 +142,7 @@ describe("publication success evidence", () => {
     if (request?.operation !== "verify") {
       return;
     }
-    const pending = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+    const pending = Schema.decodeSync(PublicationSuccessSchema)({
       ok: true,
       operation: "verify",
       value: {
@@ -194,7 +194,7 @@ describe("publication success evidence", () => {
       receiptCases.map((value) =>
         hasBoundPublicationSuccess(
           request,
-          Schema.decodeUnknownSync(PublicationSuccessSchema)({
+          Schema.decodeSync(PublicationSuccessSchema)({
             ...success,
             value,
           })
@@ -225,7 +225,7 @@ describe("publication success evidence", () => {
         prior: state,
       };
     });
-    const response = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+    const response = Schema.decodeSync(PublicationSuccessSchema)({
       ok: true,
       operation: "rollbackPage",
       value: {
@@ -237,11 +237,11 @@ describe("publication success evidence", () => {
         total: 2,
       },
     });
-    const wrongCursor = Schema.decodeUnknownSync(PublicationRequestSchema)({
+    const wrongCursor = Schema.decodeSync(PublicationRequestSchema)({
       ...request,
       afterIndex: 0,
     });
-    const tooSmall = Schema.decodeUnknownSync(PublicationRequestSchema)({
+    const tooSmall = Schema.decodeSync(PublicationRequestSchema)({
       ...request,
       limit: 1,
     });
@@ -263,7 +263,7 @@ describe("publication success evidence", () => {
     if (success.operation !== "cleanup") {
       return;
     }
-    const progressed = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+    const progressed = Schema.decodeSync(PublicationSuccessSchema)({
       ...success,
       value: { ...success.value, complete: false, retryAt: 1_800_000_000_000 },
     });
@@ -283,11 +283,11 @@ describe("publication success evidence", () => {
       return;
     }
     const responses = [
-      Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      Schema.decodeSync(PublicationSuccessSchema)({
         ...success,
         value: { ...success.value, batchIndex: 1 },
       }),
-      Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      Schema.decodeSync(PublicationSuccessSchema)({
         ...success,
         value: { ...success.value, created: 0 },
       }),

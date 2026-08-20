@@ -1,6 +1,7 @@
 import type { BinaryLike } from "node:crypto";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizePreviewRendererAuth,
@@ -56,7 +57,7 @@ describe("preview renderer authentication", () => {
         secret,
       })
     );
-    const response = Schema.decodeUnknownSync(PreviewRendererResponseSchema)({
+    const response = Schema.decodeSync(PreviewRendererResponseSchema)({
       format: PREVIEW_RENDERER_AUTH_FORMAT,
       manifest,
       proof,

@@ -4,7 +4,7 @@ import { Schema } from "effect";
 export class ContentSigningError extends Schema.TaggedError<ContentSigningError>()(
   "ContentSigningError",
   {
-    message: Schema.NonEmptyTrimmedString,
-    stage: Schema.Literal("configuration", "artifact", "release"),
+    message: Schema.Trimmed.check(Schema.isNonEmpty()),
+    stage: Schema.Literals(["configuration", "artifact", "release"]),
   }
 ) {}

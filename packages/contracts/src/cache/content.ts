@@ -18,14 +18,16 @@ export const MAX_CONTENT_CACHE_ARTIFACTS = 98;
 
 /** One immutable published-artifact cache tag derived only from its hash. */
 export const ArtifactCacheTagSchema = Schema.String.pipe(
-  Schema.filter(
-    (tag) =>
-      tag.startsWith(ARTIFACT_CACHE_PREFIX) &&
-      Schema.is(Sha256HashSchema)(tag.slice(ARTIFACT_CACHE_PREFIX.length)),
-    {
-      message: () =>
-        "Expected content-artifact followed by one canonical SHA-256 hash.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      (tag) =>
+        tag.startsWith(ARTIFACT_CACHE_PREFIX) &&
+        Schema.is(Sha256HashSchema)(tag.slice(ARTIFACT_CACHE_PREFIX.length)),
+      {
+        message:
+          "Expected content-artifact followed by one canonical SHA-256 hash.",
+      }
+    )
   ),
   Schema.brand("@NakafaAI/AksaraArtifactCacheTag")
 );
@@ -33,11 +35,13 @@ export type ArtifactCacheTag = typeof ArtifactCacheTagSchema.Type;
 
 /** One exact content-family cache tag derived from the family contract. */
 export const ContentFamilyCacheTagSchema = Schema.String.pipe(
-  Schema.filter(
-    (tag) =>
-      tag.startsWith(FAMILY_CACHE_PREFIX) &&
-      Schema.is(ContentFamilySchema)(tag.slice(FAMILY_CACHE_PREFIX.length)),
-    { message: () => "Expected one canonical content-family cache tag." }
+  Schema.check(
+    Schema.makeFilter(
+      (tag) =>
+        tag.startsWith(FAMILY_CACHE_PREFIX) &&
+        Schema.is(ContentFamilySchema)(tag.slice(FAMILY_CACHE_PREFIX.length)),
+      { message: "Expected one canonical content-family cache tag." }
+    )
   ),
   Schema.brand("@NakafaAI/AksaraContentFamilyCacheTag")
 );
@@ -55,14 +59,19 @@ function hasUniqueArtifactTags(tags: readonly string[]) {
  * Global and exact family tags come first; remaining tags name exact changed
  * artifacts while keeping one invalidation request at or below 100 tags.
  */
-export const ContentCacheTagsSchema = Schema.Tuple(
-  [Schema.Literal(CONTENT_CACHE_GLOBAL_TAG), ContentFamilyCacheTagSchema],
-  ArtifactCacheTagSchema
+export const ContentCacheTagsSchema = Schema.TupleWithRest(
+  Schema.Tuple([
+    Schema.Literal(CONTENT_CACHE_GLOBAL_TAG),
+    ContentFamilyCacheTagSchema,
+  ]),
+  [ArtifactCacheTagSchema]
 ).pipe(
-  Schema.maxItems(MAX_CONTENT_CACHE_ARTIFACTS + 2),
-  Schema.filter(hasUniqueArtifactTags, {
-    message: () => "Expected unique exact artifact cache tags.",
-  })
+  Schema.check(Schema.isMaxLength(MAX_CONTENT_CACHE_ARTIFACTS + 2)),
+  Schema.check(
+    Schema.makeFilter(hasUniqueArtifactTags, {
+      message: "Expected unique exact artifact cache tags.",
+    })
+  )
 );
 export type ContentCacheTags = typeof ContentCacheTagsSchema.Type;
 
@@ -99,9 +108,11 @@ export const ContentCacheRequestSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   tags: ContentCacheTagsSchema,
 }).pipe(
-  Schema.filter(hasCoherentFamily, {
-    message: () => "Expected the cache family to match its ordered family tag.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentFamily, {
+      message: "Expected the cache family to match its ordered family tag.",
+    })
+  )
 );
 export type ContentCacheRequest = typeof ContentCacheRequestSchema.Type;
 
@@ -112,9 +123,11 @@ export const ContentCacheReceiptSchema = Schema.Struct({
   revalidated: Schema.Literal(true),
   tags: ContentCacheTagsSchema,
 }).pipe(
-  Schema.filter(hasCoherentFamily, {
-    message: () => "Expected the cache family to match its ordered family tag.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentFamily, {
+      message: "Expected the cache family to match its ordered family tag.",
+    })
+  )
 );
 export type ContentCacheReceipt = typeof ContentCacheReceiptSchema.Type;
 

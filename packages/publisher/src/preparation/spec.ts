@@ -40,7 +40,6 @@ import type {
   PreparedContentCoherenceError,
   PreparedContentDecodeError,
   PreparedContentOrderError,
-  PreparedContentReplayError,
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
@@ -71,10 +70,10 @@ const PreparedContentDeleteSchema = Schema.Struct({
 export type PreparedContentUpsert = typeof PreparedContentUpsertSchema.Type;
 
 /** Complete authored record vocabulary accepted by release preparation. */
-export const PreparedContentRecordSchema = Schema.Union(
+export const PreparedContentRecordSchema = Schema.Union([
   PreparedContentUpsertSchema,
-  PreparedContentDeleteSchema
-);
+  PreparedContentDeleteSchema,
+]);
 export type PreparedContentRecord = typeof PreparedContentRecordSchema.Type;
 
 /** One forward record paired with the exact state it replaces. */
@@ -86,25 +85,21 @@ export type PreparedContentTransition =
   typeof PreparedContentTransitionSchema.Type;
 
 /** Replay factory for one canonical authored transition source. */
-export type PreparedContentTransitionSource<E, R> = () => Stream.Stream<
+export type PreparedContentTransitionSource<E, R> = Stream.Stream<
   unknown,
   E,
   R
 >;
 
 /** Replay factory for one complete canonically ordered result catalog. */
-export type PreparedResultCatalogSource<E, R> = () => Stream.Stream<
+export type PreparedResultCatalogSource<E, R> = Stream.Stream<
   ContentHead,
   E,
   R
 >;
 
 /** Replay factory for independent public-route transitions. */
-export type PreparedRouteSource<E, R> = () => Stream.Stream<
-  RouteTransition,
-  E,
-  R
->;
+export type PreparedRouteSource<E, R> = Stream.Stream<RouteTransition, E, R>;
 
 /** Exact immutable release identity plus its one authored record source. */
 export interface PrepareContentReleaseInput<E, R>
@@ -124,7 +119,7 @@ export interface PrepareContentReleaseInput<E, R>
   readonly scope: PublicationScope;
 }
 
-type SourceHashError = Effect.Effect.Error<
+type SourceHashError = Effect.Error<
   ReturnType<typeof verifyCompiledContentSourceHash>
 >;
 
@@ -134,7 +129,6 @@ export type PreparedContentStreamError<E> =
   | PreparedContentCoherenceError
   | PreparedContentDecodeError
   | PreparedContentOrderError
-  | PreparedContentReplayError
   | RoutePlanConflictError
   | SourceHashError;
 
@@ -143,48 +137,48 @@ export type PreparedReleaseStreamError<E> =
   | PreparedContentStreamError<E>
   | PreparedSnapshotStreamError<E>;
 
-type ItemVerificationError<E, R> = Effect.Effect.Error<
+type ItemVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentReleaseItems<E, R>>
 >;
 
-type ProjectionVerificationError<E, R> = Effect.Effect.Error<
+type ProjectionVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentProjections<E, R>>
 >;
 
-type RendererManifestError = Effect.Effect.Error<
+type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
-type RendererCompatibilityError = Effect.Effect.Error<
+type RendererCompatibilityError = Effect.Error<
   ReturnType<typeof verifyContentRendererCompatibility>
 >;
 
-type RouteVerificationError<E, R> = Effect.Effect.Error<
+type RouteVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentRoutes<E, R>>
 >;
 
-type RouteDigestError<E, R> = Effect.Effect.Error<
+type RouteDigestError<E, R> = Effect.Error<
   ReturnType<typeof digestRoutes<E, R>>
 >;
 
-type RollbackVerificationError<E, R> = Effect.Effect.Error<
+type RollbackVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyRollbackSnapshot<E, R>>
 >;
 
-type ResultVerificationError<E, R> = Effect.Effect.Error<
+type ResultVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyResultCatalog<E, R>>
 >;
 
 type ResultDigestError =
-  | Effect.Effect.Error<ReturnType<typeof createResultCatalogDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateResultCatalogDigest>>;
+  | Effect.Error<ReturnType<typeof createResultCatalogDigest>>
+  | Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
+  | Effect.Error<ReturnType<typeof updateResultCatalogDigest>>;
 
-type SnapshotVerificationError<E, R> = Effect.Effect.Error<
+type SnapshotVerificationError<E, R> = Effect.Error<
   ReturnType<typeof verifyContentSnapshots<E, R, E, R>>
 >;
 
-type SnapshotPolicyError = Effect.Effect.Error<
+type SnapshotPolicyError = Effect.Error<
   ReturnType<typeof verifyReleasePolicyTransition>
 >;
 

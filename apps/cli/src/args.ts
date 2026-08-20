@@ -30,7 +30,7 @@ export type CliArguments =
 export class PreviewArgumentsError extends Schema.TaggedError<PreviewArgumentsError>()(
   "PreviewArgumentsError",
   {
-    reason: Schema.Literal("duplicate", "missing", "unknown", "value"),
+    reason: Schema.Literals(["duplicate", "missing", "unknown", "value"]),
   }
 ) {}
 
@@ -44,44 +44,42 @@ const isAppLocale = Schema.is(AppLocaleSchema);
 
 /** Decodes one document and its optional explicit application locale. */
 export const parsePreviewArguments = Effect.fn("AksaraCli.parseArguments")(
-  (args: readonly string[]) => {
+  function* (args: readonly string[]) {
     let appLocale: AppLocale | undefined;
     let document: string | undefined;
     for (let index = 0; index < args.length; index += 1) {
       const argument = args[index];
       if (argument !== "--app-locale" && argument !== "--document") {
-        return Effect.fail(new PreviewArgumentsError({ reason: "unknown" }));
+        return yield* new PreviewArgumentsError({ reason: "unknown" });
       }
       const value = args[index + 1];
       if (!(value && value.trim().length > 0 && !value.startsWith("--"))) {
-        return Effect.fail(new PreviewArgumentsError({ reason: "value" }));
+        return yield* new PreviewArgumentsError({ reason: "value" });
       }
       if (argument === "--app-locale") {
         if (appLocale !== undefined) {
-          return Effect.fail(
-            new PreviewArgumentsError({ reason: "duplicate" })
-          );
+          return yield* new PreviewArgumentsError({ reason: "duplicate" });
         }
         if (!isAppLocale(value)) {
-          return Effect.fail(new PreviewArgumentsError({ reason: "value" }));
+          return yield* new PreviewArgumentsError({ reason: "value" });
         }
         appLocale = value;
         index += 1;
         continue;
       }
       if (document !== undefined) {
-        return Effect.fail(new PreviewArgumentsError({ reason: "duplicate" }));
+        return yield* new PreviewArgumentsError({ reason: "duplicate" });
       }
       document = value;
       index += 1;
     }
     if (document === undefined) {
-      return Effect.fail(new PreviewArgumentsError({ reason: "missing" }));
+      return yield* new PreviewArgumentsError({ reason: "missing" });
     }
-    return Effect.succeed({
+    return {
       document,
       ...(appLocale === undefined ? {} : { appLocale }),
-    } satisfies PreviewArguments);
+    } satisfies PreviewArguments;
   }
 );
 

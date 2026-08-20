@@ -74,7 +74,7 @@ function requestPath(request: IncomingMessage) {
 function decodeArtifactHash(path: string) {
   const encoded = path.slice(LOCAL_PREVIEW_ARTIFACT_PREFIX.length);
   const candidate = encoded.replace("sha256%3A", "sha256:");
-  return Schema.decodeUnknownOption(Sha256HashSchema)(candidate).pipe(
+  return Schema.decodeOption(Sha256HashSchema)(candidate).pipe(
     Option.filter((hash) => localPreviewArtifactPath(hash) === path)
   );
 }

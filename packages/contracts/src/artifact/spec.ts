@@ -35,8 +35,14 @@ export class ArtifactVerificationDecodeError extends Schema.TaggedError<Artifact
 export class ArtifactVerificationByteLimitError extends Schema.TaggedError<ArtifactVerificationByteLimitError>()(
   "ArtifactVerificationByteLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 
@@ -44,9 +50,15 @@ export class ArtifactVerificationByteLimitError extends Schema.TaggedError<Artif
 export class ArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<ArtifactCompiledByteLengthMismatchError>()(
   "ArtifactCompiledByteLengthMismatchError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     contentKey: ContentKeySchema,
-    declaredBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    declaredBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
   }
 ) {}
 
@@ -54,15 +66,21 @@ export class ArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<
 export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<ArtifactPayloadFieldByteLimitError>()(
   "ArtifactPayloadFieldByteLimitError",
   {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     contentKey: ContentKeySchema,
-    field: Schema.Literal(
+    field: Schema.Literals([
       "rawMdx",
       "compiledCode",
       "plainText",
-      "canonicalPayload"
+      "canonicalPayload",
+    ]),
+    maxBytes: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
     ),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }
 ) {}
 
@@ -122,7 +140,10 @@ export class ArtifactRendererVersionUnsupportedError extends Schema.TaggedError<
   {
     componentName: RendererComponentNameSchema,
     contentKey: ContentKeySchema,
-    requiredVersion: Schema.Number.pipe(Schema.int(), Schema.positive()),
+    requiredVersion: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThan(0))
+    ),
   }
 ) {}
 

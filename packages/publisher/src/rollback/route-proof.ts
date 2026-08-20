@@ -35,16 +35,16 @@ function inverseRoute(
 
 /** Replays one inverse route item per authenticated current route. */
 export function inverseRouteStream(
-  records: () => Stream.Stream<RouteRollbackRecord, ReplaySpoolError>,
+  records: Stream.Stream<RouteRollbackRecord, ReplaySpoolError>,
   releaseId: ReleaseId
 ) {
-  return records().pipe(
+  return records.pipe(
     Stream.zipWithIndex,
     Stream.map(([record, index]) => inverseRoute(record, index, releaseId))
   );
 }
 
-type VerifyRouteProofError = Effect.Effect.Error<
+type VerifyRouteProofError = Effect.Error<
   ReturnType<typeof verifyContentRoutes<ReplaySpoolError, never>>
 >;
 
@@ -53,11 +53,11 @@ export function verifyRouteProof(input: {
   readonly manifest: ContentReleaseManifest;
   readonly mode: RollbackProofMode;
   /** Replays the authoritative route ownership rows for proof verification. */
-  readonly records: () => Stream.Stream<RouteRollbackRecord, ReplaySpoolError>;
+  readonly records: Stream.Stream<RouteRollbackRecord, ReplaySpoolError>;
 }): Effect.Effect<void, VerifyRouteProofError> {
   const routes =
     input.mode === "source"
-      ? input.records().pipe(Stream.map((record) => record.current))
+      ? input.records.pipe(Stream.map((record) => record.current))
       : inverseRouteStream(input.records, input.manifest.releaseId);
   return verifyContentRoutes({ manifest: input.manifest, routes }).pipe(
     Effect.asVoid

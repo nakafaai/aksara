@@ -18,7 +18,7 @@ import type {
 export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
   "ProductionStateError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "aborting",
       "missing-active",
       "mode-mismatch",
@@ -26,8 +26,8 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
       "recovery-conflict",
       "recovery-retained",
       "rollback-mismatch",
-      "scope-mismatch"
-    ),
+      "scope-mismatch",
+    ]),
   }
 ) {}
 
@@ -89,38 +89,34 @@ function activeBundle(active: NonNullable<ContentReleaseCurrent["active"]>) {
 /** Returns stored provenance only when command mode and identity match it. */
 const validateStoredCommand: ValidateStoredCommand = Effect.fn(
   "AksaraCli.validateStoredCommand"
-)((args: ProductionArguments, bundle: ContentReleaseBundle) => {
+)(function* (args: ProductionArguments, bundle: ContentReleaseBundle) {
   const { manifest } = bundle.release;
   if (args.command === "release") {
     if (
       JSON.stringify(canonicalizePublicationScope(args.scope)) !==
       JSON.stringify(canonicalizePublicationScope(manifest.scope))
     ) {
-      return Effect.fail(
-        new ProductionStateError({ reason: "scope-mismatch" })
-      );
+      return yield* new ProductionStateError({ reason: "scope-mismatch" });
     }
     if (manifest.origin.kind === "git") {
-      return Effect.succeed<StoredCommand>({
+      return {
         mode: "git",
         scope: args.scope,
         sha: manifest.origin.sha,
-      });
+      } satisfies StoredCommand;
     }
-    return Effect.fail(new ProductionStateError({ reason: "mode-mismatch" }));
+    return yield* new ProductionStateError({ reason: "mode-mismatch" });
   }
   if (manifest.origin.kind !== "rollback") {
-    return Effect.fail(new ProductionStateError({ reason: "mode-mismatch" }));
+    return yield* new ProductionStateError({ reason: "mode-mismatch" });
   }
   if (manifest.baseReleaseId !== args.rollbackOf) {
-    return Effect.fail(
-      new ProductionStateError({ reason: "rollback-mismatch" })
-    );
+    return yield* new ProductionStateError({ reason: "rollback-mismatch" });
   }
-  return Effect.succeed<StoredCommand>({
+  return {
     mode: "rollback",
     rollbackOf: args.rollbackOf,
-  });
+  } satisfies StoredCommand;
 });
 
 /** Selects new preparation, exact rebuild, or a lost terminal receipt read. */

@@ -35,7 +35,7 @@ export function makeCliProgram(input: {
       return yield* runRecoverCommand(args);
     }
     if (args.command === "status") {
-      return yield* runStatusCommand();
+      return yield* runStatusCommand;
     }
     return yield* runProductionCommand({ args, cwd: input.cwd });
   });

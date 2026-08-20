@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   QuranChunkRowSchema,
@@ -27,7 +27,7 @@ function chunk() {
 
 describe("Quran base contracts", () => {
   it("locks stable corpus counts and accepts contiguous chunks", () => {
-    const decoded = Schema.decodeUnknownSync(QuranChunkRowSchema)(chunk());
+    const decoded = Schema.decodeSync(QuranChunkRowSchema)(chunk());
     expect(decoded.verses).toHaveLength(2);
     expect({
       attributionCount: QURAN_ATTRIBUTION_COUNT,
@@ -43,26 +43,26 @@ describe("Quran base contracts", () => {
   });
 
   it("rejects drifted chunk bounds, oversized chunks, and empty text", () => {
-    const drifted = Schema.decodeUnknownEither(QuranChunkRowSchema)({
+    const drifted = Schema.decodeExit(QuranChunkRowSchema)({
       ...chunk(),
       lastVerse: 3,
     });
-    const oversized = Schema.decodeUnknownEither(QuranChunkRowSchema)({
+    const oversized = Schema.decodeUnknownExit(QuranChunkRowSchema)({
       ...chunk(),
       lastVerse: 7,
       verses: Array.from({ length: 7 }, (_, index) =>
         quranVerse(index + 1, index + 1)
       ),
     });
-    const compatibility = Schema.decodeUnknownEither(QuranRuntimeVerseSchema)(
+    const compatibility = Schema.decodeUnknownExit(QuranRuntimeVerseSchema)(
       { ...quranVerse(1, 1), audio: {} },
       { onExcessProperty: "error" }
     );
-    expect(Either.isLeft(drifted)).toBe(true);
-    expect(Either.isLeft(oversized)).toBe(true);
-    expect(Either.isLeft(compatibility)).toBe(true);
-    const emptyText = Schema.decodeUnknownEither(QuranMeaningfulTextSchema)("");
-    expect(Either.isLeft(emptyText) ? String(emptyText.left) : "").toContain(
+    expect(Exit.isFailure(drifted)).toBe(true);
+    expect(Exit.isFailure(oversized)).toBe(true);
+    expect(Exit.isFailure(compatibility)).toBe(true);
+    const emptyText = Schema.decodeExit(QuranMeaningfulTextSchema)("");
+    expect(Exit.isFailure(emptyText) ? String(emptyText.cause) : "").toContain(
       "Quran text cannot be empty."
     );
   });

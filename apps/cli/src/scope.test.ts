@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 const FUNCTION_CONTENT_KEY =
@@ -68,7 +68,7 @@ describe("publication scope selectors", () => {
   ])(
     "rejects an invalid or noncanonical selector collection %#",
     async ({ selectors }) => {
-      await expect(reject(selectors)).resolves.toEqual({
+      await expect(reject(selectors)).resolves.toMatchObject({
         _tag: "ProductionScopeDecodeError",
       });
     }

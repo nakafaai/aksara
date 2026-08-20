@@ -7,7 +7,7 @@ import {
   ReleaseAbortRequestSchema,
   ReleaseAcceptRequestSchema,
   ReleaseCleanupRequestSchema,
-  RollbackContentReleaseBundleSchema,
+  type RollbackContentReleaseBundle,
 } from "#contracts/release/lifecycle";
 import { RollbackPageRequestSchema } from "#contracts/release/rollback/spec";
 import { RoutePageRequestSchema } from "#contracts/release/route/page";
@@ -27,6 +27,32 @@ import {
   StageSnapshotRequestSchema,
 } from "#contracts/transport/snapshot";
 
+/** Complete stable operation vocabulary shared by requests and diagnostics. */
+export const PublicationOperationSchema = Schema.Literals([
+  "abort",
+  "accept",
+  "activate",
+  "activateRecovery",
+  "cleanup",
+  "current",
+  "headPage",
+  "recovery",
+  "rollbackPage",
+  "routePage",
+  "stageArtifactBatch",
+  "stageGroup",
+  "stageItemBatch",
+  "stageProjectionBatch",
+  "stageRecovery",
+  "stageRelease",
+  "stageRouteBatch",
+  "stageSnapshot",
+  "stageSnapshotBatch",
+  "status",
+  "verify",
+]);
+export type PublicationOperation = typeof PublicationOperationSchema.Type;
+
 /** Reads the authoritative active, candidate, and recovery identities. */
 export const PublicationCurrentRequestSchema = Schema.Struct({
   operation: Schema.Literal("current"),
@@ -42,10 +68,11 @@ export const PublicationAbortRequestSchema = Schema.Struct({
 export type PublicationAbortRequest = typeof PublicationAbortRequestSchema.Type;
 
 /** Accepts one healthy release and discards its exact retained inverse. */
-export const PublicationAcceptRequestSchema = Schema.extend(
-  ReleaseAcceptRequestSchema,
-  Schema.Struct({ operation: Schema.Literal("accept") })
-);
+export const PublicationAcceptRequestSchema =
+  ReleaseAcceptRequestSchema.mapFields(
+    (fields) => ({ ...fields, operation: Schema.Literal("accept") }),
+    { unsafePreserveChecks: true }
+  );
 export type PublicationAcceptRequest =
   typeof PublicationAcceptRequestSchema.Type;
 
@@ -58,24 +85,35 @@ export type PublicationHeadPageRequest =
   typeof PublicationHeadPageRequestSchema.Type;
 
 /** Looks up exact historical completion evidence for one signed recovery. */
-export const PublicationRecoveryLookupRequestSchema = Schema.extend(
-  ReleaseAcceptRequestSchema,
-  Schema.Struct({ operation: Schema.Literal("recovery") })
-);
+export const PublicationRecoveryLookupRequestSchema =
+  ReleaseAcceptRequestSchema.mapFields(
+    (fields) => ({ ...fields, operation: Schema.Literal("recovery") }),
+    { unsafePreserveChecks: true }
+  );
 export type PublicationRecoveryLookupRequest =
   typeof PublicationRecoveryLookupRequestSchema.Type;
 
 /** Starts or idempotently resumes one exact signed release. */
-export const StageReleaseRequestSchema = Schema.extend(
-  ContentReleaseBundleSchema,
-  Schema.Struct({ operation: Schema.Literal("stageRelease") })
+export const StageReleaseRequestSchema = ContentReleaseBundleSchema.mapFields(
+  (fields) => ({ ...fields, operation: Schema.Literal("stageRelease") }),
+  { unsafePreserveChecks: true }
 );
 export type StageReleaseRequest = typeof StageReleaseRequestSchema.Type;
 
 /** Starts or idempotently resumes one exact pre-staged inverse release. */
-export const StageRecoveryRequestSchema = Schema.extend(
-  RollbackContentReleaseBundleSchema,
-  Schema.Struct({ operation: Schema.Literal("stageRecovery") })
+const StageRecoveryRequestBaseSchema = ContentReleaseBundleSchema.mapFields(
+  (fields) => ({ ...fields, operation: Schema.Literal("stageRecovery") }),
+  { unsafePreserveChecks: true }
+);
+type StageRecoveryRequestValue = typeof StageRecoveryRequestBaseSchema.Type &
+  RollbackContentReleaseBundle;
+
+export const StageRecoveryRequestSchema = StageRecoveryRequestBaseSchema.pipe(
+  Schema.refine(
+    (request): request is StageRecoveryRequestValue =>
+      request.release.manifest.origin.kind === "rollback",
+    { message: "Expected a rollback release for recovery staging." }
+  )
 );
 export type StageRecoveryRequest = typeof StageRecoveryRequestSchema.Type;
 
@@ -133,7 +171,7 @@ export type PublicationCleanupRequest =
   typeof PublicationCleanupRequestSchema.Type;
 
 /** Complete request vocabulary accepted by publication ingress. */
-export const PublicationRequestSchema = Schema.Union(
+export const PublicationRequestSchema = Schema.Union([
   PublicationAcceptRequestSchema,
   PublicationAbortRequestSchema,
   PublicationCurrentRequestSchema,
@@ -154,8 +192,8 @@ export const PublicationRequestSchema = Schema.Union(
   ActivateRecoveryRequestSchema,
   PublicationRollbackRequestSchema,
   PublicationRoutePageRequestSchema,
-  PublicationCleanupRequestSchema
-);
+  PublicationCleanupRequestSchema,
+]);
 export type PublicationRequest = typeof PublicationRequestSchema.Type;
 
 /** Strictly decodes one unknown publication request without throwing. */

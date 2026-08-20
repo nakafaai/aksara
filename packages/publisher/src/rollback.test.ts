@@ -2,8 +2,9 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   prepareRollbackFixture,
   proofBundle,
@@ -26,9 +27,9 @@ describe("prepareRollback", () => {
             rollbackTarget(loadPage)
           );
           const [artifacts, items, projections] = yield* Effect.all([
-            prepared.artifacts().pipe(Stream.runCollect),
-            prepared.items().pipe(Stream.runCollect),
-            prepared.projections().pipe(Stream.runCollect),
+            prepared.artifacts.pipe(Stream.runCollect),
+            prepared.items.pipe(Stream.runCollect),
+            prepared.projections.pipe(Stream.runCollect),
           ]);
           return { artifacts, items, prepared, projections };
         })

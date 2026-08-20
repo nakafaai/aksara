@@ -1,6 +1,6 @@
 import { realpathSync } from "node:fs";
 import { relative } from "node:path";
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { PreviewRepositorySchema } from "@nakafa/aksara-contracts/preview/spec";
 import { Effect, Schema } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
@@ -9,11 +9,11 @@ import { selectPreviewDocument } from "#cli/repository";
 import { RENDERER_MANIFEST, type TestRepositories } from "#test/real";
 
 export const PREVIEW_REPOSITORIES = {
-  aksara: Schema.decodeUnknownSync(PreviewRepositorySchema)({
+  aksara: Schema.decodeSync(PreviewRepositorySchema)({
     dirty: true,
     sha: "a".repeat(40),
   }),
-  nakafa: Schema.decodeUnknownSync(PreviewRepositorySchema)({
+  nakafa: Schema.decodeSync(PreviewRepositorySchema)({
     dirty: false,
     sha: "b".repeat(40),
   }),
@@ -25,7 +25,7 @@ export async function makePreviewReady(repositories: TestRepositories) {
   const documentPath = realpathSync(repositories.documentPath);
   const selected = await Effect.runPromise(
     selectPreviewDocument(aksaraRoot, relative(aksaraRoot, documentPath)).pipe(
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
   const credentials = await Effect.runPromise(makePreviewCredentials());
@@ -38,7 +38,7 @@ export async function makePreviewReady(repositories: TestRepositories) {
     })
   );
   const result = await Effect.runPromise(
-    compiler.compile().pipe(Effect.provide(NodeContext.layer))
+    compiler.compile.pipe(Effect.provide(NodeServices.layer))
   );
   return { compiler, credentials, document: selected.document, result };
 }

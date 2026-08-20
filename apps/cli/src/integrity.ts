@@ -1,5 +1,4 @@
 import { createHash } from "node:crypto";
-import { FileSystem } from "@effect/platform";
 import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
@@ -8,7 +7,7 @@ import type {
   PreviewSelection,
   PreviewSource,
 } from "@nakafa/aksara-corpus/preview/source";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Schema } from "effect";
 
 /** A requested document failed exact source validation. */
 export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepositoryError>()(
@@ -16,14 +15,14 @@ export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepository
   {
     kind: Schema.Literal("document"),
     path: Schema.String,
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "changed",
       "app-locale",
       "identity",
       "missing",
       "registry",
-      "symlink"
-    ),
+      "symlink",
+    ]),
   }
 ) {}
 
@@ -217,7 +216,7 @@ export const fingerprintSelectedDocument = Effect.fn(
 });
 
 /** Immutable source hashes captured for one atomic compilation attempt. */
-export type SelectedFingerprint = Effect.Effect.Success<
+export type SelectedFingerprint = Effect.Success<
   ReturnType<typeof fingerprintSelectedDocument>
 >;
 

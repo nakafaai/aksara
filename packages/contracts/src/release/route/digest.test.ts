@@ -1,6 +1,7 @@
 import type { BinaryLike } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   completeRouteDigest,
@@ -12,8 +13,7 @@ import {
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
-const releaseId =
-  Schema.decodeUnknownSync(ReleaseIdSchema)("test-route-digest");
+const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-route-digest");
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -52,7 +52,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 /** Builds one ordered route binding for digest tests. */
 function route(contentKey = "test:route") {
-  return Schema.decodeUnknownSync(ContentRouteItemSchema)({
+  return Schema.decodeSync(ContentRouteItemSchema)({
     change: {
       appLocale: "en",
       contentKey,

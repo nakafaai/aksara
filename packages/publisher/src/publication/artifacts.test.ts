@@ -22,8 +22,8 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { testRendererDomains } from "#test/renderer";

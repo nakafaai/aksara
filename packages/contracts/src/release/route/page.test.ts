@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   MAX_ROUTE_PAGE_RECORDS,
@@ -12,7 +12,7 @@ const releaseId = "test-route-page";
 
 /** Builds one valid route rollback record for a deterministic index. */
 function record(index: number) {
-  return Schema.decodeUnknownSync(RouteRollbackRecordSchema)({
+  return Schema.decodeSync(RouteRollbackRecordSchema)({
     current: {
       change: {
         appLocale: "en",
@@ -28,9 +28,9 @@ function record(index: number) {
 }
 
 /** Strictly checks one route page schema without excess properties. */
-function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
-  return Either.isRight(
-    Schema.decodeUnknownEither(schema)(input, { onExcessProperty: "error" })
+function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
+  return Exit.isSuccess(
+    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
   );
 }
 
@@ -99,12 +99,12 @@ describe("route rollback pages", () => {
         })
       ).toBe(false);
     }
-    const result = Schema.decodeUnknownEither(RoutePageSchema)({
+    const result = Schema.decodeUnknownExit(RoutePageSchema)({
       ...invalidPages[0],
       rollbackOf: releaseId,
       rollbackOfManifestHash: hash,
     });
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected one contiguous route page with coherent progress evidence."
     );
   });
@@ -117,10 +117,8 @@ describe("route rollback pages", () => {
         current.change.operation === "bind" ? current.change.contentKey : null,
     };
     expect(accepts(RouteRollbackRecordSchema, unchanged)).toBe(false);
-    const result = Schema.decodeUnknownEither(RouteRollbackRecordSchema)(
-      unchanged
-    );
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    const result = Schema.decodeExit(RouteRollbackRecordSchema)(unchanged);
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected a route change to alter the prior binding owner."
     );
     expect(

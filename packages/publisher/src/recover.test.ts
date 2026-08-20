@@ -1,8 +1,9 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   PublicationActivation,
   PublicationActivationError,
@@ -19,7 +20,7 @@ async function makePublished(name: string) {
   const prepared = await makeRelease(name);
   const state = makeTarget(prepared);
   await Effect.runPromise(publish(prepared, state.target));
-  const current = await Effect.runPromise(state.target.current());
+  const current = await Effect.runPromise(state.target.current);
   const { active, recovery } = current;
   if (!(active && recovery)) {
     return await Effect.runPromise(
@@ -76,7 +77,7 @@ describe("recoverContentRelease", () => {
       priorActivations + 1
     );
     await expect(
-      Effect.runPromise(published.state.target.current())
+      Effect.runPromise(published.state.target.current)
     ).resolves.toMatchObject({
       active: {
         release: { manifest: { releaseId: published.input.recoveryId } },
@@ -147,7 +148,7 @@ describe("recoverContentRelease", () => {
     await Effect.runPromise(
       runRecovery(published.input, published.state.target, () => Effect.void)
     );
-    const current = await Effect.runPromise(published.state.target.current());
+    const current = await Effect.runPromise(published.state.target.current);
     const active = Schema.decodeUnknownSync(ActiveRollbackContentReleaseSchema)(
       current.active
     );

@@ -1,10 +1,10 @@
-import type { FileSystem, Path } from "@effect/platform";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import type { FileSystem, Path } from "effect";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
@@ -19,7 +19,9 @@ import {
 import { makeRouteItems } from "#publisher/routes";
 
 const CHECK_RELEASE_ID = ReleaseIdSchema.make("catalog-check");
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Exact full-corpus evidence returned by a read-only catalog check. */
 export const ContentCatalogValidationSchema = Schema.Struct({
@@ -43,13 +45,13 @@ export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogC
   {
     actualCount: CountSchema,
     expectedCount: CountSchema,
-    kind: Schema.Literal(
+    kind: Schema.Literals([
       "article",
       "material",
       "question",
       "records",
-      "routes"
-    ),
+      "routes",
+    ]),
   }
 ) {}
 
@@ -78,7 +80,7 @@ export class ContentCatalogValidationError extends Schema.TaggedError<ContentCat
   "ContentCatalogValidationError",
   {
     cause: Schema.Unknown,
-    stage: Schema.Literal("catalog", "result", "routes", "snapshots"),
+    stage: Schema.Literals(["catalog", "result", "routes", "snapshots"]),
   }
 ) {}
 
@@ -160,13 +162,13 @@ export const validateContentCatalog: (input: {
   );
   const [recordCount, routes, expectedRoutes, snapshots] = yield* Effect.all(
     [
-      publication.records().pipe(
+      publication.records.pipe(
         Stream.runCount,
         Effect.mapError((cause) => validationError("result", cause))
       ),
       digestRoutes(
         CHECK_RELEASE_ID,
-        makeRouteItems(CHECK_RELEASE_ID, publication.routes())
+        makeRouteItems(CHECK_RELEASE_ID, publication.routes)
       ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
       digestRoutes(
         CHECK_RELEASE_ID,

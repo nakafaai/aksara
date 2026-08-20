@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-
+import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
@@ -71,7 +71,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const activeAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
@@ -93,7 +93,7 @@ function reject(rows: readonly QuranSnapshotRow[], locales = activeAppLocales) {
 
 describe("Quran aggregate digest", () => {
   it("rejects a release that activates German without German rows", async () => {
-    const germanLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
       "en",
       "de",
     ]);
@@ -107,7 +107,7 @@ describe("Quran aggregate digest", () => {
   });
 
   it("accepts no Tafsir when Indonesian is inactive", async () => {
-    const germanLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
       "en",
       "de",
     ]);

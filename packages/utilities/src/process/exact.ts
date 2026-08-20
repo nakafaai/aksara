@@ -41,7 +41,7 @@ export interface ExactProcessOutput {
 export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(
   "ExactProcessError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "executable",
       "root",
       "limit",
@@ -49,13 +49,13 @@ export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(
       "stdin",
       "stdout",
       "stderr",
-      "signal"
-    ),
+      "signal",
+    ]),
   }
 ) {}
 
 /** Infrastructure boundary for environment-isolated, bounded child processes. */
-export class ExactProcess extends Context.Tag("AksaraExactProcess")<
+export class ExactProcess extends Context.Service<
   ExactProcess,
   {
     /** Runs one executable without a shell or inherited environment values. */
@@ -63,7 +63,7 @@ export class ExactProcess extends Context.Tag("AksaraExactProcess")<
       input: ExactProcessInput
     ) => Effect.Effect<ExactProcessOutput, ExactProcessError>;
   }
->() {}
+>()("AksaraExactProcess") {}
 
 interface OpenedProcess {
   readonly child: ChildProcessByStdio<Writable, Readable, Readable>;
@@ -111,17 +111,23 @@ function collectOutput(
   reason: "stdout" | "stderr"
 ) {
   const error = new ExactProcessError({ reason });
-  return NodeStream.fromReadable(() => readable, constant(error)).pipe(
-    Stream.runFoldEffect(EMPTY_OUTPUT, (output, chunk) => {
-      const size = output.size + chunk.byteLength;
-      if (size > limit) {
-        return Effect.fail(error);
+  return NodeStream.fromReadable({
+    evaluate: () => readable,
+    onError: constant(error),
+  }).pipe(
+    Stream.runFoldEffect(
+      () => EMPTY_OUTPUT,
+      (output, chunk) => {
+        const size = output.size + chunk.byteLength;
+        if (size > limit) {
+          return Effect.fail(error);
+        }
+        return Effect.succeed({
+          chunks: Chunk.append(output.chunks, Uint8Array.from(chunk)),
+          size,
+        });
       }
-      return Effect.succeed({
-        chunks: Chunk.append(output.chunks, Uint8Array.from(chunk)),
-        size,
-      });
-    }),
+    ),
     Effect.map((output) => joinBytes(output.chunks, output.size))
   );
 }
@@ -142,23 +148,23 @@ const openProcess = Effect.fn("AksaraUtilities.openExactProcess")(function* (
         stdio: ["pipe", "pipe", "pipe"],
       }),
   });
-  const pid = yield* Effect.async<number, ExactProcessError>((resume) => {
+  const pid = yield* Effect.callback<number, ExactProcessError>((resume) => {
     child.once("error", () => {
       const error = new ExactProcessError({ reason: "spawn" });
-      Deferred.unsafeDone(exit, Effect.fail(error));
+      Deferred.doneUnsafe(exit, Effect.fail(error));
       resume(Effect.fail(error));
     });
     child.once("spawn", () => {
       const error = new ExactProcessError({ reason: "spawn" });
       resume(
-        Schema.decodeUnknown(Schema.Positive)(child.pid).pipe(
-          Effect.mapError(constant(error))
-        )
+        Schema.decodeUnknownEffect(Schema.Int.check(Schema.isGreaterThan(0)))(
+          child.pid
+        ).pipe(Effect.mapError(constant(error)))
       );
     });
   });
   child.once("close", (code) =>
-    Deferred.unsafeDone(
+    Deferred.doneUnsafe(
       exit,
       code === null
         ? Effect.fail(new ExactProcessError({ reason: "signal" }))
@@ -181,10 +187,10 @@ function runOpened(
         })
       : Stream.make(input.stdin).pipe(
           Stream.run(
-            NodeSink.fromWritable(
-              () => opened.child.stdin,
-              () => new ExactProcessError({ reason: "stdin" })
-            )
+            NodeSink.fromWritable({
+              evaluate: () => opened.child.stdin,
+              onError: () => new ExactProcessError({ reason: "stdin" }),
+            })
           )
         );
   return Effect.all(

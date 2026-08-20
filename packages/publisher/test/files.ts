@@ -1,5 +1,4 @@
-import { FileSystem, Error as PlatformError } from "@effect/platform";
-import { Effect } from "effect";
+import { Effect, FileSystem, PlatformError } from "effect";
 
 /** Provides deterministic corpus reads and private replay-spool writes in tests. */
 export function testFileLayer(seed: ReadonlyMap<string, string>) {
@@ -24,11 +23,11 @@ export function testFileLayer(seed: ReadonlyMap<string, string>) {
         return Effect.succeed(source);
       }
       return Effect.fail(
-        new PlatformError.SystemError({
+        PlatformError.systemError({
+          _tag: "NotFound",
           method: "readFileString",
           module: "FileSystem",
           pathOrDescriptor: path,
-          reason: "NotFound",
         })
       );
     },

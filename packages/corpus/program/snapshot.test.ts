@@ -1,5 +1,5 @@
-import { Chunk, Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
 import {
@@ -29,9 +29,7 @@ function translation(
 describe("program snapshot preparation", () => {
   it("prepares exact programs and localized curriculum routes", async () => {
     const prepared = await Effect.runPromise(prepareProgramSnapshot());
-    const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(Stream.runCollect(prepared.rows()))
-    );
+    const rows = await Effect.runPromise(Stream.runCollect(prepared.rows));
 
     expect(prepared.manifest).toMatchObject({
       activeAppLocales: ["en", "id"],
@@ -86,7 +84,7 @@ describe("program snapshot preparation", () => {
     const firstRows = await Effect.runPromise(
       Stream.runCollect(streamProgramRows())
     );
-    const replayRows = await Effect.runPromise(Stream.runCollect(first.rows()));
+    const replayRows = await Effect.runPromise(Stream.runCollect(first.rows));
     const error = await Effect.runPromise(
       prepareProgramSnapshot({
         programInput: [{ invented: true }],
@@ -150,9 +148,7 @@ describe("program snapshot preparation", () => {
         ],
       })
     );
-    const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(Stream.runCollect(prepared.rows()))
-    );
+    const rows = await Effect.runPromise(Stream.runCollect(prepared.rows));
     const programRows = rows.filter((row) => row.kind === "program");
 
     expect(prepared.manifest.activeAppLocales).toEqual(["en", "id"]);

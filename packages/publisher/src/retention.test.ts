@@ -1,6 +1,6 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { selectRetainedRecovery } from "#publisher/retention";
 import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease } from "#test/publication";
@@ -9,7 +9,7 @@ import { publish } from "#test/publication/run";
 const prepared = await makeRelease("test-retention");
 const state = makeTarget(prepared);
 await Effect.runPromise(publish(prepared, state.target));
-const current = await Effect.runPromise(state.target.current());
+const current = await Effect.runPromise(state.target.current);
 const [active, recovery] = await Effect.runPromise(
   Effect.gen(function* () {
     if (!(current.active && current.recovery)) {

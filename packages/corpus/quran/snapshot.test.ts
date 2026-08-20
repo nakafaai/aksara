@@ -1,9 +1,9 @@
 import { resolve } from "node:path";
 
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
-import { Chunk, Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Stream } from "effect";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 
 const checkoutRoot = resolve(import.meta.dirname, "../../..");
@@ -12,12 +12,10 @@ describe("Quran snapshot preparation", () => {
   it("binds every exact structured row to one reproducible snapshot", async () => {
     const snapshot = await Effect.runPromise(
       prepareQuranSnapshot({ checkoutRoot }).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
-    const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(Stream.runCollect(snapshot.rows()))
-    );
+    const rows = await Effect.runPromise(Stream.runCollect(snapshot.rows));
 
     expect(snapshot.manifest).toMatchObject({
       projectionDigest:

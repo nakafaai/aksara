@@ -21,7 +21,7 @@ const packageManifest = {
   license: "SEE LICENSE IN LICENSE",
   name: "@nakafa/aksara-contracts",
   optionalDependencies: { optional: "3.0.0" },
-  peerDependencies: { effect: "3.22.0" },
+  peerDependencies: { effect: "4.0.0-rc.110" },
   repository: {
     directory: "packages/contracts",
     type: "git",
@@ -34,8 +34,8 @@ describe("manifest tooling", () => {
     expect(parsePackageManifest(JSON.stringify(packageManifest))).toEqual(
       packageManifest
     );
-    expect(parseWorkspaceManifest('{"packageManager":"pnpm@11.15.1"}')).toEqual(
-      { packageManager: "pnpm@11.15.1" }
+    expect(parseWorkspaceManifest('{"packageManager":"pnpm@11.22.0"}')).toEqual(
+      { packageManager: "pnpm@11.22.0" }
     );
   });
 
@@ -61,7 +61,7 @@ describe("manifest tooling", () => {
           },
           scripts: { prepack: "pnpm build" },
         }),
-        "3.22.0"
+        "4.0.0-rc.110"
       )
     );
 
@@ -78,7 +78,7 @@ describe("manifest tooling", () => {
           types: "./dist/*.d.ts",
         },
       },
-      peerDependencies: { effect: "3.22.0" },
+      peerDependencies: { effect: "4.0.0-rc.110" },
     });
     expect(released).not.toHaveProperty("devDependencies");
     expect(released).not.toHaveProperty("scripts");
@@ -176,19 +176,19 @@ describe("manifest tooling", () => {
         JSON.stringify({ ...packageManifest, repository: [] })
       )
     ).toThrow("Package repository must be an object");
-    expect(() => createReleaseManifest("[]", "3.22.0")).toThrow(
+    expect(() => createReleaseManifest("[]", "4.0.0-rc.110")).toThrow(
       "The package manifest must be an object"
     );
     expect(() =>
       createReleaseManifest(
         JSON.stringify({ ...packageManifest, peerDependencies: [] }),
-        "3.22.0"
+        "4.0.0-rc.110"
       )
     ).toThrow("peerDependencies must exist");
     expect(() =>
       createReleaseManifest(
         JSON.stringify({ ...packageManifest, exports: { ".": "invalid" } }),
-        "3.22.0"
+        "4.0.0-rc.110"
       )
     ).toThrow("Export . must be an object");
   });

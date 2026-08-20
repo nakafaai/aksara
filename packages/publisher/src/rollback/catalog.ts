@@ -12,7 +12,8 @@ import {
   canonicalizeContentHead,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { Effect, Option, Order, Schema, Stream, Tuple } from "effect";
+import { Effect, Option, Result, Schema, Stream, Tuple } from "effect";
+import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
 import {
   type DerivedRollbackRecord,
   snapshotRollbackState,
@@ -33,7 +34,7 @@ export class RollbackCatalogStateMismatchError extends Schema.TaggedError<Rollba
   {
     artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    reason: Schema.Literal("missing", "unexpected", "different"),
+    reason: Schema.Literals(["missing", "unexpected", "different"]),
   }
 ) {}
 
@@ -97,7 +98,7 @@ function headFromSnapshot(snapshot: RollbackSnapshotState) {
 /** Rejects duplicate artifactLocale-specific routes across the complete result. */
 function validateResultRoute(routes: Set<string>, head: ContentHead) {
   if (head.publicPath === undefined) {
-    return Effect.succeed(Tuple.make(routes, head));
+    return Effect.succeed(Tuple.make(routes, [head]));
   }
   const identity = routeIdentity({
     appLocale: AppLocaleSchema.make(head.artifactLocale),
@@ -112,7 +113,7 @@ function validateResultRoute(routes: Set<string>, head: ContentHead) {
     );
   }
   routes.add(identity);
-  return Effect.succeed(Tuple.make(routes, head));
+  return Effect.succeed(Tuple.make(routes, [head]));
 }
 
 /** Merges authenticated active heads with rollback transitions in one pass. */
@@ -128,19 +129,18 @@ export function mergeRollbackResult<E1, R1, E2, R2>(input: {
       Tuple.make(headIdentity(transition.current.item.change), transition)
     )
   );
-  return Stream.zipAllSortedByKeyWith(active, {
+  return mergeSortedCatalogStreams(active, {
     onBoth: (head, transition): CatalogMerge => ({
       active: head,
       kind: "both",
       transition,
     }),
-    onOther: (transition): CatalogMerge => ({ kind: "transition", transition }),
-    onSelf: (head): CatalogMerge => ({ active: head, kind: "active" }),
-    order: Order.string,
-    other: transitions,
+    onLeft: (head): CatalogMerge => ({ active: head, kind: "active" }),
+    onRight: (transition): CatalogMerge => ({ kind: "transition", transition }),
+    right: transitions,
   }).pipe(
-    Stream.mapEffect(([, merge]) => resolveMerge(merge)),
-    Stream.filterMap((head) => head),
-    Stream.mapAccumEffect(new Set<string>(), validateResultRoute)
+    Stream.mapEffect(resolveMerge),
+    Stream.filterMap((head) => Result.fromOption(head, () => undefined)),
+    Stream.mapAccumEffect(() => new Set<string>(), validateResultRoute)
   );
 }

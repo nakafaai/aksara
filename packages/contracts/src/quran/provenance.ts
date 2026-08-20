@@ -19,22 +19,22 @@ import {
 } from "#contracts/quran/source";
 
 /** Quran source fields that require independent provenance decisions. */
-const QuranStaticProvenanceScopeSchema = Schema.Literal(
+const QuranStaticProvenanceScopeSchema = Schema.Literals([
   "arabic-text",
-  "metadata"
-);
+  "metadata",
+]);
 
-const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral(
+const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral([
   AppLocaleCodeSchema,
-  "-translation"
-);
+  "-translation",
+]);
 
 /** Complete source-field vocabulary supported by current Quran publication. */
-export const QuranProvenanceScopeSchema = Schema.Union(
+export const QuranProvenanceScopeSchema = Schema.Union([
   QuranStaticProvenanceScopeSchema,
   QuranTranslationProvenanceScopeSchema,
-  Schema.Literal("id-tafsir")
-);
+  Schema.Literal("id-tafsir"),
+]);
 export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
 
 /** Maps one active application locale to its exact translation source field. */
@@ -86,13 +86,15 @@ function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
 /** One reviewed official artifact and its field-level permission decision. */
 export const QuranProvenanceRecordSchema = Schema.Struct({
   attribution: QuranSourceAttributionSchema,
-  evidence: Schema.NonEmptyTrimmedString,
+  evidence: Schema.Trimmed.check(Schema.isNonEmpty()),
   scope: QuranProvenanceScopeSchema,
   status: QuranProvenanceStatusSchema,
 }).pipe(
-  Schema.filter(
-    ({ attribution, scope }) => attribution.id === sourceForScope(scope),
-    { message: () => "Expected each Quran scope to bind its official source." }
+  Schema.check(
+    Schema.makeFilter(
+      ({ attribution, scope }) => attribution.id === sourceForScope(scope),
+      { message: "Expected each Quran scope to bind its official source." }
+    )
   )
 );
 export type QuranProvenanceRecord = typeof QuranProvenanceRecordSchema.Type;
@@ -132,14 +134,17 @@ export const QuranProvenanceManifestSchema = Schema.Struct({
   records: Schema.NonEmptyArray(QuranProvenanceRecordSchema),
   status: QuranProvenanceStatusSchema,
 }).pipe(
-  Schema.filter(hasCanonicalSourceCoverage, {
-    message: () =>
-      "Expected exact active-locale Quran provenance scope coverage.",
-  }),
-  Schema.filter(hasCoherentProvenanceStatus, {
-    message: () =>
-      "Expected Quran provenance status to match its complete evidence.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCanonicalSourceCoverage, {
+      message: "Expected exact active-locale Quran provenance scope coverage.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentProvenanceStatus, {
+      message:
+        "Expected Quran provenance status to match its complete evidence.",
+    })
+  )
 );
 export type QuranProvenanceManifest = typeof QuranProvenanceManifestSchema.Type;
 
@@ -227,11 +232,11 @@ export const makeQuranProvenanceManifest = Effect.fn(
   readonly activeAppLocales: ActiveAppLocaleList;
   readonly records: readonly QuranProvenanceRecord[];
 }) {
-  const decoded = yield* Schema.decodeUnknown(
+  const decoded = yield* Schema.decodeUnknownEffect(
     Schema.Struct({
       activeAppLocales: ActiveAppLocaleListSchema,
       records: Schema.NonEmptyArray(QuranProvenanceRecordSchema),
-    }).pipe(Schema.filter(hasCanonicalSourceCoverage))
+    }).pipe(Schema.check(Schema.makeFilter(hasCanonicalSourceCoverage)))
   )(input).pipe(
     Effect.mapError(
       () =>

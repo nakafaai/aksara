@@ -1,5 +1,14 @@
-import { FileSystem, Path } from "@effect/platform";
-import { Deferred, Effect, Option, Ref, Schema, Stream } from "effect";
+import {
+  Deferred,
+  Effect,
+  FileSystem,
+  Option,
+  Path,
+  Ref,
+  Result,
+  Schema,
+  Stream,
+} from "effect";
 import { PreviewEvidenceError } from "#cli/evidence";
 import {
   PreviewRestartError,
@@ -12,7 +21,7 @@ import { PreviewProviderError } from "#cli/provider";
 /** Filesystem watching stopped instead of preserving the authoring session. */
 export class PreviewWatchError extends Schema.TaggedError<PreviewWatchError>()(
   "PreviewWatchError",
-  { reason: Schema.Literal("ended", "filesystem") }
+  { reason: Schema.Literals(["ended", "filesystem"]) }
 ) {}
 
 interface WatchedDirectory {
@@ -145,7 +154,9 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
       )
     );
     const run = Stream.mergeAll(streams, { concurrency: "unbounded" }).pipe(
-      Stream.filterMap((generation) => generation),
+      Stream.filterMap((generation) =>
+        Result.fromOption(generation, () => undefined)
+      ),
       Stream.buffer({ capacity: 1, strategy: "sliding" }),
       Stream.runForEach((generation) =>
         refresh(generation).pipe(
@@ -162,7 +173,8 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
           ? error
           : new PreviewWatchError({ reason: "filesystem" })
       ),
-      Effect.zipRight(Effect.fail(new PreviewWatchError({ reason: "ended" })))
+      Effect.andThen(Effect.fail(new PreviewWatchError({ reason: "ended" }))),
+      Effect.scoped
     );
     return {
       ready: Deferred.await(ready),

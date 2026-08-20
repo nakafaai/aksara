@@ -16,13 +16,13 @@ const CurriculumNamespaceMapSchema = Schema.Struct({
   en: Schema.Literal("curriculum"),
   id: Schema.Literal("kurikulum"),
 });
-const RenderableCurriculumLevelSchema = Schema.Literal(
+const RenderableCurriculumLevelSchema = Schema.Literals([
   "class",
   "course",
   "stage",
   "subject",
-  "track"
-);
+  "track",
+]);
 
 /** Checks one curriculum route key with its optional canonical root suffix. */
 function isCurriculumRouteNodeKey(value: string) {
@@ -58,17 +58,19 @@ export const isRenderableCurriculumLevel = Schema.is(
 
 /** Stable source-owned identity for one curriculum tree node. */
 export const CurriculumNodeKeySchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab, {
-    description: "Lowercase kebab-case curriculum node key.",
-    identifier: "CurriculumNodeKey",
-    message: () => "Invalid curriculum node key.",
-  }),
+  Schema.check(
+    Schema.makeFilter(isLowerKebab, {
+      description: "Lowercase kebab-case curriculum node key.",
+      identifier: "CurriculumNodeKey",
+      message: "Invalid curriculum node key.",
+    })
+  ),
   Schema.brand("@NakafaAI/AksaraCurriculumNodeKey")
 );
 export type CurriculumNodeKey = typeof CurriculumNodeKeySchema.Type;
 
 const CurriculumRouteNodeKeySchema = Schema.String.pipe(
-  Schema.filter(isCurriculumRouteNodeKey)
+  Schema.check(Schema.makeFilter(isCurriculumRouteNodeKey))
 );
 
 const CurriculumRouteFields = {
@@ -87,7 +89,7 @@ const CurriculumRouteFields = {
   materialDomain: Schema.optional(MaterialDomainSchema),
   materialKey: Schema.optional(MaterialKeySchema),
   nodeKey: CurriculumRouteNodeKeySchema,
-  order: Schema.Int.pipe(Schema.nonNegative()),
+  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   parentPath: Schema.optional(PublicPathSchema),
   programKey: LearningProgramKeySchema,
   publicPath: PublicPathSchema,
@@ -181,23 +183,31 @@ function hasCoherentSitemap(input: {
 export const CurriculumRouteDraftSchema = Schema.Struct(
   CurriculumRouteFields
 ).pipe(
-  Schema.filter(hasCoherentRoute, {
-    message: () => "Expected coherent localized curriculum route ownership.",
-  }),
-  Schema.filter(hasCoherentMaterialLink, {
-    message: () => "Expected coherent curriculum material ownership.",
-  }),
-  Schema.filter(hasCoherentSitemap, {
-    message: () => "Expected only renderable curriculum sitemap routes.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCoherentRoute, {
+      message: "Expected coherent localized curriculum route ownership.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentMaterialLink, {
+      message: "Expected coherent curriculum material ownership.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentSitemap, {
+      message: "Expected only renderable curriculum sitemap routes.",
+    })
+  )
 );
 export type CurriculumRouteDraft = typeof CurriculumRouteDraftSchema.Type;
 
 /** Exact localized curriculum route stored inside the program snapshot. */
 export const CurriculumRouteSchema = CurriculumRouteDraftSchema.pipe(
-  Schema.filter(hasCompleteMaterialContext, {
-    message: () => "Expected complete curriculum material context ownership.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasCompleteMaterialContext, {
+      message: "Expected complete curriculum material context ownership.",
+    })
+  )
 );
 export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 

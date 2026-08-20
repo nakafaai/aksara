@@ -1,5 +1,5 @@
-import { Effect, Either, ParseResult, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Exit, Schema } from "effect";
 import { importCorpusModules } from "#corpus/test/imports";
 import {
   defineTryoutExamSource,
@@ -167,13 +167,11 @@ describe("tryout schema", () => {
       message: "Invalid try-out question-set key.",
     },
   ])("rejects an invalid $field", ({ input, message }) => {
-    const result = Schema.decodeUnknownEither(TryoutExamSourceSchema)(input);
+    const result = Schema.decodeExit(TryoutExamSourceSchema)(input);
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(ParseResult.TreeFormatter.formatErrorSync(result.left)).toContain(
-        message
-      );
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(message);
     }
   });
 
@@ -225,13 +223,13 @@ describe("tryout schema", () => {
       ],
     },
   ])("rejects $name", ({ sections }) => {
-    const result = Schema.decodeUnknownEither(TryoutExamSourceSchema)(
+    const result = Schema.decodeExit(TryoutExamSourceSchema)(
       withSections(sections)
     );
 
-    expect(Either.isLeft(result)).toBe(true);
-    if (Either.isLeft(result)) {
-      expect(ParseResult.TreeFormatter.formatErrorSync(result.left)).toContain(
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(
         "Internal-entry try-out sections must be the only section in a set."
       );
     }

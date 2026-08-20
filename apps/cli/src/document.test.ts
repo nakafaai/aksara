@@ -10,8 +10,8 @@ import {
 import { relative, resolve } from "node:path";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it } from "vitest";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
@@ -65,15 +65,15 @@ async function compileRealDocument(sourcePath: string) {
       signer: credentials.signer,
     })
   );
-  return runNode(compiler.compile());
+  return runNode(compiler.compile);
 }
 
 describe("preview document compiler", () => {
   it("compiles the real source once and reuses its exact incremental cache", async () => {
     const repository = repositories.create();
     const { compiler } = await makeCompiler(repository);
-    const first = await runNode(compiler.compile());
-    const second = await runNode(compiler.compile());
+    const first = await runNode(compiler.compile);
+    const second = await runNode(compiler.compile);
     const [firstResult] = first.results;
     const [secondResult] = second.results;
 
@@ -115,7 +115,7 @@ describe("preview document compiler", () => {
     );
     const invalidMetadata = await makeCompiler(repository);
     const metadataError = await runNode(
-      invalidMetadata.compiler.compile().pipe(Effect.flip)
+      invalidMetadata.compiler.compile.pipe(Effect.flip)
     );
     writeFileSync(
       repository.documentPath,
@@ -123,7 +123,7 @@ describe("preview document compiler", () => {
     );
     const invalidCode = await makeCompiler(repository);
     const compilerError = await runNode(
-      invalidCode.compiler.compile().pipe(Effect.flip)
+      invalidCode.compiler.compile.pipe(Effect.flip)
     );
 
     expect(metadataError).toMatchObject({ _tag: "MaterialMetadataError" });
@@ -144,7 +144,7 @@ describe("preview document compiler", () => {
       signRelease: credentials.signer.signRelease,
     };
     const { compiler } = await makeCompiler(repository, signer);
-    const error = await runNode(compiler.compile().pipe(Effect.flip));
+    const error = await runNode(compiler.compile.pipe(Effect.flip));
 
     expect(error).toMatchObject({
       _tag: "ContentSigningError",
@@ -163,13 +163,13 @@ describe("preview document compiler", () => {
           if (signingAttempts === 1) {
             writeFileSync(repository.documentPath, `${REAL_SOURCE}\n`);
           }
-        }).pipe(Effect.zipRight(credentials.signer.signArtifact(payload))),
+        }).pipe(Effect.andThen(credentials.signer.signArtifact(payload))),
       signRelease: credentials.signer.signRelease,
     };
     const { compiler } = await makeCompiler(repository, signer);
-    const error = await runNode(compiler.compile().pipe(Effect.flip));
+    const error = await runNode(compiler.compile.pipe(Effect.flip));
     writeFileSync(repository.documentPath, REAL_SOURCE);
-    const recovered = await runNode(compiler.compile());
+    const recovered = await runNode(compiler.compile);
 
     expect(error).toMatchObject({
       _tag: "PreviewRepositoryError",
@@ -185,15 +185,15 @@ describe("preview document compiler", () => {
     const { compiler } = await makeCompiler(repository);
     const renamedPath = `${repository.documentPath}.moved`;
     renameSync(repository.documentPath, renamedPath);
-    const renamedError = await runNode(compiler.compile().pipe(Effect.flip));
+    const renamedError = await runNode(compiler.compile.pipe(Effect.flip));
     renameSync(renamedPath, repository.documentPath);
-    await expect(runNode(compiler.compile())).resolves.toMatchObject({
+    await expect(runNode(compiler.compile)).resolves.toMatchObject({
       results: [{ compileKind: "compiled" }],
     });
     unlinkSync(repository.documentPath);
-    const deletedError = await runNode(compiler.compile().pipe(Effect.flip));
+    const deletedError = await runNode(compiler.compile.pipe(Effect.flip));
     writeFileSync(repository.documentPath, REAL_SOURCE);
-    await expect(runNode(compiler.compile())).resolves.toMatchObject({
+    await expect(runNode(compiler.compile)).resolves.toMatchObject({
       results: [{ compileKind: "unchanged" }],
     });
 
@@ -210,7 +210,7 @@ describe("preview document compiler", () => {
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx"
     );
     symlinkSync(indonesianPath, repository.documentPath);
-    const error = await runNode(compiler.compile().pipe(Effect.flip));
+    const error = await runNode(compiler.compile.pipe(Effect.flip));
 
     expect(error).toMatchObject({ reason: "symlink" });
     unlinkSync(repository.documentPath);
@@ -226,14 +226,14 @@ describe("preview document compiler", () => {
     }
     const source = readFileSync(topology.absolutePath, "utf8");
     writeFileSync(topology.absolutePath, `${source}\n`);
-    const error = await runNode(compiler.compile().pipe(Effect.flip));
+    const error = await runNode(compiler.compile.pipe(Effect.flip));
     writeFileSync(topology.absolutePath, source);
 
     expect(error).toMatchObject({
       _tag: "PreviewRestartError",
       sourcePath: topology.sourcePath,
     });
-    await expect(runNode(compiler.compile())).resolves.toMatchObject({
+    await expect(runNode(compiler.compile)).resolves.toMatchObject({
       results: [{ compileKind: "compiled" }],
     });
   });

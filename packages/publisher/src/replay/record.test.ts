@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   decodeReplayRecord,
   encodeReplayRecord,
@@ -12,7 +12,7 @@ import {
 } from "#publisher/replay/record";
 
 const ReplayEntrySchema = Schema.Struct({
-  sequence: Schema.Number,
+  sequence: Schema.Finite,
   value: Schema.String,
 });
 const entry = { sequence: 1, value: "test-record" };

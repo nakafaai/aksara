@@ -28,19 +28,21 @@ export const TryoutContentInputSchema = Schema.Struct({
   sourcePath: QuestionKeySchema,
   sourceRevision: TryoutSourceRevisionSchema,
 }).pipe(
-  Schema.filter(
-    ({
-      answerArtifactLocale,
-      appLocale,
-      deliveryLanguage,
-      questionArtifactLocale,
-    }) =>
-      String(answerArtifactLocale) === String(appLocale) &&
-      String(questionArtifactLocale) === String(deliveryLanguage),
-    {
-      message: () =>
-        "Expected answer locale to match app locale and question locale to match delivery language.",
-    }
+  Schema.check(
+    Schema.makeFilter(
+      ({
+        answerArtifactLocale,
+        appLocale,
+        deliveryLanguage,
+        questionArtifactLocale,
+      }) =>
+        String(answerArtifactLocale) === String(appLocale) &&
+        String(questionArtifactLocale) === String(deliveryLanguage),
+      {
+        message:
+          "Expected answer locale to match app locale and question locale to match delivery language.",
+      }
+    )
   )
 );
 export type TryoutContentInput = typeof TryoutContentInputSchema.Type;

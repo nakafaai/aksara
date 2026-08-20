@@ -19,7 +19,9 @@ import {
   projectPreviewSource,
 } from "#publisher/preview/source";
 
-const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const CountSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** Compilation evidence for every present but inactive German body. */
 export const CandidateContentValidationSchema = Schema.Struct({
@@ -57,14 +59,14 @@ export class CandidateContentValidationError extends Schema.TaggedError<Candidat
   "CandidateContentValidationError",
   {
     cause: Schema.Unknown,
-    stage: Schema.Literal(
+    stage: Schema.Literals([
       "compile",
       "glossary",
       "inventory",
       "program",
       "quran",
-      "tryout"
-    ),
+      "tryout",
+    ]),
   }
 ) {}
 

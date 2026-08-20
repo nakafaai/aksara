@@ -9,34 +9,40 @@ import type { PreviewProvider } from "#cli/provider";
 
 const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
 const ChildUrlSchema = Schema.String.pipe(
-  Schema.pattern(/^http:\/\/localhost:\d+(?:\/.*)?$/u)
+  Schema.check(Schema.isPattern(/^http:\/\/localhost:\d+(?:\/.*)?$/u))
 );
 
 const ChildEnvironmentSchema = Schema.Struct({
-  AKSARA_PREVIEW_EVENTS_PATH: Schema.String.pipe(Schema.startsWith("/")),
-  AKSARA_PREVIEW_KEY_ID: Schema.NonEmptyTrimmedString,
-  AKSARA_PREVIEW_MANIFEST_PATH: Schema.String.pipe(Schema.startsWith("/")),
+  AKSARA_PREVIEW_EVENTS_PATH: Schema.String.pipe(
+    Schema.check(Schema.isStartsWith("/"))
+  ),
+  AKSARA_PREVIEW_KEY_ID: Schema.Trimmed.check(Schema.isNonEmpty()),
+  AKSARA_PREVIEW_MANIFEST_PATH: Schema.String.pipe(
+    Schema.check(Schema.isStartsWith("/"))
+  ),
   AKSARA_PREVIEW_ORIGIN: Schema.String.pipe(
-    Schema.pattern(/^http:\/\/127\.0\.0\.1:\d+\/$/u)
+    Schema.check(Schema.isPattern(/^http:\/\/127\.0\.0\.1:\d+\/$/u))
   ),
-  AKSARA_PREVIEW_PROVIDER_TOKEN: Schema.NonEmptyTrimmedString,
+  AKSARA_PREVIEW_PROVIDER_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   AKSARA_PREVIEW_PUBLIC_KEY: Schema.String.pipe(
-    Schema.minLength(1),
-    Schema.maxLength(4096)
+    Schema.check(Schema.isMinLength(1)),
+    Schema.check(Schema.isMaxLength(4096))
   ),
-  AKSARA_PREVIEW_RENDERER_SECRET: Schema.NonEmptyTrimmedString,
-  AKSARA_PREVIEW_RENDERER_TOKEN: Schema.NonEmptyTrimmedString,
-  CONTENT_RUNTIME_TOKEN: Schema.NonEmptyTrimmedString,
-  HOME: Schema.NonEmptyTrimmedString,
-  INTERNAL_CONTENT_API_KEY: Schema.NonEmptyTrimmedString,
+  AKSARA_PREVIEW_RENDERER_SECRET: Schema.Trimmed.check(Schema.isNonEmpty()),
+  AKSARA_PREVIEW_RENDERER_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
+  CONTENT_RUNTIME_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
+  HOME: Schema.Trimmed.check(Schema.isNonEmpty()),
+  INTERNAL_CONTENT_API_KEY: Schema.Trimmed.check(Schema.isNonEmpty()),
   NEXT_PUBLIC_APP_URL: ChildUrlSchema,
   NEXT_PUBLIC_CONVEX_SITE_URL: ChildUrlSchema,
   NEXT_PUBLIC_CONVEX_URL: ChildUrlSchema,
   NEXT_PUBLIC_MCP_URL: ChildUrlSchema,
-  NEXT_PUBLIC_POSTHOG_KEY: Schema.String.pipe(Schema.startsWith("phc_")),
+  NEXT_PUBLIC_POSTHOG_KEY: Schema.String.pipe(
+    Schema.check(Schema.isStartsWith("phc_"))
+  ),
   NEXT_PUBLIC_POSTHOG_UI_HOST: ChildUrlSchema,
   NEXT_PUBLIC_VERSION: Schema.Literal("aksara-preview"),
-  PATH: Schema.NonEmptyTrimmedString,
+  PATH: Schema.Trimmed.check(Schema.isNonEmpty()),
   SITE_URL: ChildUrlSchema,
 });
 
@@ -55,7 +61,7 @@ export interface NakafaStartInput {
 
 /** Allocates one currently free localhost port for the actual app child. */
 const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
-  Effect.async<number, NakafaAppError>((resume) => {
+  Effect.callback<number, NakafaAppError>((resume) => {
     const server = createServer();
     server.once("error", () =>
       resume(Effect.fail(makeNakafaAppError("start", false)))
@@ -85,7 +91,7 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
 /** Decodes every child environment value together before process creation. */
 const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
   (input: NakafaStartInput, origin: URL) =>
-    Schema.decodeUnknown(ChildEnvironmentSchema)({
+    Schema.decodeUnknownEffect(ChildEnvironmentSchema)({
       AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
       AKSARA_PREVIEW_KEY_ID: input.credentials.keyId,
       AKSARA_PREVIEW_MANIFEST_PATH: input.provider.manifestPath,

@@ -2,8 +2,9 @@
 
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, sign } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
 import {
   ContentVerificationKeyResolver,

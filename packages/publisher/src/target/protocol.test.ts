@@ -1,7 +1,7 @@
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   interpretPublicationResponse,
   publicationReleaseId,

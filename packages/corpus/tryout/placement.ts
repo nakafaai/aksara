@@ -30,7 +30,7 @@ export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementErro
   "TryoutPlacementError",
   {
     questionKey: QuestionKeySchema,
-    reason: Schema.Literal("choices", "decode", "order", "owner"),
+    reason: Schema.Literals(["choices", "decode", "order", "owner"]),
   }
 ) {}
 
@@ -85,7 +85,7 @@ export const makeTryoutPlacement = Effect.fn(
       reason: "choices",
     });
   }
-  return yield* Schema.decodeUnknown(TryoutPlacementSourceSchema)(
+  return yield* Schema.decodeUnknownEffect(TryoutPlacementSourceSchema)(
     {
       answerArtifactLocale,
       answerContentKey: `${question.questionKey}/answer`,

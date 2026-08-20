@@ -26,8 +26,9 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
@@ -74,7 +75,7 @@ function oversizedPage() {
   const appLocale = AppLocaleSchema.make("en");
   const compiledCode = "x".repeat(MAX_ROLLBACK_PAGE_BYTES);
   const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-  const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
     artifactLocale: "en",
     byteLength: Buffer.byteLength(compiledCode, "utf8"),
     compiledCode,
@@ -95,7 +96,7 @@ function oversizedPage() {
     payload,
     signature: Ed25519SignatureSchema.make("A".repeat(86)),
   });
-  const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
     appLocale,
     artifactLocale: payload.artifactLocale,
     contentKey: payload.contentKey,

@@ -19,7 +19,7 @@ import {
 } from "#publisher/release-validation";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
-type BundleVerificationError = Effect.Effect.Error<
+type BundleVerificationError = Effect.Error<
   ReturnType<typeof verifyContentReleaseBundle>
 >;
 

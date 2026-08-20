@@ -168,9 +168,9 @@ export function catalogMock(calls: TargetCalls) {
       calls.catalogCalls += 1;
       calls.checkoutRoot = input.checkoutRoot;
       return Effect.succeed({
-        records: () => Stream.empty,
-        result: () => Stream.make(MATERIAL_HEAD, QUESTION_HEAD),
-        routes: () => Stream.empty,
+        records: Stream.empty,
+        result: Stream.make(MATERIAL_HEAD, QUESTION_HEAD),
+        routes: Stream.empty,
       });
     },
   };
@@ -181,14 +181,14 @@ export function snapshotMock(calls: TargetCalls) {
   return {
     prepareReleaseSnapshots: (input: {
       /** Replays the catalog narrowed by production preparation. */
-      readonly questionHeads: () => Stream.Stream<unknown>;
+      readonly questionHeads: Stream.Stream<unknown>;
     }) => {
       calls.snapshotCalls += 1;
-      return input.questionHeads().pipe(
+      return input.questionHeads.pipe(
         Stream.runDrain,
         Effect.as({
-          manifests: () => Stream.empty,
-          rows: () => Stream.empty,
+          manifests: Stream.empty,
+          rows: Stream.empty,
         })
       );
     },

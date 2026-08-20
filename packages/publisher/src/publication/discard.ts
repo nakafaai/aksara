@@ -14,7 +14,7 @@ export const discardFailedCandidate = Effect.fn(
   candidateId: ReleaseId,
   recoveryId: ReleaseId
 ) {
-  const current = yield* target.current();
+  const current = yield* target.current;
   const retainedId = current.recovery?.release.manifest.releaseId ?? null;
   if (retainedId !== null && retainedId !== recoveryId) {
     return yield* new PublicationRecoveryIdentityError({
@@ -41,10 +41,10 @@ export function discardOnFailure<A, E, R, E2, R2>(
   discard: () => Effect.Effect<unknown, E2, R2>
 ) {
   return effect.pipe(
-    Effect.catchAllCause((publicationCause) =>
+    Effect.catchCause((publicationCause) =>
       discard().pipe(
-        Effect.catchAllCause((discardCause) =>
-          Effect.failCause(Cause.sequential(publicationCause, discardCause))
+        Effect.catchCause((discardCause) =>
+          Effect.failCause(Cause.combine(publicationCause, discardCause))
         ),
         Effect.flatMap(() => Effect.failCause(publicationCause))
       )

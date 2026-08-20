@@ -1,5 +1,6 @@
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   NakafaProcess,
   type NakafaProcessInput,

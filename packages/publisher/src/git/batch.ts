@@ -29,7 +29,7 @@ export class GitBatchError extends Schema.TaggedError<GitBatchError>()(
   "GitBatchError",
   {
     cause: Schema.Unknown,
-    reason: Schema.Literal("limit", "protocol"),
+    reason: Schema.Literals(["limit", "protocol"]),
     sourcePath: Schema.NullOr(CorpusSourcePathSchema),
   }
 ) {}

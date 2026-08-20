@@ -23,10 +23,10 @@ export interface ContentSourceInspection {
 
 /** Every expected failure surfaced by lightweight source inspection. */
 export type ContentSourceInspectionError =
-  | Effect.Effect.Error<ReturnType<typeof enforceContentByteLimit>>
-  | Effect.Effect.Error<ReturnType<typeof extractAuthoredBody>>
-  | Effect.Effect.Error<ReturnType<typeof readMetadataDocument>>
-  | Effect.Effect.Error<ReturnType<typeof validateCompileRequest>>
+  | Effect.Error<ReturnType<typeof enforceContentByteLimit>>
+  | Effect.Error<ReturnType<typeof extractAuthoredBody>>
+  | Effect.Error<ReturnType<typeof readMetadataDocument>>
+  | Effect.Error<ReturnType<typeof validateCompileRequest>>
   | MdxCompilationError;
 
 /** Removes one validated metadata export while preserving exact authored MDX. */

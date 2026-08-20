@@ -1,6 +1,7 @@
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   collectMaterialRoutes,
   publishedMaterialHeads,
@@ -41,7 +42,9 @@ const [englishHead, indonesianHead] = await Effect.runPromise(
         contentKey === functionContentKey && artifactLocale === "id"
     );
     if (!(english && indonesian)) {
-      return yield* Effect.dieMessage("Expected both real material locales.");
+      return yield* Effect.die(
+        new Error("Expected both real material locales.")
+      );
     }
     return [english, indonesian] as const;
   })

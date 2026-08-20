@@ -63,9 +63,7 @@ export const receipt = {
 
 const status = { manifestHash, phase: "staging", releaseId };
 
-export const evidence = Schema.decodeUnknownSync(
-  ReleaseVerificationEvidenceSchema
-)({
+export const evidence = Schema.decodeSync(ReleaseVerificationEvidenceSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: null,
   baseManifestHash: null,

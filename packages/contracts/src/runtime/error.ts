@@ -4,7 +4,7 @@ import { Schema } from "effect";
 export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRuntimeMismatchError>()(
   "ContentRuntimeMismatchError",
   {
-    reason: Schema.Literal(
+    reason: Schema.Literals([
       "activeManifestHash",
       "activeReleaseId",
       "artifactHash",
@@ -18,7 +18,7 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
       "snapshotId",
       "snapshotManifestHash",
       "snapshotReleaseId",
-      "sourcePath"
-    ),
+      "sourcePath",
+    ]),
   }
 ) {}

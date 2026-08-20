@@ -19,8 +19,10 @@ const { ContentKeySchema, CorpusSourcePathSchema, ReleaseIdSchema } =
   HistoricalPrimitive;
 
 /** Opaque durable attempt identity required before retained bytes are read. */
-export const StoredAttemptIdSchema = Schema.NonEmptyTrimmedString.pipe(
-  Schema.maxLength(256),
+export const StoredAttemptIdSchema = Schema.Trimmed.check(
+  Schema.isNonEmpty()
+).pipe(
+  Schema.check(Schema.isMaxLength(256)),
   Schema.brand("@NakafaAI/AksaraStoredAttemptId")
 );
 export type StoredAttemptId = typeof StoredAttemptIdSchema.Type;
@@ -49,11 +51,13 @@ export const StoredProtectedRuntimeSelectorSchema = Schema.Struct({
   artifactHash: HistoricalSha256HashSchema,
   artifactLocale: HistoricalAppLocaleSchema,
   contentKey: ContentKeySchema,
-  delivery: Schema.Literal("authenticated", "entitled"),
+  delivery: Schema.Literals(["authenticated", "entitled"]),
 }).pipe(
-  Schema.filter(hasHistoricalBodyKind, {
-    message: () => "Expected one exact retained question or answer body.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasHistoricalBodyKind, {
+      message: "Expected one exact retained question or answer body.",
+    })
+  )
 );
 export type StoredProtectedRuntimeSelector =
   typeof StoredProtectedRuntimeSelectorSchema.Type;
@@ -69,11 +73,13 @@ function hasUniqueSelectors(
 const StoredProtectedRuntimeSelectorsSchema = Schema.Array(
   StoredProtectedRuntimeSelectorSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.maxItems(MAX_PROTECTED_RUNTIME_SELECTORS),
-  Schema.filter(hasUniqueSelectors, {
-    message: () => "Expected unique retained artifact selectors.",
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(Schema.isMaxLength(MAX_PROTECTED_RUNTIME_SELECTORS)),
+  Schema.check(
+    Schema.makeFilter(hasUniqueSelectors, {
+      message: "Expected unique retained artifact selectors.",
+    })
+  )
 );
 
 /** Attempt-bound request allowed only after retained ownership is proven. */
@@ -90,7 +96,7 @@ export type StoredProtectedRuntimeRequest =
 /** One exact historical artifact returned in selector order. */
 export const StoredProtectedRuntimeItemSchema = Schema.Struct({
   artifact: HistoricalSignedContentArtifactSchema,
-  delivery: Schema.Literal("authenticated", "entitled"),
+  delivery: Schema.Literals(["authenticated", "entitled"]),
   sourcePath: CorpusSourcePathSchema,
 });
 export type StoredProtectedRuntimeItem =
@@ -105,11 +111,13 @@ function hasUniqueArtifacts(items: readonly StoredProtectedRuntimeItem[]) {
 const StoredProtectedRuntimeItemsSchema = Schema.Array(
   StoredProtectedRuntimeItemSchema
 ).pipe(
-  Schema.minItems(1),
-  Schema.maxItems(MAX_PROTECTED_RUNTIME_SELECTORS),
-  Schema.filter(hasUniqueArtifacts, {
-    message: () => "Expected unique retained response artifacts.",
-  })
+  Schema.check(Schema.isMinLength(1)),
+  Schema.check(Schema.isMaxLength(MAX_PROTECTED_RUNTIME_SELECTORS)),
+  Schema.check(
+    Schema.makeFilter(hasUniqueArtifacts, {
+      message: "Expected unique retained response artifacts.",
+    })
+  )
 );
 
 /** Authenticated historical bodies returned for one exact retained attempt. */
@@ -124,9 +132,11 @@ export const StoredProtectedRuntimeFoundSchema = Schema.Struct({
   snapshotManifestHash: HistoricalSha256HashSchema,
   snapshotReleaseId: ReleaseIdSchema,
 }).pipe(
-  Schema.filter(hasBoundedProtectedRuntimeResponse, {
-    message: () => "Expected retained runtime bytes below the wire ceiling.",
-  })
+  Schema.check(
+    Schema.makeFilter(hasBoundedProtectedRuntimeResponse, {
+      message: "Expected retained runtime bytes below the wire ceiling.",
+    })
+  )
 );
 export type StoredProtectedRuntimeFound =
   typeof StoredProtectedRuntimeFoundSchema.Type;
@@ -147,10 +157,10 @@ export const StoredProtectedRuntimeFailureSchema = Schema.Struct({
 });
 
 /** Complete read-only response vocabulary for retained attempt delivery. */
-export const StoredProtectedRuntimeResponseSchema = Schema.Union(
+export const StoredProtectedRuntimeResponseSchema = Schema.Union([
   StoredProtectedRuntimeFoundSchema,
   StoredProtectedRuntimeMissingSchema,
-  StoredProtectedRuntimeFailureSchema
-);
+  StoredProtectedRuntimeFailureSchema,
+]);
 export type StoredProtectedRuntimeResponse =
   typeof StoredProtectedRuntimeResponseSchema.Type;

@@ -1,4 +1,4 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import {
   ContentKeySchema,
   GitCommitShaSchema,
@@ -17,8 +17,8 @@ import {
   inheritContentSnapshots,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
@@ -35,13 +35,13 @@ const priorAppLocales = ActiveAppLocaleListSchema.make([
 ]);
 const inheritedSnapshots = {
   previousSnapshots: inheritContentSnapshots(null),
-  snapshotManifests: () => Stream.empty,
-  snapshotRows: () => Stream.empty,
+  snapshotManifests: Stream.empty,
+  snapshotRows: Stream.empty,
 } as const;
 const emptySnapshots = {
   previousSnapshots: null,
-  snapshotManifests: () => Stream.empty,
-  snapshotRows: () => Stream.empty,
+  snapshotManifests: Stream.empty,
+  snapshotRows: Stream.empty,
 } as const;
 const scope = PublicationScopeSchema.make({
   content: [
@@ -72,14 +72,14 @@ function prepare(overrides: Partial<TestPreparationInput> = {}) {
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     ...inheritedSnapshots,
-    records: () => Stream.make(baseTransition),
+    records: Stream.make(baseTransition),
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
     rendererManifest,
-    result: () => Stream.make(resultHead),
-    routes: () => Stream.empty,
+    result: Stream.make(resultHead),
+    routes: Stream.empty,
     scope,
     ...overrides,
-  }).pipe(Effect.provide(NodeContext.layer));
+  }).pipe(Effect.provide(NodeServices.layer));
 }
 
 describe("prepareContentRelease", () => {
@@ -102,15 +102,15 @@ describe("prepareContentRelease", () => {
       },
     };
     const prepared = await Effect.runPromise(
-      prepare({ records: () => Stream.make(baseTransition, deletion) })
+      prepare({ records: Stream.make(baseTransition, deletion) })
     );
     const [items, projections, snapshotManifests, snapshotRows] =
       await Effect.runPromise(
         Effect.all([
-          prepared.items().pipe(Stream.runCollect),
-          prepared.projections().pipe(Stream.runCollect),
-          prepared.snapshotManifests().pipe(Stream.runCollect),
-          prepared.snapshotRows().pipe(Stream.runCollect),
+          prepared.items.pipe(Stream.runCollect),
+          prepared.projections.pipe(Stream.runCollect),
+          prepared.snapshotManifests.pipe(Stream.runCollect),
+          prepared.snapshotRows.pipe(Stream.runCollect),
         ])
       );
     expect(prepared.manifest).toMatchObject({
@@ -130,14 +130,13 @@ describe("prepareContentRelease", () => {
       baseTransition.record.projection;
     const error = await Effect.runPromise(
       prepare({
-        records: () =>
-          Stream.make({
-            ...baseTransition,
-            record: {
-              ...baseTransition.record,
-              projection: incompleteProjection,
-            },
-          }),
+        records: Stream.make({
+          ...baseTransition,
+          record: {
+            ...baseTransition.record,
+            projection: incompleteProjection,
+          },
+        }),
       }).pipe(Effect.flip)
     );
 
@@ -148,10 +147,10 @@ describe("prepareContentRelease", () => {
     let replayCount = 0;
     const error = await Effect.runPromise(
       prepare({
-        records: () => {
+        records: Stream.suspend(() => {
           replayCount += 1;
           return replayCount === 1 ? Stream.make(baseTransition) : Stream.empty;
-        },
+        }),
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ReleaseItemCountMismatchError");
@@ -165,10 +164,10 @@ describe("prepareContentRelease", () => {
         baseManifestHash: null,
         baseReleaseId: null,
         ...emptySnapshots,
-        records: () => {
+        records: Stream.suspend(() => {
           invoked = true;
           return Stream.make(baseTransition);
-        },
+        }),
         rendererManifest: {
           ...rendererManifest,
           hash: Sha256HashSchema.make(`sha256:${"9".repeat(64)}`),
@@ -206,7 +205,7 @@ describe("prepareContentRelease", () => {
           snapshots: ["program"],
         }),
         snapshotManifests: snapshot.snapshotManifests,
-        snapshotRows: () => snapshot.snapshotRows().pipe(Stream.orDie),
+        snapshotRows: snapshot.snapshotRows.pipe(Stream.orDie),
       }).pipe(Effect.flip)
     );
 
@@ -227,10 +226,10 @@ describe("prepareContentRelease", () => {
         baseReleaseId: selfBasedRelease,
         baseResultCount: 1,
         baseResultDigest: resultHead.projectionHash,
-        records: () => {
+        records: Stream.suspend(() => {
           invoked = true;
           return Stream.make(baseTransition);
-        },
+        }),
         releaseId: selfBasedRelease,
       }).pipe(Effect.flip)
     );

@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { releaseId, requests } from "#contracts/test/request";
 import {
@@ -21,13 +21,13 @@ describe("StageGroupRequestSchema", () => {
     if (itemRequest?.operation !== "stageItemBatch") {
       return;
     }
-    const decoded = Schema.decodeUnknownEither(StageGroupRequestSchema)({
+    const decoded = Schema.decodeUnknownExit(StageGroupRequestSchema)({
       operation: "stageGroup",
       releaseId,
       requests: [itemRequest],
     });
 
-    expect(Either.isRight(decoded)).toBe(true);
+    expect(Exit.isSuccess(decoded)).toBe(true);
   });
 
   it("rejects mixed release ownership and excessive request counts", () => {
@@ -43,16 +43,16 @@ describe("StageGroupRequestSchema", () => {
       ...projectionRequest,
       releaseId: "foreign-release",
     };
-    const mixed = Schema.decodeUnknownEither(StageGroupRequestSchema)({
+    const mixed = Schema.decodeUnknownExit(StageGroupRequestSchema)({
       operation: "stageGroup",
       releaseId,
       requests: [foreign],
     });
-    const mixedInput = Schema.decodeUnknownEither(StageGroupInputSchema)({
+    const mixedInput = Schema.decodeUnknownExit(StageGroupInputSchema)({
       releaseId,
       requests: [foreign],
     });
-    const oversized = Schema.decodeUnknownEither(StageGroupRequestSchema)({
+    const oversized = Schema.decodeUnknownExit(StageGroupRequestSchema)({
       operation: "stageGroup",
       releaseId,
       requests: Array.from(
@@ -61,42 +61,42 @@ describe("StageGroupRequestSchema", () => {
       ),
     });
 
-    expect(Either.isLeft(mixed)).toBe(true);
-    expect(Either.isLeft(mixedInput)).toBe(true);
-    if (Either.isLeft(mixed)) {
-      expect(String(mixed.left)).toContain(
+    expect(Exit.isFailure(mixed)).toBe(true);
+    expect(Exit.isFailure(mixedInput)).toBe(true);
+    if (Exit.isFailure(mixed)) {
+      expect(String(mixed.cause)).toContain(
         "Expected every staged request to share one release identity."
       );
     }
-    if (Either.isLeft(mixedInput)) {
-      expect(String(mixedInput.left)).toContain(
+    if (Exit.isFailure(mixedInput)) {
+      expect(String(mixedInput.cause)).toContain(
         "Expected every staged request to share one release identity."
       );
     }
-    expect(Either.isLeft(oversized)).toBe(true);
+    expect(Exit.isFailure(oversized)).toBe(true);
   });
 });
 
 describe("StageGroupSuccessSchema", () => {
   it("requires positive completion evidence", () => {
-    const valid = Schema.decodeUnknownEither(StageGroupSuccessSchema)({
+    const valid = Schema.decodeExit(StageGroupSuccessSchema)({
       ok: true,
       operation: "stageGroup",
       value: { releaseId, requestCount: 1 },
     });
-    const empty = Schema.decodeUnknownEither(StageGroupSuccessSchema)({
+    const empty = Schema.decodeExit(StageGroupSuccessSchema)({
       ok: true,
       operation: "stageGroup",
       value: { releaseId, requestCount: 0 },
     });
-    const oversized = Schema.decodeUnknownEither(StageGroupSuccessSchema)({
+    const oversized = Schema.decodeExit(StageGroupSuccessSchema)({
       ok: true,
       operation: "stageGroup",
       value: { releaseId, requestCount: MAX_STAGE_GROUP_COUNT + 1 },
     });
 
-    expect(Either.isRight(valid)).toBe(true);
-    expect(Either.isLeft(empty)).toBe(true);
-    expect(Either.isLeft(oversized)).toBe(true);
+    expect(Exit.isSuccess(valid)).toBe(true);
+    expect(Exit.isFailure(empty)).toBe(true);
+    expect(Exit.isFailure(oversized)).toBe(true);
   });
 });

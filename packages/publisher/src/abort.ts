@@ -11,7 +11,7 @@ import { PublicationTarget } from "#publisher/publication/spec";
 /** Abort input or target evidence failed its exact shared contract. */
 export class ReleaseAbortContractError extends Schema.TaggedError<ReleaseAbortContractError>()(
   "ReleaseAbortContractError",
-  { contract: Schema.Literal("request", "receipt") }
+  { contract: Schema.Literals(["request", "receipt"]) }
 ) {}
 
 /** Requires one cumulative receipt to preserve identity, total, and progress. */

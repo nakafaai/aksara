@@ -1,8 +1,9 @@
 import { Server } from "node:http";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
@@ -289,7 +290,7 @@ describe("local preview provider", () => {
       )
     );
 
-    expect(cancelled._tag).toBe("TimeoutException");
+    expect(cancelled._tag).toBe("TimeoutError");
     expect(close).toHaveBeenCalledOnce();
   }, 30_000);
 });

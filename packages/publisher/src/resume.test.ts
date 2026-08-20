@@ -5,8 +5,9 @@ import type {
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   PublicationActivation,
   PublicationActivationError,

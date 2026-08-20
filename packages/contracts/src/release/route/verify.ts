@@ -9,7 +9,10 @@ import { digestRoutes } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
-const RouteIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
+const RouteIndexSchema = Schema.Finite.pipe(
+  Schema.check(Schema.isInt()),
+  Schema.check(Schema.isGreaterThanOrEqualTo(0))
+);
 
 /** One streamed route failed strict wire decoding. */
 export class RouteDecodeError extends Schema.TaggedError<RouteDecodeError>()(
@@ -61,7 +64,7 @@ function decodeRoute(
   source: unknown,
   routeOffset: number
 ) {
-  return Schema.decodeUnknown(ContentRouteItemSchema)(source, {
+  return Schema.decodeUnknownEffect(ContentRouteItemSchema)(source, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(() => new RouteDecodeError({ routeOffset })),

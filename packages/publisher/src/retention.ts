@@ -9,7 +9,7 @@ import { Effect, Schema } from "effect";
 export class RetainedRecoveryStateError extends Schema.TaggedError<RetainedRecoveryStateError>()(
   "RetainedRecoveryStateError",
   {
-    reason: Schema.Literal("active", "missing", "phase", "recovery"),
+    reason: Schema.Literals(["active", "missing", "phase", "recovery"]),
     releaseId: ReleaseIdSchema,
   }
 ) {}

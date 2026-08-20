@@ -1,6 +1,6 @@
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { CurriculumRouteError } from "#corpus/curriculum/route-source";

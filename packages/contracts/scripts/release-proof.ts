@@ -1,19 +1,19 @@
 import { createHash } from "node:crypto";
-import { Command, FileSystem, Path } from "@effect/platform";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, FileSystem, Path, Schema, Stream } from "effect";
+import { ChildProcess } from "effect/unstable/process";
 import { verifyArchive } from "#scripts/release-archive";
 import { packageIdentity, releaseError } from "#scripts/release-identity";
 
 const SHA_PATTERN = /^[0-9a-f]{40}$/u;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u;
 
-const ReleaseSchema = Schema.parseJson(
+const ReleaseSchema = Schema.fromJsonString(
   Schema.Struct({
     assets: Schema.Array(
       Schema.Struct({
         digest: Schema.String,
         name: Schema.String,
-        size: Schema.Number,
+        size: Schema.Finite,
       })
     ),
     draft: Schema.Boolean,
@@ -24,7 +24,7 @@ const ReleaseSchema = Schema.parseJson(
   })
 );
 
-const TagSchema = Schema.parseJson(
+const TagSchema = Schema.fromJsonString(
   Schema.Struct({
     object: Schema.Struct({
       sha: Schema.String,
@@ -76,13 +76,15 @@ function commandText(
   stage: string
 ) {
   return Effect.gen(function* () {
-    const command = Command.make(executable, ...args).pipe(
-      Command.stderr("inherit")
-    );
-    const process = yield* Command.start(command);
+    const process = yield* ChildProcess.make(executable, args, {
+      stderr: "inherit",
+    });
     const output = yield* process.stdout.pipe(
-      Stream.decodeText("utf8"),
-      Stream.runFold("", (text, chunk) => text + chunk)
+      Stream.decodeText(),
+      Stream.runFold(
+        () => "",
+        (text, chunk) => text + chunk
+      )
     );
     const exitCode = yield* process.exitCode;
     if (exitCode !== 0) {
@@ -101,26 +103,28 @@ function commandVoid(
   args: readonly string[],
   stage: string
 ) {
-  const command = Command.make(executable, ...args).pipe(
-    Command.stderr("inherit"),
-    Command.stdout("inherit")
-  );
-  return Command.exitCode(command).pipe(
-    Effect.mapError(commandError(stage)),
-    Effect.flatMap((exitCode) =>
-      exitCode === 0
-        ? Effect.void
-        : releaseError(
-            "platform",
-            `Contract release ${stage} command exited unsuccessfully`
-          )
-    )
+  return Effect.scoped(
+    Effect.gen(function* () {
+      const process = yield* ChildProcess.make(executable, args, {
+        stderr: "inherit",
+        stdout: "inherit",
+      }).pipe(Effect.mapError(commandError(stage)));
+      const exitCode = yield* process.exitCode.pipe(
+        Effect.mapError(commandError(stage))
+      );
+      if (exitCode !== 0) {
+        return yield* releaseError(
+          "platform",
+          `Contract release ${stage} command exited unsuccessfully`
+        );
+      }
+    })
   );
 }
 
 /** Decodes the immutable release metadata returned by GitHub. */
 function decodeRelease(source: string) {
-  return Schema.decodeUnknown(ReleaseSchema)(source, {
+  return Schema.decodeEffect(ReleaseSchema)(source, {
     onExcessProperty: "ignore",
   }).pipe(
     Effect.mapError(() =>
@@ -131,7 +135,7 @@ function decodeRelease(source: string) {
 
 /** Decodes the exact lightweight tag target returned by GitHub. */
 function decodeTag(source: string) {
-  return Schema.decodeUnknown(TagSchema)(source, {
+  return Schema.decodeEffect(TagSchema)(source, {
     onExcessProperty: "ignore",
   }).pipe(
     Effect.mapError(() =>

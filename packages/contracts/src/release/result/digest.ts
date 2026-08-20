@@ -51,8 +51,14 @@ export class ResultCatalogRouteError extends Schema.TaggedError<ResultCatalogRou
 export class ResultCatalogCountMismatchError extends Schema.TaggedError<ResultCatalogCountMismatchError>()(
   "ResultCatalogCountMismatchError",
   {
-    actualCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    expectedCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    actualCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
+    expectedCount: Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    ),
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -175,8 +181,9 @@ export const digestResultCatalog = Effect.fn(
 ) {
   const initial = yield* createResultCatalogDigest(releaseId);
   const state = yield* heads.pipe(
-    Stream.runFoldEffect(initial, (current, head) =>
-      updateResultCatalogDigest(releaseId, current, head)
+    Stream.runFoldEffect(
+      () => initial,
+      (current, head) => updateResultCatalogDigest(releaseId, current, head)
     )
   );
   const digest = yield* finalizeResultCatalogDigest(releaseId, state);

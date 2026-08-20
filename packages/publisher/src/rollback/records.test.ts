@@ -8,8 +8,8 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   encodeReplayRecord,
   MAX_REPLAY_RECORD_BYTES,
@@ -138,16 +138,14 @@ describe("deriveRollbackRecords", () => {
   it("spools a valid rollback transition containing two near-limit bodies", async () => {
     const compiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
     const rawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
-    const largePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)(
-      {
-        ...rollbackArtifact.payload,
-        byteLength: Buffer.byteLength(compiledCode, "utf8"),
-        compiledCode,
-        plainText: "p".repeat(90 * 1024),
-        rawMdx,
-        sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
-      }
-    );
+    const largePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
+      ...rollbackArtifact.payload,
+      byteLength: Buffer.byteLength(compiledCode, "utf8"),
+      compiledCode,
+      plainText: "p".repeat(90 * 1024),
+      rawMdx,
+      sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
+    });
     const artifact = signRollbackPayload(largePayload);
     const projection = MaterialLessonProjectionSchema.make({
       ...rollbackProjection,

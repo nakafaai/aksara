@@ -1,6 +1,6 @@
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 import { selectQuestionPreviewSources } from "#corpus/preview/question-source";
 import { loadQuestionContent } from "#corpus/question-bank/content";
 import {

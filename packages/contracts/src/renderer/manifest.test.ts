@@ -1,7 +1,8 @@
 // @vitest-environment node
 import { createHash } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";

@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   ActiveContentReleaseSchema,
@@ -25,11 +25,11 @@ import { receiptFor } from "#contracts/test/response";
 
 const otherHash = `sha256:${"f".repeat(64)}`;
 /** Decodes the authoritative state with exact-property enforcement. */
-const decodeCurrent = Schema.decodeUnknownEither(ContentReleaseCurrentSchema);
+const decodeCurrent = Schema.decodeUnknownExit(ContentReleaseCurrentSchema);
 /** Strictly checks current-state schema acceptance. */
 function accepts(input: unknown) {
   const result = decodeCurrent(input, { onExcessProperty: "error" });
-  return Either.isRight(result);
+  return Exit.isSuccess(result);
 }
 /** Builds one completed active release from its signed bundle. */
 function activeRelease(signedRelease: typeof release = release) {
@@ -41,7 +41,7 @@ function activeRelease(signedRelease: typeof release = release) {
 }
 /** Builds one candidate derived from the shared active release. */
 function candidateRelease() {
-  return Schema.decodeUnknownSync(SignedContentReleaseSchema)({
+  return Schema.decodeSync(SignedContentReleaseSchema)({
     ...release,
     manifest: {
       ...release.manifest,
@@ -57,7 +57,7 @@ function candidateRelease() {
 }
 /** Builds the signed inverse that restores one candidate's base result. */
 function recoveryRelease(target = candidateRelease()) {
-  return Schema.decodeUnknownSync(RollbackSignedContentReleaseSchema)({
+  return Schema.decodeSync(RollbackSignedContentReleaseSchema)({
     ...release,
     manifest: {
       ...release.manifest,
@@ -127,11 +127,11 @@ describe("current release state", () => {
       { routeDigest: otherHash },
       { snapshots: replacementSnapshots, stagedSnapshotRows: 1 },
     ]) {
-      const result = Schema.decodeUnknownEither(ActiveContentReleaseSchema)({
+      const result = Schema.decodeUnknownExit(ActiveContentReleaseSchema)({
         ...active,
         receipt: { ...active.receipt, ...invalid },
       });
-      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
         "Expected the active receipt to match its signed release manifest."
       );
     }
@@ -139,19 +139,19 @@ describe("current release state", () => {
   it("decodes missing and completed historical recovery lookups", () => {
     const recoveredActive = activeRelease(completedRecovery);
     expect(
-      Schema.decodeUnknownSync(RecoveryLookupSchema)({ kind: "missing" })
+      Schema.decodeSync(RecoveryLookupSchema)({ kind: "missing" })
     ).toEqual({ kind: "missing" });
     expect(
-      Schema.decodeUnknownSync(RecoveryLookupSchema)({
+      Schema.decodeSync(RecoveryLookupSchema)({
         kind: "completed",
         value: recoveredActive,
       })
     ).toEqual({ kind: "completed", value: recoveredActive });
-    const invalid = Schema.decodeUnknownEither(RecoveryLookupSchema)({
+    const invalid = Schema.decodeExit(RecoveryLookupSchema)({
       kind: "completed",
       value: { receipt: receiptFor(release), release, rendererManifest },
     });
-    expect(Either.isLeft(invalid) ? String(invalid.left) : "").toContain(
+    expect(Exit.isFailure(invalid) ? String(invalid.cause) : "").toContain(
       "Expected a completed rollback release."
     );
   });
@@ -191,11 +191,11 @@ describe("current release state", () => {
     ).toBe(true);
   });
   it("rejects incoherent candidate and recovery identities", () => {
-    const invalidRecovery = Schema.decodeUnknownEither(
+    const invalidRecovery = Schema.decodeUnknownExit(
       StagedRollbackContentReleaseSchema
     )({ ...retained, release });
     expect(
-      Either.isLeft(invalidRecovery) ? String(invalidRecovery.left) : ""
+      Exit.isFailure(invalidRecovery) ? String(invalidRecovery.cause) : ""
     ).toContain("Expected a staged rollback release.");
     const invalidManifests = [
       { origin: { kind: "git", sha: "a".repeat(40) } },
@@ -287,7 +287,7 @@ describe("current release state", () => {
       expect(accepts(state)).toBe(false);
     }
     const result = decodeCurrent(invalidStates[0]);
-    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
       "Expected active, candidate, and recovery identities to be coherent."
     );
   });

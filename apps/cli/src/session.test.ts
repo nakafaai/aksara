@@ -26,9 +26,7 @@ type ProviderControl = Parameters<typeof makeProvider>[0];
 function makeControl(): ProviderControl {
   return { failed: 0, pending: 0, ready: 0 };
 }
-afterEach(() => {
-  repositories.clear();
-});
+afterEach(() => repositories.clear());
 
 describe("preview document refresh", () => {
   it("publishes success and sanitizes typed compilation failures", async () => {
@@ -46,14 +44,13 @@ describe("preview document refresh", () => {
       )
     );
     const failure: PreviewDocumentCompiler = {
-      compile: () =>
-        Effect.fail(
-          new PreviewRepositoryError({
-            kind: "document",
-            path: ready.document.sourcePath,
-            reason: "missing",
-          })
-        ),
+      compile: Effect.fail(
+        new PreviewRepositoryError({
+          kind: "document",
+          path: ready.document.sourcePath,
+          reason: "missing",
+        })
+      ),
       verify: () => Effect.void,
     };
     await runNode(
@@ -90,7 +87,7 @@ describe("preview document refresh", () => {
         RENDERER_MANIFEST.hash,
         0,
         Effect.succeed(PREVIEW_REPOSITORIES)
-      ).pipe(Effect.provide(Logger.replace(Logger.defaultLogger, logger)))
+      ).pipe(Effect.provide(Logger.layer([logger])))
     );
     writeFileSync(repository.documentPath, REAL_SOURCE);
 
@@ -197,7 +194,7 @@ describe("preview document refresh", () => {
     });
     const compileControl = makeControl();
     const compileRestart: PreviewDocumentCompiler = {
-      compile: () => Effect.fail(restart),
+      compile: Effect.fail(restart),
       verify: () => Effect.void,
     };
     const compileError = await runNode(
@@ -211,7 +208,7 @@ describe("preview document refresh", () => {
     );
     const verifyControl = makeControl();
     const verifyRestart: PreviewDocumentCompiler = {
-      compile: () => Effect.succeed(ready.result),
+      compile: Effect.succeed(ready.result),
       verify: () => Effect.fail(restart),
     };
     const verifyError = await runNode(
@@ -242,7 +239,8 @@ describe("preview document refresh", () => {
 describe("local preview session", () => {
   it("opens the real selected corpus and recompiles without a child restart", async () => {
     const repository = repositories.create();
-    const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
+    const capture: { input?: Parameters<typeof NakafaApp.Service.start>[0] } =
+      {};
     await runLocal(
       repository,
       makeApp(capture),
@@ -257,7 +255,8 @@ describe("local preview session", () => {
   it("keeps a changed route failed when initial compilation fails", async () => {
     const repository = repositories.create();
     writeFileSync(repository.documentPath, `${REAL_SOURCE}\n\n{process.env}\n`);
-    const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
+    const capture: { input?: Parameters<typeof NakafaApp.Service.start>[0] } =
+      {};
     await runLocal(repository, makeApp(capture), () =>
       Effect.tryPromise(async () => {
         const { input } = capture;

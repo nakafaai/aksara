@@ -1,6 +1,7 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 
 const control = vi.hoisted(() => ({
@@ -96,7 +97,7 @@ beforeEach(() => {
 function readExpectation() {
   return Effect.runPromise(
     readContentCatalogExpectation("/code/aksara").pipe(
-      Effect.provide(NodeContext.layer)
+      Effect.provide(NodeServices.layer)
     )
   );
 }
@@ -176,7 +177,7 @@ describe("content catalog expectation", () => {
       Effect.runPromise(
         readContentCatalogExpectation("/code/aksara").pipe(
           Effect.flip,
-          Effect.provide(NodeContext.layer)
+          Effect.provide(NodeServices.layer)
         )
       )
     ).resolves.toMatchObject({

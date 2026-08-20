@@ -26,7 +26,7 @@ const DIGEST_DOMAIN = "nakafa.aksara.program-rows";
 export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()(
   "ProgramDigestError",
   {
-    code: Schema.Literal(
+    code: Schema.Literals([
       "count",
       "integrity",
       "key",
@@ -35,8 +35,8 @@ export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()
       "program",
       "route",
       "root",
-      "slug"
-    ),
+      "slug",
+    ]),
     identity: Schema.String,
   }
 ) {}

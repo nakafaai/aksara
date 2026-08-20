@@ -15,9 +15,9 @@ describe("try-out placement identity", () => {
   it("derives complete-row identities from the minimal semantic contract", () => {
     const rows = makeTryoutTestRows().catalog.map(({ row }) => row);
     const identities = rows.map((row) => {
-      const identity = Schema.decodeUnknownSync(
-        TryoutCatalogNodeIdentitySchema
-      )(row, { onExcessProperty: "ignore" });
+      const identity = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)(row, {
+        onExcessProperty: "ignore",
+      });
       return [tryoutCatalogNodeIdentity(identity), tryoutCatalogIdentity(row)];
     });
 
@@ -27,18 +27,18 @@ describe("try-out placement identity", () => {
   });
 
   it("keeps catalog kinds and application locales distinct", () => {
-    const country = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+    const country = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)({
       appLocale: "en",
       countryKey: "indonesia",
       kind: "country",
     });
-    const exam = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+    const exam = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)({
       appLocale: "en",
       countryKey: "indonesia",
       examKey: "snbt",
       kind: "exam",
     });
-    const german = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+    const german = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)({
       ...country,
       appLocale: "de",
     });

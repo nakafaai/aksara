@@ -1,4 +1,4 @@
-import { Either } from "effect";
+import { Result } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   compatibleManifest,
@@ -12,7 +12,7 @@ import {
   protectedSelector,
   rejectProtectedExchange,
   verifyProtectedExchange,
-  verifyProtectedExchangeEither,
+  verifyProtectedExchangeResult,
 } from "#contracts/test/runtime/protected";
 
 describe("protected content runtime verification", () => {
@@ -29,14 +29,14 @@ describe("protected content runtime verification", () => {
 
     const outcomes = await Promise.all(
       protectedMismatchCases.map(([, response, request = protectedRequest]) =>
-        verifyProtectedExchangeEither({ request, response })
+        verifyProtectedExchangeResult({ request, response })
       )
     );
     expect(
       outcomes.map((outcome) =>
-        Either.isLeft(outcome) &&
-        outcome.left._tag === "ContentRuntimeMismatchError"
-          ? outcome.left.reason
+        Result.isFailure(outcome) &&
+        outcome.failure._tag === "ContentRuntimeMismatchError"
+          ? outcome.failure.reason
           : "none"
       )
     ).toEqual(protectedMismatchCases.map(([reason]) => reason));

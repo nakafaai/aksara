@@ -1,8 +1,8 @@
-import type { HttpClientRequest } from "@effect/platform";
-import { HttpClient } from "@effect/platform";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import type { HttpClientRequest } from "effect/unstable/http";
+import { HttpClient } from "effect/unstable/http";
 import { runAcceptCommand } from "#cli/accept";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
@@ -35,7 +35,10 @@ function acceptResponse(request: HttpClientRequest.HttpClientRequest) {
 function runAccept(client: HttpClient.HttpClient) {
   return Effect.runPromise(
     runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(acceptValues)),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
+      ),
       Effect.provideService(HttpClient.HttpClient, client)
     )
   );
@@ -45,7 +48,10 @@ function runAccept(client: HttpClient.HttpClient) {
 function rejectAccept(client: HttpClient.HttpClient) {
   return Effect.runPromise(
     runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
-      Effect.withConfigProvider(ConfigProvider.fromMap(acceptValues)),
+      Effect.provideService(
+        ConfigProvider.ConfigProvider,
+        ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
+      ),
       Effect.provideService(HttpClient.HttpClient, client),
       Effect.flip
     )

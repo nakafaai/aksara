@@ -1,7 +1,7 @@
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { quranProvenanceRecordsFor } from "#corpus/quran/provenance";

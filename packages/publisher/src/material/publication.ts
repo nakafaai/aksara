@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
@@ -9,7 +8,8 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
 import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   type MaterialMetadataError,
@@ -28,12 +28,12 @@ import {
   routeTransitionForContent,
 } from "#publisher/routes";
 
-const MaterialFamilyFieldSchema = Schema.Literal(
+const MaterialFamilyFieldSchema = Schema.Literals([
   "contentKey",
   "artifactLocale",
   "publicPath",
-  "sourcePath"
-);
+  "sourcePath",
+]);
 
 /** A target returned the same material identity more than once. */
 export class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
@@ -76,14 +76,11 @@ export type MaterialPublicationStreamError<E> =
 /** Authoritative material plan accepted by generic release preparation. */
 export interface MaterialPublication {
   /** Replays the exact delta against the supplied active material heads. */
-  readonly records: () => Stream.Stream<
-    PreparedContentTransition,
-    ReplaySpoolError
-  >;
+  readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired compact-head catalog in canonical order. */
-  readonly result: () => Stream.Stream<MaterialHead, ReplaySpoolError>;
+  readonly result: Stream.Stream<MaterialHead, ReplaySpoolError>;
   /** Replays route ownership independently from body publication items. */
-  readonly routes: () => Stream.Stream<RouteTransition, ReplaySpoolError>;
+  readonly routes: Stream.Stream<RouteTransition, ReplaySpoolError>;
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and active-head stream. */
@@ -94,7 +91,7 @@ export interface MaterialPublicationInput<E, R> {
   readonly scope?: PublicationScope | undefined;
 }
 
-type RendererManifestError = Effect.Effect.Error<
+type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
@@ -128,7 +125,7 @@ function validatePublishedHead(
   state: HeadOrderState,
   head: MaterialHead
 ): Effect.Effect<
-  readonly [HeadOrderState, MaterialHead],
+  readonly [HeadOrderState, readonly MaterialHead[]],
   MaterialHeadDuplicateError | MaterialHeadFamilyError | MaterialHeadOrderError
 > {
   const field = mismatchedFamilyField(head);
@@ -161,7 +158,7 @@ function validatePublishedHead(
       );
     }
   }
-  return Effect.succeed(Tuple.make({ previous: head }, head));
+  return Effect.succeed(Tuple.make({ previous: head }, [head]));
 }
 
 /** Proves every published material head before the constant-space merge. */
@@ -169,7 +166,9 @@ function validatePublishedHeads<E, R>(
   published: Stream.Stream<MaterialHead, E, R>
 ) {
   const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(Stream.mapAccumEffect(initial, validatePublishedHead));
+  return published.pipe(
+    Stream.mapAccumEffect(() => initial, validatePublishedHead)
+  );
 }
 
 /**
@@ -203,16 +202,18 @@ export const prepareMaterialPublication: <E, R>(
     stream: plans,
   });
   /** Replays canonical material transition records from the sealed spool. */
-  const records = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.record)));
+  const records = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.record, () => undefined)
+    )
+  );
   /** Replays the complete canonical result catalog from the sealed spool. */
-  const result = () =>
-    spool
-      .replay()
-      .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.result)));
+  const result = spool.replay.pipe(
+    Stream.filterMap((plan) =>
+      Result.fromNullishOr(plan.result, () => undefined)
+    )
+  );
   /** Replays canonical public-route changes derived from material records. */
-  const routes = () => records().pipe(Stream.map(routeTransitionForContent));
+  const routes = records.pipe(Stream.map(routeTransitionForContent));
   return { records, result, routes };
 });

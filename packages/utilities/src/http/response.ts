@@ -1,5 +1,5 @@
-import type { HttpClientResponse } from "@effect/platform";
 import { Chunk, Effect, Schema, Stream } from "effect";
+import type { HttpClientResponse } from "effect/unstable/http";
 import { joinBytes } from "#utilities/bytes/join";
 
 interface BodyState {
@@ -14,7 +14,7 @@ const EMPTY_BODY: BodyState = {
 
 /** A bounded HTTP response body could not be read safely. */
 export class BodyError extends Schema.TaggedError<BodyError>()("BodyError", {
-  reason: Schema.Literal("empty", "encoding", "length", "limit", "stream"),
+  reason: Schema.Literals(["empty", "encoding", "length", "limit", "stream"]),
 }) {}
 
 /** Checks a media type is exactly JSON while allowing parameters. */
@@ -55,19 +55,22 @@ export const readBytes = Effect.fn("AksaraUtilities.readBytes")(
       Stream.mapError(
         (error) =>
           new BodyError({
-            reason: error.reason === "EmptyBody" ? "empty" : "stream",
+            reason: error.reason._tag === "EmptyBodyError" ? "empty" : "stream",
           })
       ),
-      Stream.runFoldEffect(EMPTY_BODY, (state, chunk) => {
-        const size = state.size + chunk.byteLength;
-        if (size > maximumBytes) {
-          return Effect.fail(new BodyError({ reason: "limit" }));
+      Stream.runFoldEffect(
+        () => EMPTY_BODY,
+        (state, chunk) => {
+          const size = state.size + chunk.byteLength;
+          if (size > maximumBytes) {
+            return Effect.fail(new BodyError({ reason: "limit" }));
+          }
+          return Effect.succeed({
+            chunks: Chunk.append(state.chunks, chunk),
+            size,
+          });
         }
-        return Effect.succeed({
-          chunks: Chunk.append(state.chunks, chunk),
-          size,
-        });
-      }),
+      ),
       Effect.map((body) => joinBytes(body.chunks, body.size))
     );
   }

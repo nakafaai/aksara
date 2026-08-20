@@ -1,7 +1,7 @@
-import { NodeContext } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   decodeArticlePreviewEntries,
@@ -58,7 +58,7 @@ describe("article preview projection", () => {
     }
     const [selection, repeated] = await Effect.runPromise(
       selectArticleEntries(corpusRoot, [selected, selected]).pipe(
-        Effect.provide(NodeContext.layer)
+        Effect.provide(NodeServices.layer)
       )
     );
     if (!(selection && repeated)) {

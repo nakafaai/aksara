@@ -1,10 +1,9 @@
-import { Path } from "@effect/platform";
 import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Layer } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Layer, Path } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
 

@@ -41,7 +41,7 @@ export function retryPublicationTarget(
     activate: retryOperation(target.activate),
     activateRecovery: retryOperation(target.activateRecovery),
     cleanup: retryOperation(target.cleanup),
-    current: retryOperation(target.current),
+    current: retryTransport(target.current),
     headPage: retryOperation(target.headPage),
     recovery: retryOperation(target.recovery),
     rollbackPage: retryOperation(target.rollbackPage),

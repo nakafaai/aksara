@@ -49,10 +49,11 @@ export function programLocaleSourcePath(
 export const decodeProgramLocaleCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramLocaleCatalog"
 )(function* (input: unknown = programLocaleSources) {
-  return yield* Schema.decodeUnknown(Schema.Array(ProgramLocaleSourceSchema))(
-    input,
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError((cause) => new ProgramLocaleCatalogError({ cause })));
+  return yield* Schema.decodeUnknownEffect(
+    Schema.Array(ProgramLocaleSourceSchema)
+  )(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError((cause) => new ProgramLocaleCatalogError({ cause }))
+  );
 });
 
 /** Composes one reviewed locale translation onto its stable base program. */

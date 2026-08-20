@@ -7,7 +7,7 @@ import { AppLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 const LearningGraphSegmentSchema = Schema.String.pipe(
-  Schema.filter(isLowerKebab)
+  Schema.check(Schema.makeFilter(isLowerKebab))
 );
 
 /** Validated hierarchy segments required to derive one graph identity. */
@@ -35,7 +35,7 @@ export const makeLearningGraphIdentity: (
   source: LearningGraphSegments
 ) => Effect.Effect<LearningGraphIdentity, LearningGraphIdentityError> =
   Effect.fn("AksaraContracts.makeLearningGraphIdentity")(function* (source) {
-    const segments = yield* Schema.decodeUnknown(LearningGraphSegmentsSchema)(
+    const segments = yield* Schema.decodeEffect(LearningGraphSegmentsSchema)(
       source,
       { onExcessProperty: "error" }
     ).pipe(

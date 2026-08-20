@@ -1,6 +1,7 @@
-import { NodeContext } from "@effect/platform-node";
-import { Effect, Fiber, TestClock, TestContext } from "effect";
-import { describe, expect, it } from "vitest";
+import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Fiber, Result } from "effect";
+import { TestClock } from "effect/testing";
 
 import {
   GERMAN_QURAN_PUBLICATION_URL,
@@ -25,11 +26,11 @@ describe("German Quran source sync", () => {
       runQuranSyncTest(officialQuranSyncSources, { prior }),
     ]);
 
-    expect(firstInstall.outcome._tag).toBe("Right");
+    expect(firstInstall.outcome._tag).toBe("Success");
     expect(firstInstall.backupExists).toBe(false);
     expect(result.outcome).toMatchObject({
-      _tag: "Right",
-      right: {
+      _tag: "Success",
+      success: {
         publication: {
           byteCount: 3485,
           digest:
@@ -76,7 +77,7 @@ describe("German Quran source sync", () => {
       {
         installed: false,
         outcome: {
-          left: {
+          failure: {
             phase: "integrity",
             source: "islamhouse-german-bubenheim.json",
           },
@@ -85,7 +86,7 @@ describe("German Quran source sync", () => {
       {
         installed: false,
         outcome: {
-          left: { phase: "integrity", source: "quranenc-de.xml" },
+          failure: { phase: "integrity", source: "quranenc-de.xml" },
         },
       },
     ]);
@@ -105,36 +106,32 @@ describe("German Quran source sync", () => {
     ]);
 
     expect([response, body]).toMatchObject([
-      { installed: false, outcome: { left: { phase: "download" } } },
-      { installed: false, outcome: { left: { phase: "download" } } },
+      { installed: false, outcome: { failure: { phase: "download" } } },
+      { installed: false, outcome: { failure: { phase: "download" } } },
     ]);
   });
 
-  it("bounds a stalled official source download", async () => {
-    const result = await Effect.runPromise(
-      Effect.gen(function* () {
-        const fiber = yield* quranSyncTestProgram(officialQuranSyncSources, {
-          stalledUrl: GERMAN_QURAN_SOURCE_URL,
-        }).pipe(Effect.fork);
-        yield* TestClock.adjust("61 seconds");
-        return yield* Fiber.join(fiber);
-      }).pipe(
-        Effect.provide(NodeContext.layer),
-        Effect.provide(TestContext.TestContext)
-      )
-    );
+  it.effect("bounds a stalled official source download", () =>
+    Effect.gen(function* () {
+      const fiber = yield* quranSyncTestProgram(officialQuranSyncSources, {
+        stalledUrl: GERMAN_QURAN_SOURCE_URL,
+      }).pipe(Effect.provide(NodeServices.layer), Effect.forkChild);
+      yield* Effect.yieldNow;
+      yield* TestClock.adjust("61 seconds");
+      const result = yield* Fiber.join(fiber);
 
-    expect(result).toMatchObject({
-      installed: false,
-      outcome: {
-        left: {
-          cause: "Official source download exceeded 60 seconds.",
-          phase: "download",
-          source: "quranenc-de.xml",
+      expect(result).toMatchObject({
+        installed: false,
+        outcome: {
+          failure: {
+            cause: "Official source download exceeded 60 seconds.",
+            phase: "download",
+            source: "quranenc-de.xml",
+          },
         },
-      },
-    });
-  });
+      });
+    })
+  );
 
   it("classifies every atomic installation boundary as a write failure", async () => {
     const failures = await Promise.all([
@@ -164,8 +161,8 @@ describe("German Quran source sync", () => {
       failures.every(
         ({ installed, outcome }) =>
           !installed &&
-          outcome._tag === "Left" &&
-          outcome.left.phase === "write"
+          outcome._tag === "Failure" &&
+          outcome.failure.phase === "write"
       )
     ).toBe(true);
   });
@@ -187,8 +184,8 @@ describe("German Quran source sync", () => {
     });
 
     expect(result.outcome).toMatchObject({
-      _tag: "Left",
-      left: { phase: "write", source: "German Quran source pair" },
+      _tag: "Failure",
+      failure: { phase: "write", source: "German Quran source pair" },
     });
     expect(result.backupExists).toBe(false);
     expect(result.installedBytes).toEqual(prior);
@@ -210,16 +207,17 @@ describe("German Quran source sync", () => {
       prior,
     });
 
-    expect(result.outcome).toMatchObject({
-      _tag: "Left",
-      left: {
-        cause: {
-          installation: { method: "rename" },
-          restoration: { method: "rename" },
-        },
-        phase: "write",
-        source: "German Quran source pair",
-      },
+    expect(Result.isFailure(result.outcome)).toBe(true);
+    if (Result.isSuccess(result.outcome)) {
+      throw new Error("Expected installation and restoration to fail.");
+    }
+    expect(result.outcome.failure).toMatchObject({
+      phase: "write",
+      source: "German Quran source pair",
+    });
+    expect(result.outcome.failure.cause).toMatchObject({
+      installation: { reason: { method: "rename" } },
+      restoration: { reason: { method: "rename" } },
     });
     expect(result.backupExists).toBe(true);
     expect(result.installed).toBe(false);
@@ -236,13 +234,16 @@ describe("German Quran source sync", () => {
       }),
     });
 
-    expect(result.outcome).toMatchObject({
-      _tag: "Left",
-      left: {
-        cause: { method: "rename" },
-        phase: "write",
-        source: "German Quran source pair",
-      },
+    expect(Result.isFailure(result.outcome)).toBe(true);
+    if (Result.isSuccess(result.outcome)) {
+      throw new Error("Expected the first installation to fail.");
+    }
+    expect(result.outcome.failure).toMatchObject({
+      phase: "write",
+      source: "German Quran source pair",
+    });
+    expect(result.outcome.failure.cause).toMatchObject({
+      reason: { method: "rename" },
     });
     expect(result.backupExists).toBe(false);
     expect(result.installed).toBe(false);

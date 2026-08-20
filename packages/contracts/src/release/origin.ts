@@ -14,10 +14,10 @@ export const RollbackReleaseOriginSchema = Schema.Struct({
 });
 
 /** Signed provenance for either exact-Git compilation or artifact reuse. */
-export const ReleaseOriginSchema = Schema.Union(
+export const ReleaseOriginSchema = Schema.Union([
   GitReleaseOriginSchema,
-  RollbackReleaseOriginSchema
-);
+  RollbackReleaseOriginSchema,
+]);
 export type ReleaseOrigin = typeof ReleaseOriginSchema.Type;
 
 /** Copies one release origin into deterministic manifest field order. */

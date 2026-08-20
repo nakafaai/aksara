@@ -22,9 +22,7 @@ import {
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
-const GERMAN_APP_LOCALE = Schema.decodeUnknownSync(
-  LocaleOverlayAppLocaleSchema
-)("de");
+const GERMAN_APP_LOCALE = Schema.decodeSync(LocaleOverlayAppLocaleSchema)("de");
 
 /** Returns one German SNBT section copy by stable section identity. */
 const germanSnbtSection = Effect.fn("AksaraCorpus.germanSnbtSection")(
@@ -83,7 +81,7 @@ const germanTryoutExam = Effect.fn("AksaraCorpus.germanTryoutExam")(function* (
         };
       })
     );
-    return yield* Schema.decodeUnknown(TryoutLocaleExamSchema)(
+    return yield* Schema.decodeEffect(TryoutLocaleExamSchema)(
       {
         appLocale,
         country: {
@@ -123,7 +121,7 @@ const germanTryoutExam = Effect.fn("AksaraCorpus.germanTryoutExam")(function* (
       }),
       translation: { title: tkaGermanExam.mathematicsTitle },
     }));
-    return yield* Schema.decodeUnknown(TryoutLocaleExamSchema)(
+    return yield* Schema.decodeEffect(TryoutLocaleExamSchema)(
       {
         appLocale,
         country: {

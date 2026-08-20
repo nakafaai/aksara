@@ -20,7 +20,6 @@ import {
   PreparedContentCoherenceError,
   PreparedContentDecodeError,
   PreparedContentOrderError,
-  PreparedContentReplayError,
 } from "#publisher/preparation/errors";
 import {
   type PreparedContentRecord,
@@ -117,7 +116,7 @@ function validateRecordCoherence(
   recordIndex: number
 ): Effect.Effect<
   PreparedContentRecord,
-  | Effect.Effect.Error<ReturnType<typeof verifyCompiledContentSourceHash>>
+  | Effect.Error<ReturnType<typeof verifyCompiledContentSourceHash>>
   | PreparedContentCoherenceError
 > {
   if (!isPreparedContentUpsert(record)) {
@@ -205,37 +204,30 @@ export function derivePreparedRecords<E, R>(input: {
   readonly records: PreparedContentTransitionSource<E, R>;
   readonly releaseId: ReleaseId;
 }): Stream.Stream<DerivedContentRecord, PreparedContentStreamError<E>, R> {
-  return Stream.unwrap(
-    Effect.try({
-      catch: (cause) => new PreparedContentReplayError({ cause }),
-      try: input.records,
-    }).pipe(
-      Effect.map((records) => {
-        const state: RecordState = { previous: undefined };
-        return records.pipe(
-          Stream.zipWithIndex,
-          Stream.mapEffect(([source, recordIndex]) =>
-            Schema.decodeUnknown(PreparedContentTransitionSchema)(source, {
-              onExcessProperty: "error",
-            }).pipe(
-              Effect.mapError(
-                () => new PreparedContentDecodeError({ recordIndex })
-              ),
-              Effect.flatMap((transition) =>
-                validatePriorState(transition, recordIndex)
-              ),
-              Effect.flatMap((transition) =>
-                validateOrder(state, transition.record, recordIndex).pipe(
-                  Effect.as(transition)
-                )
-              ),
-              Effect.map((transition) =>
-                deriveRecord(transition, recordIndex, input.releaseId)
-              )
+  return Stream.suspend(() => {
+    const state: RecordState = { previous: undefined };
+    return input.records.pipe(
+      Stream.zipWithIndex,
+      Stream.mapEffect(([source, recordIndex]) =>
+        Schema.decodeUnknownEffect(PreparedContentTransitionSchema)(source, {
+          onExcessProperty: "error",
+        }).pipe(
+          Effect.mapError(
+            () => new PreparedContentDecodeError({ recordIndex })
+          ),
+          Effect.flatMap((transition) =>
+            validatePriorState(transition, recordIndex)
+          ),
+          Effect.flatMap((transition) =>
+            validateOrder(state, transition.record, recordIndex).pipe(
+              Effect.as(transition)
             )
+          ),
+          Effect.map((transition) =>
+            deriveRecord(transition, recordIndex, input.releaseId)
           )
-        );
-      })
-    )
-  );
+        )
+      )
+    );
+  });
 }

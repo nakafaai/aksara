@@ -25,20 +25,22 @@ export const ArticlePublicationPlanSchema = Schema.Struct({
   record: Schema.optional(PreparedContentTransitionSchema),
   result: Schema.optional(ArticleHeadSchema),
 }).pipe(
-  Schema.filter(
-    (plan) => plan.record !== undefined || plan.result !== undefined
+  Schema.check(
+    Schema.makeFilter(
+      (plan) => plan.record !== undefined || plan.result !== undefined
+    )
   )
 );
 export type ArticlePublicationPlan = typeof ArticlePublicationPlanSchema.Type;
 
 type PlanArticlePublicationError =
-  | Effect.Effect.Error<ReturnType<typeof compileArticleDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectArticleDocument>>
+  | Effect.Error<ReturnType<typeof compileArticleDocument>>
+  | Effect.Error<ReturnType<typeof inspectArticleDocument>>
   | PublicationScopeIdentityError;
 
 type PlanArticlePublicationContext =
-  | Effect.Effect.Context<ReturnType<typeof compileArticleDocument>>
-  | Effect.Effect.Context<ReturnType<typeof inspectArticleDocument>>;
+  | Effect.Services<ReturnType<typeof compileArticleDocument>>
+  | Effect.Services<ReturnType<typeof inspectArticleDocument>>;
 
 /** Derives one complete article head from a newly compiled upsert. */
 function makeArticleHead(record: PreparedContentUpsert): ArticleHead {

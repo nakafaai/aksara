@@ -4,7 +4,7 @@ import type { Node as UnistNode } from "unist";
 
 /** Narrows unknown unified data to the ESTree program shape we inspect. */
 function isProgram(value: unknown): value is Program {
-  if (!Predicate.isRecord(value)) {
+  if (!Predicate.isObject(value)) {
     return false;
   }
   if (!("type" in value && value.type === "Program")) {
