@@ -22,12 +22,12 @@ Kebijakan Keamanan ini tidak mencakup praktik keamanan pihak ketiga yang Anda gu
 
 Keamanan adalah tanggung jawab bersama:
 
-- Kami bertanggung jawab atas langkah keamanan yang berada dalam kendali kami, termasuk desain aplikasi, kontrol akses, pemantauan, dan proses tanggap insiden.
+- Kami bertanggung jawab atas langkah keamanan yang berada dalam kendali kami, termasuk desain aplikasi, kontrol akses, dan tanggapan terhadap dugaan insiden.
 - Anda bertanggung jawab atas keamanan perangkat, akun, dan kredensial yang Anda gunakan untuk mengakses Layanan.
 
 ## Langkah teknis dan organisasi
 
-Kami memelihara program keamanan yang dirancang untuk mengurangi risiko. Langkah-langkah meliputi kategori berikut.
+Bagian berikut membedakan langkah yang didukung bukti implementasi, tanggung jawab penyedia, dan komitmen publik yang diterima Nakafa.
 
 ### Enkripsi saat transmisi
 
@@ -39,21 +39,17 @@ Pada batas aplikasi, kapabilitas pengguna yang memerlukan autentikasi mensyaratk
 
 ### Penyimpanan dan pemrosesan data
 
-Kami menyimpan dan memproses data menggunakan penyedia infrastruktur terkelola. Perlindungan penyimpanan dan pemrosesan bergantung pada penyedia dan konfigurasi layanan. Kami menggunakan fitur keamanan penyedia dan kontrol operasional yang dirancang untuk melindungi data tersimpan dari akses yang tidak sah.
+Data aplikasi disimpan di Convex. Fungsi aplikasi Nakafa yang memerlukan autentikasi menggunakan sesi tervalidasi dan pemeriksaan pengguna aktif yang ditautkan di bawah. Perlindungan penyimpanan pada tingkat infrastruktur disediakan oleh Convex dan tidak dinyatakan di sini sebagai kontrol penyimpanan terpisah yang telah diverifikasi oleh Nakafa.
 
-### Logging dan pemantauan
+### Pelaporan pengecualian operasional
 
-Kami mengumpulkan log dan peristiwa yang diperlukan untuk mengoperasikan dan mengamankan Layanan. Log ini digunakan untuk:
+Kegagalan permintaan Next.js produksi dilaporkan ke PostHog hanya ketika pelaporan pengecualian server diaktifkan. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti rute, metode permintaan, atau ringkasan kesalahan framework. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
 
-- Mendeteksi penyalahgunaan, aktivitas mencurigakan, dan insiden operasional.
-- Mendiagnosis masalah keandalan dan menanggapi gangguan layanan.
-- Menyelidiki dan memulihkan insiden keamanan yang diduga.
-
-Laporan kesalahan operasional berisi baris stack trace yang disanitasi dan konteks teknis yang dibatasi tanpa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
+Laporan pengecualian operasional tidak membawa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
 
 ### Pengembangan aman dan manajemen perubahan
 
-Kami memelihara praktik pengembangan dan penerapan yang dirancang untuk mengurangi risiko kerentanan, termasuk meninjau perubahan, menerapkan pembaruan, dan menanggapi advisori keamanan untuk dependensi.
+Workflow repositori Nakafa secara otomatis mengaudit dependensi dan menjalankan pengujian untuk pull request. Proses internal tepercaya dan branch utama juga membangun aplikasi produksi. Pemeriksaan ini mengurangi risiko, tetapi tidak membuktikan bahwa setiap kerentanan telah ditemukan atau diperbaiki.
 
 ### Bukti implementasi untuk revisi ini
 
@@ -64,7 +60,10 @@ Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat da
 - [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
 - [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
 - [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Penangkapan kesalahan permintaan Next.js melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
 - [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
 - [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
 
 ## Keamanan layanan pihak ketiga
@@ -116,7 +115,7 @@ Anda dapat membantu melindungi akun Anda dengan:
 - Keluar dari akun pada perangkat bersama.
 - Melaporkan dugaan kompromi atau akses tanpa izin dengan segera.
 
-Kami dapat menggunakan kontrol keamanan yang dirancang untuk mengurangi risiko pembajakan akun, seperti melacak sesi akun dan aktivitas perangkat, serta menerapkan pembatasan akses ketika terdeteksi aktivitas mencurigakan.
+Kapabilitas pengguna yang memerlukan autentikasi mensyaratkan sesi tervalidasi dan akun aplikasi aktif sebagaimana dijelaskan di atas. Kami dapat membatasi akses jika secara wajar diperlukan untuk melindungi Layanan atau pengguna.
 
 ## Pembaruan keamanan
 

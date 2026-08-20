@@ -22,12 +22,12 @@ This Security Policy does not cover the security practices of third parties you 
 
 Security is a shared responsibility:
 
-- We are responsible for security measures within our control, including application design, access controls, monitoring, and incident response processes.
+- We are responsible for security measures within our control, including application design, access controls, and responding to suspected incidents.
 - You are responsible for maintaining the security of your devices, accounts, and any credentials you use to access the Services.
 
 ## Technical and organizational measures
 
-We maintain a security program designed to reduce risk. Measures include the following categories.
+The following sections distinguish implementation-backed measures, provider responsibilities, and public commitments accepted by Nakafa.
 
 ### Encryption in transit
 
@@ -39,21 +39,17 @@ At application boundaries, authenticated user capabilities require a validated s
 
 ### Data storage and processing
 
-We store and process data using managed infrastructure providers. Storage and processing protections depend on the provider and service configuration. We use provider security features and operational controls designed to protect stored data from unauthorized access.
+Application data is stored in Convex. Nakafa application functions that require authentication use the validated sessions and active-user checks linked below. Infrastructure-level storage protection is supplied by Convex and is not represented here as a separately verified Nakafa storage control.
 
-### Logging and monitoring
+### Operational exception reporting
 
-We collect logs and events necessary to operate and secure the Services. We use these logs to:
+Production Next.js request failures are reported to PostHog only when server exception reporting is enabled. Each report keeps sanitized stack frames and an allowlisted, length-bounded technical context such as the route, request method, or framework error digest. Nakafa uses these reports to diagnose the specific failure and plan corrective maintenance. This is not a representation that Nakafa operates a separate security-information or abuse-detection system.
 
-- Detect abuse, suspicious activity, and operational incidents.
-- Debug reliability issues and respond to outages.
-- Investigate and remediate suspected security incidents.
-
-Operational error reports contain sanitized stack frames and bounded technical context without a user, account, or product-analytics identifier. Optional product-usage events are separate and require an effective analytics consent decision.
+Operational exception reports do not carry a user, account, or product-analytics identifier. Optional product-usage events are separate and require an effective analytics consent decision.
 
 ### Secure development and change management
 
-We maintain development and deployment practices designed to reduce the risk of vulnerabilities, including reviewing changes, applying updates, and responding to security advisories for dependencies.
+The Nakafa repository workflow automatically audits dependencies and runs tests for pull requests. Trusted internal and main-branch runs also build the production application. These checks reduce risk but do not establish that every vulnerability has been found or remediated.
 
 ### Implementation evidence for this revision
 
@@ -64,7 +60,10 @@ The technical statements above are bounded to the following exact Nakafa impleme
 - [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
 - [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
 - [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Next.js request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
 - [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
 - [Vercel HTTPS and certificate delivery documentation](https://vercel.com/docs/security#encryption)
 
 ## Third-party service security
@@ -116,7 +115,7 @@ You can help protect your account by:
 - Logging out of shared devices.
 - Reporting suspected compromise or unauthorized access promptly.
 
-We may use security controls designed to reduce account compromise risk, such as tracking account sessions and device activity, and applying access restrictions when suspicious activity is detected.
+Authenticated user capabilities require a validated session and an active application account as described above. We may restrict access when reasonably necessary to protect the Services or users.
 
 ## Security updates
 

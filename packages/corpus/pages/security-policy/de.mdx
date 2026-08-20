@@ -22,12 +22,12 @@ Sie erfasst nicht die Sicherheitsverfahren von Dritten, mit denen Sie außerhalb
 
 Sicherheit ist eine gemeinsame Verantwortung:
 
-- Wir sind für Sicherheitsmaßnahmen in unserem Einflussbereich verantwortlich, darunter Anwendungsdesign, Zugriffskontrollen, Überwachung und Prozesse zur Reaktion auf Vorfälle.
+- Wir sind für Sicherheitsmaßnahmen in unserem Einflussbereich verantwortlich, darunter Anwendungsdesign, Zugriffskontrollen und die Reaktion auf vermutete Vorfälle.
 - Sie sind für die Sicherheit Ihrer Geräte, Konten und aller Zugangsdaten verantwortlich, die Sie für die Dienste verwenden.
 
 ## Technische und organisatorische Maßnahmen
 
-Wir unterhalten ein Sicherheitsprogramm zur Verringerung von Risiken. Es umfasst die folgenden Bereiche.
+Die folgenden Abschnitte unterscheiden zwischen durch Implementierungsnachweise belegten Maßnahmen, Verantwortlichkeiten der Anbieter und öffentlichen Verpflichtungen Nakafas.
 
 ### Verschlüsselung bei der Übertragung
 
@@ -39,21 +39,17 @@ An den Anwendungsgrenzen setzen authentifizierungspflichtige Nutzerfunktionen ei
 
 ### Datenspeicherung und Verarbeitung
 
-Wir speichern und verarbeiten Daten mithilfe verwalteter Infrastrukturanbieter. Die Schutzmaßnahmen hängen vom jeweiligen Anbieter und von der Konfiguration des Dienstes ab. Wir nutzen Sicherheitsfunktionen der Anbieter und betriebliche Kontrollen, die gespeicherte Daten vor unbefugtem Zugriff schützen sollen.
+Anwendungsdaten werden in Convex gespeichert. Authentifizierungspflichtige Nakafa-Funktionen verwenden die unten verlinkten validierten Sitzungen und Prüfungen aktiver Nutzerkonten. Der Schutz der Speicherung auf Infrastrukturebene wird von Convex bereitgestellt und hier nicht als getrennt verifizierte Speicherkontrolle Nakafas dargestellt.
 
-### Protokollierung und Überwachung
+### Meldung betriebsbezogener Ausnahmen
 
-Wir erfassen Protokolle und Ereignisse, die für den Betrieb und die Absicherung der Dienste erforderlich sind. Wir verwenden sie, um:
+Fehlgeschlagene produktive Next.js-Anfragen werden nur dann an PostHog gemeldet, wenn die serverseitige Ausnahmemeldung aktiviert ist. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa Route, Anfragemethode oder Fehlerkennung des Frameworks. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
 
-- Missbrauch, verdächtige Aktivitäten und betriebliche Vorfälle zu erkennen.
-- Zuverlässigkeitsprobleme zu untersuchen und auf Ausfälle zu reagieren.
-- Vermutete Sicherheitsvorfälle zu untersuchen und zu beheben.
-
-Betriebsbezogene Fehlerberichte enthalten bereinigte Stack-Frames und begrenzten technischen Kontext ohne Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
+Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
 
 ### Sichere Entwicklung und Änderungsverwaltung
 
-Wir setzen Entwicklungs- und Bereitstellungsverfahren ein, die das Risiko von Schwachstellen verringern sollen. Dazu gehören die Prüfung von Änderungen, das Einspielen von Aktualisierungen und die Reaktion auf Sicherheitshinweise zu Abhängigkeiten.
+Der Nakafa-Repository-Workflow prüft Abhängigkeiten automatisch und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe auf dem Hauptbranch erstellen zusätzlich die Produktionsanwendung. Diese Prüfungen verringern Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
 
 ### Implementierungsnachweise für diese Fassung
 
@@ -64,7 +60,10 @@ Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierun
 - [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
 - [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
 - [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Erfassung von Next.js-Anfragefehlern über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
 - [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
 - [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
 
 ## Sicherheit externer Dienstleister
@@ -116,7 +115,7 @@ Sie können Ihr Konto schützen, indem Sie:
 - Sich auf gemeinsam genutzten Geräten abmelden.
 - Einen vermuteten Missbrauch oder unbefugten Zugriff unverzüglich melden.
 
-Wir können Sicherheitskontrollen einsetzen, die das Risiko einer Kontoübernahme verringern sollen. Dazu gehören die Erfassung von Kontositzungen und Geräteaktivitäten sowie Zugriffsbeschränkungen bei verdächtigen Aktivitäten.
+Authentifizierungspflichtige Nutzerfunktionen setzen eine validierte Sitzung und ein aktives Anwendungskonto voraus, wie oben beschrieben. Wir können den Zugriff beschränken, wenn dies zum Schutz der Dienste oder der Nutzerinnen und Nutzer vernünftigerweise erforderlich ist.
 
 ## Aktualisierungen dieser Richtlinie
 
