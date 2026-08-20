@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Privacy Policy",
   description: "Learn how Nakafa collects, uses, and protects your personal data and privacy when using our learning platform.",
-  lastModified: "2026-08-20",
+  lastModified: "2026-08-21",
 };
 
 # Privacy Policy
 
-Last updated: August 20, 2026
+Last updated: August 21, 2026
 
 This Privacy Policy explains how PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") collects, uses, and discloses Personal Data when you access or use our websites, applications, and related services (collectively, the "Services").
 
@@ -40,7 +40,8 @@ The table below summarizes categories of Personal Data we collect, why we collec
 | --- | --- | --- |
 | Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for transactional messages - [Privacy Policy](https://resend.com/legal/privacy-policy) |
 | Account identifiers (authentication identifiers linked to your account) | Authentication and account security | Convex (database/hosting); Vercel (hosting) |
-| Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security, reliability, and product improvement after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
+| Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security and service reliability; product improvement only after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
+| Operational error data (sanitized stack frames, bounded technical context, and a random identifier for that one report, without an account or product-analytics identifier) | Diagnosing failures and maintaining service reliability and security | PostHog (identity-free operational error reporting) |
 | Account security device data (device identifiers and last-seen timestamps) | Session security and unusual-activity detection | Convex (database/hosting); Vercel (hosting) |
 | Education and activity data (classes, bookmarks, exercises, notifications) | Operating learning features and personalization | Convex (database/hosting); Vercel (hosting) |
 | User Content (chat messages, comments, prompts, related conversation context, and generated responses) | Providing interactive features and AI responses | Convex (database/hosting); Vercel AI Gateway (AI routing) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway); OpenAI (AI model processing) - [Services Agreement](https://openai.com/policies/services-agreement/), [Data Processing Addendum](https://openai.com/policies/data-processing-addendum/), [Usage Policies](https://openai.com/policies/usage-policies/) |
@@ -49,7 +50,9 @@ The table below summarizes categories of Personal Data we collect, why we collec
 
 ### Implementation evidence for this revision
 
-We checked these data-flow statements against Nakafa commit [`802dac1d3f78a3d2f305d634d2b3970c57a03f57`](https://github.com/nakafaai/nakafa.com/commit/802dac1d3f78a3d2f305d634d2b3970c57a03f57). The implementation stores and synchronizes account profile data through Convex in [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/auth/client.ts#L37-L125), exposes the authentication boundary in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/app/api/auth/%5B...all%5D/route.ts), enables the web app's Vercel production deployment in [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/vercel.ts), and sends only the recipient name and email address to Resend for the welcome message in [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/emails/mutations.ts#L13-L40).
+We checked these data-flow statements against Nakafa commit [`393ef126f9ecfecfb2e228fbb923fec49b10f2a5`](https://github.com/nakafaai/nakafa.com/commit/393ef126f9ecfecfb2e228fbb923fec49b10f2a5). The implementation stores and synchronizes account profile data through Convex in [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/client.ts#L21-L128), exposes the authentication boundary in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/app/api/auth/%5B...all%5D/route.ts), enables the web app's Vercel production deployment in [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/vercel.ts), and sends only the recipient name and email address to Resend for the welcome message in [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/emails/mutations.ts#L13-L40).
+
+The same revision defines the current notice version and separate anonymous and account decisions in [`packages/analytics/consent.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/consent.ts#L3-L186), loads the browser SDK only after an effective grant in [`packages/analytics/posthog/browser.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296), and checks the current account grant both before queuing and around backend delivery in [`packages/backend/convex/analytics/capture.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199). Identity-free operational exceptions pass through a bounded property contract in [`packages/analytics/posthog/exception.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76). Account deletion removes consent records and starts deletion of the PostHog person and related events through [`packages/backend/convex/auth/cleanup/consents.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/consents.ts#L6-L45) and [`packages/backend/convex/analytics/deletion.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/deletion.ts#L91-L184).
 
 ## Checkout and payment processing
 
@@ -100,9 +103,11 @@ We separate storage that is necessary to operate the Services from optional prod
 
 - Strictly necessary storage supports functions such as authentication, security, language preferences, and remembering your privacy choice. It is not used for product analytics.
 - PostHog product analytics is disabled by default. We do not load its browser library, create its analytics identifier, or send product-usage events unless you first select "Accept" in the privacy controls.
+- We do not use PostHog session replay, autocapture, heatmaps, surveys, product tours, browser performance capture, or automatic page-view and page-leave capture. For admitted analytics events, we disable geographic enrichment and restrict properties to reviewed event contracts.
 - Rejecting analytics does not limit core features. You can later accept or withdraw consent through the privacy controls. Withdrawal stops future analytics collection and clears the browser analytics state controlled by Nakafa.
 - An anonymous browser choice does not silently authorize identified analytics after sign-in. Identified analytics requires the consent recorded for the signed-in account.
-- We respect supported Do Not Track signals and do not use product analytics when the signal requires the analytics library to opt out.
+- A new privacy-notice version requires a fresh decision before optional analytics can resume.
+- If your browser signals that Do Not Track or Global Privacy Control is enabled, optional analytics remains disabled. An existing account grant is replaced with a denial so backend product events also fail closed.
 
 Vercel may still process request and security logs as our hosting provider, and Nakafa may report service exceptions without an advertising or product-analytics identifier. We process those limited records to operate and secure the Services, not to build a product-usage profile.
 
@@ -115,8 +120,9 @@ We retain Personal Data for as long as necessary to provide the Services and for
 Retention depends on the type and purpose of the data:
 
 - Account, profile, and learning data is kept while your account is active. An account-deletion request starts deletion of account-owned data from our active systems.
-- A current analytics-consent record is kept so we can enforce your choice. It is deleted with the account, subject to any record we must retain to demonstrate compliance.
+- While an account exists, we retain its current analytics decision and decision history so we can enforce and demonstrate the choice. Account deletion removes both the current record and its history from Nakafa's active Convex data.
 - Product analytics is not collected before consent. When collected, it is retained only for the period configured for the PostHog project and needed to understand product reliability and use; we periodically review that configuration and shorten or delete data that is no longer needed.
+- For identified account analytics, account deletion starts deletion of the PostHog person and related historical events and repeats the request after a reconciliation delay. The browser is also reset to an analytics denial. Anonymous events are not linked to a Nakafa account and therefore cannot be selected by account identity for deletion.
 - Subscription and billing records are retained for the period required by accounting, tax, payment-dispute, and other applicable legal obligations.
 - Security, audit, and support records are retained for the operational window needed to investigate an incident or resolve a request, and longer only when a legal obligation or active dispute requires it.
 - Processor backups and deletion queues expire under the relevant provider's documented retention and deletion schedule.

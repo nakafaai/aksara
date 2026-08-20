@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Kebijakan Keamanan",
   description: "Tinjau praktik dan kebijakan keamanan Nakafa untuk memahami bagaimana kami melindungi data dan menjamin keamanan platform.",
-  lastModified: "2026-08-20",
+  lastModified: "2026-08-21",
 };
 
 # Kebijakan Keamanan
 
-Terakhir diperbarui: 20 Agustus 2026
+Terakhir diperbarui: 21 Agustus 2026
 
 Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
 
@@ -46,8 +46,10 @@ Kami menyimpan dan memproses data menggunakan penyedia infrastruktur terkelola. 
 Kami mengumpulkan log dan peristiwa yang diperlukan untuk mengoperasikan dan mengamankan Layanan. Log ini digunakan untuk:
 
 - Mendeteksi penyalahgunaan, aktivitas mencurigakan, dan insiden operasional.
-- Debug masalah keandalan dan menanggapi gangguan layanan.
+- Mendiagnosis masalah keandalan dan menanggapi gangguan layanan.
 - Menyelidiki dan memulihkan insiden keamanan yang diduga.
+
+Laporan kesalahan operasional berisi baris stack trace yang disanitasi dan konteks teknis yang dibatasi tanpa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
 
 ### Pengembangan aman dan manajemen perubahan
 
@@ -57,9 +59,12 @@ Kami memelihara praktik pengembangan dan penerapan yang dirancang untuk menguran
 
 Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
 
-- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/next-config/index.ts#L40-L145)
-- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
-- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
+- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
+- [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
 - [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
 
 ## Keamanan layanan pihak ketiga
@@ -70,7 +75,7 @@ Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol merek
 - Convex (basis data dan infrastruktur backend)
 - Polar (pembayaran dan manajemen langganan)
 - Resend (pengiriman email)
-- PostHog (analitik produk berbasis persetujuan)
+- PostHog (analitik produk berbasis persetujuan dan pelaporan kesalahan operasional tanpa identitas)
 - Vercel AI Gateway (perutean permintaan AI)
 - OpenAI (pemrosesan model AI)
 

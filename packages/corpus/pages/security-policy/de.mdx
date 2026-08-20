@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Sicherheitsrichtlinie",
   description: "Informiere dich über Nakafas Sicherheitsmaßnahmen und Richtlinien zum Schutz deiner Daten und der Plattform.",
-  lastModified: "2026-08-20",
+  lastModified: "2026-08-21",
 };
 
 # Sicherheitsrichtlinie
 
-Zuletzt aktualisiert: 20. August 2026
+Zuletzt aktualisiert: 21. August 2026
 
 Diese Sicherheitsrichtlinie beschreibt die Sicherheitsmaßnahmen, die PT NAKAFA TEKNO KREATIF („Nakafa“, „wir“, „uns“ oder „unser“) einsetzt, und die Maßnahmen, die wir von den Nutzerinnen und Nutzern erwarten, um Vertraulichkeit, Integrität und Verfügbarkeit der Dienste und zugehörigen Daten zu schützen.
 
@@ -49,6 +49,8 @@ Wir erfassen Protokolle und Ereignisse, die für den Betrieb und die Absicherung
 - Zuverlässigkeitsprobleme zu untersuchen und auf Ausfälle zu reagieren.
 - Vermutete Sicherheitsvorfälle zu untersuchen und zu beheben.
 
+Betriebsbezogene Fehlerberichte enthalten bereinigte Stack-Frames und begrenzten technischen Kontext ohne Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
+
 ### Sichere Entwicklung und Änderungsverwaltung
 
 Wir setzen Entwicklungs- und Bereitstellungsverfahren ein, die das Risiko von Schwachstellen verringern sollen. Dazu gehören die Prüfung von Änderungen, das Einspielen von Aktualisierungen und die Reaktion auf Sicherheitshinweise zu Abhängigkeiten.
@@ -57,9 +59,12 @@ Wir setzen Entwicklungs- und Bereitstellungsverfahren ein, die das Risiko von Sc
 
 Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierungsrevision und die Anbieterdokumentation begrenzt:
 
-- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/next-config/index.ts#L40-L145)
-- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
-- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/802dac1d3f78a3d2f305d634d2b3970c57a03f57/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
+- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
+- [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
 - [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
 
 ## Sicherheit externer Dienstleister
@@ -70,7 +75,7 @@ Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und
 - Convex (Datenbank und Backend-Infrastruktur)
 - Polar (Zahlungen und Abonnementverwaltung)
 - Resend (E-Mail-Versand)
-- PostHog (einwilligungsbasierte Produktanalyse)
+- PostHog (einwilligungsbasierte Produktanalyse und betriebsbezogene Fehlerberichte ohne Nutzeridentität)
 - Vercel AI Gateway (Weiterleitung von KI-Anfragen)
 - OpenAI (Verarbeitung durch KI-Modelle)
 
