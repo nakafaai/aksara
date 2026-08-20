@@ -6,6 +6,7 @@ import {
 } from "node:crypto";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
+  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,
@@ -22,16 +23,19 @@ import {
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import {
   RollbackDeleteStateSchema,
   type RollbackRecord,
   RollbackRecordSchema,
+  type RollbackUpsertState,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
 import {
+  type DerivedRollbackState,
   deriveRollbackRecords,
   type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
@@ -173,6 +177,25 @@ export const currentRollbackReleaseId = ReleaseIdSchema.make(
 export const priorRollbackReleaseId = ReleaseIdSchema.make(
   "test-rollback-prior"
 );
+
+/** Builds one derived upsert from a real publication record. */
+export function makeDerivedRollbackUpsert(record: {
+  readonly change: RollbackUpsertState["change"];
+  readonly payload: CompiledContentPayload;
+  readonly projection: ContentProjection;
+}) {
+  return {
+    artifact: signRollbackPayload(record.payload),
+    item: {
+      change: record.change,
+      index: 0,
+      releaseId: currentRollbackReleaseId,
+    },
+    kind: "upsert",
+    projection: record.projection,
+  } satisfies DerivedRollbackState;
+}
+
 const resolver = ContentVerificationKeyResolver.of({
   resolve: () =>
     Effect.succeed(

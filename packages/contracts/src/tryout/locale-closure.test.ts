@@ -1,7 +1,11 @@
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 
-import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "#contracts/locale";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
   type TryoutCatalogRecord,
@@ -18,10 +22,7 @@ import {
 } from "#contracts/tryout/placement";
 import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
-const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-  "en",
-  "id",
-]);
+const activeAppLocales = ACTIVE_APP_LOCALES;
 const { catalog, placements } = makeTryoutTestRows();
 
 /** Rebuilds one valid catalog record after a test-owned field change. */

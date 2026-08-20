@@ -65,10 +65,10 @@ describe("article source", () => {
     expect(error._tag).toBe("ArticleCatalogError");
   });
 
-  it("reads all fourteen locale bodies byte-exactly", async () => {
+  it("reads all twenty-one locale bodies byte-exactly", async () => {
     const documents = await readSources(sourceByPath);
 
-    expect(documents).toHaveLength(14);
+    expect(documents).toHaveLength(21);
     expect(documents.map(({ sourcePath }) => sourcePath)).toEqual(
       entries.map(({ sourcePath }) => sourcePath)
     );

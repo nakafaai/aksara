@@ -14,6 +14,7 @@ describe("renderer domain", () => {
       "mathematics",
       "physics",
       "politics",
+      "site",
       "snbt-general",
       "snbt-math",
       "snbt-plain",

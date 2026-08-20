@@ -78,8 +78,8 @@ describe("try-out locale composition", () => {
     if (!(active && localized)) {
       throw new Error("Expected one real try-out source.");
     }
-    const candidate = localeSource(localized);
-    const [track] = candidate.tracks;
+    const overlay = localeSource(localized);
+    const [track] = overlay.tracks;
     const [set] = track?.sets ?? [];
     if (!(track && set)) {
       throw new Error("Expected one real try-out hierarchy.");
@@ -87,27 +87,27 @@ describe("try-out locale composition", () => {
     const inputs = [
       [
         "country",
-        { ...candidate, country: { ...candidate.country, key: "germany" } },
+        { ...overlay, country: { ...overlay.country, key: "germany" } },
       ],
-      ["exam", { ...candidate, exam: { ...candidate.exam, key: "abitur" } }],
-      ["track", { ...candidate, tracks: [] }],
+      ["exam", { ...overlay, exam: { ...overlay.exam, key: "abitur" } }],
+      ["track", { ...overlay, tracks: [] }],
       [
         "set",
         {
-          ...candidate,
-          tracks: [{ ...track, sets: [] }, ...candidate.tracks.slice(1)],
+          ...overlay,
+          tracks: [{ ...track, sets: [] }, ...overlay.tracks.slice(1)],
         },
       ],
       [
         "section",
         {
-          ...candidate,
+          ...overlay,
           tracks: [
             {
               ...track,
               sets: [{ ...set, sections: [] }, ...track.sets.slice(1)],
             },
-            ...candidate.tracks.slice(1),
+            ...overlay.tracks.slice(1),
           ],
         },
       ],

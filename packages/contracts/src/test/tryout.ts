@@ -2,9 +2,9 @@ import { Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
+  ACTIVE_APP_LOCALES,
   type AppLocale,
   AppLocaleCodeSchema,
-  AppLocaleSchema,
   ArtifactLocaleSchema,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
@@ -141,10 +141,7 @@ function placement(appLocale: AppLocale): TryoutPlacementRecord {
 
 /** Returns a small hierarchy fixture closed over the requested app locales. */
 export function makeTryoutTestRows(
-  appLocales: readonly AppLocale[] = [
-    AppLocaleSchema.make("en"),
-    AppLocaleSchema.make("id"),
-  ]
+  appLocales: readonly AppLocale[] = ACTIVE_APP_LOCALES
 ) {
   return {
     catalog: appLocales.flatMap(catalogRows),

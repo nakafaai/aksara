@@ -1,0 +1,201 @@
+export const metadata = {
+  title: "Privacy Policy",
+  description: "Learn how Nakafa collects, uses, and protects your personal data and privacy when using our learning platform.",
+  lastModified: "2026-08-21",
+};
+
+# Privacy Policy
+
+Last updated: August 21, 2026
+
+This Privacy Policy explains how PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") collects, uses, and discloses Personal Data when you access or use our websites, applications, and related services (collectively, the "Services").
+
+Your use of the Services is at all times subject to our [Terms of Service](/en/terms-of-service), which incorporates this Privacy Policy.
+
+## What this Privacy Policy covers
+
+This Privacy Policy covers how we treat Personal Data that we gather when you access or use the Services.
+
+This Privacy Policy does not cover the practices of companies we do not own or control, or people we do not manage, including third-party services you may access through the Services. For information about third-party services' data practices, please refer to their respective privacy policies linked throughout this document.
+
+## Key definitions
+
+- Personal Data means any information that identifies or relates to a particular individual. Personal Data may also be referred to as "personally identifiable information" or "personal information" under applicable privacy laws.
+- User Content means information you submit through the Services, such as chat messages, comments, and other text you provide.
+- Service Providers means vendors that process Personal Data for us to provide a defined part of the Services. Their role and legal obligations depend on the service and applicable law.
+
+## How third parties process data
+
+Third parties receive Personal Data in different legal roles. Vercel, Convex, PostHog, Resend, and OpenAI generally provide defined technical services to Nakafa under their applicable service and data-processing terms. The precise role of each party depends on the processing activity and applicable law.
+
+Polar acts as the Merchant of Record and authorized reseller for checkout transactions. Polar collects and processes checkout data under its own terms and privacy policy, while Nakafa receives the customer, checkout, and subscription information needed to provide and manage access to the purchased Service.
+
+We limit disclosures to the data needed for the stated purpose. Where applicable law requires a data-processing agreement or an international-transfer safeguard, the required terms must be in place before the relevant processing occurs. The provider links below identify the terms that govern their processing and may be updated by those providers.
+
+## Personal Data we collect
+
+The table below summarizes categories of Personal Data we collect, why we collect it, and the categories of third parties with whom we disclose it. Details are explained in the sections that follow.
+
+| Category of Personal Data (examples) | Purpose(s) for collection | Recipients and service roles |
+| --- | --- | --- |
+| Profile or contact data (name, email, optional profile image, optional role) | Account creation, support, and service delivery | Convex (database/hosting) - [Privacy Policy](https://www.convex.dev/legal/privacy/v2024-09-24), [DPA](https://www.convex.dev/legal/dpa/v2024-03-21); Vercel (hosting) - [Privacy Policy](https://vercel.com/legal/privacy-policy); Resend receives only the name and email needed for the welcome email - [Privacy Policy](https://resend.com/legal/privacy-policy) |
+| Account identifiers (authentication identifiers linked to your account) | Authentication and account security | Convex (database/hosting); Vercel (hosting) |
+| Device and usage data (IP address, browser/OS, security logs, and consented usage events) | Security and service reliability; product improvement only after consent | Vercel (hosting/security logs); PostHog (consent-based product analytics) - [Privacy Compliance](https://posthog.com/docs/privacy) |
+| Operational error data (sanitized stack frames, bounded technical context, and a random identifier for that one report, without an account or product-analytics identifier) | Diagnosing failures and maintaining service reliability and security | PostHog (identity-free operational error reporting) |
+| Education and activity data (class memberships, bookmarks, assessment attempts and responses, notification records and preferences) | Operating learning features and personalization | Convex (database/hosting); Vercel (hosting) |
+| User Content (chat messages, comments, prompts, related conversation context, and generated responses) | Providing interactive features and AI responses | Convex (database/hosting); Vercel AI Gateway (AI routing) - [Privacy Policy](https://vercel.com/legal/privacy-policy), [AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway); OpenAI (AI model processing) - [Services Agreement](https://openai.com/policies/services-agreement/), [Data Processing Addendum](https://openai.com/policies/data-processing-addendum/), [Usage Policies](https://openai.com/policies/usage-policies/) |
+| Payment and subscription data (customer, checkout, and subscription identifiers and related metadata) | Checkout, subscription management, and compliance | Polar (Merchant of Record and authorized reseller) - [Privacy Policy](https://polar.sh/legal/privacy-policy), [Checkout Buyer Terms](https://polar.sh/legal/checkout-buyer-terms); Convex (subscription records); Vercel (hosting) |
+
+### Implementation evidence for this revision
+
+We checked these data-flow statements against Nakafa commit [`393ef126f9ecfecfb2e228fbb923fec49b10f2a5`](https://github.com/nakafaai/nakafa.com/commit/393ef126f9ecfecfb2e228fbb923fec49b10f2a5). The implementation stores and synchronizes account profile data through Convex in [`packages/backend/convex/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/client.ts#L21-L128), exposes the authentication boundary in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/app/api/auth/%5B...all%5D/route.ts), enables the web app's Vercel production deployment in [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/vercel.ts), and sends only the recipient name and email address to Resend for the welcome message in [`packages/backend/convex/emails/mutations.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/emails/mutations.ts#L13-L40).
+
+The same revision defines the current notice version and separate anonymous and account decisions in [`packages/analytics/consent.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/consent.ts#L3-L186), loads the browser SDK only after an effective grant in [`packages/analytics/posthog/browser.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296), and checks the current account grant both before queuing and around backend delivery in [`packages/backend/convex/analytics/capture.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199). Identity-free operational exceptions pass through a bounded property contract in [`packages/analytics/posthog/exception.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76). Account deletion removes consent records and starts deletion of the PostHog person and related events through [`packages/backend/convex/auth/cleanup/consents.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/consents.ts#L6-L45) and [`packages/backend/convex/analytics/deletion.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/deletion.ts#L91-L184).
+
+AI requests follow the same pinned revision. [`packages/ai/config/model.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/ai/config/model.ts#L22-L67) maps the public Nakafa models to OpenAI model identifiers, [`packages/ai/config/app.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/ai/config/app.ts#L14-L27) sends those identifiers to the validated Vercel AI Gateway provider in [`packages/ai/config/provider.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/ai/config/provider.ts#L22-L38), and [`packages/ai/nina/runtime/agent.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/ai/nina/runtime/agent.ts#L106-L168) submits the conversation through that model with the OpenAI-only, no-training routing restriction defined in [`packages/ai/config/routing.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/ai/config/routing.ts#L3-L7). User messages and their parts are written to Convex through [`apps/www/app/api/chat/persistence.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/app/api/chat/persistence.ts#L45-L139), while generated responses and their parts are scheduled for Convex persistence through [`apps/www/app/api/chat/store.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/app/api/chat/store.ts#L18-L79).
+
+Checkout and subscription handling also follow the pinned revision. [`packages/backend/convex/customers/actions/public.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/customers/actions/public.ts#L39-L95) requires an authenticated account and creates a Polar checkout session, [`packages/backend/convex/routes/polar.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/routes/polar.ts#L18-L49) verifies Polar webhook signatures before processing events, and [`packages/backend/convex/customers/polar/webhook.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/customers/polar/webhook.ts#L51-L195) accepts supported customer and subscription events through guarded internal Convex mutations. The exact subscription fields stored in Convex are defined in [`packages/backend/convex/subscriptions/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/subscriptions/schema.ts#L18-L56).
+
+The listed learning and account-activity records are stored in domain-owned Convex schemas at the same revision. Class and membership records are defined in [`packages/backend/convex/classes/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/classes/schema.ts#L132-L180), bookmark and collection fields in [`packages/backend/convex/bookmarks/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/bookmarks/schema.ts#L5-L25), assessment attempts and responses in [`packages/backend/convex/assessments/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/assessments/schema.ts#L392-L440), and notification records and preferences in [`packages/backend/convex/notifications/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/notifications/schema.ts#L117-L175).
+
+The bounded account-deletion coordinator runs each domain-owned cleanup program in [`packages/backend/convex/auth/cleanup/impl.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/impl.ts#L14-L59). Those programs remove class memberships through [`schools.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/schools.ts#L10-L47), bookmarks and collections through [`social.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/social.ts#L14-L48), assessment attempts and responses through [`assessments.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/assessments.ts#L10-L151), and notification records and preferences through [`notifications.ts`](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/cleanup/notifications.ts#L12-L96).
+
+## Checkout and payment processing
+
+Polar is Nakafa's Merchant of Record and authorized reseller. When you complete checkout, you purchase the applicable product from Polar and enter a payment agreement with Polar under the [Polar Checkout Buyer Terms](https://polar.sh/legal/checkout-buyer-terms). Polar, or its payment processor, collects and processes the payment details needed for the transaction under the [Polar Privacy Policy](https://polar.sh/legal/privacy-policy).
+
+Nakafa does not collect your full payment-card number. We receive the customer, checkout, subscription, product, status, and related metadata needed to grant access, manage your subscription, provide support, and meet legal obligations.
+
+## Why we collect and use Personal Data
+
+We collect and use Personal Data to operate, maintain, and improve the Services. This includes providing account and learning features, supporting subscriptions, sending the welcome email, maintaining security and reliability, preventing abuse and scraping, and complying with legal obligations. We use optional product analytics only after you consent.
+
+### Legal bases for processing (GDPR)
+
+If you are in the EU/EEA, we process Personal Data under one or more of the following legal bases:
+
+- Contract: processing is necessary to provide the Services you request.
+- Legitimate interests: processing is necessary for security, service reliability, fraud prevention, and protection of the Services, and those interests are not overridden by your rights.
+- Consent: optional product analytics is based on your consent. You can reject or withdraw consent without losing access to core features.
+- Legal obligation: processing is necessary to comply with applicable laws.
+
+## Where Personal Data comes from
+
+- From you directly, when you create an account, submit User Content, or contact us.
+- Automatically, when you use the Services (for example security and request data, plus product analytics events only after consent).
+- From third parties you interact with through the Services, such as Polar payment events.
+
+## How we disclose Personal Data
+
+We disclose Personal Data in the following circumstances:
+
+- Service Providers: Vercel hosts the Services, Convex provides the database and backend, PostHog processes product analytics after consent, Resend delivers the welcome email, and OpenAI processes AI inputs to generate responses.
+- Polar: Polar independently processes checkout and payment data as Merchant of Record and authorized reseller. Nakafa receives the checkout and subscription records needed to provide and manage access.
+- AI processing: when you submit a prompt or chat message for an AI feature, we send the prompt and the related conversation context through Vercel AI Gateway to OpenAI. We receive the generated response and store the conversation data needed to provide the feature.
+- Legal and safety: we may disclose information if we believe in good faith that it is necessary to comply with law, respond to lawful requests, protect rights and safety, or investigate fraud or abuse.
+- Business transfers: if we are involved in a merger, acquisition, financing, reorganization, bankruptcy, or sale of assets, information may be transferred as part of that transaction.
+
+## AI processing
+
+Nakafa currently routes AI requests through Vercel AI Gateway to OpenAI. When you use an AI feature, the prompt, related conversation context, and technical metadata needed to process the request are sent to those providers. The generated response is returned to Nakafa and may be stored with the conversation so that the feature works and the conversation remains available to you.
+
+Do not include government identifiers, financial-account numbers, highly sensitive health information, or other sensitive Personal Data in an AI prompt. AI output can be inaccurate and must not be treated as professional advice or as the sole basis for an important decision.
+
+The relevant provider terms are the [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [OpenAI Services Agreement](https://openai.com/policies/services-agreement/), [OpenAI Data Processing Addendum](https://openai.com/policies/data-processing-addendum/), and [OpenAI Usage Policies](https://openai.com/policies/usage-policies/).
+
+## Cookies, local storage, and product analytics
+
+We separate storage that is necessary to operate the Services from optional product analytics.
+
+- Strictly necessary storage supports functions such as authentication, security, language preferences, and remembering your privacy choice. It is not used for product analytics.
+- PostHog product analytics is disabled by default. We do not load its browser library, create its analytics identifier, or send product-usage events unless you first select "Accept" in the privacy controls.
+- We do not use PostHog session replay, autocapture, heatmaps, surveys, product tours, browser performance capture, or automatic page-view and page-leave capture. For admitted analytics events, we disable geographic enrichment and restrict properties to reviewed event contracts.
+- Rejecting analytics does not limit core features. You can later accept or withdraw consent through the privacy controls. Withdrawal stops future analytics collection and clears the browser analytics state controlled by Nakafa.
+- An anonymous browser choice does not silently authorize identified analytics after sign-in. Identified analytics requires the consent recorded for the signed-in account.
+- A new privacy-notice version requires a fresh decision before optional analytics can resume.
+- If your browser signals that Do Not Track or Global Privacy Control is enabled, optional analytics remains disabled. An existing account grant is replaced with a denial so backend product events also fail closed.
+
+Vercel may still process request and security logs as our hosting provider, and Nakafa may report service exceptions without an advertising or product-analytics identifier. We process those limited records to operate and secure the Services, not to build a product-usage profile.
+
+For information about PostHog's processing, review its [Privacy Compliance documentation](https://posthog.com/docs/privacy).
+
+## Data retention
+
+We retain Personal Data for as long as necessary to provide the Services and for legitimate business purposes, including compliance, dispute resolution, and enforcement of agreements.
+
+Retention depends on the type and purpose of the data:
+
+- Account, profile, and learning data is kept while your account is active. An account-deletion request starts deletion of account-owned data from our active systems.
+- While an account exists, we retain its current analytics decision and decision history so we can enforce and demonstrate the choice. Account deletion removes both the current record and its history from Nakafa's active Convex data.
+- Product analytics is not collected before consent. When collected, its retention by PostHog follows the provider-side project setting. Because that operational setting can change, this Policy does not state a fixed period; you can request the current setting at [nakafaai@gmail.com](mailto:nakafaai@gmail.com).
+- For identified account analytics, account deletion starts deletion of the PostHog person and related historical events and repeats the request after a reconciliation delay. The browser is also reset to an analytics denial. Anonymous events are not linked to a Nakafa account and therefore cannot be selected by account identity for deletion.
+- Subscription and billing records are retained for the period required by accounting, tax, payment-dispute, and other applicable legal obligations.
+- Provider-controlled request and security logs, backups, and deletion queues may follow provider-side retention settings and legal obligations. Nakafa has not verified one fixed schedule that applies across those providers, so this Policy does not state one. Contact [nakafaai@gmail.com](mailto:nakafaai@gmail.com) for current information.
+
+If you request deletion, we will delete or de-identify Personal Data unless we are required or permitted to retain it for legal or legitimate business reasons.
+
+## Data security
+
+We use reasonable administrative, technical, and organizational measures designed to protect Personal Data against unauthorized access, loss, misuse, alteration, and destruction.
+
+No security program can eliminate all risk. You are responsible for keeping your account credentials confidential and for using a secure password and device practices.
+
+## International data transfers
+
+We are based in Indonesia and may process and store Personal Data in Indonesia and other countries where our Service Providers operate. A transfer for which applicable law requires a transfer mechanism must not begin until Nakafa has verified and put that mechanism in place. This Policy does not identify an adequacy decision or contractual safeguard for a provider flow unless that exact arrangement has been verified. Contact [nakafaai@gmail.com](mailto:nakafaai@gmail.com) for current information before relying on a particular mechanism.
+
+## Children’s privacy
+
+The Services are not intended for children under 13 years of age. If you are under 13, do not use the Services or submit Personal Data.
+
+If you are under 18, you may use the non-AI parts of the Services only with the involvement and permission of a parent or legal guardian who agrees to this Privacy Policy and our Terms of Service.
+
+AI features are available only if you are at least 16 years old, or any higher minimum age required by the law where you live. If you are under 18, you also need the permission of a parent or legal guardian.
+
+If we learn that we collected Personal Data from a child under 13, we will take steps to delete that information.
+
+## Your privacy rights
+
+Your rights depend on where you live.
+
+### Indonesia (UU PDP)
+
+If you are in Indonesia, you may have rights under Indonesia’s Personal Data Protection Law, including rights to access, correct, and delete your Personal Data, and other rights provided by applicable law.
+
+### EU/EEA (GDPR)
+
+If you are in the EU/EEA, you may have the following rights:
+
+- Access your Personal Data.
+- Correct inaccurate or incomplete Personal Data.
+- Delete your Personal Data in certain circumstances.
+- Restrict or object to certain processing.
+- Request data portability.
+- Withdraw consent where processing is based on consent.
+- Lodge a complaint with a data protection supervisory authority, including in the EU/EEA country where you live or work or where you believe an infringement occurred.
+
+### US state privacy rights
+
+If you are a resident of a US state with a comprehensive privacy law (for example California and certain other states), you may have rights such as:
+
+- Right to know/access the categories and specific pieces of Personal Data we collected.
+- Right to delete Personal Data (subject to exceptions).
+- Right to correct inaccurate Personal Data (in certain jurisdictions).
+- Right to opt out of certain processing such as targeted advertising, sale/sharing, or profiling (where applicable).
+- Right not to receive discriminatory treatment for exercising your rights.
+
+This Policy commits Nakafa not to sell Personal Data or use it for cross-context behavioral or targeted advertising. Before changing that commitment, we will update this Policy and provide any notice or opt-out required by applicable law.
+
+## Exercising your rights
+
+To exercise your privacy rights, contact us at [nakafaai@gmail.com](mailto:nakafaai@gmail.com). You can also change or withdraw product-analytics consent through the privacy controls in the Services.
+
+To protect users, we will verify your identity before processing certain requests. Verification may require access to the email address associated with your account or other information needed to confirm your identity.
+
+If you are making a GDPR-related request, include “GDPR Request” in the subject line.
+
+## Contact information
+
+PT NAKAFA TEKNO KREATIF, Taman Sukahati Permai Blok H-6, Sukahati, Cibinong, Kabupaten Bogor, Jawa Barat 16913, Indonesia
+
+Email: [nakafaai@gmail.com](mailto:nakafaai@gmail.com)

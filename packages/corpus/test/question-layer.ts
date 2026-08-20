@@ -67,7 +67,7 @@ export default choices;`;
 export const generalQuestionSourceFiles = questionSourceFiles(
   TryoutKeySchema.make("general-reasoning")
 );
-export const candidateQuestionChoicesSource = validQuestionChoicesSource
+export const germanQuestionChoicesSource = validQuestionChoicesSource
   .replace(
     '  en: [{ label: "A", value: true }, { label: "B", value: false }],\n',
     ""
@@ -106,6 +106,10 @@ export function choicesForQuestion(
 ) {
   return new Map([
     [resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"), source],
+    [
+      resolve(absoluteQuestionTestSourceRoot, root, "choices.de.ts"),
+      germanQuestionChoicesSource,
+    ],
   ]);
 }
 

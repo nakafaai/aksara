@@ -17,15 +17,29 @@ import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 import {
   germanMaterialCatalog,
-  lessonMaterialGraph,
+  lessonMaterialEntries,
   lessonMaterialSource,
 } from "#corpus/test/material";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+  AppLocaleSchema.make("en"),
+  AppLocaleSchema.make("id"),
+]);
+
+/** Decodes injected embedded sources without unrelated locale overlays. */
+function decodeEmbeddedRegistry(input: unknown) {
+  return decodeMaterialRegistry(
+    input,
+    undefined,
+    undefined,
+    embeddedAppLocales
+  );
+}
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
-  return Effect.runPromise(decodeMaterialRegistry(input).pipe(Effect.flip));
+  return Effect.runPromise(decodeEmbeddedRegistry(input).pipe(Effect.flip));
 }
 
 describe("material registry", () => {
@@ -42,7 +56,7 @@ describe("material registry", () => {
       .sort();
     const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
 
-    expect(entries).toHaveLength(766);
+    expect(entries).toHaveLength(1149);
     expect(new Set(entries.map(({ route }) => route.materialKey)).size).toBe(
       36
     );
@@ -52,7 +66,10 @@ describe("material registry", () => {
     expect(
       entries.filter(({ route }) => route.appLocale === "id")
     ).toHaveLength(383);
-    expect(new Set(projectedPaths).size).toBe(766);
+    expect(
+      entries.filter(({ route }) => route.appLocale === "de")
+    ).toHaveLength(383);
+    expect(new Set(projectedPaths).size).toBe(1149);
     expect(projectedPaths).toEqual(authoredPaths);
 
     const representativeKeys = new Set([
@@ -67,14 +84,19 @@ describe("material registry", () => {
         .filter(({ route }) => representativeKeys.has(route.contentKey))
         .map(({ route }) => route.publicPath)
     ).toEqual([
+      "faecher/ki-und-data-science/ki-programmierung/rechenoperatoren",
       "subjects/ai-ds/ai-programming/arithmetic-operator",
       "materi/ai-ds/pemrograman-ai/operator-aritmatika",
+      "faecher/biologie/vielfalt-der-lebewesen/bakterien",
       "subjects/biology/biodiversity/bacteria",
       "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
+      "faecher/chemie/atombau/elektronenhuelle",
       "subjects/chemistry/structure-matter/atom-shell",
       "materi/kimia/struktur-atom/kulit-atom",
+      "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
       "subjects/mathematics/function-composition-inverse-function/function-concept",
       "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+      "faecher/physik/kinematik/beschleunigung",
       "subjects/physics/kinematics/acceleration",
       "materi/fisika/kinematika/percepatan",
     ]);
@@ -82,55 +104,10 @@ describe("material registry", () => {
 
   it("derives exact localized routes from one material source", async () => {
     const entries = await Effect.runPromise(
-      decodeMaterialRegistry([lessonMaterialSource()])
+      decodeEmbeddedRegistry([lessonMaterialSource()])
     );
 
-    expect(entries).toEqual([
-      {
-        assetRoot:
-          "material/lesson/mathematics/function-composition-inverse-function",
-        delivery: "public",
-        rendererDomain: "mathematics",
-        route: {
-          appLocale: "en",
-          artifactLocale: "en",
-          contentKey:
-            "material/lesson/mathematics/function-composition-inverse-function/function-concept",
-          graph: lessonMaterialGraph("en"),
-          materialKey:
-            "lesson.mathematics.function-composition-inverse-function",
-          order: 1,
-          publicPath:
-            "subjects/mathematics/function-composition-inverse-function/function-concept",
-          sectionKey: "function-concept",
-          topicTitle: "Function Composition and Inverse Function",
-        },
-        sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
-      },
-      {
-        assetRoot:
-          "material/lesson/mathematics/function-composition-inverse-function",
-        delivery: "public",
-        rendererDomain: "mathematics",
-        route: {
-          appLocale: "id",
-          artifactLocale: "id",
-          contentKey:
-            "material/lesson/mathematics/function-composition-inverse-function/function-concept",
-          graph: lessonMaterialGraph("id"),
-          materialKey:
-            "lesson.mathematics.function-composition-inverse-function",
-          order: 1,
-          publicPath:
-            "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-          sectionKey: "function-concept",
-          topicTitle: "Fungsi Komposisi dan Fungsi Invers",
-        },
-        sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
-      },
-    ]);
+    expect(entries).toEqual(lessonMaterialEntries());
   });
 
   it("projects permanent German overlays through the publication seam", async () => {
@@ -179,7 +156,7 @@ describe("material registry", () => {
       ])
     );
     const entries = await Effect.runPromise(
-      decodeMaterialRegistry([source], domains)
+      decodeMaterialRegistry([source], domains, undefined, embeddedAppLocales)
     );
 
     expect(entries).toHaveLength(2);
@@ -199,7 +176,12 @@ describe("material registry", () => {
 
   it("rejects a source whose domain has no reviewed descriptor", async () => {
     const error = await Effect.runPromise(
-      decodeMaterialRegistry([lessonMaterialSource()], []).pipe(Effect.flip)
+      decodeMaterialRegistry(
+        [lessonMaterialSource()],
+        [],
+        undefined,
+        embeddedAppLocales
+      ).pipe(Effect.flip)
     );
 
     expect(error).toBeInstanceOf(MaterialDomainMissingError);
@@ -291,7 +273,7 @@ describe("material registry", () => {
 
   it("allows an empty source catalog without inventing entries", async () => {
     await expect(
-      Effect.runPromise(decodeMaterialRegistry([]))
+      Effect.runPromise(decodeEmbeddedRegistry([]))
     ).resolves.toEqual([]);
   });
 });

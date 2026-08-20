@@ -32,6 +32,7 @@ import {
   canonicalizeHistoricalContentReleaseManifest,
   historicalReleaseSigningInput,
 } from "#contracts/history/release-bytes";
+import { HistoricalRendererManifestSchema } from "#contracts/history/renderer";
 import { verifyStoredProtectedContentRuntimeExchange } from "#contracts/history/runtime";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
@@ -59,8 +60,8 @@ function sign(value: string) {
   );
 }
 
-/** Creates one complete renderer for retained runtime verification tests. */
-export function createHistoricalRenderer(input?: {
+/** Creates one complete current renderer for retained compatibility tests. */
+function createCurrentHistoricalRenderer(input?: {
   readonly components?: readonly RendererComponentRequirement[];
   readonly publishedDomain?: "mathematics" | "snbt-general";
 }) {
@@ -77,7 +78,28 @@ export function createHistoricalRenderer(input?: {
   );
 }
 
+/** Creates the exact pre-site renderer envelope retained releases froze. */
+export async function createHistoricalRenderer(input?: {
+  readonly components?: readonly RendererComponentRequirement[];
+  readonly publishedDomain?: "mathematics" | "snbt-general";
+}) {
+  const current = await createCurrentHistoricalRenderer(input);
+  const domains = current.domains.filter(({ name }) => name !== "site");
+  return Schema.decodeUnknownSync(HistoricalRendererManifestSchema)({
+    ...current,
+    domains,
+    hash: hash(
+      canonicalizeRendererManifestContract({
+        base: current.base,
+        domains,
+        publishedDomains: current.publishedDomains,
+      })
+    ),
+  });
+}
+
 export const historicalRenderer = await createHistoricalRenderer();
+export const historicalLiveRenderer = await createCurrentHistoricalRenderer();
 const historicalSubsetDomains = historicalRenderer.domains.filter(
   ({ name }) => name === "snbt-general"
 );
@@ -92,15 +114,19 @@ export const historicalSubsetRenderer = {
     })
   ),
 };
-export const historicalUnpublishedRenderer = await createHistoricalRenderer({
-  publishedDomain: "mathematics",
-});
-export const historicalMissingRenderer = await createHistoricalRenderer({
+export const historicalUnpublishedRenderer =
+  await createCurrentHistoricalRenderer({
+    publishedDomain: "mathematics",
+  });
+export const historicalFrozenUnpublishedRenderer =
+  await createHistoricalRenderer({ publishedDomain: "mathematics" });
+export const historicalMissingRenderer = await createCurrentHistoricalRenderer({
   components: [{ name: "InlineMath", version: 1 }],
 });
-export const historicalUnsupportedRenderer = await createHistoricalRenderer({
-  components: [{ name: "BlockMath", version: 2 }],
-});
+export const historicalUnsupportedRenderer =
+  await createCurrentHistoricalRenderer({
+    components: [{ name: "BlockMath", version: 2 }],
+  });
 
 const questionRoot =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
@@ -221,7 +247,7 @@ export function verifyHistoricalExchange(input?: {
   readonly response?: unknown;
 }) {
   return verifyStoredProtectedContentRuntimeExchange({
-    rendererManifest: input?.rendererManifest ?? historicalRenderer,
+    rendererManifest: input?.rendererManifest ?? historicalLiveRenderer,
     request: input?.request ?? historicalRequest,
     response: input?.response ?? historicalFound,
   }).pipe(

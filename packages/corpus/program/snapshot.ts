@@ -25,32 +25,21 @@ import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { decodeMaterialDomains } from "#corpus/material/domain";
 import { decodeMaterialSources } from "#corpus/material/source";
-import {
-  decodeProgramCatalog,
-  selectActiveProgramCatalog,
-} from "#corpus/program/catalog";
-import { prepareProgramMaterials } from "#corpus/program/materials";
+import { decodeProgramCatalog } from "#corpus/program/catalog";
 
 /** Resolves exact source catalogs before replaying aggregate program rows. */
 const prepareProgramSources = Effect.fn("AksaraCorpus.prepareProgramSources")(
   function* (programInput?: unknown, programLocaleInput?: unknown) {
-    const [curricula, domains, materials, authoringPrograms] =
-      yield* Effect.all([
-        decodeCurriculumCatalog(),
-        decodeMaterialDomains(),
-        decodeMaterialSources(),
-        decodeProgramCatalog(programInput, programLocaleInput),
-      ]);
-    const programs = yield* selectActiveProgramCatalog(authoringPrograms);
-    const localized = yield* prepareProgramMaterials({
-      appLocales: ACTIVE_APP_LOCALES,
-      domains,
-      materials,
-    });
+    const [curricula, domains, materials, programs] = yield* Effect.all([
+      decodeCurriculumCatalog(),
+      decodeMaterialDomains(),
+      decodeMaterialSources(),
+      decodeProgramCatalog(programInput, programLocaleInput),
+    ]);
     const routes = yield* projectCurriculumRoutes({
       curricula,
-      domains: localized.domains,
-      materials: localized.materials,
+      domains,
+      materials,
       programs,
     });
     return { programs, routes };

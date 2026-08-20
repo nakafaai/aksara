@@ -9,8 +9,7 @@ import {
   decodeQuestionPath,
   indexQuestionBanks,
   locateQuestionEntry,
-  questionAuthoringArtifactLocalesForSection,
-  questionAuthoringSourceFiles,
+  questionSourceFiles,
 } from "#corpus/question-bank/path";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
@@ -98,9 +97,9 @@ function rejectPath(path: string) {
 }
 
 describe("question path", () => {
-  it("derives candidate files without translating assessed-language prompts", () => {
+  it("derives the exact active files without translating assessed-language prompts", () => {
     expect(
-      questionAuthoringSourceFiles(TryoutKeySchema.make("general-reasoning"))
+      questionSourceFiles(TryoutKeySchema.make("general-reasoning"))
     ).toEqual([
       "answer.de.mdx",
       "answer.en.mdx",
@@ -112,10 +111,14 @@ describe("question path", () => {
       "question.id.mdx",
     ]);
     expect(
-      questionAuthoringArtifactLocalesForSection(
-        TryoutKeySchema.make("english-language")
-      )
-    ).toEqual(["en"]);
+      questionSourceFiles(TryoutKeySchema.make("english-language"))
+    ).toEqual([
+      "answer.de.mdx",
+      "answer.en.mdx",
+      "answer.id.mdx",
+      "choices.ts",
+      "question.en.mdx",
+    ]);
   });
 
   it("locates the terminal question below a question-prefixed bank", () => {

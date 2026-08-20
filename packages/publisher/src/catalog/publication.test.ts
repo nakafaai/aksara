@@ -5,6 +5,7 @@ import {
 import type {
   ArticleHead,
   MaterialHead,
+  PageHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
@@ -16,6 +17,7 @@ import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { sourceByPath as articleSources, checkoutRoot } from "#test/article";
 import { testFileLayer } from "#test/files";
 import { sourceByPath as materialSources } from "#test/material/spec";
+import { sourceByPath as pageSources } from "#test/page";
 import { sourceByPath as questionSources } from "#test/question/spec";
 import { testRendererDomains } from "#test/renderer";
 
@@ -89,6 +91,7 @@ const rendererManifest = await Effect.runPromise(
 const sources = new Map([
   ...articleSources,
   ...materialSources,
+  ...pageSources,
   ...questionSources,
 ]);
 const baseReleaseId = ReleaseIdSchema.make("test-catalog-base");
@@ -101,6 +104,7 @@ interface CatalogTestInput {
     readonly releaseId: typeof baseReleaseId;
   } | null;
   readonly material?: readonly MaterialHead[];
+  readonly page?: readonly PageHead[];
   readonly question?: readonly QuestionHead[];
 }
 
@@ -112,6 +116,7 @@ function catalogProgram(input: CatalogTestInput) {
     published: {
       article: Stream.fromIterable(input.article ?? []),
       material: Stream.fromIterable(input.material ?? []),
+      page: Stream.fromIterable(input.page ?? []),
       question: Stream.fromIterable(input.question ?? []),
     },
     rendererManifest,
@@ -154,6 +159,9 @@ const articleHeads = initialHeads.filter(
 const materialHeads = initialHeads.filter(
   (head): head is MaterialHead => head.family === "material"
 );
+const pageHeads = initialHeads.filter(
+  (head): head is PageHead => head.family === "page"
+);
 const questionHeads = initialHeads.filter(
   (head): head is QuestionHead => head.family === "question"
 );
@@ -175,18 +183,21 @@ describe("content catalog publication", () => {
     expect(publication.result).toHaveLength(initialHeads.length);
   });
 
-  it("merges all three family streams in canonical order", () => {
-    expect(initial.records).toHaveLength(22);
-    expect(initial.routes).toHaveLength(22);
-    expect(initialHeads).toHaveLength(22);
+  it("merges all four family streams in canonical order", () => {
+    expect(initial.records).toHaveLength(43);
+    expect(initial.routes).toHaveLength(43);
+    expect(initialHeads).toHaveLength(43);
     expect(
-      initialHeads.slice(0, 14).every((head) => head.family === "article")
+      initialHeads.slice(0, 21).every((head) => head.family === "article")
     ).toBe(true);
     expect(
-      initialHeads.slice(14, 18).every((head) => head.family === "material")
+      initialHeads.slice(21, 25).every((head) => head.family === "material")
     ).toBe(true);
     expect(
-      initialHeads.slice(18).every((head) => head.family === "question")
+      initialHeads.slice(25, 37).every((head) => head.family === "page")
+    ).toBe(true);
+    expect(
+      initialHeads.slice(37).every((head) => head.family === "question")
     ).toBe(true);
   });
 
@@ -195,6 +206,7 @@ describe("content catalog publication", () => {
       article: articleHeads,
       base,
       material: materialHeads,
+      page: pageHeads,
       question: questionHeads,
     });
 
@@ -211,6 +223,7 @@ describe("content catalog publication", () => {
         digest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
       },
       material: materialHeads,
+      page: pageHeads,
       question: questionHeads,
     });
 

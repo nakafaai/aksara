@@ -1,0 +1,128 @@
+export const metadata = {
+  title: "Kebijakan Keamanan",
+  description: "Tinjau praktik dan kebijakan keamanan Nakafa untuk memahami bagaimana kami melindungi data dan menjamin keamanan platform.",
+  lastModified: "2026-08-21",
+};
+
+# Kebijakan Keamanan
+
+Terakhir diperbarui: 21 Agustus 2026
+
+Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
+
+Untuk informasi tentang cara kami mengumpulkan dan menggunakan Data Pribadi, silakan tinjau [Kebijakan Privasi](/id/privacy-policy).
+
+## Ruang lingkup
+
+Kebijakan Keamanan ini berlaku untuk Layanan yang dioperasikan oleh Nakafa, termasuk situs web dan aplikasi yang dihosting dan didukung melalui penyedia pihak ketiga.
+
+Kebijakan Keamanan ini tidak mencakup praktik keamanan pihak ketiga yang Anda gunakan secara langsung di luar Layanan, meskipun pihak ketiga tersebut ditautkan dari Layanan.
+
+## Model keamanan dan tanggung jawab
+
+Keamanan adalah tanggung jawab bersama:
+
+- Kami bertanggung jawab atas langkah keamanan yang berada dalam kendali kami, termasuk desain aplikasi, kontrol akses, dan tanggapan terhadap dugaan insiden.
+- Anda bertanggung jawab atas keamanan perangkat, akun, dan kredensial yang Anda gunakan untuk mengakses Layanan.
+
+## Langkah teknis dan organisasi
+
+Bagian berikut membedakan langkah yang didukung bukti implementasi, tanggung jawab penyedia, dan komitmen publik yang diterima Nakafa.
+
+### Enkripsi saat transmisi
+
+Layanan web produksi kami menggunakan HTTPS. Nakafa juga menerapkan HTTP Strict Transport Security dan header keamanan peramban terkait pada seluruh jalur aplikasi. Implementasi dan dokumentasi penyedia untuk revisi ini ditautkan di bawah.
+
+### Kontrol akses
+
+Pada batas aplikasi, kapabilitas pengguna yang memerlukan autentikasi mensyaratkan sesi yang tervalidasi dan pengguna aplikasi yang aktif. Endpoint konten internal hanya menerima kredensial bearer yang diperiksa dengan perbandingan waktu konstan. Pernyataan ini tidak menjelaskan cara masing-masing penyedia infrastruktur memberikan akses ke konsol administratif mereka.
+
+### Penyimpanan dan pemrosesan data
+
+Data aplikasi disimpan di Convex. Fungsi aplikasi Nakafa yang memerlukan autentikasi menggunakan sesi tervalidasi dan pemeriksaan pengguna aktif yang ditautkan di bawah. Perlindungan penyimpanan pada tingkat infrastruktur disediakan oleh Convex dan tidak dinyatakan di sini sebagai kontrol penyimpanan terpisah yang telah diverifikasi oleh Nakafa.
+
+### Pelaporan pengecualian operasional
+
+Kegagalan permintaan Next.js produksi dilaporkan ke PostHog hanya ketika pelaporan pengecualian server diaktifkan. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti rute, metode permintaan, atau ringkasan kesalahan framework. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
+
+Laporan pengecualian operasional tidak membawa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
+
+### Pengembangan aman dan manajemen perubahan
+
+Workflow repositori Nakafa secara otomatis mengaudit dependensi dan menjalankan pengujian untuk pull request. Proses internal tepercaya dan branch utama juga membangun aplikasi produksi. Pemeriksaan ini mengurangi risiko, tetapi tidak membuktikan bahwa setiap kerentanan telah ditemukan atau diperbaiki.
+
+### Bukti implementasi untuk revisi ini
+
+Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
+
+- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
+- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
+- [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Penangkapan kesalahan permintaan Next.js melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
+- [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
+- [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
+
+## Keamanan layanan pihak ketiga
+
+Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol mereka berpengaruh pada keamanan keseluruhan Layanan. Layanan pihak ketiga inti kami meliputi:
+
+- Vercel (hosting dan delivery)
+- Convex (basis data dan infrastruktur backend)
+- Polar (pembayaran dan manajemen langganan)
+- Resend (pengiriman email)
+- PostHog (analitik produk berbasis persetujuan dan pelaporan kesalahan operasional tanpa identitas)
+- Vercel AI Gateway (perutean permintaan AI)
+- OpenAI (pemrosesan model AI)
+
+Setiap pihak ketiga dapat memproses data sebagai bagian dari penyediaan Layanan. Untuk rincian kategori data yang dibagikan dan tujuannya, silakan tinjau [Kebijakan Privasi](/id/privacy-policy).
+
+## Pelaporan kerentanan
+
+Kami mendorong pengungkapan kerentanan keamanan secara bertanggung jawab.
+
+Jika Anda yakin menemukan kerentanan keamanan, hubungi kami di [nakafaai@gmail.com](mailto:nakafaai@gmail.com) dengan subjek “Security Report”.
+
+Agar kami dapat menindaklanjuti, sertakan:
+
+- Deskripsi jelas masalah dan area Layanan yang terdampak.
+- Langkah untuk mereproduksi masalah.
+- Proof-of-concept atau tangkapan layar (jika aman untuk dibagikan).
+- Informasi kontak Anda untuk tindak lanjut.
+
+Jangan sertakan Data Pribadi sensitif dalam laporan. Jangan mengeksploitasi kerentanan melebihi yang diperlukan untuk demonstrasi. Jangan mencoba mengakses data yang bukan milik Anda.
+
+## Tanggap insiden dan notifikasi pelanggaran
+
+Jika kami mengetahui adanya dugaan insiden, kami akan mengambil langkah yang sesuai dengan keadaan untuk:
+
+- Mengendalikan dan memitigasi insiden yang diduga.
+- Menilai ruang lingkup dan dampak.
+- Memulihkan integritas dan ketersediaan layanan.
+- Memberi tahu pengguna yang terdampak dan otoritas terkait ketika diwajibkan oleh hukum yang berlaku.
+
+Waktu notifikasi bervariasi berdasarkan yurisdiksi dan jenis insiden. Sebagai contoh, jika insiden memenuhi definisi pelanggaran data pribadi berdasarkan GDPR dan notifikasi diwajibkan, kewajiban notifikasi dapat mencakup pelaporan kepada otoritas pengawas tanpa penundaan yang tidak semestinya dan, jika berlaku, dalam 72 jam sejak kami menyadari pelanggaran.
+
+## Keamanan akun dan pengguna
+
+Anda dapat membantu melindungi akun Anda dengan:
+
+- Menggunakan kredensial yang kuat dan unik serta menjaganya tetap rahasia.
+- Memperbarui perangkat dan peramban Anda.
+- Keluar dari akun pada perangkat bersama.
+- Melaporkan dugaan kompromi atau akses tanpa izin dengan segera.
+
+Kapabilitas pengguna yang memerlukan autentikasi mensyaratkan sesi tervalidasi dan akun aplikasi aktif sebagaimana dijelaskan di atas. Kami dapat membatasi akses jika secara wajar diperlukan untuk melindungi Layanan atau pengguna.
+
+## Pembaruan keamanan
+
+Kami dapat memperbarui Kebijakan Keamanan ini dari waktu ke waktu untuk mencerminkan perubahan praktik keamanan atau persyaratan hukum. Pembaruan akan diposting di halaman ini dengan tanggal “Terakhir diperbarui” yang direvisi.
+
+## Kontak
+
+PT NAKAFA TEKNO KREATIF, Taman Sukahati Permai Blok H-6, Sukahati, Cibinong, Kabupaten Bogor, Jawa Barat 16913, Indonesia
+
+Email: [nakafaai@gmail.com](mailto:nakafaai@gmail.com)

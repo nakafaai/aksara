@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
+import { germanProgramLocaleSources } from "#corpus/program/locale/de";
 import { schoolProgramSources } from "#corpus/program/school";
 import {
   prepareProgramSnapshot,
@@ -32,47 +33,51 @@ describe("program snapshot preparation", () => {
     const rows = await Effect.runPromise(Stream.runCollect(prepared.rows));
 
     expect(prepared.manifest).toMatchObject({
-      activeAppLocales: ["en", "id"],
-      curriculumRowCount: 390,
+      activeAppLocales: ["en", "id", "de"],
+      curriculumRowCount: 585,
       format: "localized-program-snapshot",
       programRowCount: 6,
-      rowCount: 396,
-      sitemapCount: 52,
-      slugCount: 12,
+      rowCount: 591,
+      sitemapCount: 78,
+      slugCount: 18,
     });
     const programRows = rows.filter((row) => row.kind === "program");
     const curriculumRows = rows.filter((row) => row.kind === "curriculum");
     expect(
       programRows.map(({ row }) => ({
+        de: translation(row, "de").publicSlug,
         en: translation(row, "en").publicSlug,
         id: translation(row, "id").publicSlug,
         key: row.key,
       }))
     ).toEqual([
-      { en: "merdeka", id: "merdeka", key: "merdeka" },
+      { de: "merdeka", en: "merdeka", id: "merdeka", key: "merdeka" },
       {
+        de: "cambridge-international",
         en: "cambridge-international",
         id: "cambridge-international",
         key: "cambridge-international",
       },
       {
+        de: "singapur-moe",
         en: "singapore-moe",
         id: "singapore-moe",
         key: "singapore-moe",
       },
       {
+        de: "vereinigte-staaten",
         en: "united-states",
         id: "amerika-serikat",
         key: "united-states",
       },
-      { en: "tka", id: "tka", key: "tka" },
-      { en: "snbt", id: "snbt", key: "snbt" },
+      { de: "tka", en: "tka", id: "tka", key: "tka" },
+      { de: "snbt", en: "snbt", id: "snbt", key: "snbt" },
     ]);
-    expect(curriculumRows).toHaveLength(390);
+    expect(curriculumRows).toHaveLength(585);
     expect(curriculumRows.at(0)?.row).toMatchObject({
-      appLocale: "en",
+      appLocale: "de",
       programKey: "cambridge-international",
-      publicPath: "curriculum/cambridge-international",
+      publicPath: "lehrplaene/cambridge-international",
     });
   });
 
@@ -121,41 +126,24 @@ describe("program snapshot preparation", () => {
             ],
           },
         ],
-      })
-    );
-
-    expect(expanded.manifest).toMatchObject({
-      curriculumRowCount: 390,
-      programRowCount: 7,
-      rowCount: 397,
-      sitemapCount: 52,
-      slugCount: 14,
-    });
-  });
-
-  it("keeps candidate German program copy outside the active signed snapshot", async () => {
-    const [firstSchool] = schoolProgramSources;
-    expect(firstSchool).toBeDefined();
-    const prepared = await Effect.runPromise(
-      prepareProgramSnapshot({
         programLocaleInput: [
+          ...germanProgramLocaleSources,
           {
             appLocale: "de",
-            programKey: firstSchool.key,
-            publicSlug: "merdeka-lehrplan",
-            title: "Merdeka-Lehrplan",
+            programKey: "test-only-program",
+            publicSlug: "testprogramm",
+            title: "Testprogramm",
           },
         ],
       })
     );
-    const rows = await Effect.runPromise(Stream.runCollect(prepared.rows));
-    const programRows = rows.filter((row) => row.kind === "program");
 
-    expect(prepared.manifest.activeAppLocales).toEqual(["en", "id"]);
-    expect(
-      programRows.flatMap(({ row }) =>
-        row.translations.map(({ appLocale }) => appLocale)
-      )
-    ).not.toContain("de");
+    expect(expanded.manifest).toMatchObject({
+      curriculumRowCount: 585,
+      programRowCount: 7,
+      rowCount: 592,
+      sitemapCount: 78,
+      slugCount: 21,
+    });
   });
 });

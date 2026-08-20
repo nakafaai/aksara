@@ -1,90 +1,60 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { PublicPathSchema } from "#contracts/ids";
+import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import {
   LOCAL_PREVIEW_FORMAT,
   LocalPreviewManifestSchema,
-  type PreviewArtifact,
   PreviewEventSchema,
-  PreviewRepositorySchema,
 } from "#contracts/preview/spec";
+import {
+  testArticleDocument,
+  testArticleProjection,
+  testMaterialDocument,
+  testMaterialProjection,
+  testPageDocument,
+  testPageProjection,
+} from "#contracts/test/preview";
+import {
+  previewArtifact,
+  previewManifestBase,
+  previewRepositories,
+  rejectsPreviewManifest,
+} from "#contracts/test/preview-manifest";
 import {
   testAnswerDocument,
   testAnswerProjection,
-  testArticleDocument,
-  testArticleProjection,
   testAssessedAnswerDocument,
   testAssessedAnswerProjection,
   testGermanPromptProjection,
-  testMaterialDocument,
-  testMaterialProjection,
   testPromptDocument,
   testPromptProjection,
-} from "#contracts/test/preview";
+} from "#contracts/test/preview-question";
 
-const repositories = {
-  aksara: Schema.decodeSync(PreviewRepositorySchema)({
-    dirty: true,
-    sha: "a".repeat(40),
-  }),
-  nakafa: Schema.decodeSync(PreviewRepositorySchema)({
-    dirty: false,
-    sha: "b".repeat(40),
-  }),
-};
-
-/** Builds one content-addressed artifact reference for a test projection. */
-function artifact(
-  projection: PreviewArtifact["projection"],
-  hashCharacter: string
-) {
-  const artifactHash = `sha256:${hashCharacter.repeat(64)}` as const;
-  return {
-    artifactHash,
-    artifactPath: `/v1/artifacts/${encodeURIComponent(artifactHash)}`,
-    projection,
-  };
-}
-
-const articleArtifact = artifact(testArticleProjection, "c");
-const materialArtifact = artifact(testMaterialProjection, "d");
-const promptArtifact = artifact(testPromptProjection, "e");
-const answerArtifact = artifact(testAnswerProjection, "f");
-
-/** Builds the state shared by every exact manifest variant in this test. */
-function manifestBase(document: typeof testArticleDocument) {
-  return {
-    document,
-    format: LOCAL_PREVIEW_FORMAT,
-    repositories,
-  };
-}
-
-/** Reports whether strict manifest decoding rejects one candidate. */
-function rejectsManifest(candidate: unknown) {
-  return Exit.isFailure(
-    Schema.decodeUnknownExit(LocalPreviewManifestSchema, {
-      onExcessProperty: "error",
-    })(candidate)
-  );
-}
+const articleArtifact = previewArtifact(testArticleProjection, "c");
+const materialArtifact = previewArtifact(testMaterialProjection, "d");
+const pageArtifact = previewArtifact(testPageProjection, "1");
+const promptArtifact = previewArtifact(testPromptProjection, "e");
+const answerArtifact = previewArtifact(testAnswerProjection, "f");
+const otherPageSourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/security-policy/en.mdx"
+);
 
 describe("local preview manifest", () => {
   it("decodes every fail-closed state", () => {
     const pending = {
-      ...manifestBase(testArticleDocument),
+      ...previewManifestBase(testArticleDocument),
       revision: 1,
       status: "pending",
     };
     const ready = {
-      ...manifestBase(testArticleDocument),
+      ...previewManifestBase(testArticleDocument),
       artifacts: [articleArtifact],
       rendererManifestHash: `sha256:${"1".repeat(64)}`,
       revision: 2,
       status: "ready",
     };
     const failed = {
-      ...manifestBase(testArticleDocument),
+      ...previewManifestBase(testArticleDocument),
       failure: {
         code: "TestCompileError",
         message: "The test document did not compile.",
@@ -100,7 +70,7 @@ describe("local preview manifest", () => {
     ).toEqual([pending, ready, failed]);
   });
 
-  it("accepts one artifact for article, material, and prompt documents", () => {
+  it("accepts one artifact for article, material, page, and prompt documents", () => {
     const readyStates = [
       {
         artifacts: [articleArtifact],
@@ -111,6 +81,10 @@ describe("local preview manifest", () => {
         document: testMaterialDocument,
       },
       {
+        artifacts: [pageArtifact],
+        document: testPageDocument,
+      },
+      {
         artifacts: [promptArtifact],
         document: testPromptDocument,
       },
@@ -119,7 +93,7 @@ describe("local preview manifest", () => {
       document,
       format: LOCAL_PREVIEW_FORMAT,
       rendererManifestHash: `sha256:${String(index + 2).repeat(64)}`,
-      repositories,
+      repositories: previewRepositories,
       revision: index + 1,
       status: "ready",
     }));
@@ -137,7 +111,7 @@ describe("local preview manifest", () => {
       document: testAnswerDocument,
       format: LOCAL_PREVIEW_FORMAT,
       rendererManifestHash: `sha256:${"6".repeat(64)}`,
-      repositories,
+      repositories: previewRepositories,
       revision: 1,
       status: "ready",
     };
@@ -150,18 +124,21 @@ describe("local preview manifest", () => {
         { ...manifest, artifacts: [answerArtifact, promptArtifact] },
         { ...manifest, artifacts: [answerArtifact] },
         { ...manifest, artifacts: [promptArtifact] },
-      ].every(rejectsManifest)
+      ].every(rejectsPreviewManifest)
     ).toBe(true);
   });
 
   it("pairs an assessed-language prompt with its localized answer", () => {
-    const localizedAnswerArtifact = artifact(testAssessedAnswerProjection, "1");
+    const localizedAnswerArtifact = previewArtifact(
+      testAssessedAnswerProjection,
+      "1"
+    );
     const manifest = {
       artifacts: [promptArtifact, localizedAnswerArtifact],
       document: testAssessedAnswerDocument,
       format: LOCAL_PREVIEW_FORMAT,
       rendererManifestHash: `sha256:${"2".repeat(64)}`,
-      repositories,
+      repositories: previewRepositories,
       revision: 1,
       status: "ready",
     } as const;
@@ -170,10 +147,10 @@ describe("local preview manifest", () => {
       manifest
     );
     expect(
-      rejectsManifest({
+      rejectsPreviewManifest({
         ...manifest,
         artifacts: [
-          artifact(testGermanPromptProjection, "3"),
+          previewArtifact(testGermanPromptProjection, "3"),
           localizedAnswerArtifact,
         ],
       })
@@ -182,7 +159,7 @@ describe("local preview manifest", () => {
 
   it("rejects unbounded, mismatched, and incoherently addressed artifacts", () => {
     const base = {
-      ...manifestBase(testArticleDocument),
+      ...previewManifestBase(testArticleDocument),
       rendererManifestHash: `sha256:${"7".repeat(64)}`,
       revision: 1,
       status: "ready",
@@ -206,7 +183,7 @@ describe("local preview manifest", () => {
       },
     ];
 
-    expect(invalid.every(rejectsManifest)).toBe(true);
+    expect(invalid.every(rejectsPreviewManifest)).toBe(true);
     expect(
       String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[1]))
     ).toContain("Expected at most two preview artifacts.");
@@ -219,7 +196,31 @@ describe("local preview manifest", () => {
     const cases = [
       {
         artifacts: [
-          artifact(
+          previewArtifact(
+            {
+              ...testPageProjection,
+              publicPath: PublicPathSchema.make("security-policy"),
+            },
+            "4"
+          ),
+        ],
+        document: testPageDocument,
+      },
+      {
+        artifacts: [
+          previewArtifact(
+            {
+              ...testPageProjection,
+              sourcePath: otherPageSourcePath,
+            },
+            "5"
+          ),
+        ],
+        document: testPageDocument,
+      },
+      {
+        artifacts: [
+          previewArtifact(
             {
               ...testArticleProjection,
               publicPath: PublicPathSchema.make("articles/politics/other"),
@@ -230,12 +231,14 @@ describe("local preview manifest", () => {
         document: testArticleDocument,
       },
       {
-        artifacts: [artifact({ ...testMaterialProjection, order: 2 }, "9")],
+        artifacts: [
+          previewArtifact({ ...testMaterialProjection, order: 2 }, "9"),
+        ],
         document: testMaterialDocument,
       },
       {
         artifacts: [
-          artifact(
+          previewArtifact(
             {
               ...testMaterialProjection,
               topicTitle: "Different test material",
@@ -251,30 +254,19 @@ describe("local preview manifest", () => {
       },
     ];
 
+    const manifests = cases.map(({ artifacts, document }) => ({
+      artifacts,
+      document,
+      format: LOCAL_PREVIEW_FORMAT,
+      rendererManifestHash: `sha256:${"a".repeat(64)}`,
+      repositories: previewRepositories,
+      revision: 1,
+      status: "ready",
+    }));
+
+    expect(manifests.every(rejectsPreviewManifest)).toBe(true);
     expect(
-      cases.every(({ artifacts, document }) =>
-        rejectsManifest({
-          artifacts,
-          document,
-          format: LOCAL_PREVIEW_FORMAT,
-          rendererManifestHash: `sha256:${"a".repeat(64)}`,
-          repositories,
-          revision: 1,
-          status: "ready",
-        })
-      )
-    ).toBe(true);
-    expect(
-      String(
-        Schema.decodeUnknownExit(LocalPreviewManifestSchema)({
-          ...cases[2],
-          format: LOCAL_PREVIEW_FORMAT,
-          rendererManifestHash: `sha256:${"a".repeat(64)}`,
-          repositories,
-          revision: 1,
-          status: "ready",
-        })
-      )
+      String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(manifests[3]))
     ).toContain(
       "Expected preview artifacts to match the selected document exactly."
     );

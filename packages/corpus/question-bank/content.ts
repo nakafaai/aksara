@@ -21,7 +21,6 @@ import {
   questionArtifactLocalesForSection,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, FileSystem, Path, Schema, Struct } from "effect";
-import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import {
   decodeQuestionDocumentPath,
   indexQuestionBanks,
@@ -158,34 +157,6 @@ function projectQuestionEntries(sources: readonly QuestionSource[]) {
     .sort(compareContentHeads);
 }
 
-/** Projects only candidate bodies that are physically present in each source. */
-function projectCandidateQuestionEntries(sources: readonly QuestionSource[]) {
-  return sources
-    .flatMap((source) => {
-      const { sectionKey } = questionKeyParts(source.questionKey);
-      return CANDIDATE_APP_LOCALE_CODES.flatMap((appLocaleCode) => {
-        const answerLocale = ArtifactLocaleSchema.make(appLocaleCode);
-        const promptLocale = questionArtifactLocaleForSection(
-          sectionKey,
-          AppLocaleSchema.make(appLocaleCode)
-        );
-        const candidates = [
-          source.files.includes(`answer.${appLocaleCode}.mdx`)
-            ? projectQuestionEntry(source, "answer", answerLocale)
-            : undefined,
-          artifactLocaleCode(promptLocale) === appLocaleCode &&
-          source.files.includes(`question.${appLocaleCode}.mdx`)
-            ? projectQuestionEntry(source, "question", promptLocale)
-            : undefined,
-        ];
-        return candidates.filter(
-          (entry): entry is QuestionEntry => entry !== undefined
-        );
-      });
-    })
-    .sort(compareContentHeads);
-}
-
 /** Discovers every question once and returns its canonical body registry. */
 export const loadQuestionContent = Effect.fn(
   "AksaraCorpus.loadQuestionContent"
@@ -193,8 +164,7 @@ export const loadQuestionContent = Effect.fn(
   const questionBanks = yield* indexQuestionBanks(tryoutSources);
   const sources = yield* discoverQuestionSources(corpusRoot, questionBanks);
   const entries = projectQuestionEntries(sources);
-  const candidateEntries = projectCandidateQuestionEntries(sources);
-  return { candidateEntries, entries, questionBanks, sources };
+  return { entries, questionBanks, sources };
 });
 
 /** Loads only the selected question and its required compilation bodies. */

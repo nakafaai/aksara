@@ -18,12 +18,14 @@ import {
   isDerivedRollbackUpsert,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
+import { collectPagePublication } from "#test/page";
 import { collectQuestionPublication } from "#test/question/spec";
 import {
   collectRollbackRecords,
   currentRollbackReleaseId,
   incompatibleRollbackArtifact,
   incompatibleRollbackUpsert,
+  makeDerivedRollbackUpsert,
   matchingRollbackDeletion,
   priorRollbackReleaseId,
   rejectRollbackRecords,
@@ -40,10 +42,9 @@ import {
 
 describe("deriveRollbackRecords", () => {
   it("authenticates upserts and preserves body-free deletes", async () => {
-    const records = await collectRollbackRecords(
+    const [derivedUpsert, derivedDelete] = await collectRollbackRecords(
       Stream.make(rollbackUpsertRecord, rollbackDeletionRecord)
     );
-    const [derivedUpsert, derivedDelete] = records;
     expect(derivedUpsert).toMatchObject({
       current: {
         artifact: rollbackArtifact,
@@ -96,10 +97,8 @@ describe("deriveRollbackRecords", () => {
     const [derived] = await collectRollbackRecords(
       Stream.make(rollbackUpsertRecord)
     );
-    expect(derived).toBeDefined();
-    expect(derived && isDerivedRollbackUpsert(derived.current)).toBeTruthy();
     if (!(derived && isDerivedRollbackUpsert(derived.current))) {
-      return;
+      throw new Error("Expected one derived article upsert.");
     }
     const state = {
       ...derived.current,
@@ -117,21 +116,24 @@ describe("deriveRollbackRecords", () => {
   it("reconstructs a route-free question head from a real question state", async () => {
     const [transition] = await collectQuestionPublication({ heads: [] });
     if (!(transition && "payload" in transition.record)) {
-      return;
+      throw new Error("Expected one question publication upsert.");
     }
-    const state = {
-      artifact: signRollbackPayload(transition.record.payload),
-      item: {
-        change: transition.record.change,
-        index: 0,
-        releaseId: currentRollbackReleaseId,
-      },
-      kind: "upsert" as const,
-      projection: transition.record.projection,
-    };
+    const state = makeDerivedRollbackUpsert(transition.record);
     expect(snapshotRollbackState(state)).toMatchObject({
       head: { family: "question", publicPath: undefined },
       state: "question",
+    });
+  });
+
+  it("reconstructs a page head from a real page state", async () => {
+    const [transition] = await collectPagePublication({ heads: [] });
+    if (!(transition && "payload" in transition.record)) {
+      throw new Error("Expected one page publication upsert.");
+    }
+    const state = makeDerivedRollbackUpsert(transition.record);
+    expect(snapshotRollbackState(state)).toMatchObject({
+      head: { family: "page" },
+      state: "page",
     });
   });
 

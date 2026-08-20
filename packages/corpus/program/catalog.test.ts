@@ -2,11 +2,9 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import {
-  decodeAuthoringProgramCatalog,
   decodeProgramCatalog,
   ProgramCatalogError,
   ProgramIdentityError,
-  selectActiveProgramCatalog,
 } from "#corpus/program/catalog";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
@@ -20,7 +18,7 @@ if (!(first && second)) {
 
 /** Returns one typed catalog failure without a FiberFailure wrapper. */
 function reject(input: unknown) {
-  return Effect.runPromise(decodeProgramCatalog(input).pipe(Effect.flip));
+  return Effect.runPromise(decodeProgramCatalog(input, []).pipe(Effect.flip));
 }
 
 describe("learning program catalog", () => {
@@ -43,15 +41,9 @@ describe("learning program catalog", () => {
 
   it("maps invalid or excess source fields to a typed catalog error", async () => {
     const invalid = [{ ...first, invented: true }];
-    const [activeError, authoringError] = await Promise.all([
-      reject(invalid),
-      Effect.runPromise(
-        decodeAuthoringProgramCatalog(invalid).pipe(Effect.flip)
-      ),
-    ]);
+    const error = await reject(invalid);
 
-    expect(activeError).toBeInstanceOf(ProgramCatalogError);
-    expect(authoringError).toBeInstanceOf(ProgramCatalogError);
+    expect(error).toBeInstanceOf(ProgramCatalogError);
   });
 
   it.each([
@@ -89,7 +81,7 @@ describe("learning program catalog", () => {
     expect(error).toBeInstanceOf(ProgramCatalogError);
   });
 
-  it("rejects a candidate translation substituted for active copy", async () => {
+  it("rejects German copy substituted for required embedded copy", async () => {
     const error = await reject([
       {
         ...first,
@@ -108,7 +100,7 @@ describe("learning program catalog", () => {
     expect(error).toBeInstanceOf(ProgramCatalogError);
   });
 
-  it("admits reviewed German candidate copy and selects active publication copy", async () => {
+  it("composes reviewed German copy into active publication", async () => {
     const german = {
       appLocale: "de",
       programKey: first.key,
@@ -118,36 +110,14 @@ describe("learning program catalog", () => {
     const programs = await Effect.runPromise(
       decodeProgramCatalog([{ ...first }], [german])
     );
-    const active = await Effect.runPromise(
-      selectActiveProgramCatalog(programs)
-    );
-
     expect(programs[0]?.translations).toContainEqual({
       appLocale: german.appLocale,
       publicSlug: german.publicSlug,
       title: german.title,
     });
-    expect(active[0]?.translations.map(({ appLocale }) => appLocale)).toEqual([
-      "en",
-      "id",
-    ]);
-
-    const [program] = programs;
-    const candidate = program?.translations.find(
-      ({ appLocale }) => appLocale === "de"
+    expect(programs[0]?.translations.map(({ appLocale }) => appLocale)).toEqual(
+      ["en", "id", "de"]
     );
-    if (!(program && candidate)) {
-      throw new Error("Expected one decoded German program candidate.");
-    }
-    const error = await Effect.runPromise(
-      selectActiveProgramCatalog([
-        { ...program, translations: [candidate] },
-      ]).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      scope: "translation",
-      value: `${program.key}:active-translations-missing`,
-    });
   });
 
   it("sorts valid source rows instead of trusting authored array order", async () => {

@@ -11,6 +11,16 @@ const articlePath =
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
 const materialPath =
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx";
+const pagePath = "packages/corpus/pages/privacy-policy/en.mdx";
+const germanPagePath = "packages/corpus/pages/privacy-policy/de.mdx";
+const pageRestartSourcePaths = [
+  "packages/corpus/pages/source.ts",
+  "packages/corpus/pages/registry.ts",
+  "packages/corpus/pages/schema.ts",
+  "packages/corpus/locale/source.ts",
+  "packages/corpus/pages/locale.ts",
+  "packages/corpus/pages/locale-registry.ts",
+];
 const questionRoot =
   "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
 const promptPath = `${questionRoot}/question.en.mdx`;
@@ -31,12 +41,15 @@ describe("preview selection", () => {
   it("selects each real family with its exact ordered source closure", {
     timeout: 30_000,
   }, async () => {
-    const [article, material, prompt, answer] = await Promise.all([
-      selectDocument(articlePath, "en"),
-      selectDocument(materialPath, "id"),
-      selectDocument(promptPath),
-      selectDocument(answerPath),
-    ]);
+    const [article, material, page, germanPage, prompt, answer] =
+      await Promise.all([
+        selectDocument(articlePath, "en"),
+        selectDocument(materialPath, "id"),
+        selectDocument(pagePath, "en"),
+        selectDocument(germanPagePath, "de"),
+        selectDocument(promptPath),
+        selectDocument(answerPath),
+      ]);
 
     expect(article).toMatchObject({
       document: {
@@ -117,6 +130,28 @@ describe("preview selection", () => {
         },
       ],
     });
+    expect(page).toMatchObject({
+      document: {
+        delivery: "public",
+        family: "page",
+        sourcePath: pagePath,
+      },
+      sources: [{ family: "page" }],
+    });
+    expect(germanPage).toMatchObject({
+      document: {
+        delivery: "public",
+        family: "page",
+        sourcePath: germanPagePath,
+      },
+      sources: [{ family: "page" }],
+    });
+    expect(
+      page.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+    ).toEqual(pageRestartSourcePaths);
+    expect(
+      germanPage.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+    ).toEqual(pageRestartSourcePaths);
     expect(prompt).toMatchObject({
       document: {
         delivery: "authenticated",
@@ -191,8 +226,8 @@ describe("preview selection", () => {
   });
 
   it("rejects an explicit shell locale that contradicts a public body", async () => {
-    const [article, material] = await Promise.all(
-      [articlePath, materialPath].map((sourcePath) =>
+    const [article, material, page] = await Promise.all(
+      [articlePath, materialPath, pagePath].map((sourcePath) =>
         Effect.runPromise(
           selectPreviewDocument(
             corpusRoot,
@@ -214,6 +249,7 @@ describe("preview selection", () => {
       reason: "locale",
       sourcePath: materialPath,
     });
+    expect(page).toMatchObject({ reason: "locale", sourcePath: pagePath });
   });
 
   it("rejects invalid, unsupported, and unregistered source paths", {
@@ -225,6 +261,7 @@ describe("preview selection", () => {
         "packages/corpus/team/nabil.ts",
         "packages/corpus/articles/politics/missing/article/en.mdx",
         "packages/corpus/material/lesson/mathematics/missing/lesson/en.mdx",
+        "packages/corpus/pages/missing/en.mdx",
         `${questionRoot}/missing.en.mdx`,
       ].map((sourcePath) =>
         Effect.runPromise(
@@ -236,19 +273,13 @@ describe("preview selection", () => {
       )
     );
 
-    expect(failures.map(({ _tag }) => _tag)).toEqual([
-      "PreviewSelectionError",
-      "PreviewSelectionError",
-      "PreviewSelectionError",
-      "PreviewSelectionError",
-      "QuestionPathError",
+    expect(failures).toMatchObject([
+      { _tag: "PreviewSelectionError", reason: "path" },
+      { _tag: "PreviewSelectionError", reason: "missing" },
+      { _tag: "PreviewSelectionError", reason: "missing" },
+      { _tag: "PreviewSelectionError", reason: "missing" },
+      { _tag: "PreviewSelectionError", reason: "missing" },
+      { _tag: "QuestionPathError", reason: "grammar" },
     ]);
-    expect(failures.slice(0, 4)).toMatchObject([
-      { reason: "path" },
-      { reason: "missing" },
-      { reason: "missing" },
-      { reason: "missing" },
-    ]);
-    expect(failures[4]).toMatchObject({ reason: "grammar" });
   });
 });

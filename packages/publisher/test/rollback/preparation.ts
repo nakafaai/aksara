@@ -240,6 +240,13 @@ export function rollbackTarget(
           heads: [],
         });
       }
+      if (request.family === "page") {
+        return Effect.succeed({
+          ...common,
+          family: "page" as const,
+          heads: [],
+        });
+      }
       if (request.family === "question") {
         return Effect.succeed({
           ...common,

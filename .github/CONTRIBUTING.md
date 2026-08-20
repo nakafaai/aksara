@@ -19,11 +19,11 @@ you certify that:
 - The contribution is your original work, or you have permission to submit it.
 - The contribution does not include secrets, private data, copied proprietary
   material, or material with license terms that conflict with Nakafa.
-- You grant PT. Nakafa Tekno Kreatif a perpetual, worldwide, non-exclusive,
+- You grant PT NAKAFA TEKNO KREATIF a perpetual, worldwide, non-exclusive,
   royalty-free, sublicensable, and transferable license to use, reproduce,
   modify, distribute, publicly display, publicly perform, create derivative
   works from, and relicense the contribution as part of Nakafa.
-- PT. Nakafa Tekno Kreatif may use the contribution in source-available,
+- PT NAKAFA TEKNO KREATIF may use the contribution in source-available,
   commercial, proprietary, hosted, educational, and internal versions of Nakafa
   without owing you payment.
 

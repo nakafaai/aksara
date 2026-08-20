@@ -67,7 +67,7 @@ describe("Quran source parsing", () => {
     ).toBe(6236);
   });
 
-  it("preserves the complete German candidate translation exactly", async () => {
+  it("preserves the complete German translation exactly", async () => {
     const german = readFileSync(
       resolve(sourceRoot, "german/translation.xml"),
       "utf8"

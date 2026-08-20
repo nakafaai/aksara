@@ -101,7 +101,7 @@ describe("tryout placement", () => {
     expect(error).toMatchObject({ reason: "choices" });
   });
 
-  it("builds a German candidate placement without changing active rows", async () => {
+  it("builds the active German placement without mutating source rows", async () => {
     const fixture = await loadPlacementFixture();
     const placement = await Effect.runPromise(
       makeTryoutPlacement(

@@ -45,6 +45,19 @@ export const MaterialHeadSchema = Schema.Struct({
 });
 export type MaterialHead = typeof MaterialHeadSchema.Type;
 
+/** Compact authoritative identity used to diff one published page head. */
+export const PageHeadSchema = Schema.Struct({
+  ...ContentHeadFields,
+  family: Schema.Literal("page"),
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ publicPath }) => publicPath !== undefined, {
+      message: "Expected page heads to retain their public path.",
+    })
+  )
+);
+export type PageHead = typeof PageHeadSchema.Type;
+
 /** Compact authoritative identity used to diff one published question body. */
 export const QuestionHeadSchema = Schema.Struct({
   ...ContentHeadFields,
@@ -62,6 +75,7 @@ export type QuestionHead = typeof QuestionHeadSchema.Type;
 export const ContentHeadSchema = Schema.Union([
   ArticleHeadSchema,
   MaterialHeadSchema,
+  PageHeadSchema,
   QuestionHeadSchema,
 ]);
 export type ContentHead = typeof ContentHeadSchema.Type;
@@ -154,6 +168,20 @@ const MaterialHeadPageSchema = Schema.Struct({
   )
 );
 
+const PageHeadPageSchema = Schema.Struct({
+  ...HeadPageFields,
+  family: Schema.Literal("page"),
+  heads: Schema.Array(PageHeadSchema).pipe(
+    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
+  ),
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(hasCanonicalHeadPage, {
+      message: "Expected canonical page heads with coherent cursor progress.",
+    })
+  )
+);
+
 const QuestionHeadPageSchema = Schema.Struct({
   ...HeadPageFields,
   family: Schema.Literal("question"),
@@ -173,6 +201,7 @@ const QuestionHeadPageSchema = Schema.Struct({
 export const HeadPageSchema = Schema.Union([
   ArticleHeadPageSchema,
   MaterialHeadPageSchema,
+  PageHeadPageSchema,
   QuestionHeadPageSchema,
 ]);
 export type HeadPage = typeof HeadPageSchema.Type;

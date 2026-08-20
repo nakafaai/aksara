@@ -4,7 +4,7 @@ import {
   previewTryoutRoute,
   TryoutPreviewTargetSchema,
 } from "#contracts/preview/target";
-import { testPreviewTarget } from "#contracts/test/preview";
+import { testPreviewTarget } from "#contracts/test/preview-question";
 
 /** Reports whether strict target decoding rejects one candidate. */
 function rejectsTarget(candidate: unknown) {

@@ -56,13 +56,15 @@ export {
   StoredTryoutSnapshotHashMismatchError,
 } from "#contracts/history/read";
 export {
-  StoredRendererComponentMissingError,
   StoredRendererDecodeError,
-  StoredRendererDomainUnpublishedError,
   StoredRendererHashComputeError,
   StoredRendererHashMismatchError,
-  StoredRendererVersionUnsupportedError,
 } from "#contracts/history/renderer";
+export {
+  StoredRendererComponentMissingError,
+  StoredRendererDomainUnpublishedError,
+  StoredRendererVersionUnsupportedError,
+} from "#contracts/history/renderer-compatibility";
 export {
   StoredProtectedRuntimeDecodeError,
   StoredProtectedRuntimeMismatchError,

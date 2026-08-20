@@ -9,6 +9,7 @@ export default mergeConfig(config, {
         "curriculum/**/*.ts",
         "locale/**/*.ts",
         "material/**/*.ts",
+        "pages/**/*.ts",
         "preview/**/*.ts",
         "program/**/*.ts",
         "quran/**/*.ts",

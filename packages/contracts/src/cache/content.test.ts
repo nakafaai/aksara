@@ -12,6 +12,7 @@ import {
   makeContentCacheRequest,
   makeContentFamilyCacheTag,
 } from "#contracts/cache/content";
+import { ContentFamilySchema } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 
 const decodeRequest = Schema.decodeUnknownEffect(ContentCacheRequestSchema);
@@ -42,7 +43,7 @@ describe("content cache contracts", () => {
     ).toEqual({ family: "material" });
   });
 
-  it.each(["article", "material", "question"] as const)(
+  it.each(ContentFamilySchema.literals)(
     "derives canonical ordered %s tags for changed artifacts",
     async (family) => {
       const releaseId = ReleaseIdSchema.make("test-cache-release");

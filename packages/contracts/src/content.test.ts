@@ -75,6 +75,18 @@ describe("content", () => {
       )
     ).toBe(-1);
     expect(
+      comparePublicationIdentities(
+        { ...english, family: "material" },
+        { ...english, family: "page" }
+      )
+    ).toBe(-1);
+    expect(
+      comparePublicationIdentities(
+        { ...english, family: "page" },
+        { ...english, family: "question" }
+      )
+    ).toBe(-1);
+    expect(
       Schema.decodeSync(ContentPublicationIdentitySchema)({
         ...english,
         family: "material",

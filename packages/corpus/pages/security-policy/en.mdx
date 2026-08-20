@@ -1,0 +1,128 @@
+export const metadata = {
+  title: "Security Policy",
+  description: "Review Nakafa's security practices and policies to understand how we safeguard your data and ensure platform security.",
+  lastModified: "2026-08-21",
+};
+
+# Security Policy
+
+Last updated: August 21, 2026
+
+This Security Policy describes the security measures PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") uses, and the measures we expect users to take, to help protect the confidentiality, integrity, and availability of the Services and related data.
+
+For information about how we collect and use Personal Data, please review our [Privacy Policy](/en/privacy-policy).
+
+## Scope
+
+This Security Policy applies to the Services operated by Nakafa, including websites and applications hosted and supported through third-party providers.
+
+This Security Policy does not cover the security practices of third parties you interact with directly outside the Services, even if those third parties are linked from the Services.
+
+## Security model and responsibilities
+
+Security is a shared responsibility:
+
+- We are responsible for security measures within our control, including application design, access controls, and responding to suspected incidents.
+- You are responsible for maintaining the security of your devices, accounts, and any credentials you use to access the Services.
+
+## Technical and organizational measures
+
+The following sections distinguish implementation-backed measures, provider responsibilities, and public commitments accepted by Nakafa.
+
+### Encryption in transit
+
+Our production web delivery uses HTTPS. Nakafa also applies HTTP Strict Transport Security and related browser security headers across all application paths. The implementation and provider documentation for this revision are linked below.
+
+### Access controls
+
+At application boundaries, authenticated user capabilities require a validated session and an active application user. Internal content endpoints accept only a bearer credential checked with a timing-safe comparison. This statement does not describe how individual infrastructure providers assign access to their administrative consoles.
+
+### Data storage and processing
+
+Application data is stored in Convex. Nakafa application functions that require authentication use the validated sessions and active-user checks linked below. Infrastructure-level storage protection is supplied by Convex and is not represented here as a separately verified Nakafa storage control.
+
+### Operational exception reporting
+
+Production Next.js request failures are reported to PostHog only when server exception reporting is enabled. Each report keeps sanitized stack frames and an allowlisted, length-bounded technical context such as the route, request method, or framework error digest. Nakafa uses these reports to diagnose the specific failure and plan corrective maintenance. This is not a representation that Nakafa operates a separate security-information or abuse-detection system.
+
+Operational exception reports do not carry a user, account, or product-analytics identifier. Optional product-usage events are separate and require an effective analytics consent decision.
+
+### Secure development and change management
+
+The Nakafa repository workflow automatically audits dependencies and runs tests for pull requests. Trusted internal and main-branch runs also build the production application. These checks reduce risk but do not establish that every vulnerability has been found or remediated.
+
+### Implementation evidence for this revision
+
+The technical statements above are bounded to the following exact Nakafa implementation revision and provider documentation:
+
+- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
+- [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
+- [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Next.js request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
+- [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
+- [Vercel HTTPS and certificate delivery documentation](https://vercel.com/docs/security#encryption)
+
+## Third-party service security
+
+The Services rely on third-party services. Their security practices and controls are important to the overall security of the Services. Our core third-party services include:
+
+- Vercel (hosting and delivery)
+- Convex (database and backend infrastructure)
+- Polar (payments and subscription management)
+- Resend (email delivery)
+- PostHog (consent-based product analytics and identity-free operational error reporting)
+- Vercel AI Gateway (AI request routing)
+- OpenAI (AI model processing)
+
+Each third party may process data as part of providing the Services. For details about categories of data shared and purposes, review our [Privacy Policy](/en/privacy-policy).
+
+## Vulnerability reporting
+
+We encourage responsible disclosure of security vulnerabilities.
+
+If you believe you have found a security vulnerability, contact us at [nakafaai@gmail.com](mailto:nakafaai@gmail.com) with the subject line “Security Report”.
+
+To help us triage and respond, include:
+
+- A clear description of the issue and the affected area of the Services.
+- Steps to reproduce the issue.
+- Any proof-of-concept code or screenshots (if safe to share).
+- Your contact information for follow-up.
+
+Do not include sensitive Personal Data in your report. Do not exploit the vulnerability beyond what is necessary to demonstrate it. Do not attempt to access data that is not your own.
+
+## Incident response and breach notifications
+
+If we become aware of a suspected incident, we will take steps appropriate to the facts to:
+
+- Contain and mitigate suspected incidents.
+- Assess scope and impact.
+- Restore service integrity and availability.
+- Notify affected users and relevant authorities when required by applicable law.
+
+Notification timelines vary by jurisdiction and the nature of the incident. For example, if a security incident qualifies as a personal data breach under GDPR and notification is required, notification obligations may include reporting to a supervisory authority without undue delay and, where applicable, within 72 hours of becoming aware of the breach.
+
+## Account and user security
+
+You can help protect your account by:
+
+- Using strong, unique credentials and keeping them confidential.
+- Keeping your devices and browsers updated.
+- Logging out of shared devices.
+- Reporting suspected compromise or unauthorized access promptly.
+
+Authenticated user capabilities require a validated session and an active application account as described above. We may restrict access when reasonably necessary to protect the Services or users.
+
+## Security updates
+
+We may update this Security Policy from time to time to reflect changes in our security practices or legal requirements. Updates will be posted on this page with a revised “Last updated” date.
+
+## Contact
+
+PT NAKAFA TEKNO KREATIF, Taman Sukahati Permai Blok H-6, Sukahati, Cibinong, Kabupaten Bogor, Jawa Barat 16913, Indonesia
+
+Email: [nakafaai@gmail.com](mailto:nakafaai@gmail.com)

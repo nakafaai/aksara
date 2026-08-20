@@ -18,15 +18,15 @@ describe("question preview source", () => {
         Effect.provide(questionLayer)
       )
     );
-    const candidate = content.candidateEntries.find(({ sourcePath }) =>
+    const german = content.entries.find(({ sourcePath }) =>
       sourcePath.endsWith("answer.de.mdx")
     );
     const active = content.entries.find(
       ({ bodyKind, questionKey }) =>
         bodyKind === "question" && questionKey.includes("general-reasoning")
     );
-    if (!(candidate && active)) {
-      throw new Error("Expected active and candidate question entries.");
+    if (!(german && active)) {
+      throw new Error("Expected English and German question entries.");
     }
     await expect(
       Effect.runPromise(
@@ -39,8 +39,8 @@ describe("question preview source", () => {
       selectQuestionPreviewSources(
         corpusRoot,
         [
-          { appLocale: AppLocaleSchema.make("de"), entry: candidate },
-          { appLocale: AppLocaleSchema.make("de"), entry: candidate },
+          { appLocale: AppLocaleSchema.make("de"), entry: german },
+          { appLocale: AppLocaleSchema.make("de"), entry: german },
           { appLocale: AppLocaleSchema.make("en"), entry: active },
         ],
         content.sources

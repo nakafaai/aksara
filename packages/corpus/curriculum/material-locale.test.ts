@@ -2,8 +2,8 @@ import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
+import { localizeCurriculumMaterials } from "#corpus/curriculum/material-locale";
 import { decodeMaterialDomains } from "#corpus/material/domain";
-import { prepareProgramMaterials } from "#corpus/program/materials";
 import {
   germanMaterialCatalog,
   lessonMaterialSource,
@@ -19,14 +19,14 @@ async function mathematicsDomain() {
   return domain;
 }
 
-describe("program material locale selection", () => {
-  it("does not decode inactive overlay copy for current publication", async () => {
+describe("curriculum material locale selection", () => {
+  it("does not decode an unselected overlay", async () => {
     const domain = await mathematicsDomain();
     const material = lessonMaterialSource();
 
     await expect(
       Effect.runPromise(
-        prepareProgramMaterials({
+        localizeCurriculumMaterials({
           appLocales: [AppLocaleSchema.make("en"), AppLocaleSchema.make("id")],
           domains: [domain],
           localeInput: null,
@@ -36,12 +36,12 @@ describe("program material locale selection", () => {
     ).resolves.toEqual({ domains: [domain], materials: [material] });
   });
 
-  it("composes the permanent overlay when its locale activates", async () => {
+  it("composes a selected permanent overlay", async () => {
     const domain = await mathematicsDomain();
 
     await expect(
       Effect.runPromise(
-        prepareProgramMaterials({
+        localizeCurriculumMaterials({
           appLocales: [AppLocaleSchema.make("de")],
           domains: [domain],
           localeInput: germanMaterialCatalog(),

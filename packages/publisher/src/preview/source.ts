@@ -17,6 +17,12 @@ import {
   makeMaterialProjection,
 } from "#publisher/material/document";
 import {
+  type InspectedPageDocument,
+  loadPageDocument,
+  makePageCompileSource,
+  makePageProjectionFromSource,
+} from "#publisher/page/document";
+import {
   type InspectedQuestionDocument,
   loadQuestionDocument,
   makeQuestionCompileSource,
@@ -43,6 +49,13 @@ interface LoadedMaterialPreview {
   readonly source: InspectedMaterialDocument["source"];
 }
 
+/** Loaded public page source normalized for trusted preview compilation. */
+interface LoadedPagePreview {
+  readonly body: CompileDocumentSource;
+  readonly family: "page";
+  readonly source: InspectedPageDocument["source"];
+}
+
 /** Loaded question source normalized for trusted preview compilation. */
 interface LoadedQuestionPreview {
   readonly body: CompileDocumentSource;
@@ -54,6 +67,7 @@ interface LoadedQuestionPreview {
 export type LoadedPreviewSource =
   | LoadedArticlePreview
   | LoadedMaterialPreview
+  | LoadedPagePreview
   | LoadedQuestionPreview;
 
 /** Reading current choices failed at the trusted preview source seam. */
@@ -122,6 +136,15 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
       } satisfies LoadedPreviewSource;
     }
 
+    if (selected.family === "page") {
+      const source = yield* loadPageDocument(checkoutRoot, selected.entry);
+      return {
+        body: makePageCompileSource(source),
+        family: "page",
+        source,
+      } satisfies LoadedPreviewSource;
+    }
+
     const choices = yield* loadQuestionChoices(
       checkoutRoot,
       selected,
@@ -174,6 +197,10 @@ export function projectPreviewSource(
 
   if (loaded.family === "material") {
     return makeMaterialProjection(loaded.source, metadata);
+  }
+
+  if (loaded.family === "page") {
+    return makePageProjectionFromSource(loaded.source, metadata);
   }
 
   return makeQuestionProjectionFromSource(loaded.source, metadata);

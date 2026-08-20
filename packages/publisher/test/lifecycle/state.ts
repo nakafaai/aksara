@@ -171,6 +171,15 @@ export function createLifecycleRows() {
         nextCursor: null,
       };
     }
+    if (request.family === "page") {
+      return {
+        ...request,
+        done: true,
+        family: "page",
+        heads: [],
+        nextCursor: null,
+      };
+    }
     if (request.family === "question") {
       return {
         ...request,

@@ -56,7 +56,7 @@ describe("structured snapshot domain verification", () => {
       )
     );
 
-    expect(counts).toEqual([396, 1428, 12]);
+    expect(counts).toEqual([588, 1542, 18]);
   }, 30_000);
 
   it("rejects mismatched program and try-out signed evidence", async () => {

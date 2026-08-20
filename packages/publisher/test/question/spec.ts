@@ -35,11 +35,9 @@ if (!(firstEntry && firstSource)) {
   throw new Error("Expected the real question-bank source and body slice.");
 }
 export const questionChoices = firstSource.choices;
-const choicePath = `${firstEntry.sourceRoot}/choices.ts`;
-export const questionPaths = [
-  ...questionEntries.map(({ sourcePath }) => sourcePath),
-  choicePath,
-];
+export const questionPaths = firstSource.files.map(
+  (file) => `${firstSource.sourceRoot}/${file}`
+);
 export const sourceByPath = new Map(
   questionPaths.map((sourcePath) => {
     const absolutePath = resolve(checkoutRoot, sourcePath);

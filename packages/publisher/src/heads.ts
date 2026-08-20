@@ -8,6 +8,7 @@ import type {
   ContentHead,
   HeadPage,
   MaterialHead,
+  PageHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
@@ -76,6 +77,13 @@ export function streamContentHeads(
   activeManifestHash: Sha256Hash,
   family: "material"
 ): Stream.Stream<MaterialHead, PublicationTargetFailure, PublicationTarget>;
+
+/** Streams every compact page head while binding all pages to one release. */
+export function streamContentHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash,
+  family: "page"
+): Stream.Stream<PageHead, PublicationTargetFailure, PublicationTarget>;
 
 /** Streams every compact question head while binding all pages to one release. */
 export function streamContentHeads(

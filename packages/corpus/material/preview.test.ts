@@ -33,7 +33,7 @@ async function mathematicsDomain() {
 }
 
 describe("material preview projection", () => {
-  it("projects active and candidate bodies through distinct metadata owners", async () => {
+  it("projects base and locale-owned bodies through distinct metadata owners", async () => {
     const descriptor = await mathematicsDomain();
     const entries = await Effect.runPromise(
       decodeMaterialPreviewEntries(

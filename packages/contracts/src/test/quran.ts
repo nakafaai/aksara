@@ -1,7 +1,7 @@
 import { Effect } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
-import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
+import { ACTIVE_APP_LOCALES, AppLocaleSchema } from "#contracts/locale";
 import {
   QuranChunkRowSchema,
   type QuranRowPayload,
@@ -20,7 +20,7 @@ const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const english = AppLocaleSchema.make("en");
 const indonesian = AppLocaleSchema.make("id");
-const activeAppLocales = ActiveAppLocaleListSchema.make([english, indonesian]);
+const german = AppLocaleSchema.make("de");
 
 /** Builds one technical verse at exact local and global positions. */
 export function quranVerse(inSurah: number, inQuran: number) {
@@ -51,13 +51,17 @@ export function quranVerse(inSurah: number, inQuran: number) {
         appLocale: indonesian,
         value: { footnotes: "", text: "Teks teknis" },
       },
+      {
+        appLocale: german,
+        value: { footnotes: "", text: "Technischer Text" },
+      },
     ],
   });
 }
 
 /** Builds the complete technical attribution row in canonical source order. */
 export function quranAttribution() {
-  const sources = quranSourceIds(activeAppLocales).map((id) =>
+  const sources = quranSourceIds(ACTIVE_APP_LOCALES).map((id) =>
     QuranSourceAttributionSchema.make({
       artifact: {
         byteCount: 1,
@@ -66,11 +70,11 @@ export function quranAttribution() {
       },
       copy: [
         {
-          appLocale: activeAppLocales[0],
-          notice: `Technical ${activeAppLocales[0]} notice for ${id}.`,
-          title: `Technical ${activeAppLocales[0]} source ${id}.`,
+          appLocale: ACTIVE_APP_LOCALES[0],
+          notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
+          title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
         },
-        ...activeAppLocales.slice(1).map((appLocale) => ({
+        ...ACTIVE_APP_LOCALES.slice(1).map((appLocale) => ({
           appLocale,
           notice: `Technical ${appLocale} notice for ${id}.`,
           title: `Technical ${appLocale} source ${id}.`,
@@ -97,7 +101,7 @@ export function quranAttribution() {
     throw new Error("Expected technical Quran source identities.");
   }
   return QuranAttributionRowSchema.make({
-    activeAppLocales,
+    activeAppLocales: ACTIVE_APP_LOCALES,
     kind: "quran-attribution",
     sources: [first, ...rest],
   });
@@ -164,7 +168,7 @@ export function quranTestPayloads() {
     surahNumber <= QURAN_SURAH_COUNT;
     surahNumber += 1
   ) {
-    for (const appLocale of activeAppLocales) {
+    for (const appLocale of ACTIVE_APP_LOCALES) {
       rows.push(
         QuranSearchRowSchema.make({
           appLocale,

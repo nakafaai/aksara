@@ -17,7 +17,7 @@ import { materialLocaleSources } from "#corpus/material/locale-registry";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
-/** Preview-only material domain after locale-owned route composition. */
+/** Material domain after permanent locale-owned route composition. */
 export type LocalizedMaterialProjectionDomain = Omit<
   MaterialDomainDescriptor,
   "routeSlugs"
@@ -28,7 +28,7 @@ export type LocalizedMaterialProjectionDomain = Omit<
   >;
 };
 
-/** Preview-only material source after locale-owned copy composition. */
+/** Material source after permanent locale-owned copy composition. */
 export type LocalizedMaterialProjectionSource = Omit<
   LessonMaterialSource,
   "routeSlugs" | "sections" | "translations"
@@ -50,7 +50,7 @@ export type LocalizedMaterialProjectionSource = Omit<
   >;
 };
 
-/** Locale-owned route for one material domain before locale activation. */
+/** Locale-owned route for one material domain outside the base source map. */
 export const MaterialLocaleDomainSchema = Schema.Struct({
   appLocale: LocaleOverlayAppLocaleCodeSchema,
   key: MaterialDomainSchema,
@@ -58,7 +58,7 @@ export const MaterialLocaleDomainSchema = Schema.Struct({
 });
 export type MaterialLocaleDomain = typeof MaterialLocaleDomainSchema.Type;
 
-/** Locale-owned material and section copy for one candidate body family. */
+/** Locale-owned material and section copy for one localized body family. */
 export const MaterialLocaleSourceSchema = Schema.Struct({
   appLocale: LocaleOverlayAppLocaleCodeSchema,
   materialKey: MaterialKeySchema,
@@ -78,7 +78,7 @@ export type MaterialLocaleSource = typeof MaterialLocaleSourceSchema.Type;
 export type MaterialLocaleSourceInput =
   typeof MaterialLocaleSourceSchema.Encoded;
 
-/** Complete locale-owned metadata registry for candidate material bodies. */
+/** Complete locale-owned metadata registry for localized material bodies. */
 export const MaterialLocaleCatalogSchema = Schema.Struct({
   domains: Schema.Array(MaterialLocaleDomainSchema),
   sources: Schema.Array(MaterialLocaleSourceSchema),
@@ -87,7 +87,7 @@ export type MaterialLocaleCatalog = typeof MaterialLocaleCatalogSchema.Type;
 
 const GERMAN_APP_LOCALE: LocaleOverlayAppLocaleCode = "de";
 
-/** Candidate material metadata does not match its stable active owner. */
+/** Locale-owned material metadata does not match its stable owner. */
 export class MaterialLocaleOwnershipError extends Schema.TaggedError<MaterialLocaleOwnershipError>()(
   "MaterialLocaleOwnershipError",
   {
@@ -97,55 +97,52 @@ export class MaterialLocaleOwnershipError extends Schema.TaggedError<MaterialLoc
   }
 ) {}
 
-/** Candidate material metadata failed strict source decoding. */
+/** Locale-owned material metadata failed strict source decoding. */
 export class MaterialLocaleCatalogError extends Schema.TaggedError<MaterialLocaleCatalogError>()(
   "MaterialLocaleCatalogError",
   { cause: Schema.Unknown }
 ) {}
 
-/** Resolves one candidate domain descriptor outside active reviewed sources. */
+/** Composes one locale-owned domain route over stable base facts. */
 export const composeMaterialLocaleDomain = Effect.fn(
   "AksaraCorpus.composeMaterialLocaleDomain"
-)(function* (
-  active: MaterialDomainDescriptor,
-  candidate: MaterialLocaleDomain
-) {
-  if (active.key !== candidate.key) {
+)(function* (base: MaterialDomainDescriptor, overlay: MaterialLocaleDomain) {
+  if (base.key !== overlay.key) {
     return yield* new MaterialLocaleOwnershipError({
-      domain: candidate.key,
+      domain: overlay.key,
       scope: "domain",
     });
   }
   return {
-    ...active,
-    overlayAppLocale: candidate.appLocale,
+    ...base,
+    overlayAppLocale: overlay.appLocale,
     routeSlugs: {
-      ...active.routeSlugs,
-      [candidate.appLocale]: candidate.routeSlug,
+      ...base.routeSlugs,
+      [overlay.appLocale]: overlay.routeSlug,
     },
   } satisfies LocalizedMaterialProjectionDomain;
 });
 
-/** Resolves one candidate material overlay without changing active source bytes. */
+/** Composes one locale-owned material overlay without changing base source bytes. */
 export const composeMaterialLocaleSource = Effect.fn(
   "AksaraCorpus.composeMaterialLocaleSource"
-)(function* (active: LessonMaterialSource, candidate: MaterialLocaleSource) {
-  if (active.key !== candidate.materialKey) {
+)(function* (base: LessonMaterialSource, overlay: MaterialLocaleSource) {
+  if (base.key !== overlay.materialKey) {
     return yield* new MaterialLocaleOwnershipError({
-      domain: active.domain,
-      materialKey: candidate.materialKey,
+      domain: base.domain,
+      materialKey: overlay.materialKey,
       scope: "material",
     });
   }
-  const sections = yield* Effect.forEach(active.sections, (section) =>
+  const sections = yield* Effect.forEach(base.sections, (section) =>
     Effect.gen(function* () {
-      const overlay = candidate.sections.find(
+      const sectionOverlay = overlay.sections.find(
         ({ sectionKey }) => sectionKey === section.slug
       );
-      if (overlay === undefined) {
+      if (sectionOverlay === undefined) {
         return yield* new MaterialLocaleOwnershipError({
-          domain: active.domain,
-          materialKey: candidate.materialKey,
+          domain: base.domain,
+          materialKey: overlay.materialKey,
           scope: "section",
         });
       }
@@ -153,29 +150,29 @@ export const composeMaterialLocaleSource = Effect.fn(
         ...section,
         routeSlugs: {
           ...section.routeSlugs,
-          [candidate.appLocale]: overlay.routeSlug,
+          [overlay.appLocale]: sectionOverlay.routeSlug,
         },
       };
     })
   );
-  if (candidate.sections.length !== sections.length) {
+  if (overlay.sections.length !== sections.length) {
     return yield* new MaterialLocaleOwnershipError({
-      domain: active.domain,
-      materialKey: candidate.materialKey,
+      domain: base.domain,
+      materialKey: overlay.materialKey,
       scope: "section",
     });
   }
   return {
-    ...active,
-    overlayAppLocale: candidate.appLocale,
+    ...base,
+    overlayAppLocale: overlay.appLocale,
     routeSlugs: {
-      ...active.routeSlugs,
-      [candidate.appLocale]: candidate.routeSlug,
+      ...base.routeSlugs,
+      [overlay.appLocale]: overlay.routeSlug,
     },
     sections,
     translations: {
-      ...active.translations,
-      [candidate.appLocale]: candidate.translation,
+      ...base.translations,
+      [overlay.appLocale]: overlay.translation,
     },
   } satisfies LocalizedMaterialProjectionSource;
 });
@@ -205,7 +202,7 @@ const requireGermanDomainRoute = Effect.fn(
   return routeSlug;
 });
 
-/** Decodes locale-owned candidate metadata with glossary-derived domains. */
+/** Decodes locale-owned metadata with glossary-derived domains. */
 export const decodeMaterialLocaleCatalog = Effect.fn(
   "AksaraCorpus.decodeMaterialLocaleCatalog"
 )(function* (
@@ -234,7 +231,7 @@ export const decodeMaterialLocaleCatalog = Effect.fn(
   ).pipe(Effect.mapError((cause) => new MaterialLocaleCatalogError({ cause })));
 });
 
-/** Resolves one exact candidate source and domain binding. */
+/** Resolves one exact locale source and domain binding. */
 export const requireMaterialLocaleBinding = Effect.fn(
   "AksaraCorpus.requireMaterialLocaleBinding"
 )(function* (
@@ -244,22 +241,20 @@ export const requireMaterialLocaleBinding = Effect.fn(
   appLocale: MaterialLocaleSource["appLocale"]
 ) {
   const domains = catalog.domains.filter(
-    (candidate) =>
-      candidate.appLocale === appLocale && candidate.key === descriptor.key
+    (row) => row.appLocale === appLocale && row.key === descriptor.key
   );
   const sources = catalog.sources.filter(
-    (candidate) =>
-      candidate.appLocale === appLocale && candidate.materialKey === source.key
+    (row) => row.appLocale === appLocale && row.materialKey === source.key
   );
   const [domain] = domains;
-  const [candidateSource] = sources;
+  const [localeSource] = sources;
   if (domains.length !== 1 || domain === undefined) {
     return yield* new MaterialLocaleOwnershipError({
       domain: descriptor.key,
       scope: "domain",
     });
   }
-  if (sources.length !== 1 || candidateSource === undefined) {
+  if (sources.length !== 1 || localeSource === undefined) {
     return yield* new MaterialLocaleOwnershipError({
       domain: descriptor.key,
       materialKey: source.key,
@@ -268,6 +263,6 @@ export const requireMaterialLocaleBinding = Effect.fn(
   }
   return {
     descriptor: yield* composeMaterialLocaleDomain(descriptor, domain),
-    source: yield* composeMaterialLocaleSource(source, candidateSource),
+    source: yield* composeMaterialLocaleSource(source, localeSource),
   };
 });

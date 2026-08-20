@@ -1,7 +1,11 @@
 import { Effect } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
-import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  type AppLocale,
+  AppLocaleSchema,
+} from "#contracts/locale";
 import {
   CurriculumRouteSchema,
   curriculumNamespace,
@@ -15,10 +19,11 @@ import {
   LearningProgramKeySchema,
   LearningProgramSchema,
 } from "#contracts/program/spec";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const english = AppLocaleSchema.make("en");
 const indonesian = AppLocaleSchema.make("id");
-const activeAppLocales = [english, indonesian] as const;
+const german = AppLocaleSchema.make("de");
 
 /** Builds one clearly test-only learning program at a stable position. */
 export function makeTestProgram(index: number) {
@@ -51,6 +56,11 @@ export function makeTestProgram(index: number) {
         appLocale: indonesian,
         publicSlug: `program-uji-${index}`,
         title: `Program Uji ${index}`,
+      },
+      {
+        appLocale: german,
+        publicSlug: `testprogramm-${index}`,
+        title: `Testprogramm ${index}`,
       },
     ],
     version: { label: "Test version" },
@@ -138,13 +148,21 @@ export const makeProgramTestRecords = Effect.fn(
     programs,
     makeProgramSnapshotRow
   );
-  const curriculumRecords = yield* Effect.forEach(
-    programs.flatMap((program) =>
-      activeAppLocales.flatMap((appLocale) => [
+  const curriculum = programs
+    .flatMap((program) =>
+      ACTIVE_APP_LOCALES.flatMap((appLocale) => [
         makeTestCurriculumRoot(program, appLocale),
         ...makeTestCurriculumChildren(program, appLocale),
       ])
-    ),
+    )
+    .sort((left, right) =>
+      compareCodeUnits(
+        `${left.programKey}\0${left.appLocale}\0${left.publicPath}`,
+        `${right.programKey}\0${right.appLocale}\0${right.publicPath}`
+      )
+    );
+  const curriculumRecords = yield* Effect.forEach(
+    curriculum,
     makeCurriculumSnapshotRow
   );
   return [...programRecords, ...curriculumRecords];

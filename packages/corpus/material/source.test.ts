@@ -70,7 +70,7 @@ describe("material source", () => {
   it("reads every locale body byte-exactly from its signed source path", async () => {
     const documents = await readSources(sourceByPath);
 
-    expect(documents).toHaveLength(766);
+    expect(documents).toHaveLength(1149);
     expect(documents.map(({ sourcePath }) => sourcePath)).toEqual(
       entries.map(({ sourcePath }) => sourcePath)
     );

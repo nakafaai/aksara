@@ -16,7 +16,7 @@ import {
   finalizeResultCatalogDigest,
   updateResultCatalogDigest,
 } from "@nakafa/aksara-contracts/release/result/digest";
-import { Effect, Ref, Schema, Stream } from "effect";
+import { Effect, Match, Ref, Schema, Stream } from "effect";
 import type { ExpectedCatalogHead } from "#publisher/catalog/expectation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -38,6 +38,7 @@ export interface CatalogResultEvidence {
   /** Replays every validated current content head in canonical family order. */
   readonly heads: Stream.Stream<ContentHead, ReplaySpoolError>;
   readonly materialCount: number;
+  readonly pageCount: number;
   readonly questionCount: number;
   /** Replays only validated question heads for structured try-out binding. */
   readonly questionHeads: Stream.Stream<QuestionHead, ReplaySpoolError>;
@@ -65,6 +66,7 @@ interface CatalogResultState {
   readonly articleCount: number;
   readonly index: number;
   readonly materialCount: number;
+  readonly pageCount: number;
   readonly questionCount: number;
   readonly totalCount: number;
 }
@@ -73,6 +75,7 @@ const EMPTY_RESULT_STATE: CatalogResultState = {
   articleCount: 0,
   index: 0,
   materialCount: 0,
+  pageCount: 0,
   questionCount: 0,
   totalCount: 0,
 };
@@ -120,22 +123,30 @@ function validateHead(
     index: state.index + 1,
     totalCount: state.totalCount + 1,
   };
-  if (head.family === "article") {
-    return Effect.succeed({
-      ...counted,
-      articleCount: state.articleCount + 1,
-    });
-  }
-  if (head.family === "material") {
-    return Effect.succeed({
-      ...counted,
-      materialCount: state.materialCount + 1,
-    });
-  }
-  return Effect.succeed({
-    ...counted,
-    questionCount: state.questionCount + 1,
-  });
+  return Match.value(head).pipe(
+    Match.discriminatorsExhaustive("family")({
+      article: () =>
+        Effect.succeed({
+          ...counted,
+          articleCount: state.articleCount + 1,
+        }),
+      material: () =>
+        Effect.succeed({
+          ...counted,
+          materialCount: state.materialCount + 1,
+        }),
+      page: () =>
+        Effect.succeed({
+          ...counted,
+          pageCount: state.pageCount + 1,
+        }),
+      question: () =>
+        Effect.succeed({
+          ...counted,
+          questionCount: state.questionCount + 1,
+        }),
+    })
+  );
 }
 
 /**
@@ -181,6 +192,7 @@ export const validateCatalogResult = Effect.fn(
     digest: resultDigest,
     heads: heads.replay,
     materialCount: state.materialCount,
+    pageCount: state.pageCount,
     questionCount: state.questionCount,
     questionHeads: questions.replay,
     totalCount: state.totalCount,

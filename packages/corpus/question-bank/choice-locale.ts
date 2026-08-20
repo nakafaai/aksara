@@ -43,7 +43,7 @@ function choiceLocales(
   ];
 }
 
-/** Choice locales stored together in the historical `choices.ts` source. */
+/** Choice locales stored together in the base `choices.ts` source. */
 export function embeddedQuestionChoiceLocales(sectionKey: TryoutKey) {
   return choiceLocales(
     sectionKey,

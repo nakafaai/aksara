@@ -4,12 +4,14 @@ import type { ArtifactLocale } from "#contracts/locale";
 import {
   type ArticlePreviewDocument,
   type MaterialPreviewDocument,
+  type PagePreviewDocument,
   type PreviewDocument,
   PreviewDocumentSchema,
 } from "#contracts/preview/document";
 import { PreviewRouteSchema } from "#contracts/preview/target";
 import type { ArticleProjection } from "#contracts/projection/article";
 import type { MaterialLessonProjection } from "#contracts/projection/material";
+import type { PublicPageProjection } from "#contracts/projection/page";
 import type { QuestionBodyProjection } from "#contracts/projection/question";
 import {
   type ContentProjection,
@@ -103,6 +105,22 @@ function matchesMaterialDocument(
   );
 }
 
+/** Checks one page projection against its selected registry route. */
+function matchesPageDocument(
+  document: PagePreviewDocument,
+  projection: ContentProjection
+): projection is PublicPageProjection {
+  return (
+    projection.kind === "public-page" &&
+    projection.contentKey === document.route.contentKey &&
+    projection.appLocale === document.route.appLocale &&
+    projection.artifactLocale === document.route.artifactLocale &&
+    projection.pageKey === document.route.pageKey &&
+    projection.publicPath === document.route.publicPath &&
+    projection.sourcePath === document.sourcePath
+  );
+}
+
 /** Checks one question projection against an exact prompt or answer identity. */
 function matchesQuestionIdentity(
   projection: ContentProjection,
@@ -157,6 +175,11 @@ function hasCoherentReadyArtifacts(input: {
     return (
       input.artifacts.length === 1 &&
       matchesMaterialDocument(input.document, first)
+    );
+  }
+  if (input.document.family === "page") {
+    return (
+      input.artifacts.length === 1 && matchesPageDocument(input.document, first)
     );
   }
   if (input.document.identity.bodyKind === "question") {

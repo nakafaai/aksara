@@ -57,7 +57,7 @@ describe("try-out placement identity", () => {
     const [first] = sorted;
 
     expect(first).toBeDefined();
-    expect(new Set(sorted.map(tryoutPlacementIdentity)).size).toBe(2);
+    expect(new Set(sorted.map(tryoutPlacementIdentity)).size).toBe(3);
     expect(new Set(sorted.map(tryoutPlacementLogicalIdentity)).size).toBe(1);
     if (first !== undefined) {
       expect(compareTryoutPlacements(first, first)).toBe(0);

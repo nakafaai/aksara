@@ -81,14 +81,19 @@ function head(input: HeadInput) {
   });
 }
 
-/** Returns all four active heads in canonical content order. */
+/** Returns all six active heads in canonical content order. */
 function activeHeads() {
-  return [
-    head({ artifactLocale: "en", bodyKind: "answer" }),
-    head({ artifactLocale: "id", bodyKind: "answer" }),
-    head({ artifactLocale: "en", bodyKind: "question" }),
-    head({ artifactLocale: "id", bodyKind: "question" }),
-  ];
+  return (["en", "id", "de"] as const)
+    .flatMap((artifactLocale) => [
+      head({ artifactLocale, bodyKind: "answer" }),
+      head({ artifactLocale, bodyKind: "question" }),
+    ])
+    .sort(compareContentHeads);
+}
+
+/** Returns the complete active placement closure for one question root. */
+function activePlacements() {
+  return [placement("en"), placement("id"), placement("de")];
 }
 
 /** Collects one binding stream as plain readonly values. */
@@ -136,23 +141,23 @@ function mismatchedHead(field: "delivery" | "rendererDomain" | "sourcePath") {
 }
 
 describe("try-out head binding", () => {
-  it("binds both locales while ignoring inactive canonical heads", async () => {
-    const placements = [placement("id"), placement("en")];
-    const inactiveRoot =
+  it("binds all locales while ignoring a head outside the active catalog", async () => {
+    const unrelatedRoot =
       "question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1";
     const heads = [
       ...activeHeads(),
       head({
         artifactLocale: "en",
         bodyKind: "answer",
-        contentRoot: inactiveRoot,
+        contentRoot: unrelatedRoot,
         sourcePath:
           "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
       }),
     ].sort(compareContentHeads);
-    const result = await collect(placements, heads);
+    const result = await collect(activePlacements(), heads);
 
     expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
+      "de",
       "en",
       "id",
     ]);
@@ -171,7 +176,7 @@ describe("try-out head binding", () => {
       [
         [answer, answer],
         [question, answer],
-      ].map((heads) => reject([placement("en"), placement("id")], heads))
+      ].map((heads) => reject(activePlacements(), heads))
     );
 
     expect(errors[0]).toMatchObject({ _tag: "TryoutHeadDuplicateError" });
@@ -180,8 +185,11 @@ describe("try-out head binding", () => {
 
   it("rejects missing and unexpected active head identities", async () => {
     const missing = await reject(
-      [placement("en"), placement("id")],
-      activeHeads().slice(1)
+      activePlacements(),
+      activeHeads().filter(
+        ({ artifactLocale, contentKey }) =>
+          !(artifactLocale === "en" && contentKey === `${questionRoot}/answer`)
+      )
     );
     const trailing = QuestionHeadSchema.make({
       ...head({ artifactLocale: "en", bodyKind: "answer" }),
@@ -194,11 +202,11 @@ describe("try-out head binding", () => {
       sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/aaa.en.mdx`),
     });
     const trailingError = await reject(
-      [placement("en"), placement("id")],
+      activePlacements(),
       [...activeHeads(), trailing].sort(compareContentHeads)
     );
     const leadingError = await reject(
-      [placement("en"), placement("id")],
+      activePlacements(),
       [...activeHeads(), leading].sort(compareContentHeads)
     );
 
@@ -218,10 +226,7 @@ describe("try-out head binding", () => {
   });
 
   it("rejects a missing final active head identity", async () => {
-    const error = await reject(
-      [placement("en"), placement("id")],
-      activeHeads().slice(0, -1)
-    );
+    const error = await reject(activePlacements(), activeHeads().slice(0, -1));
 
     expect(error).toMatchObject({
       _tag: "TryoutHeadMissingError",
@@ -234,8 +239,17 @@ describe("try-out head binding", () => {
     "rejects a mismatched %s field",
     async (field) => {
       const error = await reject(
-        [placement("en"), placement("id")],
-        [mismatchedHead(field), ...activeHeads().slice(1)]
+        activePlacements(),
+        [
+          mismatchedHead(field),
+          ...activeHeads().filter(
+            ({ artifactLocale, contentKey }) =>
+              !(
+                artifactLocale === "en" &&
+                contentKey === `${questionRoot}/answer`
+              )
+          ),
+        ].sort(compareContentHeads)
       );
 
       expect(error).toMatchObject({

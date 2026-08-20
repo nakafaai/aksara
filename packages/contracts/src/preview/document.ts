@@ -8,6 +8,7 @@ import {
 } from "#contracts/preview/target";
 import { ArticleRouteSchema } from "#contracts/projection/article";
 import { MaterialLessonRouteSchema } from "#contracts/projection/material";
+import { PublicPageRouteSchema } from "#contracts/projection/page";
 import {
   QuestionAnswerIdentitySchema,
   type QuestionBodyIdentity,
@@ -34,6 +35,16 @@ export const MaterialPreviewDocumentSchema = Schema.Struct({
   sourcePath: CorpusSourcePathSchema,
 });
 export type MaterialPreviewDocument = typeof MaterialPreviewDocumentSchema.Type;
+
+/** One exact public site page selected from its reviewed registry. */
+export const PagePreviewDocumentSchema = Schema.Struct({
+  delivery: Schema.Literal("public"),
+  family: Schema.Literal("page"),
+  rendererDomain: Schema.Literal("site"),
+  route: PublicPageRouteSchema,
+  sourcePath: CorpusSourcePathSchema,
+});
+export type PagePreviewDocument = typeof PagePreviewDocumentSchema.Type;
 
 interface QuestionPreviewDocumentInput {
   readonly identity: QuestionBodyIdentity;
@@ -106,6 +117,7 @@ export type QuestionAnswerPreviewDocument =
 export const PreviewDocumentSchema = Schema.Union([
   ArticlePreviewDocumentSchema,
   MaterialPreviewDocumentSchema,
+  PagePreviewDocumentSchema,
   QuestionPromptPreviewDocumentSchema,
   QuestionAnswerPreviewDocumentSchema,
 ]);

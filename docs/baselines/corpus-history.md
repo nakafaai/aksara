@@ -4,9 +4,9 @@ This evidence records the bounded rich-slice history imports and the complete
 authored-input history import. Publication and source cutover remain a
 family-by-family migration.
 
-This file preserves the migration-time source evidence. Current production
-ownership is recorded in the root
-[production scope](../../README.md#production-scope).
+This file preserves migration-time source evidence. It does not describe
+mutable production state. Use the read-only `pnpm status` command documented in
+the root [README](../../README.md) for authoritative release slots.
 
 ## Function Concept
 
@@ -223,6 +223,7 @@ family publication gates.
   `b8bddda272600138a08647ba5e775167f9b98cfdeb2dc02904e6c93774a810f5`
 
 The source and filtered paths resolve to the same Git blob and SHA-256 digest.
-That reviewed Nakafa source owns the exact `politics` category labels
-`Politics` for English and `Politik` for Indonesian. The current cohesive
-category source preserves those values without translation or invention.
+That reviewed Nakafa source owns the exact embedded `politics` category labels
+`Politics` for English and `Politik` for Indonesian. The current embedded
+category source preserves those values without translation or invention. The
+German `Politik` label is owned separately by its reviewed locale record.

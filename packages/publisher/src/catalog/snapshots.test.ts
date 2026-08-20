@@ -24,13 +24,13 @@ const quranSearchCount = QURAN_SURAH_COUNT * ACTIVE_APP_LOCALES.length;
 const quranProjectionCount = quranRuntimeCount + quranSearchCount;
 const programManifest = ProgramSnapshotSchema.make({
   activeAppLocales: ACTIVE_APP_LOCALES,
-  curriculumRowCount: 390,
+  curriculumRowCount: 585,
   format: "localized-program-snapshot",
   programRowCount: 6,
-  rowCount: 396,
+  rowCount: 591,
   rowDigest: hash,
-  sitemapCount: 52,
-  slugCount: 12,
+  sitemapCount: 78,
+  slugCount: 18,
   snapshotId: hash,
 });
 const quranManifest = QuranSnapshotSchema.make({

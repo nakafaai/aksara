@@ -6,8 +6,8 @@
 - Aksara source: `packages/corpus/quran`
 
 This is the dated provenance decision from 2026-07-25. Production activation
-later completed through the exact release and acceptance evidence recorded in
-the root [production scope](../../README.md#production-scope). The historical
+later completed. Use the read-only `pnpm status` command documented in the root
+[README](../../README.md) for authoritative release slots. The historical
 decision below is retained to show what this review did and did not prove at
 that time.
 
@@ -33,7 +33,7 @@ The Al-Mukhtasar digest starts SHA-256 with
 `aksara.quranenc.api-bundle.v1\n`. For each numeric file from 1 through 114 it
 adds `<name>\n<byte-count>\n`, the exact response bytes, and `\n`.
 
-The complete data bundle contains 118 files and 11,506,941 bytes. Its SHA-256
+The 2026-07-25 baseline data bundle contains 118 files and 11,506,941 bytes. Its SHA-256
 is `73e50fb15aac4cd95c86151cc43f002b5c76986584846e16d171bd0be99f58d7`.
 That digest starts with `aksara.quran.source-bundle.v2\n`, then adds each
 stable acquisition name, byte count, exact bytes, and newline in manifest
@@ -76,7 +76,7 @@ The verified source parser preserves source strings exactly. It does not trim,
 normalize, translate, repair, shorten, lengthen, or invent content. Empty QuranEnc XML
 footnotes remain `""`; API `null` footnotes remain `null`.
 
-The blocked legacy fields were deleted rather than adapted:
+At that baseline, blocked fields were deleted rather than adapted:
 
 - Al Quran Cloud audio and all audio URLs
 - unlicensed verse transliteration
@@ -84,33 +84,33 @@ The blocked legacy fields were deleted rather than adapted:
 - Bachors surah descriptions and metadata
 - localized or synthetic surah names
 - Kemenag-derived short and long tafsir compatibility fields
-- German or any other unsupported locale data
+- German or any other locale data unsupported by that baseline
 
 Audio remains omitted because no exact durable attribution and takedown
 contract was proven for a specific recitation artifact.
 
 ## Completeness and publication identity
 
-The verified source contains 114 ordered surahs and 6,236 ordered verses. Its
-published projection contains 1,085 bounded verse chunks, 228 locale search
-rows, and one visible attribution row.
-The current snapshot therefore contains 1,200 runtime rows and 1,428 total
-projections. Registry validation rejects count, surah order, local verse order,
-global verse order, revelation-order duplication, source-schema drift, and
-unsupported fields as typed failures.
+At that baseline, the verified source contained 114 ordered surahs and 6,236
+ordered verses. Its published projection contained 1,085 bounded verse chunks,
+228 locale search rows, and one visible attribution row. The 2026-07-25
+snapshot therefore contained 1,200 runtime rows and 1,428 total projections.
+Registry validation rejects count, surah order, local verse order, global verse
+order, revelation-order duplication, source-schema drift, and unsupported
+fields as typed failures.
 
 The approved provenance decision means these exact source bytes satisfy the
 current Aksara gate. It does not claim that Nakafa production was deployed,
 migrated, or visually verified in this change.
 
-## German candidate addendum
+## German publication addendum
 
 - Translation retrieved: `2026-08-13T06:12:57Z`
 - Publication record retrieved: `2026-08-13T08:31:04Z`
 - Reviewed: 2026-08-13
-- Decision: German source evidence accepted for authoring only; German remains inactive
+- Decision: German source evidence approved for active publication
 
-The German candidate uses QuranEnc German Bubenheim v1.1.4-xml.1. Its exact
+The German publication uses QuranEnc German Bubenheim v1.1.4-xml.1. Its exact
 XML is stored at `sources/german/translation.xml`: 1,523,305 bytes, SHA-256
 `38763b972b2efeeed3062ba3495042c28f320cf734071e010d746c525ebce47e`.
 It contains 114 ordered surahs and 6,236 ordered verses. Every translation is
@@ -126,12 +126,12 @@ It came from the official German item API for IslamHouse item 59081. This
 evidence is review-bound to the authored attribution and provenance records;
 it is not part of the Quran data bundle.
 
-The German authoring data bundle contains 119 files and 13,030,246 bytes. Its
+The active three-locale data bundle contains 119 files and 13,030,246 bytes. Its
 SHA-256 is
 `4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8`.
-The current `en` and `id` bundle remains 118 files with its existing digest and
-signed snapshot identity. Candidate `translation.de.text` and `.footnotes`
-come only from the exact German QuranEnc XML.
+The `translation.de.text` and `.footnotes` fields come only from the exact
+German QuranEnc XML. The active snapshot contains 342 locale search rows and
+1,542 total projections.
 
 German Tafsir is unavailable. Nakafa must say so plainly and must not
 substitute another language or label the German translation as Tafsir.

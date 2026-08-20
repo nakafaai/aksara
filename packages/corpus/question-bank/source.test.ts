@@ -9,10 +9,10 @@ import {
   readQuestionSource,
 } from "#corpus/question-bank/source";
 import {
-  candidateQuestionChoicesSource,
   choicesForQuestion,
   corpusRoot,
   generalQuestionSourceFiles,
+  germanQuestionChoicesSource,
   indonesianChoiceFixture,
   invalidQuestionChoiceSources,
   makeQuestionSourceLayer,
@@ -143,14 +143,20 @@ describe("question source", () => {
       ]),
       new Map()
     );
-    const orphanChoice = await rejectQuestionSources(
+    const missingGermanChoice = await rejectQuestionSources(
       realQuestionBanks,
-      questionEntries(root, [...generalQuestionSourceFiles, "choices.de.ts"]),
+      questionEntries(
+        root,
+        generalQuestionSourceFiles.filter((file) => file !== "choices.de.ts")
+      ),
       new Map()
     );
-    const orphanPrompt = await rejectQuestionSources(
+    const missingGermanPrompt = await rejectQuestionSources(
       realQuestionBanks,
-      questionEntries(root, [...generalQuestionSourceFiles, "question.de.mdx"]),
+      questionEntries(
+        root,
+        generalQuestionSourceFiles.filter((file) => file !== "question.de.mdx")
+      ),
       new Map()
     );
     expect(missing._tag).toBe("QuestionFileSetError");
@@ -159,8 +165,8 @@ describe("question source", () => {
       _tag: "QuestionFileSetError",
       sourcePath: `${questionTestSourceRoot}/${root}`,
     });
-    expect(orphanChoice._tag).toBe("QuestionFileSetError");
-    expect(orphanPrompt._tag).toBe("QuestionFileSetError");
+    expect(missingGermanChoice._tag).toBe("QuestionFileSetError");
+    expect(missingGermanPrompt._tag).toBe("QuestionFileSetError");
   });
   it("rejects unevaluable and invalid localized choice catalogs", async () => {
     const errors = await Promise.all(
@@ -248,7 +254,7 @@ describe("question source", () => {
             new Map([
               [basePath, validQuestionChoicesSource],
               ...(includeOverlay
-                ? [[overlayPath, candidateQuestionChoicesSource] as const]
+                ? [[overlayPath, germanQuestionChoicesSource] as const]
                 : []),
             ])
           ),

@@ -29,6 +29,8 @@ Current consumers use unversioned semantic Interfaces:
   builds their pure lookup identities before complete signed rows are loaded.
 - `projection/material` owns the application-locale material namespace and
   validates every signed route and projection against it.
+- `projection/page` owns stable public page identities, localized paths, and
+  signed metadata for human, agent, and sitemap delivery.
 - `history/decode` is the single read-only boundary for immutable releases,
   try-out snapshots and rows, and attempt-bound protected content retained by
   existing user history.
@@ -38,12 +40,14 @@ The history boundary has no writer, route fallback, or mixed current wire.
 
 Runtime verification authenticates the independently signed release and
 artifact values against the exact renderer manifest frozen into that release.
-When the deployed manifest hash differs, public and protected runtime reads then
-prove the selected artifact against the complete live renderer. This
-directional check lets an additive live renderer serve an older release only
-when it still publishes the selected domain and supports every required
-component version. It never authorizes publication: new releases, activation,
-and recovery preflight remain bound to the exact complete live renderer. The
+Execution verification also proves the selected artifact against the complete
+live renderer when the deployed manifest hash differs. Non-rendering evidence
+verification authenticates the same frozen release and artifact without
+claiming that its consumer can execute the artifact. This directional
+execution check lets an additive live renderer serve an older release only when
+it still publishes the selected domain and supports every required component
+version. It never authorizes publication: new releases, activation, and
+recovery preflight remain bound to the exact complete live renderer. The
 renderer is not a third signed value. Current production trusts authenticated
 Convex state for route/head membership, delivery class, and the active pointer;
 a release result digest is not a per-row inclusion proof. This boundary is

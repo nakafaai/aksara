@@ -7,7 +7,6 @@ import {
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError, Schema } from "effect";
 
-import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 
 const repositoryRoot = resolve(import.meta.dirname, "../../../..");
@@ -88,23 +87,12 @@ describe("Quran source loading", () => {
     const loaded = await load(sourceBytes);
 
     expect(loaded.summary).toEqual({
-      byteCount: 11_506_941,
-      digest:
-        "sha256:73e50fb15aac4cd95c86151cc43f002b5c76986584846e16d171bd0be99f58d7",
-      fileCount: 118,
-    });
-    expect(loaded.sources.tafsir).toHaveLength(114);
-  });
-
-  it("derives the German authoring bundle without activating it", async () => {
-    const loaded = await load(sourceBytes, AUTHORING_APP_LOCALES);
-
-    expect(loaded.summary).toEqual({
       byteCount: 13_030_246,
       digest:
         "sha256:4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8",
       fileCount: 119,
     });
+    expect(loaded.sources.tafsir).toHaveLength(114);
     expect(loaded.sources.translations.de).toContain(
       "Im Namen Allahs, des Allerbarmers, des Barmherzigen."
     );
@@ -172,11 +160,8 @@ describe("Quran source loading", () => {
     ]);
   });
 
-  it("authenticates the candidate German publication record", async () => {
-    const error = await reject(
-      drift("german/publication.json"),
-      AUTHORING_APP_LOCALES
-    );
+  it("authenticates the active German publication record", async () => {
+    const error = await reject(drift("german/publication.json"));
 
     expect(error).toMatchObject({
       _tag: "QuranSourceFileError",

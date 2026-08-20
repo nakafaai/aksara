@@ -35,7 +35,7 @@ export type LocalizedArticleProjectionSource = Omit<
   readonly routeSlugs: LocalizedSourceMap<ArticleSource["routeSlugs"]["en"]>;
 };
 
-/** Locale-owned category copy reviewed before one article locale activates. */
+/** Locale-owned category copy reviewed independently from base source maps. */
 export const ArticleLocaleCategorySchema = Schema.Struct({
   appLocale: LocaleOverlayAppLocaleCodeSchema,
   category: ArticleCategorySchema,
@@ -44,7 +44,7 @@ export const ArticleLocaleCategorySchema = Schema.Struct({
 });
 export type ArticleLocaleCategory = typeof ArticleLocaleCategorySchema.Type;
 
-/** Locale-owned article route copy reviewed beside one candidate MDX body. */
+/** Locale-owned article route copy reviewed beside its localized MDX body. */
 export const ArticleLocaleSourceSchema = Schema.Struct({
   appLocale: LocaleOverlayAppLocaleCodeSchema,
   articleSlug: ArticleSlugSchema,
@@ -53,20 +53,20 @@ export const ArticleLocaleSourceSchema = Schema.Struct({
 });
 export type ArticleLocaleSource = typeof ArticleLocaleSourceSchema.Type;
 
-/** Complete locale-owned metadata registry for candidate article bodies. */
+/** Complete locale-owned metadata registry for localized article bodies. */
 export const ArticleLocaleCatalogSchema = Schema.Struct({
   articles: Schema.Array(ArticleLocaleSourceSchema),
   categories: Schema.Array(ArticleLocaleCategorySchema),
 });
 export type ArticleLocaleCatalog = typeof ArticleLocaleCatalogSchema.Type;
 
-/** Candidate article metadata failed strict source decoding. */
+/** Locale-owned article metadata failed strict source decoding. */
 export class ArticleLocaleCatalogError extends Schema.TaggedError<ArticleLocaleCatalogError>()(
   "ArticleLocaleCatalogError",
   { cause: Schema.Unknown }
 ) {}
 
-/** Candidate article metadata does not match its active stable owner. */
+/** Locale-owned article metadata does not match its stable owner. */
 export class ArticleLocaleOwnershipError extends Schema.TaggedError<ArticleLocaleOwnershipError>()(
   "ArticleLocaleOwnershipError",
   {
@@ -87,18 +87,18 @@ export class ArticleLocaleCatalogOwnershipError extends Schema.TaggedError<Artic
   }
 ) {}
 
-/** Resolves one locale-owned article overlay without mutating active source maps. */
+/** Resolves one locale-owned article overlay without mutating base source maps. */
 export const composeArticleLocaleSource = Effect.fn(
   "AksaraCorpus.composeArticleLocaleSource"
 )(function* (
-  active: ArticleSource,
+  base: ArticleSource,
   category: ArticleLocaleCategory,
   article: ArticleLocaleSource
 ) {
   if (
-    category.category !== active.category.key ||
-    article.category !== active.category.key ||
-    article.articleSlug !== active.slug ||
+    category.category !== base.category.key ||
+    article.category !== base.category.key ||
+    article.articleSlug !== base.slug ||
     article.appLocale !== category.appLocale
   ) {
     return yield* new ArticleLocaleOwnershipError({
@@ -107,27 +107,27 @@ export const composeArticleLocaleSource = Effect.fn(
     });
   }
   return {
-    ...active,
+    ...base,
     category: {
-      ...active.category,
+      ...base.category,
       routeSlugs: {
-        ...active.category.routeSlugs,
+        ...base.category.routeSlugs,
         [category.appLocale]: category.routeSlug,
       },
       titles: {
-        ...active.category.titles,
+        ...base.category.titles,
         [category.appLocale]: category.title,
       },
     },
     overlayAppLocale: article.appLocale,
     routeSlugs: {
-      ...active.routeSlugs,
+      ...base.routeSlugs,
       [article.appLocale]: article.routeSlug,
     },
   } satisfies LocalizedArticleProjectionSource;
 });
 
-/** Decodes every locale-owned candidate article metadata source. */
+/** Decodes every locale-owned article metadata source. */
 export const decodeArticleLocaleCatalog = Effect.fn(
   "AksaraCorpus.decodeArticleLocaleCatalog"
 )(function* (
@@ -180,24 +180,22 @@ export const validateArticleLocaleCatalog = Effect.fn(
   return catalog;
 });
 
-/** Resolves exactly one candidate category and article overlay. */
+/** Resolves exactly one category and article overlay. */
 export const requireArticleLocaleSource = Effect.fn(
   "AksaraCorpus.requireArticleLocaleSource"
 )(function* (
-  active: ArticleSource,
+  base: ArticleSource,
   catalog: ArticleLocaleCatalog,
   appLocale: ArticleLocaleSource["appLocale"]
 ) {
   const categories = catalog.categories.filter(
-    (candidate) =>
-      candidate.appLocale === appLocale &&
-      candidate.category === active.category.key
+    (row) => row.appLocale === appLocale && row.category === base.category.key
   );
   const articles = catalog.articles.filter(
-    (candidate) =>
-      candidate.appLocale === appLocale &&
-      candidate.category === active.category.key &&
-      candidate.articleSlug === active.slug
+    (row) =>
+      row.appLocale === appLocale &&
+      row.category === base.category.key &&
+      row.articleSlug === base.slug
   );
   const [category] = categories;
   const [article] = articles;
@@ -208,9 +206,9 @@ export const requireArticleLocaleSource = Effect.fn(
     article === undefined
   ) {
     return yield* new ArticleLocaleOwnershipError({
-      articleSlug: active.slug,
-      category: active.category.key,
+      articleSlug: base.slug,
+      category: base.category.key,
     });
   }
-  return yield* composeArticleLocaleSource(active, category, article);
+  return yield* composeArticleLocaleSource(base, category, article);
 });

@@ -66,6 +66,6 @@ describe("try-out language", () => {
       questionArtifactLocalesForSection(
         TryoutKeySchema.make("mathematical-reasoning")
       )
-    ).toEqual(["en", "id"]);
+    ).toEqual(["en", "id", "de"]);
   });
 });

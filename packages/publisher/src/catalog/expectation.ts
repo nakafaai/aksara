@@ -6,6 +6,7 @@ import type {
 } from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
+import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
@@ -23,6 +24,7 @@ export interface ContentCatalogExpectation {
   readonly articleCount: number;
   readonly heads: readonly ExpectedCatalogHead[];
   readonly materialCount: number;
+  readonly pageCount: number;
   readonly questionCount: number;
   readonly routes: readonly RouteTransition[];
   readonly totalCount: number;
@@ -63,13 +65,14 @@ export const readContentCatalogExpectation: (
   FileSystem.FileSystem | Path.Path
 > = Effect.fn("AksaraPublisher.readContentCatalogExpectation")(
   function* (checkoutRoot) {
-    const [articles, materials, tryout] = yield* Effect.all(
+    const [articles, materials, pages, tryout] = yield* Effect.all(
       [
         decodeArticleRegistry(),
         decodeMaterialRegistry(),
+        decodePageRegistry(),
         loadTryoutContent(checkoutRoot),
       ],
-      { concurrency: 3 }
+      { concurrency: 4 }
     ).pipe(
       Effect.mapError((cause) => new ContentCatalogExpectationError({ cause }))
     );
@@ -88,6 +91,13 @@ export const readContentCatalogExpectation: (
           family: "material",
         })
       ),
+      ...pages.map(
+        ({ route }): ExpectedCatalogHead => ({
+          artifactLocale: route.artifactLocale,
+          contentKey: route.contentKey,
+          family: "page",
+        })
+      ),
       ...tryout.entries.map(
         ({ contentKey, artifactLocale }): ExpectedCatalogHead => ({
           artifactLocale,
@@ -99,12 +109,14 @@ export const readContentCatalogExpectation: (
     const routes = [
       ...articles.map(({ route }) => expectedRoute(route)),
       ...materials.map(({ route }) => expectedRoute(route)),
+      ...pages.map(({ route }) => expectedRoute(route)),
     ];
 
     return {
       articleCount: articles.length,
       heads,
       materialCount: materials.length,
+      pageCount: pages.length,
       questionCount: tryout.entries.length,
       routes,
       totalCount: heads.length,

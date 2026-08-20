@@ -5,6 +5,7 @@ import {
 import type {
   ArticlePreviewDocument,
   MaterialPreviewDocument,
+  PagePreviewDocument,
 } from "@nakafa/aksara-contracts/preview/document";
 import { Effect } from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
@@ -13,6 +14,8 @@ import { GERMAN_GLOSSARY_SOURCE_PATHS } from "#corpus/locale/german/glossary";
 import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import type { MaterialEntry } from "#corpus/material/registry";
+import { decodePagePreviewEntry } from "#corpus/pages/preview";
+import type { PageEntry } from "#corpus/pages/registry";
 import type { PreviewSelection } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import {
@@ -23,20 +26,23 @@ import {
 const ARTICLE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/source.ts"
 );
-const ARTICLE_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+const ARTICLE_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/locale.ts"
 );
-const ARTICLE_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+const ARTICLE_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/articles/locale-registry.ts"
 );
 const MATERIAL_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/material/source.ts"
 );
-const MATERIAL_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+const MATERIAL_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/material/locale.ts"
 );
-const MATERIAL_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+const MATERIAL_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/material/locale-registry.ts"
+);
+const PAGE_OWNER = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/source.ts"
 );
 const GERMAN_GLOSSARY_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/locale/german/glossary.ts"
@@ -48,8 +54,8 @@ function articleLocaleDependencies(entry: ArticleEntry) {
     return [];
   }
   return [
-    { mode: "restart" as const, sourcePath: ARTICLE_CANDIDATE_OWNER },
-    { mode: "restart" as const, sourcePath: ARTICLE_CANDIDATE_REGISTRY },
+    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_OWNER },
+    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_REGISTRY },
     {
       mode: "restart" as const,
       sourcePath: CorpusSourcePathSchema.make(
@@ -72,8 +78,8 @@ function materialLocaleDependencies(entry: MaterialEntry) {
     return [];
   }
   return [
-    { mode: "restart" as const, sourcePath: MATERIAL_CANDIDATE_OWNER },
-    { mode: "restart" as const, sourcePath: MATERIAL_CANDIDATE_REGISTRY },
+    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_OWNER },
+    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_REGISTRY },
     { mode: "restart" as const, sourcePath: GERMAN_GLOSSARY_OWNER },
     ...GERMAN_GLOSSARY_SOURCE_PATHS.map((sourcePath) => ({
       mode: "restart" as const,
@@ -98,6 +104,42 @@ const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
       });
     }
     return value;
+  }
+);
+
+/** Builds one public page selection from an already validated registry row. */
+export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
+  function* (corpusRoot: string, entry: PageEntry) {
+    const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
+    const document = {
+      delivery: entry.delivery,
+      family: "page",
+      rendererDomain: entry.rendererDomain,
+      route: entry.route,
+      sourcePath: entry.sourcePath,
+    } satisfies PagePreviewDocument;
+    return {
+      document,
+      sources: [
+        {
+          dependencies: yield* dependenciesFor(PAGE_OWNER),
+          directories: [],
+          entry,
+          family: "page",
+        },
+      ],
+    } satisfies PreviewSelection;
+  }
+);
+
+/** Selects one public page directly from its canonical page registry. */
+export const selectPage = Effect.fn("AksaraCorpus.selectPreviewPage")(
+  function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
+    const entry = yield* selectOne(
+      yield* decodePagePreviewEntry(sourcePath),
+      sourcePath
+    );
+    return yield* selectPageEntry(corpusRoot, entry);
   }
 );
 
@@ -200,18 +242,6 @@ export const selectMaterialEntry = Effect.fn(
 )(function* (corpusRoot: string, entry: MaterialEntry) {
   const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
   return yield* buildMaterialEntry(entry, dependenciesFor);
-});
-
-/** Builds a public material batch with one concurrent-safe dependency cache. */
-export const selectMaterialEntries = Effect.fn(
-  "AksaraCorpus.selectPreviewMaterialEntries"
-)(function* (corpusRoot: string, entries: readonly MaterialEntry[]) {
-  const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
-  return yield* Effect.forEach(
-    entries,
-    (entry) => buildMaterialEntry(entry, dependenciesFor),
-    { concurrency: 8 }
-  );
 });
 
 /** Selects one public lesson directly from its canonical material registry. */

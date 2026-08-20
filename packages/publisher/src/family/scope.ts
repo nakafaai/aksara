@@ -16,7 +16,7 @@ export class PublicationScopeIdentityError extends Schema.TaggedError<Publicatio
   {
     artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    family: Schema.Literals(["article", "material", "question"]),
+    family: Schema.Literals(["article", "material", "page", "question"]),
   }
 ) {}
 

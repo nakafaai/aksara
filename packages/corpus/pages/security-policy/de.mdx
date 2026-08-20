@@ -1,0 +1,128 @@
+export const metadata = {
+  title: "Sicherheitsrichtlinie",
+  description: "Informiere dich über Nakafas Sicherheitsmaßnahmen und Richtlinien zum Schutz deiner Daten und der Plattform.",
+  lastModified: "2026-08-21",
+};
+
+# Sicherheitsrichtlinie
+
+Zuletzt aktualisiert: 21. August 2026
+
+Diese Sicherheitsrichtlinie beschreibt die Sicherheitsmaßnahmen, die PT NAKAFA TEKNO KREATIF („Nakafa“, „wir“, „uns“ oder „unser“) einsetzt, und die Maßnahmen, die wir von den Nutzerinnen und Nutzern erwarten, um Vertraulichkeit, Integrität und Verfügbarkeit der Dienste und zugehörigen Daten zu schützen.
+
+Informationen dazu, wie wir personenbezogene Daten erheben und verwenden, finden Sie in unserer [Datenschutzerklärung](/de/privacy-policy).
+
+## Geltungsbereich
+
+Diese Sicherheitsrichtlinie gilt für die von Nakafa betriebenen Dienste, einschließlich Websites und Anwendungen, die mithilfe externer Anbieter gehostet und unterstützt werden.
+
+Sie erfasst nicht die Sicherheitsverfahren von Dritten, mit denen Sie außerhalb der Dienste direkt interagieren, auch wenn diese Dritten über unsere Dienste verlinkt sind.
+
+## Sicherheitsmodell und Verantwortlichkeiten
+
+Sicherheit ist eine gemeinsame Verantwortung:
+
+- Wir sind für Sicherheitsmaßnahmen in unserem Einflussbereich verantwortlich, darunter Anwendungsdesign, Zugriffskontrollen und die Reaktion auf vermutete Vorfälle.
+- Sie sind für die Sicherheit Ihrer Geräte, Konten und aller Zugangsdaten verantwortlich, die Sie für die Dienste verwenden.
+
+## Technische und organisatorische Maßnahmen
+
+Die folgenden Abschnitte unterscheiden zwischen durch Implementierungsnachweise belegten Maßnahmen, Verantwortlichkeiten der Anbieter und öffentlichen Verpflichtungen Nakafas.
+
+### Verschlüsselung bei der Übertragung
+
+Unsere produktive Webbereitstellung verwendet HTTPS. Nakafa setzt außerdem für alle Anwendungspfade HTTP Strict Transport Security und weitere Sicherheitsheader für Browser ein. Die Implementierung und die Anbieterdokumentation für diese Fassung sind unten verlinkt.
+
+### Zugriffskontrollen
+
+An den Anwendungsgrenzen setzen authentifizierungspflichtige Nutzerfunktionen eine validierte Sitzung und ein aktives Anwendungskonto voraus. Interne Inhaltsendpunkte akzeptieren nur Bearer-Zugangsdaten, die mit einem zeitkonstanten Vergleich geprüft werden. Diese Aussage beschreibt nicht, wie einzelne Infrastrukturanbieter den Zugriff auf ihre Verwaltungsoberflächen vergeben.
+
+### Datenspeicherung und Verarbeitung
+
+Anwendungsdaten werden in Convex gespeichert. Authentifizierungspflichtige Nakafa-Funktionen verwenden die unten verlinkten validierten Sitzungen und Prüfungen aktiver Nutzerkonten. Der Schutz der Speicherung auf Infrastrukturebene wird von Convex bereitgestellt und hier nicht als getrennt verifizierte Speicherkontrolle Nakafas dargestellt.
+
+### Meldung betriebsbezogener Ausnahmen
+
+Fehlgeschlagene produktive Next.js-Anfragen werden nur dann an PostHog gemeldet, wenn die serverseitige Ausnahmemeldung aktiviert ist. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa Route, Anfragemethode oder Fehlerkennung des Frameworks. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
+
+Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
+
+### Sichere Entwicklung und Änderungsverwaltung
+
+Der Nakafa-Repository-Workflow prüft Abhängigkeiten automatisch und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe auf dem Hauptbranch erstellen zusätzlich die Produktionsanwendung. Diese Prüfungen verringern Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
+
+### Implementierungsnachweise für diese Fassung
+
+Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierungsrevision und die Anbieterdokumentation begrenzt:
+
+- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
+- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
+- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
+- [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
+- [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
+- [Erfassung von Next.js-Anfragefehlern über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
+- [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
+- [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
+- [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
+- [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
+
+## Sicherheit externer Dienstleister
+
+Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und Kontrollen sind für die Sicherheit der gesamten Dienste relevant. Zu unseren wichtigsten externen Diensten gehören:
+
+- Vercel (Hosting und Auslieferung)
+- Convex (Datenbank und Backend-Infrastruktur)
+- Polar (Zahlungen und Abonnementverwaltung)
+- Resend (E-Mail-Versand)
+- PostHog (einwilligungsbasierte Produktanalyse und betriebsbezogene Fehlerberichte ohne Nutzeridentität)
+- Vercel AI Gateway (Weiterleitung von KI-Anfragen)
+- OpenAI (Verarbeitung durch KI-Modelle)
+
+Jeder dieser Anbieter kann im Rahmen der Bereitstellung der Dienste Daten verarbeiten. Einzelheiten zu Datenkategorien und Verarbeitungszwecken finden Sie in unserer [Datenschutzerklärung](/de/privacy-policy).
+
+## Meldung von Sicherheitslücken
+
+Wir begrüßen die verantwortungsvolle Meldung von Sicherheitslücken.
+
+Wenn Sie glauben, eine Sicherheitslücke gefunden zu haben, schreiben Sie uns unter [nakafaai@gmail.com](mailto:nakafaai@gmail.com) mit dem Betreff „Security Report“.
+
+Damit wir den Bericht einordnen und bearbeiten können, fügen Sie bitte Folgendes hinzu:
+
+- Eine klare Beschreibung des Problems und des betroffenen Bereichs der Dienste.
+- Schritte, mit denen sich das Problem reproduzieren lässt.
+- Gegebenenfalls Proof-of-Concept-Code oder Screenshots, sofern deren Weitergabe sicher ist.
+- Ihre Kontaktdaten für Rückfragen.
+
+Nehmen Sie keine sensiblen personenbezogenen Daten in den Bericht auf. Nutzen Sie die Schwachstelle nicht über das Maß hinaus aus, das für ihren Nachweis erforderlich ist. Versuchen Sie nicht, auf Daten zuzugreifen, die Ihnen nicht gehören.
+
+## Reaktion auf Vorfälle und Benachrichtigung bei Datenschutzverletzungen
+
+Wenn wir von einem vermuteten Vorfall erfahren, werden wir den Umständen angemessene Schritte unternehmen, um:
+
+- Vermutete Vorfälle einzudämmen und ihre Auswirkungen zu begrenzen.
+- Umfang und Folgen zu bewerten.
+- Integrität und Verfügbarkeit der Dienste wiederherzustellen.
+- Betroffene Personen und zuständige Behörden zu benachrichtigen, soweit dies nach anwendbarem Recht erforderlich ist.
+
+Benachrichtigungsfristen hängen von der Rechtsordnung und der Art des Vorfalls ab. Wenn ein Sicherheitsvorfall beispielsweise eine Verletzung des Schutzes personenbezogener Daten nach der DSGVO darstellt und eine Meldung erforderlich ist, kann die zuständige Aufsichtsbehörde unverzüglich und gegebenenfalls innerhalb von 72 Stunden nach Bekanntwerden benachrichtigt werden müssen.
+
+## Sicherheit von Konten und Nutzerinnen und Nutzern
+
+Sie können Ihr Konto schützen, indem Sie:
+
+- Starke, einzigartige Zugangsdaten verwenden und vertraulich behandeln.
+- Ihre Geräte und Browser aktuell halten.
+- Sich auf gemeinsam genutzten Geräten abmelden.
+- Einen vermuteten Missbrauch oder unbefugten Zugriff unverzüglich melden.
+
+Authentifizierungspflichtige Nutzerfunktionen setzen eine validierte Sitzung und ein aktives Anwendungskonto voraus, wie oben beschrieben. Wir können den Zugriff beschränken, wenn dies zum Schutz der Dienste oder der Nutzerinnen und Nutzer vernünftigerweise erforderlich ist.
+
+## Aktualisierungen dieser Richtlinie
+
+Wir können diese Sicherheitsrichtlinie von Zeit zu Zeit an geänderte Sicherheitsverfahren oder rechtliche Anforderungen anpassen. Aktualisierungen werden auf dieser Seite mit einem neuen Datum unter „Zuletzt aktualisiert“ veröffentlicht.
+
+## Kontakt
+
+PT NAKAFA TEKNO KREATIF, Taman Sukahati Permai Blok H-6, Sukahati, Cibinong, Kabupaten Bogor, Jawa Barat 16913, Indonesien
+
+E-Mail: [nakafaai@gmail.com](mailto:nakafaai@gmail.com)

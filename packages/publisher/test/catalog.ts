@@ -17,28 +17,28 @@ const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 /** Stable structured evidence for full-catalog validation tests. */
 export const catalogSnapshotEvidence = {
   program: {
-    rowCount: 396,
+    rowCount: 591,
     rowDigest: CATALOG_HASH,
-    sitemapCount: 52,
+    sitemapCount: 78,
     snapshotId: CATALOG_HASH,
   },
   quran: {
-    projectionCount: 1428,
+    projectionCount: 1542,
     projectionDigest: CATALOG_HASH,
     provenanceDigest: CATALOG_HASH,
     provenanceStatus: "blocked",
     runtimeCount: 1200,
-    searchCount: 228,
+    searchCount: 342,
     snapshotId: CATALOG_HASH,
     sourceDigest: CATALOG_HASH,
   },
-  stagedRows: 2316,
+  stagedRows: 3474,
   tryout: {
-    catalogCount: 54,
+    catalogCount: 81,
     catalogDigest: CATALOG_HASH,
-    placementCount: 420,
+    placementCount: 1260,
     placementDigest: CATALOG_HASH,
-    routeCount: 48,
+    routeCount: 72,
     snapshotId: CATALOG_HASH,
   },
 };
@@ -49,6 +49,7 @@ export const emptyCandidateValidationEvidence = {
   compiledBodyCount: 0,
   glossaryCount: 0,
   materialCount: 0,
+  pageCount: 0,
   programCurriculumLocaleCount: 0,
   programCurriculumRouteCount: 0,
   programLocaleCount: 0,
@@ -65,6 +66,7 @@ export const emptyCandidateValidationEvidence = {
 export interface TestCatalogCounts {
   readonly article: number;
   readonly material: number;
+  readonly page: number;
   readonly question: number;
 }
 
@@ -79,6 +81,17 @@ export interface TestCatalogIdentity {
 /** Returns one deterministic artifactLocale for compact source identities. */
 function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {
   return ArtifactLocaleSchema.make(index % 2 === 0 ? "en" : "id");
+}
+
+/** Returns the renderer domain owned by one compact catalog fixture family. */
+function rendererDomainFor(family: ContentFamily) {
+  if (family === "question") {
+    return "snbt-general";
+  }
+  if (family === "page") {
+    return "site";
+  }
+  return "mathematics";
 }
 
 /** Builds registry-owned identities for one content family. */
@@ -105,6 +118,14 @@ export function catalogIdentities(
         publicPath: `subjects/mathematics/test-lesson-${index}`,
       };
     }
+    if (family === "page") {
+      return {
+        artifactLocale,
+        contentKey: `pages/test-page-${index}`,
+        family,
+        publicPath: `test-page-${index}`,
+      };
+    }
     return {
       artifactLocale,
       contentKey: `question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-${index + 1}/question`,
@@ -118,22 +139,28 @@ export function catalogHeads(counts: TestCatalogCounts) {
   return [
     ...catalogIdentities("article", counts.article),
     ...catalogIdentities("material", counts.material),
+    ...catalogIdentities("page", counts.page),
     ...catalogIdentities("question", counts.question),
   ];
 }
 
 /** Returns the complete body count for one compact family inventory. */
 export function catalogTotal(counts: TestCatalogCounts) {
-  return counts.article + counts.material + counts.question;
+  return counts.article + counts.material + counts.page + counts.question;
 }
 
 /** Builds prepared identities in canonical result-catalog order. */
 export function catalogResult(counts: TestCatalogCounts) {
   return catalogHeads(counts).map((identity): ContentHead => {
-    const sourcePath =
-      identity.family === "question"
-        ? `packages/corpus/${identity.contentKey}.${identity.artifactLocale}.mdx`
-        : `packages/corpus/test/catalog/${identity.contentKey}.${identity.artifactLocale}.mdx`;
+    const sourcePath = (() => {
+      if (identity.family === "question") {
+        return `packages/corpus/${identity.contentKey}.${identity.artifactLocale}.mdx`;
+      }
+      if (identity.family === "page") {
+        return `packages/corpus/${identity.contentKey}/${identity.artifactLocale}.mdx`;
+      }
+      return `packages/corpus/test/catalog/${identity.contentKey}.${identity.artifactLocale}.mdx`;
+    })();
     const common = {
       artifactHash: CATALOG_HASH,
       artifactLocale: identity.artifactLocale,
@@ -142,8 +169,7 @@ export function catalogResult(counts: TestCatalogCounts) {
       delivery: identity.family === "question" ? "authenticated" : "public",
       family: identity.family,
       projectionHash: CATALOG_HASH,
-      rendererDomain:
-        identity.family === "question" ? "snbt-general" : "mathematics",
+      rendererDomain: rendererDomainFor(identity.family),
       sourceHash: CATALOG_HASH,
       sourcePath: CorpusSourcePathSchema.make(sourcePath),
     } as const;

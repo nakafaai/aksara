@@ -37,6 +37,7 @@ export function runCheckCommand(cwd: string) {
       Effect.annotateLogs({
         articleCount: validation.articleCount,
         materialCount: validation.materialCount,
+        pageCount: validation.pageCount,
         programRows: validation.snapshots.program.rowCount,
         questionCount: validation.questionCount,
         quranProvenance: validation.snapshots.quran.provenanceStatus,

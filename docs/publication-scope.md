@@ -5,7 +5,7 @@ whole-catalog release.
 
 The scope has three independent selectors:
 
-- `families`: whole content families such as `material`
+- `families`: whole body families: `article`, `material`, `page`, or `question`
 - `content`: exact `{ family, artifactLocale, contentKey }` canaries
 - `snapshots`: structured families such as `program`
 

@@ -45,6 +45,11 @@ manifest, structured snapshot states, and provenance. Routes are a separate
 ordered signed stream; they are not reconstructed from projection metadata
 during publication or rollback.
 
+The global result catalog contains four body families: `article`, `material`,
+`page`, and `question`. Public pages participate in the same candidate,
+recovery, activation, acceptance, retention, and cleanup lifecycle. They do not
+have a family-specific active pointer, release protocol, or fallback source.
+
 ### Structured snapshots
 
 The same global release pointer selects three fixed structured families:
@@ -71,7 +76,7 @@ inventory constants. At the time of this decision, the reviewed program source
 produces 396 rows: six program rows and 390 localized curriculum routes, plus
 12 `en`/`id` slug identities and 52 sitemap rows in the manifest. Try-out
 snapshots authenticate the active hierarchy and artifact-bound attempt
-placements. The reviewed Quran source currently produces 1,428 projection
+placements. At the time of this decision, the reviewed Quran source produces 1,428 projection
 rows: 114 surahs, 1,085 verse chunks covering 6,236 verses, 228 localized
 search rows, and one mandatory visible attribution row. Its pinned Tanzil and
 QuranEnc provenance is approved. Publication still fails closed if a future
@@ -153,11 +158,13 @@ Production trusts authenticated Convex state for route and head membership,
 delivery classification, and the active publication pointer. Nakafa still
 independently decodes and verifies the signed release, signed artifact,
 artifact hash, component requirements, and projection hash before execution.
-Public content is bound to the exact active signed release and is first
-verified against that release's frozen renderer manifest. If the deployed
-manifest hash differs, the selected artifact must also prove that its domain
-and component versions remain executable by the deployed renderer. Protected
-content applies the same directional compatibility check after binding the
+Public content execution is bound to the exact active signed release and is
+first verified against that release's frozen renderer manifest. If the
+deployed manifest hash differs, the selected artifact must also prove that its
+domain and component versions remain executable by the deployed renderer.
+Non-rendering public evidence reads authenticate the same active release,
+frozen renderer, and artifact without claiming live execution compatibility.
+Protected content applies the directional execution check after binding the
 artifact to its exact signed snapshot release.
 
 Frozen renderer manifests may contain a canonical subset of domains known to

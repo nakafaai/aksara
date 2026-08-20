@@ -1,214 +1,187 @@
 # Aksara
 
-Aksara is Nakafa's trusted content compilation and publication system. It is a
-small public Turborepo. The repository contains Nakafa's real `en` and `id`
-source corpus: articles, materials, question banks, learning programs, try-out
-catalogs, and Quran rows parsed from pinned official Tanzil and QuranEnc
-artifacts. Production cutover is explicit and scope-owned: Nakafa currently
-serves the article, material, question, learning-program, Quran, and try-out
-scopes from signed Aksara releases. Filesystem copies of an activated scope in
-Nakafa are coordinated deletion work, not another editable source of truth.
+Aksara is Nakafa's trusted content authoring, compilation, and publication
+system. It owns reviewed source content, compiles trusted MDX ahead of time,
+signs immutable artifacts and releases, and publishes them through a recoverable
+protocol.
 
-## Production scope
+Nakafa owns product presentation and renderer implementations. Aksara owns the
+authored corpus and signed publication. Neither repository keeps a second
+editable copy of content that the other repository owns.
 
-The article runtime ownership landed in Nakafa commit
-[`4bf134519c`](https://github.com/nakafaai/nakafa.com/commit/4bf134519cb1cfb0d4181ed6d84d446afc973b9b);
-release `article-family-forward-20260727-e7a29e2` from Aksara commit
-[`e7a29e2c63`](https://github.com/nakafaai/aksara/commit/e7a29e2c63f2133a733c2093a6cc0268279a8721)
-was accepted by production
-[run `30217046243`](https://github.com/nakafaai/aksara/actions/runs/30217046243).
-The initial function-concept material runtime landed in Nakafa commit
-[`4df9f6a0a0`](https://github.com/nakafaai/nakafa.com/commit/4df9f6a0a0b8f7573ddb95940b00e5391c710ba1);
-release `material-function-concept-canonical-final-20260728-f46e7ee` from
-Aksara commit
-[`f46e7ee9ef`](https://github.com/nakafaai/aksara/commit/f46e7ee9eff87ebb0a0a5857a03598d8670dace4)
-was accepted by production
-[run `30370321308`](https://github.com/nakafaai/aksara/actions/runs/30370321308).
-Nakafa commit
-[`91eef3fa7a`](https://github.com/nakafaai/nakafa.com/commit/91eef3fa7afa4fe964e350c673d0e6b9d0dc14f6)
-then made the signed release the active runtime owner for the complete material
-and learning-program families. Release
-`material-program-family-20260731-e68ed35` from Aksara commit
-[`e68ed356d4`](https://github.com/nakafaai/aksara/commit/e68ed356d4de69e2d2ce3093028c5c22032d09d8)
-activated the complete reviewed scope through production
-[run `30647670604`](https://github.com/nakafaai/aksara/actions/runs/30647670604).
-The exact-source idempotent retry passed in
-[run `30654679754`](https://github.com/nakafaai/aksara/actions/runs/30654679754),
-then terminal recovery acceptance passed in
-[run `30657823700`](https://github.com/nakafaai/aksara/actions/runs/30657823700)
-after sitemap cache revalidation and unchanged projection proof. That acceptance
-recorded sequence 20 with 764 heads, items, artifacts, and projections while
-candidate, recovery, and compaction state were empty.
+## What lives here
 
-Nakafa commits
-[`0d3df7ca07`](https://github.com/nakafaai/nakafa.com/commit/0d3df7ca072d155a020c9b0ba90cf539c4f0299a),
-[`a743518173`](https://github.com/nakafaai/nakafa.com/commit/a7435181732ebf009fcf99200c72a9a395444873),
-and
-[`6604d6e0b3`](https://github.com/nakafaai/nakafa.com/commit/6604d6e0b3d68ce65974a8a2d5d088cd3f7b9694)
-completed the signed Quran and try-out runtime boundary. Release
-`quran-tryout-cutover-20260804-a48d644` from Aksara commit
-[`a48d644c80`](https://github.com/nakafaai/aksara/commit/a48d644c809419c93dc247239eabba9ced519051)
-activated the question family plus Quran and try-out snapshots in production
-[run `30958694458`](https://github.com/nakafaai/aksara/actions/runs/30958694458).
-Its retained recovery was accepted in
-[run `30966405666`](https://github.com/nakafaai/aksara/actions/runs/30966405666).
+- `packages/corpus` contains reviewed articles, lessons, questions, public
+  pages, program data, try-out data, and Quran sources. English, Indonesian,
+  and German are active authoring and publication locales under the same
+  locale-equivalent review model.
+- `packages/contracts` defines the signed wire formats shared with Nakafa.
+- `packages/compiler` validates trusted MDX and produces standard
+  `function-body` output without executing the document.
+- `packages/publisher` prepares, signs, stages, verifies, activates, recovers,
+  and cleans releases through injected source and target interfaces.
+- `apps/cli` provides preview and production publication commands.
+- `packages/utilities` contains generic bounded byte, Git, HTTP, process, and
+  TypeScript primitives. It does not own content-domain policy.
+- `packages/testing` and `packages/typescript-config` own shared repository
+  test and compiler configuration.
 
-Contract `0.11.0` then republished the complete six-scope corpus from Aksara
-commit
-[`16a7436af5`](https://github.com/nakafaai/aksara/commit/16a7436af5fb3e96d72a946dadc377541f8eecbe)
-as release `full-corpus-runtime-v011-20260809-16a7436`. Production
-[run `31288847248`](https://github.com/nakafaai/aksara/actions/runs/31288847248)
-returned all 4,140 results with no head changes because the signed state was
-already current. Its retained recovery
-`recovery-full-corpus-runtime-v011-20260809-16a7436` was accepted in
-[run `31290006866`](https://github.com/nakafaai/aksara/actions/runs/31290006866).
+The body families are `article`, `material`, `page`, and `question`. Program,
+Quran, and try-out data use structured snapshots under the same global release.
+The generic `page` family owns public site documents, including legal pages,
+without creating a second legal-only publication protocol.
 
-## Current modules
-
-- `@nakafa/aksara-contracts` defines signed artifact, release, and renderer
-  wire contracts.
-- `@nakafa/aksara-compiler` validates trusted MDX syntax and compiles it into
-  standard `function-body` output without executing it.
-- `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
-  release through injected source and target interfaces. Its strict
-  authenticated HTTP target owns the client half of the publication protocol.
-  It prepares real article, material, question, program, Quran, and try-out
-  release data from exact Git source. A Quran replacement fails the global
-  candidate before signing or publication IO unless every required source scope
-  is approved. The Nakafa-owned Convex ingress, storage, and runtime adapter
-  remain outside this repository and serve only explicitly activated Aksara
-  scopes.
-- `@nakafa/aksara-corpus` contains all reviewed `en` and `id` sources plus
-  their non-React registries and projections. No substitute lessons or React
-  implementations live in this package.
-- `@nakafa/aksara-cli` compiles the dependency closure of one selected real
-  document, serves its signed local artifacts over loopback, and starts a
-  preview-enabled sibling Nakafa checkout with ephemeral credentials.
-- `@nakafa/aksara-utilities` owns generic bounded byte, Git, HTTP, process, and
-  TypeScript-syntax primitives shared across packages. It contains no
-  content-domain contracts.
-- `@nakafa/typescript-config` owns the single Node ESM compiler contract used
-  by the domain packages.
-- `@nakafa/testing` owns shared Vitest defaults consumed by package-local test
-  configs.
-
-Every future production scope remains gated by renderer fidelity, migration,
-release, rollback, provenance, and hosted acceptance. The active Quran snapshot
-carries one mandatory visible attribution row and still fails closed if its
-pinned provenance contract changes.
-
-## Commands
+Production state is not copied into this README. Read the authoritative release
+slots with:
 
 ```sh
+pnpm status
+```
+
+That command is read-only. It does not sign, stage, activate, or delete
+anything.
+
+## Trust model
+
+Aksara MDX is reviewed executable source. It is not a sandbox or an upload
+format for untrusted users.
+
+Before Nakafa executes an artifact, the runtime verifies its signed release,
+artifact signature, hashes, delivery policy, projection, and renderer support.
+Every new release must match the complete deployed renderer manifest exactly.
+An additive renderer deployment may continue to read an older signed release
+only after the selected artifact is also proven executable by the live
+renderer. That directional read rule does not authorize publication.
+
+The release protocol keeps an invisible candidate and a verified signed
+recovery before one atomic activation. Acceptance deliberately removes a
+healthy recovery. Recovery activates a signed forward inverse. Process memory
+and workflow status are never authoritative release state.
+
+See:
+
+- [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md) for
+  trusted MDX and renderer boundaries.
+- [`docs/adr/0002-release-state.md`](docs/adr/0002-release-state.md) for release,
+  compatibility, recovery, and cleanup rules.
+- [`docs/publication-scope.md`](docs/publication-scope.md) for canonical release
+  scopes.
+- [`docs/contracts.md`](docs/contracts.md) for the immutable contracts archive.
+- [`docs/governance.md`](docs/governance.md) for repository and release
+  controls.
+
+## Requirements
+
+- Node 24
+- pnpm 11.22.0 through Corepack
+
+The exact supported runtime and package-manager versions live in
+[`package.json`](package.json). Install the frozen workspace from the repository
+root:
+
+```sh
+corepack enable
 pnpm install --frozen-lockfile
-pnpm bump-deps
+```
+
+## Development
+
+Run the complete local quality gate:
+
+```sh
 pnpm format
 pnpm lint
-pnpm security:audit
 pnpm names
 pnpm jsdocs
 pnpm lines
 pnpm boundaries
+pnpm locales
+pnpm workflows
 pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:consumer
-pnpm status
+pnpm security:audit
+```
+
+Preview one real document through a sibling Nakafa checkout:
+
+```sh
 pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
+```
+
+Preview a German application shell while preserving the language being
+assessed:
+
+```sh
 pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx --app-locale de
 ```
 
-Pass `--app-locale de` when previewing an assessed-language prompt in the
-German shell. The prompt and choices stay in the language being assessed,
-while the shell and German answer remain bound to the selected app locale.
+The selected prompt and choices remain in the assessed language. The shell and
+answer use the selected application locale.
 
-`pnpm status` reads the authoritative publication slots using publication
-credentials only; it does not sign, stage, activate, or mutate a release.
+Run a focused workspace test through Turbo so dependency builds are current:
 
-Concurrent backend verification uses a task-owned Nakafa deployment through
-[Convex Agent Mode](https://docs.convex.dev/cli/agent-mode), never shared
-development or production. Aksara receives only that deployment's explicit
-publication and renderer endpoints. When an isolated release verifies a local
-HTTPS renderer, set `NODE_EXTRA_CA_CERTS` to its temporary CA certificate.
-Turbo passes that trust path only to release, recover, and rollback tasks.
-Never disable TLS verification for this workflow.
-
-Run a focused workspace test through Turbo so dependency builds stay current:
-
-```bash
+```sh
 pnpm exec turbo run test --filter=@nakafa/aksara-publisher
 ```
 
-Do not invoke a package test script directly when it consumes another workspace;
-Turbo owns that dependency build order.
+Do not run a package test directly when it consumes another workspace. Turbo
+owns that build order.
 
-`package.json` is the toolchain source for Node and pnpm in development and
-GitHub Actions. Aksara does not duplicate that contract in `.npmrc`,
-`.node-version`, or `.nvmrc`.
+## Publication
 
-`pnpm bump-deps` updates routine workspace dependencies after the configured
-24-hour release-age gate. Repository-owned policy reports every coordinated
-hold, checks its declared version against the approved cohort, verifies the
-reviewed registry channel again, and fails if a routine update or review hold
-remains unresolved. Effect, TypeScript, Node, pnpm, and lint-tooling versions
-therefore move only through an explicit coordinated review.
+Every production operation uses an explicit canonical scope. For example:
 
-Effect work follows the read-only workflow in
-[`AGENTS.md`](AGENTS.md#vendored-references): inspect the matching
-implementation and tests under `repos/effect` before writing or reviewing
-code, then run `pnpm effect:source:check`. A coordinated Effect v4 dependency
-update keeps `effect`, `@effect/platform-node`, and `@effect/vitest` on one
-exact release cohort and updates the pinned subtree only through
-`pnpm effect:source:update`. Effect v4 platform APIs come from `effect`;
-`@effect/platform-node` remains the Node runtime integration package.
+```sh
+pnpm release -- \
+  --release-id release-2026-08-20 \
+  --recovery-id recovery-2026-08-20 \
+  --scope family:article \
+  --scope family:material \
+  --scope family:page \
+  --scope family:question \
+  --scope snapshot:program \
+  --scope snapshot:quran \
+  --scope snapshot:tryout
+```
 
-The root `prepare` script patches the native TypeScript 7 compiler with
-`@effect/tsgo`. Repository and CI typechecks therefore use Effect diagnostics
-through `tsc`. Zed uses its official `typescript-ls` server as the only
-TypeScript and JavaScript language server; no second Effect-specific editor
-server runs beside it. The `@effect/language-service` tsconfig entry is the
-plugin identifier required by `@effect/tsgo`, not a standalone dependency.
+The first production activation that adds a locale must select every body and
+structured snapshot family. One global release owns the complete locale set,
+so a page-only release cannot safely move production from English and
+Indonesian to English, Indonesian, and German.
 
-All non-MDX hand-written executable source and repository tooling is
-TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`
-is ignored, generated output because Node does not execute TypeScript source
-from an installed `node_modules` package, as documented by Node's
-[TypeScript support](https://nodejs.org/api/typescript.html#type-stripping-in-dependencies).
-The native `tsc` command is TypeScript 7. The separately named `typescript`
-dependency remains the TypeScript 6 JavaScript compiler API required by
-programmatic consumers; it is not Aksara's CLI compiler.
+Production publication runs from an exact Git revision after the contracts
+archive, renderer, corpus, provenance, rollback, and target gates pass. It does
+not compile mutable working-tree bytes.
 
-Package-internal TypeScript imports use private Node aliases such as
-`#contracts/*`; cross-package imports use exact `@nakafa/*` exports. Tests
-resolve the current package alias to `src`, while emitted JavaScript resolves
-the same alias through `package.json` to `dist`, so stale build output cannot
-silently satisfy source tests. The `aksara-source` condition is confined to
-workspace execution and typechecking; the contracts release archive strips that
-private condition.
+Concurrent backend verification uses a task-owned Nakafa deployment through
+[Convex Agent Mode](https://docs.convex.dev/cli/agent-mode), never a shared
+development or production deployment. Local HTTPS renderer verification may
+use `NODE_EXTRA_CA_CERTS` for its temporary certificate. Never disable TLS
+verification.
 
-The compiler requires one static `export const metadata = { ... }` object so it
-can remove that module declaration before body compilation. Corpus registries
-and publisher capabilities then validate each real family through its
-authoritative schema rather than one speculative universal metadata contract.
+The immutable contracts package is released as a GitHub Release archive. It has
+no registry or Git-source fallback. Consumers pin the exact archive and pnpm
+integrity in their lockfile.
 
-Signed artifacts are a trusted-source seam, not a sandbox. Nakafa executes them
-only for explicitly activated scopes. The accepted design keeps the official
-server-only `@mdx-js/mdx/run` runtime and finite static route-domain registries
-in Nakafa; each new production scope still requires hosted fidelity proof,
-Nakafa-side activation, stable user-state migration, and release/rollback
-gates.
+## Toolchain notes
 
-The executable-content decision is recorded in
-[`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).
-The immutable contracts archive is documented in
-[`docs/contracts.md`](docs/contracts.md).
-Measured baselines are under [`docs/baselines`](docs/baselines), and repository
-controls are recorded in [`docs/governance.md`](docs/governance.md).
+- TypeScript 7 is the repository CLI compiler. TypeScript 6 remains installed
+  under its package name for programmatic consumers that still require the
+  JavaScript compiler API.
+- Effect work uses the version-matched read-only source under `repos/effect`.
+  Run `pnpm effect:source:check` before review. Update that subtree only through
+  `pnpm effect:source:update` as part of an approved dependency cohort.
+- Package-internal imports use private aliases such as `#contracts/*`.
+  Cross-package imports use exact `@nakafa/*` exports.
+- Generated `dist` output is ignored. Source tests resolve package aliases to
+  `src`, while isolated consumer verification installs the packed archive.
 
 ## License
 
 Software is governed by the [Nakafa Source Available License 1.0](LICENSE).
-The educational corpus is governed by the
-[Nakafa Content License 1.0](CONTENT_LICENSE.md), subject to each third-party
-source's own rights and attribution requirements. Nakafa brand usage is
-governed by the [Nakafa Trademark and Brand Policy](TRADEMARKS.md).
+Educational content is governed by the
+[Nakafa Content License 1.0](CONTENT_LICENSE.md), subject to third-party rights
+and attribution. Nakafa brand usage is governed by the
+[Nakafa Trademark and Brand Policy](TRADEMARKS.md).

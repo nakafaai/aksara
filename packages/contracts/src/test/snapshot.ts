@@ -64,7 +64,7 @@ export const makeSnapshotTestData = Effect.fn(
     activeAppLocales: ACTIVE_APP_LOCALES,
     provenanceDigest: sourceDigest,
     provenanceStatus: "blocked",
-    sourceBytes: 11_506_941,
+    sourceBytes: 13_030_246,
     sourceDigest,
     sourceFileCount: quranSourceFileCount(ACTIVE_APP_LOCALES),
     surahCount: 114,

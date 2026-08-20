@@ -85,7 +85,7 @@ describe("release spec", () => {
     ).toBe(true);
     expect(
       releaseActivatesAppLocale(gitRelease, AppLocaleSchema.make("de"))
-    ).toBe(false);
+    ).toBe(true);
   });
 
   it("rejects non-rollback envelopes at recovery boundaries", () => {

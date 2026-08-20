@@ -26,7 +26,7 @@ export type ArtifactLocale = typeof ArtifactLocaleSchema.Type;
 export const APP_LOCALE_CODES = AppLocaleCodeSchema.literals;
 
 /** Source-controlled application locale codes included by this corpus. */
-export const ActiveAppLocaleCodeSchema = Schema.Literals(["en", "id"]);
+export const ActiveAppLocaleCodeSchema = AppLocaleCodeSchema;
 export type ActiveAppLocaleCode = typeof ActiveAppLocaleCodeSchema.Type;
 
 /** Source-controlled codes used to index the currently complete corpus. */

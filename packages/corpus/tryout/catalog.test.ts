@@ -1,14 +1,6 @@
-import {
-  ActiveAppLocaleListSchema,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import {
-  projectCandidateTryoutCatalog,
-  projectTryoutCatalog,
-} from "#corpus/tryout/catalog";
-import { decodeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
+import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** Returns one nested source node or fails the test setup explicitly. */
@@ -33,13 +25,13 @@ describe("tryout catalog", () => {
       ])
     );
 
-    expect(rows).toHaveLength(54);
+    expect(rows).toHaveLength(81);
     expect(counts).toEqual({
-      country: 2,
-      exam: 4,
-      section: 34,
-      set: 10,
-      track: 4,
+      country: 3,
+      exam: 6,
+      section: 51,
+      set: 15,
+      track: 6,
     });
     expect(
       rows.filter(
@@ -48,7 +40,7 @@ describe("tryout catalog", () => {
           row.examKey === "tka" &&
           row.publicPath === undefined
       )
-    ).toHaveLength(6);
+    ).toHaveLength(9);
   });
 
   it("maps invalid derived hierarchy counts to a typed catalog error", async () => {
@@ -109,32 +101,14 @@ describe("tryout catalog", () => {
     );
   });
 
-  it("projects a complete German candidate hierarchy without activation", async () => {
-    const rows = await Effect.runPromise(
-      Effect.flatMap(decodeTryoutLocaleRegistry(), (sources) =>
-        projectCandidateTryoutCatalog(sources)
-      )
-    );
-
-    expect(rows.length).toBeGreaterThan(0);
-    expect(rows.every(({ appLocale }) => appLocale === "de")).toBe(true);
-    expect(rows.find(({ kind }) => kind === "exam")).toMatchObject({
-      publicPath: "try-out/indonesien/snbt",
-      title: "SNBT",
-    });
-  });
-
   it("projects the permanent German overlay through the active publication seam", async () => {
     const sources = await Effect.runPromise(decodeTryoutRegistry());
-    const rows = await Effect.runPromise(
-      projectTryoutCatalog(
-        sources,
-        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
-      )
-    );
+    const rows = await Effect.runPromise(projectTryoutCatalog(sources));
 
-    expect(rows.every(({ appLocale }) => appLocale === "de")).toBe(true);
-    expect(rows.find(({ kind }) => kind === "exam")).toMatchObject({
+    expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(27);
+    expect(
+      rows.find(({ appLocale, kind }) => appLocale === "de" && kind === "exam")
+    ).toMatchObject({
       publicPath: "try-out/indonesien/snbt",
     });
   });

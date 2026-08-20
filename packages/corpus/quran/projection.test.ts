@@ -10,7 +10,6 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
-import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { streamQuranRows } from "#corpus/quran/projection";
 import { testQuranRegistry } from "#corpus/test/quran";
 
@@ -56,7 +55,7 @@ describe("Quran projection", () => {
     );
     expect(attributions).toHaveLength(1);
     expect(attributions[0]).toMatchObject({
-      activeAppLocales: ["en", "id"],
+      activeAppLocales: ["en", "id", "de"],
       sources: expect.arrayContaining([
         expect.objectContaining({
           copy: [
@@ -67,6 +66,10 @@ describe("Quran projection", () => {
             expect.objectContaining({
               appLocale: "id",
               title: "Teks Al-Qur'an Tanzil (Utsmani)",
+            }),
+            expect.objectContaining({
+              appLocale: "de",
+              title: "Tanzil-Qurantext in uthmanischer Schrift",
             }),
           ],
           id: "tanzil-text",
@@ -135,9 +138,9 @@ describe("Quran projection", () => {
     });
   }, 30_000);
 
-  it("projects German search and runtime rows only for the authoring locale set", async () => {
+  it("projects active German search and runtime rows", async () => {
     const rows = await Effect.runPromise(
-      streamQuranRows(source, AUTHORING_APP_LOCALES).pipe(Stream.runCollect)
+      streamQuranRows(source, ACTIVE_APP_LOCALES).pipe(Stream.runCollect)
     );
     const attribution = rows.find(({ kind }) => kind === "quran-attribution");
     const firstChunk = rows.find(isChunk);

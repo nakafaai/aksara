@@ -1,22 +1,13 @@
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
   type AppLocale,
 } from "@nakafa/aksara-contracts/locale";
 import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect, Schema } from "effect";
 
-import {
-  CANDIDATE_APP_LOCALES,
-  type CandidateAppLocaleList,
-} from "#corpus/locale/lifecycle";
-import {
-  localeOverlayAppLocaleCode,
-  requireSourceLocale,
-} from "#corpus/locale/source";
+import { requireSourceLocale } from "#corpus/locale/source";
 import { projectTryoutExam } from "#corpus/tryout/catalog-exam";
-import type { LocalizedTryoutExamSource } from "#corpus/tryout/locale";
 import { composeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
@@ -70,7 +61,7 @@ function uniqueCountries(sources: readonly TryoutExamSource[]) {
   ];
 }
 
-/** Produces strict hierarchy rows from one validated lifecycle selection. */
+/** Produces strict hierarchy rows from one validated locale selection. */
 const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
   function* (
     sources: readonly TryoutExamSource[],
@@ -103,28 +94,10 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
 /** Produces strict hierarchy rows for the active signed locale set only. */
 export const projectTryoutCatalog = Effect.fn(
   "AksaraCorpus.projectTryoutCatalog"
-)(function* (
-  sources: readonly TryoutExamSource[],
-  appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
-) {
-  const needsLocaleOverlay = appLocales.some(
-    (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
-  );
-  const localizedSources = needsLocaleOverlay
-    ? yield* composeTryoutLocaleRegistry(sources)
-    : sources;
-  return yield* projectCatalog(localizedSources, appLocales);
+)(function* (sources: readonly TryoutExamSource[]) {
+  const localizedSources = yield* composeTryoutLocaleRegistry(sources);
+  return yield* projectCatalog(localizedSources, ACTIVE_APP_LOCALES);
 });
-
-/** Produces strict hierarchy rows for exact inactive authoring locales only. */
-export const projectCandidateTryoutCatalog = Effect.fn(
-  "AksaraCorpus.projectCandidateTryoutCatalog"
-)(
-  (
-    sources: readonly LocalizedTryoutExamSource[],
-    appLocales: CandidateAppLocaleList = CANDIDATE_APP_LOCALES
-  ) => projectCatalog(sources, appLocales)
-);
 
 /** Produces only the source hierarchy needed by one honest preview shell. */
 export const projectPreviewTryoutCatalog = Effect.fn(

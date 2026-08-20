@@ -19,6 +19,7 @@ describe("allContentCacheChanges", () => {
     expect([...changes]).toEqual([
       { family: "article" },
       { family: "material" },
+      { family: "page" },
       { family: "question" },
     ]);
   });

@@ -1,11 +1,5 @@
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import {
-  type LearningProgram,
-  LearningProgramSchema,
-} from "@nakafa/aksara-contracts/program/spec";
+import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
-import { isActiveAppLocale } from "#corpus/locale/lifecycle";
-import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { examProgramSources } from "#corpus/program/exam";
 import {
   composeProgramLocaleCatalog,
@@ -81,56 +75,9 @@ export const decodeProgramCatalog = Effect.fn(
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
   );
-  const needsLocaleOverlays = ACTIVE_APP_LOCALES.some(
-    (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
+  const programs = yield* composeProgramLocaleCatalog(
+    sources,
+    yield* decodeProgramLocaleCatalog(localeInput)
   );
-  const programs =
-    needsLocaleOverlays || localeInput !== undefined
-      ? yield* composeProgramLocaleCatalog(
-          sources,
-          yield* decodeProgramLocaleCatalog(localeInput)
-        )
-      : sources;
   return yield* validateProgramCatalog(programs);
-});
-
-/** Decodes base programs plus every present permanent locale overlay. */
-export const decodeAuthoringProgramCatalog = Effect.fn(
-  "AksaraCorpus.decodeAuthoringProgramCatalog"
-)(function* (input: unknown = programSources, localeInput?: unknown) {
-  const sources = yield* Schema.decodeUnknownEffect(
-    Schema.Array(LearningProgramSourceSchema)
-  )(input, { onExcessProperty: "error" }).pipe(
-    Effect.mapError((cause) => new ProgramCatalogError({ cause }))
-  );
-  const locales = yield* decodeProgramLocaleCatalog(localeInput);
-  return yield* composeProgramLocaleCatalog(sources, locales).pipe(
-    Effect.flatMap(validateProgramCatalog)
-  );
-});
-
-/** Removes candidate translations before a current signed snapshot is built. */
-export const selectActiveProgramCatalog = Effect.fn(
-  "AksaraCorpus.selectActiveProgramCatalog"
-)(function* (programs: readonly LearningProgram[]) {
-  const selected: LearningProgram[] = [];
-  for (const program of programs) {
-    const translations = program.translations.filter(({ appLocale }) =>
-      isActiveAppLocale(appLocale)
-    );
-    const [firstTranslation, ...remainingTranslations] = translations;
-    if (firstTranslation === undefined) {
-      return yield* new ProgramIdentityError({
-        scope: "translation",
-        value: `${program.key}:active-translations-missing`,
-      });
-    }
-    selected.push(
-      LearningProgramSchema.make({
-        ...program,
-        translations: [firstTranslation, ...remainingTranslations],
-      })
-    );
-  }
-  return selected;
 });

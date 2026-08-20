@@ -132,7 +132,7 @@ describe("question publication", () => {
       ).pipe(Stream.runCollect)
     );
 
-    expect(created).toHaveLength(4);
+    expect(created).toHaveLength(6);
     expect(retained).toHaveLength(1);
     expect(
       transitions.every(

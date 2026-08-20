@@ -12,9 +12,9 @@ import {
 } from "#corpus/question-bank/content";
 import {
   absoluteQuestionTestSourceRoot,
-  candidateQuestionChoicesSource,
   corpusRoot,
   generalQuestionSourceFiles,
+  germanQuestionChoicesSource,
   makeQuestionSourceLayer,
   questionTestSourceRoot,
   realQuestionChoices,
@@ -40,7 +40,6 @@ function choicesFor(...roots: readonly string[]) {
     ])
   );
 }
-
 /** Builds one synthetic question registry Effect without hiding its error type. */
 function registry(
   discoveredEntries: readonly string[],
@@ -53,7 +52,6 @@ function registry(
     ])
   );
 }
-
 /** Provides discovery services at the Vitest runner boundary. */
 function runRegistry(
   discoveredEntries: readonly string[],
@@ -65,7 +63,6 @@ function runRegistry(
     )
   );
 }
-
 /** Returns one typed registry rejection at the Vitest runner boundary. */
 function rejectRegistry(
   discoveredEntries: readonly string[],
@@ -96,21 +93,21 @@ describe("question registry", () => {
       .sort();
     const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
 
-    expect(entries).toHaveLength(3260);
+    expect(entries).toHaveLength(4840);
     expect(
       new Set(
         entries.map(
           ({ artifactLocale, contentKey }) => `${contentKey}\0${artifactLocale}`
         )
       ).size
-    ).toBe(3260);
+    ).toBe(4840);
     expect(projectedPaths).toEqual(authoredPaths);
     expect(
       entries.filter(({ delivery }) => delivery === "authenticated")
-    ).toHaveLength(1580);
+    ).toHaveLength(2320);
     expect(
       entries.filter(({ delivery }) => delivery === "entitled")
-    ).toHaveLength(1680);
+    ).toHaveLength(2520);
     expect(
       entries.filter(({ artifactLocale }) => artifactLocale === "en")
     ).toHaveLength(1620);
@@ -118,20 +115,23 @@ describe("question registry", () => {
       entries.filter(({ artifactLocale }) => artifactLocale === "id")
     ).toHaveLength(1640);
     expect(
+      entries.filter(({ artifactLocale }) => artifactLocale === "de")
+    ).toHaveLength(1580);
+    expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-general")
-    ).toHaveLength(800);
+    ).toHaveLength(1200);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-math")
-    ).toHaveLength(560);
+    ).toHaveLength(840);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-plain")
-    ).toHaveLength(620);
+    ).toHaveLength(880);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-quant")
-    ).toHaveLength(800);
+    ).toHaveLength(1200);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "tka-math")
-    ).toHaveLength(480);
+    ).toHaveLength(720);
     expect(
       entries.some(({ contentKey }) =>
         contentKey.includes("snbt/general-reasoning/set-10/")
@@ -276,24 +276,30 @@ describe("question registry", () => {
     await expect(runRegistry([], new Map())).resolves.toEqual([]);
   });
 
-  it("projects only the German candidate bodies that are physically present", async () => {
+  it("projects the complete active German question pair", async () => {
     const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const files = [
       ...generalQuestionSourceFiles,
+      "answer.de.mdx",
       "choices.de.ts",
       "question.de.mdx",
     ];
     const choices = choicesFor(root);
     choices.set(
       resolve(absoluteQuestionTestSourceRoot, root, "choices.de.ts"),
-      candidateQuestionChoicesSource
+      germanQuestionChoicesSource
     );
     const content = await Effect.runPromise(
       registry([root, ...files.map((file) => `${root}/${file}`)], choices)
     );
 
     expect(
-      content.candidateEntries.map(({ sourcePath }) => sourcePath)
-    ).toEqual([`${questionTestSourceRoot}/${root}/question.de.mdx`]);
+      content.entries
+        .filter(({ artifactLocale }) => artifactLocale === "de")
+        .map(({ sourcePath }) => sourcePath)
+    ).toEqual([
+      `${questionTestSourceRoot}/${root}/answer.de.mdx`,
+      `${questionTestSourceRoot}/${root}/question.de.mdx`,
+    ]);
   });
 });

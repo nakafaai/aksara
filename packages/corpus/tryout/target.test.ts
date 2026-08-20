@@ -228,7 +228,7 @@ describe("tryout target", () => {
     expect(error).toMatchObject({ count: 1, rowKind: "target" });
   });
 
-  it("rejects a body joined to another source or inactive locale", {
+  it("rejects a body joined to another source or an unrepresented locale", {
     timeout: 30_000,
   }, async () => {
     const fixture = await loadFixture();
@@ -240,7 +240,7 @@ describe("tryout target", () => {
         ),
       }),
       rejectTarget(
-        fixture.rows,
+        fixture.rows.filter(({ appLocale }) => appLocale !== "de"),
         fixture.sources,
         { ...fixture.prompt, artifactLocale: ArtifactLocaleSchema.make("de") },
         fixture.question

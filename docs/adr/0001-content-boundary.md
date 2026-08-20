@@ -133,6 +133,15 @@ projects only its real domain fields; Aksara does not introduce one speculative
 universal metadata contract. `rawMdx` and `sourceHash` remain covered by the
 artifact hash and signature.
 
+The generic public `page` family uses the same trusted MDX, artifact, release,
+route, and rollback protocol as other body families. One stable page key owns
+its signed identity while source-root and locale-owned public-path choices
+remain explicit registry fields. This allows a source folder or public route to
+change without rewriting the permanent content identity. Page projections use
+the `public-page` kind and the route-owned `site` renderer domain. Legal pages
+are authored through this family, not through a legal-only protocol or a local
+Nakafa filesystem fallback.
+
 Per-artifact `requiredComponents` is complete for capitalized custom component
 dependencies discovered through MDX's missing-reference AST. Intrinsic Markdown
 tags such as `h2`, `p`, and `table` are mandatory global semantics covered by

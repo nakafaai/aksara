@@ -7,9 +7,9 @@ import { decodeMaterialLocaleCatalog } from "#corpus/material/locale";
 import { composeMaterialLocaleCatalog } from "#corpus/material/locale-catalog";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 
-/** Selects locale-owned material metadata only when publication requires it. */
-export const prepareProgramMaterials = Effect.fn(
-  "AksaraCorpus.prepareProgramMaterials"
+/** Composes the material metadata required by selected curriculum locales. */
+export const localizeCurriculumMaterials = Effect.fn(
+  "AksaraCorpus.localizeCurriculumMaterials"
 )(function* (input: {
   readonly appLocales: readonly AppLocale[];
   readonly domains: readonly MaterialDomainDescriptor[];

@@ -1,3 +1,4 @@
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
@@ -8,7 +9,6 @@ import type {
   LocalizedCurriculumNodeTranslationMapSchema,
 } from "#corpus/curriculum/schema";
 import {
-  AUTHORING_APP_LOCALES,
   addLocalizedSource,
   LOCALE_OVERLAY_APP_LOCALE_ENTRIES,
   sourceLocaleValue,
@@ -84,7 +84,7 @@ const duplicatesMaterialDisplay = Effect.fn(
     nodeKey,
     programKey
   );
-  return AUTHORING_APP_LOCALES.every((appLocale) => {
+  return ACTIVE_APP_LOCALES.every((appLocale) => {
     const overrideCopy = sourceLocaleValue(override, appLocale);
     const materialCopy = sourceLocaleValue(translations, appLocale);
     return (

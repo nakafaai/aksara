@@ -18,6 +18,7 @@ import {
   englishPath,
   rendererManifest as materialRenderer,
 } from "#test/material/spec";
+import { pageEntries, rendererManifest as pageRenderer } from "#test/page";
 import { questionRendererManifest } from "#test/question/renderer";
 import { questionEntries } from "#test/question/spec";
 
@@ -32,26 +33,37 @@ const answerEntry = questionEntries.find(
   ({ bodyKind, artifactLocale }) =>
     bodyKind === "answer" && artifactLocale === "en"
 );
-if (!(articleEntry && promptEntry && answerEntry)) {
+const pageEntry = pageEntries.find(
+  ({ route }) =>
+    route.pageKey === "privacy-policy" && route.artifactLocale === "en"
+);
+if (!(articleEntry && pageEntry && promptEntry && answerEntry)) {
   throw new Error(
-    "Expected real article, material, prompt, and answer entries."
+    "Expected real article, material, page, prompt, and answer entries."
   );
 }
 
-const [articleSelection, materialSelection, promptSelection, answerSelection] =
-  await Effect.runPromise(
-    Effect.all(
-      [
-        selectPreviewDocument(checkoutRoot, articleEntry.sourcePath),
-        selectPreviewDocument(checkoutRoot, englishPath),
-        selectPreviewDocument(checkoutRoot, promptEntry.sourcePath),
-        selectPreviewDocument(checkoutRoot, answerEntry.sourcePath),
-      ],
-      { concurrency: 4 }
-    ).pipe(Effect.provide(NodeServices.layer))
-  );
+const [
+  articleSelection,
+  materialSelection,
+  pageSelection,
+  promptSelection,
+  answerSelection,
+] = await Effect.runPromise(
+  Effect.all(
+    [
+      selectPreviewDocument(checkoutRoot, articleEntry.sourcePath),
+      selectPreviewDocument(checkoutRoot, englishPath),
+      selectPreviewDocument(checkoutRoot, pageEntry.sourcePath),
+      selectPreviewDocument(checkoutRoot, promptEntry.sourcePath),
+      selectPreviewDocument(checkoutRoot, answerEntry.sourcePath),
+    ],
+    { concurrency: 5 }
+  ).pipe(Effect.provide(NodeServices.layer))
+);
 const [articleSource] = articleSelection.sources;
 const [materialSource] = materialSelection.sources;
+const [pageSource] = pageSelection.sources;
 const [promptSource] = promptSelection.sources;
 const [answerPromptSource, answerSource] = answerSelection.sources;
 if (answerSource === undefined) {
@@ -67,6 +79,7 @@ function projectSource(
   rendererManifest:
     | typeof articleRenderer
     | typeof materialRenderer
+    | typeof pageRenderer
     | typeof questionRendererManifest
 ) {
   return Effect.runPromise(
@@ -83,9 +96,10 @@ function projectSource(
 
 describe("preview source", () => {
   it("loads and projects every supported real content family", async () => {
-    const [article, material, question] = await Promise.all([
+    const [article, material, page, question] = await Promise.all([
       projectSource(articleSource, articleRenderer),
       projectSource(materialSource, materialRenderer),
+      projectSource(pageSource, pageRenderer),
       projectSource(promptSource, questionRendererManifest),
     ]);
 
@@ -93,6 +107,10 @@ describe("preview source", () => {
     expect(material).toMatchObject({
       artifactLocale: "en",
       kind: "subject-lesson",
+    });
+    expect(page).toMatchObject({
+      artifactLocale: "en",
+      kind: "public-page",
     });
     expect(question).toMatchObject({
       artifactLocale: "en",

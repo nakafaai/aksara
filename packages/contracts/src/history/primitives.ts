@@ -62,6 +62,9 @@ const TryoutKeySchema = Schema.String.pipe(
   Schema.check(Schema.isPattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u)),
   Schema.check(Schema.isMaxLength(128))
 );
+const RendererComponentNameSchema = Schema.String.pipe(
+  Schema.check(Schema.isPattern(/^[A-Za-z][A-Za-z0-9]*$/u))
+);
 /** Exact renderer-domain inventory carried by retained signed manifests. */
 export const HISTORICAL_RENDERER_DOMAINS = [
   "ai-ds",
@@ -117,6 +120,7 @@ export const HistoricalPrimitive = {
   LearningGraphIdentitySchema,
   PublicPathSchema,
   ReleaseIdSchema,
+  RendererComponentNameSchema,
   RendererDomainSchema,
   SigningKeyIdSchema,
   TryoutKeySchema,
