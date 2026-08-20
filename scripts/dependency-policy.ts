@@ -22,7 +22,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "4.0.0-rc.110",
     cohort: "Effect",
     dependency: "effect",
-    reason: "The migration cohort was locked when implementation began.",
+    reason:
+      "Published contracts 0.15.0 and its active Nakafa consumer require the exact RC110 peer cohort.",
     registry: "effect@rc",
     reviewedLatest: "4.0.0-rc.111",
     source: "catalog",
