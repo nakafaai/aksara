@@ -18,6 +18,8 @@ import {
   articleRequest,
   artifact,
   found,
+  pageFound,
+  pageRequest,
   rejectExchange,
   verifyEvidenceExchange,
   verifyExchange,
@@ -99,6 +101,36 @@ describe("content runtime verification", () => {
         rejectExchange({
           request: articleRequest,
           response: { ...articleFound, sourcePath },
+        })
+      )
+    );
+
+    expect(outcomes).toEqual(
+      invalidSources.map(() =>
+        expect.objectContaining({
+          _tag: "ContentRuntimeMismatchError",
+          reason: "sourcePath",
+        })
+      )
+    );
+  });
+
+  it("binds a public page to its source-owned physical root", async () => {
+    await expect(
+      verifyExchange({ request: pageRequest, response: pageFound })
+    ).resolves.toEqual(pageFound);
+
+    const invalidSources = [
+      "packages/corpus/pages/terms/id.mdx",
+      "packages/corpus/pages/legal/terms/en.mdx",
+      "packages/corpus/pages/terms.old/en.mdx",
+      "packages/corpus/articles/terms/en.mdx",
+    ];
+    const outcomes = await Promise.all(
+      invalidSources.map((sourcePath) =>
+        rejectExchange({
+          request: pageRequest,
+          response: { ...pageFound, sourcePath },
         })
       )
     );

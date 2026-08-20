@@ -202,5 +202,9 @@ export function snapshotRollbackState(
   if (change.family === "material") {
     return { head: { ...head, family: "material" }, state: "material" };
   }
-  return { head: { ...head, family: "question" }, state: "question" };
+  if (change.family === "page") {
+    return { head: { ...head, family: "page" }, state: "page" };
+  }
+  const questionFamily: "question" = change.family;
+  return { head: { ...head, family: questionFamily }, state: questionFamily };
 }

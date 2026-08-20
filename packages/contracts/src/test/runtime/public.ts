@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -13,6 +13,7 @@ import {
 } from "#contracts/projection/article";
 import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { PublicPageProjectionSchema } from "#contracts/projection/page";
 import {
   verifyContentRuntimeEvidenceExchange,
   verifyContentRuntimeExchange,
@@ -101,6 +102,35 @@ export const articleFound = {
   sourcePath: CorpusSourcePathSchema.make(
     "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
   ),
+} as const;
+
+const pageContentKey = ContentKeySchema.make("pages/terms-of-service");
+const pageProjection = Schema.decodeSync(PublicPageProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
+  contentKey: pageContentKey,
+  kind: "public-page",
+  metadata: {
+    description: "Reviewed public terms.",
+    lastModified: "2026-08-20",
+    title: "Terms of Service",
+  },
+  pageKey: "terms-of-service",
+  publicPath: "terms-of-service",
+  sitemap: true,
+});
+export const pageArtifact = createSignedArtifact(pageContentKey);
+export const pageRequest = {
+  appLocale: "en",
+  delivery: "public",
+  publicPath: pageProjection.publicPath,
+} as const;
+export const pageFound = {
+  ...found,
+  artifact: pageArtifact,
+  projection: pageProjection,
+  projectionHash: hashContentProjection(pageProjection),
+  sourcePath: CorpusSourcePathSchema.make("packages/corpus/pages/terms/en.mdx"),
 } as const;
 
 /** Builds one public runtime exchange with the fixture verification key. */

@@ -13,6 +13,7 @@ import {
   type PublicContentRuntimeFound,
   type PublicContentRuntimeRequest,
 } from "#contracts/runtime/spec";
+import { isLowerKebab } from "#contracts/text/syntax";
 
 type PublicRuntimeVerificationPolicy =
   | { readonly kind: "evidence" }
@@ -33,6 +34,23 @@ function hasArticleSourcePath(
   return segments.length === 2 && segments.join("-") === projection.articleSlug;
 }
 
+/** Checks one page path preserves its independent source-owned root. */
+function hasPageSourcePath(
+  projection: Extract<
+    RoutedContentProjection,
+    { readonly kind: "public-page" }
+  >,
+  sourcePath: string
+) {
+  const prefix = "packages/corpus/pages/";
+  const suffix = `/${projection.artifactLocale}.mdx`;
+  if (!(sourcePath.startsWith(prefix) && sourcePath.endsWith(suffix))) {
+    return false;
+  }
+  const sourceRoot = sourcePath.slice(prefix.length, -suffix.length);
+  return isLowerKebab(sourceRoot);
+}
+
 /** Checks one public path exactly matches its projected content family. */
 function hasProjectionSourcePath(
   projection: RoutedContentProjection,
@@ -40,6 +58,9 @@ function hasProjectionSourcePath(
 ) {
   if (projection.kind === "article") {
     return hasArticleSourcePath(projection, sourcePath);
+  }
+  if (projection.kind === "public-page") {
+    return hasPageSourcePath(projection, sourcePath);
   }
 
   return (
