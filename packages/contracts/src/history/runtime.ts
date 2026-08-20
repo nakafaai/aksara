@@ -17,7 +17,7 @@ import {
   verifyHistoricalRendererCompatibility,
 } from "#contracts/history/renderer";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
-import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
 
 /** Unknown retained runtime input does not satisfy its exact read contract. */
 export class StoredProtectedRuntimeDecodeError extends Schema.TaggedError<StoredProtectedRuntimeDecodeError>()(
@@ -215,7 +215,7 @@ export const verifyStoredProtectedContentRuntimeExchange = Effect.fn(
   const release = yield* decodeStoredRelease(response.release);
   const [frozenRenderer, liveRenderer] = yield* Effect.all([
     validateHistoricalRendererManifestHash(response.rendererManifest),
-    validateRendererManifestHash(input.rendererManifest),
+    validateLiveRendererManifestHash(input.rendererManifest),
   ]);
   yield* verifyHistoricalRelease(request, response, release, frozenRenderer);
   yield* Effect.forEach(

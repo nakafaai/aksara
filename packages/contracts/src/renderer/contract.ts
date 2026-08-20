@@ -155,8 +155,7 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasPublishedDomainCapabilities, {
-      message:
-        "Expected every published renderer domain to have a capability.",
+      message: "Expected every published renderer domain to have a capability.",
     })
   ),
   Schema.check(

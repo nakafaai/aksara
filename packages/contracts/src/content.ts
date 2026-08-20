@@ -108,8 +108,7 @@ export const CompileDocumentRequestSchema = Schema.Struct({
           ({ name }) => name === request.rendererDomain
         ),
       {
-        message:
-          "Expected the selected renderer domain to have a capability.",
+        message: "Expected the selected renderer domain to have a capability.",
       }
     )
   )

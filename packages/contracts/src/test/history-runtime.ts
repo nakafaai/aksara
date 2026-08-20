@@ -34,6 +34,7 @@ import {
 } from "#contracts/history/release-bytes";
 import { verifyStoredProtectedContentRuntimeExchange } from "#contracts/history/runtime";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
+import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { retainedRelease } from "#contracts/test/history";
@@ -77,6 +78,20 @@ export function createHistoricalRenderer(input?: {
 }
 
 export const historicalRenderer = await createHistoricalRenderer();
+const historicalSubsetDomains = historicalRenderer.domains.filter(
+  ({ name }) => name === "snbt-general"
+);
+export const historicalSubsetRenderer = {
+  ...historicalRenderer,
+  domains: historicalSubsetDomains,
+  hash: hash(
+    canonicalizeRendererManifestContract({
+      base: historicalRenderer.base,
+      domains: historicalSubsetDomains,
+      publishedDomains: historicalRenderer.publishedDomains,
+    })
+  ),
+};
 export const historicalUnpublishedRenderer = await createHistoricalRenderer({
   publishedDomain: "mathematics",
 });

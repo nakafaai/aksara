@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   canonicalizeRendererManifestContract,
   RendererDomainCapabilitySchema,
@@ -105,12 +105,10 @@ describe("renderer contract", () => {
   });
 
   it("returns a typed failure for a missing persisted capability", async () => {
-    const historical = Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)(
-      {
-        ...manifest,
-        domains: domains.filter(({ name }) => name !== "tka-math"),
-      }
-    );
+    const historical = Schema.decodeSync(RendererManifestEnvelopeSchema)({
+      ...manifest,
+      domains: domains.filter(({ name }) => name !== "tka-math"),
+    });
     const error = await Effect.runPromise(
       selectRendererDomainCapability(historical, "tka-math").pipe(Effect.flip)
     );
@@ -121,7 +119,7 @@ describe("renderer contract", () => {
   });
 
   it("requires one capability for every published domain", () => {
-    const decoded = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema)({
+    const decoded = Schema.decodeExit(RendererManifestEnvelopeSchema)({
       ...manifest,
       domains: domains.filter(({ name }) => name !== "mathematics"),
     });
