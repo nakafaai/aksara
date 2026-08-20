@@ -19,6 +19,7 @@ import {
   artifact,
   found,
   rejectExchange,
+  verifyEvidenceExchange,
   verifyExchange,
   verifyExchangeResult,
 } from "#contracts/test/runtime/public";
@@ -197,6 +198,9 @@ describe("content runtime verification", () => {
     await expect(
       verifyExchange({ rendererManifest, response })
     ).resolves.toEqual(response);
+    await expect(verifyEvidenceExchange({ response })).resolves.toEqual(
+      response
+    );
   });
 
   it("rejects a tampered frozen renderer envelope", async () => {

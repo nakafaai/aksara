@@ -13,7 +13,10 @@ import {
 } from "#contracts/projection/article";
 import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { verifyContentRuntimeExchange } from "#contracts/runtime/verify";
+import {
+  verifyContentRuntimeEvidenceExchange,
+  verifyContentRuntimeExchange,
+} from "#contracts/runtime/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { articleGraph } from "#contracts/test/graph";
 import { projection, rendererManifest } from "#contracts/test/request";
@@ -115,6 +118,19 @@ function exchangeProgram(input: {
   );
 }
 
+/** Builds one non-rendering evidence exchange with the fixture verification key. */
+function evidenceExchangeProgram(input: {
+  readonly request?: unknown;
+  readonly response: unknown;
+}) {
+  return verifyContentRuntimeEvidenceExchange({
+    request: input.request ?? request,
+    response: input.response,
+  }).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
+  );
+}
+
 /** Runs one public runtime exchange expected to authenticate successfully. */
 export function verifyExchange(input: Parameters<typeof exchangeProgram>[0]) {
   return Effect.runPromise(exchangeProgram(input));
@@ -130,4 +146,11 @@ export function verifyExchangeResult(
 /** Runs one public runtime exchange expected to return a typed failure. */
 export function rejectExchange(input: Parameters<typeof exchangeProgram>[0]) {
   return Effect.runPromise(exchangeProgram(input).pipe(Effect.flip));
+}
+
+/** Runs one non-rendering evidence exchange expected to authenticate. */
+export function verifyEvidenceExchange(
+  input: Parameters<typeof evidenceExchangeProgram>[0]
+) {
+  return Effect.runPromise(evidenceExchangeProgram(input));
 }
