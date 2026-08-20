@@ -13,6 +13,14 @@ const materialPath =
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx";
 const pagePath = "packages/corpus/pages/privacy-policy/en.mdx";
 const germanPagePath = "packages/corpus/pages/privacy-policy/de.mdx";
+const pageRestartSourcePaths = [
+  "packages/corpus/pages/source.ts",
+  "packages/corpus/pages/registry.ts",
+  "packages/corpus/pages/schema.ts",
+  "packages/corpus/locale/source.ts",
+  "packages/corpus/pages/locale.ts",
+  "packages/corpus/pages/locale-registry.ts",
+];
 const questionRoot =
   "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
 const promptPath = `${questionRoot}/question.en.mdx`;
@@ -128,17 +136,7 @@ describe("preview selection", () => {
         family: "page",
         sourcePath: pagePath,
       },
-      sources: [
-        {
-          dependencies: [
-            {
-              mode: "restart",
-              sourcePath: "packages/corpus/pages/source.ts",
-            },
-          ],
-          family: "page",
-        },
-      ],
+      sources: [{ family: "page" }],
     });
     expect(germanPage).toMatchObject({
       document: {
@@ -146,26 +144,14 @@ describe("preview selection", () => {
         family: "page",
         sourcePath: germanPagePath,
       },
-      sources: [
-        {
-          dependencies: [
-            {
-              mode: "restart",
-              sourcePath: "packages/corpus/pages/source.ts",
-            },
-            {
-              mode: "restart",
-              sourcePath: "packages/corpus/pages/locale.ts",
-            },
-            {
-              mode: "restart",
-              sourcePath: "packages/corpus/pages/locale-registry.ts",
-            },
-          ],
-          family: "page",
-        },
-      ],
+      sources: [{ family: "page" }],
     });
+    expect(
+      page.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+    ).toEqual(pageRestartSourcePaths);
+    expect(
+      germanPage.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+    ).toEqual(pageRestartSourcePaths);
     expect(prompt).toMatchObject({
       document: {
         delivery: "authenticated",

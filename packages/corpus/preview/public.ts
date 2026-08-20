@@ -44,12 +44,6 @@ const MATERIAL_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
 const PAGE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/pages/source.ts"
 );
-const PAGE_LOCALE_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/pages/locale.ts"
-);
-const PAGE_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
-  "packages/corpus/pages/locale-registry.ts"
-);
 const GERMAN_GLOSSARY_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/locale/german/glossary.ts"
 );
@@ -100,18 +94,6 @@ function materialLocaleDependencies(entry: MaterialEntry) {
   ];
 }
 
-/** Returns exact selected page overlay owners without expanding the registry. */
-function pageLocaleDependencies(entry: PageEntry) {
-  const appLocale = localeOverlayAppLocaleCode(entry.route.appLocale);
-  if (appLocale === undefined) {
-    return [];
-  }
-  return [
-    { mode: "restart" as const, sourcePath: PAGE_LOCALE_OWNER },
-    { mode: "restart" as const, sourcePath: PAGE_LOCALE_REGISTRY },
-  ];
-}
-
 /** Requires one source already made unique by its canonical registry. */
 const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
   function* <Value>(value: Value | undefined, sourcePath: CorpusSourcePath) {
@@ -127,7 +109,8 @@ const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
 
 /** Builds one public page selection from an already validated registry row. */
 export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
-  (entry: PageEntry) => {
+  function* (corpusRoot: string, entry: PageEntry) {
+    const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
     const document = {
       delivery: entry.delivery,
       family: "page",
@@ -135,31 +118,28 @@ export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
       route: entry.route,
       sourcePath: entry.sourcePath,
     } satisfies PagePreviewDocument;
-    return Effect.succeed({
+    return {
       document,
       sources: [
         {
-          dependencies: [
-            { mode: "restart", sourcePath: PAGE_OWNER },
-            ...pageLocaleDependencies(entry),
-          ],
+          dependencies: yield* dependenciesFor(PAGE_OWNER),
           directories: [],
           entry,
           family: "page",
         },
       ],
-    } satisfies PreviewSelection);
+    } satisfies PreviewSelection;
   }
 );
 
 /** Selects one public page directly from its canonical page registry. */
 export const selectPage = Effect.fn("AksaraCorpus.selectPreviewPage")(
-  function* (_corpusRoot: string, sourcePath: CorpusSourcePath) {
+  function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
     const entry = yield* selectOne(
       yield* decodePagePreviewEntry(sourcePath),
       sourcePath
     );
-    return yield* selectPageEntry(entry);
+    return yield* selectPageEntry(corpusRoot, entry);
   }
 );
 
