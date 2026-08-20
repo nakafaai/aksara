@@ -14,7 +14,7 @@ export type LocalizedPageProjectionSource = Omit<PageSource, "publicPaths"> & {
   readonly publicPaths: LocalizedSourceMap<PageSource["publicPaths"]["en"]>;
 };
 
-/** Locale-owned route reviewed beside one candidate public page body. */
+/** Locale-owned route reviewed beside one localized public page body. */
 export const PageLocaleSourceSchema = Schema.Struct({
   appLocale: LocaleOverlayAppLocaleCodeSchema,
   pageKey: PageKeySchema,
@@ -23,13 +23,13 @@ export const PageLocaleSourceSchema = Schema.Struct({
 export type PageLocaleSource = typeof PageLocaleSourceSchema.Type;
 export type PageLocaleSourceInput = typeof PageLocaleSourceSchema.Encoded;
 
-/** Candidate public page metadata failed strict source decoding. */
+/** Locale-owned public page metadata failed strict source decoding. */
 export class PageLocaleCatalogError extends Schema.TaggedError<PageLocaleCatalogError>()(
   "PageLocaleCatalogError",
   { cause: Schema.Unknown }
 ) {}
 
-/** Candidate public page metadata does not match its stable active owner. */
+/** Locale-owned public page metadata does not match its stable owner. */
 export class PageLocaleOwnershipError extends Schema.TaggedError<PageLocaleOwnershipError>()(
   "PageLocaleOwnershipError",
   {
@@ -39,28 +39,28 @@ export class PageLocaleOwnershipError extends Schema.TaggedError<PageLocaleOwner
   }
 ) {}
 
-/** Resolves one locale-owned page overlay without changing active source bytes. */
+/** Resolves one locale-owned page overlay without changing base source bytes. */
 export const composePageLocaleSource = Effect.fn(
   "AksaraCorpus.composePageLocaleSource"
-)(function* (active: PageSource, candidate: PageLocaleSource) {
-  if (active.pageKey !== candidate.pageKey) {
+)(function* (base: PageSource, overlay: PageLocaleSource) {
+  if (base.pageKey !== overlay.pageKey) {
     return yield* new PageLocaleOwnershipError({
-      appLocale: candidate.appLocale,
-      pageKey: candidate.pageKey,
+      appLocale: overlay.appLocale,
+      pageKey: overlay.pageKey,
       reason: "orphan",
     });
   }
   return {
-    ...active,
-    overlayAppLocale: candidate.appLocale,
+    ...base,
+    overlayAppLocale: overlay.appLocale,
     publicPaths: {
-      ...active.publicPaths,
-      [candidate.appLocale]: candidate.publicPath,
+      ...base.publicPaths,
+      [overlay.appLocale]: overlay.publicPath,
     },
   } satisfies LocalizedPageProjectionSource;
 });
 
-/** Decodes every locale-owned candidate public page route. */
+/** Decodes every locale-owned public page route. */
 export const decodePageLocaleCatalog = Effect.fn(
   "AksaraCorpus.decodePageLocaleCatalog"
 )(function* (input: unknown = pageLocaleSources) {
@@ -101,24 +101,24 @@ export const validatePageLocaleCatalog = Effect.fn(
   return catalog;
 });
 
-/** Resolves exactly one candidate route for one stable public page. */
+/** Resolves exactly one locale route for one stable public page. */
 export const requirePageLocaleSource = Effect.fn(
   "AksaraCorpus.requirePageLocaleSource"
 )(function* (
-  active: PageSource,
+  base: PageSource,
   catalog: readonly PageLocaleSource[],
   appLocale: PageLocaleSource["appLocale"]
 ) {
-  const candidates = catalog.filter(
-    (entry) => entry.appLocale === appLocale && entry.pageKey === active.pageKey
+  const overlays = catalog.filter(
+    (entry) => entry.appLocale === appLocale && entry.pageKey === base.pageKey
   );
-  const [candidate] = candidates;
-  if (candidates.length !== 1 || candidate === undefined) {
+  const [overlay] = overlays;
+  if (overlays.length !== 1 || overlay === undefined) {
     return yield* new PageLocaleOwnershipError({
       appLocale,
-      pageKey: active.pageKey,
+      pageKey: base.pageKey,
       reason: "unavailable",
     });
   }
-  return yield* composePageLocaleSource(active, candidate);
+  return yield* composePageLocaleSource(base, overlay);
 });

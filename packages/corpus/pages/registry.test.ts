@@ -7,10 +7,15 @@ import { Effect } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { germanPageSource, pageSource } from "#corpus/test/page";
 
+const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+  AppLocaleSchema.make("en"),
+  AppLocaleSchema.make("id"),
+]);
+
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown, localeInput?: unknown) {
   return Effect.runPromise(
-    decodePageRegistry(input, localeInput).pipe(Effect.flip)
+    decodePageRegistry(input, localeInput, embeddedAppLocales).pipe(Effect.flip)
   );
 }
 
@@ -18,18 +23,19 @@ describe("public page registry", () => {
   it("projects every active locale from the stable source identities", async () => {
     const entries = await Effect.runPromise(decodePageRegistry());
 
-    expect(entries).toHaveLength(8);
-    expect(entries.map(({ route }) => route.appLocale)).toEqual([
-      "en",
-      "id",
-      "en",
-      "id",
-      "en",
-      "id",
-      "en",
-      "id",
-    ]);
-    expect(entries[0]).toMatchObject({
+    expect(entries).toHaveLength(12);
+    expect(
+      Object.fromEntries(
+        ["en", "id", "de"].map((appLocale) => [
+          appLocale,
+          entries.filter((entry) => entry.route.appLocale === appLocale).length,
+        ])
+      )
+    ).toEqual({ de: 4, en: 4, id: 4 });
+    const englishImprint = entries.find(
+      ({ route }) => route.appLocale === "en" && route.pageKey === "imprint"
+    );
+    expect(englishImprint).toMatchObject({
       delivery: "public",
       rendererDomain: "site",
       route: {
@@ -100,7 +106,9 @@ describe("public page registry", () => {
   });
 
   it("accepts repeated identical route ownership and an empty catalog", async () => {
-    const [entry] = await Effect.runPromise(decodePageRegistry([pageSource()]));
+    const [entry] = await Effect.runPromise(
+      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+    );
     if (entry === undefined) {
       throw new Error("Expected one active page entry.");
     }
@@ -108,8 +116,8 @@ describe("public page registry", () => {
     await expect(
       Effect.runPromise(validatePageRoutes([entry, entry]))
     ).resolves.toEqual([entry, entry]);
-    await expect(Effect.runPromise(decodePageRegistry([]))).resolves.toEqual(
-      []
-    );
+    await expect(
+      Effect.runPromise(decodePageRegistry([], undefined, embeddedAppLocales))
+    ).resolves.toEqual([]);
   });
 });

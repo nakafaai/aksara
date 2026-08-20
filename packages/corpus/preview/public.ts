@@ -26,28 +26,28 @@ import {
 const ARTICLE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/source.ts"
 );
-const ARTICLE_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+const ARTICLE_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/locale.ts"
 );
-const ARTICLE_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+const ARTICLE_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/articles/locale-registry.ts"
 );
 const MATERIAL_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/material/source.ts"
 );
-const MATERIAL_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+const MATERIAL_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/material/locale.ts"
 );
-const MATERIAL_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+const MATERIAL_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/material/locale-registry.ts"
 );
 const PAGE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/pages/source.ts"
 );
-const PAGE_CANDIDATE_OWNER = CorpusSourcePathSchema.make(
+const PAGE_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/pages/locale.ts"
 );
-const PAGE_CANDIDATE_REGISTRY = CorpusSourcePathSchema.make(
+const PAGE_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
   "packages/corpus/pages/locale-registry.ts"
 );
 const GERMAN_GLOSSARY_OWNER = CorpusSourcePathSchema.make(
@@ -60,8 +60,8 @@ function articleLocaleDependencies(entry: ArticleEntry) {
     return [];
   }
   return [
-    { mode: "restart" as const, sourcePath: ARTICLE_CANDIDATE_OWNER },
-    { mode: "restart" as const, sourcePath: ARTICLE_CANDIDATE_REGISTRY },
+    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_OWNER },
+    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_REGISTRY },
     {
       mode: "restart" as const,
       sourcePath: CorpusSourcePathSchema.make(
@@ -84,8 +84,8 @@ function materialLocaleDependencies(entry: MaterialEntry) {
     return [];
   }
   return [
-    { mode: "restart" as const, sourcePath: MATERIAL_CANDIDATE_OWNER },
-    { mode: "restart" as const, sourcePath: MATERIAL_CANDIDATE_REGISTRY },
+    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_OWNER },
+    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_REGISTRY },
     { mode: "restart" as const, sourcePath: GERMAN_GLOSSARY_OWNER },
     ...GERMAN_GLOSSARY_SOURCE_PATHS.map((sourcePath) => ({
       mode: "restart" as const,
@@ -107,8 +107,8 @@ function pageLocaleDependencies(entry: PageEntry) {
     return [];
   }
   return [
-    { mode: "restart" as const, sourcePath: PAGE_CANDIDATE_OWNER },
-    { mode: "restart" as const, sourcePath: PAGE_CANDIDATE_REGISTRY },
+    { mode: "restart" as const, sourcePath: PAGE_LOCALE_OWNER },
+    { mode: "restart" as const, sourcePath: PAGE_LOCALE_REGISTRY },
   ];
 }
 
@@ -151,13 +151,6 @@ export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
     } satisfies PreviewSelection);
   }
 );
-
-/** Builds a public page batch from already validated registry rows. */
-export const selectPageEntries = Effect.fn(
-  "AksaraCorpus.selectPreviewPageEntries"
-)(function* (entries: readonly PageEntry[]) {
-  return yield* Effect.forEach(entries, selectPageEntry, { concurrency: 8 });
-});
 
 /** Selects one public page directly from its canonical page registry. */
 export const selectPage = Effect.fn("AksaraCorpus.selectPreviewPage")(
@@ -269,18 +262,6 @@ export const selectMaterialEntry = Effect.fn(
 )(function* (corpusRoot: string, entry: MaterialEntry) {
   const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
   return yield* buildMaterialEntry(entry, dependenciesFor);
-});
-
-/** Builds a public material batch with one concurrent-safe dependency cache. */
-export const selectMaterialEntries = Effect.fn(
-  "AksaraCorpus.selectPreviewMaterialEntries"
-)(function* (corpusRoot: string, entries: readonly MaterialEntry[]) {
-  const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
-  return yield* Effect.forEach(
-    entries,
-    (entry) => buildMaterialEntry(entry, dependenciesFor),
-    { concurrency: 8 }
-  );
 });
 
 /** Selects one public lesson directly from its canonical material registry. */

@@ -4,7 +4,10 @@ import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import { ActiveAppLocaleListSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+} from "#contracts/locale";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import { digestProgramRows } from "#contracts/program/snapshot/digest";
 import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
@@ -70,20 +73,20 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-  "en",
-  "id",
-]);
 let records: readonly ProgramSnapshotRow[];
-
 beforeAll(async () => {
   records = await Effect.runPromise(makeProgramTestRecords());
 }, 30_000);
 
+/** Decodes one exact app-locale fixture through the production contract. */
+function decodeAppLocales(input: unknown) {
+  return Schema.decodeUnknownSync(ActiveAppLocaleListSchema)(input);
+}
+
 /** Returns one typed current program digest failure. */
 function reject(
   rows: readonly ProgramSnapshotRow[],
-  locales = activeAppLocales,
+  locales = ACTIVE_APP_LOCALES,
   expected?: {
     readonly curriculumRowCount: number;
     readonly programRowCount: number;
@@ -107,7 +110,7 @@ describe("program aggregate digest", () => {
   it("authenticates exact active-locale program and route closure", async () => {
     const summary = await Effect.runPromise(
       digestProgramRows({
-        activeAppLocales,
+        activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.fromIterable(records),
       })
     );
@@ -123,17 +126,17 @@ describe("program aggregate digest", () => {
     );
     const nonCurriculumSummary = await Effect.runPromise(
       digestProgramRows({
-        activeAppLocales,
+        activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.make(nonCurriculum),
       })
     );
 
     expect(summary).toMatchObject({
-      curriculumRowCount: 390,
+      curriculumRowCount: 582,
       programRowCount: 6,
-      rowCount: 396,
-      sitemapCount: 54,
-      slugCount: 12,
+      rowCount: 588,
+      sitemapCount: 78,
+      slugCount: 18,
     });
     expect(nonCurriculumSummary).toMatchObject({
       curriculumRowCount: 0,
@@ -164,10 +167,7 @@ describe("program aggregate digest", () => {
     const duplicateSlug = await Effect.runPromise(
       makeProgramSnapshotRow(duplicateSlugRow)
     );
-    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-      "en",
-      "de",
-    ]);
+    const germanLocales = decodeAppLocales(["en", "de"]);
     const tamperedProgram = {
       ...first,
       rowHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
@@ -185,12 +185,12 @@ describe("program aggregate digest", () => {
       reject([first, duplicateSlug]),
       reject([...programs, firstCurriculum, first]),
       reject([...programs, firstCurriculum, firstCurriculum]),
-      reject(records, activeAppLocales, {
-        curriculumRowCount: 390,
+      reject(records, ACTIVE_APP_LOCALES, {
+        curriculumRowCount: 582,
         programRowCount: 7,
-        rowCount: 397,
-        sitemapCount: 52,
-        slugCount: 14,
+        rowCount: 589,
+        sitemapCount: 78,
+        slugCount: 18,
       }),
     ]);
 
@@ -237,14 +237,25 @@ describe("program aggregate digest", () => {
         nodeKey: firstChild.row.nodeKey,
       })
     );
-    const germanRoute = Schema.decodeSync(CurriculumRouteSchema)({
+    const priorAppLocales = decodeAppLocales(["en", "id"]);
+    const priorProgram = await Effect.runPromise(
+      makeProgramSnapshotRow(
+        Schema.decodeUnknownSync(LearningProgramSchema)({
+          ...firstProgram.row,
+          translations: firstProgram.row.translations.filter(
+            ({ appLocale }) => appLocale !== "de"
+          ),
+        })
+      )
+    );
+    const inactiveRoute = Schema.decodeSync(CurriculumRouteSchema)({
       ...firstRoot.row,
       appLocale: "de",
       publicPath: `lehrplaene/${firstProgram.row.translations[0].publicSlug}`,
       title: firstProgram.row.translations[0].title,
     });
     const inactiveLocale = await Effect.runPromise(
-      makeCurriculumSnapshotRow(germanRoute)
+      makeCurriculumSnapshotRow(inactiveRoute)
     );
     const nonCurriculum = await Effect.runPromise(
       makeProgramSnapshotRow({
@@ -253,7 +264,7 @@ describe("program aggregate digest", () => {
       })
     );
     const errors = await Promise.all([
-      reject([...programs, inactiveLocale]),
+      reject([priorProgram, inactiveLocale], priorAppLocales),
       reject([nonCurriculum, firstRoot]),
       reject([...programs, wrongRoot]),
       reject([...programs, firstChild]),

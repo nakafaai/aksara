@@ -76,7 +76,7 @@ inventory constants. At the time of this decision, the reviewed program source
 produces 396 rows: six program rows and 390 localized curriculum routes, plus
 12 `en`/`id` slug identities and 52 sitemap rows in the manifest. Try-out
 snapshots authenticate the active hierarchy and artifact-bound attempt
-placements. The reviewed Quran source currently produces 1,428 projection
+placements. At the time of this decision, the reviewed Quran source produces 1,428 projection
 rows: 114 surahs, 1,085 verse chunks covering 6,236 verses, 228 localized
 search rows, and one mandatory visible attribution row. Its pinned Tanzil and
 QuranEnc provenance is approved. Publication still fails closed if a future

@@ -20,7 +20,7 @@ const CopySchema = localizedSourceMapSchema(
 );
 
 describe("localized source maps", () => {
-  it("keeps historical embedded locales fixed and derives every overlay", () => {
+  it("keeps base embedded locales fixed and derives every overlay", () => {
     expect(EMBEDDED_APP_LOCALE_CODES).toEqual(["en", "id"]);
     expect(Schema.is(EmbeddedAppLocaleCodeSchema)("de")).toBe(false);
     expect(

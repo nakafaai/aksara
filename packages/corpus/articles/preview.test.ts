@@ -19,7 +19,7 @@ const germanPath = CorpusSourcePathSchema.make(
 );
 
 describe("article preview projection", () => {
-  it("projects active and candidate bodies through their distinct owners", async () => {
+  it("projects base and locale-owned bodies through their distinct owners", async () => {
     const entries = await Effect.runPromise(
       decodeArticlePreviewEntries(
         [englishPath, germanPath],

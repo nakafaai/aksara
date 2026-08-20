@@ -25,7 +25,7 @@ describe("release manifest hash", () => {
   it("binds active application locales", () => {
     const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...release.manifest,
-      activeAppLocales: ["en", "id", "de"],
+      activeAppLocales: ["en", "id"],
     });
     expect(Effect.runSync(hashContentReleaseManifest(manifest))).not.toBe(
       Effect.runSync(hashContentReleaseManifest(release.manifest))

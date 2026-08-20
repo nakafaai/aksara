@@ -71,6 +71,54 @@ export function lessonMaterialGraph(locale: AppLocaleCode) {
   };
 }
 
+/** Builds the exact embedded projections for the representative lesson. */
+export function lessonMaterialEntries() {
+  return [
+    {
+      assetRoot:
+        "material/lesson/mathematics/function-composition-inverse-function",
+      delivery: "public",
+      rendererDomain: "mathematics",
+      route: {
+        appLocale: "en",
+        artifactLocale: "en",
+        contentKey:
+          "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+        graph: lessonMaterialGraph("en"),
+        materialKey: "lesson.mathematics.function-composition-inverse-function",
+        order: 1,
+        publicPath:
+          "subjects/mathematics/function-composition-inverse-function/function-concept",
+        sectionKey: "function-concept",
+        topicTitle: "Function Composition and Inverse Function",
+      },
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
+    },
+    {
+      assetRoot:
+        "material/lesson/mathematics/function-composition-inverse-function",
+      delivery: "public",
+      rendererDomain: "mathematics",
+      route: {
+        appLocale: "id",
+        artifactLocale: "id",
+        contentKey:
+          "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+        graph: lessonMaterialGraph("id"),
+        materialKey: "lesson.mathematics.function-composition-inverse-function",
+        order: 1,
+        publicPath:
+          "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+        sectionKey: "function-concept",
+        topicTitle: "Fungsi Komposisi dan Fungsi Invers",
+      },
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
+    },
+  ];
+}
+
 /** Builds one locale-owned German overlay for the representative lesson. */
 export function germanMaterialCatalog() {
   return {

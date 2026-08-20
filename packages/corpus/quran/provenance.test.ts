@@ -3,7 +3,6 @@ import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/prov
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
-import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import { quranProvenanceRecordsFor } from "#corpus/quran/provenance";
 
 describe("Quran provenance records", () => {
@@ -18,10 +17,11 @@ describe("Quran provenance records", () => {
       })
     );
 
-    expect(activeRecords).toHaveLength(5);
+    expect(activeRecords).toHaveLength(6);
     expect(new Set(activeRecords.map(({ scope }) => scope))).toEqual(
       new Set([
         "arabic-text",
+        "de-translation",
         "en-translation",
         "id-tafsir",
         "id-translation",
@@ -31,18 +31,24 @@ describe("Quran provenance records", () => {
     expect(manifest.status).toBe("approved");
     expect(
       activeRecords.every(
-        ({ attribution }) => attribution.retrievedAt === "2026-07-24T17:57:50Z"
+        ({ attribution, scope }) =>
+          scope === "de-translation" ||
+          attribution.retrievedAt === "2026-07-24T17:57:50Z"
       )
     ).toBe(true);
+    expect(
+      activeRecords.find(({ scope }) => scope === "de-translation")?.attribution
+        .retrievedAt
+    ).toBe("2026-08-13T06:12:57Z");
   });
 
-  it("closes German provenance and localized attribution before activation", async () => {
+  it("closes active German provenance and localized attribution", async () => {
     const records = await Effect.runPromise(
-      quranProvenanceRecordsFor(AUTHORING_APP_LOCALES)
+      quranProvenanceRecordsFor(ACTIVE_APP_LOCALES)
     );
     const manifest = await Effect.runPromise(
       makeQuranProvenanceManifest({
-        activeAppLocales: AUTHORING_APP_LOCALES,
+        activeAppLocales: ACTIVE_APP_LOCALES,
         records,
       })
     );

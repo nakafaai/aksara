@@ -20,7 +20,7 @@ const QUESTION_LOCALE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/tryout/locale-registry.ts"
 );
 
-/** One already decoded candidate question with its honest shell locale. */
+/** One already decoded question with its exact shell locale. */
 export interface QuestionPreviewInput {
   readonly appLocale: AppLocale;
   readonly entry: QuestionEntry;

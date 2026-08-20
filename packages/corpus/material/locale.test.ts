@@ -24,7 +24,7 @@ async function mathematicsDomain() {
   return descriptor;
 }
 
-describe("candidate material metadata", () => {
+describe("locale-owned material metadata", () => {
   it("composes exact German domain, material, and section ownership", async () => {
     const descriptor = await mathematicsDomain();
     const source = lessonMaterialSource();

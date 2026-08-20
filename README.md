@@ -12,9 +12,9 @@ editable copy of content that the other repository owns.
 ## What lives here
 
 - `packages/corpus` contains reviewed articles, lessons, questions, public
-  pages, program data, try-out data, and Quran sources. English and Indonesian
-  are active authoring locales. German sources use the same locale-equivalent
-  review model and remain separate from application-locale activation.
+  pages, program data, try-out data, and Quran sources. English, Indonesian,
+  and German are active authoring and publication locales under the same
+  locale-equivalent review model.
 - `packages/contracts` defines the signed wire formats shared with Nakafa.
 - `packages/compiler` validates trusted MDX and produces standard
   `function-body` output without executing the document.

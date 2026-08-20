@@ -1,4 +1,5 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 
 import {
@@ -15,19 +16,18 @@ import {
 } from "#corpus/articles/registry";
 import { decodeArticleSources } from "#corpus/articles/source";
 import {
-  AUTHORING_APP_LOCALES,
   appLocaleCode,
   LOCALE_OVERLAY_APP_LOCALE_CODES,
   localeOverlayAppLocaleCode,
 } from "#corpus/locale/source";
 
-/** Projects every physically present candidate body and validates them together. */
+/** Projects every selected body and validates base and locale-owned metadata together. */
 export const decodeArticlePreviewEntries = Effect.fn(
   "AksaraCorpus.decodeArticlePreviewEntries"
 )(function* (
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown,
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const selected = new Set(sourcePaths);
   const sources = yield* decodeArticleSources(input);
@@ -37,28 +37,28 @@ export const decodeArticlePreviewEntries = Effect.fn(
     )
   );
   const localeCatalog =
-    needsLocaleOverlays || candidateInput !== undefined
-      ? yield* decodeArticleLocaleCatalog(candidateInput)
+    needsLocaleOverlays || localeInput !== undefined
+      ? yield* decodeArticleLocaleCatalog(localeInput)
       : { articles: [], categories: [] };
   yield* validateArticleSources(sources);
   yield* validateArticleLocaleCatalog(sources, localeCatalog);
   const projected: unknown[] = [];
   for (const source of sources) {
-    for (const appLocale of AUTHORING_APP_LOCALES) {
+    for (const appLocale of ACTIVE_APP_LOCALES) {
       const expectedPath = CorpusSourcePathSchema.make(
         `packages/corpus/${source.sourceRoot}/${appLocaleCode(appLocale)}.mdx`
       );
       if (!selected.has(expectedPath)) {
         continue;
       }
-      const candidateLocale = localeOverlayAppLocaleCode(appLocale);
+      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
       const projectionSource =
-        candidateLocale === undefined
+        overlayLocale === undefined
           ? source
           : yield* requireArticleLocaleSource(
               source,
               localeCatalog,
-              candidateLocale
+              overlayLocale
             );
       projected.push(yield* projectArticle(projectionSource, appLocale));
     }
@@ -71,18 +71,18 @@ export const decodeArticlePreviewEntries = Effect.fn(
   return yield* validateArticleRoutes(entries);
 });
 
-/** Resolves one active or candidate article solely for real-renderer preview. */
+/** Resolves one selected article solely for real-renderer preview. */
 export const decodeArticlePreviewEntry = Effect.fn(
   "AksaraCorpus.decodeArticlePreviewEntry"
 )(function* (
   sourcePath: typeof CorpusSourcePathSchema.Type,
   input?: unknown,
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const [entry] = yield* decodeArticlePreviewEntries(
     [sourcePath],
     input,
-    candidateInput
+    localeInput
   );
   return entry;
 });

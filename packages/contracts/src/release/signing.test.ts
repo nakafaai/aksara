@@ -28,6 +28,6 @@ describe("release signing", () => {
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
     );
-    expect(canonical).toContain('"activeAppLocales":["en","id"]');
+    expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
   });
 });

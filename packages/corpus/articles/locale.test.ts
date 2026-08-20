@@ -22,7 +22,7 @@ async function activeArticle() {
   return source;
 }
 
-describe("candidate article metadata", () => {
+describe("locale-owned article metadata", () => {
   it("decodes strict overlays and composes exact German route ownership", async () => {
     const active = await activeArticle();
     const catalog = await Effect.runPromise(

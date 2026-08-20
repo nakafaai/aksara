@@ -11,12 +11,7 @@ import {
   quranSourceFileCount,
 } from "@nakafa/aksara-contracts/quran/source";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import {
-  AUTHORING_APP_LOCALES,
-  type LocalizedSourceMap,
-  mapLocalizedSource,
-  traverseLocalizedSources,
-} from "#corpus/locale/source";
+import { mapLocalizedSource } from "#corpus/locale/source";
 import type { RawSources } from "#corpus/quran/source/model";
 import {
   type PinnedQuranFile,
@@ -52,25 +47,22 @@ function digest(bytes: Uint8Array) {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
-/** Compares one canonical locale list to a supported source lifecycle. */
-function matchesLocaleLifecycle(
+/** Compares two canonical locale lists without weakening their order contract. */
+function matchesExactLocales(
   appLocales: ActiveAppLocaleList,
-  lifecycle: ActiveAppLocaleList
+  expected: ActiveAppLocaleList
 ) {
   return (
-    appLocales.length === lifecycle.length &&
-    appLocales.every((appLocale, index) => appLocale === lifecycle[index])
+    appLocales.length === expected.length &&
+    appLocales.every((appLocale, index) => appLocale === expected[index])
   );
 }
 
 /** Rejects subsets that would make the source summary misstate its inventory. */
-const requireSourceLocaleLifecycle = Effect.fn(
-  "AksaraCorpus.requireQuranSourceLocaleLifecycle"
+const requireExactSourceLocales = Effect.fn(
+  "AksaraCorpus.requireExactQuranSourceLocales"
 )(function* (appLocales: ActiveAppLocaleList) {
-  if (
-    matchesLocaleLifecycle(appLocales, ACTIVE_APP_LOCALES) ||
-    matchesLocaleLifecycle(appLocales, AUTHORING_APP_LOCALES)
-  ) {
+  if (matchesExactLocales(appLocales, ACTIVE_APP_LOCALES)) {
     return appLocales;
   }
   return yield* new QuranSourceLocaleError({ appLocales });
@@ -115,23 +107,6 @@ const readPinnedFile = Effect.fn("AksaraCorpus.readPinnedQuranFile")(function* (
   }
   return { bytes, text };
 });
-
-/** Selects the exact translation source policy for one locale lifecycle. */
-function translationPolicyFor(
-  appLocales: ActiveAppLocaleList
-): LocalizedSourceMap<PinnedQuranFile> {
-  const active = {
-    en: QURAN_SOURCE_POLICY.data.translations.en,
-    id: QURAN_SOURCE_POLICY.data.translations.id,
-  };
-  if (!appLocales.some((appLocale) => appLocale === "de")) {
-    return active;
-  }
-  return {
-    ...active,
-    de: QURAN_SOURCE_POLICY.data.translations.de,
-  };
-}
 
 /** Adds one named source to a domain-separated ordered bundle digest. */
 function updateBundle(hash: Hash, name: string, bytes: Uint8Array) {
@@ -191,7 +166,7 @@ export const loadPinnedQuranSources = Effect.fn(
   checkoutRoot: string,
   appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
-  yield* requireSourceLocaleLifecycle(appLocales);
+  yield* requireExactSourceLocales(appLocales);
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const sourceRoot = path.join(checkoutRoot, "packages/corpus/quran/sources");
@@ -212,21 +187,35 @@ export const loadPinnedQuranSources = Effect.fn(
     },
     { concurrency: 4 }
   );
-  const translationPolicy = translationPolicyFor(appLocales);
-  const translations: LocalizedSourceMap<{
-    readonly bytes: Uint8Array;
-    readonly text: string;
-  }> = yield* traverseLocalizedSources(translationPolicy, (source) =>
-    readPinnedFile(fileSystem, path, sourceRoot, source)
+  const translations = yield* Effect.all(
+    {
+      de: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.translations.de
+      ),
+      en: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.translations.en
+      ),
+      id: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.translations.id
+      ),
+    },
+    { concurrency: 3 }
   );
-  if (translations.de !== undefined) {
-    yield* readPinnedFile(
-      fileSystem,
-      path,
-      sourceRoot,
-      QURAN_SOURCE_POLICY.evidence.germanPublication
-    );
-  }
+  yield* readPinnedFile(
+    fileSystem,
+    path,
+    sourceRoot,
+    QURAN_SOURCE_POLICY.evidence.germanPublication
+  );
   yield* Effect.forEach(
     Object.values(QURAN_SOURCE_POLICY.terms),
     (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
@@ -242,12 +231,10 @@ export const loadPinnedQuranSources = Effect.fn(
     [QURAN_SOURCE_POLICY.data.translations.en.name, translations.en.bytes],
     [QURAN_SOURCE_POLICY.data.translations.id.name, translations.id.bytes],
   ];
-  if (translations.de !== undefined) {
-    canonicalData.push([
-      QURAN_SOURCE_POLICY.data.translations.de.name,
-      translations.de.bytes,
-    ]);
-  }
+  canonicalData.push([
+    QURAN_SOURCE_POLICY.data.translations.de.name,
+    translations.de.bytes,
+  ]);
   for (const [name, bytes] of canonicalData) {
     updateBundle(bundle, name, bytes);
     byteCount += bytes.byteLength;

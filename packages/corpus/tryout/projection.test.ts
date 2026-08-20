@@ -62,15 +62,15 @@ describe("tryout projection", () => {
     );
 
     expect(counts).toEqual({
-      country: 2,
-      exam: 4,
-      section: 34,
-      set: 10,
-      track: 4,
+      country: 3,
+      exam: 6,
+      section: 51,
+      set: 15,
+      track: 6,
     });
-    expect(projection.catalog).toHaveLength(54);
-    expect(projection.routeCount).toBe(48);
-    expect(projection.placements).toHaveLength(840);
+    expect(projection.catalog).toHaveLength(81);
+    expect(projection.routeCount).toBe(72);
+    expect(projection.placements).toHaveLength(1260);
     expect(
       new Set(
         projection.placements.map(
@@ -78,7 +78,7 @@ describe("tryout projection", () => {
         )
       ).size
     ).toBe(420);
-    expect(bodyHeads.size).toBe(1680);
+    expect(bodyHeads.size).toBe(2520);
     expect(
       projection.placements.every(
         ({ choices, scope }) =>
@@ -203,8 +203,8 @@ describe("tryout projection", () => {
       ({ examKey }) => examKey === "tka"
     );
 
-    expect(snbt).toHaveLength(600);
-    expect(tka).toHaveLength(240);
+    expect(snbt).toHaveLength(900);
+    expect(tka).toHaveLength(360);
     expect(
       snbt.some(({ questionContentKey }) =>
         questionContentKey.includes("/set-3/")

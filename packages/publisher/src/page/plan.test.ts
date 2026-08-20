@@ -168,8 +168,8 @@ describe("page plan", () => {
       renderer,
     });
 
-    expect(records).toHaveLength(8);
-    expect(compilerState.calls).toBe(8);
+    expect(records).toHaveLength(12);
+    expect(compilerState.calls).toBe(12);
   });
 
   it("emits one tombstone without compiling an absent source", async () => {
@@ -200,11 +200,11 @@ describe("page plan", () => {
   it("compiles every canonical source for the first release", async () => {
     const records = await collectPagePublication({ heads: [] });
 
-    expect(records).toHaveLength(8);
+    expect(records).toHaveLength(12);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(8);
+    expect(compilerState.calls).toBe(12);
   });
 
   it("compiles only the scoped privacy page locales for scoped genesis", async () => {
@@ -219,10 +219,11 @@ describe("page plan", () => {
         record.change.artifactLocale,
       ])
     ).toEqual([
+      ["pages/privacy-policy", "de"],
       ["pages/privacy-policy", "en"],
       ["pages/privacy-policy", "id"],
     ]);
-    expect(compilerState.calls).toBe(2);
+    expect(compilerState.calls).toBe(3);
   });
 
   it("preserves base heads and ignores source changes outside scope", async () => {

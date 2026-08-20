@@ -21,6 +21,11 @@ export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const privacyPageScope = Schema.decodeSync(PublicationScopeSchema)({
   content: [
     {
+      artifactLocale: "de",
+      contentKey: "pages/privacy-policy",
+      family: "page",
+    },
+    {
       artifactLocale: "en",
       contentKey: "pages/privacy-policy",
       family: "page",

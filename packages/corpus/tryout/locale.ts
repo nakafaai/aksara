@@ -54,58 +54,61 @@ export class TryoutLocaleOwnershipError extends Schema.TaggedError<TryoutLocaleO
 
 /** Requires locale-owned nodes to preserve the exact embedded key order. */
 function hasExactKeys(
-  active: readonly { readonly key: string }[],
-  candidate: readonly { readonly key: string }[]
+  base: readonly { readonly key: string }[],
+  overlay: readonly { readonly key: string }[]
 ) {
   return (
-    active.length === candidate.length &&
-    active.every(({ key }, index) => key === candidate[index]?.key)
+    base.length === overlay.length &&
+    base.every(({ key }, index) => key === overlay[index]?.key)
   );
 }
 
 /** Composes one reviewed locale overlay over exact stable embedded facts. */
 export const composeTryoutLocaleExam = Effect.fn(
   "AksaraCorpus.composeTryoutLocaleExam"
-)(function* (active: TryoutExamSource, candidate: TryoutLocaleExam) {
-  const { appLocale } = candidate;
-  if (active.countryKey !== candidate.country.key) {
+)(function* (base: TryoutExamSource, overlay: TryoutLocaleExam) {
+  const { appLocale } = overlay;
+  if (base.countryKey !== overlay.country.key) {
     return yield* new TryoutLocaleOwnershipError({
-      examKey: active.examKey,
-      key: candidate.country.key,
+      examKey: base.examKey,
+      key: overlay.country.key,
       scope: "country",
     });
   }
-  if (active.examKey !== candidate.exam.key) {
+  if (base.examKey !== overlay.exam.key) {
     return yield* new TryoutLocaleOwnershipError({
-      examKey: active.examKey,
-      key: candidate.exam.key,
+      examKey: base.examKey,
+      key: overlay.exam.key,
       scope: "exam",
     });
   }
-  if (!hasExactKeys(active.tracks, candidate.tracks)) {
+  if (!hasExactKeys(base.tracks, overlay.tracks)) {
     return yield* new TryoutLocaleOwnershipError({
-      examKey: active.examKey,
-      key: active.examKey,
+      examKey: base.examKey,
+      key: base.examKey,
       scope: "track",
     });
   }
   const tracks: TryoutExamSource["tracks"][number][] = [];
-  for (const [track, overlay] of EffectArray.zip(
-    active.tracks,
-    candidate.tracks
+  for (const [track, trackOverlay] of EffectArray.zip(
+    base.tracks,
+    overlay.tracks
   )) {
-    if (!hasExactKeys(track.sets, overlay.sets)) {
+    if (!hasExactKeys(track.sets, trackOverlay.sets)) {
       return yield* new TryoutLocaleOwnershipError({
-        examKey: active.examKey,
+        examKey: base.examKey,
         key: track.key,
         scope: "set",
       });
     }
     const sets: TryoutExamSource["tracks"][number]["sets"][number][] = [];
-    for (const [set, setOverlay] of EffectArray.zip(track.sets, overlay.sets)) {
+    for (const [set, setOverlay] of EffectArray.zip(
+      track.sets,
+      trackOverlay.sets
+    )) {
       if (!hasExactKeys(set.sections, setOverlay.sections)) {
         return yield* new TryoutLocaleOwnershipError({
-          examKey: active.examKey,
+          examKey: base.examKey,
           key: set.key,
           scope: "section",
         });
@@ -150,39 +153,39 @@ export const composeTryoutLocaleExam = Effect.fn(
       routeSlugs: addLocalizedSource(
         track.routeSlugs,
         appLocale,
-        overlay.routeSlug
+        trackOverlay.routeSlug
       ),
       sets,
       translations: addLocalizedSource(
         track.translations,
         appLocale,
-        overlay.translation
+        trackOverlay.translation
       ),
     });
   }
   return {
-    ...active,
+    ...base,
     countryRouteSlugs: addLocalizedSource(
-      active.countryRouteSlugs,
+      base.countryRouteSlugs,
       appLocale,
-      candidate.country.routeSlug
+      overlay.country.routeSlug
     ),
     countryTranslations: addLocalizedSource(
-      active.countryTranslations,
+      base.countryTranslations,
       appLocale,
-      candidate.country.translation
+      overlay.country.translation
     ),
     examRouteSlugs: addLocalizedSource(
-      active.examRouteSlugs,
+      base.examRouteSlugs,
       appLocale,
-      candidate.exam.routeSlug
+      overlay.exam.routeSlug
     ),
     examTranslations: addLocalizedSource(
-      active.examTranslations,
+      base.examTranslations,
       appLocale,
-      candidate.exam.translation
+      overlay.exam.translation
     ),
-    overlayAppLocale: candidate.appLocale,
+    overlayAppLocale: overlay.appLocale,
     tracks,
   } satisfies LocalizedTryoutExamSource;
 });

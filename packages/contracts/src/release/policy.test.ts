@@ -1,7 +1,10 @@
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 
-import { ActiveAppLocaleListSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+} from "#contracts/locale";
 import { PROGRAM_SNAPSHOT_FORMAT } from "#contracts/program/snapshot/spec";
 import {
   ReleasePolicyClosureError,
@@ -10,11 +13,11 @@ import {
 import { PublicationScopeSchema } from "#contracts/release/snapshot/spec";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
-const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
+const activeAppLocales = ACTIVE_APP_LOCALES;
+const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
-const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)(["en"]);
 const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
   content: [],

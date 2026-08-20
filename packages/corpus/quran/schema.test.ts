@@ -47,7 +47,7 @@ describe("Quran schema", () => {
     expect(
       values.reduce((count, surah) => count + surah.verses.length, 0)
     ).toBe(QURAN_VERSE_COUNT);
-    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id"]);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
     expect(
       values.every(({ verses }) =>
         verses.every(

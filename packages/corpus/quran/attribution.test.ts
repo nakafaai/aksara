@@ -2,7 +2,6 @@ import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
-import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
 import {
   quranSourceAttributionFor,
   quranSourceAttributionsFor,
@@ -11,15 +10,12 @@ import { authoringQuranSourceAttribution } from "#corpus/quran/attribution/sourc
 
 describe("Quran source attribution", () => {
   it("selects only source identities and copy visible to one locale set", async () => {
-    const [active, authoring] = await Promise.all([
-      Effect.runPromise(quranSourceAttributionsFor(ACTIVE_APP_LOCALES)),
-      Effect.runPromise(quranSourceAttributionsFor(AUTHORING_APP_LOCALES)),
-    ]);
+    const active = await Effect.runPromise(
+      quranSourceAttributionsFor(ACTIVE_APP_LOCALES)
+    );
 
-    expect(active).toHaveLength(5);
-    expect(active.every(({ copy }) => copy.length === 2)).toBe(true);
-    expect(authoring).toHaveLength(6);
-    expect(authoring.every(({ copy }) => copy.length === 3)).toBe(true);
+    expect(active).toHaveLength(6);
+    expect(active.every(({ copy }) => copy.length === 3)).toBe(true);
   });
 
   it("fails typed when source or localized copy ownership is not exact", async () => {
@@ -29,23 +25,23 @@ describe("Quran source attribution", () => {
       Effect.runPromise(
         quranSourceAttributionFor(
           "quranenc-german",
-          AUTHORING_APP_LOCALES,
+          ACTIVE_APP_LOCALES,
           []
         ).pipe(Effect.flip)
       ),
       Effect.runPromise(
-        quranSourceAttributionFor("quranenc-german", AUTHORING_APP_LOCALES, [
+        quranSourceAttributionFor("quranenc-german", ACTIVE_APP_LOCALES, [
           source,
           source,
         ]).pipe(Effect.flip)
       ),
       Effect.runPromise(
-        quranSourceAttributionFor("quranenc-german", AUTHORING_APP_LOCALES, [
+        quranSourceAttributionFor("quranenc-german", ACTIVE_APP_LOCALES, [
           { ...source, copy: [firstCopy] },
         ]).pipe(Effect.flip)
       ),
       Effect.runPromise(
-        quranSourceAttributionFor("quranenc-german", AUTHORING_APP_LOCALES, [
+        quranSourceAttributionFor("quranenc-german", ACTIVE_APP_LOCALES, [
           { ...source, copy: [firstCopy, firstCopy] },
         ]).pipe(Effect.flip)
       ),

@@ -152,12 +152,12 @@ describe("article plan", () => {
   });
 
   it("compiles every canonical source for the first release", () => {
-    expect(firstReleaseRecords).toHaveLength(14);
+    expect(firstReleaseRecords).toHaveLength(21);
     expect(
       firstReleaseRecords.every(
         ({ record }) => record.change.operation === "upsert"
       )
     ).toBe(true);
-    expect(firstReleaseCompilerCalls).toBe(14);
+    expect(firstReleaseCompilerCalls).toBe(21);
   });
 });

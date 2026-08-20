@@ -20,7 +20,7 @@ async function activePage() {
   return source;
 }
 
-describe("candidate public page routes", () => {
+describe("locale-owned public page routes", () => {
   it("decodes the permanent catalog and composes exact German ownership", async () => {
     const active = await activePage();
     const catalog = await Effect.runPromise(

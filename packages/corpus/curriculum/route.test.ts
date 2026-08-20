@@ -25,10 +25,10 @@ describe("curriculum route projection", () => {
       ({ materialKey }) => materialKey !== undefined
     );
 
-    expect(routes).toHaveLength(390);
-    expect(roots).toHaveLength(8);
-    expect(materialRoutes).toHaveLength(192);
-    expect(routes.filter(({ sitemap }) => sitemap)).toHaveLength(52);
+    expect(routes).toHaveLength(585);
+    expect(roots).toHaveLength(12);
+    expect(materialRoutes).toHaveLength(288);
+    expect(routes.filter(({ sitemap }) => sitemap)).toHaveLength(78);
     expect(new Set(routes.map(({ sourcePath }) => sourcePath))).toEqual(
       new Set([
         "packages/corpus/curriculum/cambridge-international",

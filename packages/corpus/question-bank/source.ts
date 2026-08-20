@@ -29,7 +29,6 @@ import {
   type QuestionLocation,
   QuestionLocationSchema,
   QuestionPathError,
-  questionAuthoringSourceFiles,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
 
@@ -192,10 +191,9 @@ const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
   function* (location: QuestionLocation, discoveredFiles: readonly string[]) {
     const { sectionKey } = questionKeyParts(location.questionKey);
     const requiredFiles = questionSourceFiles(sectionKey);
-    const allowedFiles = questionAuthoringSourceFiles(sectionKey);
     const files = [...discoveredFiles].sort();
     const missingRequired = requiredFiles.some((file) => !files.includes(file));
-    const unsupported = files.some((file) => !allowedFiles.includes(file));
+    const unsupported = files.some((file) => !requiredFiles.includes(file));
     const incompleteChoiceOverlay = !hasCompleteQuestionChoiceOverlays(
       sectionKey,
       files

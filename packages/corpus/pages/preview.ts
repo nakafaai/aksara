@@ -1,7 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 import {
-  AUTHORING_APP_LOCALES,
   appLocaleCode,
   LOCALE_OVERLAY_APP_LOCALE_CODES,
   localeOverlayAppLocaleCode,
@@ -20,13 +20,13 @@ import {
 } from "#corpus/pages/registry";
 import { decodePageSources } from "#corpus/pages/source";
 
-/** Projects every physically present candidate public page body together. */
+/** Projects selected page bodies with their exact locale-owned routes. */
 export const decodePagePreviewEntries = Effect.fn(
   "AksaraCorpus.decodePagePreviewEntries"
 )(function* (
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown,
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const selected = new Set(sourcePaths);
   const sources = yield* decodePageSources(input);
@@ -36,28 +36,28 @@ export const decodePagePreviewEntries = Effect.fn(
     )
   );
   const localeCatalog =
-    needsLocaleOverlays || candidateInput !== undefined
-      ? yield* decodePageLocaleCatalog(candidateInput)
+    needsLocaleOverlays || localeInput !== undefined
+      ? yield* decodePageLocaleCatalog(localeInput)
       : [];
   yield* validatePageSources(sources);
   yield* validatePageLocaleCatalog(sources, localeCatalog);
   const projected: unknown[] = [];
   for (const source of sources) {
-    for (const appLocale of AUTHORING_APP_LOCALES) {
+    for (const appLocale of ACTIVE_APP_LOCALES) {
       const expectedPath = CorpusSourcePathSchema.make(
         `packages/corpus/${source.sourceRoot}/${appLocaleCode(appLocale)}.mdx`
       );
       if (!selected.has(expectedPath)) {
         continue;
       }
-      const candidateLocale = localeOverlayAppLocaleCode(appLocale);
+      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
       const projectionSource =
-        candidateLocale === undefined
+        overlayLocale === undefined
           ? source
           : yield* requirePageLocaleSource(
               source,
               localeCatalog,
-              candidateLocale
+              overlayLocale
             );
       projected.push(yield* projectPage(projectionSource, appLocale));
     }
@@ -70,18 +70,18 @@ export const decodePagePreviewEntries = Effect.fn(
   return yield* validatePageRoutes(entries);
 });
 
-/** Resolves one active or candidate page solely for real-renderer preview. */
+/** Resolves one selected page solely for real-renderer preview. */
 export const decodePagePreviewEntry = Effect.fn(
   "AksaraCorpus.decodePagePreviewEntry"
 )(function* (
   sourcePath: typeof CorpusSourcePathSchema.Type,
   input?: unknown,
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const [entry] = yield* decodePagePreviewEntries(
     [sourcePath],
     input,
-    candidateInput
+    localeInput
   );
   return entry;
 });

@@ -1,7 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 import {
-  AUTHORING_APP_LOCALES,
   appLocaleCode,
   localeOverlayAppLocaleCode,
 } from "#corpus/locale/source";
@@ -22,26 +22,26 @@ import {
 } from "#corpus/material/registry";
 import { decodeMaterialSources } from "#corpus/material/source";
 
-/** Projects every physically present candidate body and validates them together. */
+/** Projects every selected body and validates base and locale-owned metadata together. */
 export const decodeMaterialPreviewEntries = Effect.fn(
   "AksaraCorpus.decodeMaterialPreviewEntries"
 )(function* (
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown,
   domainDescriptors?: readonly MaterialDomainDescriptor[],
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const selected = new Set(sourcePaths);
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
   const bindings = yield* validateMaterialSources(sources, descriptors);
-  const candidates = yield* decodeMaterialLocaleCatalog(
+  const localeCatalog = yield* decodeMaterialLocaleCatalog(
     descriptors,
-    candidateInput
+    localeInput
   );
   const projected: unknown[] = [];
   for (const binding of bindings) {
-    for (const appLocale of AUTHORING_APP_LOCALES) {
+    for (const appLocale of ACTIVE_APP_LOCALES) {
       const selectedSections = new Set(
         binding.source.sections
           .filter((section) =>
@@ -56,15 +56,15 @@ export const decodeMaterialPreviewEntries = Effect.fn(
       if (selectedSections.size === 0) {
         continue;
       }
-      const candidateLocale = localeOverlayAppLocaleCode(appLocale);
+      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
       const projectionBinding =
-        candidateLocale === undefined
+        overlayLocale === undefined
           ? binding
           : yield* requireMaterialLocaleBinding(
               binding.descriptor,
               binding.source,
-              candidates,
-              candidateLocale
+              localeCatalog,
+              overlayLocale
             );
       for (const [
         sectionIndex,
@@ -92,20 +92,20 @@ export const decodeMaterialPreviewEntries = Effect.fn(
   return yield* validateMaterialEntries(entries);
 });
 
-/** Resolves one active or candidate material solely for real-renderer preview. */
+/** Resolves one selected material solely for real-renderer preview. */
 export const decodeMaterialPreviewEntry = Effect.fn(
   "AksaraCorpus.decodeMaterialPreviewEntry"
 )(function* (
   sourcePath: typeof CorpusSourcePathSchema.Type,
   input?: unknown,
   domainDescriptors?: readonly MaterialDomainDescriptor[],
-  candidateInput?: unknown
+  localeInput?: unknown
 ) {
   const [entry] = yield* decodeMaterialPreviewEntries(
     [sourcePath],
     input,
     domainDescriptors,
-    candidateInput
+    localeInput
   );
   return entry;
 });

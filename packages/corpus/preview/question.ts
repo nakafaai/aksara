@@ -1,12 +1,13 @@
 import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
 import {
+  ACTIVE_APP_LOCALES,
   type AppLocale,
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
 import { questionArtifactLocaleForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect } from "effect";
-import { AUTHORING_APP_LOCALES, appLocaleCode } from "#corpus/locale/source";
+import { appLocaleCode } from "#corpus/locale/source";
 import { selectQuestionContentPreview } from "#corpus/preview/question-selection";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import type { QuestionEntry } from "#corpus/question-bank/content";
@@ -18,7 +19,7 @@ const resolvePreviewAppLocale = Effect.fn(
   "AksaraCorpus.resolveQuestionPreviewAppLocale"
 )(function* (entry: QuestionEntry, requested?: AppLocale) {
   const { sectionKey } = questionKeyParts(entry.questionKey);
-  const compatible = AUTHORING_APP_LOCALES.filter((appLocale) => {
+  const compatible = ACTIVE_APP_LOCALES.filter((appLocale) => {
     if (entry.bodyKind === "answer") {
       return (
         artifactLocaleCode(entry.artifactLocale) === appLocaleCode(appLocale)

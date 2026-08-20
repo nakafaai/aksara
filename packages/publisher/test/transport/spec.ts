@@ -55,14 +55,14 @@ export const transportSnapshot = Schema.decodeSync(
 )({
   family: "program",
   manifest: {
-    activeAppLocales: ["en", "id"],
-    curriculumRowCount: 390,
+    activeAppLocales: ["en", "id", "de"],
+    curriculumRowCount: 585,
     format: "localized-program-snapshot",
     programRowCount: 6,
-    rowCount: 396,
+    rowCount: 591,
     rowDigest: snapshotRowDigest,
-    sitemapCount: 52,
-    slugCount: 12,
+    sitemapCount: 78,
+    slugCount: 18,
     snapshotId,
   },
 });

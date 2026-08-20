@@ -1,5 +1,4 @@
 import {
-  ActiveAppLocaleListSchema,
   APP_LOCALE_CODES,
   type AppLocale,
   type AppLocaleCode,
@@ -7,11 +6,11 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 
-/** Runtime contract for one locale embedded in the original source modules. */
+/** Runtime contract for one locale embedded in a multi-locale source module. */
 export const EmbeddedAppLocaleCodeSchema = Schema.Literals(["en", "id"]);
 export type EmbeddedAppLocaleCode = typeof EmbeddedAppLocaleCodeSchema.Type;
 
-/** Historical locales stored together in the original authored source modules. */
+/** Base locales stored together in multi-locale source modules. */
 export const EMBEDDED_APP_LOCALE_CODES = APP_LOCALE_CODES.filter(
   Schema.is(EmbeddedAppLocaleCodeSchema)
 );
@@ -33,7 +32,7 @@ export const LocaleOverlayAppLocaleCodeSchema = Schema.Literals(
   LOCALE_OVERLAY_APP_LOCALE_CODES
 );
 
-/** Branded application locale stored inside original source modules. */
+/** Branded application locale stored inside multi-locale source modules. */
 export const EmbeddedAppLocaleSchema = AppLocaleSchema.pipe(
   Schema.check(
     Schema.makeFilter((appLocale) =>
@@ -54,11 +53,6 @@ export const LocaleOverlayAppLocaleSchema = AppLocaleSchema.pipe(
 );
 export type LocaleOverlayAppLocale = typeof LocaleOverlayAppLocaleSchema.Type;
 
-/** Every contract-supported locale that the corpus may contain and preview. */
-export const AUTHORING_APP_LOCALES = Schema.decodeUnknownSync(
-  ActiveAppLocaleListSchema
-)(APP_LOCALE_CODES.map((appLocale) => AppLocaleSchema.make(appLocale)));
-
 /** Canonical locale codes and branded values for permanent overlay modules. */
 export const LOCALE_OVERLAY_APP_LOCALE_ENTRIES =
   LOCALE_OVERLAY_APP_LOCALE_CODES.map((code) => ({
@@ -66,7 +60,7 @@ export const LOCALE_OVERLAY_APP_LOCALE_ENTRIES =
     code,
   }));
 
-/** Source map owned entirely by one existing multi-locale source module. */
+/** Source map owned entirely by one multi-locale source module. */
 export type EmbeddedLocalizedSourceMap<Value> = Readonly<
   Record<EmbeddedAppLocaleCode, Value>
 >;

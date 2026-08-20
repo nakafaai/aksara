@@ -8,9 +8,9 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Layer, Path } from "effect";
 import { selectQuestion } from "#corpus/preview/question";
 import {
-  candidateQuestionChoicesSource,
   corpusRoot,
   generalQuestionSourceFiles,
+  germanQuestionChoicesSource,
   makeQuestionLayer,
   type QuestionDirectoryRead,
   type QuestionLayerOverrides,
@@ -92,7 +92,7 @@ describe("question preview", () => {
       sources: new Map([
         [
           resolve(corpusRoot, genericRoot, "choices.de.ts"),
-          candidateQuestionChoicesSource,
+          germanQuestionChoicesSource,
         ],
       ]),
     });

@@ -13,10 +13,19 @@ import { decodeArticleRegistry } from "#corpus/articles/registry";
 import { articleSource, germanArticleCatalog } from "#corpus/test/article";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+  AppLocaleSchema.make("en"),
+  AppLocaleSchema.make("id"),
+]);
+
+/** Decodes injected embedded sources without unrelated locale overlays. */
+function decodeEmbeddedRegistry(input: unknown) {
+  return decodeArticleRegistry(input, undefined, embeddedAppLocales);
+}
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
-  return Effect.runPromise(decodeArticleRegistry(input).pipe(Effect.flip));
+  return Effect.runPromise(decodeEmbeddedRegistry(input).pipe(Effect.flip));
 }
 
 describe("article registry", () => {
@@ -32,12 +41,15 @@ describe("article registry", () => {
       )
       .sort();
 
-    expect(entries).toHaveLength(14);
+    expect(entries).toHaveLength(21);
     expect(
       entries.filter(({ route }) => route.appLocale === "en")
     ).toHaveLength(7);
     expect(
       entries.filter(({ route }) => route.appLocale === "id")
+    ).toHaveLength(7);
+    expect(
+      entries.filter(({ route }) => route.appLocale === "de")
     ).toHaveLength(7);
     expect(entries.map(({ sourcePath }) => sourcePath).sort()).toEqual(
       authoredPaths
@@ -69,7 +81,7 @@ describe("article registry", () => {
 
   it("derives both locales from one pair-grouped source", async () => {
     const entries = await Effect.runPromise(
-      decodeArticleRegistry([articleSource()])
+      decodeEmbeddedRegistry([articleSource()])
     );
 
     expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "id"]);
@@ -104,7 +116,7 @@ describe("article registry", () => {
 
   it("expands a second test category with its source-owned renderer", async () => {
     const entries = await Effect.runPromise(
-      decodeArticleRegistry([
+      decodeEmbeddedRegistry([
         articleSource(),
         {
           ...articleSource(),
@@ -262,8 +274,8 @@ describe("article registry", () => {
   });
 
   it("allows an empty source catalog without inventing entries", async () => {
-    await expect(Effect.runPromise(decodeArticleRegistry([]))).resolves.toEqual(
-      []
-    );
+    await expect(
+      Effect.runPromise(decodeEmbeddedRegistry([]))
+    ).resolves.toEqual([]);
   });
 });

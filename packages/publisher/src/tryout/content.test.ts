@@ -39,6 +39,7 @@ function firstBinding(): BoundTryoutPlacement {
 const binding = firstBinding();
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
+  "8c342a22cbd7c9db27a292fa606453dcfa12f8429599d46ebaef799b9444076f",
   "42b77c15eeed2fbfe0bc437e076529204ecd2ae72b30fa34e61ef8ffa26ecbaa",
   "e37a3fcf4e0a903b6aeb46ef67a8eb818c2bff44273911404ec067b209aeff01",
 ];
@@ -157,7 +158,7 @@ function oppositeEntryAt(bodyKind: QuestionBodyKind) {
 }
 
 describe("try-out content binding", () => {
-  it("uses exact content hashes and both body heads", async () => {
+  it("uses exact content hashes and both body heads in every locale", async () => {
     const records = await collect({});
 
     expect(records.map(({ row }) => row.contentHash)).toEqual(

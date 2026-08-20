@@ -1,4 +1,8 @@
 import { resolve } from "node:path";
+import {
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { decodePageRegistry } from "#corpus/pages/registry";
@@ -6,6 +10,10 @@ import { decodePageSources, readPageDocument } from "#corpus/pages/source";
 import { pageSource } from "#corpus/test/page";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+  AppLocaleSchema.make("en"),
+  AppLocaleSchema.make("id"),
+]);
 
 /** Provides one deterministic reviewed page body through Effect Platform. */
 function fileLayer(source: string | undefined) {
@@ -49,7 +57,9 @@ describe("public page source", () => {
   });
 
   it("reads one registry-owned body byte-exactly", async () => {
-    const [entry] = await Effect.runPromise(decodePageRegistry([pageSource()]));
+    const [entry] = await Effect.runPromise(
+      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+    );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");
     }
@@ -68,7 +78,9 @@ describe("public page source", () => {
   });
 
   it("maps one missing reviewed body to a typed read failure", async () => {
-    const [entry] = await Effect.runPromise(decodePageRegistry([pageSource()]));
+    const [entry] = await Effect.runPromise(
+      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+    );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");
     }

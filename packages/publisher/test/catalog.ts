@@ -17,28 +17,28 @@ const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 /** Stable structured evidence for full-catalog validation tests. */
 export const catalogSnapshotEvidence = {
   program: {
-    rowCount: 396,
+    rowCount: 591,
     rowDigest: CATALOG_HASH,
-    sitemapCount: 52,
+    sitemapCount: 78,
     snapshotId: CATALOG_HASH,
   },
   quran: {
-    projectionCount: 1428,
+    projectionCount: 1542,
     projectionDigest: CATALOG_HASH,
     provenanceDigest: CATALOG_HASH,
     provenanceStatus: "blocked",
     runtimeCount: 1200,
-    searchCount: 228,
+    searchCount: 342,
     snapshotId: CATALOG_HASH,
     sourceDigest: CATALOG_HASH,
   },
-  stagedRows: 2316,
+  stagedRows: 3474,
   tryout: {
-    catalogCount: 54,
+    catalogCount: 81,
     catalogDigest: CATALOG_HASH,
-    placementCount: 420,
+    placementCount: 1260,
     placementDigest: CATALOG_HASH,
-    routeCount: 48,
+    routeCount: 72,
     snapshotId: CATALOG_HASH,
   },
 };

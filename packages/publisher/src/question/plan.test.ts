@@ -140,14 +140,14 @@ describe("question plan", () => {
     expect(compilerState.calls).toBe(0);
   });
 
-  it("compiles all four canonical bodies for the first release", async () => {
+  it("compiles all six canonical bodies for the first release", async () => {
     const records = await collectQuestionPublication({ heads: [] });
 
-    expect(records).toHaveLength(4);
+    expect(records).toHaveLength(6);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(4);
+    expect(compilerState.calls).toBe(6);
   });
 
   it("fails when a body cannot join its canonical choice source", async () => {

@@ -4,7 +4,10 @@ import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import { ActiveAppLocaleListSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+} from "#contracts/locale";
 import { digestQuranRows } from "#contracts/quran/snapshot/digest";
 import {
   QuranChunkRowSchema,
@@ -71,10 +74,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const activeAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-  "en",
-  "id",
-]);
+const activeAppLocales = ACTIVE_APP_LOCALES;
 let records: readonly QuranSnapshotRow[];
 
 beforeAll(async () => {
