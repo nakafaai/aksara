@@ -2,7 +2,8 @@ import type {
   CompiledContentPayload,
   decodeCompileDocumentRequest,
 } from "@nakafa/aksara-contracts/content";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
+import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import {
   compileValidatedContent,
@@ -29,7 +30,8 @@ export interface CompiledContentResult {
 /** Every expected failure surfaced by trusted MDX compilation. */
 export type CompileContentError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
-  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | Effect.Error<ReturnType<typeof selectRendererDomainCapability>>
+  | Effect.Error<ReturnType<typeof validateLiveRendererManifestHash>>
   | AuthoredMetadataDuplicateError
   | AuthoredMetadataMissingError
   | AuthoredMetadataSyntaxError

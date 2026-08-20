@@ -8,6 +8,7 @@ import { canonicalizeRendererManifestContract } from "#contracts/renderer/contra
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
   createRendererManifest,
+  validateLiveRendererManifestHash,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
 import { testRendererDomains } from "#contracts/test/renderer";
@@ -102,6 +103,9 @@ describe("renderer manifest", () => {
     );
     await expect(
       Effect.runPromise(validateRendererManifestHash(manifest))
+    ).resolves.toEqual(manifest);
+    await expect(
+      Effect.runPromise(validateLiveRendererManifestHash(manifest))
     ).resolves.toEqual(manifest);
   });
 
@@ -224,6 +228,13 @@ describe("renderer manifest", () => {
     await expect(
       Effect.runPromise(validateRendererManifestHash(historical))
     ).resolves.toEqual(historical);
+    const liveError = await Effect.runPromise(
+      validateLiveRendererManifestHash(historical).pipe(Effect.flip)
+    );
+    expect(liveError).toMatchObject({
+      _tag: "ContractDecodeError",
+      contract: "LiveRendererManifestDomains",
+    });
   });
 
   it("rejects component ownership overlap across scopes", async () => {

@@ -11,8 +11,8 @@ import {
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
@@ -112,7 +112,7 @@ export interface ArticlePublicationInput<E, R> {
 }
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+  ReturnType<typeof validateLiveRendererManifestHash>
 >;
 
 /** Every failure possible before the replayable article plan is constructed. */

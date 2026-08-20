@@ -18,15 +18,15 @@ function validateRendererRequirements(
   payload: CompiledContentPayload,
   manifest: RendererManifestEnvelope
 ) {
-  const domain = selectRendererDomainCapability(
-    manifest,
-    payload.rendererDomain
-  );
-  const supportedComponents = [
-    ...manifest.base.supportedComponents,
-    ...domain.supportedComponents,
-  ];
   return Effect.gen(function* () {
+    const domain = yield* selectRendererDomainCapability(
+      manifest,
+      payload.rendererDomain
+    );
+    const supportedComponents = [
+      ...manifest.base.supportedComponents,
+      ...domain.supportedComponents,
+    ];
     for (const requirement of payload.requiredComponents) {
       const versions = supportedComponents.filter(
         ({ name }) => name === requirement.name

@@ -25,7 +25,7 @@ import {
 import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
@@ -171,7 +171,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
 )(function* <E, R>(invocation: PublicationInvocation<E, R>) {
   const { input } = invocation;
-  const rendererManifest = yield* validateRendererManifestHash(
+  const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
   /** Replays strictly decoded release items for bounded target staging. */

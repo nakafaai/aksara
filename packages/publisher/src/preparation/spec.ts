@@ -34,7 +34,7 @@ import type {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
 import type {
   PreparedContentCoherenceError,
@@ -146,7 +146,7 @@ type ProjectionVerificationError<E, R> = Effect.Error<
 >;
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+  ReturnType<typeof validateLiveRendererManifestHash>
 >;
 
 type RendererCompatibilityError = Effect.Error<

@@ -128,19 +128,24 @@ function hashResult(result: CompiledContentResult) {
 }
 
 /** Derives cache identity only from validated source and compiler inputs. */
-function makeIdentity(request: CompileDocumentRequest) {
-  return CompileIdentitySchema.make({
-    artifactLocale: request.artifactLocale,
-    compilerConfigHash: createCompilerConfigHash(
+const makeIdentity = Effect.fn("AksaraCompiler.makeCompileIdentity")(
+  (request: CompileDocumentRequest) =>
+    createCompilerConfigHash(
       request.rendererManifest,
       request.rendererDomain
-    ),
-    contentKey: request.contentKey,
-    rendererDomain: request.rendererDomain,
-    sourceHash: hashUtf8(request.rawMdx),
-    sourcePath: request.sourcePath,
-  });
-}
+    ).pipe(
+      Effect.map((compilerConfigHash) =>
+        CompileIdentitySchema.make({
+          artifactLocale: request.artifactLocale,
+          compilerConfigHash,
+          contentKey: request.contentKey,
+          rendererDomain: request.rendererDomain,
+          sourceHash: hashUtf8(request.rawMdx),
+          sourcePath: request.sourcePath,
+        })
+      )
+    )
+);
 
 /** Creates one unsigned local-only cache value from fresh compiler output. */
 function makeCache(
@@ -222,26 +227,29 @@ export const compileIncremental: (
   "AksaraCompiler.compileIncremental"
 )((request: unknown, cache?: unknown) =>
   validateCompileRequest(request).pipe(
-    Effect.flatMap((decoded) => {
-      const identity = makeIdentity(decoded);
-      const lookup = lookupCache(cache, identity);
-      if (lookup.kind === "hit") {
-        return Effect.succeed<IncrementalResult>({
-          cache: lookup.entry,
-          kind: "unchanged",
-          result: lookup.entry.result,
-        });
-      }
-      return compileValidatedContent(decoded).pipe(
-        Effect.map(
-          (result): IncrementalResult => ({
-            cache: makeCache(identity, result),
-            kind: "compiled",
-            reason: lookup.reason,
-            result,
-          })
-        )
-      );
-    })
+    Effect.flatMap((decoded) =>
+      makeIdentity(decoded).pipe(
+        Effect.flatMap((identity) => {
+          const lookup = lookupCache(cache, identity);
+          if (lookup.kind === "hit") {
+            return Effect.succeed<IncrementalResult>({
+              cache: lookup.entry,
+              kind: "unchanged",
+              result: lookup.entry.result,
+            });
+          }
+          return compileValidatedContent(decoded).pipe(
+            Effect.map(
+              (result): IncrementalResult => ({
+                cache: makeCache(identity, result),
+                kind: "compiled",
+                reason: lookup.reason,
+                result,
+              })
+            )
+          );
+        })
+      )
+    )
   )
 );

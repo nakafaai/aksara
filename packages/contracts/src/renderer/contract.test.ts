@@ -1,4 +1,4 @@
-import { Exit, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeRendererManifestContract,
@@ -65,13 +65,14 @@ function replaceDomain(name: RendererDomain, replacement: RendererDomainInput) {
 }
 
 describe("renderer contract", () => {
-  it("selects every route-owned registry without a binary domain branch", () => {
+  it("selects every route-owned registry without a binary domain branch", async () => {
     const decoded = Schema.decodeSync(RendererManifestEnvelopeSchema)(manifest);
-    expect(
-      RENDERER_DOMAINS.map(
-        (name) => selectRendererDomainCapability(decoded, name).name
+    const selected = await Effect.runPromise(
+      Effect.forEach(RENDERER_DOMAINS, (name) =>
+        selectRendererDomainCapability(decoded, name)
       )
-    ).toEqual(RENDERER_DOMAINS);
+    );
+    expect(selected.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
   });
 
   it("accepts canonical persisted subsets and rejects malformed order", () => {
@@ -101,6 +102,22 @@ describe("renderer contract", () => {
       ),
     });
     expect(Exit.isFailure(duplicated)).toBe(true);
+  });
+
+  it("returns a typed failure for a missing persisted capability", async () => {
+    const historical = Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)(
+      {
+        ...manifest,
+        domains: domains.filter(({ name }) => name !== "tka-math"),
+      }
+    );
+    const error = await Effect.runPromise(
+      selectRendererDomainCapability(historical, "tka-math").pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "RendererDomainCapabilityMissingError",
+      rendererDomain: "tka-math",
+    });
   });
 
   it("requires one capability for every published domain", () => {

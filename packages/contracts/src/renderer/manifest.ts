@@ -108,7 +108,7 @@ export const createRendererManifest = Effect.fn(
   )
 );
 
-/** Strictly decodes and verifies a domain-scoped renderer envelope. */
+/** Verifies one persisted envelope, including a known historical domain subset. */
 export const validateRendererManifestHash = Effect.fn(
   "AksaraContracts.validateRendererManifestHash"
 )((input: unknown) =>
@@ -142,6 +142,21 @@ export const validateRendererManifestHash = Effect.fn(
           )
         )
       )
+    )
+  )
+);
+
+/** Verifies one complete manifest supplied by a current live renderer. */
+export const validateLiveRendererManifestHash = Effect.fn(
+  "AksaraContracts.validateLiveRendererManifestHash"
+)((input: unknown) =>
+  validateRendererManifestHash(input).pipe(
+    Effect.flatMap((manifest) =>
+      decodeContract(
+        LiveRendererManifestDomainsSchema,
+        "LiveRendererManifestDomains",
+        manifest.domains
+      ).pipe(Effect.map((domains) => ({ ...manifest, domains })))
     )
   )
 );

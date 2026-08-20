@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   hasCompleteRendererSelection,
@@ -168,15 +168,27 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
 export type RendererManifestEnvelope =
   typeof RendererManifestEnvelopeSchema.Type;
 
+/** A persisted renderer envelope does not carry the requested domain. */
+export class RendererDomainCapabilityMissingError extends Schema.TaggedError<RendererDomainCapabilityMissingError>()(
+  "RendererDomainCapabilityMissingError",
+  { rendererDomain: RendererDomainSchema }
+) {}
+
 /** Selects the one physical route registry authorized for a document. */
-export function selectRendererDomainCapability(
+export const selectRendererDomainCapability = Effect.fn(
+  "AksaraContracts.selectRendererDomainCapability"
+)(function* (
   manifest: RendererManifestEnvelope,
   rendererDomain: RendererDomain
 ) {
-  return Schema.decodeUnknownSync(RendererDomainCapabilitySchema)(
-    manifest.domains.find(({ name }) => name === rendererDomain)
+  const capability = manifest.domains.find(
+    ({ name }) => name === rendererDomain
   );
-}
+  if (!capability) {
+    return yield* new RendererDomainCapabilityMissingError({ rendererDomain });
+  }
+  return capability;
+});
 
 /** SHA-256 could not be calculated for the renderer contract bytes. */
 export class RendererManifestHashComputeError extends Schema.TaggedError<RendererManifestHashComputeError>()(

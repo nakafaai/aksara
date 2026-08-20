@@ -24,6 +24,7 @@ import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
   record as baseTransition,
   contentRecord,
+  historicalRendererManifest,
   rendererManifest,
   head as resultHead,
 } from "#test/publication";
@@ -175,6 +176,24 @@ describe("prepareContentRelease", () => {
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("RendererManifestHashMismatchError");
+    expect(invoked).toBe(false);
+  });
+
+  it("rejects a hash-valid historical renderer before reading source", async () => {
+    let invoked = false;
+    const error = await Effect.runPromise(
+      prepare({
+        records: Stream.suspend(() => {
+          invoked = true;
+          return Stream.make(baseTransition);
+        }),
+        rendererManifest: historicalRendererManifest(),
+      }).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "ContractDecodeError",
+      contract: "LiveRendererManifestDomains",
+    });
     expect(invoked).toBe(false);
   });
 

@@ -17,7 +17,7 @@ import {
 } from "@nakafa/aksara-contracts/limits";
 import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
@@ -49,7 +49,7 @@ import { enforceExecutablePolicy } from "#compiler/policy";
 
 type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
-  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>;
+  | Effect.Error<ReturnType<typeof validateLiveRendererManifestHash>>;
 
 /** Captures the searchable plain-text projection from the parsed MDX tree. */
 function capturePlainText(
@@ -129,7 +129,7 @@ export const validateCompileRequest: (
 )((input: unknown) =>
   decodeCompileDocumentRequest(input).pipe(
     Effect.tap((request) =>
-      validateRendererManifestHash(request.rendererManifest)
+      validateLiveRendererManifestHash(request.rendererManifest)
     )
   )
 );
@@ -138,7 +138,7 @@ export const validateCompileRequest: (
 export const compileValidatedContent = Effect.fn(
   "AksaraCompiler.compileValidatedContent"
 )(function* (request: CompileDocumentRequest) {
-  const domain = selectRendererDomainCapability(
+  const domain = yield* selectRendererDomainCapability(
     request.rendererManifest,
     request.rendererDomain
   );
@@ -233,7 +233,7 @@ export const compileValidatedContent = Effect.fn(
     artifactLocale: request.artifactLocale,
     byteLength,
     compiledCode,
-    compilerConfigHash: createCompilerConfigHash(
+    compilerConfigHash: yield* createCompilerConfigHash(
       request.rendererManifest,
       request.rendererDomain
     ),

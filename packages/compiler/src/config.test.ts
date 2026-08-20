@@ -77,11 +77,17 @@ describe("compiler config", () => {
     const migrated = await Effect.runPromise(
       createRendererManifest(manifestInput(2, true))
     );
-    const beforeHash = createCompilerConfigHash(before, "mathematics");
-    expect(createCompilerConfigHash(expanded, "mathematics")).toBe(beforeHash);
-    expect(createCompilerConfigHash(migrated, "mathematics")).not.toBe(
-      beforeHash
-    );
-    expect(createCompilerConfigHash(before, "chemistry")).not.toBe(beforeHash);
+    const [beforeHash, expandedHash, migratedHash, chemistryHash] =
+      await Effect.runPromise(
+        Effect.all([
+          createCompilerConfigHash(before, "mathematics"),
+          createCompilerConfigHash(expanded, "mathematics"),
+          createCompilerConfigHash(migrated, "mathematics"),
+          createCompilerConfigHash(before, "chemistry"),
+        ])
+      );
+    expect(expandedHash).toBe(beforeHash);
+    expect(migratedHash).not.toBe(beforeHash);
+    expect(chemistryHash).not.toBe(beforeHash);
   });
 });
