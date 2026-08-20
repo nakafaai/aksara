@@ -11,6 +11,7 @@ import {
   selectRendererDomainCapability,
 } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { Effect } from "effect";
 import { hashUtf8 } from "#compiler/hash";
 import { EXECUTABLE_POLICY_REVISION } from "#compiler/policy";
 
@@ -42,15 +43,20 @@ const COMPILER_CONFIG = JSON.stringify({
 });
 
 /** Binds compiler identity to tools plus selected base and domain versions. */
-export function createCompilerConfigHash(
+export const createCompilerConfigHash = Effect.fn(
+  "AksaraCompiler.createCompilerConfigHash"
+)(function* (
   manifest: RendererManifestEnvelope,
   rendererDomain: RendererDomain
 ) {
-  const domain = selectRendererDomainCapability(manifest, rendererDomain);
+  const domain = yield* selectRendererDomainCapability(
+    manifest,
+    rendererDomain
+  );
   const authoringComponents = sortRendererComponentRequirements([
     ...manifest.base.authoringComponents,
     ...domain.authoringComponents,
   ]);
   const selection = canonicalizeRendererAuthoringSelection(authoringComponents);
   return hashUtf8(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
-}
+});

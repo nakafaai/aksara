@@ -6,7 +6,7 @@ import type {
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
@@ -46,7 +46,7 @@ export interface PreparedTryoutSnapshot {
 }
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+  ReturnType<typeof validateLiveRendererManifestHash>
 >;
 type TryoutContentError = Effect.Error<ReturnType<typeof loadTryoutContent>>;
 type QuestionInspectionError = Effect.Error<
@@ -120,7 +120,7 @@ export const prepareTryoutSnapshot: <E, R>(
 > = Effect.fn("AksaraPublisher.prepareTryoutSnapshot")(function* <E, R>(
   input: TryoutSnapshotPreparationInput<E, R>
 ) {
-  const rendererManifest = yield* validateRendererManifestHash(
+  const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
   const { entries, projection, sources } = yield* loadTryoutContent(

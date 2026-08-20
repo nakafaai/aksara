@@ -15,6 +15,7 @@ import {
 import {
   type ContentKey,
   Ed25519SignatureSchema,
+  type Sha256Hash,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
@@ -83,33 +84,43 @@ export function createSignedArtifact(
 export const protectedSnapshotId = Sha256HashSchema.make(
   `sha256:${"9".repeat(64)}`
 );
-const runtimeManifest = {
-  ...unsignedRelease.manifest,
-  scope: {
-    ...unsignedRelease.manifest.scope,
-    snapshots: ["program", "tryout"],
-  },
-  snapshots: {
-    ...unsignedRelease.manifest.snapshots,
-    tryout: replaceContentSnapshot({
-      baseSnapshotId: null,
-      resultSnapshotId: protectedSnapshotId,
-      rowCount: 1,
-      rowDigest: hash,
-    }),
-  },
-} as const;
-const manifestHash = await Effect.runPromise(
-  hashContentReleaseManifest(runtimeManifest)
+/** Signs one runtime release against its exact frozen renderer manifest. */
+export async function createSignedRuntimeRelease(
+  rendererManifestHash: Sha256Hash
+) {
+  const manifest = {
+    ...unsignedRelease.manifest,
+    rendererManifestHash,
+    scope: {
+      ...unsignedRelease.manifest.scope,
+      snapshots: ["program", "tryout"],
+    },
+    snapshots: {
+      ...unsignedRelease.manifest.snapshots,
+      tryout: replaceContentSnapshot({
+        baseSnapshotId: null,
+        resultSnapshotId: protectedSnapshotId,
+        rowCount: 1,
+        rowDigest: hash,
+      }),
+    },
+  } as const;
+  const manifestHash = await Effect.runPromise(
+    hashContentReleaseManifest(manifest)
+  );
+  return SignedContentReleaseSchema.make({
+    keyId,
+    manifest,
+    manifestHash,
+    signature: signRuntimeValue(
+      canonicalizeContentReleaseSigningInput(manifestHash, manifest)
+    ),
+  });
+}
+
+export const release = await createSignedRuntimeRelease(
+  unsignedRelease.manifest.rendererManifestHash
 );
-export const release = SignedContentReleaseSchema.make({
-  keyId,
-  manifest: runtimeManifest,
-  manifestHash,
-  signature: signRuntimeValue(
-    canonicalizeContentReleaseSigningInput(manifestHash, runtimeManifest)
-  ),
-});
 
 export const trustedResolver = ContentVerificationKeyResolver.of({
   /** Resolves only the runtime fixture's exact signing key. */

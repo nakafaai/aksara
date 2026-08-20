@@ -13,6 +13,7 @@ import {
   historicalRequest,
   historicalSelector,
   historicalSnapshotId,
+  historicalSubsetRenderer,
   historicalUnpublishedRenderer,
   historicalUnsupportedRenderer,
   verifyHistoricalExchange,
@@ -257,6 +258,14 @@ describe("retained protected runtime verification", () => {
     expect(unpublished._tag).toBe("StoredRendererDomainUnpublishedError");
     expect(missing._tag).toBe("StoredRendererComponentMissingError");
     expect(unsupported._tag).toBe("StoredRendererVersionUnsupportedError");
+  });
+
+  it("rejects a historical domain subset presented as the live renderer", async () => {
+    const error = await reject({ rendererManifest: historicalSubsetRenderer });
+    expect(error).toMatchObject({
+      _tag: "ContractDecodeError",
+      contract: "LiveRendererManifestDomains",
+    });
   });
 
   it("rejects an altered retained artifact before delivery", async () => {

@@ -8,6 +8,7 @@ import { canonicalizeRendererManifestContract } from "#contracts/renderer/contra
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
   createRendererManifest,
+  validateLiveRendererManifestHash,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
 import { testRendererDomains } from "#contracts/test/renderer";
@@ -30,6 +31,12 @@ const BASE_SUPPORTED = [
 const BASE_AUTHORING = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
+] as const;
+const PRODUCTION_COMPONENT_NAME_GROUPS = [
+  "AgentContext BlockMath CodeBlock ContentBlock ContentGrid ContentStack",
+  "InlineMath MathContainer Mermaid Youtube",
+  "a blockquote code em h1 h2 h3 h4 h5 h6 li ol p pre strong sub sup",
+  "table tbody td th thead tr ul",
 ] as const;
 const DOMAINS = testRendererDomains({
   chemistry: CHEMISTRY.authoringComponents,
@@ -97,45 +104,15 @@ describe("renderer manifest", () => {
     await expect(
       Effect.runPromise(validateRendererManifestHash(manifest))
     ).resolves.toEqual(manifest);
+    await expect(
+      Effect.runPromise(validateLiveRendererManifestHash(manifest))
+    ).resolves.toEqual(manifest);
   });
 
   it("matches the independently generated Nakafa production manifest hash", async () => {
-    const names = [
-      "AgentContext",
-      "BlockMath",
-      "CodeBlock",
-      "ContentBlock",
-      "ContentGrid",
-      "ContentStack",
-      "InlineMath",
-      "MathContainer",
-      "Mermaid",
-      "Youtube",
-      "a",
-      "blockquote",
-      "code",
-      "em",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-      "li",
-      "ol",
-      "p",
-      "pre",
-      "strong",
-      "sub",
-      "sup",
-      "table",
-      "tbody",
-      "td",
-      "th",
-      "thead",
-      "tr",
-      "ul",
-    ].map((name) => ({ name, version: 1 }));
+    const names = PRODUCTION_COMPONENT_NAME_GROUPS.flatMap((group) =>
+      group.split(" ").map((name) => ({ name, version: 1 }))
+    );
     const production = await Effect.runPromise(
       createRendererManifest(creation(names, names))
     );
@@ -220,6 +197,44 @@ describe("renderer manifest", () => {
       }).pipe(Effect.flip)
     );
     expect(mismatch._tag).toBe("RendererManifestHashMismatchError");
+  });
+
+  it("validates historical subsets but creates only complete live manifests", async () => {
+    const incompleteCreation = await Effect.runPromise(
+      createRendererManifest({
+        ...creation(),
+        domains: DOMAINS.slice(0, -1),
+      }).pipe(Effect.flip)
+    );
+    expect(incompleteCreation._tag).toBe("ContractDecodeError");
+
+    const manifest = await Effect.runPromise(
+      createRendererManifest(creation())
+    );
+    const domains = manifest.domains.slice(0, -1);
+    const historicalContract = {
+      base: manifest.base,
+      domains,
+      publishedDomains: manifest.publishedDomains,
+    };
+    const historical = {
+      ...manifest,
+      domains,
+      hash: `sha256:${createHash("sha256")
+        .update(canonicalizeRendererManifestContract(historicalContract))
+        .digest("hex")}`,
+    };
+
+    await expect(
+      Effect.runPromise(validateRendererManifestHash(historical))
+    ).resolves.toEqual(historical);
+    const liveError = await Effect.runPromise(
+      validateLiveRendererManifestHash(historical).pipe(Effect.flip)
+    );
+    expect(liveError).toMatchObject({
+      _tag: "ContractDecodeError",
+      contract: "LiveRendererManifestDomains",
+    });
   });
 
   it("rejects component ownership overlap across scopes", async () => {

@@ -36,7 +36,7 @@ import {
   decodeContentSnapshotRows,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
@@ -77,7 +77,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
   const basePolicy = yield* prepareReleaseBase(input);
-  const rendererManifest = yield* validateRendererManifestHash(
+  const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
   /** Replays strict replacement-manifest decoding and canonical order checks. */

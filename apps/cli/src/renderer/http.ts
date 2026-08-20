@@ -1,5 +1,5 @@
 import type { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   hasDirectives,
   isJsonType,
@@ -89,7 +89,7 @@ export const fetchRendererEndpoint = Effect.fn(
 )((url: URL, token: Redacted.Redacted<string>) =>
   fetchRendererBody(url, { token }).pipe(
     Effect.flatMap((body) =>
-      validateRendererManifestHash(body).pipe(
+      validateLiveRendererManifestHash(body).pipe(
         Effect.mapError(() => makeNakafaAppError("contract", false))
       )
     )

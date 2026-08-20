@@ -5,6 +5,7 @@ import { Sha256HashSchema } from "#contracts/ids";
 import { RendererComponentRequirementSchema } from "#contracts/renderer/component";
 import {
   canonicalizeRendererManifestContract,
+  LiveRendererManifestDomainsSchema,
   RENDERER_CONTRACT_VERSION,
   RENDERER_MANIFEST_FORMAT,
   type RendererDomainCapability,
@@ -75,7 +76,15 @@ export const createRendererManifest = Effect.fn(
   ).pipe(
     Effect.flatMap((wire) =>
       Effect.all({
-        contract: normalizeRendererSelection(wire),
+        contract: normalizeRendererSelection(wire).pipe(
+          Effect.flatMap((contract) =>
+            decodeContract(
+              LiveRendererManifestDomainsSchema,
+              "LiveRendererManifestDomains",
+              contract.domains
+            ).pipe(Effect.map((domains) => ({ ...contract, domains })))
+          )
+        ),
         publishedDomains: normalizePublishedDomains(wire.publishedDomains),
       })
     ),
@@ -99,7 +108,7 @@ export const createRendererManifest = Effect.fn(
   )
 );
 
-/** Strictly decodes and verifies a domain-scoped renderer envelope. */
+/** Verifies one persisted envelope, including a known historical domain subset. */
 export const validateRendererManifestHash = Effect.fn(
   "AksaraContracts.validateRendererManifestHash"
 )((input: unknown) =>
@@ -133,6 +142,21 @@ export const validateRendererManifestHash = Effect.fn(
           )
         )
       )
+    )
+  )
+);
+
+/** Verifies one complete manifest supplied by a current live renderer. */
+export const validateLiveRendererManifestHash = Effect.fn(
+  "AksaraContracts.validateLiveRendererManifestHash"
+)((input: unknown) =>
+  validateRendererManifestHash(input).pipe(
+    Effect.flatMap((manifest) =>
+      decodeContract(
+        LiveRendererManifestDomainsSchema,
+        "LiveRendererManifestDomains",
+        manifest.domains
+      ).pipe(Effect.map((domains) => ({ ...manifest, domains })))
     )
   )
 );

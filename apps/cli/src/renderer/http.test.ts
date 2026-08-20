@@ -1,4 +1,6 @@
+import { createHash } from "node:crypto";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
+import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
 import {
@@ -17,6 +19,23 @@ const RENDERER_URL = new URL(
 const TOKEN = Redacted.make("renderer-test-token");
 const NONCE = PreviewRendererNonceSchema.make("n".repeat(43));
 const NONCE_HEADER = "x-aksara-preview-nonce";
+
+/** Builds one hash-valid historical subset that is not a complete live manifest. */
+function historicalRendererManifest() {
+  const domains = RENDERER_MANIFEST.domains.slice(0, -1);
+  const contract = {
+    base: RENDERER_MANIFEST.base,
+    domains,
+    publishedDomains: RENDERER_MANIFEST.publishedDomains,
+  };
+  return {
+    ...RENDERER_MANIFEST,
+    domains,
+    hash: `sha256:${createHash("sha256")
+      .update(canonicalizeRendererManifestContract(contract))
+      .digest("hex")}`,
+  };
+}
 
 /** Adds the renderer endpoint's mandatory response cache directive. */
 function rendererResponse(
@@ -239,6 +258,21 @@ describe("renderer HTTP", () => {
   it("rejects an invalid production renderer contract", async () => {
     const captured = captureClient((request) =>
       Effect.succeed(rendererResponse(request, "{}"))
+    );
+
+    await expect(
+      runClient(
+        fetchRendererEndpoint(RENDERER_URL, TOKEN).pipe(Effect.flip),
+        captured.client
+      )
+    ).resolves.toMatchObject({ reason: "contract", retryable: false });
+  });
+
+  it("rejects a hash-valid historical subset from the live endpoint", async () => {
+    const captured = captureClient((request) =>
+      Effect.succeed(
+        rendererResponse(request, JSON.stringify(historicalRendererManifest()))
+      )
     );
 
     await expect(

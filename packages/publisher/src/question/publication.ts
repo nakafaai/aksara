@@ -13,8 +13,8 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionBankIndex } from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
@@ -106,7 +106,7 @@ export interface QuestionPublicationInput<E, R> {
 }
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+  ReturnType<typeof validateLiveRendererManifestHash>
 >;
 type TryoutRegistryError = Effect.Error<
   ReturnType<typeof decodeTryoutRegistry>

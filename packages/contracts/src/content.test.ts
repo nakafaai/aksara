@@ -120,6 +120,26 @@ describe("content", () => {
     expect(error._tag).toBe("ContractDecodeError");
   });
 
+  it("rejects a compile request without its selected domain capability", async () => {
+    const error = await Effect.runPromise(
+      decodeCompileDocumentRequest({
+        ...validRequest,
+        rendererDomain: "chemistry",
+        rendererManifest: {
+          ...validRequest.rendererManifest,
+          domains: validRequest.rendererManifest.domains.filter(
+            ({ name }) => name !== "chemistry"
+          ),
+        },
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ContractDecodeError");
+    expect(error.message).toContain(
+      "Expected the selected renderer domain to have a capability."
+    );
+  });
+
   it("does not accept caller-provided compiled code as authored source", async () => {
     const { rendererManifest: _, ...source } = validRequest;
     const error = await Effect.runPromise(

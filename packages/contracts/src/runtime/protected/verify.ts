@@ -4,7 +4,7 @@ import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
-import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
 import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
   decodeProtectedContentRuntimeRequest,
@@ -127,7 +127,7 @@ export const verifyProtectedContentRuntimeExchange = Effect.fn(
     release: response.release,
     rendererManifest: response.rendererManifest,
   });
-  const liveRenderer = yield* validateRendererManifestHash(
+  const liveRenderer = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
   yield* verifyProtectedRelease(request, response, bundle);

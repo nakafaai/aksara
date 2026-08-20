@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
@@ -8,6 +9,7 @@ import {
   GitCommitShaSchema,
   PublicPathSchema,
   ReleaseIdSchema,
+  Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
@@ -23,6 +25,7 @@ import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -43,6 +46,25 @@ export const rendererManifest = await Effect.runPromise(
     publishedDomains: ["mathematics"],
   })
 );
+
+/** Builds one authenticated historical subset that cannot drive publication. */
+export function historicalRendererManifest() {
+  const domains = rendererManifest.domains.slice(0, -1);
+  const contract = {
+    base: rendererManifest.base,
+    domains,
+    publishedDomains: rendererManifest.publishedDomains,
+  };
+  return {
+    ...rendererManifest,
+    domains,
+    hash: Sha256HashSchema.make(
+      `sha256:${createHash("sha256")
+        .update(canonicalizeRendererManifestContract(contract))
+        .digest("hex")}`
+    ),
+  };
+}
 
 export const publicationSource = CompileDocumentSourceSchema.make({
   artifactLocale: ArtifactLocaleSchema.make("en"),

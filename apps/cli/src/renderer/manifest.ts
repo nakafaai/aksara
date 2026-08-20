@@ -5,7 +5,7 @@ import {
   verifyPreviewRendererProof,
 } from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Schedule, Schema } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
@@ -51,7 +51,7 @@ const fetchPreviewRenderer = Effect.fn("AksaraCli.fetchPreviewRenderer")(
       )(body).pipe(
         Effect.mapError(() => makeNakafaAppError("contract", false))
       );
-      const manifest = yield* validateRendererManifestHash(
+      const manifest = yield* validateLiveRendererManifestHash(
         authenticated.manifest
       ).pipe(Effect.mapError(() => makeNakafaAppError("contract", false)));
       yield* verifyPreviewRendererProof({

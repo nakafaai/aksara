@@ -5,8 +5,8 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
@@ -92,7 +92,7 @@ export interface MaterialPublicationInput<E, R> {
 }
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+  ReturnType<typeof validateLiveRendererManifestHash>
 >;
 
 /** Every failure possible before the replayable material plan is constructed. */

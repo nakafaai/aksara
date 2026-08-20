@@ -23,6 +23,7 @@ export interface ContentSourceInspection {
 
 /** Every expected failure surfaced by lightweight source inspection. */
 export type ContentSourceInspectionError =
+  | Effect.Error<ReturnType<typeof createCompilerConfigHash>>
   | Effect.Error<ReturnType<typeof enforceContentByteLimit>>
   | Effect.Error<ReturnType<typeof extractAuthoredBody>>
   | Effect.Error<ReturnType<typeof readMetadataDocument>>
@@ -97,7 +98,7 @@ export const inspectContentSource: (
           );
           return {
             bodyMdx,
-            compilerConfigHash: createCompilerConfigHash(
+            compilerConfigHash: yield* createCompilerConfigHash(
               request.rendererManifest,
               request.rendererDomain
             ),

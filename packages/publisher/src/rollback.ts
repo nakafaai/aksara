@@ -5,7 +5,7 @@ import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/dig
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route/page";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
-import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
@@ -63,7 +63,7 @@ export interface PrepareRollbackInput {
 
 /** Every typed failure surfaced while authenticating and deriving a rollback. */
 export type PrepareRollbackError =
-  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | Effect.Error<ReturnType<typeof validateLiveRendererManifestHash>>
   | Effect.Error<ReturnType<typeof validateReleaseRendererManifest>>
   | Effect.Error<ReturnType<typeof verifyContentReleaseBundle>>
   | Effect.Error<ReturnType<typeof verifyRollbackProof>>
@@ -148,7 +148,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
       rollbackOf: input.rollbackOf,
     });
   }
-  const rendererManifest = yield* validateRendererManifestHash(
+  const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
   const proof = yield* verifyContentReleaseBundle(input.proofBundle);

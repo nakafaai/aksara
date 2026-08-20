@@ -1,10 +1,15 @@
-import { Result } from "effect";
-import { describe, expect, it } from "vitest";
+import { createHash } from "node:crypto";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
+import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
+import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
 import {
   compatibleManifest,
+  createSignedRuntimeRelease,
+  incompatibleManifest,
   release,
   tamperSignature,
 } from "#contracts/test/runtime/fixture";
@@ -144,20 +149,70 @@ describe("content runtime verification", () => {
     expect(error).toMatchObject({ _tag: "SignatureInvalidError" });
   });
 
-  it("requires an exact live renderer for public content", async () => {
+  it("accepts compatible live renderer evolution and rejects incompatibility", async () => {
+    await expect(
+      verifyExchange({
+        rendererManifest: compatibleManifest,
+        response: found,
+      })
+    ).resolves.toEqual(found);
+
     const error = await rejectExchange({
-      rendererManifest: compatibleManifest,
+      rendererManifest: incompatibleManifest,
       response: found,
     });
     expect(error).toMatchObject({
-      _tag: "ContentRuntimeMismatchError",
-      reason: "rendererManifest",
+      _tag: "ArtifactRendererComponentMissingError",
+      componentName: "BlockMath",
     });
+  });
+
+  it("executes an older frozen domain subset on a compatible live superset", async () => {
+    const domains = rendererManifest.domains.slice(0, -1);
+    const historicalContract = {
+      base: rendererManifest.base,
+      domains,
+      publishedDomains: rendererManifest.publishedDomains,
+    };
+    const historicalRenderer = await Effect.runPromise(
+      validateRendererManifestHash({
+        ...rendererManifest,
+        domains,
+        hash: `sha256:${createHash("sha256")
+          .update(canonicalizeRendererManifestContract(historicalContract))
+          .digest("hex")}`,
+      })
+    );
+    const historicalRelease = await createSignedRuntimeRelease(
+      historicalRenderer.hash
+    );
+    const response = {
+      ...found,
+      activeManifestHash: historicalRelease.manifestHash,
+      activeReleaseId: historicalRelease.manifest.releaseId,
+      release: historicalRelease,
+      rendererManifest: historicalRenderer,
+    };
+
+    await expect(
+      verifyExchange({ rendererManifest, response })
+    ).resolves.toEqual(response);
   });
 
   it("rejects a tampered frozen renderer envelope", async () => {
     const tamperedRenderer = { ...rendererManifest, hash };
     const error = await rejectExchange({
+      response: { ...found, rendererManifest: tamperedRenderer },
+    });
+    expect(error).toMatchObject({
+      _tag: "ReleaseBundleVerificationDecodeError",
+    });
+  });
+
+  it("authenticates the frozen renderer before live compatibility", async () => {
+    const tamperedRenderer = { ...rendererManifest, hash };
+    const error = await rejectExchange({
+      rendererManifest: compatibleManifest,
       response: { ...found, rendererManifest: tamperedRenderer },
     });
     expect(error).toMatchObject({

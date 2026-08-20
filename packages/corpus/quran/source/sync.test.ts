@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Fiber, Result } from "effect";
+import { Deferred, Effect, Fiber, Result } from "effect";
 import { TestClock } from "effect/testing";
 
 import {
@@ -113,10 +113,12 @@ describe("German Quran source sync", () => {
 
   it.effect("bounds a stalled official source download", () =>
     Effect.gen(function* () {
+      const stallStarted = yield* Deferred.make<void>();
       const fiber = yield* quranSyncTestProgram(officialQuranSyncSources, {
         stalledUrl: GERMAN_QURAN_SOURCE_URL,
+        stallStarted,
       }).pipe(Effect.provide(NodeServices.layer), Effect.forkChild);
-      yield* Effect.yieldNow;
+      yield* Deferred.await(stallStarted);
       yield* TestClock.adjust("61 seconds");
       const result = yield* Fiber.join(fiber);
 
