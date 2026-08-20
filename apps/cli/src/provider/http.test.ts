@@ -9,7 +9,7 @@ import {
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { HashMap, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { isAddressInfo } from "#cli/address";
 import {
   makePreviewHttp,
@@ -54,34 +54,65 @@ function close(server: Server) {
   });
 }
 
+/** Creates the complete immutable provider state shared by transport tests. */
+function makeState(): PreviewHttpState {
+  const document = Schema.decodeUnknownSync(MaterialPreviewDocumentSchema)({
+    delivery: ENGLISH_ENTRY.delivery,
+    family: "material",
+    rendererDomain: ENGLISH_ENTRY.rendererDomain,
+    route: ENGLISH_ENTRY.route,
+    sourcePath: ENGLISH_ENTRY.sourcePath,
+  });
+  const repository = Schema.decodeUnknownSync(PreviewRepositorySchema)({
+    dirty: false,
+    sha: "a".repeat(40),
+  });
+  const manifest = Schema.decodeUnknownSync(LocalPreviewManifestSchema)({
+    document,
+    format: LOCAL_PREVIEW_FORMAT,
+    repositories: { aksara: repository, nakafa: repository },
+    revision: 1,
+    status: "pending",
+  });
+
+  return {
+    artifacts: HashMap.fromIterable([
+      [firstHash, firstBody],
+      [secondHash, secondBody],
+    ]),
+    manifest,
+    manifestJson: JSON.stringify(manifest),
+  };
+}
+
+/** Reads exactly one complete SSE block without assuming network chunking. */
+function makeEventReader(reader: ReadableStreamDefaultReader<Uint8Array>) {
+  const decoder = new TextDecoder();
+  let buffered = "";
+
+  /** Reads the next complete block and retains any following bytes. */
+  const readEvent = async (): Promise<string> => {
+    const boundary = buffered.indexOf("\n\n");
+    if (boundary >= 0) {
+      const event = buffered.slice(0, boundary + 2);
+      buffered = buffered.slice(boundary + 2);
+      return event;
+    }
+
+    const result = await reader.read();
+    if (result.done) {
+      throw new Error("Preview event stream closed before a complete block.");
+    }
+    buffered += decoder.decode(result.value, { stream: true });
+    return readEvent();
+  };
+
+  return readEvent;
+}
+
 describe("preview HTTP transport", () => {
   it("serves every immutable hash entry and conflicts on unknown hashes", async () => {
-    const document = Schema.decodeUnknownSync(MaterialPreviewDocumentSchema)({
-      delivery: ENGLISH_ENTRY.delivery,
-      family: "material",
-      rendererDomain: ENGLISH_ENTRY.rendererDomain,
-      route: ENGLISH_ENTRY.route,
-      sourcePath: ENGLISH_ENTRY.sourcePath,
-    });
-    const repository = Schema.decodeUnknownSync(PreviewRepositorySchema)({
-      dirty: false,
-      sha: "a".repeat(40),
-    });
-    const manifest = Schema.decodeUnknownSync(LocalPreviewManifestSchema)({
-      document,
-      format: LOCAL_PREVIEW_FORMAT,
-      repositories: { aksara: repository, nakafa: repository },
-      revision: 1,
-      status: "pending",
-    });
-    const state: PreviewHttpState = {
-      artifacts: HashMap.fromIterable([
-        [firstHash, firstBody],
-        [secondHash, secondBody],
-      ]),
-      manifest,
-      manifestJson: JSON.stringify(manifest),
-    };
+    const state = makeState();
     const http = makePreviewHttp({
       readState: () => state,
       token: testToken,
@@ -146,7 +177,7 @@ describe("preview HTTP transport", () => {
       expect(wrongMethod.status).toBe(405);
       expect(wrongMethod.headers.get("allow")).toBe("GET");
       expect(servedManifest.status).toBe(200);
-      await expect(servedManifest.json()).resolves.toEqual(manifest);
+      await expect(servedManifest.json()).resolves.toEqual(state.manifest);
       expect(missing.status).toBe(404);
       expect(malformed.status).toBe(409);
       expect(noncanonical.status).toBe(409);
@@ -161,6 +192,51 @@ describe("preview HTTP transport", () => {
     } finally {
       http.close();
       await close(server);
+    }
+  }, 30_000);
+
+  it("keeps an idle event stream alive without publishing an update", async () => {
+    const state = makeState();
+    const setIntervalSpy = vi.spyOn(globalThis, "setInterval");
+    const clearIntervalSpy = vi.spyOn(globalThis, "clearInterval");
+    const http = makePreviewHttp({
+      heartbeatIntervalMs: 10,
+      readState: () => state,
+      token: testToken,
+    });
+    const server = createServer(http.handle);
+
+    try {
+      const address = await listen(server);
+      const events = await fetch(
+        `http://127.0.0.1:${address.port}${PREVIEW_EVENTS_PATH}`,
+        { headers: { authorization: `Bearer ${testToken}` } }
+      );
+      const reader = events.body?.getReader();
+      if (!reader) {
+        throw new Error("Preview event response did not expose a body.");
+      }
+      const readEvent = makeEventReader(reader);
+
+      await expect(readEvent()).resolves.toContain("event: update\n");
+      await expect(readEvent()).resolves.toBe(": keep-alive\n\n");
+      const heartbeatIndex = setIntervalSpy.mock.calls.findIndex(
+        ([, delay]) => delay === 10
+      );
+      const heartbeat = setIntervalSpy.mock.results[heartbeatIndex]?.value;
+      expect(heartbeatIndex).toBeGreaterThanOrEqual(0);
+      await reader.cancel();
+      await vi.waitFor(() => {
+        expect(clearIntervalSpy).toHaveBeenCalledWith(heartbeat);
+      });
+      http.close();
+      expect(
+        clearIntervalSpy.mock.calls.filter(([timer]) => timer === heartbeat)
+      ).toHaveLength(1);
+    } finally {
+      http.close();
+      await close(server);
+      vi.restoreAllMocks();
     }
   }, 30_000);
 });
