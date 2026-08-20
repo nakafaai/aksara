@@ -18,6 +18,9 @@ import { HashMap, Option, Schema } from "effect";
 export const PREVIEW_MANIFEST_PATH = "/v1/manifest";
 export const PREVIEW_EVENTS_PATH = "/v1/events";
 
+const PREVIEW_HEARTBEAT = ": keep-alive\n\n";
+const PREVIEW_HEARTBEAT_INTERVAL_MS = 30_000;
+
 /** Complete immutable state observed by one HTTP request or SSE event. */
 export interface PreviewHttpState {
   readonly artifacts: HashMap.HashMap<Sha256Hash, string>;
@@ -36,6 +39,8 @@ export interface PreviewHttp {
 }
 
 interface PreviewHttpInput {
+  /** Overrides heartbeat cadence for deterministic transport tests. */
+  readonly heartbeatIntervalMs?: number;
   /** Returns the one complete state committed before this request began. */
   readonly readState: () => PreviewHttpState;
   readonly token: string;
@@ -88,7 +93,7 @@ function eventJson(manifest: LocalPreviewManifest) {
 
 /** Creates the authenticated request transport around scoped provider state. */
 export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = new Set<ServerResponse>();
+  const clients = new Map<ServerResponse, ReturnType<typeof setInterval>>();
 
   /** Handles one authenticated request against one atomic state snapshot. */
   const handle: PreviewHttp["handle"] = (request, response) => {
@@ -113,9 +118,16 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
         connection: "keep-alive",
         "content-type": "text/event-stream; charset=utf-8",
       });
-      clients.add(response);
+      const heartbeat = setInterval(
+        () => response.write(PREVIEW_HEARTBEAT),
+        input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
+      );
+      clients.set(response, heartbeat);
+      response.once("close", () => {
+        clearInterval(heartbeat);
+        clients.delete(response);
+      });
       response.write(`event: update\ndata: ${eventJson(state.manifest)}\n\n`);
-      response.once("close", () => clients.delete(response));
       return;
     }
     if (path.startsWith(LOCAL_PREVIEW_ARTIFACT_PREFIX)) {
@@ -134,7 +146,8 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
 
   /** Ends every event response without retaining stale scoped clients. */
   const close = () => {
-    for (const client of clients) {
+    for (const [client, heartbeat] of clients) {
+      clearInterval(heartbeat);
       client.end();
     }
     clients.clear();
@@ -143,7 +156,7 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
   /** Notifies every live client after one complete state replacement. */
   const publish = (state: PreviewHttpState) => {
     const event = `event: update\ndata: ${eventJson(state.manifest)}\n\n`;
-    for (const client of clients) {
+    for (const client of clients.keys()) {
       client.write(event);
     }
   };
