@@ -1,6 +1,6 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { PublicPathSchema } from "#contracts/ids";
+import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import {
   LOCAL_PREVIEW_FORMAT,
   LocalPreviewManifestSchema,
@@ -35,6 +35,9 @@ const materialArtifact = previewArtifact(testMaterialProjection, "d");
 const pageArtifact = previewArtifact(testPageProjection, "1");
 const promptArtifact = previewArtifact(testPromptProjection, "e");
 const answerArtifact = previewArtifact(testAnswerProjection, "f");
+const otherPageSourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/security-policy/en.mdx"
+);
 
 describe("local preview manifest", () => {
   it("decodes every fail-closed state", () => {
@@ -207,6 +210,18 @@ describe("local preview manifest", () => {
         artifacts: [
           previewArtifact(
             {
+              ...testPageProjection,
+              sourcePath: otherPageSourcePath,
+            },
+            "5"
+          ),
+        ],
+        document: testPageDocument,
+      },
+      {
+        artifacts: [
+          previewArtifact(
+            {
               ...testArticleProjection,
               publicPath: PublicPathSchema.make("articles/politics/other"),
             },
@@ -239,30 +254,19 @@ describe("local preview manifest", () => {
       },
     ];
 
+    const manifests = cases.map(({ artifacts, document }) => ({
+      artifacts,
+      document,
+      format: LOCAL_PREVIEW_FORMAT,
+      rendererManifestHash: `sha256:${"a".repeat(64)}`,
+      repositories: previewRepositories,
+      revision: 1,
+      status: "ready",
+    }));
+
+    expect(manifests.every(rejectsPreviewManifest)).toBe(true);
     expect(
-      cases.every(({ artifacts, document }) =>
-        rejectsPreviewManifest({
-          artifacts,
-          document,
-          format: LOCAL_PREVIEW_FORMAT,
-          rendererManifestHash: `sha256:${"a".repeat(64)}`,
-          repositories: previewRepositories,
-          revision: 1,
-          status: "ready",
-        })
-      )
-    ).toBe(true);
-    expect(
-      String(
-        Schema.decodeUnknownExit(LocalPreviewManifestSchema)({
-          ...cases[2],
-          format: LOCAL_PREVIEW_FORMAT,
-          rendererManifestHash: `sha256:${"a".repeat(64)}`,
-          repositories: previewRepositories,
-          revision: 1,
-          status: "ready",
-        })
-      )
+      String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(manifests[3]))
     ).toContain(
       "Expected preview artifacts to match the selected document exactly."
     );

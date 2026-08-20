@@ -116,7 +116,8 @@ function matchesPageDocument(
     projection.appLocale === document.route.appLocale &&
     projection.artifactLocale === document.route.artifactLocale &&
     projection.pageKey === document.route.pageKey &&
-    projection.publicPath === document.route.publicPath
+    projection.publicPath === document.route.publicPath &&
+    projection.sourcePath === document.sourcePath
   );
 }
 

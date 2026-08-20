@@ -137,8 +137,19 @@ Every production operation uses an explicit canonical scope. For example:
 pnpm release -- \
   --release-id release-2026-08-20 \
   --recovery-id recovery-2026-08-20 \
-  --scope family:page
+  --scope family:article \
+  --scope family:material \
+  --scope family:page \
+  --scope family:question \
+  --scope snapshot:program \
+  --scope snapshot:quran \
+  --scope snapshot:tryout
 ```
+
+The first production activation that adds a locale must select every body and
+structured snapshot family. One global release owns the complete locale set,
+so a page-only release cannot safely move production from English and
+Indonesian to English, Indonesian, and German.
 
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does
