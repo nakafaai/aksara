@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem, PlatformError } from "effect";
+import { Deferred, Effect, FileSystem, PlatformError } from "effect";
 import { HttpClient, HttpClientResponse } from "effect/unstable/http";
 
 import {
@@ -29,19 +29,26 @@ export const officialQuranSyncSources = new Map([
 /** Creates one deterministic HTTP adapter for both official artifacts. */
 function sourceClient(
   sources: ReadonlyMap<string, Uint8Array>,
-  status = 200,
-  stalledUrl?: string
+  options: QuranSyncTestOptions
 ) {
   return HttpClient.make((request) => {
-    if (request.url === stalledUrl) {
-      return Effect.never;
+    if (request.url === options.stalledUrl) {
+      if (options.stallStarted === undefined) {
+        return Effect.never;
+      }
+      return Deferred.succeed(options.stallStarted, undefined).pipe(
+        Effect.andThen(Effect.never)
+      );
     }
     const bytes = sources.get(request.url);
     if (bytes === undefined) {
       return Effect.die(new Error(`Unexpected source request: ${request.url}`));
     }
     return Effect.succeed(
-      HttpClientResponse.fromWeb(request, new Response(bytes, { status }))
+      HttpClientResponse.fromWeb(
+        request,
+        new Response(bytes, { status: options.status ?? 200 })
+      )
     );
   });
 }
@@ -70,6 +77,8 @@ interface QuranSyncTestOptions {
     readonly translation: Uint8Array;
   };
   readonly stalledUrl?: string;
+  /** Resolves when the intentionally stalled request reaches the HTTP seam. */
+  readonly stallStarted?: Deferred.Deferred<void>;
   readonly status?: number;
 }
 
@@ -113,7 +122,7 @@ export function quranSyncTestProgram(
         Effect.provideService(FileSystem.FileSystem, configured),
         Effect.provideService(
           HttpClient.HttpClient,
-          sourceClient(sources, options.status, options.stalledUrl)
+          sourceClient(sources, options)
         ),
         Effect.result
       );
