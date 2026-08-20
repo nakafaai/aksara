@@ -4,6 +4,11 @@ import type { PageLocaleSourceInput } from "#corpus/pages/locale";
 export const pageLocaleSources: readonly PageLocaleSourceInput[] = [
   {
     appLocale: "de",
+    pageKey: "imprint",
+    publicPath: "impressum",
+  },
+  {
+    appLocale: "de",
     pageKey: "privacy-policy",
     publicPath: "privacy-policy",
   },

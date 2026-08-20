@@ -9,6 +9,11 @@ import {
 
 const pageSourceInputs: readonly PageSourceInput[] = [
   {
+    pageKey: "imprint",
+    publicPaths: { en: "legal-notice", id: "informasi-perusahaan" },
+    sourceRoot: "pages/imprint",
+  },
+  {
     pageKey: "privacy-policy",
     publicPaths: { en: "privacy-policy", id: "privacy-policy" },
     sourceRoot: "pages/privacy-policy",

@@ -77,7 +77,7 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
       return TestEffect.succeed({
         articleCount: 14,
         materialCount: 766,
-        pageCount: 6,
+        pageCount: 8,
         questionCount: 3360,
         recordCount: 4146,
         rendererManifestHash: hash,

@@ -27,11 +27,12 @@ function fileLayer(source: string | undefined) {
 }
 
 describe("public page source", () => {
-  it("composes three reviewed page families and decodes injected catalogs", async () => {
+  it("composes every reviewed page family and decodes injected catalogs", async () => {
     const defaults = await Effect.runPromise(decodePageSources());
     const injected = await Effect.runPromise(decodePageSources([pageSource()]));
 
     expect(defaults.map(({ pageKey }) => pageKey)).toEqual([
+      "imprint",
       "privacy-policy",
       "security-policy",
       "terms-of-service",

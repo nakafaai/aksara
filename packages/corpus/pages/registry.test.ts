@@ -15,11 +15,13 @@ function rejectRegistry(input: unknown, localeInput?: unknown) {
 }
 
 describe("public page registry", () => {
-  it("projects every active locale from three stable source identities", async () => {
+  it("projects every active locale from the stable source identities", async () => {
     const entries = await Effect.runPromise(decodePageRegistry());
 
-    expect(entries).toHaveLength(6);
+    expect(entries).toHaveLength(8);
     expect(entries.map(({ route }) => route.appLocale)).toEqual([
+      "en",
+      "id",
       "en",
       "id",
       "en",
@@ -31,12 +33,12 @@ describe("public page registry", () => {
       delivery: "public",
       rendererDomain: "site",
       route: {
-        contentKey: "pages/privacy-policy",
-        pageKey: "privacy-policy",
-        publicPath: "privacy-policy",
+        contentKey: "pages/imprint",
+        pageKey: "imprint",
+        publicPath: "legal-notice",
       },
-      sourcePath: "packages/corpus/pages/privacy-policy/en.mdx",
-      sourceRoot: "pages/privacy-policy",
+      sourcePath: "packages/corpus/pages/imprint/en.mdx",
+      sourceRoot: "pages/imprint",
     });
   });
 

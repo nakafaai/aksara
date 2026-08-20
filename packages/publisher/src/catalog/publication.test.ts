@@ -184,9 +184,9 @@ describe("content catalog publication", () => {
   });
 
   it("merges all four family streams in canonical order", () => {
-    expect(initial.records).toHaveLength(28);
-    expect(initial.routes).toHaveLength(28);
-    expect(initialHeads).toHaveLength(28);
+    expect(initial.records).toHaveLength(30);
+    expect(initial.routes).toHaveLength(30);
+    expect(initialHeads).toHaveLength(30);
     expect(
       initialHeads.slice(0, 14).every((head) => head.family === "article")
     ).toBe(true);
@@ -194,10 +194,10 @@ describe("content catalog publication", () => {
       initialHeads.slice(14, 18).every((head) => head.family === "material")
     ).toBe(true);
     expect(
-      initialHeads.slice(18, 24).every((head) => head.family === "page")
+      initialHeads.slice(18, 26).every((head) => head.family === "page")
     ).toBe(true);
     expect(
-      initialHeads.slice(24).every((head) => head.family === "question")
+      initialHeads.slice(26).every((head) => head.family === "question")
     ).toBe(true);
   });
 

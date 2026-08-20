@@ -36,7 +36,7 @@ describe("candidate public page routes", () => {
     });
     await expect(
       Effect.runPromise(decodePageLocaleCatalog())
-    ).resolves.toHaveLength(3);
+    ).resolves.toHaveLength(4);
   });
 
   it("maps malformed and unavailable catalogs to typed failures", async () => {

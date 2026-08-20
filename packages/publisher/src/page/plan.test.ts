@@ -168,8 +168,8 @@ describe("page plan", () => {
       renderer,
     });
 
-    expect(records).toHaveLength(6);
-    expect(compilerState.calls).toBe(6);
+    expect(records).toHaveLength(8);
+    expect(compilerState.calls).toBe(8);
   });
 
   it("emits one tombstone without compiling an absent source", async () => {
@@ -200,11 +200,11 @@ describe("page plan", () => {
   it("compiles every canonical source for the first release", async () => {
     const records = await collectPagePublication({ heads: [] });
 
-    expect(records).toHaveLength(6);
+    expect(records).toHaveLength(8);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(6);
+    expect(compilerState.calls).toBe(8);
   });
 
   it("compiles only the scoped privacy page locales for scoped genesis", async () => {
