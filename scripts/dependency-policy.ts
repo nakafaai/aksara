@@ -103,7 +103,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "7.10.5",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
-    reason: "The approved migration target remains locked for this PR.",
+    reason:
+      "The latest release must clear the workspace minimumReleaseAge gate before adoption.",
     registry: "ultracite@latest",
     reviewedLatest: "7.10.6",
     source: "root-dev-dependency",
