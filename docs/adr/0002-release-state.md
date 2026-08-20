@@ -153,10 +153,20 @@ Production trusts authenticated Convex state for route and head membership,
 delivery classification, and the active publication pointer. Nakafa still
 independently decodes and verifies the signed release, signed artifact,
 artifact hash, component requirements, and projection hash before execution.
-Public content requires the release renderer manifest to match the deployed
-manifest exactly. Protected content is bound to the exact signed snapshot
-release, verified against its frozen renderer manifest, and then checked for
-compatibility with the deployed renderer.
+Public content is bound to the exact active signed release and is first
+verified against that release's frozen renderer manifest. If the deployed
+manifest hash differs, the selected artifact must also prove that its domain
+and component versions remain executable by the deployed renderer. Protected
+content applies the same directional compatibility check after binding the
+artifact to its exact signed snapshot release.
+
+Frozen renderer manifests may contain a canonical subset of domains known to
+the current contract so an additive domain deployment can continue reading an
+older active release. Newly created live manifests still require every current
+domain, and every published domain must have a capability in its own envelope.
+Candidate activation and recovery preflight continue to require the exact
+deployed renderer hash. The compatibility seam changes read-time execution,
+not publication authority.
 
 The signed result catalog digest authenticates the complete canonical result
 set. It is not a per-row inclusion proof. The current design therefore detects
@@ -175,6 +185,10 @@ source repository is public.
   becomes visible.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
+- Additive renderer domains can deploy before publication without breaking the
+  older active release.
+- A deployment that understands a newly published domain remains the rollback
+  target until that content has been rolled back or superseded.
 - Lost responses and runner crashes resume from durable state.
 - New candidates wait until retained recovery is accepted or activated.
 - Cleanup remains bounded and cannot become a hidden finalization phase.

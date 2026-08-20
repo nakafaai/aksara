@@ -74,20 +74,44 @@ describe("renderer contract", () => {
     ).toEqual(RENDERER_DOMAINS);
   });
 
-  it("requires every canonical domain while allowing empty capabilities", () => {
+  it("accepts canonical persisted subsets and rejects malformed order", () => {
     const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
-    const incomplete = decode({
+    const historical = decode({
       ...manifest,
       domains: domains.slice(0, -1),
     });
     expect(Exit.isSuccess(decode(manifest))).toBe(true);
-    expect(
-      Exit.isFailure(decode({ ...manifest, domains: [...domains].reverse() }))
-    ).toBe(true);
-    expect(Exit.isFailure(incomplete)).toBe(true);
-    if (Exit.isFailure(incomplete)) {
-      expect(String(incomplete.cause)).toContain(
-        "Expected every renderer domain in canonical order."
+    expect(Exit.isSuccess(historical)).toBe(true);
+    const empty = decode({ ...manifest, domains: [] });
+    expect(Exit.isFailure(empty)).toBe(true);
+    const reversed = decode({
+      ...manifest,
+      domains: [...domains].reverse(),
+    });
+    expect(Exit.isFailure(reversed)).toBe(true);
+    if (Exit.isFailure(reversed)) {
+      expect(String(reversed.cause)).toContain(
+        "Expected unique renderer domains in canonical order."
+      );
+    }
+    const duplicated = decode({
+      ...manifest,
+      domains: domains.flatMap((domain) =>
+        domain.name === "chemistry" ? [domain, domain] : [domain]
+      ),
+    });
+    expect(Exit.isFailure(duplicated)).toBe(true);
+  });
+
+  it("requires one capability for every published domain", () => {
+    const decoded = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema)({
+      ...manifest,
+      domains: domains.filter(({ name }) => name !== "mathematics"),
+    });
+    expect(Exit.isFailure(decoded)).toBe(true);
+    if (Exit.isFailure(decoded)) {
+      expect(String(decoded.cause)).toContain(
+        "Expected every published renderer domain to have a capability."
       );
     }
   });

@@ -78,19 +78,44 @@ export function sortRendererDomains<T extends RendererDomainCapability>(
   );
 }
 
-/** Exact canonical route-domain registry collection. */
+/** Checks persisted route domains are unique and canonically ordered. */
+function hasCanonicalRendererDomains(
+  domains: readonly RendererDomainCapability[]
+) {
+  const canonical = sortRendererDomains(domains);
+  return domains.every(
+    (domain, index) =>
+      domain.name === canonical[index]?.name &&
+      domain.name !== domains[index - 1]?.name
+  );
+}
+
+/** Canonical persisted domains, including older known domain subsets. */
 export const RendererManifestDomainsSchema = Schema.Array(
   RendererDomainCapabilitySchema
 ).pipe(
+  Schema.check(Schema.isMinLength(1)),
   Schema.check(
-    Schema.makeFilter(
-      (domains) =>
-        domains.length === RENDERER_DOMAINS.length &&
-        domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
-      { message: "Expected every renderer domain in canonical order." }
-    )
+    Schema.makeFilter(hasCanonicalRendererDomains, {
+      message: "Expected unique renderer domains in canonical order.",
+    })
   )
 );
+
+/** Complete current domain set required from a newly created live manifest. */
+export const LiveRendererManifestDomainsSchema =
+  RendererManifestDomainsSchema.pipe(
+    Schema.check(
+      Schema.makeFilter(
+        (domains) =>
+          domains.length === RENDERER_DOMAINS.length &&
+          domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
+        {
+          message: "Expected every live renderer domain in canonical order.",
+        }
+      )
+    )
+  );
 
 /** Keeps base component names out of every route-owned registry. */
 function hasDistinctBaseComponents(manifest: {
@@ -110,7 +135,16 @@ function hasDistinctBaseComponents(manifest: {
   return true;
 }
 
-/** Renderer manifest envelope intended for exact Nakafa integration. */
+/** Keeps published domains bound to capabilities in the same envelope. */
+function hasPublishedDomainCapabilities(manifest: {
+  readonly domains: readonly RendererDomainCapability[];
+  readonly publishedDomains: readonly RendererDomain[];
+}) {
+  const capabilities = new Set(manifest.domains.map(({ name }) => name));
+  return manifest.publishedDomains.every((domain) => capabilities.has(domain));
+}
+
+/** Hash-authenticated renderer envelope persisted with one signed release. */
 export const RendererManifestEnvelopeSchema = Schema.Struct({
   base: RendererCapabilitySchema,
   domains: RendererManifestDomainsSchema,
@@ -119,6 +153,12 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
   publishedDomains: RendererPublishedDomainsSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 }).pipe(
+  Schema.check(
+    Schema.makeFilter(hasPublishedDomainCapabilities, {
+      message:
+        "Expected every published renderer domain to have a capability.",
+    })
+  ),
   Schema.check(
     Schema.makeFilter(hasDistinctBaseComponents, {
       message: "Expected base and route-domain component names to be disjoint.",

@@ -5,6 +5,7 @@ import { Sha256HashSchema } from "#contracts/ids";
 import { RendererComponentRequirementSchema } from "#contracts/renderer/component";
 import {
   canonicalizeRendererManifestContract,
+  LiveRendererManifestDomainsSchema,
   RENDERER_CONTRACT_VERSION,
   RENDERER_MANIFEST_FORMAT,
   type RendererDomainCapability,
@@ -75,7 +76,15 @@ export const createRendererManifest = Effect.fn(
   ).pipe(
     Effect.flatMap((wire) =>
       Effect.all({
-        contract: normalizeRendererSelection(wire),
+        contract: normalizeRendererSelection(wire).pipe(
+          Effect.flatMap((contract) =>
+            decodeContract(
+              LiveRendererManifestDomainsSchema,
+              "LiveRendererManifestDomains",
+              contract.domains
+            ).pipe(Effect.map((domains) => ({ ...contract, domains })))
+          )
+        ),
         publishedDomains: normalizePublishedDomains(wire.publishedDomains),
       })
     ),

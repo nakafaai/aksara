@@ -4,7 +4,7 @@ import { hashContentProjection } from "#contracts/projection/hash";
 import type { RoutedContentProjection } from "#contracts/projection/spec";
 import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
-import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
+import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
@@ -69,18 +69,12 @@ const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
   }
 );
 
-/** Binds public content to the exact active release and deployed renderer. */
+/** Binds public content to the exact authenticated active release. */
 const verifyPublicRelease = Effect.fn("AksaraContracts.verifyPublicRelease")(
   function* (
     response: PublicContentRuntimeFound,
-    bundle: ContentReleaseBundle,
-    liveRenderer: RendererManifestEnvelope
+    bundle: ContentReleaseBundle
   ) {
-    if (liveRenderer.hash !== bundle.rendererManifest.hash) {
-      return yield* new ContentRuntimeMismatchError({
-        reason: "rendererManifest",
-      });
-    }
     if (response.activeReleaseId !== bundle.release.manifest.releaseId) {
       return yield* new ContentRuntimeMismatchError({
         reason: "activeReleaseId",
@@ -120,11 +114,18 @@ export const verifyContentRuntimeExchange = Effect.fn(
   const liveRenderer = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  yield* verifyPublicRelease(response, bundle, liveRenderer);
-  yield* verifySignedContentArtifact({
+  yield* verifyPublicRelease(response, bundle);
+  const artifact = yield* verifySignedContentArtifact({
     artifact: response.artifact,
     rendererContractVersion: bundle.release.manifest.rendererContractVersion,
     rendererManifest: bundle.rendererManifest,
   });
+  if (liveRenderer.hash !== bundle.rendererManifest.hash) {
+    yield* verifyContentRendererCompatibility({
+      payload: artifact.payload,
+      rendererContractVersion: bundle.release.manifest.rendererContractVersion,
+      rendererManifest: liveRenderer,
+    });
+  }
   return response;
 });

@@ -97,8 +97,9 @@ official `@mdx-js/mdx/run` API and only after all of these checks pass:
    release selected by a protected snapshot.
 2. Its content hash matches the signed payload.
 3. Its signature is valid.
-4. Public content matches Nakafa's deployed renderer manifest exactly.
-   Protected content matches its frozen release renderer and remains compatible
+4. Public and protected content first match the exact renderer manifest frozen
+   into their signed release. When the deployed renderer hash differs, the
+   selected artifact's domain and component requirements must remain compatible
    with the deployed renderer.
 5. Every required component and component version is available.
 6. Its statically analyzable renderer boundary implements every required rich

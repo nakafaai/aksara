@@ -100,7 +100,20 @@ export type CompileDocumentSource = typeof CompileDocumentSourceSchema.Type;
 export const CompileDocumentRequestSchema = Schema.Struct({
   ...CompileDocumentSourceSchema.fields,
   rendererManifest: RendererManifestEnvelopeSchema,
-});
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(
+      (request) =>
+        request.rendererManifest.domains.some(
+          ({ name }) => name === request.rendererDomain
+        ),
+      {
+        message:
+          "Expected the selected renderer domain to have a capability.",
+      }
+    )
+  )
+);
 export type CompileDocumentRequest = typeof CompileDocumentRequestSchema.Type;
 
 /** Precompiled trusted payload stored and signed before server-only execution. */
