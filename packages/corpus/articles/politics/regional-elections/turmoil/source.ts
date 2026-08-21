@@ -6,6 +6,7 @@ export const regionalElectionsTurmoilArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "pilkada-2024-gerichtsurteile-und-kandidaturen",
     en: "regional-elections-turmoil",
     id: "regional-elections-turmoil",
   },

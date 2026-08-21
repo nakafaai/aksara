@@ -6,6 +6,7 @@ export const nepotismPoliticalGovernanceArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "nepotismus-und-politische-verantwortung",
     en: "nepotism-in-political-governance",
     id: "nepotism-in-political-governance",
   },

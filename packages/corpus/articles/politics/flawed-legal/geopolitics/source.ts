@@ -6,6 +6,7 @@ export const flawedLegalGeopoliticsArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "nusantara-rechtsgrundlage-und-sicherheit",
     en: "flawed-legal-geopolitics",
     id: "flawed-legal-geopolitics",
   },

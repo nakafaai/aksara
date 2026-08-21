@@ -12,8 +12,8 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
     category: {
       key: "politics",
       rendererDomain: "politics",
-      routeSlugs: { en: "politics", id: "politics" },
-      titles: { en: "Politics", id: "Politik" },
+      routeSlugs: { de: "politik", en: "politics", id: "politics" },
+      titles: { de: "Politik", en: "Politics", id: "Politik" },
     },
     references: [
       {
@@ -22,7 +22,11 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
         year: 2024,
       },
     ],
-    routeSlugs: { en: "reviewed-article", id: "reviewed-article" },
+    routeSlugs: {
+      de: "gepruefter-artikel",
+      en: "reviewed-article",
+      id: "reviewed-article",
+    },
     slug: "reviewed-article",
     sourceRoot: "articles/politics/reviewed/article",
     ...values,
@@ -41,8 +45,16 @@ describe("article source", () => {
       category: {
         key: "test-category",
         rendererDomain: "physics",
-        routeSlugs: { en: "test-category", id: "kategori-uji" },
-        titles: { en: "Test category", id: "Kategori uji" },
+        routeSlugs: {
+          de: "test-kategorie",
+          en: "test-category",
+          id: "kategori-uji",
+        },
+        titles: {
+          de: "Testkategorie",
+          en: "Test category",
+          id: "Kategori uji",
+        },
       },
       slug: "test-group-test-article",
       sourceRoot: "articles/test-category/test-group/test-article",
@@ -67,15 +79,15 @@ describe("article source", () => {
     expect(String(root.cause)).toContain("Invalid article source root.");
   });
 
-  it("requires a non-empty display title for every supported locale", async () => {
+  it("requires a non-empty display title for every present locale", async () => {
     const error = await Effect.runPromise(
       defineArticleSource(
         source({
           category: {
             key: "politics",
             rendererDomain: "politics",
-            routeSlugs: { en: "politics", id: "politics" },
-            titles: { en: "Politics", id: "" },
+            routeSlugs: { de: "politik", en: "politics", id: "politics" },
+            titles: { de: "Politik", en: "Politics", id: "" },
           },
         })
       ).pipe(Effect.flip)

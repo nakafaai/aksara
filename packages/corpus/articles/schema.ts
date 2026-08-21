@@ -8,7 +8,7 @@ import {
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Effect, Schema } from "effect";
-import { EmbeddedAppLocaleCodeSchema } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Checks the stable four-segment grammar of one article source root. */
 function isArticleRoot(sourceRoot: string) {
@@ -31,12 +31,10 @@ export const ArticleRootSchema = Schema.String.pipe(
   )
 );
 
-const ArticleCategoryTitlesSchema = Schema.Record(
-  EmbeddedAppLocaleCodeSchema,
+const ArticleCategoryTitlesSchema = localizedSourceMapSchema(
   ArticleCategoryTitleSchema
 );
-const ArticleRouteSlugsSchema = Schema.Record(
-  EmbeddedAppLocaleCodeSchema,
+const ArticleRouteSlugsSchema = localizedSourceMapSchema(
   ArticleRouteSlugSchema
 );
 

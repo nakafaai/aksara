@@ -8,7 +8,9 @@ import {
 import {
   ACTIVE_APP_LOCALES,
   type ActiveAppLocaleList,
+  APP_LOCALE_CODES,
   type AppLocale,
+  type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
@@ -24,22 +26,9 @@ import {
   RendererDomainSchema,
 } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-import {
-  type ArticleLocaleCatalog,
-  decodeArticleLocaleCatalog,
-  type LocalizedArticleProjectionSource,
-  requireArticleLocaleSource,
-  validateArticleLocaleCatalog,
-} from "#corpus/articles/locale";
 import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
-import {
-  appLocaleCode,
-  EMBEDDED_APP_LOCALE_CODES,
-  type EmbeddedAppLocaleCode,
-  localeOverlayAppLocaleCode,
-  requireSourceLocale,
-} from "#corpus/locale/source";
+import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 
 export const ArticleEntrySchema = Schema.Struct({
   categoryTitle: ArticleCategoryTitleSchema,
@@ -113,11 +102,9 @@ interface ArticleCategoryIdentity {
   readonly titles: ArticleSource["category"]["titles"];
 }
 
-type ArticleProjectionSource = ArticleSource | LocalizedArticleProjectionSource;
-
 /** Projects one reviewed source into one exact locale-specific article body. */
 export const projectArticle = Effect.fn("AksaraCorpus.projectArticle")(
-  function* (source: ArticleProjectionSource, appLocale: AppLocale) {
+  function* (source: ArticleSource, appLocale: AppLocale) {
     const localeCode = appLocaleCode(appLocale);
     const category = source.category.key;
     const owner = `${source.sourceRoot}:${localeCode}`;
@@ -162,20 +149,11 @@ export const projectArticle = Effect.fn("AksaraCorpus.projectArticle")(
 /** Expands one reviewed source into its active locale-specific article bodies. */
 const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
   source: ArticleSource,
-  localeCatalog: ArticleLocaleCatalog,
   appLocales: ActiveAppLocaleList
 ) {
-  return yield* Effect.forEach(appLocales, (appLocale) => {
-    const overlayLocale = localeOverlayAppLocaleCode(appLocale);
-    if (overlayLocale === undefined) {
-      return projectArticle(source, appLocale);
-    }
-    return requireArticleLocaleSource(
-      source,
-      localeCatalog,
-      overlayLocale
-    ).pipe(Effect.flatMap((localized) => projectArticle(localized, appLocale)));
-  });
+  return yield* Effect.forEach(appLocales, (appLocale) =>
+    projectArticle(source, appLocale)
+  );
 });
 
 /** Checks one locale-specific category identity against its first declaration. */
@@ -184,7 +162,7 @@ const validateCategoryLocale = Effect.fn(
 )(function* (
   expected: ArticleCategoryIdentity,
   actual: ArticleSource["category"],
-  localeCode: EmbeddedAppLocaleCode
+  localeCode: AppLocaleCode
 ) {
   const appLocale = AppLocaleSchema.make(localeCode);
   const actualRoute = actual.routeSlugs[localeCode];
@@ -225,7 +203,7 @@ const validateCategory = Effect.fn("AksaraCorpus.validateArticleCategory")(
         expected: expected.rendererDomain,
       });
     }
-    yield* Effect.forEach(EMBEDDED_APP_LOCALE_CODES, (localeCode) =>
+    yield* Effect.forEach(APP_LOCALE_CODES, (localeCode) =>
       validateCategoryLocale(expected, actual, localeCode)
     );
   }
@@ -284,21 +262,12 @@ export const decodeArticleRegistry = Effect.fn(
   "AksaraCorpus.decodeArticleRegistry"
 )(function* (
   input?: unknown,
-  localeInput?: unknown,
   appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const sources = yield* decodeArticleSources(input);
-  const localeCatalog =
-    localeInput !== undefined ||
-    appLocales.some(
-      (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
-    )
-      ? yield* decodeArticleLocaleCatalog(localeInput)
-      : { articles: [], categories: [] };
   yield* validateArticleSources(sources);
-  yield* validateArticleLocaleCatalog(sources, localeCatalog);
   const expanded = yield* Effect.forEach(sources, (source) =>
-    expandArticle(source, localeCatalog, appLocales)
+    expandArticle(source, appLocales)
   );
   const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(ArticleEntrySchema)
