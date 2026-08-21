@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "verschlechtern.",
+      value: false,
+    },
+    {
+      label: "verursachen.",
+      value: false,
+    },
+    {
+      label: "fördern.",
+      value: false,
+    },
+    {
+      label: "verringern.",
+      value: true,
+    },
+    {
+      label: "beseitigen.",
+      value: false,
+    },
+  ],
   en: [
     { label: "worsen.", value: false },
     { label: "cause.", value: false },

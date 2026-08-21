@@ -15,18 +15,7 @@ import {
   PublicPageRouteSchema,
 } from "@nakafa/aksara-contracts/projection/page";
 import { Effect, Schema } from "effect";
-import {
-  appLocaleCode,
-  localeOverlayAppLocaleCode,
-  requireSourceLocale,
-} from "#corpus/locale/source";
-import {
-  decodePageLocaleCatalog,
-  type LocalizedPageProjectionSource,
-  type PageLocaleSource,
-  requirePageLocaleSource,
-  validatePageLocaleCatalog,
-} from "#corpus/pages/locale";
+import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 import { PageRootSchema, type PageSource } from "#corpus/pages/schema";
 import { decodePageSources } from "#corpus/pages/source";
 
@@ -68,11 +57,9 @@ export class PageRegistryError extends Schema.TaggedError<PageRegistryError>()(
   { cause: Schema.Unknown }
 ) {}
 
-type PageProjectionSource = PageSource | LocalizedPageProjectionSource;
-
 /** Projects one reviewed source into one exact locale-specific public page. */
 export const projectPage = Effect.fn("AksaraCorpus.projectPage")(function* (
-  source: PageProjectionSource,
+  source: PageSource,
   appLocale: AppLocale
 ) {
   const localeCode = appLocaleCode(appLocale);
@@ -99,18 +86,11 @@ export const projectPage = Effect.fn("AksaraCorpus.projectPage")(function* (
 /** Expands one reviewed source into its active locale-specific page bodies. */
 const expandPage = Effect.fn("AksaraCorpus.expandPage")(function* (
   source: PageSource,
-  localeCatalog: readonly PageLocaleSource[],
   appLocales: ActiveAppLocaleList
 ) {
-  return yield* Effect.forEach(appLocales, (appLocale) => {
-    const overlayLocale = localeOverlayAppLocaleCode(appLocale);
-    if (overlayLocale === undefined) {
-      return projectPage(source, appLocale);
-    }
-    return requirePageLocaleSource(source, localeCatalog, overlayLocale).pipe(
-      Effect.flatMap((localized) => projectPage(localized, appLocale))
-    );
-  });
+  return yield* Effect.forEach(appLocales, (appLocale) =>
+    projectPage(source, appLocale)
+  );
 });
 
 /** Rejects duplicate stable identities and authored roots before projection. */
@@ -162,21 +142,12 @@ export const validatePageRoutes = Effect.fn("AksaraCorpus.validatePageRoutes")(
 export const decodePageRegistry = Effect.fn("AksaraCorpus.decodePageRegistry")(
   function* (
     input?: unknown,
-    localeInput?: unknown,
     appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
   ) {
     const sources = yield* decodePageSources(input);
-    const localeCatalog =
-      localeInput !== undefined ||
-      appLocales.some(
-        (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
-      )
-        ? yield* decodePageLocaleCatalog(localeInput)
-        : [];
     yield* validatePageSources(sources);
-    yield* validatePageLocaleCatalog(sources, localeCatalog);
     const expanded = yield* Effect.forEach(sources, (source) =>
-      expandPage(source, localeCatalog, appLocales)
+      expandPage(source, appLocales)
     );
     const entries = yield* Schema.decodeUnknownEffect(
       Schema.Array(PageEntrySchema)

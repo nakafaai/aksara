@@ -5,10 +5,11 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.trigonometry",
   kind: "lesson",
-  routeSlugs: { en: "trigonometry", id: "trigonometri" },
+  routeSlugs: { de: "trigonometrie", en: "trigonometry", id: "trigonometri" },
   sections: [
     {
       routeSlugs: {
+        de: "bezeichnungen-am-rechtwinkligen-dreieck",
         en: "right-triangle-naming",
         id: "penamaan-sisi-segitiga-siku-siku",
       },
@@ -16,6 +17,7 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "sinus-und-kosinus-vergleichen",
         en: "trigonometric-comparison-sin-cos",
         id: "perbandingan-trigonometri-sinus-dan-cosinus",
       },
@@ -23,6 +25,7 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "werte-besonderer-winkel",
         en: "trigonometric-comparison-special-angle",
         id: "sudut-istimewa-perbandingan-trigonometri",
       },
@@ -30,6 +33,7 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "tangens-vergleichen",
         en: "trigonometric-comparison-tan",
         id: "perbandingan-trigonometri-tangen",
       },
@@ -37,6 +41,7 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "tangens-anwenden",
         en: "trigonometric-comparison-tan-usage",
         id: "kegunaan-perbandingan-trigonometri-tangen",
       },
@@ -44,18 +49,27 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "sinus-kosinus-und-tangens-vergleichen",
         en: "trigonometric-comparison-three-primary",
         id: "tiga-serangkai-perbandingan-trigonometri",
       },
       slug: "trigonometric-comparison-three-primary",
     },
     {
-      routeSlugs: { en: "trigonometry-concept", id: "konsep-trigonometri" },
+      routeSlugs: {
+        de: "grundidee-der-trigonometrie",
+        en: "trigonometry-concept",
+        id: "konsep-trigonometri",
+      },
       slug: "trigonometry-concept",
     },
   ],
   slug: "trigonometry",
   translations: {
+    de: {
+      description: "Ordne Dreiecksseiten den Winkelfunktionen zu.",
+      title: "Trigonometrie",
+    },
     en: {
       description: "Match right-triangle sides to trigonometric ratios.",
       title: "Trigonometry",

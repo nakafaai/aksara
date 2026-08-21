@@ -1,26 +1,47 @@
 export const linearMethodsMatrix = {
   choleskyDecomposition: {
-    routeSlugs: { en: "cholesky-decomposition", id: "cholesky-dekomposisi" },
+    routeSlugs: {
+      de: "cholesky-zerlegung",
+      en: "cholesky-decomposition",
+      id: "cholesky-dekomposisi",
+    },
     slug: "cholesky-decomposition",
   },
   complexMatrix: {
-    routeSlugs: { en: "complex-matrix", id: "matriks-kompleks" },
+    routeSlugs: {
+      de: "komplexe-matrizen",
+      en: "complex-matrix",
+      id: "matriks-kompleks",
+    },
     slug: "complex-matrix",
   },
   complexVectorSpace: {
-    routeSlugs: { en: "complex-vector-space", id: "ruang-vektor-kompleks" },
+    routeSlugs: {
+      de: "komplexer-vektorraum",
+      en: "complex-vector-space",
+      id: "ruang-vektor-kompleks",
+    },
     slug: "complex-vector-space",
   },
   cramerRule: {
-    routeSlugs: { en: "cramer-rule", id: "aturan-cramer" },
+    routeSlugs: {
+      de: "cramersche-regel",
+      en: "cramer-rule",
+      id: "aturan-cramer",
+    },
     slug: "cramer-rule",
   },
   determinant: {
-    routeSlugs: { en: "determinant", id: "definisi-determinan" },
+    routeSlugs: {
+      de: "determinante",
+      en: "determinant",
+      id: "definisi-determinan",
+    },
     slug: "determinant",
   },
   determinantCalculation: {
     routeSlugs: {
+      de: "determinanten-berechnen",
       en: "determinant-calculation",
       id: "perhitungan-determinan",
     },
@@ -28,25 +49,39 @@ export const linearMethodsMatrix = {
   },
   laplaceExpansion: {
     routeSlugs: {
+      de: "laplace-entwicklung",
       en: "laplace-expansion",
       id: "teorema-pengembangan-laplace",
     },
     slug: "laplace-expansion",
   },
   luDecomposition: {
-    routeSlugs: { en: "lu-decomposition", id: "lu-dekomposisi" },
+    routeSlugs: {
+      de: "lu-zerlegung",
+      en: "lu-decomposition",
+      id: "lu-dekomposisi",
+    },
     slug: "lu-decomposition",
   },
   matrixCondition: {
-    routeSlugs: { en: "matrix-condition", id: "kondisi-matriks" },
+    routeSlugs: {
+      de: "kondition-einer-matrix",
+      en: "matrix-condition",
+      id: "kondisi-matriks",
+    },
     slug: "matrix-condition",
   },
   matrixSimilarity: {
-    routeSlugs: { en: "matrix-similarity", id: "kesamaan-matriks" },
+    routeSlugs: {
+      de: "aehnlichkeit-von-matrizen",
+      en: "matrix-similarity",
+      id: "kesamaan-matriks",
+    },
     slug: "matrix-similarity",
   },
   orthogonalUnitaryMatrix: {
     routeSlugs: {
+      de: "orthogonale-und-unitaere-matrizen",
       en: "orthogonal-unitary-matrix",
       id: "matriks-ortogonal-dan-uniter",
     },
@@ -54,17 +89,23 @@ export const linearMethodsMatrix = {
   },
   positiveDefiniteMatrix: {
     routeSlugs: {
+      de: "positiv-definite-matrizen",
       en: "positive-definite-matrix",
       id: "matriks-definit-positif",
     },
     slug: "positive-definite-matrix",
   },
   qrDecomposition: {
-    routeSlugs: { en: "qr-decomposition", id: "qr-dekomposisi" },
+    routeSlugs: {
+      de: "qr-zerlegung",
+      en: "qr-decomposition",
+      id: "qr-dekomposisi",
+    },
     slug: "qr-decomposition",
   },
   realAxisTransformation: {
     routeSlugs: {
+      de: "reelle-achsentransformation",
       en: "real-axis-transformation",
       id: "transformasi-sumbu-nyata",
     },
@@ -72,6 +113,7 @@ export const linearMethodsMatrix = {
   },
   symmetricHermitianMatrix: {
     routeSlugs: {
+      de: "symmetrische-und-hermitesche-matrizen",
       en: "symmetric-hermitian-matrix",
       id: "matriks-simetris-dan-hermitian",
     },
@@ -79,6 +121,7 @@ export const linearMethodsMatrix = {
   },
   systemLinearEquation: {
     routeSlugs: {
+      de: "lineare-gleichungssysteme",
       en: "system-linear-equation",
       id: "sistem-persamaan-linear",
     },

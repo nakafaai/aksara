@@ -6,6 +6,7 @@ export const porkBarrelPoliticsPowerArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "sozialhilfe-und-wahlpolitische-anreize",
     en: "pork-barrel-politics-power",
     id: "pork-barrel-politics-power",
   },

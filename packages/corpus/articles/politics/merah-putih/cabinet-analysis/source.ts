@@ -6,6 +6,7 @@ export const merahPutihCabinetAnalysisArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "kabinett-merah-putih-und-koalitionspolitik",
     en: "merah-putih-cabinet-analysis",
     id: "merah-putih-cabinet-analysis",
   },

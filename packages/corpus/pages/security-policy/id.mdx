@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Kebijakan Keamanan",
   description: "Tinjau praktik dan kebijakan keamanan Nakafa untuk memahami bagaimana kami melindungi data dan menjamin keamanan platform.",
-  lastModified: "2026-08-21",
+  lastModified: "2026-08-22",
 };
 
 # Kebijakan Keamanan
 
-Terakhir diperbarui: 21 Agustus 2026
+Terakhir diperbarui: 22 Agustus 2026
 
 Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
 
@@ -55,15 +55,15 @@ Workflow repositori Nakafa secara otomatis mengaudit dependensi dan menjalankan 
 
 Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
 
-- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
-- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
-- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
-- [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
-- [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
-- [Penangkapan kesalahan permintaan Next.js melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
-- [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
-- [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
-- [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
+- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/next-config/index.ts)
+- [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/lib/helpers/auth.ts)
+- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/apps/www/lib/content/internal/authorization.ts)
+- [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/analytics/posthog/browser.ts)
+- [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/analytics/posthog/exception.ts)
+- [Penangkapan kesalahan permintaan Next.js melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/apps/www/instrumentation.ts)
+- [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/analytics/capture.ts)
+- [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/.github/workflows/agent-docs.yml)
+- [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/.github/workflows/agent-docs.yml)
 - [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
 
 ## Keamanan layanan pihak ketiga
@@ -76,7 +76,8 @@ Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol merek
 - Resend (pengiriman email)
 - PostHog (analitik produk berbasis persetujuan dan pelaporan kesalahan operasional tanpa identitas)
 - Vercel AI Gateway (perutean permintaan AI)
-- OpenAI (pemrosesan model AI)
+- Google (pemrosesan model melalui Gemini API)
+- Google Cloud (pemrosesan model melalui Vertex AI)
 
 Setiap pihak ketiga dapat memproses data sebagai bagian dari penyediaan Layanan. Untuk rincian kategori data yang dibagikan dan tujuannya, silakan tinjau [Kebijakan Privasi](/id/privacy-policy).
 

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
-import { germanProgramLocaleSources } from "#corpus/program/locale/de";
 import { schoolProgramSources } from "#corpus/program/school";
 import {
   prepareProgramSnapshot,
@@ -123,16 +122,12 @@ describe("program snapshot preparation", () => {
                 publicSlug: "program-uji",
                 title: "Program Uji",
               },
+              {
+                appLocale: "de",
+                publicSlug: "testprogramm",
+                title: "Testprogramm",
+              },
             ],
-          },
-        ],
-        programLocaleInput: [
-          ...germanProgramLocaleSources,
-          {
-            appLocale: "de",
-            programKey: "test-only-program",
-            publicSlug: "testprogramm",
-            title: "Testprogramm",
           },
         ],
       })

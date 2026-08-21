@@ -1,14 +1,26 @@
 export const linearMethodsGeometry = {
   orthogonalPolynomials: {
-    routeSlugs: { en: "orthogonal-polynomials", id: "polinomial-ortogonal" },
+    routeSlugs: {
+      de: "orthogonale-polynome",
+      en: "orthogonal-polynomials",
+      id: "polinomial-ortogonal",
+    },
     slug: "orthogonal-polynomials",
   },
   orthogonalProjection: {
-    routeSlugs: { en: "orthogonal-projection", id: "proyeksi-ortogonal" },
+    routeSlugs: {
+      de: "orthogonale-projektion",
+      en: "orthogonal-projection",
+      id: "proyeksi-ortogonal",
+    },
     slug: "orthogonal-projection",
   },
   scalarProduct: {
-    routeSlugs: { en: "scalar-product", id: "produk-skalar" },
+    routeSlugs: {
+      de: "skalarprodukt",
+      en: "scalar-product",
+      id: "produk-skalar",
+    },
     slug: "scalar-product",
   },
 } as const;

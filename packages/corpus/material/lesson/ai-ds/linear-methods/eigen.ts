@@ -1,6 +1,7 @@
 export const linearMethodsEigen = {
   allEigenvaluesCalculation: {
     routeSlugs: {
+      de: "alle-eigenwerte-berechnen",
       en: "all-eigenvalues-calculation",
       id: "perhitungan-semua-nilai-eigen",
     },
@@ -8,17 +9,23 @@ export const linearMethodsEigen = {
   },
   characteristicPolynomial: {
     routeSlugs: {
+      de: "charakteristisches-polynom",
       en: "characteristic-polynomial",
       id: "karakteristik-polinomial",
     },
     slug: "characteristic-polynomial",
   },
   diagonalizationMatrix: {
-    routeSlugs: { en: "diagonalization-matrix", id: "diagonalisasi-matriks" },
+    routeSlugs: {
+      de: "matrixdiagonalisierung",
+      en: "diagonalization-matrix",
+      id: "diagonalisasi-matriks",
+    },
     slug: "diagonalization-matrix",
   },
   diagonalizationProcedure: {
     routeSlugs: {
+      de: "diagonalisierungsverfahren",
       en: "diagonalization-procedure",
       id: "prosedur-dasar-untuk-diagonalisasi",
     },
@@ -26,6 +33,7 @@ export const linearMethodsEigen = {
   },
   eigenvalueDiagonalMatrix: {
     routeSlugs: {
+      de: "eigenwerte-diagonaler-matrizen",
       en: "eigenvalue-diagonal-matrix",
       id: "nilai-eigen-dari-matriks-diagonal-dan-segitiga",
     },
@@ -33,6 +41,7 @@ export const linearMethodsEigen = {
   },
   eigenvalueEigenvectorEigenspace: {
     routeSlugs: {
+      de: "eigenwerte-eigenvektoren-eigenraeume",
       en: "eigenvalue-eigenvector-eigenspace",
       id: "nilai-eigen-vektor-eigen-dan-ruang-eigen",
     },
@@ -40,6 +49,7 @@ export const linearMethodsEigen = {
   },
   individualEigenvalueCalculation: {
     routeSlugs: {
+      de: "einzelne-eigenwerte-berechnen",
       en: "individual-eigenvalue-calculation",
       id: "perhitungan-nilai-eigen-individu",
     },
@@ -47,6 +57,7 @@ export const linearMethodsEigen = {
   },
   jordanNormalForm: {
     routeSlugs: {
+      de: "jordansche-normalform",
       en: "jordan-normal-form",
       id: "trigonalisasi-dan-bentuk-normal-jordan",
     },
@@ -54,6 +65,7 @@ export const linearMethodsEigen = {
   },
   numericalEigenvalueCalculation: {
     routeSlugs: {
+      de: "numerische-eigenwertberechnung",
       en: "numerical-eigenvalue-calculation",
       id: "perhitungan-numerik-dari-nilai-eigen",
     },
@@ -61,6 +73,7 @@ export const linearMethodsEigen = {
   },
   spectralComplexMatrix: {
     routeSlugs: {
+      de: "spektralsatz-fuer-komplexe-matrizen",
       en: "spectral-complex-matrix",
       id: "teorema-spektral-untuk-matriks-kompleks",
     },
@@ -68,13 +81,18 @@ export const linearMethodsEigen = {
   },
   spectralRealMatrix: {
     routeSlugs: {
+      de: "spektralsatz-fuer-reelle-matrizen",
       en: "spectral-real-matrix",
       id: "teorema-spektral-untuk-matriks-nyata",
     },
     slug: "spectral-real-matrix",
   },
   spectralTheorem: {
-    routeSlugs: { en: "spectral-theorem", id: "teorema-spektral" },
+    routeSlugs: {
+      de: "spektralsatz",
+      en: "spectral-theorem",
+      id: "teorema-spektral",
+    },
     slug: "spectral-theorem",
   },
 } as const;

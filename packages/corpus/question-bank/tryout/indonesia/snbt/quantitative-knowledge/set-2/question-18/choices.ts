@@ -2,6 +2,28 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 // Date: 2025-11-22
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$0$$",
+      value: false,
+    },
+    {
+      label: "$$1$$",
+      value: true,
+    },
+    {
+      label: "$$2$$",
+      value: false,
+    },
+    {
+      label: "$$3$$",
+      value: false,
+    },
+    {
+      label: "$$4$$",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "$$0$$",

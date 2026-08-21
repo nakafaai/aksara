@@ -25,6 +25,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
       ],
       key: "secondary-mathematics-number-algebra",
       materialCard: {
+        de: {
+          description: "Vertiefe Algebra anhand von Gleichungen und Potenzen.",
+          title: "Zahlen und Algebra",
+        },
         en: {
           description: "Build algebra skills from equations and powers.",
           title: "Number and algebra",
@@ -36,6 +40,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
       },
       order: 10,
       translations: {
+        de: { routeSlug: "zahlen-und-algebra", title: "Zahlen und Algebra" },
         en: {
           routeSlug: "number-and-algebra",
           title: "Number and algebra",
@@ -69,6 +74,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
       ],
       key: "secondary-mathematics-geometry-statistics",
       materialCard: {
+        de: {
+          description: "Nutze Formen, Daten und Zufall in Sachaufgaben.",
+          title: "Geometrie, Statistik und Wahrscheinlichkeit",
+        },
         en: {
           description: "Use shapes, data, and chance in problems.",
           title: "Geometry, statistics, and probability",
@@ -80,6 +89,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
       },
       order: 20,
       translations: {
+        de: {
+          routeSlug: "geometrie-statistik-und-wahrscheinlichkeit",
+          title: "Geometrie, Statistik und Wahrscheinlichkeit",
+        },
         en: {
           routeSlug: "geometry-statistics-and-probability",
           title: "Geometry, statistics, and probability",
@@ -96,6 +109,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
   materialDomain: "mathematics",
   order: 10,
   translations: {
+    de: { routeSlug: "mathematik", title: "Mathematik" },
     en: {
       routeSlug: "mathematics",
       title: "Mathematics",
@@ -132,6 +146,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
       ],
       key: "secondary-additional-mathematics-functions-calculus",
       materialCard: {
+        de: {
+          description: "Verbinde Funktionen mit Änderungsraten und Summen.",
+          title: "Funktionen und Analysis",
+        },
         en: {
           description: "Connect functions with rates and accumulated change.",
           title: "Functions and calculus",
@@ -143,6 +161,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
       },
       order: 10,
       translations: {
+        de: {
+          routeSlug: "funktionen-und-analysis",
+          title: "Funktionen und Analysis",
+        },
         en: {
           routeSlug: "functions-and-calculus",
           title: "Functions and calculus",
@@ -159,6 +181,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
   materialDomain: "mathematics",
   order: 20,
   translations: {
+    de: {
+      routeSlug: "vertiefende-mathematik",
+      title: "Vertiefende Mathematik",
+    },
     en: {
       routeSlug: "additional-mathematics",
       title: "Additional Mathematics",

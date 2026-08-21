@@ -10,8 +10,6 @@ import type {
 import { Effect } from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
 import type { ArticleEntry } from "#corpus/articles/registry";
-import { GERMAN_GLOSSARY_SOURCE_PATHS } from "#corpus/locale/german/glossary";
-import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import type { MaterialEntry } from "#corpus/material/registry";
 import { decodePagePreviewEntry } from "#corpus/pages/preview";
@@ -26,73 +24,12 @@ import {
 const ARTICLE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/source.ts"
 );
-const ARTICLE_LOCALE_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/articles/locale.ts"
-);
-const ARTICLE_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
-  "packages/corpus/articles/locale-registry.ts"
-);
 const MATERIAL_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/material/source.ts"
-);
-const MATERIAL_LOCALE_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/material/locale.ts"
-);
-const MATERIAL_LOCALE_REGISTRY = CorpusSourcePathSchema.make(
-  "packages/corpus/material/locale-registry.ts"
 );
 const PAGE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/pages/source.ts"
 );
-const GERMAN_GLOSSARY_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/locale/german/glossary.ts"
-);
-/** Returns exact selected article overlay owners without expanding the registry. */
-function articleLocaleDependencies(entry: ArticleEntry) {
-  const appLocale = localeOverlayAppLocaleCode(entry.route.appLocale);
-  if (appLocale === undefined) {
-    return [];
-  }
-  return [
-    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_OWNER },
-    { mode: "restart" as const, sourcePath: ARTICLE_LOCALE_REGISTRY },
-    {
-      mode: "restart" as const,
-      sourcePath: CorpusSourcePathSchema.make(
-        `packages/corpus/articles/${entry.route.category}/locale/${appLocale}.ts`
-      ),
-    },
-    {
-      mode: "restart" as const,
-      sourcePath: CorpusSourcePathSchema.make(
-        `packages/corpus/${entry.sourceRoot}/locale/${appLocale}.ts`
-      ),
-    },
-  ];
-}
-
-/** Returns exact selected material overlay owners without expanding the registry. */
-function materialLocaleDependencies(entry: MaterialEntry) {
-  const appLocale = localeOverlayAppLocaleCode(entry.route.appLocale);
-  if (appLocale === undefined) {
-    return [];
-  }
-  return [
-    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_OWNER },
-    { mode: "restart" as const, sourcePath: MATERIAL_LOCALE_REGISTRY },
-    { mode: "restart" as const, sourcePath: GERMAN_GLOSSARY_OWNER },
-    ...GERMAN_GLOSSARY_SOURCE_PATHS.map((sourcePath) => ({
-      mode: "restart" as const,
-      sourcePath,
-    })),
-    {
-      mode: "restart" as const,
-      sourcePath: CorpusSourcePathSchema.make(
-        `packages/corpus/${entry.assetRoot}/locale/${appLocale}.ts`
-      ),
-    },
-  ];
-}
 
 /** Requires one source already made unique by its canonical registry. */
 const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
@@ -163,7 +100,6 @@ const buildArticleEntry = Effect.fn("AksaraCorpus.buildPreviewArticleEntry")(
           dependencies: [
             { mode: "restart", sourcePath: ARTICLE_OWNER },
             ...(yield* dependenciesFor(sourceModule)),
-            ...articleLocaleDependencies(entry),
           ],
           directories: [],
           entry,
@@ -225,7 +161,6 @@ const buildMaterialEntry = Effect.fn("AksaraCorpus.buildPreviewMaterialEntry")(
           dependencies: [
             { mode: "restart", sourcePath: MATERIAL_OWNER },
             ...(yield* dependenciesFor(sourceModule)),
-            ...materialLocaleDependencies(entry),
           ],
           directories: [],
           entry,

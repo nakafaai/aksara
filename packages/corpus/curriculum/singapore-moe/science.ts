@@ -25,6 +25,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       ],
       key: "secondary-science-physics",
       materialCard: {
+        de: {
+          description: "Miss Bewegung, Vektoren und Energie präzise.",
+          title: "Physik",
+        },
         en: {
           description: "Measure motion, vectors, and energy clearly.",
           title: "Physics",
@@ -37,6 +41,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       materialDomain: "physics",
       order: 10,
       translations: {
+        de: { routeSlug: "physik", title: "Physik" },
         en: {
           routeSlug: "physics",
           title: "Physics",
@@ -64,6 +69,11 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       ],
       key: "secondary-science-chemistry",
       materialCard: {
+        de: {
+          description:
+            "Erkläre Stoffe und Reaktionen anhand von Beobachtungen.",
+          title: "Chemie",
+        },
         en: {
           description: "Model matter and reactions from evidence.",
           title: "Chemistry",
@@ -76,6 +86,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       materialDomain: "chemistry",
       order: 20,
       translations: {
+        de: { routeSlug: "chemie", title: "Chemie" },
         en: {
           routeSlug: "chemistry",
           title: "Chemistry",
@@ -103,6 +114,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       ],
       key: "secondary-science-biology",
       materialCard: {
+        de: {
+          description: "Untersuche Lebewesen und Veränderungen in Ökosystemen.",
+          title: "Biologie",
+        },
         en: {
           description: "Study living systems and ecosystem change.",
           title: "Biology",
@@ -115,6 +130,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       materialDomain: "biology",
       order: 30,
       translations: {
+        de: { routeSlug: "biologie", title: "Biologie" },
         en: {
           routeSlug: "biology",
           title: "Biology",
@@ -130,6 +146,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
   key: "secondary-science",
   order: 30,
   translations: {
+    de: { routeSlug: "naturwissenschaften", title: "Naturwissenschaften" },
     en: {
       routeSlug: "science",
       title: "Science",

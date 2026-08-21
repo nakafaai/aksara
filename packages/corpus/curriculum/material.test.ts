@@ -1,35 +1,14 @@
-import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import { defineCurriculum, materialNode } from "#corpus/curriculum/schema";
-import { addLocalizedSource } from "#corpus/locale/source";
 import { decodeMaterialDomains } from "#corpus/material/domain";
-import { PublicRouteSegmentSchema } from "#corpus/route/schema";
-import {
-  germanMaterialCatalog,
-  lessonMaterialSource,
-} from "#corpus/test/material";
+import { lessonMaterialSource } from "#corpus/test/material";
 
 describe("curriculum material", () => {
-  it("derives complete overlay display copy from one localized material", async () => {
-    const source = lessonMaterialSource();
-    const [locale] = germanMaterialCatalog().sources;
-    const german = AppLocaleSchema.make("de");
-    const material = {
-      ...source,
-      routeSlugs: addLocalizedSource(
-        source.routeSlugs,
-        german,
-        PublicRouteSegmentSchema.make(locale.routeSlug)
-      ),
-      translations: addLocalizedSource(
-        source.translations,
-        german,
-        locale.translation
-      ),
-    };
+  it("derives complete German display copy from one localized material", async () => {
+    const material = lessonMaterialSource();
     const node = materialNode({
       key: "localized-material",
       level: "lesson",
@@ -55,8 +34,8 @@ describe("curriculum material", () => {
     );
 
     expect(projected.translations.de).toEqual({
-      routeSlug: locale.routeSlug,
-      title: locale.translation.title,
+      routeSlug: "funktionskomposition-und-umkehrfunktion",
+      title: "Funktionskomposition und Umkehrfunktion",
     });
   });
 });

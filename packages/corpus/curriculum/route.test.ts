@@ -28,6 +28,15 @@ describe("curriculum route projection", () => {
     expect(routes).toHaveLength(585);
     expect(roots).toHaveLength(12);
     expect(materialRoutes).toHaveLength(288);
+    expect(routes.filter(({ appLocale }) => appLocale === "de")).toHaveLength(
+      195
+    );
+    expect(routes.filter(({ appLocale }) => appLocale === "en")).toHaveLength(
+      195
+    );
+    expect(routes.filter(({ appLocale }) => appLocale === "id")).toHaveLength(
+      195
+    );
     expect(routes.filter(({ sitemap }) => sitemap)).toHaveLength(78);
     expect(new Set(routes.map(({ sourcePath }) => sourcePath))).toEqual(
       new Set([

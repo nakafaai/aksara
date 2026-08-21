@@ -2,7 +2,7 @@ import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Effect, Schema } from "effect";
-import { embeddedLocalizedSourceMapSchema } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Checks the stable two-segment grammar of one public page source root. */
 function isPageRoot(sourceRoot: string) {
@@ -29,7 +29,7 @@ export const PageRootSchema = Schema.String.pipe(
 /** Complete reviewed source contract for one localized public page family. */
 export const PageSourceSchema = Schema.Struct({
   pageKey: PageKeySchema,
-  publicPaths: embeddedLocalizedSourceMapSchema(PublicPathSchema),
+  publicPaths: localizedSourceMapSchema(PublicPathSchema),
   sourceRoot: PageRootSchema,
 });
 export type PageSource = typeof PageSourceSchema.Type;

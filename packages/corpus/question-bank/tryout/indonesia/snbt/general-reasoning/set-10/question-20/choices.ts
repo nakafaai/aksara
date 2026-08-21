@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "Nur $$3$$.",
+      value: true,
+    },
+    {
+      label: "$$1$$ und $$4$$",
+      value: false,
+    },
+    {
+      label: "$$3$$ und $$4$$",
+      value: false,
+    },
+    {
+      label: "$$2$$, $$3$$ und $$4$$",
+      value: false,
+    },
+    {
+      label: "$$1$$, $$2$$, $$3$$ und $$4$$",
+      value: false,
+    },
+  ],
   en: [
     { label: "$$3$$ only", value: true },
     { label: "$$1$$ and $$4$$", value: false },

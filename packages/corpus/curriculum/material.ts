@@ -1,18 +1,17 @@
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import {
+  APP_LOCALE_CODES,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
 import type {
   CurriculumMaterialNode,
+  CurriculumNodeTranslationMapSchema,
   CurriculumSource,
-  LocalizedCurriculumNodeTranslationMapSchema,
 } from "#corpus/curriculum/schema";
-import {
-  addLocalizedSource,
-  LOCALE_OVERLAY_APP_LOCALE_ENTRIES,
-  sourceLocaleValue,
-} from "#corpus/locale/source";
+import { sourceLocaleValue } from "#corpus/locale/source";
 import {
   type MaterialDomainDescriptor,
   requireMaterialDomain,
@@ -37,18 +36,9 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
     nodeKey: CurriculumProjectionError["nodeKey"],
     programKey: CurriculumProjectionError["programKey"]
   ) {
-    let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type =
-      {
-        en: {
-          routeSlug: material.routeSlugs.en,
-          title: material.translations.en.title,
-        },
-        id: {
-          routeSlug: material.routeSlugs.id,
-          title: material.translations.id.title,
-        },
-      };
-    for (const { appLocale } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
+    let translations: typeof CurriculumNodeTranslationMapSchema.Type = {};
+    for (const code of APP_LOCALE_CODES) {
+      const appLocale = AppLocaleSchema.make(code);
       const routeSlug = sourceLocaleValue(material.routeSlugs, appLocale);
       const translation = sourceLocaleValue(material.translations, appLocale);
       if ((routeSlug === undefined) !== (translation === undefined)) {
@@ -60,10 +50,13 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
         });
       }
       if (routeSlug !== undefined && translation !== undefined) {
-        translations = addLocalizedSource(translations, appLocale, {
-          routeSlug,
-          title: translation.title,
-        });
+        translations = {
+          ...translations,
+          [code]: {
+            routeSlug,
+            title: translation.title,
+          },
+        };
       }
     }
     return translations;
@@ -84,12 +77,16 @@ const duplicatesMaterialDisplay = Effect.fn(
     nodeKey,
     programKey
   );
-  return ACTIVE_APP_LOCALES.every((appLocale) => {
+  return APP_LOCALE_CODES.every((code) => {
+    const appLocale = AppLocaleSchema.make(code);
     const overrideCopy = sourceLocaleValue(override, appLocale);
+    if (overrideCopy === undefined) {
+      return true;
+    }
     const materialCopy = sourceLocaleValue(translations, appLocale);
     return (
-      overrideCopy?.routeSlug === materialCopy?.routeSlug &&
-      overrideCopy?.title === materialCopy?.title
+      overrideCopy.routeSlug === materialCopy?.routeSlug &&
+      overrideCopy.title === materialCopy?.title
     );
   });
 });
@@ -150,7 +147,7 @@ export const resolveCurriculumMaterial = Effect.fn(
     });
   }
 
-  let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type;
+  let translations: typeof CurriculumNodeTranslationMapSchema.Type;
   if (materials.length > 1) {
     if (!node.displayOverride) {
       return yield* new CurriculumProjectionError({

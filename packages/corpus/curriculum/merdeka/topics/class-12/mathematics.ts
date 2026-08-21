@@ -12,6 +12,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-analytic-geometry",
     materialCard: {
+      de: {
+        description: "Leite Kreisgleichungen aus der Geometrie her.",
+        title: "Analytische Geometrie",
+      },
       en: {
         description: "Derive circle equations from geometry.",
         title: "Analytic Geometry",
@@ -23,6 +27,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 10,
     translations: {
+      de: {
+        routeSlug: "analytische-geometrie",
+        title: "Analytische Geometrie",
+      },
       en: { routeSlug: "analytic-geometry", title: "Analytic Geometry" },
       id: { routeSlug: "geometri-analitik", title: "Geometri Analitik" },
     },
@@ -38,6 +46,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-circle-arc-sector",
     materialCard: {
+      de: {
+        description: "Verbinde Bogenlänge, Winkel und Sektorfläche.",
+        title: "Kreisbögen und Kreissektoren",
+      },
       en: {
         description: "Relate arcs, angles, and sector area.",
         title: "Arcs and Sectors",
@@ -49,6 +61,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 20,
     translations: {
+      de: {
+        routeSlug: "kreisboegen-und-kreissektoren",
+        title: "Kreisbögen und Kreissektoren",
+      },
       en: { routeSlug: "circle-arc-sector", title: "Arcs and Sectors" },
       id: {
         routeSlug: "busur-dan-juring-lingkaran",
@@ -67,6 +83,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-combinatorics",
     materialCard: {
+      de: {
+        description: "Entwickle Potenzen mit Binomialkoeffizienten.",
+        title: "Kombinatorik",
+      },
       en: {
         description: "Expand powers with binomial coefficients.",
         title: "Combinatorics",
@@ -78,6 +98,7 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 30,
     translations: {
+      de: { routeSlug: "kombinatorik", title: "Kombinatorik" },
       en: { routeSlug: "combinatorics", title: "Combinatorics" },
       id: { routeSlug: "kombinatorik", title: "Kombinatorika" },
     },
@@ -93,6 +114,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-data-analysis-probability",
     materialCard: {
+      de: {
+        description: "Modelliere wiederholte Erfolge mit Wahrscheinlichkeiten.",
+        title: "Datenanalyse und Wahrscheinlichkeit",
+      },
       en: {
         description: "Model repeated success with probability.",
         title: "Data Analysis and Probability",
@@ -104,6 +129,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 40,
     translations: {
+      de: {
+        routeSlug: "datenanalyse-und-wahrscheinlichkeit",
+        title: "Datenanalyse und Wahrscheinlichkeit",
+      },
       en: {
         routeSlug: "data-analysis-probability",
         title: "Data Analysis and Probability",
@@ -125,6 +154,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-derivative-function",
     materialCard: {
+      de: {
+        description: "Nutze Ableitungen für Änderungsraten und Extremwerte.",
+        title: "Ableitungen",
+      },
       en: {
         description: "Use derivatives for rates and height.",
         title: "Derivatives",
@@ -136,6 +169,7 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 50,
     translations: {
+      de: { routeSlug: "ableitungen", title: "Ableitungen" },
       en: { routeSlug: "derivative-function", title: "Derivatives" },
       id: { routeSlug: "turunan-fungsi", title: "Turunan" },
     },
@@ -151,6 +185,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-function-transformation",
     materialCard: {
+      de: {
+        description: "Verschiebe, strecke und spiegle Funktionsgraphen.",
+        title: "Funktionstransformationen",
+      },
       en: {
         description: "Shift, stretch, and reflect function graphs.",
         title: "Function Transformations",
@@ -162,6 +200,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 60,
     translations: {
+      de: {
+        routeSlug: "funktionstransformationen",
+        title: "Funktionstransformationen",
+      },
       en: {
         routeSlug: "function-transformation",
         title: "Function Transformations",
@@ -180,6 +222,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-integral",
     materialCard: {
+      de: {
+        description: "Bestimme Flächeninhalte mit bestimmten Integralen.",
+        title: "Integrale",
+      },
       en: {
         description: "Find areas from definite integrals.",
         title: "Integrals",
@@ -191,6 +237,7 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 70,
     translations: {
+      de: { routeSlug: "integrale", title: "Integrale" },
       en: { routeSlug: "integral", title: "Integrals" },
       id: { routeSlug: "integral", title: "Integral" },
     },
@@ -206,6 +253,10 @@ export const merdekaClass12MathematicsTopicNodes = [
     ],
     key: "class-12-mathematics-limit",
     materialCard: {
+      de: {
+        description: "Untersuche Veränderungen mithilfe von Grenzwerten.",
+        title: "Grenzwerte",
+      },
       en: {
         description: "Use limits to read change.",
         title: "Limits",
@@ -217,6 +268,7 @@ export const merdekaClass12MathematicsTopicNodes = [
     },
     order: 80,
     translations: {
+      de: { routeSlug: "grenzwerte", title: "Grenzwerte" },
       en: { routeSlug: "limit", title: "Limits" },
       id: { routeSlug: "limit", title: "Limit" },
     },

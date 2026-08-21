@@ -5,10 +5,11 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.circle",
   kind: "lesson",
-  routeSlugs: { en: "circle", id: "lingkaran" },
+  routeSlugs: { de: "kreisgeometrie", en: "circle", id: "lingkaran" },
   sections: [
     {
       routeSlugs: {
+        de: "mittelpunkt-und-umfangswinkel",
         en: "central-angle-and-inscribed-angle",
         id: "sudut-pusat-dan-sudut-keliling",
       },
@@ -16,17 +17,23 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "kreis-und-kreisbogen",
         en: "circle-and-arc-circle",
         id: "lingkaran-dan-busur-lingkaran",
       },
       slug: "circle-and-arc-circle",
     },
     {
-      routeSlugs: { en: "circle-and-chord", id: "lingkaran-dan-tali-busur" },
+      routeSlugs: {
+        de: "kreis-und-sehne",
+        en: "circle-and-chord",
+        id: "lingkaran-dan-tali-busur",
+      },
       slug: "circle-and-chord",
     },
     {
       routeSlugs: {
+        de: "kreis-und-tangente",
         en: "circle-and-tangent-line",
         id: "lingkaran-dan-garis-singgung",
       },
@@ -34,6 +41,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "aeussere-und-innere-gemeinsame-tangente",
         en: "external-tangent-line-and-internal-tangent-line",
         id: "garis-singgung-persekutuan-luar-dan-dalam",
       },
@@ -41,6 +49,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "winkelsaetze-am-kreis",
         en: "properties-of-angle-in-circle",
         id: "sifat-sudut-dalam-lingkaran",
       },
@@ -49,6 +58,10 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
   ],
   slug: "circle",
   translations: {
+    de: {
+      description: "Vergleiche Mittel- und Umfangswinkel am Kreis.",
+      title: "Kreisgeometrie",
+    },
     en: {
       description: "Relate central and inscribed angles in circles.",
       title: "Circle",

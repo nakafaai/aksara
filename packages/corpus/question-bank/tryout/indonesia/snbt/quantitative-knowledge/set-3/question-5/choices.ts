@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$\\frac{x}{28} + \\frac{4}{7}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{x}{28} + \\frac{2}{7}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{x}{28} - \\frac{2}{7}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{x}{28} + \\frac{3}{7}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{x}{28} - \\frac{3}{7}$$",
+      value: true,
+    },
+  ],
   en: [
     {
       label: "$$\\frac{x}{28} + \\frac{4}{7}$$",

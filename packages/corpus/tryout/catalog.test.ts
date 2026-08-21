@@ -83,6 +83,10 @@ describe("tryout catalog", () => {
   it("preserves an authored country description when present", async () => {
     const sources = await Effect.runPromise(decodeTryoutRegistry());
     const source = requireNode(sources[0], "try-out source");
+    const english = requireNode(
+      source.countryTranslations.en,
+      "English country translation"
+    );
     const description = "Official Indonesian assessment catalog.";
     const rows = await Effect.runPromise(
       projectTryoutCatalog([
@@ -90,7 +94,7 @@ describe("tryout catalog", () => {
           ...source,
           countryTranslations: {
             ...source.countryTranslations,
-            en: { ...source.countryTranslations.en, description },
+            en: { ...english, description },
           },
         },
       ])
@@ -101,7 +105,7 @@ describe("tryout catalog", () => {
     );
   });
 
-  it("projects the permanent German overlay through the active publication seam", async () => {
+  it("projects source-owned German copy through the active publication seam", async () => {
     const sources = await Effect.runPromise(decodeTryoutRegistry());
     const rows = await Effect.runPromise(projectTryoutCatalog(sources));
 

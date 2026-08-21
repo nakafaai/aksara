@@ -10,7 +10,7 @@ import { decodePageSources, readPageDocument } from "#corpus/pages/source";
 import { pageSource } from "#corpus/test/page";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
@@ -58,7 +58,7 @@ describe("public page source", () => {
 
   it("reads one registry-owned body byte-exactly", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+      decodePageRegistry([pageSource()], englishIndonesianLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");
@@ -79,7 +79,7 @@ describe("public page source", () => {
 
   it("maps one missing reviewed body to a typed read failure", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+      decodePageRegistry([pageSource()], englishIndonesianLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");

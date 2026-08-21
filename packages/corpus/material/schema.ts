@@ -5,9 +5,9 @@ import {
   isLowerKebabPath,
 } from "@nakafa/aksara-contracts/text/syntax";
 import { Effect, Schema } from "effect";
-import { EmbeddedAppLocaleCodeSchema } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
-import { PublicRouteSlugMapSchema } from "#corpus/route/schema";
+import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
 const MaterialSlugSchema = Schema.String.pipe(
   Schema.check(
@@ -34,14 +34,13 @@ const LocalizedDescriptionSchema = Schema.Struct({
   title: Schema.String,
 });
 
-const LocaleDescriptionMapSchema = Schema.Record(
-  EmbeddedAppLocaleCodeSchema,
+const LocaleDescriptionMapSchema = localizedSourceMapSchema(
   LocalizedDescriptionSchema
 );
 
 /** One ordered localized lesson section in a material source. */
 export const LessonMaterialSectionSchema = Schema.Struct({
-  routeSlugs: PublicRouteSlugMapSchema,
+  routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
   slug: MaterialSlugSchema,
 });
 export type LessonMaterialSection = typeof LessonMaterialSectionSchema.Type;
@@ -52,7 +51,7 @@ export const LessonMaterialSourceSchema = Schema.Struct({
   domain: MaterialDomainSchema,
   key: MaterialKeySchema,
   kind: Schema.Literal("lesson"),
-  routeSlugs: PublicRouteSlugMapSchema,
+  routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
   sections: Schema.Array(LessonMaterialSectionSchema),
   slug: MaterialSlugSchema,
   translations: LocaleDescriptionMapSchema,

@@ -11,7 +11,7 @@ import {
   TryoutVisibilitySchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
-import { EmbeddedAppLocaleCodeSchema } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 import {
   PublicRouteSegmentSchema,
@@ -20,8 +20,7 @@ import {
 
 const DEFAULT_SECTION_VISIBILITY = "visible";
 
-const TryoutTranslationMapSchema = Schema.Record(
-  EmbeddedAppLocaleCodeSchema,
+const TryoutTranslationMapSchema = localizedSourceMapSchema(
   Schema.Struct({
     description: Schema.optional(Schema.String),
     title: Schema.String,

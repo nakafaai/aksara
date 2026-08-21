@@ -9,7 +9,11 @@ export const lessonAiDsLinearMethodsMaterial = defineLessonMaterial({
   domain: "ai-ds",
   key: "lesson.ai-ds.linear-methods",
   kind: "lesson",
-  routeSlugs: { en: "linear-methods", id: "metode-linear-ai" },
+  routeSlugs: {
+    de: "lineare-methoden-der-ki",
+    en: "linear-methods",
+    id: "metode-linear-ai",
+  },
   sections: [
     linearMethodsEigen.allEigenvaluesCalculation,
     linearMethodsModels.approximationFunctionPolynomial,
@@ -54,6 +58,10 @@ export const lessonAiDsLinearMethodsMaterial = defineLessonMaterial({
   ],
   slug: "linear-methods",
   translations: {
+    de: {
+      description: "Berechne Eigenwerte mit der QR-Iteration.",
+      title: "Lineare Methoden der KI",
+    },
     en: {
       description: "Estimate eigenvalues through QR iteration.",
       title: "Linear Methods of AI",

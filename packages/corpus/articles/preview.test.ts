@@ -8,7 +8,7 @@ import {
   decodeArticlePreviewEntry,
 } from "#corpus/articles/preview";
 import { selectArticleEntries } from "#corpus/preview/public";
-import { articleSource, germanArticleCatalog } from "#corpus/test/article";
+import { articleSource } from "#corpus/test/article";
 import { corpusRoot } from "#corpus/test/question-layer";
 
 const englishPath = CorpusSourcePathSchema.make(
@@ -19,13 +19,9 @@ const germanPath = CorpusSourcePathSchema.make(
 );
 
 describe("article preview projection", () => {
-  it("projects base and locale-owned bodies through their distinct owners", async () => {
+  it("projects every selected body through one source owner", async () => {
     const entries = await Effect.runPromise(
-      decodeArticlePreviewEntries(
-        [englishPath, germanPath],
-        [articleSource()],
-        germanArticleCatalog()
-      )
+      decodeArticlePreviewEntries([englishPath, germanPath], [articleSource()])
     );
 
     expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
@@ -43,14 +39,10 @@ describe("article preview projection", () => {
 
   it("returns one exact selected entry and no invented unselected body", async () => {
     const selected = await Effect.runPromise(
-      decodeArticlePreviewEntry(
-        germanPath,
-        [articleSource()],
-        germanArticleCatalog()
-      )
+      decodeArticlePreviewEntry(germanPath, [articleSource()])
     );
     const empty = await Effect.runPromise(
-      decodeArticlePreviewEntries([], [articleSource()], germanArticleCatalog())
+      decodeArticlePreviewEntries([], [articleSource()])
     );
 
     if (selected === undefined) {
@@ -67,25 +59,11 @@ describe("article preview projection", () => {
 
     expect(selected?.sourcePath).toBe(germanPath);
     expect(empty).toEqual([]);
-    expect(selection.sources[0].dependencies.slice(-4)).toEqual([
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/articles/locale.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/articles/locale-registry.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/articles/politics/locale/de.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath:
-          "packages/corpus/articles/politics/dynastic-politics/asian-values/locale/de.ts",
-      },
-    ]);
+    expect(selection.sources[0].dependencies).toContainEqual({
+      mode: "restart",
+      sourcePath:
+        "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
+    });
     expect(repeated.sources[0].dependencies).toEqual(
       selection.sources[0].dependencies
     );

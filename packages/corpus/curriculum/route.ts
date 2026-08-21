@@ -14,7 +14,6 @@ import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect } from "effect";
 
 import { addMaterialContext } from "#corpus/curriculum/context";
-import { localizeCurriculumMaterials } from "#corpus/curriculum/material-locale";
 import {
   type CurriculumRouteContext,
   projectCurriculumNodeRoutes,
@@ -125,40 +124,28 @@ export const projectCurriculumRoutes = Effect.fn(
   "AksaraCorpus.projectCurriculumRoutes"
 )(function* (input: {
   readonly curricula: readonly CurriculumSource[];
-  readonly curriculumLocaleInput?: unknown;
   readonly domains?: readonly MaterialDomainDescriptor[];
   readonly appLocales?: readonly AppLocale[];
-  readonly materialLocaleInput?: unknown;
   readonly materials: readonly LessonMaterialSource[];
   readonly programs: readonly LearningProgram[];
 }) {
   const appLocales = input.appLocales ?? ACTIVE_APP_LOCALES;
   const domains = input.domains ?? (yield* decodeMaterialDomains());
-  const localized = yield* localizeCurriculumMaterials({
-    appLocales,
-    domains,
-    localeInput: input.materialLocaleInput,
-    materials: input.materials,
-  });
   yield* validateProgramOwnership(input.curricula, input.programs);
   const programByKey = new Map(
     input.programs.map((program) => [program.key, program])
   );
   const materialByKey = new Map(
-    localized.materials.map((material) => [material.key, material])
+    input.materials.map((material) => [material.key, material])
   );
   const nodes = yield* projectCurriculumNodes(
     input.curricula,
-    localized.materials,
-    localized.domains,
-    {
-      appLocales,
-      rows: input.curriculumLocaleInput,
-    }
+    input.materials,
+    domains
   );
   const context: CurriculumRouteContext = {
     appLocales,
-    domains: localized.domains,
+    domains,
     materialAncestors: materialAncestorIdentities(nodes),
     materialByKey,
     programByKey,

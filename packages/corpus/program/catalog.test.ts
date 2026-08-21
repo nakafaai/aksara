@@ -1,3 +1,4 @@
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
@@ -18,7 +19,7 @@ if (!(first && second)) {
 
 /** Returns one typed catalog failure without a FiberFailure wrapper. */
 function reject(input: unknown) {
-  return Effect.runPromise(decodeProgramCatalog(input, []).pipe(Effect.flip));
+  return Effect.runPromise(decodeProgramCatalog(input).pipe(Effect.flip));
 }
 
 describe("learning program catalog", () => {
@@ -37,6 +38,15 @@ describe("learning program catalog", () => {
       10, 20, 30, 40, 50, 60,
     ]);
     expect(programs.every(({ sources: refs }) => refs.length > 0)).toBe(true);
+    expect(
+      programs.every(
+        ({ translations }) =>
+          translations.length === ACTIVE_APP_LOCALES.length &&
+          translations.every(
+            ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALES[index]
+          )
+      )
+    ).toBe(true);
   });
 
   it("maps invalid or excess source fields to a typed catalog error", async () => {
@@ -81,43 +91,15 @@ describe("learning program catalog", () => {
     expect(error).toBeInstanceOf(ProgramCatalogError);
   });
 
-  it("rejects German copy substituted for required embedded copy", async () => {
+  it("rejects noncanonical translation order", async () => {
     const error = await reject([
       {
         ...first,
-        translations: first.translations.map((translation) =>
-          translation.appLocale === "id"
-            ? {
-                appLocale: "de",
-                publicSlug: "deutsches-testprogramm",
-                title: "Deutsches Testprogramm",
-              }
-            : translation
-        ),
+        translations: [...first.translations].reverse(),
       },
     ]);
 
     expect(error).toBeInstanceOf(ProgramCatalogError);
-  });
-
-  it("composes reviewed German copy into active publication", async () => {
-    const german = {
-      appLocale: "de",
-      programKey: first.key,
-      publicSlug: "merdeka-lehrplan",
-      title: "Merdeka-Lehrplan",
-    };
-    const programs = await Effect.runPromise(
-      decodeProgramCatalog([{ ...first }], [german])
-    );
-    expect(programs[0]?.translations).toContainEqual({
-      appLocale: german.appLocale,
-      publicSlug: german.publicSlug,
-      title: german.title,
-    });
-    expect(programs[0]?.translations.map(({ appLocale }) => appLocale)).toEqual(
-      ["en", "id", "de"]
-    );
   });
 
   it("sorts valid source rows instead of trusting authored array order", async () => {

@@ -5,10 +5,11 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.limit",
   kind: "lesson",
-  routeSlugs: { en: "limit", id: "limit" },
+  routeSlugs: { de: "grenzwerte", en: "limit", id: "limit" },
   sections: [
     {
       routeSlugs: {
+        de: "anwendungen-von-grenzwerten",
         en: "application-of-limit-function",
         id: "aplikasi-limit-fungsi",
       },
@@ -16,6 +17,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "begriff-des-grenzwerts",
         en: "concept-of-limit-function",
         id: "konsep-limit-fungsi",
       },
@@ -23,6 +25,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "grenzwerte-algebraischer-funktionen",
         en: "limit-of-algebraic-function",
         id: "limit-fungsi-aljabar",
       },
@@ -30,6 +33,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "grenzwerte-trigonometrischer-funktionen",
         en: "limit-of-trigonometric-function",
         id: "limit-fungsi-trigonometri",
       },
@@ -37,6 +41,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "eigenschaften-von-grenzwerten",
         en: "properties-of-limit-function",
         id: "sifat-limit-fungsi",
       },
@@ -45,6 +50,10 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
   ],
   slug: "limit",
   translations: {
+    de: {
+      description: "Nutze Grenzwerte, um Veränderungen zu beschreiben.",
+      title: "Grenzwerte",
+    },
     en: {
       description: "Use limits to read change in real situations.",
       title: "Limits",

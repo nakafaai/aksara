@@ -21,24 +21,13 @@ import {
   MaterialLessonRouteSchema,
 } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema } from "effect";
-import {
-  appLocaleCode,
-  localeOverlayAppLocaleCode,
-  requireSourceLocale,
-} from "#corpus/locale/source";
+import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
   type MaterialDomainDescriptor,
   MaterialDomainDescriptorSchema,
   requireMaterialDomain,
 } from "#corpus/material/domain";
-import {
-  decodeMaterialLocaleCatalog,
-  type MaterialLocaleCatalog,
-  MaterialLocaleCatalogSchema,
-  requireMaterialLocaleBinding,
-} from "#corpus/material/locale";
-import { validateMaterialLocaleCatalog } from "#corpus/material/locale-catalog";
 import { materialLessonPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 import { LessonMaterialSourceSchema } from "#corpus/material/schema";
@@ -147,27 +136,12 @@ export const projectMaterial = Effect.fn("AksaraCorpus.projectMaterial")(
 /** Expands one decoded material source into active locale-specific bodies. */
 const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
   binding: MaterialSourceBinding,
-  localeCatalog: MaterialLocaleCatalog,
   appLocales: ActiveAppLocaleList
 ) {
   const sections = yield* Effect.forEach(appLocales, (appLocale) =>
-    Effect.gen(function* () {
-      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
-      const projectionBinding =
-        overlayLocale === undefined
-          ? binding
-          : yield* requireMaterialLocaleBinding(
-              binding.descriptor,
-              binding.source,
-              localeCatalog,
-              overlayLocale
-            );
-      return yield* Effect.forEach(
-        projectionBinding.source.sections,
-        (section, sectionIndex) =>
-          projectMaterial(projectionBinding, section, sectionIndex, appLocale)
-      );
-    })
+    Effect.forEach(binding.source.sections, (section, sectionIndex) =>
+      projectMaterial(binding, section, sectionIndex, appLocale)
+    )
   );
   return sections.flat();
 });
@@ -242,26 +216,13 @@ export const decodeMaterialRegistry = Effect.fn(
 )(function* (
   input?: unknown,
   domainDescriptors?: readonly MaterialDomainDescriptor[],
-  localeInput?: unknown,
   appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
   const bindings = yield* validateMaterialSources(sources, descriptors);
-  const needsLocaleOverlays = appLocales.some(
-    (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
-  );
-  const localeCatalog =
-    needsLocaleOverlays || localeInput !== undefined
-      ? yield* decodeMaterialLocaleCatalog(descriptors, localeInput)
-      : MaterialLocaleCatalogSchema.make({ domains: [], sources: [] });
-  yield* validateMaterialLocaleCatalog({
-    catalog: localeCatalog,
-    descriptors,
-    sources,
-  });
   const expanded = yield* Effect.forEach(bindings, (binding) =>
-    expandMaterial(binding, localeCatalog, appLocales)
+    expandMaterial(binding, appLocales)
   );
 
   const entries = yield* Schema.decodeUnknownEffect(

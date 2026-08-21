@@ -6,55 +6,107 @@ export const lessonMathematicsExponentialLogarithmMaterial =
     domain: "mathematics",
     key: "lesson.mathematics.exponential-logarithm",
     kind: "lesson",
-    routeSlugs: { en: "exponential-logarithm", id: "eksponen-dan-logaritma" },
+    routeSlugs: {
+      de: "potenzen-und-logarithmen",
+      en: "exponential-logarithm",
+      id: "eksponen-dan-logaritma",
+    },
     sections: [
       {
-        routeSlugs: { en: "basic-concept", id: "konsep-eksponen" },
+        routeSlugs: {
+          de: "grundlagen",
+          en: "basic-concept",
+          id: "konsep-eksponen",
+        },
         slug: "basic-concept",
       },
       {
-        routeSlugs: { en: "exponential-decay", id: "peluruhan-eksponen" },
+        routeSlugs: {
+          de: "exponentieller-zerfall",
+          en: "exponential-decay",
+          id: "peluruhan-eksponen",
+        },
         slug: "exponential-decay",
       },
       {
-        routeSlugs: { en: "exponential-growth", id: "pertumbuhan-eksponen" },
+        routeSlugs: {
+          de: "exponentielles-wachstum",
+          en: "exponential-growth",
+          id: "pertumbuhan-eksponen",
+        },
         slug: "exponential-growth",
       },
       {
-        routeSlugs: { en: "function-definition", id: "definisi-fungsi" },
+        routeSlugs: {
+          de: "exponentialfunktionen",
+          en: "function-definition",
+          id: "definisi-fungsi",
+        },
         slug: "function-definition",
       },
       {
-        routeSlugs: { en: "function-exploration", id: "eksplorasi-fungsi" },
+        routeSlugs: {
+          de: "exponentialfunktionen-untersuchen",
+          en: "function-exploration",
+          id: "eksplorasi-fungsi",
+        },
         slug: "function-exploration",
       },
       {
-        routeSlugs: { en: "logarithm-definition", id: "definisi-logaritma" },
+        routeSlugs: {
+          de: "definition-des-logarithmus",
+          en: "logarithm-definition",
+          id: "definisi-logaritma",
+        },
         slug: "logarithm-definition",
       },
       {
-        routeSlugs: { en: "logarithm-properties", id: "sifat-logaritma" },
+        routeSlugs: {
+          de: "logarithmengesetze",
+          en: "logarithm-properties",
+          id: "sifat-logaritma",
+        },
         slug: "logarithm-properties",
       },
       {
-        routeSlugs: { en: "proof-properties", id: "pembuktian-sifat" },
+        routeSlugs: {
+          de: "potenzgesetze-begruenden",
+          en: "proof-properties",
+          id: "pembuktian-sifat",
+        },
         slug: "proof-properties",
       },
       {
-        routeSlugs: { en: "properties", id: "sifat-eksponen" },
+        routeSlugs: {
+          de: "potenzgesetze",
+          en: "properties",
+          id: "sifat-eksponen",
+        },
         slug: "properties",
       },
       {
-        routeSlugs: { en: "radical-form", id: "bentuk-akar" },
+        routeSlugs: {
+          de: "wurzel-und-potenzschreibweise",
+          en: "radical-form",
+          id: "bentuk-akar",
+        },
         slug: "radical-form",
       },
       {
-        routeSlugs: { en: "rationalizing-radicals", id: "merasionalkan-akar" },
+        routeSlugs: {
+          de: "nenner-rationalisieren",
+          en: "rationalizing-radicals",
+          id: "merasionalkan-akar",
+        },
         slug: "rationalizing-radicals",
       },
     ],
     slug: "exponential-logarithm",
     translations: {
+      de: {
+        description: "Von Potenzen und Wurzeln zu Funktionen und Logarithmen.",
+        title: "Potenzen und Logarithmen",
+      },
       en: {
         description: "Connect repeated multiplication to exponent patterns.",
         title: "Exponents and Logarithms",

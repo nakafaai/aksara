@@ -9,10 +9,7 @@ import {
   decodeMaterialPreviewEntry,
 } from "#corpus/material/preview";
 import { selectMaterialEntry } from "#corpus/preview/public";
-import {
-  germanMaterialCatalog,
-  lessonMaterialSource,
-} from "#corpus/test/material";
+import { lessonMaterialSource } from "#corpus/test/material";
 import { corpusRoot } from "#corpus/test/question-layer";
 
 const englishPath = CorpusSourcePathSchema.make(
@@ -33,14 +30,13 @@ async function mathematicsDomain() {
 }
 
 describe("material preview projection", () => {
-  it("projects base and locale-owned bodies through distinct metadata owners", async () => {
+  it("projects every selected body through one source owner", async () => {
     const descriptor = await mathematicsDomain();
     const entries = await Effect.runPromise(
       decodeMaterialPreviewEntries(
         [englishPath, germanPath],
         [lessonMaterialSource()],
-        [descriptor],
-        germanMaterialCatalog()
+        [descriptor]
       )
     );
 
@@ -64,17 +60,11 @@ describe("material preview projection", () => {
       decodeMaterialPreviewEntry(
         germanPath,
         [lessonMaterialSource()],
-        [descriptor],
-        germanMaterialCatalog()
+        [descriptor]
       )
     );
     const empty = await Effect.runPromise(
-      decodeMaterialPreviewEntries(
-        [],
-        [lessonMaterialSource()],
-        [descriptor],
-        germanMaterialCatalog()
-      )
+      decodeMaterialPreviewEntries([], [lessonMaterialSource()], [descriptor])
     );
 
     if (selected === undefined) {
@@ -88,32 +78,10 @@ describe("material preview projection", () => {
 
     expect(selected?.sourcePath).toBe(germanPath);
     expect(empty).toEqual([]);
-    expect(selection.sources[0].dependencies.slice(-6)).toEqual([
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/material/locale.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/material/locale-registry.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/locale/german/glossary.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/locale/german/education.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath: "packages/corpus/locale/german/product.ts",
-      },
-      {
-        mode: "restart",
-        sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/locale/de.ts",
-      },
-    ]);
+    expect(selection.sources[0].dependencies).toContainEqual({
+      mode: "restart",
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
+    });
   });
 });

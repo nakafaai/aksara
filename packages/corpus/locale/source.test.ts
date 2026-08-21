@@ -6,9 +6,6 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 
 import {
-  EMBEDDED_APP_LOCALE_CODES,
-  EmbeddedAppLocaleCodeSchema,
-  LOCALE_OVERLAY_APP_LOCALE_CODES,
   localizedSourceMapSchema,
   mapLocalizedSource,
   requireSourceLocale,
@@ -20,23 +17,7 @@ const CopySchema = localizedSourceMapSchema(
 );
 
 describe("localized source maps", () => {
-  it("keeps base embedded locales fixed and derives every overlay", () => {
-    expect(EMBEDDED_APP_LOCALE_CODES).toEqual(["en", "id"]);
-    expect(Schema.is(EmbeddedAppLocaleCodeSchema)("de")).toBe(false);
-    expect(
-      APP_LOCALE_CODES.filter((appLocale) =>
-        LOCALE_OVERLAY_APP_LOCALE_CODES.some(
-          (overlayLocale) => overlayLocale === appLocale
-        )
-      )
-    ).toEqual(LOCALE_OVERLAY_APP_LOCALE_CODES);
-    expect([
-      ...EMBEDDED_APP_LOCALE_CODES,
-      ...LOCALE_OVERLAY_APP_LOCALE_CODES,
-    ]).toEqual(APP_LOCALE_CODES);
-  });
-
-  it("requires embedded copy and admits permanent German overlay copy", () => {
+  it("admits complete and partial copy for contract-supported locales", () => {
     expect(
       Schema.decodeSync(CopySchema)({
         de: "Deutsch",
@@ -44,9 +25,10 @@ describe("localized source maps", () => {
         id: "Indonesia",
       })
     ).toEqual({ de: "Deutsch", en: "English", id: "Indonesia" });
-    expect(() =>
-      Schema.decodeUnknownSync(CopySchema)({ en: "English" })
-    ).toThrow();
+    expect(Schema.decodeSync(CopySchema)({ en: "English" })).toEqual({
+      en: "English",
+    });
+    expect(Schema.decodeSync(CopySchema)({})).toEqual({});
     expect(() =>
       Schema.decodeUnknownSync(CopySchema)(
         { en: "English", fr: "Français", id: "Indonesia" },
@@ -86,6 +68,15 @@ describe("localized source maps", () => {
       en: "en:English",
       id: "id:Indonesia",
     });
+    const partial = Schema.decodeSync(CopySchema)({ en: "English" });
+    expect(
+      mapLocalizedSource(partial, (value, locale) => `${locale}:${value}`)
+    ).toEqual({ en: "en:English" });
+    expect(
+      Object.keys(
+        mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
+      )
+    ).toEqual(APP_LOCALE_CODES);
     await expect(
       Effect.runPromise(
         traverseLocalizedSources(source, (value, locale) =>
@@ -97,5 +88,12 @@ describe("localized source maps", () => {
       en: "en:English",
       id: "id:Indonesia",
     });
+    await expect(
+      Effect.runPromise(
+        traverseLocalizedSources(partial, (value, locale) =>
+          Effect.succeed(`${locale}:${value}`)
+        )
+      )
+    ).resolves.toEqual({ en: "en:English" });
   });
 });

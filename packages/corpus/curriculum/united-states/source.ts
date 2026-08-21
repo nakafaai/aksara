@@ -13,6 +13,7 @@ export const unitedStatesCurriculum = defineCurriculum({
         usHighSchoolScienceCourseNode,
       ],
       displayGroup: {
+        de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
       },
@@ -21,6 +22,7 @@ export const unitedStatesCurriculum = defineCurriculum({
       key: "high-school",
       order: 10,
       translations: {
+        de: { routeSlug: "highschool", title: "Highschool" },
         en: {
           routeSlug: "high-school",
           title: "High School",

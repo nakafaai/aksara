@@ -1,4 +1,7 @@
-import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import {
+  APP_LOCALE_CODES,
+  type AppLocale,
+} from "@nakafa/aksara-contracts/locale";
 import {
   type MaterialDomain,
   MaterialDomainSchema,
@@ -7,17 +10,17 @@ import { ProgramNavigationIconKeySchema } from "@nakafa/aksara-contracts/program
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 import {
-  EMBEDDED_APP_LOCALE_CODES,
+  localizedSourceMapSchema,
   sourceLocaleValue,
 } from "#corpus/locale/source";
-import { PublicRouteSlugMapSchema } from "#corpus/route/schema";
+import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
 /** One reviewed material domain and its physical renderer and public routes. */
 export const MaterialDomainDescriptorSchema = Schema.Struct({
   key: MaterialDomainSchema,
   navigationIconKey: Schema.optional(ProgramNavigationIconKeySchema),
   rendererDomain: RendererDomainSchema,
-  routeSlugs: PublicRouteSlugMapSchema,
+  routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
 });
 export type MaterialDomainDescriptor =
   typeof MaterialDomainDescriptorSchema.Type;
@@ -26,31 +29,31 @@ const materialDomainSources = [
   {
     key: "ai-ds",
     rendererDomain: "ai-ds",
-    routeSlugs: { en: "ai-ds", id: "ai-ds" },
+    routeSlugs: { de: "ki-und-data-science", en: "ai-ds", id: "ai-ds" },
   },
   {
     key: "biology",
     navigationIconKey: "science",
     rendererDomain: "biology",
-    routeSlugs: { en: "biology", id: "biologi" },
+    routeSlugs: { de: "biologie", en: "biology", id: "biologi" },
   },
   {
     key: "chemistry",
     navigationIconKey: "science",
     rendererDomain: "chemistry",
-    routeSlugs: { en: "chemistry", id: "kimia" },
+    routeSlugs: { de: "chemie", en: "chemistry", id: "kimia" },
   },
   {
     key: "mathematics",
     navigationIconKey: "mathematics",
     rendererDomain: "mathematics",
-    routeSlugs: { en: "mathematics", id: "matematika" },
+    routeSlugs: { de: "mathematik", en: "mathematics", id: "matematika" },
   },
   {
     key: "physics",
     navigationIconKey: "science",
     rendererDomain: "physics",
-    routeSlugs: { en: "physics", id: "fisika" },
+    routeSlugs: { de: "physik", en: "physics", id: "fisika" },
   },
 ];
 
@@ -106,8 +109,11 @@ export const decodeMaterialDomains = Effect.fn(
     }
     keys.add(descriptor.key);
 
-    for (const appLocaleCode of EMBEDDED_APP_LOCALE_CODES) {
+    for (const appLocaleCode of APP_LOCALE_CODES) {
       const routeSlug = descriptor.routeSlugs[appLocaleCode];
+      if (routeSlug === undefined) {
+        continue;
+      }
       const identity = `${appLocaleCode}\0${routeSlug}`;
       const owner = routes.get(identity);
       if (owner) {

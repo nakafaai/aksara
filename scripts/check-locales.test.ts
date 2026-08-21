@@ -28,7 +28,7 @@ describe("locale source policy", () => {
     expect(
       localePolicyViolations(
         "packages/corpus/locale/source.ts",
-        "const Embedded = Schema.keyof(Schema.Struct({ en: Schema.Void, id: Schema.Void }));"
+        "const Localized = Schema.Record(AppLocaleCodeSchema, Schema.optional(Schema.String));"
       )
     ).toEqual([]);
   });
@@ -40,6 +40,11 @@ describe("locale source policy", () => {
 
     expect(localePolicyViolations(file, source)).toEqual([
       `${file}:1: locale vocabulary must derive from the locale contract`,
+    ]);
+    expect(
+      localePolicyViolations("packages/corpus/locale/source.ts", source)
+    ).toEqual([
+      "packages/corpus/locale/source.ts:1: locale vocabulary must derive from the locale contract",
     ]);
   });
 

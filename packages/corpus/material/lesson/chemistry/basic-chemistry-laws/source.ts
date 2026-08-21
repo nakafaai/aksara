@@ -5,10 +5,15 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
   domain: "chemistry",
   key: "lesson.chemistry.basic-chemistry-laws",
   kind: "lesson",
-  routeSlugs: { en: "basic-chemistry-laws", id: "hukum-dasar-kimia" },
+  routeSlugs: {
+    de: "grundgesetze-der-chemie",
+    en: "basic-chemistry-laws",
+    id: "hukum-dasar-kimia",
+  },
   sections: [
     {
       routeSlugs: {
+        de: "merkmale-chemischer-reaktionen",
         en: "chemical-reaction-characteristics",
         id: "ciri-ciri-reaksi-kimia",
       },
@@ -16,6 +21,7 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "anwendungen-chemischer-gesetze",
         en: "chemistry-law-applications",
         id: "aplikasi-hukum-kimia",
       },
@@ -23,6 +29,7 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "gesetz-der-gasvolumina",
         en: "combining-volumes-law",
         id: "hukum-perbandingan-volume",
       },
@@ -30,28 +37,39 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "gesetz-der-konstanten-proportionen",
         en: "constant-composition-law",
         id: "hukum-perbandingan-tetap",
       },
       slug: "constant-composition-law",
     },
     {
-      routeSlugs: { en: "mass-conservation-law", id: "hukum-kekekalan-massa" },
+      routeSlugs: {
+        de: "gesetz-der-massenerhaltung",
+        en: "mass-conservation-law",
+        id: "hukum-kekekalan-massa",
+      },
       slug: "mass-conservation-law",
     },
     {
       routeSlugs: {
+        de: "gesetz-der-multiplen-proportionen",
         en: "multiple-proportions-law",
         id: "hukum-perbandingan-berganda",
       },
       slug: "multiple-proportions-law",
     },
     {
-      routeSlugs: { en: "types-chemical-reaction", id: "jenis-reaksi-kimia" },
+      routeSlugs: {
+        de: "arten-chemischer-reaktionen",
+        en: "types-chemical-reaction",
+        id: "jenis-reaksi-kimia",
+      },
       slug: "types-chemical-reaction",
     },
     {
       routeSlugs: {
+        de: "chemische-reaktionen-formulieren",
         en: "writing-chemical-reactions",
         id: "cara-menuliskan-reaksi-kimia",
       },
@@ -60,6 +78,10 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
   ],
   slug: "basic-chemistry-laws",
   translations: {
+    de: {
+      description: "Erkenne chemische Veränderungen an Beobachtungen.",
+      title: "Grundgesetze der Chemie",
+    },
     en: {
       description: "Spot chemical changes from observable evidence.",
       title: "Basic Laws of Chemistry",

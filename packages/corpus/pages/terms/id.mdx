@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Syarat dan Ketentuan",
   description: "Baca Syarat dan Ketentuan Nakafa untuk memahami aturan dan panduan penggunaan platform dan layanan edukasi kami.",
-  lastModified: "2026-08-21",
+  lastModified: "2026-08-22",
 };
 
 # Syarat dan Ketentuan
 
-Terakhir diperbarui: 21 Agustus 2026
+Terakhir diperbarui: 22 Agustus 2026
 
 Syarat dan Ketentuan ini ("Ketentuan") adalah perjanjian yang mengikat antara Anda dan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami"). Ketentuan ini mengatur akses dan penggunaan Anda atas situs web, aplikasi, dan layanan terkait kami (secara kolektif, "Layanan").
 
@@ -31,7 +31,7 @@ Anda harus berusia setidaknya 13 tahun untuk menggunakan Layanan.
 
 Jika Anda berusia di bawah 18 tahun, Anda hanya boleh menggunakan Layanan dengan izin dan keterlibatan orang tua atau wali yang setuju dengan Ketentuan ini atas nama Anda.
 
-Fitur AI memiliki persyaratan usia tersendiri. Anda harus berusia setidaknya 16 tahun, atau memenuhi usia minimum yang lebih tinggi menurut hukum tempat tinggal Anda, untuk menggunakan fitur AI. Jika Anda berusia di bawah 18 tahun, orang tua atau wali juga harus mengizinkan penggunaan tersebut.
+Fitur AI memiliki persyaratan usia tersendiri. Anda harus berusia setidaknya 18 tahun dan memenuhi usia minimum yang lebih tinggi menurut hukum tempat tinggal Anda untuk menggunakan fitur AI.
 
 Anda tidak boleh menggunakan Layanan jika penggunaan Anda dilarang oleh hukum yang berlaku.
 
@@ -66,9 +66,9 @@ Kami dapat menangguhkan atau menghentikan akses jika kami meyakini Anda melangga
 
 ### Cara kerja fitur AI
 
-Jika Anda menggunakan fitur AI, Anda mengirim prompt atau pesan dan Layanan menghasilkan output. Prompt dan konteks terkait dirutekan melalui Vercel AI Gateway kepada penyedia model. Nakafa saat ini menggunakan model OpenAI untuk fitur tersebut.
+Jika Anda menggunakan fitur AI, Anda mengirim prompt atau pesan dan Layanan menghasilkan output. Nakafa merutekan prompt dan konteks terkait melalui Vercel AI Gateway ke Gemini 3.5 Flash Lite atau Gemini 3.7 Flash. Gateway dapat memilih Google atau Google Cloud Vertex AI, tetapi penyedia model lain tidak diizinkan. Setiap permintaan mewajibkan jalur yang menurut Vercel tidak menggunakan prompt untuk pelatihan. Jika tidak ada jalur Google atau Vertex AI yang memenuhi syarat, permintaan gagal dan tidak dialihkan ke penyedia lain. Fitur riset juga dapat menggunakan grounding Google Search untuk menguatkan informasi publik.
 
-Penggunaan layanan tersebut oleh kami tunduk pada [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [Perjanjian Layanan OpenAI](https://openai.com/id-ID/policies/services-agreement/), dan [Kebijakan Penggunaan OpenAI](https://openai.com/policies/usage-policies/).
+Penggunaan layanan tersebut oleh kami tunduk pada [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [Vercel Notices and License Information](https://vercel.com/legal/notices-and-license-information#ai-gateway), [Ketentuan Tambahan Gemini API](https://ai.google.dev/gemini-api/terms), dan [Ketentuan Google Cloud](https://cloud.google.com/terms), sesuai dengan jalur yang dipilih.
 
 ### Batasan AI dan tanggung jawab Anda
 
@@ -100,7 +100,7 @@ Kami dapat mengubah harga atau paket dari waktu ke waktu. Jika perubahan berlaku
 
 ## Email dan komunikasi
 
-Saat akun baru dibuat, alur akun saat ini [menjadwalkan email selamat datang](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/client.ts#L65-L79) dan [mengirimkannya melalui Resend](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/emails/mutations.ts#L13-L40).
+Saat akun baru dibuat, alur akun saat ini [menjadwalkan email selamat datang](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/auth/client.ts) dan [mengirimkannya melalui Resend](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/emails/mutations.ts).
 
 ## Kekayaan intelektual
 
@@ -134,7 +134,8 @@ Layanan bergantung pada layanan pihak ketiga untuk beroperasi. Ini dapat mencaku
 - PostHog (analitik produk setelah persetujuan dan pelaporan kesalahan operasional tanpa identitas)
 - Resend (pengiriman email)
 - Vercel AI Gateway (perutean permintaan AI)
-- OpenAI (pemrosesan model AI)
+- Google (pemrosesan model melalui Gemini API)
+- Google Cloud (pemrosesan model melalui Vertex AI)
 
 Ketentuan dan pemberitahuan privasi pihak ketiga juga dapat berlaku ketika Anda berinteraksi dengan layanan tersebut. Bagian ini tidak mengecualikan tanggung jawab Nakafa berdasarkan hukum yang bersifat wajib.
 

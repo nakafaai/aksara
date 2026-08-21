@@ -223,7 +223,7 @@ family publication gates.
   `b8bddda272600138a08647ba5e775167f9b98cfdeb2dc02904e6c93774a810f5`
 
 The source and filtered paths resolve to the same Git blob and SHA-256 digest.
-That reviewed Nakafa source owns the exact embedded `politics` category labels
-`Politics` for English and `Politik` for Indonesian. The current embedded
-category source preserves those values without translation or invention. The
-German `Politik` label is owned separately by its reviewed locale record.
+That reviewed Nakafa source owns the exact historical `politics` category
+labels `Politics` for English and `Politik` for Indonesian. The current category
+owner preserves those values without translation or invention and co-locates
+the reviewed German `Politik` label in the same localized source map.

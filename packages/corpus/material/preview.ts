@@ -1,18 +1,11 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
-import {
-  appLocaleCode,
-  localeOverlayAppLocaleCode,
-} from "#corpus/locale/source";
+import { appLocaleCode } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
   type MaterialDomainDescriptor,
 } from "#corpus/material/domain";
-import {
-  decodeMaterialLocaleCatalog,
-  requireMaterialLocaleBinding,
-} from "#corpus/material/locale";
 import {
   MaterialEntrySchema,
   MaterialRegistryError,
@@ -28,17 +21,12 @@ export const decodeMaterialPreviewEntries = Effect.fn(
 )(function* (
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown,
-  domainDescriptors?: readonly MaterialDomainDescriptor[],
-  localeInput?: unknown
+  domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
   const selected = new Set(sourcePaths);
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
   const bindings = yield* validateMaterialSources(sources, descriptors);
-  const localeCatalog = yield* decodeMaterialLocaleCatalog(
-    descriptors,
-    localeInput
-  );
   const projected: unknown[] = [];
   for (const binding of bindings) {
     for (const appLocale of ACTIVE_APP_LOCALES) {
@@ -56,30 +44,12 @@ export const decodeMaterialPreviewEntries = Effect.fn(
       if (selectedSections.size === 0) {
         continue;
       }
-      const overlayLocale = localeOverlayAppLocaleCode(appLocale);
-      const projectionBinding =
-        overlayLocale === undefined
-          ? binding
-          : yield* requireMaterialLocaleBinding(
-              binding.descriptor,
-              binding.source,
-              localeCatalog,
-              overlayLocale
-            );
-      for (const [
-        sectionIndex,
-        section,
-      ] of projectionBinding.source.sections.entries()) {
+      for (const [sectionIndex, section] of binding.source.sections.entries()) {
         if (!selectedSections.has(section.slug)) {
           continue;
         }
         projected.push(
-          yield* projectMaterial(
-            projectionBinding,
-            section,
-            sectionIndex,
-            appLocale
-          )
+          yield* projectMaterial(binding, section, sectionIndex, appLocale)
         );
       }
     }
@@ -98,14 +68,12 @@ export const decodeMaterialPreviewEntry = Effect.fn(
 )(function* (
   sourcePath: typeof CorpusSourcePathSchema.Type,
   input?: unknown,
-  domainDescriptors?: readonly MaterialDomainDescriptor[],
-  localeInput?: unknown
+  domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
   const [entry] = yield* decodeMaterialPreviewEntries(
     [sourcePath],
     input,
-    domainDescriptors,
-    localeInput
+    domainDescriptors
   );
   return entry;
 });

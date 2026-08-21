@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$18$$",
+      value: false,
+    },
+    {
+      label: "$$19$$",
+      value: false,
+    },
+    {
+      label: "$$20$$",
+      value: false,
+    },
+    {
+      label: "$$21$$",
+      value: false,
+    },
+    {
+      label: "$$22$$",
+      value: true,
+    },
+  ],
   en: [
     {
       label: "$$18$$",

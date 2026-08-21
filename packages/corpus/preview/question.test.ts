@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type AppLocaleCode,
@@ -9,8 +8,6 @@ import { Effect, Layer, Path } from "effect";
 import { selectQuestion } from "#corpus/preview/question";
 import {
   corpusRoot,
-  generalQuestionSourceFiles,
-  germanQuestionChoicesSource,
   makeQuestionLayer,
   type QuestionDirectoryRead,
   type QuestionLayerOverrides,
@@ -70,32 +67,18 @@ describe("question preview", () => {
       sourcePath: `${sharedRoot}/choices.ts`,
     });
     expect(
-      germanSource.dependencies.some(({ sourcePath }) =>
-        sourcePath.endsWith("choices.de.ts")
+      germanSource.dependencies.filter(({ sourcePath }) =>
+        sourcePath.endsWith("/choices.ts")
       )
-    ).toBe(false);
+    ).toHaveLength(1);
     expect(ambiguous).toMatchObject({ reason: "locale" });
   });
 
-  it("watches locale-owned choices for an ordinary German prompt", async () => {
+  it("watches owner-co-located choices for an ordinary German prompt", async () => {
     const genericRoot =
       "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
     const genericPrompt = `${genericRoot}/question.de.mdx`;
-    const files = [
-      ...generalQuestionSourceFiles,
-      "answer.de.mdx",
-      "choices.de.ts",
-      "question.de.mdx",
-    ].sort();
-    const german = await selectDocument(genericPrompt, [], "de", {
-      directories: new Map([[resolve(corpusRoot, genericRoot), files]]),
-      sources: new Map([
-        [
-          resolve(corpusRoot, genericRoot, "choices.de.ts"),
-          germanQuestionChoicesSource,
-        ],
-      ]),
-    });
+    const german = await selectDocument(genericPrompt, [], "de");
 
     expect(german.document).toMatchObject({
       identity: { artifactLocale: "de" },
@@ -108,10 +91,10 @@ describe("question preview", () => {
       throw new Error("Expected a question preview source.");
     }
     expect(source).toMatchObject({ appLocale: "de" });
-    expect(source.dependencies.slice(0, 2)).toEqual([
-      { mode: "reload", sourcePath: `${genericRoot}/choices.ts` },
-      { mode: "reload", sourcePath: `${genericRoot}/choices.de.ts` },
-    ]);
+    expect(source.dependencies[0]).toEqual({
+      mode: "reload",
+      sourcePath: `${genericRoot}/choices.ts`,
+    });
   });
 
   it("reads only the selected directory without recursively scanning the bank", async () => {

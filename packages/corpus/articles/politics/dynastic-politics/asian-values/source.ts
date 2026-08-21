@@ -6,6 +6,7 @@ export const dynasticPoliticsAsianValuesArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
   routeSlugs: {
+    de: "politische-dynastien-und-asiatische-werte",
     en: "dynastic-politics-asian-values",
     id: "dynastic-politics-asian-values",
   },

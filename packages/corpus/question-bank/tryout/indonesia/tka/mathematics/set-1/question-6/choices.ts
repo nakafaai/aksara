@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$A = 4, B = \\frac{\\pi}{6}, C = 6$$",
+      value: true,
+    },
+    {
+      label: "$$A = 8, B = \\frac{\\pi}{12}, C = 2$$",
+      value: false,
+    },
+    {
+      label: "$$A = 6, B = \\frac{\\pi}{6}, C = 4$$",
+      value: false,
+    },
+    {
+      label: "$$A = 4, B = \\frac{\\pi}{12}, C = 8$$",
+      value: false,
+    },
+    {
+      label: "$$A = 8, B = \\frac{\\pi}{6}, C = 4$$",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "$$A = 4, B = \\frac{\\pi}{6}, C = 6$$",

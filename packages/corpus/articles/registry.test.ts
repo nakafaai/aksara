@@ -10,17 +10,17 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
 import { decodeArticleRegistry } from "#corpus/articles/registry";
-import { articleSource, germanArticleCatalog } from "#corpus/test/article";
+import { articleSource } from "#corpus/test/article";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
 
-/** Decodes injected embedded sources without unrelated locale overlays. */
+/** Decodes injected sources for one explicit publication locale subset. */
 function decodeEmbeddedRegistry(input: unknown) {
-  return decodeArticleRegistry(input, undefined, embeddedAppLocales);
+  return decodeArticleRegistry(input, englishIndonesianLocales);
 }
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
@@ -29,7 +29,7 @@ function rejectRegistry(input: unknown) {
 }
 
 describe("article registry", () => {
-  it("projects exactly fourteen real locale bodies with flattened routes", async () => {
+  it("projects exactly twenty-one real locale bodies with flattened routes", async () => {
     const entries = await Effect.runPromise(decodeArticleRegistry());
     const authoredPaths = globSync("packages/corpus/articles/**/*.mdx", {
       cwd: corpusRoot,
@@ -95,11 +95,10 @@ describe("article registry", () => {
     );
   });
 
-  it("projects permanent German overlays through the activation-equivalent seam", async () => {
+  it("projects German metadata from the same source-owned locale maps", async () => {
     const entries = await Effect.runPromise(
       decodeArticleRegistry(
         [articleSource()],
-        germanArticleCatalog(),
         ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
       )
     );

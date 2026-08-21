@@ -103,6 +103,10 @@ describe("tryout registry", () => {
     const sources = await loadRegistry();
     const first = requireNode(sources[0], "first try-out source");
     const second = requireNode(sources[1], "second try-out source");
+    const secondEnglish = requireNode(
+      second.countryTranslations.en,
+      "English country translation"
+    );
     const duplicateCountryCode = rehomeSource(first, first.countryCode);
     const failures = await Effect.runPromise(
       Effect.all([
@@ -115,8 +119,8 @@ describe("tryout registry", () => {
             countryTranslations: {
               ...second.countryTranslations,
               en: {
-                ...second.countryTranslations.en,
-                title: `${second.countryTranslations.en.title} conflict`,
+                ...secondEnglish,
+                title: `${secondEnglish.title} conflict`,
               },
             },
           },

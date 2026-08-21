@@ -93,10 +93,7 @@ const loadQuestionChoices = Effect.fn("AksaraPublisher.loadPreviewChoices")(
     if (cached !== undefined) {
       return cached;
     }
-    const choices = yield* readQuestionChoices(checkoutRoot, {
-      ...entry,
-      appLocale: selected.appLocale,
-    }).pipe(
+    const choices = yield* readQuestionChoices(checkoutRoot, entry).pipe(
       Effect.mapError(
         (cause) =>
           new PreviewChoiceSourceError({

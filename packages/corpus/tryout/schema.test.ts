@@ -146,6 +146,24 @@ describe("tryout schema", () => {
     );
 
     expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
+    expect(
+      sources.every(
+        (source) =>
+          source.countryRouteSlugs.de !== undefined &&
+          source.examRouteSlugs.de !== undefined &&
+          source.tracks.every(
+            (track) =>
+              track.routeSlugs.de !== undefined &&
+              track.sets.every(
+                (set) =>
+                  set.routeSlugs.de !== undefined &&
+                  set.sections.every(
+                    (entry) => entry.routeSlugs.de !== undefined
+                  )
+              )
+          )
+      )
+    ).toBe(true);
   });
 
   it.each([

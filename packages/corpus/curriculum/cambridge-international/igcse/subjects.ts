@@ -14,6 +14,7 @@ export const igcseCourseNodes = [
     materialDomain: "mathematics",
     order: 10,
     translations: {
+      de: { routeSlug: "mathematik-0580", title: "Mathematik 0580" },
       en: {
         routeSlug: "mathematics-0580",
         title: "Mathematics 0580",
@@ -31,6 +32,7 @@ export const igcseCourseNodes = [
     materialDomain: "biology",
     order: 20,
     translations: {
+      de: { routeSlug: "biologie-0610", title: "Biologie 0610" },
       en: {
         routeSlug: "biology-0610",
         title: "Biology 0610",
@@ -48,6 +50,7 @@ export const igcseCourseNodes = [
     materialDomain: "chemistry",
     order: 30,
     translations: {
+      de: { routeSlug: "chemie-0620", title: "Chemie 0620" },
       en: {
         routeSlug: "chemistry-0620",
         title: "Chemistry 0620",
@@ -65,6 +68,7 @@ export const igcseCourseNodes = [
     materialDomain: "physics",
     order: 40,
     translations: {
+      de: { routeSlug: "physik-0625", title: "Physik 0625" },
       en: {
         routeSlug: "physics-0625",
         title: "Physics 0625",

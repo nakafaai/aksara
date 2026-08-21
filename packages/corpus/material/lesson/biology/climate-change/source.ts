@@ -5,37 +5,55 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
   domain: "biology",
   key: "lesson.biology.climate-change",
   kind: "lesson",
-  routeSlugs: { en: "climate-change", id: "perubahan-iklim" },
+  routeSlugs: {
+    de: "klimawandel",
+    en: "climate-change",
+    id: "perubahan-iklim",
+  },
   sections: [
     {
-      routeSlugs: { en: "causes", id: "penyebab-perubahan-iklim" },
+      routeSlugs: {
+        de: "ursachen",
+        en: "causes",
+        id: "penyebab-perubahan-iklim",
+      },
       slug: "causes",
     },
     {
       routeSlugs: {
+        de: "internationale-zusammenarbeit",
         en: "global-cooperation",
         id: "kerja-sama-global-untuk-mengatasi-perubahan-iklim",
       },
       slug: "global-cooperation",
     },
     {
-      routeSlugs: { en: "impact", id: "dampak-perubahan-iklim" },
+      routeSlugs: { de: "folgen", en: "impact", id: "dampak-perubahan-iklim" },
       slug: "impact",
     },
     {
       routeSlugs: {
+        de: "klimaschutz-und-anpassung",
         en: "mitigation-adaptation",
         id: "upaya-mitigasi-dan-adaptasi-terhadap-perubahan-iklim",
       },
       slug: "mitigation-adaptation",
     },
     {
-      routeSlugs: { en: "symptoms", id: "gejala-perubahan-iklim" },
+      routeSlugs: {
+        de: "anzeichen",
+        en: "symptoms",
+        id: "gejala-perubahan-iklim",
+      },
       slug: "symptoms",
     },
   ],
   slug: "climate-change",
   translations: {
+    de: {
+      description: "Untersuche Ursachen, Anzeichen, Folgen und Antworten.",
+      title: "Klimawandel",
+    },
     en: {
       description: "Trace how human activity traps heat on Earth.",
       title: "Climate Change",
