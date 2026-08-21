@@ -20,11 +20,13 @@ const snbtSections: readonly SnbtSection[] = [
     questionCount: 20,
     rendererDomain: "snbt-quant",
     routeSlugs: {
+      de: "quantitatives-wissen",
       en: "quantitative-knowledge",
       id: "pengetahuan-kuantitatif",
     },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Quantitatives Wissen" },
       en: { title: "Quantitative Knowledge" },
       id: { title: "Pengetahuan Kuantitatif" },
     },
@@ -34,11 +36,13 @@ const snbtSections: readonly SnbtSection[] = [
     questionCount: 20,
     rendererDomain: "snbt-math",
     routeSlugs: {
+      de: "mathematisches-schlussfolgern",
       en: "mathematical-reasoning",
       id: "penalaran-matematika",
     },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Mathematisches Schlussfolgern" },
       en: { title: "Mathematical Reasoning" },
       id: { title: "Penalaran Matematika" },
     },
@@ -47,9 +51,14 @@ const snbtSections: readonly SnbtSection[] = [
     key: "general-reasoning",
     questionCount: 20,
     rendererDomain: "snbt-general",
-    routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
+    routeSlugs: {
+      de: "allgemeines-logisches-denken",
+      en: "general-reasoning",
+      id: "penalaran-umum",
+    },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Allgemeines logisches Denken" },
       en: { title: "General Reasoning" },
       id: { title: "Penalaran Umum" },
     },
@@ -58,9 +67,14 @@ const snbtSections: readonly SnbtSection[] = [
     key: "indonesian-language",
     questionCount: 30,
     rendererDomain: "snbt-plain",
-    routeSlugs: { en: "indonesian-language", id: "bahasa-indonesia" },
+    routeSlugs: {
+      de: "indonesische-sprache",
+      en: "indonesian-language",
+      id: "bahasa-indonesia",
+    },
     timeLimitSeconds: 30 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Indonesische Sprache" },
       en: { title: "Indonesian Language" },
       id: { title: "Bahasa Indonesia" },
     },
@@ -69,9 +83,14 @@ const snbtSections: readonly SnbtSection[] = [
     key: "english-language",
     questionCount: 20,
     rendererDomain: "snbt-plain",
-    routeSlugs: { en: "english-language", id: "bahasa-inggris" },
+    routeSlugs: {
+      de: "englische-sprache",
+      en: "english-language",
+      id: "bahasa-inggris",
+    },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Englische Sprache" },
       en: { title: "English Language" },
       id: { title: "Bahasa Inggris" },
     },
@@ -80,9 +99,14 @@ const snbtSections: readonly SnbtSection[] = [
     key: "general-knowledge",
     questionCount: 20,
     rendererDomain: "snbt-plain",
-    routeSlugs: { en: "general-knowledge", id: "pengetahuan-umum" },
+    routeSlugs: {
+      de: "allgemeinwissen",
+      en: "general-knowledge",
+      id: "pengetahuan-umum",
+    },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Allgemeinwissen" },
       en: { title: "General Knowledge" },
       id: { title: "Pengetahuan Umum" },
     },
@@ -92,11 +116,13 @@ const snbtSections: readonly SnbtSection[] = [
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
+      de: "lese-und-schreibkompetenz",
       en: "reading-and-writing-skills",
       id: "literasi-membaca-menulis",
     },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
+      de: { title: "Lese- und Schreibkompetenz" },
       en: { title: "Reading and Writing Skills" },
       id: { title: "Literasi Membaca dan Menulis" },
     },
@@ -108,8 +134,13 @@ export const snbtTryoutSource = defineTryoutExamSource({
   ...indonesiaTryoutCountry,
   examKey: EXAM_KEY,
   examOrder: 1,
-  examRouteSlugs: { en: "snbt", id: "snbt" },
+  examRouteSlugs: { de: "snbt", en: "snbt", id: "snbt" },
   examTranslations: {
+    de: {
+      description:
+        "Probetest für das indonesische Auswahlverfahren zur Hochschulzulassung.",
+      title: "SNBT",
+    },
     en: {
       description: "Indonesian university entrance try-outs.",
       title: "SNBT",
@@ -126,25 +157,31 @@ export const snbtTryoutSource = defineTryoutExamSource({
       key: "2027",
       kind: "year",
       order: 1,
-      routeSlugs: { en: "2027", id: "2027" },
+      routeSlugs: { de: "2027", en: "2027", id: "2027" },
       sets: [1, 2].map((setNumber) => {
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,
           order: setNumber,
-          routeSlugs: { en: setKey, id: setKey },
+          routeSlugs: {
+            de: `aufgabensatz-${setNumber}`,
+            en: setKey,
+            id: setKey,
+          },
           sections: snbtSections.map((section, sectionIndex) => ({
             ...section,
             order: sectionIndex + 1,
             questionSourcePath: `${QUESTION_ROOT}/${section.key}/${setKey}`,
           })),
           translations: {
+            de: { title: `Aufgabensatz ${setNumber}` },
             en: { title: `Set ${setNumber}` },
             id: { title: `Set ${setNumber}` },
           },
         };
       }),
       translations: {
+        de: { title: "Jahr 2027" },
         en: { title: "Year 2027" },
         id: { title: "Tahun 2027" },
       },

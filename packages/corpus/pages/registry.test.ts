@@ -7,7 +7,7 @@ import { Effect } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { pageSource } from "#corpus/test/page";
 
-const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
@@ -15,7 +15,7 @@ const embeddedAppLocales = ActiveAppLocaleListSchema.make([
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
   return Effect.runPromise(
-    decodePageRegistry(input, embeddedAppLocales).pipe(Effect.flip)
+    decodePageRegistry(input, englishIndonesianLocales).pipe(Effect.flip)
   );
 }
 
@@ -115,7 +115,7 @@ describe("public page registry", () => {
 
   it("accepts repeated identical route ownership and an empty catalog", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], embeddedAppLocales)
+      decodePageRegistry([pageSource()], englishIndonesianLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active page entry.");
@@ -125,7 +125,7 @@ describe("public page registry", () => {
       Effect.runPromise(validatePageRoutes([entry, entry]))
     ).resolves.toEqual([entry, entry]);
     await expect(
-      Effect.runPromise(decodePageRegistry([], embeddedAppLocales))
+      Effect.runPromise(decodePageRegistry([], englishIndonesianLocales))
     ).resolves.toEqual([]);
   });
 });

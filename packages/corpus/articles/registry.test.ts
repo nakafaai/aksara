@@ -13,14 +13,14 @@ import { decodeArticleRegistry } from "#corpus/articles/registry";
 import { articleSource } from "#corpus/test/article";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
 
 /** Decodes injected sources for one explicit publication locale subset. */
 function decodeEmbeddedRegistry(input: unknown) {
-  return decodeArticleRegistry(input, embeddedAppLocales);
+  return decodeArticleRegistry(input, englishIndonesianLocales);
 }
 
 /** Returns one typed registry failure at the Vitest runner boundary. */

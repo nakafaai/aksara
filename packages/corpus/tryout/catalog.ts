@@ -8,7 +8,6 @@ import { Effect, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
 import { projectTryoutExam } from "#corpus/tryout/catalog-exam";
-import { composeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
@@ -95,8 +94,7 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
 export const projectTryoutCatalog = Effect.fn(
   "AksaraCorpus.projectTryoutCatalog"
 )(function* (sources: readonly TryoutExamSource[]) {
-  const localizedSources = yield* composeTryoutLocaleRegistry(sources);
-  return yield* projectCatalog(localizedSources, ACTIVE_APP_LOCALES);
+  return yield* projectCatalog(sources, ACTIVE_APP_LOCALES);
 });
 
 /** Produces only the source hierarchy needed by one honest preview shell. */

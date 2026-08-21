@@ -11,8 +11,13 @@ export const tkaTryoutSource = defineTryoutExamSource({
   ...indonesiaTryoutCountry,
   examKey: EXAM_KEY,
   examOrder: 2,
-  examRouteSlugs: { en: "tka", id: "tka" },
+  examRouteSlugs: { de: "tka", en: "tka", id: "tka" },
   examTranslations: {
+    de: {
+      description:
+        "Probetest für den indonesischen akademischen Kompetenztest.",
+      title: "TKA",
+    },
     en: {
       description: "Indonesian academic competency try-outs.",
       title: "TKA",
@@ -29,13 +34,21 @@ export const tkaTryoutSource = defineTryoutExamSource({
       key: "mathematics",
       kind: "subject",
       order: 1,
-      routeSlugs: { en: "mathematics", id: "matematika" },
+      routeSlugs: {
+        de: "mathematik",
+        en: "mathematics",
+        id: "matematika",
+      },
       sets: [1, 2, 3].map((setNumber) => {
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,
           order: setNumber,
-          routeSlugs: { en: setKey, id: setKey },
+          routeSlugs: {
+            de: `aufgabensatz-${setNumber}`,
+            en: setKey,
+            id: setKey,
+          },
           sections: [
             {
               key: "mathematics",
@@ -43,9 +56,14 @@ export const tkaTryoutSource = defineTryoutExamSource({
               questionCount: 40,
               questionSourcePath: `${QUESTION_ROOT}/mathematics/${setKey}`,
               rendererDomain: "tka-math",
-              routeSlugs: { en: "mathematics", id: "matematika" },
+              routeSlugs: {
+                de: "mathematik",
+                en: "mathematics",
+                id: "matematika",
+              },
               timeLimitSeconds: 40 * TKA_SECONDS_PER_QUESTION,
               translations: {
+                de: { title: "Mathematik" },
                 en: { title: "Mathematics" },
                 id: { title: "Matematika" },
               },
@@ -53,12 +71,14 @@ export const tkaTryoutSource = defineTryoutExamSource({
             },
           ],
           translations: {
+            de: { title: `Aufgabensatz ${setNumber}` },
             en: { title: `Set ${setNumber}` },
             id: { title: `Set ${setNumber}` },
           },
         };
       }),
       translations: {
+        de: { title: "Mathematik" },
         en: { title: "Mathematics" },
         id: { title: "Matematika" },
       },

@@ -6,8 +6,13 @@ export const indonesiaTryoutCountry: TryoutCountrySourceInput = {
   countryKey: "indonesia",
   countryOrder: 1,
   countryRevision: "2026-07-05",
-  countryRouteSlugs: { en: "indonesia", id: "indonesia" },
+  countryRouteSlugs: {
+    de: "indonesien",
+    en: "indonesia",
+    id: "indonesia",
+  },
   countryTranslations: {
+    de: { title: "Indonesien" },
     en: { title: "Indonesia" },
     id: { title: "Indonesia" },
   },

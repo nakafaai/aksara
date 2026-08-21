@@ -21,14 +21,14 @@ import {
 } from "#corpus/test/material";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const embeddedAppLocales = ActiveAppLocaleListSchema.make([
+const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
 
 /** Decodes injected sources for one explicit publication locale subset. */
 function decodeEmbeddedRegistry(input: unknown) {
-  return decodeMaterialRegistry(input, undefined, embeddedAppLocales);
+  return decodeMaterialRegistry(input, undefined, englishIndonesianLocales);
 }
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
@@ -149,7 +149,7 @@ describe("material registry", () => {
       ])
     );
     const entries = await Effect.runPromise(
-      decodeMaterialRegistry([source], domains, embeddedAppLocales)
+      decodeMaterialRegistry([source], domains, englishIndonesianLocales)
     );
 
     expect(entries).toHaveLength(2);
@@ -172,7 +172,7 @@ describe("material registry", () => {
       decodeMaterialRegistry(
         [lessonMaterialSource()],
         [],
-        embeddedAppLocales
+        englishIndonesianLocales
       ).pipe(Effect.flip)
     );
 

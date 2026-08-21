@@ -5,7 +5,6 @@ import type {
 } from "@nakafa/aksara-contracts/preview/document";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect } from "effect";
-import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { makeQuestionPreviewSource } from "#corpus/preview/question-source";
 import type { PreviewSelection } from "#corpus/preview/source";
 import {
@@ -17,7 +16,6 @@ import type {
   QuestionEntry,
 } from "#corpus/question-bank/content";
 import { projectPreviewTryoutCatalog } from "#corpus/tryout/catalog";
-import { composeTryoutLocaleRegistry } from "#corpus/tryout/locale-registry";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 import { selectTryoutTarget } from "#corpus/tryout/target";
 
@@ -132,19 +130,12 @@ export const selectQuestionContentPreview = Effect.fn(
   appLocale: AppLocale,
   sources: readonly TryoutExamSource[]
 ) {
-  const projectionSources =
-    localeOverlayAppLocaleCode(appLocale) === undefined
-      ? sources
-      : yield* composeTryoutLocaleRegistry(sources);
-  const catalog = yield* projectPreviewTryoutCatalog(
-    projectionSources,
-    appLocale
-  );
+  const catalog = yield* projectPreviewTryoutCatalog(sources, appLocale);
   const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
   return yield* buildQuestionSelection(
     content,
     appLocale,
-    projectionSources,
+    sources,
     catalog,
     dependenciesFor
   );

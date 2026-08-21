@@ -11,11 +11,7 @@ import type {
   CurriculumNodeTranslationMapSchema,
   CurriculumSource,
 } from "#corpus/curriculum/schema";
-import {
-  addLocalizedSource,
-  LOCALE_OVERLAY_APP_LOCALE_ENTRIES,
-  sourceLocaleValue,
-} from "#corpus/locale/source";
+import { sourceLocaleValue } from "#corpus/locale/source";
 import {
   type MaterialDomainDescriptor,
   requireMaterialDomain,
@@ -40,17 +36,9 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
     nodeKey: CurriculumProjectionError["nodeKey"],
     programKey: CurriculumProjectionError["programKey"]
   ) {
-    let translations: typeof CurriculumNodeTranslationMapSchema.Type = {
-      en: {
-        routeSlug: material.routeSlugs.en,
-        title: material.translations.en.title,
-      },
-      id: {
-        routeSlug: material.routeSlugs.id,
-        title: material.translations.id.title,
-      },
-    };
-    for (const { appLocale } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
+    let translations: typeof CurriculumNodeTranslationMapSchema.Type = {};
+    for (const code of APP_LOCALE_CODES) {
+      const appLocale = AppLocaleSchema.make(code);
       const routeSlug = sourceLocaleValue(material.routeSlugs, appLocale);
       const translation = sourceLocaleValue(material.translations, appLocale);
       if ((routeSlug === undefined) !== (translation === undefined)) {
@@ -62,10 +50,13 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
         });
       }
       if (routeSlug !== undefined && translation !== undefined) {
-        translations = addLocalizedSource(translations, appLocale, {
-          routeSlug,
-          title: translation.title,
-        });
+        translations = {
+          ...translations,
+          [code]: {
+            routeSlug,
+            title: translation.title,
+          },
+        };
       }
     }
     return translations;

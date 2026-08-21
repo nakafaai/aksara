@@ -1,3 +1,4 @@
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 
@@ -9,8 +10,27 @@ import {
   decodeMaterialDomains,
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
+import type { LessonMaterialSource } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
 import { earthScienceMaterialSource } from "#corpus/test/material";
+
+/** Returns required decoded source copy or fails the test setup explicitly. */
+function requireCopy<Value>(value: Value | undefined, label: string): Value {
+  if (value === undefined) {
+    throw new Error(`Expected ${label}.`);
+  }
+  return value;
+}
+
+/** Projects one present material display fixture through its source locale. */
+function materialDisplay(
+  material: LessonMaterialSource,
+  locale: AppLocaleCode
+) {
+  const routeSlug = requireCopy(material.routeSlugs[locale], "route slug");
+  const copy = requireCopy(material.translations[locale], "material copy");
+  return { routeSlug, title: copy.title };
+}
 
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
 function merdekaLeaf(input: {
@@ -106,20 +126,13 @@ describe("curriculum node projection", () => {
       ({ key }) => key === "lesson.mathematics.matrix"
     );
 
-    expect(material).toBeDefined();
-    if (!material) {
-      return;
+    if (material === undefined) {
+      throw new Error("Expected the matrix material source.");
     }
     const curriculum = merdekaLeaf({
       displayOverride: {
-        en: {
-          routeSlug: material.routeSlugs.en,
-          title: material.translations.en.title,
-        },
-        id: {
-          routeSlug: material.routeSlugs.id,
-          title: material.translations.id.title,
-        },
+        en: materialDisplay(material, "en"),
+        id: materialDisplay(material, "id"),
       },
       materialKeys: [material.key],
     });
@@ -141,8 +154,8 @@ describe("curriculum node projection", () => {
     const mismatched = {
       ...material,
       translations: {
-        en: material.translations.en,
-        id: material.translations.id,
+        en: requireCopy(material.translations.en, "English material copy"),
+        id: requireCopy(material.translations.id, "Indonesian material copy"),
       },
     };
     const curriculum = merdekaLeaf({ materialKeys: [material.key] });
@@ -162,20 +175,12 @@ describe("curriculum node projection", () => {
       ({ key }) => key === "lesson.mathematics.polynomial"
     );
 
-    expect(matrix).toBeDefined();
-    expect(polynomial).toBeDefined();
     if (!(matrix && polynomial)) {
-      return;
+      throw new Error("Expected matrix and polynomial material sources.");
     }
     const displayOverride = {
-      en: {
-        routeSlug: matrix.routeSlugs.en,
-        title: matrix.translations.en.title,
-      },
-      id: {
-        routeSlug: matrix.routeSlugs.id,
-        title: matrix.translations.id.title,
-      },
+      en: materialDisplay(matrix, "en"),
+      id: materialDisplay(matrix, "id"),
     };
     const curriculum = merdekaLeaf({
       displayOverride,
