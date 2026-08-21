@@ -12,10 +12,7 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
-import {
-  embeddedLocalizedSourceMapSchema,
-  localizedSourceMapSchema,
-} from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
@@ -26,14 +23,15 @@ export const CurriculumNodeTranslationSchema = Schema.Struct({
 });
 
 /** Complete localized route copy for one curriculum node. */
-export const CurriculumNodeTranslationMapSchema =
-  embeddedLocalizedSourceMapSchema(CurriculumNodeTranslationSchema);
+export const CurriculumNodeTranslationMapSchema = localizedSourceMapSchema(
+  CurriculumNodeTranslationSchema
+);
 
 /** Complete localized group labels attached to one navigation row. */
 export const CurriculumDisplayGroupSchema = Schema.Struct({
   title: Schema.String,
 });
-export const CurriculumDisplayGroupMapSchema = embeddedLocalizedSourceMapSchema(
+export const CurriculumDisplayGroupMapSchema = localizedSourceMapSchema(
   CurriculumDisplayGroupSchema
 );
 
@@ -42,21 +40,9 @@ export const CurriculumMaterialCardSchema = Schema.Struct({
   description: MaterialCardDescriptionSchema,
   title: Schema.String,
 });
-export const CurriculumMaterialCardMapSchema = embeddedLocalizedSourceMapSchema(
+export const CurriculumMaterialCardMapSchema = localizedSourceMapSchema(
   CurriculumMaterialCardSchema
 );
-
-/** Node routes after permanent locale overlays have been composed. */
-export const LocalizedCurriculumNodeTranslationMapSchema =
-  localizedSourceMapSchema(CurriculumNodeTranslationSchema);
-
-/** Group labels after permanent locale overlays have been composed. */
-export const LocalizedCurriculumDisplayGroupMapSchema =
-  localizedSourceMapSchema(CurriculumDisplayGroupSchema);
-
-/** Material cards after permanent locale overlays have been composed. */
-export const LocalizedCurriculumMaterialCardMapSchema =
-  localizedSourceMapSchema(CurriculumMaterialCardSchema);
 
 type TranslationMap = typeof CurriculumNodeTranslationMapSchema.Type;
 type EncodedTranslationMap = typeof CurriculumNodeTranslationMapSchema.Encoded;

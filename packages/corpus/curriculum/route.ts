@@ -124,7 +124,6 @@ export const projectCurriculumRoutes = Effect.fn(
   "AksaraCorpus.projectCurriculumRoutes"
 )(function* (input: {
   readonly curricula: readonly CurriculumSource[];
-  readonly curriculumLocaleInput?: unknown;
   readonly domains?: readonly MaterialDomainDescriptor[];
   readonly appLocales?: readonly AppLocale[];
   readonly materials: readonly LessonMaterialSource[];
@@ -142,11 +141,7 @@ export const projectCurriculumRoutes = Effect.fn(
   const nodes = yield* projectCurriculumNodes(
     input.curricula,
     input.materials,
-    domains,
-    {
-      appLocales,
-      rows: input.curriculumLocaleInput,
-    }
+    domains
   );
   const context: CurriculumRouteContext = {
     appLocales,

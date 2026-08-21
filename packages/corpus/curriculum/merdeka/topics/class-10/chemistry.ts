@@ -12,6 +12,10 @@ export const merdekaClass10ChemistryTopicNodes = [
     ],
     key: "class-10-chemistry-basic-chemistry-laws",
     materialCard: {
+      de: {
+        description: "Erkenne chemische Veränderungen an ihren Merkmalen.",
+        title: "Grundgesetze der Chemie",
+      },
       en: {
         description: "Spot chemical changes from evidence.",
         title: "Basic Laws of Chemistry",
@@ -23,6 +27,10 @@ export const merdekaClass10ChemistryTopicNodes = [
     },
     order: 10,
     translations: {
+      de: {
+        routeSlug: "grundgesetze-der-chemie",
+        title: "Grundgesetze der Chemie",
+      },
       en: {
         routeSlug: "basic-chemistry-laws",
         title: "Basic Laws of Chemistry",
@@ -41,6 +49,10 @@ export const merdekaClass10ChemistryTopicNodes = [
     ],
     key: "class-10-chemistry-green-chemistry",
     materialCard: {
+      de: {
+        description: "Bewerte Reaktionen anhand der Prinzipien grüner Chemie.",
+        title: "Grüne Chemie",
+      },
       en: {
         description: "Judge reactions with green chemistry ideas.",
         title: "Green Chemistry",
@@ -52,6 +64,7 @@ export const merdekaClass10ChemistryTopicNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "gruene-chemie", title: "Grüne Chemie" },
       en: { routeSlug: "green-chemistry", title: "Green Chemistry" },
       id: { routeSlug: "kimia-hijau", title: "Kimia Hijau" },
     },
@@ -67,6 +80,10 @@ export const merdekaClass10ChemistryTopicNodes = [
     ],
     key: "class-10-chemistry-structure-matter",
     materialCard: {
+      de: {
+        description: "Nutze Atommodelle, um Stoffe zu verstehen.",
+        title: "Atombau",
+      },
       en: {
         description: "Use atomic ideas to explain matter.",
         title: "Atomic Structure",
@@ -78,6 +95,7 @@ export const merdekaClass10ChemistryTopicNodes = [
     },
     order: 30,
     translations: {
+      de: { routeSlug: "atombau", title: "Atombau" },
       en: { routeSlug: "structure-matter", title: "Atomic Structure" },
       id: { routeSlug: "struktur-atom", title: "Struktur Atom" },
     },

@@ -12,6 +12,10 @@ export const merdekaClass10PhysicsTopicNodes = [
     ],
     key: "class-10-physics-measurement",
     materialCard: {
+      de: {
+        description: "Verwende Einheiten und Messgeräte sachgerecht.",
+        title: "Messen",
+      },
       en: {
         description: "Use units and measuring tools well.",
         title: "Measurement",
@@ -23,6 +27,10 @@ export const merdekaClass10PhysicsTopicNodes = [
     },
     order: 10,
     translations: {
+      de: {
+        routeSlug: "messen-im-naturwissenschaftlichen-arbeiten",
+        title: "Messen",
+      },
       en: { routeSlug: "measurement", title: "Measurement" },
       id: { routeSlug: "pengukuran-dalam-kerja-ilmiah", title: "Pengukuran" },
     },
@@ -38,6 +46,10 @@ export const merdekaClass10PhysicsTopicNodes = [
     ],
     key: "class-10-physics-renewable-energy",
     materialCard: {
+      de: {
+        description: "Vergleiche Energiequellen und ihre Auswirkungen.",
+        title: "Erneuerbare Energien",
+      },
       en: {
         description: "Compare energy sources and impacts.",
         title: "Renewable Energy",
@@ -49,6 +61,7 @@ export const merdekaClass10PhysicsTopicNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "erneuerbare-energien", title: "Erneuerbare Energien" },
       en: { routeSlug: "renewable-energy", title: "Renewable Energy" },
       id: { routeSlug: "energi-terbarukan", title: "Energi Terbarukan" },
     },

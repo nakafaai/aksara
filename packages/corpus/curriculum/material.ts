@@ -8,8 +8,8 @@ import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec"
 import { Effect, Schema } from "effect";
 import type {
   CurriculumMaterialNode,
+  CurriculumNodeTranslationMapSchema,
   CurriculumSource,
-  LocalizedCurriculumNodeTranslationMapSchema,
 } from "#corpus/curriculum/schema";
 import {
   addLocalizedSource,
@@ -40,17 +40,16 @@ const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
     nodeKey: CurriculumProjectionError["nodeKey"],
     programKey: CurriculumProjectionError["programKey"]
   ) {
-    let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type =
-      {
-        en: {
-          routeSlug: material.routeSlugs.en,
-          title: material.translations.en.title,
-        },
-        id: {
-          routeSlug: material.routeSlugs.id,
-          title: material.translations.id.title,
-        },
-      };
+    let translations: typeof CurriculumNodeTranslationMapSchema.Type = {
+      en: {
+        routeSlug: material.routeSlugs.en,
+        title: material.translations.en.title,
+      },
+      id: {
+        routeSlug: material.routeSlugs.id,
+        title: material.translations.id.title,
+      },
+    };
     for (const { appLocale } of LOCALE_OVERLAY_APP_LOCALE_ENTRIES) {
       const routeSlug = sourceLocaleValue(material.routeSlugs, appLocale);
       const translation = sourceLocaleValue(material.translations, appLocale);
@@ -157,7 +156,7 @@ export const resolveCurriculumMaterial = Effect.fn(
     });
   }
 
-  let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type;
+  let translations: typeof CurriculumNodeTranslationMapSchema.Type;
   if (materials.length > 1) {
     if (!node.displayOverride) {
       return yield* new CurriculumProjectionError({

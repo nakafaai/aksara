@@ -12,6 +12,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
   tree: [
     stageNode({
       displayGroup: {
+        de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
       },
@@ -20,6 +21,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
       key: "primary",
       order: 10,
       translations: {
+        de: { routeSlug: "grundschule", title: "Grundschule" },
         en: {
           routeSlug: "primary",
           title: "Primary",
@@ -37,6 +39,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
         singaporeSecondaryScienceCourseNode,
       ],
       displayGroup: {
+        de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
       },
@@ -45,6 +48,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
       key: "secondary",
       order: 20,
       translations: {
+        de: { routeSlug: "sekundarstufe", title: "Sekundarstufe" },
         en: {
           routeSlug: "secondary",
           title: "Secondary",
@@ -57,6 +61,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
     }),
     stageNode({
       displayGroup: {
+        de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
       },
@@ -65,6 +70,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
       key: "pre-university",
       order: 30,
       translations: {
+        de: { routeSlug: "studienvorbereitung", title: "Studienvorbereitung" },
         en: {
           routeSlug: "pre-university",
           title: "Pre-university",

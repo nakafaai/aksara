@@ -48,6 +48,14 @@ describe("curriculum node projection", () => {
     expect(nodes).toHaveLength(191);
     expect(materialNodes).toHaveLength(96);
     expect(
+      nodes.every(
+        ({ displayGroup, materialCard, translations }) =>
+          translations.de !== undefined &&
+          (displayGroup === undefined || displayGroup.de !== undefined) &&
+          (materialCard === undefined || materialCard.de !== undefined)
+      )
+    ).toBe(true);
+    expect(
       new Set(materialNodes.flatMap(({ materialKeys }) => materialKeys))
     ).toHaveProperty("size", 34);
     expect(nodes.at(0)).toMatchObject({

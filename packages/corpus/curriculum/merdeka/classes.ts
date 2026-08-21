@@ -8,6 +8,7 @@ import { classNode } from "#corpus/curriculum/schema";
 export const merdekaClassNodes = [
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -16,6 +17,7 @@ export const merdekaClassNodes = [
     key: "class-1",
     order: 10,
     translations: {
+      de: { routeSlug: "klasse-1", title: "Klasse 1" },
       en: {
         routeSlug: "class-1",
         title: "Class 1",
@@ -28,6 +30,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -36,6 +39,7 @@ export const merdekaClassNodes = [
     key: "class-2",
     order: 20,
     translations: {
+      de: { routeSlug: "klasse-2", title: "Klasse 2" },
       en: {
         routeSlug: "class-2",
         title: "Class 2",
@@ -48,6 +52,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -56,6 +61,7 @@ export const merdekaClassNodes = [
     key: "class-3",
     order: 30,
     translations: {
+      de: { routeSlug: "klasse-3", title: "Klasse 3" },
       en: {
         routeSlug: "class-3",
         title: "Class 3",
@@ -68,6 +74,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -76,6 +83,7 @@ export const merdekaClassNodes = [
     key: "class-4",
     order: 40,
     translations: {
+      de: { routeSlug: "klasse-4", title: "Klasse 4" },
       en: {
         routeSlug: "class-4",
         title: "Class 4",
@@ -88,6 +96,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -96,6 +105,7 @@ export const merdekaClassNodes = [
     key: "class-5",
     order: 50,
     translations: {
+      de: { routeSlug: "klasse-5", title: "Klasse 5" },
       en: {
         routeSlug: "class-5",
         title: "Class 5",
@@ -108,6 +118,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
     },
@@ -116,6 +127,7 @@ export const merdekaClassNodes = [
     key: "class-6",
     order: 60,
     translations: {
+      de: { routeSlug: "klasse-6", title: "Klasse 6" },
       en: {
         routeSlug: "class-6",
         title: "Class 6",
@@ -128,6 +140,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
     },
@@ -136,6 +149,7 @@ export const merdekaClassNodes = [
     key: "class-7",
     order: 70,
     translations: {
+      de: { routeSlug: "klasse-7", title: "Klasse 7" },
       en: {
         routeSlug: "class-7",
         title: "Class 7",
@@ -148,6 +162,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
     },
@@ -156,6 +171,7 @@ export const merdekaClassNodes = [
     key: "class-8",
     order: 80,
     translations: {
+      de: { routeSlug: "klasse-8", title: "Klasse 8" },
       en: {
         routeSlug: "class-8",
         title: "Class 8",
@@ -168,6 +184,7 @@ export const merdekaClassNodes = [
   }),
   classNode({
     displayGroup: {
+      de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
     },
@@ -176,6 +193,7 @@ export const merdekaClassNodes = [
     key: "class-9",
     order: 90,
     translations: {
+      de: { routeSlug: "klasse-9", title: "Klasse 9" },
       en: {
         routeSlug: "class-9",
         title: "Class 9",
@@ -189,6 +207,7 @@ export const merdekaClassNodes = [
   classNode({
     children: merdekaClass10SubjectNodes,
     displayGroup: {
+      de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
     },
@@ -197,6 +216,7 @@ export const merdekaClassNodes = [
     key: "class-10",
     order: 100,
     translations: {
+      de: { routeSlug: "klasse-10", title: "Klasse 10" },
       en: {
         routeSlug: "class-10",
         title: "Class 10",
@@ -210,6 +230,7 @@ export const merdekaClassNodes = [
   classNode({
     children: merdekaClass11SubjectNodes,
     displayGroup: {
+      de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
     },
@@ -218,6 +239,7 @@ export const merdekaClassNodes = [
     key: "class-11",
     order: 110,
     translations: {
+      de: { routeSlug: "klasse-11", title: "Klasse 11" },
       en: {
         routeSlug: "class-11",
         title: "Class 11",
@@ -231,6 +253,7 @@ export const merdekaClassNodes = [
   classNode({
     children: merdekaClass12SubjectNodes,
     displayGroup: {
+      de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
     },
@@ -239,6 +262,7 @@ export const merdekaClassNodes = [
     key: "class-12",
     order: 120,
     translations: {
+      de: { routeSlug: "klasse-12", title: "Klasse 12" },
       en: {
         routeSlug: "class-12",
         title: "Class 12",

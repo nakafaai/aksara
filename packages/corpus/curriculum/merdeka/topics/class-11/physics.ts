@@ -12,6 +12,10 @@ export const merdekaClass11PhysicsTopicNodes = [
     ],
     key: "class-11-physics-kinematics",
     materialCard: {
+      de: {
+        description: "Verfolge Ort, Geschwindigkeit und Beschleunigung.",
+        title: "Kinematik",
+      },
       en: {
         description: "Track position, speed, and acceleration.",
         title: "Kinematics",
@@ -23,6 +27,7 @@ export const merdekaClass11PhysicsTopicNodes = [
     },
     order: 10,
     translations: {
+      de: { routeSlug: "kinematik", title: "Kinematik" },
       en: { routeSlug: "kinematics", title: "Kinematics" },
       id: { routeSlug: "kinematika", title: "Kinematika" },
     },
@@ -38,6 +43,10 @@ export const merdekaClass11PhysicsTopicNodes = [
     ],
     key: "class-11-physics-vector",
     materialCard: {
+      de: {
+        description: "Nutze Vektorrichtungen in Bewegungsaufgaben.",
+        title: "Vektoren in der Physik",
+      },
       en: {
         description: "Use vector direction in motion problems.",
         title: "Vectors in Physics",
@@ -49,6 +58,10 @@ export const merdekaClass11PhysicsTopicNodes = [
     },
     order: 20,
     translations: {
+      de: {
+        routeSlug: "vektoren-in-der-physik",
+        title: "Vektoren in der Physik",
+      },
       en: { routeSlug: "vector", title: "Vectors in Physics" },
       id: { routeSlug: "vektor", title: "Vektor dalam Fisika" },
     },

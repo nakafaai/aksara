@@ -12,6 +12,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-circle",
     materialCard: {
+      de: {
+        description: "Vergleiche Mittelpunkts- und Umfangswinkel.",
+        title: "Kreis",
+      },
       en: {
         description: "Relate central and inscribed angles.",
         title: "Circles",
@@ -23,6 +27,7 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 10,
     translations: {
+      de: { routeSlug: "kreis", title: "Kreis" },
       en: { routeSlug: "circle", title: "Circles" },
       id: { routeSlug: "lingkaran", title: "Lingkaran" },
     },
@@ -38,6 +43,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-complex-number",
     materialCard: {
+      de: {
+        description: "Addiere komplexe Zahlen und deute sie geometrisch.",
+        title: "Komplexe Zahlen",
+      },
       en: {
         description: "Add complex numbers with geometry.",
         title: "Complex Numbers",
@@ -49,6 +58,7 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "komplexe-zahlen", title: "Komplexe Zahlen" },
       en: { routeSlug: "complex-number", title: "Complex Numbers" },
       id: { routeSlug: "bilangan-kompleks", title: "Bilangan Kompleks" },
     },
@@ -66,6 +76,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-function-composition-inverse-function",
     materialCard: {
+      de: {
+        description: "Verknüpfe Funktionen mit passenden Definitionsbereichen.",
+        title: "Funktionskomposition und Umkehrfunktion",
+      },
       en: {
         description: "Operate on functions and domains.",
         title: "Function Composition and Inverses",
@@ -77,6 +91,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 30,
     translations: {
+      de: {
+        routeSlug: "funktionskomposition-und-umkehrfunktion",
+        title: "Funktionskomposition und Umkehrfunktion",
+      },
       en: {
         routeSlug: "function-composition-inverse-function",
         title: "Function Composition and Inverses",
@@ -98,6 +116,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-function-modeling",
     materialCard: {
+      de: {
+        description: "Modelliere das Verhalten von Betragsfunktionen.",
+        title: "Funktionsmodellierung",
+      },
       en: {
         description: "Model absolute value behavior.",
         title: "Function Modeling",
@@ -109,6 +131,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 40,
     translations: {
+      de: {
+        routeSlug: "funktionsmodellierung",
+        title: "Funktionsmodellierung",
+      },
       en: { routeSlug: "function-modeling", title: "Function Modeling" },
       id: { routeSlug: "fungsi-dan-pemodelannya", title: "Pemodelan Fungsi" },
     },
@@ -124,6 +150,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-geometric-transformation",
     materialCard: {
+      de: {
+        description: "Verbinde geometrische Transformationen mit Matrizen.",
+        title: "Geometrische Transformationen",
+      },
       en: {
         description: "Combine transformations with matrices.",
         title: "Geometric Transformations",
@@ -135,6 +165,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 50,
     translations: {
+      de: {
+        routeSlug: "geometrische-transformationen",
+        title: "Geometrische Transformationen",
+      },
       en: {
         routeSlug: "geometric-transformation",
         title: "Geometric Transformations",
@@ -156,6 +190,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-matrix",
     materialCard: {
+      de: {
+        description: "Berechne Determinanten mithilfe von Minoren.",
+        title: "Matrizen",
+      },
       en: {
         description: "Compute determinants from minors.",
         title: "Matrices",
@@ -167,6 +205,7 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 60,
     translations: {
+      de: { routeSlug: "matrizen", title: "Matrizen" },
       en: { routeSlug: "matrix", title: "Matrices" },
       id: { routeSlug: "matriks", title: "Matriks" },
     },
@@ -182,6 +221,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-polynomial",
     materialCard: {
+      de: {
+        description: "Fasse gleichartige Terme in Polynomen zusammen.",
+        title: "Polynome",
+      },
       en: {
         description: "Combine like terms in polynomials.",
         title: "Polynomials",
@@ -193,6 +236,7 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 70,
     translations: {
+      de: { routeSlug: "polynome", title: "Polynome" },
       en: { routeSlug: "polynomial", title: "Polynomials" },
       id: { routeSlug: "polinomial", title: "Polinomial" },
     },
@@ -208,6 +252,10 @@ export const merdekaClass11MathematicsTopicNodes = [
     ],
     key: "class-11-mathematics-statistics-regression",
     materialCard: {
+      de: {
+        description: "Lies ab, welchen Anteil der Streuung ein Modell erklärt.",
+        title: "Regressionsanalyse",
+      },
       en: {
         description: "Read how models explain variation.",
         title: "Regression Statistics",
@@ -219,6 +267,7 @@ export const merdekaClass11MathematicsTopicNodes = [
     },
     order: 80,
     translations: {
+      de: { routeSlug: "regressionsanalyse", title: "Regressionsanalyse" },
       en: {
         routeSlug: "statistics-regression",
         title: "Regression Statistics",

@@ -25,6 +25,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       ],
       key: "high-school-mathematics-number-quantity",
       materialCard: {
+        de: {
+          description: "Arbeite mit komplexen Zahlen, Vektoren und Matrizen.",
+          title: "Zahlen und Größen",
+        },
         en: {
           description: "Use complex numbers, vectors, and matrices.",
           title: "Number and Quantity",
@@ -36,6 +40,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       },
       order: 10,
       translations: {
+        de: { routeSlug: "zahlen-und-groessen", title: "Zahlen und Größen" },
         en: {
           routeSlug: "number-and-quantity",
           title: "Number and Quantity",
@@ -75,6 +80,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       ],
       key: "high-school-mathematics-algebra",
       materialCard: {
+        de: {
+          description: "Löse Gleichungen, Polynome und Exponentialterme.",
+          title: "Algebra",
+        },
         en: {
           description: "Solve equations, polynomials, and exponentials.",
           title: "Algebra",
@@ -86,6 +95,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       },
       order: 20,
       translations: {
+        de: { routeSlug: "algebra", title: "Algebra" },
         en: {
           routeSlug: "algebra",
           title: "Algebra",
@@ -121,6 +131,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       ],
       key: "high-school-mathematics-functions",
       materialCard: {
+        de: {
+          description: "Modelliere, verknüpfe und transformiere Funktionen.",
+          title: "Funktionen",
+        },
         en: {
           description: "Model, compose, and transform functions.",
           title: "Functions",
@@ -132,6 +146,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       },
       order: 30,
       translations: {
+        de: { routeSlug: "funktionen", title: "Funktionen" },
         en: {
           routeSlug: "functions",
           title: "Functions",
@@ -165,6 +180,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       ],
       key: "high-school-mathematics-geometry",
       materialCard: {
+        de: {
+          description: "Arbeite mit Kreisen, Koordinaten und Trigonometrie.",
+          title: "Geometrie",
+        },
         en: {
           description: "Use circles, coordinates, and trigonometry.",
           title: "Geometry",
@@ -176,6 +195,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       },
       order: 40,
       translations: {
+        de: { routeSlug: "geometrie", title: "Geometrie" },
         en: {
           routeSlug: "geometry",
           title: "Geometry",
@@ -209,6 +229,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       ],
       key: "high-school-mathematics-statistics-probability",
       materialCard: {
+        de: {
+          description: "Werte Daten, Zufall und Regressionsmodelle aus.",
+          title: "Statistik und Wahrscheinlichkeit",
+        },
         en: {
           description: "Read data, chance, and regression models.",
           title: "Statistics and Probability",
@@ -220,6 +244,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       },
       order: 50,
       translations: {
+        de: {
+          routeSlug: "statistik-und-wahrscheinlichkeit",
+          title: "Statistik und Wahrscheinlichkeit",
+        },
         en: {
           routeSlug: "statistics-and-probability",
           title: "Statistics and Probability",
@@ -236,6 +264,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
   materialDomain: "mathematics",
   order: 10,
   translations: {
+    de: { routeSlug: "mathematik", title: "Mathematik" },
     en: {
       routeSlug: "mathematics",
       title: "Mathematics",

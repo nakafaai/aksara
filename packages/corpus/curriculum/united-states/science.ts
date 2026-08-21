@@ -37,6 +37,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       ],
       key: "high-school-science-physical-sciences",
       materialCard: {
+        de: {
+          description: "Verbinde Bewegung, Energie, Stoffe und Reaktionen.",
+          title: "Physikalische Wissenschaften",
+        },
         en: {
           description: "Connect motion, energy, matter, and reactions.",
           title: "Physical Sciences",
@@ -48,6 +52,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       },
       order: 10,
       translations: {
+        de: {
+          routeSlug: "physikalische-wissenschaften",
+          title: "Physikalische Wissenschaften",
+        },
         en: {
           routeSlug: "physical-sciences",
           title: "Physical Sciences",
@@ -75,6 +83,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       ],
       key: "high-school-science-life-sciences",
       materialCard: {
+        de: {
+          description: "Vergleiche Lebewesen, Viren und biologische Vielfalt.",
+          title: "Lebenswissenschaften",
+        },
         en: {
           description: "Compare living systems, viruses, and diversity.",
           title: "Life Sciences",
@@ -86,6 +98,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       },
       order: 20,
       translations: {
+        de: {
+          routeSlug: "lebenswissenschaften",
+          title: "Lebenswissenschaften",
+        },
         en: {
           routeSlug: "life-sciences",
           title: "Life Sciences",
@@ -107,6 +123,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       ],
       key: "high-school-science-earth-space-sciences",
       materialCard: {
+        de: {
+          description: "Verfolge den Klimawandel in den Systemen der Erde.",
+          title: "Geo- und Weltraumwissenschaften",
+        },
         en: {
           description: "Trace climate change through Earth systems.",
           title: "Earth and Space Sciences",
@@ -118,6 +138,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       },
       order: 30,
       translations: {
+        de: {
+          routeSlug: "geo-und-weltraumwissenschaften",
+          title: "Geo- und Weltraumwissenschaften",
+        },
         en: {
           routeSlug: "earth-and-space-sciences",
           title: "Earth and Space Sciences",
@@ -133,6 +157,7 @@ export const usHighSchoolScienceCourseNode = courseNode({
   key: "high-school-science",
   order: 20,
   translations: {
+    de: { routeSlug: "naturwissenschaften", title: "Naturwissenschaften" },
     en: {
       routeSlug: "science",
       title: "Science",

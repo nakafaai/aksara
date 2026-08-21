@@ -12,6 +12,10 @@ export const igcseBiologyUnitNodes = [
     ],
     key: "biology-0610-living-organisms",
     materialCard: {
+      de: {
+        description: "Ordne Lebewesen ein und vergleiche biologische Systeme.",
+        title: "Lebewesen",
+      },
       en: {
         description: "Classify organisms and compare living systems.",
         title: "Living organisms",
@@ -23,6 +27,7 @@ export const igcseBiologyUnitNodes = [
     },
     order: 10,
     translations: {
+      de: { routeSlug: "lebewesen", title: "Lebewesen" },
       en: {
         routeSlug: "living-organisms",
         title: "Living organisms",
@@ -50,6 +55,10 @@ export const igcseBiologyUnitNodes = [
     ],
     key: "biology-0610-disease-ecosystems",
     materialCard: {
+      de: {
+        description: "Verbinde Viren, Ökosysteme und Klimafolgen.",
+        title: "Krankheiten und Ökosysteme",
+      },
       en: {
         description: "Connect viruses, ecosystems, and climate effects.",
         title: "Disease and ecosystems",
@@ -61,6 +70,10 @@ export const igcseBiologyUnitNodes = [
     },
     order: 20,
     translations: {
+      de: {
+        routeSlug: "krankheiten-und-oekosysteme",
+        title: "Krankheiten und Ökosysteme",
+      },
       en: {
         routeSlug: "disease-and-ecosystems",
         title: "Disease and ecosystems",
@@ -91,6 +104,10 @@ export const igcseChemistryUnitNodes = [
     ],
     key: "chemistry-0620-matter-reactions",
     materialCard: {
+      de: {
+        description: "Modelliere Atome, Reaktionen und chemische Gesetze.",
+        title: "Stoffe und Reaktionen",
+      },
       en: {
         description: "Model atoms, reactions, and chemical laws.",
         title: "Matter and reactions",
@@ -102,6 +119,10 @@ export const igcseChemistryUnitNodes = [
     },
     order: 10,
     translations: {
+      de: {
+        routeSlug: "stoffe-und-reaktionen",
+        title: "Stoffe und Reaktionen",
+      },
       en: {
         routeSlug: "matter-and-reactions",
         title: "Matter and reactions",
@@ -123,6 +144,10 @@ export const igcseChemistryUnitNodes = [
     ],
     key: "chemistry-0620-environment",
     materialCard: {
+      de: {
+        description: "Bewerte Reaktionen nach den Regeln der grünen Chemie.",
+        title: "Umweltchemie",
+      },
       en: {
         description: "Judge reactions with greener chemistry choices.",
         title: "Environmental chemistry",
@@ -134,6 +159,7 @@ export const igcseChemistryUnitNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "umweltchemie", title: "Umweltchemie" },
       en: {
         routeSlug: "environmental-chemistry",
         title: "Environmental chemistry",
@@ -170,6 +196,10 @@ export const igcsePhysicsUnitNodes = [
     ],
     key: "physics-0625-measurement-motion",
     materialCard: {
+      de: {
+        description: "Miss Bewegung und beschreibe Vektoren und Kräfte.",
+        title: "Messung, Bewegung und Kräfte",
+      },
       en: {
         description: "Measure motion, vectors, and forces clearly.",
         title: "Measurement, motion, and forces",
@@ -181,6 +211,10 @@ export const igcsePhysicsUnitNodes = [
     },
     order: 10,
     translations: {
+      de: {
+        routeSlug: "messung-bewegung-und-kraefte",
+        title: "Messung, Bewegung und Kräfte",
+      },
       en: {
         routeSlug: "measurement-motion-and-forces",
         title: "Measurement, motion, and forces",
@@ -202,6 +236,10 @@ export const igcsePhysicsUnitNodes = [
     ],
     key: "physics-0625-energy",
     materialCard: {
+      de: {
+        description: "Vergleiche Energiequellen und ihre Vor- und Nachteile.",
+        title: "Energie",
+      },
       en: {
         description: "Compare energy sources and their tradeoffs.",
         title: "Energy",
@@ -213,6 +251,7 @@ export const igcsePhysicsUnitNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "energie", title: "Energie" },
       en: {
         routeSlug: "energy",
         title: "Energy",

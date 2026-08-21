@@ -30,6 +30,10 @@ export const igcseMathematicsUnitNodes = [
     ],
     key: "mathematics-0580-algebra-graphs",
     materialCard: {
+      de: {
+        description: "Stelle Gleichungen, Graphen, Folgen und Funktionen auf.",
+        title: "Algebra und Graphen",
+      },
       en: {
         description: "Build equations, graphs, sequences, and functions.",
         title: "Algebra and graphs",
@@ -41,6 +45,7 @@ export const igcseMathematicsUnitNodes = [
     },
     order: 20,
     translations: {
+      de: { routeSlug: "algebra-und-graphen", title: "Algebra und Graphen" },
       en: {
         routeSlug: "algebra-and-graphs",
         title: "Algebra and graphs",
@@ -80,6 +85,10 @@ export const igcseMathematicsUnitNodes = [
     ],
     key: "mathematics-0580-geometry",
     materialCard: {
+      de: {
+        description: "Arbeite mit Kreisen, Koordinaten und Trigonometrie.",
+        title: "Geometrie, Größenberechnung und Trigonometrie",
+      },
       en: {
         description: "Work with circles, coordinates, and trigonometry.",
         title: "Geometry, mensuration, and trigonometry",
@@ -91,6 +100,10 @@ export const igcseMathematicsUnitNodes = [
     },
     order: 30,
     translations: {
+      de: {
+        routeSlug: "geometrie-groessenberechnung-und-trigonometrie",
+        title: "Geometrie, Größenberechnung und Trigonometrie",
+      },
       en: {
         routeSlug: "geometry-mensuration-and-trigonometry",
         title: "Geometry, mensuration, and trigonometry",
@@ -118,6 +131,10 @@ export const igcseMathematicsUnitNodes = [
     ],
     key: "mathematics-0580-transformations-vectors",
     materialCard: {
+      de: {
+        description: "Nutze Transformationen und Vektoren in der Geometrie.",
+        title: "Transformationen und Vektoren",
+      },
       en: {
         description: "Use transformations and vectors in geometry.",
         title: "Transformations and vectors",
@@ -129,6 +146,10 @@ export const igcseMathematicsUnitNodes = [
     },
     order: 40,
     translations: {
+      de: {
+        routeSlug: "transformationen-und-vektoren",
+        title: "Transformationen und Vektoren",
+      },
       en: {
         routeSlug: "transformations-and-vectors",
         title: "Transformations and vectors",
@@ -156,6 +177,10 @@ export const igcseMathematicsUnitNodes = [
     ],
     key: "mathematics-0580-probability-statistics",
     materialCard: {
+      de: {
+        description: "Berechne Wahrscheinlichkeiten und werte Daten aus.",
+        title: "Wahrscheinlichkeit und Statistik",
+      },
       en: {
         description: "Read chance and data with clear calculations.",
         title: "Probability and statistics",
@@ -167,6 +192,10 @@ export const igcseMathematicsUnitNodes = [
     },
     order: 50,
     translations: {
+      de: {
+        routeSlug: "wahrscheinlichkeit-und-statistik",
+        title: "Wahrscheinlichkeit und Statistik",
+      },
       en: {
         routeSlug: "probability-and-statistics",
         title: "Probability and statistics",

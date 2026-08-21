@@ -14,6 +14,7 @@ export const merdekaClass10SubjectNodes = [
     materialDomain: "biology",
     order: 10,
     translations: {
+      de: { routeSlug: "biologie", title: "Biologie" },
       en: {
         routeSlug: "biology",
         title: "Biology",
@@ -30,6 +31,7 @@ export const merdekaClass10SubjectNodes = [
     materialDomain: "chemistry",
     order: 20,
     translations: {
+      de: { routeSlug: "chemie", title: "Chemie" },
       en: {
         routeSlug: "chemistry",
         title: "Chemistry",
@@ -46,6 +48,7 @@ export const merdekaClass10SubjectNodes = [
     materialDomain: "mathematics",
     order: 30,
     translations: {
+      de: { routeSlug: "mathematik", title: "Mathematik" },
       en: {
         routeSlug: "mathematics",
         title: "Mathematics",
@@ -62,6 +65,7 @@ export const merdekaClass10SubjectNodes = [
     materialDomain: "physics",
     order: 40,
     translations: {
+      de: { routeSlug: "physik", title: "Physik" },
       en: {
         routeSlug: "physics",
         title: "Physics",
@@ -81,6 +85,7 @@ export const merdekaClass11SubjectNodes = [
     materialDomain: "mathematics",
     order: 30,
     translations: {
+      de: { routeSlug: "mathematik", title: "Mathematik" },
       en: {
         routeSlug: "mathematics",
         title: "Mathematics",
@@ -97,6 +102,7 @@ export const merdekaClass11SubjectNodes = [
     materialDomain: "physics",
     order: 40,
     translations: {
+      de: { routeSlug: "physik", title: "Physik" },
       en: {
         routeSlug: "physics",
         title: "Physics",
@@ -116,6 +122,7 @@ export const merdekaClass12SubjectNodes = [
     materialDomain: "mathematics",
     order: 30,
     translations: {
+      de: { routeSlug: "mathematik", title: "Mathematik" },
       en: {
         routeSlug: "mathematics",
         title: "Mathematics",
