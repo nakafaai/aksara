@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Security Policy",
   description: "Review Nakafa's security practices and policies to understand how we safeguard your data and ensure platform security.",
-  lastModified: "2026-08-21",
+  lastModified: "2026-08-22",
 };
 
 # Security Policy
 
-Last updated: August 21, 2026
+Last updated: August 22, 2026
 
 This Security Policy describes the security measures PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") uses, and the measures we expect users to take, to help protect the confidentiality, integrity, and availability of the Services and related data.
 
@@ -55,15 +55,15 @@ The Nakafa repository workflow automatically audits dependencies and runs tests 
 
 The technical statements above are bounded to the following exact Nakafa implementation revision and provider documentation:
 
-- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/next-config/index.ts#L38-L144)
-- [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/lib/helpers/auth.ts#L83-L115)
-- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/lib/content/internal/authorization.ts#L1-L20)
-- [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/browser.ts#L137-L296)
-- [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/analytics/posthog/exception.ts#L3-L76)
-- [Next.js request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/apps/www/instrumentation.ts#L48-L81)
-- [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/analytics/capture.ts#L76-L199)
-- [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L3-L62)
-- [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/.github/workflows/agent-docs.yml#L217-L226)
+- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/next-config/index.ts)
+- [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/lib/helpers/auth.ts)
+- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/apps/www/lib/content/internal/authorization.ts)
+- [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/analytics/posthog/browser.ts)
+- [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/analytics/posthog/exception.ts)
+- [Next.js request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/apps/www/instrumentation.ts)
+- [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/analytics/capture.ts)
+- [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/.github/workflows/agent-docs.yml)
+- [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/.github/workflows/agent-docs.yml)
 - [Vercel HTTPS and certificate delivery documentation](https://vercel.com/docs/security#encryption)
 
 ## Third-party service security
@@ -76,7 +76,8 @@ The Services rely on third-party services. Their security practices and controls
 - Resend (email delivery)
 - PostHog (consent-based product analytics and identity-free operational error reporting)
 - Vercel AI Gateway (AI request routing)
-- OpenAI (AI model processing)
+- Google (Gemini API model processing)
+- Google Cloud (Vertex AI model processing)
 
 Each third party may process data as part of providing the Services. For details about categories of data shared and purposes, review our [Privacy Policy](/en/privacy-policy).
 

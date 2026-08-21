@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Nutzungsbedingungen",
   description: "Lies Nakafas Nutzungsbedingungen, um die Regeln für die Nutzung unserer Lernplattform und Dienste zu verstehen.",
-  lastModified: "2026-08-21",
+  lastModified: "2026-08-22",
 };
 
 # Nutzungsbedingungen
 
-Zuletzt aktualisiert: 21. August 2026
+Zuletzt aktualisiert: 22. August 2026
 
 Diese Nutzungsbedingungen (die „Bedingungen“) sind eine rechtsverbindliche Vereinbarung zwischen Ihnen und PT NAKAFA TEKNO KREATIF („Nakafa“, „wir“, „uns“ oder „unser“). Sie regeln Ihren Zugriff auf unsere Websites, Anwendungen und zugehörigen Dienste sowie deren Nutzung (zusammen die „Dienste“).
 
@@ -31,7 +31,7 @@ Sie müssen mindestens 13 Jahre alt sein, um die Dienste zu nutzen.
 
 Wenn Sie jünger als 18 Jahre sind, dürfen Sie die Dienste nur mit Erlaubnis und unter Einbeziehung eines Elternteils oder einer gesetzlichen Vertretung nutzen. Diese Person muss den Bedingungen in Ihrem Namen zustimmen.
 
-Für KI-Funktionen gilt eine eigene Altersgrenze. Sie müssen mindestens 16 Jahre alt sein oder ein höheres Mindestalter erreicht haben, das nach dem Recht Ihres Wohnorts gilt. Wenn Sie jünger als 18 Jahre sind, muss außerdem ein Elternteil oder eine gesetzliche Vertretung die Nutzung erlauben.
+Für KI-Funktionen gilt eine eigene Altersgrenze. Sie müssen mindestens 18 Jahre alt sein und jedes höhere Mindestalter erreicht haben, das nach dem Recht Ihres Wohnorts gilt.
 
 Sie dürfen die Dienste nicht nutzen, wenn Ihre Nutzung nach anwendbarem Recht untersagt ist.
 
@@ -66,9 +66,9 @@ Wir können den Zugang sperren oder beenden, wenn wir davon ausgehen, dass Sie g
 
 ### Funktionsweise der KI-Funktionen
 
-Wenn Sie KI-Funktionen nutzen, übermitteln Sie Eingaben oder Nachrichten und die Dienste erzeugen Ausgaben. Die Eingaben und der zugehörige Kontext werden über Vercel AI Gateway an den Modellanbieter weitergeleitet. Nakafa verwendet für diese Funktionen derzeit Modelle von OpenAI.
+Wenn Sie KI-Funktionen nutzen, übermitteln Sie Eingaben oder Nachrichten und die Dienste erzeugen Ausgaben. Nakafa leitet die Eingaben und den zugehörigen Kontext über Vercel AI Gateway an Gemini 3.5 Flash Lite oder Gemini 3.7 Flash weiter. Das Gateway kann Google oder Google Cloud Vertex AI auswählen; ein anderer Modellanbieter ist nicht zugelassen. Jede Anfrage verlangt einen Verarbeitungsweg, den Vercel als vom Prompt-Training ausgeschlossen ausweist. Ist kein zulässiger Verarbeitungsweg von Google oder Vertex AI verfügbar, schlägt die Anfrage fehl, statt auf einen anderen Anbieter auszuweichen. Recherchefunktionen können außerdem Google Search zur Fundierung öffentlicher Informationen verwenden.
 
-Unsere Nutzung dieser Dienste unterliegt den [KI-Produktbedingungen von Vercel](https://vercel.com/legal/ai-product-terms#ai-gateway), der [OpenAI-Dienstleistungsvereinbarung](https://openai.com/policies/services-agreement/) und den [Nutzungsrichtlinien von OpenAI](https://openai.com/policies/usage-policies/).
+Unsere Nutzung dieser Dienste unterliegt den [KI-Produktbedingungen von Vercel](https://vercel.com/legal/ai-product-terms#ai-gateway), den [Hinweisen und Lizenzinformationen von Vercel](https://vercel.com/legal/notices-and-license-information#ai-gateway), den [Zusätzlichen Bedingungen für die Gemini API](https://ai.google.dev/gemini-api/terms) und den [Google-Cloud-Bedingungen](https://cloud.google.com/terms), soweit sie für den ausgewählten Verarbeitungsweg gelten.
 
 ### Grenzen der KI und Ihre Verantwortung
 
@@ -100,7 +100,7 @@ Wir können Preise oder Tarife im Laufe der Zeit ändern. Wenn eine Änderung Ih
 
 ## E-Mails und Mitteilungen
 
-Bei der Erstellung eines neuen Kontos [plant der aktuelle Kontoablauf eine Willkommensnachricht ein](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/client.ts#L65-L79) und [versendet sie über Resend](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/emails/mutations.ts#L13-L40).
+Bei der Erstellung eines neuen Kontos [plant der aktuelle Kontoablauf eine Willkommensnachricht ein](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/auth/client.ts) und [versendet sie über Resend](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/emails/mutations.ts).
 
 ## Geistiges Eigentum
 
@@ -128,7 +128,8 @@ Die Dienste sind für ihren Betrieb auf externe Anbieter angewiesen. Dazu könne
 - PostHog (Produktanalyse nach Einwilligung und betriebsbezogene Fehlerberichte ohne Nutzeridentität)
 - Resend (E-Mail-Versand)
 - Vercel AI Gateway (Weiterleitung von KI-Anfragen)
-- OpenAI (Verarbeitung durch KI-Modelle)
+- Google (Modellverarbeitung über die Gemini API)
+- Google Cloud (Modellverarbeitung über Vertex AI)
 
 Wenn Sie mit diesen Diensten interagieren, können zusätzlich deren Bedingungen und Datenschutzhinweise gelten. Dieser Abschnitt schließt keine Verantwortung aus, die Nakafa nach zwingendem Recht trägt.
 

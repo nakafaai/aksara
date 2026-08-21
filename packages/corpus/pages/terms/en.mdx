@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Terms of Service",
   description: "Read Nakafa's Terms of Service to understand the rules and guidelines for using our educational platform and services.",
-  lastModified: "2026-08-21",
+  lastModified: "2026-08-22",
 };
 
 # Terms of Service
 
-Last updated: August 21, 2026
+Last updated: August 22, 2026
 
 These Terms of Service (the "Terms") are a binding contract between you and PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our"). These Terms govern your access to and use of our websites, applications, and related services (collectively, the "Services").
 
@@ -31,7 +31,7 @@ You must be at least 13 years old to use the Services.
 
 If you are under 18 years old, you may use the Services only with the permission and involvement of a parent or legal guardian, who must agree to these Terms on your behalf.
 
-AI features have a separate age requirement. You must be at least 16 years old, or any higher minimum age required by the law where you live, to use AI features. If you are under 18, your parent or legal guardian must also permit that use.
+AI features have a separate age requirement. You must be at least 18 years old and meet any higher minimum age required by the law where you live to use AI features.
 
 You may not use the Services if your use is prohibited by applicable law.
 
@@ -66,9 +66,9 @@ We may suspend or terminate access if we believe you have violated these Terms o
 
 ### How AI features work
 
-If you use AI features, you submit prompts or messages and the Services generate outputs. Prompts and related context are routed through Vercel AI Gateway to the model provider. Nakafa currently uses OpenAI models for these features.
+If you use AI features, you submit prompts or messages and the Services generate outputs. Nakafa routes prompts and related context through Vercel AI Gateway to Gemini 3.5 Flash Lite or Gemini 3.7 Flash. The Gateway may select Google or Google Cloud Vertex AI, but no other model provider is permitted. Each request requires a route that Vercel identifies as disallowing prompt training. If no eligible Google or Vertex AI route is available, the request fails instead of falling back to another provider. Research features may also use Google Search grounding to corroborate public information.
 
-Our use of these services is subject to the [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), the [OpenAI Services Agreement](https://openai.com/policies/services-agreement/), and the [OpenAI Usage Policies](https://openai.com/policies/usage-policies/).
+Our use of these services is subject to the [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [Vercel Notices and License Information](https://vercel.com/legal/notices-and-license-information#ai-gateway), [Gemini API Additional Terms](https://ai.google.dev/gemini-api/terms), and [Google Cloud Terms](https://cloud.google.com/terms), as applicable to the selected route.
 
 ### AI limitations and your responsibility
 
@@ -100,7 +100,7 @@ We may change pricing or plans over time. If changes apply to your Subscription,
 
 ## Emails and communications
 
-When a new account is created, the current account workflow [schedules a welcome email](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/auth/client.ts#L65-L79) and [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/393ef126f9ecfecfb2e228fbb923fec49b10f2a5/packages/backend/convex/emails/mutations.ts#L13-L40).
+When a new account is created, the current account workflow [schedules a welcome email](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/auth/client.ts) and [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/emails/mutations.ts).
 
 ## Intellectual property
 
@@ -133,7 +133,8 @@ The Services rely on third-party services to operate. These may include:
 - PostHog (product analytics after consent and identity-free operational error reporting)
 - Resend (email delivery)
 - Vercel AI Gateway (AI request routing)
-- OpenAI (AI model processing)
+- Google (Gemini API model processing)
+- Google Cloud (Vertex AI model processing)
 
 Third-party terms and privacy notices may also apply when you interact with those services. Nothing in this section excludes responsibility that Nakafa has under mandatory law.
 
