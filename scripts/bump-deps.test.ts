@@ -18,6 +18,7 @@ import {
 } from "#scripts/dependency-command";
 import {
   DEPENDENCY_HOLDS,
+  DEPENDENCY_RELEASE_AGE_MINUTES,
   expectedIgnoredDependencies,
 } from "#scripts/dependency-policy";
 
@@ -44,6 +45,8 @@ const temporaryRoots = new Set<string>();
 function createConfig(input?: {
   readonly invalidManifest?: string;
   readonly invalidWorkspace?: string;
+  readonly minimumReleaseAge?: number;
+  readonly minimumReleaseAgeStrict?: boolean;
   readonly omitUltracite?: boolean;
   readonly omitIgnore?: string;
 }) {
@@ -81,6 +84,9 @@ function createConfig(input?: {
           effect: "4.0.0-rc.110",
           typescript: "npm:@typescript/typescript6@6.0.2",
         },
+        minimumReleaseAge:
+          input?.minimumReleaseAge ?? DEPENDENCY_RELEASE_AGE_MINUTES,
+        minimumReleaseAgeStrict: input?.minimumReleaseAgeStrict ?? true,
         update: { ignoreDeps },
       })
   );
@@ -214,6 +220,20 @@ describe("dependency update policy", () => {
     expect(error.detail).toContain(
       "Routine dependencies remain outdated: yaml"
     );
+  });
+
+  it("fails when the release-maturity policy drifts", async () => {
+    const error = await fail(
+      createConfig({
+        minimumReleaseAge: 0,
+        minimumReleaseAgeStrict: false,
+      }),
+      makeRunner()
+    );
+
+    expect(error).toMatchObject({ _tag: "DependencyPolicyError" });
+    expect(error.detail).toContain("exactly 1440 minutes");
+    expect(error.detail).toContain("must remain strict");
   });
 
   it("types update and repository file failures", async () => {

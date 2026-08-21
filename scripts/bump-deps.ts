@@ -13,6 +13,7 @@ import {
 } from "#scripts/dependency-command";
 import {
   DEPENDENCY_HOLDS,
+  DEPENDENCY_RELEASE_AGE_MINUTES,
   type DependencyHold,
   declaredVersion,
   expectedIgnoredDependencies,
@@ -40,6 +41,8 @@ const RootManifestSchema = Schema.Struct({
 
 const WorkspaceSchema = Schema.Struct({
   catalog: Schema.Record(Schema.String, Schema.String),
+  minimumReleaseAge: Schema.Finite,
+  minimumReleaseAgeStrict: Schema.Boolean,
   update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
 });
 
@@ -128,6 +131,14 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
         "pnpm update.ignoreDeps does not match the reviewed hold policy."
       );
     }
+    if (workspace.minimumReleaseAge !== DEPENDENCY_RELEASE_AGE_MINUTES) {
+      problems.push(
+        "Dependency releases must mature for exactly 1440 minutes."
+      );
+    }
+    if (!workspace.minimumReleaseAgeStrict) {
+      problems.push("Dependency release-age enforcement must remain strict.");
+    }
 
     const reports = yield* Effect.forEach(
       DEPENDENCY_HOLDS,
@@ -181,7 +192,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     }
 
     yield* Effect.logInfo(
-      "Routine dependencies and every reviewed hold are current."
+      "Routine dependencies and every reviewed hold are current under the repository's 24-hour release-maturity policy."
     );
     return reports;
   }

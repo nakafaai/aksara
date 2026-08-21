@@ -1,5 +1,7 @@
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
+export const DEPENDENCY_RELEASE_AGE_MINUTES = 1440;
+
 export type DeclarationSource =
   | "catalog"
   | "node-runtime"
