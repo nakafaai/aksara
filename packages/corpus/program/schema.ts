@@ -1,40 +1,29 @@
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
+  type LearningProgram,
   LearningProgramSchema,
-  ProgramTranslationSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { Schema } from "effect";
 
-import {
-  EMBEDDED_APP_LOCALE_CODES,
-  EmbeddedAppLocaleSchema,
-} from "#corpus/locale/source";
-
-/** Checks exact embedded locale closure for one base program source. */
-function hasEmbeddedProgramTranslations(
-  translations: readonly (typeof ProgramTranslationSchema.Type)[]
+/** Checks exact active locale closure for one program source. */
+function hasActiveProgramTranslations(
+  translations: LearningProgram["translations"]
 ) {
   return (
-    translations.length === EMBEDDED_APP_LOCALE_CODES.length &&
+    translations.length === ACTIVE_APP_LOCALES.length &&
     translations.every(
-      ({ appLocale }, index) => appLocale === EMBEDDED_APP_LOCALE_CODES[index]
+      ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALES[index]
     )
   );
 }
 
-/** Learning program source whose localized copy remains embedded in en and id. */
-export const LearningProgramSourceSchema = Schema.Struct({
-  ...LearningProgramSchema.fields,
-  translations: Schema.NonEmptyArray(
-    Schema.Struct({
-      ...ProgramTranslationSchema.fields,
-      appLocale: EmbeddedAppLocaleSchema,
-    })
-  ).pipe(
-    Schema.check(
-      Schema.makeFilter(hasEmbeddedProgramTranslations, {
-        identifier: "EmbeddedProgramTranslations",
-      })
+/** Learning program source with complete canonical EN, ID, and DE copy. */
+export const LearningProgramSourceSchema = LearningProgramSchema.pipe(
+  Schema.check(
+    Schema.makeFilter(
+      ({ translations }) => hasActiveProgramTranslations(translations),
+      { identifier: "ActiveProgramTranslations" }
     )
-  ),
-});
+  )
+);
 export type LearningProgramSource = typeof LearningProgramSourceSchema.Type;

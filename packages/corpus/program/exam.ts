@@ -37,6 +37,7 @@ export const examProgramSources = [
     translations: [
       { appLocale: "en", publicSlug: "tka", title: "TKA 2026" },
       { appLocale: "id", publicSlug: "tka", title: "TKA 2026" },
+      { appLocale: "de", publicSlug: "tka", title: "TKA 2026" },
     ],
     version: {
       endsAt: "2026-12-31",
@@ -72,6 +73,7 @@ export const examProgramSources = [
     translations: [
       { appLocale: "en", publicSlug: "snbt", title: "SNBT 2026" },
       { appLocale: "id", publicSlug: "snbt", title: "SNBT 2026" },
+      { appLocale: "de", publicSlug: "snbt", title: "SNBT 2026" },
     ],
     version: {
       endsAt: "2026-12-31",

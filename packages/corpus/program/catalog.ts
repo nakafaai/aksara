@@ -1,10 +1,6 @@
 import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
-import {
-  composeProgramLocaleCatalog,
-  decodeProgramLocaleCatalog,
-} from "#corpus/program/locale";
 import { LearningProgramSourceSchema } from "#corpus/program/schema";
 import { schoolProgramSources } from "#corpus/program/school";
 
@@ -23,7 +19,7 @@ export class ProgramCatalogError extends Schema.TaggedError<ProgramCatalogError>
 export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityError>()(
   "ProgramIdentityError",
   {
-    scope: Schema.Literals(["key", "order", "slug", "translation"]),
+    scope: Schema.Literals(["key", "order", "slug"]),
     value: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
@@ -31,7 +27,7 @@ export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityErro
 /** Rejects duplicate identity inside one exact program catalog. */
 function addIdentity(
   identities: Set<string>,
-  scope: "key" | "order" | "slug" | "translation",
+  scope: "key" | "order" | "slug",
   value: string
 ) {
   if (identities.has(value)) {
@@ -69,15 +65,11 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
 /** Strictly decodes every reviewed learning program from source control. */
 export const decodeProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramCatalog"
-)(function* (input: unknown = programSources, localeInput?: unknown) {
-  const sources = yield* Schema.decodeUnknownEffect(
+)(function* (input: unknown = programSources) {
+  const programs = yield* Schema.decodeUnknownEffect(
     Schema.Array(LearningProgramSourceSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
-  );
-  const programs = yield* composeProgramLocaleCatalog(
-    sources,
-    yield* decodeProgramLocaleCatalog(localeInput)
   );
   return yield* validateProgramCatalog(programs);
 });

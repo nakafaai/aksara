@@ -32,15 +32,6 @@ export const LocaleOverlayAppLocaleCodeSchema = Schema.Literals(
   LOCALE_OVERLAY_APP_LOCALE_CODES
 );
 
-/** Branded application locale stored inside multi-locale source modules. */
-export const EmbeddedAppLocaleSchema = AppLocaleSchema.pipe(
-  Schema.check(
-    Schema.makeFilter((appLocale) =>
-      EMBEDDED_APP_LOCALE_CODES.some((candidate) => candidate === appLocale)
-    )
-  )
-);
-
 /** Branded application locale stored in one permanent overlay module. */
 export const LocaleOverlayAppLocaleSchema = AppLocaleSchema.pipe(
   Schema.check(

@@ -38,6 +38,11 @@ export const schoolProgramSources = [
         publicSlug: "merdeka",
         title: "Kurikulum Merdeka",
       },
+      {
+        appLocale: "de",
+        publicSlug: "merdeka",
+        title: "Kurikulum Merdeka",
+      },
     ],
     version: { label: "Indonesia" },
   },
@@ -108,6 +113,11 @@ export const schoolProgramSources = [
       },
       {
         appLocale: "id",
+        publicSlug: "cambridge-international",
+        title: "Cambridge International",
+      },
+      {
+        appLocale: "de",
         publicSlug: "cambridge-international",
         title: "Cambridge International",
       },
@@ -189,6 +199,11 @@ export const schoolProgramSources = [
         publicSlug: "singapore-moe",
         title: "Singapore MOE",
       },
+      {
+        appLocale: "de",
+        publicSlug: "singapur-moe",
+        title: "Singapore MOE",
+      },
     ],
     version: { label: "Singapore MOE" },
   },
@@ -233,6 +248,11 @@ export const schoolProgramSources = [
         appLocale: "id",
         publicSlug: "amerika-serikat",
         title: "United States Standards-Aligned Pathway",
+      },
+      {
+        appLocale: "de",
+        publicSlug: "vereinigte-staaten",
+        title: "US-amerikanischer Lernpfad nach Bildungsstandards",
       },
     ],
     version: { label: "K-12 standards-aligned pathway" },
