@@ -7,7 +7,7 @@ const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
 const release = readFileSync(".github/workflows/release.yml", "utf8");
 const sources = [ci, contracts, release];
 const TOOLCHAIN_STEP = `      - name: Setup toolchain
-        uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:
           cache: true
           install: false`;
@@ -86,7 +86,7 @@ describe("workflow toolchain policy", () => {
 
   it("rejects legacy and competing setup actions", () => {
     const legacyPnpm = ci.replace(
-      "pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c",
+      "pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2",
       "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
     );
     const competingNode = ci.replace(
@@ -172,7 +172,7 @@ ${TOOLCHAIN_STEP}`
 
     const noInputs = ci.replace(
       `${TOOLCHAIN_STEP}\n`,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0\n"
+      "      - name: Setup toolchain\n        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2\n"
     );
     expect(() => verifyWorkflowToolchains([noInputs])).toThrow(
       "The toolchain setup step must define inputs"
@@ -238,7 +238,7 @@ ${TOOLCHAIN_STEP}`
   it("rejects malformed action inputs without matching unrelated values", () => {
     const malformedInputs = ci.replace(
       TOOLCHAIN_STEP,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0\n        with: invalid"
+      "      - name: Setup toolchain\n        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2\n        with: invalid"
     );
     expect(() => verifyWorkflowToolchains([malformedInputs])).toThrow(
       "Workflow action inputs must be a mapping"
