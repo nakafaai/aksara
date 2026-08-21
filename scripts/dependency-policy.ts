@@ -1,6 +1,7 @@
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
 export const DEPENDENCY_RELEASE_AGE_MINUTES = 1440;
+export const DEPENDENCY_RELEASE_AGE_EXCLUSIONS = ["nanoid@3.3.18"] as const;
 
 export type DeclarationSource =
   | "catalog"

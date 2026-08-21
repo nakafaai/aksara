@@ -13,6 +13,7 @@ import {
 } from "#scripts/dependency-command";
 import {
   DEPENDENCY_HOLDS,
+  DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
   DEPENDENCY_RELEASE_AGE_MINUTES,
   type DependencyHold,
   declaredVersion,
@@ -42,6 +43,7 @@ const RootManifestSchema = Schema.Struct({
 const WorkspaceSchema = Schema.Struct({
   catalog: Schema.Record(Schema.String, Schema.String),
   minimumReleaseAge: Schema.Finite,
+  minimumReleaseAgeExclude: Schema.Array(Schema.String),
   minimumReleaseAgeStrict: Schema.Boolean,
   update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
 });
@@ -102,17 +104,6 @@ function currentVersion(
 /** Updates routine packages and proves every explicit hold is still reviewed. */
 export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
   function* (config: BumpDependenciesConfig, runner: PnpmRunner = runPnpm) {
-    const update = yield* runner(config.root, [
-      "update",
-      "--recursive",
-      "--latest",
-    ]);
-    if (update.exitCode !== 0) {
-      return yield* new DependencyCommandError({
-        detail: update.stderr.trim() || "pnpm update failed.",
-      });
-    }
-
     const manifest = yield* readStructuredFile(
       config.manifest,
       JSON.parse,
@@ -138,6 +129,29 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     }
     if (!workspace.minimumReleaseAgeStrict) {
       problems.push("Dependency release-age enforcement must remain strict.");
+    }
+    const expectedExclusions = [...DEPENDENCY_RELEASE_AGE_EXCLUSIONS].sort();
+    const actualExclusions = [...workspace.minimumReleaseAgeExclude].sort();
+    if (
+      JSON.stringify(actualExclusions) !== JSON.stringify(expectedExclusions)
+    ) {
+      problems.push(
+        "pnpm minimumReleaseAgeExclude does not match the reviewed exception policy."
+      );
+    }
+    if (problems.length > 0) {
+      return yield* new DependencyPolicyError({ detail: problems.join("\n") });
+    }
+
+    const update = yield* runner(config.root, [
+      "update",
+      "--recursive",
+      "--latest",
+    ]);
+    if (update.exitCode !== 0) {
+      return yield* new DependencyCommandError({
+        detail: update.stderr.trim() || "pnpm update failed.",
+      });
     }
 
     const reports = yield* Effect.forEach(
