@@ -56,8 +56,8 @@ Translated by ‘Abdullah as-Sāmit (Frank Bubenheim) and Dr. Nadim Elias. The
 official IslamHouse publication record credits the King Fahd Complex For
 Printing The Holy Quran as the edition's source. Source:
 [QuranEnc.com](https://quranenc.com/en/browse/german_bubenheim). The exact XML
-is pinned for German authoring and remains outside the active production
-locale set until the complete German release is approved.
+is pinned for German authoring and active publication in the complete
+English, Indonesian, and German release.
 
 The exact German IslamHouse record retrieved on 2026-08-13 is retained at
 `packages/corpus/quran/sources/german/publication.json`: 3,485 bytes,
