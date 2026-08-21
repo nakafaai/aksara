@@ -57,11 +57,11 @@ function createConfig(input?: {
   const manifest = resolve(root, "package.json");
   const workspace = resolve(root, "pnpm-workspace.yaml");
   const devDependencies: Record<string, string> = {
-    "@biomejs/biome": "2.5.9",
+    "@biomejs/biome": "2.5.10",
     "@effect/tsgo": "0.36.5",
     "@types/node": "24.13.3",
     "@typescript/native": "npm:typescript@7.0.2",
-    ...(input?.omitUltracite ? {} : { ultracite: "7.10.5" }),
+    ...(input?.omitUltracite ? {} : { ultracite: "7.10.6" }),
   };
   const ignoreDeps = expectedIgnoredDependencies().filter(
     (dependency) => dependency !== input?.omitIgnore

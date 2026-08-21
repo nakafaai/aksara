@@ -1,7 +1,18 @@
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
 export const DEPENDENCY_RELEASE_AGE_MINUTES = 1440;
-export const DEPENDENCY_RELEASE_AGE_EXCLUSIONS = ["nanoid@3.3.18"] as const;
+export const DEPENDENCY_RELEASE_AGE_EXCLUSIONS = [
+  "@biomejs/biome@2.5.10",
+  "@biomejs/cli-darwin-arm64@2.5.10",
+  "@biomejs/cli-darwin-x64@2.5.10",
+  "@biomejs/cli-linux-arm64-musl@2.5.10",
+  "@biomejs/cli-linux-arm64@2.5.10",
+  "@biomejs/cli-linux-x64-musl@2.5.10",
+  "@biomejs/cli-linux-x64@2.5.10",
+  "@biomejs/cli-win32-arm64@2.5.10",
+  "@biomejs/cli-win32-x64@2.5.10",
+  "nanoid@3.3.18",
+] as const;
 
 export type DeclarationSource =
   | "catalog"
@@ -95,20 +106,19 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "2.5.9",
+    approvedCurrent: "2.5.10",
     cohort: "Biome and Ultracite",
     dependency: "@biomejs/biome",
     reason: "Formatter behavior is reviewed as one linting cohort.",
     registry: "@biomejs/biome@latest",
-    reviewedLatest: "2.5.9",
+    reviewedLatest: "2.5.10",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "7.10.5",
+    approvedCurrent: "7.10.6",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
-    reason:
-      "The latest release must clear the workspace minimumReleaseAge gate before adoption.",
+    reason: "Formatter behavior is reviewed as one linting cohort.",
     registry: "ultracite@latest",
     reviewedLatest: "7.10.6",
     source: "root-dev-dependency",
