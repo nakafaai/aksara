@@ -2,6 +2,28 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 // Date: 2025-11-22
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "Wahr, wahr, wahr",
+      value: false,
+    },
+    {
+      label: "Wahr, wahr, falsch",
+      value: false,
+    },
+    {
+      label: "Falsch, wahr, falsch",
+      value: true,
+    },
+    {
+      label: "Falsch, wahr, wahr",
+      value: false,
+    },
+    {
+      label: "Falsch, falsch, wahr",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "True, True, True",

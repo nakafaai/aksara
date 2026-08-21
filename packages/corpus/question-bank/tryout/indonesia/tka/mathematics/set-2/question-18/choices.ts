@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$\\log_2 3 - 1$$",
+      value: true,
+    },
+    {
+      label: "$$\\log_2 3$$",
+      value: false,
+    },
+    {
+      label: "$$1 - \\log_2 3$$",
+      value: false,
+    },
+    {
+      label: "$$-1 - \\log_2 3$$",
+      value: false,
+    },
+    {
+      label: "$$\\log_2 3 + \\log_3 2$$",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "$$\\log_2 3 - 1$$",

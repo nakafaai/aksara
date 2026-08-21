@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$2$$ Jahre",
+      value: false,
+    },
+    {
+      label: "$$3$$ Jahre",
+      value: false,
+    },
+    {
+      label: "$$4$$ Jahre",
+      value: false,
+    },
+    {
+      label: "$$5$$ Jahre",
+      value: false,
+    },
+    {
+      label: "$$6$$ Jahre",
+      value: true,
+    },
+  ],
   en: [
     { label: "$$2$$ years", value: false },
     { label: "$$3$$ years", value: false },

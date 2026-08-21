@@ -1,5 +1,4 @@
 import { resolve } from "node:path";
-import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
@@ -12,7 +11,7 @@ import {
   choicesForQuestion,
   corpusRoot,
   generalQuestionSourceFiles,
-  germanQuestionChoicesSource,
+  germanChoiceFixture,
   indonesianChoiceFixture,
   invalidQuestionChoiceSources,
   makeQuestionSourceLayer,
@@ -143,14 +142,6 @@ describe("question source", () => {
       ]),
       new Map()
     );
-    const missingGermanChoice = await rejectQuestionSources(
-      realQuestionBanks,
-      questionEntries(
-        root,
-        generalQuestionSourceFiles.filter((file) => file !== "choices.de.ts")
-      ),
-      new Map()
-    );
     const missingGermanPrompt = await rejectQuestionSources(
       realQuestionBanks,
       questionEntries(
@@ -165,7 +156,6 @@ describe("question source", () => {
       _tag: "QuestionFileSetError",
       sourcePath: `${questionTestSourceRoot}/${root}`,
     });
-    expect(missingGermanChoice._tag).toBe("QuestionFileSetError");
     expect(missingGermanPrompt._tag).toBe("QuestionFileSetError");
   });
   it("rejects unevaluable and invalid localized choice catalogs", async () => {
@@ -192,14 +182,15 @@ describe("question source", () => {
       )
     );
     const sourcePath = resolve(corpusRoot, location.sourceRoot, "choices.ts");
-    const englishOnly = validQuestionChoicesSource.replace(
-      indonesianChoiceFixture,
-      ""
-    );
-    const indonesianOnly = validQuestionChoicesSource.replace(
-      '\n  en: [{ label: "A", value: true }, { label: "B", value: false }],',
-      ""
-    );
+    const englishOnly = validQuestionChoicesSource
+      .replace(indonesianChoiceFixture, "")
+      .replace(germanChoiceFixture, "");
+    const indonesianOnly = validQuestionChoicesSource
+      .replace(
+        '\n  en: [{ label: "A", value: true }, { label: "B", value: false }],',
+        ""
+      )
+      .replace(germanChoiceFixture, "");
     /** Reads the language-section choices through the synthetic source Adapter. */
     const read = (source: string) =>
       readQuestionChoices(corpusRoot, location).pipe(
@@ -219,7 +210,7 @@ describe("question source", () => {
       Effect.runPromise(read(validQuestionChoicesSource).pipe(Effect.flip))
     ).resolves.toMatchObject({
       _tag: "QuestionChoiceLocaleError",
-      actualLocales: ["en", "id"],
+      actualLocales: ["en", "id", "de"],
       expectedLocales: ["en"],
     });
     await expect(
@@ -231,48 +222,29 @@ describe("question source", () => {
     });
   });
 
-  it("loads an ordinary German choice overlay from the requested shell locale", async () => {
+  it("loads every general-section locale from one owner source", async () => {
     const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const location = await Effect.runPromise(
       decodeQuestionPath(realQuestionBanks, root)
     );
     const basePath = resolve(corpusRoot, location.sourceRoot, "choices.ts");
-    const overlayPath = resolve(
-      corpusRoot,
-      location.sourceRoot,
-      "choices.de.ts"
-    );
-    /** Reads the exact source closure with or without its required overlay. */
-    const read = (includeOverlay: boolean) =>
-      readQuestionChoices(corpusRoot, {
-        ...location,
-        appLocale: AppLocaleSchema.make("de"),
-      }).pipe(
+    const choices = await Effect.runPromise(
+      readQuestionChoices(corpusRoot, location).pipe(
         Effect.provide([
           makeQuestionSourceLayer(
             [],
-            new Map([
-              [basePath, validQuestionChoicesSource],
-              ...(includeOverlay
-                ? [[overlayPath, germanQuestionChoicesSource] as const]
-                : []),
-            ])
+            new Map([[basePath, validQuestionChoicesSource]])
           ),
           Path.layer,
         ])
-      );
+      )
+    );
 
-    await expect(Effect.runPromise(read(true))).resolves.toMatchObject({
+    expect(choices).toMatchObject({
       de: [
         { label: "A", value: true },
         { label: "B", value: false },
       ],
-    });
-    await expect(
-      Effect.runPromise(read(false).pipe(Effect.flip))
-    ).resolves.toMatchObject({
-      _tag: "QuestionReadError",
-      path: `${location.sourceRoot}/choices.de.ts`,
     });
   });
 

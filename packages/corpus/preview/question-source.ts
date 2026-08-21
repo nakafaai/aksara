@@ -2,24 +2,18 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
 import { Effect } from "effect";
-import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import type { QuestionPreviewSource } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import {
   makeRestartDependencyLookup,
   type RestartDependencyLookup,
 } from "#corpus/preview/topology";
-import { questionChoiceSourceFiles } from "#corpus/question-bank/choice-locale";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";
 
 const QUESTION_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/tryout/registry.ts"
 );
-const QUESTION_LOCALE_OWNER = CorpusSourcePathSchema.make(
-  "packages/corpus/tryout/locale-registry.ts"
-);
-
 /** One already decoded question with its exact shell locale. */
 export interface QuestionPreviewInput {
   readonly appLocale: AppLocale;
@@ -35,32 +29,17 @@ export const makeQuestionPreviewSource = Effect.fn(
   appLocale: AppLocale,
   dependenciesFor: RestartDependencyLookup
 ) {
-  const { countryKey, examKey, sectionKey } = questionKeyParts(
-    entry.questionKey
-  );
+  const { countryKey, examKey } = questionKeyParts(entry.questionKey);
   const sourceModule = CorpusSourcePathSchema.make(
     `packages/corpus/tryout/${countryKey}/${examKey}/source.ts`
-  );
-  const [baseChoiceFile, ...choiceOverlayFiles] = questionChoiceSourceFiles(
-    sectionKey,
-    [appLocale]
   );
   const dependencies = [
     {
       mode: "reload",
-      sourcePath: CorpusSourcePathSchema.make(
-        `${entry.sourceRoot}/${baseChoiceFile}`
-      ),
+      sourcePath: CorpusSourcePathSchema.make(`${entry.sourceRoot}/choices.ts`),
     },
-    ...choiceOverlayFiles.map((file) => ({
-      mode: "reload" as const,
-      sourcePath: CorpusSourcePathSchema.make(`${entry.sourceRoot}/${file}`),
-    })),
     { mode: "restart", sourcePath: QUESTION_OWNER },
     ...(yield* dependenciesFor(sourceModule)),
-    ...(localeOverlayAppLocaleCode(appLocale) === undefined
-      ? []
-      : yield* dependenciesFor(QUESTION_LOCALE_OWNER)),
   ] satisfies QuestionPreviewSource["dependencies"];
   return {
     appLocale,

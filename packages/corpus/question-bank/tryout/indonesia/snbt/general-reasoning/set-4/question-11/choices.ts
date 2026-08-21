@@ -1,6 +1,19 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "Dito hat die vorausgesetzten Übungen abgeschlossen",
+      value: false,
+    },
+    { label: "Dito hat am Übungstest teilgenommen", value: false },
+    { label: "Dito ist kein Lernender", value: false },
+    {
+      label: "Dito hat die vorausgesetzten Übungen nicht abgeschlossen",
+      value: true,
+    },
+    { label: "Dito hat einen Auswertungsbericht erhalten", value: false },
+  ],
   en: [
     { label: "Dito completed the prerequisite exercises", value: false },
     { label: "Dito took the practice test", value: false },

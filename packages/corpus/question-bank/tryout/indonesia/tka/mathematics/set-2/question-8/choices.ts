@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$\\frac{1}{2^{11}} - \\frac{1}{3^{11}}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{1}{2^{11}} - \\frac{2}{3^{11}}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{3}{2^{11}} - \\frac{1}{3^{11}}$$",
+      value: false,
+    },
+    {
+      label: "$$\\frac{1}{2^{11}} + \\frac{1}{3^{11}}$$",
+      value: true,
+    },
+    {
+      label: "$$\\frac{2}{2^{11}} + \\frac{3}{3^{11}}$$",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "$$\\frac{1}{2^{11}} - \\frac{1}{3^{11}}$$",

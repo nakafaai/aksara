@@ -14,7 +14,6 @@ import {
   absoluteQuestionTestSourceRoot,
   corpusRoot,
   generalQuestionSourceFiles,
-  germanQuestionChoicesSource,
   makeQuestionSourceLayer,
   questionTestSourceRoot,
   realQuestionChoices,
@@ -278,17 +277,8 @@ describe("question registry", () => {
 
   it("projects the complete active German question pair", async () => {
     const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-    const files = [
-      ...generalQuestionSourceFiles,
-      "answer.de.mdx",
-      "choices.de.ts",
-      "question.de.mdx",
-    ];
+    const files = generalQuestionSourceFiles;
     const choices = choicesFor(root);
-    choices.set(
-      resolve(absoluteQuestionTestSourceRoot, root, "choices.de.ts"),
-      germanQuestionChoicesSource
-    );
     const content = await Effect.runPromise(
       registry([root, ...files.map((file) => `${root}/${file}`)], choices)
     );

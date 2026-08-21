@@ -1,7 +1,10 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
-  type AppLocale,
+  APP_LOCALE_CODES,
+  AppLocaleCodeSchema,
+  type ArtifactLocale,
   ArtifactLocaleSchema,
+  artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import { QuestionChoicesSchema } from "@nakafa/aksara-contracts/projection/question";
 import {
@@ -11,18 +14,11 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { questionArtifactLocalesForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import {
-  addQuestionChoiceOverlay,
-  embeddedQuestionChoiceLocales,
-  questionChoiceOverlayLocale,
-  questionChoiceOverlayLocales,
-  validateQuestionChoiceLocales,
-} from "#corpus/question-bank/choice-locale";
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
 import {
   decodeQuestionPath,
-  hasCompleteQuestionChoiceOverlays,
   locateQuestionEntry,
   QUESTION_BANK_ROOT,
   type QuestionBankIndex,
@@ -68,6 +64,47 @@ export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceEr
     setPath: QuestionSetKeySchema,
   }
 ) {}
+
+/** Authored choices do not exactly match their section-owned locales. */
+export class QuestionChoiceLocaleError extends Schema.TaggedError<QuestionChoiceLocaleError>()(
+  "QuestionChoiceLocaleError",
+  {
+    actualLocales: Schema.Array(AppLocaleCodeSchema),
+    expectedLocales: Schema.Array(ArtifactLocaleSchema),
+    sourcePath: CorpusSourcePathSchema,
+  }
+) {}
+
+/** Returns canonical locale keys present in one decoded choice map. */
+function actualChoiceLocales(choices: typeof QuestionChoicesSchema.Type) {
+  return APP_LOCALE_CODES.filter(
+    (appLocale) => choices[appLocale] !== undefined
+  );
+}
+
+/** Requires one owner source to contain exactly its assessed choice locales. */
+const validateQuestionChoiceLocales = Effect.fn(
+  "AksaraCorpus.validateQuestionChoiceLocales"
+)(function* (
+  choices: typeof QuestionChoicesSchema.Type,
+  expectedLocales: readonly ArtifactLocale[],
+  sourcePath: typeof CorpusSourcePathSchema.Type
+) {
+  const actualLocales = actualChoiceLocales(choices);
+  const matches =
+    actualLocales.length === expectedLocales.length &&
+    expectedLocales.every(
+      (expected, index) => actualLocales[index] === artifactLocaleCode(expected)
+    );
+  if (!matches) {
+    return yield* new QuestionChoiceLocaleError({
+      actualLocales,
+      expectedLocales: [...expectedLocales],
+      sourcePath,
+    });
+  }
+  return choices;
+});
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {
   const filesByRoot = new Map<string, Set<string>>();
@@ -127,10 +164,7 @@ export const readQuestionChoices = Effect.fn(
   "AksaraCorpus.readQuestionChoices"
 )(function* (
   corpusRoot: string,
-  location: Pick<QuestionLocation, "questionKey" | "sourceRoot"> & {
-    readonly appLocale?: AppLocale;
-    readonly files?: readonly string[];
-  }
+  location: Pick<QuestionLocation, "questionKey" | "sourceRoot">
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -144,46 +178,13 @@ export const readQuestionChoices = Effect.fn(
         (cause) => new QuestionReadError({ cause, path: sourcePath })
       )
     );
-  let choices = yield* decodeQuestionChoiceSource(source, sourcePath);
+  const choices = yield* decodeQuestionChoiceSource(source, sourcePath);
   const { sectionKey } = questionKeyParts(location.questionKey);
-  choices = yield* validateQuestionChoiceLocales(
+  return yield* validateQuestionChoiceLocales(
     choices,
-    embeddedQuestionChoiceLocales(sectionKey),
+    questionArtifactLocalesForSection(sectionKey),
     sourcePath
   );
-  let overlayCodes =
-    location.files?.flatMap((file) => {
-      const code = questionChoiceOverlayLocale(file);
-      return code === undefined ? [] : [code];
-    }) ?? [];
-  if (location.files === undefined && location.appLocale !== undefined) {
-    overlayCodes = questionChoiceOverlayLocales(sectionKey, [
-      location.appLocale,
-    ]);
-  }
-  for (const code of overlayCodes) {
-    const artifactLocale = ArtifactLocaleSchema.make(code);
-    const overlayPath = CorpusSourcePathSchema.make(
-      `${location.sourceRoot}/choices.${code}.ts`
-    );
-    const overlaySource = yield* fileSystem
-      .readFileString(path.join(corpusRoot, overlayPath), "utf8")
-      .pipe(
-        Effect.mapError(
-          (cause) => new QuestionReadError({ cause, path: overlayPath })
-        )
-      );
-    const overlay = yield* decodeQuestionChoiceSource(
-      overlaySource,
-      overlayPath
-    ).pipe(
-      Effect.flatMap((decoded) =>
-        validateQuestionChoiceLocales(decoded, [artifactLocale], overlayPath)
-      )
-    );
-    choices = addQuestionChoiceOverlay(choices, overlay, code);
-  }
-  return choices;
 });
 
 /** Requires one authored question directory to contain its exact file set. */
@@ -194,11 +195,7 @@ const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
     const files = [...discoveredFiles].sort();
     const missingRequired = requiredFiles.some((file) => !files.includes(file));
     const unsupported = files.some((file) => !requiredFiles.includes(file));
-    const incompleteChoiceOverlay = !hasCompleteQuestionChoiceOverlays(
-      sectionKey,
-      files
-    );
-    if (missingRequired || unsupported || incompleteChoiceOverlay) {
+    if (missingRequired || unsupported) {
       return yield* new QuestionFileSetError({
         files,
         sourcePath: location.sourceRoot,
@@ -232,10 +229,7 @@ const loadQuestionSource = Effect.fn("AksaraCorpus.loadQuestionSource")(
   ) {
     const files = [...discoveredFiles].sort();
     yield* validateQuestionFiles(location, files);
-    const choices = yield* readQuestionChoices(corpusRoot, {
-      ...location,
-      files,
-    });
+    const choices = yield* readQuestionChoices(corpusRoot, location);
     return { ...location, choices, files };
   }
 );

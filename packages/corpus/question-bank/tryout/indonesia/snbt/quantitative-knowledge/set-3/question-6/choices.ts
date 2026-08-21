@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$(1)$$, $$(2)$$ und $$(3)$$ sind korrekt",
+      value: false,
+    },
+    {
+      label: "$$(1)$$ und $$(3)$$ sind korrekt",
+      value: false,
+    },
+    {
+      label: "$$(2)$$ und $$(4)$$ sind korrekt",
+      value: true,
+    },
+    {
+      label: "Nur $$(4)$$ ist korrekt",
+      value: false,
+    },
+    {
+      label: "alle sind richtig",
+      value: false,
+    },
+  ],
   en: [
     {
       label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct",

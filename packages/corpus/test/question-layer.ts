@@ -2,7 +2,6 @@ import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
-import { questionChoiceOverlayLocale } from "#corpus/question-bank/choice-locale";
 import {
   indexQuestionBanks,
   type QuestionBankIndex,
@@ -30,12 +29,7 @@ for (const sourcePath of globSync("packages/corpus/**/*.ts", {
   sources.set(absolutePath, readFileSync(absolutePath, "utf8"));
 }
 export const realQuestionChoices = new Map(
-  [...sources].filter(([sourcePath]) => {
-    const file = sourcePath.slice(sourcePath.lastIndexOf("/") + 1);
-    return (
-      file === "choices.ts" || questionChoiceOverlayLocale(file) !== undefined
-    );
-  })
+  [...sources].filter(([sourcePath]) => sourcePath.endsWith("/choices.ts"))
 );
 export const realTryoutSources = await Effect.runPromise(
   decodeTryoutRegistry()
@@ -59,6 +53,7 @@ export interface QuestionLayerOverrides {
 export const validQuestionChoicesSource = `import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [{ label: "A", value: true }, { label: "B", value: false }],
   en: [{ label: "A", value: true }, { label: "B", value: false }],
   id: [{ label: "A", value: false }, { label: "B", value: true }],
 };
@@ -67,15 +62,8 @@ export default choices;`;
 export const generalQuestionSourceFiles = questionSourceFiles(
   TryoutKeySchema.make("general-reasoning")
 );
-export const germanQuestionChoicesSource = validQuestionChoicesSource
-  .replace(
-    '  en: [{ label: "A", value: true }, { label: "B", value: false }],\n',
-    ""
-  )
-  .replace(
-    '  id: [{ label: "A", value: false }, { label: "B", value: true }],',
-    '  de: [{ label: "A", value: true }, { label: "B", value: false }],'
-  );
+export const germanChoiceFixture =
+  /\n {2}de: \[\{ label: "A", value: true \}, \{ label: "B", value: false \}\],/u;
 export const indonesianChoiceFixture =
   /\n {2}id: \[\{ label: "A", value: false \}, \{ label: "B", value: true \}\],/u;
 export const invalidQuestionChoiceSources = [
@@ -106,10 +94,6 @@ export function choicesForQuestion(
 ) {
   return new Map([
     [resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"), source],
-    [
-      resolve(absoluteQuestionTestSourceRoot, root, "choices.de.ts"),
-      germanQuestionChoicesSource,
-    ],
   ]);
 }
 

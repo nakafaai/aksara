@@ -1,6 +1,28 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$\\{x \\in R: -4 \\leq x \\leq 4\\}$$",
+      value: false,
+    },
+    {
+      label: "$$\\{x \\in R: -4 \\leq x \\leq 3\\}$$",
+      value: false,
+    },
+    {
+      label: "$$\\{x \\in R: x \\leq -4 \\text{ oder } x \\geq 4\\}$$",
+      value: false,
+    },
+    {
+      label: "$$\\{x \\in R: 0 \\leq x \\leq 3\\}$$",
+      value: false,
+    },
+    {
+      label: "$$\\{x \\in R: x \\leq -4 \\text{ oder } x \\geq 3\\}$$",
+      value: true,
+    },
+  ],
   en: [
     {
       label: "$$\\{x \\in R: -4 \\leq x \\leq 4\\}$$",

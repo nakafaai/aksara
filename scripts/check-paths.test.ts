@@ -26,7 +26,6 @@ describe("path policy", () => {
         "packages/compiler/release-2026-state.ts",
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer.id.mdx",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/choices.de.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.en.mdx",
         "packages/corpus/question-bank/tryout/germany/abitur/reading-and-writing-skills/foundation-set/question-1/choices.ts",

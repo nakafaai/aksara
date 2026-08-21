@@ -195,7 +195,6 @@ describe("preview selection", () => {
                 "answer.de.mdx",
                 "answer.en.mdx",
                 "answer.id.mdx",
-                "choices.de.ts",
                 "choices.ts",
                 "question.de.mdx",
                 "question.en.mdx",
