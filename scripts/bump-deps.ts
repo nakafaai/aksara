@@ -133,7 +133,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     }
     if (workspace.minimumReleaseAge !== DEPENDENCY_RELEASE_AGE_MINUTES) {
       problems.push(
-        "Dependency releases must mature for exactly 1440 minutes."
+        `Dependency releases must mature for exactly ${DEPENDENCY_RELEASE_AGE_MINUTES} minutes.`
       );
     }
     if (!workspace.minimumReleaseAgeStrict) {
@@ -192,7 +192,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     }
 
     yield* Effect.logInfo(
-      "Routine dependencies and every reviewed hold are current under the repository's 24-hour release-maturity policy."
+      `Routine dependencies and every reviewed hold are current under the repository's ${DEPENDENCY_RELEASE_AGE_MINUTES / 60}-hour release-maturity policy.`
     );
     return reports;
   }
