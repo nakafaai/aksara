@@ -18,6 +18,8 @@ import {
 } from "#scripts/dependency-command";
 import {
   DEPENDENCY_HOLDS,
+  DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
+  DEPENDENCY_RELEASE_AGE_MINUTES,
   expectedIgnoredDependencies,
 } from "#scripts/dependency-policy";
 
@@ -44,6 +46,9 @@ const temporaryRoots = new Set<string>();
 function createConfig(input?: {
   readonly invalidManifest?: string;
   readonly invalidWorkspace?: string;
+  readonly minimumReleaseAge?: number;
+  readonly minimumReleaseAgeExclude?: readonly string[];
+  readonly minimumReleaseAgeStrict?: boolean;
   readonly omitUltracite?: boolean;
   readonly omitIgnore?: string;
 }) {
@@ -81,6 +86,11 @@ function createConfig(input?: {
           effect: "4.0.0-rc.110",
           typescript: "npm:@typescript/typescript6@6.0.2",
         },
+        minimumReleaseAge:
+          input?.minimumReleaseAge ?? DEPENDENCY_RELEASE_AGE_MINUTES,
+        minimumReleaseAgeExclude:
+          input?.minimumReleaseAgeExclude ?? DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
+        minimumReleaseAgeStrict: input?.minimumReleaseAgeStrict ?? true,
         update: { ignoreDeps },
       })
   );
@@ -120,15 +130,6 @@ interface CommandResult {
 /** Creates one exact command observation. */
 function output(exitCode = 0, stdout = "", stderr = ""): CommandResult {
   return { exitCode, stderr, stdout };
-}
-
-/** Runs one dependency update program at the Vitest boundary. */
-function run(config: BumpDependenciesConfig, runner: PnpmRunner) {
-  return Effect.runPromise(
-    makeBumpDependenciesProgram(config, runner).pipe(
-      Effect.provide(NodeServices.layer)
-    )
-  );
 }
 
 /** Returns one typed program failure at the Vitest boundary. */
@@ -193,10 +194,7 @@ describe("dependency update policy", () => {
   });
 
   it("fails with every unresolved declaration, registry, and routine hold", async () => {
-    const config = createConfig({
-      omitIgnore: "effect",
-      omitUltracite: true,
-    });
+    const config = createConfig({ omitUltracite: true });
     const error = await fail(
       config,
       makeRunner({
@@ -208,12 +206,34 @@ describe("dependency update policy", () => {
     );
 
     expect(error).toMatchObject({ _tag: "DependencyPolicyError" });
-    expect(error.detail).toContain("update.ignoreDeps");
     expect(error.detail).toContain("ultracite declares no version");
     expect(error.detail).toContain("ultracite upstream is 7.10.7");
     expect(error.detail).toContain(
       "Routine dependencies remain outdated: yaml"
     );
+  });
+
+  it("fails before updating when dependency safety policy drifts", async () => {
+    const runner = vi.fn(makeRunner());
+    const error = await fail(
+      createConfig({
+        minimumReleaseAge: 0,
+        minimumReleaseAgeExclude: [
+          ...DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
+          "effect",
+        ],
+        minimumReleaseAgeStrict: false,
+        omitIgnore: "effect",
+      }),
+      runner
+    );
+
+    expect(error).toMatchObject({ _tag: "DependencyPolicyError" });
+    expect(error.detail).toContain("update.ignoreDeps");
+    expect(error.detail).toContain("exactly 1440 minutes");
+    expect(error.detail).toContain("must remain strict");
+    expect(error.detail).toContain("minimumReleaseAgeExclude");
+    expect(runner).not.toHaveBeenCalled();
   });
 
   it("types update and repository file failures", async () => {
@@ -270,9 +290,11 @@ describe("dependency update policy", () => {
   });
 
   it("accepts an explicit fake runner without process services", async () => {
-    const reports = await run(
-      createConfig(),
-      makeRunner({ outdated: output() })
+    const reports = await Effect.runPromise(
+      makeBumpDependenciesProgram(
+        createConfig(),
+        makeRunner({ outdated: output() })
+      ).pipe(Effect.provide(NodeServices.layer))
     );
     expect(reports.every(({ current }) => current !== "missing")).toBe(true);
   });
