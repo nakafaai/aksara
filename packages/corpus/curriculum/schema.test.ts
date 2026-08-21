@@ -158,7 +158,6 @@ describe("curriculum schema", () => {
         "curriculum/locale-registry.ts",
         "curriculum/locale-source.ts",
         "curriculum/locale.ts",
-        "curriculum/material-locale.ts",
         "curriculum/material.ts",
         "curriculum/node-route.ts",
         "curriculum/projection.ts",

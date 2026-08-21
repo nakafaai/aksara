@@ -5,42 +5,63 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
   domain: "physics",
   key: "lesson.physics.measurement",
   kind: "lesson",
-  routeSlugs: { en: "measurement", id: "pengukuran-dalam-kerja-ilmiah" },
+  routeSlugs: {
+    de: "messen-im-naturwissenschaftlichen-arbeiten",
+    en: "measurement",
+    id: "pengukuran-dalam-kerja-ilmiah",
+  },
   sections: [
     {
-      routeSlugs: { en: "dimension", id: "dimensi" },
+      routeSlugs: { de: "dimension", en: "dimension", id: "dimensi" },
       slug: "dimension",
     },
     {
-      routeSlugs: { en: "notation", id: "notasi-ilmiah" },
+      routeSlugs: { de: "schreibweise", en: "notation", id: "notasi-ilmiah" },
       slug: "notation",
     },
     {
-      routeSlugs: { en: "quantity", id: "besaran" },
+      routeSlugs: {
+        de: "physikalische-groesse",
+        en: "quantity",
+        id: "besaran",
+      },
       slug: "quantity",
     },
     {
-      routeSlugs: { en: "significant-figures", id: "aturan-angka-penting" },
+      routeSlugs: {
+        de: "signifikante-stellen",
+        en: "significant-figures",
+        id: "aturan-angka-penting",
+      },
       slug: "significant-figures",
     },
     {
-      routeSlugs: { en: "tools", id: "macam-macam-alat-ukur" },
+      routeSlugs: {
+        de: "messgeraete",
+        en: "tools",
+        id: "macam-macam-alat-ukur",
+      },
       slug: "tools",
     },
     {
       routeSlugs: {
+        de: "messunsicherheit",
         en: "uncertainty",
         id: "nilai-ketidakpastian-pada-pengukuran-berulang",
       },
       slug: "uncertainty",
     },
     {
-      routeSlugs: { en: "unit", id: "sistem-satuan" },
+      routeSlugs: { de: "einheit", en: "unit", id: "sistem-satuan" },
       slug: "unit",
     },
   ],
   slug: "measurement",
   translations: {
+    de: {
+      description: "Ordne Messgrößen, Einheiten und Unsicherheiten ein.",
+      title: "Messen im naturwissenschaftlichen Arbeiten",
+    },
     en: {
       description: "Use dimensions to check quantities and formulas.",
       title: "Measurement in Scientific Work",

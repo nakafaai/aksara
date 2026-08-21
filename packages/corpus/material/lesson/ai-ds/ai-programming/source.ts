@@ -9,7 +9,11 @@ export const lessonAiDsAiProgrammingMaterial = defineLessonMaterial({
   domain: "ai-ds",
   key: "lesson.ai-ds.ai-programming",
   kind: "lesson",
-  routeSlugs: { en: "ai-programming", id: "pemrograman-ai" },
+  routeSlugs: {
+    de: "ki-programmierung",
+    en: "ai-programming",
+    id: "pemrograman-ai",
+  },
   sections: [
     aiProgrammingSyntax.arithmeticOperator,
     aiProgrammingNumpy.arrayNumpy,
@@ -41,6 +45,10 @@ export const lessonAiDsAiProgrammingMaterial = defineLessonMaterial({
   ],
   slug: "ai-programming",
   translations: {
+    de: {
+      description: "Schreibe Python-Code mit sicheren Rechenregeln.",
+      title: "KI-Programmierung",
+    },
     en: {
       description: "Use Python arithmetic operators with correct precedence.",
       title: "AI Programming",

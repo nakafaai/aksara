@@ -5,33 +5,47 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
   domain: "chemistry",
   key: "lesson.chemistry.green-chemistry",
   kind: "lesson",
-  routeSlugs: { en: "green-chemistry", id: "kimia-hijau" },
+  routeSlugs: { de: "gruene-chemie", en: "green-chemistry", id: "kimia-hijau" },
   sections: [
     {
       routeSlugs: {
+        de: "chemische-prozesse-im-alltag",
         en: "chemical-processes-daily-life",
         id: "proses-kimia-sehari-hari",
       },
       slug: "chemical-processes-daily-life",
     },
     {
-      routeSlugs: { en: "definition", id: "pengertian-kimia-hijau" },
+      routeSlugs: {
+        de: "definition",
+        en: "definition",
+        id: "pengertian-kimia-hijau",
+      },
       slug: "definition",
     },
     {
       routeSlugs: {
+        de: "massnahmen-der-gruenen-chemie",
         en: "green-chemistry-activities",
         id: "kegiatan-kimia-hijau",
       },
       slug: "green-chemistry-activities",
     },
     {
-      routeSlugs: { en: "principles", id: "prinsip-kimia-hijau" },
+      routeSlugs: {
+        de: "prinzipien",
+        en: "principles",
+        id: "prinsip-kimia-hijau",
+      },
       slug: "principles",
     },
   ],
   slug: "green-chemistry",
   translations: {
+    de: {
+      description: "Bewerte Alltagsreaktionen mit grüner Chemie.",
+      title: "Grüne Chemie",
+    },
     en: {
       description: "Judge everyday reactions through green chemistry ideas.",
       title: "Green Chemistry",

@@ -1,4 +1,7 @@
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import {
+  APP_LOCALE_CODES,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
@@ -84,12 +87,16 @@ const duplicatesMaterialDisplay = Effect.fn(
     nodeKey,
     programKey
   );
-  return ACTIVE_APP_LOCALES.every((appLocale) => {
+  return APP_LOCALE_CODES.every((code) => {
+    const appLocale = AppLocaleSchema.make(code);
     const overrideCopy = sourceLocaleValue(override, appLocale);
+    if (overrideCopy === undefined) {
+      return true;
+    }
     const materialCopy = sourceLocaleValue(translations, appLocale);
     return (
-      overrideCopy?.routeSlug === materialCopy?.routeSlug &&
-      overrideCopy?.title === materialCopy?.title
+      overrideCopy.routeSlug === materialCopy?.routeSlug &&
+      overrideCopy.title === materialCopy?.title
     );
   });
 });

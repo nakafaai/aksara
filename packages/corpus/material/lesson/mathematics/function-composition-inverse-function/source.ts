@@ -8,12 +8,14 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
     key: "lesson.mathematics.function-composition-inverse-function",
     kind: "lesson",
     routeSlugs: {
+      de: "funktionskomposition-und-umkehrfunktion",
       en: "function-composition-inverse-function",
       id: "fungsi-komposisi-dan-fungsi-invers",
     },
     sections: [
       {
         routeSlugs: {
+          de: "addition-und-subtraktion-von-funktionen",
           en: "addition-subtraction-function",
           id: "penjumlahan-dan-pengurangan-fungsi",
         },
@@ -21,6 +23,7 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
       },
       {
         routeSlugs: {
+          de: "definitionsmenge-zielmenge-und-wertebereich",
           en: "domain-codomain-range",
           id: "domain-kodomain-dan-range",
         },
@@ -28,32 +31,47 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
       },
       {
         routeSlugs: {
+          de: "funktion-und-nichtfunktion",
           en: "function-and-non-function",
           id: "fungsi-dan-bukan-fungsi",
         },
         slug: "function-and-non-function",
       },
       {
-        routeSlugs: { en: "function-composition", id: "komposisi-fungsi" },
+        routeSlugs: {
+          de: "funktionskomposition",
+          en: "function-composition",
+          id: "komposisi-fungsi",
+        },
         slug: "function-composition",
       },
       {
-        routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
+        routeSlugs: {
+          de: "funktionsbegriff",
+          en: "function-concept",
+          id: "konsep-fungsi",
+        },
         slug: "function-concept",
       },
       {
         routeSlugs: {
+          de: "injektive-surjektive-und-bijektive-funktionen",
           en: "injective-surjective-bijective-function",
           id: "fungsi-injektif-surjektif-dan-bijektif",
         },
         slug: "injective-surjective-bijective-function",
       },
       {
-        routeSlugs: { en: "inverse-function", id: "fungsi-invers" },
+        routeSlugs: {
+          de: "umkehrfunktion",
+          en: "inverse-function",
+          id: "fungsi-invers",
+        },
         slug: "inverse-function",
       },
       {
         routeSlugs: {
+          de: "multiplikation-und-division-von-funktionen",
           en: "multiplication-division-function",
           id: "perkalian-dan-pembagian-fungsi",
         },
@@ -61,6 +79,7 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
       },
       {
         routeSlugs: {
+          de: "eigenschaften-der-funktionskomposition",
           en: "properties-of-function-composition",
           id: "sifat-komposisi-fungsi",
         },
@@ -68,6 +87,7 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
       },
       {
         routeSlugs: {
+          de: "eigenschaften-der-umkehrfunktion",
           en: "properties-of-inverse-function",
           id: "sifat-fungsi-invers",
         },
@@ -76,6 +96,10 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
     ],
     slug: "function-composition-inverse-function",
     translations: {
+      de: {
+        description: "Verknüpfe Funktionen mit passenden Definitionsbereichen.",
+        title: "Funktionskomposition und Umkehrfunktion",
+      },
       en: {
         description: "Operate on functions while tracking shared domains.",
         title: "Function Composition and Inverse Function",

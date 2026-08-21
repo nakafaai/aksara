@@ -5,14 +5,23 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.quadratic-function",
   kind: "lesson",
-  routeSlugs: { en: "quadratic-function", id: "persamaan-dan-fungsi-kuadrat" },
+  routeSlugs: {
+    de: "quadratische-funktionen",
+    en: "quadratic-function",
+    id: "persamaan-dan-fungsi-kuadrat",
+  },
   sections: [
     {
-      routeSlugs: { en: "quadratic-equation", id: "persamaan-kuadrat" },
+      routeSlugs: {
+        de: "quadratische-gleichungen",
+        en: "quadratic-equation",
+        id: "persamaan-kuadrat",
+      },
       slug: "quadratic-equation",
     },
     {
       routeSlugs: {
+        de: "faktorisieren-quadratischer-gleichungen",
         en: "quadratic-equation-factorization",
         id: "faktorisasi-persamaan-kuadrat",
       },
@@ -20,6 +29,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "loesungsformel-fuer-quadratische-gleichungen",
         en: "quadratic-equation-formula",
         id: "rumus-persamaan-kuadrat",
       },
@@ -27,6 +37,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "komplexe-loesungen-quadratischer-gleichungen",
         en: "quadratic-equation-imaginary-root",
         id: "akar-tidak-nyata-atau-imajiner",
       },
@@ -34,6 +45,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "quadratische-ergaenzung-und-scheitelpunktform",
         en: "quadratic-equation-perfect-square",
         id: "melengkapi-kuadrat-sempurna",
       },
@@ -41,6 +53,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "arten-von-nullstellen",
         en: "quadratic-equation-types-of-root",
         id: "jenis-jenis-akar-persamaan-kuadrat",
       },
@@ -48,6 +61,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "eigenschaften-quadratischer-funktionen",
         en: "quadratic-function-characteristics",
         id: "karakteristik-fungsi-kuadrat",
       },
@@ -55,6 +69,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "quadratische-funktion-aufstellen",
         en: "quadratic-function-construction",
         id: "mengonstruksi-fungsi-kuadrat",
       },
@@ -62,6 +77,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "maximale-flaeche-mit-quadratischen-funktionen",
         en: "quadratic-function-maximum-area",
         id: "menentukan-luas-maksimum",
       },
@@ -69,6 +85,7 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "minimale-flaeche-mit-quadratischen-funktionen",
         en: "quadratic-function-minimum-area",
         id: "menentukan-luas-minimum",
       },
@@ -77,6 +94,10 @@ export const lessonMathematicsQuadraticFunctionMaterial = defineLessonMaterial({
   ],
   slug: "quadratic-function",
   translations: {
+    de: {
+      description: "Löse Gleichungen und prüfe quadratische Modelle.",
+      title: "Quadratische Funktionen",
+    },
     en: {
       description: "Solve quadratics with factors, squares, and formulas.",
       title: "Quadratic Functions",

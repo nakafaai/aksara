@@ -10,7 +10,6 @@ import {
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
 import { decodeMaterialSources } from "#corpus/material/source";
-import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 import { earthScienceMaterialSource } from "#corpus/test/material";
 
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
@@ -133,9 +132,9 @@ describe("curriculum node projection", () => {
     }
     const mismatched = {
       ...material,
-      routeSlugs: {
-        ...material.routeSlugs,
-        de: PublicRouteSegmentSchema.make("matrix"),
+      translations: {
+        en: material.translations.en,
+        id: material.translations.id,
       },
     };
     const curriculum = merdekaLeaf({ materialKeys: [material.key] });

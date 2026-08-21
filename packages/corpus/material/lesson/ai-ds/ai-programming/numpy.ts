@@ -1,10 +1,15 @@
 export const aiProgrammingNumpy = {
   arrayNumpy: {
-    routeSlugs: { en: "array-numpy", id: "membuat-array-dengan-numpy" },
+    routeSlugs: {
+      de: "numpy-arrays",
+      en: "array-numpy",
+      id: "membuat-array-dengan-numpy",
+    },
     slug: "array-numpy",
   },
   arrayOperationNumpy: {
     routeSlugs: {
+      de: "array-operationen-mit-numpy",
       en: "array-operation-numpy",
       id: "operasi-pada-array-dengan-numpy",
     },
@@ -12,6 +17,7 @@ export const aiProgrammingNumpy = {
   },
   attributeDataTypeNumpy: {
     routeSlugs: {
+      de: "attribute-und-datentypen-in-numpy",
       en: "attribute-data-type-numpy",
       id: "atribut-dan-tipe-data-dengan-numpy",
     },
@@ -19,6 +25,7 @@ export const aiProgrammingNumpy = {
   },
   indexingSlicingNumpy: {
     routeSlugs: {
+      de: "indizierung-und-slicing-in-numpy",
       en: "indexing-slicing-numpy",
       id: "indexing-dan-slicing-dengan-numpy",
     },

@@ -5,25 +5,27 @@ export const lessonPhysicsVectorMaterial = defineLessonMaterial({
   domain: "physics",
   key: "lesson.physics.vector",
   kind: "lesson",
-  routeSlugs: { en: "vector", id: "vektor" },
+  routeSlugs: { de: "vektoren", en: "vector", id: "vektor" },
   sections: [
     {
       routeSlugs: {
+        de: "analytische-addition-und-subtraktion",
         en: "analytical-addition-subtraction",
         id: "penjumlahan-dan-pengurangan-vektor-dengan-metode-analitis",
       },
       slug: "analytical-addition-subtraction",
     },
     {
-      routeSlugs: { en: "component", id: "komponen-vektor" },
+      routeSlugs: { de: "komponenten", en: "component", id: "komponen-vektor" },
       slug: "component",
     },
     {
-      routeSlugs: { en: "concept", id: "konsep-vektor" },
+      routeSlugs: { de: "grundbegriff", en: "concept", id: "konsep-vektor" },
       slug: "concept",
     },
     {
       routeSlugs: {
+        de: "kosinussatz",
         en: "cosine-rule",
         id: "penentuan-resultan-vektor-dengan-rumus-kosinus",
       },
@@ -31,25 +33,39 @@ export const lessonPhysicsVectorMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "graphische-addition-und-subtraktion",
         en: "graphical-addition-subtraction",
         id: "penjumlahan-dan-pengurangan-vektor-dengan-metode-grafis",
       },
       slug: "graphical-addition-subtraction",
     },
     {
-      routeSlugs: { en: "multiplication", id: "perkalian-vektor" },
+      routeSlugs: {
+        de: "multiplikation",
+        en: "multiplication",
+        id: "perkalian-vektor",
+      },
       slug: "multiplication",
     },
     {
-      routeSlugs: { en: "notation", id: "lambang-dan-notasi-vektor" },
+      routeSlugs: {
+        de: "schreibweise",
+        en: "notation",
+        id: "lambang-dan-notasi-vektor",
+      },
       slug: "notation",
     },
     {
-      routeSlugs: { en: "property", id: "sifat-sifat-vektor" },
+      routeSlugs: {
+        de: "eigenschaften",
+        en: "property",
+        id: "sifat-sifat-vektor",
+      },
       slug: "property",
     },
     {
       routeSlugs: {
+        de: "sinussatz",
         en: "sine-rule",
         id: "penentuan-arah-resultan-vektor-dengan-rumus-sinus",
       },
@@ -57,6 +73,7 @@ export const lessonPhysicsVectorMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "trigonometrische-zerlegung",
         en: "trigonometry-decomposition",
         id: "penguraian-vektor-berdasarkan-aturan-trigonometri",
       },
@@ -65,6 +82,10 @@ export const lessonPhysicsVectorMaterial = defineLessonMaterial({
   ],
   slug: "vector",
   translations: {
+    de: {
+      description: "Bestimme Resultierende aus Komponenten und Richtung.",
+      title: "Vektoren",
+    },
     en: {
       description: "Build resultants from components and direction.",
       title: "Vector",

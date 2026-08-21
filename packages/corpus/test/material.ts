@@ -12,17 +12,26 @@ export function lessonMaterialSource() {
     key: "lesson.mathematics.function-composition-inverse-function",
     kind: "lesson",
     routeSlugs: {
+      de: "funktionskomposition-und-umkehrfunktion",
       en: "function-composition-inverse-function",
       id: "fungsi-komposisi-dan-fungsi-invers",
     },
     sections: [
       {
-        routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
+        routeSlugs: {
+          de: "funktionsbegriff",
+          en: "function-concept",
+          id: "konsep-fungsi",
+        },
         slug: "function-concept",
       },
     ],
     slug: "function-composition-inverse-function",
     translations: {
+      de: {
+        description: "Verknüpfe Funktionen mit passenden Definitionsbereichen.",
+        title: "Funktionskomposition und Umkehrfunktion",
+      },
       en: {
         description: "Operate on functions while tracking shared domains.",
         title: "Function Composition and Inverse Function",
@@ -117,26 +126,4 @@ export function lessonMaterialEntries() {
         "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
     },
   ];
-}
-
-/** Builds one locale-owned German overlay for the representative lesson. */
-export function germanMaterialCatalog() {
-  return {
-    domains: [{ appLocale: "de", key: "mathematics", routeSlug: "mathematik" }],
-    sources: [
-      {
-        appLocale: "de",
-        materialKey: "lesson.mathematics.function-composition-inverse-function",
-        routeSlug: "funktionskomposition-und-umkehrfunktion",
-        sections: [
-          { routeSlug: "funktionsbegriff", sectionKey: "function-concept" },
-        ],
-        translation: {
-          description:
-            "Verknüpfe Funktionen mit passenden Definitionsbereichen.",
-          title: "Funktionskomposition und Umkehrfunktion",
-        },
-      },
-    ],
-  } as const;
 }

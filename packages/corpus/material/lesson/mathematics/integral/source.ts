@@ -5,18 +5,27 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.integral",
   kind: "lesson",
-  routeSlugs: { en: "integral", id: "integral" },
+  routeSlugs: { de: "integralrechnung", en: "integral", id: "integral" },
   sections: [
     {
-      routeSlugs: { en: "area-of-a-flat-surface", id: "luas-bidang-datar" },
+      routeSlugs: {
+        de: "flaecheninhalt",
+        en: "area-of-a-flat-surface",
+        id: "luas-bidang-datar",
+      },
       slug: "area-of-a-flat-surface",
     },
     {
-      routeSlugs: { en: "definite-integral", id: "integral-tentu" },
+      routeSlugs: {
+        de: "bestimmtes-integral",
+        en: "definite-integral",
+        id: "integral-tentu",
+      },
       slug: "definite-integral",
     },
     {
       routeSlugs: {
+        de: "definition-des-unbestimmten-integrals",
         en: "definition-of-indefinite-integral",
         id: "definisi-integral-tak-tentu",
       },
@@ -24,6 +33,7 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "hauptsatz-der-differential-und-integralrechnung",
         en: "fundamental-theorem-of-calculus",
         id: "teorema-dasar-kalkulus",
       },
@@ -31,6 +41,7 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "integrale-in-wirtschaft-und-oekonomie",
         en: "integral-in-economics-and-business",
         id: "integral-dalam-bidang-ekonomi-dan-bisnis",
       },
@@ -38,6 +49,7 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "integrale-in-der-physik",
         en: "integral-in-physics",
         id: "integral-dalam-bidang-fisika",
       },
@@ -45,6 +57,7 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "eigenschaften-bestimmter-integrale",
         en: "properties-of-definite-integral",
         id: "sifat-sifat-integral-tentu",
       },
@@ -52,18 +65,27 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "eigenschaften-unbestimmter-integrale",
         en: "properties-of-indefinite-integral",
         id: "sifat-sifat-integral-tak-tentu",
       },
       slug: "properties-of-indefinite-integral",
     },
     {
-      routeSlugs: { en: "riemann-sum", id: "jumlahan-riemann" },
+      routeSlugs: {
+        de: "riemann-summen",
+        en: "riemann-sum",
+        id: "jumlahan-riemann",
+      },
       slug: "riemann-sum",
     },
   ],
   slug: "integral",
   translations: {
+    de: {
+      description: "Berechne Flächen mit bestimmten Integralen.",
+      title: "Integralrechnung",
+    },
     en: {
       description: "Find areas from definite integrals and curve bounds.",
       title: "Integrals",

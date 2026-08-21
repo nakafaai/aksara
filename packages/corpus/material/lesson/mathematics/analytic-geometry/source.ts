@@ -5,37 +5,51 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.analytic-geometry",
   kind: "lesson",
-  routeSlugs: { en: "analytic-geometry", id: "geometri-analitik" },
+  routeSlugs: {
+    de: "analytische-geometrie",
+    en: "analytic-geometry",
+    id: "geometri-analitik",
+  },
   sections: [
     {
-      routeSlugs: { en: "definition-of-circle", id: "definisi-lingkaran" },
+      routeSlugs: {
+        de: "kreisdefinition",
+        en: "definition-of-circle",
+        id: "definisi-lingkaran",
+      },
       slug: "definition-of-circle",
     },
     {
-      routeSlugs: { en: "ellipse", id: "elips" },
+      routeSlugs: { de: "ellipse", en: "ellipse", id: "elips" },
       slug: "ellipse",
     },
     {
       routeSlugs: {
+        de: "tangentengleichung-am-kreis",
         en: "equation-of-a-tangent-line-to-a-circle",
         id: "persamaan-garis-singgung-lingkaran",
       },
       slug: "equation-of-a-tangent-line-to-a-circle",
     },
     {
-      routeSlugs: { en: "equation-of-circle", id: "persamaan-lingkaran" },
+      routeSlugs: {
+        de: "kreisgleichung",
+        en: "equation-of-circle",
+        id: "persamaan-lingkaran",
+      },
       slug: "equation-of-circle",
     },
     {
-      routeSlugs: { en: "hyperbola", id: "hiperbola" },
+      routeSlugs: { de: "hyperbel", en: "hyperbola", id: "hiperbola" },
       slug: "hyperbola",
     },
     {
-      routeSlugs: { en: "parabola", id: "parabola" },
+      routeSlugs: { de: "parabel", en: "parabola", id: "parabola" },
       slug: "parabola",
     },
     {
       routeSlugs: {
+        de: "lage-einer-geraden-zum-kreis",
         en: "position-of-a-line-to-a-circle",
         id: "kedudukan-garis-terhadap-lingkaran",
       },
@@ -43,6 +57,7 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "lage-eines-punktes-zum-kreis",
         en: "position-of-a-point-to-a-circle",
         id: "kedudukan-suatu-titik-terhadap-lingkaran",
       },
@@ -50,6 +65,7 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "lage-einer-tangente-zum-kreis",
         en: "position-of-a-tangent-line-to-a-circle",
         id: "kedudukan-garis-singgung-lingkaran",
       },
@@ -57,6 +73,7 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "lage-zweier-kreise",
         en: "position-of-two-circles",
         id: "kedudukan-dua-lingkaran",
       },
@@ -64,6 +81,7 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "tangenten-an-kegelschnitte",
         en: "tangent-line-to-conic-sections",
         id: "garis-singgung-pada-irisan-kerucut",
       },
@@ -72,6 +90,10 @@ export const lessonMathematicsAnalyticGeometryMaterial = defineLessonMaterial({
   ],
   slug: "analytic-geometry",
   translations: {
+    de: {
+      description: "Untersuche Kreise, Kegelschnitte und ihre Tangenten.",
+      title: "Analytische Geometrie",
+    },
     en: {
       description: "Derive circle equations from center and radius.",
       title: "Analytic Geometry",

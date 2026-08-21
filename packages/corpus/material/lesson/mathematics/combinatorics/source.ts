@@ -5,26 +5,39 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.combinatorics",
   kind: "lesson",
-  routeSlugs: { en: "combinatorics", id: "kombinatorik" },
+  routeSlugs: { de: "kombinatorik", en: "combinatorics", id: "kombinatorik" },
   sections: [
     {
-      routeSlugs: { en: "binomial-newton", id: "binomial-newton" },
+      routeSlugs: {
+        de: "newtonscher-binomialsatz",
+        en: "binomial-newton",
+        id: "binomial-newton",
+      },
       slug: "binomial-newton",
     },
     {
-      routeSlugs: { en: "circular-permutation", id: "permutasi-siklis" },
+      routeSlugs: {
+        de: "kreispermutation",
+        en: "circular-permutation",
+        id: "permutasi-siklis",
+      },
       slug: "circular-permutation",
     },
     {
-      routeSlugs: { en: "combination", id: "kombinasi" },
+      routeSlugs: { de: "kombination", en: "combination", id: "kombinasi" },
       slug: "combination",
     },
     {
-      routeSlugs: { en: "filling-place-rule", id: "aturan-pengisian-tempat" },
+      routeSlugs: {
+        de: "zaehlprinzipien",
+        en: "filling-place-rule",
+        id: "aturan-pengisian-tempat",
+      },
       slug: "filling-place-rule",
     },
     {
       routeSlugs: {
+        de: "permutation-aller-objekte",
         en: "permutation-of-n-items-from-n-objects",
         id: "permutasi-semua-objek",
       },
@@ -32,6 +45,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "permutation-mit-wiederholungen",
         en: "permutation-with-identical-objects",
         id: "permutasi-dengan-objek-yang-sama",
       },
@@ -39,6 +53,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "wahrscheinlichkeit-eines-ereignisses",
         en: "probability-of-an-event",
         id: "peluang-suatu-kejadian",
       },
@@ -46,6 +61,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "wahrscheinlichkeit-zusammengesetzter-ereignisse",
         en: "probability-of-compound-events",
         id: "peluang-kejadian-majemuk",
       },
@@ -53,6 +69,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "bedingte-wahrscheinlichkeit",
         en: "probability-of-independent-conditional-events",
         id: "peluang-kejadian-majemuk-saling-bebas-bersyarat",
       },
@@ -60,6 +77,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "unabhaengige-ereignisse",
         en: "probability-of-independent-events",
         id: "peluang-kejadian-majemuk-saling-bebas",
       },
@@ -67,6 +85,7 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "unvereinbare-ereignisse",
         en: "probability-of-mutually-exclusive-events",
         id: "peluang-kejadian-majemuk-saling-lepas",
       },
@@ -75,6 +94,10 @@ export const lessonMathematicsCombinatoricsMaterial = defineLessonMaterial({
   ],
   slug: "combinatorics",
   translations: {
+    de: {
+      description: "Zähle Anordnungen und berechne Wahrscheinlichkeiten.",
+      title: "Kombinatorik",
+    },
     en: {
       description: "Expand powers quickly with binomial coefficients.",
       title: "Combinatorics",

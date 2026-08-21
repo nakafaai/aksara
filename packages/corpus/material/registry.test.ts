@@ -16,7 +16,6 @@ import {
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 import {
-  germanMaterialCatalog,
   lessonMaterialEntries,
   lessonMaterialSource,
 } from "#corpus/test/material";
@@ -27,14 +26,9 @@ const embeddedAppLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("id"),
 ]);
 
-/** Decodes injected embedded sources without unrelated locale overlays. */
+/** Decodes injected sources for one explicit publication locale subset. */
 function decodeEmbeddedRegistry(input: unknown) {
-  return decodeMaterialRegistry(
-    input,
-    undefined,
-    undefined,
-    embeddedAppLocales
-  );
+  return decodeMaterialRegistry(input, undefined, embeddedAppLocales);
 }
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
@@ -110,14 +104,13 @@ describe("material registry", () => {
     expect(entries).toEqual(lessonMaterialEntries());
   });
 
-  it("projects permanent German overlays through the publication seam", async () => {
+  it("projects German metadata from the same source-owned locale maps", async () => {
     const source = lessonMaterialSource();
     const descriptors = await Effect.runPromise(decodeMaterialDomains());
     const entries = await Effect.runPromise(
       decodeMaterialRegistry(
         [source],
         descriptors,
-        germanMaterialCatalog(),
         ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
       )
     );
@@ -156,7 +149,7 @@ describe("material registry", () => {
       ])
     );
     const entries = await Effect.runPromise(
-      decodeMaterialRegistry([source], domains, undefined, embeddedAppLocales)
+      decodeMaterialRegistry([source], domains, embeddedAppLocales)
     );
 
     expect(entries).toHaveLength(2);
@@ -179,7 +172,6 @@ describe("material registry", () => {
       decodeMaterialRegistry(
         [lessonMaterialSource()],
         [],
-        undefined,
         embeddedAppLocales
       ).pipe(Effect.flip)
     );

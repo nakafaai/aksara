@@ -7,12 +7,14 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
     key: "lesson.mathematics.linear-equation-inequality",
     kind: "lesson",
     routeSlugs: {
+      de: "lineare-gleichungs-und-ungleichungssysteme",
       en: "linear-equation-inequality",
       id: "sistem-persamaan-dan-pertidaksamaan-linear",
     },
     sections: [
       {
         routeSlugs: {
+          de: "lineare-gleichungssysteme",
           en: "system-linear-equation",
           id: "sistem-persamaan-linear",
         },
@@ -20,6 +22,7 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
       },
       {
         routeSlugs: {
+          de: "lineare-ungleichungssysteme",
           en: "system-linear-inequality",
           id: "sistem-pertidaksamaan-linear",
         },
@@ -28,6 +31,10 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
     ],
     slug: "linear-equation-inequality",
     translations: {
+      de: {
+        description: "Löse lineare Systeme durch Einsetzen und Addieren.",
+        title: "Lineare Gleichungs- und Ungleichungssysteme",
+      },
       en: {
         description: "Solve linear systems with substitution and elimination.",
         title: "Systems of Linear Equations and Inequalities",

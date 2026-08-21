@@ -46,6 +46,15 @@ describe("material domain registry", () => {
       { key: "mathematics", navigationIconKey: "mathematics" },
       { key: "physics", navigationIconKey: "science" },
     ]);
+    expect(
+      descriptors.map(({ key, routeSlugs }) => [key, routeSlugs.de])
+    ).toEqual([
+      ["ai-ds", "ki-und-data-science"],
+      ["biology", "biologie"],
+      ["chemistry", "chemie"],
+      ["mathematics", "mathematik"],
+      ["physics", "physik"],
+    ]);
   });
 
   it("accepts a generic domain through one descriptor", async () => {

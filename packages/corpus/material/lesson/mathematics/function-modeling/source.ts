@@ -5,22 +5,35 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.function-modeling",
   kind: "lesson",
-  routeSlugs: { en: "function-modeling", id: "fungsi-dan-pemodelannya" },
+  routeSlugs: {
+    de: "funktionen-und-modelle",
+    en: "function-modeling",
+    id: "fungsi-dan-pemodelannya",
+  },
   sections: [
     {
-      routeSlugs: { en: "absolute-value-function", id: "fungsi-nilai-mutlak" },
+      routeSlugs: {
+        de: "betragsfunktion",
+        en: "absolute-value-function",
+        id: "fungsi-nilai-mutlak",
+      },
       slug: "absolute-value-function",
     },
     {
-      routeSlugs: { en: "asymptote", id: "asimtot" },
+      routeSlugs: { de: "asymptoten", en: "asymptote", id: "asimtot" },
       slug: "asymptote",
     },
     {
-      routeSlugs: { en: "exponential-function", id: "fungsi-eksponensial" },
+      routeSlugs: {
+        de: "exponentialfunktion",
+        en: "exponential-function",
+        id: "fungsi-eksponensial",
+      },
       slug: "exponential-function",
     },
     {
       routeSlugs: {
+        de: "begriff-der-logarithmusfunktion",
         en: "logarithmic-function-concept",
         id: "konsep-fungsi-logaritma",
       },
@@ -28,6 +41,7 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "graph-der-logarithmusfunktion",
         en: "logarithmic-function-graph",
         id: "grafik-fungsi-logaritma",
       },
@@ -35,6 +49,7 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "identitaeten-der-logarithmusfunktion",
         en: "logarithmic-function-identity",
         id: "identitas-fungsi-logaritma",
       },
@@ -42,21 +57,31 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "stueckweise-definierte-funktionen",
         en: "piecewise-function-modeling",
         id: "pemodelan-fungsi-piecewise",
       },
       slug: "piecewise-function-modeling",
     },
     {
-      routeSlugs: { en: "rational-function", id: "fungsi-rasional" },
+      routeSlugs: {
+        de: "gebrochen-rationale-funktion",
+        en: "rational-function",
+        id: "fungsi-rasional",
+      },
       slug: "rational-function",
     },
     {
-      routeSlugs: { en: "square-root-function", id: "fungsi-akar" },
+      routeSlugs: {
+        de: "quadratwurzelfunktion",
+        en: "square-root-function",
+        id: "fungsi-akar",
+      },
       slug: "square-root-function",
     },
     {
       routeSlugs: {
+        de: "treppenfunktionen",
         en: "step-function-modeling",
         id: "pemodelan-fungsi-tangga",
       },
@@ -64,6 +89,7 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "trigonometrische-funktionen-beliebiger-winkel",
         en: "trigonometric-function-arbitrary-angle",
         id: "fungsi-trigonometri-sebarang-sudut",
       },
@@ -71,6 +97,7 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "graphen-trigonometrischer-funktionen",
         en: "trigonometric-function-graph",
         id: "grafik-fungsi-trigonometri",
       },
@@ -78,6 +105,7 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "trigonometrische-identitaeten",
         en: "trigonometric-identity",
         id: "identitas-trigonometri",
       },
@@ -86,6 +114,10 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
   ],
   slug: "function-modeling",
   translations: {
+    de: {
+      description: "Untersuche Funktionen, Graphen und passende Modelle.",
+      title: "Funktionen und ihre Modelle",
+    },
     en: {
       description: "Model absolute value behavior with graphs and equations.",
       title: "Functions and Their Modeling",

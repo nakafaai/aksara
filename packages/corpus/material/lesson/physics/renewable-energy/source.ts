@@ -5,22 +5,35 @@ export const lessonPhysicsRenewableEnergyMaterial = defineLessonMaterial({
   domain: "physics",
   key: "lesson.physics.renewable-energy",
   kind: "lesson",
-  routeSlugs: { en: "renewable-energy", id: "energi-terbarukan" },
+  routeSlugs: {
+    de: "erneuerbare-energien",
+    en: "renewable-energy",
+    id: "energi-terbarukan",
+  },
   sections: [
     {
-      routeSlugs: { en: "energy", id: "energi" },
+      routeSlugs: { de: "energie", en: "energy", id: "energi" },
       slug: "energy",
     },
     {
-      routeSlugs: { en: "energy-conservation", id: "hukum-kekekalan-energi" },
+      routeSlugs: {
+        de: "energieerhaltung",
+        en: "energy-conservation",
+        id: "hukum-kekekalan-energi",
+      },
       slug: "energy-conservation",
     },
     {
-      routeSlugs: { en: "energy-forms", id: "bentuk-bentuk-energi" },
+      routeSlugs: {
+        de: "energieformen",
+        en: "energy-forms",
+        id: "bentuk-bentuk-energi",
+      },
       slug: "energy-forms",
     },
     {
       routeSlugs: {
+        de: "auswirkungen-der-energienutzung",
         en: "energy-impact",
         id: "dampak-eksplorasi-dan-penggunaan-energi",
       },
@@ -28,37 +41,59 @@ export const lessonPhysicsRenewableEnergyMaterial = defineLessonMaterial({
     },
     {
       routeSlugs: {
+        de: "loesungen-fuer-die-energieversorgung",
         en: "energy-solutions",
         id: "upaya-pemenuhan-kebutuhan-energi",
       },
       slug: "energy-solutions",
     },
     {
-      routeSlugs: { en: "energy-sources", id: "sumber-energi" },
+      routeSlugs: {
+        de: "energiequellen",
+        en: "energy-sources",
+        id: "sumber-energi",
+      },
       slug: "energy-sources",
     },
     {
-      routeSlugs: { en: "energy-transformation", id: "konversi-energi" },
+      routeSlugs: {
+        de: "energieumwandlung",
+        en: "energy-transformation",
+        id: "konversi-energi",
+      },
       slug: "energy-transformation",
     },
     {
-      routeSlugs: { en: "energy-urgency", id: "urgensi-isu-kebutuhan-energi" },
+      routeSlugs: {
+        de: "dringlichkeit-der-energiewende",
+        en: "energy-urgency",
+        id: "urgensi-isu-kebutuhan-energi",
+      },
       slug: "energy-urgency",
     },
     {
       routeSlugs: {
+        de: "nichterneuerbare-energiequellen",
         en: "non-renewable-sources",
         id: "sumber-energi-tak-terbarukan",
       },
       slug: "non-renewable-sources",
     },
     {
-      routeSlugs: { en: "renewable-sources", id: "sumber-energi-terbarukan" },
+      routeSlugs: {
+        de: "erneuerbare-energiequellen",
+        en: "renewable-sources",
+        id: "sumber-energi-terbarukan",
+      },
       slug: "renewable-sources",
     },
   ],
   slug: "renewable-energy",
   translations: {
+    de: {
+      description: "Verbinde Energie, Arbeit, Leistung und Stromverbrauch.",
+      title: "Erneuerbare Energien",
+    },
     en: {
       description: "Connect energy, work, power, and electricity use.",
       title: "Renewable Energy",

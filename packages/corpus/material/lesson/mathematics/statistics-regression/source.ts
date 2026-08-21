@@ -6,10 +6,15 @@ export const lessonMathematicsStatisticsRegressionMaterial =
     domain: "mathematics",
     key: "lesson.mathematics.statistics-regression",
     kind: "lesson",
-    routeSlugs: { en: "statistics-regression", id: "regresi-statistik" },
+    routeSlugs: {
+      de: "regression-und-korrelation",
+      en: "statistics-regression",
+      id: "regresi-statistik",
+    },
     sections: [
       {
         routeSlugs: {
+          de: "bestimmtheitsmass",
           en: "coefficient-of-determination",
           id: "koefisien-determinasi",
         },
@@ -17,6 +22,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       },
       {
         routeSlugs: {
+          de: "grundidee-der-korrelationsanalyse",
           en: "correlation-analysis-concept",
           id: "konsep-analisis-korelasi",
         },
@@ -24,6 +30,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       },
       {
         routeSlugs: {
+          de: "methode-der-kleinsten-quadrate",
           en: "least-squares-method",
           id: "metode-kuadrat-terkecil",
         },
@@ -31,6 +38,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       },
       {
         routeSlugs: {
+          de: "grundidee-der-linearen-regression",
           en: "linear-regression-concept",
           id: "konsep-regresi-linear",
         },
@@ -38,6 +46,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       },
       {
         routeSlugs: {
+          de: "produkt-moment-korrelation",
           en: "product-moment-correlation",
           id: "korelasi-product-moment",
         },
@@ -45,6 +54,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       },
       {
         routeSlugs: {
+          de: "streudiagramm",
           en: "scatter-diagram",
           id: "diagram-pencar-atau-diagram-scatter",
         },
@@ -53,6 +63,10 @@ export const lessonMathematicsStatisticsRegressionMaterial =
     ],
     slug: "statistics-regression",
     translations: {
+      de: {
+        description: "Lies am Bestimmtheitsmaß die erklärte Streuung ab.",
+        title: "Regression und Korrelation",
+      },
       en: {
         description: "Interpret a model's coefficient of determination.",
         title: "Statistics",
