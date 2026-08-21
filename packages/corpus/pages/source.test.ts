@@ -58,7 +58,7 @@ describe("public page source", () => {
 
   it("reads one registry-owned body byte-exactly", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+      decodePageRegistry([pageSource()], embeddedAppLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");
@@ -79,7 +79,7 @@ describe("public page source", () => {
 
   it("maps one missing reviewed body to a typed read failure", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+      decodePageRegistry([pageSource()], embeddedAppLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active public page entry.");

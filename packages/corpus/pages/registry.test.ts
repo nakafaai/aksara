@@ -5,7 +5,7 @@ import {
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
-import { germanPageSource, pageSource } from "#corpus/test/page";
+import { pageSource } from "#corpus/test/page";
 
 const embeddedAppLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
@@ -13,9 +13,9 @@ const embeddedAppLocales = ActiveAppLocaleListSchema.make([
 ]);
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
-function rejectRegistry(input: unknown, localeInput?: unknown) {
+function rejectRegistry(input: unknown) {
   return Effect.runPromise(
-    decodePageRegistry(input, localeInput, embeddedAppLocales).pipe(Effect.flip)
+    decodePageRegistry(input, embeddedAppLocales).pipe(Effect.flip)
   );
 }
 
@@ -48,11 +48,10 @@ describe("public page registry", () => {
     });
   });
 
-  it("projects permanent German overlays through the activation seam", async () => {
+  it("projects every locale through the same source-owned map", async () => {
     const entries = await Effect.runPromise(
       decodePageRegistry(
         [pageSource()],
-        [germanPageSource()],
         ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
       )
     );
@@ -74,7 +73,6 @@ describe("public page registry", () => {
       pageSource(),
       pageSource({
         pageKey: "security-policy",
-        publicPaths: { en: "security-policy", id: "security-policy" },
       }),
     ]);
     const collision = await rejectRegistry([
@@ -107,7 +105,6 @@ describe("public page registry", () => {
     const oversizedPageKey = "a".repeat(507);
     const invalid = pageSource({
       pageKey: oversizedPageKey,
-      publicPaths: { en: "privacy-policy", id: "privacy-policy" },
       sourceRoot: `pages/${oversizedPageKey}`,
     });
     const invalidPath = await rejectRegistry([invalid]);
@@ -118,7 +115,7 @@ describe("public page registry", () => {
 
   it("accepts repeated identical route ownership and an empty catalog", async () => {
     const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], undefined, embeddedAppLocales)
+      decodePageRegistry([pageSource()], embeddedAppLocales)
     );
     if (entry === undefined) {
       throw new Error("Expected one active page entry.");
@@ -128,7 +125,7 @@ describe("public page registry", () => {
       Effect.runPromise(validatePageRoutes([entry, entry]))
     ).resolves.toEqual([entry, entry]);
     await expect(
-      Effect.runPromise(decodePageRegistry([], undefined, embeddedAppLocales))
+      Effect.runPromise(decodePageRegistry([], embeddedAppLocales))
     ).resolves.toEqual([]);
   });
 });

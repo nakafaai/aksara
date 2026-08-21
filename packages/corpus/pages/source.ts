@@ -10,22 +10,38 @@ import {
 const pageSourceInputs: readonly PageSourceInput[] = [
   {
     pageKey: "imprint",
-    publicPaths: { en: "legal-notice", id: "informasi-perusahaan" },
+    publicPaths: {
+      de: "impressum",
+      en: "legal-notice",
+      id: "informasi-perusahaan",
+    },
     sourceRoot: "pages/imprint",
   },
   {
     pageKey: "privacy-policy",
-    publicPaths: { en: "privacy-policy", id: "privacy-policy" },
+    publicPaths: {
+      de: "privacy-policy",
+      en: "privacy-policy",
+      id: "privacy-policy",
+    },
     sourceRoot: "pages/privacy-policy",
   },
   {
     pageKey: "security-policy",
-    publicPaths: { en: "security-policy", id: "security-policy" },
+    publicPaths: {
+      de: "security-policy",
+      en: "security-policy",
+      id: "security-policy",
+    },
     sourceRoot: "pages/security-policy",
   },
   {
     pageKey: "terms-of-service",
-    publicPaths: { en: "terms-of-service", id: "terms-of-service" },
+    publicPaths: {
+      de: "terms-of-service",
+      en: "terms-of-service",
+      id: "terms-of-service",
+    },
     sourceRoot: "pages/terms",
   },
 ];

@@ -5,7 +5,7 @@ import {
   decodePagePreviewEntries,
   decodePagePreviewEntry,
 } from "#corpus/pages/preview";
-import { germanPageSource, pageSource } from "#corpus/test/page";
+import { pageSource } from "#corpus/test/page";
 
 const englishPath = CorpusSourcePathSchema.make(
   "packages/corpus/pages/privacy-policy/en.mdx"
@@ -15,13 +15,9 @@ const germanPath = CorpusSourcePathSchema.make(
 );
 
 describe("public page preview projection", () => {
-  it("projects base and locale-owned bodies through distinct route owners", async () => {
+  it("projects every selected locale through the same source owner", async () => {
     const entries = await Effect.runPromise(
-      decodePagePreviewEntries(
-        [englishPath, germanPath],
-        [pageSource()],
-        [germanPageSource()]
-      )
+      decodePagePreviewEntries([englishPath, germanPath], [pageSource()])
     );
 
     expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
@@ -36,17 +32,13 @@ describe("public page preview projection", () => {
 
   it("returns one exact selection and no invented unselected body", async () => {
     const selected = await Effect.runPromise(
-      decodePagePreviewEntry(germanPath, [pageSource()], [germanPageSource()])
+      decodePagePreviewEntry(germanPath, [pageSource()])
     );
     const empty = await Effect.runPromise(
-      decodePagePreviewEntries([], [pageSource()], [germanPageSource()])
+      decodePagePreviewEntries([], [pageSource()])
     );
     const activeWithCandidateInput = await Effect.runPromise(
-      decodePagePreviewEntries(
-        [englishPath],
-        [pageSource()],
-        [germanPageSource()]
-      )
+      decodePagePreviewEntries([englishPath], [pageSource()])
     );
 
     expect(selected?.sourcePath).toBe(germanPath);

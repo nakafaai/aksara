@@ -18,8 +18,6 @@ const pageRestartSourcePaths = [
   "packages/corpus/pages/registry.ts",
   "packages/corpus/pages/schema.ts",
   "packages/corpus/locale/source.ts",
-  "packages/corpus/pages/locale.ts",
-  "packages/corpus/pages/locale-registry.ts",
 ];
 const questionRoot =
   "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
