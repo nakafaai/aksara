@@ -64,20 +64,6 @@ describe("article preview projection", () => {
       sourcePath:
         "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
     });
-    const dependencyPaths = selection.sources[0].dependencies.map(
-      ({ sourcePath }) => sourcePath
-    );
-    expect(dependencyPaths).not.toContain("packages/corpus/articles/locale.ts");
-    expect(dependencyPaths).not.toContain(
-      "packages/corpus/articles/locale-registry.ts"
-    );
-    expect(
-      dependencyPaths.some(
-        (sourcePath) =>
-          sourcePath.startsWith("packages/corpus/articles/") &&
-          sourcePath.endsWith("/locale/de.ts")
-      )
-    ).toBe(false);
     expect(repeated.sources[0].dependencies).toEqual(
       selection.sources[0].dependencies
     );

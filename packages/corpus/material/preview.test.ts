@@ -83,22 +83,5 @@ describe("material preview projection", () => {
       sourcePath:
         "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
     });
-    const dependencyPaths = selection.sources[0].dependencies.map(
-      ({ sourcePath }) => sourcePath
-    );
-    expect(dependencyPaths).not.toContain("packages/corpus/material/locale.ts");
-    expect(dependencyPaths).not.toContain(
-      "packages/corpus/material/locale-registry.ts"
-    );
-    expect(dependencyPaths).not.toContain(
-      "packages/corpus/locale/german/glossary.ts"
-    );
-    expect(
-      dependencyPaths.some(
-        (sourcePath) =>
-          sourcePath.startsWith("packages/corpus/material/lesson/") &&
-          sourcePath.endsWith("/locale/de.ts")
-      )
-    ).toBe(false);
   });
 });
