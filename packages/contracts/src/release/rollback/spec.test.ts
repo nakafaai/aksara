@@ -59,7 +59,7 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
   materialKey: "lesson.test.material",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
+  metadata: { authors: [], datePublished: "2026-01-01", title: "Protocol" },
   order: 1,
   parentPath: "subjects/test/material",
   publicPath: "subjects/test/material/lesson",
@@ -185,7 +185,6 @@ describe("rollback contracts", () => {
     for (const entry of [record, reverseRecord]) {
       expect(JSON.parse(canonicalizeRollbackRecord(entry))).toEqual(entry);
     }
-    expect(canonicalizeRollbackPage(value)).toContain('"date":"2026-01-01"');
     expect(JSON.parse(canonicalizeRollbackPage(value))).toEqual(value);
   });
   it("accepts only one canonical empty final page", () => {
