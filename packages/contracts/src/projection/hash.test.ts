@@ -13,7 +13,7 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   materialKey: "lesson.test.projection",
   metadata: {
     authors: [{ name: "Nakafa" }],
-    date: "2026-07-22",
+    datePublished: "2026-07-22",
     description: "Canonical projection",
     subject: "Mathematics",
     title: "Projection",
@@ -29,7 +29,7 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
 describe("content projection hash", () => {
   it("hashes canonical projection bytes with one stable identity", () => {
     expect(hashContentProjection(projection)).toBe(
-      "sha256:05bab2b9b369637397ace78a0062f69467037e3179aba8cdcf67baac66db0bbf"
+      "sha256:e47a457bb7c8350b585458b6b16d7ddb7936cc3435764b339aaeb8add2ba3c2f"
     );
   });
 });

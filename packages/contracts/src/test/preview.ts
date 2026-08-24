@@ -12,7 +12,7 @@ import { articleGraph, materialGraph } from "#contracts/test/graph";
 
 const metadata = {
   authors: [{ name: "Test Author" }],
-  date: "2026-07-24",
+  datePublished: "2026-07-24",
   title: "Test Preview",
 };
 

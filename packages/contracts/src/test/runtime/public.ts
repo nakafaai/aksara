@@ -77,7 +77,7 @@ const articleProjection = ArticleProjectionSchema.make({
   kind: "article",
   metadata: {
     authors: [{ name: "Nabil Fatih" }],
-    date: "2024-02-14",
+    datePublished: "2024-02-14",
     title: "Dynastic Politics and Asian Values",
   },
   official: true,

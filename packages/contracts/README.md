@@ -38,6 +38,25 @@ Current consumers use unversioned semantic Interfaces:
 Current publication and new try-out starts must never import `history/decode`.
 The history boundary has no writer, route fallback, or mixed current wire.
 
+## Publication dates
+
+Article and material metadata carries one required `datePublished` and one
+optional `dateModified`, both as exact `DateOnly` values.
+
+- `datePublished` is the first verified public availability of that specific
+  locale page.
+- `dateModified` is the public activation date of a later signed release that
+  contains a meaningful content change.
+- When present, `dateModified` must be strictly later than `datePublished`.
+
+Neither value may be derived from a build clock, import time, Convex
+`_creationTime`, an unsigned source commit, or an unactivated candidate. The
+signed release and activation history remain the audit evidence for both
+values. These rules keep visible dates and structured data aligned with
+[Google publication date guidance](https://developers.google.com/search/docs/appearance/publication-dates)
+and
+[Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article).
+
 Runtime verification authenticates the independently signed release and
 artifact values against the exact renderer manifest frozen into that release.
 Execution verification also proves the selected artifact against the complete

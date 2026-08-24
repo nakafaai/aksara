@@ -26,7 +26,7 @@ const article = Schema.decodeSync(ArticleProjectionSchema)({
   kind: "article",
   metadata: {
     authors: [{ name: "Test Author" }],
-    date: "2026-01-01",
+    datePublished: "2026-01-01",
     title: "Test Article",
   },
   official: true,
@@ -44,7 +44,7 @@ const material = Schema.decodeSync(MaterialLessonProjectionSchema)({
   materialKey: "lesson.test.material",
   metadata: {
     authors: [{ name: "Test Author" }],
-    date: "2026-01-01",
+    datePublished: "2026-01-01",
     title: "Test Material",
   },
   order: 1,

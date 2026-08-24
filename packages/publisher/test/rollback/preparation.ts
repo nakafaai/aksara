@@ -106,7 +106,11 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   graph: materialGraph(rollbackAppLocale, "rollback", "test-forward"),
   kind: "subject-lesson",
   materialKey: "lesson.test.rollback",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
+  metadata: {
+    authors: [],
+    datePublished: "2026-01-01",
+    title: "Test protocol",
+  },
   order: 1,
   parentPath: "subjects/test/rollback",
   publicPath: "subjects/test/rollback/forward",

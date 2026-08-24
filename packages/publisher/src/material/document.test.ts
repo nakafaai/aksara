@@ -49,4 +49,23 @@ describe("material document", () => {
       sourcePath: englishEntry.sourcePath,
     });
   });
+
+  it("rejects non-chronological material dates through the typed metadata error", async () => {
+    const error = await Effect.runPromise(
+      Effect.gen(function* () {
+        const source = yield* loadMaterialDocument(checkoutRoot, englishEntry);
+        return yield* makeMaterialProjection(source, {
+          authors: [{ name: "Nabil Akbarazzima Fatih" }],
+          dateModified: "2025-04-27",
+          datePublished: "2025-04-27",
+          title: "Invalid material dates",
+        }).pipe(Effect.flip);
+      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
+    );
+
+    expect(error).toMatchObject({
+      _tag: "MaterialMetadataError",
+      sourcePath: englishEntry.sourcePath,
+    });
+  });
 });

@@ -111,7 +111,10 @@ describe("preview document compiler", () => {
     const repository = repositories.create();
     writeFileSync(
       repository.documentPath,
-      REAL_SOURCE.replace('date: "2025-04-27"', 'date: "invalid"')
+      REAL_SOURCE.replace(
+        'datePublished: "2025-04-27"',
+        'datePublished: "invalid"'
+      )
     );
     const invalidMetadata = await makeCompiler(repository);
     const metadataError = await runNode(

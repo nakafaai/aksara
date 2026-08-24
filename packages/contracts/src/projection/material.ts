@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
-import { DateOnlySchema } from "#contracts/date";
+import { withPublicationDates } from "#contracts/date";
 import {
   canonicalizeLearningGraphIdentity,
   type LearningGraphIdentity,
@@ -12,6 +12,7 @@ import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
+import { withProjectionDates } from "#contracts/projection/date";
 
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
@@ -66,15 +67,22 @@ export const MaterialSectionSchema = Schema.String.pipe(
 );
 export type MaterialSection = typeof MaterialSectionSchema.Type;
 
-/** Exact metadata contract consumed by Nakafa material lesson pages. */
-export const MaterialMetadataSchema = Schema.Struct({
+const MaterialMetadataFields = {
   authors: Schema.Array(ContentAuthorSchema),
-  date: DateOnlySchema,
   description: Schema.optional(Schema.String),
   subject: Schema.optional(Schema.String),
   title: Schema.String,
-});
+};
+
+/** Exact metadata contract required from newly authored material sources. */
+export const MaterialMetadataSchema = withPublicationDates(
+  MaterialMetadataFields
+);
 export type MaterialMetadata = typeof MaterialMetadataSchema.Type;
+
+const MaterialProjectionMetadataSchema = withProjectionDates(
+  MaterialMetadataFields
+);
 
 /** Stable route fields shared by material routes and published projections. */
 const MaterialLessonRouteFields = {
@@ -95,7 +103,7 @@ const MaterialLessonRouteFields = {
 const MaterialLessonProjectionFields = {
   ...MaterialLessonRouteFields,
   kind: Schema.Literal("subject-lesson"),
-  metadata: MaterialMetadataSchema,
+  metadata: MaterialProjectionMetadataSchema,
   parentPath: PublicPathSchema,
   sitemap: Schema.Literal(true),
 };
@@ -229,6 +237,26 @@ export function makeMaterialLessonProjection(
 export function canonicalizeMaterialProjection(
   projection: MaterialLessonProjection
 ) {
+  const dates =
+    "date" in projection.metadata
+      ? { date: projection.metadata.date }
+      : {
+          ...(projection.metadata.dateModified === undefined
+            ? {}
+            : { dateModified: projection.metadata.dateModified }),
+          datePublished: projection.metadata.datePublished,
+        };
+  const metadata = {
+    authors: projection.metadata.authors.map(({ name }) => ({ name })),
+    ...dates,
+    ...(projection.metadata.description === undefined
+      ? {}
+      : { description: projection.metadata.description }),
+    ...(projection.metadata.subject === undefined
+      ? {}
+      : { subject: projection.metadata.subject }),
+    title: projection.metadata.title,
+  };
   return JSON.stringify({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
@@ -236,17 +264,7 @@ export function canonicalizeMaterialProjection(
     graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
     materialKey: projection.materialKey,
-    metadata: {
-      authors: projection.metadata.authors.map(({ name }) => ({ name })),
-      date: projection.metadata.date,
-      ...(projection.metadata.description === undefined
-        ? {}
-        : { description: projection.metadata.description }),
-      ...(projection.metadata.subject === undefined
-        ? {}
-        : { subject: projection.metadata.subject }),
-      title: projection.metadata.title,
-    },
+    metadata,
     order: projection.order,
     parentPath: projection.parentPath,
     publicPath: projection.publicPath,

@@ -26,7 +26,8 @@ const projection = makeMaterialLessonProjection(
   }),
   Schema.decodeSync(MaterialMetadataSchema)({
     authors: [{ name: "Test Author" }],
-    date: "2026-01-31",
+    dateModified: "2026-02-01",
+    datePublished: "2026-01-31",
     description: "Test body metadata.",
     subject: "Test Subject",
     title: "Body Metadata Title",
@@ -40,6 +41,44 @@ describe("material projection", () => {
     );
     expect(projection.metadata.title).toBe("Body Metadata Title");
     expect(projection.topicTitle).toBe("Test Material");
+  });
+
+  it("preserves exact legacy metadata bytes during signed migration", () => {
+    const legacy = Schema.decodeSync(MaterialLessonProjectionSchema)({
+      ...projection,
+      metadata: {
+        authors: [{ name: "Test Author" }],
+        date: "2026-01-31",
+        description: "Test body metadata.",
+        subject: "Test Subject",
+        title: "Body Metadata Title",
+      },
+    });
+    const canonical = canonicalizeMaterialProjection(legacy);
+
+    expect(JSON.parse(canonical)).toEqual(legacy);
+    expect(canonical).toContain(
+      '"metadata":{"authors":[{"name":"Test Author"}],"date":"2026-01-31","description":"Test body metadata.","subject":"Test Subject","title":"Body Metadata Title"}'
+    );
+  });
+
+  it("rejects ambiguous or incomplete projection date shapes", () => {
+    const decode = Schema.decodeUnknownExit(MaterialLessonProjectionSchema);
+    const base = { authors: [], title: "Migration" };
+    for (const invalid of [
+      base,
+      { ...base, date: "2026-01-01", datePublished: "2026-01-01" },
+      { ...base, date: undefined },
+      {
+        ...base,
+        dateModified: undefined,
+        datePublished: "2026-01-01",
+      },
+    ]) {
+      expect(Exit.isFailure(decode({ ...projection, metadata: invalid }))).toBe(
+        true
+      );
+    }
   });
 
   it("requires the canonical topic label and public discovery state", () => {
@@ -61,26 +100,76 @@ describe("material projection", () => {
       ...projection,
       metadata: {
         authors: [],
-        date: "2024-02-29",
+        datePublished: "2024-02-29",
         title: "Test Minimal Metadata",
       },
     });
     expect(canonicalizeMaterialProjection(minimal)).not.toContain(
       "description"
     );
+    expect(canonicalizeMaterialProjection(minimal)).not.toContain(
+      "dateModified"
+    );
     expect(canonicalizeMaterialProjection(minimal)).not.toContain('"subject":');
   });
 
+  it("accepts an absent modification date and rejects explicit undefined", () => {
+    const absent = Schema.decodeExit(MaterialMetadataSchema)({
+      authors: [],
+      datePublished: "2026-01-01",
+      title: "Published",
+    });
+    const explicitUndefined = Schema.decodeUnknownExit(MaterialMetadataSchema)({
+      authors: [],
+      dateModified: undefined,
+      datePublished: "2026-01-01",
+      title: "Undefined",
+    });
+
+    expect(Exit.isSuccess(absent)).toBe(true);
+    expect(Exit.isFailure(explicitUndefined)).toBe(true);
+  });
+
   it("rejects malformed and impossible authored dates", () => {
-    for (const date of ["not-a-date", "2026-02-30"]) {
+    for (const datePublished of ["not-a-date", "2026-02-30"]) {
       expect(
         Exit.isFailure(
           Schema.decodeExit(MaterialLessonProjectionSchema)({
             ...projection,
-            metadata: { ...projection.metadata, date },
+            metadata: { authors: [], datePublished, title: "Invalid" },
           })
         )
       ).toBe(true);
+    }
+  });
+
+  it("rejects the legacy date field and non-later modification dates", () => {
+    const legacy = Schema.decodeUnknownExit(MaterialMetadataSchema)(
+      {
+        authors: [],
+        date: "2026-01-01",
+        title: "Legacy",
+      },
+      { onExcessProperty: "error" }
+    );
+    const equal = Schema.decodeExit(MaterialMetadataSchema)({
+      authors: [],
+      dateModified: "2026-01-01",
+      datePublished: "2026-01-01",
+      title: "Equal",
+    });
+    const earlier = Schema.decodeExit(MaterialMetadataSchema)({
+      authors: [],
+      dateModified: "2025-12-31",
+      datePublished: "2026-01-01",
+      title: "Earlier",
+    });
+
+    expect([legacy, equal, earlier].every(Exit.isFailure)).toBe(true);
+    if (Exit.isFailure(earlier)) {
+      expect(String(earlier.cause)).toContain(
+        "Expected dateModified to be later than datePublished."
+      );
     }
   });
 
