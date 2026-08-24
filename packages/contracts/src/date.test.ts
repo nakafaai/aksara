@@ -1,6 +1,10 @@
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
-import { DateOnlySchema } from "#contracts/date";
+import { describe, expect, expectTypeOf, it } from "vitest";
+import {
+  DateOnlySchema,
+  type PublicationDates,
+  PublicationDatesSchema,
+} from "#contracts/date";
 
 describe("date only", () => {
   it("accepts a real leap-day date", () => {
@@ -15,4 +19,21 @@ describe("date only", () => {
       );
     }
   );
+
+  it("keeps the public date shape exact under every decoder option", () => {
+    expectTypeOf<keyof PublicationDates>().toEqualTypeOf<
+      "dateModified" | "datePublished"
+    >();
+
+    const dual = {
+      date: "2024-01-01",
+      datePublished: "2024-01-01",
+    };
+    const decode = Schema.decodeUnknownExit(PublicationDatesSchema);
+
+    expect(Exit.isFailure(decode(dual))).toBe(true);
+    expect(Exit.isFailure(decode(dual, { onExcessProperty: "preserve" }))).toBe(
+      true
+    );
+  });
 });

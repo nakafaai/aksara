@@ -68,14 +68,9 @@ describe("article projection", () => {
         datePublished: "2024-01-01",
       },
     ]) {
-      expect(
-        Exit.isFailure(
-          decode(
-            { ...projection, metadata: invalid },
-            { onExcessProperty: "error" }
-          )
-        )
-      ).toBe(true);
+      expect(Exit.isFailure(decode({ ...projection, metadata: invalid }))).toBe(
+        true
+      );
     }
   });
 
@@ -227,14 +222,11 @@ describe("article projection", () => {
   });
 
   it("rejects the legacy date field and non-later modification dates", () => {
-    const legacy = Schema.decodeUnknownExit(ArticleMetadataSchema)(
-      {
-        authors: [],
-        date: "2024-01-01",
-        title: "Legacy",
-      },
-      { onExcessProperty: "error" }
-    );
+    const legacy = Schema.decodeUnknownExit(ArticleMetadataSchema)({
+      authors: [],
+      date: "2024-01-01",
+      title: "Legacy",
+    });
     const equal = Schema.decodeExit(ArticleMetadataSchema)({
       authors: [],
       dateModified: "2024-01-01",
