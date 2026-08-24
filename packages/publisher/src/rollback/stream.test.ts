@@ -35,6 +35,7 @@ import { PublicationTargetTransportError } from "#publisher/target/errors";
 import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";
 
+const datePublished = "2026-01-01";
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
 const rollbackOfManifestHash = Sha256HashSchema.make(
   `sha256:${"d".repeat(64)}`
@@ -103,7 +104,7 @@ function oversizedPage() {
     graph: materialGraph(appLocale, "rollback", "test-large"),
     kind: "subject-lesson",
     materialKey: "lesson.test.rollback",
-    metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
+    metadata: { authors: [], datePublished, title: "Test protocol" },
     order: 1,
     parentPath: "subjects/test/rollback",
     publicPath: "subjects/test/rollback/large",

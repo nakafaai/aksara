@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
-import { DateOnlySchema } from "#contracts/date";
+import { withPublicationDates } from "#contracts/date";
 import {
   canonicalizeLearningGraphIdentity,
   type LearningGraphIdentity,
@@ -8,6 +8,7 @@ import {
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
+import { withProjectionDates } from "#contracts/projection/date";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 /** Stable source-owned category segment used below the article route family. */
@@ -49,14 +50,21 @@ export const ArticleReferenceSchema = Schema.Struct({
 });
 export type ArticleReference = typeof ArticleReferenceSchema.Type;
 
-/** Exact metadata contract consumed by Nakafa article pages and listings. */
-export const ArticleMetadataSchema = Schema.Struct({
+const ArticleMetadataFields = {
   authors: Schema.Array(ContentAuthorSchema),
-  date: DateOnlySchema,
   description: Schema.optional(Schema.String),
   title: Schema.String,
-});
+};
+
+/** Exact metadata contract required from newly authored article sources. */
+export const ArticleMetadataSchema = withPublicationDates(
+  ArticleMetadataFields
+);
 export type ArticleMetadata = typeof ArticleMetadataSchema.Type;
+
+const ArticleProjectionMetadataSchema = withProjectionDates(
+  ArticleMetadataFields
+);
 
 const ArticleRouteFields = {
   appLocale: AppLocaleSchema,
@@ -139,7 +147,7 @@ export const ArticleProjectionSchema = Schema.Struct({
   ...ArticleRouteFields,
   categoryTitle: ArticleCategoryTitleSchema,
   kind: Schema.Literal("article"),
-  metadata: ArticleMetadataSchema,
+  metadata: ArticleProjectionMetadataSchema,
   official: Schema.Boolean,
   parentPath: PublicPathSchema,
   references: Schema.Array(ArticleReferenceSchema),
@@ -199,6 +207,23 @@ export function makeArticleProjection(input: {
 
 /** Serializes one article projection with stable signed field order. */
 export function canonicalizeArticleProjection(projection: ArticleProjection) {
+  const dates =
+    "date" in projection.metadata
+      ? { date: projection.metadata.date }
+      : {
+          ...(projection.metadata.dateModified === undefined
+            ? {}
+            : { dateModified: projection.metadata.dateModified }),
+          datePublished: projection.metadata.datePublished,
+        };
+  const metadata = {
+    authors: projection.metadata.authors.map(({ name }) => ({ name })),
+    ...dates,
+    ...(projection.metadata.description === undefined
+      ? {}
+      : { description: projection.metadata.description }),
+    title: projection.metadata.title,
+  };
   return JSON.stringify({
     appLocale: projection.appLocale,
     articleRouteSlug: projection.articleRouteSlug,
@@ -210,14 +235,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
     contentKey: projection.contentKey,
     graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
-    metadata: {
-      authors: projection.metadata.authors.map(({ name }) => ({ name })),
-      date: projection.metadata.date,
-      ...(projection.metadata.description === undefined
-        ? {}
-        : { description: projection.metadata.description }),
-      title: projection.metadata.title,
-    },
+    metadata,
     official: projection.official,
     parentPath: projection.parentPath,
     publicPath: projection.publicPath,

@@ -30,7 +30,7 @@ function projection(index: number, title = "Test Projection") {
     materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],
-      date: "2026-01-01",
+      datePublished: "2026-01-01",
       title,
     },
     order: index + 1,

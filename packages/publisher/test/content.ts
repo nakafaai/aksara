@@ -43,7 +43,11 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   graph: materialGraph(AppLocaleSchema.make("en"), "http", "test-http"),
   kind: "subject-lesson",
   materialKey: "lesson.test.http",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
+  metadata: {
+    authors: [],
+    datePublished: "2026-01-01",
+    title: "Test protocol",
+  },
   order: 1,
   parentPath: "subjects/test",
   publicPath: "subjects/test/http",

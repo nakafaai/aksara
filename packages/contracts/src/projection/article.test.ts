@@ -24,7 +24,8 @@ const route = Schema.decodeSync(ArticleRouteSchema)({
 });
 const metadata = Schema.decodeSync(ArticleMetadataSchema)({
   authors: [{ name: "Test Author" }],
-  date: "2024-02-29",
+  dateModified: "2024-03-01",
+  datePublished: "2024-02-29",
   description: "Protocol-only article metadata.",
   title: "Protocol Article",
 });
@@ -51,6 +52,43 @@ describe("article projection", () => {
     expect(JSON.parse(canonicalizeArticleProjection(projection))).toEqual(
       projection
     );
+  });
+
+  it("preserves exact legacy metadata bytes during signed migration", () => {
+    const legacy = Schema.decodeSync(ArticleProjectionSchema)({
+      ...projection,
+      metadata: {
+        authors: [{ name: "Test Author" }],
+        date: "2024-02-29",
+        description: "Protocol-only article metadata.",
+        title: "Protocol Article",
+      },
+    });
+    const canonical = canonicalizeArticleProjection(legacy);
+
+    expect(JSON.parse(canonical)).toEqual(legacy);
+    expect(canonical).toContain(
+      '"metadata":{"authors":[{"name":"Test Author"}],"date":"2024-02-29","description":"Protocol-only article metadata.","title":"Protocol Article"}'
+    );
+  });
+
+  it("rejects ambiguous or incomplete projection date shapes", () => {
+    const decode = Schema.decodeUnknownExit(ArticleProjectionSchema);
+    const base = { authors: [], title: "Migration" };
+    for (const invalid of [
+      base,
+      { ...base, date: "2024-01-01", datePublished: "2024-01-01" },
+      { ...base, date: undefined },
+      {
+        ...base,
+        dateModified: undefined,
+        datePublished: "2024-01-01",
+      },
+    ]) {
+      expect(Exit.isFailure(decode({ ...projection, metadata: invalid }))).toBe(
+        true
+      );
+    }
   });
 
   it("accepts a second test category through the generic route contract", () => {
@@ -99,7 +137,11 @@ describe("article projection", () => {
   it("omits absent optional metadata and reference fields", () => {
     const minimal = makeArticleProjection({
       categoryTitle: "Politics",
-      metadata: { authors: [], date: "2024-01-01", title: "Minimal" },
+      metadata: {
+        authors: [],
+        datePublished: "2024-01-01",
+        title: "Minimal",
+      },
       official: false,
       references: [{ authors: "Test Author", title: "Reference", year: 2024 }],
       route,
@@ -107,10 +149,28 @@ describe("article projection", () => {
 
     const canonical = canonicalizeArticleProjection(minimal);
     expect(canonical).not.toContain("description");
+    expect(canonical).not.toContain("dateModified");
     expect(canonical).not.toContain("citation");
     expect(canonical).not.toContain("details");
     expect(canonical).not.toContain("publication");
     expect(canonical).not.toContain('"url":');
+  });
+
+  it("accepts an absent modification date and rejects explicit undefined", () => {
+    const absent = Schema.decodeExit(ArticleMetadataSchema)({
+      authors: [],
+      datePublished: "2024-01-01",
+      title: "Published",
+    });
+    const explicitUndefined = Schema.decodeUnknownExit(ArticleMetadataSchema)({
+      authors: [],
+      dateModified: undefined,
+      datePublished: "2024-01-01",
+      title: "Undefined",
+    });
+
+    expect(Exit.isSuccess(absent)).toBe(true);
+    expect(Exit.isFailure(explicitUndefined)).toBe(true);
   });
 
   it("rejects route identities that contradict the category or slug", () => {
@@ -159,21 +219,51 @@ describe("article projection", () => {
     }
   });
 
-  it("rejects unrelated parent routes and impossible dates", () => {
+  it("rejects unrelated parent routes and impossible publication dates", () => {
     const parent = Schema.decodeExit(ArticleProjectionSchema)({
       ...projection,
       parentPath: "articles/another",
     });
-    const date = Schema.decodeExit(ArticleProjectionSchema)({
+    const datePublished = Schema.decodeExit(ArticleProjectionSchema)({
       ...projection,
-      metadata: { ...projection.metadata, date: "2026-02-30" },
+      metadata: { ...metadata, datePublished: "2026-02-30" },
     });
 
     expect(Exit.isFailure(parent)).toBe(true);
-    expect(Exit.isFailure(date)).toBe(true);
+    expect(Exit.isFailure(datePublished)).toBe(true);
     if (Exit.isFailure(parent)) {
       expect(String(parent.cause)).toContain(
         "Expected the article parent path"
+      );
+    }
+  });
+
+  it("rejects the legacy date field and non-later modification dates", () => {
+    const legacy = Schema.decodeUnknownExit(ArticleMetadataSchema)(
+      {
+        authors: [],
+        date: "2024-01-01",
+        title: "Legacy",
+      },
+      { onExcessProperty: "error" }
+    );
+    const equal = Schema.decodeExit(ArticleMetadataSchema)({
+      authors: [],
+      dateModified: "2024-01-01",
+      datePublished: "2024-01-01",
+      title: "Equal",
+    });
+    const earlier = Schema.decodeExit(ArticleMetadataSchema)({
+      authors: [],
+      dateModified: "2023-12-31",
+      datePublished: "2024-01-01",
+      title: "Earlier",
+    });
+
+    expect([legacy, equal, earlier].every(Exit.isFailure)).toBe(true);
+    if (Exit.isFailure(equal)) {
+      expect(String(equal.cause)).toContain(
+        "Expected dateModified to be later than datePublished."
       );
     }
   });

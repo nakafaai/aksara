@@ -47,12 +47,31 @@ describe("article document", () => {
     });
   });
 
+  it("rejects non-chronological article dates through the typed metadata error", async () => {
+    const error = await Effect.runPromise(
+      Effect.gen(function* () {
+        const source = yield* loadArticleDocument(checkoutRoot, englishEntry);
+        return yield* makeArticleProjectionFromSource(source, {
+          authors: [{ name: "Shifna Zihdatal Haq" }],
+          dateModified: "2024-08-08",
+          datePublished: "2024-08-08",
+          title: "Invalid article dates",
+        }).pipe(Effect.flip);
+      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
+    );
+
+    expect(error).toMatchObject({
+      _tag: "ArticleMetadataError",
+      sourcePath: englishEntry.sourcePath,
+    });
+  });
+
   it("derives official status only from the real Nakafa team registry", async () => {
     const [official, independent] = await Effect.runPromise(
       Effect.gen(function* () {
         const source = yield* loadArticleDocument(checkoutRoot, englishEntry);
         const shared = {
-          date: "2024-08-08",
+          datePublished: "2024-08-08",
           title: "Reviewed article",
         };
         const officialProjection = yield* makeArticleProjectionFromSource(

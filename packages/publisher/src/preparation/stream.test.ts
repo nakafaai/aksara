@@ -56,7 +56,11 @@ const projection = MaterialLessonProjectionSchema.make({
   graph: materialGraph(AppLocaleSchema.make("en"), "material", "test-a"),
   kind: "subject-lesson",
   materialKey: MaterialKeySchema.make("lesson.test.material"),
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
+  metadata: {
+    authors: [],
+    datePublished: "2026-01-01",
+    title: "Test protocol",
+  },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),
   publicPath: PublicPathSchema.make("subjects/test/material/a"),

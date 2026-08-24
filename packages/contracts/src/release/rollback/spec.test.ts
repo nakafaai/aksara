@@ -185,6 +185,7 @@ describe("rollback contracts", () => {
     for (const entry of [record, reverseRecord]) {
       expect(JSON.parse(canonicalizeRollbackRecord(entry))).toEqual(entry);
     }
+    expect(canonicalizeRollbackPage(value)).toContain('"date":"2026-01-01"');
     expect(JSON.parse(canonicalizeRollbackPage(value))).toEqual(value);
   });
   it("accepts only one canonical empty final page", () => {

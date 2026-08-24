@@ -25,3 +25,47 @@ export const DateOnlySchema = Schema.String.pipe(
   Schema.check(Schema.makeFilter(isDateOnly))
 );
 export type DateOnly = typeof DateOnlySchema.Type;
+
+const PUBLICATION_DATE_ORDER_MESSAGE =
+  "Expected dateModified to be later than datePublished.";
+
+const PublicationDateFields = {
+  dateModified: Schema.optionalKey(DateOnlySchema),
+  datePublished: DateOnlySchema,
+};
+
+const PublicationDatesStruct = Schema.Struct(PublicationDateFields);
+
+/**
+ * Public article and material dates backed by signed activation history.
+ * Publication is locale-specific; modification records only a later meaningful
+ * content activation and is never synthesized from a runtime clock.
+ */
+export const PublicationDatesSchema = PublicationDatesStruct.pipe(
+  Schema.check(
+    Schema.makeFilter(
+      (input) =>
+        input.dateModified === undefined ||
+        input.dateModified > input.datePublished,
+      { message: PUBLICATION_DATE_ORDER_MESSAGE }
+    )
+  )
+);
+export type PublicationDates = typeof PublicationDatesSchema.Type;
+
+/**
+ * Adds exact publication dates and their chronological invariant to metadata.
+ *
+ * The date fields and their check remain one contract so callers cannot copy
+ * the shape without also enforcing the public ordering rule.
+ */
+export function withPublicationDates<const Fields extends Schema.Struct.Fields>(
+  fields: Fields
+) {
+  return PublicationDatesSchema.mapFields(
+    (dateFields) => ({ ...fields, ...dateFields }),
+    // Adding fields cannot invalidate the date check because the owning date
+    // fields are preserved unchanged and always win key collisions.
+    { unsafePreserveChecks: true }
+  );
+}
