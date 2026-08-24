@@ -1,0 +1,124 @@
+export const metadata = {
+  title: "Nakafa Developer Resources",
+  description: "Use Nakafa's public REST API, OpenAPI contract, MCP server, and command-line client in reliable education workflows.",
+  lastModified: "2026-08-25",
+};
+
+# Nakafa Developer Resources
+
+Last updated: August 25, 2026
+
+Nakafa provides public, machine-readable access to multilingual learning materials and bounded Quran references. These interfaces suit agents and applications that need typed inputs, predictable errors, and canonical content references. They are read-only, require no Nakafa account, and do not expose private learner records, purchases, or account actions.
+
+## Implementation evidence and availability gate
+
+This page is bound to Nakafa commit [`338584dbabe3f9b75125239f6edb78dc5607d409`](https://github.com/nakafaai/nakafa.com/commit/338584dbabe3f9b75125239f6edb78dc5607d409). Aksara must not release this page until that exact revision or a reviewed descendant is live in Nakafa production, the production API and MCP contract checks pass, and `nakafa-cli` is available from npm. Until every gate passes, the addresses and commands below describe the reviewed implementation rather than current production availability.
+
+At the pinned revision, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/api.ts) owns the REST transport, [`mcp.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/mcp.ts) owns the MCP transport, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/agent/openapi/document.ts) generates the OpenAPI contract, and [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/cli/src/program.ts) owns the CLI command surface.
+
+## Public REST API
+
+The canonical API base is [https://api.nakafa.com/v1](https://api.nakafa.com/v1). Start with the service index and use search to find a relevant item. Retrieve a result by content ID only when it includes `markdown_url`. A try-out catalog result without `markdown_url` is citation-only and links to its canonical application URL. The API also exposes the published taxonomy and bounded Quran verse references.
+
+- `GET /v1`: service identity and discovery links
+- `GET /v1/health`: service health
+- `GET /v1/search`: search by query, section, locale, limit, and offset
+- `GET /v1/content?ref=...`: retrieve an exact content ID or canonical URL
+- `GET /v1/taxonomy`: inspect the published taxonomy
+- `GET /v1/quran/{surah}`: retrieve a typed verse range
+
+Search returns 10 results by default and accepts at most 50 per request. Use `offset`, `has_more`, and `next_offset` to continue a result set without guessing. Clients should budget for no more than 120 requests per 60 seconds from one IP and handle HTTP 429 responses with backoff.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "search.sh",
+    code: `curl "https://api.nakafa.com/v1/search?query=linear%20equations&locale=en&limit=5"`
+  }]}
+/>
+
+## OpenAPI and errors
+
+The [Nakafa OpenAPI 3.1 contract](https://api.nakafa.com/openapi.json) describes every public operation, input, response, and example. Compatible additions remain in `v1`. A breaking change requires a new major path.
+
+Convex-owned API failures use RFC 9457 Problem Details with the media type `application/problem+json`. Each response includes a stable `code`, a human-readable `detail`, a concrete `resolution`, and a traceable `request_id`. A Vercel Firewall HTTP 429 can stop a request before it reaches Convex, so clients must treat that platform-owned response as an exception and retry with backoff.
+
+<CodeBlock
+  data={[{
+    language: "json",
+    filename: "problem.json",
+    code: `{
+  "type": "https://nakafa.com/problems/invalid-request",
+  "title": "Invalid request",
+  "status": 400,
+  "detail": "Unknown query parameter: page.",
+  "instance": "/v1/search",
+  "code": "INVALID_REQUEST",
+  "resolution": "Use only these query parameters: limit, locale, offset, query, section.",
+  "request_id": "request-example"
+}`
+  }]}
+/>
+
+## Model Context Protocol
+
+The canonical MCP endpoint is [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Use MCP when an agent already supports tool discovery and structured tool calls. Use REST for ordinary HTTP integrations or generated OpenAPI clients. Both interfaces execute the same Convex-owned capability and verify the same signed Aksara publication.
+
+The server exposes four read-only tools:
+
+- `nakafa_search_content`
+- `nakafa_get_content`
+- `nakafa_get_taxonomy`
+- `nakafa_get_quran_reference`
+
+Modern clients use Streamable HTTP. Protocol `2026-07-28` replaces the legacy `initialize` lifecycle with `server/discover` and a per-request `_meta` envelope. A client discovers the supported revision first, then lists or calls tools with the same envelope. Clients using a 2025 protocol revision continue to use `initialize` and `notifications/initialized`. A `GET` request to the same endpoint returns the public server manifest.
+
+<CodeBlock
+  data={[{
+    language: "http",
+    filename: "mcp.http",
+    code: `POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: server/discover
+
+{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}
+
+###
+
+POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/list
+
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}`
+  }]}
+/>
+
+## Command line
+
+The official Node 24 package is `nakafa-cli`, with the executable `nakafa`. It calls the public REST API and prints compact JSON by default. Add `--pretty` for readable output or `--api-base` when verifying an isolated deployment.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "nakafa-cli.sh",
+    code: `npm install --global nakafa-cli
+nakafa search linear equations
+nakafa quran 1 --from-verse 1 --to-verse 7 --pretty
+nakafa mcp`
+  }]}
+/>
+
+The CLI preserves Problem Details JSON on standard error and uses stable nonzero exit categories for invocation, API, and network or server failures.
+
+## Machine-readable discovery
+
+- [Developer index](https://nakafa.com/developers/llms.txt)
+- [Agent instructions](https://nakafa.com/skill.md)
+- [Root agent index](https://nakafa.com/llms.txt)
+- [OpenAPI 3.1](https://nakafa.com/openapi.json)

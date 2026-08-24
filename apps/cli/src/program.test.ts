@@ -78,6 +78,14 @@ vi.mock("#cli/check", async () => {
     },
   };
 });
+vi.mock("#cli/developer-readiness", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records the protected developer release gate without network access. */
+    runDeveloperReadinessCommand: () =>
+      TestEffect.succeed("developer-readiness-complete"),
+  };
+});
 vi.mock("#cli/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -149,7 +157,6 @@ vi.mock("#cli/status", async () => {
 beforeEach(() => {
   calls.accept = undefined;
   calls.abort = undefined;
-  calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
   calls.migration = undefined;
@@ -158,7 +165,6 @@ beforeEach(() => {
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
-  calls.status = false;
 });
 describe("CLI program", () => {
   it.effect("composes implicit preview with the actual-app session", () =>
@@ -294,6 +300,13 @@ describe("CLI program", () => {
       const result = yield* runProgram(["check"]);
       expect(result).toBe("check-complete");
       expect(calls.check).toBe("/code/aksara");
+    })
+  );
+
+  it.effect("dispatches the protected developer readiness gate", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["developer-readiness"]);
+      expect(result).toBe("developer-readiness-complete");
     })
   );
 });

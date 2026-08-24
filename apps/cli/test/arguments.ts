@@ -21,6 +21,9 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
   if (args[0] === "check") {
     return Effect.succeed({ command: "check" });
   }
+  if (args[0] === "developer-readiness") {
+    return Effect.succeed({ command: "developer-readiness" });
+  }
   if (args[0] === "release") {
     return Effect.succeed({
       command: "release",

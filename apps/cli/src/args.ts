@@ -20,10 +20,16 @@ export interface CheckArguments {
   readonly command: "check";
 }
 
+/** Protected developer-page availability verification requested by release CI. */
+export interface DeveloperReadinessArguments {
+  readonly command: "developer-readiness";
+}
+
 /** Current CLI command decoded through its owning strict boundary. */
 export type CliArguments =
   | ({ readonly command: "preview" } & PreviewArguments)
   | CheckArguments
+  | DeveloperReadinessArguments
   | ProductionArguments;
 
 /** Command-line arguments do not describe one unambiguous document. */
@@ -92,6 +98,12 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
         return yield* new CheckArgumentsError({ reason: "unknown" });
       }
       return { command } satisfies CheckArguments;
+    }
+    if (command === "developer-readiness") {
+      if (args.length !== 1) {
+        return yield* new CheckArgumentsError({ reason: "unknown" });
+      }
+      return { command } satisfies DeveloperReadinessArguments;
     }
     if (!isProductionCommand(command)) {
       const preview = yield* parsePreviewArguments(args);

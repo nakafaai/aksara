@@ -1,0 +1,124 @@
+export const metadata = {
+  title: "Sumber Daya Pengembang Nakafa",
+  description: "Gunakan REST API publik, kontrak OpenAPI, server MCP, dan klien baris perintah Nakafa untuk alur pendidikan yang andal.",
+  lastModified: "2026-08-25",
+};
+
+# Sumber Daya Pengembang Nakafa
+
+Terakhir diperbarui: 25 Agustus 2026
+
+Nakafa menyediakan akses publik yang dapat dibaca mesin ke materi belajar multibahasa dan referensi Quran dengan rentang terbatas. Antarmuka ini cocok untuk agen dan aplikasi yang memerlukan input bertipe, kegagalan yang dapat diprediksi, dan referensi konten kanonis. Semua akses bersifat baca-saja, tidak memerlukan akun Nakafa, serta tidak membuka data pelajar privat, pembelian, atau tindakan akun.
+
+## Bukti implementasi dan syarat penerbitan
+
+Halaman ini terikat pada commit Nakafa [`338584dbabe3f9b75125239f6edb78dc5607d409`](https://github.com/nakafaai/nakafa.com/commit/338584dbabe3f9b75125239f6edb78dc5607d409). Aksara tidak boleh menerbitkan halaman ini sebelum revisi tersebut atau turunannya yang telah ditinjau aktif di produksi Nakafa, pemeriksaan kontrak API dan MCP produksi berhasil, serta `nakafa-cli` tersedia dari npm. Sebelum semua syarat terpenuhi, alamat dan perintah di bawah menjelaskan implementasi yang telah ditinjau, bukan ketersediaan produksi saat ini.
+
+Pada revisi yang dipatok, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/api.ts) memiliki transport REST, [`mcp.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/mcp.ts) memiliki transport MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/agent/openapi/document.ts) menghasilkan kontrak OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/cli/src/program.ts) memiliki permukaan perintah CLI.
+
+## REST API publik
+
+Alamat dasar API kanonis adalah [https://api.nakafa.com/v1](https://api.nakafa.com/v1). Mulai dari indeks layanan dan gunakan pencarian untuk menemukan hasil yang relevan. Ambil hasil melalui ID konten hanya jika hasil tersebut memuat `markdown_url`. Hasil katalog try-out tanpa `markdown_url` hanya untuk sitasi dan menautkan URL aplikasi kanonisnya. API juga menyediakan taksonomi terbitan dan referensi ayat Quran dengan rentang yang jelas.
+
+- `GET /v1`: identitas layanan dan tautan penemuan
+- `GET /v1/health`: kesehatan layanan
+- `GET /v1/search`: pencarian berdasarkan kueri, bagian, bahasa, limit, dan offset
+- `GET /v1/content?ref=...`: pengambilan ID konten atau URL kanonis yang tepat
+- `GET /v1/taxonomy`: taksonomi terbitan
+- `GET /v1/quran/{surah}`: pengambilan rentang ayat bertipe
+
+Pencarian mengembalikan 10 hasil secara bawaan dan menerima maksimum 50 hasil per permintaan. Gunakan `offset`, `has_more`, dan `next_offset` untuk melanjutkan kumpulan hasil tanpa menebak. Klien sebaiknya membatasi anggaran hingga 120 permintaan per 60 detik dari satu IP dan menangani respons HTTP 429 dengan jeda bertahap.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "search.sh",
+    code: `curl "https://api.nakafa.com/v1/search?query=persamaan%20linear&locale=id&limit=5"`
+  }]}
+/>
+
+## OpenAPI dan kegagalan
+
+[Kontrak OpenAPI 3.1 Nakafa](https://api.nakafa.com/openapi.json) menjelaskan setiap operasi publik, input, respons, dan contoh. Penambahan yang kompatibel tetap berada di `v1`. Perubahan yang merusak kontrak memerlukan jalur mayor baru.
+
+Kegagalan API yang berasal dari Convex menggunakan RFC 9457 Problem Details dengan media type `application/problem+json`. Setiap respons memuat `code` yang stabil, `detail` yang mudah dipahami, `resolution` yang dapat dikerjakan, dan `request_id` yang dapat ditelusuri. HTTP 429 dari Vercel Firewall dapat menghentikan permintaan sebelum mencapai Convex, sehingga klien harus memperlakukannya sebagai pengecualian milik platform dan mencoba lagi dengan jeda bertahap.
+
+<CodeBlock
+  data={[{
+    language: "json",
+    filename: "problem.json",
+    code: `{
+  "type": "https://nakafa.com/problems/invalid-request",
+  "title": "Invalid request",
+  "status": 400,
+  "detail": "Unknown query parameter: page.",
+  "instance": "/v1/search",
+  "code": "INVALID_REQUEST",
+  "resolution": "Use only these query parameters: limit, locale, offset, query, section.",
+  "request_id": "request-example"
+}`
+  }]}
+/>
+
+## Model Context Protocol
+
+Endpoint MCP kanonis berada di [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Gunakan MCP ketika agen sudah mendukung penemuan tool dan pemanggilan tool terstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien yang dibuat dari OpenAPI. Kedua antarmuka menjalankan kapabilitas yang sama di Convex dan memverifikasi publikasi Aksara bertanda tangan yang sama.
+
+Server menyediakan empat tool baca-saja:
+
+- `nakafa_search_content`
+- `nakafa_get_content`
+- `nakafa_get_taxonomy`
+- `nakafa_get_quran_reference`
+
+Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan siklus `initialize` lama dengan `server/discover` dan envelope `_meta` pada setiap permintaan. Klien terlebih dahulu menemukan revisi yang didukung, lalu membuat daftar atau memanggil tool dengan envelope yang sama. Klien yang memakai revisi protokol 2025 tetap menggunakan `initialize` dan `notifications/initialized`. Permintaan `GET` ke endpoint yang sama mengembalikan manifest server publik.
+
+<CodeBlock
+  data={[{
+    language: "http",
+    filename: "mcp.http",
+    code: `POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: server/discover
+
+{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}
+
+###
+
+POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/list
+
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}`
+  }]}
+/>
+
+## Baris perintah
+
+Paket resmi untuk Node 24 bernama `nakafa-cli`, dengan executable `nakafa`. CLI memanggil REST API publik dan mencetak JSON ringkas secara bawaan. Tambahkan `--pretty` untuk keluaran yang mudah dibaca atau `--api-base` saat memverifikasi deployment terisolasi.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "nakafa-cli.sh",
+    code: `npm install --global nakafa-cli
+nakafa search persamaan linear
+nakafa quran 1 --from-verse 1 --to-verse 7 --pretty
+nakafa mcp`
+  }]}
+/>
+
+CLI mempertahankan JSON Problem Details pada standard error dan menggunakan kategori exit bukan nol yang stabil untuk kegagalan pemanggilan, API, serta jaringan atau server.
+
+## Penemuan yang dapat dibaca mesin
+
+- [Indeks developer](https://nakafa.com/developers/llms.txt)
+- [Petunjuk agen](https://nakafa.com/skill.md)
+- [Indeks agen utama](https://nakafa.com/llms.txt)
+- [OpenAPI 3.1](https://nakafa.com/openapi.json)

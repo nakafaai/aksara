@@ -4,6 +4,7 @@ import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
+import { runDeveloperReadinessCommand } from "#cli/developer-readiness";
 import { runTryoutAbortCommand } from "#cli/migration/abort";
 import { runTryoutCleanupCommand } from "#cli/migration/cleanup";
 import { runTryoutMigrationCommand } from "#cli/migration/seal";
@@ -24,6 +25,9 @@ export function makeCliProgram(input: {
     }
     if (args.command === "check") {
       return yield* runCheckCommand(input.cwd);
+    }
+    if (args.command === "developer-readiness") {
+      return yield* runDeveloperReadinessCommand();
     }
     if (args.command === "abort") {
       return yield* runAbortCommand(args);
