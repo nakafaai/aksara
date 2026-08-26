@@ -72,31 +72,31 @@ const resolver = ContentVerificationKeyResolver.of({
 
 /** Runs exact artifact authentication with the trusted fixture resolver. */
 function authenticate(input: unknown) {
-  return Effect.runPromise(
-    verifySignedContentArtifactIntegrity(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, resolver)
-    )
+  return verifySignedContentArtifactIntegrity(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, resolver)
   );
 }
 
 /** Returns the typed authentication failure for an invalid fixture. */
 function reject(input: unknown) {
-  return Effect.runPromise(
-    verifySignedContentArtifactIntegrity(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, resolver),
-      Effect.flip
-    )
+  return verifySignedContentArtifactIntegrity(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.flip
   );
 }
 
 describe("artifact integrity", () => {
-  it("authenticates without applying renderer compatibility", async () => {
-    await expect(authenticate(artifact)).resolves.toEqual(artifact);
-  });
+  it.effect("authenticates without applying renderer compatibility", () =>
+    Effect.gen(function* () {
+      expect(yield* authenticate(artifact)).toEqual(artifact);
+    })
+  );
 
-  it("rejects excess envelope properties", async () => {
-    await expect(
-      reject({ ...artifact, unexpected: true })
-    ).resolves.toMatchObject({ _tag: "ArtifactVerificationDecodeError" });
-  });
+  it.effect("rejects excess envelope properties", () =>
+    Effect.gen(function* () {
+      expect(yield* reject({ ...artifact, unexpected: true })).toMatchObject({
+        _tag: "ArtifactVerificationDecodeError",
+      });
+    })
+  );
 });

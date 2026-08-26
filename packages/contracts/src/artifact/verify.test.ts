@@ -9,11 +9,11 @@ import {
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
+import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   CompiledContentPayloadSchema,
-  canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
@@ -69,12 +69,12 @@ const rendererComponents = [
   { name: "InlineMath", version: 1 },
 ] as const;
 /** Builds one exact base plus real route-domain renderer contract. */
-function manifestInput(
-  authoringComponents: readonly RendererComponentRequirement[] = rendererComponents,
-  supportedComponents: readonly RendererComponentRequirement[] = rendererComponents
-) {
+function manifestInput(extraComponent?: RendererComponentRequirement) {
+  const components = extraComponent
+    ? [...rendererComponents, extraComponent]
+    : rendererComponents;
   return {
-    base: { authoringComponents, supportedComponents },
+    base: { authoringComponents: components, supportedComponents: components },
     domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
@@ -82,8 +82,12 @@ function manifestInput(
     publishedDomains: ["mathematics"] as const,
   };
 }
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest(manifestInput())
+const rendererManifest = createRendererManifest(manifestInput());
+const invalidRendererManifest = rendererManifest.pipe(
+  Effect.map((manifest) => ({
+    ...manifest,
+    hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+  }))
 );
 const basePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
@@ -106,13 +110,15 @@ const basePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
 function makePayload(values: Partial<CompiledContentPayload>) {
   return CompiledContentPayloadSchema.make({ ...basePayload, ...values });
 }
+const missingComponentPayload = makePayload({
+  requiredComponents: [{ name: "Mermaid", version: 1 }],
+});
+const unsupportedComponentPayload = makePayload({
+  requiredComponents: [{ name: "InlineMath", version: 2 }],
+});
 /** Produces a valid signed artifact for verification scenarios. */
 function signArtifact(payload = basePayload, artifactKeyId = keyId) {
-  const artifactHash = Sha256HashSchema.make(
-    `sha256:${createHash("sha256")
-      .update(canonicalizeCompiledContentPayload(payload))
-      .digest("hex")}`
-  );
+  const artifactHash = hashCompiledContentPayload(payload);
   const signature = Ed25519SignatureSchema.make(
     signBytes(
       null,
@@ -141,168 +147,164 @@ const trustedResolver = ContentVerificationKeyResolver.of({
 });
 /** Builds one artifact verification request with overridable boundaries. */
 function request(
-  artifact: unknown = signArtifact(),
-  manifest: unknown = rendererManifest,
+  artifact: unknown,
+  manifest: unknown,
   rendererContractVersion = "1.0.0"
 ) {
   return { artifact, rendererContractVersion, rendererManifest: manifest };
 }
-/** Builds artifact verification with the supplied trust resolver. */
-function artifactProgram(input: unknown, resolver = trustedResolver) {
+/** Builds artifact verification with the trusted test resolver. */
+function artifactProgram(input: unknown) {
   return verifySignedContentArtifact(input).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, resolver)
+    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
   );
 }
-/** Runs artifact verification with the trusted test resolver. */
-function verify(input: unknown) {
-  return Effect.runPromise(artifactProgram(input));
+/** Returns an expected typed artifact verification failure. */
+function reject(input: unknown) {
+  return artifactProgram(input).pipe(Effect.flip);
 }
-/** Runs artifact verification and returns its expected typed failure. */
-function reject(input: unknown, resolver = trustedResolver) {
-  return Effect.runPromise(artifactProgram(input, resolver).pipe(Effect.flip));
+/** Rejects an artifact against a renderer-manifest program. */
+function rejectArtifact(
+  artifact: unknown = signArtifact(),
+  manifestProgram = rendererManifest,
+  rendererContractVersion = "1.0.0"
+) {
+  return manifestProgram.pipe(
+    Effect.flatMap((manifest) =>
+      reject(request(artifact, manifest, rendererContractVersion))
+    )
+  );
 }
 /** Changes one signature character without changing its wire shape. */
 function tamperSignature(artifact: SignedContentArtifact) {
   const replacement = artifact.signature.startsWith("A") ? "B" : "A";
   return `${replacement}${artifact.signature.slice(1)}`;
 }
+const validArtifact = signArtifact();
+const tamperedArtifact = {
+  ...validArtifact,
+  signature: tamperSignature(validArtifact),
+};
 describe("server-only artifact verification", () => {
-  it("authenticates canonical content across a renderer expansion", async () => {
-    const expandedComponents = [
-      ...rendererComponents,
-      { name: "Mermaid", version: 1 },
-    ] as const;
-    const expandedManifest = await Effect.runPromise(
-      createRendererManifest(
-        manifestInput(expandedComponents, expandedComponents)
-      )
-    );
-    await expect(
-      verify(request(signArtifact(), expandedManifest))
-    ).resolves.toMatchObject({ payload: basePayload });
-  });
-  it("separates authoring support from deployed route support", async () => {
-    const authoringOnly = await Effect.runPromise(
-      createRendererManifest({
+  it.effect("authenticates canonical content across a renderer expansion", () =>
+    Effect.gen(function* () {
+      const expandedManifest = yield* createRendererManifest(
+        manifestInput({ name: "Mermaid", version: 1 })
+      );
+      expect(
+        yield* artifactProgram(request(signArtifact(), expandedManifest))
+      ).toMatchObject({ payload: basePayload });
+    })
+  );
+  it.effect("separates authoring support from deployed route support", () =>
+    Effect.gen(function* () {
+      const authoringOnly = yield* createRendererManifest({
         ...manifestInput(),
         publishedDomains: ["chemistry"],
-      })
-    );
-    const error = await reject(request(signArtifact(), authoringOnly));
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererDomainUnpublishedError",
-      contentKey: basePayload.contentKey,
-      rendererDomain: "mathematics",
-    });
-  });
-  it("rejects tampered payload, source, and artifact hash values", async () => {
-    const artifact = signArtifact();
-    const errors = await Promise.all([
-      reject(
-        request({
-          ...artifact,
-          payload: makePayload({ compiledCode: "return { changed: true };" }),
-        })
-      ),
-      reject(
-        request({ ...artifact, artifactHash: `sha256:${"f".repeat(64)}` })
-      ),
-    ]);
-    expect(errors.map((error) => error._tag)).toEqual([
-      "ArtifactHashMismatchError",
-      "ArtifactHashMismatchError",
-    ]);
-  });
-  it("rejects signatures before exposing renderer semantics", async () => {
-    const artifact = signArtifact();
-    const tampered = { ...artifact, signature: tamperSignature(artifact) };
-    const [validRendererError, invalidRendererError] = await Promise.all([
-      reject(request(tampered)),
-      reject(
-        request(tampered, {
-          ...rendererManifest,
-          hash: `sha256:${"f".repeat(64)}`,
-        })
-      ),
-    ]);
-    expect(validRendererError._tag).toBe("SignatureInvalidError");
-    expect(invalidRendererError._tag).toBe("SignatureInvalidError");
-  });
-  it("fails closed across renderer and component incompatibilities", async () => {
-    const artifact = signArtifact();
-    const missing = makePayload({
-      requiredComponents: [{ name: "Mermaid", version: 1 }],
-    });
-    const unsupported = makePayload({
-      requiredComponents: [{ name: "InlineMath", version: 2 }],
-    });
-    const cases = [
-      [
-        request(artifact, {
-          ...rendererManifest,
-          hash: `sha256:${"f".repeat(64)}`,
-        }),
-        "RendererManifestHashMismatchError",
-      ],
-      [request(signArtifact(missing)), "ArtifactRendererComponentMissingError"],
-      [
-        request(signArtifact(unsupported)),
-        "ArtifactRendererVersionUnsupportedError",
-      ],
-      [
-        request(artifact, rendererManifest, "3.0.0"),
-        "RendererContractVersionMismatchError",
-      ],
-    ] as const;
-    const errors = await Promise.all(cases.map(([input]) => reject(input)));
-    expect(errors.map((error) => error._tag)).toEqual(
-      cases.map(([, expectedTag]) => expectedTag)
-    );
-  });
-  it("rejects requirements from a different route-domain registry", async () => {
-    const crossDomainManifest = await Effect.runPromise(
-      createRendererManifest({
+      });
+      const error = yield* reject(request(signArtifact(), authoringOnly));
+      expect(error).toMatchObject({
+        _tag: "ArtifactRendererDomainUnpublishedError",
+        contentKey: basePayload.contentKey,
+        rendererDomain: "mathematics",
+      });
+    })
+  );
+  it.effect.each([
+    {
+      expectedTag: "ArtifactHashMismatchError",
+      program: rejectArtifact({
+        ...validArtifact,
+        payload: makePayload({ compiledCode: "return { changed: true };" }),
+      }),
+    },
+    {
+      expectedTag: "ArtifactHashMismatchError",
+      program: rejectArtifact({
+        ...validArtifact,
+        artifactHash: `sha256:${"f".repeat(64)}`,
+      }),
+    },
+    {
+      expectedTag: "SignatureInvalidError",
+      program: rejectArtifact(tamperedArtifact),
+    },
+    {
+      expectedTag: "SignatureInvalidError",
+      program: rejectArtifact(tamperedArtifact, invalidRendererManifest),
+    },
+    {
+      expectedTag: "RendererManifestHashMismatchError",
+      program: rejectArtifact(validArtifact, invalidRendererManifest),
+    },
+    {
+      expectedTag: "ArtifactRendererComponentMissingError",
+      program: rejectArtifact(signArtifact(missingComponentPayload)),
+    },
+    {
+      expectedTag: "ArtifactRendererVersionUnsupportedError",
+      program: rejectArtifact(signArtifact(unsupportedComponentPayload)),
+    },
+    {
+      expectedTag: "RendererContractVersionMismatchError",
+      program: rejectArtifact(validArtifact, rendererManifest, "3.0.0"),
+    },
+    {
+      expectedTag: "ArtifactHashComputationError",
+      program: rejectArtifact({
+        ...validArtifact,
+        payload: { ...validArtifact.payload, contentKey: "hash:payload" },
+      }),
+    },
+  ] as const)(
+    "rejects invalid artifact state with $expectedTag",
+    ({ expectedTag, program }) =>
+      program.pipe(Effect.map((error) => expect(error._tag).toBe(expectedTag)))
+  );
+  it.effect("rejects requirements from a different route-domain registry", () =>
+    Effect.gen(function* () {
+      const crossDomainManifest = yield* createRendererManifest({
         ...manifestInput(),
         publishedDomains: ["chemistry", "mathematics"],
-      })
-    );
-    const mathematics = makePayload({
-      requiredComponents: [{ name: "FunctionMachine", version: 1 }],
-    });
-    const chemistry = makePayload({
-      rendererDomain: "chemistry",
-      requiredComponents: [{ name: "FunctionMachine", version: 1 }],
-    });
-    await expect(
-      verify(request(signArtifact(mathematics), crossDomainManifest))
-    ).resolves.toEqual(signArtifact(mathematics));
-    const error = await reject(
-      request(signArtifact(chemistry), crossDomainManifest)
-    );
-    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
-  });
-  it("rejects excess top-level and nested wire properties", async () => {
-    const privateSourceMarker = "must-not-appear-in-decode-errors";
-    const topLevel = await reject({ ...request(), unexpected: true });
-    const nested = await reject(
-      request({
-        ...signArtifact(),
-        payload: { ...basePayload, rawMdx: privateSourceMarker },
-        unexpected: true,
-      })
-    );
-    expect(topLevel._tag).toBe("ArtifactVerificationDecodeError");
-    expect(nested._tag).toBe("ArtifactVerificationDecodeError");
-    expect(JSON.stringify(nested)).not.toContain(privateSourceMarker);
-  });
-  it("maps payload hashing failures to a typed artifact error", async () => {
-    const artifact = signArtifact();
-    const payloadError = await reject(
-      request({
-        ...artifact,
-        payload: { ...artifact.payload, contentKey: "hash:payload" },
-      })
-    );
-    expect(payloadError._tag).toBe("ArtifactHashComputationError");
-  });
+      });
+      const mathematics = makePayload({
+        requiredComponents: [{ name: "FunctionMachine", version: 1 }],
+      });
+      const chemistry = makePayload({
+        rendererDomain: "chemistry",
+        requiredComponents: [{ name: "FunctionMachine", version: 1 }],
+      });
+      expect(
+        yield* artifactProgram(
+          request(signArtifact(mathematics), crossDomainManifest)
+        )
+      ).toEqual(signArtifact(mathematics));
+      const error = yield* reject(
+        request(signArtifact(chemistry), crossDomainManifest)
+      );
+      expect(error._tag).toBe("ArtifactRendererComponentMissingError");
+    })
+  );
+  it.effect("rejects excess top-level and nested wire properties", () =>
+    Effect.gen(function* () {
+      const privateSourceMarker = "must-not-appear-in-decode-errors";
+      const [topLevel, nested] = yield* Effect.all([
+        rendererManifest.pipe(
+          Effect.map((manifest) => ({
+            ...request(signArtifact(), manifest),
+            unexpected: true,
+          })),
+          Effect.flatMap((input) => reject(input))
+        ),
+        rejectArtifact({
+          ...signArtifact(),
+          payload: { ...basePayload, rawMdx: privateSourceMarker },
+          unexpected: true,
+        }),
+      ]);
+      expect(topLevel._tag).toBe("ArtifactVerificationDecodeError");
+      expect(nested._tag).toBe("ArtifactVerificationDecodeError");
+      expect(JSON.stringify(nested)).not.toContain(privateSourceMarker);
+    })
+  );
 });
