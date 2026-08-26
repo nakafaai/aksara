@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ContentKeySchema,
   PublicPathSchema,
@@ -6,7 +7,6 @@ import {
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { inverseRouteStream } from "#publisher/rollback/route-proof";
 
@@ -32,34 +32,34 @@ function record(index: number, priorContentKey: string | null) {
 }
 
 describe("inverseRouteStream", () => {
-  it("restores a prior owner or deletes a previously unbound path", async () => {
-    const routes = await Effect.runPromise(
-      inverseRouteStream(
+  it.effect("restores a prior owner or deletes a previously unbound path", () =>
+    Effect.gen(function* () {
+      const routes = yield* inverseRouteStream(
         Stream.make(record(0, null), record(1, "test:prior")),
         releaseId
-      ).pipe(Stream.runCollect)
-    );
+      ).pipe(Stream.runCollect);
 
-    expect([...routes]).toEqual([
-      {
-        change: {
-          appLocale: "en",
-          operation: "delete",
-          publicPath: "subjects/test/proof-0",
+      expect([...routes]).toEqual([
+        {
+          change: {
+            appLocale: "en",
+            operation: "delete",
+            publicPath: "subjects/test/proof-0",
+          },
+          index: 0,
+          releaseId,
         },
-        index: 0,
-        releaseId,
-      },
-      {
-        change: {
-          appLocale: "en",
-          contentKey: "test:prior",
-          operation: "bind",
-          publicPath: "subjects/test/proof-1",
+        {
+          change: {
+            appLocale: "en",
+            contentKey: "test:prior",
+            operation: "bind",
+            publicPath: "subjects/test/proof-1",
+          },
+          index: 1,
+          releaseId,
         },
-        index: 1,
-        releaseId,
-      },
-    ]);
-  });
+      ]);
+    })
+  );
 });

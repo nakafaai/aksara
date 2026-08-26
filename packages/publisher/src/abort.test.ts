@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ReleaseAbortReceipt,
   ReleaseAbortRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import {
@@ -37,84 +37,97 @@ function makeTarget(
 /** Returns cumulative abort receipts and defects on an unexpected overread. */
 function receiptSequence(receipts: readonly ReleaseAbortReceipt[]) {
   let index = 0;
-  return vi.fn(() => {
-    const receipt = receipts[index];
-    index += 1;
-    return receipt
-      ? Effect.succeed(receipt)
-      : Effect.die("Abort requested an unexpected extra receipt.");
-  });
-}
-
-/** Executes abort with one isolated target implementation. */
-function runAbort(input: unknown, abort: ReturnType<typeof receiptSequence>) {
-  return abortContentRelease(input).pipe(
-    Effect.provideService(PublicationTarget, makeTarget(abort))
+  return vi.fn(() =>
+    Effect.suspend(() => {
+      const receipt = receipts[index];
+      index += 1;
+      return receipt
+        ? Effect.succeed(receipt)
+        : Effect.die("Abort requested an unexpected extra receipt.");
+    })
   );
 }
 
+/** Executes abort with one isolated target implementation. */
+const runAbort = Effect.fn("AbortContentReleaseTest.run")(
+  (input: unknown, abort: ReturnType<typeof receiptSequence>) =>
+    abortContentRelease(input).pipe(
+      Effect.provideService(PublicationTarget, makeTarget(abort))
+    )
+);
+
 describe("abortContentRelease", () => {
-  it("advances cumulative server progress until completion", async () => {
-    const abort = receiptSequence([progress, complete]);
-    await expect(
-      Effect.runPromise(runAbort({ releaseId }, abort))
-    ).resolves.toEqual(complete);
-    expect(abort).toHaveBeenCalledTimes(2);
-    expect(abort).toHaveBeenCalledWith({ releaseId });
-  });
+  it.effect("advances cumulative server progress until completion", () =>
+    Effect.gen(function* () {
+      const abort = receiptSequence([progress, complete]);
+      const result = yield* runAbort({ releaseId }, abort);
 
-  it("completes a synthetic inverse beyond the former call limit", async () => {
-    const testPageCount = 101;
-    const testPageSize = 8;
-    const testTotalItems = testPageCount * testPageSize;
-    const abort = receiptSequence(
-      Array.from({ length: testPageCount }, (_, index) => {
-        const processedItems = (index + 1) * testPageSize;
-        return {
-          ...progress,
-          complete: processedItems === testTotalItems,
-          processedItems,
-          totalItems: testTotalItems,
-        };
+      expect(result).toEqual(complete);
+      expect(abort).toHaveBeenCalledTimes(2);
+      expect(abort).toHaveBeenCalledWith({ releaseId });
+    })
+  );
+
+  it.effect("completes a synthetic inverse beyond the former call limit", () =>
+    Effect.gen(function* () {
+      const testPageCount = 101;
+      const testPageSize = 8;
+      const testTotalItems = testPageCount * testPageSize;
+      const abort = receiptSequence(
+        Array.from({ length: testPageCount }, (_, index) => {
+          const processedItems = (index + 1) * testPageSize;
+          return {
+            ...progress,
+            complete: processedItems === testTotalItems,
+            processedItems,
+            totalItems: testTotalItems,
+          };
+        })
+      );
+      const result = yield* runAbort({ releaseId }, abort);
+
+      expect(result).toEqual({
+        ...complete,
+        processedItems: testTotalItems,
+        totalItems: testTotalItems,
+      });
+      expect(abort).toHaveBeenCalledTimes(testPageCount);
+    })
+  );
+
+  it.effect("rejects malformed input before target abort", () =>
+    Effect.gen(function* () {
+      const abort = receiptSequence([complete]);
+      const error = yield* runAbort({ afterIndex: -1, releaseId }, abort).pipe(
+        Effect.flip
+      );
+      expect(error).toEqual(
+        new ReleaseAbortContractError({ contract: "request" })
+      );
+      expect(abort).not.toHaveBeenCalled();
+    })
+  );
+
+  it.effect(
+    "rejects foreign, stalled, decreasing, and changed-total evidence",
+    () =>
+      Effect.gen(function* () {
+        const cases = [
+          receiptSequence([
+            { ...complete, releaseId: ReleaseIdSchema.make("release-other") },
+          ]),
+          receiptSequence([progress, progress]),
+          receiptSequence([progress, { ...progress, totalItems: 4 }]),
+          receiptSequence([progress, { ...progress, processedItems: 1 }]),
+        ];
+        const errors = yield* Effect.forEach(cases, (abort) =>
+          runAbort({ releaseId }, abort).pipe(Effect.flip)
+        );
+        expect(errors).toEqual(
+          cases.map(
+            () => new ReleaseAbortContractError({ contract: "receipt" })
+          )
+        );
       })
-    );
-    await expect(
-      Effect.runPromise(runAbort({ releaseId }, abort))
-    ).resolves.toEqual({
-      ...complete,
-      processedItems: testTotalItems,
-      totalItems: testTotalItems,
-    });
-    expect(abort).toHaveBeenCalledTimes(testPageCount);
-  });
-
-  it("rejects malformed input before target abort", async () => {
-    const abort = receiptSequence([complete]);
-    const error = await Effect.runPromise(
-      runAbort({ afterIndex: -1, releaseId }, abort).pipe(Effect.flip)
-    );
-    expect(error).toEqual(
-      new ReleaseAbortContractError({ contract: "request" })
-    );
-    expect(abort).not.toHaveBeenCalled();
-  });
-
-  it("rejects foreign, stalled, decreasing, and changed-total evidence", async () => {
-    const cases = [
-      receiptSequence([
-        { ...complete, releaseId: ReleaseIdSchema.make("release-other") },
-      ]),
-      receiptSequence([progress, progress]),
-      receiptSequence([progress, { ...progress, totalItems: 4 }]),
-      receiptSequence([progress, { ...progress, processedItems: 1 }]),
-    ];
-    const errors = await Effect.runPromise(
-      Effect.forEach(cases, (abort) =>
-        runAbort({ releaseId }, abort).pipe(Effect.flip)
-      )
-    );
-    expect(errors).toEqual(
-      cases.map(() => new ReleaseAbortContractError({ contract: "receipt" }))
-    );
-  });
+  );
 });

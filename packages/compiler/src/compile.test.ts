@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
+import { assert, describe, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { compileContent } from "#compiler/compile";
 import { createTestRendererManifest } from "#compiler/test/content";

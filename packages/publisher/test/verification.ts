@@ -103,16 +103,14 @@ export function makeVerificationPlan(
   return { activate, plan, stage, stageRecovery, stageRelease, status, verify };
 }
 
-/** Runs one verification program with the release fixture's trusted key. */
-export function runVerification<A, E>(
-  program: Effect.Effect<A, E, ContentVerificationKeyResolver>
-) {
-  return Effect.runPromise(
-    program.pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        testVerificationResolver
-      )
+/** Provides the release fixture's trusted key to one verification program. */
+export const provideVerificationKey = Effect.fn(
+  "PublicationVerificationTest.provideKey"
+)(<A, E>(program: Effect.Effect<A, E, ContentVerificationKeyResolver>) =>
+  program.pipe(
+    Effect.provideService(
+      ContentVerificationKeyResolver,
+      testVerificationResolver
     )
-  );
-}
+  )
+);

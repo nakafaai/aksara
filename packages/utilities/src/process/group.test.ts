@@ -1,4 +1,4 @@
-import { afterEach, assert, describe, it } from "@nakafa/testing/effect";
+import { afterEach, assert, describe, it } from "@effect/vitest";
 import { Deferred, Effect, Fiber } from "effect";
 import { TestClock } from "effect/testing";
 import { vi } from "vitest";

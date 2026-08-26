@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { createCompilerConfigHash } from "#compiler/config";
 import { createTestRendererManifest } from "#compiler/test/content";

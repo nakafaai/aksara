@@ -1,6 +1,7 @@
 // @vitest-environment node
 
 import { createHash, generateKeyPairSync } from "node:crypto";
+import { describe, expect, it } from "@effect/vitest";
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -22,7 +23,6 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
@@ -47,8 +47,12 @@ const payload = CompiledContentPayloadSchema.make({
   requiredComponents: [],
   sourceHash,
 });
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
+const rollbackOf = ReleaseIdSchema.make("test-active-release");
+const releaseId = ReleaseIdSchema.make("test-rollback-release");
+
+/** Builds one signed rollback artifact fixture and trusted key resolver. */
+const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
+  const rendererManifest = yield* createRendererManifest({
     base: {
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
@@ -58,132 +62,158 @@ const rendererManifest = await Effect.runPromise(
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
     publishedDomains: ["mathematics"],
-  })
-);
-const { privateKey, publicKey } = generateKeyPairSync("ed25519");
-const signer = await Effect.runPromise(
-  makeEd25519PublicationSigner({
+  });
+  const { privateKey, publicKey } = yield* Effect.sync(() =>
+    generateKeyPairSync("ed25519")
+  );
+  const signer = yield* makeEd25519PublicationSigner({
     keyId: "test-rollback-key",
     privateKeyPem: privateKey
       .export({ format: "pem", type: "pkcs8" })
       .toString(),
-  })
-);
-const artifact = await Effect.runPromise(signer.signArtifact(payload));
-const rollbackOf = ReleaseIdSchema.make("test-active-release");
-const releaseId = ReleaseIdSchema.make("test-rollback-release");
-const item = ContentReleaseItemSchema.make({
-  change: {
-    artifactHash: artifact.artifactHash,
-    artifactLocale: payload.artifactLocale,
-    contentKey: payload.contentKey,
-    delivery: "public",
-    family: "material",
-    operation: "upsert",
-    rendererDomain: payload.rendererDomain,
-    sourcePath: CorpusSourcePathSchema.make(
-      "packages/corpus/test/rollback/en.mdx"
-    ),
-  },
-  index: 0,
-  releaseId,
+  });
+  const artifact = yield* signer.signArtifact(payload);
+  const item = ContentReleaseItemSchema.make({
+    change: {
+      artifactHash: artifact.artifactHash,
+      artifactLocale: payload.artifactLocale,
+      contentKey: payload.contentKey,
+      delivery: "public",
+      family: "material",
+      operation: "upsert",
+      rendererDomain: payload.rendererDomain,
+      sourcePath: CorpusSourcePathSchema.make(
+        "packages/corpus/test/rollback/en.mdx"
+      ),
+    },
+    index: 0,
+    releaseId,
+  });
+  const manifest = ContentReleaseManifestSchema.make({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    baseActiveAppLocales: ACTIVE_APP_LOCALES,
+    baseManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
+    baseReleaseId: rollbackOf,
+    baseResultCount: 1,
+    baseResultDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+    deleteCount: 0,
+    format: "localized-content-release",
+    itemCount: 1,
+    itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
+    origin: { kind: "rollback", releaseId: rollbackOf },
+    projectionCount: 1,
+    projectionDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
+    releaseId,
+    rendererContractVersion: rendererManifest.rendererContractVersion,
+    rendererManifestHash: rendererManifest.hash,
+    resultCount: 1,
+    resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+    rollbackCount: 1,
+    rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+    routeCount: 0,
+    routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
+    scope: {
+      content: [
+        {
+          artifactLocale: item.change.artifactLocale,
+          contentKey: item.change.contentKey,
+          family: item.change.family,
+        },
+      ],
+      families: [],
+      snapshots: [],
+    },
+    snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
+    upsertCount: 1,
+  });
+  const resolver = ContentVerificationKeyResolver.of({
+    resolve: () =>
+      Effect.succeed(
+        publicKey.export({ format: "pem", type: "spki" }).toString()
+      ),
+  });
+  return { artifact, item, manifest, rendererManifest, resolver };
 });
-const manifest = ContentReleaseManifestSchema.make({
-  activeAppLocales: ACTIVE_APP_LOCALES,
-  baseActiveAppLocales: ACTIVE_APP_LOCALES,
-  baseManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
-  baseReleaseId: rollbackOf,
-  baseResultCount: 1,
-  baseResultDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
-  deleteCount: 0,
-  format: "localized-content-release",
-  itemCount: 1,
-  itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-  origin: { kind: "rollback", releaseId: rollbackOf },
-  projectionCount: 1,
-  projectionDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
-  releaseId,
-  rendererContractVersion: rendererManifest.rendererContractVersion,
-  rendererManifestHash: rendererManifest.hash,
-  resultCount: 1,
-  resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-  rollbackCount: 1,
-  rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
-  routeCount: 0,
-  routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
-  scope: {
-    content: [
-      {
-        artifactLocale: item.change.artifactLocale,
-        contentKey: item.change.contentKey,
-        family: item.change.family,
-      },
-    ],
-    families: [],
-    snapshots: [],
-  },
-  snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
-  upsertCount: 1,
-});
-const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
-});
+
+type Fixture = Effect.Success<ReturnType<typeof makeFixture>>;
 
 /** Runs one rollback artifact stream with the trusted test public key. */
-function collect(input: {
-  readonly artifacts: Stream.Stream<typeof artifact>;
-  readonly items: Stream.Stream<typeof item>;
-}) {
-  return makeRollbackArtifacts({ ...input, manifest, rendererManifest }).pipe(
-    Stream.runCollect,
-    Effect.map((chunk) => [...chunk]),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.runPromise
-  );
-}
+const collect = Effect.fn("RollbackArtifactTest.collect")(
+  (
+    fixture: Fixture,
+    input: {
+      readonly artifacts: Stream.Stream<Fixture["artifact"]>;
+      readonly items: Stream.Stream<Fixture["item"]>;
+    }
+  ) =>
+    makeRollbackArtifacts({
+      ...input,
+      manifest: fixture.manifest,
+      rendererManifest: fixture.rendererManifest,
+    }).pipe(
+      Stream.runCollect,
+      Effect.map((chunk) => [...chunk]),
+      Effect.provideService(ContentVerificationKeyResolver, fixture.resolver)
+    )
+);
 
 /** Returns the typed failure from one invalid rollback artifact stream. */
-function collectFailure(input: {
-  readonly artifacts: Stream.Stream<typeof artifact>;
-  readonly items: Stream.Stream<typeof item>;
-}) {
-  return makeRollbackArtifacts({ ...input, manifest, rendererManifest }).pipe(
-    Stream.runDrain,
-    Effect.flip,
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.runPromise
-  );
-}
+const collectFailure = Effect.fn("RollbackArtifactTest.collectFailure")(
+  (
+    fixture: Fixture,
+    input: {
+      readonly artifacts: Stream.Stream<Fixture["artifact"]>;
+      readonly items: Stream.Stream<Fixture["item"]>;
+    }
+  ) =>
+    makeRollbackArtifacts({
+      ...input,
+      manifest: fixture.manifest,
+      rendererManifest: fixture.rendererManifest,
+    }).pipe(
+      Stream.runDrain,
+      Effect.flip,
+      Effect.provideService(ContentVerificationKeyResolver, fixture.resolver)
+    )
+);
 
 describe("rollback artifact pairing", () => {
-  it("returns an unchanged valid signed artifact", async () => {
-    await expect(
-      collect({ artifacts: Stream.make(artifact), items: Stream.make(item) })
-    ).resolves.toEqual([artifact]);
-  });
+  it.effect("returns an unchanged valid signed artifact", () =>
+    Effect.gen(function* () {
+      const fixture = yield* makeFixture();
+      const result = yield* collect(fixture, {
+        artifacts: Stream.make(fixture.artifact),
+        items: Stream.make(fixture.item),
+      });
+      expect(result).toEqual([fixture.artifact]);
+    })
+  );
 
-  it("rejects an upsert without its prior signed artifact", async () => {
-    const error = await collectFailure({
-      artifacts: Stream.empty,
-      items: Stream.make(item),
-    });
-    expect(error).toMatchObject({
-      _tag: "ReleaseArtifactMismatchError",
-      message: "Rollback item 0 has no signed artifact.",
-    });
-  });
+  it.effect("rejects an upsert without its prior signed artifact", () =>
+    Effect.gen(function* () {
+      const fixture = yield* makeFixture();
+      const error = yield* collectFailure(fixture, {
+        artifacts: Stream.empty,
+        items: Stream.make(fixture.item),
+      });
+      expect(error).toMatchObject({
+        _tag: "ReleaseArtifactMismatchError",
+        message: "Rollback item 0 has no signed artifact.",
+      });
+    })
+  );
 
-  it("rejects an artifact without its authenticated upsert", async () => {
-    const error = await collectFailure({
-      artifacts: Stream.make(artifact),
-      items: Stream.empty,
-    });
-    expect(error).toMatchObject({
-      _tag: "ReleaseArtifactMismatchError",
-      message: "A rollback artifact has no authenticated upsert item.",
-    });
-  });
+  it.effect("rejects an artifact without its authenticated upsert", () =>
+    Effect.gen(function* () {
+      const fixture = yield* makeFixture();
+      const error = yield* collectFailure(fixture, {
+        artifacts: Stream.make(fixture.artifact),
+        items: Stream.empty,
+      });
+      expect(error).toMatchObject({
+        _tag: "ReleaseArtifactMismatchError",
+        message: "A rollback artifact has no authenticated upsert item.",
+      });
+    })
+  );
 });
