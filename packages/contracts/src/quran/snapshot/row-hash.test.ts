@@ -3,7 +3,6 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
-import type { QuranRowPayload } from "#contracts/quran/snapshot/row";
 import { hashQuranRow } from "#contracts/quran/snapshot/row-hash";
 import { quranRepresentativePayloads } from "#contracts/test/quran";
 
@@ -39,27 +38,30 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-/** Requires one current surah payload for deterministic hash failures. */
-function representativeSurah(): QuranRowPayload {
-  const payload = quranRepresentativePayloads().find(
-    (candidate) => candidate.kind === "quran-surah"
-  );
-  if (payload === undefined) {
-    throw new Error("Expected one current Quran surah fixture.");
-  }
-  return payload;
-}
-
-const payload = representativeSurah();
-
 describe("Quran row hashing", () => {
-  it("maps current row hashing failures to the typed error", async () => {
-    failures.rowHash = true;
-    const error = await Effect.runPromise(
-      hashQuranRow(payload).pipe(Effect.flip)
-    );
-    failures.rowHash = false;
+  it.effect("maps current row hashing failures to the typed error", () =>
+    Effect.gen(function* () {
+      const payload = yield* Effect.fromNullishOr(
+        quranRepresentativePayloads().find(
+          (candidate) => candidate.kind === "quran-surah"
+        )
+      );
+      yield* Effect.acquireRelease(
+        Effect.sync(() => {
+          failures.rowHash = true;
+        }),
+        () =>
+          Effect.sync(() => {
+            failures.rowHash = false;
+          })
+      );
 
-    expect(error).toMatchObject({ _tag: "QuranRowHashError", scope: "row" });
-  });
+      const error = yield* hashQuranRow(payload).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "QuranRowHashError",
+        scope: "row",
+      });
+    })
+  );
 });

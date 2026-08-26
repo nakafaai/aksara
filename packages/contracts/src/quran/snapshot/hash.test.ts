@@ -67,22 +67,30 @@ const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
 });
 
 describe("Quran snapshot hashing", () => {
-  it("creates and verifies one reproducible snapshot identity", async () => {
-    const first = await Effect.runPromise(makeQuranSnapshot(facts));
-    const second = await Effect.runPromise(makeQuranSnapshot(facts));
-    expect(JSON.parse(canonicalizeQuranSnapshot(facts))).toMatchObject(facts);
-    expect(first.snapshotId).toBe(second.snapshotId);
-    await expect(
-      Effect.runPromise(verifyQuranSnapshotHash(first))
-    ).resolves.toBe(first.snapshotId);
-  });
+  it.effect("creates and verifies one reproducible snapshot identity", () =>
+    Effect.gen(function* () {
+      const first = yield* makeQuranSnapshot(facts);
+      const second = yield* makeQuranSnapshot(facts);
+      expect(JSON.parse(canonicalizeQuranSnapshot(facts))).toMatchObject(facts);
+      expect(first.snapshotId).toBe(second.snapshotId);
+      expect(yield* verifyQuranSnapshotHash(first)).toBe(first.snapshotId);
+    })
+  );
 
-  it("maps Node hashing failures to the typed contract error", async () => {
-    failures.hash = true;
-    const error = await Effect.runPromise(
-      makeQuranSnapshot(facts).pipe(Effect.flip)
-    );
-    failures.hash = false;
-    expect(error._tag).toBe("QuranSnapshotHashError");
-  });
+  it.effect("maps Node hashing failures to the typed contract error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() => {
+          failures.hash = true;
+        }),
+        () =>
+          Effect.sync(() => {
+            failures.hash = false;
+          })
+      );
+
+      const error = yield* makeQuranSnapshot(facts).pipe(Effect.flip);
+      expect(error._tag).toBe("QuranSnapshotHashError");
+    })
+  );
 });

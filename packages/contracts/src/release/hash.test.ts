@@ -5,30 +5,35 @@ import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
 
 describe("release manifest hash", () => {
-  it("binds exact and whole-family publication authorization", () => {
-    const { manifest } = release;
-    const exactHash = Effect.runSync(hashContentReleaseManifest(manifest));
-    const familyHash = Effect.runSync(
-      hashContentReleaseManifest({
+  it.effect("binds exact and whole-family publication authorization", () =>
+    Effect.gen(function* () {
+      const { manifest } = release;
+      const exactHash = yield* hashContentReleaseManifest(manifest);
+      const familyHash = yield* hashContentReleaseManifest({
         ...manifest,
         scope: {
           content: [],
           families: ["material"],
           snapshots: manifest.scope.snapshots,
         },
-      })
-    );
+      });
 
-    expect(familyHash).not.toBe(exactHash);
-  });
+      expect(familyHash).not.toBe(exactHash);
+    })
+  );
 
-  it("binds active application locales", () => {
-    const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
-      ...release.manifest,
-      activeAppLocales: ["en", "id"],
-    });
-    expect(Effect.runSync(hashContentReleaseManifest(manifest))).not.toBe(
-      Effect.runSync(hashContentReleaseManifest(release.manifest))
-    );
-  });
+  it.effect("binds active application locales", () =>
+    Effect.gen(function* () {
+      const manifest = yield* Schema.decodeEffect(ContentReleaseManifestSchema)(
+        {
+          ...release.manifest,
+          activeAppLocales: ["en", "id"],
+        }
+      );
+      const changedHash = yield* hashContentReleaseManifest(manifest);
+      const releaseHash = yield* hashContentReleaseManifest(release.manifest);
+
+      expect(changedHash).not.toBe(releaseHash);
+    })
+  );
 });

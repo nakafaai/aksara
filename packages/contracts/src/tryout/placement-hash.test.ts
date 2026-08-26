@@ -73,37 +73,37 @@ describe("try-out placement hashing", () => {
     );
   });
 
-  it("digests placements in canonical identity order", async () => {
-    const rows = [placement("en", 1), placement("id", 1), placement("en", 2)]
-      .map(makeTryoutPlacementRecord)
-      .sort((left, right) => compareTryoutPlacements(left.row, right.row));
-    const summary = await Effect.runPromise(
-      digestTryoutPlacements(Stream.fromIterable(rows))
-    );
+  it.effect("digests placements in canonical identity order", () =>
+    Effect.gen(function* () {
+      const rows = [placement("en", 1), placement("id", 1), placement("en", 2)]
+        .map(makeTryoutPlacementRecord)
+        .sort((left, right) => compareTryoutPlacements(left.row, right.row));
+      const summary = yield* digestTryoutPlacements(Stream.fromIterable(rows));
 
-    expect(summary.count).toBe(3);
-  });
+      expect(summary.count).toBe(3);
+    })
+  );
 
-  it("rejects tampered and repeated placement records", async () => {
-    const record = makeTryoutPlacementRecord(placement("en", 1));
-    const errors = await Effect.runPromise(
-      Effect.all(
+  it.effect("rejects tampered and repeated placement records", () =>
+    Effect.gen(function* () {
+      const record = makeTryoutPlacementRecord(placement("en", 1));
+      const errors = yield* Effect.all(
         [
           digestTryoutPlacements(
             Stream.make({ ...record, rowHash: hashes.tampered })
           ),
           digestTryoutPlacements(Stream.make(record, record)),
         ].map((failure) => failure.pipe(Effect.flip))
-      )
-    );
+      );
 
-    expect(errors.map(({ code }) => code)).toEqual(["integrity", "order"]);
-  });
+      expect(errors.map(({ code }) => code)).toEqual(["integrity", "order"]);
+    })
+  );
 
-  it("digests an empty placement stream", async () => {
-    const summary = await Effect.runPromise(
-      digestTryoutPlacements(Stream.empty)
-    );
-    expect(summary.count).toBe(0);
-  });
+  it.effect("digests an empty placement stream", () =>
+    Effect.gen(function* () {
+      const summary = yield* digestTryoutPlacements(Stream.empty);
+      expect(summary.count).toBe(0);
+    })
+  );
 });
