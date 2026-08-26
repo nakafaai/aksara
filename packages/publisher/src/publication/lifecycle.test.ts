@@ -1,6 +1,7 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   activateCandidateRelease,
   verifyCandidateActivation,
@@ -9,35 +10,37 @@ import { PublicationActivation } from "#publisher/publication/spec";
 import { PublicationStaleBaseError } from "#publisher/target/errors";
 import {
   makeVerificationPlan,
-  runVerification,
+  provideVerificationKey,
   verificationManifest,
   verificationReceipt,
   verificationRelease,
 } from "#test/verification";
 
 describe("publication lifecycle", () => {
-  it("revalidates the live renderer immediately before activation", async () => {
-    const verify = vi.fn(() => Effect.void);
-    const state = makeVerificationPlan("verified");
-    await runVerification(
-      verifyCandidateActivation(state.plan).pipe(
-        Effect.provideService(
-          PublicationActivation,
-          PublicationActivation.of({
-            invalidate: () => Effect.void,
-            verify,
-          })
+  it.effect("revalidates the live renderer immediately before activation", () =>
+    Effect.gen(function* () {
+      const verify = vi.fn(() => Effect.void);
+      const state = makeVerificationPlan("verified");
+      yield* provideVerificationKey(
+        verifyCandidateActivation(state.plan).pipe(
+          Effect.provideService(
+            PublicationActivation,
+            PublicationActivation.of({
+              invalidate: () => Effect.void,
+              verify,
+            })
+          )
         )
-      )
-    );
-    expect(verify).toHaveBeenCalledWith(verificationRelease);
-  });
+      );
+      expect(verify).toHaveBeenCalledWith(verificationRelease);
+    })
+  );
 
-  it("validates the atomic activation receipt", async () => {
-    const invalidate = vi.fn(() => Effect.void);
-    const state = makeVerificationPlan("verified");
-    await expect(
-      runVerification(
+  it.effect("validates the atomic activation receipt", () =>
+    Effect.gen(function* () {
+      const invalidate = vi.fn(() => Effect.void);
+      const state = makeVerificationPlan("verified");
+      const receipt = yield* provideVerificationKey(
         activateCandidateRelease(state.plan).pipe(
           Effect.provideService(
             PublicationActivation,
@@ -47,30 +50,32 @@ describe("publication lifecycle", () => {
             })
           )
         )
-      )
-    ).resolves.toEqual(verificationReceipt);
-    expect(state.activate).toHaveBeenCalledWith(verificationRelease);
-    expect(invalidate).toHaveBeenCalledWith(
-      expect.objectContaining({ release: verificationRelease })
-    );
-  });
+      );
 
-  it("surfaces a stale base from atomic activation", async () => {
-    const failure = new PublicationStaleBaseError({
-      failure: {
-        activeReleaseId: ReleaseIdSchema.make("another-release"),
-        code: "CONTENT_RELEASE_STALE_BASE",
-        expectedBaseReleaseId: null,
-        kind: "stale-base",
-        operation: "activate",
-        releaseId: verificationManifest.releaseId,
-      },
-    });
-    const state = makeVerificationPlan("verified", {
-      activate: () => Effect.fail(failure),
-    });
-    await expect(
-      runVerification(
+      expect(receipt).toEqual(verificationReceipt);
+      expect(state.activate).toHaveBeenCalledWith(verificationRelease);
+      expect(invalidate).toHaveBeenCalledWith(
+        expect.objectContaining({ release: verificationRelease })
+      );
+    })
+  );
+
+  it.effect("surfaces a stale base from atomic activation", () =>
+    Effect.gen(function* () {
+      const failure = new PublicationStaleBaseError({
+        failure: {
+          activeReleaseId: ReleaseIdSchema.make("another-release"),
+          code: "CONTENT_RELEASE_STALE_BASE",
+          expectedBaseReleaseId: null,
+          kind: "stale-base",
+          operation: "activate",
+          releaseId: verificationManifest.releaseId,
+        },
+      });
+      const state = makeVerificationPlan("verified", {
+        activate: () => Effect.fail(failure),
+      });
+      const error = yield* provideVerificationKey(
         activateCandidateRelease(state.plan).pipe(
           Effect.provideService(
             PublicationActivation,
@@ -81,7 +86,9 @@ describe("publication lifecycle", () => {
           ),
           Effect.flip
         )
-      )
-    ).resolves.toEqual(failure);
-  });
+      );
+
+      expect(error).toEqual(failure);
+    })
+  );
 });
