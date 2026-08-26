@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
@@ -8,7 +8,7 @@ import {
 } from "#corpus/program/snapshot";
 
 /** Reads one required canonical active translation from a program row. */
-function translation(
+function requireTranslation(
   row: {
     readonly translations: readonly {
       readonly appLocale: string;
@@ -17,93 +17,100 @@ function translation(
   },
   appLocale: string
 ) {
-  const value = row.translations.find(
-    (candidate) => candidate.appLocale === appLocale
+  return Effect.fromNullishOr(
+    row.translations.find((candidate) => candidate.appLocale === appLocale)
   );
-  if (value === undefined) {
-    throw new Error(`Expected ${appLocale} program translation.`);
-  }
-  return value;
 }
 
 describe("program snapshot preparation", () => {
-  it("prepares exact programs and localized curriculum routes", async () => {
-    const prepared = await Effect.runPromise(prepareProgramSnapshot());
-    const rows = await Effect.runPromise(Stream.runCollect(prepared.rows));
+  it.effect("prepares exact programs and localized curriculum routes", () =>
+    Effect.gen(function* () {
+      const prepared = yield* prepareProgramSnapshot();
+      const rows = yield* Stream.runCollect(prepared.rows);
 
-    expect(prepared.manifest).toMatchObject({
-      activeAppLocales: ["en", "id", "de"],
-      curriculumRowCount: 585,
-      format: "localized-program-snapshot",
-      programRowCount: 6,
-      rowCount: 591,
-      sitemapCount: 78,
-      slugCount: 18,
-    });
-    const programRows = rows.filter((row) => row.kind === "program");
-    const curriculumRows = rows.filter((row) => row.kind === "curriculum");
-    expect(
-      programRows.map(({ row }) => ({
-        de: translation(row, "de").publicSlug,
-        en: translation(row, "en").publicSlug,
-        id: translation(row, "id").publicSlug,
-        key: row.key,
-      }))
-    ).toEqual([
-      { de: "merdeka", en: "merdeka", id: "merdeka", key: "merdeka" },
-      {
-        de: "cambridge-international",
-        en: "cambridge-international",
-        id: "cambridge-international",
-        key: "cambridge-international",
-      },
-      {
-        de: "singapur-moe",
-        en: "singapore-moe",
-        id: "singapore-moe",
-        key: "singapore-moe",
-      },
-      {
-        de: "vereinigte-staaten",
-        en: "united-states",
-        id: "amerika-serikat",
-        key: "united-states",
-      },
-      { de: "tka", en: "tka", id: "tka", key: "tka" },
-      { de: "snbt", en: "snbt", id: "snbt", key: "snbt" },
-    ]);
-    expect(curriculumRows).toHaveLength(585);
-    expect(curriculumRows.at(0)?.row).toMatchObject({
-      appLocale: "de",
-      programKey: "cambridge-international",
-      publicPath: "lehrplaene/cambridge-international",
-    });
-  });
+      expect(prepared.manifest).toMatchObject({
+        activeAppLocales: ["en", "id", "de"],
+        curriculumRowCount: 585,
+        format: "localized-program-snapshot",
+        programRowCount: 6,
+        rowCount: 591,
+        sitemapCount: 78,
+        slugCount: 18,
+      });
+      const programRows = rows.filter((row) => row.kind === "program");
+      const curriculumRows = rows.filter((row) => row.kind === "curriculum");
+      const localizedPrograms = yield* Effect.forEach(programRows, ({ row }) =>
+        Effect.gen(function* () {
+          const [german, english, indonesian] = yield* Effect.all([
+            requireTranslation(row, "de"),
+            requireTranslation(row, "en"),
+            requireTranslation(row, "id"),
+          ]);
+          return {
+            de: german.publicSlug,
+            en: english.publicSlug,
+            id: indonesian.publicSlug,
+            key: row.key,
+          };
+        })
+      );
+      expect(localizedPrograms).toEqual([
+        { de: "merdeka", en: "merdeka", id: "merdeka", key: "merdeka" },
+        {
+          de: "cambridge-international",
+          en: "cambridge-international",
+          id: "cambridge-international",
+          key: "cambridge-international",
+        },
+        {
+          de: "singapur-moe",
+          en: "singapore-moe",
+          id: "singapore-moe",
+          key: "singapore-moe",
+        },
+        {
+          de: "vereinigte-staaten",
+          en: "united-states",
+          id: "amerika-serikat",
+          key: "united-states",
+        },
+        { de: "tka", en: "tka", id: "tka", key: "tka" },
+        { de: "snbt", en: "snbt", id: "snbt", key: "snbt" },
+      ]);
+      expect(curriculumRows).toHaveLength(585);
+      expect(curriculumRows.at(0)?.row).toMatchObject({
+        appLocale: "de",
+        programKey: "cambridge-international",
+        publicPath: "lehrplaene/cambridge-international",
+      });
+    })
+  );
 
-  it("replays reproducible rows and rejects malformed source input", {
-    timeout: 30_000,
-  }, async () => {
-    const first = await Effect.runPromise(prepareProgramSnapshot());
-    const second = await Effect.runPromise(prepareProgramSnapshot());
-    const firstRows = await Effect.runPromise(
-      Stream.runCollect(streamProgramRows())
-    );
-    const replayRows = await Effect.runPromise(Stream.runCollect(first.rows));
-    const error = await Effect.runPromise(
-      prepareProgramSnapshot({
-        programInput: [{ invented: true }],
-      }).pipe(Effect.flip)
-    );
+  it.effect(
+    "replays reproducible rows and rejects malformed source input",
+    () =>
+      Effect.gen(function* () {
+        const [first, second, firstRows] = yield* Effect.all([
+          prepareProgramSnapshot(),
+          prepareProgramSnapshot(),
+          Stream.runCollect(streamProgramRows()),
+        ]);
+        const replayRows = yield* Stream.runCollect(first.rows);
+        const error = yield* prepareProgramSnapshot({
+          programInput: [{ invented: true }],
+        }).pipe(Effect.flip);
 
-    expect(second.manifest).toEqual(first.manifest);
-    expect(replayRows).toEqual(firstRows);
-    expect(error._tag).toBe("ProgramCatalogError");
-  });
+        expect(second.manifest).toEqual(first.manifest);
+        expect(replayRows).toEqual(firstRows);
+        expect(error._tag).toBe("ProgramCatalogError");
+      }),
+    { timeout: 30_000 }
+  );
 
-  it("derives counts when source control adds another program", async () => {
-    const [firstExam] = examProgramSources;
-    const expanded = await Effect.runPromise(
-      prepareProgramSnapshot({
+  it.effect("derives counts when source control adds another program", () =>
+    Effect.gen(function* () {
+      const firstExam = yield* Effect.fromNullishOr(examProgramSources[0]);
+      const expanded = yield* prepareProgramSnapshot({
         programInput: [
           ...schoolProgramSources,
           ...examProgramSources,
@@ -130,15 +137,15 @@ describe("program snapshot preparation", () => {
             ],
           },
         ],
-      })
-    );
+      });
 
-    expect(expanded.manifest).toMatchObject({
-      curriculumRowCount: 585,
-      programRowCount: 7,
-      rowCount: 592,
-      sitemapCount: 78,
-      slugCount: 21,
-    });
-  });
+      expect(expanded.manifest).toMatchObject({
+        curriculumRowCount: 585,
+        programRowCount: 7,
+        rowCount: 592,
+        sitemapCount: 78,
+        slugCount: 21,
+      });
+    })
+  );
 });
