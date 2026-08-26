@@ -58,6 +58,28 @@ export interface QuranFixture {
   readonly rows: Stream.Stream<QuranSnapshotRow>;
 }
 
+type ProgramPreparation = Effect.Success<
+  ReturnType<typeof prepareProgramSnapshot>
+>;
+type ProgramFixtureError = Effect.Error<
+  ReturnType<typeof prepareProgramSnapshot>
+>;
+type ProgramRows = ProgramPreparation["rows"];
+
+export interface ProgramFixture {
+  readonly snapshot: Extract<
+    ContentSnapshotManifest,
+    { readonly family: "program" }
+  >;
+  readonly snapshotManifests: Stream.Stream<ContentSnapshotManifest>;
+  readonly snapshotRows: Stream.Stream<
+    ContentSnapshotRow,
+    Stream.Error<ProgramRows>,
+    Stream.Services<ProgramRows>
+  >;
+  readonly snapshots: ContentSnapshotSet;
+}
+
 const SNAPSHOT_TEST_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
 /** Replayable empty structured sources for body-only publisher fixtures. */
@@ -170,11 +192,13 @@ export function snapshotPolicyBase(releaseId = "test-snapshot-policy-base") {
 }
 
 /** Builds one replacement from the exact source-owned program catalog. */
-export async function makeProgramSnapshotFixture(
-  previous: ContentSnapshotSet = inheritContentSnapshots(null)
-) {
-  const prepared = await Effect.runPromise(prepareProgramSnapshot());
-  const snapshot: ContentSnapshotManifest = {
+export const makeProgramSnapshotFixture: (
+  previous?: ContentSnapshotSet
+) => Effect.Effect<ProgramFixture, ProgramFixtureError> = Effect.fn(
+  "AksaraPublisherTest.makeProgramSnapshotFixture"
+)(function* (previous: ContentSnapshotSet = inheritContentSnapshots(null)) {
+  const prepared = yield* prepareProgramSnapshot();
+  const snapshot: ProgramFixture["snapshot"] = {
     family: "program",
     manifest: prepared.manifest,
   };
@@ -194,4 +218,4 @@ export async function makeProgramSnapshotFixture(
     Stream.map((record): ContentSnapshotRow => ({ family: "program", record }))
   );
   return { snapshot, snapshotManifests, snapshotRows, snapshots };
-}
+});

@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -56,28 +56,26 @@ function prepare(
   families: PublicationScope["snapshots"] = ["program", "quran", "tryout"],
   refreshTryoutRuntimeBundle = false
 ) {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const prepared = yield* prepareReleaseSnapshots({
-          checkoutRoot,
-          families,
-          previousSnapshots,
-          questionHeads: Stream.empty,
-          refreshTryoutRuntimeBundle,
-          rendererManifest: {},
-        });
-        const [manifests, rows] = yield* Effect.all([
-          prepared.manifests.pipe(Stream.runCollect),
-          prepared.rows.pipe(Stream.runCollect),
-        ]);
-        return {
-          manifests: [...manifests],
-          rows: [...rows],
-          tryoutRuntimeSnapshot: prepared.tryoutRuntimeSnapshot,
-        };
-      })
-    ).pipe(Effect.provide(NodeServices.layer))
+  return Effect.scoped(
+    Effect.gen(function* () {
+      const prepared = yield* prepareReleaseSnapshots({
+        checkoutRoot,
+        families,
+        previousSnapshots,
+        questionHeads: Stream.empty,
+        refreshTryoutRuntimeBundle,
+        rendererManifest: {},
+      });
+      const [manifests, rows] = yield* Effect.all([
+        prepared.manifests.pipe(Stream.runCollect),
+        prepared.rows.pipe(Stream.runCollect),
+      ]);
+      return {
+        manifests: [...manifests],
+        rows: [...rows],
+        tryoutRuntimeSnapshot: prepared.tryoutRuntimeSnapshot,
+      };
+    })
   );
 }
 
@@ -98,90 +96,149 @@ function requireCompleteManifests(
   return { program, quran, tryout };
 }
 
-const quranFixture = makeQuranSnapshotFixture();
-const tryoutFixture = await Effect.runPromise(tryoutSnapshotFixture);
-quranState.current = quranFixture;
-tryoutState.current = tryoutFixture;
-const changedSnapshots = await prepare(null);
-const completeSnapshots = requireCompleteManifests(changedSnapshots.manifests);
+const makeFixtures = Effect.fn("AksaraPublisherTest.makeSnapshotFixtures")(
+  function* () {
+    const quranFixture = makeQuranSnapshotFixture();
+    const tryoutFixture = yield* tryoutSnapshotFixture;
+    yield* Effect.sync(() => {
+      quranState.current = quranFixture;
+      tryoutState.current = tryoutFixture;
+    });
+    yield* Effect.addFinalizer(() =>
+      Effect.sync(() => {
+        quranState.current = undefined;
+        tryoutState.current = undefined;
+      })
+    );
+    const changedSnapshots = yield* prepare(null);
+    const completeSnapshots = requireCompleteManifests(
+      changedSnapshots.manifests
+    );
+    return {
+      changedSnapshots,
+      completeSnapshots,
+      quranFixture,
+      tryoutFixture,
+    };
+  }
+);
 
 /** Builds one exact active structured set while varying only Quran identity. */
-function activeSnapshots(quranSnapshotId: Sha256Hash | null) {
+function activeSnapshots(
+  snapshots: ReturnType<typeof requireCompleteManifests>,
+  quranSnapshotId: Sha256Hash | null
+) {
   return ContentSnapshotSetSchema.make({
-    program: inheritContentSnapshot(
-      completeSnapshots.program.manifest.snapshotId
-    ),
+    program: inheritContentSnapshot(snapshots.program.manifest.snapshotId),
     quran: inheritContentSnapshot(quranSnapshotId),
-    tryout: inheritContentSnapshot(
-      completeSnapshots.tryout.manifest.snapshotId
-    ),
+    tryout: inheritContentSnapshot(snapshots.tryout.manifest.snapshotId),
   });
 }
 
-const inheritedSnapshots = await prepare(
-  activeSnapshots(completeSnapshots.quran.manifest.snapshotId)
-);
-const rendererRefresh = await prepare(
-  activeSnapshots(completeSnapshots.quran.manifest.snapshotId),
-  [],
-  true
-);
-tryoutState.current = undefined;
-const changedQuran = await prepare(activeSnapshots(null), ["quran"]);
-tryoutState.current = tryoutFixture;
-describe("release snapshot preparation", () => {
-  it("stages every changed snapshot and row in canonical family order", async () => {
-    const { program, quran } = completeSnapshots;
-    const programRowCount = program.manifest.rowCount;
-    const quranRowCount = quranFixture.rowCount;
-    expect(changedSnapshots.manifests.map(({ family }) => family)).toEqual([
-      "program",
-      "quran",
-      "tryout",
-    ]);
-    const programRows = changedSnapshots.rows.slice(0, programRowCount);
-    const quranRows = changedSnapshots.rows.slice(
-      programRowCount,
-      programRowCount + quranRowCount
-    );
-    const tryoutRows = changedSnapshots.rows.slice(
-      programRowCount + quranRowCount
-    );
-    expect(programRows).toHaveLength(program.manifest.rowCount);
-    expect(programRows.every(({ family }) => family === "program")).toBe(true);
-    expect(quranRows).toHaveLength(quranRowCount);
-    expect(quranRows.every(({ family }) => family === "quran")).toBe(true);
-    expect(tryoutRows).toHaveLength(tryoutFixture.rowCount);
-    expect(tryoutRows.every(({ family }) => family === "tryout")).toBe(true);
-    expect(quran).toMatchObject({
-      family: "quran",
-      manifest: { provenanceStatus: "blocked" },
-    });
-    quranState.current = undefined;
-    const tryoutOnly = await prepare(null, ["tryout"]);
-    quranState.current = quranFixture;
-    expect(tryoutOnly.manifests).toEqual([completeSnapshots.tryout]);
-    expect(tryoutOnly.rows).toHaveLength(tryoutFixture.rowCount);
-  });
-  it("inherits exact active snapshot identities without restaging rows", () => {
-    expect(inheritedSnapshots).toEqual({
-      manifests: [],
-      rows: [],
-      tryoutRuntimeSnapshot: null,
-    });
-  });
-  it("returns an inherited try-out snapshot only for a new renderer pair", () => {
-    expect(rendererRefresh).toEqual({
-      manifests: [],
-      rows: [],
-      tryoutRuntimeSnapshot: completeSnapshots.tryout.manifest,
-    });
-  });
-  it("streams rows only for a family whose active identity changed", () => {
-    expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);
-    expect(changedQuran.rows).toHaveLength(quranFixture.rowCount);
-    expect(changedQuran.rows.every(({ family }) => family === "quran")).toBe(
-      true
-    );
-  });
+layer(NodeServices.layer)("release snapshot preparation", (it) => {
+  it.effect(
+    "stages every changed snapshot and row in canonical family order",
+    () =>
+      Effect.gen(function* () {
+        const {
+          changedSnapshots,
+          completeSnapshots,
+          quranFixture,
+          tryoutFixture,
+        } = yield* makeFixtures();
+        const { program, quran } = completeSnapshots;
+        const programRowCount = program.manifest.rowCount;
+        const quranRowCount = quranFixture.rowCount;
+        expect(changedSnapshots.manifests.map(({ family }) => family)).toEqual([
+          "program",
+          "quran",
+          "tryout",
+        ]);
+        const programRows = changedSnapshots.rows.slice(0, programRowCount);
+        const quranRows = changedSnapshots.rows.slice(
+          programRowCount,
+          programRowCount + quranRowCount
+        );
+        const tryoutRows = changedSnapshots.rows.slice(
+          programRowCount + quranRowCount
+        );
+        expect(programRows).toHaveLength(program.manifest.rowCount);
+        expect(programRows.every(({ family }) => family === "program")).toBe(
+          true
+        );
+        expect(quranRows).toHaveLength(quranRowCount);
+        expect(quranRows.every(({ family }) => family === "quran")).toBe(true);
+        expect(tryoutRows).toHaveLength(tryoutFixture.rowCount);
+        expect(tryoutRows.every(({ family }) => family === "tryout")).toBe(
+          true
+        );
+        expect(quran).toMatchObject({
+          family: "quran",
+          manifest: { provenanceStatus: "blocked" },
+        });
+        yield* Effect.sync(() => {
+          quranState.current = undefined;
+        });
+        const tryoutOnly = yield* prepare(null, ["tryout"]);
+        yield* Effect.sync(() => {
+          quranState.current = quranFixture;
+        });
+        expect(tryoutOnly.manifests).toEqual([completeSnapshots.tryout]);
+        expect(tryoutOnly.rows).toHaveLength(tryoutFixture.rowCount);
+      })
+  );
+  it.effect(
+    "inherits exact active snapshot identities without restaging rows",
+    () =>
+      Effect.gen(function* () {
+        const { completeSnapshots } = yield* makeFixtures();
+        const inheritedSnapshots = yield* prepare(
+          activeSnapshots(
+            completeSnapshots,
+            completeSnapshots.quran.manifest.snapshotId
+          )
+        );
+        expect(inheritedSnapshots).toEqual({
+          manifests: [],
+          rows: [],
+          tryoutRuntimeSnapshot: null,
+        });
+      })
+  );
+  it.effect(
+    "returns an inherited try-out snapshot only for a new renderer pair",
+    () =>
+      Effect.gen(function* () {
+        const { completeSnapshots } = yield* makeFixtures();
+        const rendererRefresh = yield* prepare(
+          activeSnapshots(
+            completeSnapshots,
+            completeSnapshots.quran.manifest.snapshotId
+          ),
+          [],
+          true
+        );
+        expect(rendererRefresh).toEqual({
+          manifests: [],
+          rows: [],
+          tryoutRuntimeSnapshot: completeSnapshots.tryout.manifest,
+        });
+      })
+  );
+  it.effect(
+    "streams rows only for a family whose active identity changed",
+    () =>
+      Effect.gen(function* () {
+        const { completeSnapshots, quranFixture } = yield* makeFixtures();
+        const changedQuran = yield* prepare(
+          activeSnapshots(completeSnapshots, null),
+          ["quran"]
+        );
+        expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);
+        expect(changedQuran.rows).toHaveLength(quranFixture.rowCount);
+        expect(
+          changedQuran.rows.every(({ family }) => family === "quran")
+        ).toBe(true);
+      })
+  );
 });

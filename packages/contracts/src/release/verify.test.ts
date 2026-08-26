@@ -52,109 +52,114 @@ vi.mock("node:crypto", async (importOriginal) => {
     },
   };
 });
-/** Runs release verification and returns its expected typed failure. */
+/** Returns the expected typed release verification failure. */
 function reject(input: unknown, resolver = trustedResolver) {
-  return Effect.runPromise(
-    verifySignedContentRelease(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, resolver),
-      Effect.flip
-    )
+  return verifySignedContentRelease(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.flip
   );
 }
-/** Runs bundle verification with the trusted test resolver. */
+/** Verifies one bundle with the trusted test resolver. */
 function verifyBundle(input: unknown) {
-  return Effect.runPromise(
-    verifyContentReleaseBundle(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-    )
+  return verifyContentReleaseBundle(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
   );
 }
-/** Runs rollback-only bundle verification with the trusted test resolver. */
+/** Verifies one rollback-only bundle with the trusted test resolver. */
 function verifyRollbackBundle(input: unknown) {
-  return Effect.runPromise(
-    verifyRollbackContentReleaseBundle(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-    )
+  return verifyRollbackContentReleaseBundle(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
   );
 }
 describe("server-only release verification", () => {
-  it("authenticates the complete constant-size manifest", async () => {
-    const release = signRelease();
-    await expect(
-      Effect.runPromise(
-        verifySignedContentRelease(release).pipe(
+  it.effect("authenticates the complete constant-size manifest", () =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      expect(
+        yield* verifySignedContentRelease(release).pipe(
           Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
         )
-      )
-    ).resolves.toEqual(release);
-  });
-  it("authenticates predecessor releases without weakening new scope bytes", async () => {
-    const legacyManifest = ContentReleaseManifestSchema.make({
-      ...manifest,
-      scope: {
-        content: [],
-        families: manifest.scope.families,
-        snapshots: manifest.scope.snapshots,
-      },
-    });
-    const release = signRelease(legacyManifest);
+      ).toEqual(release);
+    })
+  );
+  it.effect(
+    "authenticates predecessor releases without weakening new scope bytes",
+    () =>
+      Effect.gen(function* () {
+        const legacyManifest = ContentReleaseManifestSchema.make({
+          ...manifest,
+          scope: {
+            content: [],
+            families: manifest.scope.families,
+            snapshots: manifest.scope.snapshots,
+          },
+        });
+        const release = signRelease(legacyManifest);
 
-    await expect(
-      Effect.runPromise(
-        verifySignedContentRelease(release).pipe(
-          Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-        )
-      )
-    ).resolves.toEqual(release);
-  });
-  it("maps current decoding and hashing failures", async () => {
-    const release = signRelease();
-    const [decodeError, hashError] = await Promise.all([
-      reject({ unexpected: true }),
-      reject({
-        ...release,
-        manifest: { ...release.manifest, releaseId: "hash-failure" },
-      }),
-    ]);
+        expect(
+          yield* verifySignedContentRelease(release).pipe(
+            Effect.provideService(
+              ContentVerificationKeyResolver,
+              trustedResolver
+            )
+          )
+        ).toEqual(release);
+      })
+  );
+  it.effect("maps current decoding and hashing failures", () =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      const [decodeError, hashError] = yield* Effect.all([
+        reject({ unexpected: true }),
+        reject({
+          ...release,
+          manifest: { ...release.manifest, releaseId: "hash-failure" },
+        }),
+      ]);
 
-    expect(decodeError).toBeInstanceOf(ReleaseVerificationDecodeError);
-    expect(hashError).toMatchObject({
-      _tag: "ReleaseHashComputationError",
-      releaseId: "hash-failure",
-    });
-  });
-  it("authenticates the signed release and frozen renderer as one bundle", async () => {
-    const release = signRelease();
-    await expect(verifyBundle({ release, rendererManifest })).resolves.toEqual({
-      release,
-      rendererManifest,
-    });
-  });
-  it("accepts only rollback-owned bundles at recovery boundaries", async () => {
-    const rollbackManifest = ContentReleaseManifestSchema.make({
-      ...manifest,
-      origin: { kind: "rollback", releaseId: baseReleaseId },
-      snapshots: invertContentSnapshots(manifest.snapshots),
-    });
-    const rollback = signRelease(rollbackManifest);
-    await expect(
-      verifyRollbackBundle({ release: rollback, rendererManifest })
-    ).resolves.toEqual({ release: rollback, rendererManifest });
-    const error = await Effect.runPromise(
-      verifyRollbackContentReleaseBundle({
+      expect(decodeError).toBeInstanceOf(ReleaseVerificationDecodeError);
+      expect(hashError).toMatchObject({
+        _tag: "ReleaseHashComputationError",
+        releaseId: "hash-failure",
+      });
+    })
+  );
+  it.effect(
+    "authenticates the signed release and frozen renderer as one bundle",
+    () =>
+      Effect.gen(function* () {
+        const release = signRelease();
+        expect(yield* verifyBundle({ release, rendererManifest })).toEqual({
+          release,
+          rendererManifest,
+        });
+      })
+  );
+  it.effect("accepts only rollback-owned bundles at recovery boundaries", () =>
+    Effect.gen(function* () {
+      const rollbackManifest = ContentReleaseManifestSchema.make({
+        ...manifest,
+        origin: { kind: "rollback", releaseId: baseReleaseId },
+        snapshots: invertContentSnapshots(manifest.snapshots),
+      });
+      const rollback = signRelease(rollbackManifest);
+      expect(
+        yield* verifyRollbackBundle({ release: rollback, rendererManifest })
+      ).toEqual({ release: rollback, rendererManifest });
+      const error = yield* verifyRollbackContentReleaseBundle({
         release: signRelease(),
         rendererManifest,
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
         Effect.flip
-      )
-    );
-    expect(error._tag).toBe("ReleaseBundleVerificationDecodeError");
-  });
-  it("rejects mismatched or corrupted frozen renderer evidence", async () => {
-    const release = signRelease();
-    const mismatched = await Effect.runPromise(
-      verifyContentReleaseBundle({
+      );
+      expect(error._tag).toBe("ReleaseBundleVerificationDecodeError");
+    })
+  );
+  it.effect("rejects mismatched or corrupted frozen renderer evidence", () =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      const mismatched = yield* verifyContentReleaseBundle({
         release,
         rendererManifest: {
           ...rendererManifest,
@@ -163,30 +168,28 @@ describe("server-only release verification", () => {
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
         Effect.flip
-      )
-    );
-    expect(mismatched).toMatchObject({
-      _tag: "ReleaseBundleVerificationDecodeError",
-    });
-    const corruptHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
-    const corruptManifest = ContentReleaseManifestSchema.make({
-      ...manifest,
-      rendererManifestHash: corruptHash,
-    });
-    const corrupted = await Effect.runPromise(
-      verifyContentReleaseBundle({
+      );
+      expect(mismatched).toMatchObject({
+        _tag: "ReleaseBundleVerificationDecodeError",
+      });
+      const corruptHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
+      const corruptManifest = ContentReleaseManifestSchema.make({
+        ...manifest,
+        rendererManifestHash: corruptHash,
+      });
+      const corrupted = yield* verifyContentReleaseBundle({
         release: signRelease(corruptManifest),
         rendererManifest: { ...rendererManifest, hash: corruptHash },
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
         Effect.flip
-      )
-    );
-    expect(corrupted).toMatchObject({
-      _tag: "RendererManifestHashMismatchError",
-    });
-  });
-  it.each([
+      );
+      expect(corrupted).toMatchObject({
+        _tag: "RendererManifestHashMismatchError",
+      });
+    })
+  );
+  it.effect.each([
     ["base manifest", { baseManifestHash: `sha256:${"2".repeat(64)}` }],
     ["base release", { baseReleaseId: "test-release-other" }],
     ["base result count", { baseResultCount: 2 }],
@@ -201,57 +204,67 @@ describe("server-only release verification", () => {
     ["rollback digest", { rollbackDigest: `sha256:${"2".repeat(64)}` }],
     ["renderer manifest", { rendererManifestHash: `sha256:${"f".repeat(64)}` }],
     ["structured snapshots", { snapshots: replacementSnapshots }],
-  ])("rejects a mutated %s", async (_label, values) => {
-    const release = signRelease();
-    const error = await reject({
-      ...release,
-      manifest: { ...release.manifest, ...values },
-    });
-    expect(error._tag).toBe("ReleaseManifestHashMismatchError");
-  });
-  it("rejects a recomputed hash without a new release signature", async () => {
-    const release = signRelease();
-    const changedManifest = ContentReleaseManifestSchema.make({
-      ...release.manifest,
-      itemCount: 3,
-      rollbackCount: 3,
-      upsertCount: 2,
-    });
-    const error = await reject({
-      ...release,
-      manifest: changedManifest,
-      manifestHash: Effect.runSync(hashContentReleaseManifest(changedManifest)),
-    });
-    expect(error._tag).toBe("SignatureInvalidError");
-  });
-  it("does not expose resolved key contents in failures", async () => {
-    const sensitiveKey = "must-not-appear-in-verification-errors";
-    const resolver = ContentVerificationKeyResolver.of({
-      resolve: () => Effect.succeed(sensitiveKey),
-    });
-    const error = await reject(signRelease(), resolver);
-    expect(error._tag).toBe("PublicKeyParseError");
-    expect(JSON.stringify(error)).not.toContain(sensitiveKey);
-  });
-  it("rejects excess fields without exposing source values", async () => {
-    const sensitiveSource = "must-not-appear-in-decode-errors";
-    const release = signRelease();
-    const error = await reject({
-      ...release,
-      manifest: { ...release.manifest, sensitiveSource },
-    });
-    expect(error._tag).toBe("ReleaseVerificationDecodeError");
-    expect(JSON.stringify(error)).not.toContain(sensitiveSource);
-  });
-  it("maps manifest hashing failures to the release identity", async () => {
-    const release = signRelease();
-    const error = await reject({
-      ...release,
-      manifest: { ...release.manifest, releaseId: "hash-failure" },
-    });
-    expect(error).toMatchObject({
-      _tag: "ReleaseHashComputationError",
-      releaseId: "hash-failure",
-    });
-  });
+  ] as const)("rejects a mutated %s", ([_label, values]) =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      const error = yield* reject({
+        ...release,
+        manifest: { ...release.manifest, ...values },
+      });
+      expect(error._tag).toBe("ReleaseManifestHashMismatchError");
+    })
+  );
+  it.effect("rejects a recomputed hash without a new release signature", () =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      const changedManifest = ContentReleaseManifestSchema.make({
+        ...release.manifest,
+        itemCount: 3,
+        rollbackCount: 3,
+        upsertCount: 2,
+      });
+      const error = yield* reject({
+        ...release,
+        manifest: changedManifest,
+        manifestHash: yield* hashContentReleaseManifest(changedManifest),
+      });
+      expect(error._tag).toBe("SignatureInvalidError");
+    })
+  );
+  it.effect("does not expose resolved key contents in failures", () =>
+    Effect.gen(function* () {
+      const sensitiveKey = "must-not-appear-in-verification-errors";
+      const resolver = ContentVerificationKeyResolver.of({
+        resolve: () => Effect.succeed(sensitiveKey),
+      });
+      const error = yield* reject(signRelease(), resolver);
+      expect(error._tag).toBe("PublicKeyParseError");
+      expect(JSON.stringify(error)).not.toContain(sensitiveKey);
+    })
+  );
+  it.effect("rejects excess fields without exposing source values", () =>
+    Effect.gen(function* () {
+      const sensitiveSource = "must-not-appear-in-decode-errors";
+      const release = signRelease();
+      const error = yield* reject({
+        ...release,
+        manifest: { ...release.manifest, sensitiveSource },
+      });
+      expect(error._tag).toBe("ReleaseVerificationDecodeError");
+      expect(JSON.stringify(error)).not.toContain(sensitiveSource);
+    })
+  );
+  it.effect("maps manifest hashing failures to the release identity", () =>
+    Effect.gen(function* () {
+      const release = signRelease();
+      const error = yield* reject({
+        ...release,
+        manifest: { ...release.manifest, releaseId: "hash-failure" },
+      });
+      expect(error).toMatchObject({
+        _tag: "ReleaseHashComputationError",
+        releaseId: "hash-failure",
+      });
+    })
+  );
 });

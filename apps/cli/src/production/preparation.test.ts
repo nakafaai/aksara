@@ -1,15 +1,12 @@
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import {
   GitCommitShaSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { beforeEach, describe, expect, it } from "vitest";
-import {
-  productionCalls,
-  rejectProduction,
-  runProduction,
-} from "#test/production/harness";
+import { Effect } from "effect";
+import { productionCalls, productionProgram } from "#test/production/harness";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
@@ -36,260 +33,269 @@ beforeEach(() => {
 });
 
 describe("production preparation", () => {
-  it("binds a Git delta to exact authoritative catalog evidence", async () => {
-    const active = gitBundle("release-active");
-    await expect(
-      runProduction({
+  it.effect("binds a Git delta to exact authoritative catalog evidence", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-active");
+      const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-next" });
-    expect(calls).toMatchObject({
-      baseManifestHash: active.release.manifestHash,
-      baseReleaseId: "release-active",
-      baseResultCount: active.release.manifest.resultCount,
-      baseResultDigest: active.release.manifest.resultDigest,
-      catalogCalls: 1,
-      checkoutRoot: "/code/aksara",
-      cleanReads: 2,
-      headManifestHash: active.release.manifestHash,
-      headReleaseId: "release-active",
-      keyId: "content-2026-07-23",
-      privateKeyMatches: true,
-      publishCalls: 1,
-      publishKind: "git",
-      rendererCalls: 1,
-      rootReads: 1,
-      signingSecretReads: 1,
-      snapshotCalls: 0,
-      sourceLayers: 1,
-      targetCalls: 1,
-      targetServiceReads: 1,
-    });
-    expect(calls.publicationConfig).toEqual({
-      allowInsecureLoopback: false,
-      endpoint: "https://content.example.test/publish",
-      timeout: "2 minutes",
-    });
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "release-next" });
+      expect(calls).toMatchObject({
+        baseManifestHash: active.release.manifestHash,
+        baseReleaseId: "release-active",
+        baseResultCount: active.release.manifest.resultCount,
+        baseResultDigest: active.release.manifest.resultDigest,
+        catalogCalls: 1,
+        checkoutRoot: "/code/aksara",
+        cleanReads: 2,
+        headManifestHash: active.release.manifestHash,
+        headReleaseId: "release-active",
+        keyId: "content-2026-07-23",
+        privateKeyMatches: true,
+        publishCalls: 1,
+        publishKind: "git",
+        rendererCalls: 1,
+        rootReads: 1,
+        signingSecretReads: 1,
+        snapshotCalls: 0,
+        sourceLayers: 1,
+        targetCalls: 1,
+        targetServiceReads: 1,
+      });
+      expect(calls.publicationConfig).toEqual({
+        allowInsecureLoopback: false,
+        endpoint: "https://content.example.test/publish",
+        timeout: "2 minutes",
+      });
+    })
+  );
 
-  it("prepares genesis without requesting nonexistent heads", async () => {
-    calls.current = currentState({
-      active: null,
-      candidate: null,
-      recovery: null,
-    });
-    await expect(
-      runProduction({
+  it.effect("prepares genesis without requesting nonexistent heads", () =>
+    Effect.gen(function* () {
+      calls.current = currentState({
+        active: null,
+        candidate: null,
+        recovery: null,
+      });
+      const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-first"),
         releaseId: releaseId("release-first"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-first" });
-    expect(calls.baseReleaseId).toBeNull();
-    expect(calls.baseManifestHash).toBeNull();
-    expect(calls.baseResultCount).toBe(0);
-    expect(calls.baseResultDigest).toBe(EMPTY_RESULT_CATALOG_DIGEST);
-    expect(calls.headReleaseId).toBeUndefined();
-    expect(calls.snapshotCalls).toBe(0);
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "release-first" });
+      expect(calls.baseReleaseId).toBeNull();
+      expect(calls.baseManifestHash).toBeNull();
+      expect(calls.baseResultCount).toBe(0);
+      expect(calls.baseResultDigest).toBe(EMPTY_RESULT_CATALOG_DIGEST);
+      expect(calls.headReleaseId).toBeUndefined();
+      expect(calls.snapshotCalls).toBe(0);
+    })
+  );
 
-  it("prepares selected snapshots from question heads only", async () => {
-    calls.current = currentState({
-      active: null,
-      candidate: null,
-      recovery: null,
-    });
-    await expect(
-      runProduction({
+  it.effect("prepares selected snapshots from question heads only", () =>
+    Effect.gen(function* () {
+      calls.current = currentState({
+        active: null,
+        candidate: null,
+        recovery: null,
+      });
+      const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-snapshot"),
         releaseId: releaseId("release-snapshot"),
         scope: tryoutScope,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-snapshot" });
-    expect(calls).toMatchObject({
-      catalogCalls: 1,
-      snapshotCalls: 1,
-    });
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "release-snapshot" });
+      expect(calls).toMatchObject({
+        catalogCalls: 1,
+        snapshotCalls: 1,
+      });
+    })
+  );
 
-  it("prepares a new rollback from its exact signed source bundle", async () => {
-    const active = gitBundle("release-active");
-    await expect(
-      runProduction({
+  it.effect("prepares a new rollback from its exact signed source bundle", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-active");
+      const receipt = yield* productionProgram({
         command: "rollback",
         recoveryId: releaseId("recovery-rollback"),
         releaseId: releaseId("rollback-next"),
         rollbackOf: releaseId("release-active"),
-      })
-    ).resolves.toMatchObject({ releaseId: "rollback-next" });
-    expect(calls.rollbackInput).toMatchObject({
-      proofManifestHash: active.release.manifestHash,
-      releaseId: "rollback-next",
-      rollbackOf: "release-active",
-    });
-    expect(calls).toMatchObject({
-      catalogCalls: 0,
-      cleanReads: 0,
-      privateKeyMatches: true,
-      publishKind: "rollback",
-      rendererCalls: 1,
-      signingSecretReads: 1,
-      snapshotCalls: 0,
-      sourceLayers: 0,
-      targetServiceReads: 1,
-    });
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "rollback-next" });
+      expect(calls.rollbackInput).toMatchObject({
+        proofManifestHash: active.release.manifestHash,
+        releaseId: "rollback-next",
+        rollbackOf: "release-active",
+      });
+      expect(calls).toMatchObject({
+        catalogCalls: 0,
+        cleanReads: 0,
+        privateKeyMatches: true,
+        publishKind: "rollback",
+        rendererCalls: 1,
+        signingSecretReads: 1,
+        snapshotCalls: 0,
+        sourceLayers: 0,
+        targetServiceReads: 1,
+      });
+    })
+  );
 
-  it("reuses the exact candidate Git envelope after key rotation", async () => {
-    const active = gitBundle("release-active");
-    const candidate = gitBundle("release-candidate", {
-      baseManifestHash: active.release.manifestHash,
-      baseReleaseId: releaseId("release-active"),
-      keyId: SigningKeyIdSchema.make("content-2026-01"),
-    });
-    calls.current = currentState({
-      active: completedBundle(active),
-      candidate: { ...candidate, phase: "staging" },
-      recovery: null,
-    });
-    await expect(
-      runProduction({
+  it.effect("reuses the exact candidate Git envelope after key rotation", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-active");
+      const candidate = gitBundle("release-candidate", {
+        baseManifestHash: active.release.manifestHash,
+        baseReleaseId: releaseId("release-active"),
+        keyId: SigningKeyIdSchema.make("content-2026-01"),
+      });
+      calls.current = currentState({
+        active: completedBundle(active),
+        candidate: { ...candidate, phase: "staging" },
+        recovery: null,
+      });
+      const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-candidate" });
-    expect(calls).toMatchObject({
-      baseReleaseId: "release-active",
-      bundleVerifyCalls: 2,
-      catalogCalls: 1,
-      cleanReads: 2,
-      keyId: "content-2026-07-23",
-      rendererCalls: 0,
-      snapshotCalls: 0,
-      sourceLayers: 1,
-      verifiedBundle: candidate,
-    });
-    expect(calls.storedRelease).toEqual(candidate.release);
-    expect(calls.storedRelease?.keyId).toBe("content-2026-01");
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "release-candidate" });
+      expect(calls).toMatchObject({
+        baseReleaseId: "release-active",
+        bundleVerifyCalls: 2,
+        catalogCalls: 1,
+        cleanReads: 2,
+        keyId: "content-2026-07-23",
+        rendererCalls: 0,
+        snapshotCalls: 0,
+        sourceLayers: 1,
+        verifiedBundle: candidate,
+      });
+      expect(calls.storedRelease).toEqual(candidate.release);
+      expect(calls.storedRelease?.keyId).toBe("content-2026-01");
+    })
+  );
 
-  it("rebuilds candidate rollback without acquiring Git source", async () => {
-    const active = gitBundle("release-active");
-    const candidate = rollbackBundle(
-      "rollback-candidate",
-      releaseId("release-active"),
-      active.release.manifestHash
-    );
-    calls.current = currentState({
-      active: completedBundle(active),
-      candidate: { ...candidate, phase: "staging" },
-      recovery: null,
-    });
-    await expect(
-      runProduction({
+  it.effect("rebuilds candidate rollback without acquiring Git source", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-active");
+      const candidate = rollbackBundle(
+        "rollback-candidate",
+        releaseId("release-active"),
+        active.release.manifestHash
+      );
+      calls.current = currentState({
+        active: completedBundle(active),
+        candidate: { ...candidate, phase: "staging" },
+        recovery: null,
+      });
+      const receipt = yield* productionProgram({
         command: "rollback",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("rollback-candidate"),
         rollbackOf: releaseId("release-active"),
-      })
-    ).resolves.toMatchObject({ releaseId: "rollback-candidate" });
-    expect(calls).toMatchObject({
-      bundleVerifyCalls: 1,
-      catalogCalls: 0,
-      cleanReads: 0,
-      publishKind: "rollback",
-      rendererCalls: 0,
-      rootReads: 0,
-      snapshotCalls: 0,
-      sourceLayers: 0,
-      verifiedBundle: candidate,
-    });
-    expect(calls.storedRelease).toEqual(candidate.release);
-  });
+      });
+      expect(receipt).toMatchObject({ releaseId: "rollback-candidate" });
+      expect(calls).toMatchObject({
+        bundleVerifyCalls: 1,
+        catalogCalls: 0,
+        cleanReads: 0,
+        publishKind: "rollback",
+        rendererCalls: 0,
+        rootReads: 0,
+        snapshotCalls: 0,
+        sourceLayers: 0,
+        verifiedBundle: candidate,
+      });
+      expect(calls.storedRelease).toEqual(candidate.release);
+    })
+  );
 
-  it("rejects recovery from a different checkout revision", async () => {
-    const candidate = gitBundle("release-candidate", {
-      sha: GitCommitShaSchema.make("b".repeat(40)),
-    });
-    calls.current = currentState({
-      active: null,
-      candidate: { ...candidate, phase: "staging" },
-      recovery: null,
-    });
-    await expect(
-      rejectProduction({
+  it.effect("rejects recovery from a different checkout revision", () =>
+    Effect.gen(function* () {
+      const candidate = gitBundle("release-candidate", {
+        sha: GitCommitShaSchema.make("b".repeat(40)),
+      });
+      calls.current = currentState({
+        active: null,
+        candidate: { ...candidate, phase: "staging" },
+        recovery: null,
+      });
+      const error = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({
-      failure: "RecoveryRevisionMismatchError",
-      stage: "prepare",
-    });
-    expect(calls).toMatchObject({
-      catalogCalls: 0,
-      cleanReads: 1,
-      publishCalls: 0,
-      rendererCalls: 0,
-      snapshotCalls: 0,
-    });
-  });
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        failure: "RecoveryRevisionMismatchError",
+        stage: "prepare",
+      });
+      expect(calls).toMatchObject({
+        catalogCalls: 0,
+        cleanReads: 1,
+        publishCalls: 0,
+        rendererCalls: 0,
+        snapshotCalls: 0,
+      });
+    })
+  );
 
-  it("rejects source changes observed after complete preparation", async () => {
-    calls.finalSha = "b".repeat(40);
+  it.effect("rejects source changes observed after complete preparation", () =>
+    Effect.gen(function* () {
+      calls.finalSha = "b".repeat(40);
 
-    await expect(
-      rejectProduction({
+      const error = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({
-      failure: "ReleaseRevisionChangedError",
-      stage: "prepare",
-    });
-    expect(calls).toMatchObject({
-      catalogCalls: 1,
-      cleanReads: 2,
-      publishCalls: 0,
-      snapshotCalls: 0,
-    });
-  });
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        failure: "ReleaseRevisionChangedError",
+        stage: "prepare",
+      });
+      expect(calls).toMatchObject({
+        catalogCalls: 1,
+        cleanReads: 2,
+        publishCalls: 0,
+        snapshotCalls: 0,
+      });
+    })
+  );
 
-  it("rejects a rebuild that differs from signed candidate state", async () => {
-    const candidate = gitBundle("release-candidate");
-    calls.current = currentState({
-      active: null,
-      candidate: { ...candidate, phase: "verifying" },
-      recovery: null,
-    });
-    calls.manifestMismatch = true;
-    await expect(
-      rejectProduction({
+  it.effect("rejects a rebuild that differs from signed candidate state", () =>
+    Effect.gen(function* () {
+      const candidate = gitBundle("release-candidate");
+      calls.current = currentState({
+        active: null,
+        candidate: { ...candidate, phase: "verifying" },
+        recovery: null,
+      });
+      calls.manifestMismatch = true;
+      const error = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
         scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({
-      failure: "PreparedStoredReleaseMismatchError",
-      stage: "prepare",
-    });
-    expect(calls).toMatchObject({
-      catalogCalls: 1,
-      publishCalls: 0,
-      rendererCalls: 0,
-      snapshotCalls: 0,
-      sourceLayers: 0,
-    });
-  });
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        failure: "PreparedStoredReleaseMismatchError",
+        stage: "prepare",
+      });
+      expect(calls).toMatchObject({
+        catalogCalls: 1,
+        publishCalls: 0,
+        rendererCalls: 0,
+        snapshotCalls: 0,
+        sourceLayers: 0,
+      });
+    })
+  );
 });

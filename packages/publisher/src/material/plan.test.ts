@@ -62,20 +62,19 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const publishedHeads = await publishedMaterialHeads();
-const englishHead = await Effect.runPromise(
-  Effect.gen(function* () {
-    const head = publishedHeads.find(
-      ({ contentKey, artifactLocale }) =>
-        contentKey === functionContentKey && artifactLocale === "en"
-    );
-    if (head === undefined) {
-      return yield* Effect.die(
-        new Error("Expected the real English function-concept head.")
-      );
-    }
-    return head;
-  })
-);
+
+/** Requires the representative real English head used by plan assertions. */
+function requireEnglishHead() {
+  const head = publishedHeads.find(
+    ({ contentKey, artifactLocale }) =>
+      contentKey === functionContentKey && artifactLocale === "en"
+  );
+  if (head === undefined) {
+    throw new Error("Expected the real English function-concept head.");
+  }
+  return head;
+}
+const englishHead = requireEnglishHead();
 const fingerprintCases = [
   ["delivery", { delivery: "authenticated" }],
   ["public path", { publicPath: "subjects/mathematics/old-function-concept" }],

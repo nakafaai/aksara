@@ -284,13 +284,3 @@ export function productionProgram(args: ReleaseArguments | RollbackArguments) {
     Effect.provide(NodeServices.layer)
   );
 }
-
-/** Runs one production command with the real Node boundary services. */
-export function runProduction(args: ReleaseArguments | RollbackArguments) {
-  return Effect.runPromise(productionProgram(args));
-}
-
-/** Returns the typed failure from one rejected production command. */
-export function rejectProduction(args: ReleaseArguments | RollbackArguments) {
-  return Effect.runPromise(productionProgram(args).pipe(Effect.flip));
-}

@@ -7,7 +7,7 @@ import { Match } from "effect";
 import {
   hasBoundManifestReceipt,
   hasBoundVerification,
-} from "#publisher/target/release-evidence";
+} from "#publisher/target/evidence/release";
 
 type StageBatchRequest = Extract<
   PublicationRequest,

@@ -19,7 +19,7 @@ import {
   PublicationTargetTransportError,
   PublicationTargetUnauthorizedError,
 } from "#publisher/target/errors";
-import { hasBoundPublicationSuccess } from "#publisher/target/evidence";
+import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response";
 
 /** Parsed HTTP status and body returned by publication ingress. */
 export interface PublicationHttpResult {

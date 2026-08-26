@@ -6,44 +6,48 @@ const FUNCTION_CONTENT_KEY =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const exactContent = `content:material:en:${FUNCTION_CONTENT_KEY}`;
 
-/** Decodes one repeated selector collection at the test runner boundary. */
+/** Decodes one repeated selector collection. */
 function decode(selectors: readonly string[]) {
-  return Effect.runPromise(decodePublicationScopeSelectors(selectors));
+  return decodePublicationScopeSelectors(selectors);
 }
 
-/** Returns the typed selector failure without a FiberFailure wrapper. */
+/** Returns the typed selector failure. */
 function reject(selectors: readonly string[]) {
-  return Effect.runPromise(
-    decodePublicationScopeSelectors(selectors).pipe(Effect.flip)
-  );
+  return decodePublicationScopeSelectors(selectors).pipe(Effect.flip);
 }
 
 describe("publication scope selectors", () => {
-  it("decodes canonical family and snapshot selectors", async () => {
-    await expect(
-      decode(["family:material", "snapshot:program", "snapshot:quran"])
-    ).resolves.toEqual({
-      families: ["material"],
-      snapshots: ["program", "quran"],
-    });
-  });
+  it.effect("decodes canonical family and snapshot selectors", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* decode(["family:material", "snapshot:program", "snapshot:quran"])
+      ).toEqual({
+        families: ["material"],
+        snapshots: ["program", "quran"],
+      });
+    })
+  );
 
-  it("rejects retired exact-content selectors before publication", async () => {
-    await expect(reject([exactContent])).resolves.toMatchObject({
-      _tag: "ProductionScopeDecodeError",
-    });
-  });
+  it.effect("rejects retired exact-content selectors before publication", () =>
+    Effect.gen(function* () {
+      expect(yield* reject([exactContent])).toMatchObject({
+        _tag: "ProductionScopeDecodeError",
+      });
+    })
+  );
 
-  it("decodes one scalable whole-family selector without expansion", async () => {
-    await expect(
-      decode(["family:material", "snapshot:program"])
-    ).resolves.toEqual({
-      families: ["material"],
-      snapshots: ["program"],
-    });
-  });
+  it.effect(
+    "decodes one scalable whole-family selector without expansion",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* decode(["family:material", "snapshot:program"])).toEqual({
+          families: ["material"],
+          snapshots: ["program"],
+        });
+      })
+  );
 
-  it.each([
+  it.effect.each([
     { selectors: [] },
     { selectors: ["family:material", "family:material"] },
     { selectors: ["family:question", "family:article"] },
@@ -58,10 +62,11 @@ describe("publication scope selectors", () => {
     { selectors: ["material:en:function-concept"] },
   ])(
     "rejects an invalid or noncanonical selector collection %#",
-    async ({ selectors }) => {
-      await expect(reject(selectors)).resolves.toMatchObject({
-        _tag: "ProductionScopeDecodeError",
-      });
-    }
+    ({ selectors }) =>
+      Effect.gen(function* () {
+        expect(yield* reject(selectors)).toMatchObject({
+          _tag: "ProductionScopeDecodeError",
+        });
+      })
   );
 });
