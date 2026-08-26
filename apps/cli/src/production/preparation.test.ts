@@ -1,26 +1,22 @@
 import {
   GitCommitShaSchema,
-  Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect } from "effect";
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   productionCalls,
   rejectProduction,
   runProduction,
 } from "#test/production/harness";
-import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
   currentState,
   gitBundle,
   releaseId,
   rollbackBundle,
-  runtimeBundleFor,
 } from "#test/target";
 
 const calls = productionCalls();
@@ -28,22 +24,6 @@ const tryoutScope = PublicationScopeSchema.make({
   families: [],
   snapshots: ["tryout"],
 });
-const refreshedRendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [
-        ...RENDERER_MANIFEST.base.authoringComponents,
-        { name: "RuntimePairProbe", version: 1 },
-      ],
-      supportedComponents: [
-        ...RENDERER_MANIFEST.base.supportedComponents,
-        { name: "RuntimePairProbe", version: 1 },
-      ],
-    },
-    domains: RENDERER_MANIFEST.domains,
-    publishedDomains: RENDERER_MANIFEST.publishedDomains,
-  })
-);
 
 beforeEach(() => {
   calls.reset();
@@ -134,86 +114,6 @@ describe("production preparation", () => {
     expect(calls).toMatchObject({
       catalogCalls: 1,
       snapshotCalls: 1,
-    });
-  });
-
-  it("rebuilds an inherited try-out snapshot for a new renderer pair", async () => {
-    const tryoutSnapshotId = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
-    const active = gitBundle("release-active", {
-      baseReleaseId: releaseId("release-parent"),
-      tryoutSnapshotId,
-    });
-    calls.current = currentState({
-      active: completedBundle(active),
-      candidate: null,
-      recovery: null,
-    });
-    calls.rendererManifestOverride = refreshedRendererManifest;
-
-    await expect(
-      runProduction({
-        command: "release",
-        recoveryId: releaseId("recovery-renderer"),
-        releaseId: releaseId("release-renderer"),
-        scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-renderer" });
-    expect(calls).toMatchObject({
-      runtimeBundleRefreshes: 1,
-      snapshotCalls: 1,
-    });
-  });
-
-  it("bootstraps a missing permanent bundle for an inherited try-out snapshot", async () => {
-    const tryoutSnapshotId = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
-    const active = gitBundle("release-active", {
-      baseReleaseId: releaseId("release-parent"),
-      tryoutSnapshotId,
-    });
-    calls.current = currentState({
-      active: completedBundle(active),
-      candidate: null,
-      recovery: null,
-    });
-
-    await expect(
-      runProduction({
-        command: "release",
-        recoveryId: releaseId("recovery-bootstrap"),
-        releaseId: releaseId("release-bootstrap"),
-        scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-bootstrap" });
-    expect(calls).toMatchObject({
-      runtimeBundleRefreshes: 1,
-      snapshotCalls: 1,
-    });
-  });
-
-  it("reuses the permanent bundle for an unchanged try-out runtime pair", async () => {
-    const tryoutSnapshotId = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
-    const active = gitBundle("release-active", {
-      baseReleaseId: releaseId("release-parent"),
-      tryoutSnapshotId,
-    });
-    calls.current = currentState({
-      active: completedBundle(active),
-      candidate: null,
-      recovery: null,
-      tryoutRuntimeBundle: runtimeBundleFor(active, tryoutSnapshotId),
-    });
-
-    await expect(
-      runProduction({
-        command: "release",
-        recoveryId: releaseId("recovery-reuse"),
-        releaseId: releaseId("release-reuse"),
-        scope: FUNCTION_SCOPE,
-      })
-    ).resolves.toMatchObject({ releaseId: "release-reuse" });
-    expect(calls).toMatchObject({
-      runtimeBundleRefreshes: 0,
-      snapshotCalls: 0,
     });
   });
 

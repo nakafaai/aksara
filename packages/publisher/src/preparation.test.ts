@@ -17,7 +17,7 @@ import {
   inheritContentSnapshots,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { TryoutSnapshotSchema } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -202,24 +202,20 @@ describe("prepareContentRelease", () => {
   });
 
   it("rejects a runtime bundle snapshot outside the resulting release state", async () => {
-    const snapshotId = Sha256HashSchema.make(`sha256:${"8".repeat(64)}`);
+    const runtimeSnapshot = makeTryoutSnapshot({
+      activeAppLocales: ACTIVE_APP_LOCALES,
+      catalogDigest: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
+      counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+      placementCount: 0,
+      placementDigest: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
+      routeCount: 0,
+    });
     const error = await Effect.runPromise(
-      prepare({
-        tryoutRuntimeSnapshot: TryoutSnapshotSchema.make({
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          catalogDigest: snapshotId,
-          counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
-          format: "localized-tryout-snapshot",
-          placementCount: 0,
-          placementDigest: snapshotId,
-          routeCount: 0,
-          snapshotId,
-        }),
-      }).pipe(Effect.flip)
+      prepare({ tryoutRuntimeSnapshot: runtimeSnapshot }).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "PreparedTryoutRuntimeSnapshotError",
-      actualSnapshotId: snapshotId,
+      actualSnapshotId: runtimeSnapshot.snapshotId,
       expectedSnapshotId: null,
     });
   });

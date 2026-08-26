@@ -1,21 +1,15 @@
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import type {
   ContentHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import {
-  baseContentSnapshots,
-  type ContentSnapshotSet,
-  type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
-import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -28,25 +22,20 @@ import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
+import { Effect, type Scope, Stream } from "effect";
 import {
   readCleanAksaraRevision,
   validateStableAksaraRevision,
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import {
-  RecoveryBaseMismatchError,
-  validateRecoveryRevision,
-} from "#cli/recovery";
-
-interface BaseCatalogIdentity {
-  readonly activeAppLocales: ActiveAppLocaleList;
-  readonly manifestHash: ContentReleaseBundle["release"]["manifestHash"];
-  readonly releaseId: ReleaseId;
-  readonly resultCount: number;
-  readonly resultDigest: ContentReleaseBundle["release"]["manifest"]["resultDigest"];
-  readonly snapshots: ContentSnapshotSet;
-}
+  type ProductionBaseIdentity,
+  selectRecoveryBase,
+  selectSourceBase,
+  validateRecoveryBase,
+  verifyBaseTryoutRuntimeBundle,
+} from "#cli/production/base";
+import { validateRecoveryRevision } from "#cli/recovery";
 
 interface GitPreparationBase {
   readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
@@ -102,14 +91,8 @@ type PrepareProductionRollback = (
   input: RollbackPreparationInput
 ) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
 
-/** Current permanent runtime bundle does not identify the active try-out base. */
-class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
-  "BaseTryoutRuntimeBundleMismatchError",
-  { reason: Schema.Literals(["missing-base", "snapshot"]) }
-) {}
-
 /** Streams no prior heads for genesis and both exact target-owned families later. */
-function publishedContentHeads(base: BaseCatalogIdentity | null) {
+function publishedContentHeads(base: ProductionBaseIdentity | null) {
   if (base === null) {
     return {
       article: Stream.empty,
@@ -131,114 +114,6 @@ function isQuestionHead(head: ContentHead): head is QuestionHead {
   return head.family === "question";
 }
 
-/** Selects the authenticated base catalog represented by one source bundle. */
-function selectSourceBase(bundle: ContentReleaseBundle | null) {
-  if (bundle === null) {
-    return null;
-  }
-  return {
-    activeAppLocales: bundle.release.manifest.activeAppLocales,
-    manifestHash: bundle.release.manifestHash,
-    releaseId: bundle.release.manifest.releaseId,
-    resultCount: bundle.release.manifest.resultCount,
-    resultDigest: bundle.release.manifest.resultDigest,
-    snapshots: bundle.release.manifest.snapshots,
-  } satisfies BaseCatalogIdentity;
-}
-
-/** Selects the authenticated base catalog frozen inside a candidate release. */
-function selectRecoveryBase(bundle: ContentReleaseBundle) {
-  const { manifest } = bundle.release;
-  if (
-    manifest.baseActiveAppLocales === null ||
-    manifest.baseReleaseId === null ||
-    manifest.baseManifestHash === null
-  ) {
-    return null;
-  }
-  return {
-    activeAppLocales: manifest.baseActiveAppLocales,
-    manifestHash: manifest.baseManifestHash,
-    releaseId: manifest.baseReleaseId,
-    resultCount: manifest.baseResultCount,
-    resultDigest: manifest.baseResultDigest,
-    snapshots: baseContentSnapshots(manifest.snapshots),
-  } satisfies BaseCatalogIdentity;
-}
-
-/** Authenticates the optional permanent bundle and binds it to the active base. */
-const verifyBaseTryoutRuntimeBundle = Effect.fn(
-  "AksaraCli.verifyBaseTryoutRuntimeBundle"
-)(function* (
-  bundle: SignedTryoutRuntimeBundle | null,
-  baseBundle: ContentReleaseBundle | null,
-  base: BaseCatalogIdentity | null
-) {
-  if (bundle === null) {
-    return null;
-  }
-  if (baseBundle === null || base === null) {
-    return yield* new BaseTryoutRuntimeBundleMismatchError({
-      reason: "missing-base",
-    });
-  }
-  const verified = yield* verifySignedTryoutRuntimeBundle({
-    bundle,
-    rendererManifest: baseBundle.rendererManifest,
-  });
-  if (
-    verified.payload.snapshot.snapshotId !==
-    base.snapshots.tryout.resultSnapshotId
-  ) {
-    return yield* new BaseTryoutRuntimeBundleMismatchError({
-      reason: "snapshot",
-    });
-  }
-  return verified;
-});
-
-/** Finds the first immutable base field that differs during candidate recovery. */
-function recoveryBaseMismatch(
-  expected: BaseCatalogIdentity | null,
-  actual: BaseCatalogIdentity | null
-): RecoveryBaseMismatchError["field"] | undefined {
-  if (expected === null || actual === null) {
-    return expected === actual ? undefined : "presence";
-  }
-  if (
-    JSON.stringify(expected.activeAppLocales) !==
-    JSON.stringify(actual.activeAppLocales)
-  ) {
-    return "activeAppLocales";
-  }
-  if (expected.manifestHash !== actual.manifestHash) {
-    return "manifestHash";
-  }
-  if (expected.releaseId !== actual.releaseId) {
-    return "releaseId";
-  }
-  if (
-    expected.resultCount !== actual.resultCount ||
-    expected.resultDigest !== actual.resultDigest
-  ) {
-    return "result";
-  }
-  return JSON.stringify(expected.snapshots) === JSON.stringify(actual.snapshots)
-    ? undefined
-    : "snapshots";
-}
-
-/** Requires active target state to match the candidate's signed base identity. */
-function validateRecoveryBase(
-  expected: BaseCatalogIdentity | null,
-  actual: BaseCatalogIdentity | null
-) {
-  const field = recoveryBaseMismatch(expected, actual);
-  return field === undefined
-    ? Effect.void
-    : Effect.fail(new RecoveryBaseMismatchError({ field }));
-}
-
 /** Prepares a Git publication and restores its stored envelope on recovery. */
 export const prepareProductionGit: PrepareProductionGit = Effect.fn(
   "AksaraCli.prepareProductionGit"
@@ -248,7 +123,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.baseBundle === null
         ? null
         : yield* verifyContentReleaseBundle(input.baseBundle);
-    let base: BaseCatalogIdentity | null;
+    let base: ProductionBaseIdentity | null;
     if (input.kind === "new") {
       base = selectSourceBase(verifiedBaseBundle);
     } else {

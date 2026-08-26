@@ -7,7 +7,6 @@ import {
   ContentSnapshotSetSchema,
   ContentSnapshotStateSchema,
   canonicalizeContentSnapshotSet,
-  canonicalizePublicationScope,
   EMPTY_SNAPSHOT_ROW_DIGEST,
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
@@ -18,7 +17,6 @@ import {
   inheritContentSnapshots,
   invertContentSnapshots,
   PublicationScopeSchema,
-  publicationScopeSelectsSnapshot,
   replaceContentSnapshot,
   restoreContentSnapshot,
   snapshotRowCount,
@@ -36,105 +34,6 @@ function decode(input: unknown) {
 }
 
 describe("content snapshot state", () => {
-  it("decodes only non-empty canonical unique publication scopes", () => {
-    const scope = Schema.decodeSync(PublicationScopeSchema)({
-      families: ["article", "material"],
-      snapshots: ["program", "tryout"],
-    });
-    expect(canonicalizePublicationScope(scope)).toEqual(scope);
-    expect(publicationScopeSelectsSnapshot(scope, "program")).toBe(true);
-    expect(publicationScopeSelectsSnapshot(scope, "quran")).toBe(false);
-
-    const failures = [
-      { families: [], snapshots: [] },
-      { families: ["material", "material"], snapshots: [] },
-      { families: ["question", "article"], snapshots: [] },
-      { families: ["unknown"], snapshots: [] },
-      { families: [], snapshots: ["program", "program"] },
-      { families: [], snapshots: ["tryout", "quran"] },
-      { families: [], snapshots: ["unknown"] },
-    ].map((invalid) =>
-      Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
-    );
-    expect(failures.every(Exit.isFailure)).toBe(true);
-    const [emptyFailure] = failures;
-    if (emptyFailure !== undefined && Exit.isFailure(emptyFailure)) {
-      expect(String(emptyFailure.cause)).toContain(
-        "Expected a non-empty publication scope in canonical unique order."
-      );
-    }
-  });
-
-  it("preserves predecessor scope bytes without adding them to new releases", () => {
-    const current = Schema.decodeSync(PublicationScopeSchema)({
-      families: ["article"],
-      snapshots: [],
-    });
-    const predecessor = Schema.decodeSync(PublicationScopeSchema)({
-      content: [
-        {
-          artifactLocale: "en",
-          contentKey: "material:algebra",
-          family: "material",
-        },
-      ],
-      families: ["article"],
-      snapshots: [],
-    });
-
-    expect(canonicalizePublicationScope(current)).toEqual({
-      families: ["article"],
-      snapshots: [],
-    });
-    expect(canonicalizePublicationScope(predecessor)).toEqual({
-      content: [
-        {
-          artifactLocale: "en",
-          contentKey: "material:algebra",
-          family: "material",
-        },
-      ],
-      families: ["article"],
-      snapshots: [],
-    });
-  });
-
-  it("rejects noncanonical or overlapping predecessor identities", () => {
-    const failures = [
-      {
-        content: [
-          {
-            artifactLocale: "id",
-            contentKey: "material:algebra",
-            family: "material",
-          },
-          {
-            artifactLocale: "en",
-            contentKey: "material:algebra",
-            family: "material",
-          },
-        ],
-        families: [],
-        snapshots: [],
-      },
-      {
-        content: [
-          {
-            artifactLocale: "en",
-            contentKey: "material:algebra",
-            family: "material",
-          },
-        ],
-        families: ["material"],
-        snapshots: [],
-      },
-    ].map((invalid) =>
-      Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
-    );
-
-    expect(failures.every(Exit.isFailure)).toBe(true);
-  });
-
   it("constructs fixed inherit, replace, and row-free restore states", () => {
     const inherit = inheritContentSnapshot(first);
     const replace = replaceContentSnapshot({

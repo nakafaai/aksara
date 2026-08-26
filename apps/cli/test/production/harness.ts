@@ -11,34 +11,7 @@ import type {
 } from "#cli/production/arguments";
 import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";
-import type { TargetCalls } from "#test/production/mock";
-
-interface ProductionCalls extends TargetCalls {
-  baseManifestHash: string | null | undefined;
-  baseReleaseId: string | null | undefined;
-  baseResultCount: number | undefined;
-  baseResultDigest: string | undefined;
-  bundleVerifyCalls: number;
-  keyId: string | undefined;
-  manifestMismatch: boolean;
-  privateKeyMatches: boolean;
-  publishCalls: number;
-  publishKind: string | undefined;
-  releaseId: string | undefined;
-  resumeBundle: ContentReleaseBundle | undefined;
-  resumeCalls: number;
-  rollbackInput:
-    | {
-        readonly proofManifestHash: string;
-        readonly releaseId: string;
-        readonly rollbackOf: string;
-      }
-    | undefined;
-  sha: string | undefined;
-  storedRelease: ContentReleaseBundle["release"] | null | undefined;
-  targetServiceReads: number;
-  verifiedBundle: ContentReleaseBundle | undefined;
-}
+import type { ProductionCalls } from "#test/production/mock";
 
 type PrepareContentReleaseInput = Parameters<typeof prepareContentRelease>[0];
 

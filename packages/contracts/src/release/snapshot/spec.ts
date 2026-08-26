@@ -1,36 +1,13 @@
 /** Publication scope and signed structured snapshot transition contracts. */
 import { Schema } from "effect";
 
+import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
+import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
 import {
-  type ContentFamily,
-  ContentFamilySchema,
-  compareContentHeads,
-} from "#contracts/content";
-import {
-  ContentKeySchema,
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "#contracts/ids";
-import { ArtifactLocaleSchema } from "#contracts/locale";
-import { compareCodeUnits } from "#contracts/text/order";
-
-/** Exact content selection retained only to authenticate predecessor releases. */
-const PredecessorContentPublicationIdentitySchema = Schema.Struct({
-  artifactLocale: ArtifactLocaleSchema,
-  contentKey: ContentKeySchema,
-  family: ContentFamilySchema,
-});
-type PredecessorContentPublicationIdentity =
-  typeof PredecessorContentPublicationIdentitySchema.Type;
-
-/** Orders predecessor scope identities exactly as their signed release did. */
-function comparePredecessorPublicationIdentities(
-  left: PredecessorContentPublicationIdentity,
-  right: PredecessorContentPublicationIdentity
-) {
-  const familyOrder = compareCodeUnits(left.family, right.family);
-  return familyOrder || compareContentHeads(left, right);
-}
+  hasCanonicalPredecessorContent,
+  type PredecessorContentPublicationIdentity,
+  PredecessorContentPublicationIdentitySchema,
+} from "#contracts/release/snapshot/predecessor-scope";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */
 export const EMPTY_SNAPSHOT_ROW_DIGEST = Sha256HashSchema.make(
@@ -54,13 +31,10 @@ function hasCanonicalPublicationScope(input: {
   readonly snapshots: readonly ContentSnapshotKind[];
 }) {
   const content = input.content ?? [];
-  const contentIsCanonical = content.every((identity, index) => {
-    const previous = content[index - 1];
-    return (
-      previous === undefined ||
-      comparePredecessorPublicationIdentities(previous, identity) < 0
-    );
-  });
+  const contentIsCanonical = hasCanonicalPredecessorContent(
+    content,
+    input.families
+  );
   const snapshotsAreCanonical = input.snapshots.every((family, index) => {
     const previous = input.snapshots[index - 1];
     if (previous === undefined) {
@@ -79,12 +53,8 @@ function hasCanonicalPublicationScope(input: {
         ContentFamilySchema.literals.indexOf(family)
     );
   });
-  const contentIsExact = content.every(
-    ({ family }) => !input.families.includes(family)
-  );
   return (
     contentIsCanonical &&
-    contentIsExact &&
     familiesAreCanonical &&
     snapshotsAreCanonical &&
     content.length + input.families.length + input.snapshots.length > 0

@@ -11,6 +11,7 @@ import {
   MaterialHeadSchema,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -75,6 +76,34 @@ export interface TargetCalls {
   snapshotCalls: number;
   sourceLayers: number;
   targetCalls: number;
+}
+
+/** Complete observable state owned by the production command harness. */
+export interface ProductionCalls extends TargetCalls {
+  baseManifestHash: string | null | undefined;
+  baseReleaseId: string | null | undefined;
+  baseResultCount: number | undefined;
+  baseResultDigest: string | undefined;
+  bundleVerifyCalls: number;
+  keyId: string | undefined;
+  manifestMismatch: boolean;
+  privateKeyMatches: boolean;
+  publishCalls: number;
+  publishKind: string | undefined;
+  releaseId: string | undefined;
+  resumeBundle: ContentReleaseBundle | undefined;
+  resumeCalls: number;
+  rollbackInput:
+    | {
+        readonly proofManifestHash: string;
+        readonly releaseId: string;
+        readonly rollbackOf: string;
+      }
+    | undefined;
+  sha: string | undefined;
+  storedRelease: ContentReleaseBundle["release"] | null | undefined;
+  targetServiceReads: number;
+  verifiedBundle: ContentReleaseBundle | undefined;
 }
 
 /** Supplies isolated production configuration without process variables. */

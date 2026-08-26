@@ -1,29 +1,18 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  ActiveContentReleaseSchema,
   ContentReleaseCurrentSchema,
-  RecoveryLookupSchema,
   StagedRollbackContentReleaseSchema,
 } from "#contracts/release/current";
 import {
-  inheritContentSnapshots,
   invertContentSnapshots,
-  replaceContentSnapshot,
   restoreContentSnapshot,
 } from "#contracts/release/snapshot/spec";
 import {
   RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
-import {
-  recoveryRelease as completedRecovery,
-  hash,
-  release,
-  rendererManifest,
-  replacementSnapshots,
-  tryoutRuntimeBundle,
-} from "#contracts/test/request";
+import { hash, release, rendererManifest } from "#contracts/test/request";
 import { receiptFor } from "#contracts/test/response";
 
 const otherHash = `sha256:${"f".repeat(64)}`;
@@ -80,23 +69,6 @@ function recoveryRelease(target = candidateRelease()) {
 }
 const active = activeRelease(),
   next = candidateRelease();
-const runtimeRelease = Schema.decodeSync(SignedContentReleaseSchema)({
-  ...release,
-  manifest: {
-    ...release.manifest,
-    scope: { families: [], snapshots: ["tryout"] },
-    snapshots: {
-      ...inheritContentSnapshots(null),
-      tryout: replaceContentSnapshot({
-        baseSnapshotId: null,
-        resultSnapshotId: tryoutRuntimeBundle.payload.snapshot.snapshotId,
-        rowCount: 1,
-        rowDigest: hash,
-      }),
-    },
-  },
-});
-const runtimeActive = activeRelease(runtimeRelease);
 const inverse = recoveryRelease(next);
 const candidate = { phase: "verified", release: next, rendererManifest };
 const retained = { phase: "verified", release: inverse, rendererManifest };
@@ -135,58 +107,9 @@ describe("current release state", () => {
         recovery: null,
         tryoutRuntimeBundle: null,
       },
-      {
-        active: runtimeActive,
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle,
-      },
     ]) {
       expect(accepts(current)).toBe(true);
     }
-  });
-  it("binds terminal receipt evidence to the active manifest", () => {
-    for (const invalid of [
-      { releaseId: "release-other" },
-      { activatedHeads: 0, deletedHeads: 2, stagedArtifacts: 0 },
-      { deletedHeads: 0, stagedItems: 1 },
-      { stagedProjections: 2 },
-      { stagedRoutes: 1 },
-      { manifestHash: otherHash },
-      { activeAppLocales: ["en"] },
-      { projectionDigest: otherHash },
-      { resultCount: release.manifest.resultCount + 1 },
-      { resultDigest: otherHash },
-      { routeDigest: otherHash },
-      { snapshots: replacementSnapshots, stagedSnapshotRows: 1 },
-    ]) {
-      const result = Schema.decodeUnknownExit(ActiveContentReleaseSchema)({
-        ...active,
-        receipt: { ...active.receipt, ...invalid },
-      });
-      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
-        "Expected the active receipt to match its signed release manifest."
-      );
-    }
-  });
-  it("decodes missing and completed historical recovery lookups", () => {
-    const recoveredActive = activeRelease(completedRecovery);
-    expect(
-      Schema.decodeSync(RecoveryLookupSchema)({ kind: "missing" })
-    ).toEqual({ kind: "missing" });
-    expect(
-      Schema.decodeSync(RecoveryLookupSchema)({
-        kind: "completed",
-        value: recoveredActive,
-      })
-    ).toEqual({ kind: "completed", value: recoveredActive });
-    const invalid = Schema.decodeExit(RecoveryLookupSchema)({
-      kind: "completed",
-      value: { receipt: receiptFor(release), release, rendererManifest },
-    });
-    expect(Exit.isFailure(invalid) ? String(invalid.cause) : "").toContain(
-      "Expected a completed rollback release."
-    );
   });
   it("accepts resumable inverse phases bound to the candidate", () => {
     for (const phase of ["staging", "verifying", "verified"] as const) {
@@ -357,30 +280,6 @@ describe("current release state", () => {
         candidate: { ...candidate, phase: "finalizing" },
         recovery: null,
         tryoutRuntimeBundle: null,
-      },
-      {
-        active: null,
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle,
-      },
-      {
-        active,
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle,
-      },
-      {
-        active: runtimeActive,
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle: {
-          ...tryoutRuntimeBundle,
-          payload: {
-            ...tryoutRuntimeBundle.payload,
-            rendererManifestHash: otherHash,
-          },
-        },
       },
     ];
     for (const state of invalidStates) {

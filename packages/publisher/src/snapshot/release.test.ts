@@ -1,66 +1,24 @@
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import {
-  PublicPathSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
-import {
-  ACTIVE_APP_LOCALES,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
-import {
-  QuranSearchRowSchema,
-  type QuranSnapshotRow,
-  QuranSnapshotRowSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/row";
-import {
-  type QuranSnapshot,
-  QuranSnapshotSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/spec";
-import { quranSourceFileCount } from "@nakafa/aksara-contracts/quran/source";
-import {
-  QURAN_SURAH_COUNT,
-  QURAN_VERSE_COUNT,
-} from "@nakafa/aksara-contracts/quran/spec";
-import type {
-  ContentSnapshotManifest,
-  ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot/data";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
   type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { TryoutCountrySchema } from "@nakafa/aksara-contracts/tryout/catalog";
-import {
-  digestTryoutCatalog,
-  makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/catalog-hash";
-import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
-import { materialGraph } from "#test/graph";
+import {
+  makeQuranSnapshotFixture,
+  type QuranFixture,
+  type TryoutFixture,
+  tryoutSnapshotFixture,
+} from "#test/snapshot";
 
 const checkoutRoot = resolve(process.cwd(), "..", "..");
-interface TryoutFixture {
-  readonly manifest: Extract<
-    ContentSnapshotManifest,
-    { readonly family: "tryout" }
-  >;
-  readonly rowCount: number;
-  /** Replays the representative technical row used by this unit test. */
-  readonly rows: Stream.Stream<ContentSnapshotRow>;
-}
-interface QuranFixture {
-  readonly manifest: QuranSnapshot;
-  readonly rowCount: number;
-  /** Replays the representative technical Quran rows used by this unit test. */
-  readonly rows: Stream.Stream<QuranSnapshotRow>;
-}
-const testHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranState = vi.hoisted((): { current: QuranFixture | undefined } => ({
   current: undefined,
 }));
@@ -89,102 +47,6 @@ vi.mock("#publisher/tryout/snapshot", async () => {
         : RuntimeEffect.succeed(tryoutState.current),
   };
 });
-
-/** Builds one valid technical Quran dependency fixture without corpus replay. */
-function makeQuranFixture(): QuranFixture {
-  const chunkCount = 1;
-  const runtimeCount = 1 + QURAN_SURAH_COUNT + chunkCount;
-  const searchCount = QURAN_SURAH_COUNT * ACTIVE_APP_LOCALES.length;
-  const manifest = QuranSnapshotSchema.make({
-    activeAppLocales: ACTIVE_APP_LOCALES,
-    attributionCount: 1,
-    chunkCount,
-    format: "localized-quran-snapshot",
-    projectionCount: runtimeCount + searchCount,
-    projectionDigest: testHash,
-    provenanceDigest: testHash,
-    provenanceStatus: "blocked",
-    runtimeCount,
-    runtimeDigest: testHash,
-    searchCount,
-    searchDigest: testHash,
-    snapshotId: testHash,
-    sourceBytes: 1,
-    sourceDigest: testHash,
-    sourceFileCount: quranSourceFileCount(ACTIVE_APP_LOCALES),
-    surahCount: QURAN_SURAH_COUNT,
-    tafsirLocales: ["id"],
-    verseCount: QURAN_VERSE_COUNT,
-  });
-  const row = QuranSnapshotRowSchema.make({
-    payload: QuranSearchRowSchema.make({
-      appLocale: AppLocaleSchema.make("en"),
-      graph: materialGraph(AppLocaleSchema.make("en"), "quran", "release"),
-      kind: "quran-search",
-      route: PublicPathSchema.make("quran/1"),
-      surahNumber: 1,
-      text: "Test-only Quran search text",
-      title: "Test Quran Release",
-    }),
-    rowHash: testHash,
-    snapshotId: manifest.snapshotId,
-  });
-  const rows = [row];
-  return {
-    manifest,
-    rowCount: rows.length,
-    rows: Stream.fromIterable(rows),
-  };
-}
-
-/** Builds one internally consistent technical try-out dependency fixture. */
-async function makeTryoutFixture(): Promise<TryoutFixture> {
-  const record = makeTryoutCatalogRecord(
-    TryoutCountrySchema.make({
-      appLocale: AppLocaleSchema.make("en"),
-      countryCode: "ID",
-      countryKey: "indonesia",
-      graph: materialGraph(AppLocaleSchema.make("en"), "tryout", "release"),
-      kind: "country",
-      order: 1,
-      publicPath: PublicPathSchema.make("try-out/indonesia"),
-      sourceRevision: "test-release",
-      title: "Test Indonesia",
-    })
-  );
-  const [catalog, placement] = await Effect.runPromise(
-    Effect.all([
-      digestTryoutCatalog(Stream.make(record)),
-      digestTryoutPlacements(Stream.empty),
-    ])
-  );
-  const counts = { country: 0, exam: 0, section: 0, set: 0, track: 0 };
-  counts[record.row.kind] = 1;
-  const routeCount =
-    "publicPath" in record.row && record.row.publicPath !== undefined ? 1 : 0;
-  const manifest = {
-    family: "tryout",
-    manifest: makeTryoutSnapshot({
-      activeAppLocales: ACTIVE_APP_LOCALES,
-      catalogDigest: catalog.digest,
-      counts,
-      placementCount: placement.count,
-      placementDigest: placement.digest,
-      routeCount,
-    }),
-  } satisfies TryoutFixture["manifest"];
-  const row = {
-    family: "tryout",
-    record,
-    rowKind: "catalog",
-  } satisfies ContentSnapshotRow;
-  const rows = [row];
-  return {
-    manifest,
-    rowCount: rows.length,
-    rows: Stream.fromIterable(rows),
-  };
-}
 
 /** Runs snapshot preparation and collects both replayable outputs. */
 function prepare(
@@ -236,15 +98,15 @@ function requireCompleteManifests(
   return { program, quran, tryout };
 }
 
-const quranFixture = makeQuranFixture();
-const tryoutFixture = await makeTryoutFixture();
+const quranFixture = makeQuranSnapshotFixture();
+const tryoutFixture = await Effect.runPromise(tryoutSnapshotFixture);
 quranState.current = quranFixture;
 tryoutState.current = tryoutFixture;
 const changedSnapshots = await prepare(null);
 const completeSnapshots = requireCompleteManifests(changedSnapshots.manifests);
 
 /** Builds one exact active structured set while varying only Quran identity. */
-function activeSnapshots(quranSnapshotId: typeof testHash | null) {
+function activeSnapshots(quranSnapshotId: Sha256Hash | null) {
   return ContentSnapshotSetSchema.make({
     program: inheritContentSnapshot(
       completeSnapshots.program.manifest.snapshotId
