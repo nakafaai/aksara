@@ -21,20 +21,22 @@ import {
 } from "#contracts/test/runtime/protected";
 
 describe("protected content runtime contract", () => {
-  it("decodes one bounded batch of exact body selectors", async () => {
-    expect(MAX_PROTECTED_RUNTIME_SELECTORS).toBe(64);
-    expect(MAX_PROTECTED_RUNTIME_REQUEST_BYTES).toBe(64 * 1024);
-    expect(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES).toBe(4 * 1024 * 1024);
-    expect(
-      accepts(ProtectedContentRuntimeRequestSchema, protectedRequest)
-    ).toBe(true);
-    expect(
-      accepts(ProtectedContentRuntimeRequestSchema, protectedAnswerRequest)
-    ).toBe(true);
-    await expect(
-      Effect.runPromise(decodeProtectedContentRuntimeRequest(protectedRequest))
-    ).resolves.toEqual(protectedRequest);
-  });
+  it.effect("decodes one bounded batch of exact body selectors", () =>
+    Effect.gen(function* () {
+      expect(MAX_PROTECTED_RUNTIME_SELECTORS).toBe(64);
+      expect(MAX_PROTECTED_RUNTIME_REQUEST_BYTES).toBe(64 * 1024);
+      expect(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES).toBe(4 * 1024 * 1024);
+      expect(
+        accepts(ProtectedContentRuntimeRequestSchema, protectedRequest)
+      ).toBe(true);
+      expect(
+        accepts(ProtectedContentRuntimeRequestSchema, protectedAnswerRequest)
+      ).toBe(true);
+      expect(
+        yield* decodeProtectedContentRuntimeRequest(protectedRequest)
+      ).toEqual(protectedRequest);
+    })
+  );
 
   it("rejects mismatched, empty, duplicate, and oversized selectors", () => {
     const mismatchedDelivery = Schema.decodeExit(
@@ -95,39 +97,43 @@ describe("protected content runtime contract", () => {
     }
   });
 
-  it("accepts exact found, missing, and sanitized failure responses", async () => {
-    expect(protectedRuntimeResponseBytes(protectedFound)).toBeLessThan(
-      MAX_PROTECTED_RUNTIME_RESPONSE_BYTES
-    );
-    for (const response of [
-      protectedFound,
-      { kind: "missing" },
-      { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
-      { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
-      { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
-      { code: "CONTENT_RUNTIME_RESPONSE_TOO_LARGE", kind: "failure" },
-    ]) {
-      expect(accepts(ProtectedContentRuntimeResponseSchema, response)).toBe(
-        true
-      );
-    }
-    await expect(
-      Effect.runPromise(decodeProtectedContentRuntimeResponse(protectedFound))
-    ).resolves.toEqual(protectedFound);
+  it.effect(
+    "accepts exact found, missing, and sanitized failure responses",
+    () =>
+      Effect.gen(function* () {
+        expect(protectedRuntimeResponseBytes(protectedFound)).toBeLessThan(
+          MAX_PROTECTED_RUNTIME_RESPONSE_BYTES
+        );
+        for (const response of [
+          protectedFound,
+          { kind: "missing" },
+          { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
+          { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
+          { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
+          { code: "CONTENT_RUNTIME_RESPONSE_TOO_LARGE", kind: "failure" },
+        ]) {
+          expect(accepts(ProtectedContentRuntimeResponseSchema, response)).toBe(
+            true
+          );
+        }
+        expect(
+          yield* decodeProtectedContentRuntimeResponse(protectedFound)
+        ).toEqual(protectedFound);
 
-    const duplicateArtifacts = Schema.decodeExit(
-      ProtectedContentRuntimeResponseSchema
-    )({
-      ...protectedFound,
-      items: [protectedFound.items[0], protectedFound.items[0]],
-    });
-    expect(Exit.isFailure(duplicateArtifacts)).toBe(true);
-    if (Exit.isFailure(duplicateArtifacts)) {
-      expect(String(duplicateArtifacts.cause)).toContain(
-        "Expected unique protected runtime artifacts."
-      );
-    }
-  });
+        const duplicateArtifacts = Schema.decodeExit(
+          ProtectedContentRuntimeResponseSchema
+        )({
+          ...protectedFound,
+          items: [protectedFound.items[0], protectedFound.items[0]],
+        });
+        expect(Exit.isFailure(duplicateArtifacts)).toBe(true);
+        if (Exit.isFailure(duplicateArtifacts)) {
+          expect(String(duplicateArtifacts.cause)).toContain(
+            "Expected unique protected runtime artifacts."
+          );
+        }
+      })
+  );
 
   it("rejects a found response above its exact JSON byte ceiling", () => {
     const oversized = {
