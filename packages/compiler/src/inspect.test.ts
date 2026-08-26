@@ -1,119 +1,190 @@
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
+import { vi } from "vitest";
 import { compileContent } from "#compiler/compile";
 import { extractAuthoredBody, inspectContentSource } from "#compiler/inspect";
-import { testRendererDomains } from "#compiler/test/renderer";
+import { createTestRendererManifest } from "#compiler/test/content";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "InlineMath", version: 1 }],
-      supportedComponents: [{ name: "InlineMath", version: 1 }],
+const sourcePolicyState = vi.hoisted(() => ({ failTransformer: false }));
+vi.mock("#compiler/source-policy", async (importOriginal) => {
+  const original =
+    await importOriginal<typeof import("#compiler/source-policy")>();
+  return {
+    ...original,
+    /** Adds one deterministic transformer defect for boundary coverage. */
+    createSourcePolicy(
+      ...input: Parameters<typeof original.createSourcePolicy>
+    ) {
+      const policy = original.createSourcePolicy(...input);
+      if (!sourcePolicyState.failTransformer) {
+        return policy;
+      }
+      return {
+        ...policy,
+        remarkPlugins: [
+          () => () => {
+            throw new Error("Source policy transformer failed.");
+          },
+          ...policy.remarkPlugins,
+        ],
+      };
     },
-    domains: testRendererDomains({
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
-    }),
-    publishedDomains: ["mathematics"],
-  })
-);
-const SHA256_PREFIX = /^sha256:/u;
+  };
+});
 
-const request = {
-  artifactLocale: "en",
-  contentKey: "test:inspection",
-  rawMdx: `export const metadata = { title: "Real title" }\n\n## Body`,
-  rendererDomain: "mathematics",
-  rendererManifest,
-  sourcePath: "packages/corpus/material/test/en.mdx",
-};
+const SHA256_PREFIX = /^sha256:/u;
+const TRANSFORMER_FAILURE = /Source policy transformer failed/u;
+const testRequest = createTestRendererManifest({
+  authoringComponents: [{ name: "InlineMath", version: 1 }],
+  domains: {
+    mathematics: [{ name: "FunctionMachine", version: 1 }],
+  },
+}).pipe(
+  Effect.map((rendererManifest) => ({
+    artifactLocale: "en",
+    contentKey: "test:inspection",
+    rawMdx: `export const metadata = { title: "Real title" }\n\n## Body`,
+    rendererDomain: "mathematics",
+    rendererManifest,
+    sourcePath: "packages/corpus/material/test/en.mdx",
+  }))
+);
+
+afterEach(() => {
+  sourcePolicyState.failTransformer = false;
+});
 
 describe("content source inspection", () => {
-  it("returns metadata and stable compiler inputs without emitted code", async () => {
-    const first = await Effect.runPromise(inspectContentSource(request));
-    const second = await Effect.runPromise(inspectContentSource(request));
-    const compiled = await Effect.runPromise(compileContent(request));
+  it.effect("returns stable metadata and hashes without emitted code", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const first = yield* inspectContentSource(request);
+      const second = yield* inspectContentSource(request);
+      const compiled = yield* compileContent(request);
+      assert.deepStrictEqual(first, second);
+      assert.strictEqual(first.bodyMdx, "\n\n## Body");
+      assert.deepStrictEqual(first.metadata, { title: "Real title" });
+      assert.match(first.sourceHash, SHA256_PREFIX);
+      assert.match(first.compilerConfigHash, SHA256_PREFIX);
+      assert.strictEqual(first.sourceHash, compiled.payload.sourceHash);
+      assert.strictEqual(
+        first.compilerConfigHash,
+        compiled.payload.compilerConfigHash
+      );
+      assert.ok(!("compiledCode" in first));
+    })
+  );
 
-    expect(first).toEqual(second);
-    expect(first.bodyMdx).toBe("\n\n## Body");
-    expect(first.metadata).toEqual({ title: "Real title" });
-    expect(first.sourceHash).toMatch(SHA256_PREFIX);
-    expect(first.compilerConfigHash).toMatch(SHA256_PREFIX);
-    expect(first.sourceHash).toBe(compiled.payload.sourceHash);
-    expect(first.compilerConfigHash).toBe(compiled.payload.compilerConfigHash);
-    expect(first).not.toHaveProperty("compiledCode");
-  });
+  it.effect("rejects list-shaped headings before reuse decisions", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        inspectContentSource({
+          ...request,
+          rawMdx: `${request.rawMdx}\n\n#### 1. First item`,
+        })
+      );
+      assert.strictEqual(error._tag, "AuthoredListHeadingError");
+      if (error._tag === "AuthoredListHeadingError") {
+        assert.deepStrictEqual(error.occurrences, [
+          { column: 1, depth: 4, line: 5, marker: "1." },
+        ]);
+      }
+    })
+  );
 
-  it("keeps malformed MDX in the typed compilation error channel", async () => {
-    const error = await Effect.runPromise(
-      inspectContentSource({ ...request, rawMdx: "<" }).pipe(Effect.flip)
-    );
+  it.effect("keeps malformed MDX in the typed error channel", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        inspectContentSource({ ...request, rawMdx: "<" })
+      );
+      assert.strictEqual(error._tag, "MdxCompilationError");
+      if (error._tag === "MdxCompilationError") {
+        assert.strictEqual(error.contentKey, "test:inspection");
+      }
+    })
+  );
 
-    expect(error).toMatchObject({
-      _tag: "MdxCompilationError",
-      contentKey: "test:inspection",
-    });
-  });
+  it.effect(
+    "maps source-policy transformer defects to compilation errors",
+    () =>
+      Effect.gen(function* () {
+        sourcePolicyState.failTransformer = true;
+        const request = yield* testRequest;
+        const error = yield* Effect.flip(inspectContentSource(request));
+        assert.strictEqual(error._tag, "MdxCompilationError");
+        if (error._tag === "MdxCompilationError") {
+          assert.strictEqual(error.contentKey, "test:inspection");
+          assert.match(error.message, TRANSFORMER_FAILURE);
+        }
+      })
+  );
 
-  it("fails closed when validated metadata has no source range", async () => {
-    const error = await Effect.runPromise(
-      extractAuthoredBody(
-        ContentKeySchema.make(request.contentKey),
-        request.rawMdx,
-        undefined
-      ).pipe(Effect.flip)
-    );
+  it.effect("fails when validated metadata has no source range", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        extractAuthoredBody(
+          ContentKeySchema.make(request.contentKey),
+          request.rawMdx,
+          undefined
+        )
+      );
+      assert.strictEqual(error._tag, "MdxCompilationError");
+      assert.strictEqual(error.cause, "metadata-source-range");
+      assert.strictEqual(error.contentKey, request.contentKey);
+    })
+  );
 
-    expect(error).toMatchObject({
-      _tag: "MdxCompilationError",
-      cause: "metadata-source-range",
-      contentKey: request.contentKey,
-    });
-  });
+  it.effect("fails when parser offsets do not match source", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        inspectContentSource({
+          ...request,
+          rawMdx: `\uFEFF${request.rawMdx}`,
+        })
+      );
+      assert.strictEqual(error._tag, "MdxCompilationError");
+      if (error._tag === "MdxCompilationError") {
+        assert.strictEqual(error.cause, "metadata-source-range");
+      }
+    })
+  );
 
-  it("fails closed when parser offsets do not match the authored source", async () => {
-    const error = await Effect.runPromise(
-      inspectContentSource({
-        ...request,
-        rawMdx: `\uFEFF${request.rawMdx}`,
-      }).pipe(Effect.flip)
-    );
+  it.effect("rejects oversized source before parsing", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        inspectContentSource({
+          ...request,
+          rawMdx: "x".repeat(MAX_RAW_MDX_BYTES + 1),
+        })
+      );
+      assert.strictEqual(error._tag, "ContentByteLimitExceededError");
+      if (error._tag === "ContentByteLimitExceededError") {
+        assert.strictEqual(error.field, "rawMdx");
+        assert.strictEqual(error.maxBytes, MAX_RAW_MDX_BYTES);
+      }
+    })
+  );
 
-    expect(error).toMatchObject({
-      _tag: "MdxCompilationError",
-      cause: "metadata-source-range",
-      contentKey: request.contentKey,
-    });
-  });
-
-  it("rejects oversized source before parsing it", async () => {
-    const error = await Effect.runPromise(
-      inspectContentSource({
-        ...request,
-        rawMdx: "x".repeat(MAX_RAW_MDX_BYTES + 1),
-      }).pipe(Effect.flip)
-    );
-
-    expect(error).toMatchObject({
-      _tag: "ContentByteLimitExceededError",
-      field: "rawMdx",
-      maxBytes: MAX_RAW_MDX_BYTES,
-    });
-  });
-
-  it("preserves static metadata failures without evaluating source code", async () => {
-    const error = await Effect.runPromise(
-      inspectContentSource({
-        ...request,
-        rawMdx: "export const metadata = getMetadata()",
-      }).pipe(Effect.flip)
-    );
-
-    expect(error).toMatchObject({
-      _tag: "AuthoredMetadataSyntaxError",
-      reasons: ["dynamic-value"],
-    });
-  });
+  it.effect("preserves static metadata failures without evaluation", () =>
+    Effect.gen(function* () {
+      const request = yield* testRequest;
+      const error = yield* Effect.flip(
+        inspectContentSource({
+          ...request,
+          rawMdx: "export const metadata = getMetadata()",
+        })
+      );
+      assert.strictEqual(error._tag, "AuthoredMetadataSyntaxError");
+      if (error._tag === "AuthoredMetadataSyntaxError") {
+        assert.deepStrictEqual(error.reasons, ["dynamic-value"]);
+      }
+    })
+  );
 });

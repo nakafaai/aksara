@@ -1,6 +1,6 @@
 import { compile, createProcessor } from "@mdx-js/mdx";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
@@ -14,155 +14,168 @@ import {
 const VALID_METADATA = "export const metadata = {}";
 const contentKey = ContentKeySchema.make("test:metadata");
 
-/** Compiles test MDX and returns the metadata captured by the plugin. */
-async function collectMetadata(rawMdx: string) {
+/** Compiles test MDX and returns metadata captured by the remark plugin. */
+const collectMetadata = Effect.fn("MetadataTest.collectMetadata")(function* (
+  rawMdx: string
+) {
   const collector: MetadataCollector = {
     candidates: [],
     syntaxReasons: [],
   };
-  const output = await compile(rawMdx, {
-    outputFormat: "function-body",
-    remarkPlugins: [extractMetadata(collector)],
-  });
+  const output = yield* Effect.promise(() =>
+    compile(rawMdx, {
+      outputFormat: "function-body",
+      remarkPlugins: [extractMetadata(collector)],
+    })
+  );
   return { collector, output: String(output) };
-}
+});
 
 /** Returns the typed validation failure for one invalid metadata fixture. */
-async function rejectMetadata(rawMdx: string) {
-  const { collector } = await collectMetadata(rawMdx);
-  return Effect.runPromise(
-    validateMetadata(contentKey, collector).pipe(Effect.flip)
-  );
-}
+const rejectMetadata = Effect.fn("MetadataTest.rejectMetadata")(function* (
+  rawMdx: string
+) {
+  const { collector } = yield* collectMetadata(rawMdx);
+  return yield* Effect.flip(validateMetadata(contentKey, collector));
+});
 
 /** Runs metadata extraction directly against a typed MDX tree fixture. */
-async function collectTree(tree: Root) {
+const collectTree = Effect.fn("MetadataTest.collectTree")(function* (
+  tree: Root
+) {
   const collector: MetadataCollector = {
     candidates: [],
     syntaxReasons: [],
   };
-  const output = await unified().use(extractMetadata(collector)).run(tree);
+  const output = yield* Effect.promise(() =>
+    unified().use(extractMetadata(collector)).run(tree)
+  );
   return { collector, output };
-}
+});
+
+/** Parses one valid test fixture through the installed MDX processor. */
+const parseMdx = Effect.fn("MetadataTest.parseMdx")((rawMdx: string) =>
+  Effect.try(() => createProcessor({ format: "mdx" }).parse(rawMdx))
+);
 
 describe("authored metadata", () => {
-  it("accepts one static object and removes it from compiled output", async () => {
-    const { collector, output } = await collectMetadata(
-      `export const metadata = {
-        title: "Test",
-        "published": true,
+  it.effect("accepts one static object and removes it from output", () =>
+    Effect.gen(function* () {
+      const { collector, output } = yield* collectMetadata(
+        `export const metadata = {
+          title: "Test",
+          "published": true,
+          count: 1,
+          optional: null,
+          nested: [{ enabled: false }, ["value"]],
+        }\n\n## Test`
+      );
+      const metadata = yield* validateMetadata(contentKey, collector);
+      assert.deepStrictEqual(metadata, {
         count: 1,
-        optional: null,
         nested: [{ enabled: false }, ["value"]],
-      }\n\n## Test`
-    );
+        optional: null,
+        published: true,
+        title: "Test",
+      });
+      assert.ok(!output.includes("metadata"));
+    })
+  );
 
-    await expect(
-      Effect.runPromise(validateMetadata(contentKey, collector))
-    ).resolves.toEqual({
-      count: 1,
-      nested: [{ enabled: false }, ["value"]],
-      optional: null,
-      published: true,
-      title: "Test",
-    });
-    expect(output).not.toContain("metadata");
-  });
+  it.effect("requires exactly one authored metadata export", () =>
+    Effect.gen(function* () {
+      const missing = yield* rejectMetadata("## Test");
+      const duplicate = yield* rejectMetadata(
+        `${VALID_METADATA}\n\n${VALID_METADATA}`
+      );
+      assert.strictEqual(missing._tag, "AuthoredMetadataMissingError");
+      assert.strictEqual(duplicate._tag, "AuthoredMetadataDuplicateError");
+    })
+  );
 
-  it("requires exactly one authored metadata export", async () => {
-    const missing = await rejectMetadata("## Test");
-    const duplicate = await rejectMetadata(
-      `${VALID_METADATA}\n\n${VALID_METADATA}`
-    );
-
-    expect(missing._tag).toBe("AuthoredMetadataMissingError");
-    expect(duplicate._tag).toBe("AuthoredMetadataDuplicateError");
-  });
-
-  it("does not invent missing metadata source offsets", async () => {
-    const tree = createProcessor({ format: "mdx" }).parse(VALID_METADATA);
-    const document = await Effect.runPromise(
-      readMetadataDocument(contentKey, {
+  it.effect("does not invent missing metadata source offsets", () =>
+    Effect.gen(function* () {
+      const tree = yield* parseMdx(VALID_METADATA);
+      const document = yield* readMetadataDocument(contentKey, {
         ...tree,
         children: tree.children.map(({ position: _position, ...node }) => node),
-      })
-    );
+      });
+      assert.deepStrictEqual(document.metadata, {});
+      assert.strictEqual(document.sourceRange, undefined);
+      assert.deepStrictEqual(document.bodyTree.children, []);
+    })
+  );
 
-    expect(document).toEqual({ metadata: {}, sourceRange: undefined });
-  });
-
-  it("records the exact metadata module when other exports precede it", async () => {
-    const rawMdx = `export const note = "x"\n\n${VALID_METADATA}`;
-    const document = await Effect.runPromise(
-      readMetadataDocument(
-        contentKey,
-        createProcessor({ format: "mdx" }).parse(rawMdx)
-      )
-    );
-    const start = rawMdx.indexOf(VALID_METADATA);
-
-    expect(document).toEqual({
-      metadata: {},
-      sourceRange: {
+  it.effect("returns the body tree without the metadata module", () =>
+    Effect.gen(function* () {
+      const rawMdx = `export const note = "x"\n\n${VALID_METADATA}`;
+      const tree = yield* parseMdx(rawMdx);
+      const document = yield* readMetadataDocument(contentKey, tree);
+      const start = rawMdx.indexOf(VALID_METADATA);
+      assert.deepStrictEqual(document.metadata, {});
+      assert.deepStrictEqual(document.sourceRange, {
         end: start + VALID_METADATA.length,
         source: VALID_METADATA,
         start,
-      },
-    });
-  });
+      });
+      assert.strictEqual(document.bodyTree.children.length, 1);
+      assert.strictEqual(document.bodyTree.children[0]?.type, "mdxjsEsm");
+    })
+  );
 
-  it("handles incomplete ESTree metadata without an implicit fallback", async () => {
-    const missingProgram = await collectTree({
-      children: [{ type: "mdxjsEsm", value: VALID_METADATA }],
-      type: "root",
-    });
-    const missingInitializer = await collectTree({
-      children: [
-        {
-          data: {
-            estree: {
-              body: [
-                {
-                  attributes: [],
-                  declaration: {
-                    declarations: [
-                      {
-                        id: { name: "metadata", type: "Identifier" },
-                        init: null,
-                        type: "VariableDeclarator",
-                      },
-                    ],
-                    kind: "const",
-                    type: "VariableDeclaration",
+  it.effect("handles incomplete ESTree metadata without fallback", () =>
+    Effect.gen(function* () {
+      const missingProgram = yield* collectTree({
+        children: [{ type: "mdxjsEsm", value: VALID_METADATA }],
+        type: "root",
+      });
+      const missingInitializer = yield* collectTree({
+        children: [
+          {
+            data: {
+              estree: {
+                body: [
+                  {
+                    attributes: [],
+                    declaration: {
+                      declarations: [
+                        {
+                          id: { name: "metadata", type: "Identifier" },
+                          init: null,
+                          type: "VariableDeclarator",
+                        },
+                      ],
+                      kind: "const",
+                      type: "VariableDeclaration",
+                    },
+                    source: null,
+                    specifiers: [],
+                    type: "ExportNamedDeclaration",
                   },
-                  source: null,
-                  specifiers: [],
-                  type: "ExportNamedDeclaration",
-                },
-              ],
-              sourceType: "module",
-              type: "Program",
+                ],
+                sourceType: "module",
+                type: "Program",
+              },
             },
+            type: "mdxjsEsm",
+            value: VALID_METADATA,
           },
-          type: "mdxjsEsm",
-          value: VALID_METADATA,
-        },
-      ],
-      type: "root",
-    });
+        ],
+        type: "root",
+      });
+      assert.deepStrictEqual(missingProgram.collector, {
+        candidates: [],
+        syntaxReasons: [],
+      });
+      assert.strictEqual(missingProgram.output.children.length, 1);
+      assert.deepStrictEqual(missingInitializer.collector.syntaxReasons, [
+        "invalid-declaration",
+      ]);
+      assert.strictEqual(missingInitializer.output.children.length, 0);
+    })
+  );
 
-    expect(missingProgram.collector).toEqual({
-      candidates: [],
-      syntaxReasons: [],
-    });
-    expect(missingProgram.output.children).toHaveLength(1);
-    expect(missingInitializer.collector.syntaxReasons).toEqual([
-      "invalid-declaration",
-    ]);
-    expect(missingInitializer.output.children).toHaveLength(0);
-  });
-
-  it.each([
+  it.effect.each([
     ["dynamic-value", "export const metadata = getMetadata()"],
     ["dynamic-value", "export const metadata = /pattern/"],
     ["dynamic-value", "export const metadata = [getMetadata()]"],
@@ -180,12 +193,13 @@ describe("authored metadata", () => {
     ["mixed-metadata-module", `${VALID_METADATA}; export default true`],
     ["mixed-metadata-module", `${VALID_METADATA}; export const hidden = true`],
     ["metadata-not-object", 'export const metadata = "invalid"'],
-  ])("rejects %s metadata syntax", async (reason, rawMdx) => {
-    const error = await rejectMetadata(rawMdx);
-
-    expect(error._tag).toBe("AuthoredMetadataSyntaxError");
-    if (error._tag === "AuthoredMetadataSyntaxError") {
-      expect(error.reasons).toContain(reason);
-    }
-  });
+  ] as const)("rejects %s metadata syntax", ([reason, rawMdx]) =>
+    Effect.gen(function* () {
+      const error = yield* rejectMetadata(rawMdx);
+      assert.strictEqual(error._tag, "AuthoredMetadataSyntaxError");
+      if (error._tag === "AuthoredMetadataSyntaxError") {
+        assert.ok(error.reasons.includes(reason));
+      }
+    })
+  );
 });

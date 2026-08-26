@@ -1,5 +1,4 @@
 import {
-  type CompileDocumentRequest,
   CompiledContentPayloadSchema,
   canonicalizeCompiledContentPayload,
 } from "@nakafa/aksara-contracts/content";
@@ -15,12 +14,12 @@ import type {
   CompileContentError,
   CompiledContentResult,
 } from "#compiler/compile";
-import { createCompilerConfigHash } from "#compiler/config";
-import {
-  compileValidatedContent,
-  validateCompileRequest,
-} from "#compiler/engine";
+import { compileContent } from "#compiler/compile";
 import { hashUtf8 } from "#compiler/hash";
+import {
+  type ContentSourceInspection,
+  inspectContentSource,
+} from "#compiler/inspect";
 import type {
   AuthoredMetadata,
   AuthoredMetadataValue,
@@ -127,25 +126,17 @@ function hashResult(result: CompiledContentResult) {
   );
 }
 
-/** Derives cache identity only from validated source and compiler inputs. */
-const makeIdentity = Effect.fn("AksaraCompiler.makeCompileIdentity")(
-  (request: CompileDocumentRequest) =>
-    createCompilerConfigHash(
-      request.rendererManifest,
-      request.rendererDomain
-    ).pipe(
-      Effect.map((compilerConfigHash) =>
-        CompileIdentitySchema.make({
-          artifactLocale: request.artifactLocale,
-          compilerConfigHash,
-          contentKey: request.contentKey,
-          rendererDomain: request.rendererDomain,
-          sourceHash: hashUtf8(request.rawMdx),
-          sourcePath: request.sourcePath,
-        })
-      )
-    )
-);
+/** Derives cache identity from a fully inspected source. */
+function makeIdentity(inspection: ContentSourceInspection) {
+  return CompileIdentitySchema.make({
+    artifactLocale: inspection.artifactLocale,
+    compilerConfigHash: inspection.compilerConfigHash,
+    contentKey: inspection.contentKey,
+    rendererDomain: inspection.rendererDomain,
+    sourceHash: inspection.sourceHash,
+    sourcePath: inspection.sourcePath,
+  });
+}
 
 /** Creates one unsigned local-only cache value from fresh compiler output. */
 function makeCache(
@@ -226,30 +217,27 @@ export const compileIncremental: (
 ) => Effect.Effect<IncrementalResult, CompileContentError> = Effect.fn(
   "AksaraCompiler.compileIncremental"
 )((request: unknown, cache?: unknown) =>
-  validateCompileRequest(request).pipe(
-    Effect.flatMap((decoded) =>
-      makeIdentity(decoded).pipe(
-        Effect.flatMap((identity) => {
-          const lookup = lookupCache(cache, identity);
-          if (lookup.kind === "hit") {
-            return Effect.succeed<IncrementalResult>({
-              cache: lookup.entry,
-              kind: "unchanged",
-              result: lookup.entry.result,
-            });
-          }
-          return compileValidatedContent(decoded).pipe(
-            Effect.map(
-              (result): IncrementalResult => ({
-                cache: makeCache(identity, result),
-                kind: "compiled",
-                reason: lookup.reason,
-                result,
-              })
-            )
-          );
-        })
-      )
-    )
+  inspectContentSource(request).pipe(
+    Effect.flatMap((inspection) => {
+      const identity = makeIdentity(inspection);
+      const lookup = lookupCache(cache, identity);
+      if (lookup.kind === "hit") {
+        return Effect.succeed<IncrementalResult>({
+          cache: lookup.entry,
+          kind: "unchanged",
+          result: lookup.entry.result,
+        });
+      }
+      return compileContent(request).pipe(
+        Effect.map(
+          (result): IncrementalResult => ({
+            cache: makeCache(identity, result),
+            kind: "compiled",
+            reason: lookup.reason,
+            result,
+          })
+        )
+      );
+    })
   )
 );

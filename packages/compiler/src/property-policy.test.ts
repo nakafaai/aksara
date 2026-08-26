@@ -1,31 +1,36 @@
 import { compile } from "@mdx-js/mdx";
+import { describe, expect, it } from "@nakafa/testing/effect";
+import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import type { Paragraph, Root } from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
-import { describe, expect, it } from "vitest";
 import { readNodeProgram } from "#compiler/ast/program";
 import type { ExecutablePolicyViolation } from "#compiler/errors";
 import { inspectPropertyProgram } from "#compiler/property-policy";
 
 /** Runs direct property-policy inspection against each attached MDX program. */
-async function inspectProperties(rawMdx: string) {
-  const violations: ExecutablePolicyViolation[] = [];
-  /** Captures property findings from every ESTree program attached by MDX. */
-  const inspectPlugin: Plugin<[], Root> = () => (tree) => {
-    visit(tree, (node) => {
-      const program = readNodeProgram(node);
-      if (program) {
-        violations.push(...inspectPropertyProgram(program));
-      }
-    });
-  };
-  await compile(rawMdx, { remarkPlugins: [inspectPlugin] });
-  return violations;
-}
+const inspectProperties = Effect.fn("PropertyPolicyTest.inspectProperties")(
+  function* (rawMdx: string) {
+    const violations: ExecutablePolicyViolation[] = [];
+    /** Captures property findings from every ESTree program attached by MDX. */
+    const inspectPlugin: Plugin<[], Root> = () => (tree) => {
+      visit(tree, (node) => {
+        const program = readNodeProgram(node);
+        if (program) {
+          violations.push(...inspectPropertyProgram(program));
+        }
+      });
+    };
+    yield* Effect.promise(() =>
+      compile(rawMdx, { remarkPlugins: [inspectPlugin] })
+    );
+    return violations;
+  }
+);
 
 describe("inspectPropertyProgram", () => {
-  it.each([
+  it.effect.each([
     ["constructor", '{[].filter.constructor("return process")()}'],
     ["constructor", '{({}).constructor.constructor("return process")()}'],
     ["constructor", '{Math.constructor("return process")()}'],
@@ -42,17 +47,16 @@ describe("inspectPropertyProgram", () => {
       '{Object.getOwnPropertyDescriptor(Object, "constructor")}',
     ],
     ["getPrototypeOf", "{Object.getPrototypeOf([])}"],
-  ] as const)(
-    "rejects prototype-chain property %s",
-    async (identifier, rawMdx) => {
-      await expect(inspectProperties(rawMdx)).resolves.toContainEqual({
+  ] as const)("rejects prototype-chain property %s", ([identifier, rawMdx]) =>
+    Effect.gen(function* () {
+      expect(yield* inspectProperties(rawMdx)).toContainEqual({
         identifier,
         rule: "prototype-chain-access",
       });
-    }
+    })
   );
 
-  it.each([
+  it.effect.each([
     '{((value) => ({})[value + "safe"])("key")}',
     '{((value) => ({})["safe" + value])("key")}',
     ["{((value) => ({})[`safe$", '{value}`])("key")}'].join(""),
@@ -60,57 +64,63 @@ describe("inspectPropertyProgram", () => {
     "{({})[String.fromCharCode(99, 111, 110, 115, 116, 114, 117, 99, 116, 111, 114)]}",
     '{((key) => (({ [key]: value }) => value)({}))("constructor")}',
     "{(({ [String.fromCharCode(99)]: value }) => value)({})}",
-  ])("rejects runtime-computed property access", async (rawMdx) => {
-    await expect(inspectProperties(rawMdx)).resolves.toContainEqual({
-      rule: "dynamic-property-access",
-    });
-  });
+  ])("rejects runtime-computed property access", (rawMdx) =>
+    Effect.gen(function* () {
+      expect(yield* inspectProperties(rawMdx)).toContainEqual({
+        rule: "dynamic-property-access",
+      });
+    })
+  );
 
-  it.each([
+  it.effect.each([
     "{({})[1]}",
     '{({})["safe"]}',
     "{(() => { const a = [4, 1, 0]; const b = [2, 3, 0]; return a.map((component, index) => component + b.at(index)); })()}",
     '{<div title="safe" />}',
     '{<div xml:lang="en" />}',
-  ])("keeps safe static-property and JSX forms", async (rawMdx) => {
-    await expect(inspectProperties(rawMdx)).resolves.toEqual([]);
-  });
+  ])("keeps safe static-property and JSX forms", (rawMdx) =>
+    Effect.gen(function* () {
+      expect(yield* inspectProperties(rawMdx)).toEqual([]);
+    })
+  );
 
-  it("rejects static template and object-form HTML injection", async () => {
-    const template = await inspectProperties("{({})[`constructor`]}");
-    const htmlProgram: Program = {
-      body: [
-        {
-          expression: {
-            properties: [
-              {
-                computed: false,
-                key: { name: "dangerouslySetInnerHTML", type: "Identifier" },
-                kind: "init",
-                method: false,
-                shorthand: false,
-                type: "Property",
-                value: { properties: [], type: "ObjectExpression" },
-              },
-            ],
-            type: "ObjectExpression",
+  it.effect("rejects static template and object-form HTML injection", () =>
+    Effect.gen(function* () {
+      const template = yield* inspectProperties("{({})[`constructor`]}");
+      const htmlProgram: Program = {
+        body: [
+          {
+            expression: {
+              properties: [
+                {
+                  computed: false,
+                  key: { name: "dangerouslySetInnerHTML", type: "Identifier" },
+                  kind: "init",
+                  method: false,
+                  shorthand: false,
+                  type: "Property",
+                  value: { properties: [], type: "ObjectExpression" },
+                },
+              ],
+              type: "ObjectExpression",
+            },
+            type: "ExpressionStatement",
           },
-          type: "ExpressionStatement",
-        },
-      ],
-      sourceType: "module",
-      type: "Program",
-    };
+        ],
+        sourceType: "module",
+        type: "Program",
+      };
 
-    expect(template).toContainEqual({
-      identifier: "constructor",
-      rule: "prototype-chain-access",
-    });
-    expect(inspectPropertyProgram(htmlProgram)).toContainEqual({
-      identifier: "dangerouslySetInnerHTML",
-      rule: "dangerous-jsx-attribute",
-    });
-  });
+      expect(template).toContainEqual({
+        identifier: "constructor",
+        rule: "prototype-chain-access",
+      });
+      expect(inspectPropertyProgram(htmlProgram)).toContainEqual({
+        identifier: "dangerouslySetInnerHTML",
+        rule: "dangerous-jsx-attribute",
+      });
+    })
+  );
 
   it("handles raw template keys and non-identifier member properties", () => {
     const program: Program = {

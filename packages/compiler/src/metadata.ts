@@ -246,12 +246,15 @@ export const readMetadataDocument = Effect.fn(
     candidates: [],
     syntaxReasons: [],
   };
+  const bodyChildren: RootContent[] = [];
   let sourceRange: MetadataSourceRange | undefined;
   for (const node of tree.children) {
     if (node.type !== "mdxjsEsm") {
+      bodyChildren.push(node);
       continue;
     }
     if (collectMetadata(node, collector)) {
+      bodyChildren.push(node);
       continue;
     }
     const start = node.position?.start.offset;
@@ -261,5 +264,6 @@ export const readMetadataDocument = Effect.fn(
     }
   }
   const metadata = yield* validateMetadata(contentKey, collector);
-  return { metadata, sourceRange };
+  const bodyTree: Root = { ...tree, children: bodyChildren };
+  return { bodyTree, metadata, sourceRange };
 });

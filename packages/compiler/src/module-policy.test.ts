@@ -1,32 +1,39 @@
 import { compile } from "@mdx-js/mdx";
+import { assert, describe, it } from "@nakafa/testing/effect";
+import { Effect } from "effect";
 import type { Root } from "mdast";
-import { describe, expect, it } from "vitest";
 import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors";
 import { collectUnsupportedMdxModules } from "#compiler/module-policy";
 
 /** Parses MDX and returns the redacted unsupported-module occurrences. */
-async function inspectModules(rawMdx: string) {
+const inspectModules = Effect.fn("ModulePolicyTest.inspectModules")(function* (
+  rawMdx: string
+) {
   const occurrences: UnsupportedMdxModuleOccurrence[] = [];
-  await compile(rawMdx, {
-    remarkPlugins: [
-      () => (tree) => collectUnsupportedMdxModules(tree, occurrences),
-    ],
-  });
+  yield* Effect.promise(() =>
+    compile(rawMdx, {
+      remarkPlugins: [
+        () => (tree) => collectUnsupportedMdxModules(tree, occurrences),
+      ],
+    })
+  );
   return occurrences;
-}
+});
 
 describe("collectUnsupportedMdxModules", () => {
-  it.each([
+  it.effect.each([
     ['import value from "fixture"', "import"],
     ["export const value = true", "export"],
     ['export * from "fixture"', "export"],
     ["export default true", "export"],
     ['import value from "fixture"\nexport { value }', "mixed"],
-  ] as const)("classifies %s modules", async (rawMdx, kind) => {
-    await expect(inspectModules(rawMdx)).resolves.toEqual([
-      { column: 1, kind, line: 1 },
-    ]);
-  });
+  ] as const)("classifies %s modules", ([rawMdx, kind]) =>
+    Effect.gen(function* () {
+      assert.deepStrictEqual(yield* inspectModules(rawMdx), [
+        { column: 1, kind, line: 1 },
+      ]);
+    })
+  );
 
   it("keeps non-module children and redacts incomplete module data", () => {
     const tree: Root = {
@@ -59,8 +66,8 @@ describe("collectUnsupportedMdxModules", () => {
 
     collectUnsupportedMdxModules(tree, occurrences);
 
-    expect(tree.children).toHaveLength(3);
-    expect(occurrences).toEqual([
+    assert.strictEqual(tree.children.length, 3);
+    assert.deepStrictEqual(occurrences, [
       { column: 1, kind: "unknown", line: 1 },
       { column: 1, kind: "unknown", line: 1 },
     ]);

@@ -122,83 +122,77 @@ Hasil tersebut juga menjawab pertanyaan pangkat semula: <InlineMath math="5^3=12
 
 ### Pembahasan
 
-#### 1. Menyederhanakan Bentuk
+1. Sederhanakan setiap bentuk.
 
-1. Karena <InlineMath math="81=9^2" />:
+   1. Karena <InlineMath math="81=9^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_9 81=\log_9(9^2)" />
-      <BlockMath math="\log_9(9^2)=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_9 81=\log_9(9^2)" />
+        <BlockMath math="\log_9(9^2)=2" />
+      </MathContainer>
 
-2. Gunakan sifat pembagian:
+   2. Gunakan sifat pembagian:
 
-    <MathContainer>
-      <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
-      <BlockMath math="\log_2 4=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+        <BlockMath math="\log_2 4=2" />
+      </MathContainer>
 
-3. Karena <InlineMath math="16=4^2" />:
+   3. Karena <InlineMath math="16=4^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
-      <BlockMath math="\log_4(4^{20})=20" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+        <BlockMath math="\log_4(4^{20})=20" />
+      </MathContainer>
 
-#### 2. Menggabungkan Hubungan Perubahan Bilangan Pokok
+2. Gunakan bilangan pokok <InlineMath math="4" /> pada pembilang dan penyebut:
 
-Gunakan bilangan pokok <InlineMath math="4" /> pada pembilang dan penyebut:
+   <MathContainer>
+     <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+     <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
+     <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
-  <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
-  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
-</MathContainer>
+   Sifat kebalikan memberi <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Jadi:
 
-Sifat kebalikan memberi <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Jadi:
+   <BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
 
-<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
+3. Model dengan laju tetapnya adalah:
 
-#### 3. Menafsirkan Ambang Jumlah Penduduk
+   <BlockMath math="P(x)=300{.}000(1{,}06)^x" />
 
-Model dengan laju tetapnya adalah:
+   Selesaikan persamaan kontinu terlebih dahulu:
 
-<BlockMath math="P(x)=300{.}000(1{,}06)^x" />
+   <MathContainer>
+     <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
+     <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
+   </MathContainer>
 
-Selesaikan persamaan kontinu terlebih dahulu:
+   Model diperbarui setelah satu tahun penuh, sehingga periksa dua bilangan bulat terdekat:
 
-<MathContainer>
-  <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
-  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
-</MathContainer>
+   <MathContainer>
+     <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
+     <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
+   </MathContainer>
 
-Model diperbarui setelah satu tahun penuh, sehingga periksa dua bilangan bulat terdekat:
+   Jumlah penduduk pertama kali mencapai target setelah <InlineMath math="21\text{ tahun penuh}" />. Hasil ini adalah proyeksi matematis berdasarkan asumsi laju tetap yang dinyatakan, bukan ramalan demografi.
 
-<MathContainer>
-  <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
-  <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
-</MathContainer>
+4. Model bunga majemuk tahunannya adalah:
 
-Jumlah penduduk pertama kali mencapai target setelah <InlineMath math="21\text{ tahun penuh}" />. Hasil ini adalah proyeksi matematis berdasarkan asumsi laju tetap yang dinyatakan, bukan ramalan demografi.
+   <BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
 
-#### 4. Menafsirkan Ambang Tabungan Tahunan
+   Selesaikan persamaan kontinu:
 
-Model bunga majemuk tahunannya adalah:
+   <MathContainer>
+     <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
+     <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
+   </MathContainer>
 
-<BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
+   Bunga baru diberikan setelah setiap tahun penuh, sehingga bandingkan tahun <InlineMath math="10" /> dan <InlineMath math="11" />:
 
-Selesaikan persamaan kontinu:
+   <MathContainer>
+     <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
+     <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
-  <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
-</MathContainer>
-
-Bunga baru diberikan setelah setiap tahun penuh, sehingga bandingkan tahun <InlineMath math="10" /> dan <InlineMath math="11" />:
-
-<MathContainer>
-  <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
-  <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
-</MathContainer>
-
-Saldo pertama kali mencapai target setelah <InlineMath math="11\text{ tahun penuh}" />.
+   Saldo pertama kali mencapai target setelah <InlineMath math="11\text{ tahun penuh}" />.

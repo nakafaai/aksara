@@ -1,9 +1,8 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
-import { testRendererDomains } from "#compiler/test/renderer";
+import { createTestRendererManifest } from "#compiler/test/content";
 
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const RAW_MDX = `export const metadata = {
@@ -15,171 +14,198 @@ const RAW_MDX = `export const metadata = {
 
 <BlockMath math="x" />`;
 
-/** Builds one complete renderer manifest input for compiler-cache tests. */
-function manifestInput(blockMathVersion: 1 | 2) {
-  return {
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: blockMathVersion }],
-      supportedComponents: [{ name: "BlockMath", version: blockMathVersion }],
-    },
-    domains: testRendererDomains({
+/** Builds one renderer manifest Effect for compiler-cache tests. */
+function createRendererFixture(blockMathVersion: 1 | 2) {
+  return createTestRendererManifest({
+    authoringComponents: [{ name: "BlockMath", version: blockMathVersion }],
+    domains: {
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
-    }),
-    publishedDomains: ["mathematics"] as const,
-  };
+    },
+  });
 }
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest(manifestInput(1))
+const baseRequest = createRendererFixture(1).pipe(
+  Effect.map((rendererManifest) => ({
+    artifactLocale: "en",
+    contentKey: "test:incremental",
+    rawMdx: RAW_MDX,
+    rendererDomain: "mathematics",
+    rendererManifest,
+    sourcePath: "packages/corpus/test/incremental/en.mdx",
+  }))
 );
-const upgradedManifest = await Effect.runPromise(
-  createRendererManifest(manifestInput(2))
-);
-const baseRequest = {
-  artifactLocale: "en",
-  contentKey: "test:incremental",
-  rawMdx: RAW_MDX,
-  rendererDomain: "mathematics",
-  rendererManifest,
-  sourcePath: "packages/corpus/test/incremental/en.mdx",
-};
-
-/** Runs the incremental compiler at the Vitest program boundary. */
-function runIncremental(request: unknown, cache?: unknown) {
-  return Effect.runPromise(compileIncremental(request, cache));
-}
 
 /** Requires a fresh compile with the expected cache-miss classification. */
-async function expectCompiled(
+const expectCompiled = Effect.fn("IncrementalTest.expectCompiled")(function* (
   request: unknown,
   cache: unknown,
   reason: CompileReason
 ) {
-  const result = await runIncremental(request, cache);
-  expect(result.kind).toBe("compiled");
+  const result = yield* compileIncremental(request, cache);
+  assert.strictEqual(result.kind, "compiled");
   if (result.kind === "compiled") {
-    expect(result.reason).toBe(reason);
+    assert.strictEqual(result.reason, reason);
   }
   return result;
-}
+});
 
 describe("incremental compilation", () => {
-  it("creates a deterministic complete identity and reuses an exact cache", async () => {
-    const first = await expectCompiled(baseRequest, undefined, "missing");
-    const repeated = await expectCompiled(baseRequest, undefined, "missing");
-    const unchanged = await runIncremental(baseRequest, first.cache);
+  it.effect("creates a complete identity and reuses an exact cache", () =>
+    Effect.gen(function* () {
+      const request = yield* baseRequest;
+      const first = yield* expectCompiled(request, undefined, "missing");
+      const repeated = yield* expectCompiled(request, undefined, "missing");
+      const unchanged = yield* compileIncremental(request, first.cache);
+      assert.deepStrictEqual(first.cache.identity, {
+        artifactLocale: request.artifactLocale,
+        compilerConfigHash: first.cache.identity.compilerConfigHash,
+        contentKey: request.contentKey,
+        rendererDomain: request.rendererDomain,
+        sourceHash: first.cache.identity.sourceHash,
+        sourcePath: request.sourcePath,
+      });
+      assert.match(first.cache.identity.sourceHash, HASH_PATTERN);
+      assert.match(first.cache.identity.compilerConfigHash, HASH_PATTERN);
+      assert.match(first.cache.identityHash, HASH_PATTERN);
+      assert.deepStrictEqual(first.cache, repeated.cache);
+      assert.deepStrictEqual(unchanged, {
+        cache: first.cache,
+        kind: "unchanged",
+        result: first.result,
+      });
+    })
+  );
 
-    expect(first.cache.identity).toMatchObject({
-      artifactLocale: baseRequest.artifactLocale,
-      contentKey: baseRequest.contentKey,
-      rendererDomain: baseRequest.rendererDomain,
-      sourcePath: baseRequest.sourcePath,
-    });
-    expect(first.cache.identity.sourceHash).toMatch(HASH_PATTERN);
-    expect(first.cache.identity.compilerConfigHash).toMatch(HASH_PATTERN);
-    expect(first.cache.identityHash).toMatch(HASH_PATTERN);
-    expect(first.cache).toEqual(repeated.cache);
-    expect(unchanged).toEqual({
-      cache: first.cache,
-      kind: "unchanged",
-      result: first.result,
-    });
-  });
+  it.effect("recompiles when any required identity input changes", () =>
+    Effect.gen(function* () {
+      const request = yield* baseRequest;
+      const upgradedManifest = yield* createRendererFixture(2);
+      const first = yield* compileIncremental(request);
+      const changedRequests = [
+        { ...request, contentKey: "test:incremental-other" },
+        { ...request, artifactLocale: "id" },
+        { ...request, sourcePath: "packages/corpus/test/other/en.mdx" },
+        { ...request, rawMdx: `${RAW_MDX}\n\nChanged protocol body.` },
+        { ...request, rendererDomain: "chemistry" },
+        { ...request, rendererManifest: upgradedManifest },
+      ];
+      yield* Effect.all(
+        changedRequests.map((changedRequest) =>
+          expectCompiled(changedRequest, first.cache, "changed").pipe(
+            Effect.tap((result) =>
+              Effect.sync(() =>
+                assert.notStrictEqual(
+                  result.cache.identityHash,
+                  first.cache.identityHash
+                )
+              )
+            )
+          )
+        ),
+        { concurrency: "unbounded" }
+      );
+    })
+  );
 
-  it("recompiles when any required identity input changes", async () => {
-    const first = await runIncremental(baseRequest);
-    const changedRequests = [
-      { ...baseRequest, contentKey: "test:incremental-other" },
-      { ...baseRequest, artifactLocale: "id" },
-      {
-        ...baseRequest,
-        sourcePath: "packages/corpus/test/other/en.mdx",
-      },
-      { ...baseRequest, rawMdx: `${RAW_MDX}\n\nChanged protocol body.` },
-      { ...baseRequest, rendererDomain: "chemistry" },
-      { ...baseRequest, rendererManifest: upgradedManifest },
-    ];
-
-    await Promise.all(
-      changedRequests.map(async (request) => {
-        const result = await expectCompiled(request, first.cache, "changed");
-        expect(result.cache.identityHash).not.toBe(first.cache.identityHash);
-      })
-    );
-  });
-
-  it("strictly treats malformed and altered local entries as cache misses", async () => {
-    const first = await runIncremental(baseRequest);
-    const badHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
-    const corruptEntries = [
-      null,
-      { ...first.cache, unexpected: true },
-      { ...first.cache, identityHash: badHash },
-      { ...first.cache, resultHash: badHash },
-      {
-        ...first.cache,
-        result: {
-          ...first.result,
-          payload: {
-            ...first.result.payload,
-            compiledCode: "return { default: () => process.env };",
+  it.effect("treats malformed and altered local entries as misses", () =>
+    Effect.gen(function* () {
+      const request = yield* baseRequest;
+      const first = yield* compileIncremental(request);
+      const badHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
+      const corruptEntries = [
+        null,
+        { ...first.cache, unexpected: true },
+        { ...first.cache, identityHash: badHash },
+        { ...first.cache, resultHash: badHash },
+        {
+          ...first.cache,
+          result: {
+            ...first.result,
+            payload: {
+              ...first.result.payload,
+              compiledCode: "return { default: () => process.env };",
+            },
           },
         },
-      },
-      {
-        ...first.cache,
-        result: { ...first.result, metadata: { invalid: undefined } },
-      },
-      {
-        ...first.cache,
-        identity: { ...first.cache.identity, unexpected: true },
-      },
-    ];
-
-    await Promise.all(
-      corruptEntries.map(async (cache) => {
-        const result = await expectCompiled(baseRequest, cache, "corrupt");
-        expect(result.result.payload.compiledCode).not.toContain("process.env");
-      })
-    );
-  });
-
-  it("rejects a self-consistent result belonging to another identity", async () => {
-    const first = await runIncremental(baseRequest);
-    const other = await runIncremental({
-      ...baseRequest,
-      contentKey: "test:incremental-other",
-    });
-    const mixedCache = {
-      ...first.cache,
-      result: other.cache.result,
-      resultHash: other.cache.resultHash,
-    };
-
-    await expectCompiled(baseRequest, mixedCache, "corrupt");
-  });
-
-  it("validates current source and renderer input before any cache hit", async () => {
-    const first = await runIncremental(baseRequest);
-    const badHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
-    const rendererError = await Effect.runPromise(
-      compileIncremental(
         {
-          ...baseRequest,
-          rendererManifest: { ...rendererManifest, hash: badHash },
+          ...first.cache,
+          result: { ...first.result, metadata: { invalid: undefined } },
         },
-        first.cache
-      ).pipe(Effect.flip)
-    );
-    const sourceError = await Effect.runPromise(
-      compileIncremental(
-        { ...baseRequest, sourcePath: "/outside.mdx" },
-        first.cache
-      ).pipe(Effect.flip)
-    );
+        {
+          ...first.cache,
+          identity: { ...first.cache.identity, unexpected: true },
+        },
+      ];
+      yield* Effect.all(
+        corruptEntries.map((cache) =>
+          expectCompiled(request, cache, "corrupt").pipe(
+            Effect.tap((result) =>
+              Effect.sync(() =>
+                assert.ok(
+                  !result.result.payload.compiledCode.includes("process.env")
+                )
+              )
+            )
+          )
+        ),
+        { concurrency: "unbounded" }
+      );
+    })
+  );
 
-    expect(rendererError._tag).toBe("RendererManifestHashMismatchError");
-    expect(sourceError._tag).toBe("ContractDecodeError");
-  });
+  it.effect("rejects a result belonging to another identity", () =>
+    Effect.gen(function* () {
+      const request = yield* baseRequest;
+      const first = yield* compileIncremental(request);
+      const other = yield* compileIncremental({
+        ...request,
+        contentKey: "test:incremental-other",
+      });
+      const mixedCache = {
+        ...first.cache,
+        result: other.cache.result,
+        resultHash: other.cache.resultHash,
+      };
+      yield* expectCompiled(request, mixedCache, "corrupt");
+    })
+  );
+
+  it.effect("validates source and renderer before cache reuse", () =>
+    Effect.gen(function* () {
+      const request = yield* baseRequest;
+      const first = yield* compileIncremental(request);
+      const badHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
+      const rendererError = yield* Effect.flip(
+        compileIncremental(
+          {
+            ...request,
+            rendererManifest: { ...request.rendererManifest, hash: badHash },
+          },
+          first.cache
+        )
+      );
+      const sourceError = yield* Effect.flip(
+        compileIncremental(
+          { ...request, sourcePath: "/outside.mdx" },
+          first.cache
+        )
+      );
+      const headingError = yield* Effect.flip(
+        compileIncremental(
+          {
+            ...request,
+            rawMdx: `${request.rawMdx}\n\n#### 1. Invalid heading`,
+          },
+          first.cache
+        )
+      );
+      assert.strictEqual(
+        rendererError._tag,
+        "RendererManifestHashMismatchError"
+      );
+      assert.strictEqual(sourceError._tag, "ContractDecodeError");
+      assert.strictEqual(headingError._tag, "AuthoredListHeadingError");
+    })
+  );
 });

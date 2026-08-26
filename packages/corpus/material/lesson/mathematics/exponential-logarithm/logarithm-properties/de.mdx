@@ -121,83 +121,77 @@ Das Ergebnis beantwortet zugleich die ursprüngliche Exponentenfrage: <InlineMat
 
 ### Ausführliche Lösungen
 
-#### 1. Ausdrücke vereinfachen
+1. Vereinfache jeden Ausdruck.
 
-1. Wegen <InlineMath math="81=9^2" />:
+   1. Wegen <InlineMath math="81=9^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_9 81=\log_9(9^2)" />
-      <BlockMath math="\log_9(9^2)=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_9 81=\log_9(9^2)" />
+        <BlockMath math="\log_9(9^2)=2" />
+      </MathContainer>
 
-2. Verwende das Quotientengesetz:
+   2. Verwende das Quotientengesetz:
 
-    <MathContainer>
-      <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
-      <BlockMath math="\log_2 4=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+        <BlockMath math="\log_2 4=2" />
+      </MathContainer>
 
-3. Wegen <InlineMath math="16=4^2" />:
+   3. Wegen <InlineMath math="16=4^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
-      <BlockMath math="\log_4(4^{20})=20" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+        <BlockMath math="\log_4(4^{20})=20" />
+      </MathContainer>
 
-#### 2. Basiswechselbeziehungen verknüpfen
+2. Verwende die Basis <InlineMath math="4" /> in Zähler und Nenner:
 
-Verwende die Basis <InlineMath math="4" /> in Zähler und Nenner:
+   <MathContainer>
+     <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+     <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
+     <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
-  <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
-  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
-</MathContainer>
+   Das Kehrwertgesetz liefert <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Somit gilt:
 
-Das Kehrwertgesetz liefert <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Somit gilt:
+   <BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
 
-<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
+3. Das Modell mit konstanter Wachstumsrate lautet:
 
-#### 3. Einen Schwellenwert der Einwohnerzahl deuten
+   <BlockMath math="P(x)=300{.}000(1{,}06)^x" />
 
-Das Modell mit konstanter Wachstumsrate lautet:
+   Löse zunächst die kontinuierliche Gleichung:
 
-<BlockMath math="P(x)=300{.}000(1{,}06)^x" />
+   <MathContainer>
+     <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
+     <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
+   </MathContainer>
 
-Löse zunächst die kontinuierliche Gleichung:
+   Da das Modell nach vollständigen Jahren aktualisiert wird, müssen die benachbarten ganzen Zahlen geprüft werden:
 
-<MathContainer>
-  <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
-  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
-</MathContainer>
+   <MathContainer>
+     <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
+     <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
+   </MathContainer>
 
-Da das Modell nach vollständigen Jahren aktualisiert wird, müssen die benachbarten ganzen Zahlen geprüft werden:
+   Die Einwohnerzahl erreicht das Ziel erstmals nach <InlineMath math="21\text{ vollständigen Jahren}" />. Das Ergebnis ist eine mathematische Projektion unter den genannten Annahmen einer konstanten Wachstumsrate, keine demografische Vorhersage.
 
-<MathContainer>
-  <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
-  <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
-</MathContainer>
+4. Das Modell mit jährlicher Verzinsung lautet:
 
-Die Einwohnerzahl erreicht das Ziel erstmals nach <InlineMath math="21\text{ vollständigen Jahren}" />. Das Ergebnis ist eine mathematische Projektion unter den genannten Annahmen einer konstanten Wachstumsrate, keine demografische Vorhersage.
+   <BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
 
-#### 4. Einen jährlichen Sparschwellenwert deuten
+   Löse die kontinuierliche Gleichung:
 
-Das Modell mit jährlicher Verzinsung lautet:
+   <MathContainer>
+     <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
+     <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
+   </MathContainer>
 
-<BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
+   Die Zinsen werden erst nach jedem vollständigen Jahr gutgeschrieben. Deshalb werden die Jahre <InlineMath math="10" /> und <InlineMath math="11" /> verglichen:
 
-Löse die kontinuierliche Gleichung:
+   <MathContainer>
+     <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
+     <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
-  <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
-</MathContainer>
-
-Die Zinsen werden erst nach jedem vollständigen Jahr gutgeschrieben. Deshalb werden die Jahre <InlineMath math="10" /> und <InlineMath math="11" /> verglichen:
-
-<MathContainer>
-  <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
-  <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
-</MathContainer>
-
-Das Guthaben erreicht das Ziel erstmals nach <InlineMath math="11\text{ vollständigen Jahren}" />.
+   Das Guthaben erreicht das Ziel erstmals nach <InlineMath math="11\text{ vollständigen Jahren}" />.

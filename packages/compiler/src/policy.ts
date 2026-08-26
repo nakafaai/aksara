@@ -28,8 +28,6 @@ const SAFE_GLOBALS = new Set([
   "String",
   "undefined",
 ]);
-/** Revision bound into artifact fingerprints whenever executable policy changes. */
-export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v6";
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
