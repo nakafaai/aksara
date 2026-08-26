@@ -37,6 +37,8 @@ import type {
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
+import type { TryoutHistoryMigrationRequest } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
+import type { TryoutHistoryMigrationValue } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import type {
   StageSnapshotBatchInput,
@@ -202,6 +204,10 @@ export class PublicationTarget extends Context.Service<
     readonly headPage: (
       request: HeadPageRequest
     ) => Effect.Effect<HeadPage, PublicationTargetFailure>;
+    /** Executes one authenticated temporary retained-history migration command. */
+    readonly migrateTryoutHistory: (
+      request: TryoutHistoryMigrationRequest
+    ) => Effect.Effect<TryoutHistoryMigrationValue, PublicationTargetFailure>;
     /** Reads historical completion evidence for one exact recovery pair. */
     readonly recovery: (
       request: ReleaseAcceptRequest

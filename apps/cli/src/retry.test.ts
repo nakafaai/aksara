@@ -30,6 +30,7 @@ function makeTarget(
     cleanup: unused,
     current,
     headPage: unused,
+    migrateTryoutHistory: unused,
     recovery: unused,
     rollbackPage: unused,
     routePage: unused,

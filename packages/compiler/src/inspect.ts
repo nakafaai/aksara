@@ -5,11 +5,12 @@ import type {
   CorpusSourcePath,
   Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
 import { createCompilerConfigHash } from "#compiler/config";
@@ -37,6 +38,28 @@ export interface ContentSourceInspection {
   readonly sourceHash: Sha256Hash;
   readonly sourcePath: CorpusSourcePath;
 }
+
+/** Metadata-only facts recovered from one authenticated historical source. */
+export interface HistoricalContentSourceInspection {
+  readonly bodyMdx: string;
+  readonly contentKey: ContentKey;
+  readonly metadata: AuthoredMetadata;
+  readonly sourceHash: Sha256Hash;
+}
+
+const HistoricalContentSourceRequestSchema = Schema.Struct({
+  contentKey: ContentKeySchema,
+  rawMdx: Schema.String,
+});
+
+/** Decodes the minimal authenticated historical source-inspection request. */
+const decodeHistoricalContentSourceRequest = Effect.fn(
+  "AksaraCompiler.decodeHistoricalContentSourceRequest"
+)((input: unknown) =>
+  Schema.decodeUnknownEffect(HistoricalContentSourceRequestSchema)(input, {
+    onExcessProperty: "error",
+  })
+);
 
 /** Every expected failure surfaced by lightweight source inspection. */
 export type ContentSourceInspectionError =
@@ -75,7 +98,10 @@ export const extractAuthoredBody = Effect.fn(
 });
 
 /** Parses one trusted source to metadata and hashes without emitting JavaScript. */
-function parseSource(request: CompileDocumentRequest) {
+function parseSource(request: {
+  readonly contentKey: ContentKey;
+  readonly rawMdx: string;
+}) {
   return Effect.try({
     catch: (cause) =>
       new MdxCompilationError({
@@ -86,6 +112,40 @@ function parseSource(request: CompileDocumentRequest) {
     try: () => createProcessor({ format: "mdx" }).parse(request.rawMdx),
   });
 }
+
+/**
+ * Reads authenticated historical metadata without applying today's authored
+ * source policy. It preserves the exact body bytes for lossless conversion.
+ */
+export const inspectHistoricalContentSource = Effect.fn(
+  "AksaraCompiler.inspectHistoricalContentSource"
+)((input: unknown) =>
+  decodeHistoricalContentSourceRequest(input).pipe(
+    Effect.flatMap((request) =>
+      Effect.gen(function* () {
+        yield* enforceContentByteLimit(
+          request.contentKey,
+          "rawMdx",
+          request.rawMdx,
+          MAX_RAW_MDX_BYTES
+        );
+        const tree = yield* parseSource(request);
+        const document = yield* readMetadataDocument(request.contentKey, tree);
+        const bodyMdx = yield* extractAuthoredBody(
+          request.contentKey,
+          request.rawMdx,
+          document.sourceRange
+        );
+        return {
+          bodyMdx,
+          contentKey: request.contentKey,
+          metadata: document.metadata,
+          sourceHash: hashUtf8(request.rawMdx),
+        } satisfies HistoricalContentSourceInspection;
+      })
+    )
+  )
+);
 
 /** Applies every authored-source policy before cache or publication reuse. */
 const validateSourcePolicy = Effect.fn(

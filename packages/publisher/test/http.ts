@@ -91,6 +91,7 @@ export function invokeTarget(
       cleanup: (value) => target.cleanup(value),
       current: () => target.current,
       headPage: (value) => target.headPage(value),
+      migrateTryoutHistory: (value) => target.migrateTryoutHistory(value),
       recovery: (value) => target.recovery(value),
       rollbackPage: (value) => target.rollbackPage(value),
       routePage: (value) => target.routePage(value),

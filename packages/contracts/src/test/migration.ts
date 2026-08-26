@@ -1,0 +1,187 @@
+// @vitest-environment node
+import { Buffer } from "node:buffer";
+import {
+  createHash,
+  generateKeyPairSync,
+  sign as signBytes,
+} from "node:crypto";
+
+import { Effect, Schema } from "effect";
+
+import {
+  canonicalizeHistoricalContentPayload,
+  historicalArtifactSigningInput,
+} from "#contracts/history/artifact";
+import {
+  HistoricalCompiledContentPayloadSchema,
+  HistoricalSignedContentArtifactSchema,
+} from "#contracts/history/artifact-spec";
+import { HistoricalSha256HashSchema } from "#contracts/history/primitives";
+import {
+  HistoricalContentReleaseManifestSchema,
+  HistoricalSignedContentReleaseSchema,
+} from "#contracts/history/release";
+import {
+  canonicalizeHistoricalContentReleaseManifest,
+  historicalReleaseSigningInput,
+} from "#contracts/history/release-bytes";
+import { HistoricalTryoutSnapshotSchema } from "#contracts/history/tryout";
+import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
+import { retainedRelease } from "#contracts/test/history";
+import {
+  historicalCatalogEnvelope,
+  historicalPlacementEnvelope,
+  historicalTryoutInventory,
+} from "#contracts/test/history-inventory";
+import {
+  historicalCatalogRows,
+  historicalPlacement,
+} from "#contracts/test/history-row";
+import { historicalRenderer } from "#contracts/test/history-runtime";
+import { TryoutHistoryMigrationSourceSchema } from "#contracts/transport/migration/tryout/response";
+
+const keys = generateKeyPairSync("ed25519");
+export const migrationPublicKey = keys.publicKey
+  .export({ format: "pem", type: "spki" })
+  .toString();
+
+/** Hashes one test-only retained object through independent Node crypto. */
+function hash(value: string) {
+  return HistoricalSha256HashSchema.make(
+    `sha256:${createHash("sha256").update(value).digest("hex")}`
+  );
+}
+
+/** Signs one test-only retained object through independent Node crypto. */
+function sign(value: string) {
+  return signBytes(null, Buffer.from(value, "utf8"), keys.privateKey).toString(
+    "base64url"
+  );
+}
+
+/** Creates one authenticated retained artifact for migration fixtures. */
+function createArtifact(input: {
+  readonly contentKey: string;
+  readonly plainText: string;
+  readonly rawMdx: string;
+}) {
+  const payload = Schema.decodeSync(HistoricalCompiledContentPayloadSchema)({
+    byteLength: 31,
+    compiledCode: "return { default: () => null };",
+    compilerConfigHash: `sha256:${"1".repeat(64)}`,
+    compilerVersion: "0.1.0",
+    format: "mdx-function-body-v1",
+    locale: "en",
+    mdxCompilerVersion: "3.1.1",
+    rendererDomain: "snbt-general",
+    requiredComponents: [{ name: "BlockMath", version: 1 }],
+    sourceHash: hash(input.rawMdx),
+    ...input,
+  });
+  const artifactHash = hash(canonicalizeHistoricalContentPayload(payload));
+  return Schema.decodeSync(HistoricalSignedContentArtifactSchema)({
+    artifactHash,
+    keyId: "retained-migration-key",
+    payload,
+    signature: sign(historicalArtifactSigningInput(artifactHash, payload)),
+  });
+}
+
+const questionArtifact = createArtifact({
+  contentKey: historicalPlacement.questionContentKey,
+  plainText: "Retained question",
+  rawMdx: "# Retained question",
+});
+const answerArtifact = createArtifact({
+  contentKey: historicalPlacement.answerContentKey,
+  plainText: "Retained answer",
+  rawMdx: "# Retained answer",
+});
+export const migrationArtifacts = [questionArtifact, answerArtifact];
+export const migrationInventory = historicalTryoutInventory(
+  historicalCatalogRows.slice(0, 1).map(historicalCatalogEnvelope),
+  [
+    historicalPlacementEnvelope({
+      ...historicalPlacement,
+      answerArtifactHash: answerArtifact.artifactHash,
+      questionArtifactHash: questionArtifact.artifactHash,
+    }),
+  ]
+);
+const snapshot = Schema.decodeSync(HistoricalTryoutSnapshotSchema)(
+  migrationInventory.snapshot
+);
+
+const manifest = Schema.decodeUnknownSync(
+  HistoricalContentReleaseManifestSchema
+)({
+  ...retainedRelease.manifest,
+  releaseId: "retained-migration-release",
+  rendererManifestHash: historicalRenderer.hash,
+  snapshots: {
+    ...retainedRelease.manifest.snapshots,
+    tryout: {
+      ...retainedRelease.manifest.snapshots.tryout,
+      resultSnapshotId: snapshot.snapshotId,
+    },
+  },
+});
+const manifestHash = hash(
+  canonicalizeHistoricalContentReleaseManifest(manifest)
+);
+export const migrationRelease = Schema.decodeSync(
+  HistoricalSignedContentReleaseSchema
+)({
+  keyId: "retained-migration-key",
+  manifest,
+  manifestHash,
+  signature: sign(historicalReleaseSigningInput(manifestHash, manifest)),
+});
+
+/** Complete authenticated source envelope for contract verification tests. */
+export const migrationSource = Schema.decodeSync(
+  TryoutHistoryMigrationSourceSchema
+)({
+  evidence: {
+    artifactCount: 2,
+    attempts: {
+      attemptCount: 2,
+      digest: `sha256:${"1".repeat(64)}`,
+      frozenPlacementCount: 2,
+      progressCount: 2,
+      responseCount: 2,
+      scoreCount: 2,
+      sectionAttemptCount: 2,
+    },
+    catalogRowCount: 1,
+    creatingReleaseId: migrationRelease.manifest.releaseId,
+    placementRowCount: 1,
+    releases: [
+      {
+        attemptCount: 2,
+        manifestHash: migrationRelease.manifestHash,
+        releaseId: migrationRelease.manifest.releaseId,
+      },
+    ],
+    rendererManifestHash: historicalRenderer.hash,
+    scales: {
+      digest: `sha256:${"2".repeat(64)}`,
+      itemCount: 1,
+      runCount: 1,
+      versionCount: 1,
+    },
+    snapshot,
+  },
+  releases: [{ attemptCount: 2, release: migrationRelease }],
+  rendererManifest: historicalRenderer,
+});
+
+/** Strictly decodes one deliberately modified source fixture. */
+export function migrationSourceFrom(input: unknown) {
+  return Schema.decodeUnknownSync(TryoutHistoryMigrationSourceSchema)(input);
+}
+
+/** Trusted public key paired with the retained migration release fixture. */
+export const migrationResolver = ContentVerificationKeyResolver.of({
+  resolve: () => Effect.succeed(migrationPublicKey),
+});

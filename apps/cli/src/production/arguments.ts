@@ -42,11 +42,19 @@ export interface RecoverArguments {
   readonly releaseId: ReleaseId;
 }
 
+/** Exact retained-history migration and exclusive public receipt destination. */
+export interface MigrateTryoutHistoryArguments {
+  readonly command: "migrate-tryout-history";
+  readonly receiptPath: string;
+  readonly releaseId: ReleaseId;
+}
+
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
   | CleanupArguments
+  | MigrateTryoutHistoryArguments
   | RecoverArguments
   | ReleaseArguments
   | StatusArguments;
@@ -59,6 +67,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "abort",
       "accept",
       "cleanup",
+      "migrate-tryout-history",
       "recover",
       "release",
       "status",
@@ -66,6 +75,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
     option: Schema.Literals([
       "--recovery-id",
       "--release-id",
+      "--receipt-path",
       "--scope",
       "command",
     ]),
@@ -80,16 +90,22 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
 ) {}
 
 interface RawProductionOptions {
+  receiptPath?: string;
   recoveryId?: string;
   releaseId?: string;
   scope: string[];
 }
 
 export type ProductionCommand = ProductionArguments["command"];
-type ProductionOption = "--recovery-id" | "--release-id" | "--scope";
+type ProductionOption =
+  | "--recovery-id"
+  | "--release-id"
+  | "--receipt-path"
+  | "--scope";
 type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
 
 const OPTION_KEYS = {
+  "--receipt-path": "receiptPath",
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
@@ -100,6 +116,7 @@ export function isProductionCommand(
 ): value is ProductionCommand {
   return (
     value === "cleanup" ||
+    value === "migrate-tryout-history" ||
     value === "accept" ||
     value === "abort" ||
     value === "recover" ||
@@ -113,7 +130,10 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
-    value === "--recovery-id" || value === "--release-id" || value === "--scope"
+    value === "--recovery-id" ||
+    value === "--receipt-path" ||
+    value === "--release-id" ||
+    value === "--scope"
   );
 }
 
@@ -121,6 +141,9 @@ function isProductionOption(
 function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "status") {
     return false;
+  }
+  if (command === "migrate-tryout-history") {
+    return option === "--release-id" || option === "--receipt-path";
   }
   if (option === "--scope") {
     return command === "release";
@@ -206,6 +229,19 @@ export const parseProductionArguments = Effect.fn(
   }
   if (command === "cleanup") {
     return { command, releaseId } satisfies CleanupArguments;
+  }
+  if (command === "migrate-tryout-history") {
+    if (options.receiptPath === undefined) {
+      return yield* argumentError(command, "--receipt-path", "missing");
+    }
+    if (!options.receiptPath.startsWith("/")) {
+      return yield* argumentError(command, "--receipt-path", "value");
+    }
+    return {
+      command,
+      receiptPath: options.receiptPath,
+      releaseId,
+    } satisfies MigrateTryoutHistoryArguments;
   }
   if (options.recoveryId === undefined) {
     return yield* argumentError(command, "--recovery-id", "missing");

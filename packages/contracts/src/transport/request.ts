@@ -22,6 +22,7 @@ import {
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 import { StageGroupRequestSchema } from "#contracts/transport/group";
+import { TryoutHistoryMigrationRequestSchema } from "#contracts/transport/migration/tryout/request";
 import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchRequestSchema,
@@ -37,6 +38,7 @@ export const PublicationOperationSchema = Schema.Literals([
   "cleanup",
   "current",
   "headPage",
+  "migrateTryoutHistory",
   "recovery",
   "rollbackPage",
   "routePage",
@@ -178,6 +180,7 @@ export const PublicationRequestSchema = Schema.Union([
   PublicationAbortRequestSchema,
   PublicationCurrentRequestSchema,
   PublicationHeadPageRequestSchema,
+  TryoutHistoryMigrationRequestSchema,
   PublicationRecoveryLookupRequestSchema,
   StageReleaseRequestSchema,
   StageRecoveryRequestSchema,

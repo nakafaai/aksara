@@ -3,6 +3,7 @@ import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/req
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
+
 import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response";
 import { foreignTransportSuccess } from "#test/foreign";
 import { completedRecovery } from "#test/recovery";
@@ -17,6 +18,7 @@ describe("publication success evidence", () => {
       )
     ).toEqual(transportRequests.map(() => true));
   });
+
   it("rejects every success carrying a foreign operation identity", () => {
     expect(
       transportRequests.map((request) =>
@@ -270,7 +272,6 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, success)).toBe(true);
     expect(hasBoundPublicationSuccess(request, progressed)).toBe(true);
   });
-
   it("rejects batch receipts with another index or row count", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "stageItemBatch"

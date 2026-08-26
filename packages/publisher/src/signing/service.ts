@@ -1,9 +1,4 @@
-import { Buffer } from "node:buffer";
-import {
-  createPrivateKey,
-  type KeyObject,
-  sign as signBytes,
-} from "node:crypto";
+import { createPrivateKey, type KeyObject } from "node:crypto";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
@@ -20,10 +15,7 @@ import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "@nakafa/aksara-contracts/content";
-import {
-  Ed25519SignatureSchema,
-  SigningKeyIdSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type ContentReleaseManifest,
   type SignedContentRelease,
@@ -45,10 +37,15 @@ import {
   type TryoutRuntimeBundlePayload,
 } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
+import { signCanonicalInput } from "#publisher/signing/canonical";
 import { ContentSigningError } from "#publisher/signing/error";
+import {
+  makeTryoutHistoryMigrationSigner,
+  type TryoutHistoryMigrationSigner,
+} from "#publisher/signing/migration";
 
 /** Single-key signer for every authenticated object in one publication run. */
-export interface PublicationSigner {
+export interface PublicationSigner extends TryoutHistoryMigrationSigner {
   /** Signs one source-verified compiled artifact. */
   readonly signArtifact: (
     payload: CompiledContentPayload
@@ -81,27 +78,6 @@ type PublicationSignerFactory = (input: {
   readonly keyId: string;
   readonly privateKeyPem: string;
 }) => Effect.Effect<PublicationSigner, ContentSigningError>;
-
-/** Signs one domain-separated canonical message with an Ed25519 key. */
-function signCanonicalInput(
-  privateKey: KeyObject,
-  message: string,
-  stage: "artifact" | "release" | "tryout-runtime-bundle"
-) {
-  return Effect.try({
-    catch: () =>
-      new ContentSigningError({
-        message: `Ed25519 ${stage} signing failed.`,
-        stage,
-      }),
-    try: () =>
-      Ed25519SignatureSchema.make(
-        signBytes(null, Buffer.from(message, "utf8"), privateKey).toString(
-          "base64url"
-        )
-      ),
-  });
-}
 
 /** Verifies and signs one compiled artifact under the configured key. */
 function signArtifact(
@@ -222,6 +198,7 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
         signRelease(keyId, privateKey, manifest)
       ),
+      ...makeTryoutHistoryMigrationSigner(keyId, privateKey),
       /** Signs one renderer-bound try-out snapshot with the configured key. */
       signTryoutRuntimeBundle: Effect.fn(
         "AksaraPublisher.signTryoutRuntimeBundle"

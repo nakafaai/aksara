@@ -6,6 +6,14 @@
 
 // biome-ignore lint/performance/noBarrelFile: This externally mandated package entrypoint keeps immutable history behind one read-only seam.
 export {
+  authenticateHistoricalArtifact,
+  canonicalizeHistoricalContentPayload,
+  historicalArtifactSigningInput,
+} from "#contracts/history/artifact";
+export {
+  type HistoricalCompiledContentPayload,
+  type HistoricalSignedContentArtifact,
+  HistoricalSignedContentArtifactSchema,
   StoredArtifactCompiledByteLengthMismatchError,
   StoredArtifactDecodeError,
   StoredArtifactFieldByteLimitError,
@@ -27,6 +35,7 @@ export {
   StoredTryoutInventorySnapshotMismatchError,
   type StoredTryoutPlacementRow,
 } from "#contracts/history/inventory-spec";
+export type { HistoricalAppLocale } from "#contracts/history/locale";
 export {
   StoredAttemptIdSchema,
   StoredProtectedRuntimeFailureSchema,
@@ -56,9 +65,12 @@ export {
   StoredTryoutSnapshotHashMismatchError,
 } from "#contracts/history/read";
 export {
+  type HistoricalRendererManifest,
+  HistoricalRendererManifestSchema,
   StoredRendererDecodeError,
   StoredRendererHashComputeError,
   StoredRendererHashMismatchError,
+  validateHistoricalRendererManifestHash,
 } from "#contracts/history/renderer";
 export {
   StoredRendererComponentMissingError,
