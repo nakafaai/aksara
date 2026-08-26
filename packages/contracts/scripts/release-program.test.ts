@@ -1,61 +1,61 @@
-import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
-import type { ContractReleaseError } from "#scripts/release-identity";
+import { expect, layer } from "@effect/vitest";
+import { Effect, FileSystem, Path } from "effect";
+import { ChildProcess } from "effect/unstable/process";
 import { makeReleaseCommand } from "#scripts/release-program";
 
-/** Runs one Node-backed release program at the test boundary. */
-function run<A, E, R>(effect: Effect.Effect<A, E, R>) {
-  return Effect.runPromise(
-    effect.pipe(
-      Effect.provide(NodeServices.layer),
-      Effect.scoped
-    ) as Effect.Effect<A, E>
-  );
-}
-
-/** Exposes one expected release program failure at the test boundary. */
-function reject<A, R>(effect: Effect.Effect<A, ContractReleaseError, R>) {
-  return run(effect.pipe(Effect.flip));
-}
-
 /** Creates one archive carrying the exact package identity. */
-function createArchive(root: string, marker: string) {
-  const stage = join(root, marker, "package");
-  const archive = join(root, `${marker}.tgz`);
-  mkdirSync(stage, { recursive: true });
-  writeFileSync(
-    join(stage, "package.json"),
-    '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
-  );
-  writeFileSync(join(stage, "marker.txt"), marker);
-  execFileSync("tar", ["-czf", archive, "-C", join(root, marker), "package"]);
-  return archive;
-}
+const createArchive = Effect.fn("ContractReleaseProgramTest.createArchive")(
+  function* (root: string, marker: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const current = path.join(root, marker);
+    const stage = path.join(current, "package");
+    const archive = path.join(root, `${marker}.tgz`);
+    yield* fileSystem.makeDirectory(stage, { recursive: true });
+    yield* fileSystem.writeFileString(
+      path.join(stage, "package.json"),
+      '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
+    );
+    yield* fileSystem.writeFileString(path.join(stage, "marker.txt"), marker);
+    const process = yield* ChildProcess.make("tar", [
+      "-czf",
+      archive,
+      "-C",
+      current,
+      "package",
+    ]);
+    expect(yield* process.exitCode).toBe(0);
+    return archive;
+  }
+);
 
 /** Creates exact package, tags, and output paths for one command. */
-function commandPaths(root: string, tags = "") {
-  const packagePath = join(root, "package.json");
-  const tagsPath = join(root, "tags.txt");
-  const outputPath = join(root, "output.txt");
-  writeFileSync(
-    packagePath,
-    '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
-  );
-  writeFileSync(tagsPath, tags);
-  return { outputPath, packagePath, tagsPath };
-}
+const commandPaths = Effect.fn("ContractReleaseProgramTest.commandPaths")(
+  function* (root: string, tags = "") {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const packagePath = path.join(root, "package.json");
+    const tagsPath = path.join(root, "tags.txt");
+    const outputPath = path.join(root, "output.txt");
+    yield* fileSystem.writeFileString(
+      packagePath,
+      '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
+    );
+    yield* fileSystem.writeFileString(tagsPath, tags);
+    return { outputPath, packagePath, tagsPath };
+  }
+);
 
-describe("contract release program", () => {
-  it("describes first and existing immutable release identities", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-release-describe-"));
-    const first = commandPaths(root);
-    await run(
-      makeReleaseCommand([
+layer(NodeServices.layer)("contract release program", (it) => {
+  it.effect("describes first and existing immutable release identities", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-release-describe-",
+      });
+      const first = yield* commandPaths(root);
+      yield* makeReleaseCommand([
         "describe",
         "--package",
         first.packagePath,
@@ -63,16 +63,14 @@ describe("contract release program", () => {
         first.tagsPath,
         "--output",
         first.outputPath,
-      ])
-    );
-    expect(readFileSync(first.outputPath, "utf8")).toContain(
-      "has_latest=false"
-    );
+      ]);
+      expect(
+        yield* fileSystem.readFileString(first.outputPath, "utf8")
+      ).toContain("has_latest=false");
 
-    const existing = commandPaths(root, "contracts-v0.1.0\n");
-    writeFileSync(existing.outputPath, "");
-    await run(
-      makeReleaseCommand([
+      const existing = yield* commandPaths(root, "contracts-v0.1.0\n");
+      yield* fileSystem.writeFileString(existing.outputPath, "");
+      yield* makeReleaseCommand([
         "describe",
         "--package",
         existing.packagePath,
@@ -80,19 +78,22 @@ describe("contract release program", () => {
         existing.tagsPath,
         "--output",
         existing.outputPath,
-      ])
-    );
-    expect(readFileSync(existing.outputPath, "utf8")).toContain(
-      "latest_tag=contracts-v0.1.0"
-    );
-  });
+      ]);
+      expect(
+        yield* fileSystem.readFileString(existing.outputPath, "utf8")
+      ).toContain("latest_tag=contracts-v0.1.0");
+    })
+  );
 
-  it("decides first and unchanged exact archives", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-release-decide-"));
-    const first = commandPaths(root);
-    const archive = createArchive(root, "current");
-    await run(
-      makeReleaseCommand([
+  it.effect("decides first and unchanged exact archives", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-release-decide-",
+      });
+      const first = yield* commandPaths(root);
+      const archive = yield* createArchive(root, "current");
+      yield* makeReleaseCommand([
         "decide",
         "--package",
         first.packagePath,
@@ -102,14 +103,14 @@ describe("contract release program", () => {
         archive,
         "--output",
         first.outputPath,
-      ])
-    );
-    expect(readFileSync(first.outputPath, "utf8")).toContain("mode=create");
+      ]);
+      expect(
+        yield* fileSystem.readFileString(first.outputPath, "utf8")
+      ).toContain("mode=create");
 
-    writeFileSync(first.tagsPath, "contracts-v0.1.0\n");
-    writeFileSync(first.outputPath, "");
-    await run(
-      makeReleaseCommand([
+      yield* fileSystem.writeFileString(first.tagsPath, "contracts-v0.1.0\n");
+      yield* fileSystem.writeFileString(first.outputPath, "");
+      yield* makeReleaseCommand([
         "decide",
         "--package",
         first.packagePath,
@@ -121,73 +122,80 @@ describe("contract release program", () => {
         archive,
         "--output",
         first.outputPath,
-      ])
-    );
-    expect(readFileSync(first.outputPath, "utf8")).toContain("mode=unchanged");
-  });
+      ]);
+      expect(
+        yield* fileSystem.readFileString(first.outputPath, "utf8")
+      ).toContain("mode=unchanged");
+    })
+  );
 
-  it("rejects malformed commands and every missing owned argument", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-release-arguments-"));
-    const paths = commandPaths(root);
-    const cases = [
-      ["--unknown"],
-      ["unknown"],
-      ["describe", "extra"],
-      ["describe", "--tags", paths.tagsPath],
-      ["describe", "--output", paths.outputPath],
-      [
-        "decide",
-        "--package",
-        paths.packagePath,
-        "--tags",
-        paths.tagsPath,
-        "--output",
-        paths.outputPath,
-      ],
-      ["prove"],
-      ["prove", "--archive", "archive"],
-      ["prove", "--archive", "archive", "--repository", "nakafaai/aksara"],
-    ] as const;
-    const errors = await Promise.all(
-      cases.map((args) => reject(makeReleaseCommand(args)))
-    );
-    for (const error of errors) {
-      expect(error.reason).toBe("argument");
-    }
-  });
-
-  it("maps file failures and reaches the remote proof boundary safely", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-release-files-"));
-    const paths = commandPaths(root);
-    await expect(
-      reject(
-        makeReleaseCommand([
-          "describe",
+  it.effect("rejects malformed commands and every missing owned argument", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-release-arguments-",
+      });
+      const paths = yield* commandPaths(root);
+      const cases = [
+        ["--unknown"],
+        ["unknown"],
+        ["describe", "extra"],
+        ["describe", "--tags", paths.tagsPath],
+        ["describe", "--output", paths.outputPath],
+        [
+          "decide",
           "--package",
-          join(root, "missing.json"),
+          paths.packagePath,
           "--tags",
           paths.tagsPath,
           "--output",
           paths.outputPath,
-        ])
-      )
-    ).resolves.toMatchObject({ reason: "platform" });
-    await expect(
-      reject(
-        makeReleaseCommand([
+        ],
+        ["prove"],
+        ["prove", "--archive", "archive"],
+        ["prove", "--archive", "archive", "--repository", "nakafaai/aksara"],
+      ] as const;
+      const errors = yield* Effect.all(
+        cases.map((args) => makeReleaseCommand(args).pipe(Effect.flip)),
+        { concurrency: "unbounded" }
+      );
+      for (const error of errors) {
+        expect(error.reason).toBe("argument");
+      }
+    })
+  );
+
+  it.effect(
+    "maps file failures and reaches the remote proof boundary safely",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-release-files-",
+        });
+        const paths = yield* commandPaths(root);
+        const packageError = yield* makeReleaseCommand([
+          "describe",
+          "--package",
+          path.join(root, "missing.json"),
+          "--tags",
+          paths.tagsPath,
+          "--output",
+          paths.outputPath,
+        ]).pipe(Effect.flip);
+        expect(packageError).toMatchObject({ reason: "platform" });
+        const tagsError = yield* makeReleaseCommand([
           "describe",
           "--package",
           paths.packagePath,
           "--tags",
-          join(root, "missing.txt"),
+          path.join(root, "missing.txt"),
           "--output",
           paths.outputPath,
-        ])
-      )
-    ).resolves.toMatchObject({ reason: "platform" });
-    await expect(
-      reject(
-        makeReleaseCommand([
+        ]).pipe(Effect.flip);
+        expect(tagsError).toMatchObject({ reason: "platform" });
+        const proofError = yield* makeReleaseCommand([
           "prove",
           "--package",
           paths.packagePath,
@@ -197,8 +205,8 @@ describe("contract release program", () => {
           "invalid",
           "--source-sha",
           "invalid",
-        ])
-      )
-    ).resolves.toMatchObject({ reason: "argument" });
-  });
+        ]).pipe(Effect.flip);
+        expect(proofError).toMatchObject({ reason: "argument" });
+      })
+  );
 });

@@ -1,37 +1,65 @@
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
-import { vi } from "vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
+import { Effect, FileSystem, Path, Schedule } from "effect";
+import { TestClock } from "effect/testing";
 import { packageIdentity } from "#scripts/release-identity";
 
-it("executes the release identity CLI boundary", async () => {
-  const root = mkdtempSync(join(tmpdir(), "aksara-release-command-"));
-  const tags = join(root, "tags.txt");
-  const output = join(root, "output.txt");
-  writeFileSync(tags, "contracts-v0.1.0\n");
-  const originalArguments = process.argv;
-  process.argv = [
-    process.execPath,
-    "release-command.ts",
-    "describe",
-    "--package",
-    "package.json",
-    "--tags",
-    tags,
-    "--output",
-    output,
-  ];
-  await import("#scripts/release-command");
-  const identity = await Effect.runPromise(
-    packageIdentity(readFileSync("package.json", "utf8"))
-  );
+/** Imports the CLI with exact arguments and always restores the process state. */
+const runReleaseCommand = Effect.fn(
+  "ContractReleaseCommandTest.runReleaseCommand"
+)((args: readonly string[]) =>
+  Effect.acquireUseRelease(
+    Effect.sync(() => {
+      const original = process.argv;
+      process.argv = [process.execPath, "release-command.ts", ...args];
+      return original;
+    }),
+    () => Effect.promise(() => import("#scripts/release-command")),
+    (original) =>
+      Effect.sync(() => {
+        process.argv = original;
+      })
+  )
+);
 
-  await vi.waitFor(() => {
-    expect(readFileSync(output, "utf8")).toContain(
-      `asset_name=${identity.assetName}`
-    );
-  });
-  process.argv = originalArguments;
+layer(NodeServices.layer)("contract release command", (it) => {
+  it.effect("executes the release identity CLI boundary", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-release-command-",
+      });
+      const tags = path.join(root, "tags.txt");
+      const output = path.join(root, "output.txt");
+      yield* fileSystem.writeFileString(tags, "contracts-v0.1.0\n");
+      yield* runReleaseCommand([
+        "describe",
+        "--package",
+        "package.json",
+        "--tags",
+        tags,
+        "--output",
+        output,
+      ]);
+      const identity = yield* fileSystem
+        .readFileString("package.json", "utf8")
+        .pipe(Effect.flatMap(packageIdentity));
+      const expectedOutput = `asset_name=${identity.assetName}`;
+      const contents = yield* fileSystem.readFileString(output, "utf8").pipe(
+        Effect.catchIf(
+          (error) => error.reason._tag === "NotFound",
+          () => Effect.succeed("")
+        ),
+        Effect.repeat({
+          schedule: Schedule.spaced("10 millis"),
+          while: (text) => !text.includes(expectedOutput),
+        }),
+        Effect.timeout("2 seconds"),
+        TestClock.withLive
+      );
+
+      expect(contents).toContain(expectedOutput);
+    })
+  );
 });
