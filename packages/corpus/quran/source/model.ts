@@ -1,13 +1,8 @@
+import type { QuranTranslation } from "@nakafa/aksara-contracts/quran/notes";
 import type { QuranSurahMetadataSchema } from "@nakafa/aksara-contracts/quran/spec";
 import type { Schema } from "effect";
 
 import type { LocalizedSourceMap } from "#corpus/locale/source";
-
-/** Exact translation fields parsed from one official source verse. */
-export interface Translation {
-  readonly footnotes: string;
-  readonly text: string;
-}
 
 export interface Tafsir {
   readonly footnotes: null | string;
@@ -31,7 +26,7 @@ export interface Verse {
   };
   readonly tafsir: { readonly id: Tafsir };
   readonly text: { readonly arabic: string };
-  readonly translation: LocalizedSourceMap<Translation>;
+  readonly translation: LocalizedSourceMap<QuranTranslation>;
 }
 
 /** Encoded metadata emitted before the corpus schema applies its brands. */

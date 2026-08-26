@@ -1,4 +1,7 @@
-import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
+import {
+  type QuranTranslation,
+  QuranTranslationSchema,
+} from "@nakafa/aksara-contracts/quran/notes";
 import { Effect, Schema } from "effect";
 import {
   mapLocalizedSource,
@@ -14,7 +17,6 @@ import type {
   Surah,
   SurahMetadata,
   Tafsir,
-  Translation,
 } from "#corpus/quran/source/model";
 
 const EXPECTED_VERSES = 6236;
@@ -48,7 +50,7 @@ function xmlText(source: string, tag: "footnotes" | "translation") {
 /** Parses one complete QuranEnc XML translation in canonical order. */
 const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
   function* (source: string, metadata: readonly SurahMetadata[]) {
-    const translations: Translation[] = [];
+    const translations: QuranTranslation[] = [];
     const suraRows = [
       ...source.matchAll(/<sura number="(\d+)">([\s\S]*?)<\/sura>/g),
     ];
