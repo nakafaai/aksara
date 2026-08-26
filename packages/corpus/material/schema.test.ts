@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 
 import {
@@ -30,31 +30,31 @@ function lessonSource() {
 }
 
 describe("material schema", () => {
-  it("decodes one complete authored lesson source", async () => {
-    const material = await Effect.runPromise(
-      defineLessonMaterial(lessonSource())
-    );
+  it.effect("decodes one complete authored lesson source", () =>
+    Effect.gen(function* () {
+      const material = yield* defineLessonMaterial(lessonSource());
 
-    expect(material).toMatchObject({
-      domain: "mathematics",
-      key: "lesson.mathematics.function-concept",
-      sections: [{ slug: "definition" }],
-    });
-  });
+      expect(material).toMatchObject({
+        domain: "mathematics",
+        key: "lesson.mathematics.function-concept",
+        sections: [{ slug: "definition" }],
+      });
+    })
+  );
 
-  it("maps invalid authored input to one typed source failure", async () => {
-    const error = await Effect.runPromise(
-      defineLessonMaterial({
+  it.effect("maps invalid authored input to one typed source failure", () =>
+    Effect.gen(function* () {
+      const error = yield* defineLessonMaterial({
         ...lessonSource(),
         slug: "Invalid Slug",
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "LessonMaterialError",
-      materialKey: "lesson.mathematics.function-concept",
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "LessonMaterialError",
+        materialKey: "lesson.mathematics.function-concept",
+      });
+    })
+  );
 
   it.each([
     {
@@ -87,11 +87,13 @@ describe("material schema", () => {
     }
   });
 
-  it("loads every authored lesson material source module", async () => {
-    const files = await Effect.runPromise(
-      importCorpusModules("material/lesson/**/*.ts", ["**/locale/**/*.ts"])
-    );
+  it.effect("loads every authored lesson material source module", () =>
+    Effect.gen(function* () {
+      const files = yield* importCorpusModules("material/lesson/**/*.ts", [
+        "**/locale/**/*.ts",
+      ]);
 
-    expect(files).toHaveLength(44);
-  });
+      expect(files).toHaveLength(44);
+    })
+  );
 });
