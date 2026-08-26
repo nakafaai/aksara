@@ -72,12 +72,7 @@ const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
   scope: {
-    content: [
-      { artifactLocale: "en", contentKey: "test:a", family: "material" },
-      { artifactLocale: "en", contentKey: "test:b", family: "material" },
-      { artifactLocale: "id", contentKey: "test:b", family: "material" },
-    ],
-    families: [],
+    families: ["material"],
     snapshots: [],
   },
   snapshots: inheritContentSnapshots(null),
@@ -120,12 +115,7 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
     itemsDigest: summary.digest,
     rollbackCount: candidateItems.length,
     scope: {
-      content: candidateItems.map(({ change }) => ({
-        artifactLocale: change.artifactLocale,
-        contentKey: change.contentKey,
-        family: change.family,
-      })),
-      families: [],
+      families: ["material"],
       snapshots: manifest.scope.snapshots,
     },
     upsertCount: summary.upsertCount,
@@ -155,19 +145,18 @@ describe("release item integrity", () => {
       expectedUpserts: 2,
     });
   });
-  it("rejects a signed item outside the exact publication scope", async () => {
+  it("rejects a signed item outside the whole-family publication scope", async () => {
     const scoped = Schema.decodeSync(ContentReleaseManifestSchema)({
       ...manifest,
       scope: {
-        content: manifest.scope.content.slice(0, 1),
-        families: manifest.scope.families,
-        snapshots: manifest.scope.snapshots,
+        families: [],
+        snapshots: ["program"],
       },
     });
     const error = await reject(items, scoped);
     expect(error).toMatchObject({
       _tag: "ReleaseItemScopeError",
-      itemOffset: 1,
+      itemOffset: 0,
     });
   });
   it("replays one stream with fresh ordering and route state", async () => {

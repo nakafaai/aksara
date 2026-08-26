@@ -189,7 +189,7 @@ describe("production state", () => {
     {
       args: {
         ...releaseArgs("release-candidate"),
-        scope: { content: [], families: [], snapshots: ["program"] },
+        scope: { families: [], snapshots: ["program"] },
       },
       reason: "scope-mismatch",
       state: stateCurrent({

@@ -45,19 +45,7 @@ const emptySnapshots = {
   snapshotRows: Stream.empty,
 } as const;
 const scope = PublicationScopeSchema.make({
-  content: [
-    {
-      artifactLocale: contentRecord.change.artifactLocale,
-      contentKey: contentRecord.change.contentKey,
-      family: "material",
-    },
-    {
-      artifactLocale: ArtifactLocaleSchema.make("en"),
-      contentKey: ContentKeySchema.make("test:publication:z"),
-      family: "material",
-    },
-  ],
-  families: [],
+  families: ["material"],
   snapshots: [],
 });
 
@@ -219,7 +207,6 @@ describe("prepareContentRelease", () => {
         baseReleaseId: ReleaseIdSchema.make("test-policy-base"),
         previousSnapshots: inheritContentSnapshots(null),
         scope: PublicationScopeSchema.make({
-          content: [],
           families: [],
           snapshots: ["program"],
         }),

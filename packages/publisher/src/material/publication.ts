@@ -10,7 +10,6 @@ import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/ak
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   type MaterialMetadataError,
   type MaterialSourceError,
@@ -70,8 +69,7 @@ export type MaterialPublicationStreamError<E> =
   | MaterialHeadFamilyError
   | MaterialHeadOrderError
   | MaterialMetadataError
-  | MaterialSourceError
-  | PublicationScopeIdentityError;
+  | MaterialSourceError;
 
 /** Authoritative material plan accepted by generic release preparation. */
 export interface MaterialPublication {

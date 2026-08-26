@@ -17,6 +17,7 @@ import type {
   StageGroupInput,
   StageOperation,
 } from "@nakafa/aksara-contracts/transport/group";
+import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime-bundle";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -92,6 +93,9 @@ export function makeTarget(release: {
       rows.forRelease(batch.releaseId).snapshotRows.push(...batch.rows)
     )
   );
+  const stageTryoutRuntimeBundle = vi.fn(
+    (_request: StageTryoutRuntimeBundleInput) => Effect.void
+  );
   const stageRouteBatch = vi.fn((batch) =>
     Effect.sync(() =>
       rows.forRelease(batch.releaseId).routes.push(...batch.routes)
@@ -114,7 +118,10 @@ export function makeTarget(release: {
     if (request.operation === "stageSnapshot") {
       return stageSnapshot(request);
     }
-    return stageSnapshotBatch(request);
+    if (request.operation === "stageSnapshotBatch") {
+      return stageSnapshotBatch(request);
+    }
+    return stageTryoutRuntimeBundle(request);
   }
   /** Applies one authenticated group while preserving child transaction order. */
   const stageGroup = vi.fn(({ requests }: StageGroupInput) =>
@@ -239,6 +246,7 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
+    stageTryoutRuntimeBundle,
     status: ({ manifestHash, releaseId }) => {
       const phase = phases.get(releaseId) ?? "missing";
       if (phase === "completed") {
@@ -281,6 +289,7 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
+    stageTryoutRuntimeBundle,
     target,
     verify,
   };

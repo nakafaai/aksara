@@ -122,7 +122,6 @@ async function prepareProgramOnly() {
       result: Stream.empty,
       routes: Stream.empty,
       scope: PublicationScopeSchema.make({
-        content: [],
         families: [],
         snapshots: ["program"],
       }),

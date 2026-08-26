@@ -26,7 +26,6 @@ import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
 } from "#publisher/article/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -90,8 +89,7 @@ export type ArticlePublicationStreamError<E> =
   | ArticleMetadataError
   | ArticleSourceError
   | CompileContentError
-  | ContentSourceInspectionError
-  | PublicationScopeIdentityError;
+  | ContentSourceInspectionError;
 
 /** Authoritative article plan consumed by whole-catalog release composition. */
 export interface ArticlePublication {

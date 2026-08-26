@@ -13,7 +13,7 @@ import { testFileLayer } from "#test/files";
 import { makeTarget } from "#test/lifecycle/spec";
 import {
   checkoutRoot,
-  functionMaterialScope,
+  materialFamilyScope,
   rendererManifest,
   sourceByPath,
 } from "#test/material/spec";
@@ -29,7 +29,7 @@ export async function publishMaterialRelease() {
           checkoutRoot,
           published: Stream.empty,
           rendererManifest,
-          scope: functionMaterialScope,
+          scope: materialFamilyScope,
         });
         const resultHeads = yield* material.result.pipe(Stream.runCollect);
         const prepared = yield* prepareContentRelease({
@@ -41,7 +41,7 @@ export async function publishMaterialRelease() {
           rendererManifest,
           result: Stream.fromIterable(resultHeads),
           routes: material.routes,
-          scope: functionMaterialScope,
+          scope: materialFamilyScope,
           ...snapshotPolicyBase("test-material-base"),
           ...emptySnapshotSources,
         });

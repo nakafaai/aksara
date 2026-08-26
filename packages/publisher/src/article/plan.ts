@@ -14,7 +14,6 @@ import {
   inspectArticleDocument,
 } from "#publisher/article/document";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -35,8 +34,7 @@ export type ArticlePublicationPlan = typeof ArticlePublicationPlanSchema.Type;
 
 type PlanArticlePublicationError =
   | Effect.Error<ReturnType<typeof compileArticleDocument>>
-  | Effect.Error<ReturnType<typeof inspectArticleDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectArticleDocument>>;
 
 type PlanArticlePublicationContext =
   | Effect.Services<ReturnType<typeof compileArticleDocument>>

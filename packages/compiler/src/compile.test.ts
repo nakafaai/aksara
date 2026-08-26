@@ -117,6 +117,16 @@ describe("compileContent", () => {
     })
   );
 
+  it.effect("rejects coordinate strings in semantic label text", () =>
+    Effect.gen(function* () {
+      const error = yield* rejectRawMdx(
+        withMetadata('<AtomShellLab labels={{point:{text:"P (0, 0)"}}} />'),
+        "chemistry"
+      );
+      assert.strictEqual(error._tag, "AuthoredCoordinateLabelError");
+    })
+  );
+
   it.effect("allows only the selected route domain registry", () =>
     Effect.gen(function* () {
       const mathematics = yield* compileRawMdx(
@@ -146,7 +156,7 @@ describe("compileContent", () => {
             </>
           }
           labels={{
-            note: <>Shell <InlineMath math="K" /> is full.</>,
+            note: <>Point <InlineMath math="P(0,0)" /> is exact.</>,
           }}
         />`),
         "chemistry"

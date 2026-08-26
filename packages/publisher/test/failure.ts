@@ -26,6 +26,9 @@ export function publicationFailures() {
   const snapshotBatch = transportRequests.find(
     (request) => request.operation === "stageSnapshotBatch"
   );
+  const runtimeBundle = transportRequests.find(
+    (request) => request.operation === "stageTryoutRuntimeBundle"
+  );
   const activate = transportRequests.find(
     (request) => request.operation === "activate"
   );
@@ -50,6 +53,7 @@ export function publicationFailures() {
     artifact?.operation !== "stageArtifactBatch" ||
     snapshot?.operation !== "stageSnapshot" ||
     snapshotBatch?.operation !== "stageSnapshotBatch" ||
+    runtimeBundle?.operation !== "stageTryoutRuntimeBundle" ||
     activate?.operation !== "activate" ||
     statusRequest?.operation !== "status" ||
     verify?.operation !== "verify" ||
@@ -180,6 +184,19 @@ export function publicationFailures() {
         operation: snapshotBatch.operation,
         releaseId: snapshotBatch.releaseId,
         snapshotId: snapshotBatch.snapshotId,
+      },
+    },
+    {
+      request: runtimeBundle,
+      statuses: [409],
+      tag: "PublicationTargetConflictError",
+      wire: {
+        bundleHash: runtimeBundle.bundle.bundleHash,
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: runtimeBundle.operation,
+        releaseId: runtimeBundle.releaseId,
+        snapshotId: runtimeBundle.bundle.payload.snapshot.snapshotId,
       },
     },
     {

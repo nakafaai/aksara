@@ -89,7 +89,6 @@ function makeTarget(
 function reject<Value, Error>(program: Effect.Effect<Value, Error>) {
   return Effect.runPromise(Effect.flip(program));
 }
-
 /** Invokes the matching target operation for one decoded wire request. */
 function invokeTarget(
   target: typeof PublicationTarget.Service,
@@ -124,12 +123,13 @@ function invokeTarget(
       stageRouteBatch: (value) => target.stageRouteBatch(value),
       stageSnapshot: (value) => target.stageSnapshot(value),
       stageSnapshotBatch: (value) => target.stageSnapshotBatch(value),
+      stageTryoutRuntimeBundle: (value) =>
+        target.stageTryoutRuntimeBundle(value),
       status: (value) => target.status(value),
       verify: (value) => target.verify(value.release),
     })
   );
 }
-
 describe("HTTP publication target", () => {
   it("executes every target operation through authenticated strict JSON", async () => {
     const captured = capturedClient();
@@ -143,7 +143,7 @@ describe("HTTP publication target", () => {
         }
       )
     );
-    expect(captured.requests).toHaveLength(21);
+    expect(captured.requests).toHaveLength(22);
     for (const request of captured.requests) {
       expect(request.method).toBe("POST");
       expect(request.url).toBe(endpoint.toString());

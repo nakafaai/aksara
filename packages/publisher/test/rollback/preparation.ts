@@ -170,14 +170,7 @@ const sourcePrepared = await Effect.runPromise(
     result: Stream.make(head),
     routes: Stream.empty,
     scope: {
-      content: [
-        {
-          artifactLocale: change.artifactLocale,
-          contentKey: change.contentKey,
-          family: change.family,
-        },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     },
     ...snapshotPolicyBase("test-rollback-source-base"),

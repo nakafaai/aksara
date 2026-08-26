@@ -1,7 +1,5 @@
 import { Effect, Array as ReadonlyArray } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
-import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
-import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
@@ -9,11 +7,12 @@ import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
   decodeProtectedContentRuntimeRequest,
   decodeProtectedContentRuntimeResponse,
-  type ProtectedContentRuntimeFound,
   type ProtectedContentRuntimeItem,
   type ProtectedContentRuntimeRequest,
   type ProtectedContentRuntimeSelector,
 } from "#contracts/runtime/protected/spec";
+import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime-bundle/spec";
+import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime-bundle/verify";
 
 /** Checks one protected body path matches its exact content and artifact locale. */
 function hasProtectedSourcePath(
@@ -36,7 +35,8 @@ const verifyProtectedItem = Effect.fn(
 )(function* (
   selector: ProtectedContentRuntimeSelector,
   item: ProtectedContentRuntimeItem,
-  bundle: ContentReleaseBundle,
+  bundle: SignedTryoutRuntimeBundle,
+  bundleRenderer: RendererManifestEnvelope,
   liveRenderer: RendererManifestEnvelope
 ) {
   if (item.delivery !== selector.delivery) {
@@ -59,49 +59,30 @@ const verifyProtectedItem = Effect.fn(
   }
   const artifact = yield* verifySignedContentArtifact({
     artifact: item.artifact,
-    rendererContractVersion: bundle.release.manifest.rendererContractVersion,
-    rendererManifest: bundle.rendererManifest,
+    rendererContractVersion: bundleRenderer.rendererContractVersion,
+    rendererManifest: bundleRenderer,
   });
-  if (liveRenderer.hash !== bundle.rendererManifest.hash) {
+  if (liveRenderer.hash !== bundle.payload.rendererManifestHash) {
     yield* verifyContentRendererCompatibility({
       payload: artifact.payload,
-      rendererContractVersion: bundle.release.manifest.rendererContractVersion,
+      rendererContractVersion: bundleRenderer.rendererContractVersion,
       rendererManifest: liveRenderer,
     });
   }
 });
 
-/** Binds one protected batch to the exact release retained by its snapshot. */
-const verifyProtectedRelease = Effect.fn(
-  "AksaraContracts.verifyProtectedRuntimeRelease"
+/** Binds one protected batch to its exact permanent runtime bundle. */
+const verifyProtectedBundle = Effect.fn(
+  "AksaraContracts.verifyProtectedRuntimeBundle"
 )(function* (
   request: ProtectedContentRuntimeRequest,
-  response: ProtectedContentRuntimeFound,
-  bundle: ContentReleaseBundle
+  bundle: SignedTryoutRuntimeBundle
 ) {
-  if (response.snapshotId !== request.snapshotId) {
+  if (bundle.bundleHash !== request.bundleHash) {
+    return yield* new ContentRuntimeMismatchError({ reason: "bundleHash" });
+  }
+  if (bundle.payload.snapshot.snapshotId !== request.snapshotId) {
     return yield* new ContentRuntimeMismatchError({ reason: "snapshotId" });
-  }
-  if (
-    response.snapshotId !==
-    bundle.release.manifest.snapshots.tryout.resultSnapshotId
-  ) {
-    return yield* new ContentRuntimeMismatchError({ reason: "snapshotId" });
-  }
-  if (response.snapshotReleaseId !== request.snapshotReleaseId) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotReleaseId",
-    });
-  }
-  if (response.snapshotReleaseId !== bundle.release.manifest.releaseId) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotReleaseId",
-    });
-  }
-  if (response.snapshotManifestHash !== bundle.release.manifestHash) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotManifestHash",
-    });
   }
 });
 
@@ -123,18 +104,24 @@ export const verifyProtectedContentRuntimeExchange = Effect.fn(
       reason: "selectorCount",
     });
   }
-  const bundle = yield* verifyContentReleaseBundle({
-    release: response.release,
+  const bundle = yield* verifySignedTryoutRuntimeBundle({
+    bundle: response.bundle,
     rendererManifest: response.rendererManifest,
   });
   const liveRenderer = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
-  yield* verifyProtectedRelease(request, response, bundle);
+  yield* verifyProtectedBundle(request, bundle);
   yield* Effect.forEach(
     ReadonlyArray.zip(request.selectors, response.items),
     ([selector, item]) =>
-      verifyProtectedItem(selector, item, bundle, liveRenderer),
+      verifyProtectedItem(
+        selector,
+        item,
+        bundle,
+        response.rendererManifest,
+        liveRenderer
+      ),
     { concurrency: "unbounded", discard: true }
   );
   return response;

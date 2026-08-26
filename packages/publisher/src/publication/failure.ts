@@ -5,6 +5,7 @@ import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
 import type { Effect } from "effect";
 import type { prepareRollback } from "#publisher/rollback";
 import type { PublicationSigner } from "#publisher/signing/service";
@@ -44,9 +45,19 @@ export type SignedReleaseVerificationError = Effect.Error<
   ReturnType<typeof verifySignedContentRelease>
 >;
 
+/** Failure inferred from permanent runtime-bundle verification. */
+export type TryoutRuntimeBundleVerificationError = Effect.Error<
+  ReturnType<typeof verifySignedTryoutRuntimeBundle>
+>;
+
 /** Failure inferred from publication artifact signing. */
 export type ArtifactSigningError = Effect.Error<
   ReturnType<PublicationSigner["signArtifact"]>
+>;
+
+/** Failure inferred from permanent runtime-bundle signing. */
+export type TryoutRuntimeBundleSigningError = Effect.Error<
+  ReturnType<PublicationSigner["signTryoutRuntimeBundle"]>
 >;
 
 /** Failure inferred from authenticated rollback preparation. */

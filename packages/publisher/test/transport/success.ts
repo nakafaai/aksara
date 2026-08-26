@@ -186,6 +186,17 @@ export function transportSuccess(
           unchanged: 0,
         },
       }),
+      stageTryoutRuntimeBundle: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          bundleHash: value.bundle.bundleHash,
+          created: 1,
+          releaseId: value.releaseId,
+          snapshotId: value.bundle.payload.snapshot.snapshotId,
+          unchanged: 0,
+        },
+      }),
       status: (value) => ({
         ok: true,
         operation: value.operation,

@@ -23,6 +23,7 @@ import {
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { testRendererDomains } from "#contracts/test/renderer";
+import { makeTestRuntimeBundle } from "#contracts/test/runtime-bundle";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { StageOperationSchema } from "#contracts/transport/group";
 
@@ -79,19 +80,7 @@ export const release = Schema.decodeSync(SignedContentReleaseSchema)({
     routeCount: 0,
     routeDigest: hash,
     scope: {
-      content: [
-        {
-          artifactLocale: "en",
-          contentKey: "test:transport",
-          family: "material",
-        },
-        {
-          artifactLocale: "id",
-          contentKey: "test:transport",
-          family: "material",
-        },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: ["program"],
     },
     snapshots: inheritContentSnapshots(null),
@@ -218,10 +207,21 @@ export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)(
     (row) => row.family === "tryout" && row.rowKind === "catalog"
   )
 );
+export const tryoutRuntimeBundle = makeTestRuntimeBundle({
+  release,
+  rendererManifest,
+  snapshot: snapshotManifest.manifest,
+  sourceGitSha: "a".repeat(40),
+});
 
 const stageOperations = Schema.decodeSync(
   Schema.NonEmptyArray(StageOperationSchema)
 )([
+  {
+    bundle: tryoutRuntimeBundle,
+    operation: "stageTryoutRuntimeBundle",
+    releaseId,
+  },
   { operation: "stageSnapshot", releaseId, snapshot: snapshotManifest },
   {
     batchIndex: 0,

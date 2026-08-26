@@ -54,6 +54,7 @@ const TARGET_STAGES: Readonly<{
   stageRouteBatch: "routes",
   stageSnapshot: "snapshots",
   stageSnapshotBatch: "snapshots",
+  stageTryoutRuntimeBundle: "bundles",
   status: "status",
   verify: "verify",
 };
@@ -101,6 +102,45 @@ function protocolError(request: PublicationRequest) {
   });
 }
 
+/** Checks immutable identity evidence carried by a target conflict. */
+function hasBoundConflict(
+  request: PublicationRequest,
+  failure: Extract<PublicationFailure, { readonly kind: "conflict" }>
+) {
+  if (failure.operation === "stageSnapshot") {
+    return (
+      request.operation === "stageSnapshot" &&
+      failure.family === request.snapshot.family &&
+      failure.snapshotId === request.snapshot.manifest.snapshotId
+    );
+  }
+  if (failure.operation === "stageSnapshotBatch") {
+    return (
+      request.operation === "stageSnapshotBatch" &&
+      failure.batchIndex === request.batchIndex &&
+      failure.family === request.family &&
+      failure.snapshotId === request.snapshotId
+    );
+  }
+  if (failure.operation === "stageTryoutRuntimeBundle") {
+    return (
+      request.operation === "stageTryoutRuntimeBundle" &&
+      failure.bundleHash === request.bundle.bundleHash &&
+      failure.snapshotId === request.bundle.payload.snapshot.snapshotId
+    );
+  }
+  if (!("batchIndex" in failure)) {
+    return request.operation === failure.operation;
+  }
+  return (
+    (request.operation === "stageItemBatch" ||
+      request.operation === "stageRouteBatch" ||
+      request.operation === "stageProjectionBatch" ||
+      request.operation === "stageArtifactBatch") &&
+    failure.batchIndex === request.batchIndex
+  );
+}
+
 /** Checks structured failure evidence before exposing it to domain callers. */
 function hasBoundFailure(
   request: PublicationRequest,
@@ -142,31 +182,7 @@ function hasBoundFailure(
       failure.activeReleaseId !== request.release.manifest.releaseId
     );
   }
-  if (failure.operation === "stageSnapshot") {
-    return (
-      request.operation === "stageSnapshot" &&
-      failure.family === request.snapshot.family &&
-      failure.snapshotId === request.snapshot.manifest.snapshotId
-    );
-  }
-  if (failure.operation === "stageSnapshotBatch") {
-    return (
-      request.operation === "stageSnapshotBatch" &&
-      failure.batchIndex === request.batchIndex &&
-      failure.family === request.family &&
-      failure.snapshotId === request.snapshotId
-    );
-  }
-  if (!("batchIndex" in failure)) {
-    return request.operation === failure.operation;
-  }
-  return (
-    (request.operation === "stageItemBatch" ||
-      request.operation === "stageRouteBatch" ||
-      request.operation === "stageProjectionBatch" ||
-      request.operation === "stageArtifactBatch") &&
-    failure.batchIndex === request.batchIndex
-  );
+  return hasBoundConflict(request, failure);
 }
 
 /** Converts one authenticated structured rejection into a typed target error. */

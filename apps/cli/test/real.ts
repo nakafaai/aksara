@@ -10,8 +10,6 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -26,19 +24,7 @@ export const MATERIAL_ENTRIES = await Effect.runPromise(
 const functionContentKey =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 export const FUNCTION_SCOPE = PublicationScopeSchema.make({
-  content: [
-    {
-      artifactLocale: ArtifactLocaleSchema.make("en"),
-      contentKey: ContentKeySchema.make(functionContentKey),
-      family: "material",
-    },
-    {
-      artifactLocale: ArtifactLocaleSchema.make("id"),
-      contentKey: ContentKeySchema.make(functionContentKey),
-      family: "material",
-    },
-  ],
-  families: [],
+  families: ["material"],
   snapshots: [],
 });
 const englishEntry = MATERIAL_ENTRIES.find(

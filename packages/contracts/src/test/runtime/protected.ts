@@ -6,7 +6,7 @@ import { rendererManifest } from "#contracts/test/request";
 import {
   createSignedArtifact,
   protectedSnapshotId,
-  release,
+  runtimeBundle,
   trustedResolver,
 } from "#contracts/test/runtime/fixture";
 
@@ -37,16 +37,16 @@ export const protectedAnswerSelector = {
   delivery: "entitled",
 } as const;
 export const protectedRequest = {
-  appLocale: "en",
+  bundleHash: runtimeBundle.bundleHash,
   selectors: [protectedSelector],
   snapshotId: protectedSnapshotId,
-  snapshotReleaseId: release.manifest.releaseId,
 } as const;
 export const protectedAnswerRequest = {
   ...protectedRequest,
   selectors: [protectedAnswerSelector],
 } as const;
 export const protectedFound = {
+  bundle: runtimeBundle,
   items: [
     {
       artifact: protectedArtifact,
@@ -57,11 +57,7 @@ export const protectedFound = {
     },
   ],
   kind: "found",
-  release,
   rendererManifest,
-  snapshotId: protectedSnapshotId,
-  snapshotManifestHash: release.manifestHash,
-  snapshotReleaseId: release.manifest.releaseId,
 } as const;
 
 /** Builds one protected runtime exchange with the fixture verification key. */

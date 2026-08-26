@@ -5,6 +5,7 @@ import { type SigningKeyId, SigningKeyIdSchema } from "#contracts/ids";
 export const ContentSignatureSubjectSchema = Schema.Literals([
   "artifact",
   "release",
+  "tryout-runtime-bundle",
 ]);
 export type ContentSignatureSubject = typeof ContentSignatureSubjectSchema.Type;
 

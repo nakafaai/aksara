@@ -8,6 +8,7 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
       "activeManifestHash",
       "activeReleaseId",
       "artifactHash",
+      "bundleHash",
       "contentKey",
       "delivery",
       "locale",
@@ -16,8 +17,6 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
       "rendererManifest",
       "selectorCount",
       "snapshotId",
-      "snapshotManifestHash",
-      "snapshotReleaseId",
       "sourcePath",
     ]),
   }

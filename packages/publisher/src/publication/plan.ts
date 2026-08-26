@@ -27,6 +27,12 @@ import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/ver
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import {
+  type SignedTryoutRuntimeBundle,
+  TRYOUT_RUNTIME_BUNDLE_FORMAT,
+} from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
@@ -101,6 +107,8 @@ export interface PublicationPlan<E, R> {
   >;
   readonly summary: VerifiedContentReleaseItems;
   readonly target: typeof PublicationTarget.Service;
+  /** Permanent bundle staged only when this Git release replaces try-out state. */
+  readonly tryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
 }
 
 type PreparePublicationPlan = <E, R>(
@@ -166,6 +174,17 @@ function contentCacheChanges<E, R>(
   );
 }
 
+/** Selects the one canonical try-out replacement from a replayable manifest stream. */
+function selectTryoutSnapshot<E, R>(input: PreparedContentRelease<E, R>) {
+  /** Starts the fold without an authored try-out replacement. */
+  const initial = (): TryoutSnapshot | null => null;
+  return input.snapshotManifests.pipe(
+    Stream.runFold(initial, (selected, snapshot) =>
+      snapshot.family === "tryout" ? snapshot.manifest : selected
+    )
+  );
+}
+
 /** Builds one signed replayable plan without changing target visibility. */
 export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
@@ -199,6 +218,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     routes: input.routes,
   });
   const snapshotSummary = yield* verifyPublicationSnapshots(input);
+  const tryoutSnapshot = yield* selectTryoutSnapshot(input);
   /** Replays every structured snapshot and body-item cache change. */
   const cacheChanges = contentSnapshotCacheChanges(
     snapshotSummary.snapshots
@@ -244,6 +264,26 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     ? signer.signRelease(input.manifest)
     : Effect.succeed(input.storedRelease);
   const release = yield* verifySignedContentRelease(signedRelease);
+  const tryoutRuntimeBundle =
+    invocation.kind === "git" && tryoutSnapshot !== null
+      ? yield* signer
+          .signTryoutRuntimeBundle({
+            format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+            rendererManifestHash: rendererManifest.hash,
+            snapshot: tryoutSnapshot,
+            sourceGitSha: yield* validateGitMode(invocation.input),
+            sourceManifestHash: release.manifestHash,
+            sourceReleaseId: release.manifest.releaseId,
+          })
+          .pipe(
+            Effect.flatMap((bundle) =>
+              verifySignedTryoutRuntimeBundle({
+                bundle,
+                rendererManifest,
+              })
+            )
+          )
+      : null;
   const artifacts =
     artifactPlan.kind === "rollback"
       ? artifactPlan.artifacts.replay
@@ -260,6 +300,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     projections: decodedProjections,
     routes: decodedRoutes,
     target,
+    tryoutRuntimeBundle,
   });
   return {
     bundle: { release, rendererManifest },
@@ -270,5 +311,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     stage,
     summary,
     target,
+    tryoutRuntimeBundle,
   };
 });

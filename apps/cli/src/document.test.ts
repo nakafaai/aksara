@@ -137,6 +137,7 @@ describe("preview document compiler", () => {
     const repository = repositories.create();
     const credentials = await Effect.runPromise(makePreviewCredentials());
     const signer: PublicationSigner = {
+      ...credentials.signer,
       signArtifact: () =>
         Effect.fail(
           new ContentSigningError({
@@ -144,7 +145,6 @@ describe("preview document compiler", () => {
             stage: "artifact",
           })
         ),
-      signRelease: credentials.signer.signRelease,
     };
     const { compiler } = await makeCompiler(repository, signer);
     const error = await runNode(compiler.compile.pipe(Effect.flip));
@@ -160,6 +160,7 @@ describe("preview document compiler", () => {
     const credentials = await Effect.runPromise(makePreviewCredentials());
     let signingAttempts = 0;
     const signer: PublicationSigner = {
+      ...credentials.signer,
       signArtifact: (payload) =>
         Effect.sync(() => {
           signingAttempts += 1;
@@ -167,7 +168,6 @@ describe("preview document compiler", () => {
             writeFileSync(repository.documentPath, `${REAL_SOURCE}\n`);
           }
         }).pipe(Effect.andThen(credentials.signer.signArtifact(payload))),
-      signRelease: credentials.signer.signRelease,
     };
     const { compiler } = await makeCompiler(repository, signer);
     const error = await runNode(compiler.compile.pipe(Effect.flip));

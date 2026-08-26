@@ -98,14 +98,7 @@ function manifest(
     routeCount: 0,
     routeDigest: `sha256:${"f".repeat(64)}`,
     scope: {
-      content: [
-        {
-          artifactLocale: "en",
-          contentKey: "test:rollback",
-          family: "material",
-        },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     },
     snapshots: inheritContentSnapshots(null),

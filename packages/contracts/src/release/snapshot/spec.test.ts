@@ -1,8 +1,7 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
-import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
-import { ArtifactLocaleSchema } from "#contracts/locale";
+import { Sha256HashSchema } from "#contracts/ids";
 import {
   baseContentSnapshots,
   ContentSnapshotSetSchema,
@@ -19,7 +18,6 @@ import {
   inheritContentSnapshots,
   invertContentSnapshots,
   PublicationScopeSchema,
-  publicationScopeContainsContent,
   publicationScopeSelectsSnapshot,
   replaceContentSnapshot,
   restoreContentSnapshot,
@@ -40,67 +38,21 @@ function decode(input: unknown) {
 describe("content snapshot state", () => {
   it("decodes only non-empty canonical unique publication scopes", () => {
     const scope = Schema.decodeSync(PublicationScopeSchema)({
-      content: [
-        { artifactLocale: "en", contentKey: "test:a", family: "material" },
-        { artifactLocale: "id", contentKey: "test:a", family: "material" },
-      ],
-      families: ["article"],
+      families: ["article", "material"],
       snapshots: ["program", "tryout"],
     });
-    const [english] = scope.content;
-    expect(english).toBeDefined();
-    if (english === undefined) {
-      return;
-    }
     expect(canonicalizePublicationScope(scope)).toEqual(scope);
-    expect(publicationScopeContainsContent(scope, english)).toBe(true);
-    expect(
-      publicationScopeContainsContent(scope, {
-        artifactLocale: ArtifactLocaleSchema.make("en"),
-        contentKey: ContentKeySchema.make("test:family"),
-        family: "article",
-      })
-    ).toBe(true);
-    expect(
-      publicationScopeContainsContent(scope, {
-        ...english,
-        artifactLocale: ArtifactLocaleSchema.make("id"),
-      })
-    ).toBe(true);
     expect(publicationScopeSelectsSnapshot(scope, "program")).toBe(true);
     expect(publicationScopeSelectsSnapshot(scope, "quran")).toBe(false);
 
     const failures = [
-      { content: [], families: [], snapshots: [] },
-      {
-        content: [
-          { artifactLocale: "en", contentKey: "test:a", family: "material" },
-          { artifactLocale: "en", contentKey: "test:a", family: "material" },
-        ],
-        families: [],
-        snapshots: [],
-      },
-      {
-        content: [
-          { artifactLocale: "en", contentKey: "test:b", family: "material" },
-          { artifactLocale: "en", contentKey: "test:a", family: "material" },
-        ],
-        families: [],
-        snapshots: [],
-      },
-      { content: [], families: ["material", "material"], snapshots: [] },
-      { content: [], families: ["question", "article"], snapshots: [] },
-      {
-        content: [
-          { artifactLocale: "en", contentKey: "test:a", family: "material" },
-        ],
-        families: ["material"],
-        snapshots: [],
-      },
-      { content: [], families: ["unknown"], snapshots: [] },
-      { content: [], families: [], snapshots: ["program", "program"] },
-      { content: [], families: [], snapshots: ["tryout", "quran"] },
-      { content: [], families: [], snapshots: ["unknown"] },
+      { families: [], snapshots: [] },
+      { families: ["material", "material"], snapshots: [] },
+      { families: ["question", "article"], snapshots: [] },
+      { families: ["unknown"], snapshots: [] },
+      { families: [], snapshots: ["program", "program"] },
+      { families: [], snapshots: ["tryout", "quran"] },
+      { families: [], snapshots: ["unknown"] },
     ].map((invalid) =>
       Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
     );
@@ -278,18 +230,14 @@ describe("content snapshot state", () => {
       tryout: { resultSnapshotId: first },
     });
     const materialOnly = Schema.decodeSync(PublicationScopeSchema)({
-      content: [
-        { artifactLocale: "en", contentKey: "test:a", family: "material" },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     });
     expect(hasScopedSnapshotTransitions(materialOnly, snapshots)).toBe(false);
     expect(
       hasScopedSnapshotTransitions(
         Schema.decodeSync(PublicationScopeSchema)({
-          content: materialOnly.content,
-          families: [],
+          families: materialOnly.families,
           snapshots: ["quran"],
         }),
         snapshots

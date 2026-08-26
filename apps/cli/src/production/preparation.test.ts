@@ -21,7 +21,6 @@ import {
 
 const calls = productionCalls();
 const tryoutScope = PublicationScopeSchema.make({
-  content: [],
   families: [],
   snapshots: ["tryout"],
 });

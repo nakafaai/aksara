@@ -48,7 +48,6 @@ export const decodePublicationScopeSelectors = Effect.fn(
     snapshots.push(selection.value);
   }
   return Schema.decodeUnknownEffect(PublicationScopeSchema)({
-    content: [],
     families,
     snapshots,
   }).pipe(

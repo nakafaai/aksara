@@ -8,8 +8,8 @@ import {
   checkoutRoot,
   collectPagePublication,
   collectPageResult,
+  pageFamilyScope,
   pageManifest,
-  privacyPageScope,
   publishedPageHeads,
   sourceByPath,
 } from "#test/page";
@@ -207,10 +207,10 @@ describe("page plan", () => {
     expect(compilerState.calls).toBe(12);
   });
 
-  it("compiles only the scoped privacy page locales for scoped genesis", async () => {
+  it("compiles the complete selected family for scoped genesis", async () => {
     const records = await collectPagePublication({
       heads: [],
-      scope: privacyPageScope,
+      scope: pageFamilyScope,
     });
 
     expect(
@@ -219,14 +219,23 @@ describe("page plan", () => {
         record.change.artifactLocale,
       ])
     ).toEqual([
+      ["pages/imprint", "de"],
+      ["pages/imprint", "en"],
+      ["pages/imprint", "id"],
       ["pages/privacy-policy", "de"],
       ["pages/privacy-policy", "en"],
       ["pages/privacy-policy", "id"],
+      ["pages/security-policy", "de"],
+      ["pages/security-policy", "en"],
+      ["pages/security-policy", "id"],
+      ["pages/terms-of-service", "de"],
+      ["pages/terms-of-service", "en"],
+      ["pages/terms-of-service", "id"],
     ]);
-    expect(compilerState.calls).toBe(3);
+    expect(compilerState.calls).toBe(12);
   });
 
-  it("preserves base heads and ignores source changes outside scope", async () => {
+  it("preserves base heads and ignores changes in an unselected family", async () => {
     const sources = new Map(sourceByPath);
     const path = resolve(
       checkoutRoot,
@@ -236,14 +245,18 @@ describe("page plan", () => {
     expect(source).toBeDefined();
     sources.set(path, `${source}\n`);
 
+    const unselectedScope = PublicationScopeSchema.make({
+      families: ["article"],
+      snapshots: [],
+    });
     const records = await collectPagePublication({
       heads: publishedHeads,
-      scope: privacyPageScope,
+      scope: unselectedScope,
       sources,
     });
     const result = await collectPageResult({
       heads: publishedHeads,
-      scope: privacyPageScope,
+      scope: unselectedScope,
       sources,
     });
 
@@ -260,14 +273,7 @@ describe("page plan", () => {
       sourcePath: "packages/corpus/pages/zz-removed-page/en.mdx",
     });
     const scope = Schema.decodeSync(PublicationScopeSchema)({
-      content: [
-        {
-          artifactLocale: stale.artifactLocale,
-          contentKey: stale.contentKey,
-          family: stale.family,
-        },
-      ],
-      families: [],
+      families: ["page"],
       snapshots: [],
     });
     const heads = [...publishedHeads, stale];

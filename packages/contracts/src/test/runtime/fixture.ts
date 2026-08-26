@@ -15,6 +15,7 @@ import {
 import {
   type ContentKey,
   Ed25519SignatureSchema,
+  GitCommitShaSchema,
   type Sha256Hash,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -34,6 +35,13 @@ import {
   artifact as unsignedArtifact,
   release as unsignedRelease,
 } from "#contracts/test/request";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime-bundle/canonical";
+import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/hash";
+import {
+  SignedTryoutRuntimeBundleSchema,
+  TRYOUT_RUNTIME_BUNDLE_FORMAT,
+} from "#contracts/tryout/runtime-bundle/spec";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const keyId = SigningKeyIdSchema.make("test-runtime-key");
 const signingKeys = generateKeyPairSync("ed25519");
@@ -81,9 +89,15 @@ export function createSignedArtifact(
   });
 }
 
-export const protectedSnapshotId = Sha256HashSchema.make(
-  `sha256:${"9".repeat(64)}`
-);
+export const protectedSnapshot = makeTryoutSnapshot({
+  activeAppLocales: unsignedRelease.manifest.activeAppLocales,
+  catalogDigest: hashRuntimeValue("protected-catalog"),
+  counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+  placementCount: 1,
+  placementDigest: hashRuntimeValue("protected-placement"),
+  routeCount: 5,
+});
+export const protectedSnapshotId = protectedSnapshot.snapshotId;
 /** Signs one runtime release against its exact frozen renderer manifest. */
 export async function createSignedRuntimeRelease(
   rendererManifestHash: Sha256Hash
@@ -121,6 +135,29 @@ export async function createSignedRuntimeRelease(
 export const release = await createSignedRuntimeRelease(
   unsignedRelease.manifest.rendererManifestHash
 );
+
+const runtimeBundlePayload = {
+  format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+  rendererManifestHash: unsignedRelease.manifest.rendererManifestHash,
+  snapshot: protectedSnapshot,
+  sourceGitSha: GitCommitShaSchema.make("a".repeat(40)),
+  sourceManifestHash: release.manifestHash,
+  sourceReleaseId: release.manifest.releaseId,
+} as const;
+const runtimeBundleHash = await Effect.runPromise(
+  hashTryoutRuntimeBundlePayload(runtimeBundlePayload)
+);
+export const runtimeBundle = SignedTryoutRuntimeBundleSchema.make({
+  bundleHash: runtimeBundleHash,
+  keyId,
+  payload: runtimeBundlePayload,
+  signature: signRuntimeValue(
+    canonicalizeTryoutRuntimeBundleSigningInput(
+      runtimeBundleHash,
+      runtimeBundlePayload
+    )
+  ),
+});
 
 export const trustedResolver = ContentVerificationKeyResolver.of({
   /** Resolves only the runtime fixture's exact signing key. */

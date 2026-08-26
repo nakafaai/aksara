@@ -67,11 +67,7 @@ const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   routeCount: 0,
   routeDigest: `sha256:${"f".repeat(64)}`,
   scope: {
-    content: [
-      { artifactLocale: "en", contentKey: "test:content", family: "material" },
-      { artifactLocale: "id", contentKey: "test:content", family: "material" },
-    ],
-    families: [],
+    families: ["material"],
     snapshots: [],
   },
   snapshots: inheritContentSnapshots(null),
@@ -164,8 +160,7 @@ describe("release spec", () => {
       {
         ...manifest,
         scope: {
-          content: manifest.scope.content,
-          families: [],
+          families: manifest.scope.families,
           snapshots: ["program"],
         },
         snapshots: {

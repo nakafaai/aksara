@@ -20,7 +20,6 @@ const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
 ]);
 const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
-  content: [],
   families: ["article", "material", "page", "question"],
   snapshots: ["program", "quran", "tryout"],
 });
@@ -54,7 +53,6 @@ describe("release policy", () => {
           manifests: program,
           policy,
           scope: PublicationScopeSchema.make({
-            content: [],
             families: ["material"],
             snapshots: ["program"],
           }),
@@ -164,7 +162,6 @@ describe("release policy", () => {
         manifests: current.manifests,
         policy,
         scope: PublicationScopeSchema.make({
-          content: [],
           families: [],
           snapshots: ["program", "quran", "tryout"],
         }),

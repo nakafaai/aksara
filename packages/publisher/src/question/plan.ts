@@ -12,7 +12,6 @@ import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source"
 import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -37,8 +36,7 @@ export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
   | Effect.Error<ReturnType<typeof compileQuestionDocument>>
-  | Effect.Error<ReturnType<typeof inspectQuestionDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectQuestionDocument>>;
 
 type PlanQuestionPublicationContext =
   | Effect.Services<ReturnType<typeof compileQuestionDocument>>

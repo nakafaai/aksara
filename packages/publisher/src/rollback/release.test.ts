@@ -51,14 +51,7 @@ describe("buildRollbackRelease", () => {
         result: Stream.make(prior.head),
         routes: Stream.empty,
         scope: {
-          content: [
-            {
-              artifactLocale: prior.head.artifactLocale,
-              contentKey: prior.head.contentKey,
-              family: prior.head.family,
-            },
-          ],
-          families: [],
+          families: ["material"],
           snapshots: [],
         },
         target: {

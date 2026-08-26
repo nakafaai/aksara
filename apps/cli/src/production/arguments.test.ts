@@ -30,7 +30,6 @@ describe("release production arguments", () => {
       recoveryId: "recovery-2026-07-22",
       releaseId: "release-2026-07-22",
       scope: {
-        content: [],
         families: ["material"],
         snapshots: [],
       },

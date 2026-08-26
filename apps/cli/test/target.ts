@@ -249,6 +249,7 @@ export function makeProductionTarget(
     stageRouteBatch: unused,
     stageSnapshot: unused,
     stageSnapshotBatch: unused,
+    stageTryoutRuntimeBundle: unused,
     status: unused,
     verify: unused,
   });

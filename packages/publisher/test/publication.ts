@@ -117,14 +117,7 @@ export const contentRecord = {
   source: publicationSource,
 };
 export const publicationScope = PublicationScopeSchema.make({
-  content: [
-    {
-      artifactLocale: contentRecord.change.artifactLocale,
-      contentKey: contentRecord.change.contentKey,
-      family: contentRecord.change.family,
-    },
-  ],
-  families: [],
+  families: ["material"],
   snapshots: [],
 });
 export const head = MaterialHeadSchema.make({

@@ -32,8 +32,10 @@ import {
   PublicationStatusSuccessSchema,
   StageSnapshotBatchSuccessSchema,
   StageSnapshotSuccessSchema,
+  StageTryoutRuntimeBundleSuccessSchema,
   VerifyReleaseSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
+import type { StageTryoutRuntimeBundleRequest } from "@nakafa/aksara-contracts/transport/runtime-bundle";
 import type {
   StageSnapshotBatchRequest,
   StageSnapshotRequest,
@@ -227,6 +229,18 @@ export const makeHttpPublicationTarget = Effect.fn(
       return send(request).pipe(
         Effect.flatMap((response) =>
           decodeSuccess(StageSnapshotBatchSuccessSchema, response)
+        ),
+        Effect.asVoid
+      );
+    },
+    stageTryoutRuntimeBundle: (input) => {
+      const request: StageTryoutRuntimeBundleRequest = {
+        ...input,
+        operation: "stageTryoutRuntimeBundle",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(StageTryoutRuntimeBundleSuccessSchema, response)
         ),
         Effect.asVoid
       );

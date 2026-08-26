@@ -9,6 +9,9 @@ import {
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime-bundle/canonical";
+import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
@@ -35,7 +38,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 describe("Ed25519 publication signing", () => {
-  it("signs artifacts and releases with one domain-separated key", async () => {
+  it("signs every publication object with one domain-separated key", async () => {
     const { privateKey, publicKey } = generateKeyPairSync("ed25519");
     const signer = await Effect.runPromise(
       makeEd25519PublicationSigner({
@@ -47,6 +50,28 @@ describe("Ed25519 publication signing", () => {
     );
     const artifact = await Effect.runPromise(signer.signArtifact(payload));
     const release = await Effect.runPromise(signer.signRelease(manifest));
+    if (manifest.origin.kind !== "git") {
+      throw new TypeError(
+        "Expected the signing fixture to use Git provenance."
+      );
+    }
+    const runtimeBundle = await Effect.runPromise(
+      signer.signTryoutRuntimeBundle({
+        format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+        rendererManifestHash: manifest.rendererManifestHash,
+        snapshot: makeTryoutSnapshot({
+          activeAppLocales: manifest.activeAppLocales,
+          catalogDigest: manifest.itemsDigest,
+          counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+          placementCount: 1,
+          placementDigest: manifest.resultDigest,
+          routeCount: 1,
+        }),
+        sourceGitSha: manifest.origin.sha,
+        sourceManifestHash: release.manifestHash,
+        sourceReleaseId: manifest.releaseId,
+      })
+    );
 
     expect(artifact.keyId).toBe("test-signing-key");
     expect(
@@ -76,6 +101,21 @@ describe("Ed25519 publication signing", () => {
         ),
         publicKey,
         Buffer.from(release.signature, "base64url")
+      )
+    ).toBe(true);
+    expect(runtimeBundle.keyId).toBe(release.keyId);
+    expect(
+      verify(
+        null,
+        Buffer.from(
+          canonicalizeTryoutRuntimeBundleSigningInput(
+            runtimeBundle.bundleHash,
+            runtimeBundle.payload
+          ),
+          "utf8"
+        ),
+        publicKey,
+        Buffer.from(runtimeBundle.signature, "base64url")
       )
     ).toBe(true);
     expect(

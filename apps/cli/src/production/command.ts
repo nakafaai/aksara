@@ -73,7 +73,6 @@ type PreparedRollback = Effect.Success<
 function logPublicationScope(manifest: ContentReleaseManifest) {
   return Effect.logInfo("Content publication scope selected.").pipe(
     Effect.annotateLogs({
-      contentScopeCount: manifest.scope.content.length,
       deleteCount: manifest.deleteCount,
       familyScopeCount: manifest.scope.families.length,
       itemCount: manifest.itemCount,

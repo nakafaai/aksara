@@ -23,7 +23,6 @@ describe("publication scope selectors", () => {
     await expect(
       decode(["family:material", "snapshot:program", "snapshot:quran"])
     ).resolves.toEqual({
-      content: [],
       families: ["material"],
       snapshots: ["program", "quran"],
     });
@@ -39,7 +38,6 @@ describe("publication scope selectors", () => {
     await expect(
       decode(["family:material", "snapshot:program"])
     ).resolves.toEqual({
-      content: [],
       families: ["material"],
       snapshots: ["program"],
     });

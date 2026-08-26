@@ -28,15 +28,6 @@ export const ContentFamilySchema = Schema.Literals([
 ]);
 export type ContentFamily = typeof ContentFamilySchema.Type;
 
-/** Exact artifact identity selected for publication. */
-export const ContentPublicationIdentitySchema = Schema.Struct({
-  artifactLocale: ArtifactLocaleSchema,
-  contentKey: ContentKeySchema,
-  family: ContentFamilySchema,
-});
-export type ContentPublicationIdentity =
-  typeof ContentPublicationIdentitySchema.Type;
-
 /** Exact authored person identity exposed by Nakafa content metadata. */
 export const ContentAuthorSchema = Schema.Struct({ name: Schema.String });
 export type ContentAuthor = typeof ContentAuthorSchema.Type;
@@ -70,15 +61,6 @@ export function compareContentHeads(
     contentKeyOrder ||
     compareCodeUnits(left.artifactLocale, right.artifactLocale)
   );
-}
-
-/** Compares publication identities in canonical family and head order. */
-export function comparePublicationIdentities(
-  left: ContentPublicationIdentity,
-  right: ContentPublicationIdentity
-) {
-  const familyOrder = compareCodeUnits(left.family, right.family);
-  return familyOrder || compareContentHeads(left, right);
 }
 
 /** Compiler protocol implemented by this Aksara compiler release. */

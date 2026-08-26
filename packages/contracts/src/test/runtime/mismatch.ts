@@ -50,22 +50,12 @@ export const protectedMismatchCases = [
       ],
     },
   ],
-  ["snapshotId", { ...protectedFound, snapshotId: artifact.artifactHash }],
   [
     "snapshotId",
-    { ...protectedFound, snapshotId: artifact.artifactHash },
+    protectedFound,
     { ...protectedRequest, snapshotId: artifact.artifactHash },
   ],
-  [
-    "snapshotReleaseId",
-    { ...protectedFound, snapshotReleaseId: "test-other-release" },
-  ],
-  [
-    "snapshotReleaseId",
-    { ...protectedFound, snapshotReleaseId: "test-other-release" },
-    { ...protectedRequest, snapshotReleaseId: "test-other-release" },
-  ],
-  ["snapshotManifestHash", { ...protectedFound, snapshotManifestHash: hash }],
+  ["bundleHash", protectedFound, { ...protectedRequest, bundleHash: hash }],
   [
     "sourcePath",
     {

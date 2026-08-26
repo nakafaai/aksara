@@ -1,10 +1,13 @@
 import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  type MaterialHead,
+  MaterialHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { diffScopedFamilyHeads } from "#publisher/family/scope";
 
 const entry = {
@@ -20,7 +23,6 @@ function identity(value: ContentHeadIdentity) {
 describe("scoped family diff", () => {
   it("selects a whole family without expanding every content identity", async () => {
     const scope = PublicationScopeSchema.make({
-      content: [],
       families: ["material"],
       snapshots: [],
     });
@@ -37,26 +39,39 @@ describe("scoped family diff", () => {
     expect([...rows]).toEqual([{ entry, kind: "current", scoped: true }]);
   });
 
-  it("rejects an unknown exact canary identity", async () => {
+  it("preserves published heads and ignores new entries for an unselected family", async () => {
     const scope = PublicationScopeSchema.make({
-      content: [{ ...entry, family: "material" }],
-      families: [],
+      families: ["article"],
       snapshots: [],
     });
-    const error = await Effect.runPromise(
+    const newEntry = {
+      artifactLocale: ArtifactLocaleSchema.make("en"),
+      contentKey: ContentKeySchema.make("test:new"),
+    } satisfies ContentHeadIdentity;
+    const published = Schema.decodeSync(MaterialHeadSchema)({
+      artifactHash: `sha256:${"a".repeat(64)}`,
+      artifactLocale: "en",
+      compilerConfigHash: `sha256:${"b".repeat(64)}`,
+      contentKey: "test:published",
+      delivery: "public",
+      family: "material",
+      projectionHash: `sha256:${"c".repeat(64)}`,
+      rendererDomain: "mathematics",
+      sourceHash: `sha256:${"d".repeat(64)}`,
+      sourcePath: "packages/corpus/test/published/en.mdx",
+    });
+    const rows = await Effect.runPromise(
       diffScopedFamilyHeads<ContentHeadIdentity, MaterialHead, never, never>({
-        entries: [],
+        entries: [newEntry],
         family: "material",
         identity,
-        published: Stream.empty,
+        published: Stream.make(published),
         scope,
-      }).pipe(Stream.runDrain, Effect.flip)
+      }).pipe(Stream.runCollect)
     );
 
-    expect(error).toMatchObject({
-      _tag: "PublicationScopeIdentityError",
-      ...entry,
-      family: "material",
-    });
+    expect([...rows]).toEqual([
+      { head: published, kind: "published", scoped: false },
+    ]);
   });
 });

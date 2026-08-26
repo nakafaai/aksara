@@ -17,7 +17,6 @@ import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Stream } from "effect";
 import {
   diffScopedFamilyHeads,
-  type PublicationScopeIdentityError,
   type ScopedFamilyDiff,
 } from "#publisher/family/scope";
 import type {
@@ -197,7 +196,7 @@ export function planFamilyPublication<
   readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
   FamilyPublicationPlan<Head>,
-  CompileError | InspectError | PublicationScopeIdentityError | PublishedError,
+  CompileError | InspectError | PublishedError,
   CompileContext | InspectContext | PublishedContext
 > {
   return diffScopedFamilyHeads({

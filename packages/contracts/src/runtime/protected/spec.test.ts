@@ -71,7 +71,7 @@ describe("protected content runtime contract", () => {
           })
         ),
       },
-      { ...protectedRequest, snapshotReleaseId: "" },
+      { ...protectedRequest, bundleHash: "" },
       { ...protectedRequest, snapshotId: "snapshot-1" },
       {
         ...protectedRequest,

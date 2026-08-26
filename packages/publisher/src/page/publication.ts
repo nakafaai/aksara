@@ -13,7 +13,6 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
 import { constUndefined } from "effect/Function";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   mapPageSourceError,
   type PageMetadataError,
@@ -73,8 +72,7 @@ export type PagePublicationStreamError<E> =
   | PageHeadFamilyError
   | PageHeadOrderError
   | PageMetadataError
-  | PageSourceError
-  | PublicationScopeIdentityError;
+  | PageSourceError;
 
 /** Authoritative public page plan consumed by whole-catalog composition. */
 export interface PagePublication {

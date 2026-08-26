@@ -18,25 +18,8 @@ import { testRendererDomains } from "#test/renderer";
 
 export const pageEntries = await Effect.runPromise(decodePageRegistry());
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
-export const privacyPageScope = Schema.decodeSync(PublicationScopeSchema)({
-  content: [
-    {
-      artifactLocale: "de",
-      contentKey: "pages/privacy-policy",
-      family: "page",
-    },
-    {
-      artifactLocale: "en",
-      contentKey: "pages/privacy-policy",
-      family: "page",
-    },
-    {
-      artifactLocale: "id",
-      contentKey: "pages/privacy-policy",
-      family: "page",
-    },
-  ],
-  families: [],
+export const pageFamilyScope = Schema.decodeSync(PublicationScopeSchema)({
+  families: ["page"],
   snapshots: [],
 });
 

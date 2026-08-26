@@ -39,6 +39,7 @@ import type {
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
+import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime-bundle";
 import type {
   StageSnapshotBatchInput,
   StageSnapshotInput,
@@ -253,6 +254,10 @@ export class PublicationTarget extends Context.Service<
     /** Stages one bounded structured-snapshot row batch idempotently. */
     readonly stageSnapshotBatch: (
       batch: StageSnapshotBatchInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one permanent signed try-out runtime bundle idempotently. */
+    readonly stageTryoutRuntimeBundle: (
+      input: StageTryoutRuntimeBundleInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages one ordered route batch idempotently. */
     readonly stageRouteBatch: (
