@@ -50,30 +50,25 @@ const manifest = {
   rendererContractVersion: "1.0.0",
 } as const;
 
-/** Reads one canonical test domain without weakening its literal identity. */
-function findDomain(name: RendererDomain) {
-  const domain = domains.find((candidate) => candidate.name === name);
-  if (!domain) {
-    throw new Error(`Missing test renderer domain: ${name}`);
-  }
-  return domain;
-}
-
 /** Replaces one domain while preserving the canonical domain tuple. */
 function replaceDomain(name: RendererDomain, replacement: RendererDomainInput) {
   return domains.map((domain) => (domain.name === name ? replacement : domain));
 }
 
 describe("renderer contract", () => {
-  it("selects every route-owned registry without a binary domain branch", async () => {
-    const decoded = Schema.decodeSync(RendererManifestEnvelopeSchema)(manifest);
-    const selected = await Effect.runPromise(
-      Effect.forEach(RENDERER_DOMAINS, (name) =>
-        selectRendererDomainCapability(decoded, name)
-      )
-    );
-    expect(selected.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
-  });
+  it.effect(
+    "selects every route-owned registry without a binary domain branch",
+    () =>
+      Effect.gen(function* () {
+        const decoded = yield* Schema.decodeEffect(
+          RendererManifestEnvelopeSchema
+        )(manifest);
+        const selected = yield* Effect.forEach(RENDERER_DOMAINS, (name) =>
+          selectRendererDomainCapability(decoded, name)
+        );
+        expect(selected.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
+      })
+  );
 
   it("accepts canonical persisted subsets and rejects malformed order", () => {
     const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
@@ -104,19 +99,24 @@ describe("renderer contract", () => {
     expect(Exit.isFailure(duplicated)).toBe(true);
   });
 
-  it("returns a typed failure for a missing persisted capability", async () => {
-    const historical = Schema.decodeSync(RendererManifestEnvelopeSchema)({
-      ...manifest,
-      domains: domains.filter(({ name }) => name !== "tka-math"),
-    });
-    const error = await Effect.runPromise(
-      selectRendererDomainCapability(historical, "tka-math").pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "RendererDomainCapabilityMissingError",
-      rendererDomain: "tka-math",
-    });
-  });
+  it.effect("returns a typed failure for a missing persisted capability", () =>
+    Effect.gen(function* () {
+      const historical = yield* Schema.decodeEffect(
+        RendererManifestEnvelopeSchema
+      )({
+        ...manifest,
+        domains: domains.filter(({ name }) => name !== "tka-math"),
+      });
+      const error = yield* selectRendererDomainCapability(
+        historical,
+        "tka-math"
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "RendererDomainCapabilityMissingError",
+        rendererDomain: "tka-math",
+      });
+    })
+  );
 
   it("requires one capability for every published domain", () => {
     const decoded = Schema.decodeExit(RendererManifestEnvelopeSchema)({
@@ -191,7 +191,7 @@ describe("renderer contract", () => {
   });
 
   it("explains incomplete domain capabilities", () => {
-    const chemistry = findDomain("chemistry");
+    const chemistry = domainCapability("chemistry");
     const incomplete = {
       ...chemistry,
       supportedComponents: [
@@ -232,7 +232,7 @@ describe("renderer contract", () => {
         publishedDomains,
       })
     ).toBe(expected);
-    const chemistry = findDomain("chemistry");
+    const chemistry = domainCapability("chemistry");
     expect(sortRendererDomains([chemistry, chemistry])).toEqual([
       chemistry,
       chemistry,

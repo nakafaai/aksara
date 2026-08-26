@@ -17,42 +17,44 @@ function verify(
 }
 
 describe("renderer compatibility", () => {
-  it("accepts one published domain with every required component", async () => {
-    const payload = CompiledContentPayloadSchema.make({
-      ...artifact.payload,
-      requiredComponents: [{ name: "BlockMath", version: 1 }],
-    });
-    await expect(Effect.runPromise(verify(payload))).resolves.toEqual(
-      rendererManifest
-    );
-  });
+  it.effect("accepts one published domain with every required component", () =>
+    Effect.gen(function* () {
+      const payload = CompiledContentPayloadSchema.make({
+        ...artifact.payload,
+        requiredComponents: [{ name: "BlockMath", version: 1 }],
+      });
+      expect(yield* verify(payload)).toEqual(rendererManifest);
+    })
+  );
 
-  it("rejects unpublished, missing, unsupported, and global mismatches", async () => {
-    const payloads = [
-      CompiledContentPayloadSchema.make({
-        ...artifact.payload,
-        rendererDomain: "chemistry",
-      }),
-      CompiledContentPayloadSchema.make({
-        ...artifact.payload,
-        requiredComponents: [{ name: "Mermaid", version: 1 }],
-      }),
-      CompiledContentPayloadSchema.make({
-        ...artifact.payload,
-        requiredComponents: [{ name: "BlockMath", version: 2 }],
-      }),
-    ];
-    const errors = await Promise.all([
-      ...payloads.map((payload) =>
-        Effect.runPromise(verify(payload).pipe(Effect.flip))
-      ),
-      Effect.runPromise(verify(artifact.payload, "2.0.0").pipe(Effect.flip)),
-    ]);
-    expect(errors.map((error) => error._tag)).toEqual([
-      "ArtifactRendererDomainUnpublishedError",
-      "ArtifactRendererComponentMissingError",
-      "ArtifactRendererVersionUnsupportedError",
-      "RendererContractVersionMismatchError",
-    ]);
-  });
+  it.effect(
+    "rejects unpublished, missing, unsupported, and global mismatches",
+    () =>
+      Effect.gen(function* () {
+        const payloads = [
+          CompiledContentPayloadSchema.make({
+            ...artifact.payload,
+            rendererDomain: "chemistry",
+          }),
+          CompiledContentPayloadSchema.make({
+            ...artifact.payload,
+            requiredComponents: [{ name: "Mermaid", version: 1 }],
+          }),
+          CompiledContentPayloadSchema.make({
+            ...artifact.payload,
+            requiredComponents: [{ name: "BlockMath", version: 2 }],
+          }),
+        ];
+        const errors = yield* Effect.all([
+          ...payloads.map((payload) => verify(payload).pipe(Effect.flip)),
+          verify(artifact.payload, "2.0.0").pipe(Effect.flip),
+        ]);
+        expect(errors.map((error) => error._tag)).toEqual([
+          "ArtifactRendererDomainUnpublishedError",
+          "ArtifactRendererComponentMissingError",
+          "ArtifactRendererVersionUnsupportedError",
+          "RendererContractVersionMismatchError",
+        ]);
+      })
+  );
 });

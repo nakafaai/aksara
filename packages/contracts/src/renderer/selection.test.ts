@@ -32,21 +32,25 @@ function rendererDomain(name: RendererDomain) {
 const domains = RENDERER_DOMAINS.map(rendererDomain).reverse();
 
 describe("renderer selection", () => {
-  it("sorts support and domains while preserving canonical authoring pins", async () => {
-    const selection = await Effect.runPromise(
-      normalizeRendererSelection({
-        base: {
-          authoringComponents: authoring,
-          supportedComponents: [...supported].reverse(),
-        },
-        domains,
+  it.effect(
+    "sorts support and domains while preserving canonical authoring pins",
+    () =>
+      Effect.gen(function* () {
+        const selection = yield* normalizeRendererSelection({
+          base: {
+            authoringComponents: authoring,
+            supportedComponents: [...supported].reverse(),
+          },
+          domains,
+        });
+        expect(selection.base.supportedComponents).toEqual(supported);
+        expect(selection.domains.map(({ name }) => name)).toEqual(
+          RENDERER_DOMAINS
+        );
       })
-    );
-    expect(selection.base.supportedComponents).toEqual(supported);
-    expect(selection.domains.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
-  });
+  );
 
-  it.each([
+  it.effect.each([
     ["RendererAuthoringComponentMissingError", [authoring[0]]],
     [
       "RendererAuthoringComponentExtraError",
@@ -61,16 +65,16 @@ describe("renderer selection", () => {
       [authoring[0], authoring[0], authoring[1]],
     ],
     ["RendererAuthoringSelectionNonCanonicalError", [...authoring].reverse()],
-  ])("rejects %s", async (tag, pins) => {
-    const error = await Effect.runPromise(
-      normalizeRendererSelection({
-        base: {
-          authoringComponents: pins,
-          supportedComponents: supported,
-        },
-        domains,
-      }).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe(tag);
-  });
+  ] as const)("rejects %s", ([tag, pins]) =>
+    normalizeRendererSelection({
+      base: {
+        authoringComponents: pins,
+        supportedComponents: supported,
+      },
+      domains,
+    }).pipe(
+      Effect.flip,
+      Effect.map((error) => expect(error._tag).toBe(tag))
+    )
+  );
 });
