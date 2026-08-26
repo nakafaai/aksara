@@ -64,12 +64,61 @@ const QURAN_TRANSLATION_BY_LOCALE = {
   },
 } as const satisfies Record<AppLocaleCode, QuranTranslationBinding>;
 
+interface QuranTafsirBinding {
+  readonly sourceId: QuranSourceId;
+}
+
+const QURAN_TAFSIR_BY_LOCALE = {
+  [ENGLISH_APP_LOCALE_CODE]: { sourceId: "mokhtasar-english" },
+  [GERMAN_APP_LOCALE_CODE]: { sourceId: "mokhtasar-german" },
+  [INDONESIAN_APP_LOCALE_CODE]: { sourceId: "quranenc-tafsir" },
+} as const satisfies Record<AppLocaleCode, QuranTafsirBinding>;
+
 /** Selects the one pinned translation source for an application locale. */
+export function quranTranslationSourceId(
+  appLocale: typeof ENGLISH_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["sourceId"];
+export function quranTranslationSourceId(
+  appLocale: typeof INDONESIAN_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["sourceId"];
+export function quranTranslationSourceId(
+  appLocale: typeof GERMAN_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
+export function quranTranslationSourceId(
+  appLocale: AppLocaleCode
+): QuranEmbeddedSourceId;
 export function quranTranslationSourceId(appLocale: AppLocaleCode) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].sourceId;
 }
 
+/** Selects the one signed Tafsir source or access record for a locale. */
+export function quranTafsirSourceId(
+  appLocale: typeof ENGLISH_APP_LOCALE_CODE
+): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["sourceId"];
+export function quranTafsirSourceId(
+  appLocale: typeof INDONESIAN_APP_LOCALE_CODE
+): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["sourceId"];
+export function quranTafsirSourceId(
+  appLocale: typeof GERMAN_APP_LOCALE_CODE
+): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
+export function quranTafsirSourceId(appLocale: AppLocaleCode): QuranSourceId;
+export function quranTafsirSourceId(appLocale: AppLocaleCode) {
+  return QURAN_TAFSIR_BY_LOCALE[appLocale].sourceId;
+}
+
 /** Selects the one provenance scope for an application locale. */
+export function quranTranslationProvenanceScope(
+  appLocale: typeof ENGLISH_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["scope"];
+export function quranTranslationProvenanceScope(
+  appLocale: typeof INDONESIAN_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["scope"];
+export function quranTranslationProvenanceScope(
+  appLocale: typeof GERMAN_APP_LOCALE_CODE
+): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["scope"];
+export function quranTranslationProvenanceScope(
+  appLocale: AppLocaleCode
+): QuranTranslationProvenanceScope;
 export function quranTranslationProvenanceScope(appLocale: AppLocaleCode) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].scope;
 }

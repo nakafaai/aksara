@@ -12,6 +12,7 @@ import {
   QuranEmbeddedSourceIdSchema,
   QuranExternalSourceIdSchema,
   type QuranSourceId,
+  quranTafsirSourceId,
   quranTranslationSourceId,
 } from "#contracts/quran/identity";
 import {
@@ -25,18 +26,10 @@ import { isHttpsUrl } from "#contracts/text/syntax";
 export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
 ): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
-  const sourceIds: QuranSourceId[] = activeAppLocales.map(
-    quranTranslationSourceId
-  );
-  if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
-    sourceIds.push("quranenc-tafsir");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
-    sourceIds.push("mokhtasar-english");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
-    sourceIds.push("mokhtasar-german");
-  }
+  const sourceIds: QuranSourceId[] = activeAppLocales.flatMap((appLocale) => [
+    quranTranslationSourceId(appLocale),
+    quranTafsirSourceId(appLocale),
+  ]);
   return [
     "tanzil-text",
     "tanzil-metadata",
@@ -133,21 +126,27 @@ const QuranIndonesianTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranTafsirLocaleSchema.literal),
   kind: Schema.Literal("embedded"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("quranenc-tafsir"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranTafsirLocaleSchema.literal)
+  ),
 });
 
 const QuranEnglishTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[0]),
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("mokhtasar-english"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[0])
+  ),
 });
 
 const QuranGermanTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[1]),
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("mokhtasar-german"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[1])
+  ),
 });
 
 /** Signed locale-specific access to embedded or official external Tafsir. */

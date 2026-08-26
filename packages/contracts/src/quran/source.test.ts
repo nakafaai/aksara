@@ -213,10 +213,13 @@ describe("Quran source contracts", () => {
       ...base,
       sourceUrl: "http://example.test/source",
     });
-    const externalId = Schema.decodeUnknownExit(QuranTafsirAccessSchema)({
+    const invalidLocaleAccess: unknown = {
       ...englishAccess,
       appLocale: INDONESIAN_APP_LOCALE_CODE,
-    });
+    };
+    const externalId = Schema.decodeUnknownExit(QuranTafsirAccessSchema)(
+      invalidLocaleAccess
+    );
     const insecureTafsir = Schema.decodeUnknownExit(QuranTafsirAccessSchema)({
       ...englishAccess,
       sourceId: "mokhtasar-german",

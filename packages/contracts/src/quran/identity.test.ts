@@ -7,6 +7,7 @@ import {
 } from "#contracts/locale";
 import {
   quranReadingSourceIds,
+  quranTafsirSourceId,
   quranTranslationProvenanceScope,
   quranTranslationSourceForScope,
   quranTranslationSourceId,
@@ -34,5 +35,10 @@ describe("Quran source identity", () => {
         )
       )
     ).toEqual(["quranenc-english", "quranenc-indonesian", "quranenc-german"]);
+    expect(ACTIVE_APP_LOCALES.map(quranTafsirSourceId)).toEqual([
+      "mokhtasar-english",
+      "quranenc-tafsir",
+      "mokhtasar-german",
+    ]);
   });
 });

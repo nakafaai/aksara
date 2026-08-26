@@ -7,11 +7,15 @@ import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
+  ENGLISH_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
 } from "#contracts/locale";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import {
   type QuranSourceId,
   QuranTranslationProvenanceScopeSchema,
+  quranTafsirSourceId,
   quranTranslationProvenanceScope,
   quranTranslationSourceForScope,
 } from "#contracts/quran/identity";
@@ -68,9 +72,9 @@ export function quranProvenanceScopes(
 
 const QURAN_STATIC_PROVENANCE_SOURCE = {
   "arabic-text": "tanzil-text",
-  "de-tafsir-access": "mokhtasar-german",
-  "en-tafsir-access": "mokhtasar-english",
-  "id-tafsir": "quranenc-tafsir",
+  "de-tafsir-access": quranTafsirSourceId(GERMAN_APP_LOCALE_CODE),
+  "en-tafsir-access": quranTafsirSourceId(ENGLISH_APP_LOCALE_CODE),
+  "id-tafsir": quranTafsirSourceId(INDONESIAN_APP_LOCALE_CODE),
   metadata: "tanzil-metadata",
 } as const satisfies Record<QuranNonTranslationProvenanceScope, QuranSourceId>;
 
