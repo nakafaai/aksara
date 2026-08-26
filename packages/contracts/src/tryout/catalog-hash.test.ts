@@ -15,18 +15,15 @@ const rows: readonly TryoutCatalogRow[] = makeTryoutTestRows().catalog.map(
 );
 
 describe("try-out catalog identity and hashing", () => {
-  it("canonicalizes and digests signed catalog rows", async () => {
-    const records = rows.map(makeTryoutCatalogRecord);
-    records.sort((left, right) => compareTryoutCatalog(left.row, right.row));
-    const [first] = rows;
-    if (!first) {
-      throw new Error("Expected at least one current catalog test row.");
-    }
-    const summary = await Effect.runPromise(
-      digestTryoutCatalog(Stream.fromIterable(records))
-    );
+  it.effect("canonicalizes and digests signed catalog rows", () =>
+    Effect.gen(function* () {
+      const records = rows.map(makeTryoutCatalogRecord);
+      records.sort((left, right) => compareTryoutCatalog(left.row, right.row));
+      const first = yield* Effect.fromNullishOr(rows[0]);
+      const summary = yield* digestTryoutCatalog(Stream.fromIterable(records));
 
-    expect(JSON.parse(canonicalizeTryoutCatalog(first))).toEqual(first);
-    expect(summary.count).toBe(records.length);
-  });
+      expect(JSON.parse(canonicalizeTryoutCatalog(first))).toEqual(first);
+      expect(summary.count).toBe(records.length);
+    })
+  );
 });

@@ -114,86 +114,89 @@ function manifest(
 }
 
 describe("rollback snapshot digest", () => {
-  it("matches streamed and incremental canonical digests", async () => {
-    const value = entry();
-    const initial = await Effect.runPromise(
-      createRollbackSnapshotDigest(releaseId)
-    );
-    const updated = await Effect.runPromise(
-      updateRollbackSnapshotDigest(releaseId, initial, value)
-    );
-    const digest = await Effect.runPromise(
-      finalizeRollbackSnapshotDigest(releaseId, updated)
-    );
-    const summary = await Effect.runPromise(
-      digestRollbackSnapshot(releaseId, Stream.make(value))
-    );
+  it.effect("matches streamed and incremental canonical digests", () =>
+    Effect.gen(function* () {
+      const value = entry();
+      const initial = yield* createRollbackSnapshotDigest(releaseId);
+      const updated = yield* updateRollbackSnapshotDigest(
+        releaseId,
+        initial,
+        value
+      );
+      const digest = yield* finalizeRollbackSnapshotDigest(releaseId, updated);
+      const summary = yield* digestRollbackSnapshot(
+        releaseId,
+        Stream.make(value)
+      );
 
-    expect(summary).toEqual({ count: 1, digest });
-    expect(updated.count).toBe(1);
-  });
+      expect(summary).toEqual({ count: 1, digest });
+      expect(updated.count).toBe(1);
+    })
+  );
 
-  it("verifies signed count and digest evidence", async () => {
-    const value = entry();
-    const stream = Stream.make(value);
-    const summary = await Effect.runPromise(
-      digestRollbackSnapshot(releaseId, stream)
-    );
-    await expect(
-      Effect.runPromise(
-        verifyRollbackSnapshot({
-          entries: stream,
-          manifest: manifest(summary.count, summary.digest),
-        })
-      )
-    ).resolves.toEqual(summary);
-
-    const count = await Effect.runPromise(
-      verifyRollbackSnapshot({
+  it.effect("verifies signed count and digest evidence", () =>
+    Effect.gen(function* () {
+      const value = entry();
+      const stream = Stream.make(value);
+      const summary = yield* digestRollbackSnapshot(releaseId, stream);
+      const verified = yield* verifyRollbackSnapshot({
+        entries: stream,
+        manifest: manifest(summary.count, summary.digest),
+      });
+      const count = yield* verifyRollbackSnapshot({
         entries: stream,
         manifest: manifest(0, summary.digest),
-      }).pipe(Effect.flip)
-    );
-    const digest = await Effect.runPromise(
-      verifyRollbackSnapshot({
+      }).pipe(Effect.flip);
+      const digest = yield* verifyRollbackSnapshot({
         entries: stream,
         manifest: manifest(
           1,
           Sha256HashSchema.make(`sha256:${"f".repeat(64)}`)
         ),
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(count._tag).toBe("RollbackSnapshotCountMismatchError");
-    expect(digest._tag).toBe("RollbackSnapshotDigestMismatchError");
-  });
+      expect(verified).toEqual(summary);
+      expect(count._tag).toBe("RollbackSnapshotCountMismatchError");
+      expect(digest._tag).toBe("RollbackSnapshotDigestMismatchError");
+    })
+  );
 
-  it("maps creation, update, and finalization failures", async () => {
-    failures.create = true;
-    const creation = await Effect.runPromise(
-      createRollbackSnapshotDigest(releaseId).pipe(Effect.flip)
-    );
-    failures.create = false;
-    const initial = await Effect.runPromise(
-      createRollbackSnapshotDigest(releaseId)
-    );
-    const update = await Effect.runPromise(
-      updateRollbackSnapshotDigest(
+  it.effect("maps creation, update, and finalization failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.create = false;
+          failures.digest = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.create = true;
+      });
+      const creation = yield* createRollbackSnapshotDigest(releaseId).pipe(
+        Effect.flip
+      );
+      yield* Effect.sync(() => {
+        failures.create = false;
+      });
+      const initial = yield* createRollbackSnapshotDigest(releaseId);
+      const update = yield* updateRollbackSnapshotDigest(
         releaseId,
         initial,
         entry("hash:failure")
-      ).pipe(Effect.flip)
-    );
-    failures.digest = true;
-    const finalization = await Effect.runPromise(
-      finalizeRollbackSnapshotDigest(releaseId, initial).pipe(Effect.flip)
-    );
-    failures.digest = false;
+      ).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.digest = true;
+      });
+      const finalization = yield* finalizeRollbackSnapshotDigest(
+        releaseId,
+        initial
+      ).pipe(Effect.flip);
 
-    expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
-      "RollbackSnapshotHashError",
-      "RollbackSnapshotHashError",
-      "RollbackSnapshotHashError",
-    ]);
-  });
+      expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
+        "RollbackSnapshotHashError",
+        "RollbackSnapshotHashError",
+        "RollbackSnapshotHashError",
+      ]);
+    })
+  );
 });

@@ -47,29 +47,43 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 describe("program snapshot row hashing", () => {
-  it("creates and verifies both authenticated row kinds", async () => {
-    const program = makeTestProgram(1);
-    const route = makeTestCurriculumRoot(program, AppLocaleSchema.make("en"));
-    const [programRecord, curriculumRecord] = await Effect.runPromise(
-      Effect.all([
+  it.effect("creates and verifies both authenticated row kinds", () =>
+    Effect.gen(function* () {
+      const program = makeTestProgram(1);
+      const route = makeTestCurriculumRoot(program, AppLocaleSchema.make("en"));
+      const [programRecord, curriculumRecord] = yield* Effect.all([
         makeProgramSnapshotRow(program),
         makeCurriculumSnapshotRow(route),
-      ])
-    );
-    await expect(
-      Effect.runPromise(verifyProgramSnapshotRowHash(programRecord))
-    ).resolves.toBe(programRecord.rowHash);
-    await expect(
-      Effect.runPromise(verifyProgramSnapshotRowHash(curriculumRecord))
-    ).resolves.toBe(curriculumRecord.rowHash);
-  });
+      ]);
 
-  it("maps row hashing failures to the typed error", async () => {
-    failures.rowHash = true;
-    const error = await Effect.runPromise(
-      makeProgramSnapshotRow(makeTestProgram(1)).pipe(Effect.flip)
-    );
-    failures.rowHash = false;
-    expect(error).toMatchObject({ _tag: "ProgramRowHashError", scope: "row" });
-  });
+      expect(yield* verifyProgramSnapshotRowHash(programRecord)).toBe(
+        programRecord.rowHash
+      );
+      expect(yield* verifyProgramSnapshotRowHash(curriculumRecord)).toBe(
+        curriculumRecord.rowHash
+      );
+    })
+  );
+
+  it.effect("maps row hashing failures to the typed error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() => {
+          failures.rowHash = true;
+        }),
+        () =>
+          Effect.sync(() => {
+            failures.rowHash = false;
+          })
+      );
+
+      const error = yield* makeProgramSnapshotRow(makeTestProgram(1)).pipe(
+        Effect.flip
+      );
+      expect(error).toMatchObject({
+        _tag: "ProgramRowHashError",
+        scope: "row",
+      });
+    })
+  );
 });

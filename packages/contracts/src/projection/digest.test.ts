@@ -74,45 +74,55 @@ function projection(contentKey = "test:projection") {
 }
 
 describe("projection digest", () => {
-  it("matches streamed and incremental canonical digests", async () => {
-    const value = projection();
-    const initial = await Effect.runPromise(createProjectionDigest(releaseId));
-    const updated = await Effect.runPromise(
-      updateProjectionDigest(releaseId, initial, value)
-    );
-    const digest = await Effect.runPromise(
-      finalizeProjectionDigest(releaseId, updated)
-    );
-    const summary = await Effect.runPromise(
-      digestProjections(releaseId, Stream.make(value))
-    );
-    expect(summary).toEqual({ count: 1, digest });
-    expect(updated.count).toBe(1);
-  });
+  it.effect("matches streamed and incremental canonical digests", () =>
+    Effect.gen(function* () {
+      const value = projection();
+      const initial = yield* createProjectionDigest(releaseId);
+      const updated = yield* updateProjectionDigest(releaseId, initial, value);
+      const digest = yield* finalizeProjectionDigest(releaseId, updated);
+      const summary = yield* digestProjections(releaseId, Stream.make(value));
 
-  it("maps creation, update, and finalization failures", async () => {
-    failures.create = true;
-    const creation = await Effect.runPromise(
-      createProjectionDigest(releaseId).pipe(Effect.flip)
-    );
-    failures.create = false;
-    const initial = await Effect.runPromise(createProjectionDigest(releaseId));
-    const update = await Effect.runPromise(
-      updateProjectionDigest(
+      expect(summary).toEqual({ count: 1, digest });
+      expect(updated.count).toBe(1);
+    })
+  );
+
+  it.effect("maps creation, update, and finalization failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.create = false;
+          failures.digest = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.create = true;
+      });
+      const creation = yield* createProjectionDigest(releaseId).pipe(
+        Effect.flip
+      );
+      yield* Effect.sync(() => {
+        failures.create = false;
+      });
+      const initial = yield* createProjectionDigest(releaseId);
+      const update = yield* updateProjectionDigest(
         releaseId,
         initial,
         projection("hash:failure")
-      ).pipe(Effect.flip)
-    );
-    failures.digest = true;
-    const finalization = await Effect.runPromise(
-      finalizeProjectionDigest(releaseId, initial).pipe(Effect.flip)
-    );
-    failures.digest = false;
-    expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
-      "ProjectionHashError",
-      "ProjectionHashError",
-      "ProjectionHashError",
-    ]);
-  });
+      ).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.digest = true;
+      });
+      const finalization = yield* finalizeProjectionDigest(
+        releaseId,
+        initial
+      ).pipe(Effect.flip);
+
+      expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
+        "ProjectionHashError",
+        "ProjectionHashError",
+        "ProjectionHashError",
+      ]);
+    })
+  );
 });

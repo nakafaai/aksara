@@ -1,5 +1,5 @@
 import type { BinaryLike } from "node:crypto";
-import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 
@@ -73,14 +73,9 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-let records: readonly ProgramSnapshotRow[];
-beforeAll(async () => {
-  records = await Effect.runPromise(makeProgramTestRecords());
-}, 30_000);
-
 /** Decodes one exact app-locale fixture through the production contract. */
 function decodeAppLocales(input: unknown) {
-  return Schema.decodeUnknownSync(ActiveAppLocaleListSchema)(input);
+  return Schema.decodeUnknownEffect(ActiveAppLocaleListSchema)(input);
 }
 
 /** Returns one typed current program digest failure. */
@@ -99,206 +94,210 @@ function reject(
     activeAppLocales: locales,
     rows: Stream.fromIterable(rows),
   };
-  return Effect.runPromise(
-    digestProgramRows(
-      expected === undefined ? input : { ...input, expected }
-    ).pipe(Effect.flip)
-  );
+  return digestProgramRows(
+    expected === undefined ? input : { ...input, expected }
+  ).pipe(Effect.flip);
 }
 
 describe("program aggregate digest", () => {
-  it("authenticates exact active-locale program and route closure", async () => {
-    const summary = await Effect.runPromise(
-      digestProgramRows({
+  it.effect("authenticates exact active-locale program and route closure", () =>
+    Effect.gen(function* () {
+      const records = yield* makeProgramTestRecords();
+      const summary = yield* digestProgramRows({
         activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.fromIterable(records),
-      })
-    );
-    const firstProgram = records.find((record) => record.kind === "program");
-    if (firstProgram?.kind !== "program") {
-      throw new Error("Expected one current program record.");
-    }
-    const nonCurriculum = await Effect.runPromise(
-      makeProgramSnapshotRow({
+      });
+      const firstProgram = yield* Effect.fromNullishOr(
+        records.find((record) => record.kind === "program")
+      );
+      const nonCurriculum = yield* makeProgramSnapshotRow({
         ...firstProgram.row,
         navigation: { levels: ["domain", "set"], model: "exam-domain-set" },
-      })
-    );
-    const nonCurriculumSummary = await Effect.runPromise(
-      digestProgramRows({
+      });
+      const nonCurriculumSummary = yield* digestProgramRows({
         activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.make(nonCurriculum),
-      })
-    );
-
-    expect(summary).toMatchObject({
-      curriculumRowCount: 582,
-      programRowCount: 6,
-      rowCount: 588,
-      sitemapCount: 78,
-      slugCount: 18,
-    });
-    expect(nonCurriculumSummary).toMatchObject({
-      curriculumRowCount: 0,
-      programRowCount: 1,
-      rowCount: 1,
-    });
-  });
-
-  it("rejects wrong locale sets, row integrity, order, keys, and slugs", async () => {
-    const programs = programCatalogRows(records);
-    const curricula = curriculumRows(records);
-    const [first, second] = programs;
-    const [firstCurriculum] = curricula;
-    if (!(first && second && firstCurriculum)) {
-      throw new Error("Expected complete current program fixtures.");
-    }
-    const duplicateKey = await Effect.runPromise(
-      makeProgramSnapshotRow({ ...second.row, key: first.row.key })
-    );
-    const duplicateSlugRow = Schema.decodeUnknownSync(LearningProgramSchema)({
-      ...second.row,
-      translations: second.row.translations.map((translation, index) => ({
-        ...translation,
-        publicSlug:
-          first.row.translations[index]?.publicSlug ?? translation.publicSlug,
-      })),
-    });
-    const duplicateSlug = await Effect.runPromise(
-      makeProgramSnapshotRow(duplicateSlugRow)
-    );
-    const germanLocales = decodeAppLocales(["en", "de"]);
-    const tamperedProgram = {
-      ...first,
-      rowHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-    };
-    const tamperedCurriculum = {
-      ...firstCurriculum,
-      rowHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
-    };
-    const errors = await Promise.all([
-      reject([first], germanLocales),
-      reject([tamperedProgram]),
-      reject([...programs, tamperedCurriculum]),
-      reject([second, first]),
-      reject([first, duplicateKey]),
-      reject([first, duplicateSlug]),
-      reject([...programs, firstCurriculum, first]),
-      reject([...programs, firstCurriculum, firstCurriculum]),
-      reject(records, ACTIVE_APP_LOCALES, {
+      });
+      expect(summary).toMatchObject({
         curriculumRowCount: 582,
-        programRowCount: 7,
-        rowCount: 589,
+        programRowCount: 6,
+        rowCount: 588,
         sitemapCount: 78,
         slugCount: 18,
-      }),
-    ]);
+      });
+      expect(nonCurriculumSummary).toMatchObject({
+        curriculumRowCount: 0,
+        programRowCount: 1,
+        rowCount: 1,
+      });
+    })
+  );
 
-    expect(
-      errors.map((error) =>
-        error._tag === "ProgramDigestError" ? error.code : error._tag
-      )
-    ).toEqual([
-      "key",
-      "integrity",
-      "integrity",
-      "order",
-      "key",
-      "slug",
-      "order",
-      "order",
-      "count",
-    ]);
-  });
+  it.effect(
+    "rejects wrong locale sets, row integrity, order, keys, and slugs",
+    () =>
+      Effect.gen(function* () {
+        const records = yield* makeProgramTestRecords();
+        const programs = programCatalogRows(records);
+        const curricula = curriculumRows(records);
+        const first = yield* Effect.fromNullishOr(programs[0]);
+        const second = yield* Effect.fromNullishOr(programs[1]);
+        const firstCurriculum = yield* Effect.fromNullishOr(curricula[0]);
+        const duplicateKey = yield* makeProgramSnapshotRow({
+          ...second.row,
+          key: first.row.key,
+        });
+        const duplicateSlugRow = yield* Schema.decodeUnknownEffect(
+          LearningProgramSchema
+        )({
+          ...second.row,
+          translations: second.row.translations.map((translation, index) => ({
+            ...translation,
+            publicSlug:
+              first.row.translations[index]?.publicSlug ??
+              translation.publicSlug,
+          })),
+        });
+        const duplicateSlug = yield* makeProgramSnapshotRow(duplicateSlugRow);
+        const germanLocales = yield* decodeAppLocales(["en", "de"]);
+        const tamperedProgram = {
+          ...first,
+          rowHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+        };
+        const tamperedCurriculum = {
+          ...firstCurriculum,
+          rowHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+        };
+        const errors = yield* Effect.all([
+          reject([first], germanLocales),
+          reject([tamperedProgram]),
+          reject([...programs, tamperedCurriculum]),
+          reject([second, first]),
+          reject([first, duplicateKey]),
+          reject([first, duplicateSlug]),
+          reject([...programs, firstCurriculum, first]),
+          reject([...programs, firstCurriculum, firstCurriculum]),
+          reject(records, ACTIVE_APP_LOCALES, {
+            curriculumRowCount: 582,
+            programRowCount: 7,
+            rowCount: 589,
+            sitemapCount: 78,
+            slugCount: 18,
+          }),
+        ]);
+        expect(
+          errors.map((error) =>
+            error._tag === "ProgramDigestError" ? error.code : error._tag
+          )
+        ).toEqual([
+          "key",
+          "integrity",
+          "integrity",
+          "order",
+          "key",
+          "slug",
+          "order",
+          "order",
+          "count",
+        ]);
+      })
+  );
 
-  it("rejects route ownership, ancestry, roots, and node conflicts", async () => {
-    const programs = programCatalogRows(records);
-    const curricula = curriculumRows(records);
-    const firstRoot = curricula.find(
-      (record) => record.row.parentPath === undefined
-    );
-    const firstRootIndex =
-      firstRoot === undefined ? -1 : curricula.indexOf(firstRoot);
-    const firstChild = curricula[firstRootIndex + 1];
-    const secondChild = curricula[firstRootIndex + 2];
-    const [firstProgram] = programs;
-    if (!(firstProgram && firstRoot && firstChild && secondChild)) {
-      throw new Error("Expected current route fixtures.");
-    }
-    const wrongRoot = await Effect.runPromise(
-      makeCurriculumSnapshotRow({
-        ...firstRoot.row,
-        title: `${firstRoot.row.title} wrong`,
-      })
-    );
-    const duplicateNode = await Effect.runPromise(
-      makeCurriculumSnapshotRow({
-        ...secondChild.row,
-        nodeKey: firstChild.row.nodeKey,
-      })
-    );
-    const priorAppLocales = decodeAppLocales(["en", "id"]);
-    const priorProgram = await Effect.runPromise(
-      makeProgramSnapshotRow(
-        Schema.decodeUnknownSync(LearningProgramSchema)({
+  it.effect(
+    "rejects route ownership, ancestry, roots, and node conflicts",
+    () =>
+      Effect.gen(function* () {
+        const records = yield* makeProgramTestRecords();
+        const programs = programCatalogRows(records);
+        const curricula = curriculumRows(records);
+        const firstRoot = yield* Effect.fromNullishOr(
+          curricula.find((record) => record.row.parentPath === undefined)
+        );
+        const firstRootIndex = curricula.indexOf(firstRoot);
+        const firstChild = yield* Effect.fromNullishOr(
+          curricula[firstRootIndex + 1]
+        );
+        const secondChild = yield* Effect.fromNullishOr(
+          curricula[firstRootIndex + 2]
+        );
+        const firstProgram = yield* Effect.fromNullishOr(programs[0]);
+        const wrongRoot = yield* makeCurriculumSnapshotRow({
+          ...firstRoot.row,
+          title: `${firstRoot.row.title} wrong`,
+        });
+        const duplicateNode = yield* makeCurriculumSnapshotRow({
+          ...secondChild.row,
+          nodeKey: firstChild.row.nodeKey,
+        });
+        const priorAppLocales = yield* decodeAppLocales(["en", "id"]);
+        const priorProgramRow = yield* Schema.decodeUnknownEffect(
+          LearningProgramSchema
+        )({
           ...firstProgram.row,
           translations: firstProgram.row.translations.filter(
             ({ appLocale }) => appLocale !== "de"
           ),
-        })
-      )
-    );
-    const inactiveRoute = Schema.decodeSync(CurriculumRouteSchema)({
-      ...firstRoot.row,
-      appLocale: "de",
-      publicPath: `lehrplaene/${firstProgram.row.translations[0].publicSlug}`,
-      title: firstProgram.row.translations[0].title,
-    });
-    const inactiveLocale = await Effect.runPromise(
-      makeCurriculumSnapshotRow(inactiveRoute)
-    );
-    const nonCurriculum = await Effect.runPromise(
-      makeProgramSnapshotRow({
-        ...firstProgram.row,
-        navigation: { levels: ["domain", "set"], model: "exam-domain-set" },
+        });
+        const priorProgram = yield* makeProgramSnapshotRow(priorProgramRow);
+        const firstTranslation = yield* Effect.fromNullishOr(
+          firstProgram.row.translations[0]
+        );
+        const inactiveRoute = yield* Schema.decodeEffect(CurriculumRouteSchema)(
+          {
+            ...firstRoot.row,
+            appLocale: "de",
+            publicPath: `lehrplaene/${firstTranslation.publicSlug}`,
+            title: firstTranslation.title,
+          }
+        );
+        const inactiveLocale = yield* makeCurriculumSnapshotRow(inactiveRoute);
+        const nonCurriculum = yield* makeProgramSnapshotRow({
+          ...firstProgram.row,
+          navigation: { levels: ["domain", "set"], model: "exam-domain-set" },
+        });
+        const errors = yield* Effect.all([
+          reject([priorProgram, inactiveLocale], priorAppLocales),
+          reject([nonCurriculum, firstRoot]),
+          reject([...programs, wrongRoot]),
+          reject([...programs, firstChild]),
+          reject([...programs, firstRoot, firstChild, duplicateNode]),
+        ]);
+        expect(
+          errors.map((error) =>
+            error._tag === "ProgramDigestError" ? error.code : error._tag
+          )
+        ).toEqual(["program", "program", "root", "parent", "route"]);
       })
-    );
-    const errors = await Promise.all([
-      reject([priorProgram, inactiveLocale], priorAppLocales),
-      reject([nonCurriculum, firstRoot]),
-      reject([...programs, wrongRoot]),
-      reject([...programs, firstChild]),
-      reject([...programs, firstRoot, firstChild, duplicateNode]),
-    ]);
+  );
 
-    expect(
-      errors.map((error) =>
-        error._tag === "ProgramDigestError" ? error.code : error._tag
-      )
-    ).toEqual(["program", "program", "root", "parent", "route"]);
-  });
-
-  it("maps digest construction, update, and finalization failures", async () => {
-    failures.construct = true;
-    const constructError = await reject([]);
-    failures.construct = false;
-    failures.stage = "update";
-    const updateError = await reject(records.slice(0, 1));
-    failures.stage = "digest";
-    const digestError = await reject(records);
-    failures.stage = null;
-
-    expect(constructError).toMatchObject({
-      _tag: "ProgramRowHashError",
-      scope: "digest",
-    });
-    expect(updateError).toMatchObject({
-      _tag: "ProgramRowHashError",
-      scope: "digest",
-    });
-    expect(digestError).toMatchObject({
-      _tag: "ProgramRowHashError",
-      scope: "digest",
-    });
-  });
+  it.effect("maps digest construction, update, and finalization failures", () =>
+    Effect.gen(function* () {
+      const records = yield* makeProgramTestRecords();
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.construct = false;
+          failures.stage = null;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.construct = true;
+      });
+      const constructError = yield* reject([]);
+      yield* Effect.sync(() => {
+        failures.construct = false;
+        failures.stage = "update";
+      });
+      const updateError = yield* reject(records.slice(0, 1));
+      yield* Effect.sync(() => {
+        failures.stage = "digest";
+      });
+      const digestError = yield* reject(records);
+      for (const error of [constructError, updateError, digestError]) {
+        expect(error).toMatchObject({
+          _tag: "ProgramRowHashError",
+          scope: "digest",
+        });
+      }
+    })
+  );
 });

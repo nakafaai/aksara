@@ -60,22 +60,32 @@ const facts = Schema.decodeSync(ProgramSnapshotFactsSchema)({
 });
 
 describe("program snapshot hashing", () => {
-  it("creates and verifies one reproducible snapshot identity", async () => {
-    const first = await Effect.runPromise(makeProgramSnapshot(facts));
-    const second = await Effect.runPromise(makeProgramSnapshot(facts));
-    expect(JSON.parse(canonicalizeProgramSnapshot(facts))).toMatchObject(facts);
-    expect(first.snapshotId).toBe(second.snapshotId);
-    await expect(
-      Effect.runPromise(verifyProgramSnapshotHash(first))
-    ).resolves.toBe(first.snapshotId);
-  });
+  it.effect("creates and verifies one reproducible snapshot identity", () =>
+    Effect.gen(function* () {
+      const first = yield* makeProgramSnapshot(facts);
+      const second = yield* makeProgramSnapshot(facts);
+      expect(JSON.parse(canonicalizeProgramSnapshot(facts))).toMatchObject(
+        facts
+      );
+      expect(first.snapshotId).toBe(second.snapshotId);
+      expect(yield* verifyProgramSnapshotHash(first)).toBe(first.snapshotId);
+    })
+  );
 
-  it("maps Node hashing failures to the typed contract error", async () => {
-    failures.hash = true;
-    const error = await Effect.runPromise(
-      makeProgramSnapshot(facts).pipe(Effect.flip)
-    );
-    failures.hash = false;
-    expect(error._tag).toBe("ProgramSnapshotHashError");
-  });
+  it.effect("maps Node hashing failures to the typed contract error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() => {
+          failures.hash = true;
+        }),
+        () =>
+          Effect.sync(() => {
+            failures.hash = false;
+          })
+      );
+
+      const error = yield* makeProgramSnapshot(facts).pipe(Effect.flip);
+      expect(error._tag).toBe("ProgramSnapshotHashError");
+    })
+  );
 });
