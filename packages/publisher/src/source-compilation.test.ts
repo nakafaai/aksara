@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
@@ -17,24 +18,10 @@ import {
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { compileReleaseSources } from "#publisher/source-compilation";
 import { testRendererDomains } from "#test/renderer";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
-    domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
-    }),
-    publishedDomains: ["mathematics"],
-  })
-);
 const source = Schema.decodeSync(CompileDocumentSourceSchema)({
   artifactLocale: "en",
   contentKey: "test:publication",
@@ -42,9 +29,6 @@ const source = Schema.decodeSync(CompileDocumentSourceSchema)({
   rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/publication/en.mdx",
 });
-const { payload: expectedPayload } = await Effect.runPromise(
-  compileContent({ ...source, rendererManifest })
-);
 
 /** Builds canonically ordered items for source-compilation tests. */
 function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
@@ -72,11 +56,14 @@ function upsertWithArtifactHash(
 }
 
 /** Runs one compile stream and materializes results only at the test boundary. */
-function runCompile(input: {
-  readonly items: Stream.Stream<ContentReleaseItem>;
-  readonly sources: Stream.Stream<unknown, string>;
-}) {
-  return Effect.runPromise(
+const runCompile = Effect.fn("SourceCompilationTest.run")(
+  (
+    rendererManifest: Effect.Success<ReturnType<typeof createRendererManifest>>,
+    input: {
+      readonly items: Stream.Stream<ContentReleaseItem>;
+      readonly sources: Stream.Stream<unknown, string>;
+    }
+  ) =>
     compileReleaseSources({
       ...input,
       rendererManifest,
@@ -84,12 +71,32 @@ function runCompile(input: {
       Stream.runCollect,
       Effect.map((chunk) => [...chunk])
     )
-  );
-}
+);
 
-const items = makeItems(ReleaseIdSchema.make("test-release-source"), [
-  upsertWithArtifactHash(hashCompiledContentPayload(expectedPayload)),
-]);
+const makeFixture = Effect.fn("SourceCompilationTest.makeFixture")(
+  function* () {
+    const rendererManifest = yield* createRendererManifest({
+      base: {
+        authoringComponents: [{ name: "BlockMath", version: 1 }],
+        supportedComponents: [{ name: "BlockMath", version: 1 }],
+      },
+      domains: testRendererDomains({
+        chemistry: [{ name: "AtomShellLab", version: 1 }],
+        mathematics: [{ name: "FunctionMachine", version: 1 }],
+      }),
+      publishedDomains: ["mathematics"],
+    });
+    const { payload: expectedPayload } = yield* compileContent({
+      ...source,
+      rendererManifest,
+    });
+    const items = makeItems(ReleaseIdSchema.make("test-release-source"), [
+      upsertWithArtifactHash(hashCompiledContentPayload(expectedPayload)),
+    ]);
+    return { expectedPayload, items, rendererManifest };
+  }
+);
+
 const identityMismatches = [
   CompileDocumentSourceSchema.make({
     ...source,
@@ -115,81 +122,88 @@ const identityMismatches = [
 ];
 
 describe("compileReleaseSources", () => {
-  it("streams the exact artifact authenticated by the release", async () => {
-    const compiled = await runCompile({
-      items: Stream.fromIterable(items),
-      sources: Stream.fromIterable([source]),
-    });
-    expect(compiled).toEqual([{ item: items[0], payload: expectedPayload }]);
-  });
+  it.effect("streams the exact artifact authenticated by the release", () =>
+    Effect.gen(function* () {
+      const { expectedPayload, items, rendererManifest } = yield* makeFixture();
+      const compiled = yield* runCompile(rendererManifest, {
+        items: Stream.fromIterable(items),
+        sources: Stream.fromIterable([source]),
+      });
+      expect(compiled).toEqual([{ item: items[0], payload: expectedPayload }]);
+    })
+  );
 
-  it("rejects a hash derived from caller-selected executable code", async () => {
-    const maliciousPayload = {
-      ...expectedPayload,
-      byteLength: 38,
-      compiledCode: "return {default: () => process.env};",
-    };
-    const maliciousItems = makeItems(ReleaseIdSchema.make("test-release-bad"), [
-      upsertWithArtifactHash(hashCompiledContentPayload(maliciousPayload)),
-    ]);
-    const error = await Effect.runPromise(
-      compileReleaseSources({
+  it.effect("rejects a hash derived from caller-selected executable code", () =>
+    Effect.gen(function* () {
+      const { expectedPayload, rendererManifest } = yield* makeFixture();
+      const maliciousPayload = {
+        ...expectedPayload,
+        byteLength: 38,
+        compiledCode: "return {default: () => process.env};",
+      };
+      const maliciousItems = makeItems(
+        ReleaseIdSchema.make("test-release-bad"),
+        [upsertWithArtifactHash(hashCompiledContentPayload(maliciousPayload))]
+      );
+      const error = yield* compileReleaseSources({
         items: Stream.fromIterable(maliciousItems),
         rendererManifest,
         sources: Stream.fromIterable([source]),
-      }).pipe(Stream.runDrain, Effect.flip)
-    );
-    expect(error._tag).toBe("ReleaseArtifactMismatchError");
-  });
+      }).pipe(Stream.runDrain, Effect.flip);
+      expect(error._tag).toBe("ReleaseArtifactMismatchError");
+    })
+  );
 
-  it.each(identityMismatches)(
+  it.effect.each(identityMismatches)(
     "rejects source identity mismatch $#: $sourcePath",
-    async (mismatchedSource) => {
-      const error = await Effect.runPromise(
-        compileReleaseSources({
+    (mismatchedSource) =>
+      Effect.gen(function* () {
+        const { items, rendererManifest } = yield* makeFixture();
+        const error = yield* compileReleaseSources({
           items: Stream.fromIterable(items),
           rendererManifest,
           sources: Stream.fromIterable([mismatchedSource]),
-        }).pipe(Stream.runDrain, Effect.flip)
-      );
-      expect(error).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
-      expect(error.message).toContain("does not match release item");
-    }
+        }).pipe(Stream.runDrain, Effect.flip);
+        expect(error).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
+        expect(error.message).toContain("does not match release item");
+      })
   );
 
-  it("rejects missing and extra sources without collecting either stream", async () => {
-    const [missing, extra] = await Promise.all([
-      Effect.runPromise(
-        compileReleaseSources({
-          items: Stream.fromIterable(items),
-          rendererManifest,
-          sources: Stream.empty,
-        }).pipe(Stream.runDrain, Effect.flip)
-      ),
-      Effect.runPromise(
-        compileReleaseSources({
-          items: Stream.empty,
-          rendererManifest,
-          sources: Stream.fromIterable([source]),
-        }).pipe(Stream.runDrain, Effect.flip)
-      ),
-    ]);
-    expect(missing).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
-    expect(missing.message).toContain("has no authored source");
-    expect(extra).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
-    expect(extra.message).toBe(
-      "An authored source has no authenticated upsert item."
-    );
-  });
+  it.effect(
+    "rejects missing and extra sources without collecting either stream",
+    () =>
+      Effect.gen(function* () {
+        const { items, rendererManifest } = yield* makeFixture();
+        const [missing, extra] = yield* Effect.all([
+          compileReleaseSources({
+            items: Stream.fromIterable(items),
+            rendererManifest,
+            sources: Stream.empty,
+          }).pipe(Stream.runDrain, Effect.flip),
+          compileReleaseSources({
+            items: Stream.empty,
+            rendererManifest,
+            sources: Stream.fromIterable([source]),
+          }).pipe(Stream.runDrain, Effect.flip),
+        ]);
+        expect(missing).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
+        expect(missing.message).toContain("has no authored source");
+        expect(extra).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
+        expect(extra.message).toBe(
+          "An authored source has no authenticated upsert item."
+        );
+      })
+  );
 
-  it("propagates source stream failures unchanged", async () => {
-    const error = await Effect.runPromise(
-      compileReleaseSources({
+  it.effect("propagates source stream failures unchanged", () =>
+    Effect.gen(function* () {
+      const { items, rendererManifest } = yield* makeFixture();
+      const error = yield* compileReleaseSources({
         items: Stream.fromIterable(items),
         rendererManifest,
         sources: Stream.fail("source-failed"),
-      }).pipe(Stream.runDrain, Effect.flip)
-    );
-    expect(error).toBe("source-failed");
-  });
+      }).pipe(Stream.runDrain, Effect.flip);
+      expect(error).toBe("source-failed");
+    })
+  );
 });
