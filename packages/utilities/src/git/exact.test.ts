@@ -1,8 +1,6 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, assert, describe, it } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path } from "effect";
 import { vi } from "vitest";
 import {
   GIT_ENVIRONMENT,
@@ -19,16 +17,17 @@ const OUTPUT_LIMIT = 4096;
 const COMMIT_SHA_PATTERN = /^[0-9a-f]{40}$/u;
 
 /** Runs one exact process through the live direct-Node implementation. */
-function runExact(input: ExactProcessInput) {
-  return ExactProcess.pipe(
-    Effect.flatMap((exactProcess) => exactProcess.run(input)),
-    Effect.provide(ExactProcessLive)
-  );
-}
+const runExact = Effect.fn("GitExactTest.runExact")(
+  (input: ExactProcessInput) =>
+    ExactProcess.pipe(
+      Effect.flatMap((exactProcess) => exactProcess.run(input)),
+      Effect.provide(ExactProcessLive)
+    )
+);
 
 /** Runs one command against a repository with the canonical exact Git policy. */
-function runGit(root: string, args: readonly string[]) {
-  return Effect.runPromise(
+const runGit = Effect.fn("GitExactTest.runGit")(
+  (root: string, args: readonly string[]) =>
     runExact(
       makeExactGitInput({
         args,
@@ -37,8 +36,7 @@ function runGit(root: string, args: readonly string[]) {
         stdoutLimit: OUTPUT_LIMIT,
       })
     )
-  );
-}
+);
 
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -53,7 +51,7 @@ describe("exact Git process", () => {
       stdoutLimit: 10,
     });
 
-    expect(input).toEqual({
+    assert.deepStrictEqual(input, {
       args: [
         "--git-dir=/code/aksara/.git",
         "--work-tree=/code/aksara",
@@ -79,43 +77,51 @@ describe("exact Git process", () => {
       stdoutLimit: 10,
     });
 
-    expect(input.stdin).toBe(stdin);
-    expect(input.environment).toBe(GIT_ENVIRONMENT);
-    expect(input.executable).toBe(GIT_EXECUTABLE);
+    assert.strictEqual(input.stdin, stdin);
+    assert.strictEqual(input.environment, GIT_ENVIRONMENT);
+    assert.strictEqual(input.executable, GIT_EXECUTABLE);
   });
 
-  it("ignores foreign ambient Git coordinates in a real repository", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-git-exact-"));
-    mkdirSync(join(root, "foreign"));
-    vi.stubEnv("GIT_DIR", join(root, "foreign"));
-    vi.stubEnv("GIT_WORK_TREE", join(root, "foreign"));
-    await Effect.runPromise(
-      runExact({
+  it.live("ignores foreign ambient Git coordinates in a real repository", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-git-exact-",
+      });
+      const foreignRoot = path.join(root, "foreign");
+      yield* fileSystem.makeDirectory(foreignRoot);
+      vi.stubEnv("GIT_DIR", foreignRoot);
+      vi.stubEnv("GIT_WORK_TREE", foreignRoot);
+      yield* runExact({
         args: ["init", root],
         environment: GIT_ENVIRONMENT,
         executable: GIT_EXECUTABLE,
         root,
         stderrLimit: OUTPUT_LIMIT,
         stdoutLimit: OUTPUT_LIMIT,
-      })
-    );
-    writeFileSync(join(root, "source.mdx"), "# Real source\n");
-    await runGit(root, ["add", "source.mdx"]);
-    await runGit(root, [
-      "-c",
-      "user.name=Aksara Test",
-      "-c",
-      "user.email=aksara@example.invalid",
-      "commit",
-      "-m",
-      "test: exact git",
-    ]);
+      });
+      yield* fileSystem.writeFileString(
+        path.join(root, "source.mdx"),
+        "# Real source\n"
+      );
+      yield* runGit(root, ["add", "source.mdx"]);
+      yield* runGit(root, [
+        "-c",
+        "user.name=Aksara Test",
+        "-c",
+        "user.email=aksara@example.invalid",
+        "commit",
+        "-m",
+        "test: exact git",
+      ]);
 
-    const revision = await runGit(root, ["rev-parse", "--verify", "HEAD"]);
-    expect(new TextDecoder().decode(revision.stdout).trim()).toMatch(
-      COMMIT_SHA_PATTERN
-    );
-    expect(revision.exitCode).toBe(0);
-    rmSync(root, { force: true, recursive: true });
-  });
+      const revision = yield* runGit(root, ["rev-parse", "--verify", "HEAD"]);
+      assert.match(
+        new TextDecoder().decode(revision.stdout).trim(),
+        COMMIT_SHA_PATTERN
+      );
+      assert.strictEqual(revision.exitCode, 0);
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
 });

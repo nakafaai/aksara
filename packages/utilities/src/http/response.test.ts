@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/unstable/http";
 import {
@@ -20,76 +20,94 @@ function response(
 }
 
 /** Reads one bounded response failure without leaking the source error. */
-function reject(input: HttpClientResponse.HttpClientResponse, limit = 4) {
-  return Effect.runPromise(readText(input, limit).pipe(Effect.flip));
-}
+const reject = Effect.fn("HttpResponseTest.reject")(
+  (input: HttpClientResponse.HttpClientResponse, limit = 4) =>
+    readText(input, limit).pipe(Effect.flip)
+);
 
 describe("HTTP response utilities", () => {
   it("matches strict JSON media types and exact cache directives", () => {
-    expect(isJsonType("Application/JSON; charset=utf-8")).toBe(true);
-    expect(isJsonType("application/json-evil")).toBe(false);
-    expect(isJsonType(undefined)).toBe(false);
-    expect(hasDirectives("Private, NO-STORE", ["private", "no-store"])).toBe(
+    assert.strictEqual(isJsonType("Application/JSON; charset=utf-8"), true);
+    assert.strictEqual(isJsonType("application/json-evil"), false);
+    assert.strictEqual(isJsonType(undefined), false);
+    assert.strictEqual(
+      hasDirectives("Private, NO-STORE", ["private", "no-store"]),
       true
     );
-    expect(hasDirectives("private, x-no-store", ["private", "no-store"])).toBe(
+    assert.strictEqual(
+      hasDirectives("private, x-no-store", ["private", "no-store"]),
       false
     );
-    expect(hasDirectives(undefined, ["no-store"])).toBe(false);
+    assert.strictEqual(hasDirectives(undefined, ["no-store"]), false);
   });
 
-  it("assembles streamed bytes within the declared ceiling", async () => {
-    const stream = new ReadableStream<Uint8Array>({
-      /** Emits two chunks to verify incremental bounded assembly. */
-      start(controller) {
-        controller.enqueue(Uint8Array.from([1, 2]));
-        controller.enqueue(Uint8Array.from([3, 4]));
-        controller.close();
-      },
-    });
+  it.effect("assembles streamed bytes within the declared ceiling", () =>
+    Effect.gen(function* () {
+      const stream = new ReadableStream<Uint8Array>({
+        /** Emits two chunks to verify incremental bounded assembly. */
+        start(controller) {
+          controller.enqueue(Uint8Array.from([1, 2]));
+          controller.enqueue(Uint8Array.from([3, 4]));
+          controller.close();
+        },
+      });
 
-    const bounded = response(stream, { headers: { "content-length": "4" } });
+      const bounded = response(stream, {
+        headers: { "content-length": "4" },
+      });
 
-    await expect(Effect.runPromise(readBytes(bounded, 4))).resolves.toEqual(
-      Uint8Array.from([1, 2, 3, 4])
-    );
-    await expect(
-      Effect.runPromise(readText(response("text"), 4))
-    ).resolves.toBe("text");
-  });
+      assert.deepStrictEqual(
+        yield* readBytes(bounded, 4),
+        Uint8Array.from([1, 2, 3, 4])
+      );
+      assert.strictEqual(yield* readText(response("text"), 4), "text");
+    })
+  );
 
-  it("classifies unsafe lengths, overflows, empty bodies, and streams", async () => {
-    const failed = new ReadableStream<Uint8Array>({
-      /** Fails while the consumer reads the response stream. */
-      pull(controller) {
-        controller.error(new Error("Test stream failure."));
-      },
-    });
-    const errors = await Promise.all([
-      reject(response("ok", { headers: { "content-length": "invalid" } })),
-      reject(response("ok", { headers: { "content-length": "-1" } })),
-      reject(response("ok", { headers: { "content-length": "1.5" } })),
-      reject(response("ok", { headers: { "content-length": "5" } })),
-      reject(response(""), -1),
-      reject(response(""), 1.5),
-      reject(response("12345")),
-      reject(response(null)),
-      reject(response(failed)),
-      reject(response(Uint8Array.from([0xc3, 0x28]))),
-    ]);
+  it.effect(
+    "classifies unsafe lengths, overflows, empty bodies, and streams",
+    () =>
+      Effect.gen(function* () {
+        const failed = new ReadableStream<Uint8Array>({
+          /** Fails while the consumer reads the response stream. */
+          pull(controller) {
+            controller.error(new Error("Test stream failure."));
+          },
+        });
+        const errors = yield* Effect.all(
+          [
+            reject(
+              response("ok", { headers: { "content-length": "invalid" } })
+            ),
+            reject(response("ok", { headers: { "content-length": "-1" } })),
+            reject(response("ok", { headers: { "content-length": "1.5" } })),
+            reject(response("ok", { headers: { "content-length": "5" } })),
+            reject(response(""), -1),
+            reject(response(""), 1.5),
+            reject(response("12345")),
+            reject(response(null)),
+            reject(response(failed)),
+            reject(response(Uint8Array.from([0xc3, 0x28]))),
+          ],
+          { concurrency: "unbounded" }
+        );
 
-    expect(errors.map(({ reason }) => reason)).toEqual([
-      "length",
-      "length",
-      "length",
-      "length",
-      "length",
-      "length",
-      "limit",
-      "empty",
-      "stream",
-      "encoding",
-    ]);
-    expect(errors.every((error) => error instanceof BodyError)).toBe(true);
-  });
+        assert.deepStrictEqual(
+          errors.map(({ reason }) => reason),
+          [
+            "length",
+            "length",
+            "length",
+            "length",
+            "length",
+            "length",
+            "limit",
+            "empty",
+            "stream",
+            "encoding",
+          ]
+        );
+        assert.ok(errors.every((error) => error instanceof BodyError));
+      })
+  );
 });
