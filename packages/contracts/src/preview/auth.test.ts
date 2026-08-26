@@ -1,5 +1,5 @@
 import type { BinaryLike } from "node:crypto";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
@@ -49,92 +49,94 @@ afterEach(() => {
 });
 
 describe("preview renderer authentication", () => {
-  it("authenticates one validated renderer and exact fresh challenge", async () => {
-    const proof = await Effect.runPromise(
-      computePreviewRendererProof({
-        manifestHash: manifest.hash,
-        nonce,
-        secret,
-      })
-    );
-    const response = Schema.decodeSync(PreviewRendererResponseSchema)({
-      format: PREVIEW_RENDERER_AUTH_FORMAT,
-      manifest,
-      proof,
-    });
+  it.effect(
+    "authenticates one validated renderer and exact fresh challenge",
+    () =>
+      Effect.gen(function* () {
+        const proof = yield* computePreviewRendererProof({
+          manifestHash: manifest.hash,
+          nonce,
+          secret,
+        });
+        const response = yield* Schema.decodeEffect(
+          PreviewRendererResponseSchema
+        )({
+          format: PREVIEW_RENDERER_AUTH_FORMAT,
+          manifest,
+          proof,
+        });
 
-    await expect(
-      Effect.runPromise(
-        verifyPreviewRendererProof({
+        yield* verifyPreviewRendererProof({
           manifestHash: response.manifest.hash,
           nonce,
           proof: response.proof,
           secret,
-        })
-      )
-    ).resolves.toBeUndefined();
-    expect(
-      canonicalizePreviewRendererAuth({
-        manifestHash: manifest.hash,
-        nonce,
+        });
+        expect(
+          canonicalizePreviewRendererAuth({
+            manifestHash: manifest.hash,
+            nonce,
+          })
+        ).toBe(
+          JSON.stringify([PREVIEW_RENDERER_AUTH_FORMAT, nonce, manifest.hash])
+        );
       })
-    ).toBe(
-      JSON.stringify([PREVIEW_RENDERER_AUTH_FORMAT, nonce, manifest.hash])
-    );
-  });
+  );
 
-  it("rejects a wrong key, replayed nonce, and modified manifest identity", async () => {
-    const proof = await Effect.runPromise(
-      computePreviewRendererProof({
-        manifestHash: manifest.hash,
-        nonce,
-        secret,
+  it.effect(
+    "rejects a wrong key, replayed nonce, and modified manifest identity",
+    () =>
+      Effect.gen(function* () {
+        const proof = yield* computePreviewRendererProof({
+          manifestHash: manifest.hash,
+          nonce,
+          secret,
+        });
+        const inputs = [
+          {
+            manifestHash: manifest.hash,
+            nonce,
+            proof,
+            secret: foreignSecret,
+          },
+          {
+            manifestHash: manifest.hash,
+            nonce: PreviewRendererNonceSchema.make("r".repeat(43)),
+            proof,
+            secret,
+          },
+          {
+            manifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+            nonce,
+            proof,
+            secret,
+          },
+        ];
+        const errors = yield* Effect.all(
+          inputs.map((input) =>
+            verifyPreviewRendererProof(input).pipe(Effect.flip)
+          )
+        );
+
+        expect(errors).toEqual(
+          inputs.map(() => expect.objectContaining({ reason: "invalid" }))
+        );
       })
-    );
-    const inputs = [
-      {
-        manifestHash: manifest.hash,
-        nonce,
-        proof,
-        secret: foreignSecret,
-      },
-      {
-        manifestHash: manifest.hash,
-        nonce: PreviewRendererNonceSchema.make("r".repeat(43)),
-        proof,
-        secret,
-      },
-      {
-        manifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-        nonce,
-        proof,
-        secret,
-      },
-    ];
-    const errors = await Promise.all(
-      inputs.map((input) =>
-        Effect.runPromise(verifyPreviewRendererProof(input).pipe(Effect.flip))
-      )
-    );
+  );
 
-    expect(errors).toEqual(
-      inputs.map(() => expect.objectContaining({ reason: "invalid" }))
-    );
-  });
-
-  it("maps Node HMAC failures into the typed authentication error", async () => {
-    failures.hmac = true;
-    const error = await Effect.runPromise(
-      computePreviewRendererProof({
+  it.effect("maps Node HMAC failures into the typed authentication error", () =>
+    Effect.gen(function* () {
+      failures.hmac = true;
+      const error = yield* computePreviewRendererProof({
         manifestHash: manifest.hash,
         nonce,
         secret,
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "PreviewRendererAuthError",
-      reason: "compute",
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "PreviewRendererAuthError",
+        reason: "compute",
+      });
+    })
+  );
 });
