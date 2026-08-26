@@ -1,5 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import {
   Effect,
   Fiber,
