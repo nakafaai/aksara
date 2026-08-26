@@ -53,6 +53,7 @@ describe("production state", () => {
       )
     ).resolves.toEqual({
       baseBundle: null,
+      baseTryoutRuntimeBundle: null,
       kind: "new",
       mode: "git",
       scope: FUNCTION_SCOPE,
@@ -66,6 +67,7 @@ describe("production state", () => {
         release: active.release,
         rendererManifest: active.rendererManifest,
       },
+      baseTryoutRuntimeBundle: null,
       kind: "new",
       mode: "git",
       scope: FUNCTION_SCOPE,
@@ -104,6 +106,7 @@ describe("production state", () => {
         )
       ).resolves.toEqual({
         baseBundle: null,
+        baseTryoutRuntimeBundle: null,
         candidate,
         kind: "rebuild",
         mode: "git",

@@ -57,6 +57,7 @@ const calls = vi.hoisted(() => {
       active: null,
       candidate: null,
       recovery: null,
+      tryoutRuntimeBundle: null,
     },
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
@@ -225,6 +226,20 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
       TestSchema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
         onExcessProperty: "error",
       }),
+  };
+});
+
+vi.mock("@nakafa/aksara-contracts/tryout/runtime-bundle/verify", async () => {
+  const { SignedTryoutRuntimeBundleSchema } = await import(
+    "@nakafa/aksara-contracts/tryout/runtime-bundle/spec"
+  );
+  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+  return {
+    verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
+      TestSchema.decodeUnknownEffect(SignedTryoutRuntimeBundleSchema)(
+        input.bundle,
+        { onExcessProperty: "error" }
+      ).pipe(TestEffect.orDie),
   };
 });
 

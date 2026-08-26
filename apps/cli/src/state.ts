@@ -8,6 +8,7 @@ import {
   canonicalizePublicationScope,
   type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
 import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,
@@ -35,6 +36,7 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
 export type ProductionStateAction =
   | {
       readonly baseBundle: ContentReleaseBundle | null;
+      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
       readonly kind: "new";
       readonly mode: "git";
       readonly scope: PublicationScope;
@@ -47,6 +49,7 @@ export type ProductionStateAction =
     }
   | {
       readonly baseBundle: ContentReleaseBundle | null;
+      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
       readonly kind: "rebuild";
       readonly mode: "git";
       readonly candidate: StagedContentRelease;
@@ -146,6 +149,7 @@ const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
       return {
         baseBundle:
           current.active === null ? null : activeBundle(current.active),
+        baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
         candidate,
         kind: "rebuild",
         mode: stored.mode,
@@ -188,6 +192,7 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
   if (args.command === "release") {
     return {
       baseBundle: active === null ? null : activeBundle(active),
+      baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
       kind: "new",
       mode: "git",
       scope: args.scope,

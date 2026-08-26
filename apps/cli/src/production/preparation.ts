@@ -14,6 +14,8 @@ import {
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -26,7 +28,7 @@ import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect, type Scope, Stream } from "effect";
+import { Effect, Schema, type Scope, Stream } from "effect";
 import {
   readCleanAksaraRevision,
   validateStableAksaraRevision,
@@ -47,6 +49,7 @@ interface BaseCatalogIdentity {
 }
 
 interface GitPreparationBase {
+  readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
   readonly checkoutRoot: string;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
@@ -98,6 +101,12 @@ type PrepareProductionGit = (
 type PrepareProductionRollback = (
   input: RollbackPreparationInput
 ) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
+
+/** Current permanent runtime bundle does not identify the active try-out base. */
+class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
+  "BaseTryoutRuntimeBundleMismatchError",
+  { reason: Schema.Literals(["missing-base", "snapshot"]) }
+) {}
 
 /** Streams no prior heads for genesis and both exact target-owned families later. */
 function publishedContentHeads(base: BaseCatalogIdentity | null) {
@@ -157,6 +166,37 @@ function selectRecoveryBase(bundle: ContentReleaseBundle) {
   } satisfies BaseCatalogIdentity;
 }
 
+/** Authenticates the optional permanent bundle and binds it to the active base. */
+const verifyBaseTryoutRuntimeBundle = Effect.fn(
+  "AksaraCli.verifyBaseTryoutRuntimeBundle"
+)(function* (
+  bundle: SignedTryoutRuntimeBundle | null,
+  baseBundle: ContentReleaseBundle | null,
+  base: BaseCatalogIdentity | null
+) {
+  if (bundle === null) {
+    return null;
+  }
+  if (baseBundle === null || base === null) {
+    return yield* new BaseTryoutRuntimeBundleMismatchError({
+      reason: "missing-base",
+    });
+  }
+  const verified = yield* verifySignedTryoutRuntimeBundle({
+    bundle,
+    rendererManifest: baseBundle.rendererManifest,
+  });
+  if (
+    verified.payload.snapshot.snapshotId !==
+    base.snapshots.tryout.resultSnapshotId
+  ) {
+    return yield* new BaseTryoutRuntimeBundleMismatchError({
+      reason: "snapshot",
+    });
+  }
+  return verified;
+});
+
 /** Finds the first immutable base field that differs during candidate recovery. */
 function recoveryBaseMismatch(
   expected: BaseCatalogIdentity | null,
@@ -215,6 +255,12 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       base = selectRecoveryBase(input.bundle);
       yield* validateRecoveryBase(base, selectSourceBase(verifiedBaseBundle));
     }
+    const verifiedBaseTryoutRuntimeBundle =
+      yield* verifyBaseTryoutRuntimeBundle(
+        input.baseTryoutRuntimeBundle,
+        verifiedBaseBundle,
+        base
+      );
     const aksaraSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
@@ -225,9 +271,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         : input.bundle.rendererManifest
     );
     const refreshTryoutRuntimeBundle =
-      base?.snapshots.tryout.resultSnapshotId !== null &&
-      verifiedBaseBundle !== null &&
-      rendererManifest.hash !== verifiedBaseBundle.rendererManifest.hash;
+      base !== null &&
+      base.snapshots.tryout.resultSnapshotId !== null &&
+      (verifiedBaseTryoutRuntimeBundle === null ||
+        rendererManifest.hash !==
+          verifiedBaseTryoutRuntimeBundle.payload.rendererManifestHash);
     const catalog = yield* prepareContentCatalog({
       base:
         base === null

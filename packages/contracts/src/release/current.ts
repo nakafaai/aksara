@@ -11,6 +11,7 @@ import {
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
 import { PublicationReceiptSchema } from "#contracts/release/spec";
+import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime-bundle/spec";
 
 /** Compares canonical signed locale lists without erasing their role. */
 function hasSameAppLocales(left: readonly string[], right: readonly string[]) {
@@ -192,10 +193,19 @@ function hasCoherentCurrentState(input: {
   readonly active: ActiveContentRelease | null;
   readonly candidate: StagedContentRelease | null;
   readonly recovery: StagedRollbackContentRelease | null;
+  readonly tryoutRuntimeBundle:
+    | typeof SignedTryoutRuntimeBundleSchema.Type
+    | null;
 }) {
   return (
     hasCoherentCandidate(input.active, input.candidate) &&
-    hasCoherentRecovery(input)
+    hasCoherentRecovery(input) &&
+    (input.tryoutRuntimeBundle === null ||
+      (input.active !== null &&
+        input.active.release.manifest.snapshots.tryout.resultSnapshotId ===
+          input.tryoutRuntimeBundle.payload.snapshot.snapshotId &&
+        input.active.rendererManifest.hash ===
+          input.tryoutRuntimeBundle.payload.rendererManifestHash))
   );
 }
 
@@ -204,6 +214,7 @@ export const ContentReleaseCurrentSchema = Schema.Struct({
   active: Schema.NullOr(ActiveContentReleaseSchema),
   candidate: Schema.NullOr(StagedContentReleaseSchema),
   recovery: Schema.NullOr(StagedRollbackContentReleaseSchema),
+  tryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentCurrentState, {

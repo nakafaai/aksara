@@ -32,6 +32,11 @@ import {
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import {
+  SignedTryoutRuntimeBundleSchema,
+  TRYOUT_RUNTIME_BUNDLE_FORMAT,
+} from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import { TRYOUT_SNAPSHOT_FORMAT } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
@@ -203,6 +208,35 @@ export function completedBundle(
   return { ...bundle, receipt: receiptFor(bundle.release.manifest) };
 }
 
+/** Creates one structurally valid permanent runtime bundle for CLI state tests. */
+export function runtimeBundleFor(
+  bundle: ContentReleaseBundle,
+  snapshotId: typeof Sha256HashSchema.Type
+) {
+  return SignedTryoutRuntimeBundleSchema.make({
+    bundleHash: HASH,
+    keyId: bundle.release.keyId,
+    payload: {
+      format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+      rendererManifestHash: bundle.rendererManifest.hash,
+      snapshot: {
+        activeAppLocales: ACTIVE_APP_LOCALES,
+        catalogDigest: HASH,
+        counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+        format: TRYOUT_SNAPSHOT_FORMAT,
+        placementCount: 0,
+        placementDigest: HASH,
+        routeCount: 0,
+        snapshotId,
+      },
+      sourceGitSha: GitCommitShaSchema.make("a".repeat(40)),
+      sourceManifestHash: bundle.release.manifestHash,
+      sourceReleaseId: bundle.release.manifest.releaseId,
+    },
+    signature: Ed25519SignatureSchema.make(`${"A".repeat(85)}A`),
+  });
+}
+
 /** Creates terminal publication evidence bound to one exact manifest. */
 export function receiptFor(
   manifest: ContentReleaseManifest
@@ -227,8 +261,16 @@ export function receiptFor(
 }
 
 /** Decodes authoritative current state through its exact public contract. */
-export function currentState(input: unknown): ContentReleaseCurrent {
-  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(input);
+export function currentState(input: {
+  readonly active: unknown;
+  readonly candidate: unknown;
+  readonly recovery: unknown;
+  readonly tryoutRuntimeBundle?: unknown;
+}): ContentReleaseCurrent {
+  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)({
+    ...input,
+    tryoutRuntimeBundle: input.tryoutRuntimeBundle ?? null,
+  });
 }
 
 /** Creates a complete target whose unrelated operations fail immediately. */

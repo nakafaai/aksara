@@ -107,6 +107,7 @@ describe("publication transport retry", () => {
               active: null,
               candidate: null,
               recovery: null,
+              tryoutRuntimeBundle: null,
             });
       })
     );
@@ -140,6 +141,7 @@ describe("publication transport retry", () => {
       active: null,
       candidate: null,
       recovery: null,
+      tryoutRuntimeBundle: null,
     });
     expect(attempts).toBe(2);
     expect(

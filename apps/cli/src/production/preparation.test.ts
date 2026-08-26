@@ -20,6 +20,7 @@ import {
   gitBundle,
   releaseId,
   rollbackBundle,
+  runtimeBundleFor,
 } from "#test/target";
 
 const calls = productionCalls();
@@ -160,6 +161,59 @@ describe("production preparation", () => {
     expect(calls).toMatchObject({
       runtimeBundleRefreshes: 1,
       snapshotCalls: 1,
+    });
+  });
+
+  it("bootstraps a missing permanent bundle for an inherited try-out snapshot", async () => {
+    const tryoutSnapshotId = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
+    const active = gitBundle("release-active", {
+      baseReleaseId: releaseId("release-parent"),
+      tryoutSnapshotId,
+    });
+    calls.current = currentState({
+      active: completedBundle(active),
+      candidate: null,
+      recovery: null,
+    });
+
+    await expect(
+      runProduction({
+        command: "release",
+        recoveryId: releaseId("recovery-bootstrap"),
+        releaseId: releaseId("release-bootstrap"),
+        scope: FUNCTION_SCOPE,
+      })
+    ).resolves.toMatchObject({ releaseId: "release-bootstrap" });
+    expect(calls).toMatchObject({
+      runtimeBundleRefreshes: 1,
+      snapshotCalls: 1,
+    });
+  });
+
+  it("reuses the permanent bundle for an unchanged try-out runtime pair", async () => {
+    const tryoutSnapshotId = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
+    const active = gitBundle("release-active", {
+      baseReleaseId: releaseId("release-parent"),
+      tryoutSnapshotId,
+    });
+    calls.current = currentState({
+      active: completedBundle(active),
+      candidate: null,
+      recovery: null,
+      tryoutRuntimeBundle: runtimeBundleFor(active, tryoutSnapshotId),
+    });
+
+    await expect(
+      runProduction({
+        command: "release",
+        recoveryId: releaseId("recovery-reuse"),
+        releaseId: releaseId("release-reuse"),
+        scope: FUNCTION_SCOPE,
+      })
+    ).resolves.toMatchObject({ releaseId: "release-reuse" });
+    expect(calls).toMatchObject({
+      runtimeBundleRefreshes: 0,
+      snapshotCalls: 0,
     });
   });
 

@@ -77,8 +77,16 @@ export function stateBundle(
 }
 
 /** Creates exact durable current state through the public wire contract. */
-export function stateCurrent(input: unknown): ContentReleaseCurrent {
-  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(input);
+export function stateCurrent(input: {
+  readonly active: unknown;
+  readonly candidate: unknown;
+  readonly recovery: unknown;
+  readonly tryoutRuntimeBundle?: unknown;
+}): ContentReleaseCurrent {
+  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)({
+    ...input,
+    tryoutRuntimeBundle: input.tryoutRuntimeBundle ?? null,
+  });
 }
 
 /** Creates a completed active release with matching terminal evidence. */
