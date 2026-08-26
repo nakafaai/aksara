@@ -96,6 +96,7 @@ function requireCompleteManifests(
   return { program, quran, tryout };
 }
 
+/** Acquires one complete structured fixture set for an isolated assertion. */
 const makeFixtures = Effect.fn("AksaraPublisherTest.makeSnapshotFixtures")(
   function* () {
     const quranFixture = makeQuranSnapshotFixture();

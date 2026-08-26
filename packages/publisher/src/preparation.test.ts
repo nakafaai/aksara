@@ -8,8 +8,6 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
-  ActiveAppLocaleListSchema,
-  AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
@@ -21,6 +19,12 @@ import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
+  emptySnapshots,
+  inheritedSnapshots,
+  preparationScope,
+  priorAppLocales,
+} from "#test/preparation";
+import {
   record as baseTransition,
   contentRecord,
   historicalRendererManifest,
@@ -29,33 +33,12 @@ import {
 } from "#test/publication";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
 
-const aksaraSha = GitCommitShaSchema.make("a".repeat(40));
-const priorAppLocales = ActiveAppLocaleListSchema.make([
-  AppLocaleSchema.make("en"),
-]);
-const inheritedSnapshots = {
-  previousSnapshots: inheritContentSnapshots(null),
-  snapshotManifests: Stream.empty,
-  snapshotRows: Stream.empty,
-  tryoutRuntimeSnapshot: null,
-} as const;
-const emptySnapshots = {
-  previousSnapshots: null,
-  snapshotManifests: Stream.empty,
-  snapshotRows: Stream.empty,
-  tryoutRuntimeSnapshot: null,
-} as const;
-const scope = PublicationScopeSchema.make({
-  families: ["material"],
-  snapshots: [],
-});
-
 type TestPreparationInput = PrepareContentReleaseInput<never, never>;
 
 /** Runs preparation with direct overrides around one valid retained base. */
 function prepare(overrides: Partial<TestPreparationInput> = {}) {
   return prepareContentRelease({
-    aksaraSha,
+    aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
     baseActiveAppLocales: ACTIVE_APP_LOCALES,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
     baseReleaseId: ReleaseIdSchema.make("test-prepare-base"),
@@ -67,7 +50,7 @@ function prepare(overrides: Partial<TestPreparationInput> = {}) {
     rendererManifest,
     result: Stream.make(resultHead),
     routes: Stream.empty,
-    scope,
+    scope: preparationScope,
     ...overrides,
   });
 }
