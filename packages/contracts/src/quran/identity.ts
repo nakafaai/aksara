@@ -78,15 +78,19 @@ const QURAN_TAFSIR_BY_LOCALE = {
 export function quranTranslationSourceId(
   appLocale: typeof ENGLISH_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the Indonesian translation source identity. */
 export function quranTranslationSourceId(
   appLocale: typeof INDONESIAN_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the German translation source identity. */
 export function quranTranslationSourceId(
   appLocale: typeof GERMAN_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
+/** Selects a translation source from a dynamic supported locale. */
 export function quranTranslationSourceId(
   appLocale: AppLocaleCode
 ): QuranEmbeddedSourceId;
+/** Resolves the selected translation source identity. */
 export function quranTranslationSourceId(appLocale: AppLocaleCode) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].sourceId;
 }
@@ -95,13 +99,17 @@ export function quranTranslationSourceId(appLocale: AppLocaleCode) {
 export function quranTafsirSourceId(
   appLocale: typeof ENGLISH_APP_LOCALE_CODE
 ): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the Indonesian Tafsir source identity. */
 export function quranTafsirSourceId(
   appLocale: typeof INDONESIAN_APP_LOCALE_CODE
 ): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the German Tafsir source identity. */
 export function quranTafsirSourceId(
   appLocale: typeof GERMAN_APP_LOCALE_CODE
 ): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
+/** Selects a Tafsir source from a dynamic supported locale. */
 export function quranTafsirSourceId(appLocale: AppLocaleCode): QuranSourceId;
+/** Resolves the selected Tafsir source identity. */
 export function quranTafsirSourceId(appLocale: AppLocaleCode) {
   return QURAN_TAFSIR_BY_LOCALE[appLocale].sourceId;
 }
@@ -110,15 +118,19 @@ export function quranTafsirSourceId(appLocale: AppLocaleCode) {
 export function quranTranslationProvenanceScope(
   appLocale: typeof ENGLISH_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["scope"];
+/** Narrows the Indonesian translation provenance scope. */
 export function quranTranslationProvenanceScope(
   appLocale: typeof INDONESIAN_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["scope"];
+/** Narrows the German translation provenance scope. */
 export function quranTranslationProvenanceScope(
   appLocale: typeof GERMAN_APP_LOCALE_CODE
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["scope"];
+/** Selects a translation provenance scope from a dynamic locale. */
 export function quranTranslationProvenanceScope(
   appLocale: AppLocaleCode
 ): QuranTranslationProvenanceScope;
+/** Resolves the selected translation provenance scope. */
 export function quranTranslationProvenanceScope(appLocale: AppLocaleCode) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].scope;
 }
