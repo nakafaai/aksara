@@ -1,4 +1,5 @@
 import { generateKeyPairSync } from "node:crypto";
+import { describe, expect, it } from "@effect/vitest";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
@@ -7,99 +8,109 @@ import {
   TRUSTED_CONTENT_KEYS,
   TrustedKeySchema,
 } from "@nakafa/aksara-contracts/signature/trusted";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { verifySigningKey } from "#cli/keys";
 
-const rotatedKeyId = SigningKeyIdSchema.make("content-2027-01");
-const rotatedPublicKey = generateKeyPairSync("ed25519")
-  .publicKey.export({ format: "pem", type: "spki" })
-  .toString();
-const rotatedEntry = TrustedKeySchema.make({
-  keyId: rotatedKeyId,
-  publicKeyPem: rotatedPublicKey,
-});
+/** Generates one lazy rotation fixture inside the Effect runtime. */
+const makeRotatedKey = Effect.fn("test.keys.makeRotatedKey")(() =>
+  Effect.sync(() => {
+    const keyId = SigningKeyIdSchema.make("content-2027-01");
+    const publicKeyPem = generateKeyPairSync("ed25519")
+      .publicKey.export({ format: "pem", type: "spki" })
+      .toString();
 
-/** Runs signer verification with one explicit code-owned registry. */
-function verify(
-  input: Parameters<typeof verifySigningKey>[0],
-  entries = TRUSTED_CONTENT_KEYS
-) {
-  return Effect.runPromise(
+    return {
+      entry: TrustedKeySchema.make({ keyId, publicKeyPem }),
+      keyId,
+      publicKeyPem,
+    };
+  })
+);
+
+/** Composes signer verification with one explicit code-owned registry. */
+const verify = Effect.fn("test.keys.verify")(
+  (
+    input: Parameters<typeof verifySigningKey>[0],
+    entries = TRUSTED_CONTENT_KEYS
+  ) =>
     verifySigningKey(input).pipe(
       Effect.provideService(
         ContentVerificationKeyResolver,
         makeTrustedKeyResolver(entries)
       )
     )
-  );
-}
+);
 
 /** Returns the expected typed signer verification failure. */
-function reject(
-  input: Parameters<typeof verifySigningKey>[0],
-  entries = TRUSTED_CONTENT_KEYS
-) {
-  return Effect.runPromise(
-    verifySigningKey(input).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        makeTrustedKeyResolver(entries)
-      ),
-      Effect.flip
-    )
-  );
-}
+const reject = Effect.fn("test.keys.reject")(
+  (
+    input: Parameters<typeof verifySigningKey>[0],
+    entries = TRUSTED_CONTENT_KEYS
+  ) => verify(input, entries).pipe(Effect.flip)
+);
 
 describe("production signing key", () => {
-  it("accepts the exact active key and derived public SPKI", async () => {
-    const resolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
-    const derivedPublicKeyPem = await Effect.runPromise(
-      resolver.resolve(ACTIVE_SIGNING_KEY_ID)
-    );
+  it.effect("accepts the exact active key and derived public SPKI", () =>
+    Effect.gen(function* () {
+      const resolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
+      const derivedPublicKeyPem = yield* resolver.resolve(
+        ACTIVE_SIGNING_KEY_ID
+      );
 
-    await expect(
-      verify({
+      yield* verify({
         activeKeyId: ACTIVE_SIGNING_KEY_ID,
         derivedPublicKeyPem,
         keyId: ACTIVE_SIGNING_KEY_ID,
-      })
-    ).resolves.toBeUndefined();
-  });
+      });
+    })
+  );
 
-  it("rejects an exact key ID with a different derived SPKI", async () => {
-    await expect(
-      reject({
+  it.effect("rejects an exact key ID with a different derived SPKI", () =>
+    Effect.gen(function* () {
+      const rotatedKey = yield* makeRotatedKey();
+      const error = yield* reject({
         activeKeyId: ACTIVE_SIGNING_KEY_ID,
-        derivedPublicKeyPem: rotatedPublicKey,
+        derivedPublicKeyPem: rotatedKey.publicKeyPem,
         keyId: ACTIVE_SIGNING_KEY_ID,
+      });
+
+      expect(error).toMatchObject({ _tag: "SigningKeyMismatchError" });
+    })
+  );
+
+  it.effect(
+    "keeps a retained rotation key available only for verification",
+    () =>
+      Effect.gen(function* () {
+        const rotatedKey = yield* makeRotatedKey();
+        const error = yield* reject(
+          {
+            activeKeyId: ACTIVE_SIGNING_KEY_ID,
+            derivedPublicKeyPem: rotatedKey.publicKeyPem,
+            keyId: rotatedKey.keyId,
+          },
+          [...TRUSTED_CONTENT_KEYS, rotatedKey.entry]
+        );
+
+        expect(error).toMatchObject({ _tag: "SigningKeyInactiveError" });
       })
-    ).resolves.toMatchObject({ _tag: "SigningKeyMismatchError" });
-  });
+  );
 
-  it("keeps a retained rotation key available only for verification", async () => {
-    await expect(
-      reject(
-        {
-          activeKeyId: ACTIVE_SIGNING_KEY_ID,
-          derivedPublicKeyPem: rotatedPublicKey,
-          keyId: rotatedKeyId,
-        },
-        [...TRUSTED_CONTENT_KEYS, rotatedEntry]
-      )
-    ).resolves.toMatchObject({ _tag: "SigningKeyInactiveError" });
-  });
+  it.effect(
+    "rejects an active identity missing from the trusted registry",
+    () =>
+      Effect.gen(function* () {
+        const rotatedKey = yield* makeRotatedKey();
+        const error = yield* reject(
+          {
+            activeKeyId: ACTIVE_SIGNING_KEY_ID,
+            derivedPublicKeyPem: rotatedKey.publicKeyPem,
+            keyId: ACTIVE_SIGNING_KEY_ID,
+          },
+          []
+        );
 
-  it("rejects an active identity missing from the trusted registry", async () => {
-    await expect(
-      reject(
-        {
-          activeKeyId: ACTIVE_SIGNING_KEY_ID,
-          derivedPublicKeyPem: rotatedPublicKey,
-          keyId: ACTIVE_SIGNING_KEY_ID,
-        },
-        []
-      )
-    ).resolves.toMatchObject({ _tag: "SigningKeyNotFoundError" });
-  });
+        expect(error).toMatchObject({ _tag: "SigningKeyNotFoundError" });
+      })
+  );
 });
