@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
@@ -11,7 +12,6 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";

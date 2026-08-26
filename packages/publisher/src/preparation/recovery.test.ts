@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   reuseStoredGitRelease,

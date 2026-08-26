@@ -1,8 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { describeDocumentFailure } from "#cli/diagnostic";
 import { PreviewRepositoryError, PreviewRestartError } from "#cli/integrity";

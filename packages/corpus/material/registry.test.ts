@@ -1,12 +1,12 @@
 import { globSync } from "node:fs";
 import { resolve } from "node:path";
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import {

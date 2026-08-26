@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { ConfigProvider, Effect, Logger, References } from "effect";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";

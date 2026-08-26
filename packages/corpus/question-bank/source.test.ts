@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Path } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {

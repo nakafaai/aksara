@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path, Schema, Stream } from "effect";
 import { vi } from "vitest";
 import { planQuestionPublication } from "#publisher/question/plan";

@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   type ContentCacheRequest,
   makeContentCacheRequest,
 } from "@nakafa/aksara-contracts/cache/content";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
 import {
   FetchHttpClient,

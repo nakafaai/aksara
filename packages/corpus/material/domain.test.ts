@@ -1,6 +1,6 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import {

@@ -1,6 +1,6 @@
+import { describe, expect, it } from "@effect/vitest";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Data, Effect } from "effect";
 import { retryPublicationTarget, retryTransport } from "#cli/retry";
 

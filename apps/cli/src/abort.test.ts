@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";

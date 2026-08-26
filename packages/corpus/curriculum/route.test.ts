@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";

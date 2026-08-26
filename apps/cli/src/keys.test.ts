@@ -1,4 +1,5 @@
 import { generateKeyPairSync } from "node:crypto";
+import { describe, expect, it } from "@effect/vitest";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
@@ -7,7 +8,6 @@ import {
   TRUSTED_CONTENT_KEYS,
   TrustedKeySchema,
 } from "@nakafa/aksara-contracts/signature/trusted";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { verifySigningKey } from "#cli/keys";
 

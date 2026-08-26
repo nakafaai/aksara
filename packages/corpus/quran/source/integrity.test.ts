@@ -1,11 +1,11 @@
 import { resolve } from "node:path";
 
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";

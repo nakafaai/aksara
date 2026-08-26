@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   type ContentCacheRequest,
   makeArtifactCacheTag,
@@ -7,7 +8,6 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { HttpClientRequest } from "effect/unstable/http";
 import { readCacheReceipt } from "#cli/cache/receipt";

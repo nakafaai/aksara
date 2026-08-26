@@ -1,11 +1,11 @@
 import { realpathSync } from "node:fs";
 import { relative } from "node:path";
 import { NodeServices } from "@effect/platform-node";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { NakafaApp } from "#cli/nakafa";
 import {

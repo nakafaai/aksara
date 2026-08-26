@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 import { importCorpusModules } from "#corpus/test/imports";
 import {

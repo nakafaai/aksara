@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { CompiledContentPayloadSchema } from "#contracts/content";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";

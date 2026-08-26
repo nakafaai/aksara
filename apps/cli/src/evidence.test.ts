@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
@@ -5,7 +6,6 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   readCleanAksaraRevision,

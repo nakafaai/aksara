@@ -1,5 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Deferred, Effect, Fiber, Result } from "effect";
 import { TestClock } from "effect/testing";
 

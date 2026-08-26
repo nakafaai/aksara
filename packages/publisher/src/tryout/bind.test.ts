@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -14,7 +15,6 @@ import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { bindTryoutHeads } from "#publisher/tryout/bind";
 

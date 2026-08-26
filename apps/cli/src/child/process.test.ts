@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import {

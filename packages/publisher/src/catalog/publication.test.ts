@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -10,7 +11,6 @@ import type {
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareContentCatalog } from "#publisher/catalog/publication";

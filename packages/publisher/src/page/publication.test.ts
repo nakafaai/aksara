@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { PageHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Schema } from "effect";
 import {
   collectPageRoutes,

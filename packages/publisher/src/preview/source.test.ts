@@ -1,9 +1,9 @@
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   loadPreviewSources,

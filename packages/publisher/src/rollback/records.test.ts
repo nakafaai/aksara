@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { describe, expect, it } from "@effect/vitest";
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
@@ -8,7 +9,6 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import {
   encodeReplayRecord,

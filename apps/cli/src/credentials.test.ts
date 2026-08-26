@@ -1,5 +1,5 @@
 import { createPublicKey } from "node:crypto";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
 import { vi } from "vitest";
 import { makePreviewCredentials } from "#cli/credentials";

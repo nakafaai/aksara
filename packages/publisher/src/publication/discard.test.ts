@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Cause, Effect, Exit } from "effect";
 import { vi } from "vitest";
 import {

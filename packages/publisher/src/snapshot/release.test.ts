@@ -1,5 +1,6 @@
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   PublicPathSchema,
   Sha256HashSchema,
@@ -38,7 +39,6 @@ import {
 } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";

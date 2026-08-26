@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -9,7 +10,6 @@ import {
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {

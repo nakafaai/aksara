@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";

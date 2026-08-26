@@ -1,10 +1,10 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 import { streamContentHeads } from "#publisher/heads";

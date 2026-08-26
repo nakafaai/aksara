@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";

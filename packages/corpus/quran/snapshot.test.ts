@@ -1,8 +1,8 @@
 import { resolve } from "node:path";
 
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 

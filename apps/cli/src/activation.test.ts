@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it } from "@effect/vitest";
 import {
   CONTENT_CACHE_GLOBAL_TAG,
   type ContentCacheChange,
@@ -7,13 +8,6 @@ import {
 } from "@nakafa/aksara-contracts/cache/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-} from "@nakafa/testing/effect";
 import { Effect, Redacted, Schema, Stream } from "effect";
 import {
   HttpClient,

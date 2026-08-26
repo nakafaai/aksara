@@ -1,7 +1,7 @@
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Fiber, FileSystem, Option, Stream } from "effect";
 import { vi } from "vitest";
 import { cliNodeLayer, makeMainProgram } from "#cli/main";

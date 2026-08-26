@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { validateContentCatalog } from "#publisher/catalog/validation";

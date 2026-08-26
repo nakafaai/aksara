@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -7,7 +8,6 @@ import {
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 
 import { prepareContentRelease } from "#publisher/preparation";

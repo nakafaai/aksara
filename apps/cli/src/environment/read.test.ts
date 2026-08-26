@@ -1,5 +1,5 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { ConfigProvider, Effect, Redacted } from "effect";
 import {
   decodePreviewEnvironment,

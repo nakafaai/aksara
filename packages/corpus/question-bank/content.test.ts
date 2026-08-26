@@ -1,9 +1,9 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path } from "effect";
 import {
   loadQuestionContent,

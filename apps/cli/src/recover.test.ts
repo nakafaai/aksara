@@ -1,5 +1,5 @@
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, type Redacted } from "effect";
 import { HttpClient } from "effect/unstable/http";
 import { vi } from "vitest";

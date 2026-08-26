@@ -1,7 +1,7 @@
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { expect, it } from "@nakafa/testing/effect";
+import { expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { packageIdentity } from "#scripts/release-identity";

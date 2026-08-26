@@ -1,5 +1,6 @@
 import { generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -15,7 +16,6 @@ import {
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Layer, Path, Redacted, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedGitRelease } from "#publisher/preparation/prepared";

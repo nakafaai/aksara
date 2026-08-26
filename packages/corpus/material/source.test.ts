@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 
 import { decodeMaterialRegistry } from "#corpus/material/registry";

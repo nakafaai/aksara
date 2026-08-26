@@ -1,7 +1,7 @@
 import { Server } from "node:http";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { openPreviewProvider } from "#cli/provider";

@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
@@ -19,7 +20,6 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";

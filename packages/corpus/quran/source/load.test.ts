@@ -1,10 +1,10 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { describe, expect, it } from "@effect/vitest";
 import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError, Schema } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";

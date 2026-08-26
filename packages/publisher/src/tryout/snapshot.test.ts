@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   type QuestionHead,
@@ -10,7 +11,6 @@ import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/plac
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";

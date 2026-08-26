@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { makeRouteItems } from "#publisher/routes";
 import {

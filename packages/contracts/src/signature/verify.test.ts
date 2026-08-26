@@ -2,7 +2,7 @@
 
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, sign } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";

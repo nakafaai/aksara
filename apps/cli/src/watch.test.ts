@@ -1,7 +1,7 @@
 import { realpathSync } from "node:fs";
 import { basename, relative } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import {
   Deferred,
   Effect,

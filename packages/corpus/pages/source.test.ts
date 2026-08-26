@@ -1,9 +1,9 @@
 import { resolve } from "node:path";
+import { describe, expect, it } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { decodePageRegistry } from "#corpus/pages/registry";
 import { decodePageSources, readPageDocument } from "#corpus/pages/source";

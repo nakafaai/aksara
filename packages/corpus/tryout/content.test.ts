@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
 import { loadTryoutContent } from "#corpus/tryout/content";

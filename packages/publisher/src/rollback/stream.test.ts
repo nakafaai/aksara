@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import { describe, expect, it } from "@effect/vitest";
 import {
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,
@@ -26,7 +27,6 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

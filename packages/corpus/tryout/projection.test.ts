@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";

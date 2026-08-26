@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
+import { describe, expect, it } from "@effect/vitest";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
 import {
   FetchHttpClient,

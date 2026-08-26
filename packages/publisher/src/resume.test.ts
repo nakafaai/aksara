@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseBundle,
@@ -5,7 +6,6 @@ import type {
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import {

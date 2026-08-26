@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from "@nakafa/testing/effect";
+import { beforeAll, describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 
 import {

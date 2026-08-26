@@ -6,7 +6,7 @@ import {
   generateKeyPairSync,
   sign as signBytes,
 } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";

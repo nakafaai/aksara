@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";

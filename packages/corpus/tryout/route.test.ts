@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";

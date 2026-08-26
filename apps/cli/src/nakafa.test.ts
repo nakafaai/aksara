@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   computePreviewRendererProof,
   PREVIEW_RENDERER_AUTH_FORMAT,
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Redacted } from "effect";
 import { HttpClient } from "effect/unstable/http";
 import { makePreviewCredentials } from "#cli/credentials";

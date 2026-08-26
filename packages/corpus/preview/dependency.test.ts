@@ -1,10 +1,10 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { describe, expect, it } from "@effect/vitest";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
 import { corpusRoot } from "#corpus/test/question-layer";

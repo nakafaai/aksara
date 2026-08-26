@@ -20,8 +20,8 @@ function isEffectRunner(node: ts.Node) {
   );
 }
 
-/** Reports Effect runtime tests that bypass the shared Effect Vitest adapter. */
-export function effectTestAdapterViolations(file: string, sourceText: string) {
+/** Reports tests that bypass the official Effect Vitest integration. */
+export function effectTestViolations(file: string, sourceText: string) {
   if (!TEST_MODULE_PATTERN.test(file)) {
     return [];
   }
@@ -31,16 +31,24 @@ export function effectTestAdapterViolations(file: string, sourceText: string) {
     ts.ScriptTarget.Latest,
     true
   );
-  let importsEffectAdapter = false;
+  let importsEffectVitest = false;
+  let importsLegacyAdapter = false;
   let runsEffect = false;
   const nodes: ts.Node[] = [sourceFile];
   for (const node of nodes) {
     if (
       ts.isImportDeclaration(node) &&
       ts.isStringLiteral(node.moduleSpecifier) &&
+      node.moduleSpecifier.text === "@effect/vitest"
+    ) {
+      importsEffectVitest = true;
+    }
+    if (
+      ts.isImportDeclaration(node) &&
+      ts.isStringLiteral(node.moduleSpecifier) &&
       node.moduleSpecifier.text === "@nakafa/testing/effect"
     ) {
-      importsEffectAdapter = true;
+      importsLegacyAdapter = true;
     }
     if (isEffectRunner(node)) {
       runsEffect = true;
@@ -49,8 +57,11 @@ export function effectTestAdapterViolations(file: string, sourceText: string) {
       nodes.push(child);
     });
   }
-  if (!runsEffect || importsEffectAdapter) {
+  if (importsLegacyAdapter) {
+    return [`${file}: Remove the legacy @nakafa/testing/effect adapter.`];
+  }
+  if (!runsEffect || importsEffectVitest) {
     return [];
   }
-  return [`${file}: Effect runtime tests must import @nakafa/testing/effect.`];
+  return [`${file}: Effect runtime tests must import @effect/vitest.`];
 }

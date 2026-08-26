@@ -1,6 +1,6 @@
 import { realpathSync, unlinkSync, writeFileSync } from "node:fs";
 import { relative } from "node:path";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect, FileSystem, PlatformError } from "effect";
 import {
   fingerprintSelectedDocument,

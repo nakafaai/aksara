@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { effectTestAdapterViolations } from "#scripts/effect-tests";
+import { effectTestViolations } from "#scripts/testing/effect";
 
-describe("Effect test adapter policy", () => {
-  it("requires the shared adapter for explicit Effect runtime tests", () => {
+describe("Effect test integration policy", () => {
+  it("requires the official integration for explicit Effect runners", () => {
     const file = "packages/example/src/program.test.ts";
     const source = [
       'import { Effect } from "effect";',
@@ -11,26 +11,37 @@ describe("Effect test adapter policy", () => {
       'it("runs", async () => Effect.runPromise(Effect.void));',
     ].join("\n");
 
-    expect(effectTestAdapterViolations(file, source)).toEqual([
-      `${file}: Effect runtime tests must import @nakafa/testing/effect.`,
+    expect(effectTestViolations(file, source)).toEqual([
+      `${file}: Effect runtime tests must import @effect/vitest.`,
     ]);
   });
 
-  it("allows the shared adapter, pure tests, and production modules", () => {
+  it("rejects the deleted pass-through adapter", () => {
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.test.ts",
-        'import { it } from "@nakafa/testing/effect";\nimport { vi } from "vitest";\nEffect.runPromise(program);'
+        'import { it } from "@nakafa/testing/effect";\nit("pure", () => true);'
+      )
+    ).toEqual([
+      "packages/example/src/program.test.ts: Remove the legacy @nakafa/testing/effect adapter.",
+    ]);
+  });
+
+  it("allows official integration, pure tests, and production modules", () => {
+    expect(
+      effectTestViolations(
+        "packages/example/src/program.test.ts",
+        'import { it } from "@effect/vitest";\nEffect.runPromise(program);'
       )
     ).toEqual([]);
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.test.ts",
         'import { it } from "vitest";\nit("pure", () => true);'
       )
     ).toEqual([]);
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.ts",
         'import { it } from "vitest";\nEffect.runSync(program);'
       )
@@ -48,7 +59,7 @@ describe("Effect test adapter policy", () => {
 
     for (const runner of runners) {
       expect(
-        effectTestAdapterViolations(
+        effectTestViolations(
           "program.test.ts",
           `import { it } from "vitest";\nEffect.${runner}(program);`
         )

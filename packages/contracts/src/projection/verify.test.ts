@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES, type AppLocaleCode } from "#contracts/locale";

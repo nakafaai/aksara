@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ActiveAppLocaleSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";

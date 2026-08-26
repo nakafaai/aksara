@@ -1,6 +1,6 @@
 import { mkdirSync, realpathSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { findAksaraRoot, resolveNakafaRoot } from "#cli/checkout";
 import { runNode } from "#test/effect";

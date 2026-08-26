@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
@@ -14,7 +15,6 @@ import {
   inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 import {
   validateCompiledPayloadForItem,

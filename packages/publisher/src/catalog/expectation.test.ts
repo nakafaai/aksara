@@ -1,5 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";

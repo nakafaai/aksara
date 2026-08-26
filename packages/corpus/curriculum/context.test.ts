@@ -1,8 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   CurriculumRouteDraftSchema,
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 import {
   addMaterialContext,

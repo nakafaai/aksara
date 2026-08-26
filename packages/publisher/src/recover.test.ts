@@ -1,7 +1,7 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import {

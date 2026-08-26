@@ -1,6 +1,6 @@
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { makeCliProgram } from "#cli/program";
