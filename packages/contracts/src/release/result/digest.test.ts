@@ -75,130 +75,142 @@ const secondHead = head("test:b");
 const heads = [firstHead, secondHead];
 
 describe("result catalog digest", () => {
-  it("matches streamed and incremental canonical digests", async () => {
-    const initial = await Effect.runPromise(
-      createResultCatalogDigest(releaseId)
-    );
-    const first = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, initial, firstHead)
-    );
-    const updated = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, first, secondHead)
-    );
-    const digest = await Effect.runPromise(
-      finalizeResultCatalogDigest(releaseId, updated)
-    );
-    const summary = await Effect.runPromise(
-      digestResultCatalog(releaseId, Stream.fromIterable(heads))
-    );
+  it.effect("matches streamed and incremental canonical digests", () =>
+    Effect.gen(function* () {
+      const initial = yield* createResultCatalogDigest(releaseId);
+      const first = yield* updateResultCatalogDigest(
+        releaseId,
+        initial,
+        firstHead
+      );
+      const updated = yield* updateResultCatalogDigest(
+        releaseId,
+        first,
+        secondHead
+      );
+      const digest = yield* finalizeResultCatalogDigest(releaseId, updated);
+      const summary = yield* digestResultCatalog(
+        releaseId,
+        Stream.fromIterable(heads)
+      );
 
-    expect(summary).toEqual({ count: 2, digest });
-    expect(updated).toMatchObject({ count: 2, previous: secondHead });
-  });
+      expect(summary).toEqual({ count: 2, digest });
+      expect(updated).toMatchObject({ count: 2, previous: secondHead });
+    })
+  );
 
-  it("rejects duplicate and descending catalog order", async () => {
-    const initial = await Effect.runPromise(
-      createResultCatalogDigest(releaseId)
-    );
-    const updated = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, initial, secondHead)
-    );
-    const duplicate = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, updated, secondHead).pipe(
-        Effect.flip
-      )
-    );
-    const descending = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, updated, firstHead).pipe(Effect.flip)
-    );
+  it.effect("rejects duplicate and descending catalog order", () =>
+    Effect.gen(function* () {
+      const initial = yield* createResultCatalogDigest(releaseId);
+      const updated = yield* updateResultCatalogDigest(
+        releaseId,
+        initial,
+        secondHead
+      );
+      const duplicate = yield* updateResultCatalogDigest(
+        releaseId,
+        updated,
+        secondHead
+      ).pipe(Effect.flip);
+      const descending = yield* updateResultCatalogDigest(
+        releaseId,
+        updated,
+        firstHead
+      ).pipe(Effect.flip);
 
-    expect([duplicate._tag, descending._tag]).toEqual([
-      "ResultCatalogOrderError",
-      "ResultCatalogOrderError",
-    ]);
-  });
+      expect([duplicate._tag, descending._tag]).toEqual([
+        "ResultCatalogOrderError",
+        "ResultCatalogOrderError",
+      ]);
+    })
+  );
 
-  it("rejects duplicate locale-specific public routes", async () => {
-    const conflicting = MaterialHeadSchema.make({
-      ...secondHead,
-      publicPath: firstHead.publicPath,
-    });
-    const error = await Effect.runPromise(
-      digestResultCatalog(releaseId, Stream.make(firstHead, conflicting)).pipe(
-        Effect.flip
-      )
-    );
+  it.effect("rejects duplicate locale-specific public routes", () =>
+    Effect.gen(function* () {
+      const conflicting = MaterialHeadSchema.make({
+        ...secondHead,
+        publicPath: firstHead.publicPath,
+      });
+      const error = yield* digestResultCatalog(
+        releaseId,
+        Stream.make(firstHead, conflicting)
+      ).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "ResultCatalogRouteError",
-      artifactLocale: conflicting.artifactLocale,
-      contentKey: conflicting.contentKey,
-      publicPath: firstHead.publicPath,
-      releaseId,
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "ResultCatalogRouteError",
+        artifactLocale: conflicting.artifactLocale,
+        contentKey: conflicting.contentKey,
+        publicPath: firstHead.publicPath,
+        releaseId,
+      });
+    })
+  );
 
-  it("verifies signed count and digest evidence", async () => {
-    const stream = Stream.fromIterable(heads);
-    const summary = await Effect.runPromise(
-      digestResultCatalog(releaseId, stream)
-    );
-    await expect(
-      Effect.runPromise(
-        verifyResultCatalog({
-          expectedCount: summary.count,
-          expectedDigest: summary.digest,
-          heads: stream,
-          releaseId,
-        })
-      )
-    ).resolves.toEqual(summary);
-
-    const count = await Effect.runPromise(
-      verifyResultCatalog({
+  it.effect("verifies signed count and digest evidence", () =>
+    Effect.gen(function* () {
+      const stream = Stream.fromIterable(heads);
+      const summary = yield* digestResultCatalog(releaseId, stream);
+      const verified = yield* verifyResultCatalog({
+        expectedCount: summary.count,
+        expectedDigest: summary.digest,
+        heads: stream,
+        releaseId,
+      });
+      const count = yield* verifyResultCatalog({
         expectedCount: 1,
         expectedDigest: summary.digest,
         heads: stream,
         releaseId,
-      }).pipe(Effect.flip)
-    );
-    const digest = await Effect.runPromise(
-      verifyResultCatalog({
+      }).pipe(Effect.flip);
+      const digest = yield* verifyResultCatalog({
         expectedCount: summary.count,
         expectedDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
         heads: stream,
         releaseId,
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(count._tag).toBe("ResultCatalogCountMismatchError");
-    expect(digest._tag).toBe("ResultCatalogDigestMismatchError");
-  });
+      expect(verified).toEqual(summary);
+      expect(count._tag).toBe("ResultCatalogCountMismatchError");
+      expect(digest._tag).toBe("ResultCatalogDigestMismatchError");
+    })
+  );
 
-  it("maps creation, update, and finalization failures", async () => {
-    failures.create = true;
-    const creation = await Effect.runPromise(
-      createResultCatalogDigest(releaseId).pipe(Effect.flip)
-    );
-    failures.create = false;
-    const initial = await Effect.runPromise(
-      createResultCatalogDigest(releaseId)
-    );
-    const update = await Effect.runPromise(
-      updateResultCatalogDigest(releaseId, initial, head("hash:failure")).pipe(
+  it.effect("maps creation, update, and finalization failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.create = false;
+          failures.digest = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.create = true;
+      });
+      const creation = yield* createResultCatalogDigest(releaseId).pipe(
         Effect.flip
-      )
-    );
-    failures.digest = true;
-    const finalization = await Effect.runPromise(
-      finalizeResultCatalogDigest(releaseId, initial).pipe(Effect.flip)
-    );
-    failures.digest = false;
+      );
+      yield* Effect.sync(() => {
+        failures.create = false;
+      });
+      const initial = yield* createResultCatalogDigest(releaseId);
+      const update = yield* updateResultCatalogDigest(
+        releaseId,
+        initial,
+        head("hash:failure")
+      ).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.digest = true;
+      });
+      const finalization = yield* finalizeResultCatalogDigest(
+        releaseId,
+        initial
+      ).pipe(Effect.flip);
 
-    expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
-      "ResultCatalogHashError",
-      "ResultCatalogHashError",
-      "ResultCatalogHashError",
-    ]);
-  });
+      expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
+        "ResultCatalogHashError",
+        "ResultCatalogHashError",
+        "ResultCatalogHashError",
+      ]);
+    })
+  );
 });

@@ -65,45 +65,52 @@ function route(contentKey = "test:route") {
 }
 
 describe("route digest", () => {
-  it("matches streamed and incremental canonical digests", async () => {
-    const value = route();
-    const initial = await Effect.runPromise(createRouteDigest(releaseId));
-    const updated = await Effect.runPromise(
-      updateRouteDigest(releaseId, initial, value)
-    );
-    const digest = await Effect.runPromise(
-      completeRouteDigest(releaseId, updated)
-    );
-    const summary = await Effect.runPromise(
-      digestRoutes(releaseId, Stream.make(value))
-    );
+  it.effect("matches streamed and incremental canonical digests", () =>
+    Effect.gen(function* () {
+      const value = route();
+      const initial = yield* createRouteDigest(releaseId);
+      const updated = yield* updateRouteDigest(releaseId, initial, value);
+      const digest = yield* completeRouteDigest(releaseId, updated);
+      const summary = yield* digestRoutes(releaseId, Stream.make(value));
 
-    expect(summary).toEqual({ count: 1, digest });
-    expect(updated.count).toBe(1);
-  });
+      expect(summary).toEqual({ count: 1, digest });
+      expect(updated.count).toBe(1);
+    })
+  );
 
-  it("maps creation, update, and completion failures", async () => {
-    failures.create = true;
-    const creation = await Effect.runPromise(
-      createRouteDigest(releaseId).pipe(Effect.flip)
-    );
-    failures.create = false;
-    const initial = await Effect.runPromise(createRouteDigest(releaseId));
-    const update = await Effect.runPromise(
-      updateRouteDigest(releaseId, initial, route("hash:failure")).pipe(
+  it.effect("maps creation, update, and completion failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.create = false;
+          failures.digest = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.create = true;
+      });
+      const creation = yield* createRouteDigest(releaseId).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.create = false;
+      });
+      const initial = yield* createRouteDigest(releaseId);
+      const update = yield* updateRouteDigest(
+        releaseId,
+        initial,
+        route("hash:failure")
+      ).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.digest = true;
+      });
+      const completion = yield* completeRouteDigest(releaseId, initial).pipe(
         Effect.flip
-      )
-    );
-    failures.digest = true;
-    const completion = await Effect.runPromise(
-      completeRouteDigest(releaseId, initial).pipe(Effect.flip)
-    );
-    failures.digest = false;
+      );
 
-    expect([creation, update, completion]).toEqual([
-      new RouteHashError({ releaseId }),
-      new RouteHashError({ releaseId }),
-      new RouteHashError({ releaseId }),
-    ]);
-  });
+      expect([creation, update, completion]).toEqual([
+        new RouteHashError({ releaseId }),
+        new RouteHashError({ releaseId }),
+        new RouteHashError({ releaseId }),
+      ]);
+    })
+  );
 });

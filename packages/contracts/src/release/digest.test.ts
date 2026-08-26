@@ -64,52 +64,71 @@ function item(contentKey = "test:digest") {
 }
 
 describe("release digest", () => {
-  it("matches streamed and incremental canonical digests", async () => {
-    const value = item();
-    const initial = await Effect.runPromise(
-      createReleaseItemsDigest(value.releaseId)
-    );
-    const updated = await Effect.runPromise(
-      updateReleaseItemsDigest(value.releaseId, initial, value)
-    );
-    const digest = await Effect.runPromise(
-      finalizeReleaseItemsDigest(value.releaseId, updated)
-    );
-    const summary = await Effect.runPromise(
-      digestItems(releaseId, Stream.make(value))
-    );
-    expect(summary).toEqual({
-      count: 1,
-      deleteCount: 1,
-      digest,
-      upsertCount: 0,
-    });
-    expect(updated).toMatchObject({ count: 1, deleteCount: 1, upsertCount: 0 });
-  });
+  it.effect("matches streamed and incremental canonical digests", () =>
+    Effect.gen(function* () {
+      const value = item();
+      const initial = yield* createReleaseItemsDigest(value.releaseId);
+      const updated = yield* updateReleaseItemsDigest(
+        value.releaseId,
+        initial,
+        value
+      );
+      const digest = yield* finalizeReleaseItemsDigest(
+        value.releaseId,
+        updated
+      );
+      const summary = yield* digestItems(releaseId, Stream.make(value));
 
-  it("maps creation, update, and finalization failures", async () => {
-    failures.create = true;
-    const creation = await Effect.runPromise(
-      createReleaseItemsDigest(releaseId).pipe(Effect.flip)
-    );
-    failures.create = false;
-    const initial = await Effect.runPromise(
-      createReleaseItemsDigest(releaseId)
-    );
-    const update = await Effect.runPromise(
-      updateReleaseItemsDigest(releaseId, initial, item("hash:failure")).pipe(
+      expect(summary).toEqual({
+        count: 1,
+        deleteCount: 1,
+        digest,
+        upsertCount: 0,
+      });
+      expect(updated).toMatchObject({
+        count: 1,
+        deleteCount: 1,
+        upsertCount: 0,
+      });
+    })
+  );
+
+  it.effect("maps creation, update, and finalization failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.create = false;
+          failures.digest = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.create = true;
+      });
+      const creation = yield* createReleaseItemsDigest(releaseId).pipe(
         Effect.flip
-      )
-    );
-    failures.digest = true;
-    const finalization = await Effect.runPromise(
-      finalizeReleaseItemsDigest(releaseId, initial).pipe(Effect.flip)
-    );
-    failures.digest = false;
-    expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
-      "ReleaseItemsHashComputationError",
-      "ReleaseItemsHashComputationError",
-      "ReleaseItemsHashComputationError",
-    ]);
-  });
+      );
+      yield* Effect.sync(() => {
+        failures.create = false;
+      });
+      const initial = yield* createReleaseItemsDigest(releaseId);
+      const update = yield* updateReleaseItemsDigest(
+        releaseId,
+        initial,
+        item("hash:failure")
+      ).pipe(Effect.flip);
+      yield* Effect.sync(() => {
+        failures.digest = true;
+      });
+      const finalization = yield* finalizeReleaseItemsDigest(
+        releaseId,
+        initial
+      ).pipe(Effect.flip);
+
+      expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
+        "ReleaseItemsHashComputationError",
+        "ReleaseItemsHashComputationError",
+        "ReleaseItemsHashComputationError",
+      ]);
+    })
+  );
 });
