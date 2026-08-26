@@ -20,6 +20,7 @@ const ProductionStageSchema = Schema.Literals([
   "migration",
   "prepare",
   "publish",
+  "readiness",
   "renderer",
   "recover",
   "state",

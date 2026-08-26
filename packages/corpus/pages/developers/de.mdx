@@ -71,7 +71,7 @@ Der Server stellt vier schreibgeschützte Tools bereit:
 - `nakafa_get_taxonomy`
 - `nakafa_get_quran_reference`
 
-Moderne Clients verwenden Streamable HTTP. Das Protokoll `2026-07-28` ersetzt den bisherigen `initialize`-Ablauf durch `server/discover` und einen `_meta`-Umschlag in jeder Anfrage. Ein Client ermittelt zuerst die unterstützte Revision und listet oder ruft anschließend Tools mit demselben Umschlag auf. Clients mit einer Protokollrevision aus 2025 verwenden weiterhin `initialize` und `notifications/initialized`. Eine `GET` Anfrage an denselben Endpunkt liefert das öffentliche Servermanifest.
+Moderne Clients verwenden Streamable HTTP. Das Protokoll `2026-07-28` ersetzt den bisherigen `initialize`-Ablauf durch `server/discover` und einen `_meta`-Umschlag in jeder Anfrage. Ein Client ermittelt zuerst die unterstützte Revision und listet oder ruft anschließend Tools mit demselben Umschlag auf. Nakafa akzeptiert ausschließlich diese aktuelle Protokollrevision. Eine `GET` Anfrage an denselben Endpunkt liefert das öffentliche Servermanifest.
 
 <CodeBlock
   data={[{
@@ -101,7 +101,7 @@ Mcp-Method: tools/list
 
 ## Kommandozeile
 
-Das offizielle Node 24 Paket heißt `nakafa-cli` und stellt den Befehl `nakafa` bereit. Es verwendet die öffentliche REST API und schreibt standardmäßig kompaktes JSON. Ergänze `--pretty` für lesbare Ausgabe oder `--api-base`, wenn du eine isolierte Bereitstellung prüfst.
+Das offizielle Node 24 Paket heißt `nakafa-cli` und stellt den Befehl `nakafa` bereit. Es verwendet die öffentliche REST API und schreibt standardmäßig kompaktes JSON. Ergänze `--pretty` für lesbare Ausgabe oder `--api-base`, wenn du einen lokalen oder unabhängig betriebenen kompatiblen API Endpunkt prüfst.
 
 <CodeBlock
   data={[{

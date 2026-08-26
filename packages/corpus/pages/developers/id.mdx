@@ -71,7 +71,7 @@ Server menyediakan empat tool baca-saja:
 - `nakafa_get_taxonomy`
 - `nakafa_get_quran_reference`
 
-Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan siklus `initialize` lama dengan `server/discover` dan envelope `_meta` pada setiap permintaan. Klien terlebih dahulu menemukan revisi yang didukung, lalu membuat daftar atau memanggil tool dengan envelope yang sama. Klien yang memakai revisi protokol 2025 tetap menggunakan `initialize` dan `notifications/initialized`. Permintaan `GET` ke endpoint yang sama mengembalikan manifest server publik.
+Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan siklus `initialize` lama dengan `server/discover` dan envelope `_meta` pada setiap permintaan. Klien terlebih dahulu menemukan revisi yang didukung, lalu membuat daftar atau memanggil tool dengan envelope yang sama. Nakafa hanya menerima revisi protokol terkini ini. Permintaan `GET` ke endpoint yang sama mengembalikan manifest server publik.
 
 <CodeBlock
   data={[{
@@ -101,7 +101,7 @@ Mcp-Method: tools/list
 
 ## Baris perintah
 
-Paket resmi untuk Node 24 bernama `nakafa-cli`, dengan executable `nakafa`. CLI memanggil REST API publik dan mencetak JSON ringkas secara bawaan. Tambahkan `--pretty` untuk keluaran yang mudah dibaca atau `--api-base` saat memverifikasi deployment terisolasi.
+Paket resmi untuk Node 24 bernama `nakafa-cli`, dengan executable `nakafa`. CLI memanggil REST API publik dan mencetak JSON ringkas secara bawaan. Tambahkan `--pretty` untuk keluaran yang mudah dibaca atau `--api-base` saat memverifikasi endpoint API kompatibel yang berjalan secara lokal atau dihosting secara mandiri.
 
 <CodeBlock
   data={[{

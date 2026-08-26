@@ -116,9 +116,6 @@ describe("production arguments", () => {
       });
       expect(yield* parseCli(["status"])).toEqual({ command: "status" });
       expect(yield* parseCli(["check"])).toEqual({ command: "check" });
-      expect(yield* parseCli(["developer-readiness"])).toEqual({
-        command: "developer-readiness",
-      });
       expect(
         yield* parseCli([
           "accept",
@@ -292,14 +289,12 @@ describe("production arguments", () => {
     })
   );
 
-  it.effect.each(["check", "developer-readiness"])(
-    "rejects values attached to the read-only %s command",
-    (command) =>
-      Effect.gen(function* () {
-        expect(yield* rejectCli([command, "--unknown"])).toMatchObject({
-          _tag: "CheckArgumentsError",
-          reason: "unknown",
-        });
-      })
+  it.effect("rejects values attached to the read-only catalog check", () =>
+    Effect.gen(function* () {
+      expect(yield* rejectCli(["check", "--unknown"])).toMatchObject({
+        _tag: "CheckArgumentsError",
+        reason: "unknown",
+      });
+    })
   );
 });

@@ -47,8 +47,6 @@ const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
 const CONTENT_CONTRACT_PATTERN =
   /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release-command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
-const DEVELOPER_READINESS_PATTERN =
-  /Verify Nakafa developer release readiness[\s\S]*inputs\.operation == 'release'[\s\S]*contains\(inputs\.scope, 'family:page'\)[\s\S]*contains\(inputs\.scope, 'pages\/developers'\)[\s\S]*GITHUB_TOKEN: \$\{\{ github\.token \}\}[\s\S]*pnpm --filter @nakafa\/aksara-cli developer-readiness[\s\S]*Prepare isolated operation checkout/u;
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
@@ -252,11 +250,6 @@ export function verifyWorkflows({
     release,
     PUBLICATION_SCOPE_PATTERN,
     "Content releases must validate and pass one explicit scalable scope"
-  );
-  assert.match(
-    release,
-    DEVELOPER_READINESS_PATTERN,
-    "Developer publication must retain its authenticated availability gate"
   );
   verifyMigrationWorkflow(migration);
 }

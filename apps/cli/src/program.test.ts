@@ -78,14 +78,6 @@ vi.mock("#cli/check", async () => {
     },
   };
 });
-vi.mock("#cli/developer-readiness", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    /** Records the protected developer release gate without network access. */
-    runDeveloperReadinessCommand: () =>
-      TestEffect.succeed("developer-readiness-complete"),
-  };
-});
 vi.mock("#cli/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -303,10 +295,4 @@ describe("CLI program", () => {
     })
   );
 
-  it.effect("dispatches the protected developer readiness gate", () =>
-    Effect.gen(function* () {
-      const result = yield* runProgram(["developer-readiness"]);
-      expect(result).toBe("developer-readiness-complete");
-    })
-  );
 });

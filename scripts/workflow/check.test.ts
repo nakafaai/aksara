@@ -275,7 +275,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires release scope and authenticated developer readiness", () => {
+  it("requires an explicit scalable release scope", () => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -286,17 +286,6 @@ describe("workflow policy", () => {
       })
     ).toThrow(
       "Content releases must validate and pass one explicit scalable scope"
-    );
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        release: sources.release.replace(
-          ["GITHUB_TOKEN: $", "{{ github.token }}"].join(""),
-          ""
-        ),
-      })
-    ).toThrow(
-      "Developer publication must retain its authenticated availability gate"
     );
   });
 });

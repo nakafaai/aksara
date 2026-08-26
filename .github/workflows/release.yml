@@ -175,15 +175,6 @@ jobs:
             --filter=@nakafa/aksara-cli
           pnpm deprecations:audit
 
-      - name: Verify Nakafa developer release readiness
-        if: >-
-          inputs.operation == 'release'
-          && (contains(inputs.scope, 'family:page')
-          || contains(inputs.scope, 'pages/developers'))
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: pnpm --filter @nakafa/aksara-cli developer-readiness
-
       - name: Prepare isolated operation checkout
         env:
           OPERATION_ROOT: ${{ runner.temp }}/aksara-operation

@@ -81,6 +81,7 @@ export interface TargetCalls {
 
 /** Complete observable state owned by the production command harness. */
 export interface ProductionCalls extends TargetCalls {
+  activatesDeveloperPage: boolean;
   baseManifestHash: string | null | undefined;
   baseReleaseId: string | null | undefined;
   baseResultCount: number | undefined;
@@ -91,6 +92,8 @@ export interface ProductionCalls extends TargetCalls {
   privateKeyMatches: boolean;
   publishCalls: number;
   publishKind: "git" | undefined;
+  readinessCalls: number;
+  readinessFailure: boolean;
   releaseId: string | undefined;
   resumeBundle: ContentReleaseBundle | undefined;
   resumeCalls: number;

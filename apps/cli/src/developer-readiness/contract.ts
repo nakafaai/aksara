@@ -1,3 +1,4 @@
+import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
 /** Canonical public REST host whose index and OpenAPI contract are gated. */
@@ -9,12 +10,20 @@ export const DEVELOPER_MCP_ENDPOINT = "https://mcp.nakafa.com/mcp";
 /** Current MCP wire revision required by the reviewed developer page. */
 export const DEVELOPER_MCP_PROTOCOL_VERSION = "2026-07-28";
 
+/** Current Nakafa MCP implementation version required by the release gate. */
+export const DEVELOPER_MCP_SERVER_VERSION = "1.0.1";
+
+/** Public response header that identifies the exact deployed Nakafa revision. */
+export const DEVELOPER_RELEASE_SHA_HEADER = "x-nakafa-release-sha";
+
+/** Exact deployed Nakafa revision exposed by the canonical edge. */
+export const DeveloperReleaseShaSchema = GitCommitShaSchema;
+
 /** First official CLI version required by the reviewed developer page. */
 export const DEVELOPER_NAKAFA_CLI_VERSION = "0.1.0";
 
 export const DeveloperSurfaceSchema = Schema.Literals([
   "api",
-  "catalog",
   "github",
   "mcp",
   "npm",
@@ -103,10 +112,40 @@ export const DeveloperMcpDiscoverSchema = Schema.Struct({
   id: Schema.Literal(1),
   jsonrpc: Schema.Literal("2.0"),
   result: Schema.Struct({
-    supportedVersions: Schema.Tuple([
-      Schema.Literal(DEVELOPER_MCP_PROTOCOL_VERSION),
-    ]),
+    supportedVersions: Schema.Array(Schema.String).pipe(
+      Schema.check(
+        Schema.makeFilter(
+          (versions) => versions.includes(DEVELOPER_MCP_PROTOCOL_VERSION),
+          { message: "Expected support for the reviewed MCP protocol." }
+        )
+      )
+    ),
   }),
+});
+
+const DeveloperMcpRemoteListSchema = Schema.Array(
+  Schema.Struct({
+    type: Schema.String,
+    url: Schema.String,
+  })
+).pipe(
+  Schema.check(
+    Schema.makeFilter(
+      (remotes) =>
+        remotes.some(
+          ({ type, url }) =>
+            type === "streamable-http" && url === DEVELOPER_MCP_ENDPOINT
+        ),
+      { message: "Expected the canonical Streamable HTTP remote." }
+    )
+  )
+);
+
+/** Official Registry manifest published from the canonical MCP endpoint. */
+export const DeveloperMcpManifestSchema = Schema.Struct({
+  name: Schema.Literal("io.github.nakafaai/nakafa"),
+  remotes: DeveloperMcpRemoteListSchema,
+  version: Schema.Literal(DEVELOPER_MCP_SERVER_VERSION),
 });
 
 export const DeveloperMcpToolsSchema = Schema.Struct({

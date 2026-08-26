@@ -3,6 +3,8 @@ import type { HttpClientRequest } from "effect/unstable/http";
 export const DEVELOPER_API_INDEX_URL = "https://api.nakafa.com/v1";
 export const DEVELOPER_MCP_ENDPOINT = "https://mcp.nakafa.com/mcp";
 export const DEVELOPER_MCP_PROTOCOL_VERSION = "2026-07-28";
+export const DEVELOPER_MCP_SERVER_VERSION = "1.0.1";
+export const DEVELOPER_TEST_RELEASE_SHA = "d".repeat(40);
 
 export const DEVELOPER_OPENAPI_BODY = {
   info: { title: "Nakafa Public API", version: "1.0.0" },
@@ -25,6 +27,17 @@ export const DEVELOPER_NPM_BODY = {
   engines: { node: ">=24 <25" },
   name: "nakafa-cli",
   version: "0.1.0",
+};
+
+export const DEVELOPER_MCP_MANIFEST_BODY = {
+  name: "io.github.nakafaai/nakafa",
+  remotes: [
+    {
+      type: "streamable-http",
+      url: DEVELOPER_MCP_ENDPOINT,
+    },
+  ],
+  version: DEVELOPER_MCP_SERVER_VERSION,
 };
 
 /** Returns one strict successful MCP response for a requested list method. */
@@ -102,6 +115,9 @@ export function developerResponseBody(
     return DEVELOPER_OPENAPI_BODY;
   }
   if (request.url === DEVELOPER_MCP_ENDPOINT) {
+    if (request.method === "GET") {
+      return DEVELOPER_MCP_MANIFEST_BODY;
+    }
     return mcpBody(request.headers["mcp-method"]);
   }
   throw new Error(`Unexpected readiness URL: ${request.url}`);
