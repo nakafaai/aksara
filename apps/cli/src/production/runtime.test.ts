@@ -5,7 +5,10 @@ import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signatu
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { selectSourceBase } from "#cli/production/base";
-import { verifyBaseTryoutRuntimeBundle } from "#cli/production/runtime";
+import {
+  selectTryoutRuntimeTransition,
+  verifyBaseTryoutRuntimeBundle,
+} from "#cli/production/runtime";
 import { productionCalls, productionProgram } from "#test/production/harness";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import {
@@ -94,6 +97,88 @@ describe("production runtime bundle preparation", () => {
         yield* verifyBase(runtimeBundle, active, base),
         runtimeBundle
       );
+    })
+  );
+
+  it.effect("selects every exact candidate and recovery runtime shape", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-runtime-transition", {
+        baseReleaseId: releaseId("release-runtime-parent"),
+        tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
+      });
+      const base = selectSourceBase(active);
+      const bundle = runtimeBundleFor(active, TRYOUT_SNAPSHOT_ID);
+      const result = {
+        ...bundle.payload.snapshot,
+        snapshotId: OTHER_SNAPSHOT_ID,
+      };
+      const refreshedRendererManifest = yield* createRendererManifest({
+        base: {
+          authoringComponents: [
+            ...RENDERER_MANIFEST.base.authoringComponents,
+            { name: "RuntimePairProbe", version: 1 },
+          ],
+          supportedComponents: [
+            ...RENDERER_MANIFEST.base.supportedComponents,
+            { name: "RuntimePairProbe", version: 1 },
+          ],
+        },
+        domains: RENDERER_MANIFEST.domains,
+        publishedDomains: RENDERER_MANIFEST.publishedDomains,
+      });
+
+      assert.isNull(
+        yield* selectTryoutRuntimeTransition({
+          base,
+          bundle,
+          rendererManifest: RENDERER_MANIFEST,
+          snapshot: null,
+        })
+      );
+      assert.deepStrictEqual(
+        yield* selectTryoutRuntimeTransition({
+          base: null,
+          bundle: null,
+          rendererManifest: RENDERER_MANIFEST,
+          snapshot: result,
+        }),
+        { recovery: null, result }
+      );
+      assert.deepStrictEqual(
+        yield* selectTryoutRuntimeTransition({
+          base,
+          bundle,
+          rendererManifest: refreshedRendererManifest,
+          snapshot: bundle.payload.snapshot,
+        }),
+        { recovery: null, result: bundle.payload.snapshot }
+      );
+      assert.deepStrictEqual(
+        yield* selectTryoutRuntimeTransition({
+          base,
+          bundle,
+          rendererManifest: RENDERER_MANIFEST,
+          snapshot: result,
+        }),
+        { recovery: null, result }
+      );
+      assert.deepStrictEqual(
+        yield* selectTryoutRuntimeTransition({
+          base,
+          bundle,
+          rendererManifest: refreshedRendererManifest,
+          snapshot: result,
+        }),
+        { recovery: bundle.payload.snapshot, result }
+      );
+      const missing = yield* selectTryoutRuntimeTransition({
+        base,
+        bundle: null,
+        rendererManifest: refreshedRendererManifest,
+        snapshot: result,
+      }).pipe(Effect.flip);
+      assert.strictEqual(missing._tag, "BaseTryoutRuntimeBundleMismatchError");
+      assert.strictEqual(missing.reason, "missing-recovery");
     })
   );
 

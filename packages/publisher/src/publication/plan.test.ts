@@ -101,7 +101,7 @@ function prepareDeletion<E>(
         },
       }),
       scope: { ...publicationScope, snapshots },
-      tryoutRuntimeSnapshot: null,
+      tryoutRuntime: null,
       ...snapshotSources,
     });
   });
@@ -126,7 +126,7 @@ const prepareProgramOnly = Effect.fn("AksaraPublisherTest.prepareProgramOnly")(
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
-      tryoutRuntimeSnapshot: null,
+      tryoutRuntime: null,
       ...snapshotPolicyBase("test-plan-program-base"),
     });
   }

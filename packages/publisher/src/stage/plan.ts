@@ -56,7 +56,7 @@ export const stagePreparedRelease = Effect.fn(
     RouteRequirements
   >;
   readonly target: typeof PublicationTarget.Service;
-  readonly tryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
+  readonly tryoutRuntimeBundles: readonly SignedTryoutRuntimeBundle[];
 }) {
   const { prepared } = input;
   const { releaseId } = prepared.manifest;
@@ -86,15 +86,16 @@ export const stagePreparedRelease = Effect.fn(
       })
     )
   );
-  const runtimeBundle =
-    input.tryoutRuntimeBundle === null
-      ? Stream.empty
-      : Stream.succeed({
-          bundle: input.tryoutRuntimeBundle,
-          operation: "stageTryoutRuntimeBundle",
-          releaseId,
-        } satisfies StageOperation);
-  const requests = Stream.concat(runtimeBundle, items).pipe(
+  const runtimeBundles = Stream.fromIterable(input.tryoutRuntimeBundles).pipe(
+    Stream.map(
+      (bundle): StageOperation => ({
+        bundle,
+        operation: "stageTryoutRuntimeBundle",
+        releaseId,
+      })
+    )
+  );
+  const requests = Stream.concat(runtimeBundles, items).pipe(
     Stream.concat(projections),
     Stream.concat(routes),
     Stream.concat(artifacts),

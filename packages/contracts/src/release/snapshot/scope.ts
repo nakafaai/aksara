@@ -104,6 +104,22 @@ export const PublicationScopeSchema = Schema.Struct({
 );
 export type PublicationScope = typeof PublicationScopeSchema.Type;
 
+/** Checks whether one body transition is authorized by the signed scope. */
+export function publicationScopeSelectsContent(
+  scope: PublicationScope,
+  identity: PredecessorContentPublicationIdentity
+) {
+  return (
+    scope.families.includes(identity.family) ||
+    scope.content?.some(
+      (selected) =>
+        selected.artifactLocale === identity.artifactLocale &&
+        selected.contentKey === identity.contentKey &&
+        selected.family === identity.family
+    ) === true
+  );
+}
+
 /** Checks whether one structured family may be replaced by this release. */
 export function publicationScopeSelectsSnapshot(
   scope: PublicationScope,

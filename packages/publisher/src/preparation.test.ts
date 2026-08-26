@@ -2,7 +2,6 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   ContentKeySchema,
-  GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
@@ -11,17 +10,12 @@ import {
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Stream } from "effect";
-import { prepareContentRelease } from "#publisher/preparation";
-import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
   emptySnapshots,
-  inheritedSnapshots,
-  preparationScope,
+  prepareTestRelease as prepare,
   priorAppLocales,
 } from "#test/preparation";
 import {
@@ -32,28 +26,6 @@ import {
   head as resultHead,
 } from "#test/publication";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
-
-type TestPreparationInput = PrepareContentReleaseInput<never, never>;
-
-/** Runs preparation with direct overrides around one valid retained base. */
-function prepare(overrides: Partial<TestPreparationInput> = {}) {
-  return prepareContentRelease({
-    aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
-    baseActiveAppLocales: ACTIVE_APP_LOCALES,
-    baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
-    baseReleaseId: ReleaseIdSchema.make("test-prepare-base"),
-    baseResultCount: 0,
-    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    ...inheritedSnapshots,
-    records: Stream.make(baseTransition),
-    releaseId: ReleaseIdSchema.make("test-prepare-release"),
-    rendererManifest,
-    result: Stream.make(resultHead),
-    routes: Stream.empty,
-    scope: preparationScope,
-    ...overrides,
-  });
-}
 
 layer(NodeServices.layer)("prepareContentRelease", (it) => {
   it.effect(
@@ -190,29 +162,6 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
         family: "program",
       });
     })
-  );
-
-  it.effect(
-    "rejects a runtime bundle snapshot outside the resulting release state",
-    () =>
-      Effect.gen(function* () {
-        const runtimeSnapshot = makeTryoutSnapshot({
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          catalogDigest: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
-          counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
-          placementCount: 0,
-          placementDigest: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
-          routeCount: 0,
-        });
-        const error = yield* prepare({
-          tryoutRuntimeSnapshot: runtimeSnapshot,
-        }).pipe(Effect.flip);
-        expect(error).toMatchObject({
-          _tag: "PreparedTryoutRuntimeSnapshotError",
-          actualSnapshotId: runtimeSnapshot.snapshotId,
-          expectedSnapshotId: null,
-        });
-      })
   );
 
   it.effect("rejects a policy transition that omits any authored family", () =>

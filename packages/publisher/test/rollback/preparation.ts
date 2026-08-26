@@ -173,6 +173,7 @@ const sourcePrepared = await Effect.runPromise(
       families: ["material"],
       snapshots: [],
     },
+    tryoutRuntime: null,
     ...snapshotPolicyBase("test-rollback-source-base"),
     ...emptySnapshotSources,
   }).pipe(Effect.provide(NodeServices.layer))

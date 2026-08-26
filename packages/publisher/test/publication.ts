@@ -170,6 +170,7 @@ export async function makeRelease(
         },
       }),
       scope: publicationScope,
+      tryoutRuntime: null,
       ...snapshotPolicyBase(`${releaseId}-base`),
       ...emptySnapshotSources,
     }).pipe(Effect.provide(NodeServices.layer))

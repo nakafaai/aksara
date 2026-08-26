@@ -42,6 +42,7 @@ import { prepareReleaseBase } from "#publisher/preparation/base";
 import {
   PreparedSnapshotScopeError,
   PreparedTryoutRuntimeSnapshotError,
+  PreparedTryoutRuntimeTransitionError,
 } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
@@ -110,14 +111,36 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     previousSnapshots: input.previousSnapshots,
     rows: input.snapshotRows,
   });
+  const { tryoutRuntime } = input;
+  const recoverySnapshotId =
+    input.previousSnapshots?.tryout.resultSnapshotId ?? null;
   if (
-    input.tryoutRuntimeSnapshot !== null &&
-    input.tryoutRuntimeSnapshot.snapshotId !==
+    tryoutRuntime !== null &&
+    tryoutRuntime.result.snapshotId !==
       snapshotSummary.snapshots.tryout.resultSnapshotId
   ) {
     return yield* new PreparedTryoutRuntimeSnapshotError({
-      actualSnapshotId: input.tryoutRuntimeSnapshot.snapshotId,
+      actualSnapshotId: tryoutRuntime.result.snapshotId,
       expectedSnapshotId: snapshotSummary.snapshots.tryout.resultSnapshotId,
+    });
+  }
+  if (
+    tryoutRuntime !== null &&
+    tryoutRuntime.recovery !== null &&
+    tryoutRuntime.recovery.snapshotId !== recoverySnapshotId
+  ) {
+    return yield* new PreparedTryoutRuntimeSnapshotError({
+      actualSnapshotId: tryoutRuntime.recovery.snapshotId,
+      expectedSnapshotId: recoverySnapshotId,
+    });
+  }
+  if (
+    tryoutRuntime !== null &&
+    tryoutRuntime.recovery !== null &&
+    tryoutRuntime.result.snapshotId === tryoutRuntime.recovery.snapshotId
+  ) {
+    return yield* new PreparedTryoutRuntimeTransitionError({
+      snapshotId: tryoutRuntime.recovery.snapshotId,
     });
   }
   /** Replays strict decoding, coherence, ordering, and route validation. */
@@ -236,6 +259,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     routes,
     snapshotManifests,
     snapshotRows,
-    tryoutRuntimeSnapshot: input.tryoutRuntimeSnapshot,
+    tryoutRuntime,
   });
 });

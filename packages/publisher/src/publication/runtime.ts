@@ -1,36 +1,51 @@
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { verifyTryoutRuntimeBundleSource } from "@nakafa/aksara-contracts/tryout/runtime/source";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Effect } from "effect";
 
+import type { PreparedTryoutRuntimeTransition } from "#publisher/preparation/prepared";
 import type { PublicationSigner } from "#publisher/signing/service";
 
-/** Signs and verifies the permanent runtime pair for one replaced snapshot. */
-export const preparePublicationRuntime = Effect.fn(
-  "AksaraPublisher.preparePublicationRuntime"
+/** Signs and verifies every runtime pair authenticated by one Git release. */
+export const preparePublicationRuntimes = Effect.fn(
+  "AksaraPublisher.preparePublicationRuntimes"
 )(function* (input: {
   readonly release: SignedContentRelease;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly runtime: PreparedTryoutRuntimeTransition | null;
   readonly signer: PublicationSigner;
-  readonly snapshot: TryoutSnapshot | null;
   readonly sourceGitSha: GitCommitSha;
 }) {
-  if (input.snapshot === null) {
-    return null;
+  if (input.runtime === null) {
+    return [];
   }
-  const bundle = yield* input.signer.signTryoutRuntimeBundle({
-    format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
-    rendererManifestHash: input.rendererManifest.hash,
-    snapshot: input.snapshot,
-    sourceGitSha: input.sourceGitSha,
-    sourceManifestHash: input.release.manifestHash,
-    sourceReleaseId: input.release.manifest.releaseId,
-  });
-  return yield* verifySignedTryoutRuntimeBundle({
-    bundle,
-    rendererManifest: input.rendererManifest,
-  });
+  const snapshots = [
+    input.runtime.result,
+    ...(input.runtime.recovery === null ? [] : [input.runtime.recovery]),
+  ];
+  return yield* Effect.forEach(snapshots, (snapshot) =>
+    input.signer
+      .signTryoutRuntimeBundle({
+        format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+        rendererManifestHash: input.rendererManifest.hash,
+        snapshot,
+        sourceGitSha: input.sourceGitSha,
+        sourceManifestHash: input.release.manifestHash,
+        sourceReleaseId: input.release.manifest.releaseId,
+      })
+      .pipe(
+        Effect.flatMap((bundle) =>
+          verifySignedTryoutRuntimeBundle({
+            bundle,
+            rendererManifest: input.rendererManifest,
+          })
+        ),
+        Effect.flatMap((bundle) =>
+          verifyTryoutRuntimeBundleSource({ bundle, release: input.release })
+        )
+      )
+  );
 });

@@ -82,11 +82,10 @@ export interface ProgramFixture {
 
 const SNAPSHOT_TEST_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-/** Replayable empty structured sources for body-only publisher fixtures. */
+/** Replayable empty structured and runtime sources for publisher fixtures. */
 export const emptySnapshotSources = {
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
-  tryoutRuntimeSnapshot: null,
 } as const;
 
 /** Builds one valid technical Quran dependency fixture without corpus replay. */

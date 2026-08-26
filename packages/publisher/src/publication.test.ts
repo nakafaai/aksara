@@ -247,6 +247,7 @@ describe("content publication", () => {
       projections: Stream.make(projection),
       rendererManifest,
       routes: release.prepared.routes,
+      tryoutRuntime: null,
       ...emptySnapshotSources,
     });
     const error = await Effect.runPromise(

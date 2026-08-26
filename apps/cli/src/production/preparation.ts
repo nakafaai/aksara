@@ -35,6 +35,7 @@ import {
   validateRecoveryBase,
 } from "#cli/production/base";
 import {
+  selectTryoutRuntimeTransition,
   shouldRefreshTryoutRuntimeBundle,
   verifyBaseTryoutRuntimeBundle,
 } from "#cli/production/runtime";
@@ -182,6 +183,12 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
             refreshTryoutRuntimeBundle,
             rendererManifest,
           });
+    const tryoutRuntime = yield* selectTryoutRuntimeTransition({
+      base,
+      bundle: verifiedBaseTryoutRuntimeBundle,
+      rendererManifest,
+      snapshot: snapshots.tryoutRuntimeSnapshot,
+    });
     const prepared = yield* prepareContentRelease({
       aksaraSha,
       baseActiveAppLocales: base?.activeAppLocales ?? null,
@@ -199,7 +206,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
-      tryoutRuntimeSnapshot: snapshots.tryoutRuntimeSnapshot,
+      tryoutRuntime,
     });
     const preparedSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     yield* validateStableAksaraRevision(aksaraSha, preparedSha);

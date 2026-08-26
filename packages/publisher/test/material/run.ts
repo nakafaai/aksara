@@ -42,6 +42,7 @@ export async function publishMaterialRelease() {
           result: Stream.fromIterable(resultHeads),
           routes: material.routes,
           scope: materialFamilyScope,
+          tryoutRuntime: null,
           ...snapshotPolicyBase("test-material-base"),
           ...emptySnapshotSources,
         });

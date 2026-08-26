@@ -36,13 +36,14 @@ import type {
   PreparedContentRelease,
   PreparedGitRelease,
   PreparedRollbackRelease,
+  PreparedTryoutRuntimeTransition,
 } from "#publisher/preparation/prepared";
 import {
   makeGitArtifacts,
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
-import { preparePublicationRuntime } from "#publisher/publication/runtime";
+import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { verifyPublicationSnapshots } from "#publisher/publication/snapshots";
 import {
   PublicationModeMismatchError,
@@ -77,6 +78,7 @@ type PublicationArtifactPlan =
       readonly aksaraSha: GitCommitSha;
       readonly compiled: ReplaySpool<CompiledReleaseSource>;
       readonly kind: "git";
+      readonly runtime: PreparedTryoutRuntimeTransition | null;
     }
   | {
       readonly artifacts: ReplaySpool<SignedContentArtifact>;
@@ -105,8 +107,8 @@ export interface PublicationPlan<E, R> {
   >;
   readonly summary: VerifiedContentReleaseItems;
   readonly target: typeof PublicationTarget.Service;
-  /** Permanent bundle staged only when this Git release replaces try-out state. */
-  readonly tryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
+  /** Permanent bundles staged when this release creates new runtime pairs. */
+  readonly tryoutRuntimeBundles: readonly SignedTryoutRuntimeBundle[];
 }
 
 type PreparePublicationPlan = <E, R>(
@@ -237,7 +239,12 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
         sources: invocation.source.loadExactRevision({ aksaraSha, items }),
       }),
     });
-    artifactPlan = { aksaraSha, compiled, kind: "git" };
+    artifactPlan = {
+      aksaraSha,
+      compiled,
+      kind: "git",
+      runtime: invocation.input.tryoutRuntime,
+    };
   }
 
   const signingKey = yield* PublicationSigningKey;
@@ -250,16 +257,16 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     ? signer.signRelease(input.manifest)
     : Effect.succeed(input.storedRelease);
   const release = yield* verifySignedContentRelease(signedRelease);
-  const tryoutRuntimeBundle =
+  const tryoutRuntimeBundles =
     artifactPlan.kind === "git"
-      ? yield* preparePublicationRuntime({
+      ? yield* preparePublicationRuntimes({
           release,
           rendererManifest,
+          runtime: artifactPlan.runtime,
           signer,
-          snapshot: input.tryoutRuntimeSnapshot,
           sourceGitSha: artifactPlan.aksaraSha,
         })
-      : null;
+      : [];
   const artifacts =
     artifactPlan.kind === "rollback"
       ? artifactPlan.artifacts.replay
@@ -276,7 +283,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     projections: decodedProjections,
     routes: decodedRoutes,
     target,
-    tryoutRuntimeBundle,
+    tryoutRuntimeBundles,
   });
   return {
     bundle: { release, rendererManifest },
@@ -287,6 +294,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     stage,
     summary,
     target,
-    tryoutRuntimeBundle,
+    tryoutRuntimeBundles,
   };
 });

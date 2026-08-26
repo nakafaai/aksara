@@ -1,9 +1,11 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-
+import { ContentKeySchema } from "#contracts/ids";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
+  publicationScopeSelectsContent,
   publicationScopeSelectsSnapshot,
 } from "#contracts/release/snapshot/scope";
 
@@ -69,6 +71,33 @@ describe("publication scope", () => {
       families: ["article"],
       snapshots: [],
     });
+    const selected = predecessor.content?.[0];
+    assert.isDefined(selected);
+    expect(publicationScopeSelectsContent(predecessor, selected)).toBe(true);
+    expect(
+      publicationScopeSelectsContent(predecessor, {
+        ...selected,
+        contentKey: ContentKeySchema.make("material:other"),
+      })
+    ).toBe(false);
+    expect(
+      publicationScopeSelectsContent(predecessor, {
+        ...selected,
+        artifactLocale: ArtifactLocaleSchema.make("id"),
+      })
+    ).toBe(false);
+    expect(
+      publicationScopeSelectsContent(predecessor, {
+        ...selected,
+        family: "question",
+      })
+    ).toBe(false);
+    expect(
+      publicationScopeSelectsContent(current, {
+        ...selected,
+        family: current.families[0] ?? selected.family,
+      })
+    ).toBe(true);
   });
 
   it("rejects noncanonical or overlapping predecessor identities", () => {

@@ -2,6 +2,7 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Effect, Schema } from "effect";
 
 import type { ProductionBaseIdentity } from "#cli/production/base";
@@ -9,7 +10,7 @@ import type { ProductionBaseIdentity } from "#cli/production/base";
 /** Current permanent runtime bundle does not identify the active try-out base. */
 export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
   "BaseTryoutRuntimeBundleMismatchError",
-  { reason: Schema.Literals(["missing-base", "snapshot"]) }
+  { reason: Schema.Literals(["missing-base", "missing-recovery", "snapshot"]) }
 ) {}
 
 /** Authenticates the optional permanent bundle and binds it to the active base. */
@@ -56,3 +57,35 @@ export function shouldRefreshTryoutRuntimeBundle(input: {
       input.rendererManifest.hash !== input.bundle.payload.rendererManifestHash)
   );
 }
+
+/** Selects the candidate pair and any retained inverse that must be re-signed. */
+export const selectTryoutRuntimeTransition = Effect.fn(
+  "AksaraCli.selectTryoutRuntimeTransition"
+)(function* (input: {
+  readonly base: ProductionBaseIdentity | null;
+  readonly bundle: SignedTryoutRuntimeBundle | null;
+  readonly rendererManifest: RendererManifestEnvelope;
+  readonly snapshot: TryoutSnapshot | null;
+}) {
+  if (input.snapshot === null) {
+    return null;
+  }
+  const baseSnapshotId = input.base?.snapshots.tryout.resultSnapshotId ?? null;
+  if (baseSnapshotId === null || input.snapshot.snapshotId === baseSnapshotId) {
+    return { recovery: null, result: input.snapshot };
+  }
+  if (input.bundle === null) {
+    return yield* new BaseTryoutRuntimeBundleMismatchError({
+      reason: "missing-recovery",
+    });
+  }
+  if (
+    input.bundle.payload.rendererManifestHash === input.rendererManifest.hash
+  ) {
+    return { recovery: null, result: input.snapshot };
+  }
+  return {
+    recovery: input.bundle.payload.snapshot,
+    result: input.snapshot,
+  };
+});

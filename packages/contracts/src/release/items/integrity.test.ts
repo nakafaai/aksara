@@ -70,6 +70,55 @@ describe("release item integrity", () => {
         });
       })
   );
+  it.effect("accepts only exact predecessor-scoped release items", () =>
+    Effect.gen(function* () {
+      const manifest = yield* makeManifest();
+      const [first] = items;
+      if (first === undefined) {
+        return yield* Effect.die("Expected a predecessor release item.");
+      }
+      const exact = yield* Schema.decodeEffect(ContentReleaseManifestSchema)({
+        ...manifest,
+        scope: {
+          content: items.map(({ change }) => ({
+            artifactLocale: change.artifactLocale,
+            contentKey: change.contentKey,
+            family: change.family,
+          })),
+          families: [],
+          snapshots: [],
+        },
+      });
+      expect(
+        yield* verifyContentReleaseItems({
+          items: Stream.fromIterable(items),
+          manifest: exact,
+        })
+      ).toEqual({ deleteCount: 1, upsertCount: 1 });
+
+      const mismatched = yield* Schema.decodeEffect(
+        ContentReleaseManifestSchema
+      )({
+        ...manifest,
+        scope: {
+          content: [
+            {
+              artifactLocale: first.change.artifactLocale,
+              contentKey: first.change.contentKey,
+              family: first.change.family,
+            },
+          ],
+          families: [],
+          snapshots: [],
+        },
+      });
+      const error = yield* reject(items, mismatched);
+      expect(error).toMatchObject({
+        _tag: "ReleaseItemScopeError",
+        itemOffset: 1,
+      });
+    })
+  );
   it.effect("replays one stream with fresh ordering and route state", () =>
     Effect.gen(function* () {
       const manifest = yield* makeManifest();

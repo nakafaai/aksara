@@ -53,6 +53,12 @@ export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<Prepa
   }
 ) {}
 
+/** Candidate and recovery runtime snapshots do not form one valid transition. */
+export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<PreparedTryoutRuntimeTransitionError>()(
+  "PreparedTryoutRuntimeTransitionError",
+  { snapshotId: Sha256HashSchema }
+) {}
+
 /** One authored record failed its exact current schema. */
 export class PreparedContentDecodeError extends Schema.TaggedError<PreparedContentDecodeError>()(
   "PreparedContentDecodeError",

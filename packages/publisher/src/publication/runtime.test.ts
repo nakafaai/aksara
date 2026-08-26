@@ -2,7 +2,12 @@
 import { generateKeyPairSync } from "node:crypto";
 
 import { assert, describe, it } from "@effect/vitest";
-import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  GitCommitShaSchema,
+  ReleaseIdSchema,
+} from "@nakafa/aksara-contracts/ids";
+import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
+import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
@@ -11,7 +16,7 @@ import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/ru
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
 
-import { preparePublicationRuntime } from "#publisher/publication/runtime";
+import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { rendererManifest } from "#test/publication";
 import { signingManifest } from "#test/signing";
@@ -35,6 +40,30 @@ const snapshot = makeTryoutSnapshot({
   placementDigest: signingManifest.resultDigest,
   routeCount: 5,
 });
+const recoverySnapshot = makeTryoutSnapshot({
+  activeAppLocales: signingManifest.activeAppLocales,
+  catalogDigest: signingManifest.itemsDigest,
+  counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+  placementCount: 0,
+  placementDigest: signingManifest.resultDigest,
+  routeCount: 0,
+});
+const runtimeManifest = ContentReleaseManifestSchema.make({
+  ...signingManifest,
+  baseActiveAppLocales: signingManifest.activeAppLocales,
+  baseManifestHash: signingManifest.itemsDigest,
+  baseReleaseId: ReleaseIdSchema.make("test-runtime-base"),
+  scope: { ...signingManifest.scope, snapshots: ["tryout"] },
+  snapshots: {
+    ...signingManifest.snapshots,
+    tryout: replaceContentSnapshot({
+      baseSnapshotId: recoverySnapshot.snapshotId,
+      resultSnapshotId: snapshot.snapshotId,
+      rowCount: 1,
+      rowDigest: signingManifest.itemsDigest,
+    }),
+  },
+});
 
 /** Creates one real signer for runtime bundle boundary tests. */
 const makeSigner = () =>
@@ -50,39 +79,62 @@ describe("publication runtime", () => {
     Effect.gen(function* () {
       const signer = yield* makeSigner();
       const release = yield* signer.signRelease(signingManifest);
-      const bundle = yield* preparePublicationRuntime({
+      const bundles = yield* preparePublicationRuntimes({
         release,
         rendererManifest,
+        runtime: null,
         signer,
-        snapshot: null,
         sourceGitSha,
       }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
 
-      assert.isNull(bundle);
+      assert.deepStrictEqual(bundles, []);
     })
   );
 
-  it.effect("signs and verifies the exact runtime pair", () =>
+  it.effect("signs candidate and retained recovery runtime pairs", () =>
     Effect.gen(function* () {
       const signer = yield* makeSigner();
-      const release = yield* signer.signRelease(signingManifest);
-      const bundle = yield* preparePublicationRuntime({
+      const release = yield* signer.signRelease(runtimeManifest);
+      const bundles = yield* preparePublicationRuntimes({
         release,
         rendererManifest,
+        runtime: { recovery: recoverySnapshot, result: snapshot },
         signer,
-        snapshot,
         sourceGitSha,
       }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
 
-      assert.deepStrictEqual(bundle?.payload, {
-        format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
-        rendererManifestHash: rendererManifest.hash,
-        snapshot,
+      assert.deepStrictEqual(
+        bundles.map((bundle) => bundle.payload),
+        [snapshot, recoverySnapshot].map((runtimeSnapshot) => ({
+          format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+          rendererManifestHash: rendererManifest.hash,
+          snapshot: runtimeSnapshot,
+          sourceGitSha,
+          sourceManifestHash: release.manifestHash,
+          sourceReleaseId: release.manifest.releaseId,
+        }))
+      );
+      assert.deepStrictEqual(
+        bundles.map((bundle) => bundle.keyId),
+        [signingKeyId, signingKeyId]
+      );
+    })
+  );
+
+  it.effect("signs one candidate when the retained pair already exists", () =>
+    Effect.gen(function* () {
+      const signer = yield* makeSigner();
+      const release = yield* signer.signRelease(runtimeManifest);
+      const bundles = yield* preparePublicationRuntimes({
+        release,
+        rendererManifest,
+        runtime: { recovery: null, result: snapshot },
+        signer,
         sourceGitSha,
-        sourceManifestHash: release.manifestHash,
-        sourceReleaseId: release.manifest.releaseId,
-      });
-      assert.strictEqual(bundle?.keyId, signingKeyId);
+      }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
+
+      assert.strictEqual(bundles.length, 1);
+      assert.deepStrictEqual(bundles[0]?.payload.snapshot, snapshot);
     })
   );
 });

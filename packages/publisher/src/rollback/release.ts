@@ -242,6 +242,5 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     routes,
     snapshotManifests: Stream.empty,
     snapshotRows: Stream.empty,
-    tryoutRuntimeSnapshot: null,
   });
 });

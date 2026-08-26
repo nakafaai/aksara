@@ -1,6 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
-import { Effect, Stream } from "effect";
+import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
+import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 
 import { stagePreparedRelease } from "#publisher/stage/plan";
@@ -9,32 +12,54 @@ import { makePublicationTarget } from "#test/target";
 import { transportRelease, transportRuntimeBundle } from "#test/transport/spec";
 
 const { prepared } = await makeRelease(transportRelease.manifest.releaseId);
+const recoveryRuntimeBundle = Schema.decodeSync(
+  SignedTryoutRuntimeBundleSchema
+)({
+  ...transportRuntimeBundle,
+  bundleHash: Sha256HashSchema.make(`sha256:${"5".repeat(64)}`),
+  payload: {
+    ...transportRuntimeBundle.payload,
+    snapshot: makeTryoutSnapshot({
+      activeAppLocales: transportRelease.manifest.activeAppLocales,
+      catalogDigest: transportRelease.manifest.itemsDigest,
+      counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+      placementCount: 0,
+      placementDigest: transportRelease.manifest.resultDigest,
+      routeCount: 0,
+    }),
+  },
+});
 
 describe("prepared release staging", () => {
-  it.effect("stages a permanent runtime bundle before release-owned rows", () =>
+  it.effect("stages runtime pairs before release-owned rows", () =>
     Effect.gen(function* () {
       const stageGroup = vi.fn((_group: StageGroupInput) => Effect.void);
       const target = makePublicationTarget({ stageGroup });
       yield* stagePreparedRelease({
         artifacts: Stream.empty,
-        items: Stream.empty,
+        items: prepared.items,
         prepared,
         projections: Stream.empty,
         routes: Stream.empty,
         target,
-        tryoutRuntimeBundle: transportRuntimeBundle,
+        tryoutRuntimeBundles: [transportRuntimeBundle, recoveryRuntimeBundle],
       });
       expect(stageGroup).toHaveBeenCalledTimes(1);
-      expect(stageGroup.mock.calls[0]?.[0]).toMatchObject({
-        releaseId: prepared.manifest.releaseId,
-        requests: [
-          {
-            bundle: transportRuntimeBundle,
-            operation: "stageTryoutRuntimeBundle",
-            releaseId: prepared.manifest.releaseId,
-          },
-        ],
-      });
+      const group = stageGroup.mock.calls[0]?.[0];
+      expect(group?.releaseId).toBe(prepared.manifest.releaseId);
+      expect(group?.requests.slice(0, 3)).toMatchObject([
+        {
+          bundle: transportRuntimeBundle,
+          operation: "stageTryoutRuntimeBundle",
+          releaseId: prepared.manifest.releaseId,
+        },
+        {
+          bundle: recoveryRuntimeBundle,
+          operation: "stageTryoutRuntimeBundle",
+          releaseId: prepared.manifest.releaseId,
+        },
+        { operation: "stageItemBatch" },
+      ]);
     })
   );
 });

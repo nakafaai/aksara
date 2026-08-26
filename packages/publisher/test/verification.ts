@@ -99,7 +99,7 @@ export function makeVerificationPlan(
       upsertCount: selectedManifest.upsertCount,
     },
     target,
-    tryoutRuntimeBundle: null,
+    tryoutRuntimeBundles: [],
   };
   return { activate, plan, stage, stageRecovery, stageRelease, status, verify };
 }

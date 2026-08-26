@@ -21,6 +21,7 @@ import type {
   SignedReleaseVerificationError,
   SnapshotVerificationError,
   TryoutRuntimeBundleSigningError,
+  TryoutRuntimeBundleSourceVerificationError,
   TryoutRuntimeBundleVerificationError,
 } from "#publisher/publication/failure";
 import type {
@@ -60,6 +61,7 @@ export type PublishContentReleaseError<E> =
   | ArtifactVerificationError
   | SignedReleaseVerificationError
   | TryoutRuntimeBundleVerificationError
+  | TryoutRuntimeBundleSourceVerificationError
   | ArtifactSigningError
   | TryoutRuntimeBundleSigningError
   | CompileContentError

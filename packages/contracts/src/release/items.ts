@@ -2,6 +2,7 @@ import { Effect, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
+import { publicationScopeSelectsContent } from "#contracts/release/snapshot/scope";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -54,7 +55,7 @@ export class ReleaseItemOrderError extends Schema.TaggedError<ReleaseItemOrderEr
   { itemOffset: ItemCountSchema }
 ) {}
 
-/** One signed item falls outside the release's whole-family scope. */
+/** One signed item falls outside the release's exact publication scope. */
 export class ReleaseItemScopeError extends Schema.TaggedError<ReleaseItemScopeError>()(
   "ReleaseItemScopeError",
   { itemOffset: ItemCountSchema }
@@ -102,7 +103,7 @@ function validateItemIdentity(
       })
     );
   }
-  if (!manifest.scope.families.includes(item.change.family)) {
+  if (!publicationScopeSelectsContent(manifest.scope, item.change)) {
     return Effect.fail(
       new ReleaseItemScopeError({ itemOffset: expectedIndex })
     );
