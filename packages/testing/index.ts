@@ -16,7 +16,7 @@ const config = defineConfig({
   test: {
     coverage: {
       enabled: true,
-      exclude: ["**/*.test.ts", "**/*.test.tsx", "test/**/*.ts"],
+      exclude: ["**/*.test.ts", "**/*.test.tsx", "**/test/**/*.ts"],
       provider: "istanbul",
       thresholds: {
         100: true,
