@@ -8,9 +8,11 @@ import {
 import {
   inheritContentSnapshot,
   inheritContentSnapshots,
+  invertContentSnapshots,
   replaceContentSnapshot,
 } from "#contracts/release/snapshot/spec";
 import {
+  RollbackSignedContentReleaseSchema,
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
@@ -86,6 +88,26 @@ const sourceRelease = makeSourceRelease(
   })
 );
 
+/** Builds the signed inverse that restores the source release's base pair. */
+const recoverySourceRelease = Schema.decodeSync(
+  RollbackSignedContentReleaseSchema
+)({
+  ...sourceRelease,
+  manifest: {
+    ...sourceRelease.manifest,
+    baseActiveAppLocales: sourceRelease.manifest.activeAppLocales,
+    baseManifestHash: sourceRelease.manifestHash,
+    baseReleaseId: sourceRelease.manifest.releaseId,
+    origin: {
+      kind: "rollback",
+      releaseId: sourceRelease.manifest.releaseId,
+    },
+    releaseId: ReleaseIdSchema.make("runtime-recovery"),
+    snapshots: invertContentSnapshots(sourceRelease.manifest.snapshots),
+  },
+  manifestHash: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
+});
+
 /** Builds a schema-valid transport fixture for one authenticated source pair. */
 function makeBundle(snapshot: TryoutSnapshot) {
   return makeTestRuntimeBundle({
@@ -130,10 +152,46 @@ describe("try-out runtime bundle source", () => {
     })
   );
 
+  it.effect("accepts the retained pair through its signed recovery link", () =>
+    Effect.gen(function* () {
+      assert.deepStrictEqual(
+        yield* verifyTryoutRuntimeBundleSource({
+          bundle: baseBundle,
+          release: recoverySourceRelease,
+        }),
+        baseBundle
+      );
+
+      for (const [bundle, reason] of [
+        [resultBundle, "snapshot"],
+        [
+          changeBundle(baseBundle, {
+            sourceReleaseId: ReleaseIdSchema.make("runtime-source-other"),
+          }),
+          "release",
+        ],
+        [
+          changeBundle(baseBundle, {
+            sourceManifestHash: Sha256HashSchema.make(
+              `sha256:${"e".repeat(64)}`
+            ),
+          }),
+          "manifest",
+        ],
+      ] as const) {
+        const error = yield* verifyTryoutRuntimeBundleSource({
+          bundle,
+          release: recoverySourceRelease,
+        }).pipe(Effect.flip);
+        assert.strictEqual(error.reason, reason);
+      }
+    })
+  );
+
   it.effect("rejects every mismatched source identity", () =>
     Effect.gen(function* () {
       const cases = [
-        [resultBundle, recoveryRelease, "origin"],
+        [resultBundle, recoveryRelease, "release"],
         [
           changeBundle(resultBundle, {
             sourceReleaseId: ReleaseIdSchema.make("runtime-source-other"),

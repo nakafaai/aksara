@@ -22,6 +22,7 @@ import {
   completedBundle,
   currentState,
   gitBundle,
+  recoveryBundle,
   releaseId,
   runtimeBundleFor,
 } from "#test/target";
@@ -98,6 +99,16 @@ describe("production runtime bundle preparation", () => {
       }
       assert.deepStrictEqual(
         yield* verifyBase(runtimeBundle, active, base),
+        runtimeBundle
+      );
+
+      const recovered = recoveryBundle("release-runtime-recovered", active);
+      assert.deepStrictEqual(
+        yield* verifyBase(
+          runtimeBundle,
+          recovered,
+          selectSourceBase(recovered)
+        ),
         runtimeBundle
       );
 

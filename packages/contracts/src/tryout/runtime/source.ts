@@ -7,7 +7,6 @@ export class TryoutRuntimeBundleSourceError extends Schema.TaggedError<TryoutRun
   "TryoutRuntimeBundleSourceError",
   {
     reason: Schema.Literals([
-      "origin",
       "release",
       "manifest",
       "revision",
@@ -17,7 +16,7 @@ export class TryoutRuntimeBundleSourceError extends Schema.TaggedError<TryoutRun
   }
 ) {}
 
-/** Authenticates a result or retained-base runtime pair against one Git release. */
+/** Authenticates a runtime pair against its Git source or signed recovery link. */
 export const verifyTryoutRuntimeBundleSource = Effect.fn(
   "AksaraContracts.verifyTryoutRuntimeBundleSource"
 )(function* (input: {
@@ -26,16 +25,24 @@ export const verifyTryoutRuntimeBundleSource = Effect.fn(
 }) {
   const { bundle, release } = input;
   const { manifest } = release;
-  if (manifest.origin.kind !== "git") {
-    return yield* new TryoutRuntimeBundleSourceError({ reason: "origin" });
-  }
-  if (manifest.releaseId !== bundle.payload.sourceReleaseId) {
+  const sourceReleaseId =
+    manifest.origin.kind === "git"
+      ? manifest.releaseId
+      : manifest.origin.releaseId;
+  if (sourceReleaseId !== bundle.payload.sourceReleaseId) {
     return yield* new TryoutRuntimeBundleSourceError({ reason: "release" });
   }
-  if (release.manifestHash !== bundle.payload.sourceManifestHash) {
+  const sourceManifestHash =
+    manifest.origin.kind === "git"
+      ? release.manifestHash
+      : manifest.baseManifestHash;
+  if (sourceManifestHash !== bundle.payload.sourceManifestHash) {
     return yield* new TryoutRuntimeBundleSourceError({ reason: "manifest" });
   }
-  if (manifest.origin.sha !== bundle.payload.sourceGitSha) {
+  if (
+    manifest.origin.kind === "git" &&
+    manifest.origin.sha !== bundle.payload.sourceGitSha
+  ) {
     return yield* new TryoutRuntimeBundleSourceError({ reason: "revision" });
   }
   if (manifest.rendererManifestHash !== bundle.payload.rendererManifestHash) {
@@ -45,6 +52,7 @@ export const verifyTryoutRuntimeBundleSource = Effect.fn(
   const transition = manifest.snapshots.tryout;
   const isResult = snapshotId === transition.resultSnapshotId;
   const isRetainedBase =
+    manifest.origin.kind === "git" &&
     transition.mode === "replace" &&
     transition.baseSnapshotId !== null &&
     snapshotId === transition.baseSnapshotId;
