@@ -32,12 +32,8 @@ import {
 } from "#compiler/config";
 import {
   ContentByteLimitExceededError,
-  ExecutablePolicyError,
-  type ExecutablePolicyViolation,
   MdxCompilationError,
   RendererComponentMissingError,
-  type UnsupportedMdxModuleOccurrence,
-  UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import { hashUtf8 } from "#compiler/hash";
 import {
@@ -45,7 +41,7 @@ import {
   type MetadataCollector,
   validateMetadata,
 } from "#compiler/metadata";
-import { enforceExecutablePolicy } from "#compiler/policy";
+import { createSourcePolicy } from "#compiler/source-policy";
 
 type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
@@ -149,8 +145,10 @@ export const compileValidatedContent = Effect.fn(
   const allowedComponents = new Set(
     authoringComponents.map(({ name }) => name)
   );
-  const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-  const policyViolations: ExecutablePolicyViolation[] = [];
+  const sourcePolicy = createSourcePolicy(
+    request.contentKey,
+    allowedComponents
+  );
   const requiredComponentNames = new Set<string>();
   const metadataCollector: MetadataCollector = {
     candidates: [],
@@ -180,11 +178,7 @@ export const compileValidatedContent = Effect.fn(
         recmaPlugins: [captureRequiredComponents(requiredComponentNames)],
         remarkPlugins: [
           extractMetadata(metadataCollector),
-          enforceExecutablePolicy(
-            allowedComponents,
-            unsupportedModules,
-            policyViolations
-          ),
+          ...sourcePolicy.remarkPlugins,
           capturePlainText((value) => {
             plainText = value;
           }),
@@ -198,18 +192,7 @@ export const compileValidatedContent = Effect.fn(
     metadataCollector
   );
 
-  if (unsupportedModules.length > 0) {
-    return yield* new UnsupportedMdxModuleSyntaxError({
-      contentKey: request.contentKey,
-      occurrences: unsupportedModules,
-    });
-  }
-  if (policyViolations.length > 0) {
-    return yield* new ExecutablePolicyError({
-      contentKey: request.contentKey,
-      violations: policyViolations,
-    });
-  }
+  yield* sourcePolicy.validate();
 
   const compiledCode = String(file);
   const byteLength = yield* enforceContentByteLimit(

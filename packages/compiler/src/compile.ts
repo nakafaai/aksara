@@ -14,12 +14,11 @@ import type {
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
   ContentByteLimitExceededError,
-  ExecutablePolicyError,
   MdxCompilationError,
   RendererComponentMissingError,
-  UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import type { AuthoredMetadata } from "#compiler/metadata";
+import type { SourcePolicyError } from "#compiler/source-policy";
 
 /** One generic compile result with its single AST-decoded metadata object. */
 export interface CompiledContentResult {
@@ -36,10 +35,9 @@ export type CompileContentError =
   | AuthoredMetadataMissingError
   | AuthoredMetadataSyntaxError
   | ContentByteLimitExceededError
-  | ExecutablePolicyError
   | MdxCompilationError
   | RendererComponentMissingError
-  | UnsupportedMdxModuleSyntaxError;
+  | SourcePolicyError;
 
 /** Compiles trusted authored MDX without executing the emitted function body. */
 export const compileContent: (

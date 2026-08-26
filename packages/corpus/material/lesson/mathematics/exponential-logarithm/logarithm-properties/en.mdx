@@ -122,83 +122,77 @@ The result also answers the original exponent question: <InlineMath math="5^3=12
 
 ### Worked Solutions
 
-#### 1. Simplifying Expressions
+1. Simplify each expression.
 
-1. Since <InlineMath math="81=9^2" />:
+   1. Since <InlineMath math="81=9^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_9 81=\log_9(9^2)" />
-      <BlockMath math="\log_9(9^2)=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_9 81=\log_9(9^2)" />
+        <BlockMath math="\log_9(9^2)=2" />
+      </MathContainer>
 
-2. Use the quotient rule:
+   2. Use the quotient rule:
 
-    <MathContainer>
-      <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
-      <BlockMath math="\log_2 4=2" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+        <BlockMath math="\log_2 4=2" />
+      </MathContainer>
 
-3. Since <InlineMath math="16=4^2" />:
+   3. Since <InlineMath math="16=4^2" />:
 
-    <MathContainer>
-      <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
-      <BlockMath math="\log_4(4^{20})=20" />
-    </MathContainer>
+      <MathContainer>
+        <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+        <BlockMath math="\log_4(4^{20})=20" />
+      </MathContainer>
 
-#### 2. Combining Change-of-Base Relationships
+2. Use base <InlineMath math="4" /> for the numerator and denominator:
 
-Use base <InlineMath math="4" /> for the numerator and denominator:
+   <MathContainer>
+     <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+     <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
+     <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
-  <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
-  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
-</MathContainer>
+   The reciprocal rule gives <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Therefore:
 
-The reciprocal rule gives <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Therefore:
+   <BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
 
-<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
+3. The fixed-rate model is:
 
-#### 3. Interpreting a Population Threshold
+   <BlockMath math="P(x)=300{,}000(1.06)^x" />
 
-The fixed-rate model is:
+   Solve the continuous equation first:
 
-<BlockMath math="P(x)=300{,}000(1.06)^x" />
+   <MathContainer>
+     <BlockMath math="1{,}000{,}000=300{,}000(1.06)^x" />
+     <BlockMath math="x=\frac{\ln(10/3)}{\ln(1.06)}\approx20.662354" />
+   </MathContainer>
 
-Solve the continuous equation first:
+   The model updates after complete years, so check the neighboring integers:
 
-<MathContainer>
-  <BlockMath math="1{,}000{,}000=300{,}000(1.06)^x" />
-  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1.06)}\approx20.662354" />
-</MathContainer>
+   <MathContainer>
+     <BlockMath math="P(20)\approx962{,}141<1{,}000{,}000" />
+     <BlockMath math="P(21)\approx1{,}019{,}869>1{,}000{,}000" />
+   </MathContainer>
 
-The model updates after complete years, so check the neighboring integers:
+   The population first reaches the target after <InlineMath math="21\text{ complete years}" />. This is a mathematical projection under the stated fixed-rate assumptions, not a demographic forecast.
 
-<MathContainer>
-  <BlockMath math="P(20)\approx962{,}141<1{,}000{,}000" />
-  <BlockMath math="P(21)\approx1{,}019{,}869>1{,}000{,}000" />
-</MathContainer>
+4. The annual-compounding model is:
 
-The population first reaches the target after <InlineMath math="21\text{ complete years}" />. This is a mathematical projection under the stated fixed-rate assumptions, not a demographic forecast.
+   <BlockMath math="B(x)=2{,}000{,}000(1.12)^x" />
 
-#### 4. Interpreting an Annual Savings Threshold
+   Solve the continuous equation:
 
-The annual-compounding model is:
+   <MathContainer>
+     <BlockMath math="6{,}500{,}000=2{,}000{,}000(1.12)^x" />
+     <BlockMath math="x=\frac{\ln(3.25)}{\ln(1.12)}\approx10.400324" />
+   </MathContainer>
 
-<BlockMath math="B(x)=2{,}000{,}000(1.12)^x" />
+   Interest is credited only after each complete year, so compare years <InlineMath math="10" /> and <InlineMath math="11" />:
 
-Solve the continuous equation:
+   <MathContainer>
+     <BlockMath math="B(10)\approx6{,}211{,}696<6{,}500{,}000" />
+     <BlockMath math="B(11)\approx6{,}957{,}100>6{,}500{,}000" />
+   </MathContainer>
 
-<MathContainer>
-  <BlockMath math="6{,}500{,}000=2{,}000{,}000(1.12)^x" />
-  <BlockMath math="x=\frac{\ln(3.25)}{\ln(1.12)}\approx10.400324" />
-</MathContainer>
-
-Interest is credited only after each complete year, so compare years <InlineMath math="10" /> and <InlineMath math="11" />:
-
-<MathContainer>
-  <BlockMath math="B(10)\approx6{,}211{,}696<6{,}500{,}000" />
-  <BlockMath math="B(11)\approx6{,}957{,}100>6{,}500{,}000" />
-</MathContainer>
-
-The balance first reaches the target after <InlineMath math="11\text{ complete years}" />.
+   The balance first reaches the target after <InlineMath math="11\text{ complete years}" />.

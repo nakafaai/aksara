@@ -1,8 +1,10 @@
 import { compile } from "@mdx-js/mdx";
+import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { Effect } from "effect";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";
 import { unified } from "unified";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
@@ -25,40 +27,49 @@ vi.mock("eslint-scope", async (importOriginal) => {
   };
 });
 /** Runs the executable-policy plugin against one MDX fixture. */
-async function inspectPolicy(
-  rawMdx: string,
-  allowedComponents: readonly string[] = []
+const inspectPolicy = Effect.fn("ExecutablePolicyTest.inspectPolicy")(
+  function* (rawMdx: string, allowedComponents: readonly string[] = []) {
+    const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
+    const violations: ExecutablePolicyViolation[] = [];
+    yield* Effect.promise(() =>
+      compile(rawMdx, {
+        remarkPlugins: [
+          enforceExecutablePolicy(
+            new Set(allowedComponents),
+            unsupportedModules,
+            violations
+          ),
+        ],
+      })
+    );
+    return { unsupportedModules, violations };
+  }
+);
+/** Runs executable-policy inspection against an already constructed MDX tree. */
+const inspectTree = Effect.fn("ExecutablePolicyTest.inspectTree")(function* (
+  tree: Root
 ) {
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];
-  await compile(rawMdx, {
-    remarkPlugins: [
-      enforceExecutablePolicy(
-        new Set(allowedComponents),
-        unsupportedModules,
-        violations
-      ),
-    ],
-  });
+  yield* Effect.promise(() =>
+    unified()
+      .use(
+        enforceExecutablePolicy(
+          new Set<string>(),
+          unsupportedModules,
+          violations
+        )
+      )
+      .run(tree)
+  );
   return { unsupportedModules, violations };
-}
-/** Runs executable-policy inspection against an already constructed MDX tree. */
-async function inspectTree(tree: Root) {
-  const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-  const violations: ExecutablePolicyViolation[] = [];
-  await unified()
-    .use(
-      enforceExecutablePolicy(new Set<string>(), unsupportedModules, violations)
-    )
-    .run(tree);
-  return { unsupportedModules, violations };
-}
+});
 afterEach(() => {
   scopeState.withoutGlobalScope = false;
 });
 
 describe("enforceExecutablePolicy", () => {
-  it.each([
+  it.effect.each([
     ["dynamic-import", undefined, '{import("./remote.ts")}'],
     ["import-meta", "import.meta", "{import.meta.url}"],
     ["require", "require", '{require("node:fs")}'],
@@ -80,84 +91,99 @@ describe("enforceExecutablePolicy", () => {
       "{unregisteredRuntimeValue}",
     ],
     ["unknown-free-global", "props", "{props.components.FunctionMachine({})}"],
-  ] as const)("rejects %s", async (rule, identifier, rawMdx) => {
-    const result = await inspectPolicy(rawMdx);
-    expect(result.violations).toContainEqual(
-      identifier === undefined ? { rule } : { identifier, rule }
-    );
-  });
+  ] as const)("rejects %s", ([rule, identifier, rawMdx]) =>
+    Effect.gen(function* () {
+      const result = yield* inspectPolicy(rawMdx);
+      expect(result.violations).toContainEqual(
+        identifier === undefined ? { rule } : { identifier, rule }
+      );
+    })
+  );
 
-  it.each([
+  it.effect.each([
     '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',
     '<div {...{ dangerouslySetInnerHTML: { __html: "unsafe" } }} />',
     '{<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />}',
-  ])("rejects raw HTML injection through JSX", async (rawMdx) => {
-    const result = await inspectPolicy(rawMdx);
-    expect(result.violations).toContainEqual({
-      identifier: "dangerouslySetInnerHTML",
-      rule: "dangerous-jsx-attribute",
-    });
-  });
+  ])("rejects raw HTML injection through JSX", (rawMdx) =>
+    Effect.gen(function* () {
+      const result = yield* inspectPolicy(rawMdx);
+      expect(result.violations).toContainEqual({
+        identifier: "dangerouslySetInnerHTML",
+        rule: "dangerous-jsx-attribute",
+      });
+    })
+  );
 
-  it("ignores invalid attached programs and malformed JSX attributes", async () => {
-    const nullProgram: Paragraph = { children: [], type: "paragraph" };
-    const wrongProgram: Paragraph = { children: [], type: "paragraph" };
-    const wrongBody: Paragraph = { children: [], type: "paragraph" };
-    const element: MdxJsxFlowElement = {
-      attributes: [],
-      children: [],
-      name: "Fixture",
-      type: "mdxJsxFlowElement",
-    };
-    const missingAttributes: MdxJsxFlowElement = {
-      attributes: [],
-      children: [],
-      name: "Fixture",
-      type: "mdxJsxFlowElement",
-    };
-    Reflect.set(nullProgram, "data", { estree: null });
-    Reflect.set(wrongProgram, "data", { estree: {} });
-    Reflect.set(wrongBody, "data", {
-      estree: { body: null, type: "Program" },
-    });
-    Reflect.set(element, "attributes", [null, {}, { type: 1 }]);
-    Reflect.deleteProperty(missingAttributes, "attributes");
-    const tree: Root = {
-      children: [
-        nullProgram,
-        wrongProgram,
-        wrongBody,
-        element,
-        missingAttributes,
-      ],
-      type: "root",
-    };
+  it.effect(
+    "ignores invalid attached programs and malformed JSX attributes",
+    () =>
+      Effect.gen(function* () {
+        const nullProgram: Paragraph = { children: [], type: "paragraph" };
+        const wrongProgram: Paragraph = { children: [], type: "paragraph" };
+        const wrongBody: Paragraph = { children: [], type: "paragraph" };
+        const element: MdxJsxFlowElement = {
+          attributes: [],
+          children: [],
+          name: "Fixture",
+          type: "mdxJsxFlowElement",
+        };
+        const missingAttributes: MdxJsxFlowElement = {
+          attributes: [],
+          children: [],
+          name: "Fixture",
+          type: "mdxJsxFlowElement",
+        };
+        Reflect.set(nullProgram, "data", { estree: null });
+        Reflect.set(wrongProgram, "data", { estree: {} });
+        Reflect.set(wrongBody, "data", {
+          estree: { body: null, type: "Program" },
+        });
+        Reflect.set(element, "attributes", [null, {}, { type: 1 }]);
+        Reflect.deleteProperty(missingAttributes, "attributes");
+        const tree: Root = {
+          children: [
+            nullProgram,
+            wrongProgram,
+            wrongBody,
+            element,
+            missingAttributes,
+          ],
+          type: "root",
+        };
+        expect(yield* inspectTree(tree)).toEqual({
+          unsupportedModules: [],
+          violations: [],
+        });
+      })
+  );
 
-    await expect(inspectTree(tree)).resolves.toEqual({
-      unsupportedModules: [],
-      violations: [],
-    });
-  });
+  it.effect(
+    "keeps syntax findings when analyzer global scope is unavailable",
+    () =>
+      Effect.gen(function* () {
+        scopeState.withoutGlobalScope = true;
+        const result = yield* inspectPolicy('{eval("1 + 1")}');
+        expect(result.violations).toEqual([
+          { identifier: "eval", rule: "eval" },
+        ]);
+      })
+  );
 
-  it("keeps syntax findings when analyzer global scope is unavailable", async () => {
-    scopeState.withoutGlobalScope = true;
+  it.effect("keeps ordinary member access and JSX attributes", () =>
+    Effect.gen(function* () {
+      const result = yield* inspectPolicy(
+        '<span title="safe">{Math.max(...[1, 2].map((value) => value * 2))}{<span xml:lang="en" />}</span>'
+      );
+      expect(result).toEqual({ unsupportedModules: [], violations: [] });
+    })
+  );
 
-    const result = await inspectPolicy('{eval("1 + 1")}');
-
-    expect(result.violations).toEqual([{ identifier: "eval", rule: "eval" }]);
-  });
-
-  it("keeps ordinary member access and JSX attributes", async () => {
-    const result = await inspectPolicy(
-      '<span title="safe">{Math.max(...[1, 2].map((value) => value * 2))}{<span xml:lang="en" />}</span>'
-    );
-
-    expect(result).toEqual({ unsupportedModules: [], violations: [] });
-  });
-
-  it("allows selected renderer components inside rich JSX attributes", async () => {
-    const result = await inspectPolicy(
-      `<AtomShellLab
+  it.effect(
+    "allows selected renderer components inside rich JSX attributes",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* inspectPolicy(
+          `<AtomShellLab
         description={
           <>
             Capacity <InlineMath math="2n^2" />.
@@ -167,32 +193,34 @@ describe("enforceExecutablePolicy", () => {
           note: <>Shell <InlineMath math="K" /> is full.</>,
         }}
       />`,
-      ["AtomShellLab", "InlineMath"]
-    );
+          ["AtomShellLab", "InlineMath"]
+        );
+        expect(result.violations).toEqual([]);
+      })
+  );
 
-    expect(result.violations).toEqual([]);
-  });
+  it.effect("keeps unselected JSX attribute globals forbidden", () =>
+    Effect.gen(function* () {
+      const result = yield* inspectPolicy(
+        '<AtomShellLab description={<><UnknownMath math="2n^2" /></>} />',
+        ["AtomShellLab", "InlineMath"]
+      );
+      expect(result.violations).toContainEqual({
+        identifier: "UnknownMath",
+        rule: "unknown-free-global",
+      });
+    })
+  );
 
-  it("keeps unselected JSX attribute globals forbidden", async () => {
-    const result = await inspectPolicy(
-      '<AtomShellLab description={<><UnknownMath math="2n^2" /></>} />',
-      ["AtomShellLab", "InlineMath"]
-    );
-
-    expect(result.violations).toContainEqual({
-      identifier: "UnknownMath",
-      rule: "unknown-free-global",
-    });
-  });
-
-  it("never lets a renderer name override privileged-global rules", async () => {
-    const result = await inspectPolicy('{Function("return 1")()}', [
-      "Function",
-    ]);
-
-    expect(result.violations).toContainEqual({
-      identifier: "Function",
-      rule: "Function",
-    });
-  });
+  it.effect("never lets a renderer name override privileged-global rules", () =>
+    Effect.gen(function* () {
+      const result = yield* inspectPolicy('{Function("return 1")()}', [
+        "Function",
+      ]);
+      expect(result.violations).toContainEqual({
+        identifier: "Function",
+        rule: "Function",
+      });
+    })
+  );
 });
