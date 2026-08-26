@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Path } from "effect";
 import {
   loadPageDocument,
@@ -11,35 +11,42 @@ const englishEntry = pageEntries.find(
   ({ route }) =>
     route.pageKey === "privacy-policy" && route.artifactLocale === "en"
 );
-if (englishEntry === undefined) {
-  throw new Error("Expected the English privacy page entry.");
-}
+
+const requireEnglishEntry = Effect.fn("PageDocumentTest.requireEnglishEntry")(
+  () => Effect.fromNullishOr(englishEntry)
+);
 
 describe("page document", () => {
-  it("maps a missing registry-owned source to its typed checkout error", async () => {
-    const error = await Effect.runPromise(
-      loadPageDocument(checkoutRoot, englishEntry).pipe(
-        Effect.provide([testFileLayer(new Map()), Path.layer]),
-        Effect.flip
-      )
-    );
-
-    expect(error).toMatchObject({ _tag: "PageSourceError", checkoutRoot });
-  });
-
-  it("rejects malformed authored metadata with the exact source path", async () => {
-    const error = await Effect.runPromise(
+  it.effect(
+    "maps a missing registry-owned source to its typed checkout error",
+    () =>
       Effect.gen(function* () {
-        const source = yield* loadPageDocument(checkoutRoot, englishEntry);
-        return yield* makePageProjectionFromSource(source, {}).pipe(
+        const entry = yield* requireEnglishEntry();
+        const error = yield* loadPageDocument(checkoutRoot, entry).pipe(
+          Effect.provide([testFileLayer(new Map()), Path.layer]),
           Effect.flip
         );
-      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
-    );
 
-    expect(error).toMatchObject({
-      _tag: "PageMetadataError",
-      sourcePath: englishEntry.sourcePath,
-    });
-  });
+        expect(error).toMatchObject({ _tag: "PageSourceError", checkoutRoot });
+      })
+  );
+
+  it.effect(
+    "rejects malformed authored metadata with the exact source path",
+    () =>
+      Effect.gen(function* () {
+        const entry = yield* requireEnglishEntry();
+        const error = yield* Effect.gen(function* () {
+          const source = yield* loadPageDocument(checkoutRoot, entry);
+          return yield* makePageProjectionFromSource(source, {}).pipe(
+            Effect.flip
+          );
+        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
+
+        expect(error).toMatchObject({
+          _tag: "PageMetadataError",
+          sourcePath: entry.sourcePath,
+        });
+      })
+  );
 });
