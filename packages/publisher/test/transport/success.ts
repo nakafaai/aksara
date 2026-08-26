@@ -65,6 +65,7 @@ export function transportSuccess(
             rendererManifest: transportRenderer,
           },
           recovery: null,
+          tryoutRuntimeBundle: null,
         },
       }),
       headPage: headSuccess,

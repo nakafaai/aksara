@@ -19,7 +19,12 @@ interface StatusLog {
 /** Returns authoritative state for one captured request. */
 function statusResponse(
   request: HttpClientRequest.HttpClientRequest,
-  value: unknown = { active: null, candidate: null, recovery: null }
+  value: unknown = {
+    active: null,
+    candidate: null,
+    recovery: null,
+    tryoutRuntimeBundle: null,
+  }
 ) {
   return webResponse(
     request,

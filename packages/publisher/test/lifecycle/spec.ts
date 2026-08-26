@@ -203,7 +203,14 @@ export function makeTarget(release: {
       };
     })
   );
-  const current = vi.fn(() => Effect.succeed({ active, candidate, recovery }));
+  const current = vi.fn(() =>
+    Effect.succeed({
+      active,
+      candidate,
+      recovery,
+      tryoutRuntimeBundle: null,
+    })
+  );
   const target = PublicationTarget.of({
     abort,
     accept: ({ recoveryId }) =>
