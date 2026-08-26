@@ -12,12 +12,15 @@ import {
 const oldKeyId = SigningKeyIdSchema.make("content-2026-01");
 const currentPublicKey =
   "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n";
-const oldPublicKey = generateKeyPairSync("ed25519")
-  .publicKey.export({ format: "pem", type: "spki" })
-  .toString();
-const oldEntry = TrustedKeySchema.make({
-  keyId: oldKeyId,
-  publicKeyPem: oldPublicKey,
+const makeRetainedKey = Effect.sync(() => {
+  const publicKeyPem = generateKeyPairSync("ed25519")
+    .publicKey.export({ format: "pem", type: "spki" })
+    .toString();
+
+  return {
+    entry: TrustedKeySchema.make({ keyId: oldKeyId, publicKeyPem }),
+    publicKeyPem,
+  };
 });
 
 describe("trusted content keys", () => {
@@ -38,48 +41,54 @@ describe("trusted content keys", () => {
     expect(Object.isFrozen(TRUSTED_CONTENT_KEYS[0])).toBe(true);
   });
 
-  it("resolves both current and retained rotation keys", async () => {
-    const resolver = makeTrustedKeyResolver([
-      ...TRUSTED_CONTENT_KEYS,
-      oldEntry,
-    ]);
+  it.effect("resolves both current and retained rotation keys", () =>
+    Effect.gen(function* () {
+      const retained = yield* makeRetainedKey;
+      const resolver = makeTrustedKeyResolver([
+        ...TRUSTED_CONTENT_KEYS,
+        retained.entry,
+      ]);
 
-    await expect(
-      Promise.all([
-        Effect.runPromise(resolver.resolve(ACTIVE_SIGNING_KEY_ID)),
-        Effect.runPromise(resolver.resolve(oldKeyId)),
-      ])
-    ).resolves.toEqual([currentPublicKey, oldPublicKey]);
-  });
+      const resolved = yield* Effect.all([
+        resolver.resolve(ACTIVE_SIGNING_KEY_ID),
+        resolver.resolve(oldKeyId),
+      ]);
 
-  it("fails closed for unknown and duplicate identities", async () => {
-    const missingId = SigningKeyIdSchema.make("content-missing");
-    const resolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
-    const duplicate = makeTrustedKeyResolver([
-      ...TRUSTED_CONTENT_KEYS,
-      ...TRUSTED_CONTENT_KEYS,
-    ]);
+      expect(resolved).toEqual([currentPublicKey, retained.publicKeyPem]);
+    })
+  );
 
-    await expect(
-      Promise.all([
-        Effect.runPromise(resolver.resolve(missingId).pipe(Effect.flip)),
-        Effect.runPromise(
-          duplicate.resolve(ACTIVE_SIGNING_KEY_ID).pipe(Effect.flip)
-        ),
-      ])
-    ).resolves.toMatchObject([
-      { _tag: "SigningKeyNotFoundError", keyId: missingId },
-      { _tag: "SigningKeyResolutionError", keyId: ACTIVE_SIGNING_KEY_ID },
-    ]);
-  });
+  it.effect("fails closed for unknown and duplicate identities", () =>
+    Effect.gen(function* () {
+      const missingId = SigningKeyIdSchema.make("content-missing");
+      const resolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
+      const duplicate = makeTrustedKeyResolver([
+        ...TRUSTED_CONTENT_KEYS,
+        ...TRUSTED_CONTENT_KEYS,
+      ]);
 
-  it("does not observe caller mutations after construction", async () => {
-    const entries = [...TRUSTED_CONTENT_KEYS];
-    const resolver = makeTrustedKeyResolver(entries);
-    entries.push(oldEntry);
+      const failures = yield* Effect.all([
+        resolver.resolve(missingId).pipe(Effect.flip),
+        duplicate.resolve(ACTIVE_SIGNING_KEY_ID).pipe(Effect.flip),
+      ]);
 
-    await expect(
-      Effect.runPromise(resolver.resolve(oldKeyId).pipe(Effect.flip))
-    ).resolves.toMatchObject({ _tag: "SigningKeyNotFoundError" });
-  });
+      expect(failures).toMatchObject([
+        { _tag: "SigningKeyNotFoundError", keyId: missingId },
+        { _tag: "SigningKeyResolutionError", keyId: ACTIVE_SIGNING_KEY_ID },
+      ]);
+    })
+  );
+
+  it.effect("does not observe caller mutations after construction", () =>
+    Effect.gen(function* () {
+      const retained = yield* makeRetainedKey;
+      const entries = [...TRUSTED_CONTENT_KEYS];
+      const resolver = makeTrustedKeyResolver(entries);
+      entries.push(retained.entry);
+
+      const failure = yield* resolver.resolve(oldKeyId).pipe(Effect.flip);
+
+      expect(failure).toMatchObject({ _tag: "SigningKeyNotFoundError" });
+    })
+  );
 });
