@@ -12,6 +12,7 @@ import {
   type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
@@ -31,7 +32,10 @@ import {
   validateStableAksaraRevision,
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
-import { validateRecoveryRevision } from "#cli/recovery";
+import {
+  RecoveryBaseMismatchError,
+  validateRecoveryRevision,
+} from "#cli/recovery";
 
 interface BaseCatalogIdentity {
   readonly activeAppLocales: ActiveAppLocaleList;
@@ -55,6 +59,7 @@ type GitPreparationInput =
       readonly rendererManifest: unknown;
     })
   | (GitPreparationBase & {
+      readonly baseBundle: ContentReleaseBundle | null;
       readonly bundle: ContentReleaseBundle;
       readonly kind: "rebuild";
       readonly sha: GitCommitSha;
@@ -152,29 +157,77 @@ function selectRecoveryBase(bundle: ContentReleaseBundle) {
   } satisfies BaseCatalogIdentity;
 }
 
+/** Finds the first immutable base field that differs during candidate recovery. */
+function recoveryBaseMismatch(
+  expected: BaseCatalogIdentity | null,
+  actual: BaseCatalogIdentity | null
+): RecoveryBaseMismatchError["field"] | undefined {
+  if (expected === null || actual === null) {
+    return expected === actual ? undefined : "presence";
+  }
+  if (
+    JSON.stringify(expected.activeAppLocales) !==
+    JSON.stringify(actual.activeAppLocales)
+  ) {
+    return "activeAppLocales";
+  }
+  if (expected.manifestHash !== actual.manifestHash) {
+    return "manifestHash";
+  }
+  if (expected.releaseId !== actual.releaseId) {
+    return "releaseId";
+  }
+  if (
+    expected.resultCount !== actual.resultCount ||
+    expected.resultDigest !== actual.resultDigest
+  ) {
+    return "result";
+  }
+  return JSON.stringify(expected.snapshots) === JSON.stringify(actual.snapshots)
+    ? undefined
+    : "snapshots";
+}
+
+/** Requires active target state to match the candidate's signed base identity. */
+function validateRecoveryBase(
+  expected: BaseCatalogIdentity | null,
+  actual: BaseCatalogIdentity | null
+) {
+  const field = recoveryBaseMismatch(expected, actual);
+  return field === undefined
+    ? Effect.void
+    : Effect.fail(new RecoveryBaseMismatchError({ field }));
+}
+
 /** Prepares a Git publication and restores its stored envelope on recovery. */
 export const prepareProductionGit: PrepareProductionGit = Effect.fn(
   "AksaraCli.prepareProductionGit"
 )((input) =>
   Effect.gen(function* () {
+    const verifiedBaseBundle =
+      input.baseBundle === null
+        ? null
+        : yield* verifyContentReleaseBundle(input.baseBundle);
     let base: BaseCatalogIdentity | null;
     if (input.kind === "new") {
-      const bundle =
-        input.baseBundle === null
-          ? null
-          : yield* verifyContentReleaseBundle(input.baseBundle);
-      base = selectSourceBase(bundle);
+      base = selectSourceBase(verifiedBaseBundle);
     } else {
       base = selectRecoveryBase(input.bundle);
+      yield* validateRecoveryBase(base, selectSourceBase(verifiedBaseBundle));
     }
     const aksaraSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
     }
-    const rendererManifest =
+    const rendererManifest = yield* validateLiveRendererManifestHash(
       input.kind === "new"
         ? input.rendererManifest
-        : input.bundle.rendererManifest;
+        : input.bundle.rendererManifest
+    );
+    const refreshTryoutRuntimeBundle =
+      base?.snapshots.tryout.resultSnapshotId !== null &&
+      verifiedBaseBundle !== null &&
+      rendererManifest.hash !== verifiedBaseBundle.rendererManifest.hash;
     const catalog = yield* prepareContentCatalog({
       base:
         base === null
@@ -190,16 +243,18 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
     });
     const snapshots =
-      input.scope.snapshots.length === 0
+      input.scope.snapshots.length === 0 && !refreshTryoutRuntimeBundle
         ? {
             manifests: Stream.empty,
             rows: Stream.empty,
+            tryoutRuntimeSnapshot: null,
           }
         : yield* prepareReleaseSnapshots({
             checkoutRoot: input.checkoutRoot,
             families: input.scope.snapshots,
             previousSnapshots: base?.snapshots ?? null,
             questionHeads: catalog.result.pipe(Stream.filter(isQuestionHead)),
+            refreshTryoutRuntimeBundle,
             rendererManifest,
           });
     const prepared = yield* prepareContentRelease({
@@ -219,6 +274,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
+      tryoutRuntimeSnapshot: snapshots.tryoutRuntimeSnapshot,
     });
     const preparedSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     yield* validateStableAksaraRevision(aksaraSha, preparedSha);

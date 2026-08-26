@@ -19,6 +19,7 @@ import { Effect, Stream } from "effect";
 export const emptySnapshotSources = {
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
+  tryoutRuntimeSnapshot: null,
 } as const;
 
 /** Builds one exact active policy for an incremental test release. */

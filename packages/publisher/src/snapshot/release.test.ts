@@ -191,7 +191,8 @@ function prepare(
   previousSnapshots: Parameters<
     typeof prepareReleaseSnapshots
   >[0]["previousSnapshots"],
-  families: PublicationScope["snapshots"] = ["program", "quran", "tryout"]
+  families: PublicationScope["snapshots"] = ["program", "quran", "tryout"],
+  refreshTryoutRuntimeBundle = false
 ) {
   return Effect.runPromise(
     Effect.scoped(
@@ -201,13 +202,18 @@ function prepare(
           families,
           previousSnapshots,
           questionHeads: Stream.empty,
+          refreshTryoutRuntimeBundle,
           rendererManifest: {},
         });
         const [manifests, rows] = yield* Effect.all([
           prepared.manifests.pipe(Stream.runCollect),
           prepared.rows.pipe(Stream.runCollect),
         ]);
-        return { manifests: [...manifests], rows: [...rows] };
+        return {
+          manifests: [...manifests],
+          rows: [...rows],
+          tryoutRuntimeSnapshot: prepared.tryoutRuntimeSnapshot,
+        };
       })
     ).pipe(Effect.provide(NodeServices.layer))
   );
@@ -253,6 +259,11 @@ function activeSnapshots(quranSnapshotId: typeof testHash | null) {
 const inheritedSnapshots = await prepare(
   activeSnapshots(completeSnapshots.quran.manifest.snapshotId)
 );
+const rendererRefresh = await prepare(
+  activeSnapshots(completeSnapshots.quran.manifest.snapshotId),
+  [],
+  true
+);
 tryoutState.current = undefined;
 const changedQuran = await prepare(activeSnapshots(null), ["quran"]);
 tryoutState.current = tryoutFixture;
@@ -291,7 +302,18 @@ describe("release snapshot preparation", () => {
     expect(tryoutOnly.rows).toHaveLength(tryoutFixture.rowCount);
   });
   it("inherits exact active snapshot identities without restaging rows", () => {
-    expect(inheritedSnapshots).toEqual({ manifests: [], rows: [] });
+    expect(inheritedSnapshots).toEqual({
+      manifests: [],
+      rows: [],
+      tryoutRuntimeSnapshot: null,
+    });
+  });
+  it("returns an inherited try-out snapshot only for a new renderer pair", () => {
+    expect(rendererRefresh).toEqual({
+      manifests: [],
+      rows: [],
+      tryoutRuntimeSnapshot: completeSnapshots.tryout.manifest,
+    });
   });
   it("streams rows only for a family whose active identity changed", () => {
     expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);

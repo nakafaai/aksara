@@ -17,6 +17,7 @@ import {
   inheritContentSnapshots,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { TryoutSnapshotSchema } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -38,11 +39,13 @@ const inheritedSnapshots = {
   previousSnapshots: inheritContentSnapshots(null),
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
+  tryoutRuntimeSnapshot: null,
 } as const;
 const emptySnapshots = {
   previousSnapshots: null,
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
+  tryoutRuntimeSnapshot: null,
 } as const;
 const scope = PublicationScopeSchema.make({
   families: ["material"],
@@ -195,6 +198,29 @@ describe("prepareContentRelease", () => {
     expect(error).toMatchObject({
       _tag: "PreparedSnapshotScopeError",
       family: "program",
+    });
+  });
+
+  it("rejects a runtime bundle snapshot outside the resulting release state", async () => {
+    const snapshotId = Sha256HashSchema.make(`sha256:${"8".repeat(64)}`);
+    const error = await Effect.runPromise(
+      prepare({
+        tryoutRuntimeSnapshot: TryoutSnapshotSchema.make({
+          activeAppLocales: ACTIVE_APP_LOCALES,
+          catalogDigest: snapshotId,
+          counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+          format: "localized-tryout-snapshot",
+          placementCount: 0,
+          placementDigest: snapshotId,
+          routeCount: 0,
+          snapshotId,
+        }),
+      }).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PreparedTryoutRuntimeSnapshotError",
+      actualSnapshotId: snapshotId,
+      expectedSnapshotId: null,
     });
   });
 

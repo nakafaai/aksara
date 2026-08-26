@@ -44,6 +44,15 @@ export class PreparedSnapshotScopeError extends Schema.TaggedError<PreparedSnaps
   { family: ContentSnapshotKindSchema }
 ) {}
 
+/** A runtime bundle snapshot differs from the release's resulting try-out state. */
+export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<PreparedTryoutRuntimeSnapshotError>()(
+  "PreparedTryoutRuntimeSnapshotError",
+  {
+    actualSnapshotId: Sha256HashSchema,
+    expectedSnapshotId: Schema.NullOr(Sha256HashSchema),
+  }
+) {}
+
 /** One authored record failed its exact current schema. */
 export class PreparedContentDecodeError extends Schema.TaggedError<PreparedContentDecodeError>()(
   "PreparedContentDecodeError",

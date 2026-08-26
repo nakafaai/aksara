@@ -72,10 +72,12 @@ const calls = vi.hoisted(() => {
     publishKind: undefined,
     releaseId: undefined,
     rendererCalls: 0,
+    rendererManifestOverride: undefined,
     resumeBundle: undefined,
     resumeCalls: 0,
     rollbackInput: undefined,
     rootReads: 0,
+    runtimeBundleRefreshes: 0,
     sha: undefined,
     signingSecretReads: 0,
     snapshotCalls: 0,
@@ -212,7 +214,9 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
       }).pipe(
         TestEffect.tap((bundle) =>
           TestEffect.sync(() => {
-            calls.verifiedBundle = bundle;
+            if (calls.verifiedBundle === undefined) {
+              calls.verifiedBundle = bundle;
+            }
           })
         )
       );

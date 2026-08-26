@@ -103,6 +103,7 @@ describe("production state", () => {
           stateCurrent({ active: null, candidate, recovery: null })
         )
       ).resolves.toEqual({
+        baseBundle: null,
         candidate,
         kind: "rebuild",
         mode: "git",

@@ -68,7 +68,9 @@ export interface TargetCalls {
       }
     | undefined;
   rendererCalls: number;
+  rendererManifestOverride: unknown | undefined;
   rootReads: number;
+  runtimeBundleRefreshes: number;
   signingSecretReads: number;
   snapshotCalls: number;
   sourceLayers: number;
@@ -132,7 +134,9 @@ export function rendererMock(calls: TargetCalls) {
   return {
     fetchProductionRenderer: () => {
       calls.rendererCalls += 1;
-      return Effect.succeed(RENDERER_MANIFEST);
+      return Effect.succeed(
+        calls.rendererManifestOverride ?? RENDERER_MANIFEST
+      );
     },
   };
 }
@@ -182,13 +186,18 @@ export function snapshotMock(calls: TargetCalls) {
     prepareReleaseSnapshots: (input: {
       /** Replays the catalog narrowed by production preparation. */
       readonly questionHeads: Stream.Stream<unknown>;
+      readonly refreshTryoutRuntimeBundle: boolean;
     }) => {
       calls.snapshotCalls += 1;
+      if (input.refreshTryoutRuntimeBundle) {
+        calls.runtimeBundleRefreshes += 1;
+      }
       return input.questionHeads.pipe(
         Stream.runDrain,
         Effect.as({
           manifests: Stream.empty,
           rows: Stream.empty,
+          tryoutRuntimeSnapshot: null,
         })
       );
     },

@@ -46,6 +46,7 @@ export type ProductionStateAction =
       readonly sourceBundle: ContentReleaseBundle;
     }
   | {
+      readonly baseBundle: ContentReleaseBundle | null;
       readonly kind: "rebuild";
       readonly mode: "git";
       readonly candidate: StagedContentRelease;
@@ -119,12 +120,13 @@ const validateStoredCommand: ValidateStoredCommand = Effect.fn(
   } satisfies StoredCommand;
 });
 
-/** Selects new preparation, exact rebuild, or a lost terminal receipt read. */
-export const selectProductionAction: SelectProductionAction = Effect.fn(
-  "AksaraCli.selectProductionAction"
-)(function* (args: ProductionArguments, current: ContentReleaseCurrent) {
-  const { active, candidate, recovery } = current;
-  if (candidate !== null) {
+/** Restores one exact staged candidate after validating its current context. */
+const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
+  function* (
+    args: ProductionArguments,
+    current: ContentReleaseCurrent,
+    candidate: StagedContentRelease
+  ) {
     if (candidate.release.manifest.releaseId !== args.releaseId) {
       return yield* new ProductionStateError({
         reason: "candidate-conflict",
@@ -135,26 +137,38 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
       return yield* new ProductionStateError({ reason: "aborting" });
     }
     if (
-      recovery !== null &&
-      recovery.release.manifest.releaseId !== args.recoveryId
+      current.recovery !== null &&
+      current.recovery.release.manifest.releaseId !== args.recoveryId
     ) {
       return yield* new ProductionStateError({ reason: "recovery-conflict" });
     }
     if (stored.mode === "git") {
       return {
+        baseBundle:
+          current.active === null ? null : activeBundle(current.active),
         candidate,
         kind: "rebuild",
         mode: stored.mode,
         scope: stored.scope,
         sha: stored.sha,
-      };
+      } satisfies ProductionStateAction;
     }
     return {
       candidate,
       kind: "rebuild",
       mode: stored.mode,
       rollbackOf: stored.rollbackOf,
-    };
+    } satisfies ProductionStateAction;
+  }
+);
+
+/** Selects new preparation, exact rebuild, or a lost terminal receipt read. */
+export const selectProductionAction: SelectProductionAction = Effect.fn(
+  "AksaraCli.selectProductionAction"
+)(function* (args: ProductionArguments, current: ContentReleaseCurrent) {
+  const { active, candidate, recovery } = current;
+  if (candidate !== null) {
+    return yield* selectRebuildAction(args, current, candidate);
   }
 
   if (active?.release.manifest.releaseId === args.releaseId) {

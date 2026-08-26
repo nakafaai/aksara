@@ -7,6 +7,7 @@ import type {
   ContentSnapshotSet,
   PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import {
   type ProgramRowError,
   type ProgramSnapshotError,
@@ -31,6 +32,8 @@ export interface ReleaseSnapshotInput<E, R> {
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays the complete desired question catalog used by try-out placement. */
   readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
+  /** Rebuilds the inherited try-out snapshot for a new renderer pairing. */
+  readonly refreshTryoutRuntimeBundle: boolean;
   readonly rendererManifest: unknown;
 }
 
@@ -43,6 +46,8 @@ export interface PreparedReleaseSnapshots {
     ContentSnapshotRow,
     ProgramRowError | PreparedQuranRowError | ReplaySpoolError
   >;
+  /** Exact desired snapshot when this release creates a new runtime pair. */
+  readonly tryoutRuntimeSnapshot: TryoutSnapshot | null;
 }
 
 type PrepareQuranSnapshotError = Effect.Error<
@@ -85,13 +90,14 @@ export const prepareReleaseSnapshots: <E, R>(
         checkoutRoot: input.checkoutRoot,
       })
     : undefined;
-  const tryout = input.families.includes("tryout")
-    ? yield* prepareTryoutSnapshot({
-        checkoutRoot: input.checkoutRoot,
-        questionHeads: input.questionHeads,
-        rendererManifest: input.rendererManifest,
-      })
-    : undefined;
+  const tryout =
+    input.families.includes("tryout") || input.refreshTryoutRuntimeBundle
+      ? yield* prepareTryoutSnapshot({
+          checkoutRoot: input.checkoutRoot,
+          questionHeads: input.questionHeads,
+          rendererManifest: input.rendererManifest,
+        })
+      : undefined;
   const programManifest =
     program === undefined
       ? undefined
@@ -115,6 +121,10 @@ export const prepareReleaseSnapshots: <E, R>(
   const tryoutChanged =
     tryout !== undefined &&
     replacesActiveSnapshot(input.previousSnapshots, tryout.manifest);
+  const tryoutRuntimeSnapshot =
+    tryout !== undefined && (tryoutChanged || input.refreshTryoutRuntimeBundle)
+      ? tryout.manifest.manifest
+      : null;
   /** Replays only changed family manifests in signed canonical order. */
   const manifests = Stream.fromIterable([
     ...(programChanged && programManifest ? [programManifest] : []),
@@ -147,5 +157,5 @@ export const prepareReleaseSnapshots: <E, R>(
       Stream.concat(tryoutRows)
     );
   })();
-  return { manifests, rows };
+  return { manifests, rows, tryoutRuntimeSnapshot };
 });

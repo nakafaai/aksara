@@ -35,6 +35,7 @@ import type {
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { type Effect, Schema, type Stream } from "effect";
 import type {
   PreparedContentCoherenceError,
@@ -43,6 +44,7 @@ import type {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
+  PreparedTryoutRuntimeSnapshotError,
 } from "#publisher/preparation/errors";
 import type { PreparedGitRelease } from "#publisher/preparation/prepared";
 import type { QuranProvenanceBlockedError } from "#publisher/preparation/provenance";
@@ -117,6 +119,8 @@ export interface PrepareContentReleaseInput<E, R>
   readonly result: PreparedResultCatalogSource<E, R>;
   readonly routes: PreparedRouteSource<E, R>;
   readonly scope: PublicationScope;
+  /** Exact desired try-out snapshot only when the runtime pair changes. */
+  readonly tryoutRuntimeSnapshot: TryoutSnapshot | null;
 }
 
 type SourceHashError = Effect.Error<
@@ -189,6 +193,7 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
+  | PreparedTryoutRuntimeSnapshotError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError

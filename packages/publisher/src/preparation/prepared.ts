@@ -7,6 +7,7 @@ import type {
 } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { Stream } from "effect";
 
 import type { PreparedSnapshotSources } from "#publisher/preparation/snapshot";
@@ -28,6 +29,8 @@ interface PreparedContentReleaseBase<E, R, Projection extends ContentProjection>
   readonly routes: Stream.Stream<ContentRouteItem, E, R>;
   /** Reuses one exact authenticated candidate envelope during deterministic rebuild. */
   readonly storedRelease: SignedContentRelease | null;
+  /** Exact desired try-out snapshot only when the runtime pair changes. */
+  readonly tryoutRuntimeSnapshot: TryoutSnapshot | null;
   readonly [PreparedContentReleaseTypeId]: true;
 }
 

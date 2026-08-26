@@ -103,6 +103,7 @@ async function prepareDeletion<E>(
         },
       }),
       scope: { ...publicationScope, snapshots },
+      tryoutRuntimeSnapshot: null,
       ...snapshotSources,
     }).pipe(Effect.provide(NodeServices.layer))
   );
@@ -127,6 +128,7 @@ async function prepareProgramOnly() {
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
+      tryoutRuntimeSnapshot: null,
       ...snapshotPolicyBase("test-plan-program-base"),
     }).pipe(Effect.provide(NodeServices.layer))
   );

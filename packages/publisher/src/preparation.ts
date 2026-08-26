@@ -39,7 +39,10 @@ import {
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
-import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
+import {
+  PreparedSnapshotScopeError,
+  PreparedTryoutRuntimeSnapshotError,
+} from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
@@ -107,6 +110,16 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     previousSnapshots: input.previousSnapshots,
     rows: input.snapshotRows,
   });
+  if (
+    input.tryoutRuntimeSnapshot !== null &&
+    input.tryoutRuntimeSnapshot.snapshotId !==
+      snapshotSummary.snapshots.tryout.resultSnapshotId
+  ) {
+    return yield* new PreparedTryoutRuntimeSnapshotError({
+      actualSnapshotId: input.tryoutRuntimeSnapshot.snapshotId,
+      expectedSnapshotId: snapshotSummary.snapshots.tryout.resultSnapshotId,
+    });
+  }
   /** Replays strict decoding, coherence, ordering, and route validation. */
   const records = derivePreparedRecords({
     records: input.records,
@@ -223,5 +236,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     routes,
     snapshotManifests,
     snapshotRows,
+    tryoutRuntimeSnapshot: input.tryoutRuntimeSnapshot,
   });
 });

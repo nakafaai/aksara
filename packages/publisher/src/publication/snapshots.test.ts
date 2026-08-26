@@ -59,6 +59,7 @@ async function prepareProgramRelease() {
       scope: { ...publicationScope, snapshots: ["program"] },
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
+      tryoutRuntimeSnapshot: null,
       ...snapshotPolicyBase("test-program-snapshot-base"),
     }).pipe(Effect.provide(NodeServices.layer))
   );

@@ -32,7 +32,6 @@ import {
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
 } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
@@ -174,17 +173,6 @@ function contentCacheChanges<E, R>(
   );
 }
 
-/** Selects the one canonical try-out replacement from a replayable manifest stream. */
-function selectTryoutSnapshot<E, R>(input: PreparedContentRelease<E, R>) {
-  /** Starts the fold without an authored try-out replacement. */
-  const initial = (): TryoutSnapshot | null => null;
-  return input.snapshotManifests.pipe(
-    Stream.runFold(initial, (selected, snapshot) =>
-      snapshot.family === "tryout" ? snapshot.manifest : selected
-    )
-  );
-}
-
 /** Builds one signed replayable plan without changing target visibility. */
 export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
@@ -218,7 +206,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     routes: input.routes,
   });
   const snapshotSummary = yield* verifyPublicationSnapshots(input);
-  const tryoutSnapshot = yield* selectTryoutSnapshot(input);
   /** Replays every structured snapshot and body-item cache change. */
   const cacheChanges = contentSnapshotCacheChanges(
     snapshotSummary.snapshots
@@ -265,12 +252,12 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     : Effect.succeed(input.storedRelease);
   const release = yield* verifySignedContentRelease(signedRelease);
   const tryoutRuntimeBundle =
-    invocation.kind === "git" && tryoutSnapshot !== null
+    invocation.kind === "git" && input.tryoutRuntimeSnapshot !== null
       ? yield* signer
           .signTryoutRuntimeBundle({
             format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
             rendererManifestHash: rendererManifest.hash,
-            snapshot: tryoutSnapshot,
+            snapshot: input.tryoutRuntimeSnapshot,
             sourceGitSha: yield* validateGitMode(invocation.input),
             sourceManifestHash: release.manifestHash,
             sourceReleaseId: release.manifest.releaseId,

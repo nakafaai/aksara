@@ -194,6 +194,7 @@ export const runProductionCommand: (
       } else {
         const bundle = yield* verifyPendingBundle(action, keyResolver);
         publishable = yield* prepareProductionGit({
+          baseBundle: action.baseBundle,
           bundle,
           checkoutRoot,
           kind: "rebuild",

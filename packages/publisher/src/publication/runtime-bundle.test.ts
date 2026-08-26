@@ -106,6 +106,7 @@ const prepared = makePreparedGitRelease({
   routes: base.prepared.routes,
   snapshotManifests: Stream.make(tryoutManifest),
   snapshotRows: Stream.empty,
+  tryoutRuntimeSnapshot: snapshot,
 });
 const source = PublicationSource.of({
   loadExactRevision: () => Stream.make(publicationSource),

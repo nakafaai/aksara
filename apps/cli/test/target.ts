@@ -25,11 +25,13 @@ import {
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
+  inheritContentSnapshot,
   inheritContentSnapshots,
   invertContentSnapshots,
   type PublicationScope,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
@@ -40,7 +42,8 @@ const OTHER_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Signs a structurally valid test manifest with its exact canonical hash. */
 function bundleFromManifest(
   manifest: ContentReleaseManifest,
-  keyId = SigningKeyIdSchema.make("content-2026-07-23")
+  keyId = SigningKeyIdSchema.make("content-2026-07-23"),
+  rendererManifest: RendererManifestEnvelope = RENDERER_MANIFEST
 ): ContentReleaseBundle {
   const release = SignedContentReleaseSchema.make({
     keyId,
@@ -50,7 +53,7 @@ function bundleFromManifest(
   });
   return ContentReleaseBundleSchema.make({
     release,
-    rendererManifest: RENDERER_MANIFEST,
+    rendererManifest,
   });
 }
 
@@ -67,8 +70,10 @@ export function gitBundle(
     readonly baseReleaseId?: ReleaseId | null;
     readonly keyId?: typeof SigningKeyIdSchema.Type;
     readonly projectionDigest?: typeof Sha256HashSchema.Type;
+    readonly rendererManifest?: RendererManifestEnvelope;
     readonly scope?: PublicationScope;
     readonly sha?: typeof GitCommitShaSchema.Type;
+    readonly tryoutSnapshotId?: typeof Sha256HashSchema.Type;
   } = {}
 ) {
   const baseReleaseId = input.baseReleaseId ?? null;
@@ -92,8 +97,11 @@ export function gitBundle(
       projectionCount: 0,
       projectionDigest: input.projectionDigest ?? OTHER_HASH,
       releaseId: releaseId(id),
-      rendererContractVersion: RENDERER_MANIFEST.rendererContractVersion,
-      rendererManifestHash: RENDERER_MANIFEST.hash,
+      rendererContractVersion:
+        input.rendererManifest?.rendererContractVersion ??
+        RENDERER_MANIFEST.rendererContractVersion,
+      rendererManifestHash:
+        input.rendererManifest?.hash ?? RENDERER_MANIFEST.hash,
       resultCount: 0,
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       rollbackCount: 0,
@@ -101,10 +109,14 @@ export function gitBundle(
       routeCount: 0,
       routeDigest: HASH,
       scope: input.scope ?? FUNCTION_SCOPE,
-      snapshots: inheritContentSnapshots(null),
+      snapshots: {
+        ...inheritContentSnapshots(null),
+        tryout: inheritContentSnapshot(input.tryoutSnapshotId ?? null),
+      },
       upsertCount: 0,
     }),
-    input.keyId
+    input.keyId,
+    input.rendererManifest
   );
 }
 
