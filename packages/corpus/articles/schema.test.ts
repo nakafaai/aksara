@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import {
@@ -34,96 +34,106 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
 }
 
 describe("article source", () => {
-  it("decodes exact article identity and reviewed references", async () => {
-    await expect(
-      Effect.runPromise(defineArticleSource(source()))
-    ).resolves.toEqual(source());
-  });
+  it.effect("decodes exact article identity and reviewed references", () =>
+    Effect.gen(function* () {
+      expect(yield* defineArticleSource(source())).toEqual(source());
+    })
+  );
 
-  it("accepts a generic test category with its source-owned renderer", async () => {
-    const generic = source({
-      category: {
-        key: "test-category",
-        rendererDomain: "physics",
-        routeSlugs: {
-          de: "test-kategorie",
-          en: "test-category",
-          id: "kategori-uji",
-        },
-        titles: {
-          de: "Testkategorie",
-          en: "Test category",
-          id: "Kategori uji",
-        },
-      },
-      slug: "test-group-test-article",
-      sourceRoot: "articles/test-category/test-group/test-article",
-    });
+  it.effect(
+    "accepts a generic test category with its source-owned renderer",
+    () =>
+      Effect.gen(function* () {
+        const generic = source({
+          category: {
+            key: "test-category",
+            rendererDomain: "physics",
+            routeSlugs: {
+              de: "test-kategorie",
+              en: "test-category",
+              id: "kategori-uji",
+            },
+            titles: {
+              de: "Testkategorie",
+              en: "Test category",
+              id: "Kategori uji",
+            },
+          },
+          slug: "test-group-test-article",
+          sourceRoot: "articles/test-category/test-group/test-article",
+        });
 
-    await expect(
-      Effect.runPromise(defineArticleSource(generic))
-    ).resolves.toEqual(generic);
-  });
+        expect(yield* defineArticleSource(generic)).toEqual(generic);
+      })
+  );
 
-  it("maps one malformed source root to a typed source failure", async () => {
-    const root = await Effect.runPromise(
-      defineArticleSource(
+  it.effect("maps one malformed source root to a typed source failure", () =>
+    Effect.gen(function* () {
+      const root = yield* defineArticleSource(
         source({ sourceRoot: "articles/politics/flat" })
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
 
-    expect(root).toMatchObject({
-      _tag: "ArticleSourceError",
-      sourceRoot: "articles/politics/flat",
-    });
-    expect(String(root.cause)).toContain("Invalid article source root.");
-  });
+      expect(root).toMatchObject({
+        _tag: "ArticleSourceError",
+        sourceRoot: "articles/politics/flat",
+      });
+      expect(String(root.cause)).toContain("Invalid article source root.");
+    })
+  );
 
-  it("requires a non-empty display title for every present locale", async () => {
-    const error = await Effect.runPromise(
-      defineArticleSource(
+  it.effect("requires a non-empty display title for every present locale", () =>
+    Effect.gen(function* () {
+      const error = yield* defineArticleSource(
         source({
           category: {
             key: "politics",
             rendererDomain: "politics",
-            routeSlugs: { de: "politik", en: "politics", id: "politics" },
+            routeSlugs: {
+              de: "politik",
+              en: "politics",
+              id: "politics",
+            },
             titles: { de: "Politik", en: "Politics", id: "" },
           },
         })
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
 
-    expect(error).toMatchObject({ _tag: "ArticleSourceError" });
-  });
+      expect(error).toMatchObject({ _tag: "ArticleSourceError" });
+    })
+  );
 
-  it.each([
+  it.effect.each([
     "materials/politics/reviewed/article",
     "articles/Politics/reviewed/article",
-  ])("rejects an invalid source-root grammar: %s", async (sourceRoot) => {
-    const error = await Effect.runPromise(
-      defineArticleSource(source({ sourceRoot })).pipe(Effect.flip)
-    );
-
-    expect(error).toMatchObject({
-      _tag: "ArticleSourceError",
-      sourceRoot,
-    });
-    expect(String(error.cause)).toContain("Invalid article source root.");
-  });
-
-  it("rejects a physical source root that flattens to another slug", async () => {
-    const identity = await Effect.runPromise(
-      defineArticleSource(source({ slug: "different-article" })).pipe(
+  ])("rejects an invalid source-root grammar: %s", (sourceRoot) =>
+    Effect.gen(function* () {
+      const error = yield* defineArticleSource(source({ sourceRoot })).pipe(
         Effect.flip
-      )
-    );
+      );
 
-    expect(identity).toMatchObject({
-      _tag: "ArticleSourceError",
-      sourceRoot: "articles/politics/reviewed/article",
-    });
-    expect(String(identity.cause)).toContain(
-      "Expected the pair-grouped article source root to flatten to its slug."
-    );
-  });
+      expect(error).toMatchObject({
+        _tag: "ArticleSourceError",
+        sourceRoot,
+      });
+      expect(String(error.cause)).toContain("Invalid article source root.");
+    })
+  );
+
+  it.effect(
+    "rejects a physical source root that flattens to another slug",
+    () =>
+      Effect.gen(function* () {
+        const identity = yield* defineArticleSource(
+          source({ slug: "different-article" })
+        ).pipe(Effect.flip);
+
+        expect(identity).toMatchObject({
+          _tag: "ArticleSourceError",
+          sourceRoot: "articles/politics/reviewed/article",
+        });
+        expect(String(identity.cause)).toContain(
+          "Expected the pair-grouped article source root to flatten to its slug."
+        );
+      })
+  );
 });
