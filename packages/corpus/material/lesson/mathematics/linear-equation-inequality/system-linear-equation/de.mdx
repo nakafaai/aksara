@@ -254,7 +254,14 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
   />
   <LineEquation
     title="Lineares Gleichungssystem mit unendlich vielen Lösungen"
-    description="Zwei zusammenfallende Linien (identische Linien)."
+    description={
+      <>
+        Die zweite Gleichung ist <InlineMath math="2" /> mal die erste. Daher
+        fallen beide Graphen zusammen und erscheinen als eine Gerade. Die Linie
+        der ersten Gleichung wird breiter gezeichnet, damit beide Gleichungen
+        auf demselben Verlauf sichtbar bleiben.
+      </>
+    }
     data={[
       {
         points: [
@@ -264,6 +271,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
         ],
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
+        lineWidth: 6,
       },
       {
         points: [
@@ -273,6 +281,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
         ],
         labels: [{ text: <InlineMath math="4x+6y=2" />, offset: [2, 1, 0] }],
         color: "#0891b2",
+        lineWidth: 2,
       },
     ]}
     cameraPosition={[6, 4, 6]}
