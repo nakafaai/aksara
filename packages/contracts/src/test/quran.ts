@@ -30,15 +30,7 @@ function quranTafsirAccess() {
       appLocale: english,
       kind: "external",
       notice: "Technical English external Tafsir notice.",
-      source: {
-        label: "Technical English Tafsir link.",
-        publisher: "Technical publisher",
-        retrievedAt: "2026-08-26T15:51:00Z",
-        termsUrl: "https://example.test/terms/tafsir/en",
-        title: "Technical English Tafsir",
-        url: "https://example.test/tafsir/en",
-        version: 1,
-      },
+      sourceId: "mokhtasar-english",
     }),
     QuranTafsirAccessSchema.make({
       appLocale: indonesian,
@@ -50,15 +42,7 @@ function quranTafsirAccess() {
       appLocale: german,
       kind: "external",
       notice: "Technischer deutscher externer Tafsirhinweis.",
-      source: {
-        label: "Technischer deutscher Tafsirlink.",
-        publisher: "Technical publisher",
-        retrievedAt: "2026-08-26T15:51:00Z",
-        termsUrl: "https://example.test/terms/tafsir/de",
-        title: "Technical German Tafsir",
-        url: "https://example.test/tafsir/de",
-        version: 1,
-      },
+      sourceId: "mokhtasar-german",
     }),
   ] as const;
 }

@@ -10,6 +10,10 @@ import {
   germanQuranSourceAttribution,
   germanQuranSourceCopy,
 } from "#corpus/quran/attribution/german";
+import {
+  mokhtasarEnglishAttribution,
+  mokhtasarGermanAttribution,
+} from "#corpus/quran/attribution/mokhtasar";
 import { QURAN_SOURCE_POLICY } from "#corpus/quran/source/policy";
 
 const RETRIEVED_AT = "2026-07-24T17:57:50Z";
@@ -174,6 +178,8 @@ const quranencTafsir = QuranSourceAttributionSchema.make({
 });
 
 const attributionBySourceId: Record<QuranSourceId, QuranSourceAttribution> = {
+  "mokhtasar-english": mokhtasarEnglishAttribution,
+  "mokhtasar-german": mokhtasarGermanAttribution,
   "quranenc-english": quranencEnglish,
   "quranenc-german": germanQuranSourceAttribution,
   "quranenc-indonesian": quranencIndonesian,

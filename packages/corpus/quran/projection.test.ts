@@ -79,7 +79,7 @@ describe("Quran projection", () => {
         {
           appLocale: "en",
           kind: "external",
-          source: { url: "https://mokhtasr.com/en/books/319", version: 7 },
+          sourceId: "mokhtasar-english",
         },
         {
           appLocale: "id",
@@ -89,7 +89,7 @@ describe("Quran projection", () => {
         {
           appLocale: "de",
           kind: "external",
-          source: { url: "https://mokhtasr.com/en/books/336", version: 6 },
+          sourceId: "mokhtasar-german",
         },
       ],
     });

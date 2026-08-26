@@ -160,13 +160,27 @@ describe("Quran source loading", () => {
     ]);
   });
 
-  it("authenticates the active German publication record", async () => {
-    const error = await reject(drift("german/publication.json"));
+  it("authenticates publication and linked Tafsir evidence", async () => {
+    const errors = await Promise.all([
+      reject(drift("german/publication.json")),
+      reject(drift("mokhtasar/en.json")),
+      reject(drift("mokhtasar/terms.json")),
+    ]);
 
-    expect(error).toMatchObject({
-      _tag: "QuranSourceFileError",
-      detail: "Pinned source drifted: islamhouse-german-bubenheim.json.",
-    });
+    expect(errors).toMatchObject([
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned source drifted: islamhouse-german-bubenheim.json.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned source drifted: mokhtasar-en-evidence.json.",
+      },
+      {
+        _tag: "QuranSourceFileError",
+        detail: "Pinned source drifted: mokhtasar-terms-evidence.json.",
+      },
+    ]);
   });
 
   it("rejects invalid UTF-8 before parsing official text", async () => {

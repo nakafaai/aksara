@@ -97,7 +97,7 @@ describe("Quran aggregate digest", () => {
       expect(error).toMatchObject({
         _tag: "QuranRowOrderError",
         expected:
-          "quran-attribution:en,de:tanzil-text:tanzil-metadata:quranenc-english:quranenc-german",
+          "quran-attribution:en,de:tanzil-text:tanzil-metadata:quranenc-english:quranenc-german:mokhtasar-english:mokhtasar-german",
       });
     })
   );
@@ -126,36 +126,28 @@ describe("Quran aggregate digest", () => {
       const chunkPayload = yield* Schema.decodeUnknownEffect(
         QuranChunkRowSchema
       )(chunk.payload);
-      const source = yield* Effect.fromNullishOr(
-        attributionPayload.sources.find(
-          (candidate) => candidate.id === "quranenc-indonesian"
-        )
-      );
       const germanAttribution = yield* Schema.decodeUnknownEffect(
         QuranAttributionRowSchema
       )({
         ...attributionPayload,
         activeAppLocales: germanLocales,
-        sources: [
-          ...attributionPayload.sources
-            .filter((candidate) =>
-              ["tanzil-text", "tanzil-metadata", "quranenc-english"].includes(
-                candidate.id
-              )
-            )
-            .map((candidate) => ({
-              ...candidate,
-              copy: [
-                candidate.copy[0],
-                { ...candidate.copy[0], appLocale: "de" },
-              ],
-            })),
-          {
-            ...source,
-            copy: [source.copy[0], { ...source.copy[0], appLocale: "de" }],
-            id: "quranenc-german",
-          },
-        ],
+        sources: attributionPayload.sources
+          .filter((candidate) =>
+            [
+              "tanzil-text",
+              "tanzil-metadata",
+              "quranenc-english",
+              "quranenc-german",
+              "mokhtasar-english",
+              "mokhtasar-german",
+            ].includes(candidate.id)
+          )
+          .map((candidate) => ({
+            ...candidate,
+            copy: candidate.copy.filter(({ appLocale }) =>
+              ["en", "de"].includes(appLocale)
+            ),
+          })),
         tafsirAccess: attributionPayload.tafsirAccess.filter(({ appLocale }) =>
           ["en", "de"].includes(appLocale)
         ),

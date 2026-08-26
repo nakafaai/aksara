@@ -68,27 +68,11 @@ function canonicalizeAttribution(source: QuranSourceAttribution) {
 
 /** Serializes signed Tafsir access without trusting object insertion order. */
 function canonicalizeTafsirAccess(access: QuranTafsirAccess) {
-  if (access.kind === "embedded") {
-    return {
-      appLocale: access.appLocale,
-      kind: access.kind,
-      notice: access.notice,
-      sourceId: access.sourceId,
-    };
-  }
   return {
     appLocale: access.appLocale,
     kind: access.kind,
     notice: access.notice,
-    source: {
-      label: access.source.label,
-      publisher: access.source.publisher,
-      retrievedAt: access.source.retrievedAt,
-      termsUrl: access.source.termsUrl,
-      title: access.source.title,
-      url: access.source.url,
-      version: access.source.version,
-    },
+    sourceId: access.sourceId,
   };
 }
 

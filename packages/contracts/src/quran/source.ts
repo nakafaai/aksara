@@ -20,6 +20,8 @@ export const QuranSourceIdSchema = Schema.Literals([
   "quranenc-indonesian",
   "quranenc-german",
   "quranenc-tafsir",
+  "mokhtasar-english",
+  "mokhtasar-german",
 ]);
 export type QuranSourceId = typeof QuranSourceIdSchema.Type;
 
@@ -43,16 +45,21 @@ export function quranSourceIds(
   if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
     sourceIds.push("quranenc-tafsir");
   }
+  if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
+    sourceIds.push("mokhtasar-english");
+  }
+  if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
+    sourceIds.push("mokhtasar-german");
+  }
   return QURAN_SOURCE_IDS.filter((sourceId) => sourceIds.includes(sourceId));
 }
 
 /** Counts exact source files required by one active locale set. */
 export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
-  return quranSourceIds(activeAppLocales).reduce(
-    (count, sourceId) =>
-      count + (sourceId === "quranenc-tafsir" ? QURAN_SURAH_COUNT : 1),
-    0
-  );
+  const tafsirFileCount = activeAppLocales.includes(AppLocaleSchema.make("id"))
+    ? QURAN_SURAH_COUNT
+    : 0;
+  return 2 + activeAppLocales.length + tafsirFileCount;
 }
 
 const HttpsUrlSchema = Schema.String.pipe(
@@ -104,18 +111,6 @@ export const QuranSourceAttributionSchema = Schema.Struct({
 });
 export type QuranSourceAttribution = typeof QuranSourceAttributionSchema.Type;
 
-/** Official linked Tafsir edition that Nakafa may reference but not republish. */
-export const QuranTafsirLinkSchema = Schema.Struct({
-  label: Schema.Trimmed.check(Schema.isNonEmpty()),
-  publisher: Schema.Trimmed.check(Schema.isNonEmpty()),
-  retrievedAt: RetrievedAtSchema,
-  termsUrl: HttpsUrlSchema,
-  title: Schema.Trimmed.check(Schema.isNonEmpty()),
-  url: HttpsUrlSchema,
-  version: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-});
-export type QuranTafsirLink = typeof QuranTafsirLinkSchema.Type;
-
 const QuranEmbeddedTafsirAccessSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
   kind: Schema.Literal("embedded"),
@@ -134,12 +129,16 @@ const QuranExternalTafsirAccessSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  source: QuranTafsirLinkSchema,
+  sourceId: Schema.Literals(["mokhtasar-english", "mokhtasar-german"]),
 }).pipe(
   Schema.check(
     Schema.makeFilter(
-      ({ appLocale }) => appLocale !== QuranTafsirLocaleSchema.literal,
-      { message: "Embedded Tafsir locales cannot use an external-only source." }
+      ({ appLocale, sourceId }) =>
+        (appLocale === AppLocaleSchema.make("en") &&
+          sourceId === "mokhtasar-english") ||
+        (appLocale === AppLocaleSchema.make("de") &&
+          sourceId === "mokhtasar-german"),
+      { message: "Expected each external Tafsir locale to bind its source." }
     )
   )
 );
@@ -183,6 +182,16 @@ function hasCompleteLocalizedCopy(input: {
 }) {
   return input.sources.every((source) =>
     hasCompleteQuranSourceCopy(source, input.activeAppLocales)
+  );
+}
+
+/** Checks every signed Tafsir access record against one attributed source. */
+function hasAttributedTafsirSources(input: {
+  readonly sources: readonly QuranSourceAttribution[];
+  readonly tafsirAccess: readonly QuranTafsirAccess[];
+}) {
+  return input.tafsirAccess.every((access) =>
+    input.sources.some((source) => source.id === access.sourceId)
   );
 }
 
@@ -235,6 +244,11 @@ export const QuranAttributionRowSchema = Schema.Struct({
         message: "Expected exact Tafsir access for every active locale.",
       }
     )
+  ),
+  Schema.check(
+    Schema.makeFilter(hasAttributedTafsirSources, {
+      message: "Expected every Tafsir access record to bind an attribution.",
+    })
   )
 );
 export type QuranAttributionRow = typeof QuranAttributionRowSchema.Type;

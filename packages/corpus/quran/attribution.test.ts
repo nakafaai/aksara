@@ -14,8 +14,10 @@ describe("Quran source attribution", () => {
       quranSourceAttributionsFor(ACTIVE_APP_LOCALES)
     );
 
-    expect(active).toHaveLength(6);
+    expect(active).toHaveLength(8);
     expect(active.every(({ copy }) => copy.length === 3)).toBe(true);
+    expect(active.map(({ id }) => id)).toContain("mokhtasar-english");
+    expect(active.map(({ id }) => id)).toContain("mokhtasar-german");
   });
 
   it("fails typed when source or localized copy ownership is not exact", async () => {

@@ -55,15 +55,7 @@ function tafsirAccess() {
       appLocale: AppLocaleSchema.make("en"),
       kind: "external",
       notice: "Technical English Tafsir notice.",
-      source: {
-        label: "Technical English Tafsir link.",
-        publisher: "Technical publisher",
-        retrievedAt: "2026-08-26T15:51:00Z",
-        termsUrl: "https://example.test/terms/tafsir/en",
-        title: "Technical English Tafsir",
-        url: "https://example.test/tafsir/en",
-        version: 1,
-      },
+      sourceId: "mokhtasar-english",
     }),
     QuranTafsirAccessSchema.make({
       appLocale: AppLocaleSchema.make("id"),
@@ -75,15 +67,7 @@ function tafsirAccess() {
       appLocale: AppLocaleSchema.make("de"),
       kind: "external",
       notice: "Technischer deutscher Tafsirhinweis.",
-      source: {
-        label: "Technischer deutscher Tafsirlink.",
-        publisher: "Technical publisher",
-        retrievedAt: "2026-08-26T15:51:00Z",
-        termsUrl: "https://example.test/terms/tafsir/de",
-        title: "Technical German Tafsir",
-        url: "https://example.test/tafsir/de",
-        version: 1,
-      },
+      sourceId: "mokhtasar-german",
     }),
   ] as const;
 }
@@ -164,7 +148,7 @@ describe("Quran source contracts", () => {
     });
     const insecureTafsir = Schema.decodeExit(QuranTafsirAccessSchema)({
       ...englishAccess,
-      source: { ...englishAccess.source, url: "http://example.test" },
+      sourceId: "mokhtasar-german",
     });
 
     expect(Exit.isFailure(retrieval) ? String(retrieval.cause) : "").toContain(
@@ -175,9 +159,9 @@ describe("Quran source contracts", () => {
     );
     expect(
       Exit.isFailure(externalId) ? String(externalId.cause) : ""
-    ).toContain("Embedded Tafsir locales cannot use an external-only source.");
+    ).toContain("Expected each external Tafsir locale to bind its source.");
     expect(
       Exit.isFailure(insecureTafsir) ? String(insecureTafsir.cause) : ""
-    ).toContain("Quran source links must use HTTPS.");
+    ).toContain("Expected each external Tafsir locale to bind its source.");
   });
 });

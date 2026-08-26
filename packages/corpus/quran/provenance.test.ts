@@ -17,12 +17,14 @@ describe("Quran provenance records", () => {
       })
     );
 
-    expect(activeRecords).toHaveLength(6);
+    expect(activeRecords).toHaveLength(8);
     expect(new Set(activeRecords.map(({ scope }) => scope))).toEqual(
       new Set([
         "arabic-text",
         "de-translation",
+        "de-tafsir-access",
         "en-translation",
+        "en-tafsir-access",
         "id-tafsir",
         "id-translation",
         "metadata",
@@ -33,6 +35,8 @@ describe("Quran provenance records", () => {
       activeRecords.every(
         ({ attribution, scope }) =>
           scope === "de-translation" ||
+          scope === "de-tafsir-access" ||
+          scope === "en-tafsir-access" ||
           attribution.retrievedAt === "2026-07-24T17:57:50Z"
       )
     ).toBe(true);
@@ -54,7 +58,7 @@ describe("Quran provenance records", () => {
     );
     const german = records.find(({ scope }) => scope === "de-translation");
 
-    expect(records).toHaveLength(6);
+    expect(records).toHaveLength(8);
     expect(manifest.status).toBe("approved");
     expect(german).toMatchObject({
       attribution: {
@@ -77,5 +81,14 @@ describe("Quran provenance records", () => {
     expect(
       records.every(({ attribution }) => attribution.copy.length === 3)
     ).toBe(true);
+    expect(
+      records.find(({ scope }) => scope === "en-tafsir-access")
+    ).toMatchObject({
+      attribution: {
+        id: "mokhtasar-english",
+        version: "catalog-v7",
+      },
+      status: "approved",
+    });
   });
 });

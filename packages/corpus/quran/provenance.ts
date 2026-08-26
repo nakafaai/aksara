@@ -25,6 +25,13 @@ const englishTranslationRecord = QuranProvenanceRecordSchema.make({
   scope: "en-translation",
   status: "approved",
 });
+const englishTafsirAccessRecord = QuranProvenanceRecordSchema.make({
+  attribution: authoringQuranSourceAttribution("mokhtasar-english"),
+  evidence:
+    "The official book 319 response identifies the complete English interpretation as catalog version 7, while the pinned terms decision permits linking and prohibits Nakafa from embedding its text.",
+  scope: "en-tafsir-access",
+  status: "approved",
+});
 const indonesianTranslationRecord = QuranProvenanceRecordSchema.make({
   attribution: authoringQuranSourceAttribution("quranenc-indonesian"),
   evidence:
@@ -37,6 +44,13 @@ const indonesianTafsirRecord = QuranProvenanceRecordSchema.make({
   evidence:
     "All 114 official API responses are pinned as one domain-separated byte bundle; v1.0.0 publisher and republishing terms are preserved without short or long reconstruction.",
   scope: "id-tafsir",
+  status: "approved",
+});
+const germanTafsirAccessRecord = QuranProvenanceRecordSchema.make({
+  attribution: authoringQuranSourceAttribution("mokhtasar-german"),
+  evidence:
+    "The official book 336 response identifies the complete German interpretation as catalog version 6, while the pinned terms decision permits linking and prohibits Nakafa from embedding its text.",
+  scope: "de-tafsir-access",
   status: "approved",
 });
 const metadataRecord = QuranProvenanceRecordSchema.make({
@@ -52,7 +66,9 @@ const provenanceRecordByScope: Record<
   QuranProvenanceRecord
 > = {
   "arabic-text": arabicTextRecord,
+  "de-tafsir-access": germanTafsirAccessRecord,
   "de-translation": germanQuranProvenanceRecord,
+  "en-tafsir-access": englishTafsirAccessRecord,
   "en-translation": englishTranslationRecord,
   "id-tafsir": indonesianTafsirRecord,
   "id-translation": indonesianTranslationRecord,

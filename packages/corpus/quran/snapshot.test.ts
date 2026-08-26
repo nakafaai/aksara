@@ -19,17 +19,17 @@ describe("Quran snapshot preparation", () => {
 
     expect(snapshot.manifest).toMatchObject({
       projectionDigest:
-        "sha256:b2b4977415376fe6a9536eb953b496fb59d88a8fa20f4fd4c95547660ba1e40f",
+        "sha256:760db10a65875a51577f4e4d457dba16e6316426b702fd6acd711d9c8222c619",
       provenanceDigest:
-        "sha256:a65c6001f613f6ac2f68014d6af93cab1ef473d6b6e8ed99dfa9567eb12cc95f",
+        "sha256:6811b69eb09048b2e1ac142afde742aa32d0702e61428a85bc51782301a5877d",
       provenanceStatus: "approved",
       runtimeDigest:
-        "sha256:643754d3cda3931d166ecccf0b00e6ca3cb4f44d45b732e0609702fb69ed5971",
+        "sha256:94ef30488751f405d4d8a86627ca5a4b6d986d4433613adb3c99e71f0ba393a9",
       searchCount: 342,
       searchDigest:
         "sha256:1cf90478be212d6d256a5fcb2b60ba5765d4dca839b9bc2fdfe66ee72cff8a95",
       snapshotId:
-        "sha256:ee18bdbb10ed7ba3a2ed22e62748f5159058a7ee2e3af33f6965ad0c3c46a946",
+        "sha256:6dcf47955922f468af68d7b74bdc206096c87db1132ee3c598fbbb20bf86415a",
       sourceBytes: 13_030_246,
       sourceDigest:
         "sha256:4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8",

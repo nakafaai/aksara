@@ -66,6 +66,12 @@ function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
   if (scope === "de-translation") {
     return "quranenc-german";
   }
+  if (scope === "en-tafsir-access") {
+    return "mokhtasar-english";
+  }
+  if (scope === "de-tafsir-access") {
+    return "mokhtasar-german";
+  }
   return "quranenc-tafsir";
 }
 
@@ -242,6 +248,9 @@ describe("Quran provenance", () => {
     );
     expect(manifest.records).toContainEqual(
       expect.objectContaining({ scope: "de-translation" })
+    );
+    expect(manifest.records).toContainEqual(
+      expect.objectContaining({ scope: "de-tafsir-access" })
     );
     expect(errors.map(({ _tag }) => _tag)).toEqual([
       "QuranProvenanceCoverageError",

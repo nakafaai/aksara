@@ -29,10 +29,16 @@ const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral([
   "-translation",
 ]);
 
+const QuranExternalTafsirProvenanceScopeSchema = Schema.Literals([
+  "en-tafsir-access",
+  "de-tafsir-access",
+]);
+
 /** Complete source-field vocabulary supported by current Quran publication. */
 export const QuranProvenanceScopeSchema = Schema.Union([
   QuranStaticProvenanceScopeSchema,
   QuranTranslationProvenanceScopeSchema,
+  QuranExternalTafsirProvenanceScopeSchema,
   Schema.Literal("id-tafsir"),
 ]);
 export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
@@ -55,8 +61,12 @@ export function quranProvenanceScopes(
   const scopes: QuranProvenanceScope[] = ["arabic-text"];
   for (const appLocale of activeAppLocales) {
     scopes.push(translationScope(appLocale));
-    if (appLocale === AppLocaleSchema.make("id")) {
+    if (appLocale === AppLocaleSchema.make("en")) {
+      scopes.push("en-tafsir-access");
+    } else if (appLocale === AppLocaleSchema.make("id")) {
       scopes.push("id-tafsir");
+    } else {
+      scopes.push("de-tafsir-access");
     }
   }
   scopes.push("metadata");
@@ -79,6 +89,12 @@ function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
   }
   if (scope === "de-translation") {
     return "quranenc-german";
+  }
+  if (scope === "en-tafsir-access") {
+    return "mokhtasar-english";
+  }
+  if (scope === "de-tafsir-access") {
+    return "mokhtasar-german";
   }
   return "quranenc-tafsir";
 }
