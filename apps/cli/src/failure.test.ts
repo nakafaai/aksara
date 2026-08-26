@@ -3,27 +3,31 @@ import {
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
 } from "@nakafa/aksara-publisher/target/errors";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@nakafa/testing/effect";
 import { makeNakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 import { mapProductionError } from "#cli/failure";
 
 describe("production failure boundary", () => {
   it("keeps only a safe typed failure identity", () => {
-    expect(
-      mapProductionError("publish")(
-        new PublicationTargetTransportError({
-          detail: { reason: "transient-status", status: 503 },
-          stage: "verify",
-        })
-      )
-    ).toMatchObject({
+    const failure = mapProductionError("publish")(
+      new PublicationTargetTransportError({
+        detail: { reason: "transient-status", status: 503 },
+        stage: "verify",
+      })
+    );
+
+    expect(failure).toMatchObject({
       _tag: "ProductionError",
       failure: "PublicationTargetTransportError",
       stage: "publish",
       targetStage: "verify",
       transport: { reason: "transient-status", status: 503 },
     });
+    expect(failure.message).toBe(
+      'Production publish failed with PublicationTargetTransportError: {"_tag":"ProductionError","failure":"PublicationTargetTransportError","stage":"publish","targetStage":"verify","transport":{"reason":"transient-status","status":503}}'
+    );
+    expect(failure.stack).toContain(`ProductionError: ${failure.message}`);
   });
 
   it("keeps safe Nakafa app evidence", () => {
