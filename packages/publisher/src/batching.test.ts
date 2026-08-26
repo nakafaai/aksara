@@ -33,6 +33,7 @@ import {
 } from "#publisher/batching";
 
 const releaseId = ReleaseIdSchema.make("test-release-batching");
+/** Builds schema-decoded release items beyond the count ceiling. */
 const makeItems = Effect.fn("PublicationBatchingTest.makeItems")(() =>
   Schema.decodeUnknownEffect(Schema.Array(ContentChangeSchema))(
     Array.from({ length: MAX_ITEM_BATCH_COUNT + 1 }, (_, index) => ({

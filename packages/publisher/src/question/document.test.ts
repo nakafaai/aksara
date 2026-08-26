@@ -22,6 +22,7 @@ const answerEntry = questionEntries.find(
     bodyKind === "answer" && artifactLocale === "en"
 );
 
+/** Requires the paired English question and answer registry fixtures. */
 const requireEntries = Effect.fn("QuestionDocumentTest.requireEntries")(
   function* () {
     const prompt = yield* Effect.fromNullishOr(promptEntry);

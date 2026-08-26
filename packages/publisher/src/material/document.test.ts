@@ -8,6 +8,7 @@ import {
 import { testFileLayer } from "#test/files";
 import { checkoutRoot, englishPath, sourceByPath } from "#test/material/spec";
 
+/** Requires the reviewed English material registry fixture. */
 const requireEnglishEntry = Effect.fn(
   "MaterialDocumentTest.requireEnglishEntry"
 )(function* () {

@@ -34,6 +34,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
+/** Builds one Ed25519 key pair and its publication signer. */
 const makeSigner = Effect.fn("PublicationSigningTest.makeSigner")(function* () {
   const keyPair = yield* Effect.sync(() => generateKeyPairSync("ed25519"));
   const signer = yield* makeEd25519PublicationSigner({

@@ -12,6 +12,7 @@ const englishEntry = pageEntries.find(
     route.pageKey === "privacy-policy" && route.artifactLocale === "en"
 );
 
+/** Requires the reviewed English page registry fixture. */
 const requireEnglishEntry = Effect.fn("PageDocumentTest.requireEnglishEntry")(
   () => Effect.fromNullishOr(englishEntry)
 );

@@ -13,6 +13,7 @@ const englishEntry = articleEntries.find(
     route.artifactLocale === "en"
 );
 
+/** Requires the reviewed English article registry fixture. */
 const requireEnglishEntry = Effect.fn(
   "ArticleDocumentTest.requireEnglishEntry"
 )(() => Effect.fromNullishOr(englishEntry));

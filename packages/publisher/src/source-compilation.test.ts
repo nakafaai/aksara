@@ -73,6 +73,7 @@ const runCompile = Effect.fn("SourceCompilationTest.run")(
     )
 );
 
+/** Builds one authenticated source-compilation fixture inside Effect. */
 const makeFixture = Effect.fn("SourceCompilationTest.makeFixture")(
   function* () {
     const rendererManifest = yield* createRendererManifest({

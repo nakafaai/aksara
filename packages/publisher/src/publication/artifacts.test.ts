@@ -50,6 +50,7 @@ const payload = CompiledContentPayloadSchema.make({
 const rollbackOf = ReleaseIdSchema.make("test-active-release");
 const releaseId = ReleaseIdSchema.make("test-rollback-release");
 
+/** Builds one signed rollback artifact fixture and trusted key resolver. */
 const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
   const rendererManifest = yield* createRendererManifest({
     base: {
