@@ -1,5 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
+import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
@@ -53,8 +54,8 @@ export const makeManifest = Effect.fn("AksaraContractsTest.makeItemManifest")(
       Stream.fromIterable(items)
     );
     return yield* Schema.decodeEffect(ContentReleaseManifestSchema)({
-      activeAppLocales: ["en", "id"],
-      baseActiveAppLocales: ["en", "id"],
+      activeAppLocales: ACTIVE_APP_LOCALES,
+      baseActiveAppLocales: ACTIVE_APP_LOCALES,
       baseManifestHash: `sha256:${"d".repeat(64)}`,
       baseReleaseId: "test-release-parent",
       baseResultCount: 1,
