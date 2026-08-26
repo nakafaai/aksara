@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import { decodeMaterialDomains } from "#corpus/material/domain";
@@ -20,29 +20,28 @@ const germanPath = CorpusSourcePathSchema.make(
 );
 
 /** Resolves the one descriptor used by the representative material source. */
-async function mathematicsDomain() {
-  const descriptors = await Effect.runPromise(decodeMaterialDomains());
-  const descriptor = descriptors.find(({ key }) => key === "mathematics");
-  if (descriptor === undefined) {
-    throw new Error("Expected the mathematics material domain.");
+const mathematicsDomain = Effect.fn("AksaraCorpus.test.mathematicsDomain")(
+  function* () {
+    const descriptors = yield* decodeMaterialDomains();
+    const descriptor = descriptors.find(({ key }) => key === "mathematics");
+    return yield* Effect.fromNullishOr(descriptor);
   }
-  return descriptor;
-}
+);
 
-describe("material preview projection", () => {
-  it("projects every selected body through one source owner", async () => {
-    const descriptor = await mathematicsDomain();
-    const entries = await Effect.runPromise(
-      decodeMaterialPreviewEntries(
+layer(NodeServices.layer)("material preview projection", (it) => {
+  it.effect("projects every selected body through one source owner", () =>
+    Effect.gen(function* () {
+      const descriptor = yield* mathematicsDomain();
+      const entries = yield* decodeMaterialPreviewEntries(
         [englishPath, germanPath],
         [lessonMaterialSource()],
         [descriptor]
-      )
-    );
+      );
 
-    expect(entries.map(({ route }) => route.appLocale)).toEqual(["de", "en"]);
-    expect(entries.find(({ route }) => route.appLocale === "de")).toMatchObject(
-      {
+      expect(entries.map(({ route }) => route.appLocale)).toEqual(["de", "en"]);
+      expect(
+        entries.find(({ route }) => route.appLocale === "de")
+      ).toMatchObject({
         route: {
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
@@ -50,38 +49,39 @@ describe("material preview projection", () => {
             "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
           topicTitle: "Funktionskomposition und Umkehrfunktion",
         },
-      }
-    );
-  });
+      });
+    })
+  );
 
-  it("returns one exact selected entry and no invented unselected body", async () => {
-    const descriptor = await mathematicsDomain();
-    const selected = await Effect.runPromise(
-      decodeMaterialPreviewEntry(
-        germanPath,
-        [lessonMaterialSource()],
-        [descriptor]
-      )
-    );
-    const empty = await Effect.runPromise(
-      decodeMaterialPreviewEntries([], [lessonMaterialSource()], [descriptor])
-    );
+  it.effect(
+    "returns one exact selected entry and no invented unselected body",
+    () =>
+      Effect.gen(function* () {
+        const descriptor = yield* mathematicsDomain();
+        const selected = yield* decodeMaterialPreviewEntry(
+          germanPath,
+          [lessonMaterialSource()],
+          [descriptor]
+        );
+        const empty = yield* decodeMaterialPreviewEntries(
+          [],
+          [lessonMaterialSource()],
+          [descriptor]
+        );
 
-    if (selected === undefined) {
-      throw new Error("Expected the selected German material.");
-    }
-    const selection = await Effect.runPromise(
-      selectMaterialEntry(corpusRoot, selected).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
+        expect(selected).toBeDefined();
+        if (selected === undefined) {
+          return;
+        }
+        const selection = yield* selectMaterialEntry(corpusRoot, selected);
 
-    expect(selected?.sourcePath).toBe(germanPath);
-    expect(empty).toEqual([]);
-    expect(selection.sources[0].dependencies).toContainEqual({
-      mode: "restart",
-      sourcePath:
-        "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
-    });
-  });
+        expect(selected.sourcePath).toBe(germanPath);
+        expect(empty).toEqual([]);
+        expect(selection.sources[0].dependencies).toContainEqual({
+          mode: "restart",
+          sourcePath:
+            "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
+        });
+      })
+  );
 });
