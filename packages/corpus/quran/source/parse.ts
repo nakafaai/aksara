@@ -1,3 +1,4 @@
+import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
 import { Effect, Schema } from "effect";
 import {
   mapLocalizedSource,
@@ -83,7 +84,17 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
             `Invalid QuranEnc verse ${surahNumber}:${verseIndex + 1}.`
           );
         }
-        translations.push({ footnotes, text });
+        const translation = yield* Schema.decodeEffect(QuranTranslationSchema)(
+          { footnotes, text },
+          { onExcessProperty: "error" }
+        ).pipe(
+          Effect.mapError(() =>
+            quranGenerationFailure(
+              `Invalid QuranEnc translation notes ${surahNumber}:${verseIndex + 1}.`
+            )
+          )
+        );
+        translations.push(translation);
       }
     }
     if (translations.length !== EXPECTED_VERSES) {

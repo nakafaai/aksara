@@ -10,8 +10,8 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
   QuranExternalTafsirLocaleSchema,
-  QuranMeaningfulTextSchema,
 } from "#contracts/quran/spec";
+import { QuranMeaningfulTextSchema } from "#contracts/quran/text";
 import { quranVerse } from "#contracts/test/quran";
 
 /** Builds one minimal contiguous Quran chunk for contract tests. */

@@ -29,6 +29,11 @@ describe("Quran metadata parsing", () => {
     const metadata = await parse(metadataSource);
 
     expect(metadata.surahs).toHaveLength(114);
+    expect(metadata.surahs[1]?.name).toEqual({
+      arabic: "البقرة",
+      meaning: { appLocale: "en", text: "The Cow" },
+      transliteration: "Al-Baqara",
+    });
     expect(metadata.sajdas).toHaveLength(15);
     expect(quranMarkerAt(metadata.juzs, 0)).toBeUndefined();
     expect(quranMarkerAt(metadata.juzs, 1)).toBe(1);

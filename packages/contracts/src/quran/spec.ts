@@ -1,9 +1,11 @@
 import { Schema } from "effect";
 import {
+  appLocaleLiteral,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
 } from "#contracts/locale";
+import { QuranMeaningfulTextSchema } from "#contracts/quran/text";
 
 /** Tafsir locale whose complete reviewed source may enter runtime rows. */
 export const QuranTafsirLocaleSchema = Schema.Literal(
@@ -28,39 +30,19 @@ export const QURAN_ATTRIBUTION_COUNT = 1;
 /** Maximum verses stored in one independently verifiable runtime chunk. */
 export const QURAN_CHUNK_SIZE = 6;
 
-/** Non-empty Quran text shared by authored and published row contracts. */
-export const QuranMeaningfulTextSchema = Schema.String.pipe(
-  Schema.check(
-    Schema.isPattern(/\S/u, {
-      description:
-        "Authored Quran text containing at least one visible character.",
-      identifier: "QuranText",
-      message: "Quran text cannot be empty.",
-    })
-  )
-);
-
 /** Valid Quran surah number in canonical order. */
 export const QuranSurahNumberSchema = Schema.Int.pipe(
   Schema.check(Schema.isBetween({ maximum: QURAN_SURAH_COUNT, minimum: 1 }))
 );
 
-/** Verbatim Tanzil Arabic text without compatibility fields. */
-export const QuranTextSchema = Schema.Struct({
-  arabic: QuranMeaningfulTextSchema,
-});
-
-/** One verbatim QuranEnc translation and its unmodified footnotes. */
-export const QuranTranslationSchema = Schema.Struct({
-  footnotes: Schema.String,
-  text: QuranMeaningfulTextSchema,
-});
-
 /** Shared authored and published metadata for one reviewed Quran surah. */
 export const QuranSurahMetadataSchema = Schema.Struct({
   name: Schema.Struct({
     arabic: QuranMeaningfulTextSchema,
-    translation: QuranMeaningfulTextSchema,
+    meaning: Schema.Struct({
+      appLocale: appLocaleLiteral(ENGLISH_APP_LOCALE_CODE),
+      text: QuranMeaningfulTextSchema,
+    }),
     transliteration: QuranMeaningfulTextSchema,
   }),
   number: QuranSurahNumberSchema,

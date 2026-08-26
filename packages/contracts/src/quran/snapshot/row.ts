@@ -3,16 +3,18 @@ import { Schema } from "effect";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
 import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
+import { QuranTranslationSchema } from "#contracts/quran/notes";
 import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import {
   QURAN_CHUNK_SIZE,
-  QuranMeaningfulTextSchema,
   QuranSurahNumberSchema,
   QuranSurahRowSchema,
   QuranTafsirLocaleSchema,
-  QuranTextSchema,
-  QuranTranslationSchema,
 } from "#contracts/quran/spec";
+import {
+  QuranMeaningfulTextSchema,
+  QuranTextSchema,
+} from "#contracts/quran/text";
 
 /** One locale-indexed QuranEnc translation. */
 export const QuranLocalizedTranslationSchema = Schema.Struct({

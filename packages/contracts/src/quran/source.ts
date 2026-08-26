@@ -8,54 +8,26 @@ import {
   appLocaleLiteral,
 } from "#contracts/locale";
 import {
+  QURAN_SOURCE_IDS,
+  QuranEmbeddedSourceIdSchema,
+  QuranExternalSourceIdSchema,
+  type QuranSourceId,
+  quranTranslationSourceId,
+} from "#contracts/quran/identity";
+import {
   QURAN_SURAH_COUNT,
   QuranExternalTafsirLocaleSchema,
   QuranTafsirLocaleSchema,
 } from "#contracts/quran/spec";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
-/** Official source identities whose bytes are pinned inside Aksara. */
-export const QuranEmbeddedSourceIdSchema = Schema.Literals([
-  "tanzil-text",
-  "tanzil-metadata",
-  "quranenc-english",
-  "quranenc-indonesian",
-  "quranenc-german",
-  "quranenc-tafsir",
-]);
-export type QuranEmbeddedSourceId = typeof QuranEmbeddedSourceIdSchema.Type;
-
-/** Official source identities that Aksara may link to but not republish. */
-export const QuranExternalSourceIdSchema = Schema.Literals([
-  "mokhtasar-english",
-  "mokhtasar-german",
-]);
-export type QuranExternalSourceId = typeof QuranExternalSourceIdSchema.Type;
-
-/** Exact official Quran source identities in visible attribution order. */
-export const QuranSourceIdSchema = Schema.Literals([
-  ...QuranEmbeddedSourceIdSchema.literals,
-  ...QuranExternalSourceIdSchema.literals,
-]);
-export type QuranSourceId = typeof QuranSourceIdSchema.Type;
-
-/** Canonical order of every official source supported by the contract. */
-export const QURAN_SOURCE_IDS = QuranSourceIdSchema.literals;
-
 /** Derives the exact source identities required by one active locale set. */
 export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
 ): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
-  const sourceIds: QuranSourceId[] = [];
-  if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
-    sourceIds.push("quranenc-english");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
-    sourceIds.push("quranenc-indonesian");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
-    sourceIds.push("quranenc-german");
-  }
+  const sourceIds: QuranSourceId[] = activeAppLocales.map(
+    quranTranslationSourceId
+  );
   if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
     sourceIds.push("quranenc-tafsir");
   }

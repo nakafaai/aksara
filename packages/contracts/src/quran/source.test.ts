@@ -10,13 +10,15 @@ import {
   INDONESIAN_APP_LOCALE_CODE,
   makeAppLocale,
 } from "#contracts/locale";
+import type {
+  QuranEmbeddedSourceId,
+  QuranExternalSourceId,
+} from "#contracts/quran/identity";
 import {
   hasRequiredQuranSources,
   QuranAttributionRowSchema,
   QuranEmbeddedSourceAttributionSchema,
-  type QuranEmbeddedSourceId,
   QuranExternalSourceAttributionSchema,
-  type QuranExternalSourceId,
   QuranSourceAttributionSchema,
   QuranTafsirAccessSchema,
   quranSourceFileCount,
