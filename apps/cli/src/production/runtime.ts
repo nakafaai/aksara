@@ -3,6 +3,7 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
+import type { ReleaseSnapshotInput } from "@nakafa/aksara-publisher/snapshot/release";
 import { Effect, Schema } from "effect";
 
 import type { ProductionBaseIdentity } from "#cli/production/base";
@@ -44,18 +45,21 @@ export const verifyBaseTryoutRuntimeBundle = Effect.fn(
   return verified;
 });
 
-/** Determines whether the active try-out snapshot needs a new runtime pair. */
-export function shouldRefreshTryoutRuntimeBundle(input: {
+/** Selects the exact active snapshot source for any required runtime refresh. */
+export function selectTryoutRuntimeRefresh(input: {
   readonly base: ProductionBaseIdentity | null;
   readonly bundle: SignedTryoutRuntimeBundle | null;
   readonly rendererManifest: RendererManifestEnvelope;
-}) {
-  return (
+}): ReleaseSnapshotInput<never, never>["runtime"] {
+  const refresh =
     input.base !== null &&
     input.base.snapshots.tryout.resultSnapshotId !== null &&
     (input.bundle === null ||
-      input.rendererManifest.hash !== input.bundle.payload.rendererManifestHash)
-  );
+      input.rendererManifest.hash !==
+        input.bundle.payload.rendererManifestHash);
+  return refresh
+    ? { kind: "refresh", snapshot: input.bundle?.payload.snapshot ?? null }
+    : { kind: "stable" };
 }
 
 /** Selects the candidate pair and any retained inverse that must be re-signed. */

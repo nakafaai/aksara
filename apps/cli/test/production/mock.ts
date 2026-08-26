@@ -215,10 +215,10 @@ export function snapshotMock(calls: TargetCalls) {
     prepareReleaseSnapshots: (input: {
       /** Replays the catalog narrowed by production preparation. */
       readonly questionHeads: Stream.Stream<unknown>;
-      readonly refreshTryoutRuntimeBundle: boolean;
+      readonly runtime: { readonly kind: "refresh" | "stable" };
     }) => {
       calls.snapshotCalls += 1;
-      if (input.refreshTryoutRuntimeBundle) {
+      if (input.runtime.kind === "refresh") {
         calls.runtimeBundleRefreshes += 1;
       }
       return input.questionHeads.pipe(

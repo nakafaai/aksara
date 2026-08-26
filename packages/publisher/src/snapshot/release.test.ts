@@ -1,7 +1,10 @@
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import {
+  type Sha256Hash,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
@@ -54,7 +57,9 @@ function prepare(
     typeof prepareReleaseSnapshots
   >[0]["previousSnapshots"],
   families: PublicationScope["snapshots"] = ["program", "quran", "tryout"],
-  refreshTryoutRuntimeBundle = false
+  runtime: Parameters<typeof prepareReleaseSnapshots>[0]["runtime"] = {
+    kind: "stable",
+  }
 ) {
   return Effect.scoped(
     Effect.gen(function* () {
@@ -63,8 +68,8 @@ function prepare(
         families,
         previousSnapshots,
         questionHeads: Stream.empty,
-        refreshTryoutRuntimeBundle,
         rendererManifest: {},
+        runtime,
       });
       const [manifests, rows] = yield* Effect.all([
         prepared.manifests.pipe(Stream.runCollect),
@@ -217,12 +222,50 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
             completeSnapshots.quran.manifest.snapshotId
           ),
           [],
-          true
+          {
+            kind: "refresh",
+            snapshot: completeSnapshots.tryout.manifest,
+          }
         );
         expect(rendererRefresh).toEqual({
           manifests: [],
           rows: [],
           tryoutRuntimeSnapshot: completeSnapshots.tryout.manifest,
+        });
+      })
+  );
+  it.effect(
+    "keeps the authenticated active snapshot during renderer-only refresh",
+    () =>
+      Effect.gen(function* () {
+        const { completeSnapshots, tryoutFixture } = yield* makeFixtures();
+        const activeSnapshot = completeSnapshots.tryout.manifest;
+        yield* Effect.sync(() => {
+          tryoutState.current = {
+            ...tryoutFixture,
+            manifest: {
+              family: "tryout",
+              manifest: {
+                ...tryoutFixture.manifest.manifest,
+                snapshotId: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+              },
+            },
+          };
+        });
+
+        const rendererRefresh = yield* prepare(
+          activeSnapshots(
+            completeSnapshots,
+            completeSnapshots.quran.manifest.snapshotId
+          ),
+          [],
+          { kind: "refresh", snapshot: activeSnapshot }
+        );
+
+        expect(rendererRefresh).toEqual({
+          manifests: [],
+          rows: [],
+          tryoutRuntimeSnapshot: activeSnapshot,
         });
       })
   );

@@ -6,7 +6,10 @@ import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/has
 import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 
-import { stagePreparedRelease } from "#publisher/stage/plan";
+import {
+  stagePreparedRelease,
+  stageRuntimeBundles,
+} from "#publisher/stage/plan";
 import { makeRelease } from "#test/publication";
 import { makePublicationTarget } from "#test/target";
 import { transportRelease, transportRuntimeBundle } from "#test/transport/spec";
@@ -35,6 +38,11 @@ describe("prepared release staging", () => {
     Effect.gen(function* () {
       const stageGroup = vi.fn((_group: StageGroupInput) => Effect.void);
       const target = makePublicationTarget({ stageGroup });
+      yield* stageRuntimeBundles({
+        bundles: [transportRuntimeBundle, recoveryRuntimeBundle],
+        releaseId: prepared.manifest.releaseId,
+        target,
+      });
       yield* stagePreparedRelease({
         artifacts: Stream.empty,
         items: prepared.items,
@@ -42,12 +50,12 @@ describe("prepared release staging", () => {
         projections: Stream.empty,
         routes: Stream.empty,
         target,
-        tryoutRuntimeBundles: [transportRuntimeBundle, recoveryRuntimeBundle],
       });
-      expect(stageGroup).toHaveBeenCalledTimes(1);
-      const group = stageGroup.mock.calls[0]?.[0];
-      expect(group?.releaseId).toBe(prepared.manifest.releaseId);
-      expect(group?.requests.slice(0, 3)).toMatchObject([
+      expect(stageGroup).toHaveBeenCalledTimes(2);
+      const runtimeGroup = stageGroup.mock.calls[0]?.[0];
+      const releaseGroup = stageGroup.mock.calls[1]?.[0];
+      expect(runtimeGroup?.releaseId).toBe(prepared.manifest.releaseId);
+      expect(runtimeGroup?.requests).toMatchObject([
         {
           bundle: transportRuntimeBundle,
           operation: "stageTryoutRuntimeBundle",
@@ -58,8 +66,10 @@ describe("prepared release staging", () => {
           operation: "stageTryoutRuntimeBundle",
           releaseId: prepared.manifest.releaseId,
         },
-        { operation: "stageItemBatch" },
       ]);
+      expect(releaseGroup?.requests[0]).toMatchObject({
+        operation: "stageItemBatch",
+      });
     })
   );
 });

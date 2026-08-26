@@ -30,9 +30,14 @@ export interface ReleaseSnapshotInput<E, R> {
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays the complete desired question catalog used by try-out placement. */
   readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
-  /** Rebuilds the inherited try-out snapshot for a new renderer pairing. */
-  readonly refreshTryoutRuntimeBundle: boolean;
   readonly rendererManifest: unknown;
+  /** Exact runtime refresh intent and authenticated active snapshot, when any. */
+  readonly runtime:
+    | { readonly kind: "stable" }
+    | {
+        readonly kind: "refresh";
+        readonly snapshot: TryoutSnapshot | null;
+      };
 }
 
 /** Replayable changed snapshots selected by one global release. */
@@ -88,8 +93,10 @@ export const prepareReleaseSnapshots: <E, R>(
         checkoutRoot: input.checkoutRoot,
       })
     : undefined;
+  const selectsTryout = input.families.includes("tryout");
   const tryout =
-    input.families.includes("tryout") || input.refreshTryoutRuntimeBundle
+    selectsTryout ||
+    (input.runtime.kind === "refresh" && input.runtime.snapshot === null)
       ? yield* prepareTryoutSnapshot({
           checkoutRoot: input.checkoutRoot,
           questionHeads: input.questionHeads,
@@ -119,10 +126,15 @@ export const prepareReleaseSnapshots: <E, R>(
   const tryoutChanged =
     tryout !== undefined &&
     replacesActiveSnapshot(input.previousSnapshots, tryout.manifest);
-  const tryoutRuntimeSnapshot =
-    tryout !== undefined && (tryoutChanged || input.refreshTryoutRuntimeBundle)
-      ? tryout.manifest.manifest
-      : null;
+  const tryoutRuntimeSnapshot = (() => {
+    if (
+      tryout !== undefined &&
+      (tryoutChanged || input.runtime.kind === "refresh")
+    ) {
+      return tryout.manifest.manifest;
+    }
+    return input.runtime.kind === "refresh" ? input.runtime.snapshot : null;
+  })();
   /** Replays only changed family manifests in signed canonical order. */
   const manifests = Stream.fromIterable([
     ...(programChanged && programManifest ? [programManifest] : []),

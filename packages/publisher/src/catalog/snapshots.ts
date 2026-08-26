@@ -121,8 +121,8 @@ export const validateCatalogSnapshots: <E, R>(
     families: ["program", "quran", "tryout"],
     previousSnapshots: null,
     questionHeads: input.questionHeads,
-    refreshTryoutRuntimeBundle: false,
     rendererManifest: input.rendererManifest,
+    runtime: { kind: "stable" },
   }).pipe(
     Effect.mapError(
       (cause) => new ContentCatalogSnapshotError({ cause, stage: "prepare" })

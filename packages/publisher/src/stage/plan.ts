@@ -1,4 +1,5 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
@@ -15,6 +16,28 @@ import { makeProjectionBatches } from "#publisher/projection-batch";
 import { makeSnapshotRequests } from "#publisher/publication/snapshots";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import { makeStageGroups } from "#publisher/stage/group";
+
+/** Idempotently stages every permanent runtime pair owned by one release. */
+export const stageRuntimeBundles = Effect.fn(
+  "AksaraPublisher.stageRuntimeBundles"
+)(function* (input: {
+  readonly bundles: readonly SignedTryoutRuntimeBundle[];
+  readonly releaseId: ReleaseId;
+  readonly target: typeof PublicationTarget.Service;
+}) {
+  const requests = Stream.fromIterable(input.bundles).pipe(
+    Stream.map(
+      (bundle): StageOperation => ({
+        bundle,
+        operation: "stageTryoutRuntimeBundle",
+        releaseId: input.releaseId,
+      })
+    )
+  );
+  yield* makeStageGroups(input.releaseId, requests).pipe(
+    Stream.runForEach(input.target.stageGroup)
+  );
+});
 
 /** Stages every prepared stream through bounded authenticated request groups. */
 export const stagePreparedRelease = Effect.fn(
@@ -56,7 +79,6 @@ export const stagePreparedRelease = Effect.fn(
     RouteRequirements
   >;
   readonly target: typeof PublicationTarget.Service;
-  readonly tryoutRuntimeBundles: readonly SignedTryoutRuntimeBundle[];
 }) {
   const { prepared } = input;
   const { releaseId } = prepared.manifest;
@@ -86,16 +108,7 @@ export const stagePreparedRelease = Effect.fn(
       })
     )
   );
-  const runtimeBundles = Stream.fromIterable(input.tryoutRuntimeBundles).pipe(
-    Stream.map(
-      (bundle): StageOperation => ({
-        bundle,
-        operation: "stageTryoutRuntimeBundle",
-        releaseId,
-      })
-    )
-  );
-  const requests = Stream.concat(runtimeBundles, items).pipe(
+  const requests = items.pipe(
     Stream.concat(projections),
     Stream.concat(routes),
     Stream.concat(artifacts),

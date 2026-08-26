@@ -59,7 +59,10 @@ import {
   CompiledReleaseSourceSchema,
   compileReleaseSources,
 } from "#publisher/source-compilation";
-import { stagePreparedRelease } from "#publisher/stage/plan";
+import {
+  stagePreparedRelease,
+  stageRuntimeBundles,
+} from "#publisher/stage/plan";
 
 /** One prepared release mode plus any exact-Git source dependency it needs. */
 export type PublicationInvocation<E, R> =
@@ -99,6 +102,12 @@ export interface PublicationPlan<E, R> {
   >;
   readonly projectionSummary: VerifiedContentProjections;
   readonly routeSummary: VerifiedContentRoutes;
+  /** Idempotently restores permanent runtime pairs before any verification. */
+  readonly runtimes: Effect.Effect<
+    void,
+    PublishContentReleaseError<E>,
+    ContentVerificationKeyResolver | R
+  >;
   readonly snapshotSummary: VerifiedContentSnapshots;
   readonly stage: Effect.Effect<
     void,
@@ -283,13 +292,18 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     projections: decodedProjections,
     routes: decodedRoutes,
     target,
-    tryoutRuntimeBundles,
+  });
+  const runtimes = stageRuntimeBundles({
+    bundles: tryoutRuntimeBundles,
+    releaseId: input.manifest.releaseId,
+    target,
   });
   return {
     bundle: { release, rendererManifest },
     cacheChanges,
     projectionSummary,
     routeSummary,
+    runtimes,
     snapshotSummary,
     stage,
     summary,

@@ -35,8 +35,8 @@ import {
   validateRecoveryBase,
 } from "#cli/production/base";
 import {
+  selectTryoutRuntimeRefresh,
   selectTryoutRuntimeTransition,
-  shouldRefreshTryoutRuntimeBundle,
   verifyBaseTryoutRuntimeBundle,
 } from "#cli/production/runtime";
 import { validateRecoveryRevision } from "#cli/recovery";
@@ -149,7 +149,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         ? input.rendererManifest
         : input.bundle.rendererManifest
     );
-    const refreshTryoutRuntimeBundle = shouldRefreshTryoutRuntimeBundle({
+    const runtime = selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
       rendererManifest,
@@ -169,7 +169,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
     });
     const snapshots =
-      input.scope.snapshots.length === 0 && !refreshTryoutRuntimeBundle
+      input.scope.snapshots.length === 0 && runtime.kind === "stable"
         ? {
             manifests: Stream.empty,
             rows: Stream.empty,
@@ -180,8 +180,8 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
             families: input.scope.snapshots,
             previousSnapshots: base?.snapshots ?? null,
             questionHeads: catalog.result.pipe(Stream.filter(isQuestionHead)),
-            refreshTryoutRuntimeBundle,
             rendererManifest,
+            runtime,
           });
     const tryoutRuntime = yield* selectTryoutRuntimeTransition({
       base,
