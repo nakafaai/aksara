@@ -54,26 +54,26 @@ function payload(rawMdx: string, sourceHash?: string) {
 }
 
 describe("artifact source", () => {
-  it("accepts an exact authored source hash", async () => {
-    await expect(
-      Effect.runPromise(verifyCompiledContentSourceHash(payload("## Source")))
-    ).resolves.toBeUndefined();
-  });
+  it.effect("accepts an exact authored source hash", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyCompiledContentSourceHash(payload("## Source"))
+      ).toBeUndefined();
+    })
+  );
 
-  it("maps mismatch and computation failures to typed errors", async () => {
-    const [mismatch, computation] = await Promise.all([
-      Effect.runPromise(
+  it.effect("maps mismatch and computation failures to typed errors", () =>
+    Effect.gen(function* () {
+      const [mismatch, computation] = yield* Effect.all([
         verifyCompiledContentSourceHash(
           payload("## Source", `sha256:${"f".repeat(64)}`)
-        ).pipe(Effect.flip)
-      ),
-      Effect.runPromise(
+        ).pipe(Effect.flip),
         verifyCompiledContentSourceHash(
           payload("hash-source", `sha256:${"f".repeat(64)}`)
-        ).pipe(Effect.flip)
-      ),
-    ]);
-    expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
-    expect(computation._tag).toBe("ArtifactSourceHashComputationError");
-  });
+        ).pipe(Effect.flip),
+      ]);
+      expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
+      expect(computation._tag).toBe("ArtifactSourceHashComputationError");
+    })
+  );
 });

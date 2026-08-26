@@ -38,32 +38,37 @@ function artifact(overrides: Partial<CompiledContentPayload> = {}) {
 }
 
 describe("artifact limits", () => {
-  it("accepts a payload whose declared and actual bytes agree", async () => {
-    await expect(
-      Effect.runPromise(validateArtifactByteIntegrity(artifact()))
-    ).resolves.toBeUndefined();
-  });
+  it.effect("accepts a payload whose declared and actual bytes agree", () =>
+    Effect.gen(function* () {
+      expect(yield* validateArtifactByteIntegrity(artifact())).toBeUndefined();
+    })
+  );
 
-  it.each([
-    [
-      "ArtifactVerificationByteLimitError",
-      {
+  it.effect.each([
+    {
+      overrides: {
         byteLength: MAX_SIGNED_ARTIFACT_BYTES,
         compiledCode: "x".repeat(MAX_SIGNED_ARTIFACT_BYTES),
       },
-    ],
-    [
-      "ArtifactPayloadFieldByteLimitError",
-      {
+      tag: "ArtifactVerificationByteLimitError",
+    },
+    {
+      overrides: {
         byteLength: MAX_COMPILED_CODE_BYTES + 1,
         compiledCode: "x".repeat(MAX_COMPILED_CODE_BYTES + 1),
       },
-    ],
-    ["ArtifactCompiledByteLengthMismatchError", { byteLength: 9 }],
-  ])("rejects %s", async (tag, overrides) => {
-    const error = await Effect.runPromise(
-      validateArtifactByteIntegrity(artifact(overrides)).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe(tag);
-  });
+      tag: "ArtifactPayloadFieldByteLimitError",
+    },
+    {
+      overrides: { byteLength: 9 },
+      tag: "ArtifactCompiledByteLengthMismatchError",
+    },
+  ])("rejects $tag", ({ overrides, tag }) =>
+    Effect.gen(function* () {
+      const error = yield* validateArtifactByteIntegrity(
+        artifact(overrides)
+      ).pipe(Effect.flip);
+      expect(error._tag).toBe(tag);
+    })
+  );
 });
