@@ -23,7 +23,7 @@ function accepts(
   decode: (input: unknown) => Effect.Effect<unknown, unknown>,
   input: unknown
 ) {
-  return Effect.runPromise(Effect.isSuccess(decode(input)));
+  return Effect.isSuccess(decode(input));
 }
 
 describe("content cache contracts", () => {
@@ -43,32 +43,33 @@ describe("content cache contracts", () => {
     ).toEqual({ family: "material" });
   });
 
-  it.each(ContentFamilySchema.literals)(
+  it.effect.each(ContentFamilySchema.literals)(
     "derives canonical ordered %s tags for changed artifacts",
-    async (family) => {
-      const releaseId = ReleaseIdSchema.make("test-cache-release");
-      const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-      const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-      const request = makeContentCacheRequest({
-        artifactHashes: [first, second],
-        family,
-        releaseId,
-      });
+    (family) =>
+      Effect.gen(function* () {
+        const releaseId = ReleaseIdSchema.make("test-cache-release");
+        const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+        const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+        const request = makeContentCacheRequest({
+          artifactHashes: [first, second],
+          family,
+          releaseId,
+        });
 
-      await expect(accepts(decodeRequest, request)).resolves.toBe(true);
-      await expect(
-        accepts(decodeReceipt, { ...request, revalidated: true })
-      ).resolves.toBe(true);
-      expect(request.tags).toEqual([
-        CONTENT_CACHE_GLOBAL_TAG,
-        makeContentFamilyCacheTag(family),
-        makeArtifactCacheTag(first),
-        makeArtifactCacheTag(second),
-      ]);
-    }
+        expect(yield* accepts(decodeRequest, request)).toBe(true);
+        expect(
+          yield* accepts(decodeReceipt, { ...request, revalidated: true })
+        ).toBe(true);
+        expect(request.tags).toEqual([
+          CONTENT_CACHE_GLOBAL_TAG,
+          makeContentFamilyCacheTag(family),
+          makeArtifactCacheTag(first),
+          makeArtifactCacheTag(second),
+        ]);
+      })
   );
 
-  it.each([
+  it.effect.each([
     {
       family: "material",
       releaseId: "INVALID",
@@ -93,11 +94,13 @@ describe("content cache contracts", () => {
         "content-artifact:unknown",
       ],
     },
-  ])("rejects a noncanonical request", async (request) => {
-    await expect(accepts(decodeRequest, request)).resolves.toBe(false);
-  });
+  ])("rejects a noncanonical request", (request) =>
+    Effect.gen(function* () {
+      expect(yield* accepts(decodeRequest, request)).toBe(false);
+    })
+  );
 
-  it.each([
+  it.effect.each([
     {
       family: "material",
       releaseId: "test-cache-release",
@@ -110,9 +113,11 @@ describe("content cache contracts", () => {
       revalidated: true,
       tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:article"],
     },
-  ])("rejects a noncanonical receipt", async (receipt) => {
-    await expect(accepts(decodeReceipt, receipt)).resolves.toBe(false);
-  });
+  ])("rejects a noncanonical receipt", (receipt) =>
+    Effect.gen(function* () {
+      expect(yield* accepts(decodeReceipt, receipt)).toBe(false);
+    })
+  );
 
   it("rejects malformed family and artifact tags", () => {
     expect(() =>

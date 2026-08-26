@@ -116,53 +116,58 @@ describe("content", () => {
     ).toBe("en\0subjects/mathematics");
   });
 
-  it("decodes a strict compile request", async () => {
-    const request = await Effect.runPromise(
-      decodeCompileDocumentRequest(validRequest)
-    );
-    expect(request.contentKey).toBe("test:content");
-  });
+  it.effect("decodes a strict compile request", () =>
+    Effect.gen(function* () {
+      const request = yield* decodeCompileDocumentRequest(validRequest);
+      expect(request.contentKey).toBe("test:content");
+    })
+  );
 
-  it("returns a typed contract error for extra wire fields", async () => {
-    const error = await Effect.runPromise(
-      decodeCompileDocumentRequest({ ...validRequest, unexpected: true }).pipe(
-        Effect.flip
-      )
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
-
-  it("rejects a compile request without its selected domain capability", async () => {
-    const error = await Effect.runPromise(
-      decodeCompileDocumentRequest({
+  it.effect("returns a typed contract error for extra wire fields", () =>
+    Effect.gen(function* () {
+      const error = yield* decodeCompileDocumentRequest({
         ...validRequest,
-        rendererDomain: "chemistry",
-        rendererManifest: {
-          ...validRequest.rendererManifest,
-          domains: validRequest.rendererManifest.domains.filter(
-            ({ name }) => name !== "chemistry"
-          ),
-        },
-      }).pipe(Effect.flip)
-    );
+        unexpected: true,
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
 
-    expect(error._tag).toBe("ContractDecodeError");
-    expect(error.message).toContain(
-      "Expected the selected renderer domain to have a capability."
-    );
-  });
+  it.effect(
+    "rejects a compile request without its selected domain capability",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* decodeCompileDocumentRequest({
+          ...validRequest,
+          rendererDomain: "chemistry",
+          rendererManifest: {
+            ...validRequest.rendererManifest,
+            domains: validRequest.rendererManifest.domains.filter(
+              ({ name }) => name !== "chemistry"
+            ),
+          },
+        }).pipe(Effect.flip);
 
-  it("does not accept caller-provided compiled code as authored source", async () => {
-    const { rendererManifest: _, ...source } = validRequest;
-    const error = await Effect.runPromise(
-      decodeCompileDocumentSource({
-        ...source,
-        compiledCode: "return {default: () => process.env};",
-      }).pipe(Effect.flip)
-    );
+        expect(error._tag).toBe("ContractDecodeError");
+        expect(error.message).toContain(
+          "Expected the selected renderer domain to have a capability."
+        );
+      })
+  );
 
-    expect(error._tag).toBe("ContractDecodeError");
-  });
+  it.effect(
+    "does not accept caller-provided compiled code as authored source",
+    () =>
+      Effect.gen(function* () {
+        const { rendererManifest: _, ...source } = validRequest;
+        const error = yield* decodeCompileDocumentSource({
+          ...source,
+          compiledCode: "return {default: () => process.env};",
+        }).pipe(Effect.flip);
+
+        expect(error._tag).toBe("ContractDecodeError");
+      })
+  );
 
   it("matches exact canonical artifact bytes and hashes", () => {
     const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
