@@ -30,151 +30,130 @@ import {
 
 /** Decodes one retained release with its frozen verification key. */
 function readRelease(input: unknown) {
-  return Effect.runPromise(
-    decodeStoredRelease(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, retainedKeyResolver)
-    )
+  return decodeStoredRelease(input).pipe(
+    Effect.provideService(ContentVerificationKeyResolver, retainedKeyResolver)
   );
 }
 
+/** Returns one expected retained release decoding failure. */
+function rejectRelease(input: unknown) {
+  return readRelease(input).pipe(Effect.flip);
+}
+
 describe("stored history decoding", () => {
-  it("authenticates one frozen release without exposing an old writer", async () => {
-    await expect(readRelease(retainedRelease)).resolves.toEqual(
-      retainedRelease
-    );
-  });
+  it.effect(
+    "authenticates one frozen release without exposing an old writer",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* readRelease(retainedRelease)).toEqual(retainedRelease);
+      })
+  );
 
-  it("rejects unknown, hash-mismatched, and unauthenticated release bytes", async () => {
-    const failures = await Promise.all([
-      Effect.runPromise(
-        decodeStoredRelease({ ...retainedRelease, unexpected: true }).pipe(
-          Effect.provideService(
-            ContentVerificationKeyResolver,
-            retainedKeyResolver
-          ),
-          Effect.flip
-        )
-      ),
-      Effect.runPromise(
-        decodeStoredRelease({
-          ...retainedRelease,
-          manifestHash:
-            "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        }).pipe(
-          Effect.provideService(
-            ContentVerificationKeyResolver,
-            retainedKeyResolver
-          ),
-          Effect.flip
-        )
-      ),
-      Effect.runPromise(
-        decodeStoredRelease({
-          ...retainedRelease,
-          signature: `Z${retainedRelease.signature.slice(1)}`,
-        }).pipe(
-          Effect.provideService(
-            ContentVerificationKeyResolver,
-            retainedKeyResolver
-          ),
-          Effect.flip
-        )
-      ),
-    ]);
+  it.effect(
+    "rejects unknown, hash-mismatched, and unauthenticated release bytes",
+    () =>
+      Effect.gen(function* () {
+        const failures = yield* Effect.all([
+          rejectRelease({ ...retainedRelease, unexpected: true }),
+          rejectRelease({
+            ...retainedRelease,
+            manifestHash:
+              "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          }),
+          rejectRelease({
+            ...retainedRelease,
+            signature: `Z${retainedRelease.signature.slice(1)}`,
+          }),
+        ]);
 
-    expect(failures[0]).toBeInstanceOf(StoredReleaseDecodeError);
-    expect(failures[1]).toBeInstanceOf(StoredReleaseHashMismatchError);
-    expect(failures[2]).toBeInstanceOf(SignatureInvalidError);
-    expect(failures[0].message).toContain("immutable history contract");
-    expect(failures[1].message).toContain("retained-release");
-  });
+        expect(failures[0]).toBeInstanceOf(StoredReleaseDecodeError);
+        expect(failures[1]).toBeInstanceOf(StoredReleaseHashMismatchError);
+        expect(failures[2]).toBeInstanceOf(SignatureInvalidError);
+        expect(failures[0].message).toContain("immutable history contract");
+        expect(failures[1].message).toContain("retained-release");
+      })
+  );
 
-  it("maps retained release, snapshot, and row hashing failures", async () => {
-    const digest = vi
-      .spyOn(crypto.subtle, "digest")
-      .mockRejectedValue(new TypeError("injected retained hash failure"));
-    const [releaseError, snapshotError, rowError] = await Promise.all([
-      Effect.runPromise(
-        decodeStoredRelease(retainedRelease).pipe(
-          Effect.provideService(
-            ContentVerificationKeyResolver,
-            retainedKeyResolver
-          ),
-          Effect.flip
-        )
-      ),
-      Effect.runPromise(
-        decodeStoredTryoutSnapshot(retainedTryoutSnapshot).pipe(Effect.flip)
-      ),
-      Effect.runPromise(
-        decodeStoredTryoutRow(retainedTryoutCatalogRow).pipe(Effect.flip)
-      ),
-    ]);
-    digest.mockRestore();
+  it.effect("maps retained release, snapshot, and row hashing failures", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(crypto.subtle, "digest")
+            .mockRejectedValue(new TypeError("injected retained hash failure"))
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+      const [releaseError, snapshotError, rowError] = yield* Effect.all([
+        rejectRelease(retainedRelease),
+        decodeStoredTryoutSnapshot(retainedTryoutSnapshot).pipe(Effect.flip),
+        decodeStoredTryoutRow(retainedTryoutCatalogRow).pipe(Effect.flip),
+      ]);
 
-    expect(releaseError.message).toBe(
-      "Stored release bytes could not be hashed."
-    );
-    expect(snapshotError.message).toBe(
-      "Stored tryout-snapshot bytes could not be hashed."
-    );
-    expect(rowError.message).toBe(
-      "Stored tryout-row bytes could not be hashed."
-    );
-  });
+      expect(releaseError.message).toBe(
+        "Stored release bytes could not be hashed."
+      );
+      expect(snapshotError.message).toBe(
+        "Stored tryout-snapshot bytes could not be hashed."
+      );
+      expect(rowError.message).toBe(
+        "Stored tryout-row bytes could not be hashed."
+      );
+    })
+  );
 
-  it("authenticates frozen try-out facts and rejects altered old bytes", async () => {
-    await expect(
-      Effect.runPromise(decodeStoredTryoutSnapshot(retainedTryoutSnapshot))
-    ).resolves.toEqual(retainedTryoutSnapshot);
+  it.effect(
+    "authenticates frozen try-out facts and rejects altered old bytes",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* decodeStoredTryoutSnapshot(retainedTryoutSnapshot)
+        ).toEqual(retainedTryoutSnapshot);
 
-    const [decodeError, hashError] = await Promise.all([
-      Effect.runPromise(
-        decodeStoredTryoutSnapshot({
-          ...retainedTryoutSnapshot,
-          unexpected: true,
-        }).pipe(Effect.flip)
-      ),
-      Effect.runPromise(
-        decodeStoredTryoutSnapshot({
-          ...retainedTryoutSnapshot,
-          snapshotId:
-            "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        }).pipe(Effect.flip)
-      ),
-    ]);
+        const [decodeError, hashError] = yield* Effect.all([
+          decodeStoredTryoutSnapshot({
+            ...retainedTryoutSnapshot,
+            unexpected: true,
+          }).pipe(Effect.flip),
+          decodeStoredTryoutSnapshot({
+            ...retainedTryoutSnapshot,
+            snapshotId:
+              "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          }).pipe(Effect.flip),
+        ]);
 
-    expect(decodeError).toBeInstanceOf(StoredTryoutSnapshotDecodeError);
-    expect(hashError).toBeInstanceOf(StoredTryoutSnapshotHashMismatchError);
-    expect(decodeError.message).toContain("immutable history contract");
-    expect(hashError.message).toContain("content-addressed identity");
-  });
+        expect(decodeError).toBeInstanceOf(StoredTryoutSnapshotDecodeError);
+        expect(hashError).toBeInstanceOf(StoredTryoutSnapshotHashMismatchError);
+        expect(decodeError.message).toContain("immutable history contract");
+        expect(hashError.message).toContain("content-addressed identity");
+      })
+  );
 
-  it("authenticates retained catalog and both placement row shapes", async () => {
-    const rows = await Promise.all(
-      [
-        retainedTryoutCatalogRow,
-        retainedTryoutPlacementRow,
-        retainedTryoutPlacementWithHashRow,
-      ].map((row) => Effect.runPromise(decodeStoredTryoutRow(row)))
-    );
+  it.effect(
+    "authenticates retained catalog and both placement row shapes",
+    () =>
+      Effect.gen(function* () {
+        const rows = yield* Effect.all([
+          decodeStoredTryoutRow(retainedTryoutCatalogRow),
+          decodeStoredTryoutRow(retainedTryoutPlacementRow),
+          decodeStoredTryoutRow(retainedTryoutPlacementWithHashRow),
+        ]);
 
-    expect(rows).toEqual([
-      retainedTryoutCatalogRow,
-      retainedTryoutPlacementRow,
-      retainedTryoutPlacementWithHashRow,
-    ]);
-  });
+        expect(rows).toEqual([
+          retainedTryoutCatalogRow,
+          retainedTryoutPlacementRow,
+          retainedTryoutPlacementWithHashRow,
+        ]);
+      })
+  );
 
-  it("rejects unknown and hash-mismatched retained row bytes", async () => {
-    const [decodeError, hashError] = await Promise.all([
-      Effect.runPromise(
+  it.effect("rejects unknown and hash-mismatched retained row bytes", () =>
+    Effect.gen(function* () {
+      const [decodeError, hashError] = yield* Effect.all([
         decodeStoredTryoutRow({
           ...retainedTryoutCatalogRow,
           unexpected: true,
-        }).pipe(Effect.flip)
-      ),
-      Effect.runPromise(
+        }).pipe(Effect.flip),
         decodeStoredTryoutRow({
           ...retainedTryoutPlacementRow,
           record: {
@@ -184,40 +163,37 @@ describe("stored history decoding", () => {
               title: "Changed retained title",
             },
           },
-        }).pipe(Effect.flip)
-      ),
-    ]);
+        }).pipe(Effect.flip),
+      ]);
 
-    expect(decodeError).toBeInstanceOf(StoredTryoutRowDecodeError);
-    expect(hashError).toBeInstanceOf(StoredTryoutRowHashMismatchError);
-    expect(decodeError.message).toContain("immutable history contract");
-    expect(hashError).toMatchObject({ rowKind: "placement" });
-    expect(hashError.message).toContain("content-addressed identity");
-  });
+      expect(decodeError).toBeInstanceOf(StoredTryoutRowDecodeError);
+      expect(hashError).toBeInstanceOf(StoredTryoutRowHashMismatchError);
+      expect(decodeError.message).toContain("immutable history contract");
+      expect(hashError).toMatchObject({ rowKind: "placement" });
+      expect(hashError.message).toContain("content-addressed identity");
+    })
+  );
 
-  it.each([
+  it.effect.each([
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-01",
     "question-bank/tryout/indonesia/snbt/question-99/general-reasoning/set-1/question-1",
-  ])(
-    "rejects question roots outside the exact retained grammar: %s",
-    async (root) => {
+  ])("rejects question roots outside the exact retained grammar: %s", (root) =>
+    Effect.gen(function* () {
       const source = retainedTryoutPlacementRow.record.row;
-      const error = await Effect.runPromise(
-        decodeStoredTryoutRow({
-          ...retainedTryoutPlacementRow,
-          record: {
-            ...retainedTryoutPlacementRow.record,
-            row: {
-              ...source,
-              answerContentKey: `${root}/answer`,
-              questionContentKey: `${root}/question`,
-              questionSourcePath: `packages/corpus/${root}`,
-            },
+      const error = yield* decodeStoredTryoutRow({
+        ...retainedTryoutPlacementRow,
+        record: {
+          ...retainedTryoutPlacementRow.record,
+          row: {
+            ...source,
+            answerContentKey: `${root}/answer`,
+            questionContentKey: `${root}/question`,
+            questionSourcePath: `packages/corpus/${root}`,
           },
-        }).pipe(Effect.flip)
-      );
+        },
+      }).pipe(Effect.flip);
 
       expect(error).toBeInstanceOf(StoredTryoutRowDecodeError);
-    }
+    })
   );
 });
