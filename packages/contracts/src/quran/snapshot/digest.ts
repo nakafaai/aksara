@@ -10,9 +10,9 @@ import type {
   QuranSnapshotRow,
 } from "#contracts/quran/snapshot/row";
 import {
+  hashQuranRow,
   QuranRowHashError,
-  verifyQuranRowHash,
-} from "#contracts/quran/snapshot/row-hash";
+} from "#contracts/quran/snapshot/row/hash";
 import { quranSourceIds } from "#contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,
@@ -265,7 +265,7 @@ const updateQuranDigest = Effect.fn("AksaraContracts.updateQuranDigest")(
     state: QuranDigestState,
     row: Pick<QuranSnapshotRow, "payload" | "rowHash">
   ) {
-    const expected = yield* verifyQuranRowHash(row);
+    const expected = yield* hashQuranRow(row.payload);
     if (expected !== row.rowHash) {
       return yield* new QuranRowIntegrityError({
         actual: row.rowHash,

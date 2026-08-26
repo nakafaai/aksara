@@ -43,6 +43,7 @@ describe("Quran snapshot row contract", () => {
       "tanzil-text",
       "tanzil-metadata",
       "quranenc-english",
+      "mokhtasar-english",
     ]);
     expect(quranSourceIds(indonesian)).toEqual([
       "tanzil-text",
@@ -54,8 +55,9 @@ describe("Quran snapshot row contract", () => {
       "tanzil-text",
       "tanzil-metadata",
       "quranenc-german",
+      "mokhtasar-german",
     ]);
-    expect(quranSourceIds(complete)).toHaveLength(6);
+    expect(quranSourceIds(complete)).toHaveLength(8);
     expect([
       quranSourceFileCount(english),
       quranSourceFileCount(indonesian),

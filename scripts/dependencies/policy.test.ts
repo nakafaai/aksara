@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   declaredVersion,
   expectedIgnoredDependencies,
-} from "#scripts/dependency-policy";
+} from "#scripts/dependencies/policy";
 
 describe("dependency hold policy", () => {
   it("extracts exact direct, aliased, and package-manager versions", () => {

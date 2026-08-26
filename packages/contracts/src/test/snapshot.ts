@@ -6,7 +6,7 @@ import { digestProgramRows } from "#contracts/program/snapshot/digest";
 import { makeProgramSnapshot } from "#contracts/program/snapshot/hash";
 import { digestQuranRows } from "#contracts/quran/snapshot/digest";
 import { makeQuranSnapshot } from "#contracts/quran/snapshot/hash";
-import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
+import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { quranSourceFileCount } from "#contracts/quran/source";
 import type {
   ContentSnapshotManifest,

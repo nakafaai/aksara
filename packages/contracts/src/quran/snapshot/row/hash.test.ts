@@ -3,7 +3,7 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
-import { hashQuranRow } from "#contracts/quran/snapshot/row-hash";
+import { hashQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { quranRepresentativePayloads } from "#contracts/test/quran";
 
 const failures = vi.hoisted(() => ({ rowHash: false }));

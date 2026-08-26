@@ -3,14 +3,13 @@ import { resolve } from "node:path";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import { Effect, FileSystem, Schema } from "effect";
 import { parse } from "yaml";
-
 import {
   DependencyCommandError,
   decodeOutdatedDependencies,
   decodeRegistryVersion,
   type PnpmRunner,
   runPnpm,
-} from "#scripts/dependency-command";
+} from "#scripts/dependencies/command";
 import {
   DEPENDENCY_HOLDS,
   DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
@@ -18,7 +17,7 @@ import {
   type DependencyHold,
   declaredVersion,
   expectedIgnoredDependencies,
-} from "#scripts/dependency-policy";
+} from "#scripts/dependencies/policy";
 
 export interface BumpDependenciesConfig {
   readonly manifest: string;
@@ -27,9 +26,9 @@ export interface BumpDependenciesConfig {
 }
 
 const DEFAULT_CONFIG: BumpDependenciesConfig = {
-  manifest: resolve(import.meta.dirname, "../package.json"),
-  root: resolve(import.meta.dirname, ".."),
-  workspace: resolve(import.meta.dirname, "../pnpm-workspace.yaml"),
+  manifest: resolve(import.meta.dirname, "../../package.json"),
+  root: resolve(import.meta.dirname, "../.."),
+  workspace: resolve(import.meta.dirname, "../../pnpm-workspace.yaml"),
 };
 
 const RootManifestSchema = Schema.Struct({

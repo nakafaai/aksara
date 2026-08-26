@@ -72,6 +72,20 @@ v1.0.0.
 Issued by Tafsir Center for Quranic Studies. Source:
 [QuranEnc.com](https://quranenc.com/en/browse/indonesian_mokhtasar).
 
+## Official Al-Mukhtasar external editions
+
+Tafsir Center for Quranic Studies publishes complete official Al-Mukhtasar
+editions for [English book 319](https://mokhtasr.com/en/books/319),
+[Indonesian book 219](https://mokhtasr.com/en/books/219), and
+[German book 336](https://mokhtasr.com/en/books/336).
+
+Nakafa embeds only the independently pinned Indonesian QuranEnc corpus. For
+English and German, Nakafa links to the official publisher pages without
+copying or machine-translating the Tafsir text. The reviewed
+[official terms](https://mokhtasr.com/en/pages/terms-and-conditions) limit
+reproduction to personal, non-commercial use. These external editions are
+typed catalog metadata and do not claim a locally pinned artifact.
+
 ## QuranEnc republication conditions
 
 QuranEnc permits its translations to be downloaded and republished when the

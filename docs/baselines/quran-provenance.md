@@ -60,7 +60,9 @@ The raw Tanzil copyright block remains byte-for-byte intact. The public
 attribution row and `THIRD_PARTY.md` reproduce the required notices. Every
 published Quran snapshot begins with one validated
 `quran-attribution` row containing the five publishers, exact versions,
-retrieval time, source/update/terms links, artifact byte counts, and hashes.
+retrieval time, and source/update/terms links. Embedded sources also carry
+their authenticated artifact byte counts and hashes. External link-only
+editions carry no local artifact identity.
 
 ## Source-shaped field contract
 
@@ -133,5 +135,24 @@ The `translation.de.text` and `.footnotes` fields come only from the exact
 German QuranEnc XML. The active snapshot contains 342 locale search rows and
 1,542 total projections.
 
-German Tafsir is unavailable. Nakafa must say so plainly and must not
-substitute another language or label the German translation as Tafsir.
+## Official external Tafsir access addendum
+
+- Catalog reviewed: 2026-08-26
+- Decision: expose official English and German edition links without copying
+  or machine-translating their Tafsir text
+- Terms: [official Al-Mukhtasar terms](https://mokhtasr.com/en/pages/terms-and-conditions)
+
+The official public Al-Mukhtasar catalog exposes complete editions for all
+three Nakafa application locales:
+
+| Locale | Official book | Catalog version | Nakafa delivery |
+|---|---:|---:|---|
+| English | [319](https://mokhtasr.com/en/books/319) | 7 | External link |
+| Indonesian | [219](https://mokhtasr.com/en/books/219) | 6 | Provider corroboration; embedded Tafsir remains the pinned QuranEnc corpus |
+| German | [336](https://mokhtasr.com/en/books/336) | 6 | External link |
+
+These public page observations are typed in the provider-owned Quran catalog.
+They are not stored under `sources/` because they are reviewed metadata rather
+than verbatim provider artifacts. The public pages and terms page remain the
+update boundaries. Nakafa must not substitute another language, label a Quran
+translation as Tafsir, or claim that external text bytes are locally pinned.

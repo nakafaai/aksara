@@ -7,18 +7,18 @@ import { stringify } from "yaml";
 import {
   type BumpDependenciesConfig,
   makeBumpDependenciesProgram,
-} from "#scripts/bump-deps";
-import { makeRunner, output } from "#scripts/bump-deps/fixture";
+} from "#scripts/dependencies/bump";
 import {
   DependencyCommandError,
   type PnpmRunner,
-} from "#scripts/dependency-command";
+} from "#scripts/dependencies/command";
+import { makeRunner, output } from "#scripts/dependencies/fixture";
 import {
   DEPENDENCY_HOLDS,
   DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
   DEPENDENCY_RELEASE_AGE_MINUTES,
   expectedIgnoredDependencies,
-} from "#scripts/dependency-policy";
+} from "#scripts/dependencies/policy";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));
 
