@@ -1,5 +1,12 @@
 import { assert, beforeEach, describe, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ContentReleaseManifestSchema,
+  SignedContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release";
+import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
@@ -80,10 +87,6 @@ describe("production runtime bundle preparation", () => {
       for (const [effect, reason] of [
         [verifyBase(runtimeBundle, null, base), "missing-base"],
         [verifyBase(runtimeBundle, active, null), "missing-base"],
-        [
-          verifyBase(runtimeBundleFor(active, OTHER_SNAPSHOT_ID), active, base),
-          "snapshot",
-        ],
       ] as const) {
         const failure = yield* effect.pipe(Effect.flip);
         if (failure._tag !== "BaseTryoutRuntimeBundleMismatchError") {
@@ -97,6 +100,58 @@ describe("production runtime bundle preparation", () => {
         yield* verifyBase(runtimeBundle, active, base),
         runtimeBundle
       );
+
+      const replacementManifest = ContentReleaseManifestSchema.make({
+        ...active.release.manifest,
+        scope: PublicationScopeSchema.make({
+          families: active.release.manifest.scope.families,
+          snapshots: ["tryout"],
+        }),
+        snapshots: {
+          ...active.release.manifest.snapshots,
+          tryout: replaceContentSnapshot({
+            baseSnapshotId: OTHER_SNAPSHOT_ID,
+            resultSnapshotId: TRYOUT_SNAPSHOT_ID,
+            rowCount: 1,
+            rowDigest: OTHER_SNAPSHOT_ID,
+          }),
+        },
+      });
+      const replacement = {
+        ...active,
+        release: SignedContentReleaseSchema.make({
+          ...active.release,
+          manifest: replacementManifest,
+          manifestHash: yield* hashContentReleaseManifest(replacementManifest),
+        }),
+      };
+      const retainedFailure = yield* verifyBase(
+        runtimeBundleFor(replacement, OTHER_SNAPSHOT_ID),
+        replacement,
+        selectSourceBase(replacement)
+      ).pipe(Effect.flip);
+      if (retainedFailure._tag !== "BaseTryoutRuntimeBundleMismatchError") {
+        return yield* Effect.die(
+          `Expected a base runtime mismatch, received ${retainedFailure._tag}.`
+        );
+      }
+      assert.strictEqual(retainedFailure.reason, "snapshot");
+
+      const foreign = gitBundle("release-runtime-foreign", {
+        baseReleaseId: releaseId("release-runtime-parent"),
+        tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
+      });
+      const sourceFailure = yield* verifyBase(
+        runtimeBundleFor(foreign, TRYOUT_SNAPSHOT_ID),
+        active,
+        base
+      ).pipe(Effect.flip);
+      if (sourceFailure._tag !== "TryoutRuntimeBundleSourceError") {
+        return yield* Effect.die(
+          `Expected a runtime source mismatch, received ${sourceFailure._tag}.`
+        );
+      }
+      assert.strictEqual(sourceFailure.reason, "release");
     })
   );
 
@@ -236,6 +291,7 @@ describe("production runtime bundle preparation", () => {
       });
       assert.strictEqual(receipt.releaseId, "release-reuse");
       assert.strictEqual(calls.runtimeBundleRefreshes, 0);
+      assert.strictEqual(calls.runtimeResultSnapshotId, TRYOUT_SNAPSHOT_ID);
       assert.strictEqual(calls.snapshotCalls, 0);
     })
   );

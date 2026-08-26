@@ -39,14 +39,11 @@ import {
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
-import {
-  PreparedSnapshotScopeError,
-  PreparedTryoutRuntimeSnapshotError,
-  PreparedTryoutRuntimeTransitionError,
-} from "#publisher/preparation/errors";
+import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
+import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import type {
   PrepareContentRelease,
   PrepareContentReleaseInput,
@@ -111,38 +108,11 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     previousSnapshots: input.previousSnapshots,
     rows: input.snapshotRows,
   });
-  const { tryoutRuntime } = input;
-  const recoverySnapshotId =
-    input.previousSnapshots?.tryout.resultSnapshotId ?? null;
-  if (
-    tryoutRuntime !== null &&
-    tryoutRuntime.result.snapshotId !==
-      snapshotSummary.snapshots.tryout.resultSnapshotId
-  ) {
-    return yield* new PreparedTryoutRuntimeSnapshotError({
-      actualSnapshotId: tryoutRuntime.result.snapshotId,
-      expectedSnapshotId: snapshotSummary.snapshots.tryout.resultSnapshotId,
-    });
-  }
-  if (
-    tryoutRuntime !== null &&
-    tryoutRuntime.recovery !== null &&
-    tryoutRuntime.recovery.snapshotId !== recoverySnapshotId
-  ) {
-    return yield* new PreparedTryoutRuntimeSnapshotError({
-      actualSnapshotId: tryoutRuntime.recovery.snapshotId,
-      expectedSnapshotId: recoverySnapshotId,
-    });
-  }
-  if (
-    tryoutRuntime !== null &&
-    tryoutRuntime.recovery !== null &&
-    tryoutRuntime.result.snapshotId === tryoutRuntime.recovery.snapshotId
-  ) {
-    return yield* new PreparedTryoutRuntimeTransitionError({
-      snapshotId: tryoutRuntime.recovery.snapshotId,
-    });
-  }
+  yield* validatePreparedTryoutRuntime({
+    previousSnapshots: input.previousSnapshots,
+    runtime: input.tryoutRuntime,
+    snapshots: snapshotSummary.snapshots,
+  });
   /** Replays strict decoding, coherence, ordering, and route validation. */
   const records = derivePreparedRecords({
     records: input.records,
@@ -259,6 +229,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     routes,
     snapshotManifests,
     snapshotRows,
-    tryoutRuntime,
+    tryoutRuntime: input.tryoutRuntime,
   });
 });

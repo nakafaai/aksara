@@ -163,7 +163,10 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
       rendererManifest,
-      snapshot: snapshots.tryoutRuntimeSnapshot,
+      snapshot:
+        snapshots.tryoutRuntimeSnapshot ??
+        verifiedBaseTryoutRuntimeBundle?.payload.snapshot ??
+        null,
     });
     const prepared = yield* prepareContentRelease({
       aksaraSha,

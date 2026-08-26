@@ -72,6 +72,7 @@ export interface TargetCalls {
   rendererManifestOverride: unknown | undefined;
   rootReads: number;
   runtimeBundleRefreshes: number;
+  runtimeResultSnapshotId: string | null | undefined;
   signingSecretReads: number;
   snapshotCalls: number;
   sourceLayers: number;

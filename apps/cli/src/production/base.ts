@@ -3,6 +3,7 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import {
   baseContentSnapshots,
   type ContentSnapshotSet,
+  inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
@@ -38,7 +39,7 @@ export function selectSourceBase(bundle: ContentReleaseBundle | null) {
     releaseId: bundle.release.manifest.releaseId,
     resultCount: bundle.release.manifest.resultCount,
     resultDigest: bundle.release.manifest.resultDigest,
-    snapshots: bundle.release.manifest.snapshots,
+    snapshots: inheritContentSnapshots(bundle.release.manifest.snapshots),
   } satisfies ProductionBaseIdentity;
 }
 

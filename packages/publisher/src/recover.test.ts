@@ -1,6 +1,16 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  RollbackSignedContentReleaseSchema,
+  SignedContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release";
 import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
+import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/current/state";
+import {
+  inheritContentSnapshots,
+  invertContentSnapshots,
+  replaceContentSnapshot,
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
@@ -11,6 +21,7 @@ import {
 } from "#publisher/publication/spec";
 import { recoverContentRelease } from "#publisher/recover";
 import { makeTarget } from "#test/lifecycle/spec";
+import { releaseReceipt } from "#test/lifecycle/state";
 import { makeRelease } from "#test/publication";
 import { publish, testVerificationResolver } from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";
@@ -30,12 +41,82 @@ const makePublished = Effect.fn("AksaraPublisherTest.makePublished")(function* (
     );
   }
   return {
+    active,
     input: {
       recoveryId: recovery.release.manifest.releaseId,
       releaseId: active.release.manifest.releaseId,
     },
     recovery,
     state,
+  };
+});
+
+/** Builds a wire-valid legacy state whose retained inverse restores try-out data. */
+const makeLegacyTryoutRecovery = Effect.fn(
+  "AksaraPublisherTest.makeLegacyTryoutRecovery"
+)(function* () {
+  const published = yield* makePublished("test-recover-legacy-runtime");
+  const snapshots = {
+    ...inheritContentSnapshots(null),
+    tryout: replaceContentSnapshot({
+      baseSnapshotId: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
+      resultSnapshotId: Sha256HashSchema.make(`sha256:${"9".repeat(64)}`),
+      rowCount: 1,
+      rowDigest: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
+    }),
+  };
+  const activeRelease = yield* Schema.decodeEffect(SignedContentReleaseSchema)({
+    ...published.active.release,
+    manifest: {
+      ...published.active.release.manifest,
+      scope: {
+        ...published.active.release.manifest.scope,
+        snapshots: ["tryout"],
+      },
+      snapshots,
+    },
+  });
+  const recoveryRelease = yield* Schema.decodeEffect(
+    RollbackSignedContentReleaseSchema
+  )({
+    ...published.recovery.release,
+    manifest: {
+      ...published.recovery.release.manifest,
+      scope: {
+        ...published.recovery.release.manifest.scope,
+        snapshots: ["tryout"],
+      },
+      snapshots: invertContentSnapshots(snapshots),
+    },
+  });
+  const current = yield* Schema.decodeEffect(ContentReleaseCurrentSchema)({
+    active: {
+      receipt: releaseReceipt(activeRelease),
+      release: activeRelease,
+      rendererManifest: published.active.rendererManifest,
+    },
+    candidate: null,
+    recovery: {
+      phase: "verified",
+      release: recoveryRelease,
+      rendererManifest: published.recovery.rendererManifest,
+    },
+    tryoutRuntimeBundle: null,
+  });
+  const activateRecovery = vi.fn(() =>
+    Effect.die("Legacy recovery must fail before activation.")
+  );
+  return {
+    activateRecovery,
+    input: {
+      recoveryId: recoveryRelease.manifest.releaseId,
+      releaseId: activeRelease.manifest.releaseId,
+    },
+    target: makePublicationTarget({
+      activateRecovery,
+      current: Effect.succeed(current),
+      recovery: () => Effect.succeed({ kind: "missing" }),
+    }),
   };
 });
 
@@ -150,6 +231,25 @@ describe("recoverContentRelease", () => {
       ).pipe(Effect.flip);
       expect(error).toEqual(failure);
       expect(published.state.activate.mock.calls).toHaveLength(activations);
+    })
+  );
+
+  it.effect("blocks legacy recovery without a permanent runtime pair", () =>
+    Effect.gen(function* () {
+      const published = yield* makeLegacyTryoutRecovery();
+      const verify = vi.fn(() => Effect.void);
+      const error = yield* runRecovery(
+        published.input,
+        published.target,
+        verify
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "RecoveryRuntimeMissingError",
+        recoveryId: published.input.recoveryId,
+      });
+      expect(verify).not.toHaveBeenCalled();
+      expect(published.activateRecovery).not.toHaveBeenCalled();
     })
   );
 

@@ -53,6 +53,12 @@ export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<Prepa
   }
 ) {}
 
+/** A try-out replacement omitted the runtime pair required for activation. */
+export class PreparedTryoutRuntimeMissingError extends Schema.TaggedError<PreparedTryoutRuntimeMissingError>()(
+  "PreparedTryoutRuntimeMissingError",
+  {}
+) {}
+
 /** Candidate and recovery runtime snapshots do not form one valid transition. */
 export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<PreparedTryoutRuntimeTransitionError>()(
   "PreparedTryoutRuntimeTransitionError",

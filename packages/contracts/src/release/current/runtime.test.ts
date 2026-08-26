@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
+import { hasCurrentTryoutRuntimeBundle } from "#contracts/release/current/runtime";
 import { ContentReleaseCurrentSchema } from "#contracts/release/current/state";
 import {
   inheritContentSnapshots,
@@ -55,6 +56,9 @@ const runtimeActive = activeRelease(runtimeRelease);
 describe("current permanent runtime bundle", () => {
   it("accepts the bundle bound to the active snapshot and renderer", () => {
     expect(
+      hasCurrentTryoutRuntimeBundle(runtimeActive, tryoutRuntimeBundle)
+    ).toBe(true);
+    expect(
       accepts({
         active: runtimeActive,
         candidate: null,
@@ -65,6 +69,10 @@ describe("current permanent runtime bundle", () => {
   });
 
   it("rejects a bundle without its exact active runtime pair", () => {
+    expect(hasCurrentTryoutRuntimeBundle(null, tryoutRuntimeBundle)).toBe(
+      false
+    );
+    expect(hasCurrentTryoutRuntimeBundle(runtimeActive, null)).toBe(true);
     for (const state of [
       {
         active: null,

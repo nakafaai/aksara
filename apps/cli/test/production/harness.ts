@@ -48,6 +48,7 @@ const calls = vi.hoisted(() => {
     resumeCalls: 0,
     rootReads: 0,
     runtimeBundleRefreshes: 0,
+    runtimeResultSnapshotId: undefined,
     sha: undefined,
     signingSecretReads: 0,
     snapshotCalls: 0,
@@ -110,6 +111,8 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
       calls.baseResultCount = input.baseResultCount;
       calls.baseResultDigest = input.baseResultDigest;
       calls.releaseId = input.releaseId;
+      calls.runtimeResultSnapshotId =
+        input.tryoutRuntime?.result.snapshotId ?? null;
       calls.sha = input.aksaraSha;
       const bundle = gitBundle(input.releaseId, {
         ...(input.baseManifestHash === null

@@ -41,6 +41,7 @@ import type {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
+  PreparedTryoutRuntimeMissingError,
   PreparedTryoutRuntimeSnapshotError,
   PreparedTryoutRuntimeTransitionError,
 } from "#publisher/preparation/errors";
@@ -194,6 +195,7 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
+  | PreparedTryoutRuntimeMissingError
   | PreparedTryoutRuntimeSnapshotError
   | PreparedTryoutRuntimeTransitionError
   | QuranProvenanceBlockedError

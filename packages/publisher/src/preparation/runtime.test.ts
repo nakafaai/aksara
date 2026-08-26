@@ -5,10 +5,12 @@ import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   inheritContentSnapshot,
   inheritContentSnapshots,
+  replaceContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
 
+import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import { prepareTestRelease } from "#test/preparation";
 
 /** Builds one small runtime snapshot with a stable identity seed. */
@@ -31,6 +33,53 @@ function makeRuntimeSnapshot(seed: string, routeCount: number) {
 }
 
 layer(NodeServices.layer)("try-out runtime preparation", (it) => {
+  it.effect("accepts a replacement pair without a predecessor", () =>
+    Effect.gen(function* () {
+      const snapshot = makeRuntimeSnapshot("7", 1);
+      const snapshots = inheritContentSnapshots(null);
+
+      expect(
+        yield* validatePreparedTryoutRuntime({
+          previousSnapshots: null,
+          runtime: { recovery: null, result: snapshot },
+          snapshots: {
+            ...snapshots,
+            tryout: replaceContentSnapshot({
+              baseSnapshotId: null,
+              resultSnapshotId: snapshot.snapshotId,
+              rowCount: 1,
+              rowDigest: snapshot.catalogDigest,
+            }),
+          },
+        })
+      ).toBeUndefined();
+    })
+  );
+
+  it.effect("rejects a replacement without its permanent runtime pair", () =>
+    Effect.gen(function* () {
+      const snapshot = makeRuntimeSnapshot("8", 1);
+      const previousSnapshots = inheritContentSnapshots(null);
+      const error = yield* validatePreparedTryoutRuntime({
+        previousSnapshots,
+        runtime: null,
+        snapshots: {
+          ...previousSnapshots,
+          tryout: replaceContentSnapshot({
+            baseSnapshotId: null,
+            resultSnapshotId: snapshot.snapshotId,
+            rowCount: 1,
+            rowDigest: snapshot.catalogDigest,
+          }),
+        },
+      }).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "PreparedTryoutRuntimeMissingError",
+      });
+    })
+  );
+
   it.effect("rejects a pair outside the resulting release state", () =>
     Effect.gen(function* () {
       const runtimeSnapshot = makeRuntimeSnapshot("8", 0);

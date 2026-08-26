@@ -8,7 +8,12 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
-import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import {
+  baseContentSnapshots,
+  inheritContentSnapshot,
+  inheritContentSnapshots,
+  replaceContentSnapshot,
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect } from "effect";
 import {
   selectRecoveryBase,
@@ -55,7 +60,7 @@ describe("production base identity", () => {
       releaseId: ACTIVE.release.manifest.releaseId,
       resultCount: ACTIVE.release.manifest.resultCount,
       resultDigest: ACTIVE.release.manifest.resultDigest,
-      snapshots: ACTIVE.release.manifest.snapshots,
+      snapshots: inheritContentSnapshots(ACTIVE.release.manifest.snapshots),
     });
     expect(selectRecoveryBase(candidate)).toEqual({
       activeAppLocales: candidate.release.manifest.baseActiveAppLocales,
@@ -63,9 +68,52 @@ describe("production base identity", () => {
       releaseId: candidate.release.manifest.baseReleaseId,
       resultCount: candidate.release.manifest.baseResultCount,
       resultDigest: candidate.release.manifest.baseResultDigest,
-      snapshots: candidate.release.manifest.snapshots,
+      snapshots: baseContentSnapshots(candidate.release.manifest.snapshots),
     });
   });
+
+  it.effect("compares recovered bases by current snapshot identity", () =>
+    Effect.gen(function* () {
+      const active = withManifest(ACTIVE, {
+        snapshots: {
+          ...ACTIVE.release.manifest.snapshots,
+          tryout: replaceContentSnapshot({
+            baseSnapshotId: null,
+            resultSnapshotId: SNAPSHOT_A,
+            rowCount: 1,
+            rowDigest: HASH_B,
+          }),
+        },
+      });
+      const candidate = withManifest(
+        gitBundle("release-replacement-candidate", {
+          baseManifestHash: active.release.manifestHash,
+          baseReleaseId: active.release.manifest.releaseId,
+        }),
+        {
+          snapshots: {
+            ...active.release.manifest.snapshots,
+            tryout: replaceContentSnapshot({
+              baseSnapshotId: SNAPSHOT_A,
+              resultSnapshotId: SNAPSHOT_B,
+              rowCount: 1,
+              rowDigest: HASH_B,
+            }),
+          },
+        }
+      );
+
+      const recovered = selectRecoveryBase(candidate);
+      const current = selectSourceBase(active);
+      expect(recovered?.snapshots.tryout).toEqual(
+        inheritContentSnapshot(SNAPSHOT_A)
+      );
+      expect(current.snapshots.tryout).toEqual(
+        inheritContentSnapshot(SNAPSHOT_A)
+      );
+      expect(yield* validateRecoveryBase(recovered, current)).toBeUndefined();
+    })
+  );
 
   it("rejects every incomplete recovery identity", () => {
     const candidate = gitBundle("release-candidate", {

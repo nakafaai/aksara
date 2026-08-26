@@ -5,6 +5,7 @@ import {
   ActiveContentReleaseSchema,
   hasSameAppLocales,
 } from "#contracts/release/current/evidence";
+import { hasCurrentTryoutRuntimeBundle } from "#contracts/release/current/runtime";
 import {
   ContentReleaseBundleSchema,
   type RollbackContentReleaseBundle,
@@ -143,12 +144,7 @@ function hasCoherentCurrentState(input: {
   return (
     hasCoherentCandidate(input.active, input.candidate) &&
     hasCoherentRecovery(input) &&
-    (input.tryoutRuntimeBundle === null ||
-      (input.active !== null &&
-        input.active.release.manifest.snapshots.tryout.resultSnapshotId ===
-          input.tryoutRuntimeBundle.payload.snapshot.snapshotId &&
-        input.active.rendererManifest.hash ===
-          input.tryoutRuntimeBundle.payload.rendererManifestHash))
+    hasCurrentTryoutRuntimeBundle(input.active, input.tryoutRuntimeBundle)
   );
 }
 
