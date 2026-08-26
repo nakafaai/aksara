@@ -56,19 +56,19 @@ export const tanzilMetadataAttribution =
       {
         appLocale: AppLocaleSchema.make("en"),
         notice:
-          "Quran Metadata, Version 1.0. Copyright (C) 2008-2009 Tanzil.info. The official artifact declares the CC BY license.",
+          "Quran Metadata, Version 1.0, provides Arabic surah names, English transliterations, and English name meanings. Copyright (C) 2008-2009 Tanzil.info. The official artifact declares the CC BY license.",
         title: "Quran Metadata",
       },
       {
         appLocale: AppLocaleSchema.make("id"),
         notice:
-          "Metadata Al-Qur'an, versi 1.0. Hak cipta (C) 2008-2009 Tanzil.info. Artefak resminya mencantumkan lisensi CC BY.",
+          "Metadata Al-Qur'an, versi 1.0, menyediakan nama surah Arab, transliterasi Inggris, dan arti nama dalam bahasa Inggris. Hak cipta (C) 2008-2009 Tanzil.info. Artefak resminya mencantumkan lisensi CC BY.",
         title: "Metadata Al-Qur'an",
       },
       {
         appLocale: AppLocaleSchema.make("de"),
         notice:
-          "Die Quran-Metadaten, Version 1.0, stammen von Tanzil.info. In der Originaldatei ist Creative Commons Namensnennung als Lizenz angegeben. Copyright (C) 2008-2009 Tanzil.info.",
+          "Die Quran-Metadaten, Version 1.0, enthalten arabische Surennamen, englische Transliteration und englische Namensbedeutungen. Die Originaldatei nennt Creative Commons Namensnennung als Lizenz. Copyright (C) 2008-2009 Tanzil.info.",
         title: "Quran-Metadaten",
       },
     ],

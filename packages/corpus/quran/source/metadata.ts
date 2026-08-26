@@ -1,3 +1,4 @@
+import { ENGLISH_APP_LOCALE_CODE } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 
 import { quranGenerationFailure } from "#corpus/quran/source/error";
@@ -66,7 +67,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
     const surahs: SurahMetadata[] = [];
     for (const row of xmlRows(source, "sura")) {
       const name = attribute(row, "name");
-      const translation = attribute(row, "ename");
+      const meaning = attribute(row, "ename");
       const transliteration = attribute(row, "tname");
       const place = attribute(row, "type");
       const number = Number(attribute(row, "index"));
@@ -74,7 +75,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       const order = Number(attribute(row, "order"));
       const start = Number(attribute(row, "start"));
       if (
-        !(name && translation && transliteration) ||
+        !(name && meaning && transliteration) ||
         (place !== "Meccan" && place !== "Medinan") ||
         ![number, numberOfVerses, order, start].every(Number.isInteger)
       ) {
@@ -83,7 +84,11 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
         );
       }
       surahs.push({
-        name: { arabic: name, translation, transliteration },
+        name: {
+          arabic: name,
+          meaning: { appLocale: ENGLISH_APP_LOCALE_CODE, text: meaning },
+          transliteration,
+        },
         number,
         numberOfVerses,
         revelation: { order, place },

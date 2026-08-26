@@ -74,6 +74,13 @@ function projectSurah(surah: QuranSurah) {
   });
 }
 
+/** Returns a signed name meaning only to its exact source locale. */
+function nameMeaning(surah: QuranSurah, appLocale: AppLocale) {
+  return surah.name.meaning.appLocale === appLocale
+    ? [surah.name.meaning.text]
+    : [];
+}
+
 /** Builds deterministic contiguous chunks of at most six verses. */
 const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
   surah: QuranSurah,
@@ -160,7 +167,7 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
     text: [
       title,
       surah.name.arabic,
-      surah.name.translation,
+      ...nameMeaning(surah, appLocale),
       surah.revelation.place,
       verseText,
     ].join(" "),

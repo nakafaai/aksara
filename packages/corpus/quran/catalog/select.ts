@@ -3,6 +3,10 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
+  type QuranSourceId,
+  QuranSourceIdSchema,
+} from "@nakafa/aksara-contracts/quran/identity";
+import {
   QuranProvenanceRecordSchema,
   QuranProvenanceScopeSchema,
   quranProvenanceScopes,
@@ -11,8 +15,6 @@ import {
   QuranAttributionRowSchema,
   QuranSourceAttributionSchema,
   type QuranSourceCopy,
-  type QuranSourceId,
-  QuranSourceIdSchema,
   quranSourceIds,
 } from "@nakafa/aksara-contracts/quran/source";
 import { Effect, Schema } from "effect";
