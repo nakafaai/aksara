@@ -1,10 +1,9 @@
+import { describe, expect, it, vi } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import {
   prepareRollbackFixture,
   proofBundle,
@@ -18,11 +17,12 @@ import {
 } from "#test/rollback/preparation";
 
 describe("prepareRollback", () => {
-  it("prepares an authenticated prior state as a new forward release", async () => {
-    const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const result = await Effect.runPromise(
+  it.effect(
+    "prepares an authenticated prior state as a new forward release",
+    () =>
       Effect.scoped(
         Effect.gen(function* () {
+          const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
           const prepared = yield* prepareRollbackFixture(
             rollbackTarget(loadPage)
           );
@@ -31,103 +31,108 @@ describe("prepareRollback", () => {
             prepared.items.pipe(Stream.runCollect),
             prepared.projections.pipe(Stream.runCollect),
           ]);
-          return { artifacts, items, prepared, projections };
+          expect(prepared.manifest).toMatchObject({
+            baseManifestHash: sourceRelease.manifestHash,
+            baseReleaseId: rollbackOf,
+            itemCount: 1,
+            origin: { kind: "rollback", releaseId: rollbackOf },
+            projectionCount: 0,
+            releaseId,
+            resultCount: 0,
+          });
+          expect([...artifacts]).toEqual([]);
+          expect(
+            [...items].map(({ change: itemChange }) => itemChange.operation)
+          ).toEqual(["delete"]);
+          expect([...projections]).toEqual([]);
+          expect(loadPage).toHaveBeenCalledTimes(1);
         })
       )
-    );
+  );
 
-    expect(result.prepared.manifest).toMatchObject({
-      baseManifestHash: sourceRelease.manifestHash,
-      baseReleaseId: rollbackOf,
-      itemCount: 1,
-      origin: { kind: "rollback", releaseId: rollbackOf },
-      projectionCount: 0,
-      releaseId,
-      resultCount: 0,
-    });
-    expect([...result.artifacts]).toEqual([]);
-    expect(
-      [...result.items].map(({ change: itemChange }) => itemChange.operation)
-    ).toEqual(["delete"]);
-    expect([...result.projections]).toEqual([]);
-    expect(loadPage).toHaveBeenCalledTimes(1);
-  });
+  it.effect(
+    "rejects an unauthenticated renderer before reading rollback state",
+    () =>
+      Effect.gen(function* () {
+        const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
+        const error = yield* Effect.scoped(
+          prepareRollbackFixture(rollbackTarget(loadPage), {
+            ...rendererManifest,
+            hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+          })
+        ).pipe(Effect.flip);
 
-  it("rejects an unauthenticated renderer before reading rollback state", async () => {
-    const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const error = await Effect.runPromise(
-      Effect.scoped(
-        prepareRollbackFixture(rollbackTarget(loadPage), {
-          ...rendererManifest,
-          hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-        })
-      ).pipe(Effect.flip)
-    );
+        expect(error._tag).toBe("RendererManifestHashMismatchError");
+        expect(loadPage).not.toHaveBeenCalled();
+      })
+  );
 
-    expect(error._tag).toBe("RendererManifestHashMismatchError");
-    expect(loadPage).not.toHaveBeenCalled();
-  });
-
-  it("rebuilds the same candidate from its exact candidate rollback proof", async () => {
-    const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const first = await Effect.runPromise(
-      Effect.scoped(prepareRollbackFixture(rollbackTarget(loadPage)))
-    );
-    const candidate = {
-      release: await Effect.runPromise(signer.signRelease(first.manifest)),
-      rendererManifest,
-    };
-    const recovered = await Effect.runPromise(
-      Effect.scoped(
-        prepareRollbackFixture(
-          rollbackTarget(loadPage),
+  it.effect(
+    "rebuilds the same candidate from its exact candidate rollback proof",
+    () =>
+      Effect.gen(function* () {
+        const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
+        const first = yield* Effect.scoped(
+          prepareRollbackFixture(rollbackTarget(loadPage))
+        );
+        const candidate = {
+          release: yield* signer.signRelease(first.manifest),
           rendererManifest,
-          releaseId,
-          candidate
-        )
-      )
-    );
+        };
+        const recovered = yield* Effect.scoped(
+          prepareRollbackFixture(
+            rollbackTarget(loadPage),
+            rendererManifest,
+            releaseId,
+            candidate
+          )
+        );
 
-    expect(recovered.manifest).toStrictEqual(first.manifest);
-    expect(loadPage).toHaveBeenCalledTimes(2);
-  });
+        expect(recovered.manifest).toStrictEqual(first.manifest);
+        expect(loadPage).toHaveBeenCalledTimes(2);
+      })
+  );
 
-  it("rejects a signed proof that belongs to neither rollback identity", async () => {
-    const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const otherActive = ReleaseIdSchema.make("test-other-active");
-    const error = await Effect.runPromise(
-      Effect.scoped(
-        prepareRollbackFixture(
-          rollbackTarget(loadPage),
-          rendererManifest,
-          releaseId,
-          proofBundle,
-          otherActive
-        )
-      ).pipe(Effect.flip)
-    );
+  it.effect(
+    "rejects a signed proof that belongs to neither rollback identity",
+    () =>
+      Effect.gen(function* () {
+        const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
+        const otherActive = ReleaseIdSchema.make("test-other-active");
+        const error = yield* Effect.scoped(
+          prepareRollbackFixture(
+            rollbackTarget(loadPage),
+            rendererManifest,
+            releaseId,
+            proofBundle,
+            otherActive
+          )
+        ).pipe(Effect.flip);
 
-    expect(error).toMatchObject({ _tag: "RollbackProofIdentityError" });
-    expect(loadPage).not.toHaveBeenCalled();
-  });
+        expect(error).toMatchObject({ _tag: "RollbackProofIdentityError" });
+        expect(loadPage).not.toHaveBeenCalled();
+      })
+  );
 
-  it("rejects reuse of the active release identity before reading state", async () => {
-    const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const error = await Effect.runPromise(
-      Effect.scoped(
-        prepareRollbackFixture(
-          rollbackTarget(loadPage),
-          rendererManifest,
-          rollbackOf
-        )
-      ).pipe(Effect.flip)
-    );
+  it.effect(
+    "rejects reuse of the active release identity before reading state",
+    () =>
+      Effect.gen(function* () {
+        const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
+        const error = yield* Effect.scoped(
+          prepareRollbackFixture(
+            rollbackTarget(loadPage),
+            rendererManifest,
+            rollbackOf
+          )
+        ).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "RollbackIdentityError",
-      releaseId: rollbackOf,
-      rollbackOf,
-    });
-    expect(loadPage).not.toHaveBeenCalled();
-  });
+        expect(error).toMatchObject({
+          _tag: "RollbackIdentityError",
+          releaseId: rollbackOf,
+          rollbackOf,
+        });
+        expect(loadPage).not.toHaveBeenCalled();
+      })
+  );
 });
