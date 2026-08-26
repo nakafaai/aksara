@@ -1,96 +1,92 @@
-import { execFileSync } from "node:child_process";
-import {
-  chmodSync,
-  mkdirSync,
-  mkdtempSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
+import { expect, layer } from "@effect/vitest";
+import { Effect, FileSystem, Path } from "effect";
+import { ChildProcess } from "effect/unstable/process";
 import { verifyArchive, writeOutputs } from "#scripts/release-archive";
-import {
-  type ContractReleaseError,
-  parseVersion,
-} from "#scripts/release-identity";
-
-/** Runs one Node-backed archive operation at the test boundary. */
-function run<A, E, R>(effect: Effect.Effect<A, E, R>) {
-  return Effect.runPromise(
-    effect.pipe(
-      Effect.provide(NodeServices.layer),
-      Effect.scoped
-    ) as Effect.Effect<A, E>
-  );
-}
-
-/** Exposes one expected archive failure at the test boundary. */
-function reject<A, R>(effect: Effect.Effect<A, ContractReleaseError, R>) {
-  return run(effect.pipe(Effect.flip));
-}
+import { parseVersion } from "#scripts/release-identity";
 
 /** Creates one minimal contract package archive for boundary tests. */
-function createArchive(root: string) {
-  const stage = join(root, "current", "package");
-  const archive = join(root, "current.tgz");
-  mkdirSync(stage, { recursive: true });
-  writeFileSync(
-    join(stage, "package.json"),
-    '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
-  );
-  execFileSync("tar", [
-    "-czf",
-    archive,
-    "-C",
-    join(root, "current"),
-    "package",
-  ]);
-  return archive;
-}
+const createArchive = Effect.fn("ContractReleaseArchiveTest.createArchive")(
+  function* (root: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const current = path.join(root, "current");
+    const stage = path.join(current, "package");
+    const archive = path.join(root, "current.tgz");
+    yield* fileSystem.makeDirectory(stage, { recursive: true });
+    yield* fileSystem.writeFileString(
+      path.join(stage, "package.json"),
+      '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
+    );
+    const process = yield* ChildProcess.make("tar", [
+      "-czf",
+      archive,
+      "-C",
+      current,
+      "package",
+    ]);
+    expect(yield* process.exitCode).toBe(0);
+    return archive;
+  }
+);
 
-/** Creates one quiet command that exits unsuccessfully for platform mapping. */
-function createFailingTool(root: string) {
-  const tool = join(root, "fail.ts");
-  writeFileSync(tool, "#!/usr/bin/env node\nprocess.exitCode = 1;\n");
-  chmodSync(tool, 0o700);
+/** Creates one quiet executable that exits unsuccessfully. */
+const createFailingTool = Effect.fn(
+  "ContractReleaseArchiveTest.createFailingTool"
+)(function* (root: string) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const tool = path.join(root, "fail.sh");
+  yield* fileSystem.writeFileString(tool, "#!/bin/sh\nexit 1\n");
+  yield* fileSystem.chmod(tool, 0o700);
   return tool;
-}
+});
 
-describe("contract release archive", () => {
-  it("verifies exact embedded archive identity", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-archive-"));
-    const archive = createArchive(root);
-    const identity = await run(parseVersion("0.1.0"));
+layer(NodeServices.layer)("contract release archive", (it) => {
+  it.effect("verifies exact embedded archive identity", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-archive-",
+      });
+      const archive = yield* createArchive(root);
+      const identity = yield* parseVersion("0.1.0");
 
-    await expect(run(verifyArchive(archive, identity))).resolves.toBeInstanceOf(
-      Uint8Array
-    );
-    const wrongVersion = await reject(
-      verifyArchive(archive, await run(parseVersion("0.2.0")))
-    );
-    expect(wrongVersion.reason).toBe("archive");
-    const missing = await reject(
-      verifyArchive(
-        join(root, "missing.tgz"),
+      expect(yield* verifyArchive(archive, identity)).toBeInstanceOf(
+        Uint8Array
+      );
+      const wrongVersion = yield* verifyArchive(
+        archive,
+        yield* parseVersion("0.2.0")
+      ).pipe(Effect.flip);
+      expect(wrongVersion.reason).toBe("archive");
+      const missing = yield* verifyArchive(
+        path.join(root, "missing.tgz"),
         identity,
-        createFailingTool(root)
-      )
-    );
-    expect(missing.reason).toBe("platform");
-  });
+        yield* createFailingTool(root)
+      ).pipe(Effect.flip);
+      expect(missing.reason).toBe("platform");
+    })
+  );
 
-  it("appends only single-line workflow output values", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-output-"));
-    const output = join(root, "output.txt");
-    await run(writeOutputs(output, { safe: "value" }));
-    expect(readFileSync(output, "utf8")).toBe("safe=value\n");
+  it.effect("appends only single-line workflow output values", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-output-",
+      });
+      const output = path.join(root, "output.txt");
+      yield* writeOutputs(output, { safe: "value" });
+      expect(yield* fileSystem.readFileString(output, "utf8")).toBe(
+        "safe=value\n"
+      );
 
-    const multiline = await reject(
-      writeOutputs(output, { unsafe: "one\ntwo" })
-    );
-    expect(multiline.reason).toBe("argument");
-  });
+      const multiline = yield* writeOutputs(output, {
+        unsafe: "one\ntwo",
+      }).pipe(Effect.flip);
+      expect(multiline.reason).toBe("argument");
+    })
+  );
 });
