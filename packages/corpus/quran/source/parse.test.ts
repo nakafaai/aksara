@@ -18,6 +18,10 @@ const englishSource = readFileSync(
   resolve(sourceRoot, "quranenc/en.xml"),
   "utf8"
 );
+const germanSource = readFileSync(
+  resolve(sourceRoot, "german/translation.xml"),
+  "utf8"
+);
 const rawSources: RawSources = {
   arabic: readFileSync(resolve(sourceRoot, "tanzil/text.txt"), "utf8"),
   metadata: readFileSync(resolve(sourceRoot, "tanzil/data.xml"), "utf8"),
@@ -62,23 +66,25 @@ function withEnglish(english: string): RawSources {
 }
 
 describe("Quran source parsing", () => {
-  it("derives all 114 surahs and 6,236 verses from official bytes", async () => {
-    const surahs = await parse(rawSources);
+  it("validates all three translations across the complete corpus", async () => {
+    const surahs = await parse({
+      ...rawSources,
+      translations: { ...rawSources.translations, de: germanSource },
+    });
 
     expect(surahs).toHaveLength(114);
     expect(
       surahs.reduce((count, surah) => count + surah.verses.length, 0)
     ).toBe(6236);
+    expect(Object.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()).toEqual(
+      ["de", "en", "id"]
+    );
   });
 
   it("preserves the complete German translation exactly", async () => {
-    const german = readFileSync(
-      resolve(sourceRoot, "german/translation.xml"),
-      "utf8"
-    );
     const surahs = await parse({
       ...rawSources,
-      translations: { ...rawSources.translations, de: german },
+      translations: { ...rawSources.translations, de: germanSource },
     });
 
     expect(surahs[0]?.verses[0]?.translation.de).toEqual({
@@ -165,6 +171,16 @@ describe("Quran source parsing", () => {
     expect(
       errors.every(({ detail }) => detail === "Invalid QuranEnc verse 1:1.")
     ).toBe(true);
+  });
+
+  it("rejects translation markers without exact note definitions", async () => {
+    const mismatched = englishSource.replace(
+      TRANSLATION_PATTERN,
+      "<translation><![CDATA[Broken source translation[1].]]></translation>"
+    );
+    const error = await reject(withEnglish(mismatched));
+
+    expect(error.detail).toBe("Invalid QuranEnc translation notes 1:1.");
   });
 
   it("rejects a translation that omits a complete surah", async () => {

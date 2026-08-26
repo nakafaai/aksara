@@ -3,7 +3,10 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
-import { hashQuranRow } from "#contracts/quran/snapshot/row/hash";
+import {
+  canonicalizeQuranRow,
+  hashQuranRow,
+} from "#contracts/quran/snapshot/row/hash";
 import { quranRepresentativePayloads } from "#contracts/test/quran";
 
 const failures = vi.hoisted(() => ({ rowHash: false }));
@@ -39,6 +42,16 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 describe("Quran row hashing", () => {
+  it("signs the source locale and text of a surah name meaning", () => {
+    const payload = quranRepresentativePayloads().find(
+      (candidate) => candidate.kind === "quran-surah"
+    );
+
+    expect(payload && canonicalizeQuranRow(payload)).toContain(
+      '"meaning":{"appLocale":"en","text":"Test Surah 1"}'
+    );
+  });
+
   it.effect("maps current row hashing failures to the typed error", () =>
     Effect.gen(function* () {
       const payload = yield* Effect.fromNullishOr(

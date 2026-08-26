@@ -185,7 +185,10 @@ export function quranTestPayloads() {
         kind: "quran-surah",
         name: {
           arabic: `سورة ${surahNumber}`,
-          translation: `Test Surah ${surahNumber}`,
+          meaning: {
+            appLocale: english,
+            text: `Test Surah ${surahNumber}`,
+          },
           transliteration: `Test-Surah-${surahNumber}`,
         },
         number: surahNumber,
@@ -252,7 +255,7 @@ export function quranRepresentativePayloads() {
       kind: "quran-surah",
       name: {
         arabic: "سورة 1",
-        translation: "Test Surah 1",
+        meaning: { appLocale: english, text: "Test Surah 1" },
         transliteration: "Test-Surah-1",
       },
       number: 1,

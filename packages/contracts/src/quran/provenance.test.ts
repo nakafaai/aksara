@@ -14,8 +14,8 @@ import {
   QuranProvenanceRecordSchema,
   type QuranProvenanceScope,
   quranProvenanceScopes,
+  quranSourceForProvenanceScope,
 } from "#contracts/quran/provenance";
-import type { QuranSourceId } from "#contracts/quran/source";
 import { reverseObjectKeys } from "#contracts/test/order";
 
 const failures = vi.hoisted(() => ({ hash: false }));
@@ -47,39 +47,13 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-/** Resolves the official source required by one reviewed provenance field. */
-function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
-  if (scope === "arabic-text") {
-    return "tanzil-text";
-  }
-  if (scope === "metadata") {
-    return "tanzil-metadata";
-  }
-  if (scope === "en-translation") {
-    return "quranenc-english";
-  }
-  if (scope === "id-translation") {
-    return "quranenc-indonesian";
-  }
-  if (scope === "de-translation") {
-    return "quranenc-german";
-  }
-  if (scope === "en-tafsir-access") {
-    return "mokhtasar-english";
-  }
-  if (scope === "de-tafsir-access") {
-    return "mokhtasar-german";
-  }
-  return "quranenc-tafsir";
-}
-
 /** Builds one exact technical provenance record. */
 function record(
   scope: QuranProvenanceScope,
   status: "approved" | "blocked",
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
-  const source = sourceForScope(scope);
+  const source = quranSourceForProvenanceScope(scope);
   const common = {
     copy: activeAppLocales.map((appLocale) => ({
       appLocale,

@@ -1,10 +1,8 @@
-import type { LocalizedSourceMap } from "#corpus/locale/source";
+import type { QuranTranslation } from "@nakafa/aksara-contracts/quran/notes";
+import type { QuranSurahMetadataSchema } from "@nakafa/aksara-contracts/quran/spec";
+import type { Schema } from "effect";
 
-/** Exact translation fields parsed from one official source verse. */
-export interface Translation {
-  readonly footnotes: string;
-  readonly text: string;
-}
+import type { LocalizedSourceMap } from "#corpus/locale/source";
 
 export interface Tafsir {
   readonly footnotes: null | string;
@@ -28,27 +26,19 @@ export interface Verse {
   };
   readonly tafsir: { readonly id: Tafsir };
   readonly text: { readonly arabic: string };
-  readonly translation: LocalizedSourceMap<Translation>;
+  readonly translation: LocalizedSourceMap<QuranTranslation>;
 }
 
-export interface SurahMetadata {
-  readonly name: {
-    readonly arabic: string;
-    readonly translation: string;
-    readonly transliteration: string;
-  };
-  readonly number: number;
-  readonly numberOfVerses: number;
-  readonly revelation: {
-    readonly order: number;
-    readonly place: "Meccan" | "Medinan";
-  };
+/** Encoded metadata emitted before the corpus schema applies its brands. */
+type QuranSurahMetadata = Schema.Codec.Encoded<typeof QuranSurahMetadataSchema>;
+
+export type SurahMetadata = QuranSurahMetadata & {
   readonly start: number;
-}
+};
 
-export interface Surah extends Omit<SurahMetadata, "start"> {
+export type Surah = QuranSurahMetadata & {
   readonly verses: readonly Verse[];
-}
+};
 
 export interface Marker {
   readonly index: number;

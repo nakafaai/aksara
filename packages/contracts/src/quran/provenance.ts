@@ -6,16 +6,23 @@ import { Sha256HashSchema } from "#contracts/ids";
 import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
-  type AppLocale,
-  AppLocaleCodeSchema,
   AppLocaleSchema,
+  ENGLISH_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
 } from "#contracts/locale";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
+import {
+  type QuranSourceId,
+  QuranTranslationProvenanceScopeSchema,
+  quranTafsirSourceId,
+  quranTranslationProvenanceScope,
+  quranTranslationSourceForScope,
+} from "#contracts/quran/identity";
 import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
 import {
   hasCompleteQuranSourceCopy,
   QuranSourceAttributionSchema,
-  type QuranSourceId,
 } from "#contracts/quran/source";
 
 /** Quran source fields that require independent provenance decisions. */
@@ -24,35 +31,25 @@ const QuranStaticProvenanceScopeSchema = Schema.Literals([
   "metadata",
 ]);
 
-const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral([
-  AppLocaleCodeSchema,
-  "-translation",
-]);
-
 const QuranExternalTafsirProvenanceScopeSchema = Schema.Literals([
   "en-tafsir-access",
   "de-tafsir-access",
 ]);
 
-/** Complete source-field vocabulary supported by current Quran publication. */
-export const QuranProvenanceScopeSchema = Schema.Union([
+const QuranNonTranslationProvenanceScopeSchema = Schema.Union([
   QuranStaticProvenanceScopeSchema,
-  QuranTranslationProvenanceScopeSchema,
   QuranExternalTafsirProvenanceScopeSchema,
   Schema.Literal("id-tafsir"),
 ]);
-export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
+type QuranNonTranslationProvenanceScope =
+  typeof QuranNonTranslationProvenanceScopeSchema.Type;
 
-/** Maps one active application locale to its exact translation source field. */
-function translationScope(appLocale: AppLocale): QuranProvenanceScope {
-  if (appLocale === AppLocaleSchema.make("en")) {
-    return "en-translation";
-  }
-  if (appLocale === AppLocaleSchema.make("id")) {
-    return "id-translation";
-  }
-  return "de-translation";
-}
+/** Complete source-field vocabulary supported by current Quran publication. */
+export const QuranProvenanceScopeSchema = Schema.Union([
+  QuranNonTranslationProvenanceScopeSchema,
+  QuranTranslationProvenanceScopeSchema,
+]);
+export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
 
 /** Derives the exact provenance scope order for one active locale set. */
 export function quranProvenanceScopes(
@@ -60,7 +57,7 @@ export function quranProvenanceScopes(
 ): readonly QuranProvenanceScope[] {
   const scopes: QuranProvenanceScope[] = ["arabic-text"];
   for (const appLocale of activeAppLocales) {
-    scopes.push(translationScope(appLocale));
+    scopes.push(quranTranslationProvenanceScope(appLocale));
     if (appLocale === AppLocaleSchema.make("en")) {
       scopes.push("en-tafsir-access");
     } else if (appLocale === AppLocaleSchema.make("id")) {
@@ -73,20 +70,22 @@ export function quranProvenanceScopes(
   return scopes;
 }
 
-const QURAN_PROVENANCE_SOURCE = {
+const QURAN_STATIC_PROVENANCE_SOURCE = {
   "arabic-text": "tanzil-text",
-  "de-tafsir-access": "mokhtasar-german",
-  "de-translation": "quranenc-german",
-  "en-tafsir-access": "mokhtasar-english",
-  "en-translation": "quranenc-english",
-  "id-tafsir": "quranenc-tafsir",
-  "id-translation": "quranenc-indonesian",
+  "de-tafsir-access": quranTafsirSourceId(GERMAN_APP_LOCALE_CODE),
+  "en-tafsir-access": quranTafsirSourceId(ENGLISH_APP_LOCALE_CODE),
+  "id-tafsir": quranTafsirSourceId(INDONESIAN_APP_LOCALE_CODE),
   metadata: "tanzil-metadata",
-} satisfies Record<QuranProvenanceScope, QuranSourceId>;
+} as const satisfies Record<QuranNonTranslationProvenanceScope, QuranSourceId>;
 
 /** Resolves the only official source allowed to prove one provenance scope. */
-function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
-  return QURAN_PROVENANCE_SOURCE[scope];
+export function quranSourceForProvenanceScope(
+  scope: QuranProvenanceScope
+): QuranSourceId {
+  if (Schema.is(QuranTranslationProvenanceScopeSchema)(scope)) {
+    return quranTranslationSourceForScope(scope);
+  }
+  return QURAN_STATIC_PROVENANCE_SOURCE[scope];
 }
 
 /** One reviewed official artifact and its field-level permission decision. */
@@ -98,7 +97,8 @@ export const QuranProvenanceRecordSchema = Schema.Struct({
 }).pipe(
   Schema.check(
     Schema.makeFilter(
-      ({ attribution, scope }) => attribution.id === sourceForScope(scope),
+      ({ attribution, scope }) =>
+        attribution.id === quranSourceForProvenanceScope(scope),
       { message: "Expected each Quran scope to bind its official source." }
     )
   )
@@ -116,7 +116,7 @@ function hasCanonicalSourceCoverage(input: {
     input.records.every(
       (record, index) =>
         record.scope === expected[index] &&
-        record.attribution.id === sourceForScope(record.scope) &&
+        record.attribution.id === quranSourceForProvenanceScope(record.scope) &&
         hasCompleteQuranSourceCopy(record.attribution, input.activeAppLocales)
     )
   );

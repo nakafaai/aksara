@@ -4,10 +4,10 @@ import {
   INDONESIAN_APP_LOCALE_CODE,
   makeAppLocale,
 } from "@nakafa/aksara-contracts/locale";
+import { QURAN_SOURCE_IDS } from "@nakafa/aksara-contracts/quran/identity";
 import { QuranProvenanceScopeSchema } from "@nakafa/aksara-contracts/quran/provenance";
 import { QuranProvenanceStatusSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import {
-  QURAN_SOURCE_IDS,
   type QuranSourceAttribution,
   QuranSourceAttributionSchema,
   type QuranTafsirAccess,

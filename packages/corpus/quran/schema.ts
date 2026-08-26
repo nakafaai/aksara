@@ -1,10 +1,12 @@
+import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
 import {
-  QuranMeaningfulTextSchema,
   QuranSurahMetadataSchema,
   QuranTafsirLocaleSchema,
-  QuranTextSchema,
-  QuranTranslationSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
+import {
+  QuranMeaningfulTextSchema,
+  QuranTextSchema,
+} from "@nakafa/aksara-contracts/quran/text";
 import { Schema } from "effect";
 
 import { localizedSourceMapSchema } from "#corpus/locale/source";

@@ -8,63 +8,28 @@ import {
   appLocaleLiteral,
 } from "#contracts/locale";
 import {
+  QURAN_SOURCE_IDS,
+  QuranEmbeddedSourceIdSchema,
+  QuranExternalSourceIdSchema,
+  type QuranSourceId,
+  quranTafsirSourceId,
+  quranTranslationSourceId,
+} from "#contracts/quran/identity";
+import {
   QURAN_SURAH_COUNT,
   QuranExternalTafsirLocaleSchema,
   QuranTafsirLocaleSchema,
 } from "#contracts/quran/spec";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
-/** Official source identities whose bytes are pinned inside Aksara. */
-export const QuranEmbeddedSourceIdSchema = Schema.Literals([
-  "tanzil-text",
-  "tanzil-metadata",
-  "quranenc-english",
-  "quranenc-indonesian",
-  "quranenc-german",
-  "quranenc-tafsir",
-]);
-export type QuranEmbeddedSourceId = typeof QuranEmbeddedSourceIdSchema.Type;
-
-/** Official source identities that Aksara may link to but not republish. */
-export const QuranExternalSourceIdSchema = Schema.Literals([
-  "mokhtasar-english",
-  "mokhtasar-german",
-]);
-export type QuranExternalSourceId = typeof QuranExternalSourceIdSchema.Type;
-
-/** Exact official Quran source identities in visible attribution order. */
-export const QuranSourceIdSchema = Schema.Literals([
-  ...QuranEmbeddedSourceIdSchema.literals,
-  ...QuranExternalSourceIdSchema.literals,
-]);
-export type QuranSourceId = typeof QuranSourceIdSchema.Type;
-
-/** Canonical order of every official source supported by the contract. */
-export const QURAN_SOURCE_IDS = QuranSourceIdSchema.literals;
-
 /** Derives the exact source identities required by one active locale set. */
 export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
 ): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
-  const sourceIds: QuranSourceId[] = [];
-  if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
-    sourceIds.push("quranenc-english");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
-    sourceIds.push("quranenc-indonesian");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
-    sourceIds.push("quranenc-german");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("id"))) {
-    sourceIds.push("quranenc-tafsir");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
-    sourceIds.push("mokhtasar-english");
-  }
-  if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
-    sourceIds.push("mokhtasar-german");
-  }
+  const sourceIds: QuranSourceId[] = activeAppLocales.flatMap((appLocale) => [
+    quranTranslationSourceId(appLocale),
+    quranTafsirSourceId(appLocale),
+  ]);
   return [
     "tanzil-text",
     "tanzil-metadata",
@@ -161,21 +126,27 @@ const QuranIndonesianTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranTafsirLocaleSchema.literal),
   kind: Schema.Literal("embedded"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("quranenc-tafsir"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranTafsirLocaleSchema.literal)
+  ),
 });
 
 const QuranEnglishTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[0]),
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("mokhtasar-english"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[0])
+  ),
 });
 
 const QuranGermanTafsirAccessSchema = Schema.Struct({
   appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[1]),
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literal("mokhtasar-german"),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[1])
+  ),
 });
 
 /** Signed locale-specific access to embedded or official external Tafsir. */

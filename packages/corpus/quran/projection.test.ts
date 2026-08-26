@@ -114,6 +114,17 @@ describe("Quran projection", () => {
         title: "1. Al-Faatiha",
       },
     ]);
+    const openingSearches = searches.filter(
+      ({ surahNumber }) => surahNumber === 1
+    );
+    expect(
+      openingSearches.find(({ appLocale }) => appLocale === "en")?.text
+    ).toContain("The Opening");
+    expect(
+      openingSearches
+        .filter(({ appLocale }) => appLocale !== "en")
+        .every(({ text }) => !text.includes("The Opening"))
+    ).toBe(true);
     expect(
       chunks.every(
         ({ verses }) =>

@@ -83,7 +83,10 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
       kind: payload.kind,
       name: {
         arabic: payload.name.arabic,
-        translation: payload.name.translation,
+        meaning: {
+          appLocale: payload.name.meaning.appLocale,
+          text: payload.name.meaning.text,
+        },
         transliteration: payload.name.transliteration,
       },
       number: payload.number,
