@@ -55,74 +55,72 @@ function creation(
 }
 
 /** Runs manifest creation and returns its expected typed failure. */
-function rejectCreation(
-  authoringComponents: readonly RendererComponentRequirement[]
-) {
-  return Effect.runPromise(
-    createRendererManifest(creation(authoringComponents)).pipe(Effect.flip)
-  );
+function rejectCreation(components: readonly RendererComponentRequirement[]) {
+  return createRendererManifest(creation(components)).pipe(Effect.flip);
 }
 
-/** Runs manifest validation and returns its expected typed failure. */
-async function rejectValidation(
+/** Returns the expected typed validation failure for one authored selection. */
+function rejectValidation(
   authoringComponents: readonly RendererComponentRequirement[]
 ) {
-  const manifest = await Effect.runPromise(createRendererManifest(creation()));
-  return Effect.runPromise(
-    validateRendererManifestHash({
-      ...manifest,
-      base: { ...manifest.base, authoringComponents },
-    }).pipe(Effect.flip)
+  return createRendererManifest(creation()).pipe(
+    Effect.flatMap((manifest) =>
+      validateRendererManifestHash({
+        ...manifest,
+        base: { ...manifest.base, authoringComponents },
+      }).pipe(Effect.flip)
+    )
   );
 }
 
 describe("renderer manifest", () => {
-  it("matches exact canonical domain-scoped bytes and hash", async () => {
-    const manifest = await Effect.runPromise(
-      createRendererManifest(
+  it.effect("matches exact canonical domain-scoped bytes and hash", () =>
+    Effect.gen(function* () {
+      const manifest = yield* createRendererManifest(
         creation(BASE_AUTHORING, [
           { name: "InlineMath", version: 2 },
           { name: "BlockMath", version: 1 },
           { name: "InlineMath", version: 1 },
         ])
-      )
-    );
-    const bytes = canonicalizeRendererManifestContract(manifest);
-    expect(bytes).toContain('"nakafa-mdx-renderer-v1"');
-    expect(manifest).toMatchObject({
-      base: {
-        authoringComponents: BASE_AUTHORING,
-        supportedComponents: BASE_SUPPORTED,
-      },
-      domains: DOMAINS,
-      format: "nakafa-mdx-renderer-v1",
-      rendererContractVersion: "1.0.0",
-    });
-    expect(manifest.hash).toBe(
-      `sha256:${createHash("sha256").update(bytes).digest("hex")}`
-    );
-    await expect(
-      Effect.runPromise(validateRendererManifestHash(manifest))
-    ).resolves.toEqual(manifest);
-    await expect(
-      Effect.runPromise(validateLiveRendererManifestHash(manifest))
-    ).resolves.toEqual(manifest);
-  });
+      );
+      const bytes = canonicalizeRendererManifestContract(manifest);
+      expect(bytes).toContain('"nakafa-mdx-renderer-v1"');
+      expect(manifest).toMatchObject({
+        base: {
+          authoringComponents: BASE_AUTHORING,
+          supportedComponents: BASE_SUPPORTED,
+        },
+        domains: DOMAINS,
+        format: "nakafa-mdx-renderer-v1",
+        rendererContractVersion: "1.0.0",
+      });
+      expect(manifest.hash).toBe(
+        `sha256:${createHash("sha256").update(bytes).digest("hex")}`
+      );
+      expect(yield* validateRendererManifestHash(manifest)).toEqual(manifest);
+      const liveManifest = yield* validateLiveRendererManifestHash(manifest);
+      expect(liveManifest).toEqual(manifest);
+    })
+  );
 
-  it("matches the independently generated Nakafa production manifest hash", async () => {
-    const names = PRODUCTION_COMPONENT_NAME_GROUPS.flatMap((group) =>
-      group.split(" ").map((name) => ({ name, version: 1 }))
-    );
-    const production = await Effect.runPromise(
-      createRendererManifest(creation(names, names))
-    );
+  it.effect(
+    "matches the independently generated Nakafa production manifest hash",
+    () =>
+      Effect.gen(function* () {
+        const names = PRODUCTION_COMPONENT_NAME_GROUPS.flatMap((group) =>
+          group.split(" ").map((name) => ({ name, version: 1 }))
+        );
+        const production = yield* createRendererManifest(
+          creation(names, names)
+        );
 
-    expect(production.hash).toBe(
-      "sha256:27011a899d841e9ca9479ad7f74a9207f09c3905165858e37a2040ecdd131d48"
-    );
-  });
+        expect(production.hash).toBe(
+          "sha256:27011a899d841e9ca9479ad7f74a9207f09c3905165858e37a2040ecdd131d48"
+        );
+      })
+  );
 
-  it.each([
+  it.effect.each([
     [
       "RendererAuthoringComponentMissingError",
       [{ name: "BlockMath", version: 1 }],
@@ -154,92 +152,87 @@ describe("renderer manifest", () => {
       "RendererAuthoringSelectionNonCanonicalError",
       [...BASE_AUTHORING].reverse(),
     ],
-  ])("rejects %s from creation and validation", async (tag, pins) => {
-    const [creationError, validationError] = await Promise.all([
-      rejectCreation(pins),
-      rejectValidation(pins),
-    ]);
-    expect(creationError._tag).toBe(tag);
-    expect(validationError._tag).toBe(tag);
-  });
-
-  it("normalizes domains and rejects duplicated support and tampered hashes", async () => {
-    const normalizedDomains = await Effect.runPromise(
-      createRendererManifest({
-        ...creation(),
-        domains: [...DOMAINS].reverse(),
+  ] as const)("rejects %s from creation and validation", ([tag, pins]) =>
+    Effect.all([rejectCreation(pins), rejectValidation(pins)]).pipe(
+      Effect.map(([creationError, validationError]) => {
+        expect(creationError._tag).toBe(tag);
+        return expect(validationError._tag).toBe(tag);
       })
-    );
-    expect(normalizedDomains.domains.map(({ name }) => name)).toEqual(
-      RENDERER_DOMAINS
-    );
+    )
+  );
 
-    const duplicate = await Effect.runPromise(
-      createRendererManifest(
-        creation(
-          [{ name: "BlockMath", version: 1 }],
-          [
-            { name: "BlockMath", version: 1 },
-            { name: "BlockMath", version: 1 },
-          ]
-        )
-      ).pipe(Effect.flip)
-    );
-    expect(duplicate._tag).toBe("ContractDecodeError");
+  it.effect(
+    "normalizes domains and rejects duplicated support and tampered hashes",
+    () =>
+      Effect.gen(function* () {
+        const normalizedDomains = yield* createRendererManifest({
+          ...creation(),
+          domains: [...DOMAINS].reverse(),
+        });
+        expect(normalizedDomains.domains.map(({ name }) => name)).toEqual(
+          RENDERER_DOMAINS
+        );
 
-    const manifest = await Effect.runPromise(
-      createRendererManifest(creation())
-    );
-    const mismatch = await Effect.runPromise(
-      validateRendererManifestHash({
-        ...manifest,
-        hash: `sha256:${"f".repeat(64)}`,
-      }).pipe(Effect.flip)
-    );
-    expect(mismatch._tag).toBe("RendererManifestHashMismatchError");
-  });
+        const duplicate = yield* createRendererManifest(
+          creation(
+            [{ name: "BlockMath", version: 1 }],
+            [
+              { name: "BlockMath", version: 1 },
+              { name: "BlockMath", version: 1 },
+            ]
+          )
+        ).pipe(Effect.flip);
+        expect(duplicate._tag).toBe("ContractDecodeError");
 
-  it("validates historical subsets but creates only complete live manifests", async () => {
-    const incompleteCreation = await Effect.runPromise(
-      createRendererManifest({
-        ...creation(),
-        domains: DOMAINS.filter(({ name }) => name !== "site"),
-      }).pipe(Effect.flip)
-    );
-    expect(incompleteCreation._tag).toBe("ContractDecodeError");
+        const manifest = yield* createRendererManifest(creation());
+        const mismatch = yield* validateRendererManifestHash({
+          ...manifest,
+          hash: `sha256:${"f".repeat(64)}`,
+        }).pipe(Effect.flip);
+        expect(mismatch._tag).toBe("RendererManifestHashMismatchError");
+      })
+  );
 
-    const manifest = await Effect.runPromise(
-      createRendererManifest(creation())
-    );
-    const domains = manifest.domains.filter(({ name }) => name !== "site");
-    const historicalContract = {
-      base: manifest.base,
-      domains,
-      publishedDomains: manifest.publishedDomains,
-    };
-    const historical = {
-      ...manifest,
-      domains,
-      hash: `sha256:${createHash("sha256")
-        .update(canonicalizeRendererManifestContract(historicalContract))
-        .digest("hex")}`,
-    };
+  it.effect(
+    "validates historical subsets but creates only complete live manifests",
+    () =>
+      Effect.gen(function* () {
+        const incompleteCreation = yield* createRendererManifest({
+          ...creation(),
+          domains: DOMAINS.filter(({ name }) => name !== "site"),
+        }).pipe(Effect.flip);
+        expect(incompleteCreation._tag).toBe("ContractDecodeError");
 
-    await expect(
-      Effect.runPromise(validateRendererManifestHash(historical))
-    ).resolves.toEqual(historical);
-    const liveError = await Effect.runPromise(
-      validateLiveRendererManifestHash(historical).pipe(Effect.flip)
-    );
-    expect(liveError).toMatchObject({
-      _tag: "ContractDecodeError",
-      contract: "LiveRendererManifestDomains",
-    });
-  });
+        const manifest = yield* createRendererManifest(creation());
+        const domains = manifest.domains.filter(({ name }) => name !== "site");
+        const historicalContract = {
+          base: manifest.base,
+          domains,
+          publishedDomains: manifest.publishedDomains,
+        };
+        const historical = {
+          ...manifest,
+          domains,
+          hash: `sha256:${createHash("sha256")
+            .update(canonicalizeRendererManifestContract(historicalContract))
+            .digest("hex")}`,
+        };
 
-  it("rejects component ownership overlap across scopes", async () => {
-    const error = await Effect.runPromise(
-      createRendererManifest({
+        const validated = yield* validateRendererManifestHash(historical);
+        expect(validated).toEqual(historical);
+        const liveError = yield* validateLiveRendererManifestHash(
+          historical
+        ).pipe(Effect.flip);
+        expect(liveError).toMatchObject({
+          _tag: "ContractDecodeError",
+          contract: "LiveRendererManifestDomains",
+        });
+      })
+  );
+
+  it.effect("rejects component ownership overlap across scopes", () =>
+    Effect.gen(function* () {
+      const error = yield* createRendererManifest({
         ...creation(),
         domains: DOMAINS.map((domain) =>
           domain.name === CHEMISTRY.name
@@ -250,50 +243,58 @@ describe("renderer manifest", () => {
               }
             : domain
         ),
-      }).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe("ContractDecodeError");
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
 
-    const manifest = await Effect.runPromise(
-      createRendererManifest(creation())
-    );
-    const overlap = {
-      base: manifest.base,
-      domains: manifest.domains.map((domain) =>
-        domain.name === CHEMISTRY.name
-          ? {
-              ...domain,
-              authoringComponents: [{ name: "BlockMath", version: 1 }],
-              supportedComponents: [{ name: "BlockMath", version: 1 }],
-            }
-          : domain
-      ),
-      publishedDomains: manifest.publishedDomains,
-    };
-    const hash = `sha256:${createHash("sha256")
-      .update(canonicalizeRendererManifestContract(overlap))
-      .digest("hex")}`;
-    const wireError = await Effect.runPromise(
-      validateRendererManifestHash({ ...manifest, ...overlap, hash }).pipe(
-        Effect.flip
-      )
-    );
-    expect(wireError._tag).toBe("ContractDecodeError");
-  });
+      const manifest = yield* createRendererManifest(creation());
+      const overlap = {
+        base: manifest.base,
+        domains: manifest.domains.map((domain) =>
+          domain.name === CHEMISTRY.name
+            ? {
+                ...domain,
+                authoringComponents: [{ name: "BlockMath", version: 1 }],
+                supportedComponents: [{ name: "BlockMath", version: 1 }],
+              }
+            : domain
+        ),
+        publishedDomains: manifest.publishedDomains,
+      };
+      const hash = `sha256:${createHash("sha256")
+        .update(canonicalizeRendererManifestContract(overlap))
+        .digest("hex")}`;
+      const wireError = yield* validateRendererManifestHash({
+        ...manifest,
+        ...overlap,
+        hash,
+      }).pipe(Effect.flip);
+      expect(wireError._tag).toBe("ContractDecodeError");
+    })
+  );
 
-  it("maps renderer hashing failures without leaking raw crypto errors", async () => {
-    const digest = vi
-      .spyOn(crypto.subtle, "digest")
-      .mockRejectedValueOnce(new TypeError("injected renderer hash failure"));
-    const error = await Effect.runPromise(
-      createRendererManifest(
-        creation(
-          [{ name: "HashFailure", version: 1 }],
-          [{ name: "HashFailure", version: 1 }]
+  it.effect(
+    "maps renderer hashing failures without leaking raw crypto errors",
+    () =>
+      Effect.acquireUseRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("injected renderer hash failure")
+            )
+        ),
+        () =>
+          createRendererManifest(
+            creation(
+              [{ name: "HashFailure", version: 1 }],
+              [{ name: "HashFailure", version: 1 }]
+            )
+          ).pipe(Effect.flip),
+        (digest) => Effect.sync(() => digest.mockRestore())
+      ).pipe(
+        Effect.map((error) =>
+          expect(error._tag).toBe("RendererManifestHashComputeError")
         )
-      ).pipe(Effect.flip)
-    );
-    digest.mockRestore();
-    expect(error._tag).toBe("RendererManifestHashComputeError");
-  });
+      )
+  );
 });
