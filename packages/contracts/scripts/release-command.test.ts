@@ -45,18 +45,21 @@ layer(NodeServices.layer)("contract release command", (it) => {
       const identity = yield* fileSystem
         .readFileString("package.json", "utf8")
         .pipe(Effect.flatMap(packageIdentity));
-      yield* fileSystem.exists(output).pipe(
+      const expectedOutput = `asset_name=${identity.assetName}`;
+      const contents = yield* fileSystem.readFileString(output, "utf8").pipe(
+        Effect.catchIf(
+          (error) => error.reason._tag === "NotFound",
+          () => Effect.succeed("")
+        ),
         Effect.repeat({
           schedule: Schedule.spaced("10 millis"),
-          while: (exists) => !exists,
+          while: (text) => !text.includes(expectedOutput),
         }),
         Effect.timeout("2 seconds"),
         TestClock.withLive
       );
 
-      expect(yield* fileSystem.readFileString(output, "utf8")).toContain(
-        `asset_name=${identity.assetName}`
-      );
+      expect(contents).toContain(expectedOutput);
     })
   );
 });
