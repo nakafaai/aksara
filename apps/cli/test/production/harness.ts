@@ -78,9 +78,10 @@ vi.mock("#cli/environment/read", async () =>
 vi.mock("#cli/evidence", async () =>
   (await import("#test/production/mock")).evidenceMock(calls)
 );
-vi.mock("#cli/production/renderer", async () =>
-  (await import("#test/production/mock")).rendererMock(calls)
-);
+vi.mock("#cli/production/renderer", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("#cli/production/renderer")>()),
+  ...(await import("#test/production/mock")).rendererMock(calls),
+}));
 vi.mock("#cli/checkout", async () =>
   (await import("#test/production/mock")).checkoutMock(calls)
 );

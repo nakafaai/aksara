@@ -47,6 +47,10 @@ const refreshedRendererManifest = createRendererManifest({
   domains: RENDERER_MANIFEST.domains,
   publishedDomains: RENDERER_MANIFEST.publishedDomains,
 });
+const rendererScope = PublicationScopeSchema.make({
+  families: ["article", "material", "page", "question"],
+  snapshots: ["tryout"],
+});
 
 vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -234,19 +238,33 @@ describe("production runtime bundle preparation", () => {
     })
   );
 
-  it.effect("rebuilds an inherited snapshot for a new renderer pair", () =>
-    Effect.gen(function* () {
-      calls.rendererManifestOverride = yield* refreshedRendererManifest;
-      const receipt = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-renderer"),
-        releaseId: releaseId("release-renderer"),
-        scope: FUNCTION_SCOPE,
-      });
-      assert.strictEqual(receipt.releaseId, "release-renderer");
-      assert.strictEqual(calls.runtimeBundleRefreshes, 1);
-      assert.strictEqual(calls.snapshotCalls, 1);
-    })
+  it.effect(
+    "requires complete retained-artifact proof for a new renderer",
+    () =>
+      Effect.gen(function* () {
+        calls.rendererManifestOverride = yield* refreshedRendererManifest;
+        const failure = yield* productionProgram({
+          command: "release",
+          recoveryId: releaseId("recovery-renderer-partial"),
+          releaseId: releaseId("release-renderer-partial"),
+          scope: FUNCTION_SCOPE,
+        }).pipe(Effect.flip);
+        assert.strictEqual(failure.failure, "ReleasePolicyClosureError");
+        assert.strictEqual(calls.catalogCalls, 0);
+
+        calls.reset();
+        activateTryoutBase(false);
+        calls.rendererManifestOverride = yield* refreshedRendererManifest;
+        const receipt = yield* productionProgram({
+          command: "release",
+          recoveryId: releaseId("recovery-renderer"),
+          releaseId: releaseId("release-renderer"),
+          scope: rendererScope,
+        });
+        assert.strictEqual(receipt.releaseId, "release-renderer");
+        assert.strictEqual(calls.runtimeBundleRefreshes, 1);
+        assert.strictEqual(calls.snapshotCalls, 1);
+      })
   );
 
   it.effect("bootstraps a missing permanent bundle", () =>

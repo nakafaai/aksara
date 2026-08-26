@@ -1,7 +1,12 @@
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release/policy";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Redacted, Schedule } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
+import type { ProductionBaseIdentity } from "#cli/production/base";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 
 const RETRY_DELAY = "5 seconds";
@@ -42,4 +47,25 @@ export const fetchProductionRenderer: (
       orElse: () => Effect.fail(makeNakafaAppError("timeout", false)),
     })
   );
+});
+
+/** Validates one renderer and closes its release scope over retained content. */
+export const validateRendererTransition = Effect.fn(
+  "AksaraCli.validateRendererTransition"
+)(function* (input: {
+  readonly base: ProductionBaseIdentity | null;
+  readonly baseBundle: ContentReleaseBundle | null;
+  readonly rendererManifest: unknown;
+  readonly scope: PublicationScope;
+}) {
+  const rendererManifest = yield* validateLiveRendererManifestHash(
+    input.rendererManifest
+  );
+  yield* verifyRendererPolicyTransition({
+    baseRendererManifestHash: input.baseBundle?.rendererManifest.hash ?? null,
+    baseTryoutSnapshotId: input.base?.snapshots.tryout.resultSnapshotId ?? null,
+    rendererManifestHash: rendererManifest.hash,
+    scope: input.scope,
+  });
+  return rendererManifest;
 });

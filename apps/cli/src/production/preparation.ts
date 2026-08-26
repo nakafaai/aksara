@@ -7,7 +7,6 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
-import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
@@ -30,6 +29,7 @@ import {
   selectSourceBase,
   validateRecoveryBase,
 } from "#cli/production/base";
+import { validateRendererTransition } from "#cli/production/renderer";
 import {
   selectTryoutRuntimeRefresh,
   selectTryoutRuntimeTransition,
@@ -120,11 +120,15 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
     }
-    const rendererManifest = yield* validateLiveRendererManifestHash(
-      input.kind === "new"
-        ? input.rendererManifest
-        : input.bundle.rendererManifest
-    );
+    const rendererManifest = yield* validateRendererTransition({
+      base,
+      baseBundle: verifiedBaseBundle,
+      rendererManifest:
+        input.kind === "new"
+          ? input.rendererManifest
+          : input.bundle.rendererManifest,
+      scope: input.scope,
+    });
     const runtime = selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,

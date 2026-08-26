@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 
+import { Sha256HashSchema } from "#contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -9,6 +10,7 @@ import { PROGRAM_SNAPSHOT_FORMAT } from "#contracts/program/snapshot/spec";
 import {
   ReleasePolicyClosureError,
   verifyReleasePolicyTransition,
+  verifyRendererPolicyTransition,
 } from "#contracts/release/policy";
 import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
@@ -23,6 +25,8 @@ const completeScope = PublicationScopeSchema.make({
   families: ["article", "material", "page", "question"],
   snapshots: ["program", "quran", "tryout"],
 });
+const rendererHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const priorRendererHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
 describe("release policy", () => {
   it.effect("accepts complete genesis snapshots under one policy", () =>
@@ -61,6 +65,70 @@ describe("release policy", () => {
           })
         ).toBeUndefined();
       })
+  );
+
+  it.effect("requires complete corpus proof for a renderer transition", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyRendererPolicyTransition({
+          baseRendererManifestHash: priorRendererHash,
+          baseTryoutSnapshotId: priorRendererHash,
+          rendererManifestHash: rendererHash,
+          scope: completeScope,
+        })
+      ).toBeUndefined();
+
+      const family = yield* verifyRendererPolicyTransition({
+        baseRendererManifestHash: priorRendererHash,
+        baseTryoutSnapshotId: null,
+        rendererManifestHash: rendererHash,
+        scope: PublicationScopeSchema.make({
+          families: ["material"],
+          snapshots: [],
+        }),
+      }).pipe(Effect.flip);
+      expect(family).toMatchObject({
+        actual: "partial",
+        expected: "complete-family",
+        family: "article",
+        field: "scope",
+      });
+
+      const tryout = yield* verifyRendererPolicyTransition({
+        baseRendererManifestHash: priorRendererHash,
+        baseTryoutSnapshotId: priorRendererHash,
+        rendererManifestHash: rendererHash,
+        scope: PublicationScopeSchema.make({
+          families: ["article", "material", "page", "question"],
+          snapshots: [],
+        }),
+      }).pipe(Effect.flip);
+      expect(tryout).toMatchObject({
+        actual: "missing",
+        expected: "renderer-refresh",
+        family: "tryout",
+        field: "scope",
+      });
+    })
+  );
+
+  it.effect("allows stable and genesis renderer policy inheritance", () =>
+    Effect.gen(function* () {
+      const scope = PublicationScopeSchema.make({
+        families: ["material"],
+        snapshots: [],
+      });
+      for (const baseRendererManifestHash of [null, rendererHash] as const) {
+        expect(
+          yield* verifyRendererPolicyTransition({
+            baseRendererManifestHash,
+            baseTryoutSnapshotId: priorRendererHash,
+            rendererManifestHash: rendererHash,
+            scope,
+          })
+        ).toBeUndefined();
+      }
+    })
   );
 
   it.effect.each([

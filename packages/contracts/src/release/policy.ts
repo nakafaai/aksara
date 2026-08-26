@@ -1,5 +1,6 @@
 import { Effect, Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
+import type { Sha256Hash } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
 import {
@@ -132,5 +133,51 @@ export const verifyReleasePolicyTransition = Effect.fn(
         field: "manifest",
       });
     }
+  }
+});
+
+/**
+ * Requires a renderer change to prove every retained content artifact.
+ *
+ * Selecting every content family inspects the complete desired corpus against
+ * the candidate renderer. An active try-out also requires its structured
+ * snapshot so the new runtime pair cannot retain superseded artifact hashes.
+ */
+export const verifyRendererPolicyTransition = Effect.fn(
+  "AksaraContracts.verifyRendererPolicyTransition"
+)(function* (input: {
+  readonly baseRendererManifestHash: Sha256Hash | null;
+  readonly baseTryoutSnapshotId: Sha256Hash | null;
+  readonly rendererManifestHash: Sha256Hash;
+  readonly scope: PublicationScope;
+}) {
+  if (
+    input.baseRendererManifestHash === null ||
+    input.baseRendererManifestHash === input.rendererManifestHash
+  ) {
+    return;
+  }
+
+  for (const family of ContentFamilySchema.literals) {
+    if (!input.scope.families.includes(family)) {
+      return yield* failClosure({
+        actual: "partial",
+        expected: "complete-family",
+        family,
+        field: "scope",
+      });
+    }
+  }
+
+  if (
+    input.baseTryoutSnapshotId !== null &&
+    !input.scope.snapshots.includes("tryout")
+  ) {
+    return yield* failClosure({
+      actual: "missing",
+      expected: "renderer-refresh",
+      family: "tryout",
+      field: "scope",
+    });
   }
 });
