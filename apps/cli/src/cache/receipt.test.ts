@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   type ContentCacheRequest,
   makeArtifactCacheTag,
@@ -7,7 +8,6 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { HttpClientRequest } from "effect/unstable/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
@@ -52,13 +52,11 @@ function rejectReceipt(
   headers?: ConstructorParameters<typeof Headers>[0]
 ) {
   const response = cacheResponse(body, headers);
-  return Effect.runPromise(
-    readCacheReceipt(response, REQUEST).pipe(Effect.flip)
-  );
+  return readCacheReceipt(response, REQUEST).pipe(Effect.flip);
 }
 
 describe("cache receipt", () => {
-  it.each([
+  it.effect.each([
     [
       VALID_BODY,
       { "cache-control": "no-store", "content-type": "application/json" },
@@ -141,25 +139,24 @@ describe("cache receipt", () => {
     [VALID_BODY, { "content-length": "-1" }],
     [VALID_BODY, { "content-length": String(32 * 1024 + 1) }],
     ["x".repeat(32 * 1024 + 1), undefined],
-  ] as const)(
-    "rejects one invalid private JSON receipt",
-    async (body, headers) => {
-      await expect(rejectReceipt(body, headers)).resolves.toMatchObject({
-        retryable: false,
-      });
-    }
+  ] as const)("rejects one invalid private JSON receipt", ([body, headers]) =>
+    Effect.gen(function* () {
+      const error = yield* rejectReceipt(body, headers);
+      expect(error).toMatchObject({ retryable: false });
+    })
   );
 
-  it("treats a response stream failure as retryable", async () => {
-    const stream = new ReadableStream({
-      /** Injects one transport failure while reading the receipt body. */
-      pull(controller) {
-        controller.error(new Error("Test receipt stream failure."));
-      },
-    });
+  it.effect("treats a response stream failure as retryable", () =>
+    Effect.gen(function* () {
+      const stream = new ReadableStream({
+        /** Injects one transport failure while reading the receipt body. */
+        pull(controller) {
+          controller.error("Test receipt stream failure.");
+        },
+      });
 
-    await expect(rejectReceipt(stream)).resolves.toMatchObject({
-      retryable: true,
-    });
-  });
+      const error = yield* rejectReceipt(stream);
+      expect(error).toMatchObject({ retryable: true });
+    })
+  );
 });
