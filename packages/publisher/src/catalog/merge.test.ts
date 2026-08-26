@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Stream } from "effect";
 
 import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
