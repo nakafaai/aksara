@@ -17,17 +17,17 @@ function accepts(input: unknown) {
 }
 
 describe("publication responses", () => {
-  it("decodes every operation-specific success result", async () => {
-    for (const response of successes) {
-      expect(accepts(response), response.operation).toBe(true);
-    }
-    const decoded = await Effect.runPromise(
-      decodePublicationResponse(
+  it.effect("decodes every operation-specific success result", () =>
+    Effect.gen(function* () {
+      for (const response of successes) {
+        expect(accepts(response), response.operation).toBe(true);
+      }
+      const decoded = yield* decodePublicationResponse(
         successes.find(({ operation }) => operation === "stageSnapshot")
-      )
-    );
-    expect(decoded).toMatchObject({ ok: true, operation: "stageSnapshot" });
-  });
+      );
+      expect(decoded).toMatchObject({ ok: true, operation: "stageSnapshot" });
+    })
+  );
   it("decodes stable typed failures through the same response contract", () => {
     for (const failure of [
       {
@@ -58,50 +58,53 @@ describe("publication responses", () => {
       expect(accepts({ failure, ok: false })).toBe(true);
     }
   });
-  it("rejects operation-result mismatches and extra wire fields", async () => {
-    expect(
-      accepts({
+  it.effect("rejects operation-result mismatches and extra wire fields", () =>
+    Effect.gen(function* () {
+      expect(
+        accepts({
+          ok: true,
+          operation: "activate",
+          value: {
+            batchIndex: 0,
+            created: 1,
+            releaseId,
+            unchanged: 0,
+          },
+        })
+      ).toBe(false);
+      const missingStage = Schema.decodeExit(PublicationResponseSchema)({
         ok: true,
-        operation: "activate",
-        value: {
-          batchIndex: 0,
-          created: 1,
-          releaseId,
-          unchanged: 0,
-        },
-      })
-    ).toBe(false);
-    const missingStage = Schema.decodeExit(PublicationResponseSchema)({
-      ok: true,
-      operation: "stageRelease",
-      value: { manifestHash, phase: "missing", releaseId },
-    });
-    expect(Exit.isFailure(missingStage)).toBe(true);
-    if (Exit.isFailure(missingStage)) {
-      expect(String(missingStage.cause)).toContain(
-        "Expected stageRelease to return a stored release status."
-      );
-    }
-    const error = await Effect.runPromise(
-      decodePublicationResponse({ ...successes[0], extra: true }).pipe(
+        operation: "stageRelease",
+        value: { manifestHash, phase: "missing", releaseId },
+      });
+      expect(Exit.isFailure(missingStage)).toBe(true);
+      if (Exit.isFailure(missingStage)) {
+        expect(String(missingStage.cause)).toContain(
+          "Expected stageRelease to return a stored release status."
+        );
+      }
+      const error = yield* decodePublicationResponse({
+        ...successes[0],
+        extra: true,
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
+  it.effect("rejects the removed finalization response", () =>
+    Effect.gen(function* () {
+      const obsoleteResponse = {
+        ok: true,
+        operation: "finalize",
+        releaseId,
+        value: { done: true, nextIndex: 0, processed: 1, receipt },
+      };
+      expect(accepts(obsoleteResponse)).toBe(false);
+      const error = yield* decodePublicationResponse(obsoleteResponse).pipe(
         Effect.flip
-      )
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
-  it("rejects the removed finalization response", async () => {
-    const obsoleteResponse = {
-      ok: true,
-      operation: "finalize",
-      releaseId,
-      value: { done: true, nextIndex: 0, processed: 1, receipt },
-    };
-    expect(accepts(obsoleteResponse)).toBe(false);
-    const error = await Effect.runPromise(
-      decodePublicationResponse(obsoleteResponse).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
+      );
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
   it("rejects verification evidence with contradictory staged counts", () => {
     const invalidHeads = Schema.decodeExit(PublicationResponseSchema)({
       ok: true,

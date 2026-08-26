@@ -22,38 +22,41 @@ function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
 }
 
 describe("publication requests", () => {
-  it("decodes every exact operation through one discriminated ingress", async () => {
-    for (const request of requests) {
-      expect(accepts(PublicationRequestSchema, request)).toBe(true);
-    }
-    const stageRelease = requests.find(
-      (request) => request.operation === "stageRelease"
-    );
-    const decoded = await Effect.runPromise(
-      decodePublicationRequest(stageRelease)
-    );
-    expect(decoded.operation).toBe("stageRelease");
-  });
+  it.effect(
+    "decodes every exact operation through one discriminated ingress",
+    () =>
+      Effect.gen(function* () {
+        for (const request of requests) {
+          expect(accepts(PublicationRequestSchema, request)).toBe(true);
+        }
+        const stageRelease = requests.find(
+          (request) => request.operation === "stageRelease"
+        );
+        const decoded = yield* decodePublicationRequest(stageRelease);
+        expect(decoded.operation).toBe("stageRelease");
+      })
+  );
 
-  it("rejects excess fields with a typed error", async () => {
-    const error = await Effect.runPromise(
-      decodePublicationRequest({ ...requests[4], unexpected: true }).pipe(
-        Effect.flip
-      )
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
+  it.effect("rejects excess fields with a typed error", () =>
+    Effect.gen(function* () {
+      const error = yield* decodePublicationRequest({
+        ...requests[4],
+        unexpected: true,
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
 
-  it("rejects the removed finalization operation", async () => {
-    const error = await Effect.runPromise(
-      decodePublicationRequest({
+  it.effect("rejects the removed finalization operation", () =>
+    Effect.gen(function* () {
+      const error = yield* decodePublicationRequest({
         afterIndex: -1,
         operation: "finalize",
         release,
-      }).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
 
   it("requires distinct active and recovery identities for acceptance", () => {
     expect(
@@ -84,34 +87,34 @@ describe("publication requests", () => {
     }
   });
 
-  it("binds the frozen renderer envelope to the signed manifest", async () => {
-    expect(
-      accepts(ContentReleaseBundleSchema, { release, rendererManifest })
-    ).toBe(true);
-    const mismatchedRelease = {
-      ...release,
-      manifest: {
-        ...release.manifest,
-        rendererManifestHash: hash,
-      },
-    };
-    const inputError = Schema.decodeExit(ContentReleaseBundleSchema)({
-      release: mismatchedRelease,
-      rendererManifest,
-    });
-    expect(Exit.isFailure(inputError)).toBe(true);
-    if (Exit.isFailure(inputError)) {
-      expect(String(inputError.cause)).toContain(
-        "Expected the signed release to bind the frozen renderer envelope."
-      );
-    }
-    const error = await Effect.runPromise(
-      decodePublicationRequest({
+  it.effect("binds the frozen renderer envelope to the signed manifest", () =>
+    Effect.gen(function* () {
+      expect(
+        accepts(ContentReleaseBundleSchema, { release, rendererManifest })
+      ).toBe(true);
+      const mismatchedRelease = {
+        ...release,
+        manifest: {
+          ...release.manifest,
+          rendererManifestHash: hash,
+        },
+      };
+      const inputError = Schema.decodeExit(ContentReleaseBundleSchema)({
+        release: mismatchedRelease,
+        rendererManifest,
+      });
+      expect(Exit.isFailure(inputError)).toBe(true);
+      if (Exit.isFailure(inputError)) {
+        expect(String(inputError.cause)).toContain(
+          "Expected the signed release to bind the frozen renderer envelope."
+        );
+      }
+      const error = yield* decodePublicationRequest({
         operation: "stageRelease",
         release: mismatchedRelease,
         rendererManifest,
-      }).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe("ContractDecodeError");
-  });
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+    })
+  );
 });
