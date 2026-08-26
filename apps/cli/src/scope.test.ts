@@ -4,8 +4,7 @@ import { decodePublicationScopeSelectors } from "#cli/scope";
 
 const FUNCTION_CONTENT_KEY =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";
-const english = `content:material:en:${FUNCTION_CONTENT_KEY}`;
-const indonesian = `content:material:id:${FUNCTION_CONTENT_KEY}`;
+const exactContent = `content:material:en:${FUNCTION_CONTENT_KEY}`;
 
 /** Decodes one repeated selector collection at the test runner boundary. */
 function decode(selectors: readonly string[]) {
@@ -20,24 +19,19 @@ function reject(selectors: readonly string[]) {
 }
 
 describe("publication scope selectors", () => {
-  it("decodes the exact mandatory material locales and structured families", async () => {
+  it("decodes canonical family and snapshot selectors", async () => {
     await expect(
-      decode([english, indonesian, "snapshot:program", "snapshot:quran"])
+      decode(["family:material", "snapshot:program", "snapshot:quran"])
     ).resolves.toEqual({
-      content: [
-        {
-          artifactLocale: "en",
-          contentKey: FUNCTION_CONTENT_KEY,
-          family: "material",
-        },
-        {
-          artifactLocale: "id",
-          contentKey: FUNCTION_CONTENT_KEY,
-          family: "material",
-        },
-      ],
-      families: [],
+      content: [],
+      families: ["material"],
       snapshots: ["program", "quran"],
+    });
+  });
+
+  it("rejects retired exact-content selectors before publication", async () => {
+    await expect(reject([exactContent])).resolves.toMatchObject({
+      _tag: "ProductionScopeDecodeError",
     });
   });
 
@@ -53,15 +47,14 @@ describe("publication scope selectors", () => {
 
   it.each([
     { selectors: [] },
-    { selectors: [english, english] },
-    { selectors: [indonesian, english] },
     { selectors: ["family:material", "family:material"] },
     { selectors: ["family:question", "family:article"] },
-    { selectors: ["family:material", english] },
+    { selectors: ["family:material", exactContent] },
     { selectors: ["family:unknown"] },
     { selectors: ["snapshot:tryout", "snapshot:program"] },
     { selectors: ["snapshot:program", "snapshot:program"] },
     { selectors: ["snapshot:unknown"] },
+    { selectors: ["unknown:material"] },
     { selectors: [`content:unknown:en:${FUNCTION_CONTENT_KEY}`] },
     { selectors: ["content:material:en"] },
     { selectors: ["material:en:function-concept"] },

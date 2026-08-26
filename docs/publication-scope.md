@@ -3,16 +3,15 @@
 Every content release signs an explicit canonical scope. There is no implicit
 whole-catalog release.
 
-The scope has three independent selectors:
+The production scope has two independent selectors:
 
 - `families`: whole body families: `article`, `material`, `page`, or `question`
-- `content`: exact `{ family, artifactLocale, contentKey }` canaries
 - `snapshots`: structured families such as `program`
 
 A whole-family selection is compact even when the family contains thousands of
-documents. Exact content entries remain useful for narrow canary releases.
-Selecting a family and an exact item from that same family is rejected as a
-noncanonical duplicate authorization.
+documents. Production no longer accepts `content:` selectors because the
+exact-content ownership model was retired. Exact content entries remain in the
+signed contract only so retained historical releases can still be verified.
 
 Local release commands repeat `--scope`:
 
