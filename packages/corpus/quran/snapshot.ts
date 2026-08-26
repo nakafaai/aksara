@@ -14,7 +14,7 @@ import {
   bindQuranRow,
   hashQuranRow,
   type QuranRowHashError,
-} from "@nakafa/aksara-contracts/quran/snapshot/row-hash";
+} from "@nakafa/aksara-contracts/quran/snapshot/row/hash";
 import {
   type QuranSnapshot,
   QuranSnapshotFactsSchema,
@@ -25,11 +25,11 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Stream } from "effect";
 
+import { quranProvenanceRecordsFor } from "#corpus/quran/catalog/select";
 import {
   type QuranProjectionError,
   streamQuranRows,
 } from "#corpus/quran/projection";
-import { quranProvenanceRecordsFor } from "#corpus/quran/provenance";
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
 type PreparedQuranRowError = QuranRowHashError | QuranProjectionError;

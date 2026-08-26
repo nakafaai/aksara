@@ -11,7 +11,7 @@ import {
   decodeOutdatedDependencies,
   decodeRegistryVersion,
   runPnpm,
-} from "#scripts/dependency-command";
+} from "#scripts/dependencies/command";
 
 /** Creates one exact command observation. */
 function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {

@@ -4,11 +4,29 @@ import { Schema } from "effect";
 export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de"]);
 export type AppLocaleCode = typeof AppLocaleCodeSchema.Type;
 
+export const [
+  ENGLISH_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+] = AppLocaleCodeSchema.literals;
+
+const APP_LOCALE_BRAND = "@NakafaAI/AksaraAppLocale";
+
 /** Application locale used for Nakafa-owned interface and explanation copy. */
 export const AppLocaleSchema = AppLocaleCodeSchema.pipe(
-  Schema.brand("@NakafaAI/AksaraAppLocale")
+  Schema.brand(APP_LOCALE_BRAND)
 );
 export type AppLocale = typeof AppLocaleSchema.Type;
+
+/** Narrows one canonical locale code while preserving application identity. */
+export function appLocaleLiteral<const Code extends AppLocaleCode>(code: Code) {
+  return Schema.Literal(code).pipe(Schema.brand(APP_LOCALE_BRAND));
+}
+
+/** Constructs one application locale without widening its literal identity. */
+export function makeAppLocale<const Code extends AppLocaleCode>(code: Code) {
+  return appLocaleLiteral(code).make(code);
+}
 
 /** Language delivered by content whose language may differ from the app shell. */
 export const DeliveryLanguageSchema = AppLocaleCodeSchema.pipe(
@@ -34,7 +52,7 @@ export const ACTIVE_APP_LOCALE_CODES = ActiveAppLocaleCodeSchema.literals;
 
 /** Application locale currently required from every authored scope. */
 export const ActiveAppLocaleSchema = ActiveAppLocaleCodeSchema.pipe(
-  Schema.brand("@NakafaAI/AksaraAppLocale")
+  Schema.brand(APP_LOCALE_BRAND)
 );
 export type ActiveAppLocale = typeof ActiveAppLocaleSchema.Type;
 

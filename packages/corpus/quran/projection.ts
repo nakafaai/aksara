@@ -16,7 +16,6 @@ import {
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot/row";
-import { QuranAttributionRowSchema } from "@nakafa/aksara-contracts/quran/source";
 import {
   QURAN_CHUNK_SIZE,
   QuranSurahRowSchema,
@@ -27,9 +26,9 @@ import {
   type SourceLocaleUnavailableError,
 } from "#corpus/locale/source";
 import {
-  type QuranAttributionLocaleError,
-  quranSourceAttributionsFor,
-} from "#corpus/quran/attribution";
+  type QuranCatalogError,
+  quranAttributionRowFor,
+} from "#corpus/quran/catalog/select";
 import type {
   QuranCountError,
   QuranRevelationError,
@@ -201,7 +200,7 @@ export type QuranRegistryError =
 /** Expected graph derivation failure for one locale-specific Quran row. */
 export type QuranProjectionError =
   | LearningGraphIdentityError
-  | QuranAttributionLocaleError
+  | QuranCatalogError
   | QuranRegistryError
   | SourceLocaleUnavailableError;
 
@@ -214,15 +213,7 @@ export function streamQuranRows(
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const attribution = Stream.fromEffect(
-    quranSourceAttributionsFor(activeAppLocales).pipe(
-      Effect.map((sources) =>
-        QuranAttributionRowSchema.make({
-          activeAppLocales,
-          kind: "quran-attribution",
-          sources,
-        })
-      )
-    )
+    quranAttributionRowFor(activeAppLocales)
   );
   const runtime = attribution.pipe(
     Stream.concat(

@@ -1,26 +1,110 @@
 import { Effect } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
-import { ACTIVE_APP_LOCALES, AppLocaleSchema } from "#contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ENGLISH_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
+  makeAppLocale,
+} from "#contracts/locale";
 import {
   QuranChunkRowSchema,
   type QuranRowPayload,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
 } from "#contracts/quran/snapshot/row";
-import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
+import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import {
   QuranAttributionRowSchema,
-  QuranSourceAttributionSchema,
+  QuranEmbeddedSourceAttributionSchema,
+  QuranExternalSourceAttributionSchema,
+  QuranTafsirAccessSchema,
   quranSourceIds,
 } from "#contracts/quran/source";
 import { QURAN_SURAH_COUNT, QuranSurahRowSchema } from "#contracts/quran/spec";
 
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-const english = AppLocaleSchema.make("en");
-const indonesian = AppLocaleSchema.make("id");
-const german = AppLocaleSchema.make("de");
+const english = makeAppLocale(ENGLISH_APP_LOCALE_CODE);
+const indonesian = makeAppLocale(INDONESIAN_APP_LOCALE_CODE);
+const german = makeAppLocale(GERMAN_APP_LOCALE_CODE);
+
+/** Builds one honest technical source attribution for signed-row tests. */
+function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
+  const common = {
+    copy: [
+      {
+        appLocale: ACTIVE_APP_LOCALES[0],
+        notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
+        title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
+      },
+      ...ACTIVE_APP_LOCALES.slice(1).map((appLocale) => ({
+        appLocale,
+        notice: `Technical ${appLocale} notice for ${id}.`,
+        title: `Technical ${appLocale} source ${id}.`,
+      })),
+    ],
+    publisher: `Technical publisher for ${id}.`,
+    retrievedAt: "2026-07-24T17:57:50Z",
+    sourceUrl: `https://example.test/source/${id}`,
+    updateUrl: `https://example.test/update/${id}`,
+    version: "test-source",
+  } as const;
+  if (id === "mokhtasar-english" || id === "mokhtasar-german") {
+    return QuranExternalSourceAttributionSchema.make({
+      ...common,
+      id,
+      kind: "external",
+      terms: {
+        access: "link-only",
+        url: `https://example.test/terms/${id}`,
+      },
+    });
+  }
+  return QuranEmbeddedSourceAttributionSchema.make({
+    ...common,
+    artifact: {
+      byteCount: 1,
+      digest: sourceHash,
+      fileCount: id === "quranenc-tafsir" ? QURAN_SURAH_COUNT : 1,
+    },
+    id,
+    kind: "embedded",
+    terms: {
+      artifact: {
+        byteCount: 1,
+        digest: sourceHash,
+        fileCount: 1,
+      },
+      url: `https://example.test/terms/${id}`,
+    },
+  });
+}
+
+/** Builds complete test-only Tafsir access in canonical locale order. */
+function quranTafsirAccess() {
+  return [
+    QuranTafsirAccessSchema.make({
+      appLocale: english,
+      kind: "external",
+      notice: "Technical English external Tafsir notice.",
+      sourceId: "mokhtasar-english",
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: indonesian,
+      kind: "embedded",
+      notice: "Catatan teknis tafsir Indonesia.",
+      sourceId: "quranenc-tafsir",
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: german,
+      kind: "external",
+      notice: "Technischer deutscher externer Tafsirhinweis.",
+      sourceId: "mokhtasar-german",
+    }),
+  ] as const;
+}
 
 /** Builds one technical verse at exact local and global positions. */
 export function quranVerse(inSurah: number, inQuran: number) {
@@ -61,40 +145,8 @@ export function quranVerse(inSurah: number, inQuran: number) {
 
 /** Builds the complete technical attribution row in canonical source order. */
 export function quranAttribution() {
-  const sources = quranSourceIds(ACTIVE_APP_LOCALES).map((id) =>
-    QuranSourceAttributionSchema.make({
-      artifact: {
-        byteCount: 1,
-        digest: sourceHash,
-        fileCount: id === "quranenc-tafsir" ? QURAN_SURAH_COUNT : 1,
-      },
-      copy: [
-        {
-          appLocale: ACTIVE_APP_LOCALES[0],
-          notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
-          title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
-        },
-        ...ACTIVE_APP_LOCALES.slice(1).map((appLocale) => ({
-          appLocale,
-          notice: `Technical ${appLocale} notice for ${id}.`,
-          title: `Technical ${appLocale} source ${id}.`,
-        })),
-      ],
-      id,
-      publisher: `Technical publisher for ${id}.`,
-      retrievedAt: "2026-07-24T17:57:50Z",
-      sourceUrl: `https://example.test/source/${id}`,
-      terms: {
-        artifact: {
-          byteCount: 1,
-          digest: sourceHash,
-          fileCount: 1,
-        },
-        url: `https://example.test/terms/${id}`,
-      },
-      updateUrl: `https://example.test/update/${id}`,
-      version: "test-source",
-    })
+  const sources = quranSourceIds(ACTIVE_APP_LOCALES).map(
+    quranSourceAttribution
   );
   const [first, ...rest] = sources;
   if (first === undefined) {
@@ -104,6 +156,7 @@ export function quranAttribution() {
     activeAppLocales: ACTIVE_APP_LOCALES,
     kind: "quran-attribution",
     sources: [first, ...rest],
+    tafsirAccess: quranTafsirAccess(),
   });
 }
 

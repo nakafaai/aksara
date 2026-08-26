@@ -20,5 +20,8 @@ describe("Quran source policy", () => {
       name: "islamhouse-german-bubenheim.json",
       path: "german/publication.json",
     });
+    expect(Object.keys(QURAN_SOURCE_POLICY.evidence)).toEqual([
+      "germanPublication",
+    ]);
   });
 });
