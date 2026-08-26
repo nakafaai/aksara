@@ -255,7 +255,13 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
   />
   <LineEquation
     title="Linear Equation System with Infinitely Many Solutions"
-    description="Two coincident lines (identical lines)."
+    description={
+      <>
+        The second equation is <InlineMath math="2" /> times the first, so both
+        graphs coincide and appear as one line. The line for the first equation
+        is drawn wider so both equations remain visible along the same path.
+      </>
+    }
     data={[
       {
         points: [
@@ -265,6 +271,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
         ],
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
+        lineWidth: 6,
       },
       {
         points: [
@@ -274,6 +281,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
         ],
         labels: [{ text: <InlineMath math="4x+6y=2" />, offset: [2, 1, 0] }],
         color: "#0891b2",
+        lineWidth: 2,
       },
     ]}
     cameraPosition={[6, 4, 6]}
