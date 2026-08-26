@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 import { ContentKeySchema } from "#contracts/ids";
 import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
@@ -39,65 +39,74 @@ const choices = Schema.decodeSync(QuestionChoicesSchema)({
 });
 
 /** Builds one strict prompt projection for the selected locale. */
-function promptProjection(artifactLocale: ArtifactLocale) {
-  return Schema.decodeUnknownSync(QuestionPromptProjectionSchema)(
-    Effect.runSync(
-      makeQuestionBodyProjection({
-        artifactLocale,
-        bodyKind: "question",
-        choices,
-        contentKey: ContentKeySchema.make(`${questionKey}/question`),
-        metadata,
-        peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
-        questionKey,
-        questionNumber: 1,
-        setKey,
-      })
-    )
+const promptProjection = Effect.fn("QuestionProjectionTest.prompt")(function* (
+  artifactLocale: ArtifactLocale
+) {
+  const projection = yield* makeQuestionBodyProjection({
+    artifactLocale,
+    bodyKind: "question",
+    choices,
+    contentKey: ContentKeySchema.make(`${questionKey}/question`),
+    metadata,
+    peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
+    questionKey,
+    questionNumber: 1,
+    setKey,
+  });
+  return yield* Schema.decodeUnknownEffect(QuestionPromptProjectionSchema)(
+    projection
   );
-}
+});
 
 /** Builds one strict answer projection for the selected locale. */
-function answerProjection(artifactLocale: ArtifactLocale) {
-  return Schema.decodeUnknownSync(QuestionAnswerProjectionSchema)(
-    Effect.runSync(
-      makeQuestionBodyProjection({
-        artifactLocale,
-        bodyKind: "answer",
-        choices,
-        contentKey: ContentKeySchema.make(`${questionKey}/answer`),
-        metadata,
-        peerContentKey: ContentKeySchema.make(`${questionKey}/question`),
-        questionKey,
-        questionNumber: 1,
-        setKey,
-      })
-    )
+const answerProjection = Effect.fn("QuestionProjectionTest.answer")(function* (
+  artifactLocale: ArtifactLocale
+) {
+  const projection = yield* makeQuestionBodyProjection({
+    artifactLocale,
+    bodyKind: "answer",
+    choices,
+    contentKey: ContentKeySchema.make(`${questionKey}/answer`),
+    metadata,
+    peerContentKey: ContentKeySchema.make(`${questionKey}/question`),
+    questionKey,
+    questionNumber: 1,
+    setKey,
+  });
+  return yield* Schema.decodeUnknownEffect(QuestionAnswerProjectionSchema)(
+    projection
   );
-}
+});
 
 describe("question projection", () => {
-  it("projects only locale choices on prompts and none on answers", () => {
-    const prompt = promptProjection(ArtifactLocaleSchema.make("id"));
-    const answer = answerProjection(ArtifactLocaleSchema.make("en"));
+  it.effect("projects only locale choices on prompts and none on answers", () =>
+    Effect.gen(function* () {
+      const prompt = yield* promptProjection(ArtifactLocaleSchema.make("id"));
+      const answer = yield* answerProjection(ArtifactLocaleSchema.make("en"));
 
-    expect(prompt.choices).toEqual(choices.id);
-    expect("choices" in answer).toBe(false);
-    expect(
-      [prompt, answer].map((value) =>
-        Schema.decodeSync(QuestionBodyProjectionSchema)(value)
-      )
-    ).toEqual([prompt, answer]);
-  });
+      expect(prompt.choices).toEqual(choices.id);
+      expect("choices" in answer).toBe(false);
+      expect(
+        [prompt, answer].map((value) =>
+          Schema.decodeSync(QuestionBodyProjectionSchema)(value)
+        )
+      ).toEqual([prompt, answer]);
+    })
+  );
 
-  it("canonically serializes both body variants", () => {
-    for (const value of [
-      promptProjection(ArtifactLocaleSchema.make("en")),
-      answerProjection(ArtifactLocaleSchema.make("id")),
-    ]) {
-      expect(JSON.parse(canonicalizeQuestionProjection(value))).toEqual(value);
-    }
-  });
+  it.effect("canonically serializes both body variants", () =>
+    Effect.gen(function* () {
+      const projections = yield* Effect.all([
+        promptProjection(ArtifactLocaleSchema.make("en")),
+        answerProjection(ArtifactLocaleSchema.make("id")),
+      ]);
+      for (const projection of projections) {
+        expect(JSON.parse(canonicalizeQuestionProjection(projection))).toEqual(
+          projection
+        );
+      }
+    })
+  );
 
   it("requires exactly one correct choice in every locale", () => {
     for (const localized of [
@@ -118,24 +127,26 @@ describe("question projection", () => {
     }
   });
 
-  it("rejects invented metadata and answer choices", () => {
-    const prompt = promptProjection(ArtifactLocaleSchema.make("en"));
-    const answer = answerProjection(ArtifactLocaleSchema.make("en"));
-    const decode = Schema.decodeUnknownExit(QuestionBodyProjectionSchema, {
-      onExcessProperty: "error",
-    });
+  it.effect("rejects invented metadata and answer choices", () =>
+    Effect.gen(function* () {
+      const prompt = yield* promptProjection(ArtifactLocaleSchema.make("en"));
+      const answer = yield* answerProjection(ArtifactLocaleSchema.make("en"));
+      const decode = Schema.decodeUnknownExit(QuestionBodyProjectionSchema, {
+        onExcessProperty: "error",
+      });
 
-    expect(Exit.isFailure(decode({ ...prompt, description: "Invented" }))).toBe(
-      true
-    );
-    expect(Exit.isFailure(decode({ ...answer, choices: choices.en }))).toBe(
-      true
-    );
-  });
+      expect(
+        Exit.isFailure(decode({ ...prompt, description: "Invented" }))
+      ).toBe(true);
+      expect(Exit.isFailure(decode({ ...answer, choices: choices.en }))).toBe(
+        true
+      );
+    })
+  );
 
-  it("returns a typed failure when prompt choices are missing", () => {
-    const error = Effect.runSync(
-      makeQuestionBodyProjection({
+  it.effect("returns a typed failure when prompt choices are missing", () =>
+    Effect.gen(function* () {
+      const error = yield* makeQuestionBodyProjection({
         artifactLocale: ArtifactLocaleSchema.make("de"),
         bodyKind: "question",
         choices,
@@ -145,9 +156,9 @@ describe("question projection", () => {
         questionKey,
         questionNumber: 1,
         setKey,
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(error).toBeInstanceOf(QuestionChoiceLocaleMissingError);
-  });
+      expect(error).toBeInstanceOf(QuestionChoiceLocaleMissingError);
+    })
+  );
 });
