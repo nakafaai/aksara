@@ -2,8 +2,6 @@ import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { parseProductionArguments } from "#cli/production/arguments";
 
-const FUNCTION_CONTENT_KEY =
-  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const baseArguments = [
   "--release-id",
   "release-2026-07-22",
@@ -24,33 +22,16 @@ function reject(args: readonly string[]) {
 }
 
 describe("release production arguments", () => {
-  it("decodes one explicit exact mandatory publication scope", async () => {
+  it("decodes one explicit family publication scope", async () => {
     await expect(
-      parse([
-        ...baseArguments,
-        "--scope",
-        `content:material:en:${FUNCTION_CONTENT_KEY}`,
-        "--scope",
-        `content:material:id:${FUNCTION_CONTENT_KEY}`,
-      ])
+      parse([...baseArguments, "--scope", "family:material"])
     ).resolves.toEqual({
       command: "release",
       recoveryId: "recovery-2026-07-22",
       releaseId: "release-2026-07-22",
       scope: {
-        content: [
-          {
-            artifactLocale: "en",
-            contentKey: FUNCTION_CONTENT_KEY,
-            family: "material",
-          },
-          {
-            artifactLocale: "id",
-            contentKey: FUNCTION_CONTENT_KEY,
-            family: "material",
-          },
-        ],
-        families: [],
+        content: [],
+        families: ["material"],
         snapshots: [],
       },
     });
@@ -68,6 +49,21 @@ describe("release production arguments", () => {
   it("rejects an invalid publication scope selector", async () => {
     await expect(
       reject([...baseArguments, "--scope", "material"])
+    ).resolves.toMatchObject({
+      _tag: "ProductionArgumentsError",
+      command: "release",
+      option: "--scope",
+      reason: "value",
+    });
+  });
+
+  it("rejects retired exact-content publication selectors", async () => {
+    await expect(
+      reject([
+        ...baseArguments,
+        "--scope",
+        "content:material:en:material/lesson/mathematics/function-concept",
+      ])
     ).resolves.toMatchObject({
       _tag: "ProductionArgumentsError",
       command: "release",

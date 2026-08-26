@@ -4,14 +4,14 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Option, Schema } from "effect";
 
-/** One CLI selector does not form a canonical exact publication scope. */
+/** One CLI selector does not form a canonical production publication scope. */
 export class ProductionScopeDecodeError extends Schema.TaggedError<ProductionScopeDecodeError>()(
   "ProductionScopeDecodeError",
   {}
 ) {}
 
 interface DecodedSelector {
-  readonly kind: "content" | "family" | "snapshot";
+  readonly kind: "family" | "snapshot";
   readonly value: unknown;
 }
 
@@ -19,29 +19,12 @@ interface DecodedSelector {
 function decodeSelector(value: string): Option.Option<DecodedSelector> {
   const segments = value.split(":");
   const kind = segments.at(0);
-  const first = segments.at(1);
-  const second = segments.at(2);
-  const remaining = segments.slice(3);
-  if (kind === "snapshot" && first !== undefined && second === undefined) {
-    return Option.some({ kind, value: first });
+  const selection = segments.at(1);
+  if (selection === undefined || segments.length !== 2) {
+    return Option.none();
   }
-  if (kind === "family" && first !== undefined && second === undefined) {
-    return Option.some({ kind, value: first });
-  }
-  if (
-    kind === "content" &&
-    first !== undefined &&
-    second !== undefined &&
-    remaining.length > 0
-  ) {
-    return Option.some({
-      kind,
-      value: {
-        artifactLocale: second,
-        contentKey: remaining.join(":"),
-        family: first,
-      },
-    });
+  if (kind === "snapshot" || kind === "family") {
+    return Option.some({ kind, value: selection });
   }
   return Option.none();
 }
@@ -50,7 +33,6 @@ function decodeSelector(value: string): Option.Option<DecodedSelector> {
 export const decodePublicationScopeSelectors = Effect.fn(
   "AksaraCli.decodePublicationScopeSelectors"
 )((selectors: readonly string[]) => {
-  const content: unknown[] = [];
   const families: unknown[] = [];
   const snapshots: unknown[] = [];
   for (const value of selectors) {
@@ -59,10 +41,6 @@ export const decodePublicationScopeSelectors = Effect.fn(
       return Effect.fail(new ProductionScopeDecodeError());
     }
     const selection = selected.value;
-    if (selection.kind === "content") {
-      content.push(selection.value);
-      continue;
-    }
     if (selection.kind === "family") {
       families.push(selection.value);
       continue;
@@ -70,7 +48,7 @@ export const decodePublicationScopeSelectors = Effect.fn(
     snapshots.push(selection.value);
   }
   return Schema.decodeUnknownEffect(PublicationScopeSchema)({
-    content,
+    content: [],
     families,
     snapshots,
   }).pipe(
