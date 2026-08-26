@@ -1,19 +1,15 @@
-import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
-import {
-  chmodSync,
-  mkdirSync,
-  mkdtempSync,
-  readFileSync,
-  statSync,
-  writeFileSync,
-} from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
-import type { ContractReleaseError } from "#scripts/release-identity";
+import { expect, layer } from "@effect/vitest";
+import {
+  Crypto,
+  Effect,
+  Encoding,
+  FileSystem,
+  Path,
+  Sink,
+  Stream,
+} from "effect";
+import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
 import {
   type ContractProofInput,
   proveContractRelease,
@@ -22,225 +18,288 @@ import {
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);
 const VERSION = "0.1.0";
-let toolSequence = 0;
+const releaseTag = { object: { sha: RELEASE_SHA, type: "commit" } };
 
-/** Runs one Node-backed release proof at the test boundary. */
-function run<A, E, R>(effect: Effect.Effect<A, E, R>) {
-  return Effect.runPromise(
-    effect.pipe(
-      Effect.provide(NodeServices.layer),
-      Effect.scoped
-    ) as Effect.Effect<A, E>
-  );
-}
-
-/** Exposes one expected proof failure at the test boundary. */
-function reject<A, R>(effect: Effect.Effect<A, ContractReleaseError, R>) {
-  return run(effect.pipe(Effect.flip));
-}
-
-/** Creates one minimal contract archive with distinguishable bytes. */
-function createArchive(root: string, marker = "current") {
-  const stage = join(root, marker, "package");
-  const archive = join(root, `${marker}.tgz`);
-  mkdirSync(stage, { recursive: true });
-  writeFileSync(
-    join(stage, "package.json"),
-    `{"name":"@nakafa/aksara-contracts","version":"${VERSION}"}`
-  );
-  writeFileSync(join(stage, "marker.txt"), marker);
-  execFileSync("tar", ["-czf", archive, "-C", join(root, marker), "package"]);
-  return archive;
-}
-
-interface FakeToolInput {
-  readonly archive: string;
+interface FakeCommandInput {
+  readonly downloadArchive: string;
   readonly failApi?: boolean;
   readonly failGit?: boolean;
   readonly release: unknown;
   readonly tag: unknown;
 }
 
-/** Creates one isolated executable that models the exact gh and git calls. */
-function createFakeTool(root: string, input: FakeToolInput) {
-  toolSequence += 1;
-  const tool = join(root, `tool-${toolSequence}.ts`);
-  writeFileSync(
-    tool,
-    `#!/usr/bin/env node
-const { copyFileSync, mkdirSync } = require("node:fs");
-const args = process.argv.slice(2);
-if (args[0] === "api" && ${String(input.failApi ?? false)}) {
-  process.exitCode = 1;
-} else if (args[0] === "api") {
-  process.stdout.write(args[1].includes("/releases/") ? ${JSON.stringify(
-    JSON.stringify(input.release)
-  )} : ${JSON.stringify(JSON.stringify(input.tag))});
-} else if (args[0] === "release" && args[1] === "download") {
-  const root = args[args.indexOf("--dir") + 1];
-  const name = args[args.indexOf("--pattern") + 1];
-  mkdirSync(root, { recursive: true });
-  copyFileSync(${JSON.stringify(input.archive)}, root + "/" + name);
-} else if (args[0] === "merge-base" && ${String(input.failGit ?? false)}) {
-  process.exitCode = 1;
-}
-`
-  );
-  chmodSync(tool, 0o700);
-  return tool;
+/** Builds one complete fake command contract with explicit overrides. */
+function fakeCommands(
+  downloadArchive: string,
+  release: unknown,
+  overrides: Partial<FakeCommandInput> = {}
+): FakeCommandInput {
+  return { downloadArchive, release, tag: releaseTag, ...overrides };
 }
 
-/** Builds exact release metadata for one archive. */
-function releaseMetadata(archive: string) {
-  const bytes = readFileSync(archive);
-  return {
-    assets: [
-      {
-        digest: `sha256:${createHash("sha256").update(bytes).digest("hex")}`,
-        name: `nakafa-aksara-contracts-${VERSION}.tgz`,
-        size: statSync(archive).size,
-      },
-    ],
-    draft: false,
-    immutable: true,
-    prerelease: false,
-    tag_name: `contracts-v${VERSION}`,
-    target_commitish: RELEASE_SHA,
-  };
+/** Creates one completed process handle with deterministic output and status. */
+function makeProcessHandle(output: string, exitCode = 0) {
+  const bytes = new TextEncoder().encode(output);
+  const stdout = output.length === 0 ? Stream.empty : Stream.make(bytes);
+  return ChildProcessSpawner.makeHandle({
+    all: stdout,
+    exitCode: Effect.succeed(ChildProcessSpawner.ExitCode(exitCode)),
+    getInputFd: () => Sink.drain,
+    getOutputFd: () => Stream.empty,
+    isRunning: Effect.succeed(false),
+    kill: () => Effect.void,
+    pid: ChildProcessSpawner.ProcessId(12_345),
+    stderr: Stream.empty,
+    stdin: Sink.drain,
+    stdout,
+    unref: Effect.succeed(Effect.void),
+  });
 }
 
-/** Creates one complete proof input with replaceable remote metadata. */
-function proofInput(
+/** Creates one minimal contract archive with distinguishable bytes. */
+const createArchive = Effect.fn("ReleaseProofTest.createArchive")(function* (
   root: string,
-  archive: string,
-  release: unknown = releaseMetadata(archive),
-  tag: unknown = { object: { sha: RELEASE_SHA, type: "commit" } },
-  options: {
-    readonly failApi?: boolean;
-    readonly failGit?: boolean;
-    readonly remote?: string;
-  } = {}
-): ContractProofInput {
-  const packagePath = join(root, "package.json");
-  writeFileSync(
+  marker = "current"
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const current = path.join(root, marker);
+  const stage = path.join(current, "package");
+  const archive = path.join(root, `${marker}.tgz`);
+  yield* fileSystem.makeDirectory(stage, { recursive: true });
+  yield* fileSystem.writeFileString(
+    path.join(stage, "package.json"),
+    `{"name":"@nakafa/aksara-contracts","version":"${VERSION}"}`
+  );
+  yield* fileSystem.writeFileString(path.join(stage, "marker.txt"), marker);
+  const process = yield* ChildProcess.make("tar", [
+    "-czf",
+    archive,
+    "-C",
+    current,
+    "package",
+  ]);
+  expect(yield* process.exitCode).toBe(0);
+  return archive;
+});
+
+/** Builds exact release metadata from Effect-owned file and crypto services. */
+const releaseMetadata = Effect.fn("ReleaseProofTest.releaseMetadata")(
+  function* (archive: string) {
+    const crypto = yield* Crypto.Crypto;
+    const fileSystem = yield* FileSystem.FileSystem;
+    const bytes = yield* fileSystem.readFile(archive);
+    const digest = yield* crypto.digest("SHA-256", bytes);
+    const info = yield* fileSystem.stat(archive);
+    return {
+      assets: [
+        {
+          digest: `sha256:${Encoding.encodeHex(digest)}`,
+          name: `nakafa-aksara-contracts-${VERSION}.tgz`,
+          size: Number(info.size),
+        },
+      ],
+      draft: false,
+      immutable: true,
+      prerelease: false,
+      tag_name: `contracts-v${VERSION}`,
+      target_commitish: RELEASE_SHA,
+    };
+  }
+);
+
+/** Creates one scoped proof fixture without embedding executable source code. */
+const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
+  prefix: string
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const root = yield* fileSystem.makeTempDirectoryScoped({ prefix });
+  const archive = yield* createArchive(root);
+  const release = yield* releaseMetadata(archive);
+  const packagePath = path.join(root, "package.json");
+  yield* fileSystem.writeFileString(
     packagePath,
     `{"name":"@nakafa/aksara-contracts","version":"${VERSION}"}`
   );
-  const tool = createFakeTool(root, {
-    archive: options.remote ?? archive,
-    ...(options.failApi === undefined ? {} : { failApi: options.failApi }),
-    ...(options.failGit === undefined ? {} : { failGit: options.failGit }),
-    release,
-    tag,
-  });
-  return {
+  const input = {
     archivePath: archive,
     packagePath,
     repository: "nakafaai/aksara",
     sourceSha: SOURCE_SHA,
-    tools: { gh: tool, git: tool },
+  } satisfies ContractProofInput;
+  return {
+    archive,
+    input,
+    release,
+    root,
+    size: Number((yield* fileSystem.stat(archive)).size),
   };
+});
+
+/** Models only the exact GitHub and Git commands owned by the proof program. */
+function makeFakeSpawner(
+  live: ChildProcessSpawner.ChildProcessSpawner["Service"],
+  fs: FileSystem.FileSystem,
+  path: Path.Path,
+  input: FakeCommandInput
+) {
+  return ChildProcessSpawner.make(
+    Effect.fn("ReleaseProofTest.spawn")(function* (command) {
+      if (command._tag !== "StandardCommand") {
+        return yield* Effect.die("Unexpected piped release proof command");
+      }
+      if (command.command === "tar") {
+        return yield* live.spawn(command);
+      }
+      if (command.command === "git") {
+        return makeProcessHandle("", input.failGit === true ? 1 : 0);
+      }
+      if (command.command !== "gh") {
+        return yield* Effect.die(`Unexpected executable: ${command.command}`);
+      }
+      if (command.args[0] === "api") {
+        const output = command.args[1]?.includes("/releases/")
+          ? JSON.stringify(input.release)
+          : JSON.stringify(input.tag);
+        return makeProcessHandle(output, input.failApi === true ? 1 : 0);
+      }
+      if (command.args[0] !== "release" || command.args[1] !== "download") {
+        return makeProcessHandle("");
+      }
+      const directoryIndex = command.args.indexOf("--dir");
+      const patternIndex = command.args.indexOf("--pattern");
+      const directory = command.args[directoryIndex + 1];
+      const name = command.args[patternIndex + 1];
+      if (
+        directoryIndex < 0 ||
+        patternIndex < 0 ||
+        directory === undefined ||
+        name === undefined
+      ) {
+        return yield* Effect.die("Malformed release download fixture command");
+      }
+      yield* fs.makeDirectory(directory, { recursive: true });
+      yield* fs.copyFile(input.downloadArchive, path.join(directory, name));
+      return makeProcessHandle("");
+    })
+  );
 }
 
-describe("immutable contract release proof", () => {
-  it("proves exact release bytes, tag, ancestry, and cryptographic commands", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-contract-proof-"));
-    const archive = createArchive(root);
-    const proof = await run(proveContractRelease(proofInput(root, archive)));
+/** Runs one proof with real tar IO and Effect-native fake remote commands. */
+const proveWithCommands = Effect.fn("ReleaseProofTest.proveWithCommands")(
+  function* (input: ContractProofInput, commands: FakeCommandInput) {
+    const live = yield* ChildProcessSpawner.ChildProcessSpawner;
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const spawner = makeFakeSpawner(live, fileSystem, path, commands);
+    return yield* proveContractRelease(input).pipe(
+      Effect.provideService(ChildProcessSpawner.ChildProcessSpawner, spawner)
+    );
+  }
+);
 
-    expect(proof).toMatchObject({
-      assetName: `nakafa-aksara-contracts-${VERSION}.tgz`,
-      releaseSha: RELEASE_SHA,
-      releaseTag: `contracts-v${VERSION}`,
-      size: statSync(archive).size,
-    });
-  });
+layer(NodeServices.layer)("immutable contract release proof", (it) => {
+  it.effect(
+    "proves exact release bytes, tag, ancestry, and cryptographic commands",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* proofFixture("aksara-contract-proof-");
+        const proof = yield* proveWithCommands(
+          fixture.input,
+          fakeCommands(fixture.archive, fixture.release)
+        );
 
-  it("rejects malformed proof inputs and remote metadata", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-proof-metadata-"));
-    const archive = createArchive(root);
-    const repository = await reject(
-      proveContractRelease({
-        ...proofInput(root, archive),
-        repository: "invalid",
+        expect(proof).toMatchObject({
+          assetName: `nakafa-aksara-contracts-${VERSION}.tgz`,
+          releaseSha: RELEASE_SHA,
+          releaseTag: `contracts-v${VERSION}`,
+          size: fixture.size,
+        });
       })
-    );
-    expect(repository.reason).toBe("argument");
-    const sourceSha = await reject(
-      proveContractRelease({
-        ...proofInput(root, archive),
-        sourceSha: "invalid",
-      })
-    );
-    expect(sourceSha.reason).toBe("argument");
-    const release = await reject(
-      proveContractRelease(proofInput(root, archive, "invalid"))
-    );
-    expect(release.reason).toBe("release");
-    const command = await reject(
-      proveContractRelease(
-        proofInput(root, archive, undefined, undefined, { failApi: true })
-      )
-    );
-    expect(command.reason).toBe("platform");
-    const tag = await reject(
-      proveContractRelease(
-        proofInput(root, archive, releaseMetadata(archive), "invalid")
-      )
-    );
-    expect(tag.reason).toBe("release");
-  });
+  );
 
-  it("rejects mutable, mismatched, or unauthenticated release state", async () => {
-    const root = mkdtempSync(join(tmpdir(), "aksara-proof-state-"));
-    const archive = createArchive(root);
-    const release = releaseMetadata(archive);
-    const cases: readonly [unknown, unknown, string][] = [
-      [{ ...release, immutable: false }, undefined, "final"],
-      [{ ...release, assets: [] }, undefined, "archive and size"],
-      [
-        {
-          ...release,
-          assets: [{ ...release.assets[0], digest: "sha256:wrong" }],
-        },
-        undefined,
-        "digest",
-      ],
-      [
-        release,
-        { object: { sha: SOURCE_SHA, type: "commit" } },
-        "exact source commit",
-      ],
-    ];
-    const errors = await Promise.all(
-      cases.map(([candidate, tag]) =>
-        reject(
-          proveContractRelease(
-            proofInput(
-              root,
-              archive,
-              candidate,
-              tag ?? { object: { sha: RELEASE_SHA, type: "commit" } }
-            )
-          )
-        )
-      )
-    );
-    for (const [index, error] of errors.entries()) {
-      expect(error.detail).toContain(cases[index]?.[2] ?? "");
-    }
-    const ancestry = await reject(
-      proveContractRelease(
-        proofInput(root, archive, release, undefined, { failGit: true })
-      )
-    );
-    expect(ancestry.reason).toBe("platform");
-    const remote = createArchive(root, "remote");
-    const bytes = await reject(
-      proveContractRelease(
-        proofInput(root, archive, release, undefined, { remote })
-      )
-    );
-    expect(bytes.detail).toContain("differs from the current source build");
-  }, 30_000);
+  it.effect("rejects malformed proof inputs and remote metadata", () =>
+    Effect.gen(function* () {
+      const fixture = yield* proofFixture("aksara-proof-metadata-");
+      const commands = fakeCommands(fixture.archive, fixture.release);
+
+      const repository = yield* proveWithCommands(
+        { ...fixture.input, repository: "invalid" },
+        commands
+      ).pipe(Effect.flip);
+      expect(repository.reason).toBe("argument");
+      const sourceSha = yield* proveWithCommands(
+        { ...fixture.input, sourceSha: "invalid" },
+        commands
+      ).pipe(Effect.flip);
+      expect(sourceSha.reason).toBe("argument");
+      const malformedRelease = yield* proveWithCommands(
+        fixture.input,
+        fakeCommands(fixture.archive, "invalid")
+      ).pipe(Effect.flip);
+      expect(malformedRelease.reason).toBe("release");
+      const command = yield* proveWithCommands(
+        fixture.input,
+        fakeCommands(fixture.archive, fixture.release, { failApi: true })
+      ).pipe(Effect.flip);
+      expect(command.reason).toBe("platform");
+      const tag = yield* proveWithCommands(
+        fixture.input,
+        fakeCommands(fixture.archive, fixture.release, { tag: "invalid" })
+      ).pipe(Effect.flip);
+      expect(tag.reason).toBe("release");
+    })
+  );
+
+  it.effect(
+    "rejects mutable, mismatched, or unauthenticated release state",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* proofFixture("aksara-proof-state-");
+        const cases: readonly [unknown, unknown, string][] = [
+          [{ ...fixture.release, immutable: false }, releaseTag, "final"],
+          [{ ...fixture.release, assets: [] }, releaseTag, "archive and size"],
+          [
+            {
+              ...fixture.release,
+              assets: [
+                { ...fixture.release.assets[0], digest: "sha256:wrong" },
+              ],
+            },
+            releaseTag,
+            "digest",
+          ],
+          [
+            fixture.release,
+            { object: { sha: SOURCE_SHA, type: "commit" } },
+            "exact source commit",
+          ],
+        ];
+        const errors = yield* Effect.all(
+          cases.map(([candidate, tag]) =>
+            proveWithCommands(
+              fixture.input,
+              fakeCommands(fixture.archive, candidate, { tag })
+            ).pipe(Effect.flip)
+          ),
+          { concurrency: "unbounded" }
+        );
+        for (const [index, error] of errors.entries()) {
+          expect(error.detail).toContain(cases[index]?.[2] ?? "");
+        }
+        const ancestry = yield* proveWithCommands(
+          fixture.input,
+          fakeCommands(fixture.archive, fixture.release, { failGit: true })
+        ).pipe(Effect.flip);
+        expect(ancestry.reason).toBe("platform");
+        const remote = yield* createArchive(fixture.root, "remote");
+        const bytes = yield* proveWithCommands(
+          fixture.input,
+          fakeCommands(remote, fixture.release)
+        ).pipe(Effect.flip);
+        expect(bytes.detail).toContain("differs from the current source build");
+      }),
+    30_000
+  );
 });
