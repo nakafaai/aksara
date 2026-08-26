@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import {
@@ -8,37 +8,46 @@ import {
 } from "#corpus/curriculum/source";
 
 describe("curriculum source catalog", () => {
-  it("loads the four real curriculum trees in stable program order", async () => {
-    const curricula = await Effect.runPromise(decodeCurriculumCatalog());
+  it.effect(
+    "loads the four real curriculum trees in stable program order",
+    () =>
+      Effect.gen(function* () {
+        const curricula = yield* decodeCurriculumCatalog();
 
-    expect(curricula.map(({ programKey }) => programKey)).toEqual([
-      "cambridge-international",
-      "merdeka",
-      "singapore-moe",
-      "united-states",
-    ]);
-  });
+        expect(curricula.map(({ programKey }) => programKey)).toEqual([
+          "cambridge-international",
+          "merdeka",
+          "singapore-moe",
+          "united-states",
+        ]);
+      })
+  );
 
-  it("canonicalizes reversed real source order", async () => {
-    const curricula = await Effect.runPromise(decodeCurriculumCatalog());
-    const canonical = await Effect.runPromise(
-      validateCurriculumCatalog([...curricula].reverse())
-    );
+  it.effect("canonicalizes reversed real source order", () =>
+    Effect.gen(function* () {
+      const curricula = yield* decodeCurriculumCatalog();
+      const canonical = yield* validateCurriculumCatalog(
+        [...curricula].reverse()
+      );
 
-    expect(canonical).toEqual(curricula);
-  });
+      expect(canonical).toEqual(curricula);
+    })
+  );
 
-  it("rejects duplicate program ownership", async () => {
-    const [curriculum] = await Effect.runPromise(decodeCurriculumCatalog());
-    expect(curriculum).toBeDefined();
-    if (!curriculum) {
-      return;
-    }
-    const error = await Effect.runPromise(
-      validateCurriculumCatalog([curriculum, curriculum]).pipe(Effect.flip)
-    );
+  it.effect("rejects duplicate program ownership", () =>
+    Effect.gen(function* () {
+      const [curriculum] = yield* decodeCurriculumCatalog();
+      expect(curriculum).toBeDefined();
+      if (!curriculum) {
+        return;
+      }
+      const error = yield* validateCurriculumCatalog([
+        curriculum,
+        curriculum,
+      ]).pipe(Effect.flip);
 
-    expect(error).toBeInstanceOf(CurriculumCatalogError);
-    expect(error).toMatchObject({ programKey: curriculum.programKey });
-  });
+      expect(error).toBeInstanceOf(CurriculumCatalogError);
+      expect(error).toMatchObject({ programKey: curriculum.programKey });
+    })
+  );
 });

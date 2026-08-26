@@ -1,8 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   CurriculumRouteDraftSchema,
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
 import {
   addMaterialContext,
@@ -34,68 +34,76 @@ const group = Schema.decodeSync(CurriculumRouteSchema)({
 });
 
 describe("curriculum material context", () => {
-  it("binds one material leaf to its nearest subject-owned group", async () => {
-    const leaf = Schema.decodeSync(CurriculumRouteSchema)({
-      ...group,
-      canonicalPath: "subjects/mathematics/matrix",
-      materialContextNodeKey: group.nodeKey,
-      materialContextParentPath: subject.publicPath,
-      materialContextPublicPath: group.publicPath,
-      materialKey: "lesson.mathematics.matrix",
-      nodeKey: "class-10-mathematics-matrix",
-      parentPath: group.publicPath,
-      publicPath: `${group.publicPath}/matrix`,
-      title: "Matrices",
-    });
-    const unresolved = Schema.decodeSync(CurriculumRouteDraftSchema)({
-      ...leaf,
-      materialContextNodeKey: undefined,
-      materialContextParentPath: undefined,
-      materialContextPublicPath: undefined,
-    });
+  it.effect("binds one material leaf to its nearest subject-owned group", () =>
+    Effect.gen(function* () {
+      const leaf = yield* Schema.decodeEffect(CurriculumRouteSchema)({
+        ...group,
+        canonicalPath: "subjects/mathematics/matrix",
+        materialContextNodeKey: group.nodeKey,
+        materialContextParentPath: subject.publicPath,
+        materialContextPublicPath: group.publicPath,
+        materialKey: "lesson.mathematics.matrix",
+        nodeKey: "class-10-mathematics-matrix",
+        parentPath: group.publicPath,
+        publicPath: `${group.publicPath}/matrix`,
+        title: "Matrices",
+      });
+      const unresolved = yield* Schema.decodeEffect(CurriculumRouteDraftSchema)(
+        {
+          ...leaf,
+          materialContextNodeKey: undefined,
+          materialContextParentPath: undefined,
+          materialContextPublicPath: undefined,
+        }
+      );
 
-    expect(
-      await Effect.runPromise(addMaterialContext([subject, group, unresolved]))
-    ).toContainEqual(leaf);
-  });
+      expect(
+        yield* addMaterialContext([subject, group, unresolved])
+      ).toContainEqual(leaf);
+    })
+  );
 
-  it("keeps structure routes unchanged", async () => {
-    expect(await Effect.runPromise(addMaterialContext([subject]))).toEqual([
-      subject,
-    ]);
-  });
+  it.effect("keeps structure routes unchanged", () =>
+    Effect.gen(function* () {
+      expect(yield* addMaterialContext([subject])).toEqual([subject]);
+    })
+  );
 
-  it("rejects material leaves without a complete subject or course ancestry", async () => {
-    const leaf = Schema.decodeSync(CurriculumRouteDraftSchema)({
-      ...group,
-      canonicalPath: "subjects/mathematics/matrix",
-      materialKey: "lesson.mathematics.matrix",
-      nodeKey: "class-10-mathematics-matrix",
-      title: "Matrices",
-    });
-    const error = await Effect.runPromise(
-      addMaterialContext([group, leaf]).pipe(Effect.flip)
-    );
+  it.effect(
+    "rejects material leaves without a complete subject or course ancestry",
+    () =>
+      Effect.gen(function* () {
+        const leaf = yield* Schema.decodeEffect(CurriculumRouteDraftSchema)({
+          ...group,
+          canonicalPath: "subjects/mathematics/matrix",
+          materialKey: "lesson.mathematics.matrix",
+          nodeKey: "class-10-mathematics-matrix",
+          title: "Matrices",
+        });
+        const error = yield* addMaterialContext([group, leaf]).pipe(
+          Effect.flip
+        );
 
-    expect(error).toBeInstanceOf(CurriculumContextError);
-    expect(error).toMatchObject({ nodeKey: leaf.nodeKey });
-  });
+        expect(error).toBeInstanceOf(CurriculumContextError);
+        expect(error).toMatchObject({ nodeKey: leaf.nodeKey });
+      })
+  );
 
-  it("rejects a material leaf without any parent route", async () => {
-    const leaf = Schema.decodeSync(CurriculumRouteDraftSchema)({
-      ...group,
-      canonicalPath: "subjects/mathematics/matrix",
-      level: "track",
-      materialKey: "lesson.mathematics.matrix",
-      nodeKey: "merdeka:root",
-      parentPath: undefined,
-      publicPath: "curriculum/merdeka",
-      title: "Kurikulum Merdeka",
-    });
-    const error = await Effect.runPromise(
-      addMaterialContext([leaf]).pipe(Effect.flip)
-    );
+  it.effect("rejects a material leaf without any parent route", () =>
+    Effect.gen(function* () {
+      const leaf = yield* Schema.decodeEffect(CurriculumRouteDraftSchema)({
+        ...group,
+        canonicalPath: "subjects/mathematics/matrix",
+        level: "track",
+        materialKey: "lesson.mathematics.matrix",
+        nodeKey: "merdeka:root",
+        parentPath: undefined,
+        publicPath: "curriculum/merdeka",
+        title: "Kurikulum Merdeka",
+      });
+      const error = yield* addMaterialContext([leaf]).pipe(Effect.flip);
 
-    expect(error).toMatchObject({ nodeKey: leaf.nodeKey });
-  });
+      expect(error).toMatchObject({ nodeKey: leaf.nodeKey });
+    })
+  );
 });

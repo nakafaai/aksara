@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
@@ -26,61 +26,64 @@ function translations(prefix: string) {
 }
 
 describe("curriculum schema", () => {
-  it("defines every structure level and a nested material leaf", async () => {
-    const leaf = materialNode({
-      key: "function-concept",
-      level: "lesson",
-      materialKeys: ["lesson.mathematics.function-concept"],
-      order: 1,
-    });
-    const nodes = [
-      classNode({
-        key: "class-node",
+  it.effect("defines every structure level and a nested material leaf", () =>
+    Effect.gen(function* () {
+      const leaf = materialNode({
+        key: "function-concept",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.function-concept"],
         order: 1,
-        translations: translations("class"),
-      }),
-      subjectNode({
-        key: "subject-node",
-        order: 2,
-        translations: translations("subject"),
-      }),
-      courseNode({
-        key: "course-node",
-        order: 3,
-        translations: translations("course"),
-      }),
-      stageNode({
-        key: "stage-node",
-        order: 4,
-        translations: translations("stage"),
-      }),
-      unitNode({
-        children: [leaf],
+      });
+      const nodes = [
+        classNode({
+          key: "class-node",
+          order: 1,
+          translations: translations("class"),
+        }),
+        subjectNode({
+          key: "subject-node",
+          order: 2,
+          translations: translations("subject"),
+        }),
+        courseNode({
+          key: "course-node",
+          order: 3,
+          translations: translations("course"),
+        }),
+        stageNode({
+          key: "stage-node",
+          order: 4,
+          translations: translations("stage"),
+        }),
+        unitNode({
+          children: [leaf],
+          key: "unit-node",
+          order: 5,
+          translations: translations("unit"),
+        }),
+      ];
+      const curriculum = yield* defineCurriculum({
+        programKey: "merdeka",
+        tree: nodes,
+      });
+
+      expect(nodes.map(({ level }) => level)).toEqual([
+        "class",
+        "subject",
+        "course",
+        "stage",
+        "unit",
+      ]);
+      expect(curriculum.tree[4]).toMatchObject({
+        children: [{ key: "function-concept" }],
         key: "unit-node",
-        order: 5,
-        translations: translations("unit"),
-      }),
-    ];
-    const curriculum = await Effect.runPromise(
-      defineCurriculum({ programKey: "merdeka", tree: nodes })
-    );
+      });
+    })
+  );
 
-    expect(nodes.map(({ level }) => level)).toEqual([
-      "class",
-      "subject",
-      "course",
-      "stage",
-      "unit",
-    ]);
-    expect(curriculum.tree[4]).toMatchObject({
-      children: [{ key: "function-concept" }],
-      key: "unit-node",
-    });
-  });
-
-  it("rejects malformed keys and empty material references", async () => {
-    const invalidKey = await Effect.runPromise(
-      defineCurriculum({
+  it.effect("rejects malformed keys and empty material references", () =>
+    Effect.gen(function* () {
+      const invalidKey = yield* defineCurriculum({
         programKey: "merdeka",
         tree: [
           unitNode({
@@ -89,71 +92,74 @@ describe("curriculum schema", () => {
             translations: translations("invalid"),
           }),
         ],
-      }).pipe(Effect.flip)
-    );
-    const emptyMaterial = Schema.decodeUnknownExit(CurriculumSourceSchema)({
-      programKey: "merdeka",
-      tree: [
-        {
-          key: "empty-material",
-          level: "lesson",
-          materialKeys: [],
-          order: 1,
-        },
-      ],
-    });
+      }).pipe(Effect.flip);
+      const emptyMaterial = Schema.decodeUnknownExit(CurriculumSourceSchema)({
+        programKey: "merdeka",
+        tree: [
+          {
+            key: "empty-material",
+            level: "lesson",
+            materialKeys: [],
+            order: 1,
+          },
+        ],
+      });
 
-    expect(invalidKey).toMatchObject({ _tag: "CurriculumDecodeError" });
-    expect(String(invalidKey.cause)).toContain("Invalid curriculum node key.");
-    expect(Exit.isFailure(emptyMaterial)).toBe(true);
-  });
+      expect(invalidKey).toMatchObject({ _tag: "CurriculumDecodeError" });
+      expect(String(invalidKey.cause)).toContain(
+        "Invalid curriculum node key."
+      );
+      expect(Exit.isFailure(emptyMaterial)).toBe(true);
+    })
+  );
 
-  it("reports duplicate identities anywhere in a recursive tree", async () => {
-    const child = unitNode({
-      key: "duplicate-node",
-      order: 1,
-      translations: translations("child"),
-    });
-    const parent = unitNode({
-      children: [child],
-      key: "duplicate-node",
-      order: 1,
-      translations: translations("parent"),
-    });
-    const error = await Effect.runPromise(
-      defineCurriculum({ programKey: "merdeka", tree: [parent] }).pipe(
-        Effect.flip
-      )
-    );
+  it.effect("reports duplicate identities anywhere in a recursive tree", () =>
+    Effect.gen(function* () {
+      const child = unitNode({
+        key: "duplicate-node",
+        order: 1,
+        translations: translations("child"),
+      });
+      const parent = unitNode({
+        children: [child],
+        key: "duplicate-node",
+        order: 1,
+        translations: translations("parent"),
+      });
+      const error = yield* defineCurriculum({
+        programKey: "merdeka",
+        tree: [parent],
+      }).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "CurriculumDuplicateError",
-      nodeKey: "duplicate-node",
-      programKey: "merdeka",
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "CurriculumDuplicateError",
+        nodeKey: "duplicate-node",
+        programKey: "merdeka",
+      });
+    })
+  );
 
-  it("validates every authored curriculum source", async () => {
-    const curricula = await Effect.runPromise(
-      Effect.all([
+  it.effect("validates every authored curriculum source", () =>
+    Effect.gen(function* () {
+      const curricula = yield* Effect.all([
         cambridgeInternationalCurriculum,
         merdekaCurriculum,
         singaporeMoeCurriculum,
         unitedStatesCurriculum,
-      ])
-    );
+      ]);
 
-    expect(curricula.map(({ programKey }) => programKey)).toEqual([
-      "cambridge-international",
-      "merdeka",
-      "singapore-moe",
-      "united-states",
-    ]);
-  });
+      expect(curricula.map(({ programKey }) => programKey)).toEqual([
+        "cambridge-international",
+        "merdeka",
+        "singapore-moe",
+        "united-states",
+      ]);
+    })
+  );
 
-  it("loads every authored curriculum registry module", async () => {
-    const files = await Effect.runPromise(
-      importCorpusModules("curriculum/**/*.ts", [
+  it.effect("loads every authored curriculum registry module", () =>
+    Effect.gen(function* () {
+      const files = yield* importCorpusModules("curriculum/**/*.ts", [
         "curriculum/context.ts",
         "curriculum/material.ts",
         "curriculum/node-route.ts",
@@ -162,9 +168,9 @@ describe("curriculum schema", () => {
         "curriculum/route-source.ts",
         "curriculum/schema.ts",
         "curriculum/source.ts",
-      ])
-    );
+      ]);
 
-    expect(files).toHaveLength(20);
-  });
+      expect(files).toHaveLength(20);
+    })
+  );
 });
