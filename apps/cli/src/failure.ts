@@ -45,7 +45,12 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
     targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
     transport: Schema.optional(PublicationTransportDetailSchema),
   }
-) {}
+) {
+  /** Exposes the complete secret-free production evidence at the CLI boundary. */
+  get message() {
+    return `Production ${this.stage} failed with ${this.failure}: ${JSON.stringify(this)}`;
+  }
+}
 
 /** Preserves the safe reason and status owned by the Nakafa app boundary. */
 function appEvidence(error: unknown) {
