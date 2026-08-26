@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
@@ -43,16 +43,18 @@ vi.mock("@nakafa/aksara-corpus/quran/source/sync", async () => ({
 import { makeQuranSourceSyncProgram } from "#scripts/quran-sync";
 
 describe("German Quran source sync command", () => {
-  it("runs the source-owned sync capability from the repository root", async () => {
-    await expect(
-      Effect.runPromise(
-        Effect.scoped(makeQuranSourceSyncProgram()).pipe(
+  it.effect(
+    "runs the source-owned sync capability from the repository root",
+    () =>
+      Effect.gen(function* () {
+        yield* Effect.scoped(makeQuranSourceSyncProgram()).pipe(
           Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
-        )
-      )
-    ).resolves.toBeUndefined();
+        );
 
-    expect(sync.repositoryRoots).toEqual([resolve(import.meta.dirname, "..")]);
-    expect(runtime.calls).toBe(1);
-  });
+        assert.deepStrictEqual(sync.repositoryRoots, [
+          resolve(import.meta.dirname, ".."),
+        ]);
+        assert.strictEqual(runtime.calls, 1);
+      })
+  );
 });
