@@ -5,14 +5,13 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -37,8 +36,7 @@ export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
   | Effect.Error<ReturnType<typeof compileQuestionDocument>>
-  | Effect.Error<ReturnType<typeof inspectQuestionDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectQuestionDocument>>;
 
 type PlanQuestionPublicationContext =
   | Effect.Services<ReturnType<typeof compileQuestionDocument>>

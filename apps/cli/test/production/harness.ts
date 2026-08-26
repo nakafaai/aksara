@@ -5,40 +5,10 @@ import type { prepareContentRelease } from "@nakafa/aksara-publisher/preparation
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { vi } from "vitest";
-import type {
-  ReleaseArguments,
-  RollbackArguments,
-} from "#cli/production/arguments";
+import type { ReleaseArguments } from "#cli/production/arguments";
 import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";
-import type { TargetCalls } from "#test/production/mock";
-
-interface ProductionCalls extends TargetCalls {
-  baseManifestHash: string | null | undefined;
-  baseReleaseId: string | null | undefined;
-  baseResultCount: number | undefined;
-  baseResultDigest: string | undefined;
-  bundleVerifyCalls: number;
-  keyId: string | undefined;
-  manifestMismatch: boolean;
-  privateKeyMatches: boolean;
-  publishCalls: number;
-  publishKind: string | undefined;
-  releaseId: string | undefined;
-  resumeBundle: ContentReleaseBundle | undefined;
-  resumeCalls: number;
-  rollbackInput:
-    | {
-        readonly proofManifestHash: string;
-        readonly releaseId: string;
-        readonly rollbackOf: string;
-      }
-    | undefined;
-  sha: string | undefined;
-  storedRelease: ContentReleaseBundle["release"] | null | undefined;
-  targetServiceReads: number;
-  verifiedBundle: ContentReleaseBundle | undefined;
-}
+import type { ProductionCalls } from "#test/production/mock";
 
 type PrepareContentReleaseInput = Parameters<typeof prepareContentRelease>[0];
 
@@ -57,6 +27,7 @@ const calls = vi.hoisted(() => {
       active: null,
       candidate: null,
       recovery: null,
+      tryoutRuntimeBundle: null,
     },
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
@@ -72,10 +43,12 @@ const calls = vi.hoisted(() => {
     publishKind: undefined,
     releaseId: undefined,
     rendererCalls: 0,
+    rendererManifestOverride: undefined,
     resumeBundle: undefined,
     resumeCalls: 0,
-    rollbackInput: undefined,
     rootReads: 0,
+    runtimeBundleRefreshes: 0,
+    runtimeResultSnapshotId: undefined,
     sha: undefined,
     signingSecretReads: 0,
     snapshotCalls: 0,
@@ -105,9 +78,10 @@ vi.mock("#cli/environment/read", async () =>
 vi.mock("#cli/evidence", async () =>
   (await import("#test/production/mock")).evidenceMock(calls)
 );
-vi.mock("#cli/production/renderer", async () =>
-  (await import("#test/production/mock")).rendererMock(calls)
-);
+vi.mock("#cli/production/renderer", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("#cli/production/renderer")>()),
+  ...(await import("#test/production/mock")).rendererMock(calls),
+}));
 vi.mock("#cli/checkout", async () =>
   (await import("#test/production/mock")).checkoutMock(calls)
 );
@@ -138,6 +112,8 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
       calls.baseResultCount = input.baseResultCount;
       calls.baseResultDigest = input.baseResultDigest;
       calls.releaseId = input.releaseId;
+      calls.runtimeResultSnapshotId =
+        input.tryoutRuntime?.result.snapshotId ?? null;
       calls.sha = input.aksaraSha;
       const bundle = gitBundle(input.releaseId, {
         ...(input.baseManifestHash === null
@@ -168,34 +144,6 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   };
 });
 
-vi.mock("@nakafa/aksara-publisher/rollback", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  const { releaseId, rollbackBundle } = await import("#test/target");
-  return {
-    prepareRollback: (input: {
-      readonly proofBundle: ContentReleaseBundle;
-      readonly releaseId: string;
-      readonly rollbackOf: string;
-    }) => {
-      calls.rollbackInput = {
-        proofManifestHash: input.proofBundle.release.manifestHash,
-        releaseId: input.releaseId,
-        rollbackOf: input.rollbackOf,
-      };
-      const bundle =
-        input.proofBundle.release.manifest.releaseId === input.releaseId
-          ? input.proofBundle
-          : rollbackBundle(input.releaseId, releaseId(input.rollbackOf));
-      return TestEffect.succeed({
-        kind: "rollback",
-        manifest: bundle.release.manifest,
-        releaseId: input.releaseId,
-        storedRelease: null,
-      });
-    },
-  };
-});
-
 vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
   const { ContentReleaseBundleSchema } = await import(
     "@nakafa/aksara-contracts/release/lifecycle"
@@ -212,7 +160,9 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
       }).pipe(
         TestEffect.tap((bundle) =>
           TestEffect.sync(() => {
-            calls.verifiedBundle = bundle;
+            if (calls.verifiedBundle === undefined) {
+              calls.verifiedBundle = bundle;
+            }
           })
         )
       );
@@ -221,6 +171,20 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
       TestSchema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
         onExcessProperty: "error",
       }),
+  };
+});
+
+vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
+  const { SignedTryoutRuntimeBundleSchema } = await import(
+    "@nakafa/aksara-contracts/tryout/runtime/spec"
+  );
+  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+  return {
+    verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
+      TestSchema.decodeUnknownEffect(SignedTryoutRuntimeBundleSchema)(
+        input.bundle,
+        { onExcessProperty: "error" }
+      ).pipe(TestEffect.orDie),
   };
 });
 
@@ -233,9 +197,9 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const { PublicationActivation, PublicationSigningKey, PublicationTarget } =
     await import("@nakafa/aksara-publisher/publication/spec");
   const { receiptFor } = await import("#test/target");
-  /** Publishes one prepared mode through injected signer and target services. */
+  /** Publishes one prepared Git release through injected boundary services. */
   const publish = (prepared: {
-    readonly kind: string;
+    readonly kind: "git";
     readonly manifest: ContentReleaseManifest;
     readonly storedRelease: ContentReleaseBundle["release"] | null;
   }) => {
@@ -255,7 +219,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
       return receiptFor(prepared.manifest);
     });
   };
-  return { publishGitRelease: publish, publishRollbackRelease: publish };
+  return { publishGitRelease: publish };
 });
 
 vi.mock("@nakafa/aksara-publisher/resume", async () => {
@@ -285,20 +249,10 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
 });
 
 /** Builds one production Effect with the complete Node service boundary. */
-function productionProgram(args: ReleaseArguments | RollbackArguments) {
+export function productionProgram(args: ReleaseArguments) {
   return runProductionCommand({ args, cwd: "/code/aksara" }).pipe(
     Effect.provide(NodeHttpClient.layerNodeHttp),
     Effect.provideService(ExactProcess, unusedExactProcess),
     Effect.provide(NodeServices.layer)
   );
-}
-
-/** Runs one production command with the real Node boundary services. */
-export function runProduction(args: ReleaseArguments | RollbackArguments) {
-  return Effect.runPromise(productionProgram(args));
-}
-
-/** Returns the typed failure from one rejected production command. */
-export function rejectProduction(args: ReleaseArguments | RollbackArguments) {
-  return Effect.runPromise(productionProgram(args).pipe(Effect.flip));
 }

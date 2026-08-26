@@ -13,17 +13,12 @@ on:
           - cleanup
           - recover
           - release
-          - rollback
       release_id:
         description: Exact release ID for the requested operation
         required: true
         type: string
       recovery_id:
-        description: Exact retained inverse ID for release, rollback, accept, or recover
-        required: false
-        type: string
-      rollback_of:
-        description: Exact active release to reverse
+        description: Exact retained inverse ID for release, accept, or recover
         required: false
         type: string
       scope:
@@ -101,18 +96,9 @@ jobs:
           OPERATION: ${{ inputs.operation }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
-          ROLLBACK_OF: ${{ inputs.rollback_of }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
         run: |
-          if [[ "$OPERATION" != "rollback" && -n "$ROLLBACK_OF" ]]; then
-            echo "Only rollback may select prior release state." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "rollback" && -z "$ROLLBACK_OF" ]]; then
-            echo "A rollback must name the exact active release." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "rollback" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
             if [[ -z "$RECOVERY_ID" ]]; then
               echo "The operation must name its exact retained inverse." >&2
               exit 1
@@ -123,10 +109,6 @@ jobs:
             fi
           elif [[ -n "$RECOVERY_ID" ]]; then
             echo "Abort and cleanup do not accept a recovery identity." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "rollback" && ( "$ROLLBACK_OF" == "$RELEASE_ID" || "$ROLLBACK_OF" == "$RECOVERY_ID" ) ]]; then
-            echo "Rollback, candidate, and recovery identities must differ." >&2
             exit 1
           fi
           if [[ "$OPERATION" == "release" ]]; then
@@ -176,7 +158,7 @@ jobs:
           pnpm boundaries
 
       - name: Verify full publication revision
-        if: inputs.operation == 'accept' || inputs.operation == 'release' || inputs.operation == 'rollback'
+        if: inputs.operation == 'accept' || inputs.operation == 'release'
         run: |
           pnpm deprecations
           pnpm typecheck
@@ -229,24 +211,6 @@ jobs:
           done
           pnpm release -- --release-id "$RELEASE_ID" \
             --recovery-id "$RECOVERY_ID" "${scope_args[@]}"
-
-      - name: Publish rollback
-        if: inputs.operation == 'rollback'
-        working-directory: ${{ runner.temp }}/aksara-operation
-        env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
-          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
-          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
-          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
-          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
-          RECOVERY_ID: ${{ inputs.recovery_id }}
-          RELEASE_ID: ${{ inputs.release_id }}
-          ROLLBACK_OF: ${{ inputs.rollback_of }}
-        run: >-
-          pnpm rollback -- --release-id "$RELEASE_ID"
-          --recovery-id "$RECOVERY_ID"
-          --rollback-of "$ROLLBACK_OF"
 
       - name: Accept active release
         if: inputs.operation == 'accept'

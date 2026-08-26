@@ -5,12 +5,11 @@ import {
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
 import { type Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   compileMaterialDocument,
   inspectMaterialDocument,
@@ -35,8 +34,7 @@ export type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
 
 type PlanMaterialPublicationError =
   | Effect.Error<ReturnType<typeof compileMaterialDocument>>
-  | Effect.Error<ReturnType<typeof inspectMaterialDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectMaterialDocument>>;
 
 type PlanMaterialPublicationContext =
   | Effect.Services<ReturnType<typeof compileMaterialDocument>>

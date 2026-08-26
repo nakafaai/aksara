@@ -1,14 +1,12 @@
 import { createHash } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import {
   CompiledContentPayloadSchema,
-  ContentPublicationIdentitySchema,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,
   compareContentHeads,
-  comparePublicationIdentities,
   decodeCompileDocumentRequest,
   decodeCompileDocumentSource,
   headIdentity,
@@ -68,30 +66,6 @@ describe("content", () => {
     expect(compareContentHeads(english, indonesian)).toBe(-1);
     expect(compareContentHeads(indonesian, english)).toBe(1);
     expect(compareContentHeads(english, english)).toBe(0);
-    expect(
-      comparePublicationIdentities(
-        { ...english, family: "article" },
-        { ...english, family: "material" }
-      )
-    ).toBe(-1);
-    expect(
-      comparePublicationIdentities(
-        { ...english, family: "material" },
-        { ...english, family: "page" }
-      )
-    ).toBe(-1);
-    expect(
-      comparePublicationIdentities(
-        { ...english, family: "page" },
-        { ...english, family: "question" }
-      )
-    ).toBe(-1);
-    expect(
-      Schema.decodeSync(ContentPublicationIdentitySchema)({
-        ...english,
-        family: "material",
-      })
-    ).toEqual({ ...english, family: "material" });
   });
 
   it("owns unambiguous content-head and public-route identities", () => {

@@ -22,6 +22,7 @@ import {
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 import { StageGroupRequestSchema } from "#contracts/transport/group";
+import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchRequestSchema,
   StageSnapshotRequestSchema,
@@ -48,6 +49,7 @@ export const PublicationOperationSchema = Schema.Literals([
   "stageRouteBatch",
   "stageSnapshot",
   "stageSnapshotBatch",
+  "stageTryoutRuntimeBundle",
   "status",
   "verify",
 ]);
@@ -181,6 +183,7 @@ export const PublicationRequestSchema = Schema.Union([
   StageRecoveryRequestSchema,
   StageSnapshotRequestSchema,
   StageSnapshotBatchRequestSchema,
+  StageTryoutRuntimeBundleRequestSchema,
   StageGroupRequestSchema,
   StageItemBatchRequestSchema,
   StageRouteBatchRequestSchema,

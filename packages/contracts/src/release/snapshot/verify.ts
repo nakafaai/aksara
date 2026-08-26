@@ -9,6 +9,8 @@ import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
 import {
   type ContentSnapshotKind,
   ContentSnapshotKindSchema,
+} from "#contracts/release/snapshot/scope";
+import {
   type ContentSnapshotSet,
   ContentSnapshotSetSchema,
   inheritContentSnapshots,

@@ -29,9 +29,10 @@ import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/ro
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type {
-  ContentSnapshotSet,
-  PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+  GitPublicationScope,
+  verifyGitPublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -43,8 +44,14 @@ import type {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
+  PreparedTryoutRuntimeMissingError,
+  PreparedTryoutRuntimeSnapshotError,
+  PreparedTryoutRuntimeTransitionError,
 } from "#publisher/preparation/errors";
-import type { PreparedGitRelease } from "#publisher/preparation/prepared";
+import type {
+  PreparedGitRelease,
+  PreparedTryoutRuntimeTransition,
+} from "#publisher/preparation/prepared";
 import type { QuranProvenanceBlockedError } from "#publisher/preparation/provenance";
 import type {
   PreparedSnapshotStreamError,
@@ -116,7 +123,9 @@ export interface PrepareContentReleaseInput<E, R>
   readonly rendererManifest: unknown;
   readonly result: PreparedResultCatalogSource<E, R>;
   readonly routes: PreparedRouteSource<E, R>;
-  readonly scope: PublicationScope;
+  readonly scope: GitPublicationScope;
+  /** Candidate runtime pair plus an optional distinct retained inverse. */
+  readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
 
 type SourceHashError = Effect.Error<
@@ -182,6 +191,8 @@ type SnapshotPolicyError = Effect.Error<
   ReturnType<typeof verifyReleasePolicyTransition>
 >;
 
+type GitScopeError = Effect.Error<ReturnType<typeof verifyGitPublicationScope>>;
+
 /** Every expected failure surfaced before a release can be signed. */
 type PrepareContentReleaseError<E, R> =
   | ItemVerificationError<PreparedContentStreamError<E>, R>
@@ -189,6 +200,10 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
+  | PreparedTryoutRuntimeMissingError
+  | PreparedTryoutRuntimeSnapshotError
+  | PreparedTryoutRuntimeTransitionError
+  | GitScopeError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError

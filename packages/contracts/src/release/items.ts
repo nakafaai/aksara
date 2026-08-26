@@ -2,7 +2,7 @@ import { Effect, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
-import { publicationScopeContainsContent } from "#contracts/release/snapshot/spec";
+import { publicationScopeSelectsContent } from "#contracts/release/snapshot/scope";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -103,13 +103,7 @@ function validateItemIdentity(
       })
     );
   }
-  if (
-    !publicationScopeContainsContent(manifest.scope, {
-      artifactLocale: item.change.artifactLocale,
-      contentKey: item.change.contentKey,
-      family: item.change.family,
-    })
-  ) {
+  if (!publicationScopeSelectsContent(manifest.scope, item.change)) {
     return Effect.fail(
       new ReleaseItemScopeError({ itemOffset: expectedIndex })
     );

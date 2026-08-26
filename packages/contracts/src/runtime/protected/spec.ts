@@ -7,12 +7,9 @@ import { decodeContract } from "#contracts/decode";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
-  ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import { AppLocaleSchema } from "#contracts/locale";
 import { QuestionKeySchema } from "#contracts/question/identity";
-import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import {
   hasBoundedProtectedRuntimeResponse,
@@ -22,6 +19,7 @@ import {
   ContentRuntimeFailureSchema,
   ContentRuntimeMissingSchema,
 } from "#contracts/runtime/result";
+import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec";
 
 /** Checks one protected body selector uses its required delivery class. */
 function hasProtectedBodyKind(input: {
@@ -77,12 +75,11 @@ const ProtectedContentRuntimeSelectorsSchema = Schema.Array(
   )
 );
 
-/** One bounded protected read sharing a retained snapshot and locale. */
+/** One bounded protected read bound to a permanent signed runtime bundle. */
 export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
-  appLocale: AppLocaleSchema,
+  bundleHash: Sha256HashSchema,
   selectors: ProtectedContentRuntimeSelectorsSchema,
   snapshotId: Sha256HashSchema,
-  snapshotReleaseId: ReleaseIdSchema,
 });
 export type ProtectedContentRuntimeRequest =
   typeof ProtectedContentRuntimeRequestSchema.Type;
@@ -118,13 +115,10 @@ const ProtectedContentRuntimeItemsSchema = Schema.Array(
 
 /** Protected frozen bodies selected from one retained try-out snapshot. */
 export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
+  bundle: SignedTryoutRuntimeBundleSchema,
   items: ProtectedContentRuntimeItemsSchema,
   kind: Schema.Literal("found"),
-  release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
-  snapshotId: Sha256HashSchema,
-  snapshotManifestHash: Sha256HashSchema,
-  snapshotReleaseId: ReleaseIdSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasBoundedProtectedRuntimeResponse, {

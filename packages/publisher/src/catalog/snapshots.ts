@@ -1,7 +1,7 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   decodeContentSnapshotManifests,
   verifyContentSnapshots,
@@ -122,6 +122,7 @@ export const validateCatalogSnapshots: <E, R>(
     previousSnapshots: null,
     questionHeads: input.questionHeads,
     rendererManifest: input.rendererManifest,
+    runtime: { kind: "stable" },
   }).pipe(
     Effect.mapError(
       (cause) => new ContentCatalogSnapshotError({ cause, stage: "prepare" })

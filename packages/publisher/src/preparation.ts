@@ -28,9 +28,10 @@ import {
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
-  type PublicationScope,
+  type GitPublicationScope,
   publicationScopeSelectsSnapshot,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+  verifyGitPublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   decodeContentSnapshotManifests,
   decodeContentSnapshotRows,
@@ -43,6 +44,7 @@ import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
+import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import type {
   PrepareContentRelease,
   PrepareContentReleaseInput,
@@ -63,7 +65,7 @@ function isDerivedUpsert(
 
 /** Rejects a replacement manifest outside the signed publication scope. */
 function requireScopedSnapshot(
-  scope: PublicationScope,
+  scope: GitPublicationScope,
   family: Parameters<typeof publicationScopeSelectsSnapshot>[1]
 ) {
   if (publicationScopeSelectsSnapshot(scope, family)) {
@@ -76,6 +78,7 @@ function requireScopedSnapshot(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
+  const scope = yield* verifyGitPublicationScope(input.scope);
   const basePolicy = yield* prepareReleaseBase(input);
   const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
@@ -91,7 +94,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   );
   yield* Effect.forEach(decodedSnapshotManifests, (snapshot) =>
     requireSnapshotProvenance(snapshot).pipe(
-      Effect.andThen(requireScopedSnapshot(input.scope, snapshot.family))
+      Effect.andThen(requireScopedSnapshot(scope, snapshot.family))
     )
   );
   yield* verifyReleasePolicyTransition({
@@ -100,12 +103,17 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     policy: {
       activeAppLocales: ACTIVE_APP_LOCALES,
     },
-    scope: input.scope,
+    scope,
   });
   const snapshotSummary = yield* verifyContentSnapshots({
     manifests: input.snapshotManifests,
     previousSnapshots: input.previousSnapshots,
     rows: input.snapshotRows,
+  });
+  yield* validatePreparedTryoutRuntime({
+    previousSnapshots: input.previousSnapshots,
+    runtime: input.tryoutRuntime,
+    snapshots: snapshotSummary.snapshots,
   });
   /** Replays strict decoding, coherence, ordering, and route validation. */
   const records = derivePreparedRecords({
@@ -201,7 +209,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
-    scope: input.scope,
+    scope,
     snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });
@@ -223,5 +231,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     routes,
     snapshotManifests,
     snapshotRows,
+    tryoutRuntime: input.tryoutRuntime,
   });
 });

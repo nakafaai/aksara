@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 import {
   MAX_PROTECTED_RUNTIME_REQUEST_BYTES,
@@ -71,7 +71,7 @@ describe("protected content runtime contract", () => {
           })
         ),
       },
-      { ...protectedRequest, snapshotReleaseId: "" },
+      { ...protectedRequest, bundleHash: "" },
       { ...protectedRequest, snapshotId: "snapshot-1" },
       {
         ...protectedRequest,

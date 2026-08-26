@@ -9,7 +9,7 @@ import {
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -26,7 +26,6 @@ import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
 } from "#publisher/article/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -90,8 +89,7 @@ export type ArticlePublicationStreamError<E> =
   | ArticleMetadataError
   | ArticleSourceError
   | CompileContentError
-  | ContentSourceInspectionError
-  | PublicationScopeIdentityError;
+  | ContentSourceInspectionError;
 
 /** Authoritative article plan consumed by whole-catalog release composition. */
 export interface ArticlePublication {

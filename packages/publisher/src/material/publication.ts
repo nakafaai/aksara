@@ -4,13 +4,12 @@ import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   type MaterialMetadataError,
   type MaterialSourceError,
@@ -70,8 +69,7 @@ export type MaterialPublicationStreamError<E> =
   | MaterialHeadFamilyError
   | MaterialHeadOrderError
   | MaterialMetadataError
-  | MaterialSourceError
-  | PublicationScopeIdentityError;
+  | MaterialSourceError;
 
 /** Authoritative material plan accepted by generic release preparation. */
 export interface MaterialPublication {

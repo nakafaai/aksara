@@ -1,7 +1,8 @@
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import { verifyRollbackContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { allContentCacheChanges } from "#publisher/cache";
 import {
   PublicationActivation,
@@ -13,6 +14,12 @@ import {
   selectRetainedRecovery,
 } from "#publisher/retention";
 
+/** A legacy retained inverse has no permanent runtime pair to restore safely. */
+export class RecoveryRuntimeMissingError extends Schema.TaggedError<RecoveryRuntimeMissingError>()(
+  "RecoveryRuntimeMissingError",
+  { recoveryId: ReleaseIdSchema }
+) {}
+
 type RecoverContentRelease = (
   input: RetainedRecoveryInput
 ) => Effect.Effect<
@@ -20,6 +27,7 @@ type RecoverContentRelease = (
   | Effect.Error<ReturnType<typeof verifyRollbackContentReleaseBundle>>
   | Effect.Error<ReturnType<typeof validateManifestReceipt>>
   | Effect.Error<ReturnType<typeof selectRetainedRecovery>>
+  | RecoveryRuntimeMissingError
   | Effect.Error<ReturnType<(typeof PublicationActivation.Service)["verify"]>>
   | Effect.Error<
       ReturnType<(typeof PublicationActivation.Service)["invalidate"]>
@@ -56,6 +64,14 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
   }
   const current = yield* target.current;
   const retained = yield* selectRetainedRecovery(current, input, false);
+  if (
+    retained.release.manifest.snapshots.tryout.resultSnapshotId !== null &&
+    current.tryoutRuntimeBundle === null
+  ) {
+    return yield* new RecoveryRuntimeMissingError({
+      recoveryId: retained.release.manifest.releaseId,
+    });
+  }
   const bundle = yield* verifyRollbackContentReleaseBundle({
     release: retained.release,
     rendererManifest: retained.rendererManifest,

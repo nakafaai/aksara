@@ -1,5 +1,6 @@
 import { generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -10,12 +11,11 @@ import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
-  inheritContentSnapshots,
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Layer, Path, Redacted, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedGitRelease } from "#publisher/preparation/prepared";
@@ -60,16 +60,14 @@ type SnapshotSources<E> = Pick<
 >;
 
 /** Prepares one real deletion against an authenticated compact base catalog. */
-async function prepareDeletion<E>(
+function prepareDeletion<E>(
   snapshotSources: SnapshotSources<E>,
   snapshots: PublicationScope["snapshots"] = []
 ) {
-  const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
-  const base = await Effect.runPromise(
-    digestResultCatalog(baseReleaseId, Stream.make(head))
-  );
-  return Effect.runPromise(
-    prepareContentRelease({
+  return Effect.gen(function* () {
+    const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
+    const base = yield* digestResultCatalog(baseReleaseId, Stream.make(head));
+    return yield* prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
@@ -103,16 +101,17 @@ async function prepareDeletion<E>(
         },
       }),
       scope: { ...publicationScope, snapshots },
+      tryoutRuntime: null,
       ...snapshotSources,
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
+    });
+  });
 }
 
 /** Prepares a real Program replacement without changing any MDX body head. */
-async function prepareProgramOnly() {
-  const snapshot = await makeProgramSnapshotFixture();
-  return Effect.runPromise(
-    prepareContentRelease({
+const prepareProgramOnly = Effect.fn("AksaraPublisherTest.prepareProgramOnly")(
+  function* () {
+    const snapshot = yield* makeProgramSnapshotFixture();
+    return yield* prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
@@ -122,68 +121,73 @@ async function prepareProgramOnly() {
       result: Stream.empty,
       routes: Stream.empty,
       scope: PublicationScopeSchema.make({
-        content: [],
         families: [],
         snapshots: ["program"],
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
+      tryoutRuntime: null,
       ...snapshotPolicyBase("test-plan-program-base"),
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-}
+    });
+  }
+);
 
 /** Collects cache changes from one fully verified publication plan. */
 function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
   const source = PublicationSource.of({
     loadExactRevision: () => Stream.empty,
   });
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const plan = yield* preparePublicationPlan({
-          input,
-          kind: "git",
-          source,
-        });
-        return yield* plan.cacheChanges.pipe(Stream.runCollect);
-      })
-    ).pipe(
-      Effect.provide([
-        testFileLayer(new Map()),
-        Path.layer,
-        Layer.succeed(PublicationSigningKey, signingKey),
-        Layer.succeed(PublicationTarget, makePublicationTarget({})),
-        Layer.succeed(ContentVerificationKeyResolver, resolver),
-      ])
-    )
+  return Effect.scoped(
+    Effect.gen(function* () {
+      const plan = yield* preparePublicationPlan({
+        input,
+        kind: "git",
+        source,
+      });
+      return yield* plan.cacheChanges.pipe(Stream.runCollect);
+    })
+  ).pipe(
+    Effect.provide([
+      testFileLayer(new Map()),
+      Path.layer,
+      Layer.succeed(PublicationSigningKey, signingKey),
+      Layer.succeed(PublicationTarget, makePublicationTarget({})),
+      Layer.succeed(ContentVerificationKeyResolver, resolver),
+    ])
   );
 }
 
-const programOnlyRelease = await prepareProgramOnly();
+layer(NodeServices.layer)("preparePublicationPlan", (it) => {
+  it.effect("keeps family-wide invalidation for a body-free deletion", () =>
+    Effect.gen(function* () {
+      const prepared = yield* prepareDeletion(emptySnapshotSources);
+      const changes = yield* collectCacheChanges(prepared);
 
-describe("preparePublicationPlan", () => {
-  it("keeps family-wide invalidation for a body-free deletion", async () => {
-    const prepared = await prepareDeletion(emptySnapshotSources);
-    const changes = await collectCacheChanges(prepared);
+      expect([...changes]).toEqual([{ family: "material" }]);
+    })
+  );
 
-    expect([...changes]).toEqual([{ family: "material" }]);
-  });
+  it.effect(
+    "invalidates structured navigation for a snapshot-only release",
+    () =>
+      Effect.gen(function* () {
+        const programOnlyRelease = yield* prepareProgramOnly();
+        const changes = yield* collectCacheChanges(programOnlyRelease);
 
-  it("invalidates structured navigation for a snapshot-only release", async () => {
-    const changes = await collectCacheChanges(programOnlyRelease);
+        expect([...changes]).toEqual([{ family: "material" }]);
+      })
+  );
 
-    expect([...changes]).toEqual([{ family: "material" }]);
-  });
+  it.effect("retains item and structured invalidation in a mixed release", () =>
+    Effect.gen(function* () {
+      const snapshot = yield* makeProgramSnapshotFixture();
+      const prepared = yield* prepareDeletion(snapshot, ["program"]);
+      const changes = yield* collectCacheChanges(prepared);
 
-  it("retains item and structured invalidation in a mixed release", async () => {
-    const snapshot = await makeProgramSnapshotFixture();
-    const prepared = await prepareDeletion(snapshot, ["program"]);
-    const changes = await collectCacheChanges(prepared);
-
-    expect([...changes]).toEqual([
-      { family: "material" },
-      { family: "material" },
-    ]);
-  });
+      expect([...changes]).toEqual([
+        { family: "material" },
+        { family: "material" },
+      ]);
+    })
+  );
 });

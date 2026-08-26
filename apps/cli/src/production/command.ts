@@ -2,7 +2,7 @@ import type {
   ContentReleaseManifest,
   PublicationReceipt,
 } from "@nakafa/aksara-contracts/release";
-import { canonicalizePublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { canonicalizePublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
@@ -11,10 +11,7 @@ import {
   TRUSTED_CONTENT_KEYS,
 } from "@nakafa/aksara-contracts/signature/trusted";
 import { makeGitPublicationSourceLive } from "@nakafa/aksara-publisher/git/source";
-import {
-  publishGitRelease,
-  publishRollbackRelease,
-} from "@nakafa/aksara-publisher/publication";
+import { publishGitRelease } from "@nakafa/aksara-publisher/publication";
 import {
   PublicationActivation,
   PublicationRecoveryId,
@@ -35,21 +32,15 @@ import {
 } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
-import type {
-  ReleaseArguments,
-  RollbackArguments,
-} from "#cli/production/arguments";
-import {
-  prepareProductionGit,
-  prepareProductionRollback,
-} from "#cli/production/preparation";
+import type { ReleaseArguments } from "#cli/production/arguments";
+import { prepareProductionGit } from "#cli/production/preparation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
 import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
 
 /** Explicit decoded command input for the production publication boundary. */
 export interface ProductionInput {
-  readonly args: ReleaseArguments | RollbackArguments;
+  readonly args: ReleaseArguments;
   readonly cwd: string;
 }
 
@@ -65,15 +56,11 @@ type ProductionCommand = Effect.Effect<
   ProductionServices
 >;
 type PreparedGit = Effect.Success<ReturnType<typeof prepareProductionGit>>;
-type PreparedRollback = Effect.Success<
-  ReturnType<typeof prepareProductionRollback>
->;
 
 /** Logs the signed scope and deterministic transition counts without bodies. */
 function logPublicationScope(manifest: ContentReleaseManifest) {
   return Effect.logInfo("Content publication scope selected.").pipe(
     Effect.annotateLogs({
-      contentScopeCount: manifest.scope.content.length,
       deleteCount: manifest.deleteCount,
       familyScopeCount: manifest.scope.families.length,
       itemCount: manifest.itemCount,
@@ -117,7 +104,7 @@ function verifyPendingBundle(
   );
 }
 
-/** Runs one fail-closed production release or forward rollback command. */
+/** Runs one fail-closed production Git release command. */
 export const runProductionCommand: (
   input: ProductionInput
 ) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
@@ -171,89 +158,51 @@ export const runProductionCommand: (
       privateKeyPem: environment.privateKeyPem,
     });
 
-    if (action.mode === "git") {
-      const checkoutRoot = yield* findAksaraRoot(input.cwd).pipe(
-        Effect.mapError(mapProductionError("prepare"))
-      );
-      let publishable: PreparedGit;
-      if (action.kind === "new") {
-        const rendererManifest = yield* fetchProductionRenderer(
-          environment.rendererEndpoint,
-          environment.rendererToken
-        ).pipe(Effect.mapError(mapProductionError("renderer")));
-        publishable = yield* prepareProductionGit({
-          baseBundle: action.baseBundle,
-          checkoutRoot,
-          kind: "new",
-          releaseId: input.args.releaseId,
-          rendererManifest,
-          scope: action.scope,
-        }).pipe(
-          Effect.provideService(ContentVerificationKeyResolver, keyResolver),
-          Effect.provideService(PublicationTarget, target)
-        );
-      } else {
-        const bundle = yield* verifyPendingBundle(action, keyResolver);
-        publishable = yield* prepareProductionGit({
-          bundle,
-          checkoutRoot,
-          kind: "rebuild",
-          releaseId: input.args.releaseId,
-          scope: action.scope,
-          sha: action.sha,
-        }).pipe(
-          Effect.provideService(ContentVerificationKeyResolver, keyResolver),
-          Effect.provideService(PublicationTarget, target)
-        );
-      }
-      yield* logPublicationScope(publishable.manifest);
-      const receipt = yield* publishGitRelease(publishable).pipe(
-        Effect.provideService(PublicationActivation, activation),
-        Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
-        Effect.provideService(ContentVerificationKeyResolver, keyResolver),
-        Effect.provideService(PublicationSigningKey, signingKey),
-        Effect.provideService(PublicationTarget, target),
-        Effect.provide(makeGitPublicationSourceLive(checkoutRoot)),
-        Effect.mapError(mapProductionError("publish"))
-      );
-      return yield* logPublicationReceipt(receipt);
-    }
-
-    let publishable: PreparedRollback;
+    const checkoutRoot = yield* findAksaraRoot(input.cwd).pipe(
+      Effect.mapError(mapProductionError("prepare"))
+    );
+    let publishable: PreparedGit;
     if (action.kind === "new") {
       const rendererManifest = yield* fetchProductionRenderer(
         environment.rendererEndpoint,
         environment.rendererToken
       ).pipe(Effect.mapError(mapProductionError("renderer")));
-      publishable = yield* prepareProductionRollback({
+      publishable = yield* prepareProductionGit({
+        baseBundle: action.baseBundle,
+        baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
+        checkoutRoot,
         kind: "new",
         releaseId: input.args.releaseId,
         rendererManifest,
-        rollbackOf: action.rollbackOf,
-        sourceBundle: action.sourceBundle,
+        scope: action.scope,
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationTarget, target)
       );
     } else {
       const bundle = yield* verifyPendingBundle(action, keyResolver);
-      publishable = yield* prepareProductionRollback({
+      publishable = yield* prepareProductionGit({
+        baseBundle: action.baseBundle,
+        baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
         bundle,
+        checkoutRoot,
         kind: "rebuild",
         releaseId: input.args.releaseId,
-        rollbackOf: action.rollbackOf,
+        scope: action.scope,
+        sha: action.sha,
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationTarget, target)
       );
     }
     yield* logPublicationScope(publishable.manifest);
-    const receipt = yield* publishRollbackRelease(publishable).pipe(
+    const receipt = yield* publishGitRelease(publishable).pipe(
       Effect.provideService(PublicationActivation, activation),
       Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
       Effect.provideService(ContentVerificationKeyResolver, keyResolver),
       Effect.provideService(PublicationSigningKey, signingKey),
       Effect.provideService(PublicationTarget, target),
+      Effect.provide(makeGitPublicationSourceLive(checkoutRoot)),
       Effect.mapError(mapProductionError("publish"))
     );
     return yield* logPublicationReceipt(receipt);

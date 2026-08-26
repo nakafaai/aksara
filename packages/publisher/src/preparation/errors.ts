@@ -2,7 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Schema } from "effect";
 
 const RecordIndexSchema = Schema.Finite.pipe(
@@ -42,6 +42,27 @@ export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<Prepare
 export class PreparedSnapshotScopeError extends Schema.TaggedError<PreparedSnapshotScopeError>()(
   "PreparedSnapshotScopeError",
   { family: ContentSnapshotKindSchema }
+) {}
+
+/** A runtime bundle snapshot differs from the release's resulting try-out state. */
+export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<PreparedTryoutRuntimeSnapshotError>()(
+  "PreparedTryoutRuntimeSnapshotError",
+  {
+    actualSnapshotId: Sha256HashSchema,
+    expectedSnapshotId: Schema.NullOr(Sha256HashSchema),
+  }
+) {}
+
+/** A try-out replacement omitted the runtime pair required for activation. */
+export class PreparedTryoutRuntimeMissingError extends Schema.TaggedError<PreparedTryoutRuntimeMissingError>()(
+  "PreparedTryoutRuntimeMissingError",
+  {}
+) {}
+
+/** Candidate and recovery runtime snapshots do not form one valid transition. */
+export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<PreparedTryoutRuntimeTransitionError>()(
+  "PreparedTryoutRuntimeTransitionError",
+  { snapshotId: Sha256HashSchema }
 ) {}
 
 /** One authored record failed its exact current schema. */

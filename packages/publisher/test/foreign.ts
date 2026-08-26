@@ -89,6 +89,8 @@ export function foreignTransportSuccess(
         replaceIdentity(value, "snapshotId", foreignHash),
       stageSnapshotBatch: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
+      stageTryoutRuntimeBundle: (value) =>
+        replaceIdentity(value, "snapshotId", foreignHash),
       status: (value) => replaceIdentity(value, "manifestHash", foreignHash),
       verify: (value) => {
         if (value.value.phase === "verifying") {

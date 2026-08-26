@@ -7,6 +7,7 @@ import type {
 } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { Stream } from "effect";
 
 import type { PreparedSnapshotSources } from "#publisher/preparation/snapshot";
@@ -31,10 +32,17 @@ interface PreparedContentReleaseBase<E, R, Projection extends ContentProjection>
   readonly [PreparedContentReleaseTypeId]: true;
 }
 
+/** Candidate result plus an optional distinct base pair retained for recovery. */
+export interface PreparedTryoutRuntimeTransition {
+  readonly recovery: TryoutSnapshot | null;
+  readonly result: TryoutSnapshot;
+}
+
 /** Exact-Git release whose artifacts must be reproducibly recompiled. */
 export interface PreparedGitRelease<E, R>
   extends PreparedContentReleaseBase<E, R, ContentProjection> {
   readonly kind: "git";
+  readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
 
 /** Forward rollback whose existing signed artifacts must remain unchanged. */

@@ -3,12 +3,14 @@ import {
   ReleaseVerificationCompleteSchema,
   type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import {
+  type ActiveContentRelease,
+  ActiveRollbackContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release/current/evidence";
 import type {
-  ActiveContentRelease,
   StagedContentRelease,
   StagedRollbackContentRelease,
-} from "@nakafa/aksara-contracts/release/current";
-import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
@@ -17,6 +19,7 @@ import type {
   StageGroupInput,
   StageOperation,
 } from "@nakafa/aksara-contracts/transport/group";
+import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -92,6 +95,9 @@ export function makeTarget(release: {
       rows.forRelease(batch.releaseId).snapshotRows.push(...batch.rows)
     )
   );
+  const stageTryoutRuntimeBundle = vi.fn(
+    (_request: StageTryoutRuntimeBundleInput) => Effect.void
+  );
   const stageRouteBatch = vi.fn((batch) =>
     Effect.sync(() =>
       rows.forRelease(batch.releaseId).routes.push(...batch.routes)
@@ -114,7 +120,10 @@ export function makeTarget(release: {
     if (request.operation === "stageSnapshot") {
       return stageSnapshot(request);
     }
-    return stageSnapshotBatch(request);
+    if (request.operation === "stageSnapshotBatch") {
+      return stageSnapshotBatch(request);
+    }
+    return stageTryoutRuntimeBundle(request);
   }
   /** Applies one authenticated group while preserving child transaction order. */
   const stageGroup = vi.fn(({ requests }: StageGroupInput) =>
@@ -196,7 +205,14 @@ export function makeTarget(release: {
       };
     })
   );
-  const current = vi.fn(() => Effect.succeed({ active, candidate, recovery }));
+  const current = vi.fn(() =>
+    Effect.succeed({
+      active,
+      candidate,
+      recovery,
+      tryoutRuntimeBundle: null,
+    })
+  );
   const target = PublicationTarget.of({
     abort,
     accept: ({ recoveryId }) =>
@@ -239,6 +255,7 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
+    stageTryoutRuntimeBundle,
     status: ({ manifestHash, releaseId }) => {
       const phase = phases.get(releaseId) ?? "missing";
       if (phase === "completed") {
@@ -281,6 +298,7 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
+    stageTryoutRuntimeBundle,
     target,
     verify,
   };

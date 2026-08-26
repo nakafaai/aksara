@@ -8,6 +8,21 @@ export class RecoveryRevisionMismatchError extends Schema.TaggedError<RecoveryRe
   { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
 ) {}
 
+/** Active base state differs from the immutable candidate recovery identity. */
+export class RecoveryBaseMismatchError extends Schema.TaggedError<RecoveryBaseMismatchError>()(
+  "RecoveryBaseMismatchError",
+  {
+    field: Schema.Literals([
+      "presence",
+      "activeAppLocales",
+      "manifestHash",
+      "releaseId",
+      "result",
+      "snapshots",
+    ]),
+  }
+) {}
+
 /** Requires the current clean checkout to equal stored Git provenance. */
 export function validateRecoveryRevision(
   expected: GitCommitSha,

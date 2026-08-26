@@ -139,6 +139,7 @@ export const stageAndVerify: StageAndVerify = Effect.fn(
   if (status.phase === "completed") {
     return { kind: "completed", receipt: status.receipt };
   }
+  yield* plan.runtimes;
   if (status.phase === "missing" || status.phase === "staging") {
     yield* plan.stage;
   }

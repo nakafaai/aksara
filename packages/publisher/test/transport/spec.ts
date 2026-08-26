@@ -31,6 +31,7 @@ import {
 } from "#test/content";
 import { headRequest } from "#test/head";
 import { testRendererDomains } from "#test/renderer";
+import { makeTransportRuntimeBundle } from "#test/transport/runtime";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
@@ -139,15 +140,7 @@ export const transportRelease: SignedContentRelease = Schema.decodeSync(
     routeCount: 0,
     routeDigest: manifestHash,
     scope: {
-      content: [
-        {
-          artifactLocale: "id",
-          contentKey: "test:deleted",
-          family: "material",
-        },
-        { artifactLocale: "en", contentKey: "test:http", family: "material" },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     },
     snapshots: inheritContentSnapshots(null),
@@ -189,9 +182,20 @@ const transportRoute = ContentRouteItemSchema.make({
   releaseId: transportRelease.manifest.releaseId,
 });
 
+export const transportRuntimeBundle = makeTransportRuntimeBundle({
+  artifactHash: transportArtifactHash,
+  release: transportRelease,
+  rendererManifest: transportRenderer,
+});
+
 const transportStageRequests = Schema.decodeUnknownSync(
   Schema.NonEmptyArray(StageOperationSchema)
 )([
+  {
+    bundle: transportRuntimeBundle,
+    operation: "stageTryoutRuntimeBundle",
+    releaseId: transportReleaseId,
+  },
   {
     operation: "stageSnapshot",
     releaseId: transportReleaseId,

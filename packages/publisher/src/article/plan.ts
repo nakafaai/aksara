@@ -5,7 +5,7 @@ import {
   ArticleHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { ArticleEntry } from "@nakafa/aksara-corpus/articles/registry";
 import { type Effect, Schema, type Stream } from "effect";
@@ -14,7 +14,6 @@ import {
   inspectArticleDocument,
 } from "#publisher/article/document";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -35,8 +34,7 @@ export type ArticlePublicationPlan = typeof ArticlePublicationPlanSchema.Type;
 
 type PlanArticlePublicationError =
   | Effect.Error<ReturnType<typeof compileArticleDocument>>
-  | Effect.Error<ReturnType<typeof inspectArticleDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectArticleDocument>>;
 
 type PlanArticlePublicationContext =
   | Effect.Services<ReturnType<typeof compileArticleDocument>>

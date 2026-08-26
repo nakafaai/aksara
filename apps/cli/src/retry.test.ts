@@ -1,7 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Data, Effect } from "effect";
+import { Data, Effect, Fiber } from "effect";
+import { TestClock } from "effect/testing";
 import { retryPublicationTarget, retryTransport } from "#cli/retry";
 
 /** Test-only typed failure that must bypass transient transport retries. */
@@ -41,107 +42,132 @@ function makeTarget(
     stageRouteBatch: unused,
     stageSnapshot: unused,
     stageSnapshotBatch: unused,
+    stageTryoutRuntimeBundle: unused,
     status: unused,
     verify: unused,
   });
 }
 
+/** Advances the virtual clock through the complete bounded retry schedule. */
+const runRetries = Effect.fn("AksaraCliTest.runRetries")(function* <A, E>(
+  program: Effect.Effect<A, E>
+) {
+  const fiber = yield* Effect.forkChild(program);
+  yield* TestClock.adjust(1000);
+  return yield* Fiber.join(fiber);
+});
+
 describe("publication transport retry", () => {
-  it("retries transient failures and preserves the eventual result", async () => {
-    let attempts = 0;
-    const result = await Effect.runPromise(
-      retryTransport(
-        Effect.suspend(() => {
-          attempts += 1;
-          return attempts === 1
-            ? Effect.fail(transportFailure())
-            : Effect.succeed("published");
-        })
-      )
-    );
+  it.effect(
+    "retries transient failures and preserves the eventual result",
+    () =>
+      Effect.gen(function* () {
+        let attempts = 0;
+        const result = yield* runRetries(
+          retryTransport(
+            Effect.suspend(() => {
+              attempts += 1;
+              return attempts === 1
+                ? Effect.fail(transportFailure())
+                : Effect.succeed("published");
+            })
+          )
+        );
 
-    expect(result).toBe("published");
-    expect(attempts).toBe(2);
-  });
+        expect(result).toBe("published");
+        expect(attempts).toBe(2);
+      })
+  );
 
-  it("stops after three bounded retries", async () => {
-    let attempts = 0;
-    const error = await Effect.runPromise(
-      retryTransport(
-        Effect.suspend(() => {
-          attempts += 1;
-          return Effect.fail(transportFailure());
-        })
-      ).pipe(Effect.flip)
-    );
+  it.effect("stops after three bounded retries", () =>
+    Effect.gen(function* () {
+      let attempts = 0;
+      const error = yield* runRetries(
+        retryTransport(
+          Effect.suspend(() => {
+            attempts += 1;
+            return Effect.fail(transportFailure());
+          })
+        ).pipe(Effect.flip)
+      );
 
-    expect(error).toBeInstanceOf(PublicationTargetTransportError);
-    expect(attempts).toBe(4);
-  });
+      expect(error).toBeInstanceOf(PublicationTargetTransportError);
+      expect(attempts).toBe(4);
+    })
+  );
 
-  it("never retries permanent failures", async () => {
-    let attempts = 0;
-    const failure = new TestPermanentFailure();
-    const error = await Effect.runPromise(
-      retryTransport(
+  it.effect("never retries permanent failures", () =>
+    Effect.gen(function* () {
+      let attempts = 0;
+      const failure = new TestPermanentFailure();
+      const error = yield* retryTransport(
         Effect.suspend(() => {
           attempts += 1;
           return Effect.fail(failure);
         })
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
 
-    expect(error).toBe(failure);
-    expect(attempts).toBe(1);
-  });
+      expect(error).toBe(failure);
+      expect(attempts).toBe(1);
+    })
+  );
 
-  it("decorates every target operation and retries calls independently", async () => {
-    let attempts = 0;
-    const target = makeTarget(
-      Effect.suspend(() => {
-        attempts += 1;
-        return attempts === 1
-          ? Effect.fail(transportFailure())
-          : Effect.succeed({
-              active: null,
-              candidate: null,
-              recovery: null,
-            });
+  it.effect(
+    "decorates every target operation and retries calls independently",
+    () =>
+      Effect.gen(function* () {
+        let attempts = 0;
+        const target = makeTarget(
+          Effect.suspend(() => {
+            attempts += 1;
+            return attempts === 1
+              ? Effect.fail(transportFailure())
+              : Effect.succeed({
+                  active: null,
+                  candidate: null,
+                  recovery: null,
+                  tryoutRuntimeBundle: null,
+                });
+          })
+        );
+        const retried = retryPublicationTarget(target);
+        const operationPairs = [
+          [retried.abort, target.abort],
+          [retried.accept, target.accept],
+          [retried.activate, target.activate],
+          [retried.activateRecovery, target.activateRecovery],
+          [retried.cleanup, target.cleanup],
+          [retried.current, target.current],
+          [retried.headPage, target.headPage],
+          [retried.recovery, target.recovery],
+          [retried.rollbackPage, target.rollbackPage],
+          [retried.routePage, target.routePage],
+          [retried.stageArtifactBatch, target.stageArtifactBatch],
+          [retried.stageGroup, target.stageGroup],
+          [retried.stageItemBatch, target.stageItemBatch],
+          [retried.stageProjectionBatch, target.stageProjectionBatch],
+          [retried.stageRecovery, target.stageRecovery],
+          [retried.stageRelease, target.stageRelease],
+          [retried.stageRouteBatch, target.stageRouteBatch],
+          [retried.stageSnapshot, target.stageSnapshot],
+          [retried.stageSnapshotBatch, target.stageSnapshotBatch],
+          [retried.stageTryoutRuntimeBundle, target.stageTryoutRuntimeBundle],
+          [retried.status, target.status],
+          [retried.verify, target.verify],
+        ];
+
+        expect(yield* runRetries(retried.current)).toEqual({
+          active: null,
+          candidate: null,
+          recovery: null,
+          tryoutRuntimeBundle: null,
+        });
+        expect(attempts).toBe(2);
+        expect(
+          operationPairs.every(
+            ([decorated, original]) => decorated !== original
+          )
+        ).toBe(true);
       })
-    );
-    const retried = retryPublicationTarget(target);
-    const operationPairs = [
-      [retried.abort, target.abort],
-      [retried.accept, target.accept],
-      [retried.activate, target.activate],
-      [retried.activateRecovery, target.activateRecovery],
-      [retried.cleanup, target.cleanup],
-      [retried.current, target.current],
-      [retried.headPage, target.headPage],
-      [retried.recovery, target.recovery],
-      [retried.rollbackPage, target.rollbackPage],
-      [retried.routePage, target.routePage],
-      [retried.stageArtifactBatch, target.stageArtifactBatch],
-      [retried.stageGroup, target.stageGroup],
-      [retried.stageItemBatch, target.stageItemBatch],
-      [retried.stageProjectionBatch, target.stageProjectionBatch],
-      [retried.stageRecovery, target.stageRecovery],
-      [retried.stageRelease, target.stageRelease],
-      [retried.stageRouteBatch, target.stageRouteBatch],
-      [retried.stageSnapshot, target.stageSnapshot],
-      [retried.stageSnapshotBatch, target.stageSnapshotBatch],
-      [retried.status, target.status],
-      [retried.verify, target.verify],
-    ];
-
-    await expect(Effect.runPromise(retried.current)).resolves.toEqual({
-      active: null,
-      candidate: null,
-      recovery: null,
-    });
-    expect(attempts).toBe(2);
-    expect(
-      operationPairs.every(([decorated, original]) => decorated !== original)
-    ).toBe(true);
-  });
+  );
 });

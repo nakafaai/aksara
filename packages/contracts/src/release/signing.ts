@@ -1,9 +1,7 @@
 import type { Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeReleaseOrigin } from "#contracts/release/origin";
-import {
-  canonicalizeContentSnapshotSet,
-  canonicalizePublicationScope,
-} from "#contracts/release/snapshot/spec";
+import { canonicalizePublicationScope } from "#contracts/release/snapshot/scope";
+import { canonicalizeContentSnapshotSet } from "#contracts/release/snapshot/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_SIGNATURE_DOMAIN =

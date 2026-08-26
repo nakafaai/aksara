@@ -25,9 +25,25 @@ describe("release signing", () => {
     expect(canonical).toContain(`"rollbackCount":${manifest.rollbackCount}`);
     expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
     expect(canonical).toContain(`"scope":${JSON.stringify(manifest.scope)}`);
+    expect(canonical).not.toContain('"scope":{"content"');
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
     );
     expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
+  });
+
+  it("preserves predecessor scope ordering in authenticated bytes", () => {
+    const legacyManifest = {
+      ...release.manifest,
+      scope: {
+        content: [],
+        families: release.manifest.scope.families,
+        snapshots: release.manifest.scope.snapshots,
+      },
+    };
+
+    expect(canonicalizeContentReleaseManifest(legacyManifest)).toContain(
+      '"scope":{"content":[],"families":["material"],"snapshots":["program"]}'
+    );
   });
 });

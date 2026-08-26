@@ -1,7 +1,7 @@
 import {
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Option, Schema } from "effect";
 
 /** One CLI selector does not form a canonical production publication scope. */
@@ -48,7 +48,6 @@ export const decodePublicationScopeSelectors = Effect.fn(
     snapshots.push(selection.value);
   }
   return Schema.decodeUnknownEffect(PublicationScopeSchema)({
-    content: [],
     families,
     snapshots,
   }).pipe(

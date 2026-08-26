@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
@@ -40,43 +40,6 @@ const changes = Schema.decodeSync(Schema.Array(ContentChangeSchema))([
   },
 ]);
 const items = makeReleaseItems(releaseId, changes);
-const itemSummary = await Effect.runPromise(
-  digestItems(releaseId, Stream.fromIterable(items))
-);
-const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
-  activeAppLocales: ["en", "id"],
-  baseActiveAppLocales: null,
-  baseManifestHash: null,
-  baseReleaseId: null,
-  baseResultCount: 0,
-  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-  deleteCount: itemSummary.deleteCount,
-  format: "localized-content-release",
-  itemCount: items.length,
-  itemsDigest: itemSummary.digest,
-  origin: { kind: "git", sha: "a".repeat(40) },
-  projectionCount: 1,
-  projectionDigest: `sha256:${"c".repeat(64)}`,
-  releaseId,
-  rendererContractVersion: "1.0.0",
-  rendererManifestHash: `sha256:${"d".repeat(64)}`,
-  resultCount: 1,
-  resultDigest: `sha256:${"e".repeat(64)}`,
-  rollbackCount: items.length,
-  rollbackDigest: `sha256:${"f".repeat(64)}`,
-  routeCount: 0,
-  routeDigest: `sha256:${"f".repeat(64)}`,
-  scope: {
-    content: [
-      { artifactLocale: "en", contentKey: "test:content", family: "material" },
-      { artifactLocale: "id", contentKey: "test:content", family: "material" },
-    ],
-    families: [],
-    snapshots: [],
-  },
-  snapshots: inheritContentSnapshots(null),
-  upsertCount: itemSummary.upsertCount,
-});
 
 describe("release spec", () => {
   it("checks activation from the signed current locale set", () => {
@@ -109,97 +72,135 @@ describe("release spec", () => {
     ]);
   });
 
-  it("requires forward rollback provenance and permits rollback of rollback", async () => {
-    const firstId = Schema.decodeSync(ReleaseIdSchema)("rollback-first");
-    const firstItems = makeReleaseItems(firstId, []);
-    const firstSummary = await Effect.runPromise(
-      digestItems(firstId, Stream.fromIterable(firstItems))
-    );
-    const first = Schema.decodeSync(ContentReleaseManifestSchema)({
-      ...manifest,
-      baseActiveAppLocales: manifest.activeAppLocales,
-      baseManifestHash: `sha256:${"1".repeat(64)}`,
-      baseReleaseId: releaseId,
-      baseResultCount: manifest.resultCount,
-      baseResultDigest: manifest.resultDigest,
-      deleteCount: 0,
-      itemCount: 0,
-      itemsDigest: firstSummary.digest,
-      origin: { kind: "rollback", releaseId },
-      projectionCount: 0,
-      releaseId: firstId,
-      rollbackCount: 0,
-      snapshots: invertContentSnapshots(manifest.snapshots),
-      upsertCount: 0,
-    });
-    const second = Schema.decodeExit(ContentReleaseManifestSchema)({
-      ...first,
-      baseActiveAppLocales: first.activeAppLocales,
-      baseManifestHash: `sha256:${"2".repeat(64)}`,
-      baseReleaseId: firstId,
-      origin: { kind: "rollback", releaseId: firstId },
-      releaseId: "rollback-second",
-      snapshots: invertContentSnapshots(first.snapshots),
-    });
-    expect(Exit.isSuccess(second)).toBe(true);
-    const gitRestore = Schema.decodeExit(ContentReleaseManifestSchema)({
-      ...first,
-      origin: { kind: "git", sha: "b".repeat(40) },
-      snapshots: {
-        ...first.snapshots,
-        program: restoreContentSnapshot(
-          manifest.resultDigest,
-          manifest.baseResultDigest
-        ),
-      },
-    });
-    expect(Exit.isFailure(gitRestore)).toBe(true);
-    for (const invalid of [
-      { ...first, baseReleaseId: null },
-      { ...first, baseManifestHash: null },
-      { ...first, releaseId },
-      { ...manifest, baseReleaseId: releaseId },
-      { ...manifest, baseResultCount: 1 },
-      { ...manifest, baseResultDigest: `sha256:${"1".repeat(64)}` },
-      {
-        ...manifest,
-        scope: {
-          content: manifest.scope.content,
-          families: [],
-          snapshots: ["program"],
-        },
-        snapshots: {
-          ...manifest.snapshots,
-          program: replaceContentSnapshot({
-            baseSnapshotId: manifest.resultDigest,
-            resultSnapshotId: manifest.baseResultDigest,
-            rowCount: 1,
-            rowDigest: manifest.resultDigest,
-          }),
-        },
-      },
-      {
-        ...manifest,
-        snapshots: {
-          ...manifest.snapshots,
-          program: restoreContentSnapshot(manifest.resultDigest, null),
-        },
-      },
-    ]) {
-      expect(
-        Exit.isFailure(
-          Schema.decodeUnknownExit(ContentReleaseManifestSchema)(invalid)
-        )
-      ).toBe(true);
-    }
-    const incoherent = Schema.decodeExit(ContentReleaseManifestSchema)({
-      ...first,
-      baseReleaseId: null,
-    });
-    if (Exit.isFailure(incoherent)) {
-      expect(String(incoherent.cause)).toContain(
-        "Expected a new release identity and a coherent source origin"
-      );
-    }
-  });
+  it.effect(
+    "requires forward rollback provenance and permits rollback of rollback",
+    () =>
+      Effect.gen(function* () {
+        const itemSummary = yield* digestItems(
+          releaseId,
+          Stream.fromIterable(items)
+        );
+        const manifest = yield* Schema.decodeEffect(
+          ContentReleaseManifestSchema
+        )({
+          activeAppLocales: ["en", "id"],
+          baseActiveAppLocales: null,
+          baseManifestHash: null,
+          baseReleaseId: null,
+          baseResultCount: 0,
+          baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+          deleteCount: itemSummary.deleteCount,
+          format: "localized-content-release",
+          itemCount: items.length,
+          itemsDigest: itemSummary.digest,
+          origin: { kind: "git", sha: "a".repeat(40) },
+          projectionCount: 1,
+          projectionDigest: `sha256:${"c".repeat(64)}`,
+          releaseId,
+          rendererContractVersion: "1.0.0",
+          rendererManifestHash: `sha256:${"d".repeat(64)}`,
+          resultCount: 1,
+          resultDigest: `sha256:${"e".repeat(64)}`,
+          rollbackCount: items.length,
+          rollbackDigest: `sha256:${"f".repeat(64)}`,
+          routeCount: 0,
+          routeDigest: `sha256:${"f".repeat(64)}`,
+          scope: { families: ["material"], snapshots: [] },
+          snapshots: inheritContentSnapshots(null),
+          upsertCount: itemSummary.upsertCount,
+        });
+        const firstId =
+          yield* Schema.decodeEffect(ReleaseIdSchema)("rollback-first");
+        const firstItems = makeReleaseItems(firstId, []);
+        const firstSummary = yield* digestItems(
+          firstId,
+          Stream.fromIterable(firstItems)
+        );
+        const first = yield* Schema.decodeEffect(ContentReleaseManifestSchema)({
+          ...manifest,
+          baseActiveAppLocales: manifest.activeAppLocales,
+          baseManifestHash: `sha256:${"1".repeat(64)}`,
+          baseReleaseId: releaseId,
+          baseResultCount: manifest.resultCount,
+          baseResultDigest: manifest.resultDigest,
+          deleteCount: 0,
+          itemCount: 0,
+          itemsDigest: firstSummary.digest,
+          origin: { kind: "rollback", releaseId },
+          projectionCount: 0,
+          releaseId: firstId,
+          rollbackCount: 0,
+          snapshots: invertContentSnapshots(manifest.snapshots),
+          upsertCount: 0,
+        });
+        const second = Schema.decodeExit(ContentReleaseManifestSchema)({
+          ...first,
+          baseActiveAppLocales: first.activeAppLocales,
+          baseManifestHash: `sha256:${"2".repeat(64)}`,
+          baseReleaseId: firstId,
+          origin: { kind: "rollback", releaseId: firstId },
+          releaseId: "rollback-second",
+          snapshots: invertContentSnapshots(first.snapshots),
+        });
+        expect(Exit.isSuccess(second)).toBe(true);
+        const gitRestore = Schema.decodeExit(ContentReleaseManifestSchema)({
+          ...first,
+          origin: { kind: "git", sha: "b".repeat(40) },
+          snapshots: {
+            ...first.snapshots,
+            program: restoreContentSnapshot(
+              manifest.resultDigest,
+              manifest.baseResultDigest
+            ),
+          },
+        });
+        expect(Exit.isFailure(gitRestore)).toBe(true);
+        for (const invalid of [
+          { ...first, baseReleaseId: null },
+          { ...first, baseManifestHash: null },
+          { ...first, releaseId },
+          { ...manifest, baseReleaseId: releaseId },
+          { ...manifest, baseResultCount: 1 },
+          { ...manifest, baseResultDigest: `sha256:${"1".repeat(64)}` },
+          {
+            ...manifest,
+            scope: {
+              families: manifest.scope.families,
+              snapshots: ["program"],
+            },
+            snapshots: {
+              ...manifest.snapshots,
+              program: replaceContentSnapshot({
+                baseSnapshotId: manifest.resultDigest,
+                resultSnapshotId: manifest.baseResultDigest,
+                rowCount: 1,
+                rowDigest: manifest.resultDigest,
+              }),
+            },
+          },
+          {
+            ...manifest,
+            snapshots: {
+              ...manifest.snapshots,
+              program: restoreContentSnapshot(manifest.resultDigest, null),
+            },
+          },
+        ]) {
+          expect(
+            Exit.isFailure(
+              Schema.decodeUnknownExit(ContentReleaseManifestSchema)(invalid)
+            )
+          ).toBe(true);
+        }
+        const incoherent = Schema.decodeExit(ContentReleaseManifestSchema)({
+          ...first,
+          baseReleaseId: null,
+        });
+        if (Exit.isFailure(incoherent)) {
+          expect(String(incoherent.cause)).toContain(
+            "Expected a new release identity and a coherent source origin"
+          );
+        }
+      })
+  );
 });

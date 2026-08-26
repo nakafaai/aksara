@@ -3,7 +3,7 @@ import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/req
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { hasBoundPublicationSuccess } from "#publisher/target/evidence";
+import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response";
 import { foreignTransportSuccess } from "#test/foreign";
 import { completedRecovery } from "#test/recovery";
 import { transportRequests } from "#test/transport/spec";

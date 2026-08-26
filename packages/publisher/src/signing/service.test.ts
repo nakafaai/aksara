@@ -10,6 +10,9 @@ import {
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
+import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
@@ -47,63 +50,101 @@ const makeSigner = Effect.fn("PublicationSigningTest.makeSigner")(function* () {
 });
 
 describe("Ed25519 publication signing", () => {
-  it.effect("signs artifacts and releases with one domain-separated key", () =>
-    Effect.gen(function* () {
-      const { publicKey, signer } = yield* makeSigner();
-      const artifact = yield* signer.signArtifact(payload);
-      const release = yield* signer.signRelease(manifest);
+  it.effect(
+    "signs every publication object with one domain-separated key",
+    () =>
+      Effect.gen(function* () {
+        const { publicKey, signer } = yield* makeSigner();
+        const artifact = yield* signer.signArtifact(payload);
+        const release = yield* signer.signRelease(manifest);
+        expect(manifest.origin.kind).toBe("git");
+        if (manifest.origin.kind !== "git") {
+          return;
+        }
+        const runtimeBundle = yield* signer.signTryoutRuntimeBundle({
+          format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+          rendererManifestHash: manifest.rendererManifestHash,
+          snapshot: makeTryoutSnapshot({
+            activeAppLocales: manifest.activeAppLocales,
+            catalogDigest: manifest.itemsDigest,
+            counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+            placementCount: 1,
+            placementDigest: manifest.resultDigest,
+            routeCount: 1,
+          }),
+          sourceGitSha: manifest.origin.sha,
+          sourceManifestHash: release.manifestHash,
+          sourceReleaseId: manifest.releaseId,
+        });
 
-      expect(artifact.keyId).toBe("test-signing-key");
-      expect(
-        yield* Effect.sync(() =>
-          verify(
-            null,
-            Buffer.from(
-              canonicalizeContentArtifactSigningInput(
-                artifact.artifactHash,
-                artifact.payload
+        expect(artifact.keyId).toBe("test-signing-key");
+        expect(
+          yield* Effect.sync(() =>
+            verify(
+              null,
+              Buffer.from(
+                canonicalizeContentArtifactSigningInput(
+                  artifact.artifactHash,
+                  artifact.payload
+                ),
+                "utf8"
               ),
-              "utf8"
-            ),
-            publicKey,
-            Buffer.from(artifact.signature, "base64url")
+              publicKey,
+              Buffer.from(artifact.signature, "base64url")
+            )
           )
-        )
-      ).toBe(true);
-      expect(release.keyId).toBe(artifact.keyId);
-      expect(
-        yield* Effect.sync(() =>
-          verify(
-            null,
-            Buffer.from(
-              canonicalizeContentReleaseSigningInput(
-                release.manifestHash,
-                release.manifest
+        ).toBe(true);
+        expect(release.keyId).toBe(artifact.keyId);
+        expect(
+          yield* Effect.sync(() =>
+            verify(
+              null,
+              Buffer.from(
+                canonicalizeContentReleaseSigningInput(
+                  release.manifestHash,
+                  release.manifest
+                ),
+                "utf8"
               ),
-              "utf8"
-            ),
-            publicKey,
-            Buffer.from(release.signature, "base64url")
+              publicKey,
+              Buffer.from(release.signature, "base64url")
+            )
           )
-        )
-      ).toBe(true);
-      expect(
-        yield* Effect.sync(() =>
-          verify(
-            null,
-            Buffer.from(
-              canonicalizeContentReleaseSigningInput(
-                release.manifestHash,
-                release.manifest
+        ).toBe(true);
+        expect(runtimeBundle.keyId).toBe(release.keyId);
+        expect(
+          yield* Effect.sync(() =>
+            verify(
+              null,
+              Buffer.from(
+                canonicalizeTryoutRuntimeBundleSigningInput(
+                  runtimeBundle.bundleHash,
+                  runtimeBundle.payload
+                ),
+                "utf8"
               ),
-              "utf8"
-            ),
-            publicKey,
-            Buffer.from(artifact.signature, "base64url")
+              publicKey,
+              Buffer.from(runtimeBundle.signature, "base64url")
+            )
           )
-        )
-      ).toBe(false);
-    })
+        ).toBe(true);
+        expect(
+          yield* Effect.sync(() =>
+            verify(
+              null,
+              Buffer.from(
+                canonicalizeContentReleaseSigningInput(
+                  release.manifestHash,
+                  release.manifest
+                ),
+                "utf8"
+              ),
+              publicKey,
+              Buffer.from(artifact.signature, "base64url")
+            )
+          )
+        ).toBe(false);
+      })
   );
 
   it.effect("rejects a non-Ed25519 private key", () =>

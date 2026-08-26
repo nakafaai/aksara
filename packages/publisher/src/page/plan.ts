@@ -5,12 +5,11 @@ import {
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { PageEntry } from "@nakafa/aksara-corpus/pages/registry";
 import { type Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   compilePageDocument,
   inspectPageDocument,
@@ -35,8 +34,7 @@ export type PagePublicationPlan = typeof PagePublicationPlanSchema.Type;
 
 type PlanPagePublicationError =
   | Effect.Error<ReturnType<typeof compilePageDocument>>
-  | Effect.Error<ReturnType<typeof inspectPageDocument>>
-  | PublicationScopeIdentityError;
+  | Effect.Error<ReturnType<typeof inspectPageDocument>>;
 
 type PlanPagePublicationContext =
   | Effect.Services<ReturnType<typeof compilePageDocument>>

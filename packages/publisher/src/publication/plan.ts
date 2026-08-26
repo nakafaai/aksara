@@ -3,6 +3,7 @@ import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "@nakafa/aksara-contracts/content";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   decodeContentProjections,
@@ -27,6 +28,7 @@ import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/ver
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
@@ -34,12 +36,14 @@ import type {
   PreparedContentRelease,
   PreparedGitRelease,
   PreparedRollbackRelease,
+  PreparedTryoutRuntimeTransition,
 } from "#publisher/preparation/prepared";
 import {
   makeGitArtifacts,
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
+import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { verifyPublicationSnapshots } from "#publisher/publication/snapshots";
 import {
   PublicationModeMismatchError,
@@ -55,7 +59,10 @@ import {
   CompiledReleaseSourceSchema,
   compileReleaseSources,
 } from "#publisher/source-compilation";
-import { stagePreparedRelease } from "#publisher/stage/plan";
+import {
+  stagePreparedRelease,
+  stageRuntimeBundles,
+} from "#publisher/stage/plan";
 
 /** One prepared release mode plus any exact-Git source dependency it needs. */
 export type PublicationInvocation<E, R> =
@@ -71,8 +78,10 @@ export type PublicationInvocation<E, R> =
 
 type PublicationArtifactPlan =
   | {
+      readonly aksaraSha: GitCommitSha;
       readonly compiled: ReplaySpool<CompiledReleaseSource>;
       readonly kind: "git";
+      readonly runtime: PreparedTryoutRuntimeTransition | null;
     }
   | {
       readonly artifacts: ReplaySpool<SignedContentArtifact>;
@@ -93,6 +102,12 @@ export interface PublicationPlan<E, R> {
   >;
   readonly projectionSummary: VerifiedContentProjections;
   readonly routeSummary: VerifiedContentRoutes;
+  /** Idempotently restores permanent runtime pairs before any verification. */
+  readonly runtimes: Effect.Effect<
+    void,
+    PublishContentReleaseError<E>,
+    ContentVerificationKeyResolver | R
+  >;
   readonly snapshotSummary: VerifiedContentSnapshots;
   readonly stage: Effect.Effect<
     void,
@@ -101,6 +116,8 @@ export interface PublicationPlan<E, R> {
   >;
   readonly summary: VerifiedContentReleaseItems;
   readonly target: typeof PublicationTarget.Service;
+  /** Permanent bundles staged when this release creates new runtime pairs. */
+  readonly tryoutRuntimeBundles: readonly SignedTryoutRuntimeBundle[];
 }
 
 type PreparePublicationPlan = <E, R>(
@@ -231,7 +248,12 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
         sources: invocation.source.loadExactRevision({ aksaraSha, items }),
       }),
     });
-    artifactPlan = { compiled, kind: "git" };
+    artifactPlan = {
+      aksaraSha,
+      compiled,
+      kind: "git",
+      runtime: invocation.input.tryoutRuntime,
+    };
   }
 
   const signingKey = yield* PublicationSigningKey;
@@ -244,6 +266,16 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     ? signer.signRelease(input.manifest)
     : Effect.succeed(input.storedRelease);
   const release = yield* verifySignedContentRelease(signedRelease);
+  const tryoutRuntimeBundles =
+    artifactPlan.kind === "git"
+      ? yield* preparePublicationRuntimes({
+          release,
+          rendererManifest,
+          runtime: artifactPlan.runtime,
+          signer,
+          sourceGitSha: artifactPlan.aksaraSha,
+        })
+      : [];
   const artifacts =
     artifactPlan.kind === "rollback"
       ? artifactPlan.artifacts.replay
@@ -261,14 +293,21 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     routes: decodedRoutes,
     target,
   });
+  const runtimes = stageRuntimeBundles({
+    bundles: tryoutRuntimeBundles,
+    releaseId: input.manifest.releaseId,
+    target,
+  });
   return {
     bundle: { release, rendererManifest },
     cacheChanges,
     projectionSummary,
     routeSummary,
+    runtimes,
     snapshotSummary,
     stage,
     summary,
     target,
+    tryoutRuntimeBundles,
   };
 });

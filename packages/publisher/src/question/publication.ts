@@ -12,7 +12,7 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
@@ -21,7 +21,6 @@ import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
 import { constUndefined } from "effect/Function";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import {
   mapQuestionSourceError,
@@ -84,8 +83,7 @@ export type QuestionPublicationStreamError<E> =
   | QuestionHeadOrderError
   | QuestionChoiceLocaleMissingError
   | QuestionMetadataError
-  | QuestionSourceError
-  | PublicationScopeIdentityError;
+  | QuestionSourceError;
 
 /** Authoritative question plan consumed by whole-catalog release composition. */
 export interface QuestionPublication {

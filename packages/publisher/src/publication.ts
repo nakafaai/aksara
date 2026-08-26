@@ -13,10 +13,7 @@ import {
   type PublicationInvocation,
   preparePublicationPlan,
 } from "#publisher/publication/plan";
-import type {
-  PublishGitRelease,
-  PublishRollbackRelease,
-} from "#publisher/publication/program";
+import type { PublishGitRelease } from "#publisher/publication/program";
 import { stageRecoveryRelease } from "#publisher/publication/recovery";
 import {
   PublicationActivation,
@@ -109,8 +106,3 @@ export const publishGitRelease: PublishGitRelease = Effect.fn(
     publishReleaseScoped({ input, kind: "git", source })
   );
 });
-
-/** Publishes one forward rollback only after its own inverse is verified. */
-export const publishRollbackRelease: PublishRollbackRelease = Effect.fn(
-  "AksaraPublisher.publishRollbackRelease"
-)((input) => Effect.scoped(publishReleaseScoped({ input, kind: "rollback" })));

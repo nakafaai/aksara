@@ -24,7 +24,7 @@ import {
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
@@ -117,14 +117,7 @@ export const contentRecord = {
   source: publicationSource,
 };
 export const publicationScope = PublicationScopeSchema.make({
-  content: [
-    {
-      artifactLocale: contentRecord.change.artifactLocale,
-      contentKey: contentRecord.change.contentKey,
-      family: contentRecord.change.family,
-    },
-  ],
-  families: [],
+  families: ["material"],
   snapshots: [],
 });
 export const head = MaterialHeadSchema.make({
@@ -177,6 +170,7 @@ export async function makeRelease(
         },
       }),
       scope: publicationScope,
+      tryoutRuntime: null,
       ...snapshotPolicyBase(`${releaseId}-base`),
       ...emptySnapshotSources,
     }).pipe(Effect.provide(NodeServices.layer))

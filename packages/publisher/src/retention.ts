@@ -2,7 +2,7 @@ import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseCurrent,
   StagedRollbackContentRelease,
-} from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import { Effect, Schema } from "effect";
 
 /** Operator identities do not select the exact retained inverse state. */

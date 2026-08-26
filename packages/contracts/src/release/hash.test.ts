@@ -1,24 +1,23 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
 
 describe("release manifest hash", () => {
-  it.effect("binds exact and whole-family publication authorization", () =>
+  it.effect("binds whole-family publication authorization", () =>
     Effect.gen(function* () {
       const { manifest } = release;
-      const exactHash = yield* hashContentReleaseManifest(manifest);
-      const familyHash = yield* hashContentReleaseManifest({
+      const materialHash = yield* hashContentReleaseManifest(manifest);
+      const articleHash = yield* hashContentReleaseManifest({
         ...manifest,
         scope: {
-          content: [],
-          families: ["material"],
+          families: ["article"],
           snapshots: manifest.scope.snapshots,
         },
       });
 
-      expect(familyHash).not.toBe(exactHash);
+      expect(articleHash).not.toBe(materialHash);
     })
   );
 

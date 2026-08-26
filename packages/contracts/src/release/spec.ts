@@ -17,6 +17,7 @@ import {
 } from "#contracts/locale";
 import { ReleaseOriginSchema } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
+import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
 import {
   type ContentSnapshotSet,
   ContentSnapshotSetSchema,
@@ -24,7 +25,6 @@ import {
   hasGitSnapshotModes,
   hasRollbackSnapshotModes,
   hasScopedSnapshotTransitions,
-  PublicationScopeSchema,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";

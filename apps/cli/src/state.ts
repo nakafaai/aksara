@@ -1,18 +1,16 @@
-import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseCurrent,
   StagedContentRelease,
-} from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   canonicalizePublicationScope,
   type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
-import type {
-  ReleaseArguments,
-  RollbackArguments,
-} from "#cli/production/arguments";
+import type { ReleaseArguments } from "#cli/production/arguments";
 
 /** Durable publication state does not permit the requested production command. */
 export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
@@ -20,12 +18,10 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
   {
     reason: Schema.Literals([
       "aborting",
-      "missing-active",
       "mode-mismatch",
       "candidate-conflict",
       "recovery-conflict",
       "recovery-retained",
-      "rollback-mismatch",
       "scope-mismatch",
     ]),
   }
@@ -35,46 +31,31 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
 export type ProductionStateAction =
   | {
       readonly baseBundle: ContentReleaseBundle | null;
+      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
       readonly kind: "new";
-      readonly mode: "git";
       readonly scope: PublicationScope;
     }
   | {
-      readonly kind: "new";
-      readonly mode: "rollback";
-      readonly rollbackOf: ReleaseId;
-      readonly sourceBundle: ContentReleaseBundle;
-    }
-  | {
+      readonly baseBundle: ContentReleaseBundle | null;
+      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
       readonly kind: "rebuild";
-      readonly mode: "git";
       readonly candidate: StagedContentRelease;
       readonly scope: PublicationScope;
       readonly sha: GitCommitSha;
-    }
-  | {
-      readonly kind: "rebuild";
-      readonly mode: "rollback";
-      readonly candidate: StagedContentRelease;
-      readonly rollbackOf: ReleaseId;
     }
   | { readonly bundle: ContentReleaseBundle; readonly kind: "resume" };
 
-type StoredCommand =
-  | {
-      readonly mode: "git";
-      readonly scope: PublicationScope;
-      readonly sha: GitCommitSha;
-    }
-  | { readonly mode: "rollback"; readonly rollbackOf: ReleaseId };
+interface StoredCommand {
+  readonly scope: PublicationScope;
+  readonly sha: GitCommitSha;
+}
 type ValidateStoredCommand = (
-  args: ProductionArguments,
+  args: ReleaseArguments,
   bundle: ContentReleaseBundle
 ) => Effect.Effect<StoredCommand, ProductionStateError>;
 
-type ProductionArguments = ReleaseArguments | RollbackArguments;
 type SelectProductionAction = (
-  args: ProductionArguments,
+  args: ReleaseArguments,
   current: ContentReleaseCurrent
 ) => Effect.Effect<ProductionStateAction, ProductionStateError>;
 
@@ -89,42 +70,30 @@ function activeBundle(active: NonNullable<ContentReleaseCurrent["active"]>) {
 /** Returns stored provenance only when command mode and identity match it. */
 const validateStoredCommand: ValidateStoredCommand = Effect.fn(
   "AksaraCli.validateStoredCommand"
-)(function* (args: ProductionArguments, bundle: ContentReleaseBundle) {
+)(function* (args: ReleaseArguments, bundle: ContentReleaseBundle) {
   const { manifest } = bundle.release;
-  if (args.command === "release") {
-    if (
-      JSON.stringify(canonicalizePublicationScope(args.scope)) !==
-      JSON.stringify(canonicalizePublicationScope(manifest.scope))
-    ) {
-      return yield* new ProductionStateError({ reason: "scope-mismatch" });
-    }
-    if (manifest.origin.kind === "git") {
-      return {
-        mode: "git",
-        scope: args.scope,
-        sha: manifest.origin.sha,
-      } satisfies StoredCommand;
-    }
-    return yield* new ProductionStateError({ reason: "mode-mismatch" });
+  if (
+    JSON.stringify(canonicalizePublicationScope(args.scope)) !==
+    JSON.stringify(canonicalizePublicationScope(manifest.scope))
+  ) {
+    return yield* new ProductionStateError({ reason: "scope-mismatch" });
   }
-  if (manifest.origin.kind !== "rollback") {
+  if (manifest.origin.kind !== "git") {
     return yield* new ProductionStateError({ reason: "mode-mismatch" });
-  }
-  if (manifest.baseReleaseId !== args.rollbackOf) {
-    return yield* new ProductionStateError({ reason: "rollback-mismatch" });
   }
   return {
-    mode: "rollback",
-    rollbackOf: args.rollbackOf,
+    scope: args.scope,
+    sha: manifest.origin.sha,
   } satisfies StoredCommand;
 });
 
-/** Selects new preparation, exact rebuild, or a lost terminal receipt read. */
-export const selectProductionAction: SelectProductionAction = Effect.fn(
-  "AksaraCli.selectProductionAction"
-)(function* (args: ProductionArguments, current: ContentReleaseCurrent) {
-  const { active, candidate, recovery } = current;
-  if (candidate !== null) {
+/** Restores one exact staged candidate after validating its current context. */
+const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
+  function* (
+    args: ReleaseArguments,
+    current: ContentReleaseCurrent,
+    candidate: StagedContentRelease
+  ) {
     if (candidate.release.manifest.releaseId !== args.releaseId) {
       return yield* new ProductionStateError({
         reason: "candidate-conflict",
@@ -135,26 +104,29 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
       return yield* new ProductionStateError({ reason: "aborting" });
     }
     if (
-      recovery !== null &&
-      recovery.release.manifest.releaseId !== args.recoveryId
+      current.recovery !== null &&
+      current.recovery.release.manifest.releaseId !== args.recoveryId
     ) {
       return yield* new ProductionStateError({ reason: "recovery-conflict" });
     }
-    if (stored.mode === "git") {
-      return {
-        candidate,
-        kind: "rebuild",
-        mode: stored.mode,
-        scope: stored.scope,
-        sha: stored.sha,
-      };
-    }
     return {
+      baseBundle: current.active === null ? null : activeBundle(current.active),
+      baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
       candidate,
       kind: "rebuild",
-      mode: stored.mode,
-      rollbackOf: stored.rollbackOf,
-    };
+      scope: stored.scope,
+      sha: stored.sha,
+    } satisfies ProductionStateAction;
+  }
+);
+
+/** Selects new preparation, exact rebuild, or a lost terminal receipt read. */
+export const selectProductionAction: SelectProductionAction = Effect.fn(
+  "AksaraCli.selectProductionAction"
+)(function* (args: ReleaseArguments, current: ContentReleaseCurrent) {
+  const { active, candidate, recovery } = current;
+  if (candidate !== null) {
+    return yield* selectRebuildAction(args, current, candidate);
   }
 
   if (active?.release.manifest.releaseId === args.releaseId) {
@@ -171,24 +143,10 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
   if (recovery !== null) {
     return yield* new ProductionStateError({ reason: "recovery-retained" });
   }
-  if (args.command === "release") {
-    return {
-      baseBundle: active === null ? null : activeBundle(active),
-      kind: "new",
-      mode: "git",
-      scope: args.scope,
-    };
-  }
-  if (active === null) {
-    return yield* new ProductionStateError({ reason: "missing-active" });
-  }
-  if (args.rollbackOf !== active.release.manifest.releaseId) {
-    return yield* new ProductionStateError({ reason: "rollback-mismatch" });
-  }
   return {
+    baseBundle: active === null ? null : activeBundle(active),
+    baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
     kind: "new",
-    mode: "rollback",
-    rollbackOf: args.rollbackOf,
-    sourceBundle: activeBundle(active),
+    scope: args.scope,
   };
 });

@@ -113,14 +113,7 @@ const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
     routeCount: 0,
     routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
     scope: {
-      content: [
-        {
-          artifactLocale: item.change.artifactLocale,
-          contentKey: item.change.contentKey,
-          family: item.change.family,
-        },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     },
     snapshots: invertContentSnapshots(inheritContentSnapshots(null)),

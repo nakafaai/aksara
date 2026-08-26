@@ -36,8 +36,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "4.0.0-rc.110",
     cohort: "Effect",
     dependency: "effect",
-    reason:
-      "Contracts 0.17.0 and its Nakafa migration require the exact RC110 peer cohort.",
+    reason: "The signed-content rollout requires the exact RC110 peer cohort.",
     registry: "effect@rc",
     reviewedLatest: "4.0.0-rc.111",
     source: "catalog",

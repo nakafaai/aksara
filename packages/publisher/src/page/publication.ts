@@ -5,7 +5,7 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import type { PageHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
@@ -13,7 +13,6 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
 import { constUndefined } from "effect/Function";
-import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   mapPageSourceError,
   type PageMetadataError,
@@ -73,8 +72,7 @@ export type PagePublicationStreamError<E> =
   | PageHeadFamilyError
   | PageHeadOrderError
   | PageMetadataError
-  | PageSourceError
-  | PublicationScopeIdentityError;
+  | PageSourceError;
 
 /** Authoritative public page plan consumed by whole-catalog composition. */
 export interface PagePublication {

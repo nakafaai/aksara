@@ -1,27 +1,19 @@
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import type {
   ContentHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import {
-  baseContentSnapshots,
-  type ContentSnapshotSet,
-  type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
-import {
-  reuseStoredGitRelease,
-  reuseStoredRollbackRelease,
-} from "@nakafa/aksara-publisher/preparation/recovery";
+import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
@@ -31,18 +23,22 @@ import {
   validateStableAksaraRevision,
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
+import {
+  type ProductionBaseIdentity,
+  selectRecoveryBase,
+  selectSourceBase,
+  validateRecoveryBase,
+} from "#cli/production/base";
+import { validateRendererTransition } from "#cli/production/renderer";
+import {
+  selectTryoutRuntimeRefresh,
+  selectTryoutRuntimeTransition,
+  verifyBaseTryoutRuntimeBundle,
+} from "#cli/production/runtime";
 import { validateRecoveryRevision } from "#cli/recovery";
 
-interface BaseCatalogIdentity {
-  readonly activeAppLocales: ActiveAppLocaleList;
-  readonly manifestHash: ContentReleaseBundle["release"]["manifestHash"];
-  readonly releaseId: ReleaseId;
-  readonly resultCount: number;
-  readonly resultDigest: ContentReleaseBundle["release"]["manifest"]["resultDigest"];
-  readonly snapshots: ContentSnapshotSet;
-}
-
 interface GitPreparationBase {
+  readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
   readonly checkoutRoot: string;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
@@ -55,31 +51,15 @@ type GitPreparationInput =
       readonly rendererManifest: unknown;
     })
   | (GitPreparationBase & {
+      readonly baseBundle: ContentReleaseBundle | null;
       readonly bundle: ContentReleaseBundle;
       readonly kind: "rebuild";
       readonly sha: GitCommitSha;
     });
 
-interface RollbackPreparationBase {
-  readonly releaseId: ReleaseId;
-  readonly rollbackOf: ReleaseId;
-}
-
-type RollbackPreparationInput =
-  | (RollbackPreparationBase & {
-      readonly kind: "new";
-      readonly rendererManifest: unknown;
-      readonly sourceBundle: ContentReleaseBundle;
-    })
-  | (RollbackPreparationBase & {
-      readonly bundle: ContentReleaseBundle;
-      readonly kind: "rebuild";
-    });
-
 type PreparedGit = Effect.Success<
   ReturnType<typeof prepareContentRelease<unknown, never>>
 >;
-type PreparedRollback = Effect.Success<ReturnType<typeof prepareRollback>>;
 type PreparationServices =
   | ContentVerificationKeyResolver
   | ExactProcess
@@ -90,12 +70,9 @@ type PreparationServices =
 type PrepareProductionGit = (
   input: GitPreparationInput
 ) => Effect.Effect<PreparedGit, ProductionError, PreparationServices>;
-type PrepareProductionRollback = (
-  input: RollbackPreparationInput
-) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
 
 /** Streams no prior heads for genesis and both exact target-owned families later. */
-function publishedContentHeads(base: BaseCatalogIdentity | null) {
+function publishedContentHeads(base: ProductionBaseIdentity | null) {
   if (base === null) {
     return {
       article: Stream.empty,
@@ -117,64 +94,46 @@ function isQuestionHead(head: ContentHead): head is QuestionHead {
   return head.family === "question";
 }
 
-/** Selects the authenticated base catalog represented by one source bundle. */
-function selectSourceBase(bundle: ContentReleaseBundle | null) {
-  if (bundle === null) {
-    return null;
-  }
-  return {
-    activeAppLocales: bundle.release.manifest.activeAppLocales,
-    manifestHash: bundle.release.manifestHash,
-    releaseId: bundle.release.manifest.releaseId,
-    resultCount: bundle.release.manifest.resultCount,
-    resultDigest: bundle.release.manifest.resultDigest,
-    snapshots: bundle.release.manifest.snapshots,
-  } satisfies BaseCatalogIdentity;
-}
-
-/** Selects the authenticated base catalog frozen inside a candidate release. */
-function selectRecoveryBase(bundle: ContentReleaseBundle) {
-  const { manifest } = bundle.release;
-  if (
-    manifest.baseActiveAppLocales === null ||
-    manifest.baseReleaseId === null ||
-    manifest.baseManifestHash === null
-  ) {
-    return null;
-  }
-  return {
-    activeAppLocales: manifest.baseActiveAppLocales,
-    manifestHash: manifest.baseManifestHash,
-    releaseId: manifest.baseReleaseId,
-    resultCount: manifest.baseResultCount,
-    resultDigest: manifest.baseResultDigest,
-    snapshots: baseContentSnapshots(manifest.snapshots),
-  } satisfies BaseCatalogIdentity;
-}
-
 /** Prepares a Git publication and restores its stored envelope on recovery. */
 export const prepareProductionGit: PrepareProductionGit = Effect.fn(
   "AksaraCli.prepareProductionGit"
 )((input) =>
   Effect.gen(function* () {
-    let base: BaseCatalogIdentity | null;
+    const verifiedBaseBundle =
+      input.baseBundle === null
+        ? null
+        : yield* verifyContentReleaseBundle(input.baseBundle);
+    let base: ProductionBaseIdentity | null;
     if (input.kind === "new") {
-      const bundle =
-        input.baseBundle === null
-          ? null
-          : yield* verifyContentReleaseBundle(input.baseBundle);
-      base = selectSourceBase(bundle);
+      base = selectSourceBase(verifiedBaseBundle);
     } else {
       base = selectRecoveryBase(input.bundle);
+      yield* validateRecoveryBase(base, selectSourceBase(verifiedBaseBundle));
     }
+    const verifiedBaseTryoutRuntimeBundle =
+      yield* verifyBaseTryoutRuntimeBundle(
+        input.baseTryoutRuntimeBundle,
+        verifiedBaseBundle,
+        base
+      );
     const aksaraSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
     }
-    const rendererManifest =
-      input.kind === "new"
-        ? input.rendererManifest
-        : input.bundle.rendererManifest;
+    const rendererManifest = yield* validateRendererTransition({
+      base,
+      baseBundle: verifiedBaseBundle,
+      rendererManifest:
+        input.kind === "new"
+          ? input.rendererManifest
+          : input.bundle.rendererManifest,
+      scope: input.scope,
+    });
+    const runtime = selectTryoutRuntimeRefresh({
+      base,
+      bundle: verifiedBaseTryoutRuntimeBundle,
+      rendererManifest,
+    });
     const catalog = yield* prepareContentCatalog({
       base:
         base === null
@@ -190,10 +149,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
     });
     const snapshots =
-      input.scope.snapshots.length === 0
+      input.scope.snapshots.length === 0 && runtime.kind === "stable"
         ? {
             manifests: Stream.empty,
             rows: Stream.empty,
+            tryoutRuntimeSnapshot: null,
           }
         : yield* prepareReleaseSnapshots({
             checkoutRoot: input.checkoutRoot,
@@ -201,7 +161,16 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
             previousSnapshots: base?.snapshots ?? null,
             questionHeads: catalog.result.pipe(Stream.filter(isQuestionHead)),
             rendererManifest,
+            runtime,
           });
+    const tryoutRuntime = yield* selectTryoutRuntimeTransition({
+      base,
+      bundle: verifiedBaseTryoutRuntimeBundle,
+      snapshot:
+        snapshots.tryoutRuntimeSnapshot ??
+        verifiedBaseTryoutRuntimeBundle?.payload.snapshot ??
+        null,
+    });
     const prepared = yield* prepareContentRelease({
       aksaraSha,
       baseActiveAppLocales: base?.activeAppLocales ?? null,
@@ -219,6 +188,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
+      tryoutRuntime,
     });
     const preparedSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     yield* validateStableAksaraRevision(aksaraSha, preparedSha);
@@ -226,33 +196,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       return prepared;
     }
     return yield* reuseStoredGitRelease({
-      prepared,
-      storedRelease: input.bundle.release,
-    });
-  }).pipe(Effect.mapError(mapProductionError("prepare")))
-);
-
-/** Prepares a rollback and restores its stored envelope on recovery. */
-export const prepareProductionRollback: PrepareProductionRollback = Effect.fn(
-  "AksaraCli.prepareProductionRollback"
-)((input) =>
-  Effect.gen(function* () {
-    const proofBundle =
-      input.kind === "new" ? input.sourceBundle : input.bundle;
-    const rendererManifest =
-      input.kind === "new"
-        ? input.rendererManifest
-        : input.bundle.rendererManifest;
-    const prepared = yield* prepareRollback({
-      proofBundle,
-      releaseId: input.releaseId,
-      rendererManifest,
-      rollbackOf: input.rollbackOf,
-    });
-    if (input.kind === "new") {
-      return prepared;
-    }
-    return yield* reuseStoredRollbackRelease({
       prepared,
       storedRelease: input.bundle.release,
     });

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { ConfigProvider, Effect, Logger, References } from "effect";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";
@@ -19,7 +19,12 @@ interface StatusLog {
 /** Returns authoritative state for one captured request. */
 function statusResponse(
   request: HttpClientRequest.HttpClientRequest,
-  value: unknown = { active: null, candidate: null, recovery: null }
+  value: unknown = {
+    active: null,
+    candidate: null,
+    recovery: null,
+    tryoutRuntimeBundle: null,
+  }
 ) {
   return webResponse(
     request,
@@ -42,7 +47,7 @@ function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
     Effect.provideService(HttpClient.HttpClient, client)
   );
   if (logs === undefined) {
-    return Effect.runPromise(program);
+    return program;
   }
   const logger = Logger.make(({ fiber, message }) => {
     logs.push({
@@ -50,40 +55,40 @@ function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
       message,
     });
   });
-  return Effect.runPromise(
-    program.pipe(Effect.provide(Logger.layer([logger])))
-  );
+  return program.pipe(Effect.provide(Logger.layer([logger])));
 }
 
 describe("status command", () => {
-  it("reads current state with publication credentials only", async () => {
-    const captured = captureClient((incoming) =>
-      Effect.succeed(statusResponse(incoming))
-    );
+  it.effect("reads current state with publication credentials only", () =>
+    Effect.gen(function* () {
+      const captured = captureClient((incoming) =>
+        Effect.succeed(statusResponse(incoming))
+      );
 
-    await expect(runStatus(captured.client)).resolves.toBeUndefined();
-    expect(captured.requests).toHaveLength(1);
-    const [request] = captured.requests;
-    if (!request) {
-      throw new Error("Expected one status request.");
-    }
-    expect(request.headers.authorization).toBe("Bearer publication-token");
-    expect(requestJson(request)).toEqual({ operation: "current" });
-  });
+      expect(yield* runStatus(captured.client)).toBeUndefined();
+      expect(captured.requests).toHaveLength(1);
+      const [request] = captured.requests;
+      if (!request) {
+        throw new Error("Expected one status request.");
+      }
+      expect(request.headers.authorization).toBe("Bearer publication-token");
+      expect(requestJson(request)).toEqual({ operation: "current" });
+    })
+  );
 
-  it("sanitizes target protocol failures", async () => {
-    const captured = captureClient((request) =>
-      Effect.succeed(
-        webResponse(request, "{}", {
-          headers: { "content-type": "application/json" },
-          status: 200,
-        })
-      )
-    );
+  it.effect("sanitizes target protocol failures", () =>
+    Effect.gen(function* () {
+      const captured = captureClient((request) =>
+        Effect.succeed(
+          webResponse(request, "{}", {
+            headers: { "content-type": "application/json" },
+            status: 200,
+          })
+        )
+      );
 
-    await expect(
-      Effect.runPromise(
-        runStatusCommand.pipe(
+      expect(
+        yield* runStatusCommand.pipe(
           Effect.provideService(
             ConfigProvider.ConfigProvider,
             ConfigProvider.fromUnknown(Object.fromEntries(statusValues))
@@ -91,39 +96,41 @@ describe("status command", () => {
           Effect.provideService(HttpClient.HttpClient, captured.client),
           Effect.flip
         )
-      )
-    ).resolves.toMatchObject({
-      _tag: "ProductionError",
-      failure: "PublicationTargetProtocolError",
-      stage: "state",
-    });
-  });
+      ).toMatchObject({
+        _tag: "ProductionError",
+        failure: "PublicationTargetProtocolError",
+        stage: "state",
+      });
+    })
+  );
 
-  it("reports coherent candidate and recovery identities", async () => {
-    const target = stateBundle("release-candidate");
-    const current = stateCurrent({
-      active: null,
-      candidate: { ...target, phase: "verified" },
-      recovery: stateRecovery(target),
-    });
-    const captured = captureClient((request) =>
-      Effect.succeed(statusResponse(request, current))
-    );
-    const logs: StatusLog[] = [];
+  it.effect("reports coherent candidate and recovery identities", () =>
+    Effect.gen(function* () {
+      const target = stateBundle("release-candidate");
+      const current = stateCurrent({
+        active: null,
+        candidate: { ...target, phase: "verified" },
+        recovery: stateRecovery(target),
+      });
+      const captured = captureClient((request) =>
+        Effect.succeed(statusResponse(request, current))
+      );
+      const logs: StatusLog[] = [];
 
-    await expect(runStatus(captured.client, logs)).resolves.toBeUndefined();
-    expect(captured.requests).toHaveLength(1);
-    expect(logs).toEqual([
-      {
-        annotations: {
-          active: "empty",
-          candidate: `release-candidate:${target.release.manifestHash}`,
-          candidatePhase: "verified",
-          recovery: `recovery-next:${target.release.manifestHash}`,
-          recoveryPhase: "verified",
+      expect(yield* runStatus(captured.client, logs)).toBeUndefined();
+      expect(captured.requests).toHaveLength(1);
+      expect(logs).toEqual([
+        {
+          annotations: {
+            active: "empty",
+            candidate: `release-candidate:${target.release.manifestHash}`,
+            candidatePhase: "verified",
+            recovery: `recovery-next:${target.release.manifestHash}`,
+            recoveryPhase: "verified",
+          },
+          message: ["Content publication status loaded."],
         },
-        message: ["Content publication status loaded."],
-      },
-    ]);
-  });
+      ]);
+    })
+  );
 });

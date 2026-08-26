@@ -28,13 +28,13 @@ import {
 
 describe("candidate verification", () => {
   it.effect.each([
-    ["missing", 1, 1],
-    ["staging", 1, 1],
-    ["verifying", 0, 1],
-    ["verified", 0, 1],
+    ["missing", 1, 1, 1],
+    ["staging", 1, 1, 1],
+    ["verifying", 0, 1, 1],
+    ["verified", 0, 1, 1],
   ] as const)(
     "resumes candidate phase %s",
-    ([phase, stageCalls, verifyCalls]) =>
+    ([phase, stageCalls, runtimeCalls, verifyCalls]) =>
       Effect.gen(function* () {
         const state = makeVerificationPlan(phase);
         const result = yield* provideVerificationKey(
@@ -44,6 +44,7 @@ describe("candidate verification", () => {
         expect(result).toEqual({ kind: "verified" });
         expect(state.stageRelease).toHaveBeenCalledWith(verificationBundle);
         expect(state.stage).toHaveBeenCalledTimes(stageCalls);
+        expect(state.runtimes).toHaveBeenCalledTimes(runtimeCalls);
         expect(state.verify).toHaveBeenCalledTimes(verifyCalls);
       })
   );

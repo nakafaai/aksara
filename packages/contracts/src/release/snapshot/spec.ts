@@ -1,122 +1,17 @@
-/** Publication scope and signed structured snapshot transition contracts. */
+/** Signed structured snapshot transition contracts. */
 import { Schema } from "effect";
 
-import {
-  type ContentFamily,
-  ContentFamilySchema,
-  type ContentPublicationIdentity,
-  ContentPublicationIdentitySchema,
-  comparePublicationIdentities,
-} from "#contracts/content";
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
+import {
+  ContentSnapshotKindSchema,
+  type PublicationScope,
+  publicationScopeSelectsSnapshot,
+} from "#contracts/release/snapshot/scope";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */
 export const EMPTY_SNAPSHOT_ROW_DIGEST = Sha256HashSchema.make(
   "sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"
 );
-
-/** Fixed structured families selected by the one global release pointer. */
-export const ContentSnapshotKindSchema = Schema.Literals([
-  "program",
-  "quran",
-  "tryout",
-]);
-export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
-
-/** Checks strict canonical ordering for selected content and snapshot families. */
-function hasCanonicalPublicationScope(input: {
-  readonly content: readonly ContentPublicationIdentity[];
-  readonly families: readonly ContentFamily[];
-  readonly snapshots: readonly ContentSnapshotKind[];
-}) {
-  const contentIsCanonical = input.content.every((identity, index) => {
-    const previous = input.content[index - 1];
-    return (
-      previous === undefined ||
-      comparePublicationIdentities(previous, identity) < 0
-    );
-  });
-  const snapshotsAreCanonical = input.snapshots.every((family, index) => {
-    const previous = input.snapshots[index - 1];
-    if (previous === undefined) {
-      return true;
-    }
-    return (
-      ContentSnapshotKindSchema.literals.indexOf(previous) <
-      ContentSnapshotKindSchema.literals.indexOf(family)
-    );
-  });
-  const familiesAreCanonical = input.families.every((family, index) => {
-    const previous = input.families[index - 1];
-    return (
-      previous === undefined ||
-      ContentFamilySchema.literals.indexOf(previous) <
-        ContentFamilySchema.literals.indexOf(family)
-    );
-  });
-  const contentIsExact = input.content.every(
-    ({ family }) => !input.families.includes(family)
-  );
-  return (
-    contentIsCanonical &&
-    contentIsExact &&
-    familiesAreCanonical &&
-    snapshotsAreCanonical &&
-    input.content.length + input.families.length + input.snapshots.length > 0
-  );
-}
-
-/** Exact content identities and structured families authorized by a release. */
-export const PublicationScopeSchema = Schema.Struct({
-  content: Schema.Array(ContentPublicationIdentitySchema),
-  families: Schema.Array(ContentFamilySchema),
-  snapshots: Schema.Array(ContentSnapshotKindSchema),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCanonicalPublicationScope, {
-      message:
-        "Expected a non-empty publication scope in canonical unique order.",
-    })
-  )
-);
-export type PublicationScope = typeof PublicationScopeSchema.Type;
-
-/** Checks whether one exact content identity belongs to a publication scope. */
-export function publicationScopeContainsContent(
-  scope: PublicationScope,
-  identity: ContentPublicationIdentity
-) {
-  return (
-    scope.families.includes(identity.family) ||
-    scope.content.some(
-      (selected) =>
-        selected.contentKey === identity.contentKey &&
-        selected.family === identity.family &&
-        selected.artifactLocale === identity.artifactLocale
-    )
-  );
-}
-
-/** Checks whether one structured family may be replaced by this release. */
-export function publicationScopeSelectsSnapshot(
-  scope: PublicationScope,
-  family: ContentSnapshotKind
-) {
-  return scope.snapshots.includes(family);
-}
-
-/** Serializes one exact scope with stable signed field order. */
-export function canonicalizePublicationScope(scope: PublicationScope) {
-  return {
-    content: scope.content.map(({ artifactLocale, contentKey, family }) => ({
-      artifactLocale,
-      contentKey,
-      family,
-    })),
-    families: [...scope.families],
-    snapshots: [...scope.snapshots],
-  };
-}
 
 const RowCountSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThanOrEqualTo(0))

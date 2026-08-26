@@ -11,6 +11,7 @@ import {
   MaterialHeadSchema,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -68,11 +69,35 @@ export interface TargetCalls {
       }
     | undefined;
   rendererCalls: number;
+  rendererManifestOverride: unknown | undefined;
   rootReads: number;
+  runtimeBundleRefreshes: number;
+  runtimeResultSnapshotId: string | null | undefined;
   signingSecretReads: number;
   snapshotCalls: number;
   sourceLayers: number;
   targetCalls: number;
+}
+
+/** Complete observable state owned by the production command harness. */
+export interface ProductionCalls extends TargetCalls {
+  baseManifestHash: string | null | undefined;
+  baseReleaseId: string | null | undefined;
+  baseResultCount: number | undefined;
+  baseResultDigest: string | undefined;
+  bundleVerifyCalls: number;
+  keyId: string | undefined;
+  manifestMismatch: boolean;
+  privateKeyMatches: boolean;
+  publishCalls: number;
+  publishKind: "git" | undefined;
+  releaseId: string | undefined;
+  resumeBundle: ContentReleaseBundle | undefined;
+  resumeCalls: number;
+  sha: string | undefined;
+  storedRelease: ContentReleaseBundle["release"] | null | undefined;
+  targetServiceReads: number;
+  verifiedBundle: ContentReleaseBundle | undefined;
 }
 
 /** Supplies isolated production configuration without process variables. */
@@ -132,7 +157,9 @@ export function rendererMock(calls: TargetCalls) {
   return {
     fetchProductionRenderer: () => {
       calls.rendererCalls += 1;
-      return Effect.succeed(RENDERER_MANIFEST);
+      return Effect.succeed(
+        calls.rendererManifestOverride ?? RENDERER_MANIFEST
+      );
     },
   };
 }
@@ -182,13 +209,18 @@ export function snapshotMock(calls: TargetCalls) {
     prepareReleaseSnapshots: (input: {
       /** Replays the catalog narrowed by production preparation. */
       readonly questionHeads: Stream.Stream<unknown>;
+      readonly runtime: { readonly kind: "refresh" | "stable" };
     }) => {
       calls.snapshotCalls += 1;
+      if (input.runtime.kind === "refresh") {
+        calls.runtimeBundleRefreshes += 1;
+      }
       return input.questionHeads.pipe(
         Stream.runDrain,
         Effect.as({
           manifests: Stream.empty,
           rows: Stream.empty,
+          tryoutRuntimeSnapshot: null,
         })
       );
     },

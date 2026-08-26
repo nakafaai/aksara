@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
 /** Stable rejection codes that require no message parsing by clients. */
 export const PublicationDomainRejectionCodeSchema = Schema.Literals([
@@ -100,6 +100,7 @@ const PublicationReleaseRejectedSchema = Schema.Struct({
     "stageRecovery",
     "stageSnapshot",
     "stageSnapshotBatch",
+    "stageTryoutRuntimeBundle",
     "stageGroup",
     "headPage",
     "recovery",
@@ -189,12 +190,22 @@ const SnapshotBatchConflictSchema = Schema.Struct({
   snapshotId: Sha256HashSchema,
 });
 
+const TryoutRuntimeBundleConflictSchema = Schema.Struct({
+  bundleHash: Sha256HashSchema,
+  code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
+  kind: Schema.Literal("conflict"),
+  operation: Schema.Literal("stageTryoutRuntimeBundle"),
+  releaseId: ReleaseIdSchema,
+  snapshotId: Sha256HashSchema,
+});
+
 /** Immutable request identity was reused with different persisted bytes. */
 export const PublicationConflictSchema = Schema.Union([
   ReleaseConflictSchema,
   BatchConflictSchema,
   SnapshotManifestConflictSchema,
   SnapshotBatchConflictSchema,
+  TryoutRuntimeBundleConflictSchema,
 ]);
 export type PublicationConflict = typeof PublicationConflictSchema.Type;
 

@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -11,7 +10,7 @@ import {
 import {
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Path, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
@@ -35,20 +34,8 @@ export const sourceByPath = new Map(
 export const functionContentKey = ContentKeySchema.make(
   "material/lesson/mathematics/function-composition-inverse-function/function-concept"
 );
-export const functionMaterialScope = PublicationScopeSchema.make({
-  content: [
-    {
-      artifactLocale: ArtifactLocaleSchema.make("en"),
-      contentKey: functionContentKey,
-      family: "material",
-    },
-    {
-      artifactLocale: ArtifactLocaleSchema.make("id"),
-      contentKey: functionContentKey,
-      family: "material",
-    },
-  ],
-  families: [],
+export const materialFamilyScope = PublicationScopeSchema.make({
+  families: ["material"],
   snapshots: [],
 });
 
@@ -75,7 +62,7 @@ export function materialManifest(input: {
         chemistry: [{ name: "AtomShellLab", version: input.chemistry }],
         mathematics: [{ name: "FunctionMachine", version: input.math }],
       }),
-      publishedDomains: ["mathematics"],
+      publishedDomains: ["chemistry", "mathematics"],
     })
   );
 }

@@ -5,7 +5,7 @@ import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
 } from "#contracts/release/snapshot/data";
-import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 import { MAX_SNAPSHOT_BATCH_COUNT } from "#contracts/transport/limits";
 
 const BatchIndexSchema = Schema.Int.pipe(

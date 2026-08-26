@@ -1,11 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
-  ActiveContentReleaseSchema,
   ContentReleaseCurrentSchema,
-  RecoveryLookupSchema,
   StagedRollbackContentReleaseSchema,
-} from "#contracts/release/current";
+} from "#contracts/release/current/state";
 import {
   invertContentSnapshots,
   restoreContentSnapshot,
@@ -14,13 +12,7 @@ import {
   RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
-import {
-  recoveryRelease as completedRecovery,
-  hash,
-  release,
-  rendererManifest,
-  replacementSnapshots,
-} from "#contracts/test/request";
+import { hash, release, rendererManifest } from "#contracts/test/request";
 import { receiptFor } from "#contracts/test/response";
 
 const otherHash = `sha256:${"f".repeat(64)}`;
@@ -97,79 +89,54 @@ function recoveryWith(manifest: object) {
 describe("current release state", () => {
   it("decodes coherent active, genesis, and candidate states", () => {
     for (const current of [
-      { active, candidate: null, recovery: null },
+      {
+        active,
+        candidate: null,
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      },
       {
         active: null,
         candidate: { phase: "staging", release, rendererManifest },
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: { phase: "staging", release: next, rendererManifest },
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
     ]) {
       expect(accepts(current)).toBe(true);
     }
   });
-  it("binds terminal receipt evidence to the active manifest", () => {
-    for (const invalid of [
-      { releaseId: "release-other" },
-      { activatedHeads: 0, deletedHeads: 2, stagedArtifacts: 0 },
-      { deletedHeads: 0, stagedItems: 1 },
-      { stagedProjections: 2 },
-      { stagedRoutes: 1 },
-      { manifestHash: otherHash },
-      { activeAppLocales: ["en"] },
-      { projectionDigest: otherHash },
-      { resultCount: release.manifest.resultCount + 1 },
-      { resultDigest: otherHash },
-      { routeDigest: otherHash },
-      { snapshots: replacementSnapshots, stagedSnapshotRows: 1 },
-    ]) {
-      const result = Schema.decodeUnknownExit(ActiveContentReleaseSchema)({
-        ...active,
-        receipt: { ...active.receipt, ...invalid },
-      });
-      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
-        "Expected the active receipt to match its signed release manifest."
-      );
-    }
-  });
-  it("decodes missing and completed historical recovery lookups", () => {
-    const recoveredActive = activeRelease(completedRecovery);
-    expect(
-      Schema.decodeSync(RecoveryLookupSchema)({ kind: "missing" })
-    ).toEqual({ kind: "missing" });
-    expect(
-      Schema.decodeSync(RecoveryLookupSchema)({
-        kind: "completed",
-        value: recoveredActive,
-      })
-    ).toEqual({ kind: "completed", value: recoveredActive });
-    const invalid = Schema.decodeExit(RecoveryLookupSchema)({
-      kind: "completed",
-      value: { receipt: receiptFor(release), release, rendererManifest },
-    });
-    expect(Exit.isFailure(invalid) ? String(invalid.cause) : "").toContain(
-      "Expected a completed rollback release."
-    );
-  });
   it("accepts resumable inverse phases bound to the candidate", () => {
     for (const phase of ["staging", "verifying", "verified"] as const) {
       expect(
-        accepts({ active, candidate, recovery: { ...retained, phase } })
+        accepts({
+          active,
+          candidate,
+          recovery: { ...retained, phase },
+          tryoutRuntimeBundle: null,
+        })
       ).toBe(true);
     }
     const activated = activeRelease(next);
     expect(
-      accepts({ active: activated, candidate: null, recovery: retained })
+      accepts({
+        active: activated,
+        candidate: null,
+        recovery: retained,
+        tryoutRuntimeBundle: null,
+      })
     ).toBe(true);
     expect(
       accepts({
         active: activated,
         candidate: null,
         recovery: { ...retained, phase: "aborting" },
+        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
   });
@@ -180,6 +147,7 @@ describe("current release state", () => {
         active: null,
         candidate: { phase: "verified", release, rendererManifest },
         recovery: genesisRecovery,
+        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
     expect(
@@ -187,6 +155,7 @@ describe("current release state", () => {
         active: activeRelease(release),
         candidate: null,
         recovery: genesisRecovery,
+        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
   });
@@ -216,26 +185,35 @@ describe("current release state", () => {
       },
     ];
     const invalidStates = [
-      { active: null, candidate: null, recovery: retained },
+      {
+        active: null,
+        candidate: null,
+        recovery: retained,
+        tryoutRuntimeBundle: null,
+      },
       {
         active,
         candidate: { ...candidate, phase: "staging" },
         recovery: retained,
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate,
         recovery: { ...retained, phase: "aborting" },
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: null,
         recovery: { ...retained, phase: "staging" },
+        tryoutRuntimeBundle: null,
       },
       ...invalidManifests.map((manifest) => ({
         active,
         candidate,
         recovery: recoveryWith(manifest),
+        tryoutRuntimeBundle: null,
       })),
       {
         active,
@@ -251,36 +229,57 @@ describe("current release state", () => {
           },
           rendererManifest: { ...rendererManifest, hash: otherHash },
         },
+        tryoutRuntimeBundle: null,
       },
-      { active, candidate, recovery: { ...retained, release } },
-      { active: null, candidate, recovery: null },
+      {
+        active,
+        candidate,
+        recovery: { ...retained, release },
+        tryoutRuntimeBundle: null,
+      },
+      {
+        active: null,
+        candidate,
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      },
       {
         active,
         candidate: candidateWith({
           baseResultCount: next.manifest.baseResultCount + 1,
         }),
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: candidateWith({ baseActiveAppLocales: ["en"] }),
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: candidateWith({ baseResultDigest: otherHash }),
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate,
         recovery: recoveryWith({ releaseId: release.manifest.releaseId }),
+        tryoutRuntimeBundle: null,
       },
-      { active, candidate: { ...candidate, phase: "active" }, recovery: null },
+      {
+        active,
+        candidate: { ...candidate, phase: "active" },
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      },
       {
         active,
         candidate: { ...candidate, phase: "finalizing" },
         recovery: null,
+        tryoutRuntimeBundle: null,
       },
     ];
     for (const state of invalidStates) {

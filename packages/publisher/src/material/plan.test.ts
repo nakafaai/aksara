@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import {
@@ -11,7 +11,7 @@ import {
   collectMaterialResult,
   englishPath,
   functionContentKey,
-  functionMaterialScope,
+  materialFamilyScope,
   materialManifest,
   publishedMaterialHeads,
   sourceByPath,
@@ -62,20 +62,19 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const publishedHeads = await publishedMaterialHeads();
-const englishHead = await Effect.runPromise(
-  Effect.gen(function* () {
-    const head = publishedHeads.find(
-      ({ contentKey, artifactLocale }) =>
-        contentKey === functionContentKey && artifactLocale === "en"
-    );
-    if (head === undefined) {
-      return yield* Effect.die(
-        new Error("Expected the real English function-concept head.")
-      );
-    }
-    return head;
-  })
-);
+
+/** Requires the representative real English head used by plan assertions. */
+function requireEnglishHead() {
+  const head = publishedHeads.find(
+    ({ contentKey, artifactLocale }) =>
+      contentKey === functionContentKey && artifactLocale === "en"
+  );
+  if (head === undefined) {
+    throw new Error("Expected the real English function-concept head.");
+  }
+  return head;
+}
+const englishHead = requireEnglishHead();
 const fingerprintCases = [
   ["delivery", { delivery: "authenticated" }],
   ["public path", { publicPath: "subjects/mathematics/old-function-concept" }],
@@ -213,10 +212,10 @@ describe("material plan", () => {
     expect(compilerState.calls).toBe(4);
   });
 
-  it("compiles only the mandatory function-concept locales for scoped genesis", async () => {
+  it("compiles the complete selected family for scoped genesis", async () => {
     const records = await collectMaterialPublication({
       heads: [],
-      scope: functionMaterialScope,
+      scope: materialFamilyScope,
     });
 
     expect(
@@ -225,27 +224,33 @@ describe("material plan", () => {
         record.change.artifactLocale,
       ])
     ).toEqual([
+      ["material/lesson/chemistry/structure-matter/atom-shell", "en"],
+      ["material/lesson/chemistry/structure-matter/atom-shell", "id"],
       [functionContentKey, "en"],
       [functionContentKey, "id"],
     ]);
-    expect(compilerState.calls).toBe(2);
+    expect(compilerState.calls).toBe(4);
   });
 
-  it("preserves every base head and ignores source changes outside scope", async () => {
+  it("preserves every base head and ignores changes in an unselected family", async () => {
     const sources = new Map(sourceByPath);
     const absolutePath = resolve(checkoutRoot, atomEnglishPath);
     const source = sources.get(absolutePath);
     expect(source).toBeDefined();
     sources.set(absolutePath, `${source}\n`);
 
+    const unselectedScope = PublicationScopeSchema.make({
+      families: ["page"],
+      snapshots: [],
+    });
     const records = await collectMaterialPublication({
       heads: publishedHeads,
-      scope: functionMaterialScope,
+      scope: unselectedScope,
       sources,
     });
     const result = await collectMaterialResult({
       heads: publishedHeads,
-      scope: functionMaterialScope,
+      scope: unselectedScope,
       sources,
     });
 
@@ -263,14 +268,7 @@ describe("material plan", () => {
         "packages/corpus/material/lesson/mathematics/removed/lesson/en.mdx",
     });
     const scope = Schema.decodeSync(PublicationScopeSchema)({
-      content: [
-        {
-          artifactLocale: stale.artifactLocale,
-          contentKey: stale.contentKey,
-          family: stale.family,
-        },
-      ],
-      families: [],
+      families: ["material"],
       snapshots: [],
     });
     const heads = [...publishedHeads, stale];
