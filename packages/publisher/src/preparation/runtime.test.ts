@@ -95,6 +95,32 @@ layer(NodeServices.layer)("try-out runtime preparation", (it) => {
     })
   );
 
+  it.effect("requires the distinct predecessor pair for a replacement", () =>
+    Effect.gen(function* () {
+      const previous = makeRuntimeSnapshot("8", 1);
+      const result = makeRuntimeSnapshot("9", 2);
+      const previousSnapshots = {
+        ...inheritContentSnapshots(null),
+        tryout: inheritContentSnapshot(previous.snapshotId),
+      };
+      const error = yield* validatePreparedTryoutRuntime({
+        previousSnapshots,
+        runtime: { recovery: null, result },
+        snapshots: {
+          ...previousSnapshots,
+          tryout: replaceContentSnapshot({
+            baseSnapshotId: previous.snapshotId,
+            resultSnapshotId: result.snapshotId,
+            rowCount: 1,
+            rowDigest: result.catalogDigest,
+          }),
+        },
+      }).pipe(Effect.flip);
+
+      expect(error._tag).toBe("PreparedTryoutRuntimeMissingError");
+    })
+  );
+
   it.effect("rejects mismatched or duplicate retained pairs", () =>
     Effect.gen(function* () {
       const current = makeRuntimeSnapshot("8", 1);

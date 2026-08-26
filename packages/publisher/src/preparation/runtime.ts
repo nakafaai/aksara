@@ -32,6 +32,13 @@ export const validatePreparedTryoutRuntime = Effect.fn(
   const recoverySnapshotId =
     input.previousSnapshots?.tryout.resultSnapshotId ?? null;
   if (
+    recoverySnapshotId !== null &&
+    recoverySnapshotId !== runtime.result.snapshotId &&
+    runtime.recovery === null
+  ) {
+    return yield* new PreparedTryoutRuntimeMissingError();
+  }
+  if (
     runtime.recovery !== null &&
     runtime.recovery.snapshotId !== recoverySnapshotId
   ) {

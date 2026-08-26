@@ -1,12 +1,14 @@
 import { assert, describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 import { ContentKeySchema } from "#contracts/ids";
 import { ArtifactLocaleSchema } from "#contracts/locale";
 import {
   canonicalizePublicationScope,
+  GitPublicationScopeSchema,
   PublicationScopeSchema,
   publicationScopeSelectsContent,
   publicationScopeSelectsSnapshot,
+  verifyGitPublicationScope,
 } from "#contracts/release/snapshot/scope";
 
 describe("publication scope", () => {
@@ -99,6 +101,28 @@ describe("publication scope", () => {
       })
     ).toBe(true);
   });
+
+  it.effect("rejects predecessor-only fields from new Git release scope", () =>
+    Effect.gen(function* () {
+      const current = yield* Schema.decodeEffect(PublicationScopeSchema)({
+        families: ["article"],
+        snapshots: [],
+      });
+      const predecessor = yield* Schema.decodeEffect(PublicationScopeSchema)({
+        content: [],
+        families: ["article"],
+        snapshots: [],
+      });
+
+      expect(yield* verifyGitPublicationScope(current)).toEqual(
+        GitPublicationScopeSchema.make(current)
+      );
+      const failure = yield* verifyGitPublicationScope(predecessor).pipe(
+        Effect.flip
+      );
+      expect(failure._tag).toBe("GitPublicationScopeError");
+    })
+  );
 
   it("rejects noncanonical or overlapping predecessor identities", () => {
     const failures = [

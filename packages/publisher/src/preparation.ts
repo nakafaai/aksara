@@ -28,8 +28,9 @@ import {
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
-  type PublicationScope,
+  type GitPublicationScope,
   publicationScopeSelectsSnapshot,
+  verifyGitPublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   decodeContentSnapshotManifests,
@@ -64,7 +65,7 @@ function isDerivedUpsert(
 
 /** Rejects a replacement manifest outside the signed publication scope. */
 function requireScopedSnapshot(
-  scope: PublicationScope,
+  scope: GitPublicationScope,
   family: Parameters<typeof publicationScopeSelectsSnapshot>[1]
 ) {
   if (publicationScopeSelectsSnapshot(scope, family)) {
@@ -77,6 +78,7 @@ function requireScopedSnapshot(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
+  const scope = yield* verifyGitPublicationScope(input.scope);
   const basePolicy = yield* prepareReleaseBase(input);
   const rendererManifest = yield* validateLiveRendererManifestHash(
     input.rendererManifest
@@ -92,7 +94,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   );
   yield* Effect.forEach(decodedSnapshotManifests, (snapshot) =>
     requireSnapshotProvenance(snapshot).pipe(
-      Effect.andThen(requireScopedSnapshot(input.scope, snapshot.family))
+      Effect.andThen(requireScopedSnapshot(scope, snapshot.family))
     )
   );
   yield* verifyReleasePolicyTransition({
@@ -101,7 +103,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     policy: {
       activeAppLocales: ACTIVE_APP_LOCALES,
     },
-    scope: input.scope,
+    scope,
   });
   const snapshotSummary = yield* verifyContentSnapshots({
     manifests: input.snapshotManifests,
@@ -207,7 +209,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
-    scope: input.scope,
+    scope,
     snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });

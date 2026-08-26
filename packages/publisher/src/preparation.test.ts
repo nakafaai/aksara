@@ -164,6 +164,28 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
     })
   );
 
+  it.effect(
+    "rejects predecessor-only exact content from new Git releases",
+    () =>
+      Effect.gen(function* () {
+        let invoked = false;
+        const error = yield* prepare({
+          records: Stream.suspend(() => {
+            invoked = true;
+            return Stream.make(baseTransition);
+          }),
+          scope: PublicationScopeSchema.make({
+            content: [],
+            families: ["material"],
+            snapshots: [],
+          }),
+        }).pipe(Effect.flip);
+
+        expect(error._tag).toBe("GitPublicationScopeError");
+        expect(invoked).toBe(false);
+      })
+  );
+
   it.effect("rejects a policy transition that omits any authored family", () =>
     Effect.gen(function* () {
       const snapshot = yield* makeProgramSnapshotFixture();

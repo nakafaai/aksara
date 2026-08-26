@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 import {
   type ContentFamily,
@@ -87,14 +87,18 @@ function hasCanonicalPublicationScope(input: {
   );
 }
 
-/** Content and structured families authorized by one atomic release. */
-export const PublicationScopeSchema = Schema.Struct({
+const PublicationScopeFields = {
   content: Schema.optional(
     Schema.Array(PredecessorContentPublicationIdentitySchema)
   ),
   families: Schema.Array(ContentFamilySchema),
   snapshots: Schema.Array(ContentSnapshotKindSchema),
-}).pipe(
+};
+
+/** Content and structured families authenticated from any signed release. */
+export const PublicationScopeSchema = Schema.Struct(
+  PublicationScopeFields
+).pipe(
   Schema.check(
     Schema.makeFilter(hasCanonicalPublicationScope, {
       message:
@@ -103,6 +107,35 @@ export const PublicationScopeSchema = Schema.Struct({
   )
 );
 export type PublicationScope = typeof PublicationScopeSchema.Type;
+
+/** Whole-family scope accepted when preparing a new Git release. */
+export const GitPublicationScopeSchema = Schema.Struct({
+  families: PublicationScopeFields.families,
+  snapshots: PublicationScopeFields.snapshots,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(hasCanonicalPublicationScope, {
+      message:
+        "Expected a non-empty Git publication scope in canonical unique order.",
+    })
+  )
+);
+export type GitPublicationScope = typeof GitPublicationScopeSchema.Type;
+
+/** New Git release preparation received predecessor-only exact selection. */
+export class GitPublicationScopeError extends Schema.TaggedError<GitPublicationScopeError>()(
+  "GitPublicationScopeError",
+  {}
+) {}
+
+/** Rejects predecessor-only fields before any new release work begins. */
+export const verifyGitPublicationScope = Effect.fn(
+  "AksaraContracts.verifyGitPublicationScope"
+)((scope: PublicationScope) =>
+  Schema.decodeEffect(GitPublicationScopeSchema)(scope, {
+    onExcessProperty: "error",
+  }).pipe(Effect.mapError(() => new GitPublicationScopeError()))
+);
 
 /** Checks whether one body transition is authorized by the signed scope. */
 export function publicationScopeSelectsContent(
