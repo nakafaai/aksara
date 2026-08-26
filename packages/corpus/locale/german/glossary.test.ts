@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import {
@@ -8,91 +8,100 @@ import {
 } from "#corpus/locale/german/glossary";
 
 describe("German terminology glossary", () => {
-  it("owns one canonical evidence-backed terminology inventory", async () => {
-    const glossary = await Effect.runPromise(decodeGermanGlossary());
+  it.effect("owns one canonical evidence-backed terminology inventory", () =>
+    Effect.gen(function* () {
+      const glossary = yield* decodeGermanGlossary();
 
-    expect(glossary.length).toBeGreaterThan(60);
-    expect(glossary.map(({ key }) => key)).toEqual(
-      [...glossary.map(({ key }) => key)].sort()
-    );
-    expect(
-      glossary.every(({ sourceUrl }) => sourceUrl.startsWith("https://"))
-    ).toBe(true);
-  });
+      expect(glossary.length).toBeGreaterThan(60);
+      expect(glossary.map(({ key }) => key)).toEqual(
+        [...glossary.map(({ key }) => key)].sort()
+      );
+      expect(
+        glossary.every(({ sourceUrl }) => sourceUrl.startsWith("https://"))
+      ).toBe(true);
+    })
+  );
 
-  it("pins German public namespaces and natural school terminology", async () => {
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("curriculum"))
-      )
-    ).resolves.toMatchObject({
-      preferred: "Lehrplan",
-      routeSlug: "lehrplaene",
-    });
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("subject"))
-      )
-    ).resolves.toMatchObject({ preferred: "Fach", routeSlug: "faecher" });
-    await expect(
-      Effect.runPromise(
+  it.effect(
+    "pins German public namespaces and natural school terminology",
+    () =>
+      Effect.gen(function* () {
+        const [curriculum, subject, tryout, artificialIntelligence] =
+          yield* Effect.all([
+            requireGermanGlossaryTerm(
+              GermanGlossaryKeySchema.make("curriculum")
+            ),
+            requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("subject")),
+            requireGermanGlossaryTerm(
+              GermanGlossaryKeySchema.make("tryout-product")
+            ),
+            requireGermanGlossaryTerm(
+              GermanGlossaryKeySchema.make(
+                "artificial-intelligence-data-science"
+              )
+            ),
+          ]);
+
+        expect(curriculum).toMatchObject({
+          preferred: "Lehrplan",
+          routeSlug: "lehrplaene",
+        });
+        expect(subject).toMatchObject({
+          preferred: "Fach",
+          routeSlug: "faecher",
+        });
+        expect(tryout).toMatchObject({ preferred: "Probetest" });
+        expect(artificialIntelligence).toMatchObject({
+          routeSlug: "ki-und-data-science",
+        });
+      })
+  );
+
+  it.effect("keeps Quran and accessibility wording explicit", () =>
+    Effect.gen(function* () {
+      const [quran, skipLink] = yield* Effect.all([
         requireGermanGlossaryTerm(
-          GermanGlossaryKeySchema.make("tryout-product")
-        )
-      )
-    ).resolves.toMatchObject({ preferred: "Probetest" });
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(
-          GermanGlossaryKeySchema.make("artificial-intelligence-data-science")
-        )
-      )
-    ).resolves.toMatchObject({ routeSlug: "ki-und-data-science" });
-  });
+          GermanGlossaryKeySchema.make("quran-product")
+        ),
+        requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("skip-link")),
+      ]);
 
-  it("keeps Quran and accessibility wording explicit", async () => {
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("quran-product"))
-      )
-    ).resolves.toMatchObject({ preferred: "Quran" });
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(GermanGlossaryKeySchema.make("skip-link"))
-      )
-    ).resolves.toMatchObject({ preferred: "Zum Hauptinhalt springen" });
-  });
+      expect(quran).toMatchObject({ preferred: "Quran" });
+      expect(skipLink).toMatchObject({
+        preferred: "Zum Hauptinhalt springen",
+      });
+    })
+  );
 
-  it("fails typed when an unreviewed term is requested", async () => {
-    await expect(
-      Effect.runPromise(
-        requireGermanGlossaryTerm(
-          GermanGlossaryKeySchema.make("unreviewed-term")
-        ).pipe(Effect.flip)
-      )
-    ).resolves.toMatchObject({
-      _tag: "GermanGlossaryTermError",
-      key: "unreviewed-term",
-    });
-  });
+  it.effect("fails typed when an unreviewed term is requested", () =>
+    Effect.gen(function* () {
+      const error = yield* requireGermanGlossaryTerm(
+        GermanGlossaryKeySchema.make("unreviewed-term")
+      ).pipe(Effect.flip);
 
-  it("owns malformed and noncanonical sources as typed failures", async () => {
-    const glossary = await Effect.runPromise(decodeGermanGlossary());
-    const [first] = glossary;
-    if (first === undefined) {
-      throw new Error("Expected the nonempty German glossary.");
-    }
-    const [malformed, duplicate] = await Promise.all([
-      Effect.runPromise(decodeGermanGlossary(null).pipe(Effect.flip)),
-      Effect.runPromise(decodeGermanGlossary([first, first]).pipe(Effect.flip)),
-    ]);
+      expect(error).toMatchObject({
+        _tag: "GermanGlossaryTermError",
+        key: "unreviewed-term",
+      });
+    })
+  );
 
-    expect([malformed, duplicate]).toEqual([
-      expect.objectContaining({ _tag: "GermanGlossaryError" }),
-      expect.objectContaining({ _tag: "GermanGlossaryError" }),
-    ]);
-    expect(String(duplicate.cause)).toContain(
-      "German glossary keys must be unique and canonical."
-    );
-  });
+  it.effect("owns malformed and noncanonical sources as typed failures", () =>
+    Effect.gen(function* () {
+      const glossary = yield* decodeGermanGlossary();
+      const first = yield* Effect.fromNullishOr(glossary[0]);
+      const [malformed, duplicate] = yield* Effect.all([
+        decodeGermanGlossary(null).pipe(Effect.flip),
+        decodeGermanGlossary([first, first]).pipe(Effect.flip),
+      ]);
+
+      expect([malformed, duplicate]).toEqual([
+        expect.objectContaining({ _tag: "GermanGlossaryError" }),
+        expect.objectContaining({ _tag: "GermanGlossaryError" }),
+      ]);
+      expect(String(duplicate.cause)).toContain(
+        "German glossary keys must be unique and canonical."
+      );
+    })
+  );
 });

@@ -1,9 +1,10 @@
+import { it } from "@effect/vitest";
 import {
   APP_LOCALE_CODES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
+import { describe, expect, test } from "vitest";
 
 import {
   localizedSourceMapSchema,
@@ -17,7 +18,7 @@ const CopySchema = localizedSourceMapSchema(
 );
 
 describe("localized source maps", () => {
-  it("admits complete and partial copy for contract-supported locales", () => {
+  test("admits complete and partial copy for contract-supported locales", () => {
     expect(
       Schema.decodeSync(CopySchema)({
         de: "Deutsch",
@@ -37,63 +38,63 @@ describe("localized source maps", () => {
     ).toThrow();
   });
 
-  it("fails typed when requested copy is absent", async () => {
-    const source = Schema.decodeSync(CopySchema)({
-      en: "English",
-      id: "Indonesia",
-    });
-    await expect(
-      Effect.runPromise(
-        requireSourceLocale(source, AppLocaleSchema.make("de"), "example").pipe(
-          Effect.flip
-        )
-      )
-    ).resolves.toMatchObject({
-      _tag: "SourceLocaleUnavailableError",
-      appLocale: "de",
-      owner: "example",
-    });
-  });
+  it.effect("fails typed when requested copy is absent", () =>
+    Effect.gen(function* () {
+      const source = yield* Schema.decodeEffect(CopySchema)({
+        en: "English",
+        id: "Indonesia",
+      });
+      const error = yield* requireSourceLocale(
+        source,
+        AppLocaleSchema.make("de"),
+        "example"
+      ).pipe(Effect.flip);
 
-  it("maps and traverses every present copy in canonical order", async () => {
-    const source = Schema.decodeSync(CopySchema)({
-      de: "Deutsch",
-      en: "English",
-      id: "Indonesia",
-    });
-    expect(
-      mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
-    ).toEqual({
-      de: "de:Deutsch",
-      en: "en:English",
-      id: "id:Indonesia",
-    });
-    const partial = Schema.decodeSync(CopySchema)({ en: "English" });
-    expect(
-      mapLocalizedSource(partial, (value, locale) => `${locale}:${value}`)
-    ).toEqual({ en: "en:English" });
-    expect(
-      Object.keys(
+      expect(error).toMatchObject({
+        _tag: "SourceLocaleUnavailableError",
+        appLocale: "de",
+        owner: "example",
+      });
+    })
+  );
+
+  it.effect("maps and traverses every present copy in canonical order", () =>
+    Effect.gen(function* () {
+      const source = yield* Schema.decodeEffect(CopySchema)({
+        de: "Deutsch",
+        en: "English",
+        id: "Indonesia",
+      });
+      expect(
         mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
-      )
-    ).toEqual(APP_LOCALE_CODES);
-    await expect(
-      Effect.runPromise(
-        traverseLocalizedSources(source, (value, locale) =>
+      ).toEqual({
+        de: "de:Deutsch",
+        en: "en:English",
+        id: "id:Indonesia",
+      });
+      const partial = yield* Schema.decodeEffect(CopySchema)({ en: "English" });
+      expect(
+        mapLocalizedSource(partial, (value, locale) => `${locale}:${value}`)
+      ).toEqual({ en: "en:English" });
+      expect(
+        Object.keys(
+          mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
+        )
+      ).toEqual(APP_LOCALE_CODES);
+      expect(
+        yield* traverseLocalizedSources(source, (value, locale) =>
           Effect.succeed(`${locale}:${value}`)
         )
-      )
-    ).resolves.toEqual({
-      de: "de:Deutsch",
-      en: "en:English",
-      id: "id:Indonesia",
-    });
-    await expect(
-      Effect.runPromise(
-        traverseLocalizedSources(partial, (value, locale) =>
+      ).toEqual({
+        de: "de:Deutsch",
+        en: "en:English",
+        id: "id:Indonesia",
+      });
+      expect(
+        yield* traverseLocalizedSources(partial, (value, locale) =>
           Effect.succeed(`${locale}:${value}`)
         )
-      )
-    ).resolves.toEqual({ en: "en:English" });
-  });
+      ).toEqual({ en: "en:English" });
+    })
+  );
 });
