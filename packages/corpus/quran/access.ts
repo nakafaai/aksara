@@ -46,7 +46,7 @@ const quranTafsirAccessByLocale = {
     appLocale: AppLocaleSchema.make("id"),
     kind: "embedded",
     notice:
-      "Nakafa saat ini menyediakan tafsir Al-Mukhtasar per ayat dalam bahasa Indonesia. Nakafa tidak menggunakan terjemahan mesin untuk tafsir.",
+      "Nakafa menyediakan tafsir Al-Mukhtasar per ayat berbahasa Indonesia yang diterbitkan oleh Markaz Tafsir untuk Studi Al-Qur'an melalui QuranEnc. Nakafa tidak menggunakan terjemahan mesin.",
     sourceId: "quranenc-tafsir",
   }),
 } satisfies Record<AppLocaleCode, QuranTafsirAccess>;

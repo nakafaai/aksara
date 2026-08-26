@@ -169,7 +169,7 @@ const quranencTafsir = QuranSourceAttributionSchema.make({
   sourceUrl:
     "https://quranenc.com/api/v1/translation/sura/indonesian_mokhtasar/1",
   terms: QURANENC_TERMS,
-  updateUrl: "https://quranenc.com/en/browse/indonesian_mokhtasar",
+  updateUrl: "https://quranenc.com/id/browse/indonesian_mokhtasar",
   version: "v1.0.0",
 });
 
