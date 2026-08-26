@@ -6,7 +6,10 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "#contracts/locale";
-import { QURAN_SURAH_COUNT } from "#contracts/quran/spec";
+import {
+  QURAN_SURAH_COUNT,
+  QuranTafsirLocaleSchema,
+} from "#contracts/quran/spec";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
 /** Exact official Quran source identities in visible attribution order. */
@@ -101,6 +104,53 @@ export const QuranSourceAttributionSchema = Schema.Struct({
 });
 export type QuranSourceAttribution = typeof QuranSourceAttributionSchema.Type;
 
+/** Official linked Tafsir edition that Nakafa may reference but not republish. */
+export const QuranTafsirLinkSchema = Schema.Struct({
+  label: Schema.Trimmed.check(Schema.isNonEmpty()),
+  publisher: Schema.Trimmed.check(Schema.isNonEmpty()),
+  retrievedAt: RetrievedAtSchema,
+  termsUrl: HttpsUrlSchema,
+  title: Schema.Trimmed.check(Schema.isNonEmpty()),
+  url: HttpsUrlSchema,
+  version: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+});
+export type QuranTafsirLink = typeof QuranTafsirLinkSchema.Type;
+
+const QuranEmbeddedTafsirAccessSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  kind: Schema.Literal("embedded"),
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  sourceId: Schema.Literal("quranenc-tafsir"),
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(
+      ({ appLocale }) => appLocale === QuranTafsirLocaleSchema.literal,
+      { message: "Only a reviewed Tafsir locale can use embedded content." }
+    )
+  )
+);
+
+const QuranExternalTafsirAccessSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  kind: Schema.Literal("external"),
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  source: QuranTafsirLinkSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(
+      ({ appLocale }) => appLocale !== QuranTafsirLocaleSchema.literal,
+      { message: "Embedded Tafsir locales cannot use an external-only source." }
+    )
+  )
+);
+
+/** Signed locale-specific access to embedded or official external Tafsir. */
+export const QuranTafsirAccessSchema = Schema.Union([
+  QuranEmbeddedTafsirAccessSchema,
+  QuranExternalTafsirAccessSchema,
+]);
+export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
+
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
   return sources.every((source, index) => {
@@ -136,11 +186,25 @@ function hasCompleteLocalizedCopy(input: {
   );
 }
 
+/** Checks exact Tafsir access coverage against one active locale set. */
+export function hasCompleteQuranTafsirAccess(
+  access: readonly QuranTafsirAccess[],
+  activeAppLocales: ActiveAppLocaleList
+) {
+  return (
+    access.length === activeAppLocales.length &&
+    access.every(
+      ({ appLocale }, index) => appLocale === activeAppLocales[index]
+    )
+  );
+}
+
 /** Visible attribution row carrying the active official source subset. */
 export const QuranAttributionRowSchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
   kind: Schema.Literal("quran-attribution"),
   sources: Schema.NonEmptyArray(QuranSourceAttributionSchema),
+  tafsirAccess: Schema.NonEmptyArray(QuranTafsirAccessSchema),
 }).pipe(
   Schema.check(
     Schema.makeFilter(({ sources }) => hasCanonicalSources(sources), {
@@ -162,6 +226,15 @@ export const QuranAttributionRowSchema = Schema.Struct({
       message:
         "Expected localized Quran attribution copy for every active locale.",
     })
+  ),
+  Schema.check(
+    Schema.makeFilter(
+      ({ activeAppLocales, tafsirAccess }) =>
+        hasCompleteQuranTafsirAccess(tafsirAccess, activeAppLocales),
+      {
+        message: "Expected exact Tafsir access for every active locale.",
+      }
+    )
   )
 );
 export type QuranAttributionRow = typeof QuranAttributionRowSchema.Type;

@@ -26,6 +26,7 @@ import {
   requireSourceLocale,
   type SourceLocaleUnavailableError,
 } from "#corpus/locale/source";
+import { quranTafsirAccessFor } from "#corpus/quran/access";
 import {
   type QuranAttributionLocaleError,
   quranSourceAttributionsFor,
@@ -220,6 +221,7 @@ export function streamQuranRows(
           activeAppLocales,
           kind: "quran-attribution",
           sources,
+          tafsirAccess: quranTafsirAccessFor(activeAppLocales),
         })
       )
     )

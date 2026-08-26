@@ -156,6 +156,9 @@ describe("Quran aggregate digest", () => {
             id: "quranenc-german",
           },
         ],
+        tafsirAccess: attributionPayload.tafsirAccess.filter(({ appLocale }) =>
+          ["en", "de"].includes(appLocale)
+        ),
       });
       const germanVerses = yield* Effect.forEach(chunkPayload.verses, (verse) =>
         Effect.gen(function* () {

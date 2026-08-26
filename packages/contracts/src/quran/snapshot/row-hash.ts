@@ -10,7 +10,10 @@ import {
   type QuranSnapshotRow,
   QuranSnapshotRowSchema,
 } from "#contracts/quran/snapshot/row";
-import type { QuranSourceAttribution } from "#contracts/quran/source";
+import type {
+  QuranSourceAttribution,
+  QuranTafsirAccess,
+} from "#contracts/quran/source";
 
 const ROW_DOMAIN = "nakafa.aksara.quran-row";
 
@@ -63,6 +66,32 @@ function canonicalizeAttribution(source: QuranSourceAttribution) {
   };
 }
 
+/** Serializes signed Tafsir access without trusting object insertion order. */
+function canonicalizeTafsirAccess(access: QuranTafsirAccess) {
+  if (access.kind === "embedded") {
+    return {
+      appLocale: access.appLocale,
+      kind: access.kind,
+      notice: access.notice,
+      sourceId: access.sourceId,
+    };
+  }
+  return {
+    appLocale: access.appLocale,
+    kind: access.kind,
+    notice: access.notice,
+    source: {
+      label: access.source.label,
+      publisher: access.source.publisher,
+      retrievedAt: access.source.retrievedAt,
+      termsUrl: access.source.termsUrl,
+      title: access.source.title,
+      url: access.source.url,
+      version: access.source.version,
+    },
+  };
+}
+
 /** Serializes one current runtime verse without insertion-order trust. */
 function canonicalizeVerse(verse: QuranRuntimeVerse) {
   return {
@@ -95,6 +124,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
       activeAppLocales: payload.activeAppLocales,
       kind: payload.kind,
       sources: payload.sources.map(canonicalizeAttribution),
+      tafsirAccess: payload.tafsirAccess.map(canonicalizeTafsirAccess),
     });
   }
   if (payload.kind === "quran-surah") {

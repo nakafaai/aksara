@@ -75,6 +75,23 @@ describe("Quran projection", () => {
           id: "tanzil-text",
         }),
       ]),
+      tafsirAccess: [
+        {
+          appLocale: "en",
+          kind: "external",
+          source: { url: "https://mokhtasr.com/en/books/319", version: 7 },
+        },
+        {
+          appLocale: "id",
+          kind: "embedded",
+          sourceId: "quranenc-tafsir",
+        },
+        {
+          appLocale: "de",
+          kind: "external",
+          source: { url: "https://mokhtasr.com/en/books/336", version: 6 },
+        },
+      ],
     });
     expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
     expect(searches).toHaveLength(
@@ -150,6 +167,9 @@ describe("Quran projection", () => {
       activeAppLocales: ["en", "id", "de"],
       sources: expect.arrayContaining([
         expect.objectContaining({ id: "quranenc-german" }),
+      ]),
+      tafsirAccess: expect.arrayContaining([
+        expect.objectContaining({ appLocale: "de", kind: "external" }),
       ]),
     });
     expect(firstChunk?.verses[0]?.translations).toEqual(

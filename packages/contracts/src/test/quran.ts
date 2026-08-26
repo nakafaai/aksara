@@ -12,6 +12,7 @@ import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
 import {
   QuranAttributionRowSchema,
   QuranSourceAttributionSchema,
+  QuranTafsirAccessSchema,
   quranSourceIds,
 } from "#contracts/quran/source";
 import { QURAN_SURAH_COUNT, QuranSurahRowSchema } from "#contracts/quran/spec";
@@ -21,6 +22,46 @@ const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const english = AppLocaleSchema.make("en");
 const indonesian = AppLocaleSchema.make("id");
 const german = AppLocaleSchema.make("de");
+
+/** Builds complete test-only Tafsir access in canonical locale order. */
+function quranTafsirAccess() {
+  return [
+    QuranTafsirAccessSchema.make({
+      appLocale: english,
+      kind: "external",
+      notice: "Technical English external Tafsir notice.",
+      source: {
+        label: "Technical English Tafsir link.",
+        publisher: "Technical publisher",
+        retrievedAt: "2026-08-26T15:51:00Z",
+        termsUrl: "https://example.test/terms/tafsir/en",
+        title: "Technical English Tafsir",
+        url: "https://example.test/tafsir/en",
+        version: 1,
+      },
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: indonesian,
+      kind: "embedded",
+      notice: "Catatan teknis tafsir Indonesia.",
+      sourceId: "quranenc-tafsir",
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: german,
+      kind: "external",
+      notice: "Technischer deutscher externer Tafsirhinweis.",
+      source: {
+        label: "Technischer deutscher Tafsirlink.",
+        publisher: "Technical publisher",
+        retrievedAt: "2026-08-26T15:51:00Z",
+        termsUrl: "https://example.test/terms/tafsir/de",
+        title: "Technical German Tafsir",
+        url: "https://example.test/tafsir/de",
+        version: 1,
+      },
+    }),
+  ] as const;
+}
 
 /** Builds one technical verse at exact local and global positions. */
 export function quranVerse(inSurah: number, inQuran: number) {
@@ -104,6 +145,7 @@ export function quranAttribution() {
     activeAppLocales: ACTIVE_APP_LOCALES,
     kind: "quran-attribution",
     sources: [first, ...rest],
+    tafsirAccess: quranTafsirAccess(),
   });
 }
 

@@ -7,6 +7,7 @@ import {
   hasRequiredQuranSources,
   QuranAttributionRowSchema,
   QuranSourceAttributionSchema,
+  QuranTafsirAccessSchema,
   quranSourceFileCount,
   quranSourceIds,
 } from "#contracts/quran/source";
@@ -47,6 +48,46 @@ function source(id: ReturnType<typeof quranSourceIds>[number]) {
   });
 }
 
+/** Builds test-only Tafsir access in canonical locale order. */
+function tafsirAccess() {
+  return [
+    QuranTafsirAccessSchema.make({
+      appLocale: AppLocaleSchema.make("en"),
+      kind: "external",
+      notice: "Technical English Tafsir notice.",
+      source: {
+        label: "Technical English Tafsir link.",
+        publisher: "Technical publisher",
+        retrievedAt: "2026-08-26T15:51:00Z",
+        termsUrl: "https://example.test/terms/tafsir/en",
+        title: "Technical English Tafsir",
+        url: "https://example.test/tafsir/en",
+        version: 1,
+      },
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: AppLocaleSchema.make("id"),
+      kind: "embedded",
+      notice: "Catatan teknis tafsir Indonesia.",
+      sourceId: "quranenc-tafsir",
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: AppLocaleSchema.make("de"),
+      kind: "external",
+      notice: "Technischer deutscher Tafsirhinweis.",
+      source: {
+        label: "Technischer deutscher Tafsirlink.",
+        publisher: "Technical publisher",
+        retrievedAt: "2026-08-26T15:51:00Z",
+        termsUrl: "https://example.test/terms/tafsir/de",
+        title: "Technical German Tafsir",
+        url: "https://example.test/tafsir/de",
+        version: 1,
+      },
+    }),
+  ] as const;
+}
+
 describe("Quran source contracts", () => {
   it("derives exact source coverage from active application locales", () => {
     const active = Schema.decodeSync(ActiveAppLocaleListSchema)([
@@ -55,10 +96,12 @@ describe("Quran source contracts", () => {
       "de",
     ]);
     const sources = quranSourceIds(active).map(source);
+    const access = tafsirAccess();
     const row = Schema.decodeUnknownSync(QuranAttributionRowSchema)({
       activeAppLocales: active,
       kind: "quran-attribution",
       sources,
+      tafsirAccess: access,
     });
     expect(row.sources.map(({ id }) => id)).toEqual(quranSourceIds(active));
     expect(quranSourceFileCount(active)).toBe(119);
@@ -72,6 +115,7 @@ describe("Quran source contracts", () => {
           activeAppLocales: active,
           kind: "quran-attribution",
           sources: [...sources].reverse(),
+          tafsirAccess: access,
         })
       )
     ).toBe(true);
@@ -84,6 +128,17 @@ describe("Quran source contracts", () => {
             ...item,
             copy: item.copy.slice(0, -1),
           })),
+          tafsirAccess: access,
+        })
+      )
+    ).toBe(true);
+    expect(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(QuranAttributionRowSchema)({
+          activeAppLocales: active,
+          kind: "quran-attribution",
+          sources,
+          tafsirAccess: [...access].reverse(),
         })
       )
     ).toBe(true);
@@ -91,6 +146,10 @@ describe("Quran source contracts", () => {
 
   it("rejects imprecise retrieval metadata and insecure evidence", () => {
     const base = source("tanzil-text");
+    const [englishAccess] = tafsirAccess();
+    if (englishAccess.kind !== "external") {
+      throw new Error("Expected technical English Tafsir to use a link.");
+    }
     const retrieval = Schema.decodeExit(QuranSourceAttributionSchema)({
       ...base,
       retrievedAt: "2026-07-24",
@@ -99,6 +158,14 @@ describe("Quran source contracts", () => {
       ...base,
       sourceUrl: "http://example.test/source",
     });
+    const externalId = Schema.decodeExit(QuranTafsirAccessSchema)({
+      ...englishAccess,
+      appLocale: AppLocaleSchema.make("id"),
+    });
+    const insecureTafsir = Schema.decodeExit(QuranTafsirAccessSchema)({
+      ...englishAccess,
+      source: { ...englishAccess.source, url: "http://example.test" },
+    });
 
     expect(Exit.isFailure(retrieval) ? String(retrieval.cause) : "").toContain(
       "Expected an exact UTC Quran source retrieval time."
@@ -106,5 +173,11 @@ describe("Quran source contracts", () => {
     expect(Exit.isFailure(sourceUrl) ? String(sourceUrl.cause) : "").toContain(
       "Quran source links must use HTTPS."
     );
+    expect(
+      Exit.isFailure(externalId) ? String(externalId.cause) : ""
+    ).toContain("Embedded Tafsir locales cannot use an external-only source.");
+    expect(
+      Exit.isFailure(insecureTafsir) ? String(insecureTafsir.cause) : ""
+    ).toContain("Quran source links must use HTTPS.");
   });
 });
