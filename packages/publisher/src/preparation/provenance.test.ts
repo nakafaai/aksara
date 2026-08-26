@@ -1,8 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 
@@ -29,21 +29,22 @@ const blockedQuran = QuranSnapshotSchema.make({
 });
 
 describe("snapshot provenance", () => {
-  it("rejects a blocked Quran replacement", async () => {
-    const error = await Effect.runPromise(
-      requireSnapshotProvenance({
-        family: "quran",
-        manifest: blockedQuran,
-      }).pipe(Effect.flip)
-    );
+  it.effect("rejects a blocked Quran replacement", () =>
+    requireSnapshotProvenance({
+      family: "quran",
+      manifest: blockedQuran,
+    }).pipe(
+      Effect.flip,
+      Effect.map((error) =>
+        expect(error).toMatchObject({
+          _tag: "QuranProvenanceBlockedError",
+          provenanceDigest: blockedQuran.provenanceDigest,
+        })
+      )
+    )
+  );
 
-    expect(error).toMatchObject({
-      _tag: "QuranProvenanceBlockedError",
-      provenanceDigest: blockedQuran.provenanceDigest,
-    });
-  });
-
-  it("accepts an approved Quran replacement and other families", async () => {
+  it.effect("accepts an approved Quran replacement and other families", () => {
     const approved = {
       family: "quran",
       manifest: { ...blockedQuran, provenanceStatus: "approved" },
@@ -63,13 +64,11 @@ describe("snapshot provenance", () => {
       }),
     } as const;
 
-    await expect(
-      Effect.runPromise(
-        Effect.all([
-          requireSnapshotProvenance(approved),
-          requireSnapshotProvenance(program),
-        ])
-      )
-    ).resolves.toEqual([undefined, undefined]);
+    return Effect.all([
+      requireSnapshotProvenance(approved),
+      requireSnapshotProvenance(program),
+    ]).pipe(
+      Effect.map((result) => expect(result).toEqual([undefined, undefined]))
+    );
   });
 });
