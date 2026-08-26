@@ -101,6 +101,9 @@ describe("Quran translation notes", () => {
           text: "Translation[1].",
         })
       );
+      const invalidSource = yield* Effect.result(
+        parseQuranTranslation({ footnotes: "", text: "" })
+      );
 
       expect(invalid).toEqual(
         expect.objectContaining({
@@ -134,6 +137,10 @@ describe("Quran translation notes", () => {
           failure: { reason: "mismatched-markers" },
         });
       }
+      expect(invalidSource).toMatchObject({
+        _tag: "Failure",
+        failure: { reason: "invalid-source" },
+      });
     })
   );
 

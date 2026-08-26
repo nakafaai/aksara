@@ -43,6 +43,7 @@ export class QuranTranslationNotesError extends Schema.TaggedError<QuranTranslat
     reason: Schema.Literals([
       "empty-note",
       "invalid-marker",
+      "invalid-source",
       "mismatched-markers",
     ]),
   }
@@ -203,7 +204,14 @@ export type QuranTranslation = typeof QuranTranslationSchema.Type;
 /** Parses one exact source translation into linked reference-ready semantics. */
 export const parseQuranTranslation = Effect.fn(
   "AksaraContracts.parseQuranTranslation"
-)(function* (source: QuranTranslationSource) {
+)(function* (input: unknown) {
+  const source = yield* Schema.decodeUnknownEffect(
+    QuranTranslationSourceSchema
+  )(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(
+      () => new QuranTranslationNotesError({ reason: "invalid-source" })
+    )
+  );
   const result = analyzeTranslation(source);
   if (result._tag === "Failure") {
     return yield* new QuranTranslationNotesError({ reason: result.reason });
