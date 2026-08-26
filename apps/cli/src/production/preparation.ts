@@ -162,7 +162,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     const tryoutRuntime = yield* selectTryoutRuntimeTransition({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
-      rendererManifest,
       snapshot:
         snapshots.tryoutRuntimeSnapshot ??
         verifiedBaseTryoutRuntimeBundle?.payload.snapshot ??

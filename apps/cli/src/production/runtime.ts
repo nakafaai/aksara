@@ -73,7 +73,6 @@ export const selectTryoutRuntimeTransition = Effect.fn(
 )(function* (input: {
   readonly base: ProductionBaseIdentity | null;
   readonly bundle: SignedTryoutRuntimeBundle | null;
-  readonly rendererManifest: RendererManifestEnvelope;
   readonly snapshot: TryoutSnapshot | null;
 }) {
   if (input.snapshot === null) {
@@ -87,11 +86,6 @@ export const selectTryoutRuntimeTransition = Effect.fn(
     return yield* new BaseTryoutRuntimeBundleMismatchError({
       reason: "missing-recovery",
     });
-  }
-  if (
-    input.bundle.payload.rendererManifestHash === input.rendererManifest.hash
-  ) {
-    return { recovery: null, result: input.snapshot };
   }
   return {
     recovery: input.bundle.payload.snapshot,

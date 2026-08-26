@@ -192,13 +192,11 @@ describe("production runtime bundle preparation", () => {
         ...bundle.payload.snapshot,
         snapshotId: OTHER_SNAPSHOT_ID,
       };
-      const rendererManifest = yield* refreshedRendererManifest;
 
       assert.isNull(
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          rendererManifest: RENDERER_MANIFEST,
           snapshot: null,
         })
       );
@@ -206,7 +204,6 @@ describe("production runtime bundle preparation", () => {
         yield* selectTryoutRuntimeTransition({
           base: null,
           bundle: null,
-          rendererManifest: RENDERER_MANIFEST,
           snapshot: result,
         }),
         { recovery: null, result }
@@ -215,7 +212,6 @@ describe("production runtime bundle preparation", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          rendererManifest,
           snapshot: bundle.payload.snapshot,
         }),
         { recovery: null, result: bundle.payload.snapshot }
@@ -224,16 +220,6 @@ describe("production runtime bundle preparation", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          rendererManifest: RENDERER_MANIFEST,
-          snapshot: result,
-        }),
-        { recovery: null, result }
-      );
-      assert.deepStrictEqual(
-        yield* selectTryoutRuntimeTransition({
-          base,
-          bundle,
-          rendererManifest,
           snapshot: result,
         }),
         { recovery: bundle.payload.snapshot, result }
@@ -241,7 +227,6 @@ describe("production runtime bundle preparation", () => {
       const missing = yield* selectTryoutRuntimeTransition({
         base,
         bundle: null,
-        rendererManifest,
         snapshot: result,
       }).pipe(Effect.flip);
       assert.strictEqual(missing._tag, "BaseTryoutRuntimeBundleMismatchError");
