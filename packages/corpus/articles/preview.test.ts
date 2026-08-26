@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
 import {
@@ -18,54 +18,62 @@ const germanPath = CorpusSourcePathSchema.make(
   "packages/corpus/articles/politics/dynastic-politics/asian-values/de.mdx"
 );
 
-describe("article preview projection", () => {
-  it("projects every selected body through one source owner", async () => {
-    const entries = await Effect.runPromise(
-      decodeArticlePreviewEntries([englishPath, germanPath], [articleSource()])
-    );
+layer(NodeServices.layer)("article preview projection", (it) => {
+  it.effect("projects every selected body through one source owner", () =>
+    Effect.gen(function* () {
+      const entries = yield* decodeArticlePreviewEntries(
+        [englishPath, germanPath],
+        [articleSource()]
+      );
 
-    expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
-    expect(entries.find(({ route }) => route.appLocale === "de")).toMatchObject(
-      {
+      expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
+      expect(
+        entries.find(({ route }) => route.appLocale === "de")
+      ).toMatchObject({
         categoryTitle: "Politik",
         route: {
           contentKey: "articles/politics/dynastic-politics-asian-values",
           publicPath:
             "articles/politik/dynastische-politik-und-asiatische-werte",
         },
-      }
-    );
-  });
+      });
+    })
+  );
 
-  it("returns one exact selected entry and no invented unselected body", async () => {
-    const selected = await Effect.runPromise(
-      decodeArticlePreviewEntry(germanPath, [articleSource()])
-    );
-    const empty = await Effect.runPromise(
-      decodeArticlePreviewEntries([], [articleSource()])
-    );
+  it.effect(
+    "returns one exact selected entry and no invented unselected body",
+    () =>
+      Effect.gen(function* () {
+        const selected = yield* decodeArticlePreviewEntry(germanPath, [
+          articleSource(),
+        ]);
+        const empty = yield* decodeArticlePreviewEntries([], [articleSource()]);
 
-    if (selected === undefined) {
-      throw new Error("Expected the selected German article.");
-    }
-    const [selection, repeated] = await Effect.runPromise(
-      selectArticleEntries(corpusRoot, [selected, selected]).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
-    if (!(selection && repeated)) {
-      throw new Error("Expected both repeated article selections.");
-    }
+        expect(selected).toBeDefined();
+        if (selected === undefined) {
+          return;
+        }
 
-    expect(selected?.sourcePath).toBe(germanPath);
-    expect(empty).toEqual([]);
-    expect(selection.sources[0].dependencies).toContainEqual({
-      mode: "restart",
-      sourcePath:
-        "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
-    });
-    expect(repeated.sources[0].dependencies).toEqual(
-      selection.sources[0].dependencies
-    );
-  });
+        const [selection, repeated] = yield* selectArticleEntries(corpusRoot, [
+          selected,
+          selected,
+        ]);
+        expect(selection).toBeDefined();
+        expect(repeated).toBeDefined();
+        if (!(selection && repeated)) {
+          return;
+        }
+
+        expect(selected.sourcePath).toBe(germanPath);
+        expect(empty).toEqual([]);
+        expect(selection.sources[0].dependencies).toContainEqual({
+          mode: "restart",
+          sourcePath:
+            "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
+        });
+        expect(repeated.sources[0].dependencies).toEqual(
+          selection.sources[0].dependencies
+        );
+      })
+  );
 });
