@@ -1,10 +1,6 @@
-import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { resolve } from "node:path";
-
 import { NodeServices } from "@effect/platform-node";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
+import { afterEach, assert, layer } from "@nakafa/testing/effect";
+import { Effect, FileSystem, Path } from "effect";
 import { vi } from "vitest";
 import { stringify } from "yaml";
 
@@ -12,6 +8,7 @@ import {
   type BumpDependenciesConfig,
   makeBumpDependenciesProgram,
 } from "#scripts/bump-deps";
+import { makeRunner, output } from "#scripts/bump-deps/fixture";
 import {
   DependencyCommandError,
   type PnpmRunner,
@@ -40,262 +37,251 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
 });
 
 const originalPath = process.env.PATH;
-const temporaryRoots = new Set<string>();
 
 /** Writes one complete dependency-policy fixture. */
-function createConfig(input?: {
-  readonly invalidManifest?: string;
-  readonly invalidWorkspace?: string;
-  readonly minimumReleaseAge?: number;
-  readonly minimumReleaseAgeExclude?: readonly string[];
-  readonly minimumReleaseAgeStrict?: boolean;
-  readonly omitUltracite?: boolean;
-  readonly omitIgnore?: string;
-}) {
-  const root = mkdtempSync(resolve(tmpdir(), "aksara-bump-deps-"));
-  temporaryRoots.add(root);
-  const manifest = resolve(root, "package.json");
-  const workspace = resolve(root, "pnpm-workspace.yaml");
-  const devDependencies: Record<string, string> = {
-    "@biomejs/biome": "2.5.10",
-    "@effect/tsgo": "0.36.5",
-    "@types/node": "24.13.3",
-    "@typescript/native": "npm:typescript@7.0.2",
-    ...(input?.omitUltracite ? {} : { ultracite: "7.10.6" }),
-  };
-  const ignoreDeps = expectedIgnoredDependencies().filter(
-    (dependency) => dependency !== input?.omitIgnore
-  );
-
-  writeFileSync(
-    manifest,
-    input?.invalidManifest ??
-      JSON.stringify({
-        devDependencies,
-        devEngines: { runtime: { version: "24.19.0" } },
-        packageManager: "pnpm@11.22.0",
-      })
-  );
-  writeFileSync(
-    workspace,
-    input?.invalidWorkspace ??
-      stringify({
-        catalog: {
-          "@effect/platform-node": "4.0.0-rc.110",
-          "@effect/vitest": "4.0.0-rc.110",
-          effect: "4.0.0-rc.110",
-          typescript: "npm:@typescript/typescript6@6.0.2",
-        },
-        minimumReleaseAge:
-          input?.minimumReleaseAge ?? DEPENDENCY_RELEASE_AGE_MINUTES,
-        minimumReleaseAgeExclude:
-          input?.minimumReleaseAgeExclude ?? DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-        minimumReleaseAgeStrict: input?.minimumReleaseAgeStrict ?? true,
-        update: { ignoreDeps },
-      })
-  );
-  return { manifest, root, workspace } satisfies BumpDependenciesConfig;
-}
-
-/** Builds deterministic pnpm output for one policy test. */
-function makeRunner(input?: {
-  readonly outdated?: CommandResult;
-  readonly registry?: Readonly<Record<string, CommandResult>>;
-  readonly update?: CommandResult;
-}): PnpmRunner {
-  return (_root, args) => {
-    if (args[0] === "update") {
-      return Effect.succeed(input?.update ?? output());
-    }
-    if (args[0] === "outdated") {
-      return Effect.succeed(input?.outdated ?? output(1, "{}"));
-    }
-    const registry = args[1] ?? "missing";
-    const configured = input?.registry?.[registry];
-    const reviewed = DEPENDENCY_HOLDS.find(
-      (hold) => hold.registry === registry
-    )?.reviewedLatest;
-    return Effect.succeed(
-      configured ?? output(0, JSON.stringify(reviewed ?? "missing"))
+const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
+  function* (input?: {
+    readonly invalidManifest?: string;
+    readonly invalidWorkspace?: string;
+    readonly minimumReleaseAge?: number;
+    readonly minimumReleaseAgeExclude?: readonly string[];
+    readonly minimumReleaseAgeStrict?: boolean;
+    readonly omitUltracite?: boolean;
+    readonly omitIgnore?: string;
+  }) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const root = yield* fileSystem.makeTempDirectoryScoped({
+      prefix: "aksara-bump-deps-",
+    });
+    const manifest = path.join(root, "package.json");
+    const workspace = path.join(root, "pnpm-workspace.yaml");
+    const devDependencies: Record<string, string> = {
+      "@biomejs/biome": "2.5.10",
+      "@effect/tsgo": "0.36.5",
+      "@types/node": "24.13.3",
+      "@typescript/native": "npm:typescript@7.0.2",
+      ...(input?.omitUltracite ? {} : { ultracite: "7.10.6" }),
+    };
+    const ignoreDeps = expectedIgnoredDependencies().filter(
+      (dependency) => dependency !== input?.omitIgnore
     );
-  };
-}
 
-interface CommandResult {
-  readonly exitCode: number;
-  readonly stderr: string;
-  readonly stdout: string;
-}
-
-/** Creates one exact command observation. */
-function output(exitCode = 0, stdout = "", stderr = ""): CommandResult {
-  return { exitCode, stderr, stdout };
-}
+    yield* fileSystem.writeFileString(
+      manifest,
+      input?.invalidManifest ??
+        JSON.stringify({
+          devDependencies,
+          devEngines: { runtime: { version: "24.19.0" } },
+          packageManager: "pnpm@11.22.0",
+        })
+    );
+    yield* fileSystem.writeFileString(
+      workspace,
+      input?.invalidWorkspace ??
+        stringify({
+          catalog: {
+            "@effect/platform-node": "4.0.0-rc.110",
+            "@effect/vitest": "4.0.0-rc.110",
+            effect: "4.0.0-rc.110",
+            typescript: "npm:@typescript/typescript6@6.0.2",
+          },
+          minimumReleaseAge:
+            input?.minimumReleaseAge ?? DEPENDENCY_RELEASE_AGE_MINUTES,
+          minimumReleaseAgeExclude:
+            input?.minimumReleaseAgeExclude ??
+            DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
+          minimumReleaseAgeStrict: input?.minimumReleaseAgeStrict ?? true,
+          update: { ignoreDeps },
+        })
+    );
+    return { manifest, root, workspace } satisfies BumpDependenciesConfig;
+  }
+);
 
 /** Returns one typed program failure at the Vitest boundary. */
-function fail(config: BumpDependenciesConfig, runner: PnpmRunner) {
-  return Effect.runPromise(
-    makeBumpDependenciesProgram(config, runner).pipe(
-      Effect.flip,
-      Effect.provide(NodeServices.layer)
-    )
-  );
-}
+const fail = Effect.fn("BumpDependenciesTest.fail")(
+  (config: BumpDependenciesConfig, runner: PnpmRunner) =>
+    makeBumpDependenciesProgram(config, runner).pipe(Effect.flip)
+);
 
 /** Installs a local pnpm executable that serves the reviewed registry view. */
-function installFakePnpm(root: string) {
-  const versions = Object.fromEntries(
-    DEPENDENCY_HOLDS.map(({ registry, reviewedLatest }) => [
-      registry,
-      reviewedLatest,
-    ])
-  );
-  const executable = resolve(root, "pnpm");
-  writeFileSync(
-    executable,
-    `#!/usr/bin/env node
+const installFakePnpm = Effect.fn("BumpDependenciesTest.installFakePnpm")(
+  function* (root: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const versions = Object.fromEntries(
+      DEPENDENCY_HOLDS.map(({ registry, reviewedLatest }) => [
+        registry,
+        reviewedLatest,
+      ])
+    );
+    const executable = path.join(root, "pnpm");
+    yield* fileSystem.writeFileString(
+      executable,
+      `#!/usr/bin/env node
 const args = process.argv.slice(2);
 const versions = ${JSON.stringify(versions)};
 if (args[0] === "view") console.log(JSON.stringify(versions[args[1]]));
 if (args[0] === "outdated") { console.log("{}"); process.exitCode = 1; }
 `
-  );
-  chmodSync(executable, 0o755);
-  process.env.PATH = `${root}:${originalPath ?? ""}`;
-}
+    );
+    yield* fileSystem.chmod(executable, 0o755);
+    vi.stubEnv("PATH", `${root}:${originalPath ?? ""}`);
+  }
+);
 
 afterEach(() => {
-  process.env.PATH = originalPath;
-  for (const root of temporaryRoots) {
-    rmSync(root, { force: true, recursive: true });
-  }
-  temporaryRoots.clear();
+  vi.unstubAllEnvs();
 });
 
-describe("dependency update policy", () => {
-  it("updates routines and reports every approved hold through real process IO", async () => {
-    const config = createConfig();
-    installFakePnpm(config.root);
+layer(NodeServices.layer, { excludeTestServices: true })(
+  "dependency update policy",
+  (it) => {
+    it.effect(
+      "updates routines and reports every approved hold through real process IO",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          yield* installFakePnpm(config.root);
 
-    const reports = await Effect.runPromise(
-      makeBumpDependenciesProgram(config).pipe(
-        Effect.provide(NodeServices.layer)
-      )
+          const reports = yield* makeBumpDependenciesProgram(config);
+          const effectReport = reports.find(
+            ({ dependency }) => dependency === "effect"
+          );
+
+          assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
+          assert.ok(effectReport);
+          assert.strictEqual(effectReport.current, "4.0.0-rc.110");
+          assert.strictEqual(effectReport.latest, "4.0.0-rc.111");
+          assert.strictEqual(runtime.calls, 1);
+        })
     );
 
-    expect(reports).toHaveLength(DEPENDENCY_HOLDS.length);
-    expect(
-      reports.find(({ dependency }) => dependency === "effect")
-    ).toMatchObject({
-      current: "4.0.0-rc.110",
-      latest: "4.0.0-rc.111",
-    });
-    expect(runtime.calls).toBe(1);
-  });
+    it.effect(
+      "fails with every unresolved declaration, registry, and routine hold",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig({ omitUltracite: true });
+          const error = yield* fail(
+            config,
+            makeRunner({
+              outdated: output(1, '{"yaml":{}}'),
+              registry: {
+                "ultracite@latest": output(0, '"7.10.7"'),
+              },
+            })
+          );
 
-  it("fails with every unresolved declaration, registry, and routine hold", async () => {
-    const config = createConfig({ omitUltracite: true });
-    const error = await fail(
-      config,
-      makeRunner({
-        outdated: output(1, '{"yaml":{}}'),
-        registry: {
-          "ultracite@latest": output(0, '"7.10.7"'),
-        },
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.ok(error.detail.includes("ultracite declares no version"));
+          assert.ok(error.detail.includes("ultracite upstream is 7.10.7"));
+          assert.ok(
+            error.detail.includes("Routine dependencies remain outdated: yaml")
+          );
+        })
+    );
+
+    it.effect(
+      "fails before updating when dependency safety policy drifts",
+      () =>
+        Effect.gen(function* () {
+          const runner = vi.fn(makeRunner());
+          const config = yield* createConfig({
+            minimumReleaseAge: 0,
+            minimumReleaseAgeExclude: [
+              ...DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
+              "effect",
+            ],
+            minimumReleaseAgeStrict: false,
+            omitIgnore: "effect",
+          });
+          const error = yield* fail(config, runner);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.ok(error.detail.includes("update.ignoreDeps"));
+          assert.ok(error.detail.includes("exactly 1440 minutes"));
+          assert.ok(error.detail.includes("must remain strict"));
+          assert.ok(error.detail.includes("minimumReleaseAgeExclude"));
+          assert.strictEqual(runner.mock.calls.length, 0);
+        })
+    );
+
+    it.effect("types update and repository file failures", () =>
+      Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const config = yield* createConfig();
+        const updateFailure = yield* fail(
+          config,
+          makeRunner({ update: output(2, "", "update failed") })
+        );
+        assert.strictEqual(updateFailure._tag, "DependencyCommandError");
+        assert.strictEqual(updateFailure.detail, "update failed");
+
+        const emptyUpdateFailure = yield* fail(
+          config,
+          makeRunner({ update: output(2) })
+        );
+        assert.strictEqual(emptyUpdateFailure.detail, "pnpm update failed.");
+
+        const missingManifest = yield* fail(
+          {
+            ...config,
+            manifest: path.join(config.root, "missing.json"),
+          },
+          makeRunner()
+        );
+        assert.strictEqual(missingManifest._tag, "DependencyPolicyError");
+
+        const invalidManifest = yield* createConfig({ invalidManifest: "{" });
+        const invalidManifestFailure = yield* fail(
+          invalidManifest,
+          makeRunner()
+        );
+        assert.ok(invalidManifestFailure.detail.includes("is not valid"));
+
+        const emptyManifest = yield* createConfig({ invalidManifest: "{}" });
+        const emptyManifestFailure = yield* fail(emptyManifest, makeRunner());
+        assert.ok(emptyManifestFailure.detail.includes("invalid shape"));
+
+        const invalidWorkspace = yield* createConfig({
+          invalidWorkspace: "[invalid",
+        });
+        const invalidWorkspaceFailure = yield* fail(
+          invalidWorkspace,
+          makeRunner()
+        );
+        assert.ok(invalidWorkspaceFailure.detail.includes("is not valid"));
+
+        const emptyWorkspace = yield* createConfig({ invalidWorkspace: "{}" });
+        const emptyWorkspaceFailure = yield* fail(emptyWorkspace, makeRunner());
+        assert.ok(emptyWorkspaceFailure.detail.includes("invalid shape"));
       })
     );
 
-    expect(error).toMatchObject({ _tag: "DependencyPolicyError" });
-    expect(error.detail).toContain("ultracite declares no version");
-    expect(error.detail).toContain("ultracite upstream is 7.10.7");
-    expect(error.detail).toContain(
-      "Routine dependencies remain outdated: yaml"
-    );
-  });
+    it.effect("preserves injected command-service failures", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const error = yield* fail(config, () =>
+          Effect.fail(
+            new DependencyCommandError({ detail: "runner unavailable" })
+          )
+        );
 
-  it("fails before updating when dependency safety policy drifts", async () => {
-    const runner = vi.fn(makeRunner());
-    const error = await fail(
-      createConfig({
-        minimumReleaseAge: 0,
-        minimumReleaseAgeExclude: [
-          ...DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-          "effect",
-        ],
-        minimumReleaseAgeStrict: false,
-        omitIgnore: "effect",
-      }),
-      runner
+        assert.strictEqual(error.detail, "runner unavailable");
+      })
     );
 
-    expect(error).toMatchObject({ _tag: "DependencyPolicyError" });
-    expect(error.detail).toContain("update.ignoreDeps");
-    expect(error.detail).toContain("exactly 1440 minutes");
-    expect(error.detail).toContain("must remain strict");
-    expect(error.detail).toContain("minimumReleaseAgeExclude");
-    expect(runner).not.toHaveBeenCalled();
-  });
+    it.effect("accepts an explicit fake runner without process services", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const runner = makeRunner();
+        const reports = yield* makeBumpDependenciesProgram(config, runner);
+        const missingRegistry = yield* runner(config.root, ["view"]);
 
-  it("types update and repository file failures", async () => {
-    const config = createConfig();
-    await expect(
-      fail(config, makeRunner({ update: output(2, "", "update failed") }))
-    ).resolves.toMatchObject({
-      _tag: "DependencyCommandError",
-      detail: "update failed",
-    });
-    await expect(
-      fail(config, makeRunner({ update: output(2) }))
-    ).resolves.toMatchObject({ detail: "pnpm update failed." });
-
-    await expect(
-      fail(
-        { ...config, manifest: resolve(config.root, "missing.json") },
-        makeRunner()
-      )
-    ).resolves.toHaveProperty("_tag", "DependencyPolicyError");
-    await expect(
-      fail(createConfig({ invalidManifest: "{" }), makeRunner())
-    ).resolves.toMatchObject({
-      detail: expect.stringContaining("is not valid"),
-    });
-    await expect(
-      fail(createConfig({ invalidManifest: "{}" }), makeRunner())
-    ).resolves.toMatchObject({
-      detail: expect.stringContaining("invalid shape"),
-    });
-    await expect(
-      fail(createConfig({ invalidWorkspace: "[invalid" }), makeRunner())
-    ).resolves.toMatchObject({
-      detail: expect.stringContaining("is not valid"),
-    });
-    await expect(
-      fail(createConfig({ invalidWorkspace: "{}" }), makeRunner())
-    ).resolves.toMatchObject({
-      detail: expect.stringContaining("invalid shape"),
-    });
-  });
-
-  it("preserves injected command-service failures", async () => {
-    const config = createConfig();
-    await expect(
-      fail(config, () =>
-        Effect.fail(
-          new DependencyCommandError({ detail: "runner unavailable" })
-        )
-      )
-    ).resolves.toMatchObject({
-      detail: "runner unavailable",
-    });
-  });
-
-  it("accepts an explicit fake runner without process services", async () => {
-    const reports = await Effect.runPromise(
-      makeBumpDependenciesProgram(
-        createConfig(),
-        makeRunner({ outdated: output() })
-      ).pipe(Effect.provide(NodeServices.layer))
+        assert.ok(reports.every(({ current }) => current !== "missing"));
+        assert.deepStrictEqual(missingRegistry, output(0, '"missing"'));
+      })
     );
-    expect(reports.every(({ current }) => current !== "missing")).toBe(true);
-  });
-});
+  }
+);
