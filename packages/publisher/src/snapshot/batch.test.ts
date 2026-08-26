@@ -1,6 +1,7 @@
 // @vitest-environment node
 
 import { Buffer } from "node:buffer";
+import { describe, expect, it } from "@effect/vitest";
 import {
   PublicPathSchema,
   ReleaseIdSchema,
@@ -18,7 +19,6 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import {
   canonicalizeSnapshotBatch,
@@ -97,14 +97,13 @@ function quranRow(boundSnapshotId: typeof snapshotId): QuranRow {
 }
 
 /** Materializes snapshot batches only at the Vitest execution boundary. */
-function collect<T extends ContentSnapshotRow>(rows: Stream.Stream<T>) {
-  return Effect.runPromise(
+const collect = Effect.fn("SnapshotBatchTest.collect")(
+  <T extends ContentSnapshotRow>(rows: Stream.Stream<T>) =>
     makeSnapshotBatches(releaseId, "program", snapshotId, rows).pipe(
       Stream.runCollect,
       Effect.map((chunk) => [...chunk])
     )
-  );
-}
+);
 
 describe("snapshot batching", () => {
   it("serializes the exact complete request in canonical field order", () => {
@@ -133,106 +132,114 @@ describe("snapshot batching", () => {
     );
   });
 
-  it("preserves an empty row stream without inventing an envelope", async () => {
-    await expect(collect(Stream.empty)).resolves.toEqual([]);
-  });
+  it.effect("preserves an empty row stream without inventing an envelope", () =>
+    Effect.gen(function* () {
+      expect(yield* collect(Stream.empty)).toEqual([]);
+    })
+  );
 
-  it("partitions rows at the exact target count ceiling", async () => {
-    const rows = Array.from(
-      { length: MAX_SNAPSHOT_BATCH_COUNT + 1 },
-      (_, index) => programRow(index)
-    );
-    const batches = await collect(Stream.fromIterable(rows));
+  it.effect("partitions rows at the exact target count ceiling", () =>
+    Effect.gen(function* () {
+      const rows = Array.from(
+        { length: MAX_SNAPSHOT_BATCH_COUNT + 1 },
+        (_, index) => programRow(index)
+      );
+      const batches = yield* collect(Stream.fromIterable(rows));
 
-    expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
-    expect(batches.map(({ rows: values }) => values.length)).toEqual([
-      MAX_SNAPSHOT_BATCH_COUNT,
-      1,
-    ]);
-    expect(
-      batches.every(
-        (batch) =>
-          Buffer.byteLength(canonicalizeSnapshotBatch(batch), "utf8") <=
+      expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
+      expect(batches.map(({ rows: values }) => values.length)).toEqual([
+        MAX_SNAPSHOT_BATCH_COUNT,
+        1,
+      ]);
+      expect(
+        batches.every(
+          (batch) =>
+            Buffer.byteLength(canonicalizeSnapshotBatch(batch), "utf8") <=
+            MAX_SNAPSHOT_BATCH_BYTES
+        )
+      ).toBe(true);
+    })
+  );
+
+  it.effect("splits rows that only fit separate complete envelopes", () =>
+    Effect.gen(function* () {
+      const title = "x".repeat(Math.floor(MAX_SNAPSHOT_BATCH_BYTES / 3));
+      const batches = yield* collect(
+        Stream.make(
+          programRow(0, title),
+          programRow(1, title),
+          programRow(2, title)
+        )
+      );
+
+      expect(batches.map(({ rows }) => rows.length)).toEqual([1, 1, 1]);
+    })
+  );
+
+  it.effect(
+    "rejects a standalone row exceeding the complete request ceiling",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* makeSnapshotBatches(
+          releaseId,
+          "program",
+          snapshotId,
+          Stream.make(programRow(0, "x".repeat(MAX_SNAPSHOT_BATCH_BYTES)))
+        ).pipe(Stream.runDrain, Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "PublicationBatchLimitError",
+          actualCount: 1,
+          kind: "snapshot",
+        });
+        expect("actualBytes" in error ? error.actualBytes : 0).toBeGreaterThan(
           MAX_SNAPSHOT_BATCH_BYTES
-      )
-    ).toBe(true);
-  });
+        );
+      })
+  );
 
-  it("splits rows that only fit separate complete envelopes", async () => {
-    const title = "x".repeat(Math.floor(MAX_SNAPSHOT_BATCH_BYTES / 3));
-    const batches = await collect(
-      Stream.make(
-        programRow(0, title),
-        programRow(1, title),
-        programRow(2, title)
-      )
-    );
-
-    expect(batches.map(({ rows }) => rows.length)).toEqual([1, 1, 1]);
-  });
-
-  it("rejects a standalone row exceeding the complete request ceiling", async () => {
-    const error = await Effect.runPromise(
-      makeSnapshotBatches(
-        releaseId,
-        "program",
-        snapshotId,
-        Stream.make(programRow(0, "x".repeat(MAX_SNAPSHOT_BATCH_BYTES)))
-      ).pipe(Stream.runDrain, Effect.flip)
-    );
-
-    expect(error).toMatchObject({
-      _tag: "PublicationBatchLimitError",
-      actualCount: 1,
-      kind: "snapshot",
-    });
-    expect("actualBytes" in error ? error.actualBytes : 0).toBeGreaterThan(
-      MAX_SNAPSHOT_BATCH_BYTES
-    );
-  });
-
-  it("rejects a row owned by another family at its global offset", async () => {
-    const error = await Effect.runPromise(
-      makeSnapshotBatches(
+  it.effect("rejects a row owned by another family at its global offset", () =>
+    Effect.gen(function* () {
+      const error = yield* makeSnapshotBatches(
         releaseId,
         "program",
         snapshotId,
         Stream.make(programRow(0), quranRow(snapshotId))
-      ).pipe(Stream.runDrain, Effect.flip)
-    );
+      ).pipe(Stream.runDrain, Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "SnapshotBatchBindingError",
-      actual: "quran",
-      expected: "program",
-      field: "family",
-      itemOffset: 1,
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "SnapshotBatchBindingError",
+        actual: "quran",
+        expected: "program",
+        field: "family",
+        itemOffset: 1,
+      });
+    })
+  );
 
-  it("rejects a Quran row bound to another immutable snapshot", async () => {
-    const error = await Effect.runPromise(
-      makeSnapshotBatches(
+  it.effect("rejects a Quran row bound to another immutable snapshot", () =>
+    Effect.gen(function* () {
+      const error = yield* makeSnapshotBatches(
         releaseId,
         "quran",
         snapshotId,
         Stream.make(quranRow(otherSnapshotId))
-      ).pipe(Stream.runDrain, Effect.flip)
-    );
+      ).pipe(Stream.runDrain, Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "SnapshotBatchBindingError",
-      actual: otherSnapshotId,
-      expected: snapshotId,
-      family: "quran",
-      field: "snapshotId",
-      itemOffset: 0,
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "SnapshotBatchBindingError",
+        actual: otherSnapshotId,
+        expected: snapshotId,
+        family: "quran",
+        field: "snapshotId",
+        itemOffset: 0,
+      });
+    })
+  );
 
-  it("accepts a Quran row bound to the envelope snapshot", async () => {
-    const batches = await Effect.runPromise(
-      makeSnapshotBatches(
+  it.effect("accepts a Quran row bound to the envelope snapshot", () =>
+    Effect.gen(function* () {
+      const batches = yield* makeSnapshotBatches(
         releaseId,
         "quran",
         snapshotId,
@@ -240,10 +247,10 @@ describe("snapshot batching", () => {
       ).pipe(
         Stream.runCollect,
         Effect.map((chunk) => [...chunk])
-      )
-    );
+      );
 
-    expect(batches).toHaveLength(1);
-    expect(batches[0]?.rows).toHaveLength(1);
-  });
+      expect(batches).toHaveLength(1);
+      expect(batches[0]?.rows).toHaveLength(1);
+    })
+  );
 });
