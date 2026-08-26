@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import type { Paragraph, Root } from "mdast";

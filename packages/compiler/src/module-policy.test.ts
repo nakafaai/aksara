@@ -1,5 +1,5 @@
+import { assert, describe, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Root } from "mdast";
 import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors";

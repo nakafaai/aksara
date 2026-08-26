@@ -1,5 +1,5 @@
+import { assert, describe, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
 import { createTestRendererManifest } from "#compiler/test/content";
