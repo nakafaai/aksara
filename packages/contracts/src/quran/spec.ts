@@ -3,6 +3,9 @@ import { Schema } from "effect";
 /** Tafsir locale whose complete reviewed source may enter runtime rows. */
 export const QuranTafsirLocaleSchema = Schema.Literal("id");
 
+/** App locales whose official Tafsir edition remains an external link. */
+export const QuranExternalTafsirLocaleSchema = Schema.Literals(["en", "de"]);
+
 /** Exact number of reviewed surahs in the authored Quran source. */
 export const QURAN_SURAH_COUNT = 114;
 

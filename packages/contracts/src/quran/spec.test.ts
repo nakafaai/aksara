@@ -9,6 +9,7 @@ import {
   QURAN_CHUNK_SIZE,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
+  QuranExternalTafsirLocaleSchema,
   QuranMeaningfulTextSchema,
 } from "#contracts/quran/spec";
 import { quranVerse } from "#contracts/test/quran";
@@ -32,11 +33,13 @@ describe("Quran base contracts", () => {
     expect({
       attributionCount: QURAN_ATTRIBUTION_COUNT,
       chunkSize: QURAN_CHUNK_SIZE,
+      externalTafsirLocales: QuranExternalTafsirLocaleSchema.literals,
       surahCount: QURAN_SURAH_COUNT,
       verseCount: QURAN_VERSE_COUNT,
     }).toEqual({
       attributionCount: 1,
       chunkSize: 6,
+      externalTafsirLocales: ["en", "de"],
       surahCount: 114,
       verseCount: 6236,
     });
