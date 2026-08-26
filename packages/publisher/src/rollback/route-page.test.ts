@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ContentKeySchema,
   PublicPathSchema,
@@ -12,7 +13,6 @@ import {
   RouteRollbackRecordSchema,
 } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -71,79 +71,83 @@ function targetWith(
 }
 
 /** Collects one complete authenticated route replay. */
-function collect(target: typeof PublicationTarget.Service, expectedTotal = 3) {
-  return Effect.runPromise(
+const collect = Effect.fn("RoutePageTest.collect")(
+  (target: typeof PublicationTarget.Service, expectedTotal = 3) =>
     streamRouteRecords(rollbackOf, rollbackOfManifestHash, expectedTotal).pipe(
       Stream.runCollect,
       Effect.provideService(PublicationTarget, target)
     )
-  );
-}
+);
 
 /** Returns the typed failure from one route replay. */
-function reject(target: typeof PublicationTarget.Service, expectedTotal = 3) {
-  return Effect.runPromise(
+const reject = Effect.fn("RoutePageTest.reject")(
+  (target: typeof PublicationTarget.Service, expectedTotal = 3) =>
     streamRouteRecords(rollbackOf, rollbackOfManifestHash, expectedTotal).pipe(
       Stream.runCollect,
       Effect.provideService(PublicationTarget, target),
       Effect.flip
     )
-  );
-}
+);
 
 describe("streamRouteRecords", () => {
-  it("replays bounded pages through exact route indexes", async () => {
-    const routePage = vi.fn((request: RoutePageRequest) => {
-      if (request.afterIndex === -1) {
+  it.effect("replays bounded pages through exact route indexes", () =>
+    Effect.gen(function* () {
+      const routePage = vi.fn((request: RoutePageRequest) => {
+        if (request.afterIndex === -1) {
+          return Effect.succeed(
+            page({
+              done: false,
+              nextIndex: 0,
+              records: [routeRecord(0)],
+              total: 3,
+            })
+          );
+        }
+        if (request.afterIndex === 0) {
+          return Effect.succeed(
+            page({
+              done: false,
+              nextIndex: 1,
+              records: [routeRecord(1, "test:prior")],
+              total: 3,
+            })
+          );
+        }
         return Effect.succeed(
           page({
-            done: false,
-            nextIndex: 0,
-            records: [routeRecord(0)],
+            done: true,
+            nextIndex: 2,
+            records: [routeRecord(2)],
             total: 3,
           })
         );
-      }
-      if (request.afterIndex === 0) {
-        return Effect.succeed(
-          page({
-            done: false,
-            nextIndex: 1,
-            records: [routeRecord(1, "test:prior")],
-            total: 3,
-          })
-        );
-      }
-      return Effect.succeed(
-        page({
-          done: true,
-          nextIndex: 2,
-          records: [routeRecord(2)],
-          total: 3,
-        })
+      });
+      const records = yield* collect(targetWith(routePage));
+
+      expect([...records].map(({ current }) => current.index)).toEqual([
+        0, 1, 2,
+      ]);
+      expect(
+        routePage.mock.calls.map(([request]) => request.afterIndex)
+      ).toEqual([-1, 0, 1]);
+    })
+  );
+
+  it.effect("accepts the canonical empty terminal page", () =>
+    Effect.gen(function* () {
+      const records = yield* collect(
+        targetWith(() =>
+          Effect.succeed(
+            page({ done: true, nextIndex: -1, records: [], total: 0 })
+          )
+        ),
+        0
       );
-    });
-    const records = await collect(targetWith(routePage));
+      expect([...records]).toEqual([]);
+    })
+  );
 
-    expect([...records].map(({ current }) => current.index)).toEqual([0, 1, 2]);
-    expect(routePage.mock.calls.map(([request]) => request.afterIndex)).toEqual(
-      [-1, 0, 1]
-    );
-  });
-
-  it("accepts the canonical empty terminal page", async () => {
-    const records = await collect(
-      targetWith(() =>
-        Effect.succeed(
-          page({ done: true, nextIndex: -1, records: [], total: 0 })
-        )
-      ),
-      0
-    );
-    expect([...records]).toEqual([]);
-  });
-
-  it.each([
+  it.effect.each([
     [
       "decode",
       () => ({
@@ -198,45 +202,48 @@ describe("streamRouteRecords", () => {
       2,
       "RoutePageCursorError",
     ],
-  ] as const)(
-    "rejects invalid %s evidence",
-    async (_label, source, total, tag) => {
-      const error = await reject(
+  ] as const)("rejects invalid %s evidence", ([_label, source, total, tag]) =>
+    Effect.gen(function* () {
+      const error = yield* reject(
         targetWith(() => Effect.succeed(source())),
         total
       );
       expect(error._tag).toBe(tag);
-    }
+    })
   );
 
-  it("rejects a total that changes after cursor progress", async () => {
-    const target = targetWith((request) =>
-      Effect.succeed(
-        request.afterIndex === -1
-          ? page({
-              done: false,
-              nextIndex: 0,
-              records: [routeRecord(0)],
-              total: 3,
-            })
-          : page({
-              done: false,
-              nextIndex: 1,
-              records: [routeRecord(1)],
-              total: 4,
-            })
-      )
-    );
-    const error = await reject(target);
-    expect(error._tag).toBe("RoutePageTotalError");
-  });
+  it.effect("rejects a total that changes after cursor progress", () =>
+    Effect.gen(function* () {
+      const target = targetWith((request) =>
+        Effect.succeed(
+          request.afterIndex === -1
+            ? page({
+                done: false,
+                nextIndex: 0,
+                records: [routeRecord(0)],
+                total: 3,
+              })
+            : page({
+                done: false,
+                nextIndex: 1,
+                records: [routeRecord(1)],
+                total: 4,
+              })
+        )
+      );
+      const error = yield* reject(target);
+      expect(error._tag).toBe("RoutePageTotalError");
+    })
+  );
 
-  it("preserves typed target transport failures", async () => {
-    const transport = new PublicationTargetTransportError({
-      detail: { reason: "network" },
-      stage: "rollback",
-    });
-    const error = await reject(targetWith(() => Effect.fail(transport)));
-    expect(error).toEqual(transport);
-  });
+  it.effect("preserves typed target transport failures", () =>
+    Effect.gen(function* () {
+      const transport = new PublicationTargetTransportError({
+        detail: { reason: "network" },
+        stage: "rollback",
+      });
+      const error = yield* reject(targetWith(() => Effect.fail(transport)));
+      expect(error).toEqual(transport);
+    })
+  );
 });

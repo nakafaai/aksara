@@ -1,4 +1,4 @@
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import type { Program } from "estree-jsx";
 import type { Node as UnistNode } from "unist";
 import { readNodeProgram } from "#compiler/ast/program";

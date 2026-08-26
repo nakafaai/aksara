@@ -1,4 +1,4 @@
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/unstable/http";
 import {

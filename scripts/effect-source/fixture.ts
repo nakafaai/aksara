@@ -1,4 +1,4 @@
-import { assert } from "@nakafa/testing/effect";
+import { assert } from "@effect/vitest";
 import { Effect, FileSystem, Path, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/unstable/process";

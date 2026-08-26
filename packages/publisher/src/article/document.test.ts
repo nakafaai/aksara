@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Path } from "effect";
 import {
   loadArticleDocument,
@@ -12,87 +12,101 @@ const englishEntry = articleEntries.find(
     route.articleSlug === "dynastic-politics-asian-values" &&
     route.artifactLocale === "en"
 );
-if (englishEntry === undefined) {
-  throw new Error("Expected the real English politics article entry.");
-}
+
+/** Requires the reviewed English article registry fixture. */
+const requireEnglishEntry = Effect.fn(
+  "ArticleDocumentTest.requireEnglishEntry"
+)(() => Effect.fromNullishOr(englishEntry));
 
 describe("article document", () => {
-  it("maps a missing registry-owned source to its typed checkout error", async () => {
-    const error = await Effect.runPromise(
-      loadArticleDocument(checkoutRoot, englishEntry).pipe(
-        Effect.provide([testFileLayer(new Map()), Path.layer]),
-        Effect.flip
-      )
-    );
-
-    expect(error).toMatchObject({
-      _tag: "ArticleSourceError",
-      checkoutRoot,
-    });
-  });
-
-  it("rejects malformed authored metadata with the exact source path", async () => {
-    const error = await Effect.runPromise(
+  it.effect(
+    "maps a missing registry-owned source to its typed checkout error",
+    () =>
       Effect.gen(function* () {
-        const source = yield* loadArticleDocument(checkoutRoot, englishEntry);
-        return yield* makeArticleProjectionFromSource(source, {}).pipe(
+        const entry = yield* requireEnglishEntry();
+        const error = yield* loadArticleDocument(checkoutRoot, entry).pipe(
+          Effect.provide([testFileLayer(new Map()), Path.layer]),
           Effect.flip
         );
-      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
-    );
 
-    expect(error).toMatchObject({
-      _tag: "ArticleMetadataError",
-      sourcePath: englishEntry.sourcePath,
-    });
-  });
+        expect(error).toMatchObject({
+          _tag: "ArticleSourceError",
+          checkoutRoot,
+        });
+      })
+  );
 
-  it("rejects non-chronological article dates through the typed metadata error", async () => {
-    const error = await Effect.runPromise(
+  it.effect(
+    "rejects malformed authored metadata with the exact source path",
+    () =>
       Effect.gen(function* () {
-        const source = yield* loadArticleDocument(checkoutRoot, englishEntry);
-        return yield* makeArticleProjectionFromSource(source, {
-          authors: [{ name: "Shifna Zihdatal Haq" }],
-          dateModified: "2024-08-08",
-          datePublished: "2024-08-08",
-          title: "Invalid article dates",
-        }).pipe(Effect.flip);
-      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
-    );
+        const entry = yield* requireEnglishEntry();
+        const error = yield* Effect.gen(function* () {
+          const source = yield* loadArticleDocument(checkoutRoot, entry);
+          return yield* makeArticleProjectionFromSource(source, {}).pipe(
+            Effect.flip
+          );
+        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
 
-    expect(error).toMatchObject({
-      _tag: "ArticleMetadataError",
-      sourcePath: englishEntry.sourcePath,
-    });
-  });
+        expect(error).toMatchObject({
+          _tag: "ArticleMetadataError",
+          sourcePath: entry.sourcePath,
+        });
+      })
+  );
 
-  it("derives official status only from the real Nakafa team registry", async () => {
-    const [official, independent] = await Effect.runPromise(
+  it.effect(
+    "rejects non-chronological article dates through the typed metadata error",
+    () =>
       Effect.gen(function* () {
-        const source = yield* loadArticleDocument(checkoutRoot, englishEntry);
-        const shared = {
-          datePublished: "2024-08-08",
-          title: "Reviewed article",
-        };
-        const officialProjection = yield* makeArticleProjectionFromSource(
-          source,
-          {
-            ...shared,
+        const entry = yield* requireEnglishEntry();
+        const error = yield* Effect.gen(function* () {
+          const source = yield* loadArticleDocument(checkoutRoot, entry);
+          return yield* makeArticleProjectionFromSource(source, {
             authors: [{ name: "Shifna Zihdatal Haq" }],
-          }
-        );
-        const independentProjection = yield* makeArticleProjectionFromSource(
-          source,
-          {
-            ...shared,
-            authors: [{ name: "Independent Author" }],
-          }
-        );
-        return [officialProjection, independentProjection] as const;
-      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
-    );
+            dateModified: "2024-08-08",
+            datePublished: "2024-08-08",
+            title: "Invalid article dates",
+          }).pipe(Effect.flip);
+        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
 
-    expect(official.official).toBe(true);
-    expect(independent.official).toBe(false);
-  });
+        expect(error).toMatchObject({
+          _tag: "ArticleMetadataError",
+          sourcePath: entry.sourcePath,
+        });
+      })
+  );
+
+  it.effect(
+    "derives official status only from the real Nakafa team registry",
+    () =>
+      Effect.gen(function* () {
+        const entry = yield* requireEnglishEntry();
+        const [official, independent] = yield* Effect.gen(function* () {
+          const source = yield* loadArticleDocument(checkoutRoot, entry);
+          const shared = {
+            datePublished: "2024-08-08",
+            title: "Reviewed article",
+          };
+          const officialProjection = yield* makeArticleProjectionFromSource(
+            source,
+            {
+              ...shared,
+              authors: [{ name: "Shifna Zihdatal Haq" }],
+            }
+          );
+          const independentProjection = yield* makeArticleProjectionFromSource(
+            source,
+            {
+              ...shared,
+              authors: [{ name: "Independent Author" }],
+            }
+          );
+          return [officialProjection, independentProjection] as const;
+        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
+
+        expect(official.official).toBe(true);
+        expect(independent.official).toBe(false);
+      })
+  );
 });

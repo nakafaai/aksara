@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path } from "effect";
 import {
   loadQuestionDocument,
@@ -21,80 +21,101 @@ const answerEntry = questionEntries.find(
   ({ bodyKind, artifactLocale }) =>
     bodyKind === "answer" && artifactLocale === "en"
 );
-if (!(promptEntry && answerEntry)) {
-  throw new Error("Expected the real English question and answer entries.");
-}
+
+/** Requires the paired English question and answer registry fixtures. */
+const requireEntries = Effect.fn("QuestionDocumentTest.requireEntries")(
+  function* () {
+    const prompt = yield* Effect.fromNullishOr(promptEntry);
+    const answer = yield* Effect.fromNullishOr(answerEntry);
+    return { answer, prompt };
+  }
+);
 
 /** Loads one selected question body through the deterministic test filesystem. */
-function load(entry: QuestionEntry) {
-  return loadQuestionDocument(checkoutRoot, entry, questionChoices).pipe(
+const load = Effect.fn("QuestionDocumentTest.load")((entry: QuestionEntry) =>
+  loadQuestionDocument(checkoutRoot, entry, questionChoices).pipe(
     Effect.provide([testFileLayer(sourceByPath), Path.layer])
-  );
-}
+  )
+);
 
 describe("question document", () => {
-  it("maps a missing registry-owned source to its typed checkout error", async () => {
-    const error = await Effect.runPromise(
-      loadQuestionDocument(checkoutRoot, promptEntry, questionChoices).pipe(
-        Effect.provide([testFileLayer(new Map()), Path.layer]),
-        Effect.flip
-      )
-    );
+  it.effect(
+    "maps a missing registry-owned source to its typed checkout error",
+    () =>
+      Effect.gen(function* () {
+        const { prompt } = yield* requireEntries();
+        const error = yield* loadQuestionDocument(
+          checkoutRoot,
+          prompt,
+          questionChoices
+        ).pipe(
+          Effect.provide([testFileLayer(new Map()), Path.layer]),
+          Effect.flip
+        );
 
-    expect(error).toMatchObject({
-      _tag: "QuestionSourceError",
-      checkoutRoot,
-    });
-  });
+        expect(error).toMatchObject({
+          _tag: "QuestionSourceError",
+          checkoutRoot,
+        });
+      })
+  );
 
-  it("rejects malformed or invented authored metadata", async () => {
-    const source = await Effect.runPromise(load(promptEntry));
-    const errors = await Promise.all(
-      [{}, { authors: [], date: "2026-01-01", extra: true, title: "Test" }].map(
-        (metadata) =>
-          Effect.runPromise(
-            makeQuestionProjectionFromSource(source, metadata).pipe(Effect.flip)
-          )
-      )
-    );
+  it.effect("rejects malformed or invented authored metadata", () =>
+    Effect.gen(function* () {
+      const { prompt } = yield* requireEntries();
+      const source = yield* load(prompt);
+      const errors = yield* Effect.all(
+        [
+          {},
+          { authors: [], date: "2026-01-01", extra: true, title: "Test" },
+        ].map((metadata) =>
+          makeQuestionProjectionFromSource(source, metadata).pipe(Effect.flip)
+        )
+      );
 
-    expect(
-      errors.every(
-        (error) =>
-          error._tag === "QuestionMetadataError" &&
-          error.sourcePath === promptEntry.sourcePath
-      )
-    ).toBe(true);
-  });
+      expect(
+        errors.every(
+          (error) =>
+            error._tag === "QuestionMetadataError" &&
+            error.sourcePath === prompt.sourcePath
+        )
+      ).toBe(true);
+    })
+  );
 
-  it("keeps canonical artifactLocale choices only on the prompt projection", async () => {
-    const [promptSource, answerSource] = await Effect.runPromise(
-      Effect.all([load(promptEntry), load(answerEntry)])
-    );
-    const [prompt, answer] = await Effect.runPromise(
-      Effect.all([
-        makeQuestionProjectionFromSource(promptSource, {
-          authors: [{ name: "Nabil Akbarazzima Fatih" }],
-          date: "2026-01-01",
-          title: "Problem 1",
-        }),
-        makeQuestionProjectionFromSource(answerSource, {
-          authors: [{ name: "Nabil Akbarazzima Fatih" }],
-          date: "2026-01-01",
-          title: "Solution to Problem 1",
-        }),
-      ])
-    );
+  it.effect(
+    "keeps canonical artifactLocale choices only on the prompt projection",
+    () =>
+      Effect.gen(function* () {
+        const { answer: answerEntryValue, prompt: promptEntryValue } =
+          yield* requireEntries();
+        const [promptSource, answerSource] = yield* Effect.all([
+          load(promptEntryValue),
+          load(answerEntryValue),
+        ]);
+        const [prompt, answer] = yield* Effect.all([
+          makeQuestionProjectionFromSource(promptSource, {
+            authors: [{ name: "Nabil Akbarazzima Fatih" }],
+            date: "2026-01-01",
+            title: "Problem 1",
+          }),
+          makeQuestionProjectionFromSource(answerSource, {
+            authors: [{ name: "Nabil Akbarazzima Fatih" }],
+            date: "2026-01-01",
+            title: "Solution to Problem 1",
+          }),
+        ]);
 
-    expect(prompt).toMatchObject({
-      bodyKind: "question",
-      choices: questionChoices.en,
-      peerContentKey: answerEntry.contentKey,
-    });
-    expect(answer).toMatchObject({
-      bodyKind: "answer",
-      peerContentKey: promptEntry.contentKey,
-    });
-    expect("choices" in answer).toBe(false);
-  });
+        expect(prompt).toMatchObject({
+          bodyKind: "question",
+          choices: questionChoices.en,
+          peerContentKey: answerEntryValue.contentKey,
+        });
+        expect(answer).toMatchObject({
+          bodyKind: "answer",
+          peerContentKey: promptEntryValue.contentKey,
+        });
+        expect("choices" in answer).toBe(false);
+      })
+  );
 });

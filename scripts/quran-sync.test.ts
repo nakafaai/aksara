@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
@@ -22,7 +22,7 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
   };
 });
 
-vi.mock("@nakafa/aksara-corpus/quran/source/sync", async () => ({
+vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
   syncGermanQuranSources: vi.fn((repositoryRoot: string) => {
     sync.repositoryRoots.push(repositoryRoot);
     return Effect.succeed({
@@ -47,7 +47,7 @@ describe("German Quran source sync command", () => {
     "runs the source-owned sync capability from the repository root",
     () =>
       Effect.gen(function* () {
-        yield* Effect.scoped(makeQuranSourceSyncProgram()).pipe(
+        yield* makeQuranSourceSyncProgram().pipe(
           Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
         );
 

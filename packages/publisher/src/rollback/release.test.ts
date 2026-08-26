@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -8,7 +9,6 @@ import {
   inheritContentSnapshots,
   invertContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { buildRollbackRelease } from "#publisher/rollback/release";
 import { rendererManifest } from "#test/publication";
@@ -19,65 +19,66 @@ import {
 } from "#test/rollback/spec";
 
 describe("buildRollbackRelease", () => {
-  it("derives an upsert release, artifact, projection, result, and snapshot", async () => {
-    const releaseId = ReleaseIdSchema.make("test-build-rollback");
-    const prior = makeDerivedMaterial({
-      contentKey: "test:build-rollback",
-      hashCharacter: "d",
-      index: 0,
-      publicPath: "subjects/test/build-rollback",
-      releaseId,
-    });
-    const current = makeDerivedDelete({
-      contentKey: "test:build-rollback",
-      index: 0,
-    });
-    const record = makeDerivedTransition(current, prior.state);
-    const resultSummary = await Effect.runPromise(
-      digestResultCatalog(releaseId, Stream.make(prior.head))
-    );
-    const prepared = await Effect.runPromise(
-      buildRollbackRelease({
-        active: {
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          manifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
-          releaseId: ReleaseIdSchema.make("test-build-base"),
-          resultCount: 0,
-          resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-        },
-        records: Stream.make(record),
-        releaseId,
-        rendererManifest,
-        result: Stream.make(prior.head),
-        routes: Stream.empty,
-        scope: {
-          families: ["material"],
-          snapshots: [],
-        },
-        target: {
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
-        },
-      })
-    );
-    const [artifacts, items, projections] = await Effect.runPromise(
-      Effect.all([
-        prepared.artifacts.pipe(Stream.runCollect),
-        prepared.items.pipe(Stream.runCollect),
-        prepared.projections.pipe(Stream.runCollect),
-      ])
-    );
+  it.effect(
+    "derives an upsert release, artifact, projection, result, and snapshot",
+    () =>
+      Effect.gen(function* () {
+        const releaseId = ReleaseIdSchema.make("test-build-rollback");
+        const prior = makeDerivedMaterial({
+          contentKey: "test:build-rollback",
+          hashCharacter: "d",
+          index: 0,
+          publicPath: "subjects/test/build-rollback",
+          releaseId,
+        });
+        const current = makeDerivedDelete({
+          contentKey: "test:build-rollback",
+          index: 0,
+        });
+        const record = makeDerivedTransition(current, prior.state);
+        const resultSummary = yield* digestResultCatalog(
+          releaseId,
+          Stream.make(prior.head)
+        );
+        const prepared = yield* buildRollbackRelease({
+          active: {
+            activeAppLocales: ACTIVE_APP_LOCALES,
+            manifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+            releaseId: ReleaseIdSchema.make("test-build-base"),
+            resultCount: 0,
+            resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+          },
+          records: Stream.make(record),
+          releaseId,
+          rendererManifest,
+          result: Stream.make(prior.head),
+          routes: Stream.empty,
+          scope: {
+            families: ["material"],
+            snapshots: [],
+          },
+          target: {
+            activeAppLocales: ACTIVE_APP_LOCALES,
+            snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
+          },
+        });
+        const [artifacts, items, projections] = yield* Effect.all([
+          prepared.artifacts.pipe(Stream.runCollect),
+          prepared.items.pipe(Stream.runCollect),
+          prepared.projections.pipe(Stream.runCollect),
+        ]);
 
-    expect(prepared.manifest).toMatchObject({
-      itemCount: 1,
-      projectionCount: 1,
-      resultCount: resultSummary.count,
-      resultDigest: resultSummary.digest,
-      rollbackCount: 1,
-      upsertCount: 1,
-    });
-    expect([...artifacts]).toEqual([prior.state.artifact]);
-    expect([...items][0]?.change.operation).toBe("upsert");
-    expect([...projections]).toEqual([prior.state.projection]);
-  });
+        expect(prepared.manifest).toMatchObject({
+          itemCount: 1,
+          projectionCount: 1,
+          resultCount: resultSummary.count,
+          resultDigest: resultSummary.digest,
+          rollbackCount: 1,
+          upsertCount: 1,
+        });
+        expect([...artifacts]).toEqual([prior.state.artifact]);
+        expect([...items][0]?.change.operation).toBe("upsert");
+        expect([...projections]).toEqual([prior.state.projection]);
+      })
+  );
 });

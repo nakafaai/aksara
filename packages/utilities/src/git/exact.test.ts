@@ -1,5 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
-import { afterEach, assert, describe, it } from "@nakafa/testing/effect";
+import { afterEach, assert, describe, it } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
 import { vi } from "vitest";
 import {

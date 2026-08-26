@@ -1,4 +1,4 @@
-import { assert, describe, it } from "@nakafa/testing/effect";
+import { assert, describe, it } from "@effect/vitest";
 import { hashUtf8 } from "#compiler/hash";
 
 describe("hashUtf8", () => {

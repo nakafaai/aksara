@@ -1,6 +1,6 @@
+import { assert, describe, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { assert, describe, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";

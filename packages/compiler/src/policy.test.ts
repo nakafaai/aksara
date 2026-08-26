@@ -1,5 +1,5 @@
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";

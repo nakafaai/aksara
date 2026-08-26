@@ -1,8 +1,8 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   decodeGitBatchResponse,
@@ -48,22 +48,25 @@ function concatenate(...frames: readonly Uint8Array[]) {
 }
 
 describe("Git batch protocol", () => {
-  it("encodes canonical coordinates and decodes exact raw bytes", async () => {
-    const inputs = [blob(firstPath), blob(secondPath)];
-    const request = makeGitBatchRequest(commitSha, inputs);
-    const first = Uint8Array.from([0xef, 0xbb, 0xbf, 0x61]);
-    const second = new TextEncoder().encode("second");
-    const decoded = await Effect.runPromise(
-      decodeGitBatchResponse(concatenate(frame(first), frame(second)), inputs)
-    );
+  it.effect("encodes canonical coordinates and decodes exact raw bytes", () =>
+    Effect.gen(function* () {
+      const inputs = [blob(firstPath), blob(secondPath)];
+      const request = makeGitBatchRequest(commitSha, inputs);
+      const first = Uint8Array.from([0xef, 0xbb, 0xbf, 0x61]);
+      const second = new TextEncoder().encode("second");
+      const decoded = yield* decodeGitBatchResponse(
+        concatenate(frame(first), frame(second)),
+        inputs
+      );
 
-    expect(new TextDecoder().decode(request.stdin)).toBe(
-      `${commitSha}:${firstPath}\n${commitSha}:${secondPath}\n`
-    );
-    expect(request.stdoutLimit).toBe(210);
-    expect(decoded.get(firstPath)).toEqual(first);
-    expect(decoded.get(secondPath)).toEqual(second);
-  });
+      expect(new TextDecoder().decode(request.stdin)).toBe(
+        `${commitSha}:${firstPath}\n${commitSha}:${secondPath}\n`
+      );
+      expect(request.stdoutLimit).toBe(210);
+      expect(decoded.get(firstPath)).toEqual(first);
+      expect(decoded.get(secondPath)).toEqual(second);
+    })
+  );
 
   it("partitions canonical paths by count and retained byte ceilings", () => {
     const many = Array.from({ length: 129 }, (_, index) =>
@@ -86,46 +89,44 @@ describe("Git batch protocol", () => {
     expect(partitionGitBlobInputs([])).toEqual([]);
   });
 
-  it("rejects malformed, oversized, truncated, and trailing frames", async () => {
-    const input = [blob(firstPath, 1)];
-    const malformedHeader = new TextEncoder().encode("missing\n");
-    const oversized = frame(Uint8Array.from([0x61, 0x62]));
-    const truncated = frame(Uint8Array.from([0x61]), 2);
-    const trailing = concatenate(
-      frame(Uint8Array.from([0x61])),
-      Uint8Array.of(0)
-    );
-    const missingTerminator = new TextEncoder().encode("missing");
-    const invalidUtf8 = Uint8Array.from([0xc3, 0x28, 0x0a]);
+  it.effect(
+    "rejects malformed, oversized, truncated, and trailing frames",
+    () =>
+      Effect.gen(function* () {
+        const input = [blob(firstPath, 1)];
+        const malformedHeader = new TextEncoder().encode("missing\n");
+        const oversized = frame(Uint8Array.from([0x61, 0x62]));
+        const truncated = frame(Uint8Array.from([0x61]), 2);
+        const trailing = concatenate(
+          frame(Uint8Array.from([0x61])),
+          Uint8Array.of(0)
+        );
+        const missingTerminator = new TextEncoder().encode("missing");
+        const invalidUtf8 = Uint8Array.from([0xc3, 0x28, 0x0a]);
 
-    const errors = await Promise.all(
-      [
-        malformedHeader,
-        oversized,
-        decodeGitBatchResponse(truncated, [blob(firstPath, 8)]).pipe(
-          Effect.flip
-        ),
-        trailing,
-        missingTerminator,
-        invalidUtf8,
-      ].map((output) =>
-        Effect.runPromise(
-          output instanceof Uint8Array
-            ? decodeGitBatchResponse(output, input).pipe(Effect.flip)
-            : output
-        )
-      )
-    );
+        const errors = yield* Effect.all([
+          decodeGitBatchResponse(malformedHeader, input).pipe(Effect.flip),
+          decodeGitBatchResponse(oversized, input).pipe(Effect.flip),
+          decodeGitBatchResponse(truncated, [blob(firstPath, 8)]).pipe(
+            Effect.flip
+          ),
+          decodeGitBatchResponse(trailing, input).pipe(Effect.flip),
+          decodeGitBatchResponse(missingTerminator, input).pipe(Effect.flip),
+          decodeGitBatchResponse(invalidUtf8, input).pipe(Effect.flip),
+        ]);
 
-    expect(errors.every((error) => error instanceof GitBatchError)).toBe(true);
-    expect(errors.map(({ reason }) => reason)).toEqual([
-      "protocol",
-      "limit",
-      "protocol",
-      "protocol",
-      "protocol",
-      "protocol",
-    ]);
-    expect(errors[3]?.sourcePath).toBeNull();
-  });
+        expect(errors.every((error) => error instanceof GitBatchError)).toBe(
+          true
+        );
+        expect(errors.map(({ reason }) => reason)).toEqual([
+          "protocol",
+          "limit",
+          "protocol",
+          "protocol",
+          "protocol",
+          "protocol",
+        ]);
+        expect(errors[3]?.sourcePath).toBeNull();
+      })
+  );
 });
