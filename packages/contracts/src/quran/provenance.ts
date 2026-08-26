@@ -10,10 +10,10 @@ import {
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "#contracts/locale";
+import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
 import {
   hasCompleteQuranSourceCopy,
-  type QuranSourceAttribution,
   QuranSourceAttributionSchema,
   type QuranSourceId,
 } from "#contracts/quran/source";
@@ -73,30 +73,20 @@ export function quranProvenanceScopes(
   return scopes;
 }
 
+const QURAN_PROVENANCE_SOURCE = {
+  "arabic-text": "tanzil-text",
+  "de-tafsir-access": "mokhtasar-german",
+  "de-translation": "quranenc-german",
+  "en-tafsir-access": "mokhtasar-english",
+  "en-translation": "quranenc-english",
+  "id-tafsir": "quranenc-tafsir",
+  "id-translation": "quranenc-indonesian",
+  metadata: "tanzil-metadata",
+} satisfies Record<QuranProvenanceScope, QuranSourceId>;
+
 /** Resolves the only official source allowed to prove one provenance scope. */
 function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
-  if (scope === "arabic-text") {
-    return "tanzil-text";
-  }
-  if (scope === "metadata") {
-    return "tanzil-metadata";
-  }
-  if (scope === "en-translation") {
-    return "quranenc-english";
-  }
-  if (scope === "id-translation") {
-    return "quranenc-indonesian";
-  }
-  if (scope === "de-translation") {
-    return "quranenc-german";
-  }
-  if (scope === "en-tafsir-access") {
-    return "mokhtasar-english";
-  }
-  if (scope === "de-tafsir-access") {
-    return "mokhtasar-german";
-  }
-  return "quranenc-tafsir";
+  return QURAN_PROVENANCE_SOURCE[scope];
 }
 
 /** One reviewed official artifact and its field-level permission decision. */
@@ -180,40 +170,10 @@ export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenance
 
 const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance";
 
-/** Serializes one public attribution without trusting insertion order. */
-function canonicalizeAttribution(attribution: QuranSourceAttribution) {
-  return {
-    artifact: {
-      byteCount: attribution.artifact.byteCount,
-      digest: attribution.artifact.digest,
-      fileCount: attribution.artifact.fileCount,
-    },
-    copy: attribution.copy.map((entry) => ({
-      appLocale: entry.appLocale,
-      notice: entry.notice,
-      title: entry.title,
-    })),
-    id: attribution.id,
-    publisher: attribution.publisher,
-    retrievedAt: attribution.retrievedAt,
-    sourceUrl: attribution.sourceUrl,
-    terms: {
-      artifact: {
-        byteCount: attribution.terms.artifact.byteCount,
-        digest: attribution.terms.artifact.digest,
-        fileCount: attribution.terms.artifact.fileCount,
-      },
-      url: attribution.terms.url,
-    },
-    updateUrl: attribution.updateUrl,
-    version: attribution.version,
-  };
-}
-
 /** Produces stable JSON for one reviewed Quran provenance record. */
 export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
   return JSON.stringify({
-    attribution: canonicalizeAttribution(record.attribution),
+    attribution: canonicalizeQuranAttribution(record.attribution),
     evidence: record.evidence,
     scope: record.scope,
     status: record.status,
@@ -221,25 +181,28 @@ export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
 }
 
 /** Digests exact ordered provenance records under their active locale set. */
-export function hashQuranProvenance(input: {
-  readonly activeAppLocales: ActiveAppLocaleList;
-  readonly records: readonly QuranProvenanceRecord[];
-}) {
-  return Effect.try({
-    catch: () => new QuranProvenanceHashError(),
-    try: () => {
-      const hash = createHash("sha256")
-        .update(`${PROVENANCE_DOMAIN}\n`)
-        .update(JSON.stringify(input.activeAppLocales))
-        .update("\n");
-      for (const record of input.records) {
-        hash.update(canonicalizeQuranProvenance(record));
-        hash.update("\n");
-      }
-      return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-    },
-  });
-}
+export const hashQuranProvenance = Effect.fn(
+  "AksaraContracts.hashQuranProvenance"
+)(
+  (input: {
+    readonly activeAppLocales: ActiveAppLocaleList;
+    readonly records: readonly QuranProvenanceRecord[];
+  }) =>
+    Effect.try({
+      catch: () => new QuranProvenanceHashError(),
+      try: () => {
+        const hash = createHash("sha256")
+          .update(`${PROVENANCE_DOMAIN}\n`)
+          .update(JSON.stringify(input.activeAppLocales))
+          .update("\n");
+        for (const record of input.records) {
+          hash.update(canonicalizeQuranProvenance(record));
+          hash.update("\n");
+        }
+        return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
+      },
+    })
+);
 
 /** Builds a snapshot provenance gate from exact reviewed source records. */
 export const makeQuranProvenanceManifest = Effect.fn(

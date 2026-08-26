@@ -13,7 +13,7 @@ import {
   QuranChunkRowSchema,
   type QuranSnapshotRow,
 } from "#contracts/quran/snapshot/row";
-import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
+import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import { QuranSurahRowSchema } from "#contracts/quran/spec";
 import { makeQuranTestRecords } from "#contracts/test/quran";

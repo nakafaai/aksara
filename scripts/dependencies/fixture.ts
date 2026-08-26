@@ -1,7 +1,6 @@
 import { Effect } from "effect";
-
-import type { PnpmRunner } from "#scripts/dependency-command";
-import { DEPENDENCY_HOLDS } from "#scripts/dependency-policy";
+import type { PnpmRunner } from "#scripts/dependencies/command";
+import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
 interface CommandResult {
   readonly exitCode: number;

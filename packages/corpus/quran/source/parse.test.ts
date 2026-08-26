@@ -181,7 +181,7 @@ describe("Quran source parsing", () => {
     ]);
 
     expect(errors.map(({ detail }) => detail)).toEqual([
-      "Invalid QuranEnc JSON for surah 1.",
+      "Invalid QuranEnc response for surah 1.",
       "Invalid QuranEnc response for surah 1.",
     ]);
   });

@@ -5,8 +5,6 @@ import { vi } from "vitest";
 import {
   ACTIVE_APP_LOCALES,
   type ActiveAppLocaleList,
-  ActiveAppLocaleListSchema,
-  AppLocaleSchema,
 } from "#contracts/locale";
 import {
   canonicalizeQuranProvenance,
@@ -82,33 +80,49 @@ function record(
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const source = sourceForScope(scope);
+  const common = {
+    copy: activeAppLocales.map((appLocale) => ({
+      appLocale,
+      notice: `Reviewed ${appLocale} notice ${source}.`,
+      title: `Reviewed ${appLocale} title ${source}.`,
+    })),
+    publisher: `Reviewed publisher ${source}.`,
+    retrievedAt: "2026-07-24T17:57:50Z",
+    sourceUrl: `https://example.com/source/${source}`,
+    updateUrl: `https://example.com/update/${source}`,
+    version: "test-source-version",
+  };
+  const attribution =
+    source === "mokhtasar-english" || source === "mokhtasar-german"
+      ? {
+          ...common,
+          id: source,
+          kind: "external",
+          terms: {
+            access: "link-only",
+            url: `https://example.com/terms/${source}`,
+          },
+        }
+      : {
+          artifact: {
+            byteCount: 1,
+            digest: `sha256:${"a".repeat(64)}`,
+            fileCount: 1,
+          },
+          ...common,
+          id: source,
+          kind: "embedded",
+          terms: {
+            artifact: {
+              byteCount: 1,
+              digest: `sha256:${"b".repeat(64)}`,
+              fileCount: 1,
+            },
+            url: `https://example.com/terms/${source}`,
+          },
+        };
   return Schema.decodeUnknownSync(QuranProvenanceRecordSchema)({
-    attribution: {
-      artifact: {
-        byteCount: 1,
-        digest: `sha256:${"a".repeat(64)}`,
-        fileCount: 1,
-      },
-      copy: activeAppLocales.map((appLocale) => ({
-        appLocale,
-        notice: `Reviewed ${appLocale} notice ${source}.`,
-        title: `Reviewed ${appLocale} title ${source}.`,
-      })),
-      id: source,
-      publisher: `Reviewed publisher ${source}.`,
-      retrievedAt: "2026-07-24T17:57:50Z",
-      sourceUrl: `https://example.com/source/${source}`,
-      terms: {
-        artifact: {
-          byteCount: 1,
-          digest: `sha256:${"b".repeat(64)}`,
-          fileCount: 1,
-        },
-        url: `https://example.com/terms/${source}`,
-      },
-      updateUrl: `https://example.com/update/${source}`,
-      version: "test-source-version",
-    },
+    attribution,
     evidence: "Reviewed source statement.",
     scope,
     status,
@@ -126,42 +140,38 @@ function records(
 }
 
 describe("Quran provenance", () => {
-  it("canonicalizes, hashes, and derives the gate status", async () => {
-    const approved = records("approved");
-    const blocked = approved.map((source, index) =>
-      index === 1 ? { ...source, status: "blocked" as const } : source
-    );
-    const approvedManifest = await Effect.runPromise(
-      makeQuranProvenanceManifest({
+  it.effect("canonicalizes, hashes, and derives the gate status", () =>
+    Effect.gen(function* () {
+      const approved = records("approved");
+      const blocked = approved.map((source, index) =>
+        index === 1 ? { ...source, status: "blocked" as const } : source
+      );
+      const approvedManifest = yield* makeQuranProvenanceManifest({
         activeAppLocales: ACTIVE_APP_LOCALES,
         records: approved,
-      })
-    );
-    const blockedManifest = await Effect.runPromise(
-      makeQuranProvenanceManifest({
+      });
+      const blockedManifest = yield* makeQuranProvenanceManifest({
         activeAppLocales: ACTIVE_APP_LOCALES,
         records: blocked,
-      })
-    );
-    const [approvedRecord] = approved;
+      });
+      const approvedRecord = yield* Effect.fromNullishOr(approved[0]);
+      const canonical = canonicalizeQuranProvenance(approvedRecord);
+      const decoded = yield* Schema.decodeEffect(
+        Schema.fromJsonString(QuranProvenanceRecordSchema)
+      )(canonical);
 
-    expect(approvedRecord).toBeDefined();
-    if (approvedRecord === undefined) {
-      return;
-    }
-    expect(canonicalizeQuranProvenance(approvedRecord)).toBe(
-      JSON.stringify(approvedRecord)
-    );
-    expect(approvedManifest.status).toBe("approved");
-    expect(blockedManifest.status).toBe("blocked");
-    expect(blockedManifest.digest).not.toBe(approvedManifest.digest);
-  });
+      expect(decoded).toEqual(approvedRecord);
+      expect(approvedManifest.status).toBe("approved");
+      expect(blockedManifest.status).toBe("blocked");
+      expect(blockedManifest.digest).not.toBe(approvedManifest.digest);
+    })
+  );
 
-  it("keeps identity independent of object insertion order", async () => {
-    const canonical = record("metadata", "approved");
-    const reordered = reverseObjectKeys(canonical);
-    const [canonicalHash, reorderedHash] = await Effect.runPromise(
-      Effect.all([
+  it.effect("keeps identity independent of object insertion order", () =>
+    Effect.gen(function* () {
+      const canonical = record("metadata", "approved");
+      const reordered = reverseObjectKeys(canonical);
+      const [canonicalHash, reorderedHash] = yield* Effect.all([
         hashQuranProvenance({
           activeAppLocales: ACTIVE_APP_LOCALES,
           records: [canonical],
@@ -170,64 +180,58 @@ describe("Quran provenance", () => {
           activeAppLocales: ACTIVE_APP_LOCALES,
           records: [reordered],
         }),
-      ])
-    );
+      ]);
 
-    expect(Object.keys(reordered)[0]).toBe("status");
-    expect(canonicalizeQuranProvenance(reordered)).toBe(
-      canonicalizeQuranProvenance(canonical)
-    );
-    expect(reorderedHash).toBe(canonicalHash);
-  });
+      expect(Object.keys(reordered)[0]).toBe("status");
+      expect(canonicalizeQuranProvenance(reordered)).toBe(
+        canonicalizeQuranProvenance(canonical)
+      );
+      expect(reorderedHash).toBe(canonicalHash);
+    })
+  );
 
-  it("requires exact ordered coverage for every active locale", async () => {
-    const germanLocales = ActiveAppLocaleListSchema.make([
-      AppLocaleSchema.make("en"),
-      AppLocaleSchema.make("id"),
-      AppLocaleSchema.make("de"),
-    ]);
-    const canonical = records("approved", germanLocales);
-    const [firstRecord] = canonical;
-    expect(firstRecord).toBeDefined();
-    if (firstRecord === undefined) {
-      return;
-    }
-    const manifest = await Effect.runPromise(
-      makeQuranProvenanceManifest({
-        activeAppLocales: germanLocales,
+  it.effect("requires exact ordered coverage for every active locale", () =>
+    Effect.gen(function* () {
+      const canonical = records("approved");
+      const firstRecord = yield* Effect.fromNullishOr(canonical[0]);
+      const manifest = yield* makeQuranProvenanceManifest({
+        activeAppLocales: ACTIVE_APP_LOCALES,
         records: canonical,
-      })
-    );
-    const errors = await Promise.all(
-      [
-        canonical.slice(1),
-        [...canonical].reverse(),
-        [firstRecord, ...canonical],
-      ].map((candidate) =>
-        Effect.runPromise(
+      });
+      const errors = yield* Effect.all(
+        [
+          canonical.slice(1),
+          [...canonical].reverse(),
+          [firstRecord, ...canonical],
+        ].map((candidate) =>
           makeQuranProvenanceManifest({
-            activeAppLocales: germanLocales,
+            activeAppLocales: ACTIVE_APP_LOCALES,
             records: candidate,
           }).pipe(Effect.flip)
-        )
-      )
-    );
-    const incoherentStatus = Schema.decodeExit(QuranProvenanceManifestSchema)({
-      ...manifest,
-      status: "blocked",
-    });
-    const wrongSource = Schema.decodeExit(QuranProvenanceRecordSchema)({
-      ...firstRecord,
-      attribution: {
-        ...firstRecord.attribution,
-        id: "tanzil-metadata",
-      },
-    });
-    const missingCoverage = Schema.decodeUnknownExit(
-      QuranProvenanceManifestSchema
-    )({ ...manifest, records: canonical.slice(1) });
-    const missingCopy = Schema.decodeUnknownExit(QuranProvenanceManifestSchema)(
-      {
+        ),
+        { concurrency: "unbounded" }
+      );
+      const incoherentStatus = Schema.decodeExit(QuranProvenanceManifestSchema)(
+        {
+          ...manifest,
+          status: "blocked",
+        }
+      );
+      const wrongSource = Schema.decodeUnknownExit(QuranProvenanceRecordSchema)(
+        {
+          ...firstRecord,
+          attribution: {
+            ...firstRecord.attribution,
+            id: "tanzil-metadata",
+          },
+        }
+      );
+      const missingCoverage = Schema.decodeUnknownExit(
+        QuranProvenanceManifestSchema
+      )({ ...manifest, records: canonical.slice(1) });
+      const missingCopy = Schema.decodeUnknownExit(
+        QuranProvenanceManifestSchema
+      )({
         ...manifest,
         records: canonical.map((candidate, index) =>
           index === 0
@@ -240,50 +244,56 @@ describe("Quran provenance", () => {
               }
             : candidate
         ),
-      }
-    );
+      });
 
-    expect(manifest.records.map(({ scope }) => scope)).toEqual(
-      quranProvenanceScopes(germanLocales)
-    );
-    expect(manifest.records).toContainEqual(
-      expect.objectContaining({ scope: "de-translation" })
-    );
-    expect(manifest.records).toContainEqual(
-      expect.objectContaining({ scope: "de-tafsir-access" })
-    );
-    expect(errors.map(({ _tag }) => _tag)).toEqual([
-      "QuranProvenanceCoverageError",
-      "QuranProvenanceCoverageError",
-      "QuranProvenanceCoverageError",
-    ]);
-    expect(Exit.isFailure(incoherentStatus)).toBe(true);
-    expect(
-      Exit.isFailure(wrongSource) ? String(wrongSource.cause) : ""
-    ).toContain("Expected each Quran scope to bind its official source.");
-    expect(
-      Exit.isFailure(missingCoverage) ? String(missingCoverage.cause) : ""
-    ).toContain(
-      "Expected exact active-locale Quran provenance scope coverage."
-    );
-    expect(Exit.isFailure(missingCopy)).toBe(true);
-    expect(
-      Exit.isFailure(incoherentStatus) ? String(incoherentStatus.cause) : ""
-    ).toContain(
-      "Expected Quran provenance status to match its complete evidence."
-    );
-  });
+      expect(manifest.records.map(({ scope }) => scope)).toEqual(
+        quranProvenanceScopes(ACTIVE_APP_LOCALES)
+      );
+      expect(manifest.records).toContainEqual(
+        expect.objectContaining({ scope: "de-translation" })
+      );
+      expect(manifest.records).toContainEqual(
+        expect.objectContaining({ scope: "de-tafsir-access" })
+      );
+      expect(errors.map(({ _tag }) => _tag)).toEqual([
+        "QuranProvenanceCoverageError",
+        "QuranProvenanceCoverageError",
+        "QuranProvenanceCoverageError",
+      ]);
+      expect(Exit.isFailure(incoherentStatus)).toBe(true);
+      expect(
+        Exit.isFailure(wrongSource) ? String(wrongSource.cause) : ""
+      ).toContain("Expected each Quran scope to bind its official source.");
+      expect(
+        Exit.isFailure(missingCoverage) ? String(missingCoverage.cause) : ""
+      ).toContain(
+        "Expected exact active-locale Quran provenance scope coverage."
+      );
+      expect(Exit.isFailure(missingCopy)).toBe(true);
+      expect(
+        Exit.isFailure(incoherentStatus) ? String(incoherentStatus.cause) : ""
+      ).toContain(
+        "Expected Quran provenance status to match its complete evidence."
+      );
+    })
+  );
 
-  it("maps Node hashing failures to the typed provenance error", async () => {
-    failures.hash = true;
-    const error = await Effect.runPromise(
-      hashQuranProvenance({
+  it.effect("maps Node hashing failures to the typed provenance error", () =>
+    Effect.gen(function* () {
+      yield* Effect.addFinalizer(() =>
+        Effect.sync(() => {
+          failures.hash = false;
+        })
+      );
+      yield* Effect.sync(() => {
+        failures.hash = true;
+      });
+      const error = yield* hashQuranProvenance({
         activeAppLocales: ACTIVE_APP_LOCALES,
         records: records("approved"),
-      }).pipe(Effect.flip)
-    );
-    failures.hash = false;
+      }).pipe(Effect.flip);
 
-    expect(error._tag).toBe("QuranProvenanceHashError");
-  });
+      expect(error._tag).toBe("QuranProvenanceHashError");
+    })
+  );
 });

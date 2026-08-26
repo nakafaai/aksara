@@ -1,10 +1,20 @@
 import { Schema } from "effect";
+import {
+  ENGLISH_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
+} from "#contracts/locale";
 
 /** Tafsir locale whose complete reviewed source may enter runtime rows. */
-export const QuranTafsirLocaleSchema = Schema.Literal("id");
+export const QuranTafsirLocaleSchema = Schema.Literal(
+  INDONESIAN_APP_LOCALE_CODE
+);
 
 /** App locales whose official Tafsir edition remains an external link. */
-export const QuranExternalTafsirLocaleSchema = Schema.Literals(["en", "de"]);
+export const QuranExternalTafsirLocaleSchema = Schema.Literals([
+  ENGLISH_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+]);
 
 /** Exact number of reviewed surahs in the authored Quran source. */
 export const QURAN_SURAH_COUNT = 114;

@@ -5,23 +5,37 @@ import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
+  appLocaleLiteral,
 } from "#contracts/locale";
 import {
   QURAN_SURAH_COUNT,
+  QuranExternalTafsirLocaleSchema,
   QuranTafsirLocaleSchema,
 } from "#contracts/quran/spec";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
-/** Exact official Quran source identities in visible attribution order. */
-export const QuranSourceIdSchema = Schema.Literals([
+/** Official source identities whose bytes are pinned inside Aksara. */
+export const QuranEmbeddedSourceIdSchema = Schema.Literals([
   "tanzil-text",
   "tanzil-metadata",
   "quranenc-english",
   "quranenc-indonesian",
   "quranenc-german",
   "quranenc-tafsir",
+]);
+export type QuranEmbeddedSourceId = typeof QuranEmbeddedSourceIdSchema.Type;
+
+/** Official source identities that Aksara may link to but not republish. */
+export const QuranExternalSourceIdSchema = Schema.Literals([
   "mokhtasar-english",
   "mokhtasar-german",
+]);
+export type QuranExternalSourceId = typeof QuranExternalSourceIdSchema.Type;
+
+/** Exact official Quran source identities in visible attribution order. */
+export const QuranSourceIdSchema = Schema.Literals([
+  ...QuranEmbeddedSourceIdSchema.literals,
+  ...QuranExternalSourceIdSchema.literals,
 ]);
 export type QuranSourceId = typeof QuranSourceIdSchema.Type;
 
@@ -31,8 +45,8 @@ export const QURAN_SOURCE_IDS = QuranSourceIdSchema.literals;
 /** Derives the exact source identities required by one active locale set. */
 export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
-): readonly QuranSourceId[] {
-  const sourceIds: QuranSourceId[] = ["tanzil-text", "tanzil-metadata"];
+): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
+  const sourceIds: QuranSourceId[] = [];
   if (activeAppLocales.includes(AppLocaleSchema.make("en"))) {
     sourceIds.push("quranenc-english");
   }
@@ -51,7 +65,13 @@ export function quranSourceIds(
   if (activeAppLocales.includes(AppLocaleSchema.make("de"))) {
     sourceIds.push("mokhtasar-german");
   }
-  return QURAN_SOURCE_IDS.filter((sourceId) => sourceIds.includes(sourceId));
+  return [
+    "tanzil-text",
+    "tanzil-metadata",
+    ...QURAN_SOURCE_IDS.slice(2).filter((sourceId) =>
+      sourceIds.includes(sourceId)
+    ),
+  ];
 }
 
 /** Counts exact source files required by one active locale set. */
@@ -94,59 +114,75 @@ export const QuranSourceCopySchema = Schema.Struct({
 });
 export type QuranSourceCopy = typeof QuranSourceCopySchema.Type;
 
-/** Public source attribution with exact version and pinned evidence identity. */
-export const QuranSourceAttributionSchema = Schema.Struct({
-  artifact: QuranSourceArtifactSchema,
+const QuranSourceAttributionFields = {
   copy: Schema.NonEmptyArray(QuranSourceCopySchema),
-  id: QuranSourceIdSchema,
   publisher: Schema.Trimmed.check(Schema.isNonEmpty()),
   retrievedAt: RetrievedAtSchema,
   sourceUrl: HttpsUrlSchema,
+  updateUrl: HttpsUrlSchema,
+  version: Schema.Trimmed.check(Schema.isNonEmpty()),
+};
+
+/** Attribution for source bytes embedded and authenticated by Aksara. */
+export const QuranEmbeddedSourceAttributionSchema = Schema.Struct({
+  ...QuranSourceAttributionFields,
+  artifact: QuranSourceArtifactSchema,
+  id: QuranEmbeddedSourceIdSchema,
+  kind: Schema.Literal("embedded"),
   terms: Schema.Struct({
     artifact: QuranSourceArtifactSchema,
     url: HttpsUrlSchema,
   }),
-  updateUrl: HttpsUrlSchema,
-  version: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
+export type QuranEmbeddedSourceAttribution =
+  typeof QuranEmbeddedSourceAttributionSchema.Type;
+
+/** Attribution for an official edition that Aksara may only link to. */
+export const QuranExternalSourceAttributionSchema = Schema.Struct({
+  ...QuranSourceAttributionFields,
+  id: QuranExternalSourceIdSchema,
+  kind: Schema.Literal("external"),
+  terms: Schema.Struct({
+    access: Schema.Literal("link-only"),
+    url: HttpsUrlSchema,
+  }),
+});
+export type QuranExternalSourceAttribution =
+  typeof QuranExternalSourceAttributionSchema.Type;
+
+/** Public attribution that distinguishes embedded bytes from external links. */
+export const QuranSourceAttributionSchema = Schema.Union([
+  QuranEmbeddedSourceAttributionSchema,
+  QuranExternalSourceAttributionSchema,
+]);
 export type QuranSourceAttribution = typeof QuranSourceAttributionSchema.Type;
 
-const QuranEmbeddedTafsirAccessSchema = Schema.Struct({
-  appLocale: AppLocaleSchema,
+const QuranIndonesianTafsirAccessSchema = Schema.Struct({
+  appLocale: appLocaleLiteral(QuranTafsirLocaleSchema.literal),
   kind: Schema.Literal("embedded"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
   sourceId: Schema.Literal("quranenc-tafsir"),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ appLocale }) => appLocale === QuranTafsirLocaleSchema.literal,
-      { message: "Only a reviewed Tafsir locale can use embedded content." }
-    )
-  )
-);
+});
 
-const QuranExternalTafsirAccessSchema = Schema.Struct({
-  appLocale: AppLocaleSchema,
+const QuranEnglishTafsirAccessSchema = Schema.Struct({
+  appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[0]),
   kind: Schema.Literal("external"),
   notice: Schema.Trimmed.check(Schema.isNonEmpty()),
-  sourceId: Schema.Literals(["mokhtasar-english", "mokhtasar-german"]),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ appLocale, sourceId }) =>
-        (appLocale === AppLocaleSchema.make("en") &&
-          sourceId === "mokhtasar-english") ||
-        (appLocale === AppLocaleSchema.make("de") &&
-          sourceId === "mokhtasar-german"),
-      { message: "Expected each external Tafsir locale to bind its source." }
-    )
-  )
-);
+  sourceId: Schema.Literal("mokhtasar-english"),
+});
+
+const QuranGermanTafsirAccessSchema = Schema.Struct({
+  appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[1]),
+  kind: Schema.Literal("external"),
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  sourceId: Schema.Literal("mokhtasar-german"),
+});
 
 /** Signed locale-specific access to embedded or official external Tafsir. */
 export const QuranTafsirAccessSchema = Schema.Union([
-  QuranEmbeddedTafsirAccessSchema,
-  QuranExternalTafsirAccessSchema,
+  QuranEnglishTafsirAccessSchema,
+  QuranIndonesianTafsirAccessSchema,
+  QuranGermanTafsirAccessSchema,
 ]);
 export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 

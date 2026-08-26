@@ -160,11 +160,11 @@ describe("Quran source loading", () => {
     ]);
   });
 
-  it("authenticates publication and linked Tafsir evidence", async () => {
+  it("authenticates verbatim publication and legal evidence", async () => {
     const errors = await Promise.all([
       reject(drift("german/publication.json")),
-      reject(drift("mokhtasar/en.json")),
-      reject(drift("mokhtasar/terms.json")),
+      reject(drift("quranenc/terms.html")),
+      reject(drift("tanzil/terms.html")),
     ]);
 
     expect(errors).toMatchObject([
@@ -174,11 +174,11 @@ describe("Quran source loading", () => {
       },
       {
         _tag: "QuranSourceFileError",
-        detail: "Pinned source drifted: mokhtasar-en-evidence.json.",
+        detail: "Pinned source drifted: quranenc-terms.html.",
       },
       {
         _tag: "QuranSourceFileError",
-        detail: "Pinned source drifted: mokhtasar-terms-evidence.json.",
+        detail: "Pinned source drifted: tanzil-terms.html.",
       },
     ]);
   });

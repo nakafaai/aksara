@@ -20,19 +20,8 @@ describe("Quran source policy", () => {
       name: "islamhouse-german-bubenheim.json",
       path: "german/publication.json",
     });
-    expect(QURAN_SOURCE_POLICY.evidence.mokhtasar).toMatchObject({
-      de: {
-        artifact: {
-          digest:
-            "sha256:f09f13815cfbd9f0faa70dd260ecb2dda1c04481d5a6969eb677efdeb2d61dca",
-        },
-      },
-      en: {
-        artifact: {
-          digest:
-            "sha256:48da8b01b00a20a536b11924a9d78466744b789f3f5039cf0747b3f1362eb7b8",
-        },
-      },
-    });
+    expect(Object.keys(QURAN_SOURCE_POLICY.evidence)).toEqual([
+      "germanPublication",
+    ]);
   });
 });

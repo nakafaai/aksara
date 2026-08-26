@@ -217,11 +217,6 @@ export const loadPinnedQuranSources = Effect.fn(
     QURAN_SOURCE_POLICY.evidence.germanPublication
   );
   yield* Effect.forEach(
-    Object.values(QURAN_SOURCE_POLICY.evidence.mokhtasar),
-    (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
-    { concurrency: 2, discard: true }
-  );
-  yield* Effect.forEach(
     Object.values(QURAN_SOURCE_POLICY.terms),
     (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
     { concurrency: 2, discard: true }

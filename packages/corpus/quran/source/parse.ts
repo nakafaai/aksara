@@ -31,6 +31,7 @@ const TafsirRowSchema = Schema.Struct({
 const TafsirResponseSchema = Schema.Struct({
   result: Schema.Array(TafsirRowSchema),
 });
+const TafsirJsonSchema = Schema.fromJsonString(TafsirResponseSchema);
 
 /** Reads one exact CDATA or empty XML element without whitespace cleanup. */
 function xmlText(source: string, tag: "footnotes" | "translation") {
@@ -101,17 +102,9 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
 ) {
   const tafsir: Tafsir[] = [];
   for (const [surahIndex, source] of sources.entries()) {
-    const unknownJson = yield* Effect.try({
-      catch: () =>
-        quranGenerationFailure(
-          `Invalid QuranEnc JSON for surah ${surahIndex + 1}.`
-        ),
-      try: () => JSON.parse(source),
-    });
-    const response = yield* Schema.decodeUnknownEffect(TafsirResponseSchema)(
-      unknownJson,
-      { onExcessProperty: "error" }
-    ).pipe(
+    const response = yield* Schema.decodeEffect(TafsirJsonSchema)(source, {
+      onExcessProperty: "error",
+    }).pipe(
       Effect.mapError(() =>
         quranGenerationFailure(
           `Invalid QuranEnc response for surah ${surahIndex + 1}.`

@@ -33,10 +33,6 @@ interface QuranSourcePolicy {
   };
   readonly evidence: {
     readonly germanPublication: PinnedQuranFile;
-    readonly mokhtasar: {
-      readonly de: PinnedQuranFile;
-      readonly en: PinnedQuranFile;
-    };
   };
   readonly tafsir: {
     readonly artifact: ReturnType<typeof artifact>;
@@ -45,7 +41,6 @@ interface QuranSourcePolicy {
   };
   readonly terms: {
     readonly quranenc: PinnedQuranFile;
-    readonly mokhtasar: PinnedQuranFile;
     readonly tanzil: PinnedQuranFile;
   };
 }
@@ -105,24 +100,6 @@ export const QURAN_SOURCE_POLICY = {
       name: "islamhouse-german-bubenheim.json",
       path: "german/publication.json",
     },
-    mokhtasar: {
-      de: {
-        artifact: artifact(
-          534,
-          "f09f13815cfbd9f0faa70dd260ecb2dda1c04481d5a6969eb677efdeb2d61dca"
-        ),
-        name: "mokhtasar-de-evidence.json",
-        path: "mokhtasar/de.json",
-      },
-      en: {
-        artifact: artifact(
-          537,
-          "48da8b01b00a20a536b11924a9d78466744b789f3f5039cf0747b3f1362eb7b8"
-        ),
-        name: "mokhtasar-en-evidence.json",
-        path: "mokhtasar/en.json",
-      },
-    },
   },
   tafsir: {
     artifact: artifact(
@@ -134,14 +111,6 @@ export const QURAN_SOURCE_POLICY = {
     name: "quranenc-tafsir",
   },
   terms: {
-    mokhtasar: {
-      artifact: artifact(
-        594,
-        "5c6bc76376e776563c4b1cf4a68d5b95c311ec7f4e120103f992ea16478c251e"
-      ),
-      name: "mokhtasar-terms-evidence.json",
-      path: "mokhtasar/terms.json",
-    },
     quranenc: {
       artifact: artifact(
         1_051_521,
