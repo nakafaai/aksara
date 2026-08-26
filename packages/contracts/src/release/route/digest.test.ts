@@ -1,5 +1,5 @@
 import type { BinaryLike } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 import { vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
