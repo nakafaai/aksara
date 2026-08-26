@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -9,7 +10,6 @@ import {
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {
@@ -59,26 +59,24 @@ const TEST_ITEMS = TEST_SOURCES.map((source, index) =>
 );
 
 /** Loads publication sources through the live exact-Git source layer. */
-function loadTestSources(
-  exactProcess: typeof ExactProcess.Service,
-  items = TEST_ITEMS
-) {
-  return PublicationSource.pipe(
-    Effect.flatMap((publicationSource) =>
-      publicationSource
-        .loadExactRevision({
-          aksaraSha: TEST_AKSARA_SHA,
-          items: Stream.fromIterable(items),
-        })
-        .pipe(
-          Stream.runCollect,
-          Effect.map((sources) => [...sources])
-        )
-    ),
-    Effect.provide(makeGitPublicationSourceLive(TEST_REPOSITORY_ROOT)),
-    Effect.provideService(ExactProcess, exactProcess)
-  );
-}
+const loadTestSources = Effect.fn("GitPublicationSourceTest.load")(
+  (exactProcess: typeof ExactProcess.Service, items = TEST_ITEMS) =>
+    PublicationSource.pipe(
+      Effect.flatMap((publicationSource) =>
+        publicationSource
+          .loadExactRevision({
+            aksaraSha: TEST_AKSARA_SHA,
+            items: Stream.fromIterable(items),
+          })
+          .pipe(
+            Stream.runCollect,
+            Effect.map((sources) => [...sources])
+          )
+      ),
+      Effect.provide(makeGitPublicationSourceLive(TEST_REPOSITORY_ROOT)),
+      Effect.provideService(ExactProcess, exactProcess)
+    )
+);
 
 /** Responds to the exact revision and blob command shapes used by the layer. */
 function gitResponder() {
@@ -128,49 +126,62 @@ function gitResponder() {
 }
 
 describe("GitPublicationSourceLive", () => {
-  it("pairs ordered authenticated identities with their exact Git blobs", async () => {
-    const sources = await Effect.runPromise(loadTestSources(gitResponder()));
-    expect(sources).toEqual(TEST_SOURCES);
-  });
+  it.effect(
+    "pairs ordered authenticated identities with their exact Git blobs",
+    () =>
+      Effect.gen(function* () {
+        const sources = yield* loadTestSources(gitResponder());
+        expect(sources).toEqual(TEST_SOURCES);
+      })
+  );
 
-  it("rejects a delete item instead of inventing source coordinates", async () => {
-    const deleteItem = ContentReleaseItemSchema.make({
-      change: {
-        artifactLocale: ArtifactLocaleSchema.make("en"),
-        contentKey: ContentKeySchema.make("test:git-source-delete"),
-        family: "material",
-        operation: "delete",
-      },
-      index: 0,
-      releaseId: TEST_RELEASE_ID,
-    });
-    const error = await Effect.runPromise(
-      loadTestSources(gitResponder(), [deleteItem]).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "PublicationSourceError",
-      aksaraSha: TEST_AKSARA_SHA,
-    });
-    expect(error.message).toContain("upsert items only");
-  });
+  it.effect(
+    "rejects a delete item instead of inventing source coordinates",
+    () =>
+      Effect.gen(function* () {
+        const deleteItem = ContentReleaseItemSchema.make({
+          change: {
+            artifactLocale: ArtifactLocaleSchema.make("en"),
+            contentKey: ContentKeySchema.make("test:git-source-delete"),
+            family: "material",
+            operation: "delete",
+          },
+          index: 0,
+          releaseId: TEST_RELEASE_ID,
+        });
+        const error = yield* loadTestSources(gitResponder(), [deleteItem]).pipe(
+          Effect.flip
+        );
+        expect(error).toMatchObject({
+          _tag: "PublicationSourceError",
+          aksaraSha: TEST_AKSARA_SHA,
+        });
+        expect(error.message).toContain("upsert items only");
+      })
+  );
 
-  it("maps exact-Git failures to the publication source error contract", async () => {
-    const exactProcess = ExactProcess.of({
-      /** Returns one invalid reviewed revision for source error mapping. */
-      run: () =>
-        Effect.succeed({
-          exitCode: 0,
-          stderr: new Uint8Array(),
-          stdout: new TextEncoder().encode("test-branch\n"),
-        }),
-    });
-    const error: PublicationSourceError = await Effect.runPromise(
-      loadTestSources(exactProcess, TEST_ITEMS.slice(0, 1)).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "PublicationSourceError",
-      aksaraSha: TEST_AKSARA_SHA,
-      cause: { _tag: "GitBlobError", operation: "resolve-commit" },
-    });
-  });
+  it.effect(
+    "maps exact-Git failures to the publication source error contract",
+    () =>
+      Effect.gen(function* () {
+        const exactProcess = ExactProcess.of({
+          /** Returns one invalid reviewed revision for source error mapping. */
+          run: () =>
+            Effect.succeed({
+              exitCode: 0,
+              stderr: new Uint8Array(),
+              stdout: new TextEncoder().encode("test-branch\n"),
+            }),
+        });
+        const error: PublicationSourceError = yield* loadTestSources(
+          exactProcess,
+          TEST_ITEMS.slice(0, 1)
+        ).pipe(Effect.flip);
+        expect(error).toMatchObject({
+          _tag: "PublicationSourceError",
+          aksaraSha: TEST_AKSARA_SHA,
+          cause: { _tag: "GitBlobError", operation: "resolve-commit" },
+        });
+      })
+  );
 });
