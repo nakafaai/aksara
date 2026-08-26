@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { validateContentCatalog } from "#publisher/catalog/validation";
@@ -144,16 +144,14 @@ vi.mock("#publisher/catalog/snapshots", async (importOriginal) => {
   };
 });
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "InlineMath", version: 1 }],
-      supportedComponents: [{ name: "InlineMath", version: 1 }],
-    },
-    domains: testRendererDomains({}),
-    publishedDomains: ["mathematics"],
-  })
-);
+const rendererManifestProgram = createRendererManifest({
+  base: {
+    authoringComponents: [{ name: "InlineMath", version: 1 }],
+    supportedComponents: [{ name: "InlineMath", version: 1 }],
+  },
+  domains: testRendererDomains({}),
+  publishedDomains: ["mathematics"],
+});
 
 beforeEach(() => {
   control.actual = { article: 2, material: 3, page: 1, question: 4 };
@@ -174,23 +172,28 @@ beforeEach(() => {
 
 /** Builds full-catalog validation through scoped platform requirements. */
 function validationProgram() {
-  return Effect.scoped(
-    validateContentCatalog({
-      checkoutRoot: "/code/aksara",
-      rendererManifest,
-    })
-  ).pipe(Effect.provide(NodeServices.layer));
+  return Effect.gen(function* () {
+    const rendererManifest = yield* rendererManifestProgram;
+    const evidence = yield* Effect.scoped(
+      validateContentCatalog({
+        checkoutRoot: "/code/aksara",
+        rendererManifest,
+      })
+    );
+    return { evidence, rendererManifest };
+  }).pipe(Effect.provide(NodeServices.layer));
 }
 
 /** Returns one typed validation failure without a FiberFailure wrapper. */
 function rejectValidation() {
-  return Effect.runPromise(validationProgram().pipe(Effect.flip));
+  return validationProgram().pipe(Effect.flip);
 }
 
 describe("content catalog validation", () => {
-  it("returns source-derived body, route, and structured evidence", async () => {
-    await expect(Effect.runPromise(validationProgram())).resolves.toMatchObject(
-      {
+  it.effect("returns source-derived body, route, and structured evidence", () =>
+    Effect.gen(function* () {
+      const { evidence, rendererManifest } = yield* validationProgram();
+      expect(evidence).toMatchObject({
         articleCount: 2,
         materialCount: 3,
         pageCount: 1,
@@ -201,56 +204,76 @@ describe("content catalog validation", () => {
         routeCount: 6,
         snapshots: catalogSnapshotEvidence,
         totalCount: 10,
-      }
-    );
-    expect(control.resultCalls).toBe(1);
-  });
-  it.each(["article", "material", "page", "question"])(
+      });
+      expect(control.resultCalls).toBe(1);
+    })
+  );
+  it.effect.each(["article", "material", "page", "question"] as const)(
     "rejects an incomplete %s result family",
-    async (kind) => {
+    (kind) => {
       control.countMismatch = kind;
-      await expect(rejectValidation()).resolves.toMatchObject({
-        _tag: "ContentCatalogCountError",
-        kind,
-      });
+      return rejectValidation().pipe(
+        Effect.map((error) =>
+          expect(error).toMatchObject({
+            _tag: "ContentCatalogCountError",
+            kind,
+          })
+        )
+      );
     }
   );
-  it("preserves a source identity mismatch as a public domain failure", async () => {
-    control.identityMismatch = "content";
-    await expect(rejectValidation()).resolves.toMatchObject(IDENTITY_FAILURE);
-    control.identityMismatch = "none";
-    control.source.question -= 1;
-    await expect(rejectValidation()).resolves.toMatchObject(IDENTITY_FAILURE);
-  });
-  it("rejects a mismatched transition record count", async () => {
+  it.effect(
+    "preserves a source identity mismatch as a public domain failure",
+    () =>
+      Effect.gen(function* () {
+        control.identityMismatch = "content";
+        expect(yield* rejectValidation()).toMatchObject(IDENTITY_FAILURE);
+        control.identityMismatch = "none";
+        control.source.question -= 1;
+        expect(yield* rejectValidation()).toMatchObject(IDENTITY_FAILURE);
+      })
+  );
+  it.effect("rejects a mismatched transition record count", () => {
     control.records = 9;
-    await expect(rejectValidation()).resolves.toMatchObject({
-      _tag: "ContentCatalogCountError",
-      actualCount: 9,
-      kind: "records",
-    });
+    return rejectValidation().pipe(
+      Effect.map((error) =>
+        expect(error).toMatchObject({
+          _tag: "ContentCatalogCountError",
+          actualCount: 9,
+          kind: "records",
+        })
+      )
+    );
   });
-  it.each(["drop", "replace"])(
+  it.effect.each(["drop", "replace"] as const)(
     "rejects a %s public route catalog",
-    async (routeMode) => {
+    (routeMode) => {
       control.routeMode = routeMode;
-      await expect(rejectValidation()).resolves.toMatchObject({
-        _tag:
-          routeMode === "drop"
-            ? "ContentCatalogCountError"
-            : "ContentCatalogDigestError",
-        kind: "routes",
-      });
+      return rejectValidation().pipe(
+        Effect.map((error) =>
+          expect(error).toMatchObject({
+            _tag:
+              routeMode === "drop"
+                ? "ContentCatalogCountError"
+                : "ContentCatalogDigestError",
+            kind: "routes",
+          })
+        )
+      );
     }
   );
-  it("owns invalid source route expectations", async () => {
+  it.effect("owns invalid source route expectations", () => {
     control.expectedRouteConflict = true;
-    await expect(rejectValidation()).resolves.toMatchObject({
-      _tag: "ContentCatalogValidationError",
-      stage: "routes",
-    });
+    return rejectValidation().pipe(
+      Effect.map((error) =>
+        expect(error).toMatchObject({
+          _tag: "ContentCatalogValidationError",
+          stage: "routes",
+        })
+      )
+    );
   });
-  it.each([
+  it.effect.each([
     ["registryFailure", "catalog"],
     ["catalogFailure", "catalog"],
     ["resultFailure", "result"],
@@ -259,12 +282,16 @@ describe("content catalog validation", () => {
     ["snapshotFailure", "snapshots"],
   ] as const)(
     "owns a %s behind the stable validation error",
-    async (field, stage) => {
+    ([field, stage]) => {
       control[field] = true;
-      await expect(rejectValidation()).resolves.toMatchObject({
-        _tag: "ContentCatalogValidationError",
-        stage,
-      });
+      return rejectValidation().pipe(
+        Effect.map((error) =>
+          expect(error).toMatchObject({
+            _tag: "ContentCatalogValidationError",
+            stage,
+          })
+        )
+      );
     }
   );
 });
