@@ -88,6 +88,25 @@ describe("server-only release verification", () => {
       )
     ).resolves.toEqual(release);
   });
+  it("authenticates predecessor releases without weakening new scope bytes", async () => {
+    const legacyManifest = ContentReleaseManifestSchema.make({
+      ...manifest,
+      scope: {
+        content: [],
+        families: manifest.scope.families,
+        snapshots: manifest.scope.snapshots,
+      },
+    });
+    const release = signRelease(legacyManifest);
+
+    await expect(
+      Effect.runPromise(
+        verifySignedContentRelease(release).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
+        )
+      )
+    ).resolves.toEqual(release);
+  });
   it("maps current decoding and hashing failures", async () => {
     const release = signRelease();
     const [decodeError, hashError] = await Promise.all([

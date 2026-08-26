@@ -65,6 +65,76 @@ describe("content snapshot state", () => {
     }
   });
 
+  it("preserves predecessor scope bytes without adding them to new releases", () => {
+    const current = Schema.decodeSync(PublicationScopeSchema)({
+      families: ["article"],
+      snapshots: [],
+    });
+    const predecessor = Schema.decodeSync(PublicationScopeSchema)({
+      content: [
+        {
+          artifactLocale: "en",
+          contentKey: "material:algebra",
+          family: "material",
+        },
+      ],
+      families: ["article"],
+      snapshots: [],
+    });
+
+    expect(canonicalizePublicationScope(current)).toEqual({
+      families: ["article"],
+      snapshots: [],
+    });
+    expect(canonicalizePublicationScope(predecessor)).toEqual({
+      content: [
+        {
+          artifactLocale: "en",
+          contentKey: "material:algebra",
+          family: "material",
+        },
+      ],
+      families: ["article"],
+      snapshots: [],
+    });
+  });
+
+  it("rejects noncanonical or overlapping predecessor identities", () => {
+    const failures = [
+      {
+        content: [
+          {
+            artifactLocale: "id",
+            contentKey: "material:algebra",
+            family: "material",
+          },
+          {
+            artifactLocale: "en",
+            contentKey: "material:algebra",
+            family: "material",
+          },
+        ],
+        families: [],
+        snapshots: [],
+      },
+      {
+        content: [
+          {
+            artifactLocale: "en",
+            contentKey: "material:algebra",
+            family: "material",
+          },
+        ],
+        families: ["material"],
+        snapshots: [],
+      },
+    ].map((invalid) =>
+      Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
+    );
+
+    expect(failures.every(Exit.isFailure)).toBe(true);
+  });
+
   it("constructs fixed inherit, replace, and row-free restore states", () => {
     const inherit = inheritContentSnapshot(first);
     const replace = replaceContentSnapshot({
