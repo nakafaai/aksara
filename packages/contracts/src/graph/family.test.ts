@@ -78,34 +78,35 @@ const fixtures = [
 ] as const;
 
 describe("classifyLearningGraphIdentity", () => {
-  it.each(fixtures)(
+  it.effect.each(fixtures)(
     "classifies $expected asset-only identities",
-    async (fixture) => {
-      const [, appLocale] = fixture.identity.assetId.split(":");
+    (fixture) =>
+      Effect.gen(function* () {
+        const [, appLocale] = fixture.identity.assetId.split(":");
 
-      await expect(
-        Effect.runPromise(
-          classifyLearningGraphAssetId(fixture.identity.assetId)
-        )
-      ).resolves.toEqual({
-        appLocale,
-        family: fixture.expected,
-      });
-    }
+        expect(
+          yield* classifyLearningGraphAssetId(fixture.identity.assetId)
+        ).toEqual({
+          appLocale,
+          family: fixture.expected,
+        });
+      })
   );
 
-  it.each([
+  it.effect.each([
     "concept:en:quran:quran-surah:1",
     "asset:fr:quran:quran-surah:1",
     "asset:en:quran",
     "asset:en:school:course:1",
-  ])("rejects an unsupported asset-only identity: %s", async (assetId) => {
-    const error = await Effect.runPromise(
-      classifyLearningGraphAssetId(assetId).pipe(Effect.flip)
-    );
+  ])("rejects an unsupported asset-only identity: %s", (assetId) =>
+    Effect.gen(function* () {
+      const error = yield* classifyLearningGraphAssetId(assetId).pipe(
+        Effect.flip
+      );
 
-    expect(error).toBeInstanceOf(LearningGraphAssetFamilyError);
-  });
+      expect(error).toBeInstanceOf(LearningGraphAssetFamilyError);
+    })
+  );
 
   it("owns the exact schema for asset-only dispatch identities", () => {
     const accepted = Schema.decodeExit(LearningGraphAssetIdSchema)(
@@ -124,17 +125,19 @@ describe("classifyLearningGraphIdentity", () => {
     }
   });
 
-  it.each(fixtures)("classifies $expected identities", async (fixture) => {
-    const identity = Schema.decodeSync(LearningGraphIdentitySchema)(
-      fixture.identity
-    );
+  it.effect.each(fixtures)("classifies $expected identities", (fixture) =>
+    Effect.gen(function* () {
+      const identity = yield* Schema.decodeEffect(LearningGraphIdentitySchema)(
+        fixture.identity
+      );
 
-    await expect(
-      Effect.runPromise(classifyLearningGraphIdentity(identity))
-    ).resolves.toBe(fixture.expected);
-  });
+      expect(yield* classifyLearningGraphIdentity(identity)).toBe(
+        fixture.expected
+      );
+    })
+  );
 
-  it.each([
+  it.effect.each([
     {
       alignmentId: "alignment:material:quran-surah:1",
       assetId: "asset:en:quran:quran-surah:1",
@@ -156,14 +159,18 @@ describe("classifyLearningGraphIdentity", () => {
       learningObjectId: "lo:school-course:1",
       lensId: "lens:school",
     },
-  ])("rejects an incoherent or unsupported identity", async (input) => {
-    const identity = Schema.decodeSync(LearningGraphIdentitySchema)(input);
-    const error = await Effect.runPromise(
-      classifyLearningGraphIdentity(identity).pipe(Effect.flip)
-    );
+  ])("rejects an incoherent or unsupported identity", (input) =>
+    Effect.gen(function* () {
+      const identity = yield* Schema.decodeEffect(LearningGraphIdentitySchema)(
+        input
+      );
+      const error = yield* classifyLearningGraphIdentity(identity).pipe(
+        Effect.flip
+      );
 
-    expect(error).toBeInstanceOf(LearningGraphFamilyError);
-  });
+      expect(error).toBeInstanceOf(LearningGraphFamilyError);
+    })
+  );
 
   it("derives its public family type from the runtime schema", () => {
     expect(LearningGraphFamilySchema.literals).toEqual([
