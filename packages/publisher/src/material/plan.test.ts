@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import {

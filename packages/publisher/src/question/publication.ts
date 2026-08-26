@@ -12,7 +12,7 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";

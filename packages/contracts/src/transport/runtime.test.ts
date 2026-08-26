@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 
 import { releaseId, tryoutRuntimeBundle } from "#contracts/test/request";
@@ -6,7 +6,7 @@ import {
   StageTryoutRuntimeBundleInputSchema,
   StageTryoutRuntimeBundleReceiptSchema,
   StageTryoutRuntimeBundleRequestSchema,
-} from "#contracts/transport/runtime-bundle";
+} from "#contracts/transport/runtime";
 
 describe("try-out runtime bundle staging contract", () => {
   it("binds direct and wire staging inputs to the source release", () => {

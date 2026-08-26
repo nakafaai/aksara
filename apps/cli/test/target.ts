@@ -13,29 +13,29 @@ import {
   type PublicationReceipt,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
+import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/current/evidence";
 import {
-  type ActiveContentRelease,
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
-} from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import {
   type ContentReleaseBundle,
   ContentReleaseBundleSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   inheritContentSnapshot,
   inheritContentSnapshots,
   invertContentSnapshots,
-  type PublicationScope,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import {
   SignedTryoutRuntimeBundleSchema,
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
-} from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+} from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { TRYOUT_SNAPSHOT_FORMAT } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";

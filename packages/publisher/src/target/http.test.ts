@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import {
   MAX_PROJECTION_BATCH_BYTES,
@@ -5,7 +6,6 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Match, Redacted, Schema } from "effect";
 import {
   HttpClient,

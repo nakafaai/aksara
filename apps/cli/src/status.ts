@@ -1,4 +1,4 @@
-import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current";
+import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
 import type { HttpClient } from "effect/unstable/http";

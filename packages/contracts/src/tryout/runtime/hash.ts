@@ -2,8 +2,8 @@ import { Effect, Schema } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { canonicalizeTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/canonical";
-import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/spec";
+import { canonicalizeTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/canonical";
+import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/spec";
 
 /** SHA-256 computation failed before bundle authenticity was established. */
 export class TryoutRuntimeBundleHashComputationError extends Schema.TaggedError<TryoutRuntimeBundleHashComputationError>()(

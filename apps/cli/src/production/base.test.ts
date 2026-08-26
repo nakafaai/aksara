@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -8,25 +9,13 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import {
   selectRecoveryBase,
   selectSourceBase,
   validateRecoveryBase,
-  verifyBaseTryoutRuntimeBundle,
 } from "#cli/production/base";
-import { gitBundle, releaseId, runtimeBundleFor } from "#test/target";
-
-vi.mock("@nakafa/aksara-contracts/tryout/runtime-bundle/verify", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
-      TestEffect.succeed(input.bundle),
-  };
-});
+import { gitBundle, releaseId } from "#test/target";
 
 const HASH_B = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const SNAPSHOT_A = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
@@ -36,9 +25,6 @@ const ACTIVE = gitBundle("release-active", {
   tryoutSnapshotId: SNAPSHOT_A,
 });
 const BASE = selectSourceBase(ACTIVE);
-const resolver = ContentVerificationKeyResolver.of({
-  resolve: () => Effect.succeed("unused-test-public-key"),
-});
 
 /** Replaces signed manifest fields only for isolated recovery-identity tests. */
 function withManifest(
@@ -52,17 +38,6 @@ function withManifest(
       manifest: { ...bundle.release.manifest, ...fields },
     },
   };
-}
-
-/** Runs base bundle verification with its explicit trust dependency supplied. */
-function verifyBase(
-  bundle: Parameters<typeof verifyBaseTryoutRuntimeBundle>[0],
-  baseBundle: Parameters<typeof verifyBaseTryoutRuntimeBundle>[1],
-  base: Parameters<typeof verifyBaseTryoutRuntimeBundle>[2]
-) {
-  return verifyBaseTryoutRuntimeBundle(bundle, baseBundle, base).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, resolver)
-  );
 }
 
 describe("production base identity", () => {
@@ -109,45 +84,6 @@ describe("production base identity", () => {
       selectRecoveryBase(withManifest(candidate, { baseManifestHash: null }))
     ).toBeNull();
   });
-
-  it.effect("accepts only one runtime bundle bound to the active base", () =>
-    Effect.gen(function* () {
-      const runtimeBundle = runtimeBundleFor(ACTIVE, SNAPSHOT_A);
-      expect(yield* verifyBase(null, ACTIVE, BASE)).toBeNull();
-
-      const missingBaseBundle = yield* verifyBase(
-        runtimeBundle,
-        null,
-        BASE
-      ).pipe(Effect.flip);
-      const missingBaseIdentity = yield* verifyBase(
-        runtimeBundle,
-        ACTIVE,
-        null
-      ).pipe(Effect.flip);
-      const snapshotMismatch = yield* verifyBase(
-        runtimeBundleFor(ACTIVE, SNAPSHOT_B),
-        ACTIVE,
-        BASE
-      ).pipe(Effect.flip);
-
-      expect(missingBaseBundle).toMatchObject({
-        _tag: "BaseTryoutRuntimeBundleMismatchError",
-        reason: "missing-base",
-      });
-      expect(missingBaseIdentity).toMatchObject({
-        _tag: "BaseTryoutRuntimeBundleMismatchError",
-        reason: "missing-base",
-      });
-      expect(snapshotMismatch).toMatchObject({
-        _tag: "BaseTryoutRuntimeBundleMismatchError",
-        reason: "snapshot",
-      });
-      expect(yield* verifyBase(runtimeBundle, ACTIVE, BASE)).toEqual(
-        runtimeBundle
-      );
-    })
-  );
 
   it.effect("names the first immutable recovery mismatch", () =>
     Effect.gen(function* () {

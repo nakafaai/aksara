@@ -3,7 +3,7 @@ import {
   type ContentSnapshotRow,
   canonicalizeContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   MAX_SNAPSHOT_BATCH_BYTES,
   MAX_SNAPSHOT_BATCH_COUNT,

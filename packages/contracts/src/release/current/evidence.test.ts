@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   ActiveContentReleaseSchema,
   RecoveryLookupSchema,
-} from "#contracts/release/current";
+} from "#contracts/release/current/evidence";
 import {
   recoveryRelease,
   release,

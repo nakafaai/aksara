@@ -5,11 +5,11 @@ import type {
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -33,8 +33,11 @@ import {
   selectRecoveryBase,
   selectSourceBase,
   validateRecoveryBase,
-  verifyBaseTryoutRuntimeBundle,
 } from "#cli/production/base";
+import {
+  shouldRefreshTryoutRuntimeBundle,
+  verifyBaseTryoutRuntimeBundle,
+} from "#cli/production/runtime";
 import { validateRecoveryRevision } from "#cli/recovery";
 
 interface GitPreparationBase {
@@ -145,12 +148,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         ? input.rendererManifest
         : input.bundle.rendererManifest
     );
-    const refreshTryoutRuntimeBundle =
-      base !== null &&
-      base.snapshots.tryout.resultSnapshotId !== null &&
-      (verifiedBaseTryoutRuntimeBundle === null ||
-        rendererManifest.hash !==
-          verifiedBaseTryoutRuntimeBundle.payload.rendererManifestHash);
+    const refreshTryoutRuntimeBundle = shouldRefreshTryoutRuntimeBundle({
+      base,
+      bundle: verifiedBaseTryoutRuntimeBundle,
+      rendererManifest,
+    });
     const catalog = yield* prepareContentCatalog({
       base:
         base === null

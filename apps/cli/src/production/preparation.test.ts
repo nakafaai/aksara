@@ -3,7 +3,7 @@ import {
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   productionCalls,

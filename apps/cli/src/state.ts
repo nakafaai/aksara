@@ -2,13 +2,13 @@ import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseCurrent,
   StagedContentRelease,
-} from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   canonicalizePublicationScope,
   type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,

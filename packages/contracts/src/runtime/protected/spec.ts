@@ -19,7 +19,7 @@ import {
   ContentRuntimeFailureSchema,
   ContentRuntimeMissingSchema,
 } from "#contracts/runtime/result";
-import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime-bundle/spec";
+import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec";
 
 /** Checks one protected body selector uses its required delivery class. */
 function hasProtectedBodyKind(input: {

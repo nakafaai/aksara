@@ -4,7 +4,7 @@ import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import {
   SignedTryoutRuntimeBundleSchema,
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
-} from "#contracts/tryout/runtime-bundle/spec";
+} from "#contracts/tryout/runtime/spec";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 
 /** Builds one schema-valid runtime bundle for transport-only contract fixtures. */

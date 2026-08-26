@@ -30,7 +30,7 @@ import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/veri
 import {
   type PublicationScope,
   publicationScopeSelectsSnapshot,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   decodeContentSnapshotManifests,
   decodeContentSnapshotRows,

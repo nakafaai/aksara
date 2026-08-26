@@ -3,12 +3,14 @@ import {
   ReleaseVerificationCompleteSchema,
   type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import {
+  type ActiveContentRelease,
+  ActiveRollbackContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release/current/evidence";
 import type {
-  ActiveContentRelease,
   StagedContentRelease,
   StagedRollbackContentRelease,
-} from "@nakafa/aksara-contracts/release/current";
-import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
@@ -17,7 +19,7 @@ import type {
   StageGroupInput,
   StageOperation,
 } from "@nakafa/aksara-contracts/transport/group";
-import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime-bundle";
+import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

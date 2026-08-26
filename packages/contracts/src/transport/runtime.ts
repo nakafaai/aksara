@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime-bundle/spec";
+import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec";
 
 const OutcomeCountSchema = Schema.Literals([0, 1]);
 

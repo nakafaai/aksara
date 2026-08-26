@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";

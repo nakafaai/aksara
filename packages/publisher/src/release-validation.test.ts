@@ -48,7 +48,7 @@ const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"a".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"b".repeat(64)}`,
-  scope: { families: [], snapshots: ["program"] },
+  scope: { content: [], families: [], snapshots: ["program"] },
   snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });

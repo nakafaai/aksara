@@ -202,9 +202,9 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
   };
 });
 
-vi.mock("@nakafa/aksara-contracts/tryout/runtime-bundle/verify", async () => {
+vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
   const { SignedTryoutRuntimeBundleSchema } = await import(
-    "@nakafa/aksara-contracts/tryout/runtime-bundle/spec"
+    "@nakafa/aksara-contracts/tryout/runtime/spec"
   );
   const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
   return {
@@ -277,7 +277,7 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
 });
 
 /** Builds one production Effect with the complete Node service boundary. */
-function productionProgram(args: ReleaseArguments | RollbackArguments) {
+export function productionProgram(args: ReleaseArguments | RollbackArguments) {
   return runProductionCommand({ args, cwd: "/code/aksara" }).pipe(
     Effect.provide(NodeHttpClient.layerNodeHttp),
     Effect.provideService(ExactProcess, unusedExactProcess),

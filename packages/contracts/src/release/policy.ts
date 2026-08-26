@@ -5,7 +5,7 @@ import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
 import {
   ContentSnapshotKindSchema,
   type PublicationScope,
-} from "#contracts/release/snapshot/spec";
+} from "#contracts/release/snapshot/scope";
 
 const ClosureFieldSchema = Schema.Literals([
   "activeAppLocales",

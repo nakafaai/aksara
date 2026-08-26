@@ -10,7 +10,7 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";

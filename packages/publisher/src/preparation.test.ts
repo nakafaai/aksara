@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   ContentKeySchema,
   GitCommitShaSchema,
@@ -13,12 +14,9 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import {
-  inheritContentSnapshots,
-  PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";

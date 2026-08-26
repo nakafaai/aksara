@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 
 import {
@@ -10,7 +10,7 @@ import {
   ReleasePolicyClosureError,
   verifyReleasePolicyTransition,
 } from "#contracts/release/policy";
-import { PublicationScopeSchema } from "#contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
 const activeAppLocales = ACTIVE_APP_LOCALES;

@@ -35,7 +35,7 @@ import {
   StageTryoutRuntimeBundleSuccessSchema,
   VerifyReleaseSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
-import type { StageTryoutRuntimeBundleRequest } from "@nakafa/aksara-contracts/transport/runtime-bundle";
+import type { StageTryoutRuntimeBundleRequest } from "@nakafa/aksara-contracts/transport/runtime";
 import type {
   StageSnapshotBatchRequest,
   StageSnapshotRequest,

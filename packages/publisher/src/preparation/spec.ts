@@ -28,10 +28,8 @@ import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/ro
 import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
-import type {
-  ContentSnapshotSet,
-  PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";

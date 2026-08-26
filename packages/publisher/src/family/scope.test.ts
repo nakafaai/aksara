@@ -6,7 +6,7 @@ import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema, Stream } from "effect";
 import { diffScopedFamilyHeads } from "#publisher/family/scope";
 

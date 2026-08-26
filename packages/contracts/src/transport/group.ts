@@ -7,7 +7,7 @@ import {
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 import { MAX_STAGE_GROUP_COUNT } from "#contracts/transport/limits";
-import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime-bundle";
+import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchRequestSchema,
   StageSnapshotRequestSchema,

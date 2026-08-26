@@ -3,10 +3,8 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
-import type {
-  ContentSnapshotSet,
-  PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import {
   type ProgramRowError,

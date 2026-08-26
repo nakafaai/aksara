@@ -10,7 +10,7 @@ import {
 import {
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
-} from "@nakafa/aksara-contracts/release/current";
+} from "@nakafa/aksara-contracts/release/current/state";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
   inheritContentSnapshots,

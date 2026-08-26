@@ -1,9 +1,7 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
-import {
-  ContentReleaseCurrentSchema,
-  RecoveryLookupSchema,
-} from "#contracts/release/current";
+import { RecoveryLookupSchema } from "#contracts/release/current/evidence";
+import { ContentReleaseCurrentSchema } from "#contracts/release/current/state";
 import { HeadPageSchema } from "#contracts/release/head";
 import {
   ContentReleaseStatusSchema,
@@ -19,7 +17,7 @@ import {
 import { StageBatchReceiptSchema } from "#contracts/transport/batch";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
 import { StageGroupSuccessSchema } from "#contracts/transport/group";
-import { StageTryoutRuntimeBundleReceiptSchema } from "#contracts/transport/runtime-bundle";
+import { StageTryoutRuntimeBundleReceiptSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchReceiptSchema,
   StageSnapshotReceiptSchema,

@@ -4,7 +4,7 @@ import {
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Stream, Tuple } from "effect";
 import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
 

@@ -3,12 +3,12 @@ import { Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime-bundle/canonical";
-import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/hash";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime/canonical";
+import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/hash";
 import {
   type SignedTryoutRuntimeBundle,
   SignedTryoutRuntimeBundleSchema,
-} from "#contracts/tryout/runtime-bundle/spec";
+} from "#contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 /** Unknown input did not exactly satisfy the signed runtime-bundle contract. */

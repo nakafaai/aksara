@@ -3,7 +3,7 @@ import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Stream } from "effect";
 import {
   makeArtifactBatches,

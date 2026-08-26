@@ -31,7 +31,7 @@ import {
 } from "#test/content";
 import { headRequest } from "#test/head";
 import { testRendererDomains } from "#test/renderer";
-import { makeTransportRuntimeBundle } from "#test/transport/runtime-bundle";
+import { makeTransportRuntimeBundle } from "#test/transport/runtime";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;

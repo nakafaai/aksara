@@ -35,12 +35,12 @@ import {
   artifact as unsignedArtifact,
   release as unsignedRelease,
 } from "#contracts/test/request";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime-bundle/canonical";
-import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/hash";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime/canonical";
+import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/hash";
 import {
   SignedTryoutRuntimeBundleSchema,
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
-} from "#contracts/tryout/runtime-bundle/spec";
+} from "#contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const keyId = SigningKeyIdSchema.make("test-runtime-key");

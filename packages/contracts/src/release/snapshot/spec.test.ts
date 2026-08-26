@@ -2,6 +2,7 @@ import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
+import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
 import {
   baseContentSnapshots,
   ContentSnapshotSetSchema,
@@ -16,7 +17,6 @@ import {
   inheritContentSnapshot,
   inheritContentSnapshots,
   invertContentSnapshots,
-  PublicationScopeSchema,
   replaceContentSnapshot,
   restoreContentSnapshot,
   snapshotRowCount,

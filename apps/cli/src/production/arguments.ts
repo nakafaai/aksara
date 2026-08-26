@@ -1,5 +1,5 @@
 import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 

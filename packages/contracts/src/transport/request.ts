@@ -22,7 +22,7 @@ import {
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 import { StageGroupRequestSchema } from "#contracts/transport/group";
-import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime-bundle";
+import { StageTryoutRuntimeBundleRequestSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchRequestSchema,
   StageSnapshotRequestSchema,

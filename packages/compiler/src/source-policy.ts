@@ -10,15 +10,10 @@ import {
   type AuthoredListHeadingError,
   createHeadingPolicy,
 } from "#compiler/heading-policy";
-import {
-  type AuthoredCoordinateLabelError,
-  createCoordinateLabelPolicy,
-} from "#compiler/label-policy";
 import { enforceExecutablePolicy } from "#compiler/policy";
 
 /** Every expected failure surfaced by authored-source policy validation. */
 export type SourcePolicyError =
-  | AuthoredCoordinateLabelError
   | AuthoredListHeadingError
   | ExecutablePolicyError
   | UnsupportedMdxModuleSyntaxError;
@@ -28,12 +23,10 @@ export function createSourcePolicy(
   contentKey: ContentKey,
   allowedComponents: ReadonlySet<string>
 ) {
-  const coordinateLabelPolicy = createCoordinateLabelPolicy(contentKey);
   const headingPolicy = createHeadingPolicy(contentKey);
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];
   const remarkPlugins = [
-    coordinateLabelPolicy.remarkPlugin,
     headingPolicy.remarkPlugin,
     enforceExecutablePolicy(allowedComponents, unsupportedModules, violations),
   ];
@@ -53,7 +46,6 @@ export function createSourcePolicy(
           violations: [...violations],
         });
       }
-      yield* coordinateLabelPolicy.validate();
       yield* headingPolicy.validate();
     }
   );

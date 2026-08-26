@@ -11,10 +11,8 @@ import type {
   RollbackSignedContentRelease,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type {
-  ContentReleaseCurrent,
-  RecoveryLookup,
-} from "@nakafa/aksara-contracts/release/current";
+import type { RecoveryLookup } from "@nakafa/aksara-contracts/release/current/evidence";
+import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
 import type {
   HeadPage,
   HeadPageRequest,
@@ -39,7 +37,7 @@ import type {
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
-import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime-bundle";
+import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import type {
   StageSnapshotBatchInput,
   StageSnapshotInput,

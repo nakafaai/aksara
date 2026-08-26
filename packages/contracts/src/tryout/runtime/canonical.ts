@@ -1,6 +1,6 @@
 import type { Sha256Hash } from "#contracts/ids";
-import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/spec";
-import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "#contracts/tryout/runtime-bundle/spec";
+import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/spec";
+import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "#contracts/tryout/runtime/spec";
 
 /** Ed25519 domain separating runtime bundles from every other signed object. */
 export const TRYOUT_RUNTIME_BUNDLE_SIGNATURE_DOMAIN =

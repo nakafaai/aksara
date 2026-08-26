@@ -4,7 +4,7 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import {
   SignedTryoutRuntimeBundleSchema,
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
-} from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+} from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Schema } from "effect";
 

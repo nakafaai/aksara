@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 

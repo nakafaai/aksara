@@ -23,7 +23,7 @@ import {
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { testRendererDomains } from "#contracts/test/renderer";
-import { makeTestRuntimeBundle } from "#contracts/test/runtime-bundle";
+import { makeTestRuntimeBundle } from "#contracts/test/runtime/bundle";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { StageOperationSchema } from "#contracts/transport/group";
 

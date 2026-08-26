@@ -10,7 +10,7 @@ import {
 import {
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Path, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";

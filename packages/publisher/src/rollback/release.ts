@@ -30,10 +30,8 @@ import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/ro
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
-import type {
-  ContentSnapshotSet,
-  PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {

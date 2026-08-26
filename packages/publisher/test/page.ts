@@ -8,7 +8,7 @@ import {
 import {
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { Effect, Path, Schema, Stream } from "effect";

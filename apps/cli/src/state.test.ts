@@ -1,5 +1,5 @@
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
-import type { StagedContentRelease } from "@nakafa/aksara-contracts/release/current";
+import type { StagedContentRelease } from "@nakafa/aksara-contracts/release/current/state";
 import { describe, expect, it } from "vitest";
 import type {
   ReleaseArguments,

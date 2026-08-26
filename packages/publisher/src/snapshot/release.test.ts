@@ -1,13 +1,13 @@
 import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
-  type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";

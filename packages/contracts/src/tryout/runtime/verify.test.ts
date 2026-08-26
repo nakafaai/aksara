@@ -2,7 +2,7 @@
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, sign as signBytes } from "node:crypto";
 
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
@@ -23,14 +23,14 @@ import {
   compatibleManifest,
   tamperSignature,
 } from "#contracts/test/runtime/fixture";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime-bundle/canonical";
-import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime-bundle/hash";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime/canonical";
+import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/hash";
 import {
   SignedTryoutRuntimeBundleSchema,
   TRYOUT_RUNTIME_BUNDLE_FORMAT,
   type TryoutRuntimeBundlePayload,
-} from "#contracts/tryout/runtime-bundle/spec";
-import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime-bundle/verify";
+} from "#contracts/tryout/runtime/spec";
+import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/verify";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const keys = generateKeyPairSync("ed25519");
@@ -63,27 +63,27 @@ const resolver = ContentVerificationKeyResolver.of({
 });
 
 /** Produces one correctly hashed and signed bundle for exact test payload bytes. */
-function makeBundle(value: TryoutRuntimeBundlePayload) {
-  return Effect.gen(function* () {
-    const bundleHash = yield* hashTryoutRuntimeBundlePayload(value);
-    const signature = Ed25519SignatureSchema.make(
-      signBytes(
-        null,
-        Buffer.from(
-          canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, value),
-          "utf8"
-        ),
-        keys.privateKey
-      ).toString("base64url")
-    );
-    return SignedTryoutRuntimeBundleSchema.make({
-      bundleHash,
-      keyId,
-      payload: value,
-      signature,
-    });
+const makeBundle = Effect.fn("RuntimeVerificationTest.makeBundle")(function* (
+  value: TryoutRuntimeBundlePayload
+) {
+  const bundleHash = yield* hashTryoutRuntimeBundlePayload(value);
+  const signature = Ed25519SignatureSchema.make(
+    signBytes(
+      null,
+      Buffer.from(
+        canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, value),
+        "utf8"
+      ),
+      keys.privateKey
+    ).toString("base64url")
+  );
+  return SignedTryoutRuntimeBundleSchema.make({
+    bundleHash,
+    keyId,
+    payload: value,
+    signature,
   });
-}
+});
 
 /** Runs bundle verification with the fixture trust resolver. */
 function verify(bundle: unknown, renderer: unknown = rendererManifest) {

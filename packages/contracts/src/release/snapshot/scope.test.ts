@@ -1,11 +1,11 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
   publicationScopeSelectsSnapshot,
-} from "#contracts/release/snapshot/spec";
+} from "#contracts/release/snapshot/scope";
 
 describe("publication scope", () => {
   it("decodes only non-empty canonical unique families", () => {

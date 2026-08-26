@@ -9,7 +9,7 @@ import {
 } from "#contracts/ids";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 
-/** Stable wire format for a permanent signed try-out runtime bundle. */
+/** Stable wire format for one permanent signed try-out runtime bundle. */
 export const TRYOUT_RUNTIME_BUNDLE_FORMAT = "signed-tryout-runtime-bundle";
 
 /** Source and runtime facts authenticated independently from a global release. */

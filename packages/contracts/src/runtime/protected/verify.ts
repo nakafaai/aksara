@@ -11,8 +11,8 @@ import {
   type ProtectedContentRuntimeRequest,
   type ProtectedContentRuntimeSelector,
 } from "#contracts/runtime/protected/spec";
-import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime-bundle/spec";
-import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime-bundle/verify";
+import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/spec";
+import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/verify";
 
 /** Checks one protected body path matches its exact content and artifact locale. */
 function hasProtectedSourcePath(

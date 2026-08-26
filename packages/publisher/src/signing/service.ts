@@ -34,16 +34,16 @@ import {
   type ReleaseHashComputationError,
 } from "@nakafa/aksara-contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime-bundle/canonical";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import {
   hashTryoutRuntimeBundlePayload,
   type TryoutRuntimeBundleHashComputationError,
-} from "@nakafa/aksara-contracts/tryout/runtime-bundle/hash";
+} from "@nakafa/aksara-contracts/tryout/runtime/hash";
 import {
   type SignedTryoutRuntimeBundle,
   SignedTryoutRuntimeBundleSchema,
   type TryoutRuntimeBundlePayload,
-} from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
+} from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
 import { ContentSigningError } from "#publisher/signing/error";
 

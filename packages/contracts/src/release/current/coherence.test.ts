@@ -1,9 +1,9 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   ContentReleaseCurrentSchema,
   StagedRollbackContentReleaseSchema,
-} from "#contracts/release/current";
+} from "#contracts/release/current/state";
 import {
   invertContentSnapshots,
   restoreContentSnapshot,

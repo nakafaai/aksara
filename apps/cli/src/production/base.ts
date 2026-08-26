@@ -4,9 +4,7 @@ import {
   baseContentSnapshots,
   type ContentSnapshotSet,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/spec";
-import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime-bundle/verify";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
 
 /** Immutable active catalog identity required to rebuild one candidate release. */
@@ -18,12 +16,6 @@ export interface ProductionBaseIdentity {
   readonly resultDigest: ContentReleaseBundle["release"]["manifest"]["resultDigest"];
   readonly snapshots: ContentSnapshotSet;
 }
-
-/** Current permanent runtime bundle does not identify the active try-out base. */
-export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
-  "BaseTryoutRuntimeBundleMismatchError",
-  { reason: Schema.Literals(["missing-base", "snapshot"]) }
-) {}
 
 /** Selects the authenticated base catalog represented by one source bundle. */
 export function selectSourceBase(bundle: null): null;
@@ -69,37 +61,6 @@ export function selectRecoveryBase(bundle: ContentReleaseBundle) {
     snapshots: baseContentSnapshots(manifest.snapshots),
   } satisfies ProductionBaseIdentity;
 }
-
-/** Authenticates the optional permanent bundle and binds it to the active base. */
-export const verifyBaseTryoutRuntimeBundle = Effect.fn(
-  "AksaraCli.verifyBaseTryoutRuntimeBundle"
-)(function* (
-  bundle: SignedTryoutRuntimeBundle | null,
-  baseBundle: ContentReleaseBundle | null,
-  base: ProductionBaseIdentity | null
-) {
-  if (bundle === null) {
-    return null;
-  }
-  if (baseBundle === null || base === null) {
-    return yield* new BaseTryoutRuntimeBundleMismatchError({
-      reason: "missing-base",
-    });
-  }
-  const verified = yield* verifySignedTryoutRuntimeBundle({
-    bundle,
-    rendererManifest: baseBundle.rendererManifest,
-  });
-  if (
-    verified.payload.snapshot.snapshotId !==
-    base.snapshots.tryout.resultSnapshotId
-  ) {
-    return yield* new BaseTryoutRuntimeBundleMismatchError({
-      reason: "snapshot",
-    });
-  }
-  return verified;
-});
 
 /** Finds the first immutable base field that differs during candidate recovery. */
 function recoveryBaseMismatch(
