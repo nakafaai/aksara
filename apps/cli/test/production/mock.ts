@@ -89,17 +89,10 @@ export interface ProductionCalls extends TargetCalls {
   manifestMismatch: boolean;
   privateKeyMatches: boolean;
   publishCalls: number;
-  publishKind: string | undefined;
+  publishKind: "git" | undefined;
   releaseId: string | undefined;
   resumeBundle: ContentReleaseBundle | undefined;
   resumeCalls: number;
-  rollbackInput:
-    | {
-        readonly proofManifestHash: string;
-        readonly releaseId: string;
-        readonly rollbackOf: string;
-      }
-    | undefined;
   sha: string | undefined;
   storedRelease: ContentReleaseBundle["release"] | null | undefined;
   targetServiceReads: number;

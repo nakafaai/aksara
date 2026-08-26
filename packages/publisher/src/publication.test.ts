@@ -14,12 +14,7 @@ import {
   projection,
   record,
 } from "#test/publication";
-import {
-  makeRollbackRelease,
-  publish,
-  publishPrepared,
-  publishRollbackPrepared,
-} from "#test/publication/run";
+import { publish, publishPrepared } from "#test/publication/run";
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
@@ -152,19 +147,17 @@ describe("content publication", () => {
 
   it.effect("rejects a recovery identity that aliases the active base", () =>
     Effect.gen(function* () {
-      const rollback = yield* Effect.promise(() =>
-        makeRollbackRelease("test-release-alias-base")
+      const release = yield* Effect.promise(() =>
+        makeRelease("test-release-alias-base")
       );
-      const state = makeTarget(rollback);
-      const { baseReleaseId } = rollback.manifest;
+      const state = makeTarget(release);
+      const { baseReleaseId } = release.manifest;
       if (baseReleaseId === null) {
-        return yield* Effect.die("Expected a rollback base.");
+        return yield* Effect.die("Expected a release base.");
       }
-      const error = yield* publishRollbackPrepared(
-        rollback.prepared,
-        state.target,
-        baseReleaseId
-      ).pipe(Effect.flip);
+      const error = yield* publish(release, state.target, baseReleaseId).pipe(
+        Effect.flip
+      );
       expect(error).toMatchObject({
         _tag: "PublicationRecoveryIdentityError",
         conflictingReleaseId: baseReleaseId,

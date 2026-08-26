@@ -15,10 +15,8 @@ import {
   type PreparedGitRelease,
   type PreparedRollbackRelease,
 } from "#publisher/preparation/prepared";
-import {
-  publishGitRelease,
-  publishRollbackRelease,
-} from "#publisher/publication";
+import { publishGitRelease } from "#publisher/publication";
+import { preparePublicationPlan } from "#publisher/publication/plan";
 import {
   PublicationActivation,
   PublicationRecoveryId,
@@ -69,7 +67,7 @@ function makeTestSigner() {
   );
 }
 
-/** Reuses one exact signed artifact in a valid forward rollback release. */
+/** Builds one internal recovery candidate from an authenticated active release. */
 export async function makeRollbackRelease(releaseId: string) {
   const git = await makeRelease(releaseId);
   const rollbackOf = ReleaseIdSchema.make("test-active-release");
@@ -163,21 +161,17 @@ export function publishPrepared<E, R>(
   );
 }
 
-/** Runs one rollback release without constructing an unrelated Git source. */
-export function publishRollbackPrepared<E, R>(
+/** Prepares one internal retained recovery without exposing operator rollback. */
+export function prepareRecoveryPlan<E, R>(
   prepared: PreparedRollbackRelease<E, R>,
-  target: typeof PublicationTarget.Service,
-  recoveryId = ReleaseIdSchema.make(`${prepared.manifest.releaseId}-recovery`),
-  activationService = activation
+  target: typeof PublicationTarget.Service
 ) {
-  return publishRollbackRelease(prepared).pipe(
+  return preparePublicationPlan({ input: prepared, kind: "rollback" }).pipe(
     Effect.provide([
       testFileLayer(new Map()),
       Path.layer,
-      Layer.succeed(PublicationRecoveryId, recoveryId),
       Layer.succeed(PublicationSigningKey, signingKey),
       Layer.succeed(ContentVerificationKeyResolver, resolver),
-      Layer.succeed(PublicationActivation, activationService),
       Layer.succeed(PublicationTarget, target),
     ])
   );

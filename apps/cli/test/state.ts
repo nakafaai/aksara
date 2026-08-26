@@ -17,10 +17,7 @@ import {
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema } from "effect";
-import type {
-  ReleaseArguments,
-  RollbackArguments,
-} from "#cli/production/arguments";
+import type { ReleaseArguments } from "#cli/production/arguments";
 import { selectProductionAction } from "#cli/state";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 
@@ -147,7 +144,7 @@ export function stateRecovery(
 
 /** Returns the typed state failure for one unsafe command. */
 export function rejectState(
-  args: ReleaseArguments | RollbackArguments,
+  args: ReleaseArguments,
   state: ReturnType<typeof stateCurrent>
 ) {
   return Effect.runPromise(
@@ -157,7 +154,7 @@ export function rejectState(
 
 /** Runs one production-state selection through the CLI Effect boundary. */
 export function selectState(
-  args: ReleaseArguments | RollbackArguments,
+  args: ReleaseArguments,
   state: ReturnType<typeof stateCurrent>
 ) {
   return Effect.runPromise(selectProductionAction(args, state));

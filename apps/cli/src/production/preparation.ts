@@ -13,12 +13,8 @@ import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
-import {
-  reuseStoredGitRelease,
-  reuseStoredRollbackRelease,
-} from "@nakafa/aksara-publisher/preparation/recovery";
+import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
@@ -61,26 +57,9 @@ type GitPreparationInput =
       readonly sha: GitCommitSha;
     });
 
-interface RollbackPreparationBase {
-  readonly releaseId: ReleaseId;
-  readonly rollbackOf: ReleaseId;
-}
-
-type RollbackPreparationInput =
-  | (RollbackPreparationBase & {
-      readonly kind: "new";
-      readonly rendererManifest: unknown;
-      readonly sourceBundle: ContentReleaseBundle;
-    })
-  | (RollbackPreparationBase & {
-      readonly bundle: ContentReleaseBundle;
-      readonly kind: "rebuild";
-    });
-
 type PreparedGit = Effect.Success<
   ReturnType<typeof prepareContentRelease<unknown, never>>
 >;
-type PreparedRollback = Effect.Success<ReturnType<typeof prepareRollback>>;
 type PreparationServices =
   | ContentVerificationKeyResolver
   | ExactProcess
@@ -91,9 +70,6 @@ type PreparationServices =
 type PrepareProductionGit = (
   input: GitPreparationInput
 ) => Effect.Effect<PreparedGit, ProductionError, PreparationServices>;
-type PrepareProductionRollback = (
-  input: RollbackPreparationInput
-) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
 
 /** Streams no prior heads for genesis and both exact target-owned families later. */
 function publishedContentHeads(base: ProductionBaseIdentity | null) {
@@ -214,33 +190,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       return prepared;
     }
     return yield* reuseStoredGitRelease({
-      prepared,
-      storedRelease: input.bundle.release,
-    });
-  }).pipe(Effect.mapError(mapProductionError("prepare")))
-);
-
-/** Prepares a rollback and restores its stored envelope on recovery. */
-export const prepareProductionRollback: PrepareProductionRollback = Effect.fn(
-  "AksaraCli.prepareProductionRollback"
-)((input) =>
-  Effect.gen(function* () {
-    const proofBundle =
-      input.kind === "new" ? input.sourceBundle : input.bundle;
-    const rendererManifest =
-      input.kind === "new"
-        ? input.rendererManifest
-        : input.bundle.rendererManifest;
-    const prepared = yield* prepareRollback({
-      proofBundle,
-      releaseId: input.releaseId,
-      rendererManifest,
-      rollbackOf: input.rollbackOf,
-    });
-    if (input.kind === "new") {
-      return prepared;
-    }
-    return yield* reuseStoredRollbackRelease({
       prepared,
       storedRelease: input.bundle.release,
     });

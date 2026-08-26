@@ -1,10 +1,7 @@
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import type { StagedContentRelease } from "@nakafa/aksara-contracts/release/current/state";
 import { describe, expect, it } from "vitest";
-import type {
-  ReleaseArguments,
-  RollbackArguments,
-} from "#cli/production/arguments";
+import type { ReleaseArguments } from "#cli/production/arguments";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   activeState,
@@ -30,20 +27,6 @@ function releaseArgs(
   };
 }
 
-/** Creates one exact forward-rollback command with a distinct inverse identity. */
-function rollbackArgs(
-  releaseId: string,
-  rollbackOf: string,
-  recoveryId = `recovery-${releaseId}`
-): RollbackArguments {
-  return {
-    command: "rollback",
-    recoveryId: stateReleaseId(recoveryId),
-    releaseId: stateReleaseId(releaseId),
-    rollbackOf: stateReleaseId(rollbackOf),
-  };
-}
-
 describe("production state", () => {
   it("selects new releases against absent or completed active state", async () => {
     await expect(
@@ -55,7 +38,6 @@ describe("production state", () => {
       baseBundle: null,
       baseTryoutRuntimeBundle: null,
       kind: "new",
-      mode: "git",
       scope: FUNCTION_SCOPE,
     });
 
@@ -69,26 +51,7 @@ describe("production state", () => {
       },
       baseTryoutRuntimeBundle: null,
       kind: "new",
-      mode: "git",
       scope: FUNCTION_SCOPE,
-    });
-  });
-
-  it("selects a new rollback only for the exact active release", async () => {
-    const active = stateCompleted("release-active");
-    await expect(
-      selectState(
-        rollbackArgs("rollback-next", "release-active"),
-        activeState(active)
-      )
-    ).resolves.toEqual({
-      kind: "new",
-      mode: "rollback",
-      rollbackOf: active.release.manifest.releaseId,
-      sourceBundle: {
-        release: active.release,
-        rendererManifest: active.rendererManifest,
-      },
     });
   });
 
@@ -109,7 +72,6 @@ describe("production state", () => {
         baseTryoutRuntimeBundle: null,
         candidate,
         kind: "rebuild",
-        mode: "git",
         scope: FUNCTION_SCOPE,
         sha: GitCommitShaSchema.make("a".repeat(40)),
       });
@@ -127,10 +89,10 @@ describe("production state", () => {
         releaseArgs("release-candidate", "recovery-candidate"),
         stateCurrent({ active: null, candidate, recovery })
       )
-    ).resolves.toMatchObject({ kind: "rebuild", mode: "git" });
+    ).resolves.toMatchObject({ kind: "rebuild" });
   });
 
-  it("replays an active release or rollback with exact retained recovery", async () => {
+  it("replays an active release with its exact retained recovery", async () => {
     const git = stateCompleted("release-completed");
     const recovery = stateRecovery(git, "recovery-completed");
     await expect(
@@ -140,32 +102,17 @@ describe("production state", () => {
       )
     ).resolves.toMatchObject({ kind: "resume" });
 
-    const rollbackBase = stateReleaseId("release-previous");
-    const rollback = stateCompleted("rollback-completed", {
+    const rollback = stateCompleted("recovered-active", {
       kind: "rollback",
-      releaseId: rollbackBase,
+      releaseId: stateReleaseId("release-previous"),
     });
     await expect(
-      selectState(
-        rollbackArgs(
-          "rollback-completed",
-          "release-previous",
-          "recovery-rollback"
-        ),
-        stateCurrent({
-          active: rollback,
-          candidate: null,
-          recovery: stateRecovery(rollback, "recovery-rollback"),
-        })
-      )
-    ).resolves.toMatchObject({ kind: "resume" });
-    await expect(
       rejectState(
-        releaseArgs("rollback-completed", "recovery-rollback"),
+        releaseArgs("recovered-active", "recovery-recovered"),
         stateCurrent({
           active: rollback,
           candidate: null,
-          recovery: stateRecovery(rollback, "recovery-rollback"),
+          recovery: stateRecovery(rollback, "recovery-recovered"),
         })
       )
     ).resolves.toMatchObject({ reason: "mode-mismatch" });
@@ -201,44 +148,6 @@ describe("production state", () => {
         candidate: { ...stateBundle("release-candidate"), phase: "staging" },
         recovery: null,
       }),
-    },
-    {
-      args: rollbackArgs("release-candidate", "release-active"),
-      reason: "mode-mismatch",
-      state: stateCurrent({
-        active: null,
-        candidate: { ...stateBundle("release-candidate"), phase: "staging" },
-        recovery: null,
-      }),
-    },
-    {
-      args: rollbackArgs("rollback-candidate", "release-other"),
-      reason: "rollback-mismatch",
-      state: stateCurrent({
-        active: stateCompleted("release-active"),
-        candidate: {
-          ...stateBundle(
-            "rollback-candidate",
-            {
-              kind: "rollback",
-              releaseId: stateReleaseId("release-active"),
-            },
-            stateReleaseId("release-active")
-          ),
-          phase: "staging",
-        },
-        recovery: null,
-      }),
-    },
-    {
-      args: rollbackArgs("rollback-first", "release-missing"),
-      reason: "missing-active",
-      state: stateCurrent({ active: null, candidate: null, recovery: null }),
-    },
-    {
-      args: rollbackArgs("rollback-next", "release-other"),
-      reason: "rollback-mismatch",
-      state: activeState(stateCompleted("release-active")),
     },
     {
       args: releaseArgs("release-next"),

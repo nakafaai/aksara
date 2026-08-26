@@ -10,7 +10,6 @@ import {
   currentState,
   gitBundle,
   releaseId,
-  rollbackBundle,
 } from "#test/target";
 
 const calls = productionCalls();
@@ -114,35 +113,6 @@ describe("production preparation", () => {
     })
   );
 
-  it.effect("prepares a new rollback from its exact signed source bundle", () =>
-    Effect.gen(function* () {
-      const active = gitBundle("release-active");
-      const receipt = yield* productionProgram({
-        command: "rollback",
-        recoveryId: releaseId("recovery-rollback"),
-        releaseId: releaseId("rollback-next"),
-        rollbackOf: releaseId("release-active"),
-      });
-      expect(receipt).toMatchObject({ releaseId: "rollback-next" });
-      expect(calls.rollbackInput).toMatchObject({
-        proofManifestHash: active.release.manifestHash,
-        releaseId: "rollback-next",
-        rollbackOf: "release-active",
-      });
-      expect(calls).toMatchObject({
-        catalogCalls: 0,
-        cleanReads: 0,
-        privateKeyMatches: true,
-        publishKind: "rollback",
-        rendererCalls: 1,
-        signingSecretReads: 1,
-        snapshotCalls: 0,
-        sourceLayers: 0,
-        targetServiceReads: 1,
-      });
-    })
-  );
-
   it.effect("reuses the exact candidate Git envelope after key rotation", () =>
     Effect.gen(function* () {
       const active = gitBundle("release-active");
@@ -176,41 +146,6 @@ describe("production preparation", () => {
       });
       expect(calls.storedRelease).toEqual(candidate.release);
       expect(calls.storedRelease?.keyId).toBe("content-2026-01");
-    })
-  );
-
-  it.effect("rebuilds candidate rollback without acquiring Git source", () =>
-    Effect.gen(function* () {
-      const active = gitBundle("release-active");
-      const candidate = rollbackBundle(
-        "rollback-candidate",
-        releaseId("release-active"),
-        active.release.manifestHash
-      );
-      calls.current = currentState({
-        active: completedBundle(active),
-        candidate: { ...candidate, phase: "staging" },
-        recovery: null,
-      });
-      const receipt = yield* productionProgram({
-        command: "rollback",
-        recoveryId: releaseId("recovery-candidate"),
-        releaseId: releaseId("rollback-candidate"),
-        rollbackOf: releaseId("release-active"),
-      });
-      expect(receipt).toMatchObject({ releaseId: "rollback-candidate" });
-      expect(calls).toMatchObject({
-        bundleVerifyCalls: 1,
-        catalogCalls: 0,
-        cleanReads: 0,
-        publishKind: "rollback",
-        rendererCalls: 0,
-        rootReads: 0,
-        snapshotCalls: 0,
-        sourceLayers: 0,
-        verifiedBundle: candidate,
-      });
-      expect(calls.storedRelease).toEqual(candidate.release);
     })
   );
 });

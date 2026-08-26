@@ -6,10 +6,7 @@ import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/releas
 import type { Effect, FileSystem, Path } from "effect";
 import type { ReleaseAbortContractError } from "#publisher/abort";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
-import type {
-  PreparedGitRelease,
-  PreparedRollbackRelease,
-} from "#publisher/preparation/prepared";
+import type { PreparedGitRelease } from "#publisher/preparation/prepared";
 import type {
   ArtifactSigningError,
   ArtifactVerificationError,
@@ -104,13 +101,4 @@ export type PublishGitRelease = <E, R>(
   PublicationReceipt,
   PublishContentReleaseError<E>,
   PublicationSource | PublishReleaseRequirements<R>
->;
-
-/** Rollback publication reuses authenticated artifacts without a Git source. */
-export type PublishRollbackRelease = <E, R>(
-  input: PreparedRollbackRelease<E, R>
-) => Effect.Effect<
-  PublicationReceipt,
-  PublishContentReleaseError<E>,
-  PublishReleaseRequirements<R>
 >;

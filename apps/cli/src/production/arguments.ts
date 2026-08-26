@@ -28,14 +28,6 @@ export interface StatusArguments {
   readonly command: "status";
 }
 
-/** New release identity and exact historical release selected for rollback. */
-export interface RollbackArguments {
-  readonly command: "rollback";
-  readonly recoveryId: ReleaseId;
-  readonly releaseId: ReleaseId;
-  readonly rollbackOf: ReleaseId;
-}
-
 /** Exact active and retained inverse selected for healthy acceptance. */
 export interface AcceptArguments {
   readonly command: "accept";
@@ -57,7 +49,6 @@ export type ProductionArguments =
   | CleanupArguments
   | RecoverArguments
   | ReleaseArguments
-  | RollbackArguments
   | StatusArguments;
 
 /** Production arguments do not describe one unambiguous release operation. */
@@ -70,13 +61,11 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "cleanup",
       "recover",
       "release",
-      "rollback",
       "status",
     ]),
     option: Schema.Literals([
       "--recovery-id",
       "--release-id",
-      "--rollback-of",
       "--scope",
       "command",
     ]),
@@ -93,22 +82,16 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
 interface RawProductionOptions {
   recoveryId?: string;
   releaseId?: string;
-  rollbackOf?: string;
   scope: string[];
 }
 
 export type ProductionCommand = ProductionArguments["command"];
-type ProductionOption =
-  | "--recovery-id"
-  | "--release-id"
-  | "--rollback-of"
-  | "--scope";
+type ProductionOption = "--recovery-id" | "--release-id" | "--scope";
 type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
 
 const OPTION_KEYS = {
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
-  "--rollback-of": "rollbackOf",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
 
 /** Narrows a raw command token to the production command vocabulary. */
@@ -121,7 +104,6 @@ export function isProductionCommand(
     value === "abort" ||
     value === "recover" ||
     value === "release" ||
-    value === "rollback" ||
     value === "status"
   );
 }
@@ -131,10 +113,7 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
-    value === "--recovery-id" ||
-    value === "--release-id" ||
-    value === "--rollback-of" ||
-    value === "--scope"
+    value === "--recovery-id" || value === "--release-id" || value === "--scope"
   );
 }
 
@@ -145,9 +124,6 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   }
   if (option === "--scope") {
     return command === "release";
-  }
-  if (option === "--rollback-of") {
-    return command === "rollback";
   }
   if (option === "--recovery-id") {
     return command !== "abort" && command !== "cleanup";
@@ -248,38 +224,16 @@ export const parseProductionArguments = Effect.fn(
   if (command === "recover") {
     return { command, recoveryId, releaseId } satisfies RecoverArguments;
   }
-  if (command === "release") {
-    if (options.scope.length === 0) {
-      return yield* argumentError(command, "--scope", "missing");
-    }
-    const scope = yield* decodePublicationScopeSelectors(options.scope).pipe(
-      Effect.mapError(() => argumentError(command, "--scope", "value"))
-    );
-    return {
-      command,
-      recoveryId,
-      releaseId,
-      scope,
-    } satisfies ReleaseArguments;
+  if (options.scope.length === 0) {
+    return yield* argumentError(command, "--scope", "missing");
   }
-  if (options.rollbackOf === undefined) {
-    return yield* argumentError(command, "--rollback-of", "missing");
-  }
-  const rollbackOf = yield* decodeReleaseId(
-    command,
-    "--rollback-of",
-    options.rollbackOf
+  const scope = yield* decodePublicationScopeSelectors(options.scope).pipe(
+    Effect.mapError(() => argumentError(command, "--scope", "value"))
   );
-  if (releaseId === rollbackOf) {
-    return yield* argumentError(command, "--rollback-of", "identity");
-  }
-  if (recoveryId === rollbackOf) {
-    return yield* argumentError(command, "--recovery-id", "identity");
-  }
   return {
     command,
     recoveryId,
     releaseId,
-    rollbackOf,
-  } satisfies RollbackArguments;
+    scope,
+  } satisfies ReleaseArguments;
 });

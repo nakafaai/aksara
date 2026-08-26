@@ -1,4 +1,5 @@
 import { beforeEach, expect, it } from "@effect/vitest";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 
@@ -11,10 +12,10 @@ import { publishMaterialRelease } from "#test/material/run";
 import { makeRelease, projection, rendererManifest } from "#test/publication";
 import {
   makeRollbackRelease,
+  prepareRecoveryPlan,
   publishPrepared,
-  publishRollbackPrepared,
+  testVerificationResolver,
 } from "#test/publication/run";
-import { publicationRequirements } from "#test/requirements";
 import { emptySnapshotSources } from "#test/snapshot";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -55,13 +56,6 @@ beforeEach(() => {
   compilerState.calls = 0;
 });
 
-it.effect("requires exact Git source context only for Git publication", () =>
-  Effect.gen(function* () {
-    const requirements = yield* Effect.promise(publicationRequirements);
-    expect(requirements).toEqual({ git: true, rollback: false });
-  })
-);
-
 it.effect("compiles each source once per reproducibility boundary", () =>
   Effect.gen(function* () {
     const result = yield* Effect.promise(publishMaterialRelease);
@@ -76,61 +70,69 @@ it.effect("compiles each source once per reproducibility boundary", () =>
   })
 );
 
-it.effect("stages rollback artifacts and rejects mismatched modes", () =>
-  Effect.gen(function* () {
-    const release = yield* Effect.promise(() =>
-      makeRollbackRelease("test-release-rollback")
-    );
-    const state = makeTarget(release);
-    let artifactReplays = 0;
-    const prepared = makePreparedRollbackRelease({
-      artifacts: Stream.suspend(() => {
-        artifactReplays += 1;
-        return release.prepared.artifacts;
-      }),
-      items: release.prepared.items,
-      manifest: release.prepared.manifest,
-      projections: release.prepared.projections,
-      rendererManifest: release.prepared.rendererManifest,
-      routes: release.prepared.routes,
-      ...emptySnapshotSources,
-    });
-    yield* publishRollbackPrepared(prepared, state.target);
-    expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
-    expect(artifactReplays).toBe(1);
-    const mismatch = makePreparedGitRelease({
-      items: release.prepared.items,
-      manifest: release.manifest,
-      projections: Stream.make(projection),
-      rendererManifest,
-      routes: release.prepared.routes,
-      tryoutRuntime: null,
-      ...emptySnapshotSources,
-    });
-    const error = yield* publishPrepared(mismatch, state.target).pipe(
-      Effect.flip
-    );
-    expect(error).toMatchObject({ _tag: "PublicationModeMismatchError" });
+it.effect(
+  "stages retained recovery artifacts and rejects mismatched modes",
+  () =>
+    Effect.gen(function* () {
+      const release = yield* Effect.promise(() =>
+        makeRollbackRelease("test-release-rollback")
+      );
+      const state = makeTarget(release);
+      let artifactReplays = 0;
+      const prepared = makePreparedRollbackRelease({
+        artifacts: Stream.suspend(() => {
+          artifactReplays += 1;
+          return release.prepared.artifacts;
+        }),
+        items: release.prepared.items,
+        manifest: release.prepared.manifest,
+        projections: release.prepared.projections,
+        rendererManifest: release.prepared.rendererManifest,
+        routes: release.prepared.routes,
+        ...emptySnapshotSources,
+      });
+      const plan = yield* prepareRecoveryPlan(prepared, state.target);
+      yield* plan.stage.pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          testVerificationResolver
+        )
+      );
+      expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
+      expect(artifactReplays).toBe(1);
+      const mismatch = makePreparedGitRelease({
+        items: release.prepared.items,
+        manifest: release.manifest,
+        projections: Stream.make(projection),
+        rendererManifest,
+        routes: release.prepared.routes,
+        tryoutRuntime: null,
+        ...emptySnapshotSources,
+      });
+      const error = yield* publishPrepared(mismatch, state.target).pipe(
+        Effect.flip
+      );
+      expect(error).toMatchObject({ _tag: "PublicationModeMismatchError" });
 
-    const gitRelease = yield* Effect.promise(() =>
-      makeRelease("test-release-git-mode")
-    );
-    const gitState = makeTarget(gitRelease);
-    const rollbackMismatch = makePreparedRollbackRelease({
-      artifacts: release.prepared.artifacts,
-      items: gitRelease.prepared.items,
-      manifest: gitRelease.manifest,
-      projections: gitRelease.prepared.projections,
-      rendererManifest,
-      routes: gitRelease.prepared.routes,
-      ...emptySnapshotSources,
-    });
-    const rollbackError = yield* publishRollbackPrepared(
-      rollbackMismatch,
-      gitState.target
-    ).pipe(Effect.flip);
-    expect(rollbackError).toMatchObject({
-      _tag: "PublicationModeMismatchError",
-    });
-  })
+      const gitRelease = yield* Effect.promise(() =>
+        makeRelease("test-release-git-mode")
+      );
+      const gitState = makeTarget(gitRelease);
+      const rollbackMismatch = makePreparedRollbackRelease({
+        artifacts: release.prepared.artifacts,
+        items: gitRelease.prepared.items,
+        manifest: gitRelease.manifest,
+        projections: gitRelease.prepared.projections,
+        rendererManifest,
+        routes: gitRelease.prepared.routes,
+        ...emptySnapshotSources,
+      });
+      const rollbackError = yield* prepareRecoveryPlan(
+        rollbackMismatch,
+        gitState.target
+      ).pipe(Effect.flip);
+      expect(rollbackError).toMatchObject({
+        _tag: "PublicationModeMismatchError",
+      });
+    })
 );
