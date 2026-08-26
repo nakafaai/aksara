@@ -33,6 +33,20 @@ const OTHER_SNAPSHOT_ID = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 const resolver = ContentVerificationKeyResolver.of({
   resolve: () => Effect.succeed("unused-test-public-key"),
 });
+const refreshedRendererManifest = createRendererManifest({
+  base: {
+    authoringComponents: [
+      ...RENDERER_MANIFEST.base.authoringComponents,
+      { name: "RuntimePairProbe", version: 1 },
+    ],
+    supportedComponents: [
+      ...RENDERER_MANIFEST.base.supportedComponents,
+      { name: "RuntimePairProbe", version: 1 },
+    ],
+  },
+  domains: RENDERER_MANIFEST.domains,
+  publishedDomains: RENDERER_MANIFEST.publishedDomains,
+});
 
 vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -178,20 +192,7 @@ describe("production runtime bundle preparation", () => {
         ...bundle.payload.snapshot,
         snapshotId: OTHER_SNAPSHOT_ID,
       };
-      const refreshedRendererManifest = yield* createRendererManifest({
-        base: {
-          authoringComponents: [
-            ...RENDERER_MANIFEST.base.authoringComponents,
-            { name: "RuntimePairProbe", version: 1 },
-          ],
-          supportedComponents: [
-            ...RENDERER_MANIFEST.base.supportedComponents,
-            { name: "RuntimePairProbe", version: 1 },
-          ],
-        },
-        domains: RENDERER_MANIFEST.domains,
-        publishedDomains: RENDERER_MANIFEST.publishedDomains,
-      });
+      const rendererManifest = yield* refreshedRendererManifest;
 
       assert.isNull(
         yield* selectTryoutRuntimeTransition({
@@ -214,7 +215,7 @@ describe("production runtime bundle preparation", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          rendererManifest: refreshedRendererManifest,
+          rendererManifest,
           snapshot: bundle.payload.snapshot,
         }),
         { recovery: null, result: bundle.payload.snapshot }
@@ -232,7 +233,7 @@ describe("production runtime bundle preparation", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          rendererManifest: refreshedRendererManifest,
+          rendererManifest,
           snapshot: result,
         }),
         { recovery: bundle.payload.snapshot, result }
@@ -240,7 +241,7 @@ describe("production runtime bundle preparation", () => {
       const missing = yield* selectTryoutRuntimeTransition({
         base,
         bundle: null,
-        rendererManifest: refreshedRendererManifest,
+        rendererManifest,
         snapshot: result,
       }).pipe(Effect.flip);
       assert.strictEqual(missing._tag, "BaseTryoutRuntimeBundleMismatchError");
@@ -250,21 +251,7 @@ describe("production runtime bundle preparation", () => {
 
   it.effect("rebuilds an inherited snapshot for a new renderer pair", () =>
     Effect.gen(function* () {
-      const refreshedRendererManifest = yield* createRendererManifest({
-        base: {
-          authoringComponents: [
-            ...RENDERER_MANIFEST.base.authoringComponents,
-            { name: "RuntimePairProbe", version: 1 },
-          ],
-          supportedComponents: [
-            ...RENDERER_MANIFEST.base.supportedComponents,
-            { name: "RuntimePairProbe", version: 1 },
-          ],
-        },
-        domains: RENDERER_MANIFEST.domains,
-        publishedDomains: RENDERER_MANIFEST.publishedDomains,
-      });
-      calls.rendererManifestOverride = refreshedRendererManifest;
+      calls.rendererManifestOverride = yield* refreshedRendererManifest;
       const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-renderer"),
