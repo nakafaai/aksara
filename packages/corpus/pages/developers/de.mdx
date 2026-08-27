@@ -71,7 +71,7 @@ Der Server stellt vier schreibgeschützte Tools bereit:
 - `nakafa_get_taxonomy`
 - `nakafa_get_quran_reference`
 
-Moderne Clients verwenden Streamable HTTP. Das Protokoll `2026-07-28` ersetzt den bisherigen `initialize`-Ablauf durch `server/discover` und einen `_meta`-Umschlag in jeder Anfrage. Ein Client ermittelt zuerst die unterstützte Revision und listet oder ruft anschließend Tools mit demselben Umschlag auf. Nakafa akzeptiert diese dokumentierte Protokollrevision und meldet alle unterstützten Revisionen über die Erkennung. Eine `GET` Anfrage an denselben Endpunkt liefert das öffentliche Servermanifest.
+Moderne Clients verwenden Streamable HTTP. Das Protokoll `2026-07-28` ersetzt den bisherigen `initialize`-Ablauf durch `server/discover` und einen `_meta`-Umschlag in jeder Anfrage. Ein Client ermittelt zuerst die unterstützte Revision und listet oder ruft anschließend Tools mit demselben Umschlag auf. Nakafa akzeptiert diese dokumentierte Protokollrevision und meldet alle unterstützten Revisionen über die Erkennung. Serveridentität und Funktionen stammen aus der `server/discover`-Antwort. Der zustandslose Nakafa-Endpunkt stellt kein separates `GET`-Manifest bereit.
 
 <CodeBlock
   data={[{

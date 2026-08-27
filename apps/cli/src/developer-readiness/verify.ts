@@ -3,13 +3,11 @@ import { Config, Effect, Option, Schema } from "effect";
 import { HttpClientRequest } from "effect/unstable/http";
 import {
   DEVELOPER_API_ORIGIN,
-  DEVELOPER_MCP_ENDPOINT,
   DEVELOPER_MCP_PROTOCOL_VERSION,
   DEVELOPER_NAKAFA_CLI_VERSION,
   DEVELOPER_RELEASE_SHA_HEADER,
   DeveloperApiIndexSchema,
   DeveloperMcpDiscoverSchema,
-  DeveloperMcpManifestSchema,
   DeveloperMcpPromptsSchema,
   DeveloperMcpResourcesSchema,
   DeveloperMcpToolsSchema,
@@ -97,11 +95,10 @@ const verifyOpenApi = Effect.fn("AksaraCli.verifyDeveloperOpenApi")(
   }
 );
 
-/** Proves the MCP manifest, discovery, tools, resources, and prompts together. */
+/** Proves MCP discovery, tools, resources, and prompts together. */
 const verifyMcp = Effect.fn("AksaraCli.verifyDeveloperMcp")(function* () {
-  const [manifest, discover, tools, resources, prompts] = yield* Effect.all(
+  const [discover, tools, resources, prompts] = yield* Effect.all(
     [
-      fetchReadinessJson("mcp", jsonGet(DEVELOPER_MCP_ENDPOINT)),
       fetchReadinessJson(
         "mcp",
         mcpRequest(1, "server/discover"),
@@ -127,7 +124,6 @@ const verifyMcp = Effect.fn("AksaraCli.verifyDeveloperMcp")(function* () {
   );
   yield* Effect.all(
     [
-      decodeContract(DeveloperMcpManifestSchema, "mcp", manifest.body),
       decodeContract(DeveloperMcpDiscoverSchema, "mcp", discover.body),
       decodeContract(DeveloperMcpToolsSchema, "mcp", tools.body),
       decodeContract(DeveloperMcpResourcesSchema, "mcp", resources.body),
@@ -136,7 +132,7 @@ const verifyMcp = Effect.fn("AksaraCli.verifyDeveloperMcp")(function* () {
     { concurrency: "unbounded", discard: true }
   );
   return yield* Effect.all(
-    [manifest, discover, tools, resources, prompts].map((response) =>
+    [discover, tools, resources, prompts].map((response) =>
       decodeReleaseSha("mcp", response)
     ),
     { concurrency: "unbounded" }

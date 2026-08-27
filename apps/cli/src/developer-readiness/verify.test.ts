@@ -64,7 +64,7 @@ describe("Nakafa developer release readiness", () => {
       )
     ).resolves.toBeUndefined();
 
-    expect(captured.requests).toHaveLength(10);
+    expect(captured.requests).toHaveLength(9);
     const gitHubRequests = captured.requests.filter(({ url }) =>
       url.startsWith("https://api.github.com/")
     );
@@ -81,10 +81,7 @@ describe("Nakafa developer release readiness", () => {
     const mcpRequests = captured.requests.filter(
       ({ url }) => url === DEVELOPER_MCP_ENDPOINT
     );
-    expect(mcpRequests).toHaveLength(5);
-    expect(mcpRequests.filter(({ method }) => method === "GET")).toHaveLength(
-      1
-    );
+    expect(mcpRequests).toHaveLength(4);
     const protocolRequests = mcpRequests.filter(
       ({ method }) => method === "POST"
     );
@@ -152,20 +149,6 @@ describe("Nakafa developer release readiness", () => {
     await expect(
       runClient(readinessProgram(), compatible.client)
     ).resolves.toBeUndefined();
-  });
-
-  it("requires the official MCP Registry manifest", async () => {
-    const missingManifest = captureClient((request) => {
-      if (request.url !== DEVELOPER_MCP_ENDPOINT || request.method !== "GET") {
-        return Effect.succeed(jsonResponse(request));
-      }
-      return Effect.succeed(jsonResponse(request, { name: "wrong" }));
-    });
-
-    await expect(reject(missingManifest.client)).resolves.toMatchObject({
-      reason: "contract",
-      surface: "mcp",
-    });
   });
 
   it("requires an exact deployed revision on API and MCP responses", async () => {
