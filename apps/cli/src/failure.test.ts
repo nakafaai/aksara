@@ -3,7 +3,7 @@ import {
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
 } from "@nakafa/aksara-publisher/target/errors";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 import { mapProductionError } from "#cli/failure";
