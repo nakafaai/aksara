@@ -15,7 +15,7 @@ export function hasCurrentTryoutRuntimeBundle(
     return bundle === null;
   }
   if (bundle === null) {
-    return isLegacyTryoutRuntime(active);
+    return isLegacyTryoutRuntime(active.release);
   }
   return (
     snapshotId === bundle.payload.snapshot.snapshotId &&

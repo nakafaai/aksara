@@ -1,5 +1,5 @@
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import type { ActiveContentRelease } from "#contracts/release/current/evidence";
+import type { SignedContentRelease } from "#contracts/release/spec";
 
 /** Exact production runtime admitted only until its permanent refresh activates. */
 export const LEGACY_TRYOUT_RUNTIME = {
@@ -15,19 +15,16 @@ export const LEGACY_TRYOUT_RUNTIME = {
   ),
 } as const;
 
-/** Matches only the read-only audited predecessor publication identity. */
-export function isLegacyTryoutRuntime(active: ActiveContentRelease) {
+/** Matches only the read-only audited predecessor release identity. */
+export function isLegacyTryoutRuntime(release: SignedContentRelease) {
   const {
-    release: {
-      manifest: { releaseId, snapshots },
-      manifestHash,
-    },
-    rendererManifest,
-  } = active;
+    manifest: { releaseId, rendererManifestHash, snapshots },
+    manifestHash,
+  } = release;
   return (
     manifestHash === LEGACY_TRYOUT_RUNTIME.manifestHash &&
     releaseId === LEGACY_TRYOUT_RUNTIME.releaseId &&
-    rendererManifest.hash === LEGACY_TRYOUT_RUNTIME.rendererManifestHash &&
+    rendererManifestHash === LEGACY_TRYOUT_RUNTIME.rendererManifestHash &&
     snapshots.tryout.resultSnapshotId === LEGACY_TRYOUT_RUNTIME.snapshotId
   );
 }
