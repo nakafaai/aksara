@@ -1,5 +1,5 @@
+import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";
@@ -29,114 +29,112 @@ function cleanupResponse(
   );
 }
 
-/** Runs cleanup through isolated Config and HTTP capabilities. */
-function runCleanup(client: HttpClient.HttpClient) {
-  return Effect.runPromise(
-    runCleanupCommand({ command: "cleanup", releaseId }).pipe(
-      Effect.provideService(
-        ConfigProvider.ConfigProvider,
-        ConfigProvider.fromUnknown(Object.fromEntries(cleanupValues))
-      ),
-      Effect.provideService(HttpClient.HttpClient, client)
-    )
-  );
-}
-
-/** Returns the typed failure from isolated cleanup capabilities. */
-function rejectCleanup(
+/** Builds cleanup with isolated Config and HTTP capabilities. */
+function cleanupProgram(
   client: HttpClient.HttpClient,
   values: ReadonlyMap<string, string> = cleanupValues
 ) {
-  return Effect.runPromise(
-    runCleanupCommand({ command: "cleanup", releaseId }).pipe(
-      Effect.provideService(
-        ConfigProvider.ConfigProvider,
-        ConfigProvider.fromUnknown(Object.fromEntries(values), {
-          preserveEmptyStrings: true,
-        })
-      ),
-      Effect.provideService(HttpClient.HttpClient, client),
-      Effect.flip
-    )
+  return runCleanupCommand({ command: "cleanup", releaseId }).pipe(
+    Effect.provideService(
+      ConfigProvider.ConfigProvider,
+      ConfigProvider.fromUnknown(Object.fromEntries(values), {
+        preserveEmptyStrings: true,
+      })
+    ),
+    Effect.provideService(HttpClient.HttpClient, client)
   );
 }
 
 describe("cleanup command", () => {
-  it("uses only target credentials and returns cumulative evidence", async () => {
-    const captured = captureClient((incoming) =>
-      Effect.succeed(
-        cleanupResponse(incoming, {
+  it.effect(
+    "uses only target credentials and returns cumulative evidence",
+    () =>
+      Effect.gen(function* () {
+        const captured = captureClient((incoming) =>
+          Effect.succeed(
+            cleanupResponse(incoming, {
+              complete: true,
+              deletedArtifacts: 3,
+              releaseId,
+            })
+          )
+        );
+
+        expect(yield* cleanupProgram(captured.client)).toEqual({
           complete: true,
           deletedArtifacts: 3,
           releaseId,
-        })
-      )
-    );
+        });
+        expect(captured.requests).toHaveLength(1);
+        const [request] = captured.requests;
+        assert(request !== undefined, "Expected one cleanup request.");
+        expect(request.headers.authorization).toBe("Bearer publication-token");
+        expect(requestJson(request)).toEqual({
+          operation: "cleanup",
+          releaseId,
+        });
+      })
+  );
 
-    await expect(runCleanup(captured.client)).resolves.toEqual({
-      complete: true,
-      deletedArtifacts: 3,
-      releaseId,
-    });
-    expect(captured.requests).toHaveLength(1);
-    const [request] = captured.requests;
-    if (!request) {
-      throw new Error("Expected one cleanup request.");
-    }
-    expect(request.headers.authorization).toBe("Bearer publication-token");
-    expect(requestJson(request)).toEqual({
-      operation: "cleanup",
-      releaseId,
-    });
-  });
+  it.effect(
+    "preserves the typed retention defer without requiring signing",
+    () =>
+      Effect.gen(function* () {
+        const retryAt = 1_800_000_000_000;
+        const captured = captureClient((request) =>
+          Effect.succeed(
+            cleanupResponse(request, {
+              complete: false,
+              deletedArtifacts: 0,
+              releaseId,
+              retryAt,
+            })
+          )
+        );
 
-  it("preserves the typed retention defer without requiring signing", async () => {
-    const retryAt = 1_800_000_000_000;
-    const captured = captureClient((request) =>
-      Effect.succeed(
-        cleanupResponse(request, {
-          complete: false,
-          deletedArtifacts: 0,
+        expect(
+          yield* cleanupProgram(captured.client).pipe(Effect.flip)
+        ).toMatchObject({
+          _tag: "ReleaseCleanupDeferredError",
           releaseId,
           retryAt,
-        })
-      )
-    );
+        });
+        expect(captured.requests).toHaveLength(1);
+      })
+  );
 
-    await expect(rejectCleanup(captured.client)).resolves.toMatchObject({
-      _tag: "ReleaseCleanupDeferredError",
-      releaseId,
-      retryAt,
-    });
-    expect(captured.requests).toHaveLength(1);
-  });
+  it.effect("sanitizes target protocol failures at the cleanup stage", () =>
+    Effect.gen(function* () {
+      const captured = captureClient((request) =>
+        Effect.succeed(
+          webResponse(request, "{}", {
+            headers: { "content-type": "application/json" },
+            status: 200,
+          })
+        )
+      );
 
-  it("sanitizes target protocol failures at the cleanup stage", async () => {
-    const captured = captureClient((request) =>
-      Effect.succeed(
-        webResponse(request, "{}", {
-          headers: { "content-type": "application/json" },
-          status: 200,
-        })
-      )
-    );
+      expect(
+        yield* cleanupProgram(captured.client).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "ProductionError",
+        failure: "PublicationTargetProtocolError",
+        stage: "cleanup",
+      });
+    })
+  );
 
-    await expect(rejectCleanup(captured.client)).resolves.toMatchObject({
-      _tag: "ProductionError",
-      failure: "PublicationTargetProtocolError",
-      stage: "cleanup",
-    });
-  });
-
-  it("sanitizes missing target configuration before network IO", async () => {
-    const captured = captureClient(() => Effect.die("Unexpected request."));
-    await expect(
-      rejectCleanup(captured.client, new Map())
-    ).resolves.toMatchObject({
-      _tag: "ProductionError",
-      failure: "ProductionEnvironmentError",
-      stage: "environment",
-    });
-    expect(captured.requests).toHaveLength(0);
-  });
+  it.effect("sanitizes missing target configuration before network IO", () =>
+    Effect.gen(function* () {
+      const captured = captureClient(() => Effect.die("Unexpected request."));
+      expect(
+        yield* cleanupProgram(captured.client, new Map()).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "ProductionError",
+        failure: "ProductionEnvironmentError",
+        stage: "environment",
+      });
+      expect(captured.requests).toHaveLength(0);
+    })
+  );
 });
