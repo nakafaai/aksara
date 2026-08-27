@@ -5,7 +5,19 @@ import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
 import { makeRepositoryTracker } from "#test/real";
 
 /** Temporary repositories owned by provider behavior tests. */
-export const providerRepositories = makeRepositoryTracker();
+const providerRepositories = makeRepositoryTracker();
+
+/** Acquires one compiled real document and removes its repository on release. */
+function acquirePreviewReady() {
+  return Effect.acquireRelease(
+    Effect.sync(() => providerRepositories.create()).pipe(
+      Effect.flatMap((repository) =>
+        Effect.tryPromise(() => makePreviewReady(repository)).pipe(Effect.orDie)
+      )
+    ),
+    () => Effect.sync(() => providerRepositories.clear())
+  );
+}
 
 /** Creates identity-invalid artifacts for every provider coherence boundary. */
 export function makeIncoherentResults(
@@ -36,44 +48,35 @@ export function makeIncoherentResults(
 }
 
 /** Creates one exact provider input backed by a temporary real document. */
-export async function makeProviderInput() {
-  const repository = providerRepositories.create();
-  const ready = await makePreviewReady(repository);
-  return {
+export const makeProviderInput = acquirePreviewReady().pipe(
+  Effect.map((ready) => ({
     document: ready.document,
     repositories: PREVIEW_REPOSITORIES,
     token: ready.credentials.providerToken,
-  };
-}
+  }))
+);
 
 /** Executes one callback while the scoped loopback provider is listening. */
-export async function withProvider(
+export function withProvider<A, E, R>(
   use: (input: {
     readonly provider: PreviewProvider;
     readonly ready: Awaited<ReturnType<typeof makePreviewReady>>;
     readonly token: string;
-  }) => Promise<void>
+  }) => Effect.Effect<A, E, R>
 ) {
-  const repository = providerRepositories.create();
-  const ready = await makePreviewReady(repository);
-  await Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const provider = yield* openPreviewProvider({
-          document: ready.document,
-          repositories: PREVIEW_REPOSITORIES,
-          token: ready.credentials.providerToken,
-        });
-        yield* Effect.tryPromise(() =>
-          use({
-            provider,
-            ready,
-            token: Redacted.value(ready.credentials.providerToken),
-          })
-        );
-      })
-    )
-  );
+  return Effect.gen(function* () {
+    const ready = yield* acquirePreviewReady();
+    const provider = yield* openPreviewProvider({
+      document: ready.document,
+      repositories: PREVIEW_REPOSITORIES,
+      token: ready.credentials.providerToken,
+    });
+    return yield* use({
+      provider,
+      ready,
+      token: Redacted.value(ready.credentials.providerToken),
+    });
+  });
 }
 
 /** Sends one authenticated request to the current provider origin. */
@@ -85,5 +88,25 @@ export function requestProvider(
 ) {
   const headers = new Headers(init.headers);
   headers.set("authorization", `Bearer ${token}`);
-  return fetch(new URL(path, provider.origin), { ...init, headers });
+  return Effect.tryPromise(() =>
+    fetch(new URL(path, provider.origin), { ...init, headers })
+  ).pipe(Effect.orDie);
 }
+
+/** Reads one successful provider response body as unknown JSON. */
+export const responseJson = Effect.fn("AksaraCliTest.responseJson")(
+  (response: Response) =>
+    Effect.tryPromise(() => response.json()).pipe(Effect.orDie)
+);
+
+/** Reads one successful provider response body as text. */
+export const responseText = Effect.fn("AksaraCliTest.responseText")(
+  (response: Response) =>
+    Effect.tryPromise(() => response.text()).pipe(Effect.orDie)
+);
+
+/** Reads one successful provider event-stream chunk. */
+export const readProviderEvent = Effect.fn("AksaraCliTest.readProviderEvent")(
+  (reader: ReadableStreamDefaultReader<Uint8Array>) =>
+    Effect.tryPromise(() => reader.read()).pipe(Effect.orDie)
+);
