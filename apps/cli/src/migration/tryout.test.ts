@@ -1,5 +1,5 @@
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
-import { expect, layer } from "@effect/vitest";
+import { assert, layer } from "@effect/vitest";
 import {
   Ed25519SignatureSchema,
   ReleaseIdSchema,
@@ -17,16 +17,47 @@ import { vi } from "vitest";
 
 import { runTryoutMigrationCommand } from "#cli/migration/tryout";
 
-const calls = vi.hoisted(() => ({
-  endpoint: undefined as string | undefined,
-  receipt: undefined as SignedTryoutHistoryMigrationReceipt | undefined,
-  releaseId: undefined as string | undefined,
+interface Calls {
+  completionBytes: string | undefined;
+  completionReceiptHash: string | undefined;
+  endpoint: string | undefined;
+  receipt: SignedTryoutHistoryMigrationReceipt | undefined;
+  receiptPath: string | undefined;
+  releaseId: string | undefined;
+  verifiedKey: boolean;
+}
+
+const calls = vi.hoisted<Calls>(() => ({
+  completionBytes: undefined,
+  completionReceiptHash: undefined,
+  endpoint: undefined,
+  receipt: undefined,
+  receiptPath: undefined,
+  releaseId: undefined,
   verifiedKey: false,
 }));
 
 vi.mock("@nakafa/aksara-publisher/migration/tryout/program", async () => {
-  const { Effect: TestEffect } = await import("effect");
+  const { Effect: TestEffect, FileSystem: TestFileSystem } = await import(
+    "effect"
+  );
   return {
+    /** Proves the durable receipt exists before destructive completion. */
+    completeRetainedTryoutHistory: (
+      migrationReceipt: SignedTryoutHistoryMigrationReceipt
+    ) =>
+      TestEffect.gen(function* () {
+        const fileSystem = yield* TestFileSystem.FileSystem;
+        if (calls.receiptPath === undefined) {
+          return yield* TestEffect.die("Expected one receipt path fixture.");
+        }
+        calls.completionBytes = yield* fileSystem.readFileString(
+          calls.receiptPath,
+          "utf8"
+        );
+        calls.completionReceiptHash = migrationReceipt.receiptHash;
+        return migrationReceipt;
+      }),
     /** Returns one public-safe terminal receipt without running production. */
     migrateRetainedTryoutHistory: (releaseId: string) => {
       calls.releaseId = releaseId;
@@ -102,20 +133,29 @@ const receipt = SignedTryoutHistoryMigrationReceiptSchema.make({
   receiptHash: hash,
   signature: Ed25519SignatureSchema.make(`${"A".repeat(85)}A`),
 });
+const receiptBytes = `${canonicalizeSignedTryoutHistoryMigrationReceipt(receipt)}\n`;
+
+/** Resets mutable mock evidence for one command execution. */
+function resetCalls(receiptPath: string) {
+  calls.completionBytes = undefined;
+  calls.completionReceiptHash = undefined;
+  calls.endpoint = undefined;
+  calls.receipt = receipt;
+  calls.receiptPath = receiptPath;
+  calls.releaseId = undefined;
+  calls.verifiedKey = false;
+}
 
 layer(NodeServices.layer)("try-out history migration command", (it) => {
   it.effect("writes one exclusive canonical public-safe receipt", () =>
     Effect.gen(function* () {
-      calls.receipt = receipt;
-      calls.releaseId = undefined;
-      calls.endpoint = undefined;
-      calls.verifiedKey = false;
       const fileSystem = yield* FileSystem.FileSystem;
       const path = yield* Path.Path;
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-migration-command-",
       });
       const receiptPath = path.join(root, "receipt.json");
+      resetCalls(receiptPath);
 
       yield* runTryoutMigrationCommand({
         command: "migrate-tryout-history",
@@ -123,25 +163,55 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
         releaseId: receipt.payload.migrationId,
       });
       const contents = yield* fileSystem.readFileString(receiptPath, "utf8");
+      const receiptInfo = yield* fileSystem.stat(receiptPath);
 
-      expect(contents).toBe(
-        `${canonicalizeSignedTryoutHistoryMigrationReceipt(receipt)}\n`
+      assert.strictEqual(contents, receiptBytes);
+      assert.strictEqual(receiptInfo.mode % 0o1000, 0o600);
+      assert.deepStrictEqual(yield* fileSystem.readDirectory(root), [
+        "receipt.json",
+      ]);
+      assert.strictEqual(calls.completionBytes, receiptBytes);
+      assert.strictEqual(calls.completionReceiptHash, receipt.receiptHash);
+      assert.strictEqual(calls.releaseId, receipt.payload.migrationId);
+      assert.strictEqual(
+        calls.endpoint,
+        "https://content.example.test/publish"
       );
-      expect(calls.releaseId).toBe(receipt.payload.migrationId);
-      expect(calls.endpoint).toBe("https://content.example.test/publish");
-      expect(calls.verifiedKey).toBe(true);
+      assert.strictEqual(calls.verifiedKey, true);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 
-  it.effect("never overwrites an existing receipt destination", () =>
+  it.effect("accepts an exact existing receipt and resumes completion", () =>
     Effect.gen(function* () {
-      calls.receipt = receipt;
       const fileSystem = yield* FileSystem.FileSystem;
       const path = yield* Path.Path;
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-migration-command-",
       });
       const receiptPath = path.join(root, "receipt.json");
+      resetCalls(receiptPath);
+      yield* fileSystem.writeFileString(receiptPath, receiptBytes);
+
+      yield* runTryoutMigrationCommand({
+        command: "migrate-tryout-history",
+        receiptPath,
+        releaseId: receipt.payload.migrationId,
+      });
+
+      assert.strictEqual(calls.completionBytes, receiptBytes);
+      assert.strictEqual(calls.completionReceiptHash, receipt.receiptHash);
+    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
+  );
+
+  it.effect("rejects a conflicting existing receipt without cleanup", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-migration-command-",
+      });
+      const receiptPath = path.join(root, "receipt.json");
+      resetCalls(receiptPath);
       yield* fileSystem.writeFileString(receiptPath, "existing\n");
 
       const failure = yield* runTryoutMigrationCommand({
@@ -150,14 +220,58 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
         releaseId: receipt.payload.migrationId,
       }).pipe(Effect.flip);
 
-      expect(failure).toMatchObject({
-        _tag: "ProductionError",
-        failure: "MigrationReceiptWriteError",
-        stage: "migration",
-      });
-      expect(yield* fileSystem.readFileString(receiptPath, "utf8")).toBe(
+      assert.strictEqual(failure._tag, "ProductionError");
+      assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
+      assert.strictEqual(failure.stage, "migration");
+      assert.strictEqual(
+        yield* fileSystem.readFileString(receiptPath, "utf8"),
         "existing\n"
       );
+      assert.strictEqual(calls.completionBytes, undefined);
+    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
+  );
+
+  it.effect("maps a receipt creation failure without cleanup", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-migration-command-",
+      });
+      const receiptPath = path.join(root, "missing", "receipt.json");
+      resetCalls(receiptPath);
+
+      const failure = yield* runTryoutMigrationCommand({
+        command: "migrate-tryout-history",
+        receiptPath,
+        releaseId: receipt.payload.migrationId,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failure._tag, "ProductionError");
+      assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
+      assert.strictEqual(failure.stage, "migration");
+      assert.strictEqual(calls.completionBytes, undefined);
+    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
+  );
+
+  it.effect("maps a receipt readback failure without cleanup", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const receiptPath = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-migration-command-",
+      });
+      resetCalls(receiptPath);
+
+      const failure = yield* runTryoutMigrationCommand({
+        command: "migrate-tryout-history",
+        receiptPath,
+        releaseId: receipt.payload.migrationId,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failure._tag, "ProductionError");
+      assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
+      assert.strictEqual(failure.stage, "migration");
+      assert.strictEqual(calls.completionBytes, undefined);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 });
