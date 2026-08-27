@@ -68,9 +68,7 @@ const makePublicationTestFixtures = Effect.fn(
   "MaterialPublicationTest.makeFixtures"
 )(() =>
   Effect.gen(function* () {
-    const publishedHeads = yield* Effect.tryPromise(() =>
-      publishedMaterialHeads()
-    );
+    const publishedHeads = yield* publishedMaterialHeads();
     const englishHead = yield* Effect.fromNullishOr(
       publishedHeads.find(
         (head) =>
@@ -109,11 +107,9 @@ layer(publicationTestLayer)("material publication", (it) => {
         sourcePath:
           "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
       });
-      const routes = yield* Effect.tryPromise(() =>
-        collectMaterialRoutes({
-          heads: [...fixture.publishedHeads, stale],
-        })
-      );
+      const routes = yield* collectMaterialRoutes({
+        heads: [...fixture.publishedHeads, stale],
+      });
 
       expect(routes).toHaveLength(1);
       expect(routes[0]).toEqual({
@@ -136,12 +132,14 @@ layer(publicationTestLayer)("material publication", (it) => {
       Effect.gen(function* () {
         const { englishHead, indonesianHead } =
           yield* MaterialPublicationTestFixtures;
-        const duplicate = yield* Effect.tryPromise(() =>
-          rejectMaterialPublication([englishHead, englishHead])
-        );
-        const noncanonical = yield* Effect.tryPromise(() =>
-          rejectMaterialPublication([indonesianHead, englishHead])
-        );
+        const duplicate = yield* rejectMaterialPublication([
+          englishHead,
+          englishHead,
+        ]);
+        const noncanonical = yield* rejectMaterialPublication([
+          indonesianHead,
+          englishHead,
+        ]);
 
         expect(duplicate).toMatchObject({
           _tag: "MaterialHeadDuplicateError",
@@ -158,9 +156,7 @@ layer(publicationTestLayer)("material publication", (it) => {
       Effect.gen(function* () {
         const { englishHead } = yield* MaterialPublicationTestFixtures;
         const head = yield* modifyHead(change(englishHead));
-        const error = yield* Effect.tryPromise(() =>
-          rejectMaterialPublication([head])
-        );
+        const error = yield* rejectMaterialPublication([head]);
 
         expect(error).toMatchObject({
           _tag: "MaterialHeadFamilyError",
