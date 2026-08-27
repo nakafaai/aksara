@@ -46,6 +46,7 @@ interface ResumeFixture {
   readonly receipt: ReturnType<typeof makeReceipt>;
 }
 
+/** Builds one isolated signed resume fixture inside the Effect test runtime. */
 const makeResumeFixture = Effect.fn("AksaraPublisher.test.makeResumeFixture")(
   function* () {
     const bundle = yield* Effect.promise(() => makeSignedBundle("test-resume"));
