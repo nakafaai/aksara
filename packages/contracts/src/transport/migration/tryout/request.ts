@@ -15,11 +15,12 @@ import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 const MIGRATION_OPERATION = "migrateTryoutHistory";
 
 /**
- * Deletes this protocol and every caller after a signed production receipt
- * proves that no retained migration marker remains.
+ * Deletes this protocol and every caller only after the authenticated receipt
+ * is persisted externally, the server reports cleaned, and every legacy or
+ * temporary row is proven absent. The contraction then deletes its receipt row.
  */
 export const TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE =
-  "signed-production-receipt-with-zero-remaining-markers";
+  "external-receipt-cleaned-server-zero-legacy-or-temporary-rows";
 const NonNegativeIndexSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );

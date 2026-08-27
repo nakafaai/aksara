@@ -23,7 +23,7 @@ describe("try-out history migration requests", () => {
   it("tracks the exact condition that deletes the temporary protocol", () => {
     assert.strictEqual(
       TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE,
-      "signed-production-receipt-with-zero-remaining-markers"
+      "external-receipt-cleaned-server-zero-legacy-or-temporary-rows"
     );
   });
 
