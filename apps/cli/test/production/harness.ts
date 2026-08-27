@@ -70,6 +70,7 @@ const calls = vi.hoisted(() => {
   });
 });
 
+/** Exposes the current production-command observations to its owner tests. */
 export function productionCalls() {
   return calls;
 }

@@ -65,6 +65,7 @@ type VerifyDeveloperRecovery = (
   | ReuseStoredReleaseContext
 >;
 
+/** Verifies an exact retained recovery before it can change public content. */
 export const verifyDeveloperRecovery: VerifyDeveloperRecovery = Effect.fn(
   "AksaraCli.verifyDeveloperRecovery"
 )(function* (input) {
