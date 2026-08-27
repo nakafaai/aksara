@@ -1,0 +1,539 @@
+name: Migrate try-out history
+
+on:
+  workflow_dispatch:
+    inputs:
+      migration_id:
+        description: Exact retained-history migration ID
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: content-production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      attestations: read
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit dependencies
+        run: pnpm security:audit
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed migration checkout is dirty." >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The migration checkout does not match the workflow revision." >&2
+            exit 1
+          fi
+
+      - name: Verify repository controls
+        run: |
+          pnpm lint
+          pnpm names
+          pnpm jsdocs
+          pnpm lines
+          pnpm locales
+          pnpm workflows
+          pnpm boundaries
+
+      - name: Verify migration revision
+        run: |
+          pnpm exec turbo run typecheck test build \
+            --filter=@nakafa/aksara-contracts \
+            --filter=@nakafa/aksara-publisher \
+            --filter=@nakafa/aksara-cli
+          pnpm deprecations:audit
+
+      - name: Build exact contract archive
+        env:
+          TARBALL: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
+        run: >-
+          pnpm --filter @nakafa/aksara-contracts verify:consumer --output "$TARBALL"
+
+      - name: Prove immutable contract release
+        env:
+          CURRENT_ARCHIVE: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          node packages/contracts/scripts/release-command.ts prove
+          --archive "$CURRENT_ARCHIVE"
+          --repository "$GITHUB_REPOSITORY"
+          --source-sha "$GITHUB_SHA"
+
+  seal:
+    needs: verify
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && needs.verify.result == 'success'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+    outputs:
+      asset_hash: ${{ steps.identity.outputs.asset_hash }}
+      asset_name: ${{ steps.identity.outputs.asset_name }}
+      release_tag: ${{ steps.identity.outputs.release_tag }}
+      size: ${{ steps.identity.outputs.size }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed migration checkout is dirty." >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The migration checkout does not match the workflow revision." >&2
+            exit 1
+          fi
+
+      - name: Prepare isolated migration checkout
+        env:
+          OPERATION_ROOT: ${{ runner.temp }}/aksara-migration
+        run: |
+          git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
+          pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$OPERATION_ROOT" rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The isolated migration checkout does not match the reviewed revision." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$OPERATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The isolated migration checkout is dirty." >&2
+            exit 1
+          fi
+
+      - name: Seal signed migration receipt
+        working-directory: ${{ runner.temp }}/aksara-migration
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
+          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
+          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
+          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          MIGRATION_ID: ${{ inputs.migration_id }}
+          RECEIPT: ${{ runner.temp }}/receipt.json
+        run: >-
+          pnpm --filter @nakafa/aksara-cli migrate --
+          --release-id "$MIGRATION_ID" --receipt-path "$RECEIPT"
+
+      - name: Resolve receipt identity
+        id: identity
+        env:
+          MIGRATION_ID: ${{ inputs.migration_id }}
+          RECEIPT: ${{ runner.temp }}/receipt.json
+        run: |
+          receipt_migration_id=$(jq -er '.payload.migrationId' "$RECEIPT")
+          if [[ "$receipt_migration_id" != "$MIGRATION_ID" ]]; then
+            echo "The signed receipt does not own the requested migration." >&2
+            exit 1
+          fi
+          digest=$(sha256sum "$RECEIPT" | cut -d ' ' -f 1)
+          size=$(stat --format='%s' "$RECEIPT")
+          {
+            echo "asset_hash=sha256:$digest"
+            echo "asset_name=receipt.json"
+            echo "release_tag=migration-$receipt_migration_id"
+            echo "size=$size"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Attest signed receipt
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: ${{ runner.temp }}/receipt.json
+
+      - name: Verify receipt attestation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT: ${{ runner.temp }}/receipt.json
+        run: >-
+          gh attestation verify "$RECEIPT"
+          --repo "$GITHUB_REPOSITORY"
+          --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml"
+          --source-digest "$GITHUB_SHA"
+          --source-ref "refs/heads/main"
+
+      - name: Upload signed receipt
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          compression-level: 0
+          if-no-files-found: error
+          name: migration-receipt-${{ inputs.migration_id }}
+          path: ${{ runner.temp }}/receipt.json
+          retention-days: 1
+
+  publish:
+    needs: seal
+    if: needs.seal.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      attestations: read
+      contents: write
+    steps:
+      - name: Download signed receipt
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: migration-receipt-${{ inputs.migration_id }}
+          path: ${{ runner.temp }}/migration-receipt
+
+      - name: Verify transported receipt
+        env:
+          EXPECTED_HASH: ${{ needs.seal.outputs.asset_hash }}
+          EXPECTED_SIZE: ${{ needs.seal.outputs.size }}
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
+        run: |
+          actual_hash="sha256:$(sha256sum "$RECEIPT" | cut -d ' ' -f 1)"
+          actual_size=$(stat --format='%s' "$RECEIPT")
+          if [[ "$actual_hash" != "$EXPECTED_HASH" || "$actual_size" != "$EXPECTED_SIZE" ]]; then
+            echo "The transported receipt differs from the sealed output." >&2
+            exit 1
+          fi
+          gh attestation verify "$RECEIPT" \
+            --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml" \
+            --source-digest "$GITHUB_SHA" \
+            --source-ref "refs/heads/main"
+
+      - name: Resolve release state
+        id: state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: |
+          release=""
+          if ! release=$(gh release view "$RELEASE_TAG" \
+            --json isDraft,isImmutable,isPrerelease,targetCommitish \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null); then
+            release=""
+          fi
+
+          tag=""
+          if ! tag=$(gh api \
+            "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null); then
+            tag=""
+          fi
+
+          if [[ -z "$release" ]]; then
+            if [[ -n "$tag" ]]; then
+              echo "The migration tag exists without a GitHub Release." >&2
+              exit 1
+            fi
+            echo "mode=create" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          target=$(jq -r '.targetCommitish' <<< "$release")
+          if [[ "$target" != "$GITHUB_SHA" ]]; then
+            echo "The migration release belongs to another source commit." >&2
+            exit 1
+          fi
+          if [[ "$(jq -r '.isPrerelease' <<< "$release")" == "true" ]]; then
+            echo "The migration receipt cannot be a prerelease." >&2
+            exit 1
+          fi
+          if [[ -n "$tag" ]] && ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            echo "The migration tag belongs to another source commit." >&2
+            exit 1
+          fi
+          if [[ "$(jq -r '.isImmutable' <<< "$release")" == "true" ]]; then
+            if [[ "$(jq -r '.isDraft' <<< "$release")" == "true" ]]; then
+              echo "An immutable migration release cannot remain a draft." >&2
+              exit 1
+            fi
+            echo "mode=reuse" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          gh release delete "$RELEASE_TAG" --cleanup-tag \
+            --repo "$GITHUB_REPOSITORY" --yes
+          echo "mode=create" >> "$GITHUB_OUTPUT"
+
+      - name: Create draft release
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: >-
+          gh release create "$RELEASE_TAG" --draft --latest=false
+          --notes "Signed retained-history migration receipt from Aksara commit $GITHUB_SHA."
+          --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$RELEASE_TAG"
+
+      - name: Attach signed receipt
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: gh release upload "$RELEASE_TAG" "$RECEIPT" --repo "$GITHUB_REPOSITORY"
+
+      - name: Publish immutable release
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: >-
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false
+          --repo "$GITHUB_REPOSITORY"
+
+      - name: Verify public receipt
+        env:
+          ASSET_NAME: ${{ needs.seal.outputs.asset_name }}
+          EXPECTED_HASH: ${{ needs.seal.outputs.asset_hash }}
+          EXPECTED_SIZE: ${{ needs.seal.outputs.size }}
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: |
+          release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg asset "$ASSET_NAME" \
+            --arg digest "$EXPECTED_HASH" \
+            --arg sha "$GITHUB_SHA" \
+            --argjson size "$EXPECTED_SIZE" \
+            --arg tag "$RELEASE_TAG" \
+            '.draft == false
+              and .immutable == true
+              and .prerelease == false
+              and .published_at != null
+              and .tag_name == $tag
+              and .target_commitish == $sha
+              and (.assets | length) == 1
+              and .assets[0].name == $asset
+              and .assets[0].size == $size
+              and .assets[0].digest == $digest' \
+            <<< "$release" >/dev/null; then
+            echo "The public migration release differs from the sealed receipt." >&2
+            exit 1
+          fi
+
+          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            echo "The migration release tag does not target the reviewed commit." >&2
+            exit 1
+          fi
+
+          gh release verify "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"
+          gh release verify-asset "$RELEASE_TAG" "$RECEIPT" \
+            --repo "$GITHUB_REPOSITORY"
+          gh attestation verify "$RECEIPT" \
+            --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml" \
+            --source-digest "$GITHUB_SHA" \
+            --source-ref "refs/heads/main"
+
+      - name: Remove failed mutable release
+        if: failure() && steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: |
+          release=""
+          if ! release=$(gh release view "$RELEASE_TAG" \
+            --json isImmutable,targetCommitish \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null); then
+            release=""
+          fi
+          if [[ -z "$release" ]] || ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.isImmutable == false and .targetCommitish == $sha' \
+            <<< "$release" >/dev/null; then
+            exit 0
+          fi
+
+          tag=""
+          if ! tag=$(gh api \
+            "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null); then
+            tag=""
+          fi
+          if [[ -n "$tag" ]] && ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            exit 0
+          fi
+          gh release delete "$RELEASE_TAG" --cleanup-tag \
+            --repo "$GITHUB_REPOSITORY" --yes
+
+  cleanup:
+    needs: [seal, publish]
+    if: >-
+      needs.seal.result == 'success'
+      && needs.publish.result == 'success'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      attestations: read
+      contents: read
+    steps:
+      - name: Download public receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT_ROOT: ${{ runner.temp }}/migration-release
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: |
+          mkdir -p "$RECEIPT_ROOT"
+          gh release download "$RELEASE_TAG" --clobber \
+            --dir "$RECEIPT_ROOT" --pattern "${{ needs.seal.outputs.asset_name }}" \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Verify public release
+        env:
+          ASSET_NAME: ${{ needs.seal.outputs.asset_name }}
+          EXPECTED_HASH: ${{ needs.seal.outputs.asset_hash }}
+          EXPECTED_SIZE: ${{ needs.seal.outputs.size }}
+          GH_TOKEN: ${{ github.token }}
+          RECEIPT: ${{ runner.temp }}/migration-release/${{ needs.seal.outputs.asset_name }}
+          RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
+        run: |
+          actual_hash="sha256:$(sha256sum "$RECEIPT" | cut -d ' ' -f 1)"
+          actual_size=$(stat --format='%s' "$RECEIPT")
+          if [[ "$actual_hash" != "$EXPECTED_HASH" || "$actual_size" != "$EXPECTED_SIZE" ]]; then
+            echo "The public receipt differs from the sealed output." >&2
+            exit 1
+          fi
+
+          release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg asset "$ASSET_NAME" \
+            --arg digest "$EXPECTED_HASH" \
+            --arg sha "$GITHUB_SHA" \
+            --argjson size "$EXPECTED_SIZE" \
+            --arg tag "$RELEASE_TAG" \
+            '.draft == false
+              and .immutable == true
+              and .prerelease == false
+              and .published_at != null
+              and .tag_name == $tag
+              and .target_commitish == $sha
+              and (.assets | length) == 1
+              and .assets[0].name == $asset
+              and .assets[0].size == $size
+              and .assets[0].digest == $digest' \
+            <<< "$release" >/dev/null; then
+            echo "Cleanup requires the exact immutable public receipt." >&2
+            exit 1
+          fi
+
+          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            echo "The cleanup release tag does not target the reviewed commit." >&2
+            exit 1
+          fi
+
+          gh release verify "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"
+          gh release verify-asset "$RELEASE_TAG" "$RECEIPT" \
+            --repo "$GITHUB_REPOSITORY"
+          gh attestation verify "$RECEIPT" \
+            --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml" \
+            --source-digest "$GITHUB_SHA" \
+            --source-ref "refs/heads/main"
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed cleanup checkout is dirty." >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The cleanup checkout does not match the workflow revision." >&2
+            exit 1
+          fi
+
+      - name: Prepare isolated cleanup checkout
+        env:
+          OPERATION_ROOT: ${{ runner.temp }}/aksara-cleanup
+        run: |
+          git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
+          pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$OPERATION_ROOT" rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The isolated cleanup checkout does not match the reviewed revision." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$OPERATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The isolated cleanup checkout is dirty." >&2
+            exit 1
+          fi
+
+      - name: Clean retained source
+        working-directory: ${{ runner.temp }}/aksara-cleanup
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          ASSET_HASH: ${{ needs.seal.outputs.asset_hash }}
+          MIGRATION_ID: ${{ inputs.migration_id }}
+          RECEIPT: ${{ runner.temp }}/migration-release/${{ needs.seal.outputs.asset_name }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: >-
+          pnpm --filter @nakafa/aksara-cli migrate:cleanup --
+          --release-id "$MIGRATION_ID" --receipt-path "$RECEIPT"
+          --asset-hash "$ASSET_HASH" --source-sha "$SOURCE_SHA"

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/files";
+import { verifyMigrationWorkflow } from "#scripts/workflow/migration";
 import { verifyWorkflowToolchains } from "#scripts/workflow-toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -56,6 +57,7 @@ export interface WorkflowSources {
   readonly all: readonly string[];
   readonly ci: string;
   readonly contracts: string;
+  readonly migration: string;
   readonly release: string;
 }
 
@@ -64,9 +66,10 @@ export function verifyWorkflows({
   all,
   ci,
   contracts,
+  migration,
   release,
 }: WorkflowSources): void {
-  const combined = `${ci}\n${contracts}\n${release}`;
+  const combined = `${ci}\n${contracts}\n${migration}\n${release}`;
   assert.doesNotMatch(
     combined,
     FORBIDDEN_REGISTRY_PATTERN,
@@ -248,6 +251,7 @@ export function verifyWorkflows({
     PUBLICATION_SCOPE_PATTERN,
     "Content releases must validate and pass one explicit scalable scope"
   );
+  verifyMigrationWorkflow(migration);
 }
 
 const workflowPaths = trackedFiles().filter((path) =>
@@ -258,6 +262,7 @@ verifyWorkflows({
   all: trackedSources,
   ci: readFileSync(".github/workflows/ci.yml", "utf8"),
   contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
+  migration: readFileSync(".github/workflows/migration.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
 });
 process.stdout.write("Verified immutable contract and content workflows.\n");

@@ -14,8 +14,15 @@ const OPERATION_SETUP_INPUT =
 function currentSources(): WorkflowSources {
   const ci = readFileSync(".github/workflows/ci.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
+  const migration = readFileSync(".github/workflows/migration.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return { all: [ci, contracts, release], ci, contracts, release };
+  return {
+    all: [ci, contracts, migration, release],
+    ci,
+    contracts,
+    migration,
+    release,
+  };
 }
 
 const sources = currentSources();
