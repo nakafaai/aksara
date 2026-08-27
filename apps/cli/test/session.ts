@@ -1,5 +1,3 @@
-import { relative } from "node:path";
-import { NodeServices } from "@effect/platform-node";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import {
   ExactProcess,
@@ -8,7 +6,6 @@ import {
 import {
   Effect,
   FileSystem,
-  Layer,
   Path,
   type PlatformError,
   type Stream,
@@ -21,6 +18,18 @@ import { type PreviewProvider, PreviewProviderError } from "#cli/provider";
 import { type LocalPreviewSession, openLocalPreview } from "#cli/session";
 import { openSelectedWatcher } from "#cli/watch";
 import { RENDERER_MANIFEST, type TestRepositories } from "#test/real";
+
+/** Returns deterministic clean Git evidence for both test repositories. */
+const exactProcess = ExactProcess.of({
+  run: (input: ExactProcessInput) =>
+    Effect.succeed({
+      exitCode: 0,
+      stderr: new Uint8Array(),
+      stdout: new TextEncoder().encode(
+        input.args.includes("rev-parse") ? `${"a".repeat(40)}\n` : ""
+      ),
+    }),
+});
 
 /** Builds a preview provider that records state transitions. */
 export function makeProvider(control: {
@@ -119,8 +128,8 @@ export function makeApp(
   });
 }
 
-/** Runs a scoped local-preview session with real files and deterministic Git. */
-export function runLocal<A, E>(
+/** Opens one scoped local-preview session with real files and deterministic Git. */
+export const runLocal = Effect.fn("AksaraCliTest.runLocal")(function* <A, E>(
   repository: TestRepositories,
   app: typeof NakafaApp.Service,
   use: (
@@ -128,34 +137,19 @@ export function runLocal<A, E>(
   ) => Effect.Effect<A, E, FileSystem.FileSystem | Path.Path>,
   appLocale?: AppLocale
 ) {
-  const exactProcess = ExactProcess.of({
-    /** Returns deterministic clean Git evidence for both test repositories. */
-    run: (input: ExactProcessInput) =>
-      Effect.succeed({
-        exitCode: 0,
-        stderr: new Uint8Array(),
-        stdout: new TextEncoder().encode(
-          input.args.includes("rev-parse") ? `${"a".repeat(40)}\n` : ""
-        ),
-      }),
-  });
-  return Effect.runPromise(
-    Effect.scoped(
-      openLocalPreview({
-        ...(appLocale === undefined ? {} : { appLocale }),
-        cwd: repository.aksaraRoot,
-        environment: { nakafaAppDir: repository.nakafaRoot },
-        requestedDocument: relative(
-          repository.aksaraRoot,
-          repository.documentPath
-        ),
-      }).pipe(Effect.flatMap(use))
-    ).pipe(
-      Effect.provide([
-        Layer.succeed(NakafaApp, app),
-        Layer.succeed(ExactProcess, exactProcess),
-        NodeServices.layer,
-      ])
-    )
+  const path = yield* Path.Path;
+  return yield* Effect.scoped(
+    openLocalPreview({
+      ...(appLocale === undefined ? {} : { appLocale }),
+      cwd: repository.aksaraRoot,
+      environment: { nakafaAppDir: repository.nakafaRoot },
+      requestedDocument: path.relative(
+        repository.aksaraRoot,
+        repository.documentPath
+      ),
+    }).pipe(Effect.flatMap(use))
+  ).pipe(
+    Effect.provideService(NakafaApp, app),
+    Effect.provideService(ExactProcess, exactProcess)
   );
-}
+});
