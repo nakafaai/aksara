@@ -145,6 +145,10 @@ describe("try-out history migration source", () => {
     "reads contiguous source pages and reauthenticates the inventory",
     () =>
       Effect.gen(function* () {
+        const pagedSource = {
+          ...historicalSource,
+          evidence: { ...historicalSource.evidence, catalogRowCount: 2 },
+        };
         let catalogCalls = 0;
         const target = targetWith((request) => {
           if (request.command !== "rowPage") {
@@ -161,19 +165,30 @@ describe("try-out history migration source", () => {
               rows: historicalCatalogEntries,
             });
           }
+          if (request.rowKind === "catalog") {
+            return Effect.succeed({
+              ...completePage(request),
+              rows: historicalCatalogEntries.map((entry) => ({
+                ...entry,
+                index: 1,
+              })),
+            });
+          }
           return Effect.succeed({
             ...completePage(request),
-            rows:
-              request.rowKind === "catalog" ? [] : historicalPlacementEntries,
+            rows: historicalPlacementEntries.map((entry) => ({
+              ...entry,
+              index: 2,
+            })),
           });
         });
 
         const rows = yield* readHistoricalTryoutRows(
           target,
           migrationId,
-          historicalSource
+          pagedSource
         );
-        expect(rows.catalog).toHaveLength(1);
+        expect(rows.catalog).toHaveLength(2);
         expect(rows.placements).toHaveLength(1);
         expect(authentication.inventories).toBe(1);
       })
@@ -193,8 +208,33 @@ describe("try-out history migration source", () => {
             request.command === "rowPage"
               ? {
                   ...completePage(request),
+                  rows:
+                    request.rowKind === "catalog"
+                      ? [
+                          ...historicalCatalogEntries,
+                          ...historicalCatalogEntries,
+                        ]
+                      : historicalPlacementEntries,
+                }
+              : completePage(request)
+          ),
+        (request) =>
+          Effect.succeed(
+            request.command === "rowPage"
+              ? {
+                  ...completePage(request),
                   rowKind:
                     request.rowKind === "catalog" ? "placement" : "catalog",
+                }
+              : completePage(request)
+          ),
+        (request) =>
+          Effect.succeed(
+            request.command === "rowPage"
+              ? {
+                  ...completePage(request),
+                  isDone: false,
+                  nextIndex: 0,
                 }
               : completePage(request)
           ),
@@ -240,7 +280,9 @@ describe("try-out history migration source", () => {
 
       expect(failures.map(failureReason)).toEqual([
         "command-evidence",
+        "source-count",
         "command-evidence",
+        "source-count",
         "source-index",
         "source-count",
         "source-index",

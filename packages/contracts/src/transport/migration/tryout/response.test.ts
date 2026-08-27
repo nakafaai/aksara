@@ -16,6 +16,7 @@ import { TryoutHistoryMigrationStatusSchema } from "#contracts/transport/migrati
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const migrationId = ReleaseIdSchema.make("retained-history-v1");
 const completion: TryoutHistoryMigrationCompletion = {
+  cleanupLimit: 19,
   completedAt: 1,
   migratedAttempts: 2,
   migratedScaleItems: 3,

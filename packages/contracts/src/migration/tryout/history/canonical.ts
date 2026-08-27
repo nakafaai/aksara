@@ -35,6 +35,7 @@ function migrationSourceFacts(source: TryoutHistoryMigrationSourceEvidence) {
     },
     catalogRowCount: source.catalogRowCount,
     creatingReleaseId: source.creatingReleaseId,
+    legacyBundleCount: source.legacyBundleCount,
     placementRowCount: source.placementRowCount,
     releases: source.releases.map(
       ({ attemptCount, manifestHash, releaseId }) => ({
@@ -44,6 +45,7 @@ function migrationSourceFacts(source: TryoutHistoryMigrationSourceEvidence) {
       })
     ),
     rendererManifestHash: source.rendererManifestHash,
+    runtimeBundleCount: source.runtimeBundleCount,
     scales: {
       digest: source.scales.digest,
       itemCount: source.scales.itemCount,
@@ -140,6 +142,7 @@ export function canonicalizeTryoutHistoryMigrationReceiptPayload(
 ) {
   return JSON.stringify({
     completion: {
+      cleanupLimit: payload.completion.cleanupLimit,
       completedAt: payload.completion.completedAt,
       migratedAttempts: payload.completion.migratedAttempts,
       migratedScaleItems: payload.completion.migratedScaleItems,
@@ -172,6 +175,7 @@ export function canonicalizeSignedTryoutHistoryMigrationReceipt(
     keyId: receipt.keyId,
     payload: {
       completion: {
+        cleanupLimit: receipt.payload.completion.cleanupLimit,
         completedAt: receipt.payload.completion.completedAt,
         migratedAttempts: receipt.payload.completion.migratedAttempts,
         migratedScaleItems: receipt.payload.completion.migratedScaleItems,

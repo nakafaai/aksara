@@ -2,6 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { computeTryoutHistoryCleanupLimit } from "@nakafa/aksara-contracts/migration/tryout/history/cleanup";
 import {
   TRYOUT_HISTORY_MIGRATION_PLAN_FORMAT,
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
@@ -61,6 +62,7 @@ export const migrationProtocol = Effect.fn(
     targetSnapshotId: prepared.evidence.snapshot.snapshotId,
   });
   const completion: TryoutHistoryMigrationCompletion = {
+    cleanupLimit: yield* computeTryoutHistoryCleanupLimit(plan.payload),
     completedAt: 1,
     migratedAttempts: historicalSource.evidence.attempts.attemptCount,
     migratedScaleItems: historicalSource.evidence.scales.itemCount,

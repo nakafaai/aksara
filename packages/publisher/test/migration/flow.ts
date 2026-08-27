@@ -19,6 +19,7 @@ import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makePublicationTarget } from "#test/target";
 
 export const completion = TryoutHistoryMigrationCompletionSchema.make({
+  cleanupLimit: 18,
   completedAt: 1,
   migratedAttempts: 1,
   migratedScaleItems: 1,

@@ -101,7 +101,8 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
   );
   if (
     source.evidence.catalogRowCount !== catalogRowCount ||
-    source.evidence.placementRowCount !== snapshot.placementCount
+    source.evidence.placementRowCount !== snapshot.placementCount ||
+    source.evidence.legacyBundleCount !== source.releases.length
   ) {
     return yield* sourceFail("inventory");
   }

@@ -47,6 +47,7 @@ const payloads = Effect.fn("AksaraPublisherTest.migrationPayloads")(
     };
     const receipt: TryoutHistoryMigrationReceiptPayload = {
       completion: {
+        cleanupLimit: 18,
         completedAt: 1,
         migratedAttempts: 1,
         migratedScaleItems: 1,

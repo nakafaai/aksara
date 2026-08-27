@@ -208,6 +208,41 @@ describe("try-out history migration receipt lifecycle", () => {
     )
   );
 
+  it.effect("fails closed when cleanup exceeds its signed limit", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      let calls = 0;
+      const target = makePublicationTarget({
+        migrateTryoutHistory: (request) => {
+          if (request.command !== "cleanup") {
+            return Effect.die("Expected cleanup.");
+          }
+          calls += 1;
+          return Effect.succeed({
+            command: request.command,
+            deleted: 10,
+            migrationId,
+            status: sealedMigrationStatus(
+              request.receipt,
+              completedMigrationStatus()
+            ),
+          });
+        },
+      });
+      const failure = yield* cleanupMigrationReceipt(target, receipt).pipe(
+        Effect.flip
+      );
+
+      assert.strictEqual(failureReason(failure), "cleanup-limit");
+      assert.strictEqual(calls, 2);
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+
   it.effect("rejects command, phase, and cleaned receipt drift", () =>
     Effect.gen(function* () {
       const receipt = yield* makeReceipt();

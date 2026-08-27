@@ -54,7 +54,8 @@ const readRowKind = Effect.fn("AksaraPublisher.readHistoricalTryoutRows")(
     target: Target,
     migrationId: ReleaseId,
     sourceSnapshotId: TryoutHistoryMigrationSource["evidence"]["snapshot"]["snapshotId"],
-    rowKind: "catalog" | "placement"
+    rowKind: "catalog" | "placement",
+    rowCount: number
   ) {
     const rows: RowPageValue["rows"][number][] = [];
     let afterIndex = -1;
@@ -71,12 +72,18 @@ const readRowKind = Effect.fn("AksaraPublisher.readHistoricalTryoutRows")(
       if (value.command !== "rowPage" || value.rowKind !== rowKind) {
         return yield* migrationFail("command-evidence");
       }
+      if (rows.length + value.rows.length > rowCount) {
+        return yield* migrationFail("source-count");
+      }
       for (const entry of value.rows) {
         rows.push(entry);
       }
       const { isDone: pageDone, nextIndex, rows: pageRows } = value;
       isDone = pageDone;
       if (!isDone) {
+        if (rows.length === rowCount) {
+          return yield* migrationFail("source-count");
+        }
         if (nextIndex === null || pageRows.length === 0) {
           return yield* migrationFail("source-index");
         }
@@ -108,13 +115,15 @@ export const readHistoricalTryoutRows = Effect.fn(
       target,
       migrationId,
       source.evidence.snapshot.snapshotId,
-      "catalog"
+      "catalog",
+      source.evidence.catalogRowCount
     ),
     readRowKind(
       target,
       migrationId,
       source.evidence.snapshot.snapshotId,
-      "placement"
+      "placement",
+      source.evidence.placementRowCount
     ),
   ]);
   const catalog = yield* Effect.forEach(catalogEntries, (entry) =>

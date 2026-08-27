@@ -104,6 +104,12 @@ export const cleanupMigrationReceipt = Effect.fn(
   receipt: SignedTryoutHistoryMigrationReceipt
 ) {
   const authenticated = yield* authenticateMigrationReceipt(receipt);
+  const {
+    payload: {
+      completion: { cleanupLimit },
+    },
+  } = authenticated;
+  let deletedRows = 0;
   let isCleaned = false;
   yield* Effect.whileLoop({
     body: () =>
@@ -121,6 +127,10 @@ export const cleanupMigrationReceipt = Effect.fn(
           !hasReceiptEvidence(value.status, authenticated)
         ) {
           return yield* migrationFail("receipt-evidence");
+        }
+        deletedRows += value.deleted;
+        if (deletedRows > cleanupLimit) {
+          return yield* migrationFail("cleanup-limit");
         }
         if (value.status.phase === "sealed" && value.deleted === 0) {
           return yield* migrationFail("cleanup-progress");

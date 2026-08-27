@@ -9,6 +9,7 @@ export class TryoutHistoryMigrationError extends Schema.TaggedError<TryoutHistor
       "artifact-count",
       "artifact-requirement",
       "catalog-conversion",
+      "cleanup-limit",
       "cleanup-progress",
       "command-evidence",
       "placement-conversion",

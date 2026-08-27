@@ -66,6 +66,7 @@ describe("try-out history migration requests", () => {
         keyId: SigningKeyIdSchema.make("content-2026-08-27"),
         payload: {
           completion: {
+            cleanupLimit: 19,
             completedAt: 1,
             migratedAttempts: 2,
             migratedScaleItems: 3,

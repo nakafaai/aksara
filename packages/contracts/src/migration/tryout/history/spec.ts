@@ -61,9 +61,11 @@ export const TryoutHistoryMigrationSourceEvidenceSchema = Schema.Struct({
   attempts: TryoutHistoryMigrationAttemptInventorySchema,
   catalogRowCount: NonNegativeCountSchema,
   creatingReleaseId: ReleaseIdSchema,
+  legacyBundleCount: NonNegativeCountSchema,
   placementRowCount: NonNegativeCountSchema,
   releases: Schema.NonEmptyArray(TryoutHistoryMigrationReleaseBindingSchema),
   rendererManifestHash: Sha256HashSchema,
+  runtimeBundleCount: NonNegativeCountSchema,
   scales: TryoutHistoryMigrationScaleInventorySchema,
   snapshot: HistoricalTryoutSnapshotSchema,
 });
@@ -111,6 +113,7 @@ export type SignedTryoutHistoryMigrationPlan =
 
 /** Public-safe terminal counts returned after all markers are removed. */
 export const TryoutHistoryMigrationCompletionSchema = Schema.Struct({
+  cleanupLimit: NonNegativeCountSchema,
   completedAt: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   migratedAttempts: NonNegativeCountSchema,
   migratedScaleItems: NonNegativeCountSchema,
