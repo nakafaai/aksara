@@ -1,5 +1,6 @@
 import { assert, beforeEach, describe, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { LEGACY_TRYOUT_RUNTIME } from "@nakafa/aksara-contracts/release/current/legacy";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
@@ -46,8 +47,43 @@ function activateTryoutBase(includeRuntimeBundle: boolean) {
     baseReleaseId: releaseId("release-parent"),
     tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
   });
+  const predecessor = {
+    ...active,
+    release: {
+      ...active.release,
+      manifest: {
+        ...active.release.manifest,
+        releaseId: LEGACY_TRYOUT_RUNTIME.releaseId,
+        rendererManifestHash: LEGACY_TRYOUT_RUNTIME.rendererManifestHash,
+        snapshots: {
+          ...active.release.manifest.snapshots,
+          tryout: {
+            ...active.release.manifest.snapshots.tryout,
+            baseSnapshotId: LEGACY_TRYOUT_RUNTIME.snapshotId,
+            resultSnapshotId: LEGACY_TRYOUT_RUNTIME.snapshotId,
+          },
+        },
+      },
+      manifestHash: LEGACY_TRYOUT_RUNTIME.manifestHash,
+    },
+    rendererManifest: {
+      ...active.rendererManifest,
+      hash: LEGACY_TRYOUT_RUNTIME.rendererManifestHash,
+    },
+  };
+  const completed = completedBundle(
+    includeRuntimeBundle ? active : predecessor
+  );
   calls.current = currentState({
-    active: completedBundle(active),
+    active: includeRuntimeBundle
+      ? completed
+      : {
+          ...completed,
+          receipt: {
+            ...completed.receipt,
+            manifestHash: LEGACY_TRYOUT_RUNTIME.manifestHash,
+          },
+        },
     candidate: null,
     recovery: null,
     ...(includeRuntimeBundle
@@ -77,17 +113,15 @@ describe("production runtime bundle preparation", () => {
         })
       );
 
+      const missingScope = yield* selectTryoutRuntimeRefresh({
+        base,
+        bundle: null,
+        rendererManifest: RENDERER_MANIFEST,
+        scope: FUNCTION_SCOPE,
+      }).pipe(Effect.flip);
+      assert.strictEqual(missingScope._tag, "ReleasePolicyClosureError");
       assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
-          base,
-          bundle: null,
-          rendererManifest: RENDERER_MANIFEST,
-          scope: FUNCTION_SCOPE,
-        }),
-        { kind: "stable" }
-      );
-      assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
+        yield* selectTryoutRuntimeRefresh({
           base: null,
           bundle: null,
           rendererManifest: RENDERER_MANIFEST,
@@ -96,7 +130,7 @@ describe("production runtime bundle preparation", () => {
         { kind: "stable" }
       );
       assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
+        yield* selectTryoutRuntimeRefresh({
           base: noTryoutBase,
           bundle: null,
           rendererManifest: RENDERER_MANIFEST,
@@ -105,7 +139,7 @@ describe("production runtime bundle preparation", () => {
         { kind: "stable" }
       );
       assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
+        yield* selectTryoutRuntimeRefresh({
           base,
           bundle: null,
           rendererManifest: RENDERER_MANIFEST,
@@ -114,7 +148,7 @@ describe("production runtime bundle preparation", () => {
         { kind: "refresh", snapshot: null }
       );
       assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
+        yield* selectTryoutRuntimeRefresh({
           base,
           bundle,
           rendererManifest: RENDERER_MANIFEST,
@@ -123,7 +157,7 @@ describe("production runtime bundle preparation", () => {
         { kind: "stable" }
       );
       assert.deepStrictEqual(
-        selectTryoutRuntimeRefresh({
+        yield* selectTryoutRuntimeRefresh({
           base,
           bundle,
           rendererManifest: refreshedRenderer,
@@ -163,15 +197,16 @@ describe("production runtime bundle preparation", () => {
       })
   );
 
-  it.effect("keeps unrelated releases independent of a missing bundle", () =>
+  it.effect("rejects successors while the predecessor bundle is missing", () =>
     Effect.gen(function* () {
-      const receipt = yield* productionProgram({
+      const failure = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-independent"),
         releaseId: releaseId("release-independent"),
         scope: FUNCTION_SCOPE,
-      });
-      assert.strictEqual(receipt.releaseId, "release-independent");
+      }).pipe(Effect.flip);
+      assert.strictEqual(failure.failure, "ReleasePolicyClosureError");
+      assert.strictEqual(calls.catalogCalls, 0);
       assert.strictEqual(calls.runtimeBundleRefreshes, 0);
       assert.strictEqual(calls.snapshotCalls, 0);
     })
@@ -183,7 +218,7 @@ describe("production runtime bundle preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-bootstrap"),
         releaseId: releaseId("release-bootstrap"),
-        scope: tryoutScope,
+        scope: rendererScope,
       });
       assert.strictEqual(receipt.releaseId, "release-bootstrap");
       assert.strictEqual(calls.runtimeBundleRefreshes, 1);
