@@ -149,7 +149,11 @@ export function createConsumerTsconfig() {
 
 /** Serializes the external Node runtime verifier for the installed tarball. */
 export function createInstallRunner() {
-  return `import { verifyInstalledPackage } from "#scripts/verify-install";
+  return `import { Effect } from "effect";
+import {
+  InstallVerificationError,
+  verifyInstalledPackage,
+} from "#scripts/verify-install";
 import { textField } from "#scripts/manifest";
 
 const packageName = textField(
@@ -157,12 +161,28 @@ const packageName = textField(
   "The installed package name is required"
 );
 
-await verifyInstalledPackage({
-  consumerRoot: process.cwd(),
-  importModule: (specifier) => import(specifier),
-  packageName,
-  resolveSpecifier: (specifier) => import.meta.resolve(specifier),
-  write: (message) => process.stdout.write(message),
-});
+const installError = (message: string) => (cause: unknown) =>
+  new InstallVerificationError({ cause, message });
+
+await Effect.runPromise(
+  verifyInstalledPackage({
+    consumerRoot: process.cwd(),
+    importModule: (specifier) =>
+      Effect.tryPromise({
+        catch: installError(\`Unable to import \${specifier}.\`),
+        try: () => import(specifier),
+      }),
+    packageName,
+    resolveSpecifier: (specifier) =>
+      Effect.try({
+        catch: installError(\`Unable to resolve \${specifier}.\`),
+        try: () => import.meta.resolve(specifier),
+      }),
+    write: (message) =>
+      Effect.sync(() => {
+        process.stdout.write(message);
+      }),
+  })
+);
 `;
 }

@@ -91,9 +91,10 @@ describe("consumer tooling", () => {
       },
       files: ["consumer.ts"],
     });
-    expect(createInstallRunner()).toContain("await verifyInstalledPackage({");
+    expect(createInstallRunner()).toContain("await Effect.runPromise(");
+    expect(createInstallRunner()).toContain("verifyInstalledPackage({");
     expect(createInstallRunner()).toContain(
-      "resolveSpecifier: (specifier) => import.meta.resolve(specifier)"
+      "try: () => import.meta.resolve(specifier)"
     );
   });
 });
