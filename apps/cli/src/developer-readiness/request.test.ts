@@ -7,7 +7,7 @@ import {
   HttpClientRequest,
 } from "effect/unstable/http";
 import { fetchReadinessJson, jsonGet } from "#cli/developer-readiness/request";
-import { captureClient, runClient, webResponse } from "#test/http";
+import { captureClient, webResponse } from "#test/http";
 
 const TEST_API_URL = "https://api.example.test/v1";
 
@@ -18,7 +18,12 @@ function fetchTestApi(protocolVersion?: string) {
 
 /** Returns the typed failure for one explicit test client. */
 function reject(client: HttpClient.HttpClient, protocolVersion?: string) {
-  return runClient(fetchTestApi(protocolVersion).pipe(Effect.flip), client);
+  return Effect.runPromise(
+    fetchTestApi(protocolVersion).pipe(
+      Effect.flip,
+      Effect.provideService(HttpClient.HttpClient, client)
+    )
+  );
 }
 
 describe("developer readiness requests", () => {
@@ -34,7 +39,13 @@ describe("developer readiness requests", () => {
       )
     );
 
-    await expect(runClient(fetchTestApi(), captured.client)).resolves.toEqual({
+    await expect(
+      Effect.runPromise(
+        fetchTestApi().pipe(
+          Effect.provideService(HttpClient.HttpClient, captured.client)
+        )
+      )
+    ).resolves.toEqual({
       body: { ready: true },
       headers: expect.objectContaining({ "x-release": "test-release" }),
     });

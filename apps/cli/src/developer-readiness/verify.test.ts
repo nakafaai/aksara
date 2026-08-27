@@ -1,7 +1,7 @@
 import { NAKAFA_AGENT_IMPLEMENTATION_SHA } from "@nakafa/aksara-corpus/pages/source";
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
-import type { HttpClient, HttpClientRequest } from "effect/unstable/http";
+import { HttpClient, type HttpClientRequest } from "effect/unstable/http";
 import { DEVELOPER_RELEASE_SHA_HEADER } from "#cli/developer-readiness/contract";
 import { verifyPublishedDeveloperSurface } from "#cli/developer-readiness/verify";
 import {
@@ -11,7 +11,7 @@ import {
   DEVELOPER_TEST_RELEASE_SHA,
   developerResponseBody,
 } from "#test/developer";
-import { captureClient, requestJson, runClient, webResponse } from "#test/http";
+import { captureClient, requestJson, webResponse } from "#test/http";
 
 /** Wraps one test contract body in its required protocol headers. */
 function jsonResponse(
@@ -50,7 +50,12 @@ function readinessProgram(config: ReadonlyMap<string, string> = new Map()) {
 
 /** Returns one typed readiness failure through an explicit test client. */
 function reject(client: HttpClient.HttpClient) {
-  return runClient(readinessProgram().pipe(Effect.flip), client);
+  return Effect.runPromise(
+    readinessProgram().pipe(
+      Effect.flip,
+      Effect.provideService(HttpClient.HttpClient, client)
+    )
+  );
 }
 
 describe("Nakafa developer release readiness", () => {
@@ -58,9 +63,10 @@ describe("Nakafa developer release readiness", () => {
     const captured = successfulClient();
 
     await expect(
-      runClient(
-        readinessProgram(new Map([["GITHUB_TOKEN", "test-token"]])),
-        captured.client
+      Effect.runPromise(
+        readinessProgram(new Map([["GITHUB_TOKEN", "test-token"]])).pipe(
+          Effect.provideService(HttpClient.HttpClient, captured.client)
+        )
       )
     ).resolves.toBeUndefined();
 
@@ -147,7 +153,11 @@ describe("Nakafa developer release readiness", () => {
     });
 
     await expect(
-      runClient(readinessProgram(), compatible.client)
+      Effect.runPromise(
+        readinessProgram().pipe(
+          Effect.provideService(HttpClient.HttpClient, compatible.client)
+        )
+      )
     ).resolves.toBeUndefined();
   });
 
