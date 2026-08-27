@@ -1,10 +1,9 @@
-import { realpathSync, symlinkSync, unlinkSync } from "node:fs";
-import { relative, resolve } from "node:path";
+import { NodeServices } from "@effect/platform-node";
+import { beforeEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Data, Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { Data, Effect, FileSystem, Path } from "effect";
+import { vi } from "vitest";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
-import { runNode } from "#test/effect";
 import {
   ENGLISH_ENTRY,
   makeRepositoryTracker,
@@ -57,108 +56,143 @@ vi.mock("@nakafa/aksara-corpus/preview/selection", async (importOriginal) => {
 
 const repositories = makeRepositoryTracker();
 
-afterEach(() => {
+/** Acquires one repository pair and removes it when the test scope closes. */
+const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
+  function* () {
+    return yield* Effect.acquireRelease(
+      Effect.sync(() => repositories.create()),
+      () => Effect.sync(() => repositories.clear())
+    );
+  }
+);
+
+beforeEach(() => {
   registryControl.fail = false;
   registryControl.empty = false;
-  repositories.clear();
 });
 
-describe("preview repository selection", () => {
-  it("selects absolute or relative registry paths", async () => {
-    const repository = repositories.create();
-    const realAksaraRoot = realpathSync(repository.aksaraRoot);
-    const realDocumentPath = realpathSync(repository.documentPath);
-    const requested = relative(realAksaraRoot, realDocumentPath);
-    const [relativeDocument, absoluteDocument] = await Promise.all([
-      runNode(selectPreviewDocument(realAksaraRoot, requested)),
-      runNode(selectPreviewDocument(realAksaraRoot, realDocumentPath)),
-    ]);
+layer(NodeServices.layer)("preview repository selection", (it) => {
+  it.effect("selects absolute or relative registry paths", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const repository = yield* acquireRepository();
+      const realAksaraRoot = yield* fileSystem.realPath(repository.aksaraRoot);
+      const realDocumentPath = yield* fileSystem.realPath(
+        repository.documentPath
+      );
+      const requested = path.relative(realAksaraRoot, realDocumentPath);
+      const [relativeDocument, absoluteDocument] = yield* Effect.all(
+        [
+          selectPreviewDocument(realAksaraRoot, requested),
+          selectPreviewDocument(realAksaraRoot, realDocumentPath),
+        ],
+        { concurrency: "unbounded" }
+      );
+      expect(relativeDocument).toEqual(absoluteDocument);
+      expect(relativeDocument.sources[0].entry).toEqual(ENGLISH_ENTRY);
+    })
+  );
 
-    expect(relativeDocument).toEqual(absoluteDocument);
-    expect(relativeDocument.sources[0].entry).toEqual(ENGLISH_ENTRY);
-  });
-
-  it("preserves an actionable explicit application-locale failure", async () => {
-    const repository = repositories.create();
-    const requested = relative(repository.aksaraRoot, repository.documentPath);
-    const error = await runNode(
-      selectPreviewDocument(
+  it.effect("preserves an actionable explicit application-locale failure", () =>
+    Effect.gen(function* () {
+      const path = yield* Path.Path;
+      const repository = yield* acquireRepository();
+      const requested = path.relative(
+        repository.aksaraRoot,
+        repository.documentPath
+      );
+      const error = yield* selectPreviewDocument(
         repository.aksaraRoot,
         requested,
         AppLocaleSchema.make("de")
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({ reason: "app-locale" });
+    })
+  );
 
-    expect(error).toMatchObject({ reason: "app-locale" });
-  });
+  it.effect(
+    "selects one real catalog document and rejects an empty catalog",
+    () =>
+      Effect.gen(function* () {
+        const selected = yield* selectCatalogDocument(REPOSITORY_ROOT);
+        expect(selected.sources[0].family).toBe("material");
+        registryControl.empty = true;
+        const empty = yield* selectCatalogDocument(REPOSITORY_ROOT).pipe(
+          Effect.flip
+        );
+        expect(empty).toMatchObject({ kind: "document", reason: "registry" });
+        registryControl.empty = false;
+        registryControl.fail = true;
+        const failed = yield* selectCatalogDocument(REPOSITORY_ROOT).pipe(
+          Effect.flip
+        );
+        expect(failed).toMatchObject({ kind: "document", reason: "registry" });
+      })
+  );
 
-  it("selects one real catalog document and rejects an empty catalog", async () => {
-    const selected = await runNode(selectCatalogDocument(REPOSITORY_ROOT));
-    expect(selected.sources[0].family).toBe("material");
-
-    registryControl.empty = true;
-    const empty = await runNode(
-      selectCatalogDocument(REPOSITORY_ROOT).pipe(Effect.flip)
-    );
-    expect(empty).toMatchObject({ kind: "document", reason: "registry" });
-
-    registryControl.empty = false;
-    registryControl.fail = true;
-    const failed = await runNode(
-      selectCatalogDocument(REPOSITORY_ROOT).pipe(Effect.flip)
-    );
-    expect(failed).toMatchObject({ kind: "document", reason: "registry" });
-  });
-
-  it("rejects unknown, traversal, missing, symlinked, and invalid registry sources", async () => {
-    const repository = repositories.create();
-    const requested = relative(repository.aksaraRoot, repository.documentPath);
-    const traversal = requested.replace(
-      "function-concept/en.mdx",
-      "function-concept/../function-concept/en.mdx"
-    );
-    const unknown = await runNode(
-      selectPreviewDocument(
-        repository.aksaraRoot,
-        "packages/corpus/unknown.mdx"
-      ).pipe(Effect.flip)
-    );
-    const traversalError = await runNode(
-      selectPreviewDocument(repository.aksaraRoot, traversal).pipe(Effect.flip)
-    );
-    unlinkSync(repository.documentPath);
-    const missing = await runNode(
-      selectPreviewDocument(repository.aksaraRoot, requested).pipe(Effect.flip)
-    );
-    symlinkSync(
-      resolve(
-        repository.aksaraRoot,
-        "packages",
-        "corpus",
-        "material",
-        "lesson",
-        "mathematics",
-        "function-composition-inverse-function",
-        "function-concept",
-        "id.mdx"
-      ),
-      repository.documentPath
-    );
-    const symlink = await runNode(
-      selectPreviewDocument(repository.aksaraRoot, requested).pipe(Effect.flip)
-    );
-    registryControl.fail = true;
-    const registry = await runNode(
-      selectPreviewDocument(repository.aksaraRoot, requested).pipe(Effect.flip)
-    );
-
-    expect(unknown).toMatchObject({ kind: "document", reason: "registry" });
-    expect(traversalError).toMatchObject({
-      kind: "document",
-      reason: "registry",
-    });
-    expect(missing).toMatchObject({ kind: "document", reason: "missing" });
-    expect(symlink).toMatchObject({ kind: "document", reason: "symlink" });
-    expect(registry).toMatchObject({ kind: "document", reason: "registry" });
-  });
+  it.effect(
+    "rejects unknown, traversal, missing, symlinked, and invalid registry sources",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const repository = yield* acquireRepository();
+        const requested = path.relative(
+          repository.aksaraRoot,
+          repository.documentPath
+        );
+        const traversal = requested.replace(
+          "function-concept/en.mdx",
+          "function-concept/../function-concept/en.mdx"
+        );
+        const unknown = yield* selectPreviewDocument(
+          repository.aksaraRoot,
+          "packages/corpus/unknown.mdx"
+        ).pipe(Effect.flip);
+        const traversalError = yield* selectPreviewDocument(
+          repository.aksaraRoot,
+          traversal
+        ).pipe(Effect.flip);
+        yield* fileSystem.remove(repository.documentPath);
+        const missing = yield* selectPreviewDocument(
+          repository.aksaraRoot,
+          requested
+        ).pipe(Effect.flip);
+        yield* fileSystem.symlink(
+          path.resolve(
+            repository.aksaraRoot,
+            "packages",
+            "corpus",
+            "material",
+            "lesson",
+            "mathematics",
+            "function-composition-inverse-function",
+            "function-concept",
+            "id.mdx"
+          ),
+          repository.documentPath
+        );
+        const symlink = yield* selectPreviewDocument(
+          repository.aksaraRoot,
+          requested
+        ).pipe(Effect.flip);
+        registryControl.fail = true;
+        const registry = yield* selectPreviewDocument(
+          repository.aksaraRoot,
+          requested
+        ).pipe(Effect.flip);
+        expect(unknown).toMatchObject({ kind: "document", reason: "registry" });
+        expect(traversalError).toMatchObject({
+          kind: "document",
+          reason: "registry",
+        });
+        expect(missing).toMatchObject({ kind: "document", reason: "missing" });
+        expect(symlink).toMatchObject({ kind: "document", reason: "symlink" });
+        expect(registry).toMatchObject({
+          kind: "document",
+          reason: "registry",
+        });
+      })
+  );
 });
