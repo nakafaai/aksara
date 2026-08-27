@@ -1,10 +1,11 @@
+import { it } from "@effect/vitest";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema } from "effect";
+import { describe, expect } from "vitest";
 import { mokhtasarCatalog } from "#corpus/quran/catalog/mokhtasar";
 import {
   type QuranCatalogEntry,

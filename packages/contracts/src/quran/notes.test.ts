@@ -1,5 +1,6 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { it as effectIt } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
+import { describe, expect, it } from "vitest";
 
 import {
   parseQuranTranslation,
@@ -8,30 +9,32 @@ import {
 } from "#contracts/quran/notes";
 
 describe("Quran translation notes", () => {
-  it.effect("preserves exact source text as linked semantic segments", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* parseQuranTranslation({
-          footnotes: "[3] First note. [4] Second note.",
-          text: "those [pilgrims] who pray[3] and give what We[4] provided",
-        })
-      ).toMatchObject({
-        notes: [
-          { number: 3, referenceOffset: 25, text: "First note." },
-          { number: 4, referenceOffset: 45, text: "Second note." },
-        ],
-        segments: [
-          { kind: "text", value: "those [pilgrims] who pray" },
-          { kind: "note", number: 3 },
-          { kind: "text", value: " and give what We" },
-          { kind: "note", number: 4 },
-          { kind: "text", value: " provided" },
-        ],
-      });
-    })
+  effectIt.effect(
+    "preserves exact source text as linked semantic segments",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* parseQuranTranslation({
+            footnotes: "[3] First note. [4] Second note.",
+            text: "those [pilgrims] who pray[3] and give what We[4] provided",
+          })
+        ).toMatchObject({
+          notes: [
+            { number: 3, referenceOffset: 25, text: "First note." },
+            { number: 4, referenceOffset: 45, text: "Second note." },
+          ],
+          segments: [
+            { kind: "text", value: "those [pilgrims] who pray" },
+            { kind: "note", number: 3 },
+            { kind: "text", value: " and give what We" },
+            { kind: "note", number: 4 },
+            { kind: "text", value: " provided" },
+          ],
+        });
+      })
   );
 
-  it.effect("supports no notes and repeated references to one note", () =>
+  effectIt.effect("supports no notes and repeated references to one note", () =>
     Effect.gen(function* () {
       const plain = yield* parseQuranTranslation({
         footnotes: "",
@@ -57,7 +60,7 @@ describe("Quran translation notes", () => {
     })
   );
 
-  it.effect("fails with exact typed note-grammar reasons", () =>
+  effectIt.effect("fails with exact typed note-grammar reasons", () =>
     Effect.gen(function* () {
       const invalid = yield* Effect.result(
         parseQuranTranslation({
