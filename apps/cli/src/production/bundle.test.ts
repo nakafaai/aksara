@@ -46,7 +46,7 @@ function verifyBase(
 }
 
 describe("production runtime bundle verification", () => {
-  it.effect("accepts only the bundle bound to the active base", () =>
+  it.effect("accepts one authenticated pair across release successors", () =>
     Effect.gen(function* () {
       const active = gitBundle("release-runtime-base", {
         baseReleaseId: releaseId("release-runtime-parent"),
@@ -79,6 +79,33 @@ describe("production runtime bundle verification", () => {
           runtimeBundle,
           recovered,
           selectSourceBase(recovered)
+        ),
+        runtimeBundle
+      );
+
+      const successor = gitBundle("release-runtime-successor", {
+        baseManifestHash: active.release.manifestHash,
+        baseReleaseId: active.release.manifest.releaseId,
+        tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
+      });
+      const nextSuccessor = gitBundle("release-runtime-next", {
+        baseManifestHash: successor.release.manifestHash,
+        baseReleaseId: successor.release.manifest.releaseId,
+        tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
+      });
+      assert.deepStrictEqual(
+        yield* verifyBase(
+          runtimeBundle,
+          successor,
+          selectSourceBase(successor)
+        ),
+        runtimeBundle
+      );
+      assert.deepStrictEqual(
+        yield* verifyBase(
+          runtimeBundle,
+          nextSuccessor,
+          selectSourceBase(nextSuccessor)
         ),
         runtimeBundle
       );
@@ -118,22 +145,6 @@ describe("production runtime bundle verification", () => {
         );
       }
       assert.strictEqual(retainedFailure.reason, "snapshot");
-
-      const foreign = gitBundle("release-runtime-foreign", {
-        baseReleaseId: releaseId("release-runtime-parent"),
-        tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
-      });
-      const sourceFailure = yield* verifyBase(
-        runtimeBundleFor(foreign, TRYOUT_SNAPSHOT_ID),
-        active,
-        base
-      ).pipe(Effect.flip);
-      if (sourceFailure._tag !== "TryoutRuntimeBundleSourceError") {
-        return yield* Effect.die(
-          `Expected a runtime source mismatch, received ${sourceFailure._tag}.`
-        );
-      }
-      assert.strictEqual(sourceFailure.reason, "release");
     })
   );
 });
