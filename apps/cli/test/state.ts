@@ -143,19 +143,13 @@ export function stateRecovery(
 }
 
 /** Returns the typed state failure for one unsafe command. */
-export function rejectState(
-  args: ReleaseArguments,
-  state: ReturnType<typeof stateCurrent>
-) {
-  return Effect.runPromise(
+export const rejectState = Effect.fn("AksaraCliTest.rejectState")(
+  (args: ReleaseArguments, state: ReturnType<typeof stateCurrent>) =>
     selectProductionAction(args, state).pipe(Effect.flip)
-  );
-}
+);
 
-/** Runs one production-state selection through the CLI Effect boundary. */
-export function selectState(
-  args: ReleaseArguments,
-  state: ReturnType<typeof stateCurrent>
-) {
-  return Effect.runPromise(selectProductionAction(args, state));
-}
+/** Selects one production action without crossing an Effect runtime boundary. */
+export const selectState = Effect.fn("AksaraCliTest.selectState")(
+  (args: ReleaseArguments, state: ReturnType<typeof stateCurrent>) =>
+    selectProductionAction(args, state)
+);
