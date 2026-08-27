@@ -1,146 +1,173 @@
+import { expect, layer } from "@effect/vitest";
 import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Schema } from "effect";
+import { Context, Effect, Layer, Schema } from "effect";
 import {
+  articleTestLayer,
   collectArticleRoutes,
   publishedArticleHeads,
   rejectArticlePublication,
 } from "#test/article";
 
-const publishedHeads = await publishedArticleHeads();
 const contentKey = "articles/politics/dynastic-politics-asian-values";
-const [englishHead, indonesianHead] = await Effect.runPromise(
-  Effect.gen(function* () {
-    const english = publishedHeads.find(
-      (head) => head.contentKey === contentKey && head.artifactLocale === "en"
-    );
-    const indonesian = publishedHeads.find(
-      (head) => head.contentKey === contentKey && head.artifactLocale === "id"
-    );
-    if (!(english && indonesian)) {
-      return yield* Effect.die(
-        new Error("Expected both real article locales.")
-      );
-    }
-    return [english, indonesian] as const;
-  })
-);
 const familyCases = [
-  ["contentKey", { ...englishHead, contentKey: "material/lesson/test" }],
-  [
-    "publicPath",
-    { ...englishHead, publicPath: "articles/politics/other-article" },
-  ],
-  ["publicPath", { ...englishHead, publicPath: "articles/politics" }],
-  ["publicPath", { ...englishHead, publicPath: undefined }],
-  ["rendererDomain", { ...englishHead, rendererDomain: "mathematics" }],
-  [
-    "sourcePath",
-    {
-      ...englishHead,
-      sourcePath: "packages/corpus/material/lesson/test/en.mdx",
-    },
-  ],
+  ["contentKey", { contentKey: "material/lesson/test" }],
+  ["publicPath", { publicPath: "articles/politics/other-article" }],
+  ["publicPath", { publicPath: "articles/politics" }],
+  ["publicPath", { publicPath: undefined }],
+  ["rendererDomain", { rendererDomain: "mathematics" }],
+  ["sourcePath", { sourcePath: "packages/corpus/material/lesson/test/en.mdx" }],
   [
     "artifactLocale",
     {
-      ...englishHead,
       sourcePath:
         "packages/corpus/articles/politics/dynastic-politics/asian-values/id.mdx",
     },
   ],
   [
     "sourcePath",
-    {
-      ...englishHead,
-      sourcePath: "packages/corpus/articles/politics/flat/en.mdx",
-    },
+    { sourcePath: "packages/corpus/articles/politics/flat/en.mdx" },
   ],
   [
     "sourcePath",
     {
-      ...englishHead,
       sourcePath: "packages/corpus/articles/politics/other/article/en.mdx",
     },
   ],
 ] as const;
 
 /** Decodes a modified article head without bypassing the wire contract. */
-function modifyHead(input: unknown) {
-  return Schema.decodeUnknownSync(ArticleHeadSchema)(input, {
-    onExcessProperty: "error",
-  });
-}
+const modifyHead = Effect.fn("ArticlePublicationTest.modifyHead")(
+  (input: unknown) =>
+    Schema.decodeUnknownEffect(ArticleHeadSchema)(input, {
+      onExcessProperty: "error",
+    })
+);
 
-describe("article publication", () => {
-  it("removes a deleted category without requiring its former registry entry", async () => {
-    const stale = modifyHead({
-      ...englishHead,
-      contentKey: "articles/retired-test/removed-article",
-      publicPath: "articles/retired-test/removed-article",
-      rendererDomain: "physics",
-      sourcePath:
-        "packages/corpus/articles/retired-test/removed/article/en.mdx",
-    });
-    const routes = await collectArticleRoutes({
-      heads: [...publishedHeads, stale],
-    });
-
-    expect(routes).toEqual([
-      {
-        current: {
-          appLocale: stale.artifactLocale,
-          contentKey: stale.contentKey,
-          publicPath: stale.publicPath,
-        },
-        next: {
-          appLocale: stale.artifactLocale,
-          contentKey: stale.contentKey,
-        },
-      },
-    ]);
-  });
-
-  it("accepts the registry-owned localized public path", async () => {
-    expect(englishHead.publicPath).toBe(
-      "articles/politics/dynastic-politics-asian-values"
+/** Loads both real locale heads once for the complete publication suite. */
+const makePublicationTestFixtures = Effect.fn(
+  "ArticlePublicationTest.makeFixtures"
+)(() =>
+  Effect.gen(function* () {
+    const publishedHeads = yield* publishedArticleHeads();
+    const englishHead = yield* Effect.fromNullishOr(
+      publishedHeads.find(
+        (head) => head.contentKey === contentKey && head.artifactLocale === "en"
+      )
     );
-    expect(indonesianHead.publicPath).toBe(
-      "articles/politics/dynastic-politics-asian-values"
+    const indonesianHead = yield* Effect.fromNullishOr(
+      publishedHeads.find(
+        (head) => head.contentKey === contentKey && head.artifactLocale === "id"
+      )
     );
-    await expect(
-      rejectArticlePublication([
-        modifyHead({
-          ...indonesianHead,
-          publicPath: "articles/politik/politik-dinasti-dan-nilai-asia",
-        }),
-      ])
-    ).resolves.toMatchObject({
-      _tag: "ArticleHeadFamilyError",
-      field: "publicPath",
-    });
-  });
 
-  it("rejects duplicate and noncanonical published heads as typed failures", async () => {
-    await expect(
-      rejectArticlePublication([englishHead, englishHead])
-    ).resolves.toMatchObject({
-      _tag: "ArticleHeadDuplicateError",
-    });
-    await expect(
-      rejectArticlePublication([indonesianHead, englishHead])
-    ).resolves.toMatchObject({ _tag: "ArticleHeadOrderError" });
-  });
+    return { englishHead, indonesianHead, publishedHeads };
+  })
+);
 
-  it.each(familyCases)(
-    "rejects an article-head %s contradiction",
-    async (field, head) => {
-      await expect(
-        rejectArticlePublication([modifyHead(head)])
-      ).resolves.toMatchObject({
-        _tag: "ArticleHeadFamilyError",
-        field,
+class ArticlePublicationTestFixtures extends Context.Service<
+  ArticlePublicationTestFixtures,
+  Effect.Success<ReturnType<typeof makePublicationTestFixtures>>
+>()("AksaraPublisherArticlePublicationTestFixtures") {}
+
+const publicationFixtureLayer = Layer.effect(
+  ArticlePublicationTestFixtures,
+  makePublicationTestFixtures()
+).pipe(Layer.provide(articleTestLayer));
+const publicationTestLayer = Layer.merge(
+  articleTestLayer,
+  publicationFixtureLayer
+);
+
+layer(publicationTestLayer)("article publication", (it) => {
+  it.effect(
+    "removes a deleted category without requiring its former registry entry",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* ArticlePublicationTestFixtures;
+        const stale = yield* modifyHead({
+          ...fixture.englishHead,
+          contentKey: "articles/retired-test/removed-article",
+          publicPath: "articles/retired-test/removed-article",
+          rendererDomain: "physics",
+          sourcePath:
+            "packages/corpus/articles/retired-test/removed/article/en.mdx",
+        });
+        const routes = yield* collectArticleRoutes({
+          heads: [...fixture.publishedHeads, stale],
+        });
+
+        expect(routes).toEqual([
+          {
+            current: {
+              appLocale: stale.artifactLocale,
+              contentKey: stale.contentKey,
+              publicPath: stale.publicPath,
+            },
+            next: {
+              appLocale: stale.artifactLocale,
+              contentKey: stale.contentKey,
+            },
+          },
+        ]);
+      })
+  );
+
+  it.effect("accepts the registry-owned localized public path", () =>
+    Effect.gen(function* () {
+      const fixture = yield* ArticlePublicationTestFixtures;
+      expect(fixture.englishHead.publicPath).toBe(
+        "articles/politics/dynastic-politics-asian-values"
+      );
+      expect(fixture.indonesianHead.publicPath).toBe(
+        "articles/politics/dynastic-politics-asian-values"
+      );
+      const localized = yield* modifyHead({
+        ...fixture.indonesianHead,
+        publicPath: "articles/politik/politik-dinasti-dan-nilai-asia",
       });
-    }
+      const error = yield* rejectArticlePublication([localized]);
+
+      expect(error).toMatchObject({
+        _tag: "ArticleHeadFamilyError",
+        field: "publicPath",
+      });
+    })
+  );
+
+  it.effect(
+    "rejects duplicate and noncanonical published heads as typed failures",
+    () =>
+      Effect.gen(function* () {
+        const { englishHead, indonesianHead } =
+          yield* ArticlePublicationTestFixtures;
+        const duplicate = yield* rejectArticlePublication([
+          englishHead,
+          englishHead,
+        ]);
+        const noncanonical = yield* rejectArticlePublication([
+          indonesianHead,
+          englishHead,
+        ]);
+
+        expect(duplicate).toMatchObject({
+          _tag: "ArticleHeadDuplicateError",
+        });
+        expect(noncanonical).toMatchObject({ _tag: "ArticleHeadOrderError" });
+      })
+  );
+
+  it.effect.each(familyCases)(
+    "rejects an article-head %s contradiction",
+    ([field, changes]) =>
+      Effect.gen(function* () {
+        const { englishHead } = yield* ArticlePublicationTestFixtures;
+        const head = yield* modifyHead({ ...englishHead, ...changes });
+        const error = yield* rejectArticlePublication([head]);
+
+        expect(error).toMatchObject({
+          _tag: "ArticleHeadFamilyError",
+          field,
+        });
+      })
   );
 });

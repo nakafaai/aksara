@@ -1,5 +1,4 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { NodeServices } from "@effect/platform-node";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -8,20 +7,22 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
-import { Effect, Path, Stream } from "effect";
+import { Context, Effect, FileSystem, Layer, Path, Stream } from "effect";
 import { prepareArticlePublication } from "#publisher/article/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
 
-export const checkoutRoot = resolve(process.cwd(), "..", "..");
-export const articleEntries = await Effect.runPromise(decodeArticleRegistry());
-export const articlePaths = articleEntries.map(({ sourcePath }) => sourcePath);
-export const sourceByPath = new Map(
-  articlePaths.map((sourcePath) => {
-    const absolutePath = resolve(checkoutRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
-);
+interface ArticlePublicationInput {
+  readonly heads: readonly ArticleHead[];
+  readonly renderer?: unknown;
+  readonly sources?: ReadonlyMap<string, string>;
+}
+
+interface ArticleFixtureSource {
+  readonly checkoutRoot: string;
+  readonly rendererManifest: unknown;
+  readonly sources: ReadonlyMap<string, string>;
+}
 
 const baseComponents = ["ContentGrid", "InlineMath"].map((name) => ({
   name,
@@ -39,8 +40,8 @@ const politicsComponents = [
 ].map((name) => ({ name, version: 1 }));
 
 /** Creates a valid manifest while varying the real politics contract version. */
-export function articleManifest(politicsVersion = 1) {
-  return Effect.runPromise(
+export const articleManifest = Effect.fn("ArticleTest.articleManifest")(
+  (politicsVersion = 1) =>
     createRendererManifest({
       base: {
         authoringComponents: baseComponents,
@@ -54,48 +55,41 @@ export function articleManifest(politicsVersion = 1) {
       }),
       publishedDomains: ["politics"],
     })
-  );
-}
+);
 
-export const rendererManifest = await articleManifest();
+/** Collects article transitions with one already loaded source fixture. */
+const collectArticlePublicationFrom = Effect.fn(
+  "ArticleTest.collectPublicationFrom"
+)((fixture: ArticleFixtureSource, input: ArticlePublicationInput) =>
+  Effect.scoped(
+    Effect.gen(function* () {
+      const publication = yield* prepareArticlePublication({
+        checkoutRoot: fixture.checkoutRoot,
+        published: Stream.fromIterable(input.heads),
+        rendererManifest: input.renderer ?? fixture.rendererManifest,
+      });
+      return yield* publication.records.pipe(
+        Stream.runCollect,
+        Effect.map((records) => [...records])
+      );
+    })
+  ).pipe(
+    Effect.provide([
+      testFileLayer(input.sources ?? fixture.sources),
+      Path.layer,
+    ])
+  )
+);
 
-/** Collects article transitions through exact registry and platform layers. */
-export function collectArticlePublication(input: {
-  readonly heads: readonly ArticleHead[];
-  readonly renderer?: unknown;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
+/** Collects article routes with one already loaded source fixture. */
+const collectArticleRoutesFrom = Effect.fn("ArticleTest.collectRoutesFrom")(
+  (fixture: ArticleFixtureSource, input: ArticlePublicationInput) =>
     Effect.scoped(
       Effect.gen(function* () {
         const publication = yield* prepareArticlePublication({
-          checkoutRoot,
+          checkoutRoot: fixture.checkoutRoot,
           published: Stream.fromIterable(input.heads),
-          rendererManifest: input.renderer ?? rendererManifest,
-        });
-        return yield* publication.records.pipe(
-          Stream.runCollect,
-          Effect.map((records) => [...records])
-        );
-      })
-    ).pipe(
-      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
-    )
-  );
-}
-
-/** Collects canonical route transitions from one real article plan. */
-export function collectArticleRoutes(input: {
-  readonly heads: readonly ArticleHead[];
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const publication = yield* prepareArticlePublication({
-          checkoutRoot,
-          published: Stream.fromIterable(input.heads),
-          rendererManifest,
+          rendererManifest: input.renderer ?? fixture.rendererManifest,
         });
         return yield* publication.routes.pipe(
           Stream.runCollect,
@@ -103,30 +97,33 @@ export function collectArticleRoutes(input: {
         );
       })
     ).pipe(
-      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
+      Effect.provide([
+        testFileLayer(input.sources ?? fixture.sources),
+        Path.layer,
+      ])
     )
-  );
-}
+);
 
-/** Returns one authoritative article planning failure without FiberFailure. */
-export function rejectArticlePublication(heads: readonly ArticleHead[]) {
-  return Effect.runPromise(
-    Effect.scoped(
-      prepareArticlePublication({
-        checkoutRoot,
-        published: Stream.fromIterable(heads),
-        rendererManifest,
-      })
-    ).pipe(
-      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
-      Effect.flip
-    )
-  );
-}
+/** Returns one article planning failure without a FiberFailure wrapper. */
+const rejectArticlePublicationFrom = Effect.fn(
+  "ArticleTest.rejectPublicationFrom"
+)((fixture: ArticleFixtureSource, heads: readonly ArticleHead[]) =>
+  Effect.scoped(
+    prepareArticlePublication({
+      checkoutRoot: fixture.checkoutRoot,
+      published: Stream.fromIterable(heads),
+      rendererManifest: fixture.rendererManifest,
+    })
+  ).pipe(
+    Effect.provide([testFileLayer(fixture.sources), Path.layer]),
+    Effect.flip
+  )
+);
 
-/** Derives authoritative compact heads from every registered real article. */
-export async function publishedArticleHeads() {
-  const records = await collectArticlePublication({ heads: [] });
+/** Derives compact heads from authoritative article transitions. */
+function deriveArticleHeads(
+  records: Effect.Success<ReturnType<typeof collectArticlePublicationFrom>>
+) {
   return records.flatMap((transition) => {
     const { record } = transition;
     if (!("payload" in record)) {
@@ -149,3 +146,81 @@ export async function publishedArticleHeads() {
     ];
   });
 }
+
+/** Loads the real article source fixture and memoizes its first publication. */
+const makeArticleTestFixtures = Effect.fn("ArticleTest.makeFixtures")(() =>
+  Effect.gen(function* () {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const workingDirectory = yield* Effect.sync(() => process.cwd());
+    const checkoutRoot = path.resolve(workingDirectory, "..", "..");
+    const entries = yield* decodeArticleRegistry();
+    const sourceRows = yield* Effect.forEach(entries, ({ sourcePath }) => {
+      const absolutePath = path.resolve(checkoutRoot, sourcePath);
+      return fileSystem
+        .readFileString(absolutePath)
+        .pipe(
+          Effect.map((source) => [sourcePath, absolutePath, source] as const)
+        );
+    });
+    const absolutePaths = new Map(
+      sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
+    );
+    const sources = new Map(
+      sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
+    );
+    const rendererManifest = yield* articleManifest();
+    const fixture = { checkoutRoot, entries, rendererManifest, sources };
+    const initialRecords = yield* Effect.cached(
+      collectArticlePublicationFrom(fixture, { heads: [] })
+    );
+
+    return { ...fixture, absolutePaths, initialRecords };
+  })
+);
+
+/** Shared scoped article fixture for direct Effect Vitest suites. */
+export class ArticleTestFixtures extends Context.Service<
+  ArticleTestFixtures,
+  Effect.Success<ReturnType<typeof makeArticleTestFixtures>>
+>()("AksaraPublisherTestArticleFixtures") {}
+
+export const articleTestLayer: Layer.Layer<ArticleTestFixtures> = Layer.effect(
+  ArticleTestFixtures,
+  makeArticleTestFixtures()
+).pipe(Layer.provide(NodeServices.layer), Layer.orDie);
+
+/** Collects article transitions through exact registry and platform layers. */
+export const collectArticlePublication = Effect.fn(
+  "ArticleTest.collectPublication"
+)((input: ArticlePublicationInput) =>
+  Effect.flatMap(ArticleTestFixtures, (fixture) =>
+    collectArticlePublicationFrom(fixture, input)
+  )
+);
+
+/** Collects canonical route transitions from one real article plan. */
+export const collectArticleRoutes = Effect.fn("ArticleTest.collectRoutes")(
+  (input: ArticlePublicationInput) =>
+    Effect.flatMap(ArticleTestFixtures, (fixture) =>
+      collectArticleRoutesFrom(fixture, input)
+    )
+);
+
+/** Returns one authoritative article planning failure. */
+export const rejectArticlePublication = Effect.fn(
+  "ArticleTest.rejectPublication"
+)((heads: readonly ArticleHead[]) =>
+  Effect.flatMap(ArticleTestFixtures, (fixture) =>
+    rejectArticlePublicationFrom(fixture, heads)
+  )
+);
+
+/** Derives authoritative compact heads from every registered real article. */
+export const publishedArticleHeads = Effect.fn("ArticleTest.publishedHeads")(
+  () =>
+    Effect.gen(function* () {
+      const fixture = yield* ArticleTestFixtures;
+      return deriveArticleHeads(yield* fixture.initialRecords);
+    })
+);

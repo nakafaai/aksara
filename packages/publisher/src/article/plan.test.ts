@@ -1,14 +1,15 @@
-import { resolve } from "node:path";
-import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Schema } from "effect";
+import { beforeEach, expect, layer } from "@effect/vitest";
+import {
+  type ArticleHead,
+  ArticleHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
+import { Context, Effect, Layer, Schema } from "effect";
 import { vi } from "vitest";
 import {
-  articleEntries,
-  checkoutRoot,
+  ArticleTestFixtures,
+  articleTestLayer,
   collectArticlePublication,
   publishedArticleHeads,
-  sourceByPath,
 } from "#test/article";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -25,54 +26,26 @@ vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
   };
 });
 
-const publishedHeads = await publishedArticleHeads();
-const englishEntry = await Effect.runPromise(
-  Effect.gen(function* () {
-    const entry = articleEntries.find(
-      ({ route }) =>
-        route.contentKey ===
-          "articles/politics/dynastic-politics-asian-values" &&
-        route.artifactLocale === "en"
-    );
-    if (entry === undefined) {
-      return yield* Effect.die(new Error("Expected the real English article."));
-    }
-    return entry;
-  })
-);
-const englishHead = await Effect.runPromise(
-  Effect.gen(function* () {
-    const head = publishedHeads.find(
-      ({ contentKey, artifactLocale }) =>
-        contentKey === englishEntry.route.contentKey && artifactLocale === "en"
-    );
-    if (head === undefined) {
-      return yield* Effect.die(
-        new Error("Expected the published English article.")
-      );
-    }
-    return head;
-  })
-);
+const contentKey = "articles/politics/dynastic-politics-asian-values";
 const fingerprintCases = [
   ["compiler config", { compilerConfigHash: `sha256:${"1".repeat(64)}` }],
   ["delivery", { delivery: "authenticated" }],
   ["projection", { projectionHash: `sha256:${"2".repeat(64)}` }],
   ["source", { sourceHash: `sha256:${"3".repeat(64)}` }],
 ] as const;
-compilerState.calls = 0;
-const firstReleaseRecords = await collectArticlePublication({ heads: [] });
-const firstReleaseCompilerCalls = compilerState.calls;
 
 /** Decodes a modified article head without bypassing the wire contract. */
-function modifyHead(input: unknown) {
-  return Schema.decodeUnknownSync(ArticleHeadSchema)(input, {
+const modifyHead = Effect.fn("ArticlePlanTest.modifyHead")((input: unknown) =>
+  Schema.decodeUnknownEffect(ArticleHeadSchema)(input, {
     onExcessProperty: "error",
-  });
-}
+  })
+);
 
 /** Replaces one canonical head while preserving complete catalog order. */
-function replaceHead(replacement: typeof englishHead) {
+function replaceHead(
+  publishedHeads: readonly ArticleHead[],
+  replacement: ArticleHead
+) {
   return publishedHeads.map((head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
@@ -81,83 +54,138 @@ function replaceHead(replacement: typeof englishHead) {
   );
 }
 
+/** Loads the shared publication heads before per-test compiler accounting. */
+const makePlanTestFixtures = Effect.fn("ArticlePlanTest.makeFixtures")(() =>
+  Effect.gen(function* () {
+    const article = yield* ArticleTestFixtures;
+    const publishedHeads = yield* publishedArticleHeads();
+    const englishEntry = yield* Effect.fromNullishOr(
+      article.entries.find(
+        ({ route }) =>
+          route.contentKey === contentKey && route.artifactLocale === "en"
+      )
+    );
+    const englishHead = yield* Effect.fromNullishOr(
+      publishedHeads.find(
+        ({ contentKey: key, artifactLocale }) =>
+          key === englishEntry.route.contentKey && artifactLocale === "en"
+      )
+    );
+
+    return { ...article, englishEntry, englishHead, publishedHeads };
+  })
+);
+
+class ArticlePlanTestFixtures extends Context.Service<
+  ArticlePlanTestFixtures,
+  Effect.Success<ReturnType<typeof makePlanTestFixtures>>
+>()("AksaraPublisherArticlePlanTestFixtures") {}
+
+const planFixtureLayer = Layer.effect(
+  ArticlePlanTestFixtures,
+  makePlanTestFixtures()
+).pipe(Layer.provide(articleTestLayer));
+const planTestLayer = Layer.merge(articleTestLayer, planFixtureLayer);
+
 beforeEach(() => {
   compilerState.calls = 0;
 });
 
-describe("article plan", () => {
-  it("emits no records and performs no compilation for matching heads", async () => {
-    const records = await collectArticlePublication({ heads: publishedHeads });
+layer(planTestLayer)("article plan", (it) => {
+  it.effect(
+    "emits no records and performs no compilation for matching heads",
+    () =>
+      Effect.gen(function* () {
+        const { publishedHeads } = yield* ArticlePlanTestFixtures;
+        const records = yield* collectArticlePublication({
+          heads: publishedHeads,
+        });
 
-    expect(records).toEqual([]);
-    expect(compilerState.calls).toBe(0);
-  });
+        expect(records).toEqual([]);
+        expect(compilerState.calls).toBe(0);
+      })
+  );
 
-  it("compiles only the real article whose source changed", async () => {
-    const sources = new Map(sourceByPath);
-    const absolutePath = resolve(checkoutRoot, englishEntry.sourcePath);
-    const english = sources.get(absolutePath);
-    expect(english).toBeDefined();
-    sources.set(absolutePath, `${english}\n`);
+  it.effect("compiles only the real article whose source changed", () =>
+    Effect.gen(function* () {
+      const fixture = yield* ArticlePlanTestFixtures;
+      const sources = new Map(fixture.sources);
+      const absolutePath = yield* Effect.fromNullishOr(
+        fixture.absolutePaths.get(fixture.englishEntry.sourcePath)
+      );
+      const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
+      sources.set(absolutePath, `${english}\n`);
 
-    const records = await collectArticlePublication({
-      heads: publishedHeads,
-      sources,
-    });
-
-    expect(records).toHaveLength(1);
-    expect(records[0]?.record.change).toMatchObject({
-      artifactLocale: "en",
-      operation: "upsert",
-    });
-    expect(compilerState.calls).toBe(1);
-  });
-
-  it.each(fingerprintCases)(
-    "compiles only a head whose %s fingerprint changed",
-    async (_field, changed) => {
-      const head = modifyHead({ ...englishHead, ...changed });
-      const records = await collectArticlePublication({
-        heads: replaceHead(head),
+      const records = yield* collectArticlePublication({
+        heads: fixture.publishedHeads,
+        sources,
       });
 
       expect(records).toHaveLength(1);
+      expect(records[0]?.record.change).toMatchObject({
+        artifactLocale: "en",
+        operation: "upsert",
+      });
       expect(compilerState.calls).toBe(1);
-    }
+    })
   );
 
-  it("emits one tombstone without compiling an absent source", async () => {
-    const stale = modifyHead({
-      ...englishHead,
-      contentKey: "articles/politics/zz-removed-article",
-      publicPath: "articles/politics/zz-removed-article",
-      sourcePath: "packages/corpus/articles/politics/zz-removed/article/en.mdx",
-    });
-    const records = await collectArticlePublication({
-      heads: [...publishedHeads, stale],
-    });
+  it.effect.each(fingerprintCases)(
+    "compiles only a head whose %s fingerprint changed",
+    ([, changed]) =>
+      Effect.gen(function* () {
+        const fixture = yield* ArticlePlanTestFixtures;
+        const head = yield* modifyHead({
+          ...fixture.englishHead,
+          ...changed,
+        });
+        const records = yield* collectArticlePublication({
+          heads: replaceHead(fixture.publishedHeads, head),
+        });
 
-    expect(records).toContainEqual({
-      prior: { head: stale, state: "article" },
-      record: {
-        change: {
-          artifactLocale: "en",
-          contentKey: stale.contentKey,
-          family: "article",
-          operation: "delete",
+        expect(records).toHaveLength(1);
+        expect(compilerState.calls).toBe(1);
+      })
+  );
+
+  it.effect("emits one tombstone without compiling an absent source", () =>
+    Effect.gen(function* () {
+      const fixture = yield* ArticlePlanTestFixtures;
+      const stale = yield* modifyHead({
+        ...fixture.englishHead,
+        contentKey: "articles/politics/zz-removed-article",
+        publicPath: "articles/politics/zz-removed-article",
+        sourcePath:
+          "packages/corpus/articles/politics/zz-removed/article/en.mdx",
+      });
+      const records = yield* collectArticlePublication({
+        heads: [...fixture.publishedHeads, stale],
+      });
+
+      expect(records).toContainEqual({
+        prior: { head: stale, state: "article" },
+        record: {
+          change: {
+            artifactLocale: "en",
+            contentKey: stale.contentKey,
+            family: "article",
+            operation: "delete",
+          },
         },
-      },
-    });
-    expect(compilerState.calls).toBe(0);
-  });
+      });
+      expect(compilerState.calls).toBe(0);
+    })
+  );
 
-  it("compiles every canonical source for the first release", () => {
-    expect(firstReleaseRecords).toHaveLength(21);
-    expect(
-      firstReleaseRecords.every(
-        ({ record }) => record.change.operation === "upsert"
-      )
-    ).toBe(true);
-    expect(firstReleaseCompilerCalls).toBe(21);
-  });
+  it.effect("compiles every canonical source for the first release", () =>
+    Effect.gen(function* () {
+      const records = yield* collectArticlePublication({ heads: [] });
+
+      expect(records).toHaveLength(21);
+      expect(
+        records.every(({ record }) => record.change.operation === "upsert")
+      ).toBe(true);
+      expect(compilerState.calls).toBe(21);
+    })
+  );
 });
