@@ -1,7 +1,7 @@
 import type { BinaryLike } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
-import { vi } from "vitest";
+import { describe, expect, vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
