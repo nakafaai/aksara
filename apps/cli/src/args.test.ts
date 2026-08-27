@@ -92,6 +92,19 @@ describe("production arguments", () => {
         command: "cleanup",
         releaseId: "release-2026-06-22",
       });
+      expect(
+        yield* parseCli([
+          "cleanup-tryout-history",
+          "--release-id",
+          "retained-history-v1",
+          "--receipt-path",
+          "/tmp/receipt.json",
+        ])
+      ).toEqual({
+        command: "cleanup-tryout-history",
+        receiptPath: "/tmp/receipt.json",
+        releaseId: "retained-history-v1",
+      });
       expect(yield* parseCli(["status"])).toEqual({ command: "status" });
       expect(yield* parseCli(["check"])).toEqual({ command: "check" });
       expect(

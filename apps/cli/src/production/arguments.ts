@@ -49,11 +49,19 @@ export interface MigrateTryoutHistoryArguments {
   readonly releaseId: ReleaseId;
 }
 
+/** Exact externally durable receipt authorizing retained-history cleanup. */
+export interface CleanupTryoutHistoryArguments {
+  readonly command: "cleanup-tryout-history";
+  readonly receiptPath: string;
+  readonly releaseId: ReleaseId;
+}
+
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
   | CleanupArguments
+  | CleanupTryoutHistoryArguments
   | MigrateTryoutHistoryArguments
   | RecoverArguments
   | ReleaseArguments
@@ -67,6 +75,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "abort",
       "accept",
       "cleanup",
+      "cleanup-tryout-history",
       "migrate-tryout-history",
       "recover",
       "release",
@@ -116,6 +125,7 @@ export function isProductionCommand(
 ): value is ProductionCommand {
   return (
     value === "cleanup" ||
+    value === "cleanup-tryout-history" ||
     value === "migrate-tryout-history" ||
     value === "accept" ||
     value === "abort" ||
@@ -142,7 +152,10 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "status") {
     return false;
   }
-  if (command === "migrate-tryout-history") {
+  if (
+    command === "cleanup-tryout-history" ||
+    command === "migrate-tryout-history"
+  ) {
     return option === "--release-id" || option === "--receipt-path";
   }
   if (option === "--scope") {
@@ -230,18 +243,20 @@ export const parseProductionArguments = Effect.fn(
   if (command === "cleanup") {
     return { command, releaseId } satisfies CleanupArguments;
   }
-  if (command === "migrate-tryout-history") {
+  if (
+    command === "cleanup-tryout-history" ||
+    command === "migrate-tryout-history"
+  ) {
     if (options.receiptPath === undefined) {
       return yield* argumentError(command, "--receipt-path", "missing");
     }
     if (!options.receiptPath.startsWith("/")) {
       return yield* argumentError(command, "--receipt-path", "value");
     }
-    return {
-      command,
-      receiptPath: options.receiptPath,
-      releaseId,
-    } satisfies MigrateTryoutHistoryArguments;
+    const receipt = { receiptPath: options.receiptPath, releaseId };
+    return command === "migrate-tryout-history"
+      ? ({ command, ...receipt } satisfies MigrateTryoutHistoryArguments)
+      : ({ command, ...receipt } satisfies CleanupTryoutHistoryArguments);
   }
   if (options.recoveryId === undefined) {
     return yield* argumentError(command, "--recovery-id", "missing");

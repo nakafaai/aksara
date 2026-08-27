@@ -14,6 +14,11 @@ export interface ReleaseCommand {
 /** Recovery command observation with its exact protected recovery identity. */
 export type RecoveryCommand = ReleaseCommand & { readonly recoveryId: string };
 
+/** Migration command observation with its external receipt path. */
+export type MigrationCommand = ReleaseCommand & {
+  readonly receiptPath: string;
+};
+
 /** Mutable observations isolated and reset around every CLI program test. */
 export interface ProgramCalls {
   abort: ReleaseCommand | undefined;
@@ -22,7 +27,8 @@ export interface ProgramCalls {
   check: string | undefined;
   cleanup: ReleaseCommand | undefined;
   document: string;
-  migration: ReleaseCommand | undefined;
+  migration: MigrationCommand | undefined;
+  migrationCleanup: MigrationCommand | undefined;
   open:
     | {
         readonly cwd: string;

@@ -14,6 +14,7 @@ const calls = vi.hoisted(
     document:
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
     migration: undefined,
+    migrationCleanup: undefined,
     open: undefined,
     production: undefined,
     recover: undefined,
@@ -58,6 +59,13 @@ vi.mock("#cli/args", async () => {
       if (args[0] === "migrate-tryout-history") {
         return TestEffect.succeed({
           command: "migrate-tryout-history",
+          receiptPath: "/tmp/migration-receipt.json",
+          releaseId: "migration-release",
+        });
+      }
+      if (args[0] === "cleanup-tryout-history") {
+        return TestEffect.succeed({
+          command: "cleanup-tryout-history",
           receiptPath: "/tmp/migration-receipt.json",
           releaseId: "migration-release",
         });
@@ -157,13 +165,25 @@ vi.mock("#cli/production/command", async () => {
     },
   };
 });
-vi.mock("#cli/migration/tryout", async () => {
+vi.mock("#cli/migration/seal", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Records migration dispatch without contacting production. */
     runTryoutMigrationCommand: (args: NonNullable<typeof calls.migration>) => {
       calls.migration = args;
       return TestEffect.succeed("migration-complete");
+    },
+  };
+});
+vi.mock("#cli/migration/cleanup", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records cleanup dispatch without contacting production. */
+    runTryoutCleanupCommand: (
+      args: NonNullable<typeof calls.migrationCleanup>
+    ) => {
+      calls.migrationCleanup = args;
+      return TestEffect.succeed("migration-cleanup-complete");
     },
   };
 });
@@ -194,6 +214,7 @@ beforeEach(() => {
   calls.cleanup = undefined;
   calls.check = undefined;
   calls.migration = undefined;
+  calls.migrationCleanup = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
@@ -210,6 +231,18 @@ describe("CLI program", () => {
         cwd: "/code/aksara",
         environment: { nakafaAppDir: "/code/nakafa.com" },
         requestedDocument: calls.document,
+      });
+    })
+  );
+
+  it.effect("dispatches receipt-gated migration cleanup independently", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["cleanup-tryout-history"]);
+      expect(result).toBe("migration-cleanup-complete");
+      expect(calls.migrationCleanup).toEqual({
+        command: "cleanup-tryout-history",
+        receiptPath: "/tmp/migration-receipt.json",
+        releaseId: "migration-release",
       });
     })
   );
