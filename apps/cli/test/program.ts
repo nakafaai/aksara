@@ -44,13 +44,12 @@ export interface ProgramCalls {
   status: boolean;
 }
 
-/** Runs one CLI program with the real Node boundary services. */
-export function runProgram(args: readonly string[]) {
-  return Effect.runPromise(
+/** Builds one CLI program with the real Node boundary services. */
+export const runProgram = Effect.fn("AksaraCliTest.runProgram")(
+  (args: readonly string[]) =>
     makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
       Effect.provide(NodeHttpClient.layerNodeHttp),
       Effect.provideService(ExactProcess, unusedExactProcess),
       Effect.provide(NodeServices.layer)
     )
-  );
-}
+);
