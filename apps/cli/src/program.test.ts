@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
+import { Effect } from "effect";
 import { vi } from "vitest";
 import type { ProgramCalls } from "#test/program";
 import { runProgram } from "#test/program";
@@ -19,7 +20,6 @@ const calls = vi.hoisted(
     status: false,
   })
 );
-
 vi.mock("#cli/args", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -83,7 +83,6 @@ vi.mock("#cli/args", async () => {
     },
   };
 });
-
 vi.mock("#cli/accept", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -94,7 +93,6 @@ vi.mock("#cli/accept", async () => {
     },
   };
 });
-
 vi.mock("#cli/abort", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -105,7 +103,6 @@ vi.mock("#cli/abort", async () => {
     },
   };
 });
-
 vi.mock("#cli/environment/read", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -114,12 +111,10 @@ vi.mock("#cli/environment/read", async () => {
       TestEffect.succeed({ nakafaAppDir: "/code/nakafa.com" }),
   };
 });
-
 vi.mock("#cli/nakafa", async () => {
   const { Layer } = await import("effect");
   return { NakafaAppLive: Layer.empty };
 });
-
 vi.mock("#cli/cleanup", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -130,7 +125,6 @@ vi.mock("#cli/cleanup", async () => {
     },
   };
 });
-
 vi.mock("#cli/check", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -141,7 +135,6 @@ vi.mock("#cli/check", async () => {
     },
   };
 });
-
 vi.mock("#cli/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -154,7 +147,6 @@ vi.mock("#cli/session", async () => {
     },
   };
 });
-
 vi.mock("#cli/production/command", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -165,7 +157,6 @@ vi.mock("#cli/production/command", async () => {
     },
   };
 });
-
 vi.mock("#cli/migration/tryout", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -176,7 +167,6 @@ vi.mock("#cli/migration/tryout", async () => {
     },
   };
 });
-
 vi.mock("#cli/recover", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -187,7 +177,6 @@ vi.mock("#cli/recover", async () => {
     },
   };
 });
-
 vi.mock("#cli/status", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -198,7 +187,6 @@ vi.mock("#cli/status", async () => {
     }),
   };
 });
-
 beforeEach(() => {
   calls.accept = undefined;
   calls.abort = undefined;
@@ -211,100 +199,113 @@ beforeEach(() => {
   calls.recover = undefined;
   calls.status = false;
 });
-
 describe("CLI program", () => {
-  it("composes implicit preview with the actual-app session", async () => {
-    const result = await runProgram(["--document", calls.document]);
+  it.effect("composes implicit preview with the actual-app session", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["--document", calls.document]);
+      expect(result).toBe("preview-complete");
+      expect(calls.args).toEqual(["--document", calls.document]);
+      expect(calls.open).toEqual({
+        appLocale: undefined,
+        cwd: "/code/aksara",
+        environment: { nakafaAppDir: "/code/nakafa.com" },
+        requestedDocument: calls.document,
+      });
+    })
+  );
 
-    expect(result).toBe("preview-complete");
-    expect(calls.args).toEqual(["--document", calls.document]);
-    expect(calls.open).toEqual({
-      appLocale: undefined,
-      cwd: "/code/aksara",
-      environment: { nakafaAppDir: "/code/nakafa.com" },
-      requestedDocument: calls.document,
-    });
-  });
+  it.effect(
+    "passes an explicit application locale into preview orchestration",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* runProgram([
+          "--app-locale",
+          "de",
+          "--document",
+          calls.document,
+        ]);
+        expect(result).toBe("preview-complete");
+        expect(calls.open).toMatchObject({ appLocale: "de" });
+      })
+  );
 
-  it("passes an explicit application locale into preview orchestration", async () => {
-    const result = await runProgram([
-      "--app-locale",
-      "de",
-      "--document",
-      calls.document,
-    ]);
+  it.effect(
+    "dispatches explicit production commands without opening preview",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* runProgram([
+          "release",
+          "--release-id",
+          "release-next",
+          "--recovery-id",
+          "recovery-next",
+        ]);
+        expect(result).toBe("publication-complete");
+        expect(calls.production).toEqual({
+          args: {
+            command: "release",
+            recoveryId: "recovery-next",
+            releaseId: "release-next",
+          },
+          cwd: "/code/aksara",
+        });
+      })
+  );
 
-    expect(result).toBe("preview-complete");
-    expect(calls.open).toMatchObject({ appLocale: "de" });
-  });
+  it.effect(
+    "dispatches the signed try-out history migration independently",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* runProgram(["migrate-tryout-history"]);
+        expect(result).toBe("migration-complete");
+        expect(calls.migration).toEqual({
+          command: "migrate-tryout-history",
+          receiptPath: "/tmp/migration-receipt.json",
+          releaseId: "migration-release",
+        });
+      })
+  );
 
-  it("dispatches explicit production commands without opening preview", async () => {
-    const result = await runProgram([
-      "release",
-      "--release-id",
-      "release-next",
-      "--recovery-id",
-      "recovery-next",
-    ]);
-
-    expect(result).toBe("publication-complete");
-    expect(calls.production).toEqual({
-      args: {
-        command: "release",
-        recoveryId: "recovery-next",
-        releaseId: "release-next",
-      },
-      cwd: "/code/aksara",
-    });
-  });
-
-  it("dispatches the signed try-out history migration independently", async () => {
-    const result = await runProgram(["migrate-tryout-history"]);
-
-    expect(result).toBe("migration-complete");
-    expect(calls.migration).toEqual({
-      command: "migrate-tryout-history",
-      receiptPath: "/tmp/migration-receipt.json",
-      releaseId: "migration-release",
-    });
-  });
-
-  it.each(["accept", "recover"] satisfies readonly ("accept" | "recover")[])(
-    "dispatches %s without entering signed publication",
-    async (command) => {
-      const result = await runProgram([command]);
-
+  it.effect.each(["accept", "recover"] satisfies readonly (
+    | "accept"
+    | "recover"
+  )[])("dispatches %s without entering signed publication", (command) =>
+    Effect.gen(function* () {
+      const result = yield* runProgram([command]);
       expect(result).toBe(`${command}-complete`);
       expect(calls[command]).toEqual({
         command,
         recoveryId: "recovery-active",
         releaseId: "release-active",
       });
-    }
+    })
   );
 
-  it.each(["abort", "cleanup"] satisfies readonly ("abort" | "cleanup")[])(
-    "dispatches %s without entering signed publication",
-    async (command) => {
+  it.effect.each(["abort", "cleanup"] satisfies readonly (
+    | "abort"
+    | "cleanup"
+  )[])("dispatches %s without entering signed publication", (command) =>
+    Effect.gen(function* () {
       const releaseId = `release-${command}`;
-      const result = await runProgram([command, "--release-id", releaseId]);
-
+      const result = yield* runProgram([command, "--release-id", releaseId]);
       expect(result).toBe(`${command}-complete`);
       expect(calls[command]).toEqual({ command, releaseId });
-    }
+    })
   );
 
-  it("dispatches status without entering signed publication", async () => {
-    const result = await runProgram(["status"]);
+  it.effect("dispatches status without entering signed publication", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["status"]);
+      expect(result).toBe("status-complete");
+      expect(calls.status).toBe(true);
+    })
+  );
 
-    expect(result).toBe("status-complete");
-    expect(calls.status).toBe(true);
-  });
-
-  it("dispatches read-only catalog validation without publication", async () => {
-    const result = await runProgram(["check"]);
-
-    expect(result).toBe("check-complete");
-    expect(calls.check).toBe("/code/aksara");
-  });
+  it.effect("dispatches read-only catalog validation without publication", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["check"]);
+      expect(result).toBe("check-complete");
+      expect(calls.check).toBe("/code/aksara");
+    })
+  );
 });
