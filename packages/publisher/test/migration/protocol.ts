@@ -28,35 +28,31 @@ import { historicalSource, migrationId } from "#test/migration/source";
 import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makeMigrationTarget } from "#test/migration/target";
 
-type TryoutHistoryMigrationSuccess =
-  typeof TryoutHistoryMigrationSuccessSchema.Type;
+type MigrationSuccess = typeof TryoutHistoryMigrationSuccessSchema.Type;
 type MigrationExchange = Readonly<{
   request: TryoutHistoryMigrationRequest;
-  response: TryoutHistoryMigrationSuccess;
+  response: MigrationSuccess;
 }>;
-type MigrationProtocol = Readonly<
-  Record<
-    | "abort"
-    | "artifact"
-    | "bundle"
-    | "cleanup"
-    | "initialize"
-    | "plan"
-    | "row"
-    | "run"
-    | "seal"
-    | "snapshot"
-    | "source"
-    | "stageArtifacts"
-    | "stageRows"
-    | "status",
-    MigrationExchange
-  >
+type MigrationProtocol = Record<
+  | "abort"
+  | "artifact"
+  | "bundle"
+  | "cleanup"
+  | "initialize"
+  | "plan"
+  | "row"
+  | "run"
+  | "seal"
+  | "snapshot"
+  | "source"
+  | "stageArtifacts"
+  | "stageRows"
+  | "status",
+  MigrationExchange
 >;
 
 export const otherHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
 export const otherId = ReleaseIdSchema.make("other-migration");
-
 /** Strictly decodes one migration request for evidence-focused tests. */
 export function migrationRequest(
   input: unknown
@@ -67,9 +63,7 @@ export function migrationRequest(
 }
 
 /** Strictly decodes one successful migration response value. */
-export function migrationResponse(
-  value: unknown
-): TryoutHistoryMigrationSuccess {
+export function migrationResponse(value: unknown): MigrationSuccess {
   return Schema.decodeUnknownSync(TryoutHistoryMigrationSuccessSchema)(
     { ok: true, operation: "migrateTryoutHistory", value },
     { onExcessProperty: "error" }

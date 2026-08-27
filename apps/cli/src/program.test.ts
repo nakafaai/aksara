@@ -14,6 +14,7 @@ const calls = vi.hoisted(
     document:
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
     migration: undefined,
+    migrationAbort: undefined,
     migrationCleanup: undefined,
     open: undefined,
     production: undefined,
@@ -32,7 +33,6 @@ vi.mock("#cli/args", async () => {
 vi.mock("#cli/accept", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records acceptance dispatch without requiring production signing. */
     runAcceptCommand: (args: NonNullable<typeof calls.accept>) => {
       calls.accept = args;
       return TestEffect.succeed("accept-complete");
@@ -42,7 +42,6 @@ vi.mock("#cli/accept", async () => {
 vi.mock("#cli/abort", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records explicit abort dispatch without contacting publication. */
     runAbortCommand: (args: NonNullable<typeof calls.abort>) => {
       calls.abort = args;
       return TestEffect.succeed("abort-complete");
@@ -64,7 +63,6 @@ vi.mock("#cli/nakafa", async () => {
 vi.mock("#cli/cleanup", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records cleanup dispatch without requiring production signing inputs. */
     runCleanupCommand: (args: NonNullable<typeof calls.cleanup>) => {
       calls.cleanup = args;
       return TestEffect.succeed("cleanup-complete");
@@ -74,7 +72,6 @@ vi.mock("#cli/cleanup", async () => {
 vi.mock("#cli/check", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records read-only catalog validation without opening a real app. */
     runCheckCommand: (cwd: string) => {
       calls.check = cwd;
       return TestEffect.succeed("check-complete");
@@ -96,7 +93,6 @@ vi.mock("#cli/session", async () => {
 vi.mock("#cli/production/command", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records production dispatch without performing external publication. */
     runProductionCommand: (input: NonNullable<typeof calls.production>) => {
       calls.production = input;
       return TestEffect.succeed("publication-complete");
@@ -106,7 +102,6 @@ vi.mock("#cli/production/command", async () => {
 vi.mock("#cli/migration/seal", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records migration dispatch without contacting production. */
     runTryoutMigrationCommand: (args: NonNullable<typeof calls.migration>) => {
       calls.migration = args;
       return TestEffect.succeed("migration-complete");
@@ -116,7 +111,6 @@ vi.mock("#cli/migration/seal", async () => {
 vi.mock("#cli/migration/cleanup", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records cleanup dispatch without contacting production. */
     runTryoutCleanupCommand: (
       args: NonNullable<typeof calls.migrationCleanup>
     ) => {
@@ -125,10 +119,18 @@ vi.mock("#cli/migration/cleanup", async () => {
     },
   };
 });
+vi.mock("#cli/migration/abort", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    runTryoutAbortCommand: (args: NonNullable<typeof calls.migrationAbort>) => {
+      calls.migrationAbort = args;
+      return TestEffect.succeed("migration-abort-complete");
+    },
+  };
+});
 vi.mock("#cli/recover", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records recovery dispatch without contacting production. */
     runRecoverCommand: (args: NonNullable<typeof calls.recover>) => {
       calls.recover = args;
       return TestEffect.succeed("recover-complete");
@@ -138,7 +140,6 @@ vi.mock("#cli/recover", async () => {
 vi.mock("#cli/status", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    /** Records publication-state dispatch without contacting production. */
     runStatusCommand: TestEffect.sync(() => {
       calls.status = true;
       return "status-complete";
@@ -152,6 +153,7 @@ beforeEach(() => {
   calls.cleanup = undefined;
   calls.check = undefined;
   calls.migration = undefined;
+  calls.migrationAbort = undefined;
   calls.migrationCleanup = undefined;
   calls.open = undefined;
   calls.production = undefined;
@@ -184,6 +186,17 @@ describe("CLI program", () => {
           sourceSha: "b".repeat(40),
         },
         receiptPath: "/tmp/migration-receipt.json",
+        releaseId: "migration-release",
+      });
+    })
+  );
+
+  it.effect("dispatches staging abort independently", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["abort-tryout-history"]);
+      expect(result).toBe("migration-abort-complete");
+      expect(calls.migrationAbort).toEqual({
+        command: "abort-tryout-history",
         releaseId: "migration-release",
       });
     })

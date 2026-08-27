@@ -1,12 +1,14 @@
 import assert from "node:assert/strict";
 
 const TRIGGER_PATTERN =
-  /workflow_dispatch:[\s\S]*migration_id:[\s\S]*required: true[\s\S]*permissions: \{\}/u;
+  /workflow_dispatch:[\s\S]*operation:[\s\S]*type: choice[\s\S]*- migrate[\s\S]*- abort[\s\S]*migration_id:[\s\S]*required: true[\s\S]*permissions: \{\}/u;
 const CONCURRENCY_PATTERN = /group: content-production/u;
 const CHAIN_PATTERN =
   /verify:[\s\S]*seal:[\s\S]*needs: verify[\s\S]*environment: content-production[\s\S]*publish:[\s\S]*needs: seal[\s\S]*cleanup:[\s\S]*needs: \[seal, publish\][\s\S]*environment: content-production/u;
 const VERIFY_PATTERN =
   /verify:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*pnpm install --frozen-lockfile[\s\S]*pnpm security:audit[\s\S]*Verify repository controls[\s\S]*Verify migration revision[\s\S]*verify:consumer --output "\$TARBALL"[\s\S]*release-command\.ts prove[\s\S]*--source-sha "\$GITHUB_SHA"/u;
+const ABORT_PATTERN =
+  /abort:[\s\S]*needs: verify[\s\S]*inputs\.operation == 'abort'[\s\S]*environment: content-production[\s\S]*contents: read[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*pnpm --filter @nakafa\/aksara-cli migrate:abort --[\s\S]*--release-id "\$MIGRATION_ID"/u;
 const SEAL_PATTERN =
   /seal:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*id-token: write[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*AKSARA_SIGNING_PRIVATE_KEY[\s\S]*pnpm --filter @nakafa\/aksara-cli migrate --[\s\S]*Resolve receipt identity[\s\S]*asset_hash=sha256:\$digest[\s\S]*release_tag=migration-\$receipt_migration_id[\s\S]*Attest signed receipt[\s\S]*Upload signed receipt/u;
 const PUBLISH_PATTERN =
@@ -43,6 +45,11 @@ export function verifyMigrationWorkflow(migration: string): void {
   );
   assert.match(
     migration,
+    ABORT_PATTERN,
+    "Migration abort must use the protected exact-revision path"
+  );
+  assert.match(
+    migration,
     SEAL_PATTERN,
     "Migration sealing must produce and attest one exact receipt"
   );
@@ -60,6 +67,16 @@ export function verifyMigrationWorkflow(migration: string): void {
   const publish = migration.slice(
     migration.indexOf("\n  publish:"),
     migration.indexOf("\n  cleanup:")
+  );
+
+  const abort = migration.slice(
+    migration.indexOf("\n  abort:"),
+    migration.indexOf("\n  seal:")
+  );
+  assert.doesNotMatch(
+    abort,
+    SIGNING_SECRET_PATTERN,
+    "Migration abort must not receive signing credentials"
   );
   assert.doesNotMatch(
     publish,

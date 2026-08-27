@@ -6,6 +6,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
   {
     command: Schema.Literals([
       "abort",
+      "abort-tryout-history",
       "accept",
       "cleanup",
       "cleanup-tryout-history",

@@ -4,6 +4,7 @@ import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
+import { runTryoutAbortCommand } from "#cli/migration/abort";
 import { runTryoutCleanupCommand } from "#cli/migration/cleanup";
 import { runTryoutMigrationCommand } from "#cli/migration/seal";
 import { runPreviewCommand } from "#cli/preview";
@@ -41,6 +42,9 @@ export function makeCliProgram(input: {
     }
     if (args.command === "cleanup-tryout-history") {
       return yield* runTryoutCleanupCommand(args);
+    }
+    if (args.command === "abort-tryout-history") {
+      return yield* runTryoutAbortCommand(args);
     }
     if (args.command === "migrate-tryout-history") {
       return yield* runTryoutMigrationCommand(args);

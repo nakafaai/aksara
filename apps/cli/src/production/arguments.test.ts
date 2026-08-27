@@ -84,6 +84,10 @@ describe("try-out history migration arguments", () => {
 
   it.effect("requires one absolute exclusive receipt destination", () =>
     Effect.gen(function* () {
+      const abort = yield* parseProductionArguments("abort-tryout-history", [
+        "--release-id",
+        "retained-history-v1",
+      ]);
       const migrate = yield* parseProductionArguments(
         "migrate-tryout-history",
         [
@@ -120,6 +124,10 @@ describe("try-out history migration arguments", () => {
         ]
       ).pipe(Effect.flip);
 
+      expect(abort).toEqual({
+        command: "abort-tryout-history",
+        releaseId: "retained-history-v1",
+      });
       expect(migrate).toEqual({
         command: "migrate-tryout-history",
         receiptPath: "/tmp/retained-history-v1.json",
@@ -187,6 +195,7 @@ describe("try-out history migration arguments", () => {
   it.effect("rejects publication and recovery options", () =>
     Effect.gen(function* () {
       const commands = [
+        "abort-tryout-history",
         "migrate-tryout-history",
         "cleanup-tryout-history",
       ] as const;
@@ -194,18 +203,27 @@ describe("try-out history migration arguments", () => {
         commands.flatMap((command) =>
           ["--scope", "--recovery-id"].map((option) => ({ command, option }))
         ),
-        ({ command, option }) =>
-          parseProductionArguments(command, [
+        ({ command, option }) => {
+          const receipt =
+            command === "abort-tryout-history"
+              ? []
+              : ["--receipt-path", "/tmp/retained-history-v1.json"];
+          return parseProductionArguments(command, [
             "--release-id",
             "retained-history-v1",
-            "--receipt-path",
-            "/tmp/retained-history-v1.json",
+            ...receipt,
             option,
             "unexpected",
-          ]).pipe(Effect.flip)
+          ]).pipe(Effect.flip);
+        }
       );
 
       expect(failures).toEqual([
+        expect.objectContaining({ option: "--scope", reason: "unknown" }),
+        expect.objectContaining({
+          option: "--recovery-id",
+          reason: "unknown",
+        }),
         expect.objectContaining({ option: "--scope", reason: "unknown" }),
         expect.objectContaining({
           option: "--recovery-id",

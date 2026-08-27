@@ -7,25 +7,15 @@ const ENGLISH_DOCUMENT =
 const MIGRATION_ASSET_HASH = `sha256:${"a".repeat(64)}`;
 const MIGRATION_SOURCE_SHA = "b".repeat(40);
 
-/** Decodes one preview invocation through its Effect boundary. */
-function parse(args: readonly string[]) {
-  return parsePreviewArguments(args);
-}
+const parse = parsePreviewArguments;
 
 /** Returns the typed preview argument failure for one invalid invocation. */
-function reject(args: readonly string[]) {
-  return parse(args).pipe(Effect.flip);
-}
+const reject = (args: readonly string[]) => parse(args).pipe(Effect.flip);
 
-/** Decodes one complete CLI invocation through its Effect boundary. */
-function parseCli(args: readonly string[]) {
-  return parseCliArguments(args);
-}
+const parseCli = parseCliArguments;
 
 /** Returns the typed CLI argument failure for one invalid invocation. */
-function rejectCli(args: readonly string[]) {
-  return parseCli(args).pipe(Effect.flip);
-}
+const rejectCli = (args: readonly string[]) => parseCli(args).pipe(Effect.flip);
 
 describe("preview arguments", () => {
   it.effect("accepts one exact document option", () =>
@@ -93,6 +83,15 @@ describe("production arguments", () => {
       ).toEqual({
         command: "cleanup",
         releaseId: "release-2026-06-22",
+      });
+      const abort = yield* parseCli([
+        "abort-tryout-history",
+        "--release-id",
+        "retained-history-v1",
+      ]);
+      expect(abort).toEqual({
+        command: "abort-tryout-history",
+        releaseId: "retained-history-v1",
       });
       expect(
         yield* parseCli([

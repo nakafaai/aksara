@@ -68,10 +68,17 @@ export interface CleanupTryoutHistoryArguments {
   readonly releaseId: ReleaseId;
 }
 
+/** Exact invisible retained-history staging root selected for abandonment. */
+export interface AbortTryoutHistoryArguments {
+  readonly command: "abort-tryout-history";
+  readonly releaseId: ReleaseId;
+}
+
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
+  | AbortTryoutHistoryArguments
   | CleanupArguments
   | CleanupTryoutHistoryArguments
   | MigrateTryoutHistoryArguments
@@ -89,6 +96,7 @@ export function isProductionCommand(
 ): value is ProductionCommand {
   return (
     value === "cleanup" ||
+    value === "abort-tryout-history" ||
     value === "cleanup-tryout-history" ||
     value === "migrate-tryout-history" ||
     value === "accept" ||
@@ -176,6 +184,9 @@ export const parseProductionArguments = Effect.fn(
   }
   if (command === "cleanup") {
     return { command, releaseId } satisfies CleanupArguments;
+  }
+  if (command === "abort-tryout-history") {
+    return { command, releaseId } satisfies AbortTryoutHistoryArguments;
   }
   if (
     command === "migrate-tryout-history" ||

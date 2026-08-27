@@ -35,6 +35,12 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
       releaseId: "migration-release",
     });
   }
+  if (args[0] === "abort-tryout-history") {
+    return Effect.succeed({
+      command: "abort-tryout-history",
+      releaseId: "migration-release",
+    });
+  }
   if (args[0] === "cleanup-tryout-history") {
     return Effect.succeed({
       command: "cleanup-tryout-history",
