@@ -62,6 +62,7 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
         expect(prepared.manifest).toMatchObject({
           itemCount: 2,
           projectionCount: 1,
+          scope: { content: [] },
           snapshots: inheritContentSnapshots(null),
         });
         expect([...items].map(({ index }) => index)).toEqual([0, 1]);

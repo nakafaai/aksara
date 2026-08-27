@@ -29,6 +29,7 @@ import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
   type GitPublicationScope,
+  type PublicationScope,
   publicationScopeSelectsSnapshot,
   verifyGitPublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -72,6 +73,22 @@ function requireScopedSnapshot(
     return Effect.void;
   }
   return Effect.fail(new PreparedSnapshotScopeError({ family }));
+}
+
+/**
+ * Expands one Git selection into the stable signed scope wire shape.
+ *
+ * Git inputs cannot select predecessor-only exact content. Signed manifests
+ * retain the explicit empty field so deployed decoders remain compatible.
+ */
+function makeSignedPublicationScope(
+  scope: GitPublicationScope
+): PublicationScope {
+  return {
+    content: [],
+    families: scope.families,
+    snapshots: scope.snapshots,
+  };
 }
 
 /** Prepares a self-verified release from one replayable authored record source. */
@@ -209,7 +226,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
-    scope,
+    scope: makeSignedPublicationScope(scope),
     snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });
