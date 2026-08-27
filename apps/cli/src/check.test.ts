@@ -1,7 +1,7 @@
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { runCheckCommand } from "#cli/check";
@@ -124,59 +124,55 @@ beforeEach(() => {
   control.validation = undefined;
 });
 
-/** Runs the command through its real platform boundary services. */
-function check() {
-  return Effect.runPromise(
-    runCheckCommand("/code/aksara").pipe(
-      Effect.provide(NodeHttpClient.layerNodeHttp),
-      Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeServices.layer)
-    )
-  );
-}
-
-/** Returns one typed check failure through the same platform boundary. */
-function rejectCheck() {
-  return Effect.runPromise(
-    runCheckCommand("/code/aksara").pipe(
-      Effect.flip,
-      Effect.provide(NodeHttpClient.layerNodeHttp),
-      Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeServices.layer)
-    )
+/** Builds the command with its real platform boundary services. */
+function checkProgram() {
+  return runCheckCommand("/code/aksara").pipe(
+    Effect.provide(NodeHttpClient.layerNodeHttp),
+    Effect.provideService(ExactProcess, unusedExactProcess),
+    Effect.provide(NodeServices.layer)
   );
 }
 
 describe("catalog check command", () => {
-  it("returns complete evidence only when every publication gate is approved", async () => {
-    const result = await check();
+  it.effect(
+    "returns complete evidence only when every publication gate is approved",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* checkProgram();
 
-    expect(control.validation).toEqual({
-      checkoutRoot: "/code/aksara",
-      rendererManifest: { hash },
-    });
-    expect(result).toMatchObject({
-      snapshots: { quran: { provenanceStatus: "approved" } },
-      totalCount: 4146,
-    });
-  });
+        expect(control.validation).toEqual({
+          checkoutRoot: "/code/aksara",
+          rendererManifest: { hash },
+        });
+        expect(result).toMatchObject({
+          snapshots: { quran: { provenanceStatus: "approved" } },
+          totalCount: 4146,
+        });
+      })
+  );
 
-  it("reports the exact Quran gate and fails closed while it is blocked", async () => {
-    control.status = "blocked";
+  it.effect(
+    "reports the exact Quran gate and fails closed while it is blocked",
+    () =>
+      Effect.gen(function* () {
+        control.status = "blocked";
 
-    await expect(rejectCheck()).resolves.toMatchObject({
-      _tag: "CatalogCheckBlockedError",
-      provenanceDigest: hash,
-    });
-  });
+        expect(yield* checkProgram().pipe(Effect.flip)).toMatchObject({
+          _tag: "CatalogCheckBlockedError",
+          provenanceDigest: hash,
+        });
+      })
+  );
 
-  it("rejects source drift during catalog validation", async () => {
-    control.revisionChanged = true;
+  it.effect("rejects source drift during catalog validation", () =>
+    Effect.gen(function* () {
+      control.revisionChanged = true;
 
-    await expect(rejectCheck()).resolves.toMatchObject({
-      _tag: "ReleaseRevisionChangedError",
-      actual: "b".repeat(40),
-      expected: "a".repeat(40),
-    });
-  });
+      expect(yield* checkProgram().pipe(Effect.flip)).toMatchObject({
+        _tag: "ReleaseRevisionChangedError",
+        actual: "b".repeat(40),
+        expected: "a".repeat(40),
+      });
+    })
+  );
 });
