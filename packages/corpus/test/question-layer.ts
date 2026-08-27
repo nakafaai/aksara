@@ -4,10 +4,8 @@ import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
 import {
   indexQuestionBanks,
-  type QuestionBankIndex,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
-import { discoverQuestionSources } from "#corpus/question-bank/source";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
@@ -95,40 +93,6 @@ export function choicesForQuestion(
   return new Map([
     [resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"), source],
   ]);
-}
-
-/** Discovers synthetic sources through the controlled platform layer. */
-export function runQuestionSources(
-  questionBanks: QuestionBankIndex,
-  directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>
-) {
-  return Effect.runPromise(
-    discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide([
-        makeQuestionSourceLayer(directoryEntries, sourceFiles),
-        Path.layer,
-      ])
-    )
-  );
-}
-
-/** Returns one typed synthetic discovery failure at the Vitest boundary. */
-export function rejectQuestionSources(
-  questionBanks: QuestionBankIndex,
-  directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>,
-  failDirectory = false
-) {
-  return Effect.runPromise(
-    discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide([
-        makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory),
-        Path.layer,
-      ]),
-      Effect.flip
-    )
-  );
 }
 
 /** Creates a deterministic synthetic question filesystem for source tests. */
