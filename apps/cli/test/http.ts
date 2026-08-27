@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import type { Effect } from "effect";
 import {
   HttpClient,
   type HttpClientError,
@@ -42,14 +42,4 @@ export function requestJson(request: HttpClientRequest.HttpClientRequest) {
     Buffer.from(request.body.body).toString("utf8")
   );
   return parsed;
-}
-
-/** Runs one HTTP-dependent test program through an explicit client. */
-export function runClient<A>(
-  program: Effect.Effect<A, unknown, HttpClient.HttpClient>,
-  client: HttpClient.HttpClient
-) {
-  return Effect.runPromise(
-    program.pipe(Effect.provideService(HttpClient.HttpClient, client))
-  );
 }
