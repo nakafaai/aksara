@@ -29,12 +29,10 @@ import {
   selectSourceBase,
   validateRecoveryBase,
 } from "#cli/production/base";
+import { verifyBaseTryoutRuntimeBundle } from "#cli/production/bundle";
 import { validateRendererTransition } from "#cli/production/renderer";
-import {
-  selectTryoutRuntimeRefresh,
-  selectTryoutRuntimeTransition,
-  verifyBaseTryoutRuntimeBundle,
-} from "#cli/production/runtime";
+import { selectTryoutRuntimeRefresh } from "#cli/production/runtime";
+import { selectTryoutRuntimeTransition } from "#cli/production/transition";
 import { validateRecoveryRevision } from "#cli/recovery";
 
 interface GitPreparationBase {
@@ -133,6 +131,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
       rendererManifest,
+      scope: input.scope,
     });
     const catalog = yield* prepareContentCatalog({
       base:
