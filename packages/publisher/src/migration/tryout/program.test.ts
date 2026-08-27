@@ -1,12 +1,15 @@
 import { generateKeyPairSync } from "node:crypto";
 
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
-import { describe, expect, it } from "@effect/vitest";
+import { assert, layer } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Layer } from "effect";
+import { Effect, Layer, Redacted } from "effect";
 import { vi } from "vitest";
 
-import { migrateRetainedTryoutHistory } from "#publisher/migration/tryout/program";
+import {
+  cleanupRetainedTryoutHistory,
+  migrateRetainedTryoutHistory,
+} from "#publisher/migration/tryout/program";
 import {
   PublicationSigningKey,
   PublicationTarget,
@@ -15,8 +18,10 @@ import { failureReason } from "#test/migration/error";
 import {
   completedMigrationStatus,
   fullMigrationTarget,
+  migrationProof,
   migrationRejection,
   migrationStatusTarget,
+  sealedMigrationStatus,
 } from "#test/migration/flow";
 import { otherHash } from "#test/migration/protocol";
 import {
@@ -24,7 +29,7 @@ import {
   migrationVerificationResolver,
 } from "#test/migration/signing";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makePublicationTarget } from "#test/target";
 
 vi.mock(
@@ -59,6 +64,11 @@ vi.mock("@nakafa/aksara-contracts/history/decode", async (importOriginal) => {
 });
 
 const nodeLayer = Layer.merge(NodeFileSystem.layer, NodePath.layer);
+const migrationLayer = Layer.mergeAll(
+  nodeLayer,
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver),
+  Layer.succeed(PublicationSigningKey, migrationSigningKey)
+);
 const otherKeys = generateKeyPairSync("ed25519");
 const wrongResolver = ContentVerificationKeyResolver.of({
   resolve: () =>
@@ -66,38 +76,86 @@ const wrongResolver = ContentVerificationKeyResolver.of({
       otherKeys.publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
 });
+const rotatedSigningKey = PublicationSigningKey.of({
+  keyId: "rotated-migration-key",
+  privateKeyPem: Redacted.make(
+    otherKeys.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
+  ),
+});
 
-/** Runs the public migration program with every explicit infrastructure seam. */
-function run(
-  target: typeof PublicationTarget.Service,
-  resolver = migrationVerificationResolver
-) {
+/** Runs the public migration program with its dynamic target seam. */
+function run(target: typeof PublicationTarget.Service) {
   return migrateRetainedTryoutHistory(migrationId).pipe(
-    Effect.provideService(PublicationTarget, target),
-    Effect.provideService(PublicationSigningKey, migrationSigningKey),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provide(nodeLayer)
+    Effect.provideService(PublicationTarget, target)
   );
 }
 
-describe("retained try-out history migration program", () => {
+/** Cleans one externally durable receipt through trusted-key seams. */
+function cleanup(
+  target: typeof PublicationTarget.Service,
+  receipt: Parameters<typeof cleanupRetainedTryoutHistory>[0]
+) {
+  return Effect.gen(function* () {
+    const proof = yield* migrationProof(receipt);
+    return yield* cleanupRetainedTryoutHistory(receipt, proof);
+  }).pipe(Effect.provideService(PublicationTarget, target));
+}
+
+layer(migrationLayer)("retained try-out history migration program", (it) => {
   it.effect("returns a receipt immediately for completed state", () =>
     Effect.gen(function* () {
       const exchange = migrationStatusTarget(completedMigrationStatus());
       const receipt = yield* run(exchange.target);
 
-      expect(exchange.commands).toEqual(["status"]);
-      expect(receipt.payload.migrationId).toBe(migrationId);
-      expect(receipt.payload.completion.remainingMarkers).toBe(0);
+      assert.deepStrictEqual(exchange.commands, ["status", "seal"]);
+      assert.strictEqual(receipt.payload.migrationId, migrationId);
+      assert.strictEqual(receipt.payload.completion.remainingMarkers, 0);
     })
+  );
+
+  it.effect(
+    "seals before returning and cleans only after external durability",
+    () =>
+      Effect.gen(function* () {
+        const exchange = migrationStatusTarget(completedMigrationStatus());
+        const receipt = yield* run(exchange.target);
+
+        assert.deepStrictEqual(exchange.commands, ["status", "seal"]);
+        const cleaned = yield* cleanup(exchange.target, receipt);
+
+        assert.deepStrictEqual(exchange.commands, [
+          "status",
+          "seal",
+          "cleanup",
+        ]);
+        assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
+      })
+  );
+
+  it.effect(
+    "recovers the exact sealed receipt after signing-key rotation",
+    () =>
+      Effect.gen(function* () {
+        const initial = migrationStatusTarget(completedMigrationStatus());
+        const receipt = yield* run(initial.target);
+        const resumed = migrationStatusTarget(
+          sealedMigrationStatus(receipt, completedMigrationStatus())
+        );
+        const recovered = yield* run(resumed.target).pipe(
+          Effect.provideService(PublicationSigningKey, rotatedSigningKey)
+        );
+
+        assert.deepStrictEqual(initial.commands, ["status", "seal"]);
+        assert.deepStrictEqual(resumed.commands, ["status"]);
+        assert.deepStrictEqual(recovered, receipt);
+      })
   );
 
   it.effect(
     "resumes an authorized migration without rebuilding target bytes",
     () =>
       Effect.gen(function* () {
-        const ready = migrationStatus({
-          phase: "ready",
+        const ready = readyMigrationStatus({
           planHash: historicalSource.evidence.snapshot.snapshotId,
           targetBundleHash: historicalSource.evidence.snapshot.snapshotId,
           targetSnapshotId: historicalSource.evidence.snapshot.snapshotId,
@@ -105,8 +163,11 @@ describe("retained try-out history migration program", () => {
         const exchange = migrationStatusTarget(ready);
         const receipt = yield* run(exchange.target);
 
-        expect(exchange.commands).toEqual(["status", "run"]);
-        expect(receipt.payload.targetSnapshotId).toBe(ready.targetSnapshotId);
+        assert.deepStrictEqual(exchange.commands, ["status", "run", "seal"]);
+        assert.strictEqual(
+          receipt.payload.targetSnapshotId,
+          ready.targetSnapshotId
+        );
       })
   );
 
@@ -117,7 +178,7 @@ describe("retained try-out history migration program", () => {
         const exchange = fullMigrationTarget();
         const receipt = yield* run(exchange.target);
 
-        expect(exchange.commands).toEqual([
+        assert.deepStrictEqual(exchange.commands, [
           "status",
           "source",
           "initialize",
@@ -131,9 +192,11 @@ describe("retained try-out history migration program", () => {
           "stageSnapshot",
           "stagePlan",
           "run",
+          "seal",
         ]);
-        expect(receipt.payload.completion.migratedAttempts).toBe(1);
-        expect(receipt.payload.targetBundleHash).not.toBe(
+        assert.strictEqual(receipt.payload.completion.migratedAttempts, 1);
+        assert.notStrictEqual(
+          receipt.payload.targetBundleHash,
           historicalSource.evidence.snapshot.snapshotId
         );
       })
@@ -156,23 +219,22 @@ describe("retained try-out history migration program", () => {
       });
       const contradiction = yield* run(command).pipe(Effect.flip);
 
-      expect(rejection._tag).toBe("PublicationTargetRejectedError");
-      expect(failureReason(contradiction)).toBe("command-evidence");
+      assert.strictEqual(rejection._tag, "PublicationTargetRejectedError");
+      assert.strictEqual(failureReason(contradiction), "command-evidence");
     })
   );
 
-  it.effect("rejects incomplete run and receipt evidence", () =>
+  it.effect("rejects incomplete and contradictory run evidence", () =>
     Effect.gen(function* () {
-      const ready = migrationStatus({
-        phase: "ready",
+      const ready = readyMigrationStatus({
         planHash: otherHash,
         targetBundleHash: otherHash,
         targetSnapshotId: otherHash,
       });
       const runFailures = yield* Effect.forEach(
         [
-          migrationStatus({ phase: "ready" }),
-          migrationStatus({ completion: null, phase: "completed" }),
+          migrationStatus(),
+          ready,
           completedMigrationStatus({
             ...ready,
             targetSnapshotId: historicalSource.evidence.snapshot.snapshotId,
@@ -181,27 +243,10 @@ describe("retained try-out history migration program", () => {
         (status) =>
           run(migrationStatusTarget(ready, status).target).pipe(Effect.flip)
       );
-      const terminal = completedMigrationStatus();
-      const receiptFailures = yield* Effect.forEach(
-        [
-          migrationStatus({ ...terminal, completion: null }),
-          migrationStatus({ ...terminal, planHash: null }),
-          migrationStatus({ ...terminal, targetBundleHash: null }),
-          migrationStatus({ ...terminal, targetSnapshotId: null }),
-        ],
-        (status) => run(migrationStatusTarget(status).target).pipe(Effect.flip)
-      );
-
-      expect(runFailures.map(failureReason)).toEqual([
+      assert.deepStrictEqual(runFailures.map(failureReason), [
         "status-evidence",
         "status-evidence",
         "status-evidence",
-      ]);
-      expect(receiptFailures.map(failureReason)).toEqual([
-        "receipt-evidence",
-        "receipt-evidence",
-        "receipt-evidence",
-        "receipt-evidence",
       ]);
     })
   );
@@ -209,11 +254,12 @@ describe("retained try-out history migration program", () => {
   it.effect("fails closed when the receipt key cannot be authenticated", () =>
     Effect.gen(function* () {
       const exchange = migrationStatusTarget(completedMigrationStatus());
-      const failure = yield* run(exchange.target, wrongResolver).pipe(
+      const failure = yield* run(exchange.target).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, wrongResolver),
         Effect.flip
       );
 
-      expect(failureReason(failure)).toBe("receipt-evidence");
+      assert.strictEqual(failureReason(failure), "receipt-evidence");
     })
   );
 });

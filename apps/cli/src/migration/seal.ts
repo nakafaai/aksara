@@ -1,19 +1,16 @@
-import { canonicalizeSignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/canonical";
-import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
   ACTIVE_SIGNING_KEY_ID,
   makeTrustedKeyResolver,
   TRUSTED_CONTENT_KEYS,
 } from "@nakafa/aksara-contracts/signature/trusted";
-import { TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
 import { migrateRetainedTryoutHistory } from "@nakafa/aksara-publisher/migration/tryout/program";
 import {
   PublicationSigningKey,
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
-import { Effect, FileSystem, type Path, Schema } from "effect";
+import { Effect, type FileSystem, type Path } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 
 import {
@@ -22,14 +19,9 @@ import {
 } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
+import { writeMigrationReceipt } from "#cli/migration/receipt";
 import type { MigrateTryoutHistoryArguments } from "#cli/production/arguments";
 import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
-
-/** The public receipt could not be written to its exclusive destination. */
-export class MigrationReceiptWriteError extends Schema.TaggedError<MigrationReceiptWriteError>()(
-  "MigrationReceiptWriteError",
-  {}
-) {}
 
 type MigrationCommand = Effect.Effect<
   void,
@@ -37,21 +29,7 @@ type MigrationCommand = Effect.Effect<
   FileSystem.FileSystem | HttpClient.HttpClient | Path.Path
 >;
 
-/** Writes one immutable public-safe receipt without overwriting any file. */
-const writeReceipt = Effect.fn("AksaraCli.writeTryoutMigrationReceipt")(
-  function* (
-    receiptPath: string,
-    receipt: SignedTryoutHistoryMigrationReceipt
-  ) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const bytes = `${canonicalizeSignedTryoutHistoryMigrationReceipt(receipt)}\n`;
-    yield* fileSystem
-      .writeFileString(receiptPath, bytes, { flag: "wx", mode: 0o600 })
-      .pipe(Effect.mapError(() => new MigrationReceiptWriteError()));
-  }
-);
-
-/** Runs the temporary signed migration and emits only public-safe evidence. */
+/** Seals the temporary migration and exports its public-safe signed receipt. */
 export const runTryoutMigrationCommand: (
   args: MigrateTryoutHistoryArguments
 ) => MigrationCommand = Effect.fn("AksaraCli.runTryoutMigrationCommand")(
@@ -78,7 +56,6 @@ export const runTryoutMigrationCommand: (
         timeout: PUBLICATION_TARGET_TIMEOUT,
         token: environment.publicationToken,
       }).pipe(Effect.mapError(mapProductionError("target")));
-      const target = retryPublicationTarget(rawTarget);
       const receipt = yield* migrateRetainedTryoutHistory(args.releaseId).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(
@@ -88,20 +65,23 @@ export const runTryoutMigrationCommand: (
             privateKeyPem: environment.privateKeyPem,
           })
         ),
-        Effect.provideService(PublicationTarget, target),
+        Effect.provideService(
+          PublicationTarget,
+          retryPublicationTarget(rawTarget)
+        ),
         Effect.mapError(mapProductionError("migration"))
       );
-      yield* writeReceipt(args.receiptPath, receipt).pipe(
+      yield* writeMigrationReceipt(args.receiptPath, receipt).pipe(
         Effect.mapError(mapProductionError("migration"))
       );
-      yield* Effect.logInfo("Try-out history migration completed.").pipe(
+      yield* Effect.logInfo("Try-out history migration sealed.").pipe(
         Effect.annotateLogs({
+          cleanupLimit: receipt.payload.completion.cleanupLimit,
           migratedAttempts: receipt.payload.completion.migratedAttempts,
           migrationId: receipt.payload.migrationId,
           planHash: receipt.payload.planHash,
           receiptHash: receipt.receiptHash,
           remainingMarkers: receipt.payload.completion.remainingMarkers,
-          removalGate: TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE,
           targetBundleHash: receipt.payload.targetBundleHash,
           targetSnapshotId: receipt.payload.targetSnapshotId,
         })

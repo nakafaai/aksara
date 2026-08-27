@@ -1,9 +1,6 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import {
-  TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
-  type TryoutHistoryMigrationReceiptPayload,
-} from "@nakafa/aksara-contracts/migration/tryout/history/spec";
-import { verifySignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/verify";
+import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
+import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect, Redacted, Stream } from "effect";
 import {
@@ -13,11 +10,15 @@ import {
   makeConvertedArtifactStream,
 } from "#publisher/migration/tryout/artifact";
 import { migrationFail } from "#publisher/migration/tryout/error";
-import { convertTryoutRows } from "#publisher/migration/tryout/row";
+import { readHistoricalTryoutRows } from "#publisher/migration/tryout/inventory";
 import {
-  readHistoricalTryoutRows,
-  readHistoricalTryoutSource,
-} from "#publisher/migration/tryout/source";
+  authenticateMigrationReceipt,
+  cleanupMigrationReceipt,
+  makeMigrationReceipt,
+  sealMigrationReceipt,
+} from "#publisher/migration/tryout/receipt";
+import { convertTryoutRows } from "#publisher/migration/tryout/row";
+import { readHistoricalTryoutSource } from "#publisher/migration/tryout/source";
 import {
   initializeTryoutMigration,
   isMigrationRunnable,
@@ -36,6 +37,11 @@ import {
   makeEd25519PublicationSigner,
   type PublicationSigner,
 } from "#publisher/signing/service";
+
+type RunnableStatus = Extract<
+  TryoutHistoryMigrationStatus,
+  { readonly phase: "ready" | "running" }
+>;
 
 /** Reads existing migration state while treating only exact absence as empty. */
 const readOptionalStatus = Effect.fn(
@@ -63,8 +69,8 @@ const readOptionalStatus = Effect.fn(
 
 /** Checks a run result preserves every immutable authorization identity. */
 function hasSameAuthorization(
-  expected: TryoutHistoryMigrationStatus,
-  actual: TryoutHistoryMigrationStatus
+  expected: RunnableStatus,
+  actual: Extract<TryoutHistoryMigrationStatus, { readonly phase: "completed" }>
 ) {
   return (
     actual.migrationId === expected.migrationId &&
@@ -82,7 +88,7 @@ function hasSameAuthorization(
 const runMigration = Effect.fn("AksaraPublisher.runTryoutHistoryMigration")(
   function* (
     target: typeof PublicationTarget.Service,
-    authorized: TryoutHistoryMigrationStatus
+    authorized: RunnableStatus
   ) {
     const value = yield* target.migrateTryoutHistory({
       command: "run",
@@ -92,39 +98,11 @@ const runMigration = Effect.fn("AksaraPublisher.runTryoutHistoryMigration")(
     if (
       value.command !== "run" ||
       value.status.phase !== "completed" ||
-      value.status.completion === null ||
       !hasSameAuthorization(authorized, value.status)
     ) {
       return yield* migrationFail("status-evidence");
     }
     return value.status;
-  }
-);
-
-/** Signs and authenticates the public-safe terminal completion receipt. */
-const makeReceipt = Effect.fn("AksaraPublisher.makeTryoutMigrationReceipt")(
-  function* (signer: PublicationSigner, status: TryoutHistoryMigrationStatus) {
-    if (
-      status.completion === null ||
-      status.planHash === null ||
-      status.targetBundleHash === null ||
-      status.targetSnapshotId === null
-    ) {
-      return yield* migrationFail("receipt-evidence");
-    }
-    const payload: TryoutHistoryMigrationReceiptPayload = {
-      completion: status.completion,
-      format: TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
-      migrationId: status.migrationId,
-      planHash: status.planHash,
-      sourceSnapshotId: status.sourceSnapshotId,
-      targetBundleHash: status.targetBundleHash,
-      targetSnapshotId: status.targetSnapshotId,
-    };
-    const receipt = yield* signer.signTryoutHistoryMigrationReceipt(payload);
-    return yield* verifySignedTryoutHistoryMigrationReceipt(receipt).pipe(
-      Effect.mapError(() => migrationFail("receipt-evidence"))
-    );
   }
 );
 
@@ -191,20 +169,44 @@ export const migrateRetainedTryoutHistory = Effect.fn(
   Effect.scoped(
     Effect.gen(function* () {
       const target = yield* PublicationTarget;
+      const status = yield* readOptionalStatus(target, migrationId);
+      if (status?.phase === "cleaned" || status?.phase === "sealed") {
+        return yield* authenticateMigrationReceipt(status.receipt);
+      }
       const signingKey = yield* PublicationSigningKey;
       const signer = yield* makeEd25519PublicationSigner({
         keyId: signingKey.keyId,
         privateKeyPem: Redacted.value(signingKey.privateKeyPem),
       });
-      const status = yield* readOptionalStatus(target, migrationId);
+      let receipt: SignedTryoutHistoryMigrationReceipt;
       if (status?.phase === "completed") {
-        return yield* makeReceipt(signer, status);
+        receipt = yield* makeMigrationReceipt(signer, status);
+      } else if (status && isMigrationRunnable(status)) {
+        receipt = yield* makeMigrationReceipt(
+          signer,
+          yield* runMigration(target, status)
+        );
+      } else {
+        receipt = yield* makeMigrationReceipt(
+          signer,
+          yield* prepareAndRun(target, signer, migrationId)
+        );
       }
-      if (status && isMigrationRunnable(status)) {
-        return yield* makeReceipt(signer, yield* runMigration(target, status));
-      }
-      const completed = yield* prepareAndRun(target, signer, migrationId);
-      return yield* makeReceipt(signer, completed);
+      return yield* sealMigrationReceipt(target, receipt);
     })
   )
+);
+
+/** Cleans only after an external caller durably owns the sealed receipt. */
+export const cleanupRetainedTryoutHistory = Effect.fn(
+  "AksaraPublisher.cleanupRetainedTryoutHistory"
+)(
+  (
+    receipt: SignedTryoutHistoryMigrationReceipt,
+    proof: TryoutHistoryMigrationProof
+  ) =>
+    Effect.gen(function* () {
+      const target = yield* PublicationTarget;
+      return yield* cleanupMigrationReceipt(target, receipt, proof);
+    })
 );

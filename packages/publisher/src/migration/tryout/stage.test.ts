@@ -1,8 +1,11 @@
-import { describe, expect, it } from "@effect/vitest";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { assert, layer } from "@effect/vitest";
+import {
+  type Sha256Hash,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { TryoutHistoryMigrationRequest } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
-import { Effect, Stream } from "effect";
+import { Effect, Layer, Stream } from "effect";
 
 import type { ConvertedTryoutArtifact } from "#publisher/migration/tryout/artifact";
 import {
@@ -18,7 +21,11 @@ import {
   migrationVerificationResolver,
 } from "#test/migration/signing";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import {
+  migrationStatus,
+  readyMigrationStatus,
+  runningMigrationStatus,
+} from "#test/migration/status";
 import { makeMigrationTarget } from "#test/migration/target";
 import { makePublicationTarget } from "#test/target";
 
@@ -36,11 +43,13 @@ const spool: ReplaySpool<ConvertedTryoutArtifact> = {
   replay: Stream.fromIterable(convertedArtifacts),
 };
 const authorizationHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
+const canonicalBundleHash = Sha256HashSchema.make(`sha256:${"1".repeat(64)}`);
 
 /** Executes valid staging, optionally substituting one contradictory reply. */
 const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
   drift?: MigrationCommand,
-  driftPlanCount = false
+  driftPlanCount = false,
+  reusedBundleHash?: Sha256Hash
 ) {
   const commands: MigrationCommand[] = [];
   const { prepared, rows, source } = yield* makeMigrationTarget();
@@ -57,10 +66,12 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
       switch (request.command) {
         case "stageBundle":
           return Effect.succeed({
-            bundleHash: request.bundle.bundleHash,
+            bundleHash: reusedBundleHash ?? request.bundle.bundleHash,
             command: request.command,
             created: 1,
             migrationId,
+            rendererManifestHash: request.rendererManifest.hash,
+            snapshotId: request.bundle.payload.snapshot.snapshotId,
             unchanged: 0,
           });
         case "stageArtifacts":
@@ -83,14 +94,13 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
           return Effect.succeed({
             command: request.command,
             migrationId,
-            status: migrationStatus({
+            status: readyMigrationStatus({
               artifactMapCount:
                 prepared.evidence.artifacts.count + (driftPlanCount ? 1 : 0),
               catalogMapCount: prepared.evidence.catalog.count,
-              phase: "ready",
               placementMapCount: prepared.evidence.placements.count,
               planHash: request.plan.planHash,
-              targetBundleHash: prepared.evidence.bundleHash,
+              targetBundleHash: request.plan.payload.target.bundleHash,
               targetSnapshotId: prepared.evidence.snapshot.snapshotId,
             }),
           });
@@ -107,21 +117,18 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
     signer: migrationSigner,
     source,
     target,
-  }).pipe(
-    Effect.provideService(
-      ContentVerificationKeyResolver,
-      migrationVerificationResolver
-    )
-  );
+  });
   return { commands, status };
 });
 
-describe("try-out history migration staging", () => {
+layer(
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver)
+)("try-out history migration staging", (it) => {
   it.effect("stages permanent evidence before signed authorization", () =>
     Effect.gen(function* () {
       const { commands, status } = yield* run();
 
-      expect(commands).toEqual([
+      assert.deepStrictEqual(commands, [
         "stageBundle",
         "stageArtifacts",
         "stageRows",
@@ -129,8 +136,16 @@ describe("try-out history migration staging", () => {
         "stageSnapshot",
         "stagePlan",
       ]);
-      expect(status.phase).toBe("ready");
-      expect(status.artifactMapCount).toBe(2);
+      assert.strictEqual(status.phase, "ready");
+      assert.strictEqual(status.artifactMapCount, 2);
+    })
+  );
+
+  it.effect("signs the canonical bundle identity returned by the backend", () =>
+    Effect.gen(function* () {
+      const { status } = yield* run(undefined, false, canonicalBundleHash);
+
+      assert.strictEqual(status.targetBundleHash, canonicalBundleHash);
     })
   );
 
@@ -165,8 +180,8 @@ describe("try-out history migration staging", () => {
         historicalSource
       ).pipe(Effect.flip);
 
-      expect(status.phase).toBe("staging");
-      expect(failureReason(failure)).toBe("status-evidence");
+      assert.strictEqual(status.phase, "staging");
+      assert.strictEqual(failureReason(failure), "status-evidence");
     })
   );
 
@@ -174,18 +189,18 @@ describe("try-out history migration staging", () => {
     "rejects contradictory command evidence at every staging seam",
     () =>
       Effect.gen(function* () {
-        const failures = yield* Effect.forEach(
-          [
-            "stageBundle",
-            "stageArtifacts",
-            "stageRows",
-            "stageSnapshot",
-            "stagePlan",
-          ] as const,
-          (command) => run(command).pipe(Effect.flip)
+        const driftCommands: readonly MigrationCommand[] = [
+          "stageBundle",
+          "stageArtifacts",
+          "stageRows",
+          "stageSnapshot",
+          "stagePlan",
+        ];
+        const failures = yield* Effect.forEach(driftCommands, (command) =>
+          run(command).pipe(Effect.flip)
         );
 
-        expect(failures.map(failureReason)).toEqual([
+        assert.deepStrictEqual(failures.map(failureReason), [
           "command-evidence",
           "command-evidence",
           "command-evidence",
@@ -216,15 +231,9 @@ describe("try-out history migration staging", () => {
         signer: migrationSigner,
         source,
         target,
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          migrationVerificationResolver
-        ),
-        Effect.flip
-      );
+      }).pipe(Effect.flip);
 
-      expect(failureReason(failure)).toBe("target-evidence");
+      assert.strictEqual(failureReason(failure), "target-evidence");
     })
   );
 
@@ -232,7 +241,7 @@ describe("try-out history migration staging", () => {
     Effect.gen(function* () {
       const failure = yield* run(undefined, true).pipe(Effect.flip);
 
-      expect(failureReason(failure)).toBe("status-evidence");
+      assert.strictEqual(failureReason(failure), "status-evidence");
     })
   );
 
@@ -242,24 +251,14 @@ describe("try-out history migration staging", () => {
       targetBundleHash: authorizationHash,
       targetSnapshotId: authorizationHash,
     };
-    expect(
-      isMigrationRunnable(migrationStatus({ ...authorization, phase: "ready" }))
-    ).toBe(true);
-    expect(
-      isMigrationRunnable(
-        migrationStatus({ ...authorization, phase: "running" })
-      )
-    ).toBe(true);
-    expect(isMigrationRunnable(migrationStatus({ phase: "ready" }))).toBe(
-      false
+    assert.strictEqual(
+      isMigrationRunnable(readyMigrationStatus(authorization)),
+      true
     );
-    expect(isMigrationRunnable(migrationStatus({ phase: "staging" }))).toBe(
-      false
+    assert.strictEqual(
+      isMigrationRunnable(runningMigrationStatus(authorization)),
+      true
     );
-    expect(
-      isMigrationRunnable(
-        migrationStatus({ ...authorization, phase: "completed" })
-      )
-    ).toBe(false);
+    assert.strictEqual(isMigrationRunnable(migrationStatus()), false);
   });
 });

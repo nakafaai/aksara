@@ -1,5 +1,4 @@
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
-import { verifyTryoutRuntimeBundleSource } from "@nakafa/aksara-contracts/tryout/runtime/source";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 import { Effect, Schema } from "effect";
@@ -31,10 +30,6 @@ export const verifyBaseTryoutRuntimeBundle = Effect.fn(
   const verified = yield* verifySignedTryoutRuntimeBundle({
     bundle,
     rendererManifest: baseBundle.rendererManifest,
-  });
-  yield* verifyTryoutRuntimeBundleSource({
-    bundle: verified,
-    release: baseBundle.release,
   });
   if (
     verified.payload.snapshot.snapshotId !==

@@ -1,19 +1,30 @@
+import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  hashTryoutHistoryMigrationReceiptAsset,
+  TryoutHistoryMigrationProofSchema,
+} from "@nakafa/aksara-contracts/migration/tryout/history/proof";
+import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import { TryoutHistoryMigrationCompletionSchema } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
-import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
+import {
+  TryoutHistoryMigrationCleanedStatusSchema,
+  TryoutHistoryMigrationCompletedStatusSchema,
+  TryoutHistoryMigrationSealedStatusSchema,
+  type TryoutHistoryMigrationStatus,
+} from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect } from "effect";
 
 import { PublicationTargetRejectedError } from "#publisher/target/errors";
 import { historicalArtifact } from "#test/migration/artifact";
-import { otherHash } from "#test/migration/protocol";
 import {
   historicalCatalogEntries,
   historicalPlacementEntries,
 } from "#test/migration/rows";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makePublicationTarget } from "#test/target";
 
 export const completion = TryoutHistoryMigrationCompletionSchema.make({
+  cleanupLimit: 18,
   completedAt: 1,
   migratedAttempts: 1,
   migratedScaleItems: 1,
@@ -22,17 +33,58 @@ export const completion = TryoutHistoryMigrationCompletionSchema.make({
   remainingMarkers: 0,
 });
 
+/** Builds external immutable-release proof for one exact receipt fixture. */
+export const migrationProof = Effect.fn("AksaraPublisherTest.migrationProof")(
+  function* (receipt: SignedTryoutHistoryMigrationReceipt) {
+    return TryoutHistoryMigrationProofSchema.make({
+      assetHash: yield* hashTryoutHistoryMigrationReceiptAsset(receipt),
+      sourceSha: GitCommitShaSchema.make("a".repeat(40)),
+    });
+  }
+);
+
 /** Produces internally complete terminal state from any staged identity set. */
 export function completedMigrationStatus(
-  status: TryoutHistoryMigrationStatus = migrationStatus()
+  status: Extract<
+    TryoutHistoryMigrationStatus,
+    { readonly phase: "ready" | "running" }
+  > = readyMigrationStatus()
 ) {
-  return migrationStatus({
+  return TryoutHistoryMigrationCompletedStatusSchema.make({
     ...status,
     completion,
     phase: "completed",
-    planHash: status.planHash ?? otherHash,
-    targetBundleHash: status.targetBundleHash ?? otherHash,
-    targetSnapshotId: status.targetSnapshotId ?? otherHash,
+  });
+}
+
+/** Binds a signed receipt back to the exact completed migration state. */
+export function sealedMigrationStatus(
+  receipt: SignedTryoutHistoryMigrationReceipt,
+  status: Extract<
+    TryoutHistoryMigrationStatus,
+    { readonly phase: "completed" | "ready" | "running" }
+  >
+) {
+  return TryoutHistoryMigrationSealedStatusSchema.make({
+    ...status,
+    completion: receipt.payload.completion,
+    phase: "sealed",
+    planHash: receipt.payload.planHash,
+    receipt,
+    sourceSnapshotId: receipt.payload.sourceSnapshotId,
+    targetBundleHash: receipt.payload.targetBundleHash,
+    targetSnapshotId: receipt.payload.targetSnapshotId,
+  });
+}
+
+/** Projects the permanent receipt after every temporary row is removed. */
+export function cleanedMigrationStatus(
+  receipt: SignedTryoutHistoryMigrationReceipt
+) {
+  return TryoutHistoryMigrationCleanedStatusSchema.make({
+    migrationId: receipt.payload.migrationId,
+    phase: "cleaned",
+    receipt,
   });
 }
 
@@ -53,8 +105,13 @@ export function migrationRejection(
 /** Serves one status and optional run result while recording commands. */
 export function migrationStatusTarget(
   status: TryoutHistoryMigrationStatus,
-  runStatus: TryoutHistoryMigrationStatus = completedMigrationStatus(status)
+  runStatus?: TryoutHistoryMigrationStatus
 ) {
+  const resolvedRunStatus =
+    runStatus ??
+    (status.phase === "ready" || status.phase === "running"
+      ? completedMigrationStatus(status)
+      : completedMigrationStatus());
   const commands: string[] = [];
   const target = makePublicationTarget({
     migrateTryoutHistory: (request) => {
@@ -66,7 +123,29 @@ export function migrationStatusTarget(
         return Effect.succeed({
           command: "run",
           migrationId,
-          status: runStatus,
+          status: resolvedRunStatus,
+        });
+      }
+      if (request.command === "seal") {
+        let terminal = completedMigrationStatus();
+        if (resolvedRunStatus.phase === "completed") {
+          terminal = resolvedRunStatus;
+        }
+        if (status.phase === "completed") {
+          terminal = status;
+        }
+        return Effect.succeed({
+          command: "seal",
+          migrationId,
+          status: sealedMigrationStatus(request.receipt, terminal),
+        });
+      }
+      if (request.command === "cleanup") {
+        return Effect.succeed({
+          command: "cleanup",
+          deleted: 1,
+          migrationId,
+          status: cleanedMigrationStatus(request.receipt),
         });
       }
       return Effect.die(`Unexpected ${request.command} command.`);
@@ -78,7 +157,7 @@ export function migrationStatusTarget(
 /** Serves the complete deterministic migration protocol through one fake target. */
 export function fullMigrationTarget() {
   const commands: string[] = [];
-  let ready = migrationStatus();
+  let ready = readyMigrationStatus();
   const target = makePublicationTarget({
     migrateTryoutHistory: (request) => {
       commands.push(request.command);
@@ -124,6 +203,8 @@ export function fullMigrationTarget() {
             command: request.command,
             created: 1,
             migrationId,
+            rendererManifestHash: request.rendererManifest.hash,
+            snapshotId: request.bundle.payload.snapshot.snapshotId,
             unchanged: 0,
           });
         case "stageArtifacts":
@@ -143,10 +224,9 @@ export function fullMigrationTarget() {
             unchanged: 0,
           });
         case "stagePlan":
-          ready = migrationStatus({
+          ready = readyMigrationStatus({
             artifactMapCount: request.plan.payload.target.artifacts.count,
             catalogMapCount: request.plan.payload.target.catalog.count,
-            phase: "ready",
             placementMapCount: request.plan.payload.target.placements.count,
             planHash: request.plan.planHash,
             targetBundleHash: request.plan.payload.target.bundleHash,
@@ -162,6 +242,22 @@ export function fullMigrationTarget() {
             command: request.command,
             migrationId,
             status: completedMigrationStatus(ready),
+          });
+        case "seal":
+          return Effect.succeed({
+            command: request.command,
+            migrationId,
+            status: sealedMigrationStatus(
+              request.receipt,
+              completedMigrationStatus(ready)
+            ),
+          });
+        case "cleanup":
+          return Effect.succeed({
+            command: request.command,
+            deleted: 1,
+            migrationId,
+            status: cleanedMigrationStatus(request.receipt),
           });
         default:
           return Effect.die("Unexpected migration command.");

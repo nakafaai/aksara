@@ -32,7 +32,7 @@ import type { TryoutHistoryMigrationSource } from "@nakafa/aksara-contracts/tran
 import { questionArtifactLocaleForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Array as EffectArray, Schema, Stream } from "effect";
 import { migrationFail } from "#publisher/migration/tryout/error";
-import type { HistoricalTryoutRows } from "#publisher/migration/tryout/source";
+import type { HistoricalTryoutRows } from "#publisher/migration/tryout/inventory";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationSigner } from "#publisher/signing/service";
 

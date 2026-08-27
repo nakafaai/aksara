@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
-import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  Sha256HashSchema,
+  SigningKeyIdSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect } from "effect";
@@ -10,6 +13,7 @@ import {
   currentState,
   gitBundle,
   releaseId,
+  runtimeBundleFor,
 } from "#test/target";
 
 const calls = productionCalls();
@@ -17,6 +21,9 @@ const tryoutScope = PublicationScopeSchema.make({
   families: [],
   snapshots: ["tryout"],
 });
+const inheritedTryoutSnapshot = Sha256HashSchema.make(
+  `sha256:${"c".repeat(64)}`
+);
 
 beforeEach(() => {
   calls.reset();
@@ -109,6 +116,44 @@ describe("production preparation", () => {
       expect(calls).toMatchObject({
         catalogCalls: 1,
         snapshotCalls: 1,
+      });
+    })
+  );
+
+  it.effect("reuses a producer pair through two Git successors", () =>
+    Effect.gen(function* () {
+      const producer = gitBundle("release-runtime-producer", {
+        baseReleaseId: releaseId("release-runtime-parent"),
+        tryoutSnapshotId: inheritedTryoutSnapshot,
+      });
+      const active = gitBundle("release-runtime-active", {
+        baseManifestHash: producer.release.manifestHash,
+        baseReleaseId: producer.release.manifest.releaseId,
+        tryoutSnapshotId: inheritedTryoutSnapshot,
+      });
+      calls.current = currentState({
+        active: completedBundle(active),
+        candidate: null,
+        recovery: null,
+        tryoutRuntimeBundle: runtimeBundleFor(
+          producer,
+          inheritedTryoutSnapshot
+        ),
+      });
+
+      const receipt = yield* productionProgram({
+        command: "release",
+        recoveryId: releaseId("recovery-runtime-next"),
+        releaseId: releaseId("release-runtime-next"),
+        scope: FUNCTION_SCOPE,
+      });
+
+      expect(receipt).toMatchObject({ releaseId: "release-runtime-next" });
+      expect(calls).toMatchObject({
+        baseReleaseId: "release-runtime-active",
+        publishCalls: 1,
+        runtimeBundleRefreshes: 0,
+        snapshotCalls: 0,
       });
     })
   );

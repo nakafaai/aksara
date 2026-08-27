@@ -155,6 +155,7 @@ export const migrationSource = Schema.decodeSync(
     },
     catalogRowCount: 1,
     creatingReleaseId: migrationRelease.manifest.releaseId,
+    legacyBundleCount: 1,
     placementRowCount: 1,
     releases: [
       {
@@ -164,6 +165,7 @@ export const migrationSource = Schema.decodeSync(
       },
     ],
     rendererManifestHash: historicalRenderer.hash,
+    runtimeBundleCount: 0,
     scales: {
       digest: `sha256:${"2".repeat(64)}`,
       itemCount: 1,

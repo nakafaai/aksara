@@ -66,6 +66,7 @@ export const historicalSource = Schema.decodeUnknownSync(
     },
     catalogRowCount: 1,
     creatingReleaseId: "retained-migration-release",
+    legacyBundleCount: 1,
     placementRowCount: 1,
     releases: [
       {
@@ -75,6 +76,7 @@ export const historicalSource = Schema.decodeUnknownSync(
       },
     ],
     rendererManifestHash: rendererHash,
+    runtimeBundleCount: 0,
     scales: {
       digest: `sha256:${"6".repeat(64)}`,
       itemCount: 1,

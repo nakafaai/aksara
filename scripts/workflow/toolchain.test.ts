@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { verifyWorkflowToolchains } from "#scripts/workflow-toolchain";
+import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const ci = readFileSync(".github/workflows/ci.yml", "utf8");
 const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");

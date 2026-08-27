@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hasBoundMigration } from "#publisher/target/evidence/migration";
@@ -8,7 +8,7 @@ import {
   otherHash,
   otherId,
 } from "#test/migration/protocol";
-import { migrationStatus } from "#test/migration/status";
+import { readyMigrationStatus } from "#test/migration/status";
 
 describe("migration signed identity evidence", () => {
   it.effect(
@@ -17,7 +17,7 @@ describe("migration signed identity evidence", () => {
       Effect.gen(function* () {
         const exchanges = yield* migrationProtocol();
         const ready = exchanges.plan.response.value;
-        if (ready.command !== "stagePlan") {
+        if (ready.command !== "stagePlan" || ready.status.phase !== "ready") {
           return yield* Effect.die("Expected staged plan evidence.");
         }
         const fields = [
@@ -30,15 +30,16 @@ describe("migration signed identity evidence", () => {
         const responses = fields.map((override) =>
           migrationResponse({
             ...ready,
-            status: migrationStatus({ ...ready.status, ...override }),
+            status: readyMigrationStatus({ ...ready.status, ...override }),
           })
         );
 
-        expect(
+        assert.deepStrictEqual(
           responses.map((value) =>
             hasBoundMigration(exchanges.plan.request, value)
-          )
-        ).toEqual(Array.from({ length: fields.length }, () => false));
+          ),
+          Array.from({ length: fields.length }, () => false)
+        );
       })
   );
 });

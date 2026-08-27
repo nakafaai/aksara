@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hasBoundMigration } from "#publisher/target/evidence/migration";
@@ -11,23 +11,62 @@ import {
   otherId,
 } from "#test/migration/protocol";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 
 describe("migration HTTP evidence", () => {
   it.effect("accepts every exact command-specific response", () =>
     Effect.gen(function* () {
       const exchanges = yield* migrationProtocol();
-      expect(
+      assert.strictEqual(
         Object.values(exchanges).every((exchange) =>
           hasBoundMigration(exchange.request, exchange.response)
-        )
-      ).toBe(true);
-      expect(
+        ),
+        true
+      );
+      if (
+        exchanges.bundle.request.command !== "stageBundle" ||
+        exchanges.bundle.response.value.command !== "stageBundle"
+      ) {
+        return yield* Effect.die("Expected bundle exchange fixture.");
+      }
+      assert.strictEqual(
+        hasBoundMigration(
+          exchanges.bundle.request,
+          migrationResponse({
+            ...exchanges.bundle.response.value,
+            bundleHash: otherHash,
+            created: 0,
+            unchanged: 1,
+          })
+        ),
+        true
+      );
+      assert.strictEqual(
         hasBoundPublicationSuccess(
           exchanges.source.request,
           exchanges.source.response
-        )
-      ).toBe(true);
+        ),
+        true
+      );
+      if (exchanges.cleanup.request.command !== "cleanup") {
+        return yield* Effect.die("Expected cleanup exchange fixture.");
+      }
+      assert.strictEqual(
+        hasBoundMigration(
+          exchanges.cleanup.request,
+          migrationResponse({
+            command: "cleanup",
+            deleted: 0,
+            migrationId,
+            status: {
+              migrationId,
+              phase: "cleaned",
+              receipt: exchanges.cleanup.request.receipt,
+            },
+          })
+        ),
+        true
+      );
     })
   );
 
@@ -38,7 +77,11 @@ describe("migration HTTP evidence", () => {
         const exchanges = yield* migrationProtocol();
         if (
           exchanges.plan.request.command !== "stagePlan" ||
-          exchanges.plan.response.value.command !== "stagePlan"
+          exchanges.plan.response.value.command !== "stagePlan" ||
+          exchanges.plan.response.value.status.phase !== "ready" ||
+          exchanges.seal.request.command !== "seal" ||
+          exchanges.seal.response.value.command !== "seal" ||
+          exchanges.seal.response.value.status.phase !== "sealed"
         ) {
           return yield* Effect.die("Expected signed plan exchange fixture.");
         }
@@ -110,6 +153,8 @@ describe("migration HTTP evidence", () => {
               command: "stageBundle",
               created: 1,
               migrationId,
+              rendererManifestHash: otherHash,
+              snapshotId: otherHash,
               unchanged: 0,
             }),
           },
@@ -118,20 +163,34 @@ describe("migration HTTP evidence", () => {
             response: migrationResponse({
               command: "stagePlan",
               migrationId,
-              status: migrationStatus({
+              status: readyMigrationStatus({
                 ...exchanges.plan.response.value.status,
                 artifactMapCount:
                   exchanges.plan.response.value.status.artifactMapCount + 1,
               }),
             }),
           },
+          {
+            request: exchanges.seal.request,
+            response: migrationResponse({
+              ...exchanges.seal.response.value,
+              status: {
+                ...exchanges.seal.response.value.status,
+                receipt: {
+                  ...exchanges.seal.response.value.status.receipt,
+                  receiptHash: otherHash,
+                },
+              },
+            }),
+          },
         ];
 
-        expect(
+        assert.deepStrictEqual(
           invalid.map((exchange) =>
             hasBoundMigration(exchange.request, exchange.response)
-          )
-        ).toEqual(Array.from({ length: invalid.length }, () => false));
+          ),
+          Array.from({ length: invalid.length }, () => false)
+        );
       })
   );
 });

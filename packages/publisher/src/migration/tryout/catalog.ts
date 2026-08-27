@@ -10,7 +10,7 @@ import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog
 import { Effect, Schema } from "effect";
 
 import { migrationFail } from "#publisher/migration/tryout/error";
-import type { IndexedHistoricalRow } from "#publisher/migration/tryout/source";
+import type { IndexedHistoricalRow } from "#publisher/migration/tryout/inventory";
 
 /** One current catalog record bound to its retained global identity. */
 export type ConvertedCatalogMapping = Extract<

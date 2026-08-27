@@ -58,6 +58,7 @@ function makePlanPayload() {
       },
       catalogRowCount: 5,
       creatingReleaseId: "retained-release",
+      legacyBundleCount: 1,
       placementRowCount: 1,
       releases: [
         {
@@ -67,6 +68,7 @@ function makePlanPayload() {
         },
       ],
       rendererManifestHash: hash("3"),
+      runtimeBundleCount: 0,
       scales: { digest: hash("4"), itemCount: 1, runCount: 1, versionCount: 1 },
       snapshot: {
         catalogDigest: hash("5"),
@@ -102,6 +104,7 @@ function makePlanPayload() {
 function makeReceiptPayload(planHash: string) {
   return Schema.decodeSync(TryoutHistoryMigrationReceiptPayloadSchema)({
     completion: {
+      cleanupLimit: 30,
       completedAt: 1_787_764_800_000,
       migratedAttempts: 1,
       migratedScaleItems: 1,

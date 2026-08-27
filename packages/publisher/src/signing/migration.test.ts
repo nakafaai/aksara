@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import {
   TRYOUT_HISTORY_MIGRATION_PLAN_FORMAT,
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
@@ -10,7 +10,7 @@ import {
   verifySignedTryoutHistoryMigrationReceipt,
 } from "@nakafa/aksara-contracts/migration/tryout/history/verify";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect } from "effect";
+import { Effect, Layer } from "effect";
 import { vi } from "vitest";
 import {
   migrationSigner,
@@ -47,6 +47,7 @@ const payloads = Effect.fn("AksaraPublisherTest.migrationPayloads")(
     };
     const receipt: TryoutHistoryMigrationReceiptPayload = {
       completion: {
+        cleanupLimit: 18,
         completedAt: 1,
         migratedAttempts: 1,
         migratedScaleItems: 1,
@@ -66,7 +67,9 @@ const payloads = Effect.fn("AksaraPublisherTest.migrationPayloads")(
   }
 );
 
-describe("try-out history migration signing", () => {
+layer(
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver)
+)("try-out history migration signing", (it) => {
   it.effect("signs and authenticates the exact plan and terminal receipt", () =>
     Effect.gen(function* () {
       const { plan, receipt } = yield* payloads();
@@ -77,12 +80,7 @@ describe("try-out history migration signing", () => {
       const verified = yield* Effect.all([
         verifySignedTryoutHistoryMigrationPlan(signedPlan),
         verifySignedTryoutHistoryMigrationReceipt(signedReceipt),
-      ]).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          migrationVerificationResolver
-        )
-      );
+      ]);
 
       expect(verified[0].payload).toEqual(plan);
       expect(verified[1].payload).toEqual(receipt);

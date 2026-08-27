@@ -1,9 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import {
-  verifyWorkflows,
-  type WorkflowSources,
-} from "#scripts/check-workflows";
+import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
 
 const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
@@ -14,8 +11,15 @@ const OPERATION_SETUP_INPUT =
 function currentSources(): WorkflowSources {
   const ci = readFileSync(".github/workflows/ci.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
+  const migration = readFileSync(".github/workflows/migration.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return { all: [ci, contracts, release], ci, contracts, release };
+  return {
+    all: [ci, contracts, migration, release],
+    ci,
+    contracts,
+    migration,
+    release,
+  };
 }
 
 const sources = currentSources();

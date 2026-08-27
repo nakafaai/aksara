@@ -13,7 +13,7 @@ const ENVIRONMENT_ALIAS_PATTERNS = [
   /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
 ] as const;
 
-interface WorkflowStructure {
+interface WorkflowDocument {
   readonly jobs: readonly YAMLMap[];
   readonly root: YAMLMap;
 }
@@ -52,7 +52,7 @@ function jobSteps(job: YAMLMap): readonly YAMLMap[] {
 }
 
 /** Parses one workflow and every top-level job mapping it owns. */
-function parseWorkflow(workflow: string): WorkflowStructure {
+function parseWorkflow(workflow: string): WorkflowDocument {
   const document = parseDocument(workflow);
   assert.equal(
     document.errors.length,

@@ -14,6 +14,7 @@ const calls = vi.hoisted(
     document:
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
     migration: undefined,
+    migrationCleanup: undefined,
     open: undefined,
     production: undefined,
     recover: undefined,
@@ -21,66 +22,11 @@ const calls = vi.hoisted(
   })
 );
 vi.mock("#cli/args", async () => {
-  const { Effect: TestEffect } = await import("effect");
+  const { programArguments } = await import("#test/arguments");
   return {
     /** Decodes either the real preview path or one production test command. */
-    parseCliArguments: (args: readonly string[]) => {
-      calls.args = args;
-      if (args[0] === "abort") {
-        return TestEffect.succeed({
-          command: "abort",
-          releaseId: "release-abort",
-        });
-      }
-      if (args[0] === "accept") {
-        return TestEffect.succeed({
-          command: "accept",
-          recoveryId: "recovery-active",
-          releaseId: "release-active",
-        });
-      }
-      if (args[0] === "cleanup") {
-        return TestEffect.succeed({
-          command: "cleanup",
-          releaseId: "release-cleanup",
-        });
-      }
-      if (args[0] === "check") {
-        return TestEffect.succeed({ command: "check" });
-      }
-      if (args[0] === "release") {
-        return TestEffect.succeed({
-          command: "release",
-          recoveryId: "recovery-next",
-          releaseId: "release-next",
-        });
-      }
-      if (args[0] === "migrate-tryout-history") {
-        return TestEffect.succeed({
-          command: "migrate-tryout-history",
-          receiptPath: "/tmp/migration-receipt.json",
-          releaseId: "migration-release",
-        });
-      }
-      if (args[0] === "recover") {
-        return TestEffect.succeed({
-          command: "recover",
-          recoveryId: "recovery-active",
-          releaseId: "release-active",
-        });
-      }
-      if (args[0] === "status") {
-        return TestEffect.succeed({ command: "status" });
-      }
-      const appLocaleIndex = args.indexOf("--app-locale");
-      const appLocale =
-        appLocaleIndex === -1 ? undefined : args[appLocaleIndex + 1];
-      return TestEffect.succeed({
-        ...(appLocale === undefined ? {} : { appLocale }),
-        command: "preview",
-        document: calls.document,
-      });
-    },
+    parseCliArguments: (args: readonly string[]) =>
+      programArguments(calls, args),
   };
 });
 vi.mock("#cli/accept", async () => {
@@ -157,13 +103,25 @@ vi.mock("#cli/production/command", async () => {
     },
   };
 });
-vi.mock("#cli/migration/tryout", async () => {
+vi.mock("#cli/migration/seal", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Records migration dispatch without contacting production. */
     runTryoutMigrationCommand: (args: NonNullable<typeof calls.migration>) => {
       calls.migration = args;
       return TestEffect.succeed("migration-complete");
+    },
+  };
+});
+vi.mock("#cli/migration/cleanup", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records cleanup dispatch without contacting production. */
+    runTryoutCleanupCommand: (
+      args: NonNullable<typeof calls.migrationCleanup>
+    ) => {
+      calls.migrationCleanup = args;
+      return TestEffect.succeed("migration-cleanup-complete");
     },
   };
 });
@@ -194,6 +152,7 @@ beforeEach(() => {
   calls.cleanup = undefined;
   calls.check = undefined;
   calls.migration = undefined;
+  calls.migrationCleanup = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
@@ -210,6 +169,22 @@ describe("CLI program", () => {
         cwd: "/code/aksara",
         environment: { nakafaAppDir: "/code/nakafa.com" },
         requestedDocument: calls.document,
+      });
+    })
+  );
+
+  it.effect("dispatches receipt-gated migration cleanup independently", () =>
+    Effect.gen(function* () {
+      const result = yield* runProgram(["cleanup-tryout-history"]);
+      expect(result).toBe("migration-cleanup-complete");
+      expect(calls.migrationCleanup).toEqual({
+        command: "cleanup-tryout-history",
+        proof: {
+          assetHash: `sha256:${"a".repeat(64)}`,
+          sourceSha: "b".repeat(40),
+        },
+        receiptPath: "/tmp/migration-receipt.json",
+        releaseId: "migration-release",
       });
     })
   );

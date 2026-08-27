@@ -127,7 +127,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
           : input.bundle.rendererManifest,
       scope: input.scope,
     });
-    const runtime = selectTryoutRuntimeRefresh({
+    const runtime = yield* selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
       rendererManifest,
