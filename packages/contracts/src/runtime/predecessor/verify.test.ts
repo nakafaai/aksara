@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { expect, layer } from "@effect/vitest";
+import { Effect, Layer } from "effect";
 import {
   CorpusSourcePathSchema,
   ReleaseIdSchema,
@@ -62,135 +62,137 @@ function verify(input: {
     rendererManifest,
     request: input.request ?? request,
     response: input.response,
-  }).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-  );
+  });
 }
 
-describe("predecessor protected runtime verification", () => {
-  it.effect("authenticates the deployed release-shaped response", () =>
-    Effect.gen(function* () {
-      expect(yield* verify({ response })).toEqual(response);
-      expect(
-        yield* verifyProtectedContentRuntimeExchange({
-          rendererManifest: compatibleManifest,
-          request,
-          response,
-        }).pipe(
-          Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-        )
-      ).toEqual(response);
-      expect(yield* verify({ response: { kind: "missing" } })).toEqual({
-        kind: "missing",
-      });
-    })
-  );
-
-  it.effect("rejects selector and release identity mismatches", () =>
-    Effect.gen(function* () {
-      const failures = [
-        [
-          "selectorCount",
-          verify({
-            request: {
-              ...request,
-              selectors: [selector, protectedAnswerSelector],
-            },
+layer(Layer.succeed(ContentVerificationKeyResolver, trustedResolver))(
+  "predecessor protected runtime verification",
+  (it) => {
+    it.effect("authenticates the deployed release-shaped response", () =>
+      Effect.gen(function* () {
+        expect(yield* verify({ response })).toEqual(response);
+        expect(
+          yield* verifyProtectedContentRuntimeExchange({
+            rendererManifest: compatibleManifest,
+            request,
             response,
-          }),
-        ],
-        [
-          "snapshotManifestHash",
-          verify({
-            response: { ...response, snapshotManifestHash: otherHash },
-          }),
-        ],
-        [
-          "delivery",
-          verify({
-            response: {
-              ...response,
-              items: [{ ...response.items[0], delivery: "entitled" }],
-            },
-          }),
-        ],
-        [
-          "artifactHash",
-          verify({
-            request: {
-              ...request,
-              selectors: [{ ...selector, artifactHash: otherHash }],
-            },
-            response,
-          }),
-        ],
-        [
-          "contentKey",
-          verify({
-            request: {
-              ...request,
-              selectors: [
-                {
-                  ...selector,
-                  contentKey: protectedAnswerContentKey,
-                  delivery: "entitled",
-                },
-              ],
-            },
-            response: {
-              ...response,
-              items: [{ ...response.items[0], delivery: "entitled" }],
-            },
-          }),
-        ],
-        [
-          "sourcePath",
-          verify({
-            response: {
-              ...response,
-              items: [
-                {
-                  ...response.items[0],
-                  sourcePath: CorpusSourcePathSchema.make(
-                    "packages/corpus/question/wrong.en.mdx"
-                  ),
-                },
-              ],
-            },
-          }),
-        ],
-        [
-          "snapshotId",
-          verify({ request: { ...request, snapshotId: otherHash }, response }),
-        ],
-        [
-          "snapshotId",
-          verify({
-            request: { ...request, snapshotId: otherHash },
-            response: { ...response, snapshotId: otherHash },
-          }),
-        ],
-        [
-          "snapshotReleaseId",
-          verify({
-            request: { ...request, snapshotReleaseId: otherReleaseId },
-            response,
-          }),
-        ],
-        [
-          "snapshotReleaseId",
-          verify({
-            request: { ...request, snapshotReleaseId: otherReleaseId },
-            response: { ...response, snapshotReleaseId: otherReleaseId },
-          }),
-        ],
-      ] as const;
-      for (const [reason, failure] of failures) {
-        expect(yield* failure.pipe(Effect.flip)).toMatchObject({
-          _tag: "PredecessorRuntimeMismatchError",
-          reason,
+          })
+        ).toEqual(response);
+        expect(yield* verify({ response: { kind: "missing" } })).toEqual({
+          kind: "missing",
         });
-      }
-    })
-  );
-});
+      })
+    );
+
+    it.effect("rejects selector and release identity mismatches", () =>
+      Effect.gen(function* () {
+        const failures = [
+          [
+            "selectorCount",
+            verify({
+              request: {
+                ...request,
+                selectors: [selector, protectedAnswerSelector],
+              },
+              response,
+            }),
+          ],
+          [
+            "snapshotManifestHash",
+            verify({
+              response: { ...response, snapshotManifestHash: otherHash },
+            }),
+          ],
+          [
+            "delivery",
+            verify({
+              response: {
+                ...response,
+                items: [{ ...response.items[0], delivery: "entitled" }],
+              },
+            }),
+          ],
+          [
+            "artifactHash",
+            verify({
+              request: {
+                ...request,
+                selectors: [{ ...selector, artifactHash: otherHash }],
+              },
+              response,
+            }),
+          ],
+          [
+            "contentKey",
+            verify({
+              request: {
+                ...request,
+                selectors: [
+                  {
+                    ...selector,
+                    contentKey: protectedAnswerContentKey,
+                    delivery: "entitled",
+                  },
+                ],
+              },
+              response: {
+                ...response,
+                items: [{ ...response.items[0], delivery: "entitled" }],
+              },
+            }),
+          ],
+          [
+            "sourcePath",
+            verify({
+              response: {
+                ...response,
+                items: [
+                  {
+                    ...response.items[0],
+                    sourcePath: CorpusSourcePathSchema.make(
+                      "packages/corpus/question/wrong.en.mdx"
+                    ),
+                  },
+                ],
+              },
+            }),
+          ],
+          [
+            "snapshotId",
+            verify({
+              request: { ...request, snapshotId: otherHash },
+              response,
+            }),
+          ],
+          [
+            "snapshotId",
+            verify({
+              request: { ...request, snapshotId: otherHash },
+              response: { ...response, snapshotId: otherHash },
+            }),
+          ],
+          [
+            "snapshotReleaseId",
+            verify({
+              request: { ...request, snapshotReleaseId: otherReleaseId },
+              response,
+            }),
+          ],
+          [
+            "snapshotReleaseId",
+            verify({
+              request: { ...request, snapshotReleaseId: otherReleaseId },
+              response: { ...response, snapshotReleaseId: otherReleaseId },
+            }),
+          ],
+        ] as const;
+        for (const [reason, failure] of failures) {
+          expect(yield* failure.pipe(Effect.flip)).toMatchObject({
+            _tag: "PredecessorRuntimeMismatchError",
+            reason,
+          });
+        }
+      })
+    );
+  }
+);

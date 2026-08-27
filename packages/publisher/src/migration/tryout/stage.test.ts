@@ -1,11 +1,11 @@
-import { assert, describe, it } from "@effect/vitest";
+import { assert, layer } from "@effect/vitest";
 import {
   type Sha256Hash,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { TryoutHistoryMigrationRequest } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
-import { Effect, Stream } from "effect";
+import { Effect, Layer, Stream } from "effect";
 
 import type { ConvertedTryoutArtifact } from "#publisher/migration/tryout/artifact";
 import {
@@ -117,16 +117,13 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
     signer: migrationSigner,
     source,
     target,
-  }).pipe(
-    Effect.provideService(
-      ContentVerificationKeyResolver,
-      migrationVerificationResolver
-    )
-  );
+  });
   return { commands, status };
 });
 
-describe("try-out history migration staging", () => {
+layer(
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver)
+)("try-out history migration staging", (it) => {
   it.effect("stages permanent evidence before signed authorization", () =>
     Effect.gen(function* () {
       const { commands, status } = yield* run();
@@ -234,13 +231,7 @@ describe("try-out history migration staging", () => {
         signer: migrationSigner,
         source,
         target,
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          migrationVerificationResolver
-        ),
-        Effect.flip
-      );
+      }).pipe(Effect.flip);
 
       assert.strictEqual(failureReason(failure), "target-evidence");
     })

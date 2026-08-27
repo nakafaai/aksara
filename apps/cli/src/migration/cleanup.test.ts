@@ -1,6 +1,6 @@
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, Layer } from "effect";
 import { vi } from "vitest";
 
 import { runTryoutCleanupCommand } from "#cli/migration/cleanup";
@@ -77,70 +77,73 @@ function reset() {
   calls.releaseId = undefined;
 }
 
-layer(NodeServices.layer)("try-out history migration cleanup", (it) => {
-  it.effect("cleans only from the selected external receipt", () =>
-    Effect.gen(function* () {
-      reset();
-      yield* runTryoutCleanupCommand({
-        command: "cleanup-tryout-history",
-        proof: migrationProof,
-        receiptPath: "/tmp/receipt.json",
-        releaseId: migrationId,
-      });
+layer(Layer.merge(NodeServices.layer, NodeHttpClient.layerNodeHttp))(
+  "try-out history migration cleanup",
+  (it) => {
+    it.effect("cleans only from the selected external receipt", () =>
+      Effect.gen(function* () {
+        reset();
+        yield* runTryoutCleanupCommand({
+          command: "cleanup-tryout-history",
+          proof: migrationProof,
+          receiptPath: "/tmp/receipt.json",
+          releaseId: migrationId,
+        });
 
-      assert.strictEqual(calls.cleaned, true);
-      assert.strictEqual(calls.receiptPath, "/tmp/receipt.json");
-      assert.strictEqual(calls.releaseId, migrationId);
-      assert.strictEqual(
-        calls.endpoint,
-        "https://content.example.test/publish"
-      );
-    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
-  );
+        assert.strictEqual(calls.cleaned, true);
+        assert.strictEqual(calls.receiptPath, "/tmp/receipt.json");
+        assert.strictEqual(calls.releaseId, migrationId);
+        assert.strictEqual(
+          calls.endpoint,
+          "https://content.example.test/publish"
+        );
+      })
+    );
 
-  it.effect("fails before cleanup when receipt or target proof fails", () =>
-    Effect.gen(function* () {
-      reset();
-      calls.failReceipt = true;
-      const receiptFailure = yield* runTryoutCleanupCommand({
-        command: "cleanup-tryout-history",
-        proof: migrationProof,
-        receiptPath: "/tmp/receipt.json",
-        releaseId: migrationId,
-      }).pipe(Effect.flip);
-      assert.strictEqual(calls.cleaned, false);
+    it.effect("fails before cleanup when receipt or target proof fails", () =>
+      Effect.gen(function* () {
+        reset();
+        calls.failReceipt = true;
+        const receiptFailure = yield* runTryoutCleanupCommand({
+          command: "cleanup-tryout-history",
+          proof: migrationProof,
+          receiptPath: "/tmp/receipt.json",
+          releaseId: migrationId,
+        }).pipe(Effect.flip);
+        assert.strictEqual(calls.cleaned, false);
 
-      reset();
-      calls.failTarget = true;
-      const targetFailure = yield* runTryoutCleanupCommand({
-        command: "cleanup-tryout-history",
-        proof: migrationProof,
-        receiptPath: "/tmp/receipt.json",
-        releaseId: migrationId,
-      }).pipe(Effect.flip);
+        reset();
+        calls.failTarget = true;
+        const targetFailure = yield* runTryoutCleanupCommand({
+          command: "cleanup-tryout-history",
+          proof: migrationProof,
+          receiptPath: "/tmp/receipt.json",
+          releaseId: migrationId,
+        }).pipe(Effect.flip);
 
-      assert.strictEqual(receiptFailure.failure, "TestReceiptError");
-      assert.strictEqual(receiptFailure.stage, "migration");
-      assert.strictEqual(targetFailure.failure, "TestTargetError");
-      assert.strictEqual(targetFailure.stage, "target");
-      assert.strictEqual(calls.cleaned, false);
-    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
-  );
+        assert.strictEqual(receiptFailure.failure, "TestReceiptError");
+        assert.strictEqual(receiptFailure.stage, "migration");
+        assert.strictEqual(targetFailure.failure, "TestTargetError");
+        assert.strictEqual(targetFailure.stage, "target");
+        assert.strictEqual(calls.cleaned, false);
+      })
+    );
 
-  it.effect("maps a cleanup failure after external proof", () =>
-    Effect.gen(function* () {
-      reset();
-      calls.failCleanup = true;
-      const failure = yield* runTryoutCleanupCommand({
-        command: "cleanup-tryout-history",
-        proof: migrationProof,
-        receiptPath: "/tmp/receipt.json",
-        releaseId: migrationId,
-      }).pipe(Effect.flip);
+    it.effect("maps a cleanup failure after external proof", () =>
+      Effect.gen(function* () {
+        reset();
+        calls.failCleanup = true;
+        const failure = yield* runTryoutCleanupCommand({
+          command: "cleanup-tryout-history",
+          proof: migrationProof,
+          receiptPath: "/tmp/receipt.json",
+          releaseId: migrationId,
+        }).pipe(Effect.flip);
 
-      assert.strictEqual(failure.failure, "TestCleanupError");
-      assert.strictEqual(failure.stage, "migration");
-      assert.strictEqual(calls.cleaned, true);
-    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
-  );
-});
+        assert.strictEqual(failure.failure, "TestCleanupError");
+        assert.strictEqual(failure.stage, "migration");
+        assert.strictEqual(calls.cleaned, true);
+      })
+    );
+  }
+);

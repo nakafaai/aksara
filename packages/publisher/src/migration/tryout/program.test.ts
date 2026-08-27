@@ -1,7 +1,7 @@
 import { generateKeyPairSync } from "node:crypto";
 
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
-import { assert, describe, it } from "@effect/vitest";
+import { assert, layer } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Redacted } from "effect";
 import { vi } from "vitest";
@@ -64,6 +64,11 @@ vi.mock("@nakafa/aksara-contracts/history/decode", async (importOriginal) => {
 });
 
 const nodeLayer = Layer.merge(NodeFileSystem.layer, NodePath.layer);
+const migrationLayer = Layer.mergeAll(
+  nodeLayer,
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver),
+  Layer.succeed(PublicationSigningKey, migrationSigningKey)
+);
 const otherKeys = generateKeyPairSync("ed25519");
 const wrongResolver = ContentVerificationKeyResolver.of({
   resolve: () =>
@@ -78,17 +83,10 @@ const rotatedSigningKey = PublicationSigningKey.of({
   ),
 });
 
-/** Runs the public migration program with every explicit infrastructure seam. */
-function run(
-  target: typeof PublicationTarget.Service,
-  resolver = migrationVerificationResolver,
-  signingKey = migrationSigningKey
-) {
+/** Runs the public migration program with its dynamic target seam. */
+function run(target: typeof PublicationTarget.Service) {
   return migrateRetainedTryoutHistory(migrationId).pipe(
-    Effect.provideService(PublicationTarget, target),
-    Effect.provideService(PublicationSigningKey, signingKey),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provide(nodeLayer)
+    Effect.provideService(PublicationTarget, target)
   );
 }
 
@@ -100,16 +98,10 @@ function cleanup(
   return Effect.gen(function* () {
     const proof = yield* migrationProof(receipt);
     return yield* cleanupRetainedTryoutHistory(receipt, proof);
-  }).pipe(
-    Effect.provideService(PublicationTarget, target),
-    Effect.provideService(
-      ContentVerificationKeyResolver,
-      migrationVerificationResolver
-    )
-  );
+  }).pipe(Effect.provideService(PublicationTarget, target));
 }
 
-describe("retained try-out history migration program", () => {
+layer(migrationLayer)("retained try-out history migration program", (it) => {
   it.effect("returns a receipt immediately for completed state", () =>
     Effect.gen(function* () {
       const exchange = migrationStatusTarget(completedMigrationStatus());
@@ -149,10 +141,8 @@ describe("retained try-out history migration program", () => {
         const resumed = migrationStatusTarget(
           sealedMigrationStatus(receipt, completedMigrationStatus())
         );
-        const recovered = yield* run(
-          resumed.target,
-          migrationVerificationResolver,
-          rotatedSigningKey
+        const recovered = yield* run(resumed.target).pipe(
+          Effect.provideService(PublicationSigningKey, rotatedSigningKey)
         );
 
         assert.deepStrictEqual(initial.commands, ["status", "seal"]);
@@ -264,7 +254,8 @@ describe("retained try-out history migration program", () => {
   it.effect("fails closed when the receipt key cannot be authenticated", () =>
     Effect.gen(function* () {
       const exchange = migrationStatusTarget(completedMigrationStatus());
-      const failure = yield* run(exchange.target, wrongResolver).pipe(
+      const failure = yield* run(exchange.target).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, wrongResolver),
         Effect.flip
       );
 
