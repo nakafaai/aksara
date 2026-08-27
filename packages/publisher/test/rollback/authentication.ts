@@ -46,7 +46,10 @@ const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
 const keys = generateKeyPairSync("ed25519");
 const keyId = SigningKeyIdSchema.make("test-rollback-key");
-export const rollbackRendererManifest = await Effect.runPromise(
+/** Builds the renderer contract used by authenticated rollback fixtures. */
+export const makeRollbackRendererManifest = Effect.fn(
+  "publisher.rollback.testRendererManifest"
+)(() =>
   createRendererManifest({
     base: {
       authoringComponents: [{ name: "TestBase", version: 1 }],
@@ -175,6 +178,48 @@ export const rollbackDeletionRecord = RollbackRecordSchema.make({
   index: 1,
   prior: rollbackDeletion,
 });
+
+/** Builds one authenticated rollback record containing near-limit bodies. */
+export const makeLargeRollbackRecord = Effect.fn(
+  "publisher.rollback.makeLargeTestRecord"
+)(function* () {
+  const largeCompiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
+  const largeRawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
+  const largePayload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)(
+    {
+      ...rollbackArtifact.payload,
+      byteLength: Buffer.byteLength(largeCompiledCode, "utf8"),
+      compiledCode: largeCompiledCode,
+      plainText: "p".repeat(90 * 1024),
+      rawMdx: largeRawMdx,
+      sourceHash: `sha256:${createHash("sha256")
+        .update(largeRawMdx)
+        .digest("hex")}`,
+    }
+  );
+  const artifact = signRollbackPayload(largePayload);
+  const projection = MaterialLessonProjectionSchema.make({
+    ...rollbackProjection,
+    metadata: {
+      ...rollbackProjection.metadata,
+      description: "d".repeat(100 * 1024),
+    },
+  });
+  const upsert = RollbackUpsertStateSchema.make({
+    artifact,
+    change: {
+      ...rollbackUpsert.change,
+      artifactHash: artifact.artifactHash,
+    },
+    projection,
+  });
+  return RollbackRecordSchema.make({
+    current: upsert,
+    index: 0,
+    prior: upsert,
+  });
+});
+
 export const currentRollbackReleaseId = ReleaseIdSchema.make(
   "test-rollback-current"
 );
@@ -212,55 +257,33 @@ interface RecordPolicies {
   readonly priorPolicy: RollbackArtifactPolicy;
 }
 
-const compatiblePolicies: RecordPolicies = {
-  currentPolicy: {
-    kind: "compatible",
-    rendererManifest: rollbackRendererManifest,
-  },
-  priorPolicy: {
-    kind: "compatible",
-    rendererManifest: rollbackRendererManifest,
-  },
-};
-
 /** Collects derived records through the selected signature and renderer policy. */
-export function collectRollbackRecords(
+export const collectRollbackRecords = Effect.fn(
+  "publisher.rollback.collectTestRecords"
+)(function* (
   records: Stream.Stream<RollbackRecord>,
-  policies: RecordPolicies = compatiblePolicies
+  policies?: RecordPolicies
 ) {
-  return Effect.runPromise(
-    deriveRollbackRecords({
-      currentPolicy: policies.currentPolicy,
-      currentReleaseId: currentRollbackReleaseId,
-      priorPolicy: policies.priorPolicy,
-      priorReleaseId: priorRollbackReleaseId,
-      records,
-    }).pipe(
-      Stream.runCollect,
-      Effect.provideService(ContentVerificationKeyResolver, resolver)
-    )
-  );
-}
+  let selectedPolicies = policies;
+  if (selectedPolicies === undefined) {
+    const rendererManifest = yield* makeRollbackRendererManifest();
+    selectedPolicies = {
+      currentPolicy: { kind: "compatible", rendererManifest },
+      priorPolicy: { kind: "compatible", rendererManifest },
+    };
+  }
 
-/** Returns one expected typed failure from the selected artifact policy. */
-export function rejectRollbackRecords(
-  records: Stream.Stream<RollbackRecord>,
-  policies: RecordPolicies = compatiblePolicies
-): Promise<{ readonly _tag: string }> {
-  return Effect.runPromise(
-    deriveRollbackRecords({
-      currentPolicy: policies.currentPolicy,
-      currentReleaseId: currentRollbackReleaseId,
-      priorPolicy: policies.priorPolicy,
-      priorReleaseId: priorRollbackReleaseId,
-      records,
-    }).pipe(
-      Stream.runCollect,
-      Effect.provideService(ContentVerificationKeyResolver, resolver),
-      Effect.flip
-    )
+  return yield* deriveRollbackRecords({
+    currentPolicy: selectedPolicies.currentPolicy,
+    currentReleaseId: currentRollbackReleaseId,
+    priorPolicy: selectedPolicies.priorPolicy,
+    priorReleaseId: priorRollbackReleaseId,
+    records,
+  }).pipe(
+    Stream.runCollect,
+    Effect.provideService(ContentVerificationKeyResolver, resolver)
   );
-}
+});
 
 /** Changes one signature character while preserving its wire shape. */
 export function tamperRollbackSignature(

@@ -1,15 +1,11 @@
-import { Buffer } from "node:buffer";
-import { createHash } from "node:crypto";
-import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
+import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   type RollbackRecord,
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import {
   encodeReplayRecord,
   MAX_REPLAY_RECORD_BYTES,
@@ -26,177 +22,46 @@ import {
   incompatibleRollbackArtifact,
   incompatibleRollbackUpsert,
   makeDerivedRollbackUpsert,
+  makeLargeRollbackRecord,
+  makeRollbackRendererManifest,
   matchingRollbackDeletion,
   priorRollbackReleaseId,
-  rejectRollbackRecords,
   rollbackArtifact,
   rollbackDeletion,
   rollbackDeletionRecord,
   rollbackProjection,
-  rollbackRendererManifest,
   rollbackUpsert,
   rollbackUpsertRecord,
-  signRollbackPayload,
   tamperRollbackSignature,
 } from "#test/rollback/authentication";
 
-describe("deriveRollbackRecords", () => {
-  it("authenticates upserts and preserves body-free deletes", async () => {
-    const [derivedUpsert, derivedDelete] = await collectRollbackRecords(
-      Stream.make(rollbackUpsertRecord, rollbackDeletionRecord)
-    );
-    expect(derivedUpsert).toMatchObject({
-      current: {
-        artifact: rollbackArtifact,
-        item: {
-          change: rollbackUpsert.change,
-          index: 0,
-          releaseId: currentRollbackReleaseId,
+type RollbackFailureCase = readonly [
+  label: string,
+  record: RollbackRecord,
+  expectedTag: string,
+  policy: "compatible" | "integrity-current",
+];
+
+const rollbackFailureCases = [
+  [
+    "rejects a signature that no longer authenticates the old envelope",
+    RollbackRecordSchema.make({
+      current: RollbackUpsertStateSchema.make({
+        ...rollbackUpsert,
+        artifact: {
+          ...rollbackArtifact,
+          signature: tamperRollbackSignature(rollbackArtifact.signature),
         },
-        kind: "upsert",
-        projection: rollbackProjection,
-      },
-      prior: {
-        artifact: rollbackArtifact,
-        item: {
-          change: rollbackUpsert.change,
-          index: 0,
-          releaseId: priorRollbackReleaseId,
-        },
-        kind: "upsert",
-        projection: rollbackProjection,
-      },
-    });
-    expect(derivedDelete).toEqual({
-      current: {
-        item: {
-          change: rollbackDeletion.change,
-          index: 1,
-          releaseId: currentRollbackReleaseId,
-        },
-        kind: "delete",
-      },
-      prior: {
-        item: {
-          change: rollbackDeletion.change,
-          index: 1,
-          releaseId: priorRollbackReleaseId,
-        },
-        kind: "delete",
-      },
-    });
-    expect(
-      derivedUpsert && isDerivedRollbackUpsert(derivedUpsert.current)
-    ).toBe(true);
-    expect(
-      derivedDelete && isDerivedRollbackUpsert(derivedDelete.current)
-    ).toBe(false);
-  });
-
-  it("reconstructs an article head from an authenticated article state", async () => {
-    const [derived] = await collectRollbackRecords(
-      Stream.make(rollbackUpsertRecord)
-    );
-    if (!(derived && isDerivedRollbackUpsert(derived.current))) {
-      throw new Error("Expected one derived article upsert.");
-    }
-    const state = {
-      ...derived.current,
-      item: {
-        ...derived.current.item,
-        change: { ...derived.current.item.change, family: "article" as const },
-      },
-    };
-    expect(snapshotRollbackState(state)).toMatchObject({
-      head: { family: "article" },
-      state: "article",
-    });
-  });
-
-  it("reconstructs a route-free question head from a real question state", async () => {
-    const [transition] = await collectQuestionPublication({ heads: [] });
-    if (!(transition && "payload" in transition.record)) {
-      throw new Error("Expected one question publication upsert.");
-    }
-    const state = makeDerivedRollbackUpsert(transition.record);
-    expect(snapshotRollbackState(state)).toMatchObject({
-      head: { family: "question", publicPath: undefined },
-      state: "question",
-    });
-  });
-
-  it("reconstructs a page head from a real page state", async () => {
-    const [transition] = await collectPagePublication({ heads: [] });
-    if (!(transition && "payload" in transition.record)) {
-      throw new Error("Expected one page publication upsert.");
-    }
-    const state = makeDerivedRollbackUpsert(transition.record);
-    expect(snapshotRollbackState(state)).toMatchObject({
-      head: { family: "page" },
-      state: "page",
-    });
-  });
-
-  it("spools a valid rollback transition containing two near-limit bodies", async () => {
-    const compiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
-    const rawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
-    const largePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
-      ...rollbackArtifact.payload,
-      byteLength: Buffer.byteLength(compiledCode, "utf8"),
-      compiledCode,
-      plainText: "p".repeat(90 * 1024),
-      rawMdx,
-      sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
-    });
-    const artifact = signRollbackPayload(largePayload);
-    const projection = MaterialLessonProjectionSchema.make({
-      ...rollbackProjection,
-      metadata: {
-        ...rollbackProjection.metadata,
-        description: "d".repeat(100 * 1024),
-      },
-    });
-    const upsert = RollbackUpsertStateSchema.make({
-      artifact,
-      change: {
-        ...rollbackUpsert.change,
-        artifactHash: artifact.artifactHash,
-      },
-      projection,
-    });
-    const [derived] = await collectRollbackRecords(
-      Stream.make(
-        RollbackRecordSchema.make({ current: upsert, index: 0, prior: upsert })
-      )
-    );
-    expect(derived).toBeDefined();
-    const encoded = await Effect.runPromise(encodeReplayRecord(derived, 0));
-    expect(encoded.bytes).toBeGreaterThan(1024 * 1024);
-    expect(encoded.bytes).toBeLessThanOrEqual(MAX_REPLAY_RECORD_BYTES);
-  });
-
-  it("rejects a signature that no longer authenticates the old envelope", async () => {
-    const tampered = RollbackUpsertStateSchema.make({
-      ...rollbackUpsert,
-      artifact: {
-        ...rollbackArtifact,
-        signature: tamperRollbackSignature(rollbackArtifact.signature),
-      },
-    });
-    const error = await rejectRollbackRecords(
-      Stream.make(
-        RollbackRecordSchema.make({
-          current: tampered,
-          index: 0,
-          prior: rollbackUpsert,
-        })
-      )
-    );
-    expect(error._tag).toBe("SignatureInvalidError");
-  });
-
-  it("rejects an authenticated artifact paired with another item hash", async () => {
-    const mismatched: RollbackRecord = {
+      }),
+      index: 0,
+      prior: rollbackUpsert,
+    }),
+    "SignatureInvalidError",
+    "compatible",
+  ],
+  [
+    "rejects an authenticated artifact paired with another item hash",
+    {
       current: {
         artifact: rollbackArtifact,
         change: {
@@ -207,94 +72,221 @@ describe("deriveRollbackRecords", () => {
       },
       index: 0,
       prior: rollbackUpsert,
-    };
-    const error = await rejectRollbackRecords(Stream.make(mismatched));
-    expect(error._tag).toBe("ReleaseArtifactMismatchError");
-  });
-
-  it("authenticates recovery current state without candidate compatibility", async () => {
-    const record = RollbackRecordSchema.make({
+    },
+    "ReleaseArtifactMismatchError",
+    "compatible",
+  ],
+  [
+    "rejects tampered recovery current state under integrity-only verification",
+    RollbackRecordSchema.make({
+      current: RollbackUpsertStateSchema.make({
+        ...incompatibleRollbackUpsert,
+        artifact: {
+          ...incompatibleRollbackArtifact,
+          signature: tamperRollbackSignature(
+            incompatibleRollbackArtifact.signature
+          ),
+        },
+      }),
+      index: 0,
+      prior: matchingRollbackDeletion,
+    }),
+    "SignatureInvalidError",
+    "integrity-current",
+  ],
+  [
+    "rejects a restored prior artifact incompatible with the candidate",
+    RollbackRecordSchema.make({
+      current: matchingRollbackDeletion,
+      index: 0,
+      prior: incompatibleRollbackUpsert,
+    }),
+    "ArtifactRendererComponentMissingError",
+    "integrity-current",
+  ],
+  [
+    "rejects source current state incompatible with its proof renderer",
+    RollbackRecordSchema.make({
       current: incompatibleRollbackUpsert,
       index: 0,
       prior: matchingRollbackDeletion,
-    });
-    const records = await collectRollbackRecords(Stream.make(record), {
-      currentPolicy: { kind: "integrity" },
-      priorPolicy: {
-        kind: "compatible",
-        rendererManifest: rollbackRendererManifest,
-      },
-    });
-    const [derived] = records;
+    }),
+    "ArtifactRendererComponentMissingError",
+    "compatible",
+  ],
+] as const satisfies readonly RollbackFailureCase[];
 
-    expect(derived?.current).toMatchObject({
-      artifact: incompatibleRollbackArtifact,
-      kind: "upsert",
-    });
-  });
-
-  it("rejects tampered recovery current state under integrity-only verification", async () => {
-    const tampered = RollbackUpsertStateSchema.make({
-      ...incompatibleRollbackUpsert,
-      artifact: {
-        ...incompatibleRollbackArtifact,
-        signature: tamperRollbackSignature(
-          incompatibleRollbackArtifact.signature
-        ),
-      },
-    });
-    const error = await rejectRollbackRecords(
-      Stream.make(
-        RollbackRecordSchema.make({
-          current: tampered,
-          index: 0,
-          prior: matchingRollbackDeletion,
-        })
-      ),
-      {
-        currentPolicy: { kind: "integrity" },
-        priorPolicy: {
-          kind: "compatible",
-          rendererManifest: rollbackRendererManifest,
+describe("deriveRollbackRecords", () => {
+  it.effect("authenticates upserts and preserves body-free deletes", () =>
+    Effect.gen(function* () {
+      const [derivedUpsert, derivedDelete] = yield* collectRollbackRecords(
+        Stream.make(rollbackUpsertRecord, rollbackDeletionRecord)
+      );
+      expect(derivedUpsert).toMatchObject({
+        current: {
+          artifact: rollbackArtifact,
+          item: {
+            change: rollbackUpsert.change,
+            index: 0,
+            releaseId: currentRollbackReleaseId,
+          },
+          kind: "upsert",
+          projection: rollbackProjection,
         },
-      }
-    );
-
-    expect(error._tag).toBe("SignatureInvalidError");
-  });
-
-  it("rejects a restored prior artifact incompatible with the candidate", async () => {
-    const error = await rejectRollbackRecords(
-      Stream.make(
-        RollbackRecordSchema.make({
-          current: matchingRollbackDeletion,
-          index: 0,
-          prior: incompatibleRollbackUpsert,
-        })
-      ),
-      {
-        currentPolicy: { kind: "integrity" },
-        priorPolicy: {
-          kind: "compatible",
-          rendererManifest: rollbackRendererManifest,
+        prior: {
+          artifact: rollbackArtifact,
+          item: {
+            change: rollbackUpsert.change,
+            index: 0,
+            releaseId: priorRollbackReleaseId,
+          },
+          kind: "upsert",
+          projection: rollbackProjection,
         },
+      });
+      expect(derivedDelete).toEqual({
+        current: {
+          item: {
+            change: rollbackDeletion.change,
+            index: 1,
+            releaseId: currentRollbackReleaseId,
+          },
+          kind: "delete",
+        },
+        prior: {
+          item: {
+            change: rollbackDeletion.change,
+            index: 1,
+            releaseId: priorRollbackReleaseId,
+          },
+          kind: "delete",
+        },
+      });
+      expect(
+        derivedUpsert && isDerivedRollbackUpsert(derivedUpsert.current)
+      ).toBe(true);
+      expect(
+        derivedDelete && isDerivedRollbackUpsert(derivedDelete.current)
+      ).toBe(false);
+    })
+  );
+
+  it.effect(
+    "reconstructs an article head from an authenticated article state",
+    () =>
+      Effect.gen(function* () {
+        const [derived] = yield* collectRollbackRecords(
+          Stream.make(rollbackUpsertRecord)
+        );
+        if (!(derived && isDerivedRollbackUpsert(derived.current))) {
+          return yield* Effect.die("Expected one derived article upsert.");
+        }
+        const state = {
+          ...derived.current,
+          item: {
+            ...derived.current.item,
+            change: {
+              ...derived.current.item.change,
+              family: "article" as const,
+            },
+          },
+        };
+        expect(snapshotRollbackState(state)).toMatchObject({
+          head: { family: "article" },
+          state: "article",
+        });
+      })
+  );
+
+  it.effect(
+    "reconstructs a route-free question head from a real question state",
+    () =>
+      Effect.gen(function* () {
+        const [transition] = yield* Effect.tryPromise(() =>
+          collectQuestionPublication({ heads: [] })
+        );
+        if (!(transition && "payload" in transition.record)) {
+          return yield* Effect.die("Expected one question publication upsert.");
+        }
+        const state = makeDerivedRollbackUpsert(transition.record);
+        expect(snapshotRollbackState(state)).toMatchObject({
+          head: { family: "question", publicPath: undefined },
+          state: "question",
+        });
+      })
+  );
+
+  it.effect("reconstructs a page head from a real page state", () =>
+    Effect.gen(function* () {
+      const [transition] = yield* Effect.tryPromise(() =>
+        collectPagePublication({ heads: [] })
+      );
+      if (!(transition && "payload" in transition.record)) {
+        return yield* Effect.die("Expected one page publication upsert.");
       }
-    );
+      const state = makeDerivedRollbackUpsert(transition.record);
+      expect(snapshotRollbackState(state)).toMatchObject({
+        head: { family: "page" },
+        state: "page",
+      });
+    })
+  );
 
-    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
-  });
+  it.effect(
+    "spools a valid rollback transition containing two near-limit bodies",
+    () =>
+      Effect.gen(function* () {
+        const record = yield* makeLargeRollbackRecord();
+        const [derived] = yield* collectRollbackRecords(Stream.make(record));
+        expect(derived).toBeDefined();
+        const encoded = yield* encodeReplayRecord(derived, 0);
+        expect(encoded.bytes).toBeGreaterThan(1024 * 1024);
+        expect(encoded.bytes).toBeLessThanOrEqual(MAX_REPLAY_RECORD_BYTES);
+      })
+  );
 
-  it("rejects source current state incompatible with its proof renderer", async () => {
-    const error = await rejectRollbackRecords(
-      Stream.make(
-        RollbackRecordSchema.make({
+  it.effect(
+    "authenticates recovery current state without candidate compatibility",
+    () =>
+      Effect.gen(function* () {
+        const record = RollbackRecordSchema.make({
           current: incompatibleRollbackUpsert,
           index: 0,
           prior: matchingRollbackDeletion,
-        })
-      )
-    );
+        });
+        const rendererManifest = yield* makeRollbackRendererManifest();
+        const records = yield* collectRollbackRecords(Stream.make(record), {
+          currentPolicy: { kind: "integrity" },
+          priorPolicy: { kind: "compatible", rendererManifest },
+        });
+        const [derived] = records;
 
-    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
-  });
+        expect(derived?.current).toMatchObject({
+          artifact: incompatibleRollbackArtifact,
+          kind: "upsert",
+        });
+      })
+  );
+
+  it.effect.each(rollbackFailureCases)(
+    "%s",
+    ([, record, expectedTag, policy]) =>
+      Effect.gen(function* () {
+        const policies =
+          policy === "compatible"
+            ? undefined
+            : {
+                currentPolicy: { kind: "integrity" as const },
+                priorPolicy: {
+                  kind: "compatible" as const,
+                  rendererManifest: yield* makeRollbackRendererManifest(),
+                },
+              };
+        expect(
+          yield* collectRollbackRecords(Stream.make(record), policies).pipe(
+            Effect.flip
+          )
+        ).toMatchObject({ _tag: expectedTag });
+      })
+  );
 });
