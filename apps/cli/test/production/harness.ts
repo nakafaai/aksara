@@ -87,23 +87,20 @@ vi.mock("#cli/production/renderer", async (importOriginal) => ({
 vi.mock("#cli/checkout", async () =>
   (await import("#test/production/mock")).checkoutMock(calls)
 );
-vi.mock("#cli/developer-readiness/verify", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    verifyPublishedDeveloperSurface: () => {
-      calls.readinessCalls += 1;
-      if (calls.readinessFailure) {
-        return TestEffect.fail({ _tag: "DeveloperReadinessError" });
-      }
-      return TestEffect.void;
-    },
-  };
-});
 vi.mock("#cli/developer-readiness/activation", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     activatesDeveloperPage: () =>
       TestEffect.succeed(calls.activatesDeveloperPage),
+    verifyDeveloperPublication: () => {
+      if (!calls.activatesDeveloperPage) {
+        return TestEffect.void;
+      }
+      calls.readinessCalls += 1;
+      return calls.readinessFailure
+        ? TestEffect.fail({ _tag: "DeveloperReadinessError" })
+        : TestEffect.void;
+    },
   };
 });
 vi.mock("@nakafa/aksara-publisher/heads", async () =>

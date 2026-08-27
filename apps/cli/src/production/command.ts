@@ -1,5 +1,4 @@
 import type {
-  ContentReleaseItem,
   ContentReleaseManifest,
   PublicationReceipt,
 } from "@nakafa/aksara-contracts/release";
@@ -23,12 +22,11 @@ import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect, type Stream } from "effect";
+import { Effect } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
-import { activatesDeveloperPage } from "#cli/developer-readiness/activation";
-import { verifyPublishedDeveloperSurface } from "#cli/developer-readiness/verify";
+import { verifyDeveloperPublication } from "#cli/developer-readiness/activation";
 import {
   readProductionEnvironment,
   readRecoveryEnvironment,
@@ -92,16 +90,6 @@ function logPublicationReceipt(receipt: PublicationReceipt) {
     Effect.as(receipt)
   );
 }
-
-/** Blocks only a developer-page upsert whose public dependencies are stale. */
-const verifyDeveloperPublication = Effect.fn(
-  "AksaraCli.verifyDeveloperPublication"
-)(function* <E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
-  const activates = yield* activatesDeveloperPage(items);
-  if (activates) {
-    yield* verifyPublishedDeveloperSurface();
-  }
-});
 
 /** Authenticates the exact signed release and frozen renderer for rebuilding. */
 function verifyPendingBundle(

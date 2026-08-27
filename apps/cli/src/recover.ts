@@ -10,9 +10,11 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { recoverContentRelease } from "@nakafa/aksara-publisher/recover";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
+import type { FileSystem, Path } from "effect";
 import { Effect } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
+import { verifyDeveloperRecovery } from "#cli/developer-readiness/activation";
 import { readRecoveryEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import type { RecoverArguments } from "#cli/production/arguments";
@@ -21,7 +23,7 @@ import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
 type RecoverCommand = Effect.Effect<
   PublicationReceipt,
   ProductionError,
-  HttpClient.HttpClient
+  FileSystem.FileSystem | HttpClient.HttpClient | Path.Path
 >;
 
 /** Activates one retained inverse after a fresh deployed-renderer preflight. */
@@ -42,14 +44,17 @@ export const runRecoverCommand: (args: RecoverArguments) => RecoverCommand =
         endpoint: environment.rendererEndpoint,
         token: environment.rendererToken,
       });
+      const keyResolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
+      yield* verifyDeveloperRecovery(args).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+        Effect.provideService(PublicationTarget, target),
+        Effect.mapError(mapProductionError("readiness"))
+      );
       const receipt = yield* recoverContentRelease({
         recoveryId: args.recoveryId,
         releaseId: args.releaseId,
       }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS)
-        ),
+        Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationActivation, activation),
         Effect.provideService(PublicationTarget, target),
         Effect.mapError(mapProductionError("recover"))
@@ -62,5 +67,5 @@ export const runRecoverCommand: (args: RecoverArguments) => RecoverCommand =
         }),
         Effect.as(receipt)
       );
-    })
+    }).pipe(Effect.scoped)
   );
