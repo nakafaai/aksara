@@ -2,6 +2,9 @@ import { Effect, Schema } from "effect";
 
 import type { TryoutHistoryMigrationPlanPayload } from "#contracts/migration/tryout/history/spec";
 
+/** One terminal row for each protected predecessor route. */
+const OBSERVER_ROWS = 4;
+
 /** Signed migration counts cannot produce one safe finite cleanup ceiling. */
 export class TryoutHistoryCleanupLimitError extends Schema.TaggedError<TryoutHistoryCleanupLimitError>()(
   "TryoutHistoryCleanupLimitError",
@@ -30,7 +33,7 @@ export const computeTryoutHistoryCleanupLimit = Effect.fn(
     target.placements.count +
     source.scales.versionCount +
     1;
-  const cleanupLimit = sourceRows + scaleRows + temporaryRows;
+  const cleanupLimit = sourceRows + scaleRows + temporaryRows + OBSERVER_ROWS;
   if (!Number.isSafeInteger(cleanupLimit)) {
     return yield* new TryoutHistoryCleanupLimitError();
   }

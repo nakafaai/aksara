@@ -39,13 +39,15 @@ function planPayload() {
 }
 
 describe("try-out history cleanup limit", () => {
-  it.effect("derives every source, scale, ledger, artifact, and root row", () =>
-    Effect.gen(function* () {
-      assert.strictEqual(
-        yield* computeTryoutHistoryCleanupLimit(planPayload()),
-        19
-      );
-    })
+  it.effect(
+    "derives every source, scale, ledger, artifact, observer, and root row",
+    () =>
+      Effect.gen(function* () {
+        assert.strictEqual(
+          yield* computeTryoutHistoryCleanupLimit(planPayload()),
+          23
+        );
+      })
   );
 
   it.effect("rejects a cleanup limit outside safe integer precision", () =>
