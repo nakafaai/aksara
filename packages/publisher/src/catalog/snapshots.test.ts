@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
@@ -11,7 +12,6 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
@@ -117,108 +117,102 @@ vi.mock(
   }
 );
 
-beforeEach(() => {
-  control.decodeFailure = false;
-  control.manifests = completeManifests;
-  control.prepareFailure = false;
-  control.verifyFailure = false;
-});
+/** Configures one isolated mock scenario inside the test Effect. */
+const configureControl = Effect.fn("CatalogSnapshotsTest.configureControl")(
+  (
+    input: Partial<{
+      decodeFailure: boolean;
+      manifests: readonly ContentSnapshotManifest[];
+      prepareFailure: boolean;
+      verifyFailure: boolean;
+    }> = {}
+  ) =>
+    Effect.sync(() => {
+      control.decodeFailure = input.decodeFailure ?? false;
+      control.manifests = input.manifests ?? completeManifests;
+      control.prepareFailure = input.prepareFailure ?? false;
+      control.verifyFailure = input.verifyFailure ?? false;
+    })
+);
 
-/** Runs structured validation through its scoped platform boundary. */
-function validate() {
-  return Effect.runPromise(
-    Effect.scoped(
-      validateCatalogSnapshots({
-        checkoutRoot: "/code/aksara",
-        questionHeads: Stream.empty,
-        rendererManifest: {},
-      })
-    ).pipe(Effect.provide(NodeServices.layer))
+/** Builds structured validation under the suite's scoped platform layer. */
+const validate = Effect.fn("CatalogSnapshotsTest.validate")(() =>
+  Effect.scoped(
+    validateCatalogSnapshots({
+      checkoutRoot: "/code/aksara",
+      questionHeads: Stream.empty,
+      rendererManifest: {},
+    })
+  )
+);
+
+layer(NodeServices.layer)("catalog snapshots", (it) => {
+  it.effect("reports current Program, Quran, and Try-out source evidence", () =>
+    Effect.gen(function* () {
+      yield* configureControl();
+      const evidence = yield* validate();
+
+      expect(evidence).toEqual({
+        program: {
+          rowCount: programManifest.rowCount,
+          rowDigest: hash,
+          sitemapCount: programManifest.sitemapCount,
+          snapshotId: hash,
+        },
+        quran: {
+          projectionCount: quranManifest.projectionCount,
+          projectionDigest: hash,
+          provenanceDigest: hash,
+          provenanceStatus: "blocked",
+          runtimeCount: quranManifest.runtimeCount,
+          searchCount: quranSearchCount,
+          snapshotId: hash,
+          sourceDigest: hash,
+        },
+        stagedRows: 1415,
+        tryout: {
+          catalogCount: 12,
+          catalogDigest: hash,
+          placementCount: 8,
+          placementDigest: hash,
+          routeCount: 10,
+          snapshotId: tryoutManifest.snapshotId,
+        },
+      });
+    })
   );
-}
 
-describe("catalog snapshots", () => {
-  it("reports current Program, Quran, and Try-out source evidence", async () => {
-    await expect(validate()).resolves.toEqual({
-      program: {
-        rowCount: programManifest.rowCount,
-        rowDigest: hash,
-        sitemapCount: programManifest.sitemapCount,
-        snapshotId: hash,
-      },
-      quran: {
-        projectionCount: quranManifest.projectionCount,
-        projectionDigest: hash,
-        provenanceDigest: hash,
-        provenanceStatus: "blocked",
-        runtimeCount: quranManifest.runtimeCount,
-        searchCount: quranSearchCount,
-        snapshotId: hash,
-        sourceDigest: hash,
-      },
-      stagedRows: 1415,
-      tryout: {
-        catalogCount: 12,
-        catalogDigest: hash,
-        placementCount: 8,
-        placementDigest: hash,
-        routeCount: 10,
-        snapshotId: tryoutManifest.snapshotId,
-      },
-    });
-  });
-
-  it.each([
+  it.effect.each([
     { manifests: [] },
     { manifests: completeManifests.slice(1, 2) },
     { manifests: completeManifests.slice(0, 1) },
     { manifests: completeManifests.slice(0, 2) },
-  ])(
-    "rejects an incomplete structured family set %#",
-    async ({ manifests }) => {
-      control.manifests = manifests;
+  ])("rejects an incomplete structured family set %#", ({ manifests }) =>
+    Effect.gen(function* () {
+      yield* configureControl({ manifests });
+      const error = yield* validate().pipe(Effect.flip);
 
-      await expect(
-        Effect.runPromise(
-          Effect.scoped(
-            validateCatalogSnapshots({
-              checkoutRoot: "/code/aksara",
-              questionHeads: Stream.empty,
-              rendererManifest: {},
-            })
-          ).pipe(Effect.flip, Effect.provide(NodeServices.layer))
-        )
-      ).resolves.toMatchObject({
+      expect(error).toMatchObject({
         _tag: "CatalogSnapshotSetError",
         actualFamilies: manifests.map(({ family }) => family),
       });
-    }
+    })
   );
 
-  it.each([
+  it.effect.each([
     { field: "decodeFailure", stage: "decode" },
     { field: "prepareFailure", stage: "prepare" },
     { field: "verifyFailure", stage: "verify" },
-  ] as const)(
-    "preserves a %s without relabeling it",
-    async ({ field, stage }) => {
-      control[field] = true;
+  ] as const)("preserves a %s without relabeling it", ({ field, stage }) =>
+    Effect.gen(function* () {
+      yield* configureControl({ [field]: true });
+      const error = yield* validate().pipe(Effect.flip);
 
-      await expect(
-        Effect.runPromise(
-          Effect.scoped(
-            validateCatalogSnapshots({
-              checkoutRoot: "/code/aksara",
-              questionHeads: Stream.empty,
-              rendererManifest: {},
-            })
-          ).pipe(Effect.flip, Effect.provide(NodeServices.layer))
-        )
-      ).resolves.toMatchObject({
+      expect(error).toMatchObject({
         _tag: "ContentCatalogSnapshotError",
         cause: stage,
         stage,
       });
-    }
+    })
   );
 });
