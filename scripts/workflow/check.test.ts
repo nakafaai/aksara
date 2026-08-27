@@ -1,9 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import {
-  verifyWorkflows,
-  type WorkflowSources,
-} from "#scripts/check-workflows";
+import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
 
 const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;

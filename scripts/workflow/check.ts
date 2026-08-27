@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/files";
 import { verifyMigrationWorkflow } from "#scripts/workflow/migration";
-import { verifyWorkflowToolchains } from "#scripts/workflow-toolchain";
+import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
