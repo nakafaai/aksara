@@ -6,13 +6,16 @@ export function hasCurrentTryoutRuntimeBundle(
   active: ActiveContentRelease | null,
   bundle: SignedTryoutRuntimeBundle | null
 ) {
-  if (bundle === null) {
-    return true;
+  if (active === null) {
+    return bundle === null;
+  }
+  const snapshotId = active.release.manifest.snapshots.tryout.resultSnapshotId;
+  if (snapshotId === null || snapshotId === undefined) {
+    return bundle === null;
   }
   return (
-    active !== null &&
-    active.release.manifest.snapshots.tryout.resultSnapshotId ===
-      bundle.payload.snapshot.snapshotId &&
+    bundle !== null &&
+    snapshotId === bundle.payload.snapshot.snapshotId &&
     active.rendererManifest.hash === bundle.payload.rendererManifestHash
   );
 }

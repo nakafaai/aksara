@@ -2,7 +2,10 @@ import { Schema } from "effect";
 
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { SignedTryoutHistoryMigrationPlanSchema } from "#contracts/migration/tryout/history/spec";
+import {
+  SignedTryoutHistoryMigrationPlanSchema,
+  SignedTryoutHistoryMigrationReceiptSchema,
+} from "#contracts/migration/tryout/history/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/catalog";
 import { TryoutPlacementRecordSchema } from "#contracts/tryout/placement";
@@ -157,6 +160,20 @@ export const TryoutHistoryMigrationRunRequestSchema = Schema.Struct({
   command: Schema.Literal("run"),
 });
 
+/** Persists the signed terminal receipt before any legacy byte is removed. */
+export const TryoutHistoryMigrationSealRequestSchema = Schema.Struct({
+  ...RequestIdentityFields,
+  command: Schema.Literal("seal"),
+  receipt: SignedTryoutHistoryMigrationReceiptSchema,
+});
+
+/** Deletes one bounded legacy page under the persisted signed receipt. */
+export const TryoutHistoryMigrationCleanupRequestSchema = Schema.Struct({
+  ...RequestIdentityFields,
+  command: Schema.Literal("cleanup"),
+  receipt: SignedTryoutHistoryMigrationReceiptSchema,
+});
+
 /** Reads aggregate staging or completion evidence without user identity. */
 export const TryoutHistoryMigrationStatusRequestSchema = Schema.Struct({
   ...RequestIdentityFields,
@@ -175,6 +192,8 @@ export const TryoutHistoryMigrationRequestSchema = Schema.Union([
   TryoutHistoryMigrationStageBundleRequestSchema,
   TryoutHistoryMigrationStagePlanRequestSchema,
   TryoutHistoryMigrationRunRequestSchema,
+  TryoutHistoryMigrationSealRequestSchema,
+  TryoutHistoryMigrationCleanupRequestSchema,
   TryoutHistoryMigrationStatusRequestSchema,
 ]);
 export type TryoutHistoryMigrationRequest =

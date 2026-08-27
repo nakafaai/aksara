@@ -6,6 +6,7 @@ import { HistoricalRendererManifestSchema } from "#contracts/history/renderer";
 import { HistoricalTryoutRowSchema } from "#contracts/history/tryout-row";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
+  SignedTryoutHistoryMigrationReceiptSchema,
   TryoutHistoryMigrationCompletionSchema,
   TryoutHistoryMigrationSourceEvidenceSchema,
 } from "#contracts/migration/tryout/history/spec";
@@ -34,19 +35,73 @@ export const TryoutHistoryMigrationSourceSchema = Schema.Struct({
 export type TryoutHistoryMigrationSource =
   typeof TryoutHistoryMigrationSourceSchema.Type;
 
-/** Aggregate durable phase for one temporary migration ledger. */
-export const TryoutHistoryMigrationStatusSchema = Schema.Struct({
+const MigrationStatusFields = {
   artifactMapCount: NonNegativeCountSchema,
   catalogMapCount: NonNegativeCountSchema,
-  completion: Schema.NullOr(TryoutHistoryMigrationCompletionSchema),
   migrationId: ReleaseIdSchema,
-  phase: Schema.Literals(["staging", "ready", "running", "completed"]),
   placementMapCount: NonNegativeCountSchema,
-  planHash: Schema.NullOr(Sha256HashSchema),
   sourceSnapshotId: Sha256HashSchema,
-  targetBundleHash: Schema.NullOr(Sha256HashSchema),
-  targetSnapshotId: Schema.NullOr(Sha256HashSchema),
+};
+const MigrationAuthorizationFields = {
+  planHash: Sha256HashSchema,
+  targetBundleHash: Sha256HashSchema,
+  targetSnapshotId: Sha256HashSchema,
+};
+
+/** Staging exposes only identities that are already complete and coherent. */
+export const TryoutHistoryMigrationStagingStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  phase: Schema.Literal("staging"),
 });
+
+/** Complete signed authorization awaiting or undergoing mutation. */
+export const TryoutHistoryMigrationReadyStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  ...MigrationAuthorizationFields,
+  phase: Schema.Literal("ready"),
+});
+export const TryoutHistoryMigrationRunningStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  ...MigrationAuthorizationFields,
+  phase: Schema.Literal("running"),
+});
+export const TryoutHistoryMigrationRunnableStatusSchema = Schema.Union([
+  TryoutHistoryMigrationReadyStatusSchema,
+  TryoutHistoryMigrationRunningStatusSchema,
+]);
+
+/** Terminal database evidence awaiting a publisher-signed receipt. */
+export const TryoutHistoryMigrationCompletedStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  ...MigrationAuthorizationFields,
+  completion: TryoutHistoryMigrationCompletionSchema,
+  phase: Schema.Literal("completed"),
+});
+
+/** Persisted terminal receipt that now authorizes bounded legacy cleanup. */
+export const TryoutHistoryMigrationSealedStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  ...MigrationAuthorizationFields,
+  completion: TryoutHistoryMigrationCompletionSchema,
+  phase: Schema.Literal("sealed"),
+  receipt: SignedTryoutHistoryMigrationReceiptSchema,
+});
+
+/** Permanent receipt after the temporary root and every legacy row are gone. */
+export const TryoutHistoryMigrationCleanedStatusSchema = Schema.Struct({
+  migrationId: ReleaseIdSchema,
+  phase: Schema.Literal("cleaned"),
+  receipt: SignedTryoutHistoryMigrationReceiptSchema,
+});
+
+/** Every valid migration phase as a state-specific contract. */
+export const TryoutHistoryMigrationStatusSchema = Schema.Union([
+  TryoutHistoryMigrationStagingStatusSchema,
+  TryoutHistoryMigrationRunnableStatusSchema,
+  TryoutHistoryMigrationCompletedStatusSchema,
+  TryoutHistoryMigrationSealedStatusSchema,
+  TryoutHistoryMigrationCleanedStatusSchema,
+]);
 export type TryoutHistoryMigrationStatus =
   typeof TryoutHistoryMigrationStatusSchema.Type;
 
@@ -109,6 +164,17 @@ const RunValueSchema = Schema.Struct({
   ...ResponseIdentityFields,
   status: TryoutHistoryMigrationStatusSchema,
 });
+const SealValueSchema = Schema.Struct({
+  command: Schema.Literal("seal"),
+  ...ResponseIdentityFields,
+  status: TryoutHistoryMigrationStatusSchema,
+});
+const CleanupValueSchema = Schema.Struct({
+  command: Schema.Literal("cleanup"),
+  deleted: NonNegativeCountSchema,
+  ...ResponseIdentityFields,
+  status: TryoutHistoryMigrationStatusSchema,
+});
 const StatusValueSchema = Schema.Struct({
   command: Schema.Literal("status"),
   ...ResponseIdentityFields,
@@ -127,6 +193,8 @@ export const TryoutHistoryMigrationValueSchema = Schema.Union([
   StageBundleValueSchema,
   StagePlanValueSchema,
   RunValueSchema,
+  SealValueSchema,
+  CleanupValueSchema,
   StatusValueSchema,
 ]);
 export type TryoutHistoryMigrationValue =

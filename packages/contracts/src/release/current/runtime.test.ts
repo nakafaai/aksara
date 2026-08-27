@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 import { hasCurrentTryoutRuntimeBundle } from "#contracts/release/current/runtime";
 import { ContentReleaseCurrentSchema } from "#contracts/release/current/state";
@@ -64,31 +64,38 @@ describe("current permanent runtime bundle", () => {
       tryoutRuntimeBundle: null,
     };
 
-    expect(current).toEqual(normalized);
-    expect(Schema.encodeSync(ContentReleaseCurrentSchema)(current)).toEqual(
+    assert.deepStrictEqual(current, normalized);
+    assert.deepStrictEqual(
+      Schema.encodeSync(ContentReleaseCurrentSchema)(current),
       normalized
     );
   });
 
   it("accepts the bundle bound to the active snapshot and renderer", () => {
-    expect(
-      hasCurrentTryoutRuntimeBundle(runtimeActive, tryoutRuntimeBundle)
-    ).toBe(true);
-    expect(
+    assert.strictEqual(
+      hasCurrentTryoutRuntimeBundle(runtimeActive, tryoutRuntimeBundle),
+      true
+    );
+    assert.strictEqual(
       accepts({
         active: runtimeActive,
         candidate: null,
         recovery: null,
         tryoutRuntimeBundle,
-      })
-    ).toBe(true);
+      }),
+      true
+    );
   });
 
   it("rejects a bundle without its exact active runtime pair", () => {
-    expect(hasCurrentTryoutRuntimeBundle(null, tryoutRuntimeBundle)).toBe(
+    assert.strictEqual(
+      hasCurrentTryoutRuntimeBundle(null, tryoutRuntimeBundle),
       false
     );
-    expect(hasCurrentTryoutRuntimeBundle(runtimeActive, null)).toBe(true);
+    assert.strictEqual(
+      hasCurrentTryoutRuntimeBundle(runtimeActive, null),
+      false
+    );
     for (const state of [
       {
         active: null,
@@ -106,6 +113,12 @@ describe("current permanent runtime bundle", () => {
         active: runtimeActive,
         candidate: null,
         recovery: null,
+        tryoutRuntimeBundle: null,
+      },
+      {
+        active: runtimeActive,
+        candidate: null,
+        recovery: null,
         tryoutRuntimeBundle: {
           ...tryoutRuntimeBundle,
           payload: {
@@ -115,7 +128,7 @@ describe("current permanent runtime bundle", () => {
         },
       },
     ]) {
-      expect(accepts(state)).toBe(false);
+      assert.strictEqual(accepts(state), false);
     }
   });
 });
