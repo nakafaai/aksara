@@ -179,28 +179,31 @@ export const migrateRetainedTryoutHistory = Effect.fn(
         keyId: signingKey.keyId,
         privateKeyPem: Redacted.value(signingKey.privateKeyPem),
       });
+      let receipt: SignedTryoutHistoryMigrationReceipt;
       if (status?.phase === "completed") {
-        return yield* makeMigrationReceipt(signer, status);
-      }
-      if (status && isMigrationRunnable(status)) {
-        return yield* makeMigrationReceipt(
+        receipt = yield* makeMigrationReceipt(signer, status);
+      } else if (status && isMigrationRunnable(status)) {
+        receipt = yield* makeMigrationReceipt(
           signer,
           yield* runMigration(target, status)
         );
+      } else {
+        receipt = yield* makeMigrationReceipt(
+          signer,
+          yield* prepareAndRun(target, signer, migrationId)
+        );
       }
-      const completed = yield* prepareAndRun(target, signer, migrationId);
-      return yield* makeMigrationReceipt(signer, completed);
+      return yield* sealMigrationReceipt(target, receipt);
     })
   )
 );
 
-/** Seals and cleans only after an external caller durably owns the receipt. */
-export const completeRetainedTryoutHistory = Effect.fn(
-  "AksaraPublisher.completeRetainedTryoutHistory"
+/** Cleans only after an external caller durably owns the sealed receipt. */
+export const cleanupRetainedTryoutHistory = Effect.fn(
+  "AksaraPublisher.cleanupRetainedTryoutHistory"
 )((receipt: SignedTryoutHistoryMigrationReceipt) =>
   Effect.gen(function* () {
     const target = yield* PublicationTarget;
-    yield* sealMigrationReceipt(target, receipt);
     return yield* cleanupMigrationReceipt(target, receipt);
   })
 );

@@ -8,7 +8,7 @@ import {
 } from "@nakafa/aksara-contracts/signature/trusted";
 import { TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
 import {
-  completeRetainedTryoutHistory,
+  cleanupRetainedTryoutHistory,
   migrateRetainedTryoutHistory,
 } from "@nakafa/aksara-publisher/migration/tryout/program";
 import {
@@ -127,7 +127,7 @@ export const runTryoutMigrationCommand: (
       const persisted = yield* writeReceipt(args.receiptPath, receipt).pipe(
         Effect.mapError(mapProductionError("migration"))
       );
-      yield* completeRetainedTryoutHistory(persisted).pipe(
+      yield* cleanupRetainedTryoutHistory(persisted).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationTarget, target),
         Effect.mapError(mapProductionError("migration"))

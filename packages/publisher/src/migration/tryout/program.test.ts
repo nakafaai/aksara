@@ -3,11 +3,11 @@ import { generateKeyPairSync } from "node:crypto";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Layer } from "effect";
+import { Effect, Layer, Redacted } from "effect";
 import { vi } from "vitest";
 
 import {
-  completeRetainedTryoutHistory,
+  cleanupRetainedTryoutHistory,
   migrateRetainedTryoutHistory,
 } from "#publisher/migration/tryout/program";
 import {
@@ -20,6 +20,7 @@ import {
   fullMigrationTarget,
   migrationRejection,
   migrationStatusTarget,
+  sealedMigrationStatus,
 } from "#test/migration/flow";
 import { otherHash } from "#test/migration/protocol";
 import {
@@ -69,26 +70,33 @@ const wrongResolver = ContentVerificationKeyResolver.of({
       otherKeys.publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
 });
+const rotatedSigningKey = PublicationSigningKey.of({
+  keyId: "rotated-migration-key",
+  privateKeyPem: Redacted.make(
+    otherKeys.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
+  ),
+});
 
 /** Runs the public migration program with every explicit infrastructure seam. */
 function run(
   target: typeof PublicationTarget.Service,
-  resolver = migrationVerificationResolver
+  resolver = migrationVerificationResolver,
+  signingKey = migrationSigningKey
 ) {
   return migrateRetainedTryoutHistory(migrationId).pipe(
     Effect.provideService(PublicationTarget, target),
-    Effect.provideService(PublicationSigningKey, migrationSigningKey),
+    Effect.provideService(PublicationSigningKey, signingKey),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.provide(nodeLayer)
   );
 }
 
-/** Completes one receipt through the same target and trusted-key seams. */
-function complete(
+/** Cleans one externally durable receipt through trusted-key seams. */
+function cleanup(
   target: typeof PublicationTarget.Service,
-  receipt: Parameters<typeof completeRetainedTryoutHistory>[0]
+  receipt: Parameters<typeof cleanupRetainedTryoutHistory>[0]
 ) {
-  return completeRetainedTryoutHistory(receipt).pipe(
+  return cleanupRetainedTryoutHistory(receipt).pipe(
     Effect.provideService(PublicationTarget, target),
     Effect.provideService(
       ContentVerificationKeyResolver,
@@ -103,23 +111,50 @@ describe("retained try-out history migration program", () => {
       const exchange = migrationStatusTarget(completedMigrationStatus());
       const receipt = yield* run(exchange.target);
 
-      assert.deepStrictEqual(exchange.commands, ["status"]);
+      assert.deepStrictEqual(exchange.commands, ["status", "seal"]);
       assert.strictEqual(receipt.payload.migrationId, migrationId);
       assert.strictEqual(receipt.payload.completion.remainingMarkers, 0);
     })
   );
 
-  it.effect("seals and cleans only through explicit completion", () =>
-    Effect.gen(function* () {
-      const exchange = migrationStatusTarget(completedMigrationStatus());
-      const receipt = yield* run(exchange.target);
+  it.effect(
+    "seals before returning and cleans only after external durability",
+    () =>
+      Effect.gen(function* () {
+        const exchange = migrationStatusTarget(completedMigrationStatus());
+        const receipt = yield* run(exchange.target);
 
-      assert.deepStrictEqual(exchange.commands, ["status"]);
-      const cleaned = yield* complete(exchange.target, receipt);
+        assert.deepStrictEqual(exchange.commands, ["status", "seal"]);
+        const cleaned = yield* cleanup(exchange.target, receipt);
 
-      assert.deepStrictEqual(exchange.commands, ["status", "seal", "cleanup"]);
-      assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
-    })
+        assert.deepStrictEqual(exchange.commands, [
+          "status",
+          "seal",
+          "cleanup",
+        ]);
+        assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
+      })
+  );
+
+  it.effect(
+    "recovers the exact sealed receipt after signing-key rotation",
+    () =>
+      Effect.gen(function* () {
+        const initial = migrationStatusTarget(completedMigrationStatus());
+        const receipt = yield* run(initial.target);
+        const resumed = migrationStatusTarget(
+          sealedMigrationStatus(receipt, completedMigrationStatus())
+        );
+        const recovered = yield* run(
+          resumed.target,
+          migrationVerificationResolver,
+          rotatedSigningKey
+        );
+
+        assert.deepStrictEqual(initial.commands, ["status", "seal"]);
+        assert.deepStrictEqual(resumed.commands, ["status"]);
+        assert.deepStrictEqual(recovered, receipt);
+      })
   );
 
   it.effect(
@@ -134,7 +169,7 @@ describe("retained try-out history migration program", () => {
         const exchange = migrationStatusTarget(ready);
         const receipt = yield* run(exchange.target);
 
-        assert.deepStrictEqual(exchange.commands, ["status", "run"]);
+        assert.deepStrictEqual(exchange.commands, ["status", "run", "seal"]);
         assert.strictEqual(
           receipt.payload.targetSnapshotId,
           ready.targetSnapshotId
@@ -163,6 +198,7 @@ describe("retained try-out history migration program", () => {
           "stageSnapshot",
           "stagePlan",
           "run",
+          "seal",
         ]);
         assert.strictEqual(receipt.payload.completion.migratedAttempts, 1);
         assert.notStrictEqual(

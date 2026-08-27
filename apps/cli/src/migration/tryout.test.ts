@@ -18,9 +18,10 @@ import { vi } from "vitest";
 import { runTryoutMigrationCommand } from "#cli/migration/tryout";
 
 interface Calls {
-  completionBytes: string | undefined;
-  completionReceiptHash: string | undefined;
+  cleanupBytes: string | undefined;
+  cleanupReceiptHash: string | undefined;
   endpoint: string | undefined;
+  phases: string[];
   receipt: SignedTryoutHistoryMigrationReceipt | undefined;
   receiptPath: string | undefined;
   releaseId: string | undefined;
@@ -28,9 +29,10 @@ interface Calls {
 }
 
 const calls = vi.hoisted<Calls>(() => ({
-  completionBytes: undefined,
-  completionReceiptHash: undefined,
+  cleanupBytes: undefined,
+  cleanupReceiptHash: undefined,
   endpoint: undefined,
+  phases: [],
   receipt: undefined,
   receiptPath: undefined,
   releaseId: undefined,
@@ -42,8 +44,8 @@ vi.mock("@nakafa/aksara-publisher/migration/tryout/program", async () => {
     "effect"
   );
   return {
-    /** Proves the durable receipt exists before destructive completion. */
-    completeRetainedTryoutHistory: (
+    /** Proves the durable receipt exists before destructive cleanup. */
+    cleanupRetainedTryoutHistory: (
       migrationReceipt: SignedTryoutHistoryMigrationReceipt
     ) =>
       TestEffect.gen(function* () {
@@ -51,16 +53,18 @@ vi.mock("@nakafa/aksara-publisher/migration/tryout/program", async () => {
         if (calls.receiptPath === undefined) {
           return yield* TestEffect.die("Expected one receipt path fixture.");
         }
-        calls.completionBytes = yield* fileSystem.readFileString(
+        calls.cleanupBytes = yield* fileSystem.readFileString(
           calls.receiptPath,
           "utf8"
         );
-        calls.completionReceiptHash = migrationReceipt.receiptHash;
+        calls.cleanupReceiptHash = migrationReceipt.receiptHash;
+        calls.phases.push("cleanup");
         return migrationReceipt;
       }),
-    /** Returns one public-safe terminal receipt without running production. */
+    /** Returns the exact server-sealed receipt before external persistence. */
     migrateRetainedTryoutHistory: (releaseId: string) => {
       calls.releaseId = releaseId;
+      calls.phases.push("seal");
       return calls.receipt === undefined
         ? TestEffect.die("Expected one migration receipt fixture.")
         : TestEffect.succeed(calls.receipt);
@@ -137,9 +141,10 @@ const receiptBytes = `${canonicalizeSignedTryoutHistoryMigrationReceipt(receipt)
 
 /** Resets mutable mock evidence for one command execution. */
 function resetCalls(receiptPath: string) {
-  calls.completionBytes = undefined;
-  calls.completionReceiptHash = undefined;
+  calls.cleanupBytes = undefined;
+  calls.cleanupReceiptHash = undefined;
   calls.endpoint = undefined;
+  calls.phases = [];
   calls.receipt = receipt;
   calls.receiptPath = receiptPath;
   calls.releaseId = undefined;
@@ -170,8 +175,9 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
       assert.deepStrictEqual(yield* fileSystem.readDirectory(root), [
         "receipt.json",
       ]);
-      assert.strictEqual(calls.completionBytes, receiptBytes);
-      assert.strictEqual(calls.completionReceiptHash, receipt.receiptHash);
+      assert.strictEqual(calls.cleanupBytes, receiptBytes);
+      assert.strictEqual(calls.cleanupReceiptHash, receipt.receiptHash);
+      assert.deepStrictEqual(calls.phases, ["seal", "cleanup"]);
       assert.strictEqual(calls.releaseId, receipt.payload.migrationId);
       assert.strictEqual(
         calls.endpoint,
@@ -198,8 +204,9 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
         releaseId: receipt.payload.migrationId,
       });
 
-      assert.strictEqual(calls.completionBytes, receiptBytes);
-      assert.strictEqual(calls.completionReceiptHash, receipt.receiptHash);
+      assert.strictEqual(calls.cleanupBytes, receiptBytes);
+      assert.strictEqual(calls.cleanupReceiptHash, receipt.receiptHash);
+      assert.deepStrictEqual(calls.phases, ["seal", "cleanup"]);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 
@@ -227,7 +234,8 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
         yield* fileSystem.readFileString(receiptPath, "utf8"),
         "existing\n"
       );
-      assert.strictEqual(calls.completionBytes, undefined);
+      assert.strictEqual(calls.cleanupBytes, undefined);
+      assert.deepStrictEqual(calls.phases, ["seal"]);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 
@@ -250,7 +258,8 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
       assert.strictEqual(failure._tag, "ProductionError");
       assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
       assert.strictEqual(failure.stage, "migration");
-      assert.strictEqual(calls.completionBytes, undefined);
+      assert.strictEqual(calls.cleanupBytes, undefined);
+      assert.deepStrictEqual(calls.phases, ["seal"]);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 
@@ -271,7 +280,8 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
       assert.strictEqual(failure._tag, "ProductionError");
       assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
       assert.strictEqual(failure.stage, "migration");
-      assert.strictEqual(calls.completionBytes, undefined);
+      assert.strictEqual(calls.cleanupBytes, undefined);
+      assert.deepStrictEqual(calls.phases, ["seal"]);
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 });

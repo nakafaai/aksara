@@ -93,6 +93,7 @@ export const sealMigrationReceipt = Effect.fn(
   ) {
     return yield* migrationFail("receipt-evidence");
   }
+  return authenticated;
 });
 
 /** Repeats only progressing bounded cleanup pages until legacy state is gone. */
