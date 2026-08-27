@@ -1,4 +1,7 @@
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  CorpusSourcePathSchema,
+  GitCommitShaSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import type { PageEntry } from "#corpus/pages/registry";
 import {
@@ -7,7 +10,24 @@ import {
   PageSourceSchema,
 } from "#corpus/pages/schema";
 
+/** Reviewed Nakafa implementation that must be live before developer publication. */
+export const NAKAFA_AGENT_IMPLEMENTATION_SHA = GitCommitShaSchema.make(
+  "2fae54fec31b7cd630a56933b613fa5b9504695a"
+);
+
+/** Stable source-owned identity of Nakafa's public developer page. */
+export const DEVELOPER_PAGE_KEY = "developers";
+
 const pageSourceInputs: readonly PageSourceInput[] = [
+  {
+    pageKey: DEVELOPER_PAGE_KEY,
+    publicPaths: {
+      de: "developers",
+      en: "developers",
+      id: "developers",
+    },
+    sourceRoot: "pages/developers",
+  },
   {
     pageKey: "imprint",
     publicPaths: {

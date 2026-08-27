@@ -233,13 +233,13 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
   it.effect("merges all four family streams in canonical order", () =>
     Effect.gen(function* () {
       const { initial, initialHeads } = yield* CatalogTestFixtures;
-      expect(initial.records).toHaveLength(43);
-      expect(initial.routes).toHaveLength(43);
-      expect(initialHeads).toHaveLength(43);
+      expect(initial.records).toHaveLength(46);
+      expect(initial.routes).toHaveLength(46);
+      expect(initialHeads).toHaveLength(46);
       expect(initialHeads.map(({ family }) => family)).toEqual([
         ...Array.from({ length: 21 }, () => "article"),
         ...Array.from({ length: 4 }, () => "material"),
-        ...Array.from({ length: 12 }, () => "page"),
+        ...Array.from({ length: 15 }, () => "page"),
         ...Array.from({ length: 6 }, () => "question"),
       ]);
     })

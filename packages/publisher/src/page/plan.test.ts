@@ -168,8 +168,8 @@ describe("page plan", () => {
       renderer,
     });
 
-    expect(records).toHaveLength(12);
-    expect(compilerState.calls).toBe(12);
+    expect(records).toHaveLength(15);
+    expect(compilerState.calls).toBe(15);
   });
 
   it("emits one tombstone without compiling an absent source", async () => {
@@ -200,11 +200,11 @@ describe("page plan", () => {
   it("compiles every canonical source for the first release", async () => {
     const records = await collectPagePublication({ heads: [] });
 
-    expect(records).toHaveLength(12);
+    expect(records).toHaveLength(15);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(12);
+    expect(compilerState.calls).toBe(15);
   });
 
   it("compiles the complete selected family for scoped genesis", async () => {
@@ -219,6 +219,9 @@ describe("page plan", () => {
         record.change.artifactLocale,
       ])
     ).toEqual([
+      ["pages/developers", "de"],
+      ["pages/developers", "en"],
+      ["pages/developers", "id"],
       ["pages/imprint", "de"],
       ["pages/imprint", "en"],
       ["pages/imprint", "id"],
@@ -232,7 +235,7 @@ describe("page plan", () => {
       ["pages/terms-of-service", "en"],
       ["pages/terms-of-service", "id"],
     ]);
-    expect(compilerState.calls).toBe(12);
+    expect(compilerState.calls).toBe(15);
   });
 
   it("preserves base heads and ignores changes in an unselected family", async () => {
