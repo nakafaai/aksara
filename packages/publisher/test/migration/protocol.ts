@@ -2,9 +2,16 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { TRYOUT_HISTORY_MIGRATION_PLAN_FORMAT } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
+import {
+  TRYOUT_HISTORY_MIGRATION_PLAN_FORMAT,
+  TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
+  type TryoutHistoryMigrationCompletion,
+} from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import { TryoutHistoryMigrationRequestSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
-import { TryoutHistoryMigrationSuccessSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
+import {
+  type TryoutHistoryMigrationStatus,
+  TryoutHistoryMigrationSuccessSchema,
+} from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect, Schema } from "effect";
 
 import { artifactMapping } from "#publisher/migration/tryout/artifact";
@@ -13,7 +20,7 @@ import { convertedArtifacts } from "#test/migration/converted";
 import { historicalCatalogEntries } from "#test/migration/rows";
 import { migrationSigner } from "#test/migration/signing";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makeMigrationTarget } from "#test/migration/target";
 
 export const otherHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
@@ -45,15 +52,47 @@ export const migrationProtocol = Effect.fn(
     source: historicalSource.evidence,
     target: prepared.evidence,
   });
-  const ready = migrationStatus({
+  const ready = readyMigrationStatus({
     artifactMapCount: prepared.evidence.artifacts.count,
     catalogMapCount: prepared.evidence.catalog.count,
-    phase: "ready",
     placementMapCount: prepared.evidence.placements.count,
     planHash: plan.planHash,
     targetBundleHash: prepared.evidence.bundleHash,
     targetSnapshotId: prepared.evidence.snapshot.snapshotId,
   });
+  const completion: TryoutHistoryMigrationCompletion = {
+    completedAt: 1,
+    migratedAttempts: historicalSource.evidence.attempts.attemptCount,
+    migratedScaleItems: historicalSource.evidence.scales.itemCount,
+    migratedScaleRuns: historicalSource.evidence.scales.runCount,
+    migratedScaleVersions: historicalSource.evidence.scales.versionCount,
+    remainingMarkers: 0,
+  };
+  const receipt = yield* migrationSigner.signTryoutHistoryMigrationReceipt({
+    completion,
+    format: TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
+    migrationId,
+    planHash: plan.planHash,
+    sourceSnapshotId: historicalSource.evidence.snapshot.snapshotId,
+    targetBundleHash: prepared.evidence.bundleHash,
+    targetSnapshotId: prepared.evidence.snapshot.snapshotId,
+  });
+  const completed: Extract<
+    TryoutHistoryMigrationStatus,
+    { readonly phase: "completed" }
+  > = {
+    ...ready,
+    completion,
+    phase: "completed",
+  };
+  const sealed: Extract<
+    TryoutHistoryMigrationStatus,
+    { readonly phase: "sealed" }
+  > = {
+    ...completed,
+    phase: "sealed",
+    receipt,
+  };
   const identity = {
     operation: "migrateTryoutHistory",
     releaseId: migrationId,
@@ -88,6 +127,19 @@ export const migrationProtocol = Effect.fn(
         created: 1,
         migrationId,
         unchanged: 0,
+      }),
+    },
+    cleanup: {
+      request: migrationRequest({
+        ...identity,
+        command: "cleanup",
+        receipt,
+      }),
+      response: migrationResponse({
+        command: "cleanup",
+        deleted: 1,
+        migrationId,
+        status: sealed,
       }),
     },
     initialize: {
@@ -132,7 +184,15 @@ export const migrationProtocol = Effect.fn(
       response: migrationResponse({
         command: "run",
         migrationId,
-        status: ready,
+        status: completed,
+      }),
+    },
+    seal: {
+      request: migrationRequest({ ...identity, command: "seal", receipt }),
+      response: migrationResponse({
+        command: "seal",
+        migrationId,
+        status: sealed,
       }),
     },
     snapshot: {

@@ -1,0 +1,127 @@
+import { assert, describe, it } from "@effect/vitest";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import { Effect } from "effect";
+
+import {
+  cleanupMigrationReceipt,
+  makeMigrationReceipt,
+  sealMigrationReceipt,
+} from "#publisher/migration/tryout/receipt";
+import { failureReason } from "#test/migration/error";
+import {
+  cleanedMigrationStatus,
+  completedMigrationStatus,
+  sealedMigrationStatus,
+} from "#test/migration/flow";
+import {
+  migrationSigner,
+  migrationVerificationResolver,
+} from "#test/migration/signing";
+import { migrationId } from "#test/migration/source";
+import { makePublicationTarget } from "#test/target";
+
+/** Makes one real signed receipt under the test resolver. */
+const makeReceipt = () =>
+  makeMigrationReceipt(migrationSigner, completedMigrationStatus()).pipe(
+    Effect.provideService(
+      ContentVerificationKeyResolver,
+      migrationVerificationResolver
+    )
+  );
+
+describe("try-out history migration receipt lifecycle", () => {
+  it.effect("seals the exact authenticated completion receipt", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      const target = makePublicationTarget({
+        migrateTryoutHistory: (request) =>
+          request.command === "seal"
+            ? Effect.succeed({
+                command: request.command,
+                migrationId,
+                status: sealedMigrationStatus(
+                  request.receipt,
+                  completedMigrationStatus()
+                ),
+              })
+            : Effect.die("Expected seal."),
+      });
+
+      yield* sealMigrationReceipt(target, receipt);
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+
+  it.effect(
+    "repeats progressing bounded pages and returns cleaned evidence",
+    () =>
+      Effect.gen(function* () {
+        const receipt = yield* makeReceipt();
+        let calls = 0;
+        const target = makePublicationTarget({
+          migrateTryoutHistory: (request) => {
+            if (request.command !== "cleanup") {
+              return Effect.die("Expected cleanup.");
+            }
+            calls += 1;
+            return Effect.succeed({
+              command: request.command,
+              deleted: calls === 1 ? 8 : 1,
+              migrationId,
+              status:
+                calls === 1
+                  ? sealedMigrationStatus(
+                      request.receipt,
+                      completedMigrationStatus()
+                    )
+                  : cleanedMigrationStatus(request.receipt),
+            });
+          },
+        });
+
+        const cleaned = yield* cleanupMigrationReceipt(target, receipt);
+
+        assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
+        assert.strictEqual(calls, 2);
+      }).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          migrationVerificationResolver
+        )
+      )
+  );
+
+  it.effect("fails closed when a cleanup page makes no progress", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      const target = makePublicationTarget({
+        migrateTryoutHistory: (request) =>
+          request.command === "cleanup"
+            ? Effect.succeed({
+                command: request.command,
+                deleted: 0,
+                migrationId,
+                status: sealedMigrationStatus(
+                  request.receipt,
+                  completedMigrationStatus()
+                ),
+              })
+            : Effect.die("Expected cleanup."),
+      });
+      const failure = yield* cleanupMigrationReceipt(target, receipt).pipe(
+        Effect.flip
+      );
+
+      assert.strictEqual(failureReason(failure), "cleanup-progress");
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+});

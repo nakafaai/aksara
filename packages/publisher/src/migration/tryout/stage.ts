@@ -72,12 +72,10 @@ const stageBundle = Effect.fn("AksaraPublisher.stageTryoutMigrationBundle")(
       rendererManifest: prepared.rendererManifest,
       sourceSnapshotId: source.evidence.snapshot.snapshotId,
     });
-    if (
-      value.command !== "stageBundle" ||
-      value.bundleHash !== prepared.bundle.bundleHash
-    ) {
+    if (value.command !== "stageBundle") {
       return yield* migrationFail("command-evidence");
     }
+    return value.bundleHash;
   }
 );
 
@@ -187,13 +185,14 @@ const stagePlan = Effect.fn("AksaraPublisher.stageTryoutMigrationPlan")(
     signer: PublicationSigner,
     migrationId: ReleaseId,
     source: TryoutHistoryMigrationSource,
-    prepared: PreparedTryoutMigrationTarget
+    prepared: PreparedTryoutMigrationTarget,
+    bundleHash: PreparedTryoutMigrationTarget["evidence"]["bundleHash"]
   ) {
     const payload: TryoutHistoryMigrationPlanPayload = {
       format: TRYOUT_HISTORY_MIGRATION_PLAN_FORMAT,
       migrationId,
       source: source.evidence,
-      target: prepared.evidence,
+      target: { ...prepared.evidence, bundleHash },
     };
     const plan = yield* signer.signTryoutHistoryMigrationPlan(payload);
     yield* verifySignedTryoutHistoryMigrationPlan(plan);
@@ -211,7 +210,7 @@ const stagePlan = Effect.fn("AksaraPublisher.stageTryoutMigrationPlan")(
       value.status.catalogMapCount !== prepared.evidence.catalog.count ||
       value.status.placementMapCount !== prepared.evidence.placements.count ||
       value.status.sourceSnapshotId !== source.evidence.snapshot.snapshotId ||
-      value.status.targetBundleHash !== prepared.evidence.bundleHash ||
+      value.status.targetBundleHash !== bundleHash ||
       value.status.targetSnapshotId !== prepared.evidence.snapshot.snapshotId
     ) {
       return yield* migrationFail("status-evidence");
@@ -232,7 +231,7 @@ export const stageTryoutMigration = Effect.fn(
   readonly source: TryoutHistoryMigrationSource;
   readonly target: Target;
 }) {
-  yield* stageBundle(
+  const bundleHash = yield* stageBundle(
     input.target,
     input.migrationId,
     input.source,
@@ -256,17 +255,17 @@ export const stageTryoutMigration = Effect.fn(
     input.signer,
     input.migrationId,
     input.source,
-    input.prepared
+    input.prepared,
+    bundleHash
   );
 });
 
 /** Accepts only a complete immutable authorization for direct execution. */
-export function isMigrationRunnable(status: TryoutHistoryMigrationStatus) {
-  return (
-    (status.phase === "ready" || status.phase === "running") &&
-    status.completion === null &&
-    status.planHash !== null &&
-    status.targetBundleHash !== null &&
-    status.targetSnapshotId !== null
-  );
+export function isMigrationRunnable(
+  status: TryoutHistoryMigrationStatus
+): status is Extract<
+  TryoutHistoryMigrationStatus,
+  { readonly phase: "ready" | "running" }
+> {
+  return status.phase === "ready" || status.phase === "running";
 }

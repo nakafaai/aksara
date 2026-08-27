@@ -1,3 +1,4 @@
+import { canonicalizeSignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/canonical";
 import { MAX_TRYOUT_HISTORY_MIGRATION_ROWS } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
 import type { TryoutHistoryMigrationValue } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
@@ -74,6 +75,7 @@ function hasBoundPlan(
 ) {
   return (
     value.command === "stagePlan" &&
+    value.status.phase === "ready" &&
     value.status.migrationId === request.releaseId &&
     value.status.planHash === request.plan.planHash &&
     value.status.sourceSnapshotId ===
@@ -87,6 +89,19 @@ function hasBoundPlan(
     value.status.targetBundleHash === request.plan.payload.target.bundleHash &&
     value.status.targetSnapshotId ===
       request.plan.payload.target.snapshot.snapshotId
+  );
+}
+
+/** Checks receipt lifecycle responses preserve the exact signed bytes. */
+function hasBoundReceipt(
+  request: Extract<MigrationRequest, { readonly command: "cleanup" | "seal" }>,
+  value: TryoutHistoryMigrationValue
+) {
+  return (
+    (value.command === "cleanup" || value.command === "seal") &&
+    (value.status.phase === "sealed" || value.status.phase === "cleaned") &&
+    canonicalizeSignedTryoutHistoryMigrationReceipt(value.status.receipt) ===
+      canonicalizeSignedTryoutHistoryMigrationReceipt(request.receipt)
   );
 }
 
@@ -105,13 +120,20 @@ export function hasBoundMigration(
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("command")({
       artifactBatch: (exact) => hasBoundArtifactBatch(exact, value),
+      cleanup: (exact) =>
+        value.command === "cleanup" && hasBoundReceipt(exact, value),
       initialize: (exact) =>
         value.command === "initialize" &&
+        value.status.phase === "staging" &&
         value.status.migrationId === exact.releaseId &&
         value.status.sourceSnapshotId === exact.sourceSnapshotId,
       rowPage: (exact) => hasBoundRowPage(exact, value),
       run: (exact) =>
-        value.command === "run" && value.status.migrationId === exact.releaseId,
+        value.command === "run" &&
+        value.status.phase === "completed" &&
+        value.status.migrationId === exact.releaseId,
+      seal: (exact) =>
+        value.command === "seal" && hasBoundReceipt(exact, value),
       source: () => value.command === "source",
       stageArtifacts: (exact) =>
         value.command === "stageArtifacts" &&

@@ -1,12 +1,15 @@
 import { generateKeyPairSync } from "node:crypto";
 
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, it } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer } from "effect";
 import { vi } from "vitest";
 
-import { migrateRetainedTryoutHistory } from "#publisher/migration/tryout/program";
+import {
+  completeRetainedTryoutHistory,
+  migrateRetainedTryoutHistory,
+} from "#publisher/migration/tryout/program";
 import {
   PublicationSigningKey,
   PublicationTarget,
@@ -24,7 +27,7 @@ import {
   migrationVerificationResolver,
 } from "#test/migration/signing";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makePublicationTarget } from "#test/target";
 
 vi.mock(
@@ -80,15 +83,42 @@ function run(
   );
 }
 
+/** Completes one receipt through the same target and trusted-key seams. */
+function complete(
+  target: typeof PublicationTarget.Service,
+  receipt: Parameters<typeof completeRetainedTryoutHistory>[0]
+) {
+  return completeRetainedTryoutHistory(receipt).pipe(
+    Effect.provideService(PublicationTarget, target),
+    Effect.provideService(
+      ContentVerificationKeyResolver,
+      migrationVerificationResolver
+    )
+  );
+}
+
 describe("retained try-out history migration program", () => {
   it.effect("returns a receipt immediately for completed state", () =>
     Effect.gen(function* () {
       const exchange = migrationStatusTarget(completedMigrationStatus());
       const receipt = yield* run(exchange.target);
 
-      expect(exchange.commands).toEqual(["status"]);
-      expect(receipt.payload.migrationId).toBe(migrationId);
-      expect(receipt.payload.completion.remainingMarkers).toBe(0);
+      assert.deepStrictEqual(exchange.commands, ["status"]);
+      assert.strictEqual(receipt.payload.migrationId, migrationId);
+      assert.strictEqual(receipt.payload.completion.remainingMarkers, 0);
+    })
+  );
+
+  it.effect("seals and cleans only through explicit completion", () =>
+    Effect.gen(function* () {
+      const exchange = migrationStatusTarget(completedMigrationStatus());
+      const receipt = yield* run(exchange.target);
+
+      assert.deepStrictEqual(exchange.commands, ["status"]);
+      const cleaned = yield* complete(exchange.target, receipt);
+
+      assert.deepStrictEqual(exchange.commands, ["status", "seal", "cleanup"]);
+      assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
     })
   );
 
@@ -96,8 +126,7 @@ describe("retained try-out history migration program", () => {
     "resumes an authorized migration without rebuilding target bytes",
     () =>
       Effect.gen(function* () {
-        const ready = migrationStatus({
-          phase: "ready",
+        const ready = readyMigrationStatus({
           planHash: historicalSource.evidence.snapshot.snapshotId,
           targetBundleHash: historicalSource.evidence.snapshot.snapshotId,
           targetSnapshotId: historicalSource.evidence.snapshot.snapshotId,
@@ -105,8 +134,11 @@ describe("retained try-out history migration program", () => {
         const exchange = migrationStatusTarget(ready);
         const receipt = yield* run(exchange.target);
 
-        expect(exchange.commands).toEqual(["status", "run"]);
-        expect(receipt.payload.targetSnapshotId).toBe(ready.targetSnapshotId);
+        assert.deepStrictEqual(exchange.commands, ["status", "run"]);
+        assert.strictEqual(
+          receipt.payload.targetSnapshotId,
+          ready.targetSnapshotId
+        );
       })
   );
 
@@ -117,7 +149,7 @@ describe("retained try-out history migration program", () => {
         const exchange = fullMigrationTarget();
         const receipt = yield* run(exchange.target);
 
-        expect(exchange.commands).toEqual([
+        assert.deepStrictEqual(exchange.commands, [
           "status",
           "source",
           "initialize",
@@ -132,8 +164,9 @@ describe("retained try-out history migration program", () => {
           "stagePlan",
           "run",
         ]);
-        expect(receipt.payload.completion.migratedAttempts).toBe(1);
-        expect(receipt.payload.targetBundleHash).not.toBe(
+        assert.strictEqual(receipt.payload.completion.migratedAttempts, 1);
+        assert.notStrictEqual(
+          receipt.payload.targetBundleHash,
           historicalSource.evidence.snapshot.snapshotId
         );
       })
@@ -156,23 +189,22 @@ describe("retained try-out history migration program", () => {
       });
       const contradiction = yield* run(command).pipe(Effect.flip);
 
-      expect(rejection._tag).toBe("PublicationTargetRejectedError");
-      expect(failureReason(contradiction)).toBe("command-evidence");
+      assert.strictEqual(rejection._tag, "PublicationTargetRejectedError");
+      assert.strictEqual(failureReason(contradiction), "command-evidence");
     })
   );
 
-  it.effect("rejects incomplete run and receipt evidence", () =>
+  it.effect("rejects incomplete and contradictory run evidence", () =>
     Effect.gen(function* () {
-      const ready = migrationStatus({
-        phase: "ready",
+      const ready = readyMigrationStatus({
         planHash: otherHash,
         targetBundleHash: otherHash,
         targetSnapshotId: otherHash,
       });
       const runFailures = yield* Effect.forEach(
         [
-          migrationStatus({ phase: "ready" }),
-          migrationStatus({ completion: null, phase: "completed" }),
+          migrationStatus(),
+          ready,
           completedMigrationStatus({
             ...ready,
             targetSnapshotId: historicalSource.evidence.snapshot.snapshotId,
@@ -181,27 +213,10 @@ describe("retained try-out history migration program", () => {
         (status) =>
           run(migrationStatusTarget(ready, status).target).pipe(Effect.flip)
       );
-      const terminal = completedMigrationStatus();
-      const receiptFailures = yield* Effect.forEach(
-        [
-          migrationStatus({ ...terminal, completion: null }),
-          migrationStatus({ ...terminal, planHash: null }),
-          migrationStatus({ ...terminal, targetBundleHash: null }),
-          migrationStatus({ ...terminal, targetSnapshotId: null }),
-        ],
-        (status) => run(migrationStatusTarget(status).target).pipe(Effect.flip)
-      );
-
-      expect(runFailures.map(failureReason)).toEqual([
+      assert.deepStrictEqual(runFailures.map(failureReason), [
         "status-evidence",
         "status-evidence",
         "status-evidence",
-      ]);
-      expect(receiptFailures.map(failureReason)).toEqual([
-        "receipt-evidence",
-        "receipt-evidence",
-        "receipt-evidence",
-        "receipt-evidence",
       ]);
     })
   );
@@ -213,7 +228,7 @@ describe("retained try-out history migration program", () => {
         Effect.flip
       );
 
-      expect(failureReason(failure)).toBe("receipt-evidence");
+      assert.strictEqual(failureReason(failure), "receipt-evidence");
     })
   );
 });

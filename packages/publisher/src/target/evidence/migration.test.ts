@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hasBoundMigration } from "#publisher/target/evidence/migration";
@@ -11,23 +11,25 @@ import {
   otherId,
 } from "#test/migration/protocol";
 import { historicalSource, migrationId } from "#test/migration/source";
-import { migrationStatus } from "#test/migration/status";
+import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 
 describe("migration HTTP evidence", () => {
   it.effect("accepts every exact command-specific response", () =>
     Effect.gen(function* () {
       const exchanges = yield* migrationProtocol();
-      expect(
+      assert.strictEqual(
         Object.values(exchanges).every((exchange) =>
           hasBoundMigration(exchange.request, exchange.response)
-        )
-      ).toBe(true);
-      expect(
+        ),
+        true
+      );
+      assert.strictEqual(
         hasBoundPublicationSuccess(
           exchanges.source.request,
           exchanges.source.response
-        )
-      ).toBe(true);
+        ),
+        true
+      );
     })
   );
 
@@ -38,7 +40,8 @@ describe("migration HTTP evidence", () => {
         const exchanges = yield* migrationProtocol();
         if (
           exchanges.plan.request.command !== "stagePlan" ||
-          exchanges.plan.response.value.command !== "stagePlan"
+          exchanges.plan.response.value.command !== "stagePlan" ||
+          exchanges.plan.response.value.status.phase !== "ready"
         ) {
           return yield* Effect.die("Expected signed plan exchange fixture.");
         }
@@ -118,7 +121,7 @@ describe("migration HTTP evidence", () => {
             response: migrationResponse({
               command: "stagePlan",
               migrationId,
-              status: migrationStatus({
+              status: readyMigrationStatus({
                 ...exchanges.plan.response.value.status,
                 artifactMapCount:
                   exchanges.plan.response.value.status.artifactMapCount + 1,
@@ -127,11 +130,12 @@ describe("migration HTTP evidence", () => {
           },
         ];
 
-        expect(
+        assert.deepStrictEqual(
           invalid.map((exchange) =>
             hasBoundMigration(exchange.request, exchange.response)
-          )
-        ).toEqual(Array.from({ length: invalid.length }, () => false));
+          ),
+          Array.from({ length: invalid.length }, () => false)
+        );
       })
   );
 });
