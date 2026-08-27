@@ -34,7 +34,9 @@ const PublicationDateFields = {
   datePublished: DateOnlySchema,
 };
 
-const PublicationDatesStruct = Schema.Struct(PublicationDateFields);
+const PublicationDatesStruct = Schema.Struct(PublicationDateFields).annotate({
+  parseOptions: { onExcessProperty: "error" },
+});
 
 /**
  * Public article and material dates backed by signed activation history.
@@ -49,7 +51,8 @@ export const PublicationDatesSchema = PublicationDatesStruct.pipe(
         input.dateModified > input.datePublished,
       { message: PUBLICATION_DATE_ORDER_MESSAGE }
     )
-  )
+  ),
+  Schema.annotate({ parseOptions: { onExcessProperty: "error" } })
 );
 export type PublicationDates = typeof PublicationDatesSchema.Type;
 
@@ -67,5 +70,5 @@ export function withPublicationDates<const Fields extends Schema.Struct.Fields>(
     // Adding fields cannot invalidate the date check because the owning date
     // fields are preserved unchanged and always win key collisions.
     { unsafePreserveChecks: true }
-  );
+  ).annotate({ parseOptions: { onExcessProperty: "error" } });
 }

@@ -12,7 +12,6 @@ import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
-import { withProjectionDates } from "#contracts/projection/date";
 
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
@@ -80,7 +79,7 @@ export const MaterialMetadataSchema = withPublicationDates(
 );
 export type MaterialMetadata = typeof MaterialMetadataSchema.Type;
 
-const MaterialProjectionMetadataSchema = withProjectionDates(
+const MaterialProjectionMetadataSchema = withPublicationDates(
   MaterialMetadataFields
 );
 
@@ -237,18 +236,12 @@ export function makeMaterialLessonProjection(
 export function canonicalizeMaterialProjection(
   projection: MaterialLessonProjection
 ) {
-  const dates =
-    "date" in projection.metadata
-      ? { date: projection.metadata.date }
-      : {
-          ...(projection.metadata.dateModified === undefined
-            ? {}
-            : { dateModified: projection.metadata.dateModified }),
-          datePublished: projection.metadata.datePublished,
-        };
   const metadata = {
     authors: projection.metadata.authors.map(({ name }) => ({ name })),
-    ...dates,
+    ...(projection.metadata.dateModified === undefined
+      ? {}
+      : { dateModified: projection.metadata.dateModified }),
+    datePublished: projection.metadata.datePublished,
     ...(projection.metadata.description === undefined
       ? {}
       : { description: projection.metadata.description }),

@@ -54,29 +54,12 @@ describe("article projection", () => {
     );
   });
 
-  it("preserves exact legacy metadata bytes during signed migration", () => {
-    const legacy = Schema.decodeSync(ArticleProjectionSchema)({
-      ...projection,
-      metadata: {
-        authors: [{ name: "Test Author" }],
-        date: "2024-02-29",
-        description: "Protocol-only article metadata.",
-        title: "Protocol Article",
-      },
-    });
-    const canonical = canonicalizeArticleProjection(legacy);
-
-    expect(JSON.parse(canonical)).toEqual(legacy);
-    expect(canonical).toContain(
-      '"metadata":{"authors":[{"name":"Test Author"}],"date":"2024-02-29","description":"Protocol-only article metadata.","title":"Protocol Article"}'
-    );
-  });
-
-  it("rejects ambiguous or incomplete projection date shapes", () => {
+  it("rejects legacy, ambiguous, or incomplete projection date shapes", () => {
     const decode = Schema.decodeUnknownExit(ArticleProjectionSchema);
     const base = { authors: [], title: "Migration" };
     for (const invalid of [
       base,
+      { ...base, date: "2024-01-01" },
       { ...base, date: "2024-01-01", datePublished: "2024-01-01" },
       { ...base, date: undefined },
       {
@@ -239,14 +222,11 @@ describe("article projection", () => {
   });
 
   it("rejects the legacy date field and non-later modification dates", () => {
-    const legacy = Schema.decodeUnknownExit(ArticleMetadataSchema)(
-      {
-        authors: [],
-        date: "2024-01-01",
-        title: "Legacy",
-      },
-      { onExcessProperty: "error" }
-    );
+    const legacy = Schema.decodeUnknownExit(ArticleMetadataSchema)({
+      authors: [],
+      date: "2024-01-01",
+      title: "Legacy",
+    });
     const equal = Schema.decodeExit(ArticleMetadataSchema)({
       authors: [],
       dateModified: "2024-01-01",

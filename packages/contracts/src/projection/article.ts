@@ -8,7 +8,6 @@ import {
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
-import { withProjectionDates } from "#contracts/projection/date";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 /** Stable source-owned category segment used below the article route family. */
@@ -62,7 +61,7 @@ export const ArticleMetadataSchema = withPublicationDates(
 );
 export type ArticleMetadata = typeof ArticleMetadataSchema.Type;
 
-const ArticleProjectionMetadataSchema = withProjectionDates(
+const ArticleProjectionMetadataSchema = withPublicationDates(
   ArticleMetadataFields
 );
 
@@ -207,18 +206,12 @@ export function makeArticleProjection(input: {
 
 /** Serializes one article projection with stable signed field order. */
 export function canonicalizeArticleProjection(projection: ArticleProjection) {
-  const dates =
-    "date" in projection.metadata
-      ? { date: projection.metadata.date }
-      : {
-          ...(projection.metadata.dateModified === undefined
-            ? {}
-            : { dateModified: projection.metadata.dateModified }),
-          datePublished: projection.metadata.datePublished,
-        };
   const metadata = {
     authors: projection.metadata.authors.map(({ name }) => ({ name })),
-    ...dates,
+    ...(projection.metadata.dateModified === undefined
+      ? {}
+      : { dateModified: projection.metadata.dateModified }),
+    datePublished: projection.metadata.datePublished,
     ...(projection.metadata.description === undefined
       ? {}
       : { description: projection.metadata.description }),

@@ -43,30 +43,12 @@ describe("material projection", () => {
     expect(projection.topicTitle).toBe("Test Material");
   });
 
-  it("preserves exact legacy metadata bytes during signed migration", () => {
-    const legacy = Schema.decodeSync(MaterialLessonProjectionSchema)({
-      ...projection,
-      metadata: {
-        authors: [{ name: "Test Author" }],
-        date: "2026-01-31",
-        description: "Test body metadata.",
-        subject: "Test Subject",
-        title: "Body Metadata Title",
-      },
-    });
-    const canonical = canonicalizeMaterialProjection(legacy);
-
-    expect(JSON.parse(canonical)).toEqual(legacy);
-    expect(canonical).toContain(
-      '"metadata":{"authors":[{"name":"Test Author"}],"date":"2026-01-31","description":"Test body metadata.","subject":"Test Subject","title":"Body Metadata Title"}'
-    );
-  });
-
-  it("rejects ambiguous or incomplete projection date shapes", () => {
+  it("rejects legacy, ambiguous, or incomplete projection date shapes", () => {
     const decode = Schema.decodeUnknownExit(MaterialLessonProjectionSchema);
     const base = { authors: [], title: "Migration" };
     for (const invalid of [
       base,
+      { ...base, date: "2026-01-01" },
       { ...base, date: "2026-01-01", datePublished: "2026-01-01" },
       { ...base, date: undefined },
       {
@@ -144,14 +126,11 @@ describe("material projection", () => {
   });
 
   it("rejects the legacy date field and non-later modification dates", () => {
-    const legacy = Schema.decodeUnknownExit(MaterialMetadataSchema)(
-      {
-        authors: [],
-        date: "2026-01-01",
-        title: "Legacy",
-      },
-      { onExcessProperty: "error" }
-    );
+    const legacy = Schema.decodeUnknownExit(MaterialMetadataSchema)({
+      authors: [],
+      date: "2026-01-01",
+      title: "Legacy",
+    });
     const equal = Schema.decodeExit(MaterialMetadataSchema)({
       authors: [],
       dateModified: "2026-01-01",
