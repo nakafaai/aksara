@@ -1,19 +1,34 @@
-import { resolve } from "node:path";
+import { expect, layer } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import { decodePageRegistry } from "#corpus/pages/registry";
 import { decodePageSources, readPageDocument } from "#corpus/pages/source";
 import { pageSource } from "#corpus/test/page";
 
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
 ]);
+
+/** Resolves the corpus root through the platform-neutral path service. */
+const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(import.meta.dirname, "..", "..", "..")
+);
+
+/** Decodes the valid page fixture used by document-read assertions. */
+const makePageEntry = Effect.fn("CorpusTest.makePageEntry")(function* () {
+  const [entry] = yield* decodePageRegistry(
+    [pageSource()],
+    englishIndonesianLocales
+  );
+  if (entry === undefined) {
+    return yield* Effect.die("Expected one active public page entry.");
+  }
+  return entry;
+});
 
 /** Provides one deterministic reviewed page body through Effect Platform. */
 function fileLayer(source: string | undefined) {
@@ -34,66 +49,62 @@ function fileLayer(source: string | undefined) {
   });
 }
 
-describe("public page source", () => {
-  it("composes every reviewed page family and decodes injected catalogs", async () => {
-    const defaults = await Effect.runPromise(decodePageSources());
-    const injected = await Effect.runPromise(decodePageSources([pageSource()]));
+layer(Path.layer)("public page source", (it) => {
+  it.effect(
+    "composes every reviewed page family and decodes injected catalogs",
+    () =>
+      Effect.gen(function* () {
+        const defaults = yield* decodePageSources();
+        const injected = yield* decodePageSources([pageSource()]);
 
-    expect(defaults.map(({ pageKey }) => pageKey)).toEqual([
-      "imprint",
-      "privacy-policy",
-      "security-policy",
-      "terms-of-service",
-    ]);
-    expect(injected).toEqual([pageSource()]);
-  });
+        expect(defaults.map(({ pageKey }) => pageKey)).toEqual([
+          "imprint",
+          "privacy-policy",
+          "security-policy",
+          "terms-of-service",
+        ]);
+        expect(injected).toEqual([pageSource()]);
+      })
+  );
 
-  it("maps one invalid injected catalog to a typed failure", async () => {
-    const error = await Effect.runPromise(
-      decodePageSources(null).pipe(Effect.flip)
-    );
+  it.effect("maps one invalid injected catalog to a typed failure", () =>
+    Effect.gen(function* () {
+      const error = yield* decodePageSources(null).pipe(Effect.flip);
 
-    expect(error._tag).toBe("PageCatalogError");
-  });
+      expect(error._tag).toBe("PageCatalogError");
+    })
+  );
 
-  it("reads one registry-owned body byte-exactly", async () => {
-    const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], englishIndonesianLocales)
-    );
-    if (entry === undefined) {
-      throw new Error("Expected one active public page entry.");
-    }
-    const document = await Effect.runPromise(
-      readPageDocument(corpusRoot, entry).pipe(
-        Effect.provide([fileLayer("# Privacy Policy\n"), Path.layer])
-      )
-    );
+  it.effect("reads one registry-owned body byte-exactly", () =>
+    Effect.gen(function* () {
+      const corpusRoot = yield* resolveCorpusRoot;
+      const entry = yield* makePageEntry();
+      const document = yield* readPageDocument(corpusRoot, entry).pipe(
+        Effect.provide(fileLayer("# Privacy Policy\n"))
+      );
 
-    expect(document).toMatchObject({
-      rawMdx: "# Privacy Policy\n",
-      route: entry.route,
-      sourcePath: entry.sourcePath,
-    });
-    expect(document).not.toHaveProperty("sourceRoot");
-  });
+      expect(document).toMatchObject({
+        rawMdx: "# Privacy Policy\n",
+        route: entry.route,
+        sourcePath: entry.sourcePath,
+      });
+      expect(document).not.toHaveProperty("sourceRoot");
+    })
+  );
 
-  it("maps one missing reviewed body to a typed read failure", async () => {
-    const [entry] = await Effect.runPromise(
-      decodePageRegistry([pageSource()], englishIndonesianLocales)
-    );
-    if (entry === undefined) {
-      throw new Error("Expected one active public page entry.");
-    }
-    const error = await Effect.runPromise(
-      readPageDocument(corpusRoot, entry).pipe(
-        Effect.provide([fileLayer(undefined), Path.layer]),
+  it.effect("maps one missing reviewed body to a typed read failure", () =>
+    Effect.gen(function* () {
+      const corpusRoot = yield* resolveCorpusRoot;
+      const entry = yield* makePageEntry();
+      const error = yield* readPageDocument(corpusRoot, entry).pipe(
+        Effect.provide(fileLayer(undefined)),
         Effect.flip
-      )
-    );
+      );
 
-    expect(error).toMatchObject({
-      _tag: "PageReadError",
-      sourcePath: entry.sourcePath,
-    });
-  });
+      expect(error).toMatchObject({
+        _tag: "PageReadError",
+        sourcePath: entry.sourcePath,
+      });
+    })
+  );
 });
