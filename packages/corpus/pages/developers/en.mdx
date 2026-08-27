@@ -71,7 +71,7 @@ The server exposes four read-only tools:
 - `nakafa_get_taxonomy`
 - `nakafa_get_quran_reference`
 
-Modern clients use Streamable HTTP. Protocol `2026-07-28` replaces the legacy `initialize` lifecycle with `server/discover` and a per-request `_meta` envelope. A client discovers the supported revision first, then lists or calls tools with the same envelope. Nakafa accepts only this current protocol revision. A `GET` request to the same endpoint returns the public server manifest.
+Modern clients use Streamable HTTP. Protocol `2026-07-28` replaces the legacy `initialize` lifecycle with `server/discover` and a per-request `_meta` envelope. A client discovers the supported revision first, then lists or calls tools with the same envelope. Nakafa accepts this documented protocol revision and reports every supported revision through discovery. A `GET` request to the same endpoint returns the public server manifest.
 
 <CodeBlock
   data={[{

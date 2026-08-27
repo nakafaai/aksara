@@ -5,6 +5,7 @@ import {
   DEVELOPER_API_ORIGIN,
   DEVELOPER_MCP_ENDPOINT,
   DEVELOPER_MCP_PROTOCOL_VERSION,
+  DEVELOPER_NAKAFA_CLI_VERSION,
   DEVELOPER_RELEASE_SHA_HEADER,
   DeveloperApiIndexSchema,
   DeveloperMcpDiscoverSchema,
@@ -147,7 +148,9 @@ const verifyNpmPackage = Effect.fn("AksaraCli.verifyDeveloperNpmPackage")(
   function* () {
     const response = yield* fetchReadinessJson(
       "npm",
-      jsonGet("https://registry.npmjs.org/nakafa-cli/latest")
+      jsonGet(
+        `https://registry.npmjs.org/nakafa-cli/${DEVELOPER_NAKAFA_CLI_VERSION}`
+      )
     );
     yield* decodeContract(DeveloperNpmPackageSchema, "npm", response.body);
   }

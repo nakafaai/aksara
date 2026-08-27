@@ -71,7 +71,7 @@ Server menyediakan empat tool baca-saja:
 - `nakafa_get_taxonomy`
 - `nakafa_get_quran_reference`
 
-Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan siklus `initialize` lama dengan `server/discover` dan envelope `_meta` pada setiap permintaan. Klien terlebih dahulu menemukan revisi yang didukung, lalu membuat daftar atau memanggil tool dengan envelope yang sama. Nakafa hanya menerima revisi protokol terkini ini. Permintaan `GET` ke endpoint yang sama mengembalikan manifest server publik.
+Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan siklus `initialize` lama dengan `server/discover` dan envelope `_meta` pada setiap permintaan. Klien terlebih dahulu menemukan revisi yang didukung, lalu membuat daftar atau memanggil tool dengan envelope yang sama. Nakafa menerima revisi protokol yang didokumentasikan ini dan melaporkan semua revisi yang didukung melalui penemuan. Permintaan `GET` ke endpoint yang sama mengembalikan manifest server publik.
 
 <CodeBlock
   data={[{

@@ -111,6 +111,11 @@ describe("Nakafa developer release readiness", () => {
         },
       });
     }
+    expect(captured.requests).toContainEqual(
+      expect.objectContaining({
+        url: "https://registry.npmjs.org/nakafa-cli/0.1.0",
+      })
+    );
   });
 
   it("maps incompatible external contracts to their public surface", async () => {
