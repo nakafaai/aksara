@@ -16,6 +16,7 @@ import {
   questionArtifactHash,
   replaceAnswerSource,
 } from "#test/migration/artifact";
+import { failureReason } from "#test/migration/error";
 import { historicalRows } from "#test/migration/rows";
 import {
   migrationSigner,
@@ -100,13 +101,6 @@ type MigrationTarget = Target["migrateTryoutHistory"];
 /** Builds one target exposing a focused retained-artifact exchange. */
 function targetWith(migrateTryoutHistory: MigrationTarget) {
   return makePublicationTarget({ migrateTryoutHistory });
-}
-
-/** Returns the migration reason without hiding an unexpected failure tag. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
 }
 
 /** Converts the canonical retained artifact pair through one target. */

@@ -19,6 +19,7 @@ import {
   prepareTryoutMigrationTarget,
 } from "#publisher/migration/tryout/target";
 import { convertedArtifacts } from "#test/migration/converted";
+import { failureReason } from "#test/migration/error";
 import {
   convertedArtifactMaps,
   convertedArtifactSpool,
@@ -41,13 +42,6 @@ function decodeSource(input: unknown) {
   return Schema.decodeUnknownSync(TryoutHistoryMigrationSourceSchema)(input, {
     onExcessProperty: "error",
   });
-}
-
-/** Returns the migration reason without hiding an unexpected failure tag. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
 }
 
 describe("try-out history migration target", () => {

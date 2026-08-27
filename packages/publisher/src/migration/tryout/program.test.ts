@@ -11,6 +11,7 @@ import {
   PublicationSigningKey,
   PublicationTarget,
 } from "#publisher/publication/spec";
+import { failureReason } from "#test/migration/error";
 import {
   completedMigrationStatus,
   fullMigrationTarget,
@@ -77,13 +78,6 @@ function run(
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.provide(nodeLayer)
   );
-}
-
-/** Returns the migration reason without hiding an unexpected failure tag. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
 }
 
 describe("retained try-out history migration program", () => {

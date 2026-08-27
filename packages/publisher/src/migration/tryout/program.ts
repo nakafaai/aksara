@@ -8,14 +8,12 @@ import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/tran
 import { Effect, Redacted, Stream } from "effect";
 import {
   ConvertedTryoutArtifactSchema,
+  convertedArtifactMap,
   makeArtifactRequirements,
   makeConvertedArtifactStream,
 } from "#publisher/migration/tryout/artifact";
 import { migrationFail } from "#publisher/migration/tryout/error";
-import {
-  convertedArtifactMap,
-  convertTryoutRows,
-} from "#publisher/migration/tryout/row";
+import { convertTryoutRows } from "#publisher/migration/tryout/row";
 import {
   readHistoricalTryoutRows,
   readHistoricalTryoutSource,

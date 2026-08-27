@@ -10,6 +10,7 @@ import {
   readHistoricalTryoutSource,
 } from "#publisher/migration/tryout/source";
 import type { PublicationTarget } from "#publisher/publication/spec";
+import { failureReason } from "#test/migration/error";
 import {
   historicalCatalogEntries,
   historicalPlacementEntries,
@@ -72,13 +73,6 @@ function readSource(target: Target) {
   return readHistoricalTryoutSource(target, migrationId).pipe(
     Effect.provideService(ContentVerificationKeyResolver, resolver)
   );
-}
-
-/** Projects the migration reason while preserving unexpected failure tags. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
 }
 
 /** Produces one complete row page for the requested retained kind. */

@@ -21,13 +21,11 @@ import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/ru
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Effect, Array as EffectArray, Schema, Stream } from "effect";
+import type { ConvertedArtifactMap } from "#publisher/migration/tryout/artifact";
+import { convertedCatalogRecords } from "#publisher/migration/tryout/catalog";
 import { migrationFail } from "#publisher/migration/tryout/error";
-import {
-  type ConvertedArtifactMap,
-  type ConvertedTryoutRows,
-  convertedCatalogRecords,
-  convertedPlacementRecords,
-} from "#publisher/migration/tryout/row";
+import { convertedPlacementRecords } from "#publisher/migration/tryout/placement";
+import type { ConvertedTryoutRows } from "#publisher/migration/tryout/row";
 import type { PublicationSigner } from "#publisher/signing/service";
 
 /** Signed runtime and exact target evidence ready for invisible staging. */
@@ -165,8 +163,8 @@ export const prepareTryoutMigrationTarget = Effect.fn(
   readonly signer: PublicationSigner;
   readonly source: TryoutHistoryMigrationSource;
 }) {
-  const catalogRecords = convertedCatalogRecords(input.rows);
-  const placementRecords = convertedPlacementRecords(input.rows);
+  const catalogRecords = convertedCatalogRecords(input.rows.catalog);
+  const placementRecords = convertedPlacementRecords(input.rows.placements);
   const activeAppLocales = EffectArray.make(
     AppLocaleSchema.make(input.source.evidence.snapshot.locales[0]),
     AppLocaleSchema.make(input.source.evidence.snapshot.locales[1])

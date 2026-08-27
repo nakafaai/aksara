@@ -12,20 +12,19 @@ import { vi } from "vitest";
 import {
   type ConvertedTryoutArtifact,
   ConvertedTryoutArtifactSchema,
+  convertedArtifactMap,
   makeArtifactRequirements,
 } from "#publisher/migration/tryout/artifact";
-import {
-  convertedArtifactMap,
-  convertedCatalogRecords,
-  convertedPlacementRecords,
-  convertTryoutRows,
-} from "#publisher/migration/tryout/row";
+import { convertedCatalogRecords } from "#publisher/migration/tryout/catalog";
+import { convertedPlacementRecords } from "#publisher/migration/tryout/placement";
+import { convertTryoutRows } from "#publisher/migration/tryout/row";
 import {
   answerArtifactHash,
   historicalArtifacts,
   questionArtifactHash,
 } from "#test/migration/artifact";
 import { convertedArtifacts } from "#test/migration/converted";
+import { failureReason } from "#test/migration/error";
 import {
   convertedArtifactSpool,
   currentAnswerHash,
@@ -98,19 +97,12 @@ vi.mock(
   }
 );
 
-/** Returns the migration reason without hiding an unexpected failure tag. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
-}
-
 describe("try-out history row conversion", () => {
   it.effect("converts exact catalog, placement, and artifact identities", () =>
     Effect.gen(function* () {
       const rows = yield* convertRows();
-      const catalog = convertedCatalogRecords(rows);
-      const placements = convertedPlacementRecords(rows);
+      const catalog = convertedCatalogRecords(rows.catalog);
+      const placements = convertedPlacementRecords(rows.placements);
 
       expect(catalog).toHaveLength(1);
       expect(catalog[0]?.row).toMatchObject({

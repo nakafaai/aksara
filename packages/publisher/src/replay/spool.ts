@@ -182,6 +182,7 @@ export function createReplaySpool<A, I, E, R>(input: {
               })
             )
           );
+    /** Reads one strict record while the private spool scope remains open. */
     const read = (index: number) => {
       if (!(Number.isInteger(index) && index >= 0 && index < state.count)) {
         return Effect.fail(

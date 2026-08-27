@@ -12,6 +12,7 @@ import {
 } from "#publisher/migration/tryout/stage";
 import type { ReplaySpool } from "#publisher/replay/spool";
 import { convertedArtifacts } from "#test/migration/converted";
+import { failureReason } from "#test/migration/error";
 import {
   migrationSigner,
   migrationVerificationResolver,
@@ -35,13 +36,6 @@ const spool: ReplaySpool<ConvertedTryoutArtifact> = {
   replay: Stream.fromIterable(convertedArtifacts),
 };
 const authorizationHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
-
-/** Returns the migration reason without hiding an unexpected failure tag. */
-function failureReason(failure: { readonly _tag: string }) {
-  return failure._tag === "TryoutHistoryMigrationError" && "reason" in failure
-    ? failure.reason
-    : failure._tag;
-}
 
 /** Executes valid staging, optionally substituting one contradictory reply. */
 const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (

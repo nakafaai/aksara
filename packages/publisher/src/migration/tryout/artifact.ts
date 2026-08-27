@@ -45,6 +45,13 @@ export const ConvertedTryoutArtifactSchema = Schema.Struct({
 });
 export type ConvertedTryoutArtifact = typeof ConvertedTryoutArtifactSchema.Type;
 
+/** Body-free old-to-current artifact identity retained in target evidence. */
+export interface ConvertedArtifactMap {
+  readonly index: number;
+  readonly newArtifactHash: Sha256Hash;
+  readonly oldArtifactHash: Sha256Hash;
+}
+
 /** One authenticated source artifact identity required by retained placements. */
 export interface ArtifactRequirement {
   readonly artifactLocale: ArtifactLocale;
@@ -263,4 +270,15 @@ export function artifactMapping(
   converted: ConvertedTryoutArtifact
 ): TryoutHistoryMigrationArtifactMapping {
   return converted.mapping;
+}
+
+/** Drops all content bytes while retaining deterministic target-map identity. */
+export function convertedArtifactMap(
+  converted: ConvertedTryoutArtifact
+): ConvertedArtifactMap {
+  return {
+    index: converted.mapping.index,
+    newArtifactHash: converted.mapping.artifact.artifactHash,
+    oldArtifactHash: converted.mapping.oldArtifactHash,
+  };
 }

@@ -1,8 +1,10 @@
 import { TryoutHistoryMigrationValueSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect, Schema } from "effect";
 
-import type { ConvertedTryoutArtifact } from "#publisher/migration/tryout/artifact";
-import { convertedArtifactMap } from "#publisher/migration/tryout/row";
+import {
+  type ConvertedTryoutArtifact,
+  convertedArtifactMap,
+} from "#publisher/migration/tryout/artifact";
 import {
   answerArtifactHash,
   questionArtifactHash,
