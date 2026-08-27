@@ -1,5 +1,5 @@
+import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { ConfigProvider, Effect } from "effect";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";
@@ -31,72 +31,62 @@ function acceptResponse(request: HttpClientRequest.HttpClientRequest) {
   );
 }
 
-/** Runs acceptance through isolated Config and HTTP capabilities. */
-function runAccept(client: HttpClient.HttpClient) {
-  return Effect.runPromise(
-    runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
-      Effect.provideService(
-        ConfigProvider.ConfigProvider,
-        ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
-      ),
-      Effect.provideService(HttpClient.HttpClient, client)
-    )
-  );
-}
-
-/** Returns one sanitized acceptance failure. */
-function rejectAccept(client: HttpClient.HttpClient) {
-  return Effect.runPromise(
-    runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
-      Effect.provideService(
-        ConfigProvider.ConfigProvider,
-        ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
-      ),
-      Effect.provideService(HttpClient.HttpClient, client),
-      Effect.flip
-    )
+/** Builds acceptance with isolated Config and HTTP capabilities. */
+function acceptProgram(client: HttpClient.HttpClient) {
+  return runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
+    Effect.provideService(
+      ConfigProvider.ConfigProvider,
+      ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
+    ),
+    Effect.provideService(HttpClient.HttpClient, client)
   );
 }
 
 describe("accept command", () => {
-  it("discards only the exact retained inverse without signing inputs", async () => {
-    const captured = captureClient((incoming) =>
-      Effect.succeed(acceptResponse(incoming))
-    );
+  it.effect(
+    "discards only the exact retained inverse without signing inputs",
+    () =>
+      Effect.gen(function* () {
+        const captured = captureClient((incoming) =>
+          Effect.succeed(acceptResponse(incoming))
+        );
 
-    await expect(runAccept(captured.client)).resolves.toEqual({
-      complete: true,
-      processedItems: 3,
-      releaseId: recoveryId,
-      totalItems: 3,
-    });
-    expect(captured.requests).toHaveLength(1);
-    const [request] = captured.requests;
-    if (!request) {
-      throw new Error("Expected one acceptance request.");
-    }
-    expect(request.headers.authorization).toBe("Bearer publication-token");
-    expect(requestJson(request)).toEqual({
-      operation: "accept",
-      recoveryId,
-      releaseId,
-    });
-  });
+        expect(yield* acceptProgram(captured.client)).toEqual({
+          complete: true,
+          processedItems: 3,
+          releaseId: recoveryId,
+          totalItems: 3,
+        });
+        expect(captured.requests).toHaveLength(1);
+        const [request] = captured.requests;
+        assert(request !== undefined, "Expected one acceptance request.");
+        expect(request.headers.authorization).toBe("Bearer publication-token");
+        expect(requestJson(request)).toEqual({
+          operation: "accept",
+          recoveryId,
+          releaseId,
+        });
+      })
+  );
 
-  it("sanitizes target protocol failures at the acceptance stage", async () => {
-    const captured = captureClient((request) =>
-      Effect.succeed(
-        webResponse(request, "{}", {
-          headers: { "content-type": "application/json" },
-          status: 200,
-        })
-      )
-    );
+  it.effect("sanitizes target protocol failures at the acceptance stage", () =>
+    Effect.gen(function* () {
+      const captured = captureClient((request) =>
+        Effect.succeed(
+          webResponse(request, "{}", {
+            headers: { "content-type": "application/json" },
+            status: 200,
+          })
+        )
+      );
 
-    await expect(rejectAccept(captured.client)).resolves.toMatchObject({
-      _tag: "ProductionError",
-      failure: "PublicationTargetProtocolError",
-      stage: "accept",
-    });
-  });
+      expect(
+        yield* acceptProgram(captured.client).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "ProductionError",
+        failure: "PublicationTargetProtocolError",
+        stage: "accept",
+      });
+    })
+  );
 });
