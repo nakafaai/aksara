@@ -40,11 +40,8 @@ export const materialFamilyScope = PublicationScopeSchema.make({
 });
 
 /** Creates a valid manifest while varying only real domain component versions. */
-export function materialManifest(input: {
-  readonly chemistry: number;
-  readonly math: number;
-}) {
-  return Effect.runPromise(
+export const materialManifest = Effect.fn("MaterialTest.manifest")(
+  (input: { readonly chemistry: number; readonly math: number }) =>
     createRendererManifest({
       base: {
         authoringComponents: [
@@ -64,22 +61,25 @@ export function materialManifest(input: {
       }),
       publishedDomains: ["chemistry", "mathematics"],
     })
-  );
-}
+);
 
-export const rendererManifest = await materialManifest({
-  chemistry: 1,
-  math: 1,
-});
+export const rendererManifest = await Effect.runPromise(
+  materialManifest({
+    chemistry: 1,
+    math: 1,
+  })
+);
 
 /** Collects one authoritative material publication through real platform layers. */
-export function collectMaterialPublication(input: {
-  readonly heads: readonly MaterialHead[];
-  readonly renderer?: unknown;
-  readonly scope?: PublicationScope | undefined;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
+export const collectMaterialPublication = Effect.fn(
+  "MaterialTest.collectPublication"
+)(
+  (input: {
+    readonly heads: readonly MaterialHead[];
+    readonly renderer?: unknown;
+    readonly scope?: PublicationScope | undefined;
+    readonly sources?: ReadonlyMap<string, string>;
+  }) =>
     Effect.scoped(
       Effect.gen(function* () {
         const publication = yield* prepareMaterialPublication({
@@ -96,16 +96,15 @@ export function collectMaterialPublication(input: {
     ).pipe(
       Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
-  );
-}
+);
 
 /** Collects the complete result catalog produced by one material scope. */
-export function collectMaterialResult(input: {
-  readonly heads: readonly MaterialHead[];
-  readonly scope: PublicationScope;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
+export const collectMaterialResult = Effect.fn("MaterialTest.collectResult")(
+  (input: {
+    readonly heads: readonly MaterialHead[];
+    readonly scope: PublicationScope;
+    readonly sources?: ReadonlyMap<string, string>;
+  }) =>
     Effect.scoped(
       Effect.gen(function* () {
         const publication = yield* prepareMaterialPublication({
@@ -122,17 +121,16 @@ export function collectMaterialResult(input: {
     ).pipe(
       Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
-  );
-}
+);
 
 /** Collects canonical route transitions from one real material plan. */
-export function collectMaterialRoutes(input: {
-  readonly heads: readonly MaterialHead[];
-  readonly renderer?: unknown;
-  readonly scope?: PublicationScope | undefined;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
+export const collectMaterialRoutes = Effect.fn("MaterialTest.collectRoutes")(
+  (input: {
+    readonly heads: readonly MaterialHead[];
+    readonly renderer?: unknown;
+    readonly scope?: PublicationScope | undefined;
+    readonly sources?: ReadonlyMap<string, string>;
+  }) =>
     Effect.scoped(
       Effect.gen(function* () {
         const publication = yield* prepareMaterialPublication({
@@ -149,70 +147,63 @@ export function collectMaterialRoutes(input: {
     ).pipe(
       Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
-  );
-}
+);
 
 /** Returns an authoritative material planning failure without FiberFailure. */
-export function rejectMaterialPublication(
-  heads: readonly MaterialHead[],
-  scope?: PublicationScope | undefined
-) {
-  return Effect.runPromise(
-    Effect.scoped(
-      prepareMaterialPublication({
-        checkoutRoot,
-        published: Stream.fromIterable(heads),
-        rendererManifest,
-        scope,
-      })
-    ).pipe(
-      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
-      Effect.flip
-    )
-  );
-}
+export const rejectMaterialPublication = Effect.fn(
+  "MaterialTest.rejectPublication"
+)((heads: readonly MaterialHead[], scope?: PublicationScope | undefined) =>
+  Effect.scoped(
+    prepareMaterialPublication({
+      checkoutRoot,
+      published: Stream.fromIterable(heads),
+      rendererManifest,
+      scope,
+    })
+  ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]), Effect.flip)
+);
 
 /** Collects first-release records through the authoritative material path. */
-function collectMaterialRecords() {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const material = yield* prepareMaterialPublication({
-          checkoutRoot,
-          published: Stream.empty,
-          rendererManifest,
-        });
-        return yield* material.records.pipe(
-          Stream.runCollect,
-          Effect.map((records) => [...records])
-        );
-      })
-    ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
-  );
-}
+const collectMaterialRecords = Effect.fn("MaterialTest.collectRecords")(() =>
+  Effect.scoped(
+    Effect.gen(function* () {
+      const material = yield* prepareMaterialPublication({
+        checkoutRoot,
+        published: Stream.empty,
+        rendererManifest,
+      });
+      return yield* material.records.pipe(
+        Stream.runCollect,
+        Effect.map((records) => [...records])
+      );
+    })
+  ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
+);
 
 /** Derives authoritative compact heads from every registered real document. */
-export async function publishedMaterialHeads() {
-  const records = await collectMaterialRecords();
-  return records.flatMap((transition) => {
-    const { record } = transition;
-    if (!("payload" in record)) {
-      return [];
-    }
-    return [
-      MaterialHeadSchema.make({
-        artifactHash: record.change.artifactHash,
-        artifactLocale: record.change.artifactLocale,
-        compilerConfigHash: record.payload.compilerConfigHash,
-        contentKey: record.change.contentKey,
-        delivery: record.change.delivery,
-        family: "material",
-        projectionHash: hashContentProjection(record.projection),
-        publicPath: projectionPublicPath(record.projection),
-        rendererDomain: record.change.rendererDomain,
-        sourceHash: record.payload.sourceHash,
-        sourcePath: record.change.sourcePath,
-      }),
-    ];
-  });
-}
+export const publishedMaterialHeads = Effect.fn("MaterialTest.publishedHeads")(
+  function* () {
+    const records = yield* collectMaterialRecords();
+    return records.flatMap((transition) => {
+      const { record } = transition;
+      if (!("payload" in record)) {
+        return [];
+      }
+      return [
+        MaterialHeadSchema.make({
+          artifactHash: record.change.artifactHash,
+          artifactLocale: record.change.artifactLocale,
+          compilerConfigHash: record.payload.compilerConfigHash,
+          contentKey: record.change.contentKey,
+          delivery: record.change.delivery,
+          family: "material",
+          projectionHash: hashContentProjection(record.projection),
+          publicPath: projectionPublicPath(record.projection),
+          rendererDomain: record.change.rendererDomain,
+          sourceHash: record.payload.sourceHash,
+          sourcePath: record.change.sourcePath,
+        }),
+      ];
+    });
+  }
+);

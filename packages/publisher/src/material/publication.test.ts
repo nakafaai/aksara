@@ -1,6 +1,9 @@
-import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect, Schema } from "effect";
+import { expect, layer } from "@effect/vitest";
+import {
+  type MaterialHead,
+  MaterialHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
+import { Context, Effect, Layer, Schema } from "effect";
 import { vi } from "vitest";
 import {
   collectMaterialRoutes,
@@ -28,97 +31,136 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   };
 });
 
-const publishedHeads = await publishedMaterialHeads();
 const functionContentKey =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";
-const [englishHead, indonesianHead] = await Effect.runPromise(
-  Effect.gen(function* () {
-    const english = publishedHeads.find(
-      ({ contentKey, artifactLocale }) =>
-        contentKey === functionContentKey && artifactLocale === "en"
-    );
-    const indonesian = publishedHeads.find(
-      ({ contentKey, artifactLocale }) =>
-        contentKey === functionContentKey && artifactLocale === "id"
-    );
-    if (!(english && indonesian)) {
-      return yield* Effect.die(
-        new Error("Expected both real material locales.")
-      );
-    }
-    return [english, indonesian] as const;
-  })
-);
-const { publicPath: _publicPath, ...withoutPublicPath } = englishHead;
 const familyCases = [
-  ["content key", { ...englishHead, contentKey: "article:test" }],
-  ["public path", withoutPublicPath],
+  [
+    "content key",
+    (head: MaterialHead) => ({ ...head, contentKey: "article:test" }),
+  ],
+  ["public path", ({ publicPath: _publicPath, ...head }: MaterialHead) => head],
   [
     "source path",
-    { ...englishHead, sourcePath: "packages/corpus/article/test/en.mdx" },
+    (head: MaterialHead) => ({
+      ...head,
+      sourcePath: "packages/corpus/article/test/en.mdx",
+    }),
   ],
   [
     "artifactLocale",
-    {
-      ...englishHead,
+    (head: MaterialHead) => ({
+      ...head,
       sourcePath: "packages/corpus/material/lesson/test/id.mdx",
-    },
+    }),
   ],
 ] as const;
 
 /** Decodes a modified published head without bypassing the wire contract. */
-function modifyHead(input: unknown) {
-  return Schema.decodeUnknownSync(MaterialHeadSchema)(input, {
-    onExcessProperty: "error",
-  });
-}
+const modifyHead = Effect.fn("MaterialPublicationTest.modifyHead")(
+  (input: unknown) =>
+    Schema.decodeUnknownEffect(MaterialHeadSchema)(input, {
+      onExcessProperty: "error",
+    })
+);
 
-describe("material publication", () => {
-  it("removes the route owned by one deleted published material", async () => {
-    const stale = modifyHead({
-      ...englishHead,
-      contentKey: "material/lesson/mathematics/removed/route",
-      publicPath: "subjects/mathematics/removed/route",
-      sourcePath:
-        "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
-    });
-    const routes = await collectMaterialRoutes({
-      heads: [...publishedHeads, stale],
-    });
+/** Loads both real locale heads once for the complete publication suite. */
+const makePublicationTestFixtures = Effect.fn(
+  "MaterialPublicationTest.makeFixtures"
+)(() =>
+  Effect.gen(function* () {
+    const publishedHeads = yield* publishedMaterialHeads();
+    const englishHead = yield* Effect.fromNullishOr(
+      publishedHeads.find(
+        (head) =>
+          head.contentKey === functionContentKey && head.artifactLocale === "en"
+      )
+    );
+    const indonesianHead = yield* Effect.fromNullishOr(
+      publishedHeads.find(
+        (head) =>
+          head.contentKey === functionContentKey && head.artifactLocale === "id"
+      )
+    );
 
-    expect(routes).toHaveLength(1);
-    expect(routes[0]).toEqual({
-      current: {
-        appLocale: stale.artifactLocale,
-        contentKey: stale.contentKey,
-        publicPath: stale.publicPath,
-      },
-      next: {
-        appLocale: stale.artifactLocale,
-        contentKey: stale.contentKey,
-      },
-    });
-  });
+    return { englishHead, indonesianHead, publishedHeads };
+  })
+);
 
-  it("rejects duplicate and noncanonical published heads as typed failures", async () => {
-    await expect(
-      rejectMaterialPublication([englishHead, englishHead])
-    ).resolves.toMatchObject({
-      _tag: "MaterialHeadDuplicateError",
-    });
-    await expect(
-      rejectMaterialPublication([indonesianHead, englishHead])
-    ).resolves.toMatchObject({ _tag: "MaterialHeadOrderError" });
-  });
+class MaterialPublicationTestFixtures extends Context.Service<
+  MaterialPublicationTestFixtures,
+  Effect.Success<ReturnType<typeof makePublicationTestFixtures>>
+>()("AksaraPublisherMaterialPublicationTestFixtures") {}
 
-  it.each(familyCases)(
-    "rejects a cross-family %s contradiction",
-    async (_field, head) => {
-      await expect(
-        rejectMaterialPublication([modifyHead(head)])
-      ).resolves.toMatchObject({
-        _tag: "MaterialHeadFamilyError",
+const publicationTestLayer = Layer.effect(
+  MaterialPublicationTestFixtures,
+  makePublicationTestFixtures()
+);
+
+layer(publicationTestLayer)("material publication", (it) => {
+  it.effect("removes the route owned by one deleted published material", () =>
+    Effect.gen(function* () {
+      const fixture = yield* MaterialPublicationTestFixtures;
+      const stale = yield* modifyHead({
+        ...fixture.englishHead,
+        contentKey: "material/lesson/mathematics/removed/route",
+        publicPath: "subjects/mathematics/removed/route",
+        sourcePath:
+          "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
       });
-    }
+      const routes = yield* collectMaterialRoutes({
+        heads: [...fixture.publishedHeads, stale],
+      });
+
+      expect(routes).toHaveLength(1);
+      expect(routes[0]).toEqual({
+        current: {
+          appLocale: stale.artifactLocale,
+          contentKey: stale.contentKey,
+          publicPath: stale.publicPath,
+        },
+        next: {
+          appLocale: stale.artifactLocale,
+          contentKey: stale.contentKey,
+        },
+      });
+    })
+  );
+
+  it.effect(
+    "rejects duplicate and noncanonical published heads as typed failures",
+    () =>
+      Effect.gen(function* () {
+        const { englishHead, indonesianHead } =
+          yield* MaterialPublicationTestFixtures;
+        const duplicate = yield* rejectMaterialPublication([
+          englishHead,
+          englishHead,
+        ]);
+        const noncanonical = yield* rejectMaterialPublication([
+          indonesianHead,
+          englishHead,
+        ]);
+
+        expect(duplicate).toMatchObject({
+          _tag: "MaterialHeadDuplicateError",
+        });
+        expect(noncanonical).toMatchObject({
+          _tag: "MaterialHeadOrderError",
+        });
+      })
+  );
+
+  it.effect.each(familyCases)(
+    "rejects a cross-family %s contradiction",
+    ([, change]) =>
+      Effect.gen(function* () {
+        const { englishHead } = yield* MaterialPublicationTestFixtures;
+        const head = yield* modifyHead(change(englishHead));
+        const error = yield* rejectMaterialPublication([head]);
+
+        expect(error).toMatchObject({
+          _tag: "MaterialHeadFamilyError",
+        });
+      })
   );
 });
