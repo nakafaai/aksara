@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import {
@@ -69,72 +69,78 @@ function nodeProcess(
 }
 
 describe("Nakafa process infrastructure", () => {
-  it("passes exactly the supplied environment to a real operating-system child", async () => {
-    vi.stubEnv("AKSARA_TEST_PARENT_SECRET", "must-not-cross");
-    const status = await Effect.runPromise(
-      processProgram(
-        nodeProcess(
-          [
-            "const isolated =",
-            "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
-            'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
-            "process.exit(isolated && allowed ? 0 : 23);",
-          ].join("\n"),
-          { AKSARA_TEST_ALLOWED: "visible" }
-        )
-      )
-    );
+  it.effect(
+    "passes exactly the supplied environment to a real operating-system child",
+    () =>
+      Effect.gen(function* () {
+        vi.stubEnv("AKSARA_TEST_PARENT_SECRET", "must-not-cross");
+        const status = yield* processProgram(
+          nodeProcess(
+            [
+              "const isolated =",
+              "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
+              'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
+              "process.exit(isolated && allowed ? 0 : 23);",
+            ].join("\n"),
+            { AKSARA_TEST_ALLOWED: "visible" }
+          )
+        );
 
-    expect(status).toBe(0);
-  });
+        expect(status).toBe(0);
+      })
+  );
 
-  it("maps synchronous and asynchronous process startup failures", async () => {
-    const invalidRoot = { ...nodeProcess("process.exit(0);"), root: "\0" };
-    const synchronous = await Effect.runPromise(
-      processProgram(invalidRoot).pipe(Effect.flip)
-    );
-    const asynchronous = await Effect.runPromise(
-      processProgram({
+  it.effect("maps synchronous and asynchronous process startup failures", () =>
+    Effect.gen(function* () {
+      const invalidRoot = { ...nodeProcess("process.exit(0);"), root: "\0" };
+      const synchronous = yield* processProgram(invalidRoot).pipe(Effect.flip);
+      const asynchronous = yield* processProgram({
         args: [],
         command: "/aksara/missing-command",
         environment: {},
         root: NODE_ROOT,
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(synchronous).toMatchObject({ reason: "start" });
-    expect(asynchronous).toMatchObject({ reason: "start" });
-  });
+      expect(synchronous).toMatchObject({ reason: "start" });
+      expect(asynchronous).toMatchObject({ reason: "start" });
+    })
+  );
 
-  it("rejects a spawned process without a valid operating-system identifier", async () => {
-    childProcessBehavior.enabled = true;
-    childProcessBehavior.pid = 0;
+  it.effect(
+    "rejects a spawned process without a valid operating-system identifier",
+    () =>
+      Effect.gen(function* () {
+        childProcessBehavior.enabled = true;
+        childProcessBehavior.pid = 0;
 
-    const failure = await Effect.runPromise(
-      processProgram(nodeProcess("process.exit(0);")).pipe(Effect.flip)
-    );
+        const failure = yield* processProgram(
+          nodeProcess("process.exit(0);")
+        ).pipe(Effect.flip);
 
-    expect(failure).toMatchObject({ reason: "start" });
-  });
+        expect(failure).toMatchObject({ reason: "start" });
+      })
+  );
 
-  it("reports signal termination and closes a running child with its scope", async () => {
-    const signal = await Effect.runPromise(
-      processProgram(nodeProcess('process.kill(process.pid, "SIGTERM");')).pipe(
-        Effect.flip
-      )
-    );
-    const closed = await Effect.runPromise(
-      Effect.scoped(
-        NakafaProcess.pipe(
-          Effect.flatMap((processes) =>
-            processes.start(nodeProcess("setInterval(() => undefined, 1_000);"))
-          ),
-          Effect.as("closed")
-        )
-      ).pipe(Effect.provide(NakafaProcessLive))
-    );
+  it.effect(
+    "reports signal termination and closes a running child with its scope",
+    () =>
+      Effect.gen(function* () {
+        const signal = yield* processProgram(
+          nodeProcess('process.kill(process.pid, "SIGTERM");')
+        ).pipe(Effect.flip);
+        const closed = yield* Effect.scoped(
+          NakafaProcess.pipe(
+            Effect.flatMap((processes) =>
+              processes.start(
+                nodeProcess("setInterval(() => undefined, 1_000);")
+              )
+            ),
+            Effect.as("closed")
+          )
+        ).pipe(Effect.provide(NakafaProcessLive));
 
-    expect(signal).toMatchObject({ reason: "exit" });
-    expect(closed).toBe("closed");
-  });
+        expect(signal).toMatchObject({ reason: "exit" });
+        expect(closed).toBe("closed");
+      })
+  );
 });
