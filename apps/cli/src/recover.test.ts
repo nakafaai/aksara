@@ -1,5 +1,5 @@
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, type Redacted } from "effect";
 import { HttpClient } from "effect/unstable/http";
 import { vi } from "vitest";
@@ -138,11 +138,6 @@ function recoveryProgram() {
   );
 }
 
-/** Runs recovery at the isolated test boundary. */
-function recoverProgram() {
-  return Effect.runPromise(recoveryProgram());
-}
-
 beforeEach(() => {
   calls.activationEndpoint = "";
   calls.activationToken = "";
@@ -154,29 +149,33 @@ beforeEach(() => {
 });
 
 describe("recover command", () => {
-  it("wires exact identities, trusted keys, target, and renderer preflight", async () => {
-    await expect(recoverProgram()).resolves.toMatchObject({
-      releaseId: recoveryId,
-    });
-    expect(calls).toMatchObject({
-      activationEndpoint:
-        "https://www.example.test/api/internal/content/renderer",
-      activationToken: "renderer-token",
-      input: { recoveryId, releaseId },
-      targetEndpoint: "https://content.example.test/publish",
-      targetTimeout: "2 minutes",
-      targetToken: "publication-token",
-    });
-  });
+  it.effect(
+    "wires exact identities, trusted keys, target, and renderer preflight",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* recoveryProgram()).toMatchObject({
+          releaseId: recoveryId,
+        });
+        expect(calls).toMatchObject({
+          activationEndpoint:
+            "https://www.example.test/api/internal/content/renderer",
+          activationToken: "renderer-token",
+          input: { recoveryId, releaseId },
+          targetEndpoint: "https://content.example.test/publish",
+          targetTimeout: "2 minutes",
+          targetToken: "publication-token",
+        });
+      })
+  );
 
-  it("sanitizes publisher recovery failures", async () => {
-    calls.fail = true;
-    await expect(
-      Effect.runPromise(recoveryProgram().pipe(Effect.flip))
-    ).resolves.toMatchObject({
-      _tag: "ProductionError",
-      failure: "PublicationActivationError",
-      stage: "recover",
-    });
-  });
+  it.effect("sanitizes publisher recovery failures", () =>
+    Effect.gen(function* () {
+      calls.fail = true;
+      expect(yield* recoveryProgram().pipe(Effect.flip)).toMatchObject({
+        _tag: "ProductionError",
+        failure: "PublicationActivationError",
+        stage: "recover",
+      });
+    })
+  );
 });
