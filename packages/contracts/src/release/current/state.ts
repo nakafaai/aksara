@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Effect, Schema, SchemaGetter } from "effect";
 
 import {
   type ActiveContentRelease,
@@ -16,6 +16,21 @@ import {
   invertContentSnapshots,
 } from "#contracts/release/snapshot/spec";
 import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec";
+
+const TryoutRuntimeBundleSchema = Schema.NullOr(
+  SignedTryoutRuntimeBundleSchema
+);
+const NoTryoutRuntimeBundle: typeof TryoutRuntimeBundleSchema.Type = null;
+const TryoutRuntimeBundleField = Schema.optionalKey(
+  TryoutRuntimeBundleSchema
+).pipe(
+  Schema.decodeTo(Schema.toType(TryoutRuntimeBundleSchema), {
+    decode: SchemaGetter.withDefault<typeof TryoutRuntimeBundleSchema.Type>(
+      Effect.succeed(NoTryoutRuntimeBundle)
+    ),
+    encode: SchemaGetter.required(),
+  })
+);
 
 const StagedReleasePhaseSchema = Schema.Literals([
   "staging",
@@ -153,7 +168,7 @@ export const ContentReleaseCurrentSchema = Schema.Struct({
   active: Schema.NullOr(ActiveContentReleaseSchema),
   candidate: Schema.NullOr(StagedContentReleaseSchema),
   recovery: Schema.NullOr(StagedRollbackContentReleaseSchema),
-  tryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
+  tryoutRuntimeBundle: TryoutRuntimeBundleField,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentCurrentState, {

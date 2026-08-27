@@ -54,6 +54,22 @@ const runtimeRelease = Schema.decodeSync(SignedContentReleaseSchema)({
 const runtimeActive = activeRelease(runtimeRelease);
 
 describe("current permanent runtime bundle", () => {
+  it("normalizes a predecessor response without a runtime bundle", () => {
+    const predecessor = { active: null, candidate: null, recovery: null };
+    const current = Schema.decodeSync(ContentReleaseCurrentSchema)(predecessor);
+    const normalized = {
+      active: null,
+      candidate: null,
+      recovery: null,
+      tryoutRuntimeBundle: null,
+    };
+
+    expect(current).toEqual(normalized);
+    expect(Schema.encodeSync(ContentReleaseCurrentSchema)(current)).toEqual(
+      normalized
+    );
+  });
+
   it("accepts the bundle bound to the active snapshot and renderer", () => {
     expect(
       hasCurrentTryoutRuntimeBundle(runtimeActive, tryoutRuntimeBundle)
