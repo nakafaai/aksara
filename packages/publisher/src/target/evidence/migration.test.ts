@@ -87,6 +87,14 @@ describe("migration HTTP evidence", () => {
         }
         const invalid = [
           {
+            request: exchanges.abort.request,
+            response: migrationResponse({
+              command: "status",
+              migrationId,
+              status: migrationStatus(),
+            }),
+          },
+          {
             request: exchanges.source.request,
             response: migrationResponse({
               command: "status",

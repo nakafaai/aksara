@@ -54,6 +54,13 @@ export const TryoutHistoryMigrationStagingStatusSchema = Schema.Struct({
   phase: Schema.Literal("staging"),
 });
 
+/** Bounded staging cleanup that no longer accepts target writes. */
+export const TryoutHistoryMigrationAbortingStatusSchema = Schema.Struct({
+  ...MigrationStatusFields,
+  deleted: NonNegativeCountSchema,
+  phase: Schema.Literal("aborting"),
+});
+
 /** Complete signed authorization awaiting or undergoing mutation. */
 export const TryoutHistoryMigrationReadyStatusSchema = Schema.Struct({
   ...MigrationStatusFields,
@@ -97,6 +104,7 @@ export const TryoutHistoryMigrationCleanedStatusSchema = Schema.Struct({
 /** Every valid migration phase as a state-specific contract. */
 export const TryoutHistoryMigrationStatusSchema = Schema.Union([
   TryoutHistoryMigrationStagingStatusSchema,
+  TryoutHistoryMigrationAbortingStatusSchema,
   TryoutHistoryMigrationRunnableStatusSchema,
   TryoutHistoryMigrationCompletedStatusSchema,
   TryoutHistoryMigrationSealedStatusSchema,
@@ -114,6 +122,12 @@ const InitializeValueSchema = Schema.Struct({
   command: Schema.Literal("initialize"),
   ...ResponseIdentityFields,
   status: TryoutHistoryMigrationStatusSchema,
+});
+const AbortValueSchema = Schema.Struct({
+  command: Schema.Literal("abort"),
+  deleted: NonNegativeCountSchema,
+  done: Schema.Boolean,
+  ...ResponseIdentityFields,
 });
 const HistoricalRowEntrySchema = Schema.Struct({
   index: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
@@ -187,6 +201,7 @@ const StatusValueSchema = Schema.Struct({
 export const TryoutHistoryMigrationValueSchema = Schema.Union([
   SourceValueSchema,
   InitializeValueSchema,
+  AbortValueSchema,
   RowPageValueSchema,
   ArtifactBatchValueSchema,
   StageArtifactsValueSchema,

@@ -18,6 +18,7 @@ import {
 
 const artifactHash = `sha256:${"a".repeat(64)}`;
 const sourceSnapshotId = `sha256:${"b".repeat(64)}`;
+const excessFailure = /excess property/;
 const proofFailure = /proof/;
 const uniqueHashFailure = /unique historical artifact hashes/;
 
@@ -28,6 +29,30 @@ describe("try-out history migration requests", () => {
       "external-receipt-cleaned-server-zero-legacy-or-temporary-rows"
     );
   });
+
+  it.effect("accepts only the exact staging abort identity", () =>
+    Effect.gen(function* () {
+      const accepted = yield* Schema.decodeEffect(
+        TryoutHistoryMigrationRequestSchema
+      )({
+        command: "abort",
+        operation: "migrateTryoutHistory",
+        releaseId: "retained-tryout-history-v1",
+      });
+      const rejected = yield* Schema.decodeUnknownEffect(
+        TryoutHistoryMigrationRequestSchema,
+        { onExcessProperty: "error" }
+      )({
+        command: "abort",
+        operation: "migrateTryoutHistory",
+        releaseId: "retained-tryout-history-v1",
+        sourceSnapshotId,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(accepted.command, "abort");
+      assert.match(String(rejected), excessFailure);
+    })
+  );
 
   it.effect(
     "accepts unique artifact batches and rejects repeated source hashes",

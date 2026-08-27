@@ -119,6 +119,7 @@ export function hasBoundMigration(
   }
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("command")({
+      abort: () => value.command === "abort",
       artifactBatch: (exact) => hasBoundArtifactBatch(exact, value),
       cleanup: (exact) =>
         value.command === "cleanup" && hasBoundReceipt(exact, value),
