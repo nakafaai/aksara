@@ -2,6 +2,7 @@ import { Schema } from "effect";
 
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { TryoutHistoryMigrationProofSchema } from "#contracts/migration/tryout/history/proof";
 import {
   SignedTryoutHistoryMigrationPlanSchema,
   SignedTryoutHistoryMigrationReceiptSchema,
@@ -172,6 +173,7 @@ export const TryoutHistoryMigrationSealRequestSchema = Schema.Struct({
 export const TryoutHistoryMigrationCleanupRequestSchema = Schema.Struct({
   ...RequestIdentityFields,
   command: Schema.Literal("cleanup"),
+  proof: TryoutHistoryMigrationProofSchema,
   receipt: SignedTryoutHistoryMigrationReceiptSchema,
 });
 

@@ -19,6 +19,14 @@ export type MigrationCommand = ReleaseCommand & {
   readonly receiptPath: string;
 };
 
+/** Cleanup observation bound to one externally authenticated release asset. */
+export type MigrationCleanupCommand = MigrationCommand & {
+  readonly proof: {
+    readonly assetHash: string;
+    readonly sourceSha: string;
+  };
+};
+
 /** Mutable observations isolated and reset around every CLI program test. */
 export interface ProgramCalls {
   abort: ReleaseCommand | undefined;
@@ -28,7 +36,7 @@ export interface ProgramCalls {
   cleanup: ReleaseCommand | undefined;
   document: string;
   migration: MigrationCommand | undefined;
-  migrationCleanup: MigrationCommand | undefined;
+  migrationCleanup: MigrationCleanupCommand | undefined;
   open:
     | {
         readonly cwd: string;

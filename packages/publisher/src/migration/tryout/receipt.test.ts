@@ -11,6 +11,7 @@ import { failureReason } from "#test/migration/error";
 import {
   cleanedMigrationStatus,
   completedMigrationStatus,
+  migrationProof,
   sealedMigrationStatus,
 } from "#test/migration/flow";
 import {
@@ -144,6 +145,7 @@ describe("try-out history migration receipt lifecycle", () => {
     () =>
       Effect.gen(function* () {
         const receipt = yield* makeReceipt();
+        const proof = yield* migrationProof(receipt);
         let calls = 0;
         const target = makePublicationTarget({
           migrateTryoutHistory: (request) => {
@@ -166,7 +168,7 @@ describe("try-out history migration receipt lifecycle", () => {
           },
         });
 
-        const cleaned = yield* cleanupMigrationReceipt(target, receipt);
+        const cleaned = yield* cleanupMigrationReceipt(target, receipt, proof);
 
         assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
         assert.strictEqual(calls, 2);
@@ -181,6 +183,7 @@ describe("try-out history migration receipt lifecycle", () => {
   it.effect("fails closed when a cleanup page makes no progress", () =>
     Effect.gen(function* () {
       const receipt = yield* makeReceipt();
+      const proof = yield* migrationProof(receipt);
       const target = makePublicationTarget({
         migrateTryoutHistory: (request) =>
           request.command === "cleanup"
@@ -195,9 +198,11 @@ describe("try-out history migration receipt lifecycle", () => {
               })
             : Effect.die("Expected cleanup."),
       });
-      const failure = yield* cleanupMigrationReceipt(target, receipt).pipe(
-        Effect.flip
-      );
+      const failure = yield* cleanupMigrationReceipt(
+        target,
+        receipt,
+        proof
+      ).pipe(Effect.flip);
 
       assert.strictEqual(failureReason(failure), "cleanup-progress");
     }).pipe(
@@ -211,6 +216,7 @@ describe("try-out history migration receipt lifecycle", () => {
   it.effect("fails closed when cleanup exceeds its signed limit", () =>
     Effect.gen(function* () {
       const receipt = yield* makeReceipt();
+      const proof = yield* migrationProof(receipt);
       let calls = 0;
       const target = makePublicationTarget({
         migrateTryoutHistory: (request) => {
@@ -229,9 +235,11 @@ describe("try-out history migration receipt lifecycle", () => {
           });
         },
       });
-      const failure = yield* cleanupMigrationReceipt(target, receipt).pipe(
-        Effect.flip
-      );
+      const failure = yield* cleanupMigrationReceipt(
+        target,
+        receipt,
+        proof
+      ).pipe(Effect.flip);
 
       assert.strictEqual(failureReason(failure), "cleanup-limit");
       assert.strictEqual(calls, 2);
@@ -246,6 +254,7 @@ describe("try-out history migration receipt lifecycle", () => {
   it.effect("rejects command, phase, and cleaned receipt drift", () =>
     Effect.gen(function* () {
       const receipt = yield* makeReceipt();
+      const proof = yield* migrationProof(receipt);
       const cleaned = cleanedMigrationStatus(receipt);
       const invalid = [
         migrationResponse({
@@ -271,13 +280,34 @@ describe("try-out history migration receipt lifecycle", () => {
         const target = makePublicationTarget({
           migrateTryoutHistory: () => Effect.succeed(value),
         });
-        return cleanupMigrationReceipt(target, receipt).pipe(
+        return cleanupMigrationReceipt(target, receipt, proof).pipe(
           Effect.flip,
           Effect.map((failure) =>
             assert.strictEqual(failureReason(failure), "receipt-evidence")
           )
         );
       });
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+
+  it.effect("rejects proof for any other immutable asset", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      const proof = yield* migrationProof(receipt);
+      const target = makePublicationTarget({
+        migrateTryoutHistory: () => Effect.die("Cleanup must not start."),
+      });
+      const failure = yield* cleanupMigrationReceipt(target, receipt, {
+        ...proof,
+        assetHash: otherHash,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failureReason(failure), "receipt-evidence");
     }).pipe(
       Effect.provideService(
         ContentVerificationKeyResolver,

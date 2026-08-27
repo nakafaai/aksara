@@ -79,20 +79,32 @@ describe("release production arguments", () => {
 });
 
 describe("try-out history migration arguments", () => {
-  const commands = [
-    "migrate-tryout-history",
-    "cleanup-tryout-history",
-  ] as const;
+  const assetHash = `sha256:${"a".repeat(64)}`;
+  const sourceSha = "b".repeat(40);
 
   it.effect("requires one absolute exclusive receipt destination", () =>
     Effect.gen(function* () {
-      const valid = yield* Effect.forEach(commands, (command) =>
-        parseProductionArguments(command, [
+      const migrate = yield* parseProductionArguments(
+        "migrate-tryout-history",
+        [
           "--release-id",
           "retained-history-v1",
           "--receipt-path",
           "/tmp/retained-history-v1.json",
-        ])
+        ]
+      );
+      const cleanup = yield* parseProductionArguments(
+        "cleanup-tryout-history",
+        [
+          "--release-id",
+          "retained-history-v1",
+          "--receipt-path",
+          "/tmp/retained-history-v1.json",
+          "--asset-hash",
+          assetHash,
+          "--source-sha",
+          sourceSha,
+        ]
       );
       const missing = yield* parseProductionArguments(
         "migrate-tryout-history",
@@ -108,13 +120,17 @@ describe("try-out history migration arguments", () => {
         ]
       ).pipe(Effect.flip);
 
-      expect(valid).toEqual(
-        commands.map((command) => ({
-          command,
-          receiptPath: "/tmp/retained-history-v1.json",
-          releaseId: "retained-history-v1",
-        }))
-      );
+      expect(migrate).toEqual({
+        command: "migrate-tryout-history",
+        receiptPath: "/tmp/retained-history-v1.json",
+        releaseId: "retained-history-v1",
+      });
+      expect(cleanup).toEqual({
+        command: "cleanup-tryout-history",
+        proof: { assetHash, sourceSha },
+        receiptPath: "/tmp/retained-history-v1.json",
+        releaseId: "retained-history-v1",
+      });
       expect(missing).toMatchObject({
         option: "--receipt-path",
         reason: "missing",
@@ -126,8 +142,54 @@ describe("try-out history migration arguments", () => {
     })
   );
 
+  it.effect("requires valid immutable release proof for cleanup", () =>
+    Effect.gen(function* () {
+      const base = [
+        "--release-id",
+        "retained-history-v1",
+        "--receipt-path",
+        "/tmp/retained-history-v1.json",
+      ] as const;
+      const failures = yield* Effect.all([
+        parseProductionArguments("cleanup-tryout-history", base).pipe(
+          Effect.flip
+        ),
+        parseProductionArguments("cleanup-tryout-history", [
+          ...base,
+          "--asset-hash",
+          "invalid",
+          "--source-sha",
+          sourceSha,
+        ]).pipe(Effect.flip),
+        parseProductionArguments("cleanup-tryout-history", [
+          ...base,
+          "--asset-hash",
+          assetHash,
+        ]).pipe(Effect.flip),
+        parseProductionArguments("cleanup-tryout-history", [
+          ...base,
+          "--asset-hash",
+          assetHash,
+          "--source-sha",
+          "invalid",
+        ]).pipe(Effect.flip),
+      ]);
+
+      expect(failures).toEqual([
+        expect.objectContaining({ option: "--asset-hash", reason: "missing" }),
+        expect.objectContaining({ option: "--asset-hash", reason: "value" }),
+        expect.objectContaining({ option: "--source-sha", reason: "missing" }),
+        expect.objectContaining({ option: "--source-sha", reason: "value" }),
+      ]);
+    })
+  );
+
   it.effect("rejects publication and recovery options", () =>
     Effect.gen(function* () {
+      const commands = [
+        "migrate-tryout-history",
+        "cleanup-tryout-history",
+      ] as const;
       const failures = yield* Effect.forEach(
         commands.flatMap((command) =>
           ["--scope", "--recovery-id"].map((option) => ({ command, option }))

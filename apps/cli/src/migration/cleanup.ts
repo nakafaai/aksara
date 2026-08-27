@@ -44,7 +44,7 @@ export const runTryoutCleanupCommand: (
       timeout: PUBLICATION_TARGET_TIMEOUT,
       token: environment.publicationToken,
     }).pipe(Effect.mapError(mapProductionError("target")));
-    yield* cleanupRetainedTryoutHistory(receipt).pipe(
+    yield* cleanupRetainedTryoutHistory(receipt, args.proof).pipe(
       Effect.provideService(ContentVerificationKeyResolver, keyResolver),
       Effect.provideService(
         PublicationTarget,

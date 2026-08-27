@@ -1,4 +1,10 @@
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  GitCommitShaSchema,
+  type ReleaseId,
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { decodePublicationScopeSelectors } from "#cli/scope";
@@ -52,6 +58,7 @@ export interface MigrateTryoutHistoryArguments {
 /** Exact externally durable receipt authorizing retained-history cleanup. */
 export interface CleanupTryoutHistoryArguments {
   readonly command: "cleanup-tryout-history";
+  readonly proof: TryoutHistoryMigrationProof;
   readonly receiptPath: string;
   readonly releaseId: ReleaseId;
 }
@@ -82,10 +89,12 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "status",
     ]),
     option: Schema.Literals([
+      "--asset-hash",
       "--recovery-id",
       "--release-id",
       "--receipt-path",
       "--scope",
+      "--source-sha",
       "command",
     ]),
     reason: Schema.Literals([
@@ -99,24 +108,33 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
 ) {}
 
 interface RawProductionOptions {
+  assetHash?: string;
   receiptPath?: string;
   recoveryId?: string;
   releaseId?: string;
   scope: string[];
+  sourceSha?: string;
 }
 
 export type ProductionCommand = ProductionArguments["command"];
+type TryoutMigrationCommand =
+  | CleanupTryoutHistoryArguments["command"]
+  | MigrateTryoutHistoryArguments["command"];
 type ProductionOption =
+  | "--asset-hash"
   | "--recovery-id"
   | "--release-id"
   | "--receipt-path"
-  | "--scope";
+  | "--scope"
+  | "--source-sha";
 type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
 
 const OPTION_KEYS = {
+  "--asset-hash": "assetHash",
   "--receipt-path": "receiptPath",
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
+  "--source-sha": "sourceSha",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
 
 /** Narrows a raw command token to the production command vocabulary. */
@@ -140,10 +158,12 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
+    value === "--asset-hash" ||
     value === "--recovery-id" ||
     value === "--receipt-path" ||
     value === "--release-id" ||
-    value === "--scope"
+    value === "--scope" ||
+    value === "--source-sha"
   );
 }
 
@@ -152,11 +172,23 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "status") {
     return false;
   }
-  if (
-    command === "cleanup-tryout-history" ||
-    command === "migrate-tryout-history"
-  ) {
+  if (command === "cleanup-tryout-history") {
+    return (
+      option === "--asset-hash" ||
+      option === "--release-id" ||
+      option === "--receipt-path" ||
+      option === "--source-sha"
+    );
+  }
+  if (command === "migrate-tryout-history") {
     return option === "--release-id" || option === "--receipt-path";
+  }
+  if (
+    option === "--asset-hash" ||
+    option === "--receipt-path" ||
+    option === "--source-sha"
+  ) {
+    return false;
   }
   if (option === "--scope") {
     return command === "release";
@@ -221,6 +253,51 @@ const parseProductionOptions = Effect.fn("AksaraCli.parseProductionOptions")(
   }
 );
 
+/** Decodes the receipt and immutable-proof boundary for history migration. */
+const parseTryoutMigrationArguments = Effect.fn(
+  "AksaraCli.parseTryoutMigrationArguments"
+)(function* (
+  command: TryoutMigrationCommand,
+  options: RawProductionOptions,
+  releaseId: ReleaseId
+) {
+  if (options.receiptPath === undefined) {
+    return yield* argumentError(command, "--receipt-path", "missing");
+  }
+  if (!options.receiptPath.startsWith("/")) {
+    return yield* argumentError(command, "--receipt-path", "value");
+  }
+  if (command === "migrate-tryout-history") {
+    return {
+      command,
+      receiptPath: options.receiptPath,
+      releaseId,
+    } satisfies MigrateTryoutHistoryArguments;
+  }
+  if (options.assetHash === undefined) {
+    return yield* argumentError(command, "--asset-hash", "missing");
+  }
+  if (options.sourceSha === undefined) {
+    return yield* argumentError(command, "--source-sha", "missing");
+  }
+  const assetHash = yield* Schema.decodeEffect(Sha256HashSchema)(
+    options.assetHash
+  ).pipe(
+    Effect.mapError(() => argumentError(command, "--asset-hash", "value"))
+  );
+  const sourceSha = yield* Schema.decodeEffect(GitCommitShaSchema)(
+    options.sourceSha
+  ).pipe(
+    Effect.mapError(() => argumentError(command, "--source-sha", "value"))
+  );
+  return {
+    command,
+    proof: { assetHash, sourceSha },
+    receiptPath: options.receiptPath,
+    releaseId,
+  } satisfies CleanupTryoutHistoryArguments;
+});
+
 /** Decodes one already-selected production command and its strict options. */
 export const parseProductionArguments = Effect.fn(
   "AksaraCli.parseProductionArguments"
@@ -244,19 +321,10 @@ export const parseProductionArguments = Effect.fn(
     return { command, releaseId } satisfies CleanupArguments;
   }
   if (
-    command === "cleanup-tryout-history" ||
-    command === "migrate-tryout-history"
+    command === "migrate-tryout-history" ||
+    command === "cleanup-tryout-history"
   ) {
-    if (options.receiptPath === undefined) {
-      return yield* argumentError(command, "--receipt-path", "missing");
-    }
-    if (!options.receiptPath.startsWith("/")) {
-      return yield* argumentError(command, "--receipt-path", "value");
-    }
-    const receipt = { receiptPath: options.receiptPath, releaseId };
-    return command === "migrate-tryout-history"
-      ? ({ command, ...receipt } satisfies MigrateTryoutHistoryArguments)
-      : ({ command, ...receipt } satisfies CleanupTryoutHistoryArguments);
+    return yield* parseTryoutMigrationArguments(command, options, releaseId);
   }
   if (options.recoveryId === undefined) {
     return yield* argumentError(command, "--recovery-id", "missing");

@@ -1,5 +1,9 @@
 import { canonicalizeSignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/canonical";
 import {
+  type TryoutHistoryMigrationProof,
+  verifyTryoutHistoryMigrationProof,
+} from "@nakafa/aksara-contracts/migration/tryout/history/proof";
+import {
   type SignedTryoutHistoryMigrationReceipt,
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
   type TryoutHistoryMigrationReceiptPayload,
@@ -101,9 +105,13 @@ export const cleanupMigrationReceipt = Effect.fn(
   "AksaraPublisher.cleanupTryoutMigrationReceipt"
 )(function* (
   target: typeof PublicationTarget.Service,
-  receipt: SignedTryoutHistoryMigrationReceipt
+  receipt: SignedTryoutHistoryMigrationReceipt,
+  proof: TryoutHistoryMigrationProof
 ) {
   const authenticated = yield* authenticateMigrationReceipt(receipt);
+  yield* verifyTryoutHistoryMigrationProof(authenticated, proof).pipe(
+    Effect.mapError(() => migrationFail("receipt-evidence"))
+  );
   const {
     payload: {
       completion: { cleanupLimit },
@@ -117,6 +125,7 @@ export const cleanupMigrationReceipt = Effect.fn(
         const value = yield* target.migrateTryoutHistory({
           command: "cleanup",
           operation: "migrateTryoutHistory",
+          proof,
           receipt: authenticated,
           releaseId: authenticated.payload.migrationId,
         });

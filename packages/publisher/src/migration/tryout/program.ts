@@ -1,4 +1,5 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
 import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect, Redacted, Stream } from "effect";
@@ -201,9 +202,13 @@ export const migrateRetainedTryoutHistory = Effect.fn(
 /** Cleans only after an external caller durably owns the sealed receipt. */
 export const cleanupRetainedTryoutHistory = Effect.fn(
   "AksaraPublisher.cleanupRetainedTryoutHistory"
-)((receipt: SignedTryoutHistoryMigrationReceipt) =>
-  Effect.gen(function* () {
-    const target = yield* PublicationTarget;
-    return yield* cleanupMigrationReceipt(target, receipt);
-  })
+)(
+  (
+    receipt: SignedTryoutHistoryMigrationReceipt,
+    proof: TryoutHistoryMigrationProof
+  ) =>
+    Effect.gen(function* () {
+      const target = yield* PublicationTarget;
+      return yield* cleanupMigrationReceipt(target, receipt, proof);
+    })
 );

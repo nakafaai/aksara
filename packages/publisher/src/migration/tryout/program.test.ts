@@ -18,6 +18,7 @@ import { failureReason } from "#test/migration/error";
 import {
   completedMigrationStatus,
   fullMigrationTarget,
+  migrationProof,
   migrationRejection,
   migrationStatusTarget,
   sealedMigrationStatus,
@@ -96,7 +97,10 @@ function cleanup(
   target: typeof PublicationTarget.Service,
   receipt: Parameters<typeof cleanupRetainedTryoutHistory>[0]
 ) {
-  return cleanupRetainedTryoutHistory(receipt).pipe(
+  return Effect.gen(function* () {
+    const proof = yield* migrationProof(receipt);
+    return yield* cleanupRetainedTryoutHistory(receipt, proof);
+  }).pipe(
     Effect.provideService(PublicationTarget, target),
     Effect.provideService(
       ContentVerificationKeyResolver,

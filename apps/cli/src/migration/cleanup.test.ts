@@ -4,7 +4,7 @@ import { Effect } from "effect";
 import { vi } from "vitest";
 
 import { runTryoutCleanupCommand } from "#cli/migration/cleanup";
-import { migrationId, migrationReceipt } from "#test/migration";
+import { migrationId, migrationProof, migrationReceipt } from "#test/migration";
 
 const calls = vi.hoisted(() => ({
   cleaned: false,
@@ -83,6 +83,7 @@ layer(NodeServices.layer)("try-out history migration cleanup", (it) => {
       reset();
       yield* runTryoutCleanupCommand({
         command: "cleanup-tryout-history",
+        proof: migrationProof,
         receiptPath: "/tmp/receipt.json",
         releaseId: migrationId,
       });
@@ -103,6 +104,7 @@ layer(NodeServices.layer)("try-out history migration cleanup", (it) => {
       calls.failReceipt = true;
       const receiptFailure = yield* runTryoutCleanupCommand({
         command: "cleanup-tryout-history",
+        proof: migrationProof,
         receiptPath: "/tmp/receipt.json",
         releaseId: migrationId,
       }).pipe(Effect.flip);
@@ -112,6 +114,7 @@ layer(NodeServices.layer)("try-out history migration cleanup", (it) => {
       calls.failTarget = true;
       const targetFailure = yield* runTryoutCleanupCommand({
         command: "cleanup-tryout-history",
+        proof: migrationProof,
         receiptPath: "/tmp/receipt.json",
         releaseId: migrationId,
       }).pipe(Effect.flip);
@@ -130,6 +133,7 @@ layer(NodeServices.layer)("try-out history migration cleanup", (it) => {
       calls.failCleanup = true;
       const failure = yield* runTryoutCleanupCommand({
         command: "cleanup-tryout-history",
+        proof: migrationProof,
         receiptPath: "/tmp/receipt.json",
         releaseId: migrationId,
       }).pipe(Effect.flip);

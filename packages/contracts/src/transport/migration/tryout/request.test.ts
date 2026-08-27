@@ -2,6 +2,7 @@ import { assert, describe, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import {
   Ed25519SignatureSchema,
+  GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -17,6 +18,7 @@ import {
 
 const artifactHash = `sha256:${"a".repeat(64)}`;
 const sourceSnapshotId = `sha256:${"b".repeat(64)}`;
+const proofFailure = /proof/;
 const uniqueHashFailure = /unique historical artifact hashes/;
 
 describe("try-out history migration requests", () => {
@@ -89,9 +91,17 @@ describe("try-out history migration requests", () => {
         "cleanup",
       ];
       const commands = yield* Effect.forEach(commandNames, (command) =>
-        Schema.decodeEffect(TryoutHistoryMigrationRequestSchema)({
+        Schema.decodeUnknownEffect(TryoutHistoryMigrationRequestSchema)({
           command,
           operation: "migrateTryoutHistory",
+          ...(command === "cleanup"
+            ? {
+                proof: {
+                  assetHash: hash,
+                  sourceSha: GitCommitShaSchema.make("a".repeat(40)),
+                },
+              }
+            : {}),
           receipt,
           releaseId,
         })
@@ -101,6 +111,17 @@ describe("try-out history migration requests", () => {
         commands.map(({ command }) => command),
         ["seal", "cleanup"]
       );
+
+      const missingProof = yield* Schema.decodeUnknownEffect(
+        TryoutHistoryMigrationRequestSchema
+      )({
+        command: "cleanup",
+        operation: "migrateTryoutHistory",
+        receipt,
+        releaseId,
+      }).pipe(Effect.flip);
+
+      assert.match(String(missingProof), proofFailure);
     })
   );
 });

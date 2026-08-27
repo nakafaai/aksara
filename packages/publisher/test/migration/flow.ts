@@ -1,3 +1,8 @@
+import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  hashTryoutHistoryMigrationReceiptAsset,
+  TryoutHistoryMigrationProofSchema,
+} from "@nakafa/aksara-contracts/migration/tryout/history/proof";
 import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import { TryoutHistoryMigrationCompletionSchema } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import {
@@ -27,6 +32,16 @@ export const completion = TryoutHistoryMigrationCompletionSchema.make({
   migratedScaleVersions: 1,
   remainingMarkers: 0,
 });
+
+/** Builds external immutable-release proof for one exact receipt fixture. */
+export const migrationProof = Effect.fn("AksaraPublisherTest.migrationProof")(
+  function* (receipt: SignedTryoutHistoryMigrationReceipt) {
+    return TryoutHistoryMigrationProofSchema.make({
+      assetHash: yield* hashTryoutHistoryMigrationReceiptAsset(receipt),
+      sourceSha: GitCommitShaSchema.make("a".repeat(40)),
+    });
+  }
+);
 
 /** Produces internally complete terminal state from any staged identity set. */
 export function completedMigrationStatus(

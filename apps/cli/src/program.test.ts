@@ -66,6 +66,10 @@ vi.mock("#cli/args", async () => {
       if (args[0] === "cleanup-tryout-history") {
         return TestEffect.succeed({
           command: "cleanup-tryout-history",
+          proof: {
+            assetHash: `sha256:${"a".repeat(64)}`,
+            sourceSha: "b".repeat(40),
+          },
           receiptPath: "/tmp/migration-receipt.json",
           releaseId: "migration-release",
         });
@@ -241,6 +245,10 @@ describe("CLI program", () => {
       expect(result).toBe("migration-cleanup-complete");
       expect(calls.migrationCleanup).toEqual({
         command: "cleanup-tryout-history",
+        proof: {
+          assetHash: `sha256:${"a".repeat(64)}`,
+          sourceSha: "b".repeat(40),
+        },
         receiptPath: "/tmp/migration-receipt.json",
         releaseId: "migration-release",
       });

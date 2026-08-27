@@ -18,6 +18,7 @@ import { Effect, Schema } from "effect";
 import { artifactMapping } from "#publisher/migration/tryout/artifact";
 import { historicalArtifacts } from "#test/migration/artifact";
 import { convertedArtifacts } from "#test/migration/converted";
+import { migrationProof } from "#test/migration/flow";
 import { historicalCatalogEntries } from "#test/migration/rows";
 import { migrationSigner } from "#test/migration/signing";
 import { historicalSource, migrationId } from "#test/migration/source";
@@ -79,6 +80,7 @@ export const migrationProtocol = Effect.fn(
     targetBundleHash: prepared.evidence.bundleHash,
     targetSnapshotId: prepared.evidence.snapshot.snapshotId,
   });
+  const proof = yield* migrationProof(receipt);
   const completed: Extract<
     TryoutHistoryMigrationStatus,
     { readonly phase: "completed" }
@@ -137,6 +139,7 @@ export const migrationProtocol = Effect.fn(
       request: migrationRequest({
         ...identity,
         command: "cleanup",
+        proof,
         receipt,
       }),
       response: migrationResponse({

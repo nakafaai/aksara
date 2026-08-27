@@ -4,6 +4,8 @@ import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx";
+const MIGRATION_ASSET_HASH = `sha256:${"a".repeat(64)}`;
+const MIGRATION_SOURCE_SHA = "b".repeat(40);
 
 /** Decodes one preview invocation through its Effect boundary. */
 function parse(args: readonly string[]) {
@@ -99,9 +101,17 @@ describe("production arguments", () => {
           "retained-history-v1",
           "--receipt-path",
           "/tmp/receipt.json",
+          "--asset-hash",
+          MIGRATION_ASSET_HASH,
+          "--source-sha",
+          MIGRATION_SOURCE_SHA,
         ])
       ).toEqual({
         command: "cleanup-tryout-history",
+        proof: {
+          assetHash: MIGRATION_ASSET_HASH,
+          sourceSha: MIGRATION_SOURCE_SHA,
+        },
         receiptPath: "/tmp/receipt.json",
         releaseId: "retained-history-v1",
       });
@@ -204,6 +214,12 @@ describe("production arguments", () => {
       args: ["release", "--unknown", "value"],
       command: "release",
       option: "command",
+      reason: "unknown",
+    },
+    {
+      args: ["release", "--asset-hash", MIGRATION_ASSET_HASH],
+      command: "release",
+      option: "--asset-hash",
       reason: "unknown",
     },
     {

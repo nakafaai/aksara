@@ -3,6 +3,7 @@ import { createHash, generateKeyPairSync, sign } from "node:crypto";
 
 import {
   Ed25519SignatureSchema,
+  GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -12,6 +13,7 @@ import {
   canonicalizeTryoutHistoryMigrationReceiptPayload,
   canonicalizeTryoutHistoryMigrationReceiptSigningInput,
 } from "@nakafa/aksara-contracts/migration/tryout/history/canonical";
+import { TryoutHistoryMigrationProofSchema } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
 import {
   SignedTryoutHistoryMigrationReceiptSchema,
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
@@ -67,6 +69,14 @@ export const migrationReceipt = SignedTryoutHistoryMigrationReceiptSchema.make({
 });
 
 export const migrationReceiptBytes = `${canonicalizeSignedTryoutHistoryMigrationReceipt(migrationReceipt)}\n`;
+
+/** Immutable-release identity paired with the exact receipt fixture bytes. */
+export const migrationProof = TryoutHistoryMigrationProofSchema.make({
+  assetHash: Sha256HashSchema.make(
+    `sha256:${createHash("sha256").update(migrationReceiptBytes).digest("hex")}`
+  ),
+  sourceSha: GitCommitShaSchema.make("b".repeat(40)),
+});
 
 /** Test-only resolver paired with the signed public migration receipt. */
 export const migrationResolver = ContentVerificationKeyResolver.of({
