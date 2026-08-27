@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   decodePagePreviewEntries,
@@ -15,50 +15,63 @@ const germanPath = CorpusSourcePathSchema.make(
 );
 
 describe("public page preview projection", () => {
-  it("projects every selected locale through the same source owner", async () => {
-    const entries = await Effect.runPromise(
-      decodePagePreviewEntries([englishPath, germanPath], [pageSource()])
-    );
+  it.effect(
+    "projects every selected locale through the same source owner",
+    () =>
+      Effect.gen(function* () {
+        const entries = yield* decodePagePreviewEntries(
+          [englishPath, germanPath],
+          [pageSource()]
+        );
 
-    expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
-    expect(entries[1]).toMatchObject({
-      rendererDomain: "site",
-      route: {
-        contentKey: "pages/privacy-policy",
-        publicPath: "privacy-policy",
-      },
-    });
-  });
+        expect(entries.map(({ route }) => route.appLocale)).toEqual([
+          "en",
+          "de",
+        ]);
+        expect(entries[1]).toMatchObject({
+          rendererDomain: "site",
+          route: {
+            contentKey: "pages/privacy-policy",
+            publicPath: "privacy-policy",
+          },
+        });
+      })
+  );
 
-  it("returns one exact selection and no invented unselected body", async () => {
-    const selected = await Effect.runPromise(
-      decodePagePreviewEntry(germanPath, [pageSource()])
-    );
-    const empty = await Effect.runPromise(
-      decodePagePreviewEntries([], [pageSource()])
-    );
-    const activeWithCandidateInput = await Effect.runPromise(
-      decodePagePreviewEntries([englishPath], [pageSource()])
-    );
+  it.effect("returns one exact selection and no invented unselected body", () =>
+    Effect.gen(function* () {
+      const selected = yield* decodePagePreviewEntry(germanPath, [
+        pageSource(),
+      ]);
+      const empty = yield* decodePagePreviewEntries([], [pageSource()]);
+      const activeWithCandidateInput = yield* decodePagePreviewEntries(
+        [englishPath],
+        [pageSource()]
+      );
 
-    expect(selected?.sourcePath).toBe(germanPath);
-    expect(empty).toEqual([]);
-    expect(activeWithCandidateInput).toHaveLength(1);
-  });
+      expect(selected?.sourcePath).toBe(germanPath);
+      expect(empty).toEqual([]);
+      expect(activeWithCandidateInput).toHaveLength(1);
+    })
+  );
 
-  it("maps an invalid projected entry to the registry failure model", async () => {
-    const oversizedPageKey = "a".repeat(507);
-    const invalid = pageSource({
-      pageKey: oversizedPageKey,
-      sourceRoot: `pages/${oversizedPageKey}`,
-    });
-    const path = CorpusSourcePathSchema.make(
-      `packages/corpus/pages/${oversizedPageKey}/en.mdx`
-    );
-    const error = await Effect.runPromise(
-      decodePagePreviewEntry(path, [invalid]).pipe(Effect.flip)
-    );
+  it.effect(
+    "maps an invalid projected entry to the registry failure model",
+    () =>
+      Effect.gen(function* () {
+        const oversizedPageKey = "a".repeat(507);
+        const invalid = pageSource({
+          pageKey: oversizedPageKey,
+          sourceRoot: `pages/${oversizedPageKey}`,
+        });
+        const path = CorpusSourcePathSchema.make(
+          `packages/corpus/pages/${oversizedPageKey}/en.mdx`
+        );
+        const error = yield* decodePagePreviewEntry(path, [invalid]).pipe(
+          Effect.flip
+        );
 
-    expect(error._tag).toBe("PageRegistryError");
-  });
+        expect(error._tag).toBe("PageRegistryError");
+      })
+  );
 });
