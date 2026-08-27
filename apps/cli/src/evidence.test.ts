@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
@@ -5,7 +6,6 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 import {
   readCleanAksaraRevision,
@@ -69,71 +69,76 @@ function readEvidence(
   overrides?: EvidenceOverrides,
   commands?: ExactProcessInput[]
 ) {
-  return Effect.runPromise(
-    readRepositoryEvidence("aksara", "/code/aksara").pipe(
-      Effect.provideService(
-        ExactProcess,
-        makeEvidenceProcess(overrides, commands)
-      )
+  return readRepositoryEvidence("aksara", "/code/aksara").pipe(
+    Effect.provideService(
+      ExactProcess,
+      makeEvidenceProcess(overrides, commands)
     )
   );
 }
 
 /** Returns the typed evidence error produced by one process scenario. */
 function rejectEvidence(overrides: EvidenceOverrides) {
-  return Effect.runPromise(
-    readRepositoryEvidence("nakafa", "/code/nakafa.com").pipe(
-      Effect.provideService(ExactProcess, makeEvidenceProcess(overrides)),
-      Effect.flip
-    )
+  return readRepositoryEvidence("nakafa", "/code/nakafa.com").pipe(
+    Effect.provideService(ExactProcess, makeEvidenceProcess(overrides)),
+    Effect.flip
   );
 }
 
 describe("repository evidence", () => {
-  it("captures exact clean and dirty repository states", async () => {
-    const [clean, dirty] = await Promise.all([
-      readEvidence(),
-      readEvidence({ status: { stdout: " M packages/corpus/real/en.mdx\n" } }),
-    ]);
+  it.effect("captures exact clean and dirty repository states", () =>
+    Effect.gen(function* () {
+      const [clean, dirty] = yield* Effect.all(
+        [
+          readEvidence(),
+          readEvidence({
+            status: { stdout: " M packages/corpus/real/en.mdx\n" },
+          }),
+        ],
+        { concurrency: "unbounded" }
+      );
 
-    expect(clean).toEqual({ dirty: false, sha: COMMIT_SHA });
-    expect(dirty).toEqual({ dirty: true, sha: COMMIT_SHA });
-  });
+      expect(clean).toEqual({ dirty: false, sha: COMMIT_SHA });
+      expect(dirty).toEqual({ dirty: true, sha: COMMIT_SHA });
+    })
+  );
 
-  it("uses explicit repository coordinates and the canonical Git policy", async () => {
-    const commands: ExactProcessInput[] = [];
-    await readEvidence(undefined, commands);
+  it.effect(
+    "uses explicit repository coordinates and the canonical Git policy",
+    () =>
+      Effect.gen(function* () {
+        const commands: ExactProcessInput[] = [];
+        yield* readEvidence(undefined, commands);
 
-    expect(commands).toEqual([
-      makeExactGitInput({
-        args: ["rev-parse", "--verify", "HEAD"],
-        root: "/code/aksara",
-        stderrLimit: 16 * 1024,
-        stdoutLimit: 4 * 1024 * 1024,
-      }),
-      makeExactGitInput({
-        args: ["status", "--porcelain=v1", "--untracked-files=normal"],
-        root: "/code/aksara",
-        stderrLimit: 16 * 1024,
-        stdoutLimit: 4 * 1024 * 1024,
-      }),
-      makeExactGitInput({
-        args: ["rev-parse", "--verify", "HEAD"],
-        root: "/code/aksara",
-        stderrLimit: 16 * 1024,
-        stdoutLimit: 4 * 1024 * 1024,
-      }),
-    ]);
-  });
+        expect(commands).toEqual([
+          makeExactGitInput({
+            args: ["rev-parse", "--verify", "HEAD"],
+            root: "/code/aksara",
+            stderrLimit: 16 * 1024,
+            stdoutLimit: 4 * 1024 * 1024,
+          }),
+          makeExactGitInput({
+            args: ["status", "--porcelain=v1", "--untracked-files=normal"],
+            root: "/code/aksara",
+            stderrLimit: 16 * 1024,
+            stdoutLimit: 4 * 1024 * 1024,
+          }),
+          makeExactGitInput({
+            args: ["rev-parse", "--verify", "HEAD"],
+            root: "/code/aksara",
+            stderrLimit: 16 * 1024,
+            stdoutLimit: 4 * 1024 * 1024,
+          }),
+        ]);
+      })
+  );
 
-  it("accepts only a clean exact Aksara release revision", async () => {
-    const clean = await Effect.runPromise(
-      readCleanAksaraRevision("/code/aksara").pipe(
+  it.effect("accepts only a clean exact Aksara release revision", () =>
+    Effect.gen(function* () {
+      const clean = yield* readCleanAksaraRevision("/code/aksara").pipe(
         Effect.provideService(ExactProcess, makeEvidenceProcess())
-      )
-    );
-    const dirty = await Effect.runPromise(
-      readCleanAksaraRevision("/code/aksara").pipe(
+      );
+      const dirty = yield* readCleanAksaraRevision("/code/aksara").pipe(
         Effect.provideService(
           ExactProcess,
           makeEvidenceProcess({
@@ -141,46 +146,54 @@ describe("repository evidence", () => {
           })
         ),
         Effect.flip
-      )
-    );
+      );
 
-    expect(clean).toBe(COMMIT_SHA);
-    expect(dirty).toMatchObject({
-      _tag: "ReleaseEvidenceError",
-      reason: "dirty",
-    });
-  });
+      expect(clean).toBe(COMMIT_SHA);
+      expect(dirty).toMatchObject({
+        _tag: "ReleaseEvidenceError",
+        reason: "dirty",
+      });
+    })
+  );
 
-  it("rejects a checkout revision that changes during preparation", async () => {
-    const initial = GitCommitShaSchema.make(COMMIT_SHA);
-    const changed = GitCommitShaSchema.make("b".repeat(40));
-    await expect(
-      Effect.runPromise(validateStableAksaraRevision(initial, initial))
-    ).resolves.toBeUndefined();
-    await expect(
-      Effect.runPromise(
-        validateStableAksaraRevision(initial, changed).pipe(Effect.flip)
-      )
-    ).resolves.toMatchObject({
-      _tag: "ReleaseRevisionChangedError",
-      actual: changed,
-      expected: initial,
-    });
-  });
+  it.effect("rejects a checkout revision that changes during preparation", () =>
+    Effect.gen(function* () {
+      const initial = GitCommitShaSchema.make(COMMIT_SHA);
+      const changed = GitCommitShaSchema.make("b".repeat(40));
 
-  it("rejects repository evidence when HEAD moves during status capture", async () => {
-    const error = await rejectEvidence({
-      shas: [{ stdout: `${COMMIT_SHA}\n` }, { stdout: `${"b".repeat(40)}\n` }],
-    });
+      expect(
+        yield* validateStableAksaraRevision(initial, initial)
+      ).toBeUndefined();
+      expect(
+        yield* validateStableAksaraRevision(initial, changed).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "ReleaseRevisionChangedError",
+        actual: changed,
+        expected: initial,
+      });
+    })
+  );
 
-    expect(error).toMatchObject({
-      _tag: "PreviewEvidenceError",
-      repository: "nakafa",
-      stage: "sha",
-    });
-  });
+  it.effect(
+    "rejects repository evidence when HEAD moves during status capture",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* rejectEvidence({
+          shas: [
+            { stdout: `${COMMIT_SHA}\n` },
+            { stdout: `${"b".repeat(40)}\n` },
+          ],
+        });
 
-  it.each([
+        expect(error).toMatchObject({
+          _tag: "PreviewEvidenceError",
+          repository: "nakafa",
+          stage: "sha",
+        });
+      })
+  );
+
+  it.effect.each([
     [{ sha: { exitCode: 1, stdout: "" } }, "sha"],
     [{ status: { exitCode: 1, stdout: "" } }, "status"],
     [{ sha: { stdout: "not-a-commit\n" } }, "sha"],
@@ -188,33 +201,39 @@ describe("repository evidence", () => {
     [{ status: { stdout: Uint8Array.from([0xc3, 0x28]) } }, "status"],
   ] as const)(
     "fails closed for invalid Git evidence %#",
-    async (overrides, stage) => {
-      const error = await rejectEvidence(overrides);
-      expect(error).toMatchObject({
-        _tag: "PreviewEvidenceError",
-        repository: "nakafa",
-        stage,
-      });
-    }
+    ([overrides, stage]) =>
+      Effect.gen(function* () {
+        const error = yield* rejectEvidence(overrides);
+        expect(error).toMatchObject({
+          _tag: "PreviewEvidenceError",
+          repository: "nakafa",
+          stage,
+        });
+      })
   );
 
-  it("maps process startup failures without exposing command details", async () => {
-    const error = await Effect.runPromise(
-      readRepositoryEvidence("aksara", "/secret/path").pipe(
-        Effect.provideService(
-          ExactProcess,
-          makeEvidenceProcess({
-            failure: new ExactProcessError({ reason: "spawn" }),
-          })
-        ),
-        Effect.flip
-      )
-    );
+  it.effect(
+    "maps process startup failures without exposing command details",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* readRepositoryEvidence(
+          "aksara",
+          "/secret/path"
+        ).pipe(
+          Effect.provideService(
+            ExactProcess,
+            makeEvidenceProcess({
+              failure: new ExactProcessError({ reason: "spawn" }),
+            })
+          ),
+          Effect.flip
+        );
 
-    expect(error).toMatchObject({
-      _tag: "PreviewEvidenceError",
-      repository: "aksara",
-    });
-    expect(JSON.stringify(error)).not.toContain("secret");
-  });
+        expect(error).toMatchObject({
+          _tag: "PreviewEvidenceError",
+          repository: "aksara",
+        });
+        expect(JSON.stringify(error)).not.toContain("secret");
+      })
+  );
 });
