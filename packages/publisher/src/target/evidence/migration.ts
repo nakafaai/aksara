@@ -140,7 +140,8 @@ export function hasBoundMigration(
         hasBoundStageCount(exact.mappings.length, value),
       stageBundle: (exact) =>
         value.command === "stageBundle" &&
-        value.bundleHash === exact.bundle.bundleHash &&
+        value.rendererManifestHash === exact.rendererManifest.hash &&
+        value.snapshotId === exact.bundle.payload.snapshot.snapshotId &&
         hasBoundStageCount(1, value),
       stagePlan: (exact) => hasBoundPlan(exact, value),
       stageRows: (exact) =>

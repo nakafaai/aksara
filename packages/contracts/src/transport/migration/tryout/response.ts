@@ -153,6 +153,8 @@ const StageBundleValueSchema = Schema.Struct({
   bundleHash: Sha256HashSchema,
   command: Schema.Literal("stageBundle"),
   ...ResponseIdentityFields,
+  rendererManifestHash: Sha256HashSchema,
+  snapshotId: Sha256HashSchema,
 });
 const StagePlanValueSchema = Schema.Struct({
   command: Schema.Literal("stagePlan"),

@@ -126,6 +126,8 @@ export const migrationProtocol = Effect.fn(
         command: "stageBundle",
         created: 1,
         migrationId,
+        rendererManifestHash: prepared.rendererManifest.hash,
+        snapshotId: prepared.bundle.payload.snapshot.snapshotId,
         unchanged: 0,
       }),
     },

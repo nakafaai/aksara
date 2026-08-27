@@ -70,6 +70,8 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
             command: request.command,
             created: 1,
             migrationId,
+            rendererManifestHash: request.rendererManifest.hash,
+            snapshotId: request.bundle.payload.snapshot.snapshotId,
             unchanged: 0,
           });
         case "stageArtifacts":

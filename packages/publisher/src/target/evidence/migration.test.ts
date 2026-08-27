@@ -23,6 +23,24 @@ describe("migration HTTP evidence", () => {
         ),
         true
       );
+      if (
+        exchanges.bundle.request.command !== "stageBundle" ||
+        exchanges.bundle.response.value.command !== "stageBundle"
+      ) {
+        return yield* Effect.die("Expected bundle exchange fixture.");
+      }
+      assert.strictEqual(
+        hasBoundMigration(
+          exchanges.bundle.request,
+          migrationResponse({
+            ...exchanges.bundle.response.value,
+            bundleHash: otherHash,
+            created: 0,
+            unchanged: 1,
+          })
+        ),
+        true
+      );
       assert.strictEqual(
         hasBoundPublicationSuccess(
           exchanges.source.request,
@@ -113,6 +131,8 @@ describe("migration HTTP evidence", () => {
               command: "stageBundle",
               created: 1,
               migrationId,
+              rendererManifestHash: otherHash,
+              snapshotId: otherHash,
               unchanged: 0,
             }),
           },
