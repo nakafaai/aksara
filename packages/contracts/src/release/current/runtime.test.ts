@@ -71,6 +71,22 @@ describe("current permanent runtime bundle", () => {
     );
   });
 
+  it("accepts a predecessor active runtime before permanent cutover", () => {
+    assert.strictEqual(
+      hasCurrentTryoutRuntimeBundle(runtimeActive, null),
+      true
+    );
+    assert.strictEqual(
+      accepts({
+        active: runtimeActive,
+        candidate: null,
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      }),
+      true
+    );
+  });
+
   it("accepts the bundle bound to the active snapshot and renderer", () => {
     assert.strictEqual(
       hasCurrentTryoutRuntimeBundle(runtimeActive, tryoutRuntimeBundle),
@@ -92,10 +108,6 @@ describe("current permanent runtime bundle", () => {
       hasCurrentTryoutRuntimeBundle(null, tryoutRuntimeBundle),
       false
     );
-    assert.strictEqual(
-      hasCurrentTryoutRuntimeBundle(runtimeActive, null),
-      false
-    );
     for (const state of [
       {
         active: null,
@@ -108,12 +120,6 @@ describe("current permanent runtime bundle", () => {
         candidate: null,
         recovery: null,
         tryoutRuntimeBundle,
-      },
-      {
-        active: runtimeActive,
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active: runtimeActive,

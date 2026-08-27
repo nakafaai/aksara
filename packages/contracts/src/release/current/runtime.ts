@@ -1,7 +1,7 @@
 import type { ActiveContentRelease } from "#contracts/release/current/evidence";
 import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/spec";
 
-/** Checks exact equivalence between active state and its permanent runtime pair. */
+/** Accepts a legacy active runtime or its exact permanent replacement pair. */
 export function hasCurrentTryoutRuntimeBundle(
   active: ActiveContentRelease | null,
   bundle: SignedTryoutRuntimeBundle | null
@@ -13,8 +13,10 @@ export function hasCurrentTryoutRuntimeBundle(
   if (snapshotId === null || snapshotId === undefined) {
     return bundle === null;
   }
+  if (bundle === null) {
+    return true;
+  }
   return (
-    bundle !== null &&
     snapshotId === bundle.payload.snapshot.snapshotId &&
     active.rendererManifest.hash === bundle.payload.rendererManifestHash
   );
