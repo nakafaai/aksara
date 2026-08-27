@@ -1,8 +1,5 @@
-import { realpathSync } from "node:fs";
-import { relative } from "node:path";
-import { NodeServices } from "@effect/platform-node";
 import { PreviewRepositorySchema } from "@nakafa/aksara-contracts/preview/spec";
-import { Effect, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
@@ -20,25 +17,24 @@ export const PREVIEW_REPOSITORIES = {
 };
 
 /** Compiles and signs the real selected English document for provider tests. */
-export async function makePreviewReady(repositories: TestRepositories) {
-  const aksaraRoot = realpathSync(repositories.aksaraRoot);
-  const documentPath = realpathSync(repositories.documentPath);
-  const selected = await Effect.runPromise(
-    selectPreviewDocument(aksaraRoot, relative(aksaraRoot, documentPath)).pipe(
-      Effect.provide(NodeServices.layer)
-    )
-  );
-  const credentials = await Effect.runPromise(makePreviewCredentials());
-  const compiler = await Effect.runPromise(
-    makePreviewDocumentCompiler({
+export const makePreviewReady = Effect.fn("AksaraCliTest.makePreviewReady")(
+  function* (repositories: TestRepositories) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const aksaraRoot = yield* fileSystem.realPath(repositories.aksaraRoot);
+    const documentPath = yield* fileSystem.realPath(repositories.documentPath);
+    const selected = yield* selectPreviewDocument(
+      aksaraRoot,
+      path.relative(aksaraRoot, documentPath)
+    );
+    const credentials = yield* makePreviewCredentials();
+    const compiler = yield* makePreviewDocumentCompiler({
       aksaraRoot,
       rendererManifest: RENDERER_MANIFEST,
       selected,
       signer: credentials.signer,
-    })
-  );
-  const result = await Effect.runPromise(
-    compiler.compile.pipe(Effect.provide(NodeServices.layer))
-  );
-  return { compiler, credentials, document: selected.document, result };
-}
+    });
+    const result = yield* compiler.compile;
+    return { compiler, credentials, document: selected.document, result };
+  }
+);
