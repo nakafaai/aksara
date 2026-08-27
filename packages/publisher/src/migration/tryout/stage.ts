@@ -206,7 +206,13 @@ const stagePlan = Effect.fn("AksaraPublisher.stageTryoutMigrationPlan")(
     if (
       value.command !== "stagePlan" ||
       value.status.phase !== "ready" ||
-      value.status.planHash !== plan.planHash
+      value.status.planHash !== plan.planHash ||
+      value.status.artifactMapCount !== prepared.evidence.artifacts.count ||
+      value.status.catalogMapCount !== prepared.evidence.catalog.count ||
+      value.status.placementMapCount !== prepared.evidence.placements.count ||
+      value.status.sourceSnapshotId !== source.evidence.snapshot.snapshotId ||
+      value.status.targetBundleHash !== prepared.evidence.bundleHash ||
+      value.status.targetSnapshotId !== prepared.evidence.snapshot.snapshotId
     ) {
       return yield* migrationFail("status-evidence");
     }
@@ -254,7 +260,13 @@ export const stageTryoutMigration = Effect.fn(
   );
 });
 
-/** Narrows ready state for callers that resume directly into execution. */
+/** Accepts only a complete immutable authorization for direct execution. */
 export function isMigrationRunnable(status: TryoutHistoryMigrationStatus) {
-  return status.phase === "ready" || status.phase === "running";
+  return (
+    (status.phase === "ready" || status.phase === "running") &&
+    status.completion === null &&
+    status.planHash !== null &&
+    status.targetBundleHash !== null &&
+    status.targetSnapshotId !== null
+  );
 }

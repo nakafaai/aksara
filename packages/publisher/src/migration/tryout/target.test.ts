@@ -11,13 +11,19 @@ import {
 import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 import { Effect, Schema } from "effect";
 
+import { makeArtifactRequirements } from "#publisher/migration/tryout/artifact";
 import { convertTryoutRows } from "#publisher/migration/tryout/row";
 import {
   convertHistoricalRenderer,
   migrationSourceEvidence,
   prepareTryoutMigrationTarget,
 } from "#publisher/migration/tryout/target";
-import { convertedArtifactFacts, historicalRows } from "#test/migration/rows";
+import { convertedArtifacts } from "#test/migration/converted";
+import {
+  convertedArtifactMaps,
+  convertedArtifactSpool,
+  historicalRows,
+} from "#test/migration/rows";
 import {
   migrationSigner,
   migrationVerificationResolver,
@@ -106,16 +112,21 @@ describe("try-out history migration target", () => {
 
   it.effect("rejects target map, count, and route drift", () =>
     Effect.gen(function* () {
+      const requirements = yield* makeArtifactRequirements(
+        historicalRows,
+        convertedArtifacts.length
+      );
       const rows = yield* convertTryoutRows(
         historicalRows,
-        convertedArtifactFacts
+        requirements,
+        convertedArtifactSpool()
       );
       const rendererManifest =
         yield* convertHistoricalRenderer(historicalRenderer);
       /** Prepares one drifted source against otherwise canonical target facts. */
       const prepare = (
         source: TryoutHistoryMigrationSource,
-        artifacts = convertedArtifactFacts
+        artifacts = convertedArtifactMaps
       ) =>
         prepareTryoutMigrationTarget({
           artifacts,
@@ -164,7 +175,7 @@ describe("try-out history migration target", () => {
       );
       const map = yield* prepare(
         historicalSource,
-        convertedArtifactFacts.map((artifact) => ({
+        convertedArtifactMaps.map((artifact) => ({
           ...artifact,
           index: -1,
         }))

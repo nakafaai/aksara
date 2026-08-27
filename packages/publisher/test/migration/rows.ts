@@ -1,7 +1,8 @@
 import { TryoutHistoryMigrationValueSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
-import { convertedArtifactFact } from "#publisher/migration/tryout/row";
+import type { ConvertedTryoutArtifact } from "#publisher/migration/tryout/artifact";
+import { convertedArtifactMap } from "#publisher/migration/tryout/row";
 import {
   answerArtifactHash,
   questionArtifactHash,
@@ -115,10 +116,24 @@ export const historicalRows = {
   ),
 };
 
-/** Current artifact facts corresponding to the retained placement fixture. */
-export const convertedArtifactFacts = convertedArtifacts.map(
-  convertedArtifactFact
-);
+/** Body-free artifact identities corresponding to the retained fixture. */
+export const convertedArtifactMaps =
+  convertedArtifacts.map(convertedArtifactMap);
+
+/** Provides deterministic random reads over converted test artifacts. */
+export function convertedArtifactSpool(
+  artifacts: readonly ConvertedTryoutArtifact[] = convertedArtifacts
+) {
+  return {
+    count: artifacts.length,
+    read: (index: number) => {
+      const artifact = artifacts[index];
+      return artifact === undefined
+        ? Effect.die("Expected one converted artifact fixture.")
+        : Effect.succeed(artifact);
+    },
+  };
+}
 export const currentAnswerHash =
   convertedArtifacts[0].mapping.artifact.artifactHash;
 export const currentQuestionHash =

@@ -156,7 +156,7 @@ describe("try-out history migration source", () => {
     })
   );
 
-  it.effect("requires exactly one signed creating release", () =>
+  it.effect("rejects duplicate signed release identities", () =>
     Effect.gen(function* () {
       const duplicate = migrationSourceFrom({
         ...migrationSource,
@@ -177,7 +177,7 @@ describe("try-out history migration source", () => {
 
       expect(failure).toMatchObject({
         _tag: "TryoutHistoryMigrationSourceError",
-        reason: "creating-release",
+        reason: "release-evidence",
       });
     })
   );

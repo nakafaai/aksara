@@ -111,12 +111,14 @@ function failureReason(failure: { readonly _tag: string }) {
 
 /** Converts the canonical retained artifact pair through one target. */
 const convert = Effect.fn("AksaraPublisherTest.convertArtifacts")(function* (
-  target: Target
+  target: Target,
+  rendererManifest: typeof historicalSource.rendererManifest = historicalSource.rendererManifest
 ) {
   const requirements = yield* makeArtifactRequirements(historicalRows, 2);
   return Array.from(
     yield* makeConvertedArtifactStream({
       migrationId,
+      rendererManifest,
       requirements,
       signer: migrationSigner,
       sourceSnapshotId,
@@ -262,6 +264,23 @@ describe("try-out history artifact conversion", () => {
 
       expect(failureReason(lossless)).toBe("artifact-contract");
       expect(failureReason(inspection)).toBe("artifact-contract");
+    })
+  );
+
+  it.effect("rejects artifacts unsupported by the retained renderer", () =>
+    Effect.gen(function* () {
+      const rendererManifest = {
+        ...historicalSource.rendererManifest,
+        base: {
+          ...historicalSource.rendererManifest.base,
+          supportedComponents: [],
+        },
+      };
+      const failure = yield* convert(artifactTarget(), rendererManifest).pipe(
+        Effect.flip
+      );
+
+      expect(failureReason(failure)).toBe("artifact-contract");
     })
   );
 

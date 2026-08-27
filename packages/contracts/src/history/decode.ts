@@ -23,6 +23,11 @@ export {
   StoredArtifactSourceHashMismatchError,
   StoredArtifactWireByteLimitError,
 } from "#contracts/history/artifact-spec";
+export {
+  StoredRendererComponentMissingError,
+  StoredRendererDomainUnpublishedError,
+  StoredRendererVersionUnsupportedError,
+} from "#contracts/history/compatibility";
 export { verifyStoredTryoutInventory } from "#contracts/history/inventory";
 export {
   type StoredTryoutCatalogRow,
@@ -72,11 +77,6 @@ export {
   StoredRendererHashMismatchError,
   validateHistoricalRendererManifestHash,
 } from "#contracts/history/renderer";
-export {
-  StoredRendererComponentMissingError,
-  StoredRendererDomainUnpublishedError,
-  StoredRendererVersionUnsupportedError,
-} from "#contracts/history/renderer-compatibility";
 export {
   StoredProtectedRuntimeDecodeError,
   StoredProtectedRuntimeMismatchError,

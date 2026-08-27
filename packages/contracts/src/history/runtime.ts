@@ -1,6 +1,7 @@
 import { Effect, Array as ReadonlyArray, Schema } from "effect";
 
 import { authenticateHistoricalArtifact } from "#contracts/history/artifact";
+import { verifyHistoricalRendererCompatibility } from "#contracts/history/compatibility";
 import {
   type StoredProtectedRuntimeFound,
   type StoredProtectedRuntimeItem,
@@ -15,7 +16,6 @@ import {
   type HistoricalRendererManifest,
   validateHistoricalRendererManifestHash,
 } from "#contracts/history/renderer";
-import { verifyHistoricalRendererCompatibility } from "#contracts/history/renderer-compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
 

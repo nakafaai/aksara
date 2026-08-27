@@ -4,6 +4,7 @@ import {
   CompiledContentPayloadSchema,
 } from "@nakafa/aksara-contracts/content";
 import { DateOnlySchema } from "@nakafa/aksara-contracts/date";
+import { verifyHistoricalRendererCompatibility } from "@nakafa/aksara-contracts/history/compatibility";
 import {
   authenticateHistoricalArtifact,
   type HistoricalAppLocale,
@@ -27,6 +28,7 @@ import {
   type TryoutHistoryMigrationArtifactMapping,
   TryoutHistoryMigrationArtifactMappingSchema,
 } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
+import type { TryoutHistoryMigrationSource } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { questionArtifactLocaleForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Array as EffectArray, Schema, Stream } from "effect";
 import { migrationFail } from "#publisher/migration/tryout/error";
@@ -34,7 +36,7 @@ import type { HistoricalTryoutRows } from "#publisher/migration/tryout/source";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationSigner } from "#publisher/signing/service";
 
-/** Lightweight conversion fact retained beside one disk-spooled artifact. */
+/** Authenticated converted artifact retained only in the private disk spool. */
 export const ConvertedTryoutArtifactSchema = Schema.Struct({
   bodyMdx: Schema.String,
   date: DateOnlySchema,
@@ -43,7 +45,8 @@ export const ConvertedTryoutArtifactSchema = Schema.Struct({
 });
 export type ConvertedTryoutArtifact = typeof ConvertedTryoutArtifactSchema.Type;
 
-interface ArtifactRequirement {
+/** One authenticated source artifact identity required by retained placements. */
+export interface ArtifactRequirement {
   readonly artifactLocale: ArtifactLocale;
   readonly contentKey: ContentKey;
   readonly index: number;
@@ -127,12 +130,17 @@ export const makeArtifactRequirements = Effect.fn(
 const convertArtifact = Effect.fn("AksaraPublisher.convertTryoutArtifact")(
   function* (
     signer: PublicationSigner,
+    rendererManifest: TryoutHistoryMigrationSource["rendererManifest"],
     requirement: ArtifactRequirement,
     untrusted: HistoricalSignedContentArtifact
   ) {
     const source = yield* authenticateHistoricalArtifact(untrusted).pipe(
       Effect.mapError(() => migrationFail("provenance"))
     );
+    yield* verifyHistoricalRendererCompatibility({
+      manifest: rendererManifest,
+      payload: source.payload,
+    }).pipe(Effect.mapError(() => migrationFail("artifact-contract")));
     if (
       source.artifactHash !== requirement.oldArtifactHash ||
       source.payload.contentKey !== requirement.contentKey ||
@@ -192,6 +200,7 @@ const convertArtifactBatch = Effect.fn(
 )(function* (
   target: Target,
   signer: PublicationSigner,
+  rendererManifest: TryoutHistoryMigrationSource["rendererManifest"],
   migrationId: ReleaseId,
   sourceSnapshotId: Sha256Hash,
   requirements: readonly [ArtifactRequirement, ...ArtifactRequirement[]]
@@ -214,7 +223,8 @@ const convertArtifactBatch = Effect.fn(
   }
   return yield* Effect.forEach(
     EffectArray.zip(requirements, value.artifacts),
-    ([requirement, artifact]) => convertArtifact(signer, requirement, artifact),
+    ([requirement, artifact]) =>
+      convertArtifact(signer, rendererManifest, requirement, artifact),
     { concurrency: 8 }
   );
 });
@@ -223,6 +233,7 @@ const convertArtifactBatch = Effect.fn(
 export function makeConvertedArtifactStream(input: {
   readonly migrationId: ReleaseId;
   readonly requirements: readonly ArtifactRequirement[];
+  readonly rendererManifest: TryoutHistoryMigrationSource["rendererManifest"];
   readonly signer: PublicationSigner;
   readonly sourceSnapshotId: Sha256Hash;
   readonly target: Target;
@@ -237,6 +248,7 @@ export function makeConvertedArtifactStream(input: {
       convertArtifactBatch(
         input.target,
         input.signer,
+        input.rendererManifest,
         input.migrationId,
         input.sourceSnapshotId,
         requirements

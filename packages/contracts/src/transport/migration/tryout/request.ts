@@ -10,6 +10,13 @@ import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec"
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 
 const MIGRATION_OPERATION = "migrateTryoutHistory";
+
+/**
+ * Deletes this protocol and every caller after a signed production receipt
+ * proves that no retained migration marker remains.
+ */
+export const TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE =
+  "signed-production-receipt-with-zero-remaining-markers";
 const NonNegativeIndexSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );

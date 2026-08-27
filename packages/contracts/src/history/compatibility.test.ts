@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
 
-import { verifyHistoricalRendererCompatibility } from "#contracts/history/renderer-compatibility";
+import { verifyHistoricalRendererCompatibility } from "#contracts/history/compatibility";
 import {
   historicalArtifact,
   historicalMissingRenderer,

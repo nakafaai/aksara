@@ -38,6 +38,10 @@ const verifyReleases = Effect.fn(
       Effect.map((release) => ({ attemptCount: entry.attemptCount, release }))
     )
   );
+  const releaseIds = releases.map(({ release }) => release.manifest.releaseId);
+  if (new Set(releaseIds).size !== releaseIds.length) {
+    return yield* sourceFail("release-evidence");
+  }
   const hasExactEvidence = releases.every(
     ({ attemptCount, release }, index) => {
       const expected = source.evidence.releases[index];

@@ -26,8 +26,15 @@ type MigrationCommand = TryoutHistoryMigrationRequest["command"];
 const spool: ReplaySpool<ConvertedTryoutArtifact> = {
   bytes: 1,
   count: convertedArtifacts.length,
+  read: (index) => {
+    const value = convertedArtifacts[index];
+    return value === undefined
+      ? Effect.die("Expected one converted artifact fixture.")
+      : Effect.succeed(value);
+  },
   replay: Stream.fromIterable(convertedArtifacts),
 };
+const authorizationHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
 
 /** Returns the migration reason without hiding an unexpected failure tag. */
 function failureReason(failure: { readonly _tag: string }) {
@@ -38,7 +45,8 @@ function failureReason(failure: { readonly _tag: string }) {
 
 /** Executes valid staging, optionally substituting one contradictory reply. */
 const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
-  drift?: MigrationCommand
+  drift?: MigrationCommand,
+  driftPlanCount = false
 ) {
   const commands: MigrationCommand[] = [];
   const { prepared, rows, source } = yield* makeMigrationTarget();
@@ -82,7 +90,8 @@ const run = Effect.fn("AksaraPublisherTest.stageMigration")(function* (
             command: request.command,
             migrationId,
             status: migrationStatus({
-              artifactMapCount: prepared.evidence.artifacts.count,
+              artifactMapCount:
+                prepared.evidence.artifacts.count + (driftPlanCount ? 1 : 0),
               catalogMapCount: prepared.evidence.catalog.count,
               phase: "ready",
               placementMapCount: prepared.evidence.placements.count,
@@ -225,16 +234,38 @@ describe("try-out history migration staging", () => {
     })
   );
 
-  it("narrows only ready and running migration state", () => {
-    expect(isMigrationRunnable(migrationStatus({ phase: "ready" }))).toBe(true);
-    expect(isMigrationRunnable(migrationStatus({ phase: "running" }))).toBe(
-      true
+  it.effect("rejects ready state with incomplete staged map evidence", () =>
+    Effect.gen(function* () {
+      const failure = yield* run(undefined, true).pipe(Effect.flip);
+
+      expect(failureReason(failure)).toBe("status-evidence");
+    })
+  );
+
+  it("narrows only complete ready and running authorization state", () => {
+    const authorization = {
+      planHash: authorizationHash,
+      targetBundleHash: authorizationHash,
+      targetSnapshotId: authorizationHash,
+    };
+    expect(
+      isMigrationRunnable(migrationStatus({ ...authorization, phase: "ready" }))
+    ).toBe(true);
+    expect(
+      isMigrationRunnable(
+        migrationStatus({ ...authorization, phase: "running" })
+      )
+    ).toBe(true);
+    expect(isMigrationRunnable(migrationStatus({ phase: "ready" }))).toBe(
+      false
     );
     expect(isMigrationRunnable(migrationStatus({ phase: "staging" }))).toBe(
       false
     );
-    expect(isMigrationRunnable(migrationStatus({ phase: "completed" }))).toBe(
-      false
-    );
+    expect(
+      isMigrationRunnable(
+        migrationStatus({ ...authorization, phase: "completed" })
+      )
+    ).toBe(false);
   });
 });

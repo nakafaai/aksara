@@ -13,7 +13,7 @@ import {
 } from "#publisher/migration/tryout/artifact";
 import { migrationFail } from "#publisher/migration/tryout/error";
 import {
-  convertedArtifactFact,
+  convertedArtifactMap,
   convertTryoutRows,
 } from "#publisher/migration/tryout/row";
 import {
@@ -63,18 +63,39 @@ const readOptionalStatus = Effect.fn(
     );
 });
 
+/** Checks a run result preserves every immutable authorization identity. */
+function hasSameAuthorization(
+  expected: TryoutHistoryMigrationStatus,
+  actual: TryoutHistoryMigrationStatus
+) {
+  return (
+    actual.migrationId === expected.migrationId &&
+    actual.planHash === expected.planHash &&
+    actual.sourceSnapshotId === expected.sourceSnapshotId &&
+    actual.artifactMapCount === expected.artifactMapCount &&
+    actual.catalogMapCount === expected.catalogMapCount &&
+    actual.placementMapCount === expected.placementMapCount &&
+    actual.targetBundleHash === expected.targetBundleHash &&
+    actual.targetSnapshotId === expected.targetSnapshotId
+  );
+}
+
 /** Runs or resumes the authorized server-owned attempt transaction series. */
 const runMigration = Effect.fn("AksaraPublisher.runTryoutHistoryMigration")(
-  function* (target: typeof PublicationTarget.Service, migrationId: ReleaseId) {
+  function* (
+    target: typeof PublicationTarget.Service,
+    authorized: TryoutHistoryMigrationStatus
+  ) {
     const value = yield* target.migrateTryoutHistory({
       command: "run",
       operation: "migrateTryoutHistory",
-      releaseId: migrationId,
+      releaseId: authorized.migrationId,
     });
     if (
       value.command !== "run" ||
       value.status.phase !== "completed" ||
-      value.status.completion === null
+      value.status.completion === null ||
+      !hasSameAuthorization(authorized, value.status)
     ) {
       return yield* migrationFail("status-evidence");
     }
@@ -131,27 +152,28 @@ const prepareAndRun = Effect.fn("AksaraPublisher.prepareTryoutMigration")(
       schema: ConvertedTryoutArtifactSchema,
       stream: makeConvertedArtifactStream({
         migrationId,
+        rendererManifest: source.rendererManifest,
         requirements,
         signer,
         sourceSnapshotId: source.evidence.snapshot.snapshotId,
         target,
       }),
     });
-    const artifactFacts = Array.from(
+    const artifactMaps = Array.from(
       yield* spool.replay.pipe(
-        Stream.map(convertedArtifactFact),
+        Stream.map(convertedArtifactMap),
         Stream.runCollect
       )
     );
-    const convertedRows = yield* convertTryoutRows(rows, artifactFacts);
+    const convertedRows = yield* convertTryoutRows(rows, requirements, spool);
     const prepared = yield* prepareTryoutMigrationTarget({
-      artifacts: artifactFacts,
+      artifacts: artifactMaps,
       rendererManifest,
       rows: convertedRows,
       signer,
       source,
     });
-    yield* stageTryoutMigration({
+    const ready = yield* stageTryoutMigration({
       artifacts: spool,
       migrationId,
       prepared,
@@ -160,7 +182,7 @@ const prepareAndRun = Effect.fn("AksaraPublisher.prepareTryoutMigration")(
       source,
       target,
     });
-    return yield* runMigration(target, migrationId);
+    return yield* runMigration(target, ready);
   }
 );
 
@@ -181,10 +203,7 @@ export const migrateRetainedTryoutHistory = Effect.fn(
         return yield* makeReceipt(signer, status);
       }
       if (status && isMigrationRunnable(status)) {
-        return yield* makeReceipt(
-          signer,
-          yield* runMigration(target, migrationId)
-        );
+        return yield* makeReceipt(signer, yield* runMigration(target, status));
       }
       const completed = yield* prepareAndRun(target, signer, migrationId);
       return yield* makeReceipt(signer, completed);

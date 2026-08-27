@@ -17,6 +17,7 @@ import {
   migrationRejection,
   migrationStatusTarget,
 } from "#test/migration/flow";
+import { otherHash } from "#test/migration/protocol";
 import {
   migrationSigningKey,
   migrationVerificationResolver,
@@ -168,11 +169,20 @@ describe("retained try-out history migration program", () => {
 
   it.effect("rejects incomplete run and receipt evidence", () =>
     Effect.gen(function* () {
-      const ready = migrationStatus({ phase: "ready" });
+      const ready = migrationStatus({
+        phase: "ready",
+        planHash: otherHash,
+        targetBundleHash: otherHash,
+        targetSnapshotId: otherHash,
+      });
       const runFailures = yield* Effect.forEach(
         [
           migrationStatus({ phase: "ready" }),
           migrationStatus({ completion: null, phase: "completed" }),
+          completedMigrationStatus({
+            ...ready,
+            targetSnapshotId: historicalSource.evidence.snapshot.snapshotId,
+          }),
         ],
         (status) =>
           run(migrationStatusTarget(ready, status).target).pipe(Effect.flip)
@@ -189,6 +199,7 @@ describe("retained try-out history migration program", () => {
       );
 
       expect(runFailures.map(failureReason)).toEqual([
+        "status-evidence",
         "status-evidence",
         "status-evidence",
       ]);

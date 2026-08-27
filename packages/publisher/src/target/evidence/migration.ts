@@ -78,6 +78,12 @@ function hasBoundPlan(
     value.status.planHash === request.plan.planHash &&
     value.status.sourceSnapshotId ===
       request.plan.payload.source.snapshot.snapshotId &&
+    value.status.artifactMapCount ===
+      request.plan.payload.target.artifacts.count &&
+    value.status.catalogMapCount ===
+      request.plan.payload.target.catalog.count &&
+    value.status.placementMapCount ===
+      request.plan.payload.target.placements.count &&
     value.status.targetBundleHash === request.plan.payload.target.bundleHash &&
     value.status.targetSnapshotId ===
       request.plan.payload.target.snapshot.snapshotId

@@ -23,7 +23,7 @@ import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapsh
 import { Effect, Array as EffectArray, Schema, Stream } from "effect";
 import { migrationFail } from "#publisher/migration/tryout/error";
 import {
-  type ConvertedArtifactFact,
+  type ConvertedArtifactMap,
   type ConvertedTryoutRows,
   convertedCatalogRecords,
   convertedPlacementRecords,
@@ -85,7 +85,7 @@ const mapEvidence = Effect.fn("AksaraPublisher.hashTryoutMigrationMap")(
 const makeMapEvidence = Effect.fn(
   "AksaraPublisher.makeTryoutMigrationMapEvidence"
 )(function* (
-  artifacts: readonly ConvertedArtifactFact[],
+  artifacts: readonly ConvertedArtifactMap[],
   rows: ConvertedTryoutRows
 ) {
   const artifactEntries = artifacts.map(
@@ -159,7 +159,7 @@ const selectCreatingRelease = Effect.fn(
 export const prepareTryoutMigrationTarget = Effect.fn(
   "AksaraPublisher.prepareTryoutMigrationTarget"
 )(function* (input: {
-  readonly artifacts: readonly ConvertedArtifactFact[];
+  readonly artifacts: readonly ConvertedArtifactMap[];
   readonly rendererManifest: RendererManifestEnvelope;
   readonly rows: ConvertedTryoutRows;
   readonly signer: PublicationSigner;

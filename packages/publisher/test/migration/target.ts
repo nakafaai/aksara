@@ -9,12 +9,18 @@ import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog"
 import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { Effect, Schema } from "effect";
 
+import { makeArtifactRequirements } from "#publisher/migration/tryout/artifact";
 import { convertTryoutRows } from "#publisher/migration/tryout/row";
 import {
   convertHistoricalRenderer,
   prepareTryoutMigrationTarget,
 } from "#publisher/migration/tryout/target";
-import { convertedArtifactFacts, historicalRows } from "#test/migration/rows";
+import { convertedArtifacts } from "#test/migration/converted";
+import {
+  convertedArtifactMaps,
+  convertedArtifactSpool,
+  historicalRows,
+} from "#test/migration/rows";
 import { migrationSigner } from "#test/migration/signing";
 import { historicalRenderer, historicalSource } from "#test/migration/source";
 
@@ -29,12 +35,20 @@ function decodeSource(input: unknown) {
 export const makeMigrationTarget = Effect.fn(
   "AksaraPublisherTest.makeMigrationTarget"
 )(function* (source: TryoutHistoryMigrationSource = historicalSource) {
-  const rows = yield* convertTryoutRows(historicalRows, convertedArtifactFacts);
+  const requirements = yield* makeArtifactRequirements(
+    historicalRows,
+    convertedArtifacts.length
+  );
+  const rows = yield* convertTryoutRows(
+    historicalRows,
+    requirements,
+    convertedArtifactSpool()
+  );
   const rendererManifest = yield* convertHistoricalRenderer(
     source.rendererManifest
   );
   const prepared = yield* prepareTryoutMigrationTarget({
-    artifacts: convertedArtifactFacts,
+    artifacts: convertedArtifactMaps,
     rendererManifest,
     rows,
     signer: migrationSigner,
@@ -47,7 +61,15 @@ export const makeMigrationTarget = Effect.fn(
 export const makeInternalTarget = Effect.fn(
   "AksaraPublisherTest.makeInternalMigrationTarget"
 )(function* (oldRowHash: Sha256Hash) {
-  const rows = yield* convertTryoutRows(historicalRows, convertedArtifactFacts);
+  const requirements = yield* makeArtifactRequirements(
+    historicalRows,
+    convertedArtifacts.length
+  );
+  const rows = yield* convertTryoutRows(
+    historicalRows,
+    requirements,
+    convertedArtifactSpool()
+  );
   const first = rows.catalog.at(0);
   if (first === undefined) {
     return yield* Effect.die("Expected one converted catalog fixture.");
@@ -88,7 +110,7 @@ export const makeInternalTarget = Effect.fn(
     },
   });
   return yield* prepareTryoutMigrationTarget({
-    artifacts: convertedArtifactFacts,
+    artifacts: convertedArtifactMaps,
     rendererManifest,
     rows: {
       ...rows,

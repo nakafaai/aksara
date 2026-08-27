@@ -6,6 +6,7 @@ import {
   makeTrustedKeyResolver,
   TRUSTED_CONTENT_KEYS,
 } from "@nakafa/aksara-contracts/signature/trusted";
+import { TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
 import { migrateRetainedTryoutHistory } from "@nakafa/aksara-publisher/migration/tryout/program";
 import {
   PublicationSigningKey,
@@ -100,6 +101,7 @@ export const runTryoutMigrationCommand: (
           planHash: receipt.payload.planHash,
           receiptHash: receipt.receiptHash,
           remainingMarkers: receipt.payload.completion.remainingMarkers,
+          removalGate: TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE,
           targetBundleHash: receipt.payload.targetBundleHash,
           targetSnapshotId: receipt.payload.targetSnapshotId,
         })

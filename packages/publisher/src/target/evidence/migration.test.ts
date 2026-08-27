@@ -36,6 +36,12 @@ describe("migration HTTP evidence", () => {
     () =>
       Effect.gen(function* () {
         const exchanges = yield* migrationProtocol();
+        if (
+          exchanges.plan.request.command !== "stagePlan" ||
+          exchanges.plan.response.value.command !== "stagePlan"
+        ) {
+          return yield* Effect.die("Expected signed plan exchange fixture.");
+        }
         const invalid = [
           {
             request: exchanges.source.request,
@@ -105,6 +111,18 @@ describe("migration HTTP evidence", () => {
               created: 1,
               migrationId,
               unchanged: 0,
+            }),
+          },
+          {
+            request: exchanges.plan.request,
+            response: migrationResponse({
+              command: "stagePlan",
+              migrationId,
+              status: migrationStatus({
+                ...exchanges.plan.response.value.status,
+                artifactMapCount:
+                  exchanges.plan.response.value.status.artifactMapCount + 1,
+              }),
             }),
           },
         ];

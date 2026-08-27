@@ -5,13 +5,17 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect } from "effect";
 import { vi } from "vitest";
 
-import { ConvertedTryoutArtifactSchema } from "#publisher/migration/tryout/artifact";
 import {
-  type ConvertedArtifactFact,
-  convertedArtifactFact,
+  type ConvertedTryoutArtifact,
+  ConvertedTryoutArtifactSchema,
+  makeArtifactRequirements,
+} from "#publisher/migration/tryout/artifact";
+import {
+  convertedArtifactMap,
   convertedCatalogRecords,
   convertedPlacementRecords,
   convertTryoutRows,
@@ -21,8 +25,9 @@ import {
   historicalArtifacts,
   questionArtifactHash,
 } from "#test/migration/artifact";
+import { convertedArtifacts } from "#test/migration/converted";
 import {
-  convertedArtifactFacts,
+  convertedArtifactSpool,
   currentAnswerHash,
   currentQuestionHash,
   historicalRows,
@@ -30,6 +35,43 @@ import {
 import { migrationSigner } from "#test/migration/signing";
 
 const mapping = vi.hoisted(() => ({ catalog: true, placement: true }));
+
+/** Converts rows against an in-memory implementation of the disk index. */
+const convertRows = Effect.fn("AksaraPublisherTest.convertRows")(function* (
+  rows = historicalRows,
+  artifacts: readonly ConvertedTryoutArtifact[] = convertedArtifacts
+) {
+  const requirements = yield* makeArtifactRequirements(rows, 2);
+  return yield* convertTryoutRows(
+    rows,
+    requirements,
+    convertedArtifactSpool(artifacts)
+  );
+});
+
+/** Changes one converted artifact field for fail-closed row tests. */
+function changeArtifact(
+  artifact: ConvertedTryoutArtifact,
+  input: {
+    readonly payload?: Partial<typeof CompiledContentPayloadSchema.Type>;
+    readonly role?: ConvertedTryoutArtifact["role"];
+  }
+) {
+  return ConvertedTryoutArtifactSchema.make({
+    ...artifact,
+    mapping: {
+      ...artifact.mapping,
+      artifact: {
+        ...artifact.mapping.artifact,
+        payload: CompiledContentPayloadSchema.make({
+          ...artifact.mapping.artifact.payload,
+          ...input.payload,
+        }),
+      },
+    },
+    role: input.role ?? artifact.role,
+  });
+}
 
 vi.mock(
   "@nakafa/aksara-contracts/migration/tryout/history/lossless",
@@ -66,10 +108,7 @@ function failureReason(failure: { readonly _tag: string }) {
 describe("try-out history row conversion", () => {
   it.effect("converts exact catalog, placement, and artifact identities", () =>
     Effect.gen(function* () {
-      const rows = yield* convertTryoutRows(
-        historicalRows,
-        convertedArtifactFacts
-      );
+      const rows = yield* convertRows();
       const catalog = convertedCatalogRecords(rows);
       const placements = convertedPlacementRecords(rows);
 
@@ -111,7 +150,7 @@ describe("try-out history row conversion", () => {
         })
       );
       expect(
-        convertedArtifactFact(
+        convertedArtifactMap(
           ConvertedTryoutArtifactSchema.make({
             bodyMdx: "Retained answer",
             date: "2026-01-01",
@@ -131,36 +170,52 @@ describe("try-out history row conversion", () => {
     })
   );
 
-  it.effect("rejects duplicate, missing, and mismatched artifact facts", () =>
+  it.effect("rejects duplicate, missing, and mismatched artifact records", () =>
     Effect.gen(function* () {
-      const facts = convertedArtifactFacts;
-      const duplicate = yield* convertTryoutRows(historicalRows, [
-        ...facts,
-        ...facts.slice(0, 1),
-      ]).pipe(Effect.flip);
+      const first = convertedArtifacts.at(0);
+      if (first === undefined) {
+        return yield* Effect.die("Expected converted artifact fixtures.");
+      }
+      const requirements = yield* makeArtifactRequirements(historicalRows, 2);
+      const duplicate = yield* convertTryoutRows(
+        historicalRows,
+        requirements,
+        convertedArtifactSpool([...convertedArtifacts, first])
+      ).pipe(Effect.flip);
       const missing = yield* convertTryoutRows(
         historicalRows,
-        facts.slice(0, 1)
+        requirements,
+        convertedArtifactSpool(convertedArtifacts.slice(0, 1))
       ).pipe(Effect.flip);
-      const fields: readonly Partial<ConvertedArtifactFact>[] = [
-        { artifactLocale: ArtifactLocaleSchema.make("de") },
-        { contentKey: "question-bank/mismatch/question" },
-        { rendererDomain: "mathematics" },
+      const fields: readonly Parameters<typeof changeArtifact>[1][] = [
+        { payload: { artifactLocale: ArtifactLocaleSchema.make("de") } },
+        {
+          payload: {
+            contentKey: ContentKeySchema.make(
+              "question-bank/mismatch/question"
+            ),
+          },
+        },
+        {
+          payload: {
+            rendererDomain: RendererDomainSchema.make("mathematics"),
+          },
+        },
         { role: "answer" },
       ];
       const mismatches = yield* Effect.forEach(fields, (override) =>
-        convertTryoutRows(
+        convertRows(
           historicalRows,
-          facts.map((fact) =>
-            fact.oldArtifactHash === questionArtifactHash
-              ? { ...fact, ...override }
-              : fact
+          convertedArtifacts.map((artifact) =>
+            artifact.mapping.oldArtifactHash === questionArtifactHash
+              ? changeArtifact(artifact, override)
+              : artifact
           )
         ).pipe(Effect.flip)
       );
 
       expect(failureReason(duplicate)).toBe("artifact-count");
-      expect(failureReason(missing)).toBe("artifact-requirement");
+      expect(failureReason(missing)).toBe("artifact-count");
       expect(mismatches.map(failureReason)).toEqual([
         "artifact-requirement",
         "artifact-requirement",
@@ -172,22 +227,19 @@ describe("try-out history row conversion", () => {
 
   it.effect("rejects malformed current catalog and placement projections", () =>
     Effect.gen(function* () {
-      const catalog = yield* convertTryoutRows(
-        {
-          ...historicalRows,
-          catalog: historicalRows.catalog.map(({ index, row }) => ({
-            index,
-            row: {
-              ...row,
-              record: {
-                ...row.record,
-                row: { ...row.record.row, order: 0 },
-              },
+      const catalog = yield* convertRows({
+        ...historicalRows,
+        catalog: historicalRows.catalog.map(({ index, row }) => ({
+          index,
+          row: {
+            ...row,
+            record: {
+              ...row.record,
+              row: { ...row.record.row, order: 0 },
             },
-          })),
-        },
-        convertedArtifactFacts
-      ).pipe(Effect.flip);
+          },
+        })),
+      }).pipe(Effect.flip);
       const placement = historicalRows.placements.at(0);
       if (placement === undefined) {
         return yield* Effect.die("Expected one retained placement fixture.");
@@ -215,16 +267,20 @@ describe("try-out history row conversion", () => {
           },
         ],
       };
-      const invalidFacts = convertedArtifactFacts.map((fact) => {
-        if (fact.oldArtifactHash === questionArtifactHash) {
-          return { ...fact, contentKey: questionContentKey };
+      const invalidArtifacts = convertedArtifacts.map((artifact) => {
+        if (artifact.mapping.oldArtifactHash === questionArtifactHash) {
+          return changeArtifact(artifact, {
+            payload: { contentKey: questionContentKey },
+          });
         }
-        if (fact.oldArtifactHash === answerArtifactHash) {
-          return { ...fact, contentKey: "invalid/answer" };
+        if (artifact.mapping.oldArtifactHash === answerArtifactHash) {
+          return changeArtifact(artifact, {
+            payload: { contentKey: ContentKeySchema.make("invalid/answer") },
+          });
         }
-        return fact;
+        return artifact;
       });
-      const source = yield* convertTryoutRows(invalidRows, invalidFacts).pipe(
+      const source = yield* convertRows(invalidRows, invalidArtifacts).pipe(
         Effect.flip
       );
 
@@ -236,16 +292,10 @@ describe("try-out history row conversion", () => {
   it.effect("rejects any non-lossless catalog or placement mapping", () =>
     Effect.gen(function* () {
       mapping.catalog = false;
-      const catalog = yield* convertTryoutRows(
-        historicalRows,
-        convertedArtifactFacts
-      ).pipe(Effect.flip);
+      const catalog = yield* convertRows().pipe(Effect.flip);
       mapping.catalog = true;
       mapping.placement = false;
-      const placement = yield* convertTryoutRows(
-        historicalRows,
-        convertedArtifactFacts
-      ).pipe(Effect.flip);
+      const placement = yield* convertRows().pipe(Effect.flip);
       mapping.placement = true;
 
       expect(failureReason(catalog)).toBe("catalog-conversion");
