@@ -1,12 +1,47 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-import { describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
+import { Context, Effect, Layer, Path } from "effect";
 
+import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 import type { RawSources } from "#corpus/quran/source/model";
 import { parseQuranSources } from "#corpus/quran/source/parse";
 
-const sourceRoot = resolve(import.meta.dirname, "../sources");
+interface QuranParseFixtureValue {
+  readonly completeSources: RawSources;
+  readonly englishSource: string;
+  readonly rawSources: RawSources;
+}
+
+class QuranParseFixture extends Context.Service<
+  QuranParseFixture,
+  QuranParseFixtureValue
+>()("AksaraCorpus.test.QuranParseFixture") {}
+
+/** Loads and authenticates the parser fixtures through production Effect seams. */
+const loadParseFixture = Effect.fn("AksaraCorpus.test.loadQuranParseFixture")(
+  function* () {
+    const path = yield* Path.Path;
+    const repositoryRoot = path.resolve(import.meta.dirname, "../../../..");
+    const { sources } = yield* loadPinnedQuranSources(repositoryRoot);
+    const translations = {
+      en: sources.translations.en,
+      id: sources.translations.id,
+    };
+    const englishSource = yield* Effect.fromNullishOr(translations.en).pipe(
+      Effect.orDie
+    );
+
+    return {
+      completeSources: sources,
+      englishSource,
+      rawSources: { ...sources, translations },
+    } satisfies QuranParseFixtureValue;
+  }
+);
+
+const fixtureLayer = Layer.effect(QuranParseFixture)(loadParseFixture()).pipe(
+  Layer.provideMerge(NodeServices.layer)
+);
 const FIRST_ARABIC_LINE_PATTERN = /^.*$/mu;
 const FIRST_SURAH_PATTERN = /<sura number="1">[\s\S]*?<\/sura>/u;
 const FIRST_VERSE_PATTERN = /<aya number="1">[\s\S]*?<\/aya>/u;
@@ -14,244 +49,245 @@ const LAST_SURAH_PATTERN = /\s*<sura number="114">[\s\S]*?<\/sura>/u;
 const TAFSIR_TRANSLATION_PATTERN = /"translation":"(?:\\.|[^"])*"/u;
 const TRANSLATION_PATTERN =
   /<translation><!\[CDATA\[[\s\S]*?\]\]><\/translation>/u;
-const englishSource = readFileSync(
-  resolve(sourceRoot, "quranenc/en.xml"),
-  "utf8"
-);
-const germanSource = readFileSync(
-  resolve(sourceRoot, "german/translation.xml"),
-  "utf8"
-);
-const rawSources: RawSources = {
-  arabic: readFileSync(resolve(sourceRoot, "tanzil/text.txt"), "utf8"),
-  metadata: readFileSync(resolve(sourceRoot, "tanzil/data.xml"), "utf8"),
-  tafsir: Array.from({ length: 114 }, (_, index) =>
-    readFileSync(
-      resolve(sourceRoot, `quranenc/tafsir/${index + 1}.json`),
-      "utf8"
-    )
-  ),
-  translations: {
-    en: englishSource,
-    id: readFileSync(resolve(sourceRoot, "quranenc/id.xml"), "utf8"),
-  },
-};
 
-/** Parses one complete source set only at the test runner boundary. */
-function parse(sources: RawSources) {
-  return Effect.runPromise(parseQuranSources(sources));
-}
-
-/** Returns one typed parser rejection at the test runner boundary. */
+/** Returns one typed parser rejection inside the Effect test runtime. */
 function reject(sources: RawSources) {
-  return Effect.runPromise(parseQuranSources(sources).pipe(Effect.flip));
+  return parseQuranSources(sources).pipe(Effect.flip);
 }
 
 /** Replaces one Tafsir response without mutating the canonical fixture. */
-function withTafsir(index: number, source: string): RawSources {
+function withTafsir(
+  fixture: QuranParseFixtureValue,
+  index: number,
+  source: string
+): RawSources {
   return {
-    ...rawSources,
-    tafsir: rawSources.tafsir.map((current, currentIndex) =>
+    ...fixture.rawSources,
+    tafsir: fixture.rawSources.tafsir.map((current, currentIndex) =>
       currentIndex === index ? source : current
     ),
   };
 }
 
 /** Replaces the English source without mutating other official bytes. */
-function withEnglish(english: string): RawSources {
+function withEnglish(fixture: QuranParseFixtureValue, english: string) {
   return {
-    ...rawSources,
-    translations: { ...rawSources.translations, en: english },
+    ...fixture.rawSources,
+    translations: { ...fixture.rawSources.translations, en: english },
   };
 }
 
-describe("Quran source parsing", () => {
-  it("validates all three translations across the complete corpus", async () => {
-    const surahs = await parse({
-      ...rawSources,
-      translations: { ...rawSources.translations, de: germanSource },
-    });
+layer(fixtureLayer)("Quran source parsing", (it) => {
+  it.effect(
+    "validates all translations and preserves the exact German source",
+    () =>
+      Effect.gen(function* () {
+        const { completeSources } = yield* QuranParseFixture;
+        const surahs = yield* parseQuranSources(completeSources);
 
-    expect(surahs).toHaveLength(114);
-    expect(
-      surahs.reduce((count, surah) => count + surah.verses.length, 0)
-    ).toBe(6236);
-    expect(Object.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()).toEqual(
-      ["de", "en", "id"]
-    );
-  });
+        expect(surahs).toHaveLength(114);
+        expect(
+          surahs.reduce((count, surah) => count + surah.verses.length, 0)
+        ).toBe(6236);
+        expect(
+          Object.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()
+        ).toEqual(["de", "en", "id"]);
+        expect(surahs[0]?.verses[0]?.translation.de).toEqual({
+          footnotes: "",
+          text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
+        });
+      })
+  );
 
-  it("preserves the complete German translation exactly", async () => {
-    const surahs = await parse({
-      ...rawSources,
-      translations: { ...rawSources.translations, de: germanSource },
-    });
+  it.effect("rejects missing and empty Arabic verses", () =>
+    Effect.gen(function* () {
+      const { rawSources } = yield* QuranParseFixture;
+      const copyright =
+        "\n\n\n# PLEASE DO NOT REMOVE OR CHANGE THIS COPYRIGHT BLOCK";
+      const errors = yield* Effect.all(
+        [
+          reject({
+            ...rawSources,
+            arabic: rawSources.arabic.replace(copyright, ""),
+          }),
+          reject({
+            ...rawSources,
+            arabic: rawSources.arabic.replace(FIRST_ARABIC_LINE_PATTERN, ""),
+          }),
+        ],
+        { concurrency: "unbounded" }
+      );
 
-    expect(surahs[0]?.verses[0]?.translation.de).toEqual({
-      footnotes: "",
-      text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
-    });
-  });
+      expect(errors.map(({ detail }) => detail)).toEqual([
+        "Tanzil Arabic text is incomplete.",
+        "Tanzil Arabic text is incomplete.",
+      ]);
+    })
+  );
 
-  it("rejects missing and empty Arabic verses", async () => {
-    const copyright =
-      "\n\n\n# PLEASE DO NOT REMOVE OR CHANGE THIS COPYRIGHT BLOCK";
-    const errors = await Promise.all([
-      reject({
-        ...rawSources,
-        arabic: rawSources.arabic.replace(copyright, ""),
+  it.effect(
+    "rejects empty, misnumbered, and unexpected translation surahs",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* QuranParseFixture;
+        const empty = fixture.englishSource.replace(
+          FIRST_SURAH_PATTERN,
+          '<sura number="1"></sura>'
+        );
+        const misnumbered = fixture.englishSource.replace(
+          '<sura number="1">',
+          '<sura number="2">'
+        );
+        const unexpected = fixture.englishSource.replace(
+          "</sura_list>",
+          '<sura number="115">unexpected</sura></sura_list>'
+        );
+        const errors = yield* Effect.all(
+          [empty, misnumbered, unexpected].map((english) =>
+            reject(withEnglish(fixture, english))
+          ),
+          { concurrency: "unbounded" }
+        );
+
+        expect(
+          errors.every(({ detail }) =>
+            detail.startsWith("Invalid QuranEnc surah")
+          )
+        ).toBe(true);
+      })
+  );
+
+  it.effect.each([
+    [
+      "rejects a translation surah with a missing verse",
+      (source: string) => source.replace(FIRST_VERSE_PATTERN, ""),
+      "Incomplete QuranEnc surah 1.",
+    ],
+    [
+      "rejects translation markers without exact note definitions",
+      (source: string) =>
+        source.replace(
+          TRANSLATION_PATTERN,
+          "<translation><![CDATA[Broken source translation[1].]]></translation>"
+        ),
+      "Invalid QuranEnc translation notes 1:1.",
+    ],
+    [
+      "rejects a translation that omits a complete surah",
+      (source: string) => source.replace(LAST_SURAH_PATTERN, ""),
+      "QuranEnc translation is incomplete.",
+    ],
+  ] as const)("%s", ([, transform, detail]) =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranParseFixture;
+      const error = yield* reject(
+        withEnglish(fixture, transform(fixture.englishSource))
+      );
+
+      expect(error.detail).toBe(detail);
+    })
+  );
+
+  it.effect.each([
+    ["empty body", FIRST_VERSE_PATTERN, '<aya number="1"></aya>'],
+    ["wrong number", '<aya number="1">', '<aya number="2">'],
+    ["missing text", TRANSLATION_PATTERN, ""],
+    ["empty text", TRANSLATION_PATTERN, "<translation></translation>"],
+    ["missing footnotes", "<footnotes></footnotes>", ""],
+  ] as const)("rejects an invalid translation verse %s", ([, pattern, value]) =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranParseFixture;
+      const english = fixture.englishSource.replace(pattern, value);
+      const error = yield* reject(withEnglish(fixture, english));
+
+      expect(error.detail).toBe("Invalid QuranEnc verse 1:1.");
+    })
+  );
+
+  it.effect.each(["{", "{}"] as const)(
+    "rejects invalid Tafsir response contract %#",
+    (source) =>
+      Effect.gen(function* () {
+        const fixture = yield* QuranParseFixture;
+        const error = yield* reject(withTafsir(fixture, 0, source));
+
+        expect(error.detail).toBe("Invalid QuranEnc response for surah 1.");
+      })
+  );
+
+  it.effect("rejects incomplete and unexpected Tafsir surahs", () =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranParseFixture;
+      const first = yield* Effect.fromNullishOr(
+        fixture.rawSources.tafsir[0]
+      ).pipe(Effect.orDie);
+      const errors = yield* Effect.all(
+        [
+          reject(withTafsir(fixture, 0, '{"result":[]}')),
+          reject({
+            ...fixture.rawSources,
+            tafsir: [...fixture.rawSources.tafsir, first],
+          }),
+        ],
+        { concurrency: "unbounded" }
+      );
+
+      expect(errors.map(({ detail }) => detail)).toEqual([
+        "Incomplete QuranEnc tafsir surah 1.",
+        "Incomplete QuranEnc tafsir surah 115.",
+      ]);
+    })
+  );
+
+  it.effect("rejects every invalid Tafsir verse identity field", () =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranParseFixture;
+      const first = yield* Effect.fromNullishOr(
+        fixture.rawSources.tafsir[0]
+      ).pipe(Effect.orDie);
+      const wrongSurah = first.replace('"sura":"1"', '"sura":"2"');
+      const wrongVerse = first.replace('"aya":"1"', '"aya":"2"');
+      const emptyText = first.replace(
+        TAFSIR_TRANSLATION_PATTERN,
+        '"translation":""'
+      );
+      const errors = yield* Effect.forEach(
+        [wrongSurah, wrongVerse, emptyText],
+        (source) => reject(withTafsir(fixture, 0, source)),
+        { concurrency: "unbounded" }
+      );
+
+      expect(
+        errors.every(
+          ({ detail }) => detail === "Invalid QuranEnc tafsir verse 1:1."
+        )
+      ).toBe(true);
+    })
+  );
+
+  it.effect.each([
+    [
+      "rejects an incomplete Tafsir source inventory",
+      (sources: RawSources) => ({
+        ...sources,
+        tafsir: sources.tafsir.slice(0, -1),
       }),
-      reject({
-        ...rawSources,
-        arabic: rawSources.arabic.replace(FIRST_ARABIC_LINE_PATTERN, ""),
+      "QuranEnc tafsir is incomplete.",
+    ],
+    [
+      "rejects source metadata that cannot address a merged verse",
+      (sources: RawSources) => ({
+        ...sources,
+        metadata: sources.metadata.replace('start="7"', 'start="999999"'),
       }),
-    ]);
+      "Incomplete merged Quran verse 2:1.",
+    ],
+  ] as const)("%s", ([, transform, detail]) =>
+    Effect.gen(function* () {
+      const { rawSources } = yield* QuranParseFixture;
+      const error = yield* reject(transform(rawSources));
 
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Tanzil Arabic text is incomplete.",
-      "Tanzil Arabic text is incomplete.",
-    ]);
-  });
-
-  it("rejects empty, misnumbered, and unexpected translation surahs", async () => {
-    const empty = englishSource.replace(
-      FIRST_SURAH_PATTERN,
-      '<sura number="1"></sura>'
-    );
-    const misnumbered = englishSource.replace(
-      '<sura number="1">',
-      '<sura number="2">'
-    );
-    const unexpected = englishSource.replace(
-      "</sura_list>",
-      '<sura number="115">unexpected</sura></sura_list>'
-    );
-    const errors = await Promise.all([
-      reject(withEnglish(empty)),
-      reject(withEnglish(misnumbered)),
-      reject(withEnglish(unexpected)),
-    ]);
-
-    expect(
-      errors.every(({ detail }) => detail.startsWith("Invalid QuranEnc surah"))
-    ).toBe(true);
-  });
-
-  it("rejects a translation surah with a missing verse", async () => {
-    const incomplete = englishSource.replace(FIRST_VERSE_PATTERN, "");
-    const error = await reject(withEnglish(incomplete));
-
-    expect(error.detail).toBe("Incomplete QuranEnc surah 1.");
-  });
-
-  it("rejects every invalid translation verse field", async () => {
-    const emptyBody = englishSource.replace(
-      FIRST_VERSE_PATTERN,
-      '<aya number="1"></aya>'
-    );
-    const wrongNumber = englishSource.replace(
-      '<aya number="1">',
-      '<aya number="2">'
-    );
-    const missingText = englishSource.replace(TRANSLATION_PATTERN, "");
-    const emptyText = englishSource.replace(
-      TRANSLATION_PATTERN,
-      "<translation></translation>"
-    );
-    const missingFootnotes = englishSource.replace(
-      "<footnotes></footnotes>",
-      ""
-    );
-    const errors = await Promise.all(
-      [emptyBody, wrongNumber, missingText, emptyText, missingFootnotes].map(
-        (english) => reject(withEnglish(english))
-      )
-    );
-
-    expect(
-      errors.every(({ detail }) => detail === "Invalid QuranEnc verse 1:1.")
-    ).toBe(true);
-  });
-
-  it("rejects translation markers without exact note definitions", async () => {
-    const mismatched = englishSource.replace(
-      TRANSLATION_PATTERN,
-      "<translation><![CDATA[Broken source translation[1].]]></translation>"
-    );
-    const error = await reject(withEnglish(mismatched));
-
-    expect(error.detail).toBe("Invalid QuranEnc translation notes 1:1.");
-  });
-
-  it("rejects a translation that omits a complete surah", async () => {
-    const incomplete = englishSource.replace(LAST_SURAH_PATTERN, "");
-    const error = await reject(withEnglish(incomplete));
-
-    expect(error.detail).toBe("QuranEnc translation is incomplete.");
-  });
-
-  it("rejects invalid JSON and invalid Tafsir response contracts", async () => {
-    const errors = await Promise.all([
-      reject(withTafsir(0, "{")),
-      reject(withTafsir(0, "{}")),
-    ]);
-
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Invalid QuranEnc response for surah 1.",
-      "Invalid QuranEnc response for surah 1.",
-    ]);
-  });
-
-  it("rejects incomplete and unexpected Tafsir surahs", async () => {
-    const [first] = rawSources.tafsir;
-    if (first === undefined) {
-      throw new Error("Expected the first Tafsir fixture.");
-    }
-    const errors = await Promise.all([
-      reject(withTafsir(0, '{"result":[]}')),
-      reject({ ...rawSources, tafsir: [...rawSources.tafsir, first] }),
-    ]);
-
-    expect(errors.map(({ detail }) => detail)).toEqual([
-      "Incomplete QuranEnc tafsir surah 1.",
-      "Incomplete QuranEnc tafsir surah 115.",
-    ]);
-  });
-
-  it("rejects every invalid Tafsir verse identity field", async () => {
-    const first = rawSources.tafsir[0] ?? "";
-    const wrongSurah = first.replace('"sura":"1"', '"sura":"2"');
-    const wrongVerse = first.replace('"aya":"1"', '"aya":"2"');
-    const emptyText = first.replace(
-      TAFSIR_TRANSLATION_PATTERN,
-      '"translation":""'
-    );
-    const errors = await Promise.all(
-      [wrongSurah, wrongVerse, emptyText].map((source) =>
-        reject(withTafsir(0, source))
-      )
-    );
-
-    expect(
-      errors.every(
-        ({ detail }) => detail === "Invalid QuranEnc tafsir verse 1:1."
-      )
-    ).toBe(true);
-  });
-
-  it("rejects an incomplete Tafsir source inventory", async () => {
-    const error = await reject({
-      ...rawSources,
-      tafsir: rawSources.tafsir.slice(0, -1),
-    });
-
-    expect(error.detail).toBe("QuranEnc tafsir is incomplete.");
-  });
-
-  it("rejects source metadata that cannot address a merged verse", async () => {
-    const metadata = rawSources.metadata.replace('start="7"', 'start="999999"');
-    const error = await reject({ ...rawSources, metadata });
-
-    expect(error.detail).toBe("Incomplete merged Quran verse 2:1.");
-  });
+      expect(error.detail).toBe(detail);
+    })
+  );
 });
