@@ -1,12 +1,11 @@
-import { realpathSync } from "node:fs";
-import { basename, relative } from "node:path";
 import { NodeServices } from "@effect/platform-node";
-import { afterEach, describe, expect, it } from "@nakafa/testing/effect";
+import { assert, expect, layer } from "@effect/vitest";
 import {
   Deferred,
   Effect,
   Fiber,
-  type FileSystem,
+  FileSystem,
+  Path,
   PlatformError,
   Ref,
   Stream,
@@ -14,7 +13,11 @@ import {
 import { TestClock } from "effect/testing";
 import { PreviewProviderError } from "#cli/provider";
 import { selectPreviewDocument } from "#cli/repository";
-import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
+import {
+  makeRepositoryTracker,
+  REPOSITORY_ROOT,
+  type TestRepositories,
+} from "#test/real";
 import { runWatch } from "#test/session";
 
 const repositories = makeRepositoryTracker();
@@ -23,9 +26,38 @@ const questionPath =
 const answerPath =
   "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/answer.en.mdx";
 
-afterEach(() => {
-  repositories.clear();
+/** Acquires one repository pair and removes it when the test scope closes. */
+const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
+  function* () {
+    return yield* Effect.acquireRelease(
+      Effect.sync(() => repositories.create()),
+      () => Effect.sync(() => repositories.clear())
+    );
+  }
+);
+
+/** Selects the fixture document through the native filesystem services. */
+const selectRepositoryDocument = Effect.fn(
+  "AksaraCliTest.selectRepositoryDocument"
+)(function* (repository: TestRepositories) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const aksaraRoot = yield* fileSystem.realPath(repository.aksaraRoot);
+  const documentPath = yield* fileSystem.realPath(repository.documentPath);
+  return yield* selectPreviewDocument(
+    aksaraRoot,
+    path.relative(aksaraRoot, documentPath)
+  );
 });
+
+/** Selects one real corpus document through the native filesystem service. */
+const selectRealDocument = Effect.fn("AksaraCliTest.selectRealDocument")(
+  function* (sourcePath: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const aksaraRoot = yield* fileSystem.realPath(REPOSITORY_ROOT);
+    return yield* selectPreviewDocument(aksaraRoot, sourcePath);
+  }
+);
 
 /** Creates one portable filesystem update event. */
 function updateEvent(path: string): FileSystem.WatchEvent {
@@ -37,21 +69,18 @@ function createEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Create", path };
 }
 
-describe("selected document watch", () => {
+layer(NodeServices.layer)("selected document watch", (it) => {
   it.effect(
     "filters siblings, refreshes the selected file, and stays active",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
-        const aksaraRoot = realpathSync(repository.aksaraRoot);
-        const selected = yield* selectPreviewDocument(
-          aksaraRoot,
-          relative(aksaraRoot, realpathSync(repository.documentPath))
-        ).pipe(Effect.provide(NodeServices.layer));
+        const path = yield* Path.Path;
+        const repository = yield* acquireRepository();
+        const selected = yield* selectRepositoryDocument(repository);
         const events = Stream.concat(
           Stream.make(
             updateEvent("id.mdx"),
-            updateEvent(basename(selected.files[0].absolutePath))
+            updateEvent(path.basename(selected.files[0].absolutePath))
           ),
           Stream.never
         );
@@ -68,26 +97,20 @@ describe("selected document watch", () => {
       })
   );
 
-  it("invalidates every burst save while retaining only the latest queued compile", {
-    timeout: 10_000,
-  }, async () => {
-    const repository = repositories.create();
-    const aksaraRoot = realpathSync(repository.aksaraRoot);
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(
-        aksaraRoot,
-        relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeServices.layer))
-    );
-    const focused = {
-      directories: [],
-      document: selected.document,
-      files: [selected.files[0]],
-      sources: [selected.sources[0]],
-    } satisfies typeof selected;
-    const event = updateEvent(basename(focused.files[0].absolutePath));
-    const observed = await Effect.runPromise(
+  it.effect(
+    "invalidates every burst save while retaining only the latest queued compile",
+    () =>
       Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const repository = yield* acquireRepository();
+        const selected = yield* selectRepositoryDocument(repository);
+        const focused = {
+          directories: [],
+          document: selected.document,
+          files: [selected.files[0]],
+          sources: [selected.sources[0]],
+        } satisfies typeof selected;
+        const event = updateEvent(path.basename(focused.files[0].absolutePath));
         const firstStarted = yield* Deferred.make<void>();
         const releaseFirst = yield* Deferred.make<void>();
         const latestInvalidated = yield* Deferred.make<void>();
@@ -135,32 +158,27 @@ describe("selected document watch", () => {
           refresh,
           new Map(),
           invalidate
-        ).pipe(Effect.forkChild);
+        ).pipe(Effect.forkChild({ startImmediately: true }));
+        yield* TestClock.adjust("100 millis");
         yield* Deferred.await(firstStarted);
+        yield* TestClock.adjust("1 second");
         yield* Deferred.await(latestInvalidated);
-        yield* Effect.sleep("150 millis");
+        yield* TestClock.adjust("150 millis");
         yield* Deferred.succeed(releaseFirst, undefined);
         yield* Deferred.await(latestRefreshed);
-        const result = {
+        expect({
           generations: yield* Ref.get(generations),
           refreshed: yield* Ref.get(refreshed),
-        };
+        }).toEqual({ generations: 5, refreshed: [1, 5] });
         yield* Fiber.interrupt(watcher);
-        return result;
       })
-    );
-
-    expect(observed).toEqual({ generations: 5, refreshed: [1, 5] });
-  });
+  );
 
   it.effect(
     "watches one question body closure and its choices dependency",
     () =>
       Effect.gen(function* () {
-        const selected = yield* selectPreviewDocument(
-          realpathSync(REPOSITORY_ROOT),
-          answerPath
-        ).pipe(Effect.provide(NodeServices.layer));
+        const selected = yield* selectRealDocument(answerPath);
         const events = Stream.concat(
           Stream.make(updateEvent("choices.ts")),
           Stream.never
@@ -188,106 +206,89 @@ describe("selected document watch", () => {
     { timeout: 30_000 }
   );
 
-  it("requires a restart instead of compiling stale topology", async () => {
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
-    const result = await Effect.runPromise(
-      Effect.gen(function* () {
-        const refreshes = yield* Ref.make(0);
-        const error = yield* runWatch(
-          selected,
-          Stream.make(updateEvent("source.ts")),
-          () => Ref.update(refreshes, (value) => value + 1)
-        ).pipe(Effect.flip);
-        return { error, refreshes: yield* Ref.get(refreshes) };
-      })
-    );
+  it.effect("requires a restart instead of compiling stale topology", () =>
+    Effect.gen(function* () {
+      const selected = yield* selectRealDocument(questionPath);
+      const refreshes = yield* Ref.make(0);
+      const error = yield* runWatch(
+        selected,
+        Stream.make(updateEvent("source.ts")),
+        () => Ref.update(refreshes, (value) => value + 1)
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "PreviewRestartError",
+        sourcePath: "packages/corpus/tryout/indonesia/snbt/source.ts",
+      });
+      expect(yield* Ref.get(refreshes)).toBe(0);
+    })
+  );
 
-    expect(result.error).toMatchObject({
-      _tag: "PreviewRestartError",
-      sourcePath: "packages/corpus/tryout/indonesia/snbt/source.ts",
-    });
-    expect(result.refreshes).toBe(0);
-  });
-
-  it("rejects persistent strict-directory membership changes", async () => {
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
-    const [directory] = selected.directories;
-    expect(directory).toBeDefined();
-    if (directory === undefined) {
-      return;
-    }
-    const changedFiles = new Map([
-      [directory.absolutePath, [...directory.files, "draft.mdx"]],
-    ]);
-    const error = await Effect.runPromise(
-      runWatch(
+  it.effect("rejects persistent strict-directory membership changes", () =>
+    Effect.gen(function* () {
+      const selected = yield* selectRealDocument(questionPath);
+      const [directory] = selected.directories;
+      assert(directory !== undefined, "Expected one selected directory.");
+      const changedFiles = new Map([
+        [directory.absolutePath, [...directory.files, "draft.mdx"]],
+      ]);
+      const error = yield* runWatch(
         selected,
         Stream.make(createEvent("draft.mdx")),
         () => Effect.void,
         changedFiles
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "PreviewRestartError",
+        sourcePath: directory.sourcePath,
+      });
+    })
+  );
 
-    expect(error).toMatchObject({
-      _tag: "PreviewRestartError",
-      sourcePath: directory.sourcePath,
-    });
-  });
+  it.effect(
+    "ignores unselected events after stable membership is restored",
+    () =>
+      Effect.gen(function* () {
+        const selected = yield* selectRealDocument(questionPath);
+        const error = yield* runWatch(
+          selected,
+          Stream.make(createEvent("draft.mdx")),
+          () => Effect.die("refresh must not run")
+        ).pipe(Effect.flip);
+        expect(error).toMatchObject({ reason: "ended" });
+      })
+  );
 
-  it("ignores unselected events after stable membership is restored", async () => {
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(realpathSync(REPOSITORY_ROOT), questionPath).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
-    const error = await Effect.runPromise(
-      runWatch(selected, Stream.make(createEvent("draft.mdx")), () =>
-        Effect.die("refresh must not run")
-      ).pipe(Effect.flip)
-    );
-
-    expect(error).toMatchObject({ reason: "ended" });
-  });
-
-  it("distinguishes provider, filesystem, and ended watch failures", async () => {
-    const repository = repositories.create();
-    const aksaraRoot = realpathSync(repository.aksaraRoot);
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(
-        aksaraRoot,
-        relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeServices.layer))
-    );
-    const selectedEvent = updateEvent(basename(selected.files[0].absolutePath));
-    const provider = await Effect.runPromise(
-      runWatch(selected, Stream.make(selectedEvent), () =>
-        Effect.fail(new PreviewProviderError({ stage: "encode" }))
-      ).pipe(Effect.flip)
-    );
-    const fileError = PlatformError.systemError({
-      _tag: "Unknown",
-      method: "watch",
-      module: "FileSystem",
-    });
-    const filesystem = await Effect.runPromise(
-      runWatch(selected, Stream.fail(fileError), () => Effect.void).pipe(
-        Effect.flip
-      )
-    );
-    const ended = await Effect.runPromise(
-      runWatch(selected, Stream.empty, () => Effect.void).pipe(Effect.flip)
-    );
-
-    expect(provider).toMatchObject({ _tag: "PreviewProviderError" });
-    expect(filesystem).toMatchObject({ reason: "filesystem" });
-    expect(ended).toMatchObject({ reason: "ended" });
-  });
+  it.effect(
+    "distinguishes provider, filesystem, and ended watch failures",
+    () =>
+      Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const repository = yield* acquireRepository();
+        const selected = yield* selectRepositoryDocument(repository);
+        const event = updateEvent(
+          path.basename(selected.files[0].absolutePath)
+        );
+        const provider = yield* runWatch(selected, Stream.make(event), () =>
+          Effect.fail(new PreviewProviderError({ stage: "encode" }))
+        ).pipe(Effect.flip);
+        const fileError = PlatformError.systemError({
+          _tag: "Unknown",
+          method: "watch",
+          module: "FileSystem",
+        });
+        const filesystem = yield* runWatch(
+          selected,
+          Stream.fail(fileError),
+          () => Effect.void
+        ).pipe(Effect.flip);
+        const ended = yield* runWatch(
+          selected,
+          Stream.empty,
+          () => Effect.void
+        ).pipe(Effect.flip);
+        expect(provider).toMatchObject({ _tag: "PreviewProviderError" });
+        expect(filesystem).toMatchObject({ reason: "filesystem" });
+        expect(ended).toMatchObject({ reason: "ended" });
+      })
+  );
 });
