@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
@@ -19,26 +20,12 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Stream } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
-    domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
-    }),
-    publishedDomains: ["mathematics"],
-  })
-);
 const source = CompileDocumentSourceSchema.make({
   artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: ContentKeySchema.make("test:stream:a"),
@@ -46,9 +33,6 @@ const source = CompileDocumentSourceSchema.make({
   rendererDomain: "mathematics",
   sourcePath: CorpusSourcePathSchema.make("packages/corpus/test/a/en.mdx"),
 });
-const { payload } = await Effect.runPromise(
-  compileContent({ ...source, rendererManifest })
-);
 const projection = MaterialLessonProjectionSchema.make({
   appLocale: AppLocaleSchema.make("en"),
   artifactLocale: source.artifactLocale,
@@ -68,22 +52,39 @@ const projection = MaterialLessonProjectionSchema.make({
   sitemap: true,
   topicTitle: "Test Material",
 });
-const baseRecord: PreparedContentUpsert = {
-  change: ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(payload),
-    artifactLocale: source.artifactLocale,
-    contentKey: source.contentKey,
-    delivery: "public",
-    family: "material",
-    operation: "upsert",
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  }),
-  payload,
-  projection,
-  source,
-};
 const releaseId = ReleaseIdSchema.make("test-stream-release");
+
+/** Compiles the valid baseline record inside the native test runtime. */
+const makeFixture = Effect.fn("PublisherTest.makePreparedRecord")(function* () {
+  const rendererManifest = yield* createRendererManifest({
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: testRendererDomains({
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
+    }),
+    publishedDomains: ["mathematics"],
+  });
+  const { payload } = yield* compileContent({ ...source, rendererManifest });
+  const baseRecord: PreparedContentUpsert = {
+    change: ContentUpsertSchema.make({
+      artifactHash: hashCompiledContentPayload(payload),
+      artifactLocale: source.artifactLocale,
+      contentKey: source.contentKey,
+      delivery: "public",
+      family: "material",
+      operation: "upsert",
+      rendererDomain: source.rendererDomain,
+      sourcePath: source.sourcePath,
+    }),
+    payload,
+    projection,
+    source,
+  };
+  return { baseRecord, payload };
+});
 
 /** Projects one upsert identity into its explicit prior absence proof. */
 function absentHead(identity: PreparedContentUpsert["change"]) {
@@ -96,7 +97,10 @@ function absentHead(identity: PreparedContentUpsert["change"]) {
 }
 
 /** Pairs one candidate record with an explicit prior absence proof. */
-function transition(record: unknown, identity = baseRecord.change) {
+function transition(
+  record: unknown,
+  identity: PreparedContentUpsert["change"]
+) {
   return {
     prior: absentHead(identity),
     record,
@@ -109,7 +113,12 @@ function derive<E, R>(records: Stream.Stream<unknown, E, R>) {
 }
 
 /** Moves one complete record while preserving every bound identity. */
-function relocateRecord(contentKey: string, publicPath: string) {
+function relocateRecord(
+  fixture: Effect.Success<ReturnType<typeof makeFixture>>,
+  contentKey: string,
+  publicPath: string
+) {
+  const { baseRecord, payload } = fixture;
   const nextKey = ContentKeySchema.make(contentKey);
   const parentPath = PublicPathSchema.make(
     publicPath.slice(0, publicPath.lastIndexOf("/"))
@@ -132,168 +141,155 @@ function relocateRecord(contentKey: string, publicPath: string) {
   };
 }
 
-const mismatchCases = [
-  [
-    "artifactHash",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      change: {
-        ...value.change,
-        artifactHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-      },
+/** Replaces one source field while preserving the complete prepared record. */
+function modifySource(
+  value: PreparedContentUpsert,
+  changed: Partial<PreparedContentUpsert["source"]>
+) {
+  return { ...value, source: { ...value.source, ...changed } };
+}
+
+const mismatchCases = {
+  artifactHash: (value: PreparedContentUpsert) => ({
+    ...value,
+    change: {
+      ...value.change,
+      artifactHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+    },
+  }),
+  artifactLocale: (value: PreparedContentUpsert) =>
+    modifySource(value, { artifactLocale: ArtifactLocaleSchema.make("id") }),
+  contentKey: (value: PreparedContentUpsert) =>
+    modifySource(value, { contentKey: ContentKeySchema.make("test:wrong") }),
+  family: (value: PreparedContentUpsert) => ({
+    ...value,
+    change: { ...value.change, family: "article" },
+  }),
+  rawMdx: (value: PreparedContentUpsert) =>
+    modifySource(value, { rawMdx: "test mismatch" }),
+  rendererDomain: (value: PreparedContentUpsert) =>
+    modifySource(value, { rendererDomain: "chemistry" }),
+  sourcePath: (value: PreparedContentUpsert) =>
+    modifySource(value, {
+      sourcePath: CorpusSourcePathSchema.make(
+        "packages/corpus/test/stream/wrong/en.mdx"
+      ),
     }),
-  ],
-  [
-    "contentKey",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      source: {
-        ...value.source,
-        contentKey: ContentKeySchema.make("test:wrong"),
-      },
-    }),
-  ],
-  [
-    "family",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      change: { ...value.change, family: "article" },
-    }),
-  ],
-  [
-    "artifactLocale",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      source: {
-        ...value.source,
-        artifactLocale: ArtifactLocaleSchema.make("id"),
-      },
-    }),
-  ],
-  [
-    "rendererDomain",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      source: { ...value.source, rendererDomain: "chemistry" },
-    }),
-  ],
-  [
-    "sourcePath",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      source: {
-        ...value.source,
-        sourcePath: CorpusSourcePathSchema.make(
-          "packages/corpus/test/stream/wrong/en.mdx"
-        ),
-      },
-    }),
-  ],
-  [
-    "rawMdx",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      source: { ...value.source, rawMdx: "test mismatch" },
-    }),
-  ],
-] satisfies readonly (readonly [
-  string,
-  (record: PreparedContentUpsert) => PreparedContentUpsert,
-])[];
+} satisfies Readonly<
+  Record<string, (record: PreparedContentUpsert) => PreparedContentUpsert>
+>;
+
 describe("derivePreparedRecords", () => {
-  it.each(mismatchCases)("rejects %s incoherence", async (field, mutate) => {
-    const candidate = mutate(baseRecord);
-    const error = await Effect.runPromise(
-      derive(Stream.make(transition(candidate, candidate.change))).pipe(
-        Effect.flip
-      )
-    );
-    expect(error).toMatchObject({
-      _tag: "PreparedContentCoherenceError",
-      field,
-    });
-  });
+  it.effect.each(Object.entries(mismatchCases))(
+    "rejects %s incoherence",
+    ([field, mutate]) =>
+      Effect.gen(function* () {
+        const { baseRecord } = yield* makeFixture();
+        const candidate = mutate(baseRecord);
+        const error = yield* derive(
+          Stream.make(transition(candidate, candidate.change))
+        ).pipe(Effect.flip);
+        expect(error).toMatchObject({
+          _tag: "PreparedContentCoherenceError",
+          field,
+        });
+      })
+  );
 
-  it("rejects a source-hash mismatch", async () => {
-    const badPayload = {
-      ...payload,
-      sourceHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
-    };
-    const error = await Effect.runPromise(
-      derive(
-        Stream.make(
-          transition({
-            ...baseRecord,
-            change: {
-              ...baseRecord.change,
-              artifactHash: hashCompiledContentPayload(badPayload),
-            },
-            payload: badPayload,
-          })
-        )
-      ).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({ _tag: "ArtifactSourceHashMismatchError" });
-  });
+  it.effect("rejects a source-hash mismatch", () =>
+    Effect.gen(function* () {
+      const { baseRecord, payload } = yield* makeFixture();
+      const badPayload = {
+        ...payload,
+        sourceHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+      };
+      const candidate = {
+        ...baseRecord,
+        change: {
+          ...baseRecord.change,
+          artifactHash: hashCompiledContentPayload(badPayload),
+        },
+        payload: badPayload,
+      };
+      const error = yield* derive(
+        Stream.make(transition(candidate, baseRecord.change))
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({ _tag: "ArtifactSourceHashMismatchError" });
+    })
+  );
 
-  it("rejects malformed and out-of-order records", async () => {
-    const first = relocateRecord("test:stream:a", "subjects/test/shared");
-    const second = relocateRecord("test:stream:b", "subjects/test/shared");
-    const malformed = await Effect.runPromise(
-      derive(Stream.make(transition({ change: {} }))).pipe(Effect.flip)
-    );
-    const order = await Effect.runPromise(
-      derive(
+  it.effect("rejects malformed and out-of-order records", () =>
+    Effect.gen(function* () {
+      const fixture = yield* makeFixture();
+      const first = relocateRecord(
+        fixture,
+        "test:stream:a",
+        "subjects/test/shared"
+      );
+      const second = relocateRecord(
+        fixture,
+        "test:stream:b",
+        "subjects/test/shared"
+      );
+      const malformed = yield* derive(
+        Stream.make(transition({ change: {} }, fixture.baseRecord.change))
+      ).pipe(Effect.flip);
+      const order = yield* derive(
         Stream.make(
           transition(second, second.change),
           transition(first, first.change)
         )
-      ).pipe(Effect.flip)
-    );
-    expect(malformed).toMatchObject({ _tag: "PreparedContentDecodeError" });
-    expect(order).toMatchObject({ _tag: "PreparedContentOrderError" });
-  });
+      ).pipe(Effect.flip);
+      expect(malformed).toMatchObject({ _tag: "PreparedContentDecodeError" });
+      expect(order).toMatchObject({ _tag: "PreparedContentOrderError" });
+    })
+  );
 
-  it.each([
-    {
-      prior: {
-        ...absentHead(baseRecord.change),
-        contentKey: ContentKeySchema.make("test:another-head"),
-      },
-      record: baseRecord,
-    },
-    {
-      prior: {
-        ...absentHead(baseRecord.change),
-        family: "article",
-      },
-      record: baseRecord,
-    },
-    {
-      prior: absentHead(baseRecord.change),
-      record: {
-        change: {
-          artifactLocale: baseRecord.change.artifactLocale,
-          contentKey: baseRecord.change.contentKey,
-          family: "material",
-          operation: "delete",
+  it.effect("rejects contradictory prior-state proofs", () =>
+    Effect.gen(function* () {
+      const { baseRecord } = yield* makeFixture();
+      const records = [
+        {
+          prior: {
+            ...absentHead(baseRecord.change),
+            contentKey: ContentKeySchema.make("test:another-head"),
+          },
+          record: baseRecord,
         },
-      },
-    },
-  ])("rejects a contradictory prior-state proof", async (record) => {
-    const error = await Effect.runPromise(
-      derive(Stream.make(record)).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "PreparedContentCoherenceError",
-      field: "priorState",
-    });
-  });
+        {
+          prior: { ...absentHead(baseRecord.change), family: "article" },
+          record: baseRecord,
+        },
+        {
+          prior: absentHead(baseRecord.change),
+          record: {
+            change: {
+              artifactLocale: baseRecord.change.artifactLocale,
+              contentKey: baseRecord.change.contentKey,
+              family: "material",
+              operation: "delete",
+            },
+          },
+        },
+      ];
+      const errors = yield* Effect.forEach(records, (record) =>
+        derive(Stream.make(record)).pipe(Effect.flip)
+      );
+      expect(errors).toMatchObject(
+        records.map(() => ({
+          _tag: "PreparedContentCoherenceError",
+          field: "priorState",
+        }))
+      );
+    })
+  );
 
-  it("preserves source stream failures", async () => {
-    const sourceFailure = await Effect.runPromise(
-      derive(Stream.fail("test-source-failure")).pipe(Effect.flip)
-    );
-    expect(sourceFailure).toBe("test-source-failure");
-  });
+  it.effect("preserves source stream failures", () =>
+    Effect.gen(function* () {
+      const failure = yield* derive(Stream.fail("test-source-failure")).pipe(
+        Effect.flip
+      );
+      expect(failure).toBe("test-source-failure");
+    })
+  );
 });
