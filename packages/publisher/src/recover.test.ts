@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
+import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
@@ -9,7 +10,10 @@ import {
   PublicationActivationError,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { recoverContentRelease } from "#publisher/recover";
+import {
+  RecoveryRuntimeMissingError,
+  recoverContentRelease,
+} from "#publisher/recover";
 import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease } from "#test/publication";
 import { publish, testVerificationResolver } from "#test/publication/run";
@@ -134,6 +138,50 @@ describe("recoverContentRelease", () => {
         expect(invalidate).toHaveBeenCalledTimes(2);
         expect(published.state.activate.mock.calls).toHaveLength(activations);
       })
+  );
+
+  it.effect("rejects a retained try-out inverse without its runtime", () =>
+    Effect.gen(function* () {
+      const published = yield* makePublished("test-recover-runtime");
+      const current = yield* published.state.target.current;
+      if (!current.recovery) {
+        return yield* Effect.die("Expected one retained recovery fixture.");
+      }
+      const snapshotId = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
+      const target = makePublicationTarget({
+        current: Effect.succeed({
+          ...current,
+          recovery: {
+            ...current.recovery,
+            release: {
+              ...current.recovery.release,
+              manifest: {
+                ...current.recovery.release.manifest,
+                snapshots: {
+                  ...current.recovery.release.manifest.snapshots,
+                  tryout: replaceContentSnapshot({
+                    baseSnapshotId: null,
+                    resultSnapshotId: snapshotId,
+                    rowCount: 1,
+                    rowDigest: snapshotId,
+                  }),
+                },
+              },
+            },
+          },
+          tryoutRuntimeBundle: null,
+        }),
+        recovery: published.state.target.recovery,
+      });
+      const verify = vi.fn(() => Effect.void);
+
+      const failure = yield* runRecovery(published.input, target, verify).pipe(
+        Effect.flip
+      );
+
+      expect(failure).toBeInstanceOf(RecoveryRuntimeMissingError);
+      expect(verify).not.toHaveBeenCalled();
+    })
   );
 
   it.effect("does not activate after the live renderer preflight fails", () =>

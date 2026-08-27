@@ -14,6 +14,11 @@ import {
   sealedMigrationStatus,
 } from "#test/migration/flow";
 import {
+  migrationResponse,
+  otherHash,
+  otherId,
+} from "#test/migration/protocol";
+import {
   migrationSigner,
   migrationVerificationResolver,
 } from "#test/migration/signing";
@@ -48,6 +53,84 @@ describe("try-out history migration receipt lifecycle", () => {
       });
 
       yield* sealMigrationReceipt(target, receipt);
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+
+  it.effect("rejects every drifted seal response identity", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      const exact = sealedMigrationStatus(receipt, completedMigrationStatus());
+      const foreignReceipt = { ...receipt, receiptHash: otherHash };
+      const invalid = [
+        migrationResponse({
+          command: "status",
+          migrationId,
+          status: completedMigrationStatus(),
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: completedMigrationStatus(),
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, receipt: foreignReceipt },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, migrationId: otherId },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, planHash: otherHash },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, sourceSnapshotId: otherHash },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, targetBundleHash: otherHash },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: { ...exact, targetSnapshotId: otherHash },
+        }).value,
+        migrationResponse({
+          command: "seal",
+          migrationId,
+          status: {
+            ...exact,
+            completion: {
+              ...exact.completion,
+              migratedAttempts: exact.completion.migratedAttempts + 1,
+            },
+          },
+        }).value,
+      ];
+
+      yield* Effect.forEach(invalid, (value) => {
+        const target = makePublicationTarget({
+          migrateTryoutHistory: () => Effect.succeed(value),
+        });
+        return sealMigrationReceipt(target, receipt).pipe(
+          Effect.flip,
+          Effect.map((failure) =>
+            assert.strictEqual(failureReason(failure), "receipt-evidence")
+          )
+        );
+      });
     }).pipe(
       Effect.provideService(
         ContentVerificationKeyResolver,
@@ -117,6 +200,49 @@ describe("try-out history migration receipt lifecycle", () => {
       );
 
       assert.strictEqual(failureReason(failure), "cleanup-progress");
+    }).pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        migrationVerificationResolver
+      )
+    )
+  );
+
+  it.effect("rejects command, phase, and cleaned receipt drift", () =>
+    Effect.gen(function* () {
+      const receipt = yield* makeReceipt();
+      const cleaned = cleanedMigrationStatus(receipt);
+      const invalid = [
+        migrationResponse({
+          command: "status",
+          migrationId,
+          status: cleaned,
+        }).value,
+        migrationResponse({
+          command: "cleanup",
+          deleted: 1,
+          migrationId,
+          status: completedMigrationStatus(),
+        }).value,
+        migrationResponse({
+          command: "cleanup",
+          deleted: 1,
+          migrationId,
+          status: { ...cleaned, migrationId: otherId },
+        }).value,
+      ];
+
+      yield* Effect.forEach(invalid, (value) => {
+        const target = makePublicationTarget({
+          migrateTryoutHistory: () => Effect.succeed(value),
+        });
+        return cleanupMigrationReceipt(target, receipt).pipe(
+          Effect.flip,
+          Effect.map((failure) =>
+            assert.strictEqual(failureReason(failure), "receipt-evidence")
+          )
+        );
+      });
     }).pipe(
       Effect.provideService(
         ContentVerificationKeyResolver,

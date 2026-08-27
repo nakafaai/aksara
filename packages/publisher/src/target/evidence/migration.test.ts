@@ -48,6 +48,25 @@ describe("migration HTTP evidence", () => {
         ),
         true
       );
+      if (exchanges.cleanup.request.command !== "cleanup") {
+        return yield* Effect.die("Expected cleanup exchange fixture.");
+      }
+      assert.strictEqual(
+        hasBoundMigration(
+          exchanges.cleanup.request,
+          migrationResponse({
+            command: "cleanup",
+            deleted: 0,
+            migrationId,
+            status: {
+              migrationId,
+              phase: "cleaned",
+              receipt: exchanges.cleanup.request.receipt,
+            },
+          })
+        ),
+        true
+      );
     })
   );
 
@@ -59,7 +78,10 @@ describe("migration HTTP evidence", () => {
         if (
           exchanges.plan.request.command !== "stagePlan" ||
           exchanges.plan.response.value.command !== "stagePlan" ||
-          exchanges.plan.response.value.status.phase !== "ready"
+          exchanges.plan.response.value.status.phase !== "ready" ||
+          exchanges.seal.request.command !== "seal" ||
+          exchanges.seal.response.value.command !== "seal" ||
+          exchanges.seal.response.value.status.phase !== "sealed"
         ) {
           return yield* Effect.die("Expected signed plan exchange fixture.");
         }
@@ -146,6 +168,19 @@ describe("migration HTTP evidence", () => {
                 artifactMapCount:
                   exchanges.plan.response.value.status.artifactMapCount + 1,
               }),
+            }),
+          },
+          {
+            request: exchanges.seal.request,
+            response: migrationResponse({
+              ...exchanges.seal.response.value,
+              status: {
+                ...exchanges.seal.response.value.status,
+                receipt: {
+                  ...exchanges.seal.response.value.status.receipt,
+                  receiptHash: otherHash,
+                },
+              },
             }),
           },
         ];
