@@ -1,5 +1,4 @@
 import { relative } from "node:path";
-import { NodeServices } from "@effect/platform-node";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import {
   ExactProcess,
@@ -139,23 +138,20 @@ export function runLocal<A, E>(
         ),
       }),
   });
-  return Effect.runPromise(
-    Effect.scoped(
-      openLocalPreview({
-        ...(appLocale === undefined ? {} : { appLocale }),
-        cwd: repository.aksaraRoot,
-        environment: { nakafaAppDir: repository.nakafaRoot },
-        requestedDocument: relative(
-          repository.aksaraRoot,
-          repository.documentPath
-        ),
-      }).pipe(Effect.flatMap(use))
-    ).pipe(
-      Effect.provide([
-        Layer.succeed(NakafaApp, app),
-        Layer.succeed(ExactProcess, exactProcess),
-        NodeServices.layer,
-      ])
-    )
+  return Effect.scoped(
+    openLocalPreview({
+      ...(appLocale === undefined ? {} : { appLocale }),
+      cwd: repository.aksaraRoot,
+      environment: { nakafaAppDir: repository.nakafaRoot },
+      requestedDocument: relative(
+        repository.aksaraRoot,
+        repository.documentPath
+      ),
+    }).pipe(Effect.flatMap(use))
+  ).pipe(
+    Effect.provide([
+      Layer.succeed(NakafaApp, app),
+      Layer.succeed(ExactProcess, exactProcess),
+    ])
   );
 }

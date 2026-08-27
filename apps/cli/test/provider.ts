@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import { Effect, Redacted, Schema } from "effect";
 import { openPreviewProvider, type PreviewProvider } from "#cli/provider";
@@ -12,7 +13,7 @@ function acquirePreviewReady() {
   return Effect.acquireRelease(
     Effect.sync(() => providerRepositories.create()).pipe(
       Effect.flatMap((repository) =>
-        Effect.tryPromise(() => makePreviewReady(repository)).pipe(Effect.orDie)
+        makePreviewReady(repository).pipe(Effect.provide(NodeServices.layer))
       )
     ),
     () => Effect.sync(() => providerRepositories.clear())
@@ -21,7 +22,7 @@ function acquirePreviewReady() {
 
 /** Creates identity-invalid artifacts for every provider coherence boundary. */
 export function makeIncoherentResults(
-  ready: Awaited<ReturnType<typeof makePreviewReady>>
+  ready: Effect.Success<ReturnType<typeof makePreviewReady>>
 ) {
   const [compiled] = ready.result.results;
   const artifacts = [
@@ -60,7 +61,7 @@ export const makeProviderInput = acquirePreviewReady().pipe(
 export function withProvider<A, E, R>(
   use: (input: {
     readonly provider: PreviewProvider;
-    readonly ready: Awaited<ReturnType<typeof makePreviewReady>>;
+    readonly ready: Effect.Success<ReturnType<typeof makePreviewReady>>;
     readonly token: string;
   }) => Effect.Effect<A, E, R>
 ) {

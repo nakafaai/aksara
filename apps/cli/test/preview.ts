@@ -1,6 +1,5 @@
 import { realpathSync } from "node:fs";
 import { relative } from "node:path";
-import { NodeServices } from "@effect/platform-node";
 import { PreviewRepositorySchema } from "@nakafa/aksara-contracts/preview/spec";
 import { Effect, Schema } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
@@ -20,25 +19,24 @@ export const PREVIEW_REPOSITORIES = {
 };
 
 /** Compiles and signs the real selected English document for provider tests. */
-export async function makePreviewReady(repositories: TestRepositories) {
-  const aksaraRoot = realpathSync(repositories.aksaraRoot);
-  const documentPath = realpathSync(repositories.documentPath);
-  const selected = await Effect.runPromise(
-    selectPreviewDocument(aksaraRoot, relative(aksaraRoot, documentPath)).pipe(
-      Effect.provide(NodeServices.layer)
-    )
+export const makePreviewReady = Effect.fn("test.makePreviewReady")(function* (
+  repositories: TestRepositories
+) {
+  const { aksaraRoot, documentPath } = yield* Effect.sync(() => ({
+    aksaraRoot: realpathSync(repositories.aksaraRoot),
+    documentPath: realpathSync(repositories.documentPath),
+  }));
+  const selected = yield* selectPreviewDocument(
+    aksaraRoot,
+    relative(aksaraRoot, documentPath)
   );
-  const credentials = await Effect.runPromise(makePreviewCredentials());
-  const compiler = await Effect.runPromise(
-    makePreviewDocumentCompiler({
-      aksaraRoot,
-      rendererManifest: RENDERER_MANIFEST,
-      selected,
-      signer: credentials.signer,
-    })
-  );
-  const result = await Effect.runPromise(
-    compiler.compile.pipe(Effect.provide(NodeServices.layer))
-  );
+  const credentials = yield* makePreviewCredentials();
+  const compiler = yield* makePreviewDocumentCompiler({
+    aksaraRoot,
+    rendererManifest: RENDERER_MANIFEST,
+    selected,
+    signer: credentials.signer,
+  });
+  const result = yield* compiler.compile;
   return { compiler, credentials, document: selected.document, result };
-}
+});
