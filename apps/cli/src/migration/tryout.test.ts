@@ -263,6 +263,30 @@ layer(NodeServices.layer)("try-out history migration command", (it) => {
     }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
   );
 
+  it.effect("maps a receipt link failure without cleanup", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-migration-command-",
+      });
+      const receiptPath = path.join(root, "r".repeat(256));
+      resetCalls(receiptPath);
+
+      const failure = yield* runTryoutMigrationCommand({
+        command: "migrate-tryout-history",
+        receiptPath,
+        releaseId: receipt.payload.migrationId,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failure._tag, "ProductionError");
+      assert.strictEqual(failure.failure, "MigrationReceiptWriteError");
+      assert.strictEqual(failure.stage, "migration");
+      assert.strictEqual(calls.cleanupBytes, undefined);
+      assert.deepStrictEqual(calls.phases, ["seal"]);
+    }).pipe(Effect.provide(NodeHttpClient.layerNodeHttp))
+  );
+
   it.effect("maps a receipt readback failure without cleanup", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
