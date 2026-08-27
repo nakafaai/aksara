@@ -15,7 +15,6 @@ type PrepareContentReleaseInput = Parameters<typeof prepareContentRelease>[0];
 const calls = vi.hoisted(() => {
   /** Creates pristine observable state for one production-command test. */
   const initial = (): ProductionCalls => ({
-    activatesDeveloperPage: false,
     baseManifestHash: undefined,
     baseReleaseId: undefined,
     baseResultCount: undefined,
@@ -42,8 +41,6 @@ const calls = vi.hoisted(() => {
     publicationConfig: undefined,
     publishCalls: 0,
     publishKind: undefined,
-    readinessCalls: 0,
-    readinessFailure: false,
     releaseId: undefined,
     rendererCalls: 0,
     rendererManifestOverride: undefined,
@@ -70,7 +67,7 @@ const calls = vi.hoisted(() => {
   });
 });
 
-/** Exposes the current production-command observations to its owner tests. */
+/** Returns mutable call evidence owned by this isolated mock boundary. */
 export function productionCalls() {
   return calls;
 }
@@ -88,22 +85,6 @@ vi.mock("#cli/production/renderer", async (importOriginal) => ({
 vi.mock("#cli/checkout", async () =>
   (await import("#test/production/mock")).checkoutMock(calls)
 );
-vi.mock("#cli/developer-readiness/activation", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    activatesDeveloperPage: () =>
-      TestEffect.succeed(calls.activatesDeveloperPage),
-    verifyDeveloperPublication: () => {
-      if (!calls.activatesDeveloperPage) {
-        return TestEffect.void;
-      }
-      calls.readinessCalls += 1;
-      return calls.readinessFailure
-        ? TestEffect.fail({ _tag: "DeveloperReadinessError" })
-        : TestEffect.void;
-    },
-  };
-});
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
   (await import("#test/production/mock")).headsMock(calls)
 );

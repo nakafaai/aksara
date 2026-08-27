@@ -275,7 +275,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires an explicit scalable release scope", () => {
+  it("requires release workflows to pass a validated scalable scope", () => {
     expect(() =>
       verifyWorkflows({
         ...sources,

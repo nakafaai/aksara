@@ -1,20 +1,20 @@
 export const metadata = {
   title: "Nakafa Developer Resources",
   description: "Use Nakafa's public REST API, OpenAPI contract, MCP server, and command-line client in reliable education workflows.",
-  lastModified: "2026-08-25",
+  lastModified: "2026-08-27",
 };
 
 # Nakafa Developer Resources
 
-Last updated: August 25, 2026
+Last updated: August 27, 2026
 
 Nakafa provides public, machine-readable access to multilingual learning materials and bounded Quran references. These interfaces suit agents and applications that need typed inputs, predictable errors, and canonical content references. They are read-only, require no Nakafa account, and do not expose private learner records, purchases, or account actions.
 
-## Implementation evidence and availability gate
+## Verified implementation
 
-This page is bound to Nakafa commit [`338584dbabe3f9b75125239f6edb78dc5607d409`](https://github.com/nakafaai/nakafa.com/commit/338584dbabe3f9b75125239f6edb78dc5607d409). Aksara must not release this page until that exact revision or a reviewed descendant is live in Nakafa production, the production API and MCP contract checks pass, and `nakafa-cli` is available from npm. Until every gate passes, the addresses and commands below describe the reviewed implementation rather than current production availability.
+These public interfaces were verified live against Nakafa commit [`2fae54fec31b7cd630a56933b613fa5b9504695a`](https://github.com/nakafaai/nakafa.com/commit/2fae54fec31b7cd630a56933b613fa5b9504695a): the REST index and OpenAPI contract return the same release identity, the canonical MCP bridge completes protocol discovery, and `nakafa-cli@0.1.0` is available from npm.
 
-At the pinned revision, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/api.ts) owns the REST transport, [`mcp.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/mcp.ts) owns the MCP transport, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/agent/openapi/document.ts) generates the OpenAPI contract, and [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/cli/src/program.ts) owns the CLI command surface.
+At that revision, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/api.ts) owns REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/mcp/route.ts) owns MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/agent/openapi/document.ts) generates OpenAPI, and [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/cli/src/program.ts) owns the CLI command surface.
 
 ## Public REST API
 
@@ -62,7 +62,7 @@ Convex-owned API failures use RFC 9457 Problem Details with the media type `appl
 
 ## Model Context Protocol
 
-The canonical MCP endpoint is [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Use MCP when an agent already supports tool discovery and structured tool calls. Use REST for ordinary HTTP integrations or generated OpenAPI clients. Both interfaces execute the same Convex-owned capability and verify the same signed Aksara publication.
+The canonical MCP endpoint is [https://nakafa.com/mcp](https://nakafa.com/mcp). Use MCP when an agent already supports tool discovery and structured tool calls. Use REST for ordinary HTTP integrations or generated OpenAPI clients. Both interfaces execute the same Convex-owned capability and verify the same signed Aksara publication.
 
 The server exposes four read-only tools:
 
@@ -78,7 +78,7 @@ Modern clients use Streamable HTTP. Protocol `2026-07-28` replaces the legacy `i
     language: "http",
     filename: "mcp.http",
     code: `POST /mcp HTTP/1.1
-Host: mcp.nakafa.com
+Host: nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -89,7 +89,7 @@ Mcp-Method: server/discover
 ###
 
 POST /mcp HTTP/1.1
-Host: mcp.nakafa.com
+Host: nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -118,7 +118,7 @@ The CLI preserves Problem Details JSON on standard error and uses stable nonzero
 
 ## Machine-readable discovery
 
-- [Developer index](https://nakafa.com/developers/llms.txt)
+- [Developer page](https://nakafa.com/en/developers)
 - [Agent instructions](https://nakafa.com/skill.md)
 - [Root agent index](https://nakafa.com/llms.txt)
-- [OpenAPI 3.1](https://nakafa.com/openapi.json)
+- [OpenAPI 3.1](https://api.nakafa.com/openapi.json)

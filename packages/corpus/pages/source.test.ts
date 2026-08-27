@@ -135,7 +135,7 @@ layer(Path.layer)("public page source", (it) => {
           expect(rawMdx.match(/<CodeBlock/gu)).toHaveLength(4);
           expect(rawMdx).toContain(NAKAFA_AGENT_IMPLEMENTATION_SHA);
           expect(rawMdx).toContain("https://api.nakafa.com/openapi.json");
-          expect(rawMdx).toContain("https://mcp.nakafa.com/mcp");
+          expect(rawMdx).toContain("https://nakafa.com/mcp");
           expect(rawMdx).toContain(
             "Accept: application/json, text/event-stream"
           );

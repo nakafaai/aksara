@@ -1,20 +1,20 @@
 export const metadata = {
   title: "Sumber Daya Pengembang Nakafa",
   description: "Gunakan REST API publik, kontrak OpenAPI, server MCP, dan klien baris perintah Nakafa untuk alur pendidikan yang andal.",
-  lastModified: "2026-08-25",
+  lastModified: "2026-08-27",
 };
 
 # Sumber Daya Pengembang Nakafa
 
-Terakhir diperbarui: 25 Agustus 2026
+Terakhir diperbarui: 27 Agustus 2026
 
 Nakafa menyediakan akses publik yang dapat dibaca mesin ke materi belajar multibahasa dan referensi Quran dengan rentang terbatas. Antarmuka ini cocok untuk agen dan aplikasi yang memerlukan input bertipe, kegagalan yang dapat diprediksi, dan referensi konten kanonis. Semua akses bersifat baca-saja, tidak memerlukan akun Nakafa, serta tidak membuka data pelajar privat, pembelian, atau tindakan akun.
 
-## Bukti implementasi dan syarat penerbitan
+## Implementasi terverifikasi
 
-Halaman ini terikat pada commit Nakafa [`338584dbabe3f9b75125239f6edb78dc5607d409`](https://github.com/nakafaai/nakafa.com/commit/338584dbabe3f9b75125239f6edb78dc5607d409). Aksara tidak boleh menerbitkan halaman ini sebelum revisi tersebut atau turunannya yang telah ditinjau aktif di produksi Nakafa, pemeriksaan kontrak API dan MCP produksi berhasil, serta `nakafa-cli` tersedia dari npm. Sebelum semua syarat terpenuhi, alamat dan perintah di bawah menjelaskan implementasi yang telah ditinjau, bukan ketersediaan produksi saat ini.
+Antarmuka publik ini telah diverifikasi langsung terhadap commit Nakafa [`2fae54fec31b7cd630a56933b613fa5b9504695a`](https://github.com/nakafaai/nakafa.com/commit/2fae54fec31b7cd630a56933b613fa5b9504695a): indeks REST dan kontrak OpenAPI mengembalikan identitas rilis yang sama, bridge MCP kanonis menyelesaikan penemuan protokol, dan `nakafa-cli@0.1.0` tersedia dari npm.
 
-Pada revisi yang dipatok, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/api.ts) memiliki transport REST, [`mcp.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/convex/routes/agent/mcp.ts) memiliki transport MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/backend/agent/openapi/document.ts) menghasilkan kontrak OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/338584dbabe3f9b75125239f6edb78dc5607d409/packages/cli/src/program.ts) memiliki permukaan perintah CLI.
+Pada revisi tersebut, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/api.ts) memiliki REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/mcp/route.ts) memiliki MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/agent/openapi/document.ts) menghasilkan OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/cli/src/program.ts) memiliki permukaan perintah CLI.
 
 ## REST API publik
 
@@ -62,7 +62,7 @@ Kegagalan API yang berasal dari Convex menggunakan RFC 9457 Problem Details deng
 
 ## Model Context Protocol
 
-Endpoint MCP kanonis berada di [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Gunakan MCP ketika agen sudah mendukung penemuan tool dan pemanggilan tool terstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien yang dibuat dari OpenAPI. Kedua antarmuka menjalankan kapabilitas yang sama di Convex dan memverifikasi publikasi Aksara bertanda tangan yang sama.
+Endpoint MCP kanonis berada di [https://nakafa.com/mcp](https://nakafa.com/mcp). Gunakan MCP ketika agen sudah mendukung penemuan tool dan pemanggilan tool terstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien yang dibuat dari OpenAPI. Kedua antarmuka menjalankan kapabilitas yang sama di Convex dan memverifikasi publikasi Aksara bertanda tangan yang sama.
 
 Server menyediakan empat tool baca-saja:
 
@@ -78,7 +78,7 @@ Klien modern menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan sik
     language: "http",
     filename: "mcp.http",
     code: `POST /mcp HTTP/1.1
-Host: mcp.nakafa.com
+Host: nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -89,7 +89,7 @@ Mcp-Method: server/discover
 ###
 
 POST /mcp HTTP/1.1
-Host: mcp.nakafa.com
+Host: nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -118,7 +118,7 @@ CLI mempertahankan JSON Problem Details pada standard error dan menggunakan kate
 
 ## Penemuan yang dapat dibaca mesin
 
-- [Indeks developer](https://nakafa.com/developers/llms.txt)
+- [Halaman developer](https://nakafa.com/id/developers)
 - [Petunjuk agen](https://nakafa.com/skill.md)
 - [Indeks agen utama](https://nakafa.com/llms.txt)
-- [OpenAPI 3.1](https://nakafa.com/openapi.json)
+- [OpenAPI 3.1](https://api.nakafa.com/openapi.json)

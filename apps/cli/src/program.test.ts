@@ -149,6 +149,7 @@ vi.mock("#cli/status", async () => {
 beforeEach(() => {
   calls.accept = undefined;
   calls.abort = undefined;
+  calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
   calls.migration = undefined;
@@ -157,6 +158,7 @@ beforeEach(() => {
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
+  calls.status = false;
 });
 describe("CLI program", () => {
   it.effect("composes implicit preview with the actual-app session", () =>
@@ -294,5 +296,4 @@ describe("CLI program", () => {
       expect(calls.check).toBe("/code/aksara");
     })
   );
-
 });

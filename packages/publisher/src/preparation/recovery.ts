@@ -21,12 +21,12 @@ export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<Prepa
   }
 ) {}
 
-export type ReuseStoredReleaseError =
+type ReuseStoredReleaseError =
   | Effect.Error<ReturnType<typeof hashContentReleaseManifest>>
   | Effect.Error<ReturnType<typeof verifySignedContentRelease>>
   | PreparedStoredReleaseMismatchError;
 
-export type ReuseStoredReleaseContext = Effect.Services<
+type ReuseStoredReleaseContext = Effect.Services<
   ReturnType<typeof verifySignedContentRelease>
 >;
 

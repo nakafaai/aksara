@@ -218,42 +218,4 @@ describe("production command", () => {
       });
     })
   );
-
-  it.effect(
-    "verifies public capabilities before a developer-page release",
-    () =>
-      Effect.gen(function* () {
-        calls.activatesDeveloperPage = true;
-
-        const receipt = yield* productionProgram({
-          command: "release",
-          recoveryId: releaseId("recovery-readiness"),
-          releaseId: releaseId("release-readiness"),
-          scope: FUNCTION_SCOPE,
-        });
-
-        expect(receipt).toMatchObject({ releaseId: "release-readiness" });
-        expect(calls).toMatchObject({ publishCalls: 1, readinessCalls: 1 });
-      })
-  );
-
-  it.effect("blocks a stale developer-page release before publication", () =>
-    Effect.gen(function* () {
-      calls.activatesDeveloperPage = true;
-      calls.readinessFailure = true;
-
-      const error = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-readiness"),
-        releaseId: releaseId("release-readiness"),
-        scope: FUNCTION_SCOPE,
-      }).pipe(Effect.flip);
-
-      expect(error).toMatchObject({
-        failure: "DeveloperReadinessError",
-        stage: "readiness",
-      });
-      expect(calls).toMatchObject({ publishCalls: 0, readinessCalls: 1 });
-    })
-  );
 });

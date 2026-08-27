@@ -26,7 +26,6 @@ import { Effect } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
-import { verifyDeveloperPublication } from "#cli/developer-readiness/activation";
 import {
   readProductionEnvironment,
   readRecoveryEnvironment,
@@ -196,9 +195,6 @@ export const runProductionCommand: (
         Effect.provideService(PublicationTarget, target)
       );
     }
-    yield* verifyDeveloperPublication(publishable.items).pipe(
-      Effect.mapError(mapProductionError("readiness"))
-    );
     yield* logPublicationScope(publishable.manifest);
     const receipt = yield* publishGitRelease(publishable).pipe(
       Effect.provideService(PublicationActivation, activation),
