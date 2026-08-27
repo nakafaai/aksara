@@ -3,6 +3,13 @@ name: Migrate try-out history
 on:
   workflow_dispatch:
     inputs:
+      operation:
+        description: Retained-history migration operation
+        required: true
+        type: choice
+        options:
+          - migrate
+          - abort
       migration_id:
         description: Exact retained-history migration ID
         required: true
@@ -88,11 +95,73 @@ jobs:
           --repository "$GITHUB_REPOSITORY"
           --source-sha "$GITHUB_SHA"
 
+  abort:
+    needs: verify
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && inputs.operation == 'abort'
+      && needs.verify.result == 'success'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed abort checkout is dirty." >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The abort checkout does not match the workflow revision." >&2
+            exit 1
+          fi
+
+      - name: Prepare isolated abort checkout
+        env:
+          OPERATION_ROOT: ${{ runner.temp }}/aksara-abort
+        run: |
+          git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
+          pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$OPERATION_ROOT" rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The isolated abort checkout does not match the reviewed revision." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$OPERATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The isolated abort checkout is dirty." >&2
+            exit 1
+          fi
+
+      - name: Abort invisible migration staging
+        working-directory: ${{ runner.temp }}/aksara-abort
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          MIGRATION_ID: ${{ inputs.migration_id }}
+        run: >-
+          pnpm --filter @nakafa/aksara-cli migrate:abort --
+          --release-id "$MIGRATION_ID"
+
   seal:
     needs: verify
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
+      && inputs.operation == 'migrate'
       && needs.verify.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest

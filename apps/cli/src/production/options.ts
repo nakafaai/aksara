@@ -60,6 +60,9 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "migrate-tryout-history") {
     return option === "--release-id" || option === "--receipt-path";
   }
+  if (command === "abort-tryout-history") {
+    return option === "--release-id";
+  }
   if (
     option === "--asset-hash" ||
     option === "--receipt-path" ||

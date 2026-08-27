@@ -8,7 +8,10 @@ import {
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
   type TryoutHistoryMigrationCompletion,
 } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
-import { TryoutHistoryMigrationRequestSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/request";
+import {
+  type TryoutHistoryMigrationRequest,
+  TryoutHistoryMigrationRequestSchema,
+} from "@nakafa/aksara-contracts/transport/migration/tryout/request";
 import {
   type TryoutHistoryMigrationStatus,
   TryoutHistoryMigrationSuccessSchema,
@@ -25,18 +28,42 @@ import { historicalSource, migrationId } from "#test/migration/source";
 import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
 import { makeMigrationTarget } from "#test/migration/target";
 
+type MigrationSuccess = typeof TryoutHistoryMigrationSuccessSchema.Type;
+type MigrationExchange = Readonly<{
+  request: TryoutHistoryMigrationRequest;
+  response: MigrationSuccess;
+}>;
+type MigrationProtocol = Record<
+  | "abort"
+  | "artifact"
+  | "bundle"
+  | "cleanup"
+  | "initialize"
+  | "plan"
+  | "row"
+  | "run"
+  | "seal"
+  | "snapshot"
+  | "source"
+  | "stageArtifacts"
+  | "stageRows"
+  | "status",
+  MigrationExchange
+>;
+
 export const otherHash = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
 export const otherId = ReleaseIdSchema.make("other-migration");
-
 /** Strictly decodes one migration request for evidence-focused tests. */
-export function migrationRequest(input: unknown) {
+export function migrationRequest(
+  input: unknown
+): TryoutHistoryMigrationRequest {
   return Schema.decodeUnknownSync(TryoutHistoryMigrationRequestSchema)(input, {
     onExcessProperty: "error",
   });
 }
 
 /** Strictly decodes one successful migration response value. */
-export function migrationResponse(value: unknown) {
+export function migrationResponse(value: unknown): MigrationSuccess {
   return Schema.decodeUnknownSync(TryoutHistoryMigrationSuccessSchema)(
     { ok: true, operation: "migrateTryoutHistory", value },
     { onExcessProperty: "error" }
@@ -101,7 +128,16 @@ export const migrationProtocol = Effect.fn(
     operation: "migrateTryoutHistory",
     releaseId: migrationId,
   };
-  return {
+  const protocol: MigrationProtocol = {
+    abort: {
+      request: migrationRequest({ ...identity, command: "abort" }),
+      response: migrationResponse({
+        command: "abort",
+        deleted: 4,
+        done: true,
+        migrationId,
+      }),
+    },
     artifact: {
       request: migrationRequest({
         ...identity,
@@ -263,4 +299,5 @@ export const migrationProtocol = Effect.fn(
       }),
     },
   };
+  return protocol;
 });

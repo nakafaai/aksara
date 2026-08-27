@@ -62,6 +62,12 @@ export const TryoutHistoryMigrationInitializeRequestSchema = Schema.Struct({
   sourceSnapshotId: Sha256HashSchema,
 });
 
+/** Abandons only invisible staging through a bounded server-owned cursor. */
+export const TryoutHistoryMigrationAbortRequestSchema = Schema.Struct({
+  ...RequestIdentityFields,
+  command: Schema.Literal("abort"),
+});
+
 /** Reads one deterministic bounded page of authenticated retained rows. */
 export const TryoutHistoryMigrationRowPageRequestSchema = Schema.Struct({
   ...RequestIdentityFields,
@@ -187,6 +193,7 @@ export const TryoutHistoryMigrationStatusRequestSchema = Schema.Struct({
 export const TryoutHistoryMigrationRequestSchema = Schema.Union([
   TryoutHistoryMigrationSourceRequestSchema,
   TryoutHistoryMigrationInitializeRequestSchema,
+  TryoutHistoryMigrationAbortRequestSchema,
   TryoutHistoryMigrationRowPageRequestSchema,
   TryoutHistoryMigrationArtifactBatchRequestSchema,
   TryoutHistoryMigrationStageArtifactsRequestSchema,

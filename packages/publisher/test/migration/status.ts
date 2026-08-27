@@ -1,5 +1,6 @@
 import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import {
+  TryoutHistoryMigrationAbortingStatusSchema,
   TryoutHistoryMigrationReadyStatusSchema,
   TryoutHistoryMigrationRunningStatusSchema,
   TryoutHistoryMigrationStagingStatusSchema,
@@ -10,6 +11,10 @@ import { migrationId, sourceSnapshotId } from "#test/migration/source";
 type StagingStatus = Extract<
   TryoutHistoryMigrationStatus,
   { readonly phase: "staging" }
+>;
+type AbortingStatus = Extract<
+  TryoutHistoryMigrationStatus,
+  { readonly phase: "aborting" }
 >;
 type ReadyStatus = Extract<
   TryoutHistoryMigrationStatus,
@@ -31,6 +36,18 @@ export function migrationStatus(
     phase: "staging",
     placementMapCount: 0,
     sourceSnapshotId,
+    ...overrides,
+  });
+}
+
+/** Builds schema-checked cumulative staging cleanup evidence. */
+export function abortingMigrationStatus(
+  overrides: Partial<Omit<AbortingStatus, "phase">> = {}
+) {
+  return TryoutHistoryMigrationAbortingStatusSchema.make({
+    ...migrationStatus(),
+    deleted: 0,
+    phase: "aborting",
     ...overrides,
   });
 }

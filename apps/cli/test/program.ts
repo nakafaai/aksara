@@ -36,6 +36,7 @@ export interface ProgramCalls {
   cleanup: ReleaseCommand | undefined;
   document: string;
   migration: MigrationCommand | undefined;
+  migrationAbort: ReleaseCommand | undefined;
   migrationCleanup: MigrationCleanupCommand | undefined;
   open:
     | {

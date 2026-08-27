@@ -64,6 +64,10 @@ describe("try-out history migration status", () => {
   it("accepts every coherent phase", () => {
     assert.strictEqual(accepts({ ...counts, phase: "staging" }), true);
     assert.strictEqual(
+      accepts({ ...counts, deleted: 4, phase: "aborting" }),
+      true
+    );
+    assert.strictEqual(
       accepts({ ...counts, ...authorization, phase: "ready" }),
       true
     );
@@ -96,6 +100,7 @@ describe("try-out history migration status", () => {
       accepts({ ...counts, ...authorization, phase: "staging" }),
       false
     );
+    assert.strictEqual(accepts({ ...counts, phase: "aborting" }), false);
     assert.strictEqual(accepts({ ...counts, phase: "ready" }), false);
     assert.strictEqual(
       accepts({ ...counts, ...authorization, phase: "completed" }),
