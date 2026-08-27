@@ -30,16 +30,15 @@ import {
   releaseReceipt,
 } from "#test/lifecycle/state";
 
+type LifecyclePhase = "aborted" | "completed" | "staging" | "verified";
+
 /** Builds an observable durable target with candidate and recovery slots. */
 export function makeTarget(release: {
   readonly manifest: ContentReleaseManifest;
 }) {
   const bundles = new Map<string, ContentReleaseBundle>();
   const completed = new Map<string, ActiveContentRelease>();
-  const phases = new Map<
-    string,
-    "aborted" | "completed" | "staging" | "verified"
-  >();
+  const phases = new Map<string, LifecyclePhase>();
   const rows = createLifecycleRows();
   let active: ActiveContentRelease | null = null;
   let candidate: StagedContentRelease | null = null;
@@ -234,6 +233,7 @@ export function makeTarget(release: {
       Effect.succeed({ complete: true, deletedArtifacts: 0, releaseId }),
     current: Effect.suspend(current),
     headPage: (request) => Effect.succeed(rows.headPage(request)),
+    migrateTryoutHistory: () => Effect.die("Unexpected migration target call."),
     recovery: ({ recoveryId }) => {
       const value = completed.get(recoveryId);
       if (!value) {

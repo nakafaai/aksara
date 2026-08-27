@@ -3,7 +3,7 @@ import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/requ
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import type { StageSnapshotBatchReceipt } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Match } from "effect";
-
+import { hasBoundMigration } from "#publisher/target/evidence/migration";
 import {
   hasBoundManifestReceipt,
   hasBoundVerification,
@@ -170,6 +170,9 @@ export function hasBoundPublicationSuccess(
       current: () => response.operation === "current",
       headPage: (value) =>
         response.operation === "headPage" && hasBoundHeadPage(value, response),
+      migrateTryoutHistory: (value) =>
+        response.operation === "migrateTryoutHistory" &&
+        hasBoundMigration(value, response),
       recovery: (value) =>
         response.operation === "recovery" && hasBoundRecovery(value, response),
       rollbackPage: (value) =>

@@ -14,7 +14,7 @@ export type PreviewEnvironment = typeof PreviewEnvironmentSchema.Type;
 const TOKEN_WHITESPACE = /\s/u;
 
 /** Narrow target configuration shared by publication lifecycle commands. */
-interface PublicationEnvironment {
+export interface PublicationEnvironment {
   readonly publicationEndpoint: URL;
   readonly publicationToken: Redacted.Redacted<string>;
 }
@@ -23,13 +23,6 @@ interface PublicationEnvironment {
 interface RecoveryEnvironment extends PublicationEnvironment {
   readonly rendererEndpoint: URL;
   readonly rendererToken: Redacted.Redacted<string>;
-}
-
-/** Validated signer values added only for candidate publication commands. */
-interface ProductionEnvironment extends RecoveryEnvironment {
-  readonly derivedPublicKeyPem: string;
-  readonly keyId: typeof SigningKeyIdSchema.Type;
-  readonly privateKeyPem: Redacted.Redacted<string>;
 }
 
 /** The process environment does not satisfy the narrow preview contract. */
@@ -190,7 +183,7 @@ export const readRecoveryEnvironment = Effect.fn(
 /** Adds validated signer values to an already decoded recovery environment. */
 export const readProductionEnvironment = Effect.fn(
   "AksaraCli.readProductionEnvironment"
-)(function* (recovery: RecoveryEnvironment) {
+)(function* <Base extends PublicationEnvironment>(base: Base) {
   const keyIdInput = yield* readConfig(
     Config.string("AKSARA_SIGNING_KEY_ID"),
     "AKSARA_SIGNING_KEY_ID"
@@ -205,9 +198,9 @@ export const readProductionEnvironment = Effect.fn(
   const signingKey = yield* validatePrivateKey(privateKeyInput);
 
   return {
-    ...recovery,
+    ...base,
     derivedPublicKeyPem: signingKey.derivedPublicKeyPem,
     keyId,
     privateKeyPem: signingKey.privateKeyPem,
-  } satisfies ProductionEnvironment;
+  };
 });

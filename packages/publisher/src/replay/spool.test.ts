@@ -83,12 +83,14 @@ describe("replay spool", () => {
               );
               const first = yield* spool.replay.pipe(Stream.runCollect);
               const second = yield* spool.replay.pipe(Stream.runCollect);
+              const selected = yield* spool.read(1);
               return {
                 bytes: spool.bytes,
                 count: spool.count,
                 first: [...first],
                 modes: [data.mode % 0o1000, hash.mode % 0o1000],
                 second: [...second],
+                selected,
               };
             })
           );
@@ -101,9 +103,29 @@ describe("replay spool", () => {
             modes: [0o600, 0o600],
             remaining: [],
             second: entries,
+            selected: secondEntry,
           });
           expect(result.bytes).toBeGreaterThan(0);
         })
+    );
+
+    it.effect("rejects a random read outside the sealed spool", () =>
+      Effect.scoped(
+        Effect.gen(function* () {
+          const spool = yield* createReplaySpool({
+            prefix: yield* Effect.sync(() => `aksara-index-${randomUUID()}-`),
+            schema: ReplayEntrySchema,
+            stream: Stream.make(firstEntry),
+          });
+          const failures = yield* Effect.forEach([-1, 1, 1.5], (index) =>
+            spool.read(index).pipe(Effect.flip)
+          );
+
+          expect(failures.every(({ operation }) => operation === "read")).toBe(
+            true
+          );
+        })
+      )
     );
 
     it.effect("represents an empty source without creating record shards", () =>

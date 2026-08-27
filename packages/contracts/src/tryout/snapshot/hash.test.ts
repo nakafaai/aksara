@@ -2,8 +2,8 @@ import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
+import { canonicalizeTryoutSnapshot } from "#contracts/tryout/snapshot/canonical";
 import {
-  canonicalizeTryoutSnapshot,
   makeTryoutSnapshot,
   tryoutSnapshotRowEvidence,
 } from "#contracts/tryout/snapshot/hash";

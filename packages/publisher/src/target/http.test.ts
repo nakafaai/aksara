@@ -19,6 +19,7 @@ import {
   makeTarget,
   reject,
 } from "#test/http";
+import { migrationProtocol } from "#test/migration/protocol";
 import {
   transportRelease,
   transportRenderer,
@@ -52,6 +53,34 @@ describe("HTTP publication target", () => {
             expect(request.body.contentType).toBe("application/json");
           }
         }
+      })
+  );
+
+  it.effect(
+    "executes the temporary migration operation through strict JSON",
+    () =>
+      Effect.gen(function* () {
+        const exchanges = yield* migrationProtocol();
+        let requestCount = 0;
+        const client = HttpClient.make((request) => {
+          requestCount += 1;
+          return Effect.succeed(
+            HttpClientResponse.fromWeb(
+              request,
+              new Response(JSON.stringify(exchanges.source.response), {
+                headers: { "content-type": "application/json" },
+                status: 200,
+              })
+            )
+          );
+        });
+        const target = yield* makeTarget(client);
+        const value = yield* target.migrateTryoutHistory(
+          exchanges.source.request
+        );
+
+        expect(value).toEqual(exchanges.source.response.value);
+        expect(requestCount).toBe(1);
       })
   );
 

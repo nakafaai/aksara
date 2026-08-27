@@ -1,44 +1,24 @@
-import { NodeHttpClient, NodeServices } from "@effect/platform-node";
-import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { beforeEach, describe, expect, it } from "@nakafa/testing/effect";
-import { Effect } from "effect";
+import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { vi } from "vitest";
-import { makeCliProgram } from "#cli/program";
-import { unusedExactProcess } from "#test/process";
+import type { ProgramCalls } from "#test/program";
+import { runProgram } from "#test/program";
 
-interface ReleaseCommand {
-  readonly command: string;
-  readonly releaseId: string;
-}
-type RecoveryCommand = ReleaseCommand & { readonly recoveryId: string };
-const calls = vi.hoisted(() => ({
-  abort: undefined as ReleaseCommand | undefined,
-  accept: undefined as RecoveryCommand | undefined,
-  args: [] as readonly string[],
-  check: undefined as string | undefined,
-  cleanup: undefined as ReleaseCommand | undefined,
-  document:
-    "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
-  open: undefined as
-    | {
-        readonly cwd: string;
-        readonly environment: { readonly nakafaAppDir: string };
-        readonly requestedDocument: string;
-      }
-    | undefined,
-  production: undefined as
-    | {
-        readonly args: {
-          readonly command: string;
-          readonly recoveryId: string;
-          readonly releaseId: string;
-        };
-        readonly cwd: string;
-      }
-    | undefined,
-  recover: undefined as RecoveryCommand | undefined,
-  status: false,
-}));
+const calls = vi.hoisted(
+  (): ProgramCalls => ({
+    abort: undefined,
+    accept: undefined,
+    args: [],
+    check: undefined,
+    cleanup: undefined,
+    document:
+      "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
+    migration: undefined,
+    open: undefined,
+    production: undefined,
+    recover: undefined,
+    status: false,
+  })
+);
 
 vi.mock("#cli/args", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -73,6 +53,13 @@ vi.mock("#cli/args", async () => {
           command: "release",
           recoveryId: "recovery-next",
           releaseId: "release-next",
+        });
+      }
+      if (args[0] === "migrate-tryout-history") {
+        return TestEffect.succeed({
+          command: "migrate-tryout-history",
+          receiptPath: "/tmp/migration-receipt.json",
+          releaseId: "migration-release",
         });
       }
       if (args[0] === "recover") {
@@ -179,6 +166,17 @@ vi.mock("#cli/production/command", async () => {
   };
 });
 
+vi.mock("#cli/migration/tryout", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records migration dispatch without contacting production. */
+    runTryoutMigrationCommand: (args: NonNullable<typeof calls.migration>) => {
+      calls.migration = args;
+      return TestEffect.succeed("migration-complete");
+    },
+  };
+});
+
 vi.mock("#cli/recover", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -207,22 +205,12 @@ beforeEach(() => {
   calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
+  calls.migration = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
   calls.status = false;
 });
-
-/** Runs one CLI program with the real Node boundary services. */
-function runProgram(args: readonly string[]) {
-  return Effect.runPromise(
-    makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
-      Effect.provide(NodeHttpClient.layerNodeHttp),
-      Effect.provideService(ExactProcess, unusedExactProcess),
-      Effect.provide(NodeServices.layer)
-    )
-  );
-}
 
 describe("CLI program", () => {
   it("composes implicit preview with the actual-app session", async () => {
@@ -267,6 +255,17 @@ describe("CLI program", () => {
         releaseId: "release-next",
       },
       cwd: "/code/aksara",
+    });
+  });
+
+  it("dispatches the signed try-out history migration independently", async () => {
+    const result = await runProgram(["migrate-tryout-history"]);
+
+    expect(result).toBe("migration-complete");
+    expect(calls.migration).toEqual({
+      command: "migrate-tryout-history",
+      receiptPath: "/tmp/migration-receipt.json",
+      releaseId: "migration-release",
     });
   });
 

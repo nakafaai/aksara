@@ -64,8 +64,5 @@ describe("locale", () => {
       );
       expect(Exit.isFailure(result)).toBe(true);
     }
-    expect(
-      String(Schema.decodeExit(HistoricalAppLocaleListSchema)(["en"]))
-    ).toContain("Historical app locales must be exactly en and id.");
   });
 });

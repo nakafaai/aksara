@@ -42,6 +42,7 @@ const TARGET_STAGES: Readonly<{
   cleanup: "cleanup",
   current: "current",
   headPage: "heads",
+  migrateTryoutHistory: "staging",
   recovery: "recovery",
   rollbackPage: "rollback",
   routePage: "rollback",

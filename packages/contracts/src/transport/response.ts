@@ -17,6 +17,7 @@ import {
 import { StageBatchReceiptSchema } from "#contracts/transport/batch";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
 import { StageGroupSuccessSchema } from "#contracts/transport/group";
+import { TryoutHistoryMigrationSuccessSchema } from "#contracts/transport/migration/tryout/response";
 import { StageTryoutRuntimeBundleReceiptSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchReceiptSchema,
@@ -186,6 +187,7 @@ export const PublicationSuccessSchema = Schema.Union([
   PublicationAbortSuccessSchema,
   PublicationCurrentSuccessSchema,
   PublicationHeadPageSuccessSchema,
+  TryoutHistoryMigrationSuccessSchema,
   PublicationRecoverySuccessSchema,
   StageReleaseSuccessSchema,
   StageRecoverySuccessSchema,

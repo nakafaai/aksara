@@ -4,7 +4,11 @@ import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import { compileContent } from "#compiler/compile";
-import { extractAuthoredBody, inspectContentSource } from "#compiler/inspect";
+import {
+  extractAuthoredBody,
+  inspectContentSource,
+  inspectHistoricalContentSource,
+} from "#compiler/inspect";
 import { createTestRendererManifest } from "#compiler/test/content";
 
 const sourcePolicyState = vi.hoisted(() => ({ failTransformer: false }));
@@ -57,6 +61,39 @@ afterEach(() => {
 });
 
 describe("content source inspection", () => {
+  it.effect(
+    "recovers authenticated historical metadata without current source policy",
+    () =>
+      Effect.gen(function* () {
+        const rawMdx =
+          'export const metadata = { date: "2026-01-01", title: "Retained" }\n\n#### 1. Retained item';
+        const first = yield* inspectHistoricalContentSource({
+          contentKey: "test:historical-inspection",
+          rawMdx,
+        });
+        const second = yield* inspectHistoricalContentSource({
+          contentKey: "test:historical-inspection",
+          rawMdx,
+        });
+        const invalid = yield* Effect.exit(
+          inspectHistoricalContentSource({
+            contentKey: "test:historical-inspection",
+            extra: true,
+            rawMdx,
+          })
+        );
+
+        assert.deepStrictEqual(first, second);
+        assert.strictEqual(first.bodyMdx, "\n\n#### 1. Retained item");
+        assert.deepStrictEqual(first.metadata, {
+          date: "2026-01-01",
+          title: "Retained",
+        });
+        assert.match(first.sourceHash, SHA256_PREFIX);
+        assert.strictEqual(invalid._tag, "Failure");
+      })
+  );
+
   it.effect("returns stable metadata and hashes without emitted code", () =>
     Effect.gen(function* () {
       const request = yield* testRequest;

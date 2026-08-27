@@ -2,6 +2,7 @@ import {
   type StageGroupRequest,
   StageGroupSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/group";
+import { TryoutHistoryMigrationSuccessSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import type {
   ActivateRecoveryRequest,
   ActivateReleaseRequest,
@@ -144,6 +145,13 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
+    migrateTryoutHistory: (request) =>
+      send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(TryoutHistoryMigrationSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      ),
     recovery: (input) => {
       const request: PublicationRecoveryLookupRequest = {
         ...input,

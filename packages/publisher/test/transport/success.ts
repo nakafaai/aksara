@@ -69,6 +69,9 @@ export function transportSuccess(
         },
       }),
       headPage: headSuccess,
+      migrateTryoutHistory: () => {
+        throw new Error("Expected migration evidence to use focused fixtures.");
+      },
       recovery: (value) => ({
         ok: true,
         operation: value.operation,

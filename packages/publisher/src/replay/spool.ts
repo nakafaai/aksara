@@ -22,6 +22,8 @@ const RECORDS_PER_DIRECTORY = 1000;
 export interface ReplaySpool<A> {
   readonly bytes: number;
   readonly count: number;
+  /** Reads one strict record by its stable zero-based spool identity. */
+  readonly read: (index: number) => Effect.Effect<A, ReplaySpoolError>;
   /** Replays strictly decoded and hash-verified records in original order. */
   readonly replay: Stream.Stream<A, ReplaySpoolError>;
 }
@@ -180,6 +182,25 @@ export function createReplaySpool<A, I, E, R>(input: {
               })
             )
           );
-    return { bytes: state.bytes, count: state.count, replay };
+    /** Reads one strict record while the private spool scope remains open. */
+    const read = (index: number) => {
+      if (!(Number.isInteger(index) && index >= 0 && index < state.count)) {
+        return Effect.fail(
+          replaySpoolFailure(
+            "read",
+            { count: state.count, index, reason: "out-of-bounds" },
+            index >= 0 && Number.isInteger(index) ? index : undefined
+          )
+        );
+      }
+      return readRecord({
+        fileSystem,
+        index,
+        path,
+        root,
+        schema: input.schema,
+      });
+    };
+    return { bytes: state.bytes, count: state.count, read, replay };
   });
 }
