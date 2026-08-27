@@ -1,6 +1,6 @@
-import { assert, describe, it } from "@effect/vitest";
+import { assert, layer } from "@effect/vitest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect } from "effect";
+import { Effect, Layer } from "effect";
 
 import {
   cleanupMigrationReceipt,
@@ -28,14 +28,11 @@ import { makePublicationTarget } from "#test/target";
 
 /** Makes one real signed receipt under the test resolver. */
 const makeReceipt = () =>
-  makeMigrationReceipt(migrationSigner, completedMigrationStatus()).pipe(
-    Effect.provideService(
-      ContentVerificationKeyResolver,
-      migrationVerificationResolver
-    )
-  );
+  makeMigrationReceipt(migrationSigner, completedMigrationStatus());
 
-describe("try-out history migration receipt lifecycle", () => {
+layer(
+  Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver)
+)("try-out history migration receipt lifecycle", (it) => {
   it.effect("seals the exact authenticated completion receipt", () =>
     Effect.gen(function* () {
       const receipt = yield* makeReceipt();
@@ -54,12 +51,7 @@ describe("try-out history migration receipt lifecycle", () => {
       });
 
       yield* sealMigrationReceipt(target, receipt);
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 
   it.effect("rejects every drifted seal response identity", () =>
@@ -132,12 +124,7 @@ describe("try-out history migration receipt lifecycle", () => {
           )
         );
       });
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 
   it.effect(
@@ -172,12 +159,7 @@ describe("try-out history migration receipt lifecycle", () => {
 
         assert.strictEqual(cleaned.receiptHash, receipt.receiptHash);
         assert.strictEqual(calls, 2);
-      }).pipe(
-        Effect.provideService(
-          ContentVerificationKeyResolver,
-          migrationVerificationResolver
-        )
-      )
+      })
   );
 
   it.effect("fails closed when a cleanup page makes no progress", () =>
@@ -205,12 +187,7 @@ describe("try-out history migration receipt lifecycle", () => {
       ).pipe(Effect.flip);
 
       assert.strictEqual(failureReason(failure), "cleanup-progress");
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 
   it.effect("fails closed when cleanup exceeds its signed limit", () =>
@@ -243,12 +220,7 @@ describe("try-out history migration receipt lifecycle", () => {
 
       assert.strictEqual(failureReason(failure), "cleanup-limit");
       assert.strictEqual(calls, 2);
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 
   it.effect("rejects command, phase, and cleaned receipt drift", () =>
@@ -287,12 +259,7 @@ describe("try-out history migration receipt lifecycle", () => {
           )
         );
       });
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 
   it.effect("rejects proof for any other immutable asset", () =>
@@ -308,11 +275,6 @@ describe("try-out history migration receipt lifecycle", () => {
       }).pipe(Effect.flip);
 
       assert.strictEqual(failureReason(failure), "receipt-evidence");
-    }).pipe(
-      Effect.provideService(
-        ContentVerificationKeyResolver,
-        migrationVerificationResolver
-      )
-    )
+    })
   );
 });

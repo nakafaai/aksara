@@ -211,18 +211,6 @@ describe("production arguments", () => {
       reason: "missing",
     },
     {
-      args: ["release", "--unknown", "value"],
-      command: "release",
-      option: "command",
-      reason: "unknown",
-    },
-    {
-      args: ["release", "--asset-hash", MIGRATION_ASSET_HASH],
-      command: "release",
-      option: "--asset-hash",
-      reason: "unknown",
-    },
-    {
       args: ["release", "--release-id"],
       command: "release",
       option: "--release-id",
@@ -245,24 +233,6 @@ describe("production arguments", () => {
       command: "release",
       option: "--release-id",
       reason: "value",
-    },
-    {
-      args: ["release", "--release-id", "release-next"],
-      command: "release",
-      option: "--recovery-id",
-      reason: "missing",
-    },
-    {
-      args: [
-        "release",
-        "--release-id",
-        "release-next",
-        "--recovery-id",
-        "release-next",
-      ],
-      command: "release",
-      option: "--recovery-id",
-      reason: "identity",
     },
     {
       args: [

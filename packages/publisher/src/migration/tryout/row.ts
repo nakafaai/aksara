@@ -5,12 +5,12 @@ import {
   type ConvertedCatalogMapping,
   convertTryoutCatalog,
 } from "#publisher/migration/tryout/catalog";
+import type { HistoricalTryoutRows } from "#publisher/migration/tryout/inventory";
 import {
   type ConvertedArtifactSpool,
   type ConvertedPlacementMapping,
   convertTryoutPlacements,
 } from "#publisher/migration/tryout/placement";
-import type { HistoricalTryoutRows } from "#publisher/migration/tryout/source";
 
 /** Complete current rows and their exact retained source mappings. */
 export interface ConvertedTryoutRows {

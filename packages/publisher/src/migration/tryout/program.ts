@@ -10,6 +10,7 @@ import {
   makeConvertedArtifactStream,
 } from "#publisher/migration/tryout/artifact";
 import { migrationFail } from "#publisher/migration/tryout/error";
+import { readHistoricalTryoutRows } from "#publisher/migration/tryout/inventory";
 import {
   authenticateMigrationReceipt,
   cleanupMigrationReceipt,
@@ -17,10 +18,7 @@ import {
   sealMigrationReceipt,
 } from "#publisher/migration/tryout/receipt";
 import { convertTryoutRows } from "#publisher/migration/tryout/row";
-import {
-  readHistoricalTryoutRows,
-  readHistoricalTryoutSource,
-} from "#publisher/migration/tryout/source";
+import { readHistoricalTryoutSource } from "#publisher/migration/tryout/source";
 import {
   initializeTryoutMigration,
   isMigrationRunnable,

@@ -25,7 +25,7 @@ import type {
   ConvertedTryoutArtifact,
 } from "#publisher/migration/tryout/artifact";
 import { migrationFail } from "#publisher/migration/tryout/error";
-import type { IndexedHistoricalRow } from "#publisher/migration/tryout/source";
+import type { IndexedHistoricalRow } from "#publisher/migration/tryout/inventory";
 import type { ReplaySpool } from "#publisher/replay/spool";
 
 /** One current placement bound to its retained global identity. */

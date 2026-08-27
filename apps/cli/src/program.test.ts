@@ -22,77 +22,11 @@ const calls = vi.hoisted(
   })
 );
 vi.mock("#cli/args", async () => {
-  const { Effect: TestEffect } = await import("effect");
+  const { programArguments } = await import("#test/arguments");
   return {
     /** Decodes either the real preview path or one production test command. */
-    parseCliArguments: (args: readonly string[]) => {
-      calls.args = args;
-      if (args[0] === "abort") {
-        return TestEffect.succeed({
-          command: "abort",
-          releaseId: "release-abort",
-        });
-      }
-      if (args[0] === "accept") {
-        return TestEffect.succeed({
-          command: "accept",
-          recoveryId: "recovery-active",
-          releaseId: "release-active",
-        });
-      }
-      if (args[0] === "cleanup") {
-        return TestEffect.succeed({
-          command: "cleanup",
-          releaseId: "release-cleanup",
-        });
-      }
-      if (args[0] === "check") {
-        return TestEffect.succeed({ command: "check" });
-      }
-      if (args[0] === "release") {
-        return TestEffect.succeed({
-          command: "release",
-          recoveryId: "recovery-next",
-          releaseId: "release-next",
-        });
-      }
-      if (args[0] === "migrate-tryout-history") {
-        return TestEffect.succeed({
-          command: "migrate-tryout-history",
-          receiptPath: "/tmp/migration-receipt.json",
-          releaseId: "migration-release",
-        });
-      }
-      if (args[0] === "cleanup-tryout-history") {
-        return TestEffect.succeed({
-          command: "cleanup-tryout-history",
-          proof: {
-            assetHash: `sha256:${"a".repeat(64)}`,
-            sourceSha: "b".repeat(40),
-          },
-          receiptPath: "/tmp/migration-receipt.json",
-          releaseId: "migration-release",
-        });
-      }
-      if (args[0] === "recover") {
-        return TestEffect.succeed({
-          command: "recover",
-          recoveryId: "recovery-active",
-          releaseId: "release-active",
-        });
-      }
-      if (args[0] === "status") {
-        return TestEffect.succeed({ command: "status" });
-      }
-      const appLocaleIndex = args.indexOf("--app-locale");
-      const appLocale =
-        appLocaleIndex === -1 ? undefined : args[appLocaleIndex + 1];
-      return TestEffect.succeed({
-        ...(appLocale === undefined ? {} : { appLocale }),
-        command: "preview",
-        document: calls.document,
-      });
-    },
+    parseCliArguments: (args: readonly string[]) =>
+      programArguments(calls, args),
   };
 });
 vi.mock("#cli/accept", async () => {

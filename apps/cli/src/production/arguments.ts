@@ -7,6 +7,11 @@ import {
 import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
+import { productionArgumentsError as argumentError } from "#cli/production/error";
+import {
+  parseProductionOptions,
+  type RawProductionOptions,
+} from "#cli/production/options";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */
@@ -74,69 +79,10 @@ export type ProductionArguments =
   | ReleaseArguments
   | StatusArguments;
 
-/** Production arguments do not describe one unambiguous release operation. */
-export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgumentsError>()(
-  "ProductionArgumentsError",
-  {
-    command: Schema.Literals([
-      "abort",
-      "accept",
-      "cleanup",
-      "cleanup-tryout-history",
-      "migrate-tryout-history",
-      "recover",
-      "release",
-      "status",
-    ]),
-    option: Schema.Literals([
-      "--asset-hash",
-      "--recovery-id",
-      "--release-id",
-      "--receipt-path",
-      "--scope",
-      "--source-sha",
-      "command",
-    ]),
-    reason: Schema.Literals([
-      "duplicate",
-      "identity",
-      "missing",
-      "unknown",
-      "value",
-    ]),
-  }
-) {}
-
-interface RawProductionOptions {
-  assetHash?: string;
-  receiptPath?: string;
-  recoveryId?: string;
-  releaseId?: string;
-  scope: string[];
-  sourceSha?: string;
-}
-
 export type ProductionCommand = ProductionArguments["command"];
 type TryoutMigrationCommand =
   | CleanupTryoutHistoryArguments["command"]
   | MigrateTryoutHistoryArguments["command"];
-type ProductionOption =
-  | "--asset-hash"
-  | "--recovery-id"
-  | "--release-id"
-  | "--receipt-path"
-  | "--scope"
-  | "--source-sha";
-type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
-
-const OPTION_KEYS = {
-  "--asset-hash": "assetHash",
-  "--receipt-path": "receiptPath",
-  "--recovery-id": "recoveryId",
-  "--release-id": "releaseId",
-  "--source-sha": "sourceSha",
-} as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
-
 /** Narrows a raw command token to the production command vocabulary. */
 export function isProductionCommand(
   value: string | undefined
@@ -153,105 +99,16 @@ export function isProductionCommand(
   );
 }
 
-/** Narrows unknown command input to one supported named option. */
-function isProductionOption(
-  value: string | undefined
-): value is ProductionOption {
-  return (
-    value === "--asset-hash" ||
-    value === "--recovery-id" ||
-    value === "--receipt-path" ||
-    value === "--release-id" ||
-    value === "--scope" ||
-    value === "--source-sha"
-  );
-}
-
-/** Checks whether one command owns the selected production option. */
-function acceptsOption(command: ProductionCommand, option: ProductionOption) {
-  if (command === "status") {
-    return false;
-  }
-  if (command === "cleanup-tryout-history") {
-    return (
-      option === "--asset-hash" ||
-      option === "--release-id" ||
-      option === "--receipt-path" ||
-      option === "--source-sha"
-    );
-  }
-  if (command === "migrate-tryout-history") {
-    return option === "--release-id" || option === "--receipt-path";
-  }
-  if (
-    option === "--asset-hash" ||
-    option === "--receipt-path" ||
-    option === "--source-sha"
-  ) {
-    return false;
-  }
-  if (option === "--scope") {
-    return command === "release";
-  }
-  if (option === "--recovery-id") {
-    return command !== "abort" && command !== "cleanup";
-  }
-  return true;
-}
-
-/** Creates one typed argument failure without retaining unknown input values. */
-function argumentError(
-  command: ProductionCommand,
-  option: ProductionArgumentsError["option"],
-  reason: ProductionArgumentsError["reason"]
-) {
-  return new ProductionArgumentsError({ command, option, reason });
-}
-
 /** Decodes one release identifier while preserving its owning option. */
 function decodeReleaseId(
   command: ProductionCommand,
-  option: UniqueProductionOption,
+  option: "--recovery-id" | "--release-id",
   value: string
 ) {
   return Schema.decodeEffect(ReleaseIdSchema)(value).pipe(
     Effect.mapError(() => argumentError(command, option, "value"))
   );
 }
-
-/** Reads strict production options without aliases or positional IDs. */
-const parseProductionOptions = Effect.fn("AksaraCli.parseProductionOptions")(
-  function* (command: ProductionCommand, args: readonly string[]) {
-    const options: RawProductionOptions = { scope: [] };
-
-    for (let index = 0; index < args.length; index += 1) {
-      const option = args[index];
-      if (!isProductionOption(option)) {
-        return yield* argumentError(command, "command", "unknown");
-      }
-      if (!acceptsOption(command, option)) {
-        return yield* argumentError(command, option, "unknown");
-      }
-      const value = args[index + 1];
-      if (!(value && value.trim().length > 0 && !value.startsWith("--"))) {
-        return yield* argumentError(command, option, "value");
-      }
-      if (option === "--scope") {
-        options.scope.push(value);
-        index += 1;
-        continue;
-      }
-      const key = OPTION_KEYS[option];
-      if (options[key] !== undefined) {
-        return yield* argumentError(command, option, "duplicate");
-      }
-      options[key] = value;
-      index += 1;
-    }
-
-    return options;
-  }
-);
 
 /** Decodes the receipt and immutable-proof boundary for history migration. */
 const parseTryoutMigrationArguments = Effect.fn(
