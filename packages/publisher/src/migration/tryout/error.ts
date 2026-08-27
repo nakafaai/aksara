@@ -5,6 +5,8 @@ export class TryoutHistoryMigrationError extends Schema.TaggedError<TryoutHistor
   "TryoutHistoryMigrationError",
   {
     reason: Schema.Literals([
+      "abort-limit",
+      "abort-progress",
       "artifact-contract",
       "artifact-count",
       "artifact-requirement",
