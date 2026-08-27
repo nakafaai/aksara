@@ -1,10 +1,11 @@
 import { NodeServices } from "@effect/platform-node";
+import { layer } from "@effect/vitest";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect } from "effect";
+import { expect } from "vitest";
 import {
   loadPreviewSources,
   projectPreviewSource,
@@ -22,35 +23,35 @@ import { pageEntries, rendererManifest as pageRenderer } from "#test/page";
 import { questionRendererManifest } from "#test/question/renderer";
 import { questionEntries } from "#test/question/spec";
 
-const articleEntry = articleEntries.find(
-  ({ route }) => route.artifactLocale === "en"
-);
-const promptEntry = questionEntries.find(
-  ({ bodyKind, artifactLocale }) =>
-    bodyKind === "question" && artifactLocale === "en"
-);
-const answerEntry = questionEntries.find(
-  ({ bodyKind, artifactLocale }) =>
-    bodyKind === "answer" && artifactLocale === "en"
-);
-const pageEntry = pageEntries.find(
-  ({ route }) =>
-    route.pageKey === "privacy-policy" && route.artifactLocale === "en"
-);
-if (!(articleEntry && pageEntry && promptEntry && answerEntry)) {
-  throw new Error(
-    "Expected real article, material, page, prompt, and answer entries."
+const previewSources = Effect.gen(function* () {
+  const articleEntry = articleEntries.find(
+    ({ route }) => route.artifactLocale === "en"
   );
-}
+  const promptEntry = questionEntries.find(
+    ({ bodyKind, artifactLocale }) =>
+      bodyKind === "question" && artifactLocale === "en"
+  );
+  const answerEntry = questionEntries.find(
+    ({ bodyKind, artifactLocale }) =>
+      bodyKind === "answer" && artifactLocale === "en"
+  );
+  const pageEntry = pageEntries.find(
+    ({ route }) =>
+      route.pageKey === "privacy-policy" && route.artifactLocale === "en"
+  );
+  if (!(articleEntry && pageEntry && promptEntry && answerEntry)) {
+    return yield* Effect.die(
+      "Expected real article, material, page, prompt, and answer entries."
+    );
+  }
 
-const [
-  articleSelection,
-  materialSelection,
-  pageSelection,
-  promptSelection,
-  answerSelection,
-] = await Effect.runPromise(
-  Effect.all(
+  const [
+    articleSelection,
+    materialSelection,
+    pageSelection,
+    promptSelection,
+    answerSelection,
+  ] = yield* Effect.all(
     [
       selectPreviewDocument(checkoutRoot, articleEntry.sourcePath),
       selectPreviewDocument(checkoutRoot, englishPath),
@@ -59,19 +60,37 @@ const [
       selectPreviewDocument(checkoutRoot, answerEntry.sourcePath),
     ],
     { concurrency: 5 }
-  ).pipe(Effect.provide(NodeServices.layer))
-);
-const [articleSource] = articleSelection.sources;
-const [materialSource] = materialSelection.sources;
-const [pageSource] = pageSelection.sources;
-const [promptSource] = promptSelection.sources;
-const [answerPromptSource, answerSource] = answerSelection.sources;
-if (answerSource === undefined) {
-  throw new Error("Expected the real answer preview closure.");
-}
-const choicesPath = CorpusSourcePathSchema.make(
-  `${promptEntry.sourceRoot}/choices.ts`
-);
+  );
+  const [articleSource] = articleSelection.sources;
+  const [materialSource] = materialSelection.sources;
+  const [pageSource] = pageSelection.sources;
+  const [promptSource] = promptSelection.sources;
+  const [answerPromptSource, answerSource] = answerSelection.sources;
+  if (
+    !(
+      articleSource &&
+      materialSource &&
+      pageSource &&
+      promptSource &&
+      answerPromptSource &&
+      answerSource
+    )
+  ) {
+    return yield* Effect.die("Expected complete real preview source closures.");
+  }
+
+  return {
+    answerPromptSource,
+    answerSource,
+    articleSource,
+    choicesPath: CorpusSourcePathSchema.make(
+      `${promptEntry.sourceRoot}/choices.ts`
+    ),
+    materialSource,
+    pageSource,
+    promptSource,
+  };
+});
 
 /** Loads and projects one real source with its exact renderer manifest. */
 function projectSource(
@@ -82,74 +101,87 @@ function projectSource(
     | typeof pageRenderer
     | typeof questionRendererManifest
 ) {
-  return Effect.runPromise(
-    Effect.gen(function* () {
-      const [loaded] = yield* loadPreviewSources(checkoutRoot, [source]);
-      const inspection = yield* inspectContentSource({
-        ...loaded.body,
-        rendererManifest,
-      });
-      return yield* projectPreviewSource(loaded, inspection.metadata);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
+  return Effect.gen(function* () {
+    const [loaded] = yield* loadPreviewSources(checkoutRoot, [source]);
+    const inspection = yield* inspectContentSource({
+      ...loaded.body,
+      rendererManifest,
+    });
+    return yield* projectPreviewSource(loaded, inspection.metadata);
+  });
 }
 
-describe("preview source", () => {
-  it("loads and projects every supported real content family", async () => {
-    const [article, material, page, question] = await Promise.all([
-      projectSource(articleSource, articleRenderer),
-      projectSource(materialSource, materialRenderer),
-      projectSource(pageSource, pageRenderer),
-      projectSource(promptSource, questionRendererManifest),
-    ]);
+layer(NodeServices.layer)("preview source", (it) => {
+  it.effect("loads and projects every supported real content family", () =>
+    Effect.gen(function* () {
+      const { articleSource, materialSource, pageSource, promptSource } =
+        yield* previewSources;
+      const [article, material, page, question] = yield* Effect.all(
+        [
+          projectSource(articleSource, articleRenderer),
+          projectSource(materialSource, materialRenderer),
+          projectSource(pageSource, pageRenderer),
+          projectSource(promptSource, questionRendererManifest),
+        ],
+        { concurrency: 4 }
+      );
 
-    expect(article).toMatchObject({ artifactLocale: "en", kind: "article" });
-    expect(material).toMatchObject({
-      artifactLocale: "en",
-      kind: "subject-lesson",
-    });
-    expect(page).toMatchObject({
-      artifactLocale: "en",
-      kind: "public-page",
-    });
-    expect(question).toMatchObject({
-      artifactLocale: "en",
-      bodyKind: "question",
-      kind: "question-body",
-    });
-  });
+      expect(article).toMatchObject({ artifactLocale: "en", kind: "article" });
+      expect(material).toMatchObject({
+        artifactLocale: "en",
+        kind: "subject-lesson",
+      });
+      expect(page).toMatchObject({
+        artifactLocale: "en",
+        kind: "public-page",
+      });
+      expect(question).toMatchObject({
+        artifactLocale: "en",
+        bodyKind: "question",
+        kind: "question-body",
+      });
+    })
+  );
 
-  it("parses one shared choices source for an ordered answer closure", async () => {
-    const loaded = await Effect.runPromise(
-      loadPreviewSources(checkoutRoot, [answerPromptSource, answerSource]).pipe(
-        Effect.provide(NodeServices.layer)
-      )
-    );
-    const [prompt, answer] = loaded;
-    if (!(prompt.family === "question" && answer?.family === "question")) {
-      throw new Error("Expected the real prompt and answer closure.");
-    }
+  it.effect(
+    "parses one shared choices source for an ordered answer closure",
+    () =>
+      Effect.gen(function* () {
+        const { answerPromptSource, answerSource } = yield* previewSources;
+        const loaded = yield* loadPreviewSources(checkoutRoot, [
+          answerPromptSource,
+          answerSource,
+        ]);
+        const [prompt, answer] = loaded;
+        if (!(prompt.family === "question" && answer?.family === "question")) {
+          return yield* Effect.die(
+            "Expected the real prompt and answer closure."
+          );
+        }
 
-    expect(loaded).toHaveLength(2);
-    expect(loaded.map(({ source }) => source.sourcePath)).toEqual([
-      answerPromptSource.entry.sourcePath,
-      answerSource.entry.sourcePath,
-    ]);
-    expect(prompt.source.choices).toEqual(answer.source.choices);
-  });
+        expect(loaded).toHaveLength(2);
+        expect(loaded.map(({ source }) => source.sourcePath)).toEqual([
+          answerPromptSource.entry.sourcePath,
+          answerSource.entry.sourcePath,
+        ]);
+        expect(prompt.source.choices).toEqual(answer.source.choices);
+      })
+  );
 
-  it("maps a missing choices dependency to the preview source boundary", async () => {
-    const error = await Effect.runPromise(
-      loadPreviewSources("/missing", [promptSource]).pipe(
-        Effect.provide(NodeServices.layer),
-        Effect.flip
-      )
-    );
+  it.effect(
+    "maps a missing choices dependency to the preview source boundary",
+    () =>
+      Effect.gen(function* () {
+        const { choicesPath, promptSource } = yield* previewSources;
+        const error = yield* loadPreviewSources("/missing", [
+          promptSource,
+        ]).pipe(Effect.flip);
 
-    expect(error).toMatchObject({
-      _tag: "PreviewChoiceSourceError",
-      checkoutRoot: "/missing",
-      sourcePath: choicesPath,
-    });
-  });
+        expect(error).toMatchObject({
+          _tag: "PreviewChoiceSourceError",
+          checkoutRoot: "/missing",
+          sourcePath: choicesPath,
+        });
+      })
+  );
 });
