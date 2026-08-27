@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { it as effectIt } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
+import { describe, expect, it } from "vitest";
 import {
   decodePublicContentRuntimeRequest,
   decodePublicContentRuntimeResponse,
@@ -18,7 +19,7 @@ import {
 } from "#contracts/test/runtime/public";
 
 describe("content runtime contract", () => {
-  it.effect("decodes the exact bounded route request", () =>
+  effectIt.effect("decodes the exact bounded route request", () =>
     Effect.gen(function* () {
       expect(MAX_PUBLIC_RUNTIME_REQUEST_BYTES).toBe(4096);
       expect(MAX_PUBLIC_RUNTIME_RESPONSE_BYTES).toBe(1024 * 1024);
@@ -38,28 +39,30 @@ describe("content runtime contract", () => {
     })
   );
 
-  it.effect("accepts found, missing, and sanitized failure responses", () =>
-    Effect.gen(function* () {
-      expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
-        MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
-      );
-      for (const response of [
-        found,
-        articleFound,
-        { kind: "missing" },
-        { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
-        { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
-        { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
-      ]) {
-        expect(accepts(PublicContentRuntimeResponseSchema, response)).toBe(
-          true
+  effectIt.effect(
+    "accepts found, missing, and sanitized failure responses",
+    () =>
+      Effect.gen(function* () {
+        expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
+          MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
         );
-      }
-      expect(yield* decodePublicContentRuntimeResponse(found)).toEqual(found);
-      expect(yield* decodePublicContentRuntimeResponse(articleFound)).toEqual(
-        articleFound
-      );
-    })
+        for (const response of [
+          found,
+          articleFound,
+          { kind: "missing" },
+          { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
+          { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
+          { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
+        ]) {
+          expect(accepts(PublicContentRuntimeResponseSchema, response)).toBe(
+            true
+          );
+        }
+        expect(yield* decodePublicContentRuntimeResponse(found)).toEqual(found);
+        expect(yield* decodePublicContentRuntimeResponse(articleFound)).toEqual(
+          articleFound
+        );
+      })
   );
 
   it("rejects mismatched identities and uncontracted response fields", () => {
