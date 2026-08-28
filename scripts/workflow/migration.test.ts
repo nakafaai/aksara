@@ -24,6 +24,39 @@ describe("migration workflow policy", () => {
     );
   });
 
+  it("requires resumed cleanup to use the immutable release source", () => {
+    expect(() =>
+      verifyMigrationWorkflow(
+        migration.replace(
+          '--source-digest "$SOURCE_SHA"',
+          '--source-digest "$GITHUB_SHA"'
+        )
+      )
+    ).toThrow(
+      "Migration cleanup must reverify the public receipt before deletion"
+    );
+  });
+
+  it("requires cleanup to reject a new receipt lifecycle", () => {
+    expect(() =>
+      verifyMigrationWorkflow(
+        migration.replace("inputs.operation == 'cleanup'", "false")
+      )
+    ).toThrow(
+      "Migration cleanup must reverify the public receipt before deletion"
+    );
+  });
+
+  it("requires one canonical cleanup migration identity", () => {
+    expect(() =>
+      verifyMigrationWorkflow(
+        migration.replace("^[a-z0-9][a-z0-9._-]{0,127}$", "^[\\s\\S]+$")
+      )
+    ).toThrow(
+      "Migration cleanup must reverify the public receipt before deletion"
+    );
+  });
+
   it("requires abort to use its protected exact-revision operation", () => {
     expect(() =>
       verifyMigrationWorkflow(

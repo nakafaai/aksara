@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 
 const TRIGGER_PATTERN =
-  /workflow_dispatch:[\s\S]*operation:[\s\S]*type: choice[\s\S]*- migrate[\s\S]*- abort[\s\S]*migration_id:[\s\S]*required: true[\s\S]*permissions: \{\}/u;
+  /workflow_dispatch:[\s\S]*operation:[\s\S]*type: choice[\s\S]*- migrate[\s\S]*- cleanup[\s\S]*- abort[\s\S]*migration_id:[\s\S]*required: true[\s\S]*permissions: \{\}/u;
 const CONCURRENCY_PATTERN = /group: content-production/u;
 const CHAIN_PATTERN =
-  /verify:[\s\S]*seal:[\s\S]*needs: verify[\s\S]*environment: content-production[\s\S]*publish:[\s\S]*needs: seal[\s\S]*cleanup:[\s\S]*needs: \[seal, publish\][\s\S]*environment: content-production/u;
+  /verify:[\s\S]*seal:[\s\S]*needs: verify[\s\S]*environment: content-production[\s\S]*publish:[\s\S]*needs: seal[\s\S]*cleanup:[\s\S]*needs: \[verify, seal, publish\][\s\S]*environment: content-production/u;
 const VERIFY_PATTERN =
   /verify:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*pnpm install --frozen-lockfile[\s\S]*pnpm security:audit[\s\S]*Verify repository controls[\s\S]*Verify migration revision[\s\S]*verify:consumer --output "\$TARBALL"[\s\S]*release-command\.ts prove[\s\S]*--source-sha "\$GITHUB_SHA"/u;
 const ABORT_PATTERN =
@@ -14,7 +14,7 @@ const SEAL_PATTERN =
 const PUBLISH_PATTERN =
   /publish:[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download signed receipt[\s\S]*Verify transported receipt[\s\S]*Resolve release state[\s\S]*isImmutable,isPrerelease,targetCommitish[\s\S]*mode=reuse[\s\S]*Create draft release[\s\S]*Attach signed receipt[\s\S]*Publish immutable release[\s\S]*Verify public receipt[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify-asset[\s\S]*gh attestation verify/u;
 const CLEANUP_PATTERN =
-  /cleanup:[\s\S]*gh release download "\$RELEASE_TAG"[\s\S]*Verify public release[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify-asset[\s\S]*gh attestation verify[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --filter @nakafa\/aksara-cli migrate:cleanup\s+--release-id "\$MIGRATION_ID"[\s\S]*--asset-hash "\$ASSET_HASH" --source-sha "\$SOURCE_SHA"/u;
+  /cleanup:[\s\S]*needs: \[verify, seal, publish\][\s\S]*always\(\)[\s\S]*inputs\.operation == 'cleanup'[\s\S]*needs\.seal\.result == 'skipped'[\s\S]*needs\.publish\.result == 'skipped'[\s\S]*Resolve public receipt identity[\s\S]*\^\[a-z0-9\]\[a-z0-9\._-\]\{0,127\}\$[\s\S]*release_tag="migration-\$MIGRATION_ID"[\s\S]*\.target_commitish \| test\("\^\[0-9a-f\]\{40\}\$"\)[\s\S]*source_sha=\$\(jq -er '\.target_commitish'[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release download "\$RELEASE_TAG"[\s\S]*Verify public release[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*gh release verify-asset[\s\S]*gh attestation verify[\s\S]*--source-digest "\$SOURCE_SHA"[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --filter @nakafa\/aksara-cli migrate:cleanup\s+--release-id "\$MIGRATION_ID"[\s\S]*--asset-hash "\$ASSET_HASH" --source-sha "\$SOURCE_SHA"/u;
 const PRIVILEGED_CODE_PATTERN =
   /actions\/checkout|\bpnpm\b|\bnode\b|packages\/|scripts\//u;
 const SIGNING_SECRET_PATTERN =
