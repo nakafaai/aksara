@@ -16,7 +16,7 @@ import { vi } from "vitest";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
 import { testFileLayer } from "#test/files";
-import { sourceByPath as materialSources } from "#test/material/spec";
+import { MaterialTestFixtures, materialTestLayer } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 import { sourceByPath as questionSources } from "#test/question/spec";
 import { testRendererDomains } from "#test/renderer";
@@ -131,6 +131,7 @@ const makeCatalogTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
+    const material = yield* MaterialTestFixtures;
     const page = yield* PageTestFixtures;
     const rendererManifest = yield* createRendererManifest({
       base: {
@@ -155,7 +156,7 @@ const makeCatalogTestFixtures = Effect.fn(
     });
     const sources = new Map([
       ...article.sources,
-      ...materialSources,
+      ...material.sources,
       ...page.sources,
       ...questionSources,
     ]);
@@ -200,7 +201,11 @@ class CatalogTestFixtures extends Context.Service<
 const catalogTestLayer = Layer.effect(
   CatalogTestFixtures,
   makeCatalogTestFixtures()
-).pipe(Layer.provide(Layer.merge(articleTestLayer, pageTestLayer)));
+).pipe(
+  Layer.provide(
+    Layer.mergeAll(articleTestLayer, materialTestLayer, pageTestLayer)
+  )
+);
 /** Collects a catalog replay through the shared suite fixture. */
 const collectCatalog = Effect.fn("CatalogPublicationTest.collect")(
   (input: CatalogTestInput) =>

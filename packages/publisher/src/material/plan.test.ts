@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect } from "effect";
@@ -12,14 +11,13 @@ import {
 } from "#test/material/plan";
 import {
   atomEnglishPath,
-  checkoutRoot,
   collectMaterialPublication,
   collectMaterialResult,
   englishPath,
   functionContentKey,
+  MaterialTestFixtures,
   materialFamilyScope,
   materialManifest,
-  sourceByPath,
 } from "#test/material/spec";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -89,8 +87,11 @@ layer(materialPlanTestLayer)("material plan", (it) => {
   it.effect("compiles only the real document whose source changed", () =>
     Effect.gen(function* () {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
-      const sources = new Map(sourceByPath);
-      const absolutePath = resolve(checkoutRoot, englishPath);
+      const fixture = yield* MaterialTestFixtures;
+      const sources = new Map(fixture.sources);
+      const absolutePath = yield* Effect.fromNullishOr(
+        fixture.absolutePaths.get(englishPath)
+      );
       const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
       sources.set(absolutePath, `${english}\n`);
 
@@ -227,8 +228,11 @@ layer(materialPlanTestLayer)("material plan", (it) => {
     () =>
       Effect.gen(function* () {
         const { publishedHeads } = yield* MaterialPlanTestFixtures;
-        const sources = new Map(sourceByPath);
-        const absolutePath = resolve(checkoutRoot, atomEnglishPath);
+        const fixture = yield* MaterialTestFixtures;
+        const sources = new Map(fixture.sources);
+        const absolutePath = yield* Effect.fromNullishOr(
+          fixture.absolutePaths.get(atomEnglishPath)
+        );
         const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
         sources.set(absolutePath, `${source}\n`);
 

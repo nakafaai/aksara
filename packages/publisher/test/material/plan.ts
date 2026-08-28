@@ -5,6 +5,7 @@ import {
 import { Context, Effect, Layer, Schema } from "effect";
 import {
   functionContentKey,
+  materialTestLayer,
   publishedMaterialHeads,
 } from "#test/material/spec";
 
@@ -75,7 +76,12 @@ export class MaterialPlanTestFixtures extends Context.Service<
   Effect.Success<ReturnType<typeof makeMaterialPlanTestFixtures>>
 >()("AksaraPublisherMaterialPlanTestFixtures") {}
 
-export const materialPlanTestLayer = Layer.effect(
+const materialPlanFixtureLayer = Layer.effect(
   MaterialPlanTestFixtures,
   makeMaterialPlanTestFixtures()
+).pipe(Layer.provide(materialTestLayer));
+
+export const materialPlanTestLayer = Layer.merge(
+  materialTestLayer,
+  materialPlanFixtureLayer
 );
