@@ -166,29 +166,34 @@ export const quranProvenanceRecordsFor = Effect.fn(
     quranProvenanceScopes(activeAppLocales),
     (scope) =>
       Effect.gen(function* () {
-        const matches = catalog.filter(
-          ({ provenance }) => provenance.scope === scope
+        const matches = catalog.flatMap((catalogEntry) =>
+          catalogEntry.provenance
+            .filter((provenance) => provenance.scope === scope)
+            .map((provenance) => ({
+              attribution: catalogEntry.attribution,
+              provenance,
+            }))
         );
-        const [entry] = matches;
-        if (entry === undefined || matches.length > 1) {
+        const [selected] = matches;
+        if (selected === undefined || matches.length > 1) {
           return yield* new QuranCatalogError({
             activeAppLocales,
             reason:
-              entry === undefined
+              selected === undefined
                 ? "missing-provenance"
                 : "duplicate-provenance",
             scope,
           });
         }
         const attribution = yield* localizeSource(
-          entry.attribution.id,
+          selected.attribution.id,
           activeAppLocales,
           catalog
         );
         return yield* Schema.decodeEffect(QuranProvenanceRecordSchema)(
           {
             attribution,
-            ...entry.provenance,
+            ...selected.provenance,
           },
           { onExcessProperty: "error" }
         ).pipe(
@@ -198,7 +203,7 @@ export const quranProvenanceRecordsFor = Effect.fn(
                 activeAppLocales,
                 reason: "mismatched-provenance",
                 scope,
-                sourceId: entry.attribution.id,
+                sourceId: selected.attribution.id,
               })
           )
         );

@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import {
-  appLocaleLiteral,
+  AppLocaleCodeSchema,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
@@ -35,14 +35,17 @@ export const QuranSurahNumberSchema = Schema.Int.pipe(
   Schema.check(Schema.isBetween({ maximum: QURAN_SURAH_COUNT, minimum: 1 }))
 );
 
+/** Complete reviewed surah-name meaning map in canonical app-locale keys. */
+export const QuranSurahNameMeaningSchema = Schema.Record(
+  AppLocaleCodeSchema,
+  QuranMeaningfulTextSchema
+);
+
 /** Shared authored and published metadata for one reviewed Quran surah. */
 export const QuranSurahMetadataSchema = Schema.Struct({
   name: Schema.Struct({
     arabic: QuranMeaningfulTextSchema,
-    meaning: Schema.Struct({
-      appLocale: appLocaleLiteral(ENGLISH_APP_LOCALE_CODE),
-      text: QuranMeaningfulTextSchema,
-    }),
+    meaning: QuranSurahNameMeaningSchema,
     transliteration: QuranMeaningfulTextSchema,
   }),
   number: QuranSurahNumberSchema,

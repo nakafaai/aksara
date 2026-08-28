@@ -12,6 +12,8 @@ import {
 export const QuranEmbeddedSourceIdSchema = Schema.Literals([
   "tanzil-text",
   "tanzil-metadata",
+  "kemenag-names",
+  "bubenheim-names",
   "quranenc-english",
   "quranenc-indonesian",
   "quranenc-german",
@@ -44,6 +46,34 @@ export const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral([
 export type QuranTranslationProvenanceScope =
   typeof QuranTranslationProvenanceScopeSchema.Type;
 
+/** Locale-specific surah-name field in Quran source provenance. */
+export const QuranNameProvenanceScopeSchema = Schema.TemplateLiteral([
+  AppLocaleCodeSchema,
+  "-surah-name",
+]);
+export type QuranNameProvenanceScope =
+  typeof QuranNameProvenanceScopeSchema.Type;
+
+interface QuranNameBinding {
+  readonly scope: QuranNameProvenanceScope;
+  readonly sourceId: QuranEmbeddedSourceId;
+}
+
+const QURAN_NAME_BY_LOCALE = {
+  [ENGLISH_APP_LOCALE_CODE]: {
+    scope: "en-surah-name",
+    sourceId: "tanzil-metadata",
+  },
+  [GERMAN_APP_LOCALE_CODE]: {
+    scope: "de-surah-name",
+    sourceId: "bubenheim-names",
+  },
+  [INDONESIAN_APP_LOCALE_CODE]: {
+    scope: "id-surah-name",
+    sourceId: "kemenag-names",
+  },
+} as const satisfies Record<AppLocaleCode, QuranNameBinding>;
+
 interface QuranTranslationBinding {
   readonly scope: QuranTranslationProvenanceScope;
   readonly sourceId: QuranEmbeddedSourceId;
@@ -73,6 +103,48 @@ const QURAN_TAFSIR_BY_LOCALE = {
   [GERMAN_APP_LOCALE_CODE]: { sourceId: "mokhtasar-german" },
   [INDONESIAN_APP_LOCALE_CODE]: { sourceId: "quranenc-tafsir" },
 } as const satisfies Record<AppLocaleCode, QuranTafsirBinding>;
+
+/** Selects the reviewed surah-name source for an application locale. */
+export function quranNameSourceId(
+  appLocale: typeof ENGLISH_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the Indonesian surah-name source identity. */
+export function quranNameSourceId(
+  appLocale: typeof INDONESIAN_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["sourceId"];
+/** Narrows the German surah-name source identity. */
+export function quranNameSourceId(
+  appLocale: typeof GERMAN_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
+/** Selects a surah-name source from a dynamic supported locale. */
+export function quranNameSourceId(
+  appLocale: AppLocaleCode
+): QuranEmbeddedSourceId;
+/** Resolves the selected surah-name source identity. */
+export function quranNameSourceId(appLocale: AppLocaleCode) {
+  return QURAN_NAME_BY_LOCALE[appLocale].sourceId;
+}
+
+/** Selects the surah-name provenance scope for an application locale. */
+export function quranNameProvenanceScope(
+  appLocale: typeof ENGLISH_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof ENGLISH_APP_LOCALE_CODE]["scope"];
+/** Narrows the Indonesian surah-name provenance scope. */
+export function quranNameProvenanceScope(
+  appLocale: typeof INDONESIAN_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof INDONESIAN_APP_LOCALE_CODE]["scope"];
+/** Narrows the German surah-name provenance scope. */
+export function quranNameProvenanceScope(
+  appLocale: typeof GERMAN_APP_LOCALE_CODE
+): (typeof QURAN_NAME_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["scope"];
+/** Selects a surah-name provenance scope from a dynamic locale. */
+export function quranNameProvenanceScope(
+  appLocale: AppLocaleCode
+): QuranNameProvenanceScope;
+/** Resolves the selected surah-name provenance scope. */
+export function quranNameProvenanceScope(appLocale: AppLocaleCode) {
+  return QURAN_NAME_BY_LOCALE[appLocale].scope;
+}
 
 /** Selects the one pinned translation source for an application locale. */
 export function quranTranslationSourceId(
@@ -148,6 +220,22 @@ export function quranTranslationSourceForScope(
     ),
     Match.when("de-translation", () =>
       quranTranslationSourceId(GERMAN_APP_LOCALE_CODE)
+    ),
+    Match.exhaustive
+  );
+}
+
+/** Resolves a surah-name provenance scope through the canonical locale map. */
+export function quranNameSourceForScope(scope: QuranNameProvenanceScope) {
+  return Match.value(scope).pipe(
+    Match.when("en-surah-name", () =>
+      quranNameSourceId(ENGLISH_APP_LOCALE_CODE)
+    ),
+    Match.when("id-surah-name", () =>
+      quranNameSourceId(INDONESIAN_APP_LOCALE_CODE)
+    ),
+    Match.when("de-surah-name", () =>
+      quranNameSourceId(GERMAN_APP_LOCALE_CODE)
     ),
     Match.exhaustive
   );

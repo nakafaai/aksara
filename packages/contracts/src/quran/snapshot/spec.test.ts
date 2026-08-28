@@ -23,7 +23,7 @@ const facts = {
   searchDigest: digest,
   sourceBytes: 1,
   sourceDigest: digest,
-  sourceFileCount: 118,
+  sourceFileCount: 119,
   surahCount: 114,
   tafsirLocales: ["id"],
   verseCount: 6236,

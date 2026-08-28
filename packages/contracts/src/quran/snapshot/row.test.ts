@@ -48,22 +48,24 @@ describe("Quran snapshot row contract", () => {
     expect(quranSourceIds(indonesian)).toEqual([
       "tanzil-text",
       "tanzil-metadata",
+      "kemenag-names",
       "quranenc-indonesian",
       "quranenc-tafsir",
     ]);
     expect(quranSourceIds(german)).toEqual([
       "tanzil-text",
       "tanzil-metadata",
+      "bubenheim-names",
       "quranenc-german",
       "mokhtasar-german",
     ]);
-    expect(quranSourceIds(complete)).toHaveLength(8);
+    expect(quranSourceIds(complete)).toHaveLength(10);
     expect([
       quranSourceFileCount(english),
       quranSourceFileCount(indonesian),
       quranSourceFileCount(german),
       quranSourceFileCount(complete),
-    ]).toEqual([3, 117, 3, 119]);
+    ]).toEqual([3, 118, 4, 121]);
   });
 
   it("reports source order, translation order, and chunk continuity failures", () => {

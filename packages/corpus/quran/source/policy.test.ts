@@ -7,7 +7,7 @@ describe("Quran source policy", () => {
     expect(QURAN_SOURCE_POLICY.tafsir.artifact).toEqual({
       byteCount: 6_584_353,
       digest:
-        "sha256:b46b730418767dfacdf34ac35cec4277822a019b631910d603def280c3d56364",
+        "sha256:39bb758c581712487be03215057cfa697280baf6245d8feb760d86df8361172b",
       fileCount: 114,
     });
     expect(QURAN_SOURCE_POLICY.evidence.germanPublication).toEqual({
@@ -22,6 +22,13 @@ describe("Quran source policy", () => {
     });
     expect(Object.keys(QURAN_SOURCE_POLICY.evidence)).toEqual([
       "germanPublication",
+      "kemenagPublication",
+    ]);
+    expect(Object.keys(QURAN_SOURCE_POLICY.terms)).toEqual([
+      "islamhouse",
+      "kemenag",
+      "quranenc",
+      "tanzil",
     ]);
   });
 });

@@ -13,8 +13,11 @@ import {
 } from "#contracts/locale";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import {
+  QuranNameProvenanceScopeSchema,
   type QuranSourceId,
   QuranTranslationProvenanceScopeSchema,
+  quranNameProvenanceScope,
+  quranNameSourceForScope,
   quranTafsirSourceId,
   quranTranslationProvenanceScope,
   quranTranslationSourceForScope,
@@ -47,6 +50,7 @@ type QuranNonTranslationProvenanceScope =
 /** Complete source-field vocabulary supported by current Quran publication. */
 export const QuranProvenanceScopeSchema = Schema.Union([
   QuranNonTranslationProvenanceScopeSchema,
+  QuranNameProvenanceScopeSchema,
   QuranTranslationProvenanceScopeSchema,
 ]);
 export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
@@ -57,6 +61,7 @@ export function quranProvenanceScopes(
 ): readonly QuranProvenanceScope[] {
   const scopes: QuranProvenanceScope[] = ["arabic-text"];
   for (const appLocale of activeAppLocales) {
+    scopes.push(quranNameProvenanceScope(appLocale));
     scopes.push(quranTranslationProvenanceScope(appLocale));
     if (appLocale === AppLocaleSchema.make("en")) {
       scopes.push("en-tafsir-access");
@@ -84,6 +89,9 @@ export function quranSourceForProvenanceScope(
 ): QuranSourceId {
   if (Schema.is(QuranTranslationProvenanceScopeSchema)(scope)) {
     return quranTranslationSourceForScope(scope);
+  }
+  if (Schema.is(QuranNameProvenanceScopeSchema)(scope)) {
+    return quranNameSourceForScope(scope);
   }
   return QURAN_STATIC_PROVENANCE_SOURCE[scope];
 }

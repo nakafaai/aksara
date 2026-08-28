@@ -60,7 +60,7 @@ const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
   searchDigest: digest,
   sourceBytes: 11_506_941,
   sourceDigest: digest,
-  sourceFileCount: 118,
+  sourceFileCount: 119,
   surahCount: 114,
   tafsirLocales: ["id"],
   verseCount: 6236,

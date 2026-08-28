@@ -67,7 +67,10 @@ describe("Quran schema", () => {
               ...first,
               name: {
                 ...first.name,
-                meaning: { ...first.name.meaning, appLocale: "de" },
+                meaning: {
+                  de: first.name.meaning.de,
+                  en: first.name.meaning.en,
+                },
               },
             }),
             reject({
@@ -103,7 +106,7 @@ describe("Quran schema", () => {
         const messages = errors.map(String);
 
         expect(messages[1]).toContain("Quran text cannot be empty.");
-        expect(messages[2]).toContain('Expected "en"');
+        expect(messages[2]).toContain('at ["name"]["meaning"]["id"]');
         expect(
           messages.filter((message) =>
             message.includes("Expected no excess property")

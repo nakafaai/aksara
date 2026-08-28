@@ -158,7 +158,7 @@ describe("Quran source contracts", () => {
       tafsirAccess: access,
     });
     expect(row.sources.map(({ id }) => id)).toEqual(quranSourceIds(active));
-    expect(quranSourceFileCount(active)).toBe(119);
+    expect(quranSourceFileCount(active)).toBe(121);
     expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
     expect(hasRequiredQuranSources(row.sources.slice(0, -1), active)).toBe(
       false

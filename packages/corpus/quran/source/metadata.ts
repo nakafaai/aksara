@@ -1,6 +1,6 @@
-import { ENGLISH_APP_LOCALE_CODE } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 
+import { readQuranSurahNames } from "#corpus/quran/names";
 import { quranGenerationFailure } from "#corpus/quran/source/error";
 import type {
   Marker,
@@ -64,6 +64,7 @@ const parseMarkers = Effect.fn("AksaraCorpus.parseQuranMarkers")(function* (
 /** Parses exact Tanzil surah, partition, and sajda metadata. */
 export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
   function* (source: string) {
+    const localizedNames = yield* readQuranSurahNames();
     const surahs: SurahMetadata[] = [];
     for (const row of xmlRows(source, "sura")) {
       const name = attribute(row, "name");
@@ -74,8 +75,9 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       const numberOfVerses = Number(attribute(row, "ayas"));
       const order = Number(attribute(row, "order"));
       const start = Number(attribute(row, "start"));
+      const localizedName = localizedNames.get(number);
       if (
-        !(name && meaning && transliteration) ||
+        !(name && meaning && transliteration && localizedName) ||
         (place !== "Meccan" && place !== "Medinan") ||
         ![number, numberOfVerses, order, start].every(Number.isInteger)
       ) {
@@ -86,7 +88,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       surahs.push({
         name: {
           arabic: name,
-          meaning: { appLocale: ENGLISH_APP_LOCALE_CODE, text: meaning },
+          meaning: { de: localizedName.de, en: meaning, id: localizedName.id },
           transliteration,
         },
         number,

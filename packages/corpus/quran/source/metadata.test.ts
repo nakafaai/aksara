@@ -37,7 +37,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
       expect(metadata.surahs).toHaveLength(114);
       expect(metadata.surahs[1]?.name).toEqual({
         arabic: "البقرة",
-        meaning: { appLocale: "en", text: "The Cow" },
+        meaning: { de: "Die Kuh", en: "The Cow", id: "Sapi" },
         transliteration: "Al-Baqara",
       });
       expect(metadata.sajdas).toHaveLength(15);

@@ -32,10 +32,11 @@ class QuranSourceFixture extends Context.Service<
 const pinnedSourcePaths = [
   QURAN_SOURCE_POLICY.data.arabic.path,
   QURAN_SOURCE_POLICY.data.metadata.path,
+  ...Object.values(QURAN_SOURCE_POLICY.data.names).map(({ path }) => path),
   ...Object.values(QURAN_SOURCE_POLICY.data.translations).map(
     ({ path }) => path
   ),
-  QURAN_SOURCE_POLICY.evidence.germanPublication.path,
+  ...Object.values(QURAN_SOURCE_POLICY.evidence).map(({ path }) => path),
   ...Object.values(QURAN_SOURCE_POLICY.terms).map(({ path }) => path),
   ...Array.from(
     { length: 114 },
@@ -163,10 +164,10 @@ layer(fixtureLayer)("Quran source loading", (it) => {
         const loaded = yield* load(fixture.sourceBytes);
 
         expect(loaded.summary).toEqual({
-          byteCount: 13_030_246,
+          byteCount: 20_600_641,
           digest:
-            "sha256:4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8",
-          fileCount: 119,
+            "sha256:de42a454eba6c2e88e2e17d4db03827df33751c1212f6b36542a9be6ac83a9c1",
+          fileCount: 121,
         });
         expect(loaded.sources.tafsir).toHaveLength(114);
         expect(loaded.sources.translations.de).toContain(
@@ -243,6 +244,9 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       const errors = yield* Effect.all(
         [
           reject(yield* drift(fixture, "german/publication.json")),
+          reject(yield* drift(fixture, "german/faq.html")),
+          reject(yield* drift(fixture, "kemenag/publication.html")),
+          reject(yield* drift(fixture, "kemenag/rights.html")),
           reject(yield* drift(fixture, "quranenc/terms.html")),
           reject(yield* drift(fixture, "tanzil/terms.html")),
         ],
@@ -251,6 +255,9 @@ layer(fixtureLayer)("Quran source loading", (it) => {
 
       expectFileErrors(errors, [
         "Pinned source drifted: islamhouse-german-bubenheim.json.",
+        "Pinned source drifted: islamhouse-faq.html.",
+        "Pinned source drifted: kemenag-publication.html.",
+        "Pinned source drifted: kemenag-rights.html.",
         "Pinned source drifted: quranenc-terms.html.",
         "Pinned source drifted: tanzil-terms.html.",
       ]);

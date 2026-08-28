@@ -97,7 +97,7 @@ describe("Quran aggregate digest", () => {
       expect(error).toMatchObject({
         _tag: "QuranRowOrderError",
         expected:
-          "quran-attribution:en,de:tanzil-text:tanzil-metadata:quranenc-english:quranenc-german:mokhtasar-english:mokhtasar-german",
+          "quran-attribution:en,de:tanzil-text:tanzil-metadata:bubenheim-names:quranenc-english:quranenc-german:mokhtasar-english:mokhtasar-german",
       });
     })
   );
@@ -136,6 +136,7 @@ describe("Quran aggregate digest", () => {
             [
               "tanzil-text",
               "tanzil-metadata",
+              "bubenheim-names",
               "quranenc-english",
               "quranenc-german",
               "mokhtasar-english",
