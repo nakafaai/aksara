@@ -12,7 +12,6 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -73,13 +72,11 @@ export interface TargetCalls {
   rendererManifestOverride: unknown | undefined;
   rootReads: number;
   runtimeBundleRefreshes: number;
-  runtimeRecoverySnapshotId: string | null | undefined;
   runtimeResultSnapshotId: string | null | undefined;
   signingSecretReads: number;
   snapshotCalls: number;
   sourceLayers: number;
   targetCalls: number;
-  tryoutRuntimeSnapshot: TryoutSnapshot | null;
 }
 
 /** Complete observable state owned by the production command harness. */
@@ -223,7 +220,7 @@ export function snapshotMock(calls: TargetCalls) {
         Effect.as({
           manifests: Stream.empty,
           rows: Stream.empty,
-          tryoutRuntimeSnapshot: calls.tryoutRuntimeSnapshot,
+          tryoutRuntimeSnapshot: null,
         })
       );
     },

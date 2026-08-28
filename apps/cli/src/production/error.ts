@@ -17,7 +17,6 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
     ]),
     option: Schema.Literals([
       "--asset-hash",
-      "--base-snapshot",
       "--recovery-id",
       "--release-id",
       "--receipt-path",

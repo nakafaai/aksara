@@ -25,12 +25,6 @@ on:
         description: Canonical family or snapshot selectors as a JSON string array
         required: false
         type: string
-      base_snapshot:
-        # Delete this temporary input after the active release first owns a
-        # permanent try-out runtime bundle.
-        description: One-use exact active manifest for missing-runtime bootstrap
-        required: false
-        type: string
 
 permissions: {}
 
@@ -100,7 +94,6 @@ jobs:
       - name: Validate operation
         env:
           OPERATION: ${{ inputs.operation }}
-          BASE_SNAPSHOT: ${{ inputs.base_snapshot }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
@@ -123,15 +116,8 @@ jobs:
               echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
               exit 1
             fi
-            if [[ -n "$BASE_SNAPSHOT" ]] && ! jq -e 'type == "object"' <<<"$BASE_SNAPSHOT" >/dev/null; then
-              echo "The base snapshot must be one exact JSON manifest object." >&2
-              exit 1
-            fi
           elif [[ -n "$PUBLICATION_SCOPE" ]]; then
             echo "Only release may select a publication scope." >&2
-            exit 1
-          elif [[ -n "$BASE_SNAPSHOT" ]]; then
-            echo "Only release may provide a base snapshot." >&2
             exit 1
           fi
 
@@ -214,7 +200,6 @@ jobs:
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
-          BASE_SNAPSHOT: ${{ inputs.base_snapshot }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
@@ -224,13 +209,8 @@ jobs:
           for selector in "${SCOPE_SELECTORS[@]}"; do
             scope_args+=(--scope "$selector")
           done
-          snapshot_args=()
-          if [[ -n "$BASE_SNAPSHOT" ]]; then
-            snapshot_args+=(--base-snapshot "$BASE_SNAPSHOT")
-          fi
           pnpm release -- --release-id "$RELEASE_ID" \
-            --recovery-id "$RECOVERY_ID" "${scope_args[@]}" \
-            "${snapshot_args[@]}"
+            --recovery-id "$RECOVERY_ID" "${scope_args[@]}"
 
       - name: Accept active release
         if: inputs.operation == 'accept'
