@@ -1,8 +1,7 @@
 import type { ActiveContentRelease } from "#contracts/release/current/evidence";
-import { isLegacyTryoutRuntime } from "#contracts/release/current/legacy";
 import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/spec";
 
-/** Accepts a legacy active runtime or its exact permanent replacement pair. */
+/** Accepts only the permanent runtime bound to the active try-out snapshot. */
 export function hasCurrentTryoutRuntimeBundle(
   active: ActiveContentRelease | null,
   bundle: SignedTryoutRuntimeBundle | null
@@ -15,7 +14,7 @@ export function hasCurrentTryoutRuntimeBundle(
     return bundle === null;
   }
   if (bundle === null) {
-    return isLegacyTryoutRuntime(active.release);
+    return false;
   }
   return (
     snapshotId === bundle.payload.snapshot.snapshotId &&

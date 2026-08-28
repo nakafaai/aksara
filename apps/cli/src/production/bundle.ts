@@ -8,7 +8,14 @@ import type { ProductionBaseIdentity } from "#cli/production/base";
 /** Current permanent runtime bundle does not identify the active try-out base. */
 export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
   "BaseTryoutRuntimeBundleMismatchError",
-  { reason: Schema.Literals(["missing-base", "missing-recovery", "snapshot"]) }
+  {
+    reason: Schema.Literals([
+      "missing-base",
+      "missing-recovery",
+      "missing-runtime",
+      "snapshot",
+    ]),
+  }
 ) {}
 
 /** Authenticates the optional permanent bundle and binds it to the active base. */

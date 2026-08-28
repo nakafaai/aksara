@@ -1,4 +1,4 @@
-import { Effect, Schema, SchemaGetter } from "effect";
+import { Schema } from "effect";
 
 import {
   type ActiveContentRelease,
@@ -19,17 +19,6 @@ import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec"
 
 const TryoutRuntimeBundleSchema = Schema.NullOr(
   SignedTryoutRuntimeBundleSchema
-);
-const NoTryoutRuntimeBundle: typeof TryoutRuntimeBundleSchema.Type = null;
-const TryoutRuntimeBundleField = Schema.optionalKey(
-  TryoutRuntimeBundleSchema
-).pipe(
-  Schema.decodeTo(Schema.toType(TryoutRuntimeBundleSchema), {
-    decode: SchemaGetter.withDefault<typeof TryoutRuntimeBundleSchema.Type>(
-      Effect.succeed(NoTryoutRuntimeBundle)
-    ),
-    encode: SchemaGetter.required(),
-  })
 );
 
 const StagedReleasePhaseSchema = Schema.Literals([
@@ -168,7 +157,7 @@ export const ContentReleaseCurrentSchema = Schema.Struct({
   active: Schema.NullOr(ActiveContentReleaseSchema),
   candidate: Schema.NullOr(StagedContentReleaseSchema),
   recovery: Schema.NullOr(StagedRollbackContentReleaseSchema),
-  tryoutRuntimeBundle: TryoutRuntimeBundleField,
+  tryoutRuntimeBundle: TryoutRuntimeBundleSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentCurrentState, {
