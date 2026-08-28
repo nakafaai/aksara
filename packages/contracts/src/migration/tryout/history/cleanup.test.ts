@@ -45,7 +45,7 @@ describe("try-out history cleanup limit", () => {
       Effect.gen(function* () {
         assert.strictEqual(
           yield* computeTryoutHistoryCleanupLimit(planPayload()),
-          23
+          24
         );
       })
   );

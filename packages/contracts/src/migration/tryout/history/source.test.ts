@@ -27,13 +27,6 @@ describe("try-out history migration source", () => {
   it.effect("authenticates every retained source identity", () =>
     Effect.gen(function* () {
       expect(yield* verify(migrationSource)).toEqual(migrationSource);
-      const withAdoption = migrationSourceFrom({
-        ...migrationSource,
-        adoptions: [adoptionSource],
-        evidence: { ...migrationSource.evidence, runtimeBundleCount: 1 },
-      });
-      expect(yield* verify(withAdoption)).toEqual(withAdoption);
-
       const {
         format: _format,
         snapshotId: _snapshotId,
@@ -44,14 +37,16 @@ describe("try-out history migration source", () => {
         catalogDigest: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
       });
       const retainedBase = adoptionSourceFrom({
+        inventoryHash: Sha256HashSchema.make(`sha256:${"3".repeat(64)}`),
         releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
         releaseSnapshotId: resultSnapshot.snapshotId,
       });
-      const result = {
-        ...retainedBase,
-        inventoryHash: `sha256:${"4".repeat(64)}`,
+      const result = adoptionSourceFrom({
+        inventoryHash: Sha256HashSchema.make(`sha256:${"4".repeat(64)}`),
+        releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
+        releaseSnapshotId: resultSnapshot.snapshotId,
         snapshot: resultSnapshot,
-      };
+      });
       const withBothReleasePairs = migrationSourceFrom({
         ...migrationSource,
         adoptions: [retainedBase, result],
@@ -222,18 +217,57 @@ describe("try-out history migration source", () => {
     })
   );
 
-  it.effect("rejects duplicate runtime adoption identities", () =>
+  it.effect("rejects duplicate runtime pairs and attempt inventories", () =>
     Effect.gen(function* () {
-      const duplicate = migrationSourceFrom({
+      const duplicatePair = migrationSourceFrom({
         ...migrationSource,
-        adoptions: [adoptionSource, adoptionSource],
+        adoptions: [
+          adoptionSourceFrom({ attemptCount: 1 }),
+          adoptionSourceFrom({ attemptCount: 1 }),
+        ],
+        evidence: { ...migrationSource.evidence, runtimeBundleCount: 2 },
       });
-      const failure = yield* verify(duplicate).pipe(Effect.flip);
+      const {
+        format: _format,
+        snapshotId: _snapshotId,
+        ...facts
+      } = adoptionSource.snapshot;
+      const resultSnapshot = makeTryoutSnapshot({
+        ...facts,
+        catalogDigest: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
+      });
+      const duplicateInventory = migrationSourceFrom({
+        ...migrationSource,
+        adoptions: [
+          adoptionSourceFrom({
+            releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
+            releaseSnapshotId: resultSnapshot.snapshotId,
+          }),
+          adoptionSourceFrom({
+            releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
+            releaseSnapshotId: resultSnapshot.snapshotId,
+            snapshot: resultSnapshot,
+          }),
+        ],
+        evidence: { ...migrationSource.evidence, runtimeBundleCount: 2 },
+      });
+      const incomplete = migrationSourceFrom({
+        ...migrationSource,
+        adoptions: [adoptionSource],
+      });
+      const failures = yield* Effect.all([
+        verify(duplicatePair).pipe(Effect.flip),
+        verify(duplicateInventory).pipe(Effect.flip),
+        verify(incomplete).pipe(Effect.flip),
+      ]);
 
-      expect(failure).toMatchObject({
-        _tag: "TryoutHistoryMigrationSourceError",
-        reason: "release-evidence",
-      });
+      expect(
+        failures.map((failure) =>
+          failure._tag === "TryoutHistoryMigrationSourceError"
+            ? failure.reason
+            : failure._tag
+        )
+      ).toEqual(["inventory", "inventory", "inventory"]);
     })
   );
 });

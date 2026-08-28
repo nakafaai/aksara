@@ -103,9 +103,19 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
     (adoption) =>
       `${adoption.rendererManifest.hash}\n${adoption.snapshot.snapshotId}`
   );
-  if (new Set(adoptionPairs).size !== adoptionPairs.length) {
-    return yield* sourceFail("release-evidence");
+  const adoptionInventories = adoptions.map(
+    (adoption) => adoption.inventoryHash
+  );
+  if (
+    new Set(adoptionPairs).size !== adoptionPairs.length ||
+    new Set(adoptionInventories).size !== adoptionInventories.length
+  ) {
+    return yield* sourceFail("inventory");
   }
+  const adoptionAttemptCount = adoptions.reduce(
+    (total, adoption) => total + adoption.attemptCount,
+    0
+  );
   const catalogRowCount = Object.values(snapshot.counts).reduce(
     (total, count) => total + count,
     0
@@ -114,7 +124,8 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
     source.evidence.catalogRowCount !== catalogRowCount ||
     source.evidence.placementRowCount !== snapshot.placementCount ||
     source.evidence.legacyBundleCount !== source.releases.length ||
-    source.evidence.runtimeBundleCount !== adoptions.length
+    source.evidence.runtimeBundleCount !== adoptions.length ||
+    adoptionAttemptCount !== source.evidence.attempts.attemptCount
   ) {
     return yield* sourceFail("inventory");
   }

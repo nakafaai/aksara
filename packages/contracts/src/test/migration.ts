@@ -26,6 +26,7 @@ import {
   historicalReleaseSigningInput,
 } from "#contracts/history/release-bytes";
 import { HistoricalTryoutSnapshotSchema } from "#contracts/history/tryout";
+import type { Sha256HashSchema } from "#contracts/ids";
 import { TryoutRuntimeAdoptionSourceSchema } from "#contracts/migration/tryout/history/adoption/spec";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { retainedRelease } from "#contracts/test/history";
@@ -163,6 +164,8 @@ const adoptionManifest = Schema.decodeSync(
 
 /** Creates one authenticated adoption source with deliberate test identities. */
 export function adoptionSourceFrom(input: {
+  readonly attemptCount?: number;
+  readonly inventoryHash?: typeof Sha256HashSchema.Type;
   readonly releaseBaseSnapshotId?: typeof protectedSnapshot.snapshotId;
   readonly releaseSnapshotId?: typeof protectedSnapshot.snapshotId;
   readonly rendererManifestHash?: typeof historicalRenderer.hash;
@@ -194,8 +197,8 @@ export function adoptionSourceFrom(input: {
     },
   });
   return Schema.decodeSync(TryoutRuntimeAdoptionSourceSchema)({
-    attemptCount: 1,
-    inventoryHash: `sha256:${"3".repeat(64)}`,
+    attemptCount: input.attemptCount ?? 1,
+    inventoryHash: input.inventoryHash ?? `sha256:${"3".repeat(64)}`,
     release: createRelease(sourceManifest),
     rendererManifest: historicalRenderer,
     snapshot: sourceSnapshot,
@@ -208,7 +211,11 @@ export const adoptionSource = adoptionSourceFrom({});
 export const migrationSource = Schema.decodeSync(
   TryoutHistoryMigrationSourceSchema
 )({
-  adoptions: [],
+  adoptions: [
+    adoptionSourceFrom({
+      attemptCount: 2,
+    }),
+  ],
   evidence: {
     artifactCount: 2,
     attempts: {
@@ -232,7 +239,7 @@ export const migrationSource = Schema.decodeSync(
       },
     ],
     rendererManifestHash: historicalRenderer.hash,
-    runtimeBundleCount: 0,
+    runtimeBundleCount: 1,
     scales: {
       digest: `sha256:${"2".repeat(64)}`,
       itemCount: 1,
