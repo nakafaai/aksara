@@ -31,7 +31,7 @@ describe("Effect test execution policy", () => {
     expect(
       effectTestViolations(
         "packages/example/src/program.test.ts",
-        'import { it } from "@nakafa/testing/effect";\nEffect.runSync(program);'
+        'import { Effect } from "effect";\nimport { it } from "@nakafa/testing/effect";\nEffect.runSync(program);'
       )
     ).toEqual([
       "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
@@ -71,7 +71,7 @@ describe("Effect test execution policy", () => {
 
   it("detects aliased Effect runtime namespaces", () => {
     const sources = [
-      'import { Effect as Fx } from "effect";\nFx.runPromise(program);',
+      'import { Effect as Fx } from "effect";\nFx.runPromise(program);\nFx.runSync(program);',
       'import * as Fx from "effect/Effect";\nFx.runSync(program);',
       'import * as Fx from "effect";\nFx.Effect.runFork(program);',
     ];
@@ -80,6 +80,19 @@ describe("Effect test execution policy", () => {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
         "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
       ]);
+    }
+  });
+
+  it("resolves Effect namespace aliases through their lexical binding", () => {
+    const sources = [
+      'import { Effect } from "effect";\ncallbacks.forEach((Effect) => Effect.runPromise(program));',
+      'import { Effect as Fx } from "effect";\ncallbacks.forEach((Fx) => Fx.runPromise(program));',
+      'import * as Fx from "effect/Effect";\ncallbacks.forEach((Fx) => Fx.runSync(program));',
+      'import * as Fx from "effect";\ncallbacks.forEach((Fx) => Fx.Effect.runFork(program));',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([]);
     }
   });
 
@@ -120,6 +133,12 @@ describe("Effect test execution policy", () => {
         'import { succeed } from "effect/Effect";\nsucceed(1);'
       )
     ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import * as Fx from "effect";\nFx.Schema.runSync(program);'
+      )
+    ).toEqual([]);
   });
 
   it("covers every direct Effect runner", () => {
@@ -142,7 +161,7 @@ describe("Effect test execution policy", () => {
       expect(
         effectTestViolations(
           "program.test.ts",
-          `import { it } from "vitest";\nEffect.${runner}(program);`
+          `import { Effect } from "effect";\nEffect.${runner}(program);`
         )
       ).toHaveLength(1);
     }

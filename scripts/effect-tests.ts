@@ -18,8 +18,8 @@ const EFFECT_RUNNERS = new Set([
 ]);
 
 interface EffectRuntimeBindings {
-  readonly modules: ReadonlySet<string>;
-  readonly namespaces: ReadonlySet<string>;
+  readonly modules: ReadonlyMap<string, ts.Identifier>;
+  readonly namespaces: ReadonlyMap<string, ts.Identifier>;
   readonly runners: ReadonlyMap<string, ts.Identifier>;
 }
 
@@ -28,17 +28,17 @@ type NamedImportBindings = ts.NamespaceImport | ts.NamedImports;
 /** Registers local identifiers imported from the root Effect package. */
 function registerEffectPackage(
   bindings: NamedImportBindings,
-  modules: Set<string>,
-  namespaces: Set<string>
+  modules: Map<string, ts.Identifier>,
+  namespaces: Map<string, ts.Identifier>
 ) {
   if (ts.isNamespaceImport(bindings)) {
-    modules.add(bindings.name.text);
+    modules.set(bindings.name.text, bindings.name);
     return;
   }
   for (const binding of bindings.elements) {
     const importedName = binding.propertyName?.text ?? binding.name.text;
     if (importedName === "Effect") {
-      namespaces.add(binding.name.text);
+      namespaces.set(binding.name.text, binding.name);
     }
   }
 }
@@ -46,11 +46,11 @@ function registerEffectPackage(
 /** Registers local identifiers imported from the Effect API module. */
 function registerEffectModule(
   bindings: NamedImportBindings,
-  namespaces: Set<string>,
+  namespaces: Map<string, ts.Identifier>,
   runners: Map<string, ts.Identifier>
 ) {
   if (ts.isNamespaceImport(bindings)) {
-    namespaces.add(bindings.name.text);
+    namespaces.set(bindings.name.text, bindings.name);
     return;
   }
   for (const binding of bindings.elements) {
@@ -63,8 +63,8 @@ function registerEffectModule(
 
 /** Collects local identifiers that expose the Effect runtime API. */
 function effectRuntimeBindings(sourceFile: ts.SourceFile) {
-  const modules = new Set<string>();
-  const namespaces = new Set(["Effect"]);
+  const modules = new Map<string, ts.Identifier>();
+  const namespaces = new Map<string, ts.Identifier>();
   const runners = new Map<string, ts.Identifier>();
 
   for (const statement of sourceFile.statements) {
@@ -93,7 +93,7 @@ function effectRuntimeBindings(sourceFile: ts.SourceFile) {
   return { modules, namespaces, runners } satisfies EffectRuntimeBindings;
 }
 
-/** Creates symbol resolution only when named runner imports require it. */
+/** Creates symbol resolution for the parsed policy source. */
 function sourceTypeChecker(sourceFile: ts.SourceFile) {
   const options = {
     noLib: true,
@@ -110,27 +110,53 @@ function sourceTypeChecker(sourceFile: ts.SourceFile) {
   return program.getTypeChecker();
 }
 
+type BindingMatches = (
+  reference: ts.Identifier,
+  binding: ts.Identifier
+) => boolean;
+
+/** Lazily resolves import bindings only after runtime-shaped syntax appears. */
+function bindingMatcher(sourceFile: ts.SourceFile): BindingMatches {
+  let checker: ts.TypeChecker | undefined;
+  return (reference, binding) => {
+    if (checker === undefined) {
+      checker = sourceTypeChecker(sourceFile);
+    }
+    return (
+      checker.getSymbolAtLocation(reference) ===
+      checker.getSymbolAtLocation(binding)
+    );
+  };
+}
+
 /** Checks whether one expression references the Effect runtime namespace. */
 function isEffectNamespace(
   node: ts.Expression,
-  bindings: EffectRuntimeBindings
+  bindings: EffectRuntimeBindings,
+  matchesBinding: BindingMatches
 ) {
   if (ts.isIdentifier(node)) {
-    return bindings.namespaces.has(node.text);
+    const namespace = bindings.namespaces.get(node.text);
+    return namespace !== undefined && matchesBinding(node, namespace);
   }
-  return (
-    ts.isPropertyAccessExpression(node) &&
-    ts.isIdentifier(node.expression) &&
-    bindings.modules.has(node.expression.text) &&
-    node.name.text === "Effect"
-  );
+  if (
+    !(
+      ts.isPropertyAccessExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.name.text === "Effect"
+    )
+  ) {
+    return false;
+  }
+  const module = bindings.modules.get(node.expression.text);
+  return module !== undefined && matchesBinding(node.expression, module);
 }
 
 /** Checks whether one call directly runs an Effect through the runtime API. */
 function isEffectRunner(
   node: ts.Node,
   bindings: EffectRuntimeBindings,
-  checker: ts.TypeChecker | undefined
+  matchesBinding: BindingMatches
 ) {
   if (!ts.isCallExpression(node)) {
     return false;
@@ -139,14 +165,13 @@ function isEffectRunner(
     const importedRunner = bindings.runners.get(node.expression.text);
     return (
       importedRunner !== undefined &&
-      checker?.getSymbolAtLocation(node.expression) ===
-        checker?.getSymbolAtLocation(importedRunner)
+      matchesBinding(node.expression, importedRunner)
     );
   }
   return (
     ts.isPropertyAccessExpression(node.expression) &&
     EFFECT_RUNNERS.has(node.expression.name.text) &&
-    isEffectNamespace(node.expression.expression, bindings)
+    isEffectNamespace(node.expression.expression, bindings, matchesBinding)
   );
 }
 
@@ -162,10 +187,7 @@ export function effectTestViolations(file: string, sourceText: string) {
     true
   );
   const runtimeBindings = effectRuntimeBindings(sourceFile);
-  const checker =
-    runtimeBindings.runners.size === 0
-      ? undefined
-      : sourceTypeChecker(sourceFile);
+  const matchesBinding = bindingMatcher(sourceFile);
   let importsLegacyAdapter = false;
   let runsEffect = false;
   const nodes: ts.Node[] = [sourceFile];
@@ -177,7 +199,7 @@ export function effectTestViolations(file: string, sourceText: string) {
     ) {
       importsLegacyAdapter = true;
     }
-    if (isEffectRunner(node, runtimeBindings, checker)) {
+    if (isEffectRunner(node, runtimeBindings, matchesBinding)) {
       runsEffect = true;
     }
     ts.forEachChild(node, (child) => {
