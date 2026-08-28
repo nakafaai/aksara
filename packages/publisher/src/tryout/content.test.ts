@@ -187,6 +187,7 @@ const oppositeEntryAt = Effect.fn("TryoutContentTest.oppositeEntryAt")(
     })
 );
 
+/** Runs content-binding tests with bounded shared fixture acquisition. */
 const contentTests = layer(contentTestLayer, { timeout: "30 seconds" });
 
 contentTests("try-out content binding", (it) => {
