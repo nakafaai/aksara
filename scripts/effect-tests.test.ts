@@ -96,6 +96,17 @@ describe("Effect test execution policy", () => {
     }
   });
 
+  it("resolves direct runner imports through their lexical binding", () => {
+    const file = "program.test.ts";
+    const source = [
+      'import { runPromise } from "effect/Effect";',
+      "expect(runPromise).toBeDefined();",
+      "callbacks.forEach((runPromise) => runPromise());",
+    ].join("\n");
+
+    expect(effectTestViolations(file, source)).toEqual([]);
+  });
+
   it("allows unrelated aliases from Effect modules", () => {
     expect(
       effectTestViolations(
