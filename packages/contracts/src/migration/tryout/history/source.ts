@@ -99,10 +99,11 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
     Effect.forEach(source.adoptions, verifyTryoutRuntimeAdoptionSource),
     verifyReleases(source),
   ]);
-  const adoptionReleaseIds = adoptions.map(
-    ({ release }) => release.manifest.releaseId
+  const adoptionPairs = adoptions.map(
+    (adoption) =>
+      `${adoption.rendererManifest.hash}\n${adoption.snapshot.snapshotId}`
   );
-  if (new Set(adoptionReleaseIds).size !== adoptionReleaseIds.length) {
+  if (new Set(adoptionPairs).size !== adoptionPairs.length) {
     return yield* sourceFail("release-evidence");
   }
   const catalogRowCount = Object.values(snapshot.counts).reduce(

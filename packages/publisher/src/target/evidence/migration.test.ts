@@ -222,6 +222,7 @@ describe("migration HTTP evidence", () => {
         bundleCreated: 1,
         bundleHash: prepared.bundle.bundleHash,
         bundleUnchanged: 0,
+        inventoryHash: otherHash,
         snapshotId: prepared.bundle.payload.snapshot.snapshotId,
         sourceReleaseId: prepared.bundle.payload.sourceReleaseId,
       };
@@ -244,6 +245,17 @@ describe("migration HTTP evidence", () => {
             command: "adoptBundle",
             migrationId,
             receipt: { ...receipt, bundleHash: otherHash },
+          })
+        ),
+        false
+      );
+      assert.strictEqual(
+        hasBoundMigration(
+          request,
+          migrationResponse({
+            command: "adoptBundle",
+            migrationId,
+            receipt: { ...receipt, inventoryHash: prepared.bundle.bundleHash },
           })
         ),
         false

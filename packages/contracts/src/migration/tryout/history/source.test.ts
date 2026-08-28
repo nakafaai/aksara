@@ -3,15 +3,18 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
+import { Sha256HashSchema } from "#contracts/ids";
 import { verifyTryoutHistoryMigrationSource } from "#contracts/migration/tryout/history/source";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import {
   adoptionSource,
+  adoptionSourceFrom,
   migrationRelease,
   migrationResolver,
   migrationSource,
   migrationSourceFrom,
 } from "#contracts/test/migration";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 /** Runs source verification with the exact retained test key. */
 function verify(input: typeof migrationSource) {
@@ -30,6 +33,31 @@ describe("try-out history migration source", () => {
         evidence: { ...migrationSource.evidence, runtimeBundleCount: 1 },
       });
       expect(yield* verify(withAdoption)).toEqual(withAdoption);
+
+      const {
+        format: _format,
+        snapshotId: _snapshotId,
+        ...facts
+      } = adoptionSource.snapshot;
+      const resultSnapshot = makeTryoutSnapshot({
+        ...facts,
+        catalogDigest: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
+      });
+      const retainedBase = adoptionSourceFrom({
+        releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
+        releaseSnapshotId: resultSnapshot.snapshotId,
+      });
+      const result = {
+        ...retainedBase,
+        inventoryHash: `sha256:${"4".repeat(64)}`,
+        snapshot: resultSnapshot,
+      };
+      const withBothReleasePairs = migrationSourceFrom({
+        ...migrationSource,
+        adoptions: [retainedBase, result],
+        evidence: { ...migrationSource.evidence, runtimeBundleCount: 2 },
+      });
+      expect(yield* verify(withBothReleasePairs)).toEqual(withBothReleasePairs);
     })
   );
 

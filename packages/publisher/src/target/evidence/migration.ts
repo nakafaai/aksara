@@ -76,6 +76,7 @@ function hasBoundAdoption(
   return (
     value.command === "adoptBundle" &&
     value.receipt.bundleHash === request.bundle.bundleHash &&
+    value.receipt.inventoryHash === request.inventoryHash &&
     value.receipt.snapshotId === request.bundle.payload.snapshot.snapshotId &&
     value.receipt.sourceReleaseId === request.bundle.payload.sourceReleaseId
   );

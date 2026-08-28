@@ -130,6 +130,7 @@ describe("try-out history migration status", () => {
         bundleCreated: 1,
         bundleHash: hash,
         bundleUnchanged: 0,
+        inventoryHash: hash,
         snapshotId: hash,
         sourceReleaseId: "retained-source-v1",
       },

@@ -31,6 +31,7 @@ export const TryoutRuntimeAdoptionReceiptSchema = Schema.Struct({
   bundleCreated: OutcomeCountSchema,
   bundleHash: Sha256HashSchema,
   bundleUnchanged: OutcomeCountSchema,
+  inventoryHash: Sha256HashSchema,
   snapshotId: Sha256HashSchema,
   sourceReleaseId: ReleaseIdSchema,
 }).pipe(

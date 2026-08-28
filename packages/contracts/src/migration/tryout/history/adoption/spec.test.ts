@@ -13,6 +13,7 @@ it("requires complete attempt and bundle outcomes", () => {
     bundleCreated: 1,
     bundleHash: `sha256:${"a".repeat(64)}`,
     bundleUnchanged: 0,
+    inventoryHash: adoptionSource.inventoryHash,
     snapshotId: adoptionSource.snapshot.snapshotId,
     sourceReleaseId: adoptionSource.release.manifest.releaseId,
   };

@@ -6,6 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import type { TryoutRuntimeAdoptionSource } from "@nakafa/aksara-contracts/migration/tryout/history/adoption";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 import { Effect } from "effect";
 
 import { migrationFail } from "#publisher/migration/tryout/error";
@@ -37,6 +38,10 @@ const adoptRuntime = Effect.fn("AksaraPublisher.adoptTryoutRuntime")(function* (
     sourceManifestHash: Sha256HashSchema.make(source.release.manifestHash),
     sourceReleaseId: ReleaseIdSchema.make(manifest.releaseId),
   });
+  yield* verifySignedTryoutRuntimeBundle({
+    bundle,
+    rendererManifest,
+  }).pipe(Effect.mapError(() => migrationFail("target-evidence")));
   const value = yield* target.migrateTryoutHistory({
     bundle,
     command: "adoptBundle",
@@ -50,6 +55,7 @@ const adoptRuntime = Effect.fn("AksaraPublisher.adoptTryoutRuntime")(function* (
     value.migrationId !== migrationId ||
     value.receipt.attemptCount !== source.attemptCount ||
     value.receipt.bundleHash !== bundle.bundleHash ||
+    value.receipt.inventoryHash !== source.inventoryHash ||
     value.receipt.snapshotId !== source.snapshot.snapshotId ||
     value.receipt.sourceReleaseId !== manifest.releaseId
   ) {
