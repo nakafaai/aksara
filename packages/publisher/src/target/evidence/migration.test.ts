@@ -58,6 +58,7 @@ describe("migration HTTP evidence", () => {
             command: "cleanup",
             deleted: 0,
             migrationId,
+            repaired: 0,
             status: {
               migrationId,
               phase: "cleaned",

@@ -182,6 +182,7 @@ export const migrationProtocol = Effect.fn(
         command: "cleanup",
         deleted: 1,
         migrationId,
+        repaired: 0,
         status: sealed,
       }),
     },

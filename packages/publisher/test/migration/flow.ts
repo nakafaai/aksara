@@ -145,6 +145,7 @@ export function migrationStatusTarget(
           command: "cleanup",
           deleted: 1,
           migrationId,
+          repaired: 0,
           status: cleanedMigrationStatus(request.receipt),
         });
       }
@@ -257,6 +258,7 @@ export function fullMigrationTarget() {
             command: request.command,
             deleted: 1,
             migrationId,
+            repaired: 0,
             status: cleanedMigrationStatus(request.receipt),
           });
         default:
