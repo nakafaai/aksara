@@ -89,6 +89,42 @@ function runtimeMemberKind(
     : undefined;
 }
 
+/** Reads a statically named binding property without guessing dynamic keys. */
+function staticBindingProperty(binding: ts.BindingElement) {
+  const property = binding.propertyName ?? binding.name;
+  if (!ts.isComputedPropertyName(property)) {
+    return ts.isIdentifier(property) || ts.isStringLiteral(property)
+      ? property.text
+      : undefined;
+  }
+  const expression = transparentExpression(property.expression);
+  return ts.isStringLiteral(expression) ||
+    ts.isNoSubstitutionTemplateLiteral(expression)
+    ? expression.text
+    : undefined;
+}
+
+/** Resolves the runtime value supplying one object binding pattern. */
+function bindingSourceKind(
+  binding: ts.BindingElement,
+  bindings: EffectRuntimeBindings,
+  symbols: SourceSymbols,
+  seenSymbols: Set<ts.Symbol>
+) {
+  const owner = binding.parent.parent;
+  if (ts.isVariableDeclaration(owner) && owner.initializer !== undefined) {
+    return runtimeReferenceKind(
+      owner.initializer,
+      bindings,
+      symbols,
+      seenSymbols
+    );
+  }
+  return ts.isBindingElement(owner)
+    ? destructuredRuntimeKind(owner, bindings, symbols, seenSymbols)
+    : undefined;
+}
+
 /** Resolves a destructured Effect runtime binding to its source. */
 function destructuredRuntimeKind(
   binding: ts.BindingElement,
@@ -96,29 +132,17 @@ function destructuredRuntimeKind(
   symbols: SourceSymbols,
   seenSymbols: Set<ts.Symbol>
 ): RuntimeKind | undefined {
-  if (
-    !(
-      ts.isObjectBindingPattern(binding.parent) &&
-      ts.isVariableDeclaration(binding.parent.parent)
-    ) ||
-    binding.parent.parent.initializer === undefined
-  ) {
+  if (!ts.isObjectBindingPattern(binding.parent)) {
     return;
   }
-  const bindingProperty = binding.propertyName ?? binding.name;
-  const property = ts.isComputedPropertyName(bindingProperty)
-    ? bindingProperty.expression
-    : bindingProperty;
-  if (!(ts.isIdentifier(property) || ts.isStringLiteral(property))) {
-    return;
+  const sourceKind = bindingSourceKind(binding, bindings, symbols, seenSymbols);
+  if (binding.dotDotDotToken !== undefined) {
+    return sourceKind;
   }
-  const sourceKind = runtimeReferenceKind(
-    binding.parent.parent.initializer,
-    bindings,
-    symbols,
-    seenSymbols
-  );
-  return runtimeMemberKind(sourceKind, property.text);
+  const property = staticBindingProperty(binding);
+  return property === undefined
+    ? undefined
+    : runtimeMemberKind(sourceKind, property);
 }
 
 /** Traces each local runtime origin at most once per reference. */

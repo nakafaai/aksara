@@ -186,8 +186,12 @@ describe("Effect test execution policy", () => {
       'import { Effect } from "effect";\nconst Fx = Effect;\nFx.runPromise(program);',
       'import { Effect } from "effect";\nconst run = Effect.runPromise;\nrun(program);',
       'import { Effect } from "effect";\nconst { runSync: execute } = Effect;\nexecute(program);',
+      'import { Effect } from "effect";\nconst { "runPromise": execute } = Effect;\nexecute(program);',
       'import { Effect } from "effect";\nconst { ["runPromise"]: execute } = Effect;\nexecute(program);',
+      'import { Effect } from "effect";\nconst { [`runPromise`]: execute } = Effect;\nexecute(program);',
       'import * as Runtime from "effect";\nconst { Effect: Fx } = Runtime;\nprogram.pipe(Fx.runFork);',
+      'import * as Runtime from "effect";\nconst { Effect: { runPromise: execute } } = Runtime;\nexecute(program);',
+      'import { Effect } from "effect";\nconst { ...Runtime } = Effect;\nRuntime.runSync(program);',
       'import { runPromise } from "effect/Effect";\nconst execute = runPromise;\nprogram.pipe(execute);',
     ];
 
@@ -245,6 +249,18 @@ describe("Effect test execution policy", () => {
       effectTestViolations(
         "program.test.ts",
         'import { Effect } from "effect";\nconst { [0]: execute } = Effect;\nexecute(program);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Effect } from "effect";\nconst { 0: execute } = Effect;\nexecute(program);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Effect } from "effect";\nconst runtimeName = "succeed";\nconst { [runtimeName]: execute } = Effect;\nexecute(program);'
       )
     ).toEqual([]);
   });

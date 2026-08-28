@@ -60,6 +60,7 @@ describe("Effect runtime import policy", () => {
     const sources = [
       'const { Effect } = await import("effect");\ncallbacks.forEach((Effect) => Effect.runPromise(program));',
       'const { runPromise } = await import("effect/Effect");\ncallbacks.forEach((runPromise) => runPromise(program));',
+      'const { [`runPromise`]: execute } = await import("effect/Effect");\ncallbacks.forEach((execute) => execute(program));',
       'const { Effect, pipe } = await import("effect");\ncallbacks.forEach((pipe) => pipe(program, Effect.runPromise));',
       "const Runtime = await import(moduleName);\nRuntime.Effect.runPromise(program);",
     ];
