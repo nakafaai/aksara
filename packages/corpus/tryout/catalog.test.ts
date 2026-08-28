@@ -1,95 +1,93 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { projectTryoutCatalog } from "#corpus/tryout/catalog";
+import {
+  projectTryoutCatalog,
+  TryoutCatalogDecodeError,
+} from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
-/** Returns one nested source node or fails the test setup explicitly. */
-function requireNode<Value>(value: Value | undefined, label: string): Value {
-  if (value === undefined) {
-    throw new Error(`Expected ${label}.`);
-  }
-  return value;
-}
-
 describe("tryout catalog", () => {
-  it("projects exact localized hierarchy counts and route ownership", async () => {
-    const rows = await Effect.runPromise(
-      Effect.flatMap(decodeTryoutRegistry(), (sources) =>
-        projectTryoutCatalog(sources)
-      )
-    );
-    const counts = Object.fromEntries(
-      ["country", "exam", "track", "set", "section"].map((kind) => [
-        kind,
-        rows.filter((row) => row.kind === kind).length,
-      ])
-    );
+  it.effect(
+    "projects exact localized hierarchy counts and route ownership",
+    () =>
+      Effect.gen(function* () {
+        const rows = yield* Effect.flatMap(decodeTryoutRegistry(), (sources) =>
+          projectTryoutCatalog(sources)
+        );
+        const counts = Object.fromEntries(
+          ["country", "exam", "track", "set", "section"].map((kind) => [
+            kind,
+            rows.filter((row) => row.kind === kind).length,
+          ])
+        );
 
-    expect(rows).toHaveLength(81);
-    expect(counts).toEqual({
-      country: 3,
-      exam: 6,
-      section: 51,
-      set: 15,
-      track: 6,
-    });
-    expect(
-      rows.filter(
-        (row) =>
-          row.kind === "section" &&
-          row.examKey === "tka" &&
-          row.publicPath === undefined
-      )
-    ).toHaveLength(9);
-  });
+        expect(rows).toHaveLength(81);
+        expect(counts).toEqual({
+          country: 3,
+          exam: 6,
+          section: 51,
+          set: 15,
+          track: 6,
+        });
+        expect(
+          rows.filter(
+            (row) =>
+              row.kind === "section" &&
+              row.examKey === "tka" &&
+              row.publicPath === undefined
+          )
+        ).toHaveLength(9);
+      })
+  );
 
-  it("maps invalid derived hierarchy counts to a typed catalog error", async () => {
-    const sources = await Effect.runPromise(decodeTryoutRegistry());
-    const snbt = requireNode(
-      sources.find(({ examKey }) => examKey === "snbt"),
-      "SNBT source"
-    );
-    const track = requireNode(snbt.tracks[0], "SNBT track");
-    const set = requireNode(track.sets[0], "SNBT set");
-    const section = requireNode(set.sections[0], "SNBT section");
-    const invalidSnbt = {
-      ...snbt,
-      tracks: [
-        {
-          ...track,
-          sets: [
+  it.effect(
+    "maps invalid derived hierarchy counts to a typed catalog error",
+    () =>
+      Effect.gen(function* () {
+        const sources = yield* decodeTryoutRegistry();
+        const snbt = yield* Effect.fromNullishOr(
+          sources.find(({ examKey }) => examKey === "snbt")
+        );
+        const track = yield* Effect.fromNullishOr(snbt.tracks[0]);
+        const set = yield* Effect.fromNullishOr(track.sets[0]);
+        const section = yield* Effect.fromNullishOr(set.sections[0]);
+        const invalidSnbt = {
+          ...snbt,
+          tracks: [
             {
-              ...set,
-              sections: [
-                { ...section, questionCount: 0 },
-                ...set.sections.slice(1),
+              ...track,
+              sets: [
+                {
+                  ...set,
+                  sections: [
+                    { ...section, questionCount: 0 },
+                    ...set.sections.slice(1),
+                  ],
+                },
+                ...track.sets.slice(1),
               ],
             },
-            ...track.sets.slice(1),
           ],
-        },
-      ],
-    };
-    const failure = await Effect.runPromise(
-      projectTryoutCatalog([
-        invalidSnbt,
-        ...sources.filter(({ examKey }) => examKey !== "snbt"),
-      ]).pipe(Effect.flip)
-    );
+        };
+        const failure = yield* projectTryoutCatalog([
+          invalidSnbt,
+          ...sources.filter(({ examKey }) => examKey !== "snbt"),
+        ]).pipe(Effect.flip);
 
-    expect(failure._tag).toBe("TryoutCatalogDecodeError");
-  });
+        expect(failure).toBeInstanceOf(TryoutCatalogDecodeError);
+        expect(failure._tag).toBe("TryoutCatalogDecodeError");
+      })
+  );
 
-  it("preserves an authored country description when present", async () => {
-    const sources = await Effect.runPromise(decodeTryoutRegistry());
-    const source = requireNode(sources[0], "try-out source");
-    const english = requireNode(
-      source.countryTranslations.en,
-      "English country translation"
-    );
-    const description = "Official Indonesian assessment catalog.";
-    const rows = await Effect.runPromise(
-      projectTryoutCatalog([
+  it.effect("preserves an authored country description when present", () =>
+    Effect.gen(function* () {
+      const sources = yield* decodeTryoutRegistry();
+      const source = yield* Effect.fromNullishOr(sources[0]);
+      const english = yield* Effect.fromNullishOr(
+        source.countryTranslations.en
+      );
+      const description = "Official Indonesian assessment catalog.";
+      const rows = yield* projectTryoutCatalog([
         {
           ...source,
           countryTranslations: {
@@ -97,23 +95,35 @@ describe("tryout catalog", () => {
             en: { ...english, description },
           },
         },
-      ])
-    );
+      ]);
 
-    expect(rows).toContainEqual(
-      expect.objectContaining({ appLocale: "en", description, kind: "country" })
-    );
-  });
+      expect(rows).toContainEqual(
+        expect.objectContaining({
+          appLocale: "en",
+          description,
+          kind: "country",
+        })
+      );
+    })
+  );
 
-  it("projects source-owned German copy through the active publication seam", async () => {
-    const sources = await Effect.runPromise(decodeTryoutRegistry());
-    const rows = await Effect.runPromise(projectTryoutCatalog(sources));
+  it.effect(
+    "projects source-owned German copy through the active publication seam",
+    () =>
+      Effect.gen(function* () {
+        const sources = yield* decodeTryoutRegistry();
+        const rows = yield* projectTryoutCatalog(sources);
 
-    expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(27);
-    expect(
-      rows.find(({ appLocale, kind }) => appLocale === "de" && kind === "exam")
-    ).toMatchObject({
-      publicPath: "try-out/indonesien/snbt",
-    });
-  });
+        expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(
+          27
+        );
+        expect(
+          rows.find(
+            ({ appLocale, kind }) => appLocale === "de" && kind === "exam"
+          )
+        ).toMatchObject({
+          publicPath: "try-out/indonesien/snbt",
+        });
+      })
+  );
 });
