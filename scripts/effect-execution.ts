@@ -15,12 +15,6 @@ const EFFECT_RUNNERS = new Set([
   "runSyncWith",
 ]);
 
-interface EffectRuntimeBindings {
-  readonly modules: ReadonlyMap<string, ts.Identifier>;
-  readonly namespaces: ReadonlyMap<string, ts.Identifier>;
-  readonly runners: ReadonlyMap<string, ts.Identifier>;
-}
-
 type NamedImportBindings = ts.NamespaceImport | ts.NamedImports;
 type RuntimeKind = "module" | "namespace" | "runner";
 
@@ -83,11 +77,13 @@ function effectRuntimeBindings(sourceFile: ts.SourceFile) {
       registerEffectModule(bindings, namespaces, runners);
     }
   }
-  return { modules, namespaces, runners } satisfies EffectRuntimeBindings;
+  return { modules, namespaces, runners };
 }
 
-/** Creates symbol resolution for the parsed policy source. */
-function sourceTypeChecker(sourceFile: ts.SourceFile) {
+type EffectRuntimeBindings = ReturnType<typeof effectRuntimeBindings>;
+
+/** Resolves lexical symbols inside the parsed policy source. */
+function sourceSymbols(sourceFile: ts.SourceFile) {
   const options = {
     noLib: true,
     noResolve: true,
@@ -95,56 +91,61 @@ function sourceTypeChecker(sourceFile: ts.SourceFile) {
   } satisfies ts.CompilerOptions;
   const host = ts.createCompilerHost(options, true);
   host.getSourceFile = () => sourceFile;
-  const program = ts.createProgram({
-    host,
-    options,
-    rootNames: [sourceFile.fileName],
-  });
-  return program.getTypeChecker();
-}
-
-/** Lazily resolves symbols only after runtime-shaped syntax appears. */
-function sourceSymbols(sourceFile: ts.SourceFile) {
-  let checker: ts.TypeChecker | undefined;
-  /** Reuses one TypeScript checker for every symbol in this source. */
-  const typeChecker = () => {
-    if (checker === undefined) {
-      checker = sourceTypeChecker(sourceFile);
-    }
-    return checker;
-  };
+  const checker = ts
+    .createProgram({
+      host,
+      options,
+      rootNames: [sourceFile.fileName],
+    })
+    .getTypeChecker();
   return {
     matchesBinding: (reference: ts.Identifier, binding: ts.Identifier) =>
-      typeChecker().getSymbolAtLocation(reference) ===
-      typeChecker().getSymbolAtLocation(binding),
-    symbolAt: (identifier: ts.Identifier) =>
-      typeChecker().getSymbolAtLocation(identifier),
+      checker.getSymbolAtLocation(reference) ===
+      checker.getSymbolAtLocation(binding),
+    symbolAt: (node: ts.Identifier) => checker.getSymbolAtLocation(node),
   };
 }
 
 type SourceSymbols = ReturnType<typeof sourceSymbols>;
 
-interface StaticMember {
-  readonly name: string;
-  readonly receiver: ts.Expression;
+/** Removes syntax wrappers that preserve the referenced runtime value. */
+function transparentExpression(node: ts.Expression): ts.Expression {
+  let expression = node;
+  while (
+    ts.isParenthesizedExpression(expression) ||
+    ts.isAsExpression(expression) ||
+    ts.isTypeAssertionExpression(expression) ||
+    ts.isSatisfiesExpression(expression) ||
+    ts.isNonNullExpression(expression) ||
+    ts.isPartiallyEmittedExpression(expression) ||
+    ts.isExpressionWithTypeArguments(expression)
+  ) {
+    const { expression: unwrapped } = expression;
+    expression = unwrapped;
+  }
+  return expression;
 }
 
 /** Extracts a statically named property or element access. */
-function staticMember(node: ts.Expression): StaticMember | undefined {
-  if (ts.isPropertyAccessExpression(node)) {
-    return { name: node.name.text, receiver: node.expression };
+function staticMember(node: ts.Expression) {
+  const expression = transparentExpression(node);
+  if (ts.isPropertyAccessExpression(expression)) {
+    return { name: expression.name.text, receiver: expression.expression };
   }
   if (
-    !ts.isElementAccessExpression(node) ||
-    node.argumentExpression === undefined ||
+    !ts.isElementAccessExpression(expression) ||
+    expression.argumentExpression === undefined ||
     !(
-      ts.isStringLiteral(node.argumentExpression) ||
-      ts.isNoSubstitutionTemplateLiteral(node.argumentExpression)
+      ts.isStringLiteral(expression.argumentExpression) ||
+      ts.isNoSubstitutionTemplateLiteral(expression.argumentExpression)
     )
   ) {
     return;
   }
-  return { name: node.argumentExpression.text, receiver: node.expression };
+  return {
+    name: expression.argumentExpression.text,
+    receiver: expression.expression,
+  };
 }
 
 /** Resolves one identifier when it is an imported Effect runtime binding. */
@@ -210,8 +211,9 @@ function runtimeReferenceKind(
   symbols: SourceSymbols,
   seenSymbols = new Set<ts.Symbol>()
 ): RuntimeKind | undefined {
-  if (!ts.isIdentifier(node)) {
-    const member = staticMember(node);
+  const reference = transparentExpression(node);
+  if (!ts.isIdentifier(reference)) {
+    const member = staticMember(reference);
     if (member === undefined) {
       return;
     }
@@ -229,11 +231,11 @@ function runtimeReferenceKind(
     }
     return;
   }
-  const importedKind = importedRuntimeKind(node, bindings, symbols);
+  const importedKind = importedRuntimeKind(reference, bindings, symbols);
   if (importedKind !== undefined) {
     return importedKind;
   }
-  const symbol = symbols.symbolAt(node);
+  const symbol = symbols.symbolAt(reference);
   if (symbol === undefined || seenSymbols.has(symbol)) {
     return;
   }

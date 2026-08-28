@@ -112,6 +112,36 @@ describe("Effect test execution policy", () => {
     }
   });
 
+  it("unwraps transparent runtime references", () => {
+    const sources = [
+      'import { Effect } from "effect";\n(Effect.runPromise)(program);',
+      'import { Effect } from "effect";\n(Effect.runPromise as typeof Effect.runPromise)(program);',
+      'import { Effect } from "effect";\nEffect.runPromise!(program);',
+      'import { Effect } from "effect";\n(<typeof Effect.runPromise>Effect.runPromise)(program);',
+      'import { Effect } from "effect";\n(Effect.runPromise satisfies typeof Effect.runPromise)(program);',
+      'import { Effect } from "effect";\nprogram.pipe(Effect.runPromise<string>);',
+      'import { Effect } from "effect";\n(program.pipe)(Effect.runPromise);',
+      'import { Effect } from "effect";\nconst run = (Effect.runPromise as typeof Effect.runPromise);\nrun(program);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
+  it("preserves shadowing through transparent references", () => {
+    const sources = [
+      'import { Effect } from "effect";\ncallbacks.forEach((Effect) => (Effect.runPromise)(program));',
+      'import { runPromise } from "effect/Effect";\ncallbacks.forEach((runPromise) => (runPromise as Function)(program));',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([]);
+    }
+  });
+
   it("resolves Effect namespace aliases through their lexical binding", () => {
     const sources = [
       'import { Effect } from "effect";\ncallbacks.forEach((Effect) => Effect.runPromise(program));',
