@@ -13,7 +13,7 @@ import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/tran
 import { Effect } from "effect";
 
 import { migrationFail } from "#publisher/migration/tryout/error";
-import { getCleanupRepairLimit } from "#publisher/migration/tryout/repair";
+import { allowsCleanupRepairPage } from "#publisher/migration/tryout/repair";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationSigner } from "#publisher/signing/service";
 
@@ -120,8 +120,7 @@ export const cleanupMigrationReceipt = Effect.fn(
   } = authenticated;
   let deletedRows = 0;
   let isCleaned = false;
-  let repairedRows = 0;
-  const repairLimit = getCleanupRepairLimit(authenticated.payload.migrationId);
+  let repairPageSeen = false;
   yield* Effect.whileLoop({
     body: () =>
       Effect.gen(function* () {
@@ -141,16 +140,19 @@ export const cleanupMigrationReceipt = Effect.fn(
           return yield* migrationFail("receipt-evidence");
         }
         deletedRows += value.deleted;
-        repairedRows += value.repaired;
-        if (deletedRows > cleanupLimit || repairedRows > repairLimit) {
+        if (deletedRows > cleanupLimit) {
           return yield* migrationFail("cleanup-limit");
         }
-        if (
-          value.status.phase === "sealed" &&
-          value.deleted === 0 &&
-          value.repaired === 0
-        ) {
-          return yield* migrationFail("cleanup-progress");
+        if (value.status.phase === "sealed" && value.deleted === 0) {
+          if (
+            !allowsCleanupRepairPage(
+              authenticated.payload.migrationId,
+              repairPageSeen
+            )
+          ) {
+            return yield* migrationFail("cleanup-progress");
+          }
+          repairPageSeen = true;
         }
         return value.status.phase === "cleaned";
       }),

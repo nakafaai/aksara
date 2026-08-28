@@ -7,7 +7,7 @@ import {
   cleanupMigrationReceipt,
   makeMigrationReceipt,
 } from "#publisher/migration/tryout/receipt";
-import { getCleanupRepairLimit } from "#publisher/migration/tryout/repair";
+import { allowsCleanupRepairPage } from "#publisher/migration/tryout/repair";
 import { failureReason } from "#test/migration/error";
 import {
   cleanedMigrationStatus,
@@ -28,7 +28,7 @@ layer(
   Layer.succeed(ContentVerificationKeyResolver, migrationVerificationResolver)
 )("try-out history cleanup repair", (it) => {
   it.effect(
-    "accounts the exact repair outside the signed deletion ceiling",
+    "accepts one repair-only page outside signed deletion accounting",
     () =>
       Effect.gen(function* () {
         const completed = {
@@ -48,7 +48,6 @@ layer(
               command: request.command,
               deleted: calls === 1 ? 0 : 1,
               migrationId: productionId,
-              repaired: calls === 1 ? 158 : 0,
               status:
                 calls === 1
                   ? sealedMigrationStatus(request.receipt, completed)
@@ -59,12 +58,13 @@ layer(
 
         yield* cleanupMigrationReceipt(target, receipt, proof);
 
-        assert.strictEqual(getCleanupRepairLimit(productionId), 158);
+        assert.strictEqual(allowsCleanupRepairPage(productionId, false), true);
+        assert.strictEqual(allowsCleanupRepairPage(productionId, true), false);
         assert.strictEqual(calls, 2);
       })
   );
 
-  it.effect("rejects repair rows for every other migration", () =>
+  it.effect("rejects a repair-only response for every other migration", () =>
     Effect.gen(function* () {
       const completed = completedMigrationStatus();
       const receipt = yield* makeMigrationReceipt(migrationSigner, completed);
@@ -76,7 +76,6 @@ layer(
                 command: request.command,
                 deleted: 0,
                 migrationId,
-                repaired: 1,
                 status: sealedMigrationStatus(request.receipt, completed),
               })
             : Effect.die("Expected cleanup."),
@@ -87,8 +86,43 @@ layer(
         proof
       ).pipe(Effect.flip);
 
-      assert.strictEqual(getCleanupRepairLimit(migrationId), 0);
-      assert.strictEqual(failureReason(failure), "cleanup-limit");
+      assert.strictEqual(allowsCleanupRepairPage(migrationId, false), false);
+      assert.strictEqual(failureReason(failure), "cleanup-progress");
+    })
+  );
+
+  it.effect("rejects a repeated repair-only response", () =>
+    Effect.gen(function* () {
+      const completed = {
+        ...completedMigrationStatus(),
+        migrationId: productionId,
+      };
+      const receipt = yield* makeMigrationReceipt(migrationSigner, completed);
+      const proof = yield* migrationProof(receipt);
+      let calls = 0;
+      const target = makePublicationTarget({
+        migrateTryoutHistory: (request) => {
+          if (request.command !== "cleanup") {
+            return Effect.die("Expected cleanup.");
+          }
+          calls += 1;
+          return Effect.succeed({
+            command: request.command,
+            deleted: 0,
+            migrationId: productionId,
+            status: sealedMigrationStatus(request.receipt, completed),
+          });
+        },
+      });
+
+      const failure = yield* cleanupMigrationReceipt(
+        target,
+        receipt,
+        proof
+      ).pipe(Effect.flip);
+
+      assert.strictEqual(failureReason(failure), "cleanup-progress");
+      assert.strictEqual(calls, 2);
     })
   );
 });

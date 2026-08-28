@@ -144,7 +144,6 @@ layer(
               command: request.command,
               deleted: calls === 1 ? 8 : 1,
               migrationId,
-              repaired: 0,
               status:
                 calls === 1
                   ? sealedMigrationStatus(
@@ -174,7 +173,6 @@ layer(
                 command: request.command,
                 deleted: 0,
                 migrationId,
-                repaired: 0,
                 status: sealedMigrationStatus(
                   request.receipt,
                   completedMigrationStatus()
@@ -207,7 +205,6 @@ layer(
             command: request.command,
             deleted: 10,
             migrationId,
-            repaired: 0,
             status: sealedMigrationStatus(
               request.receipt,
               completedMigrationStatus()
@@ -241,14 +238,12 @@ layer(
           command: "cleanup",
           deleted: 1,
           migrationId,
-          repaired: 0,
           status: completedMigrationStatus(),
         }).value,
         migrationResponse({
           command: "cleanup",
           deleted: 1,
           migrationId,
-          repaired: 0,
           status: { ...cleaned, migrationId: otherId },
         }).value,
       ];
