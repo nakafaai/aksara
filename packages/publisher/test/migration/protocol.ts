@@ -124,10 +124,8 @@ export const migrationProtocol = Effect.fn(
     phase: "sealed",
     receipt,
   };
-  const identity = {
-    operation: "migrateTryoutHistory",
-    releaseId: migrationId,
-  };
+  const operation = "migrateTryoutHistory";
+  const identity = { operation, releaseId: migrationId };
   const protocol: MigrationProtocol = {
     abort: {
       request: migrationRequest({ ...identity, command: "abort" }),
