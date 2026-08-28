@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Schema } from "effect";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -14,18 +14,9 @@ import {
 import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { PublicPageProjectionSchema } from "#contracts/projection/page";
-import {
-  verifyContentRuntimeEvidenceExchange,
-  verifyContentRuntimeExchange,
-} from "#contracts/runtime/verify";
-import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { articleGraph } from "#contracts/test/graph";
 import { projection, rendererManifest } from "#contracts/test/request";
-import {
-  createSignedArtifact,
-  release,
-  trustedResolver,
-} from "#contracts/test/runtime/fixture";
+import { createSignedArtifact, release } from "#contracts/test/runtime/fixture";
 
 export const request = {
   appLocale: AppLocaleSchema.make("en"),
@@ -133,55 +124,3 @@ export const pageFound = {
   projectionHash: hashContentProjection(pageProjection),
   sourcePath: CorpusSourcePathSchema.make("packages/corpus/pages/terms/en.mdx"),
 } as const;
-
-/** Builds one public runtime exchange with the fixture verification key. */
-function exchangeProgram(input: {
-  readonly rendererManifest?: unknown;
-  readonly request?: unknown;
-  readonly response: unknown;
-}) {
-  return verifyContentRuntimeExchange({
-    rendererManifest: input.rendererManifest ?? rendererManifest,
-    request: input.request ?? request,
-    response: input.response,
-  }).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-  );
-}
-
-/** Builds one non-rendering evidence exchange with the fixture verification key. */
-function evidenceExchangeProgram(input: {
-  readonly request?: unknown;
-  readonly response: unknown;
-}) {
-  return verifyContentRuntimeEvidenceExchange({
-    request: input.request ?? request,
-    response: input.response,
-  }).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-  );
-}
-
-/** Runs one public runtime exchange expected to authenticate successfully. */
-export function verifyExchange(input: Parameters<typeof exchangeProgram>[0]) {
-  return Effect.runPromise(exchangeProgram(input));
-}
-
-/** Runs one public exchange while preserving typed success and failure values. */
-export function verifyExchangeResult(
-  input: Parameters<typeof exchangeProgram>[0]
-) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.result));
-}
-
-/** Runs one public runtime exchange expected to return a typed failure. */
-export function rejectExchange(input: Parameters<typeof exchangeProgram>[0]) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.flip));
-}
-
-/** Runs one non-rendering evidence exchange expected to authenticate. */
-export function verifyEvidenceExchange(
-  input: Parameters<typeof evidenceExchangeProgram>[0]
-) {
-  return Effect.runPromise(evidenceExchangeProgram(input));
-}

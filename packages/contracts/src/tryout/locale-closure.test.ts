@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 
 import {
@@ -26,224 +26,247 @@ const activeAppLocales = ACTIVE_APP_LOCALES;
 const { catalog, placements } = makeTryoutTestRows();
 
 /** Rebuilds one valid catalog record after a test-owned field change. */
-function updateCatalog(
-  record: TryoutCatalogRecord,
-  fields: Readonly<Record<string, unknown>>
-) {
-  return makeTryoutCatalogRecord(
-    Schema.decodeSync(TryoutCatalogRowSchema)({
+const updateCatalog = Effect.fn("AksaraContracts.test.updateTryoutCatalog")(
+  function* (
+    record: TryoutCatalogRecord,
+    fields: Readonly<Record<string, unknown>>
+  ) {
+    const row = yield* Schema.decodeEffect(TryoutCatalogRowSchema)({
       ...record.row,
       ...fields,
-    })
-  );
-}
+    });
+    return makeTryoutCatalogRecord(row);
+  }
+);
 
 /** Rebinds one valid placement to the English assessed-language section. */
-function englishPlacement(record: TryoutPlacementRecord) {
+const englishPlacement = Effect.fn(
+  "AksaraContracts.test.makeEnglishTryoutPlacement"
+)(function* (record: TryoutPlacementRecord) {
   const root =
     "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1";
-  return makeTryoutPlacementRecord(
-    Schema.decodeSync(TryoutPlacementSchema)({
-      ...record.row,
-      answerContentKey: `${root}/answer`,
-      deliveryLanguage: "en",
-      questionArtifactLocale: "en",
-      questionContentKey: `${root}/question`,
-      questionSourcePath: `packages/corpus/${root}`,
-      sectionKey: "english-language",
-    })
-  );
-}
+  const row = yield* Schema.decodeEffect(TryoutPlacementSchema)({
+    ...record.row,
+    answerContentKey: `${root}/answer`,
+    deliveryLanguage: "en",
+    questionArtifactLocale: "en",
+    questionContentKey: `${root}/question`,
+    questionSourcePath: `packages/corpus/${root}`,
+    sectionKey: "english-language",
+  });
+  return makeTryoutPlacementRecord(row);
+});
 
 /** Returns one typed current try-out locale closure failure. */
-function reject(input: {
-  readonly activeAppLocales?: typeof activeAppLocales;
-  readonly catalog?: readonly TryoutCatalogRecord[];
-  readonly placements?: readonly TryoutPlacementRecord[];
-}) {
-  return Effect.runPromise(
-    verifyTryoutLocaleClosure({
+const rejectClosure = Effect.fn("AksaraContracts.test.rejectTryoutClosure")(
+  function* (input: {
+    readonly activeAppLocales?: typeof activeAppLocales;
+    readonly catalog?: readonly TryoutCatalogRecord[];
+    readonly placements?: readonly TryoutPlacementRecord[];
+  }) {
+    return yield* verifyTryoutLocaleClosure({
       activeAppLocales: input.activeAppLocales ?? activeAppLocales,
       catalog: Stream.fromIterable(input.catalog ?? catalog),
       placements: Stream.fromIterable(input.placements ?? placements),
-    }).pipe(Effect.flip)
-  );
-}
+    }).pipe(Effect.flip);
+  }
+);
 
 describe("try-out locale closure", () => {
-  it("accepts one catalog and placement row per active app locale", async () => {
-    await expect(
-      Effect.runPromise(
-        verifyTryoutLocaleClosure({
+  it.effect("accepts one catalog and placement row per active app locale", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyTryoutLocaleClosure({
           activeAppLocales,
           catalog: Stream.fromIterable(catalog),
           placements: Stream.fromIterable(placements),
         })
-      )
-    ).resolves.toBeUndefined();
-  });
+      ).toBeUndefined();
+    })
+  );
 
-  it("accepts complete German rows independent of canonical stream order", async () => {
-    const germanAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-      "en",
-      "id",
-      "de",
-    ]);
-    const germanRows = makeTryoutTestRows([
-      AppLocaleSchema.make("de"),
-      AppLocaleSchema.make("en"),
-      AppLocaleSchema.make("id"),
-    ]);
+  it.effect(
+    "accepts complete German rows independent of canonical stream order",
+    () =>
+      Effect.gen(function* () {
+        const germanAppLocales = yield* Schema.decodeEffect(
+          ActiveAppLocaleListSchema
+        )(["en", "id", "de"]);
+        const germanRows = makeTryoutTestRows([
+          AppLocaleSchema.make("de"),
+          AppLocaleSchema.make("en"),
+          AppLocaleSchema.make("id"),
+        ]);
 
-    await expect(
-      Effect.runPromise(
-        verifyTryoutLocaleClosure({
-          activeAppLocales: germanAppLocales,
-          catalog: Stream.fromIterable(germanRows.catalog),
-          placements: Stream.fromIterable(germanRows.placements),
-        })
-      )
-    ).resolves.toBeUndefined();
-  });
-
-  it("rejects missing German catalog and placement rows", async () => {
-    const germanLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
-      "en",
-      "de",
-    ]);
-    const error = await reject({ activeAppLocales: germanLocales });
-
-    expect(error).toBeInstanceOf(TryoutClosureError);
-    expect(error.code).toBe("inactive-locale");
-    expect(error.actual).toBe("id");
-    expect(error.expected).toBe('["en","de"]');
-  });
-
-  it("rejects duplicate catalog and placement locale rows", async () => {
-    const [firstCatalog] = catalog;
-    const [firstPlacement] = placements;
-    if (!(firstCatalog && firstPlacement)) {
-      throw new Error("Expected current try-out closure fixtures.");
-    }
-    const [catalogError, placementError] = await Promise.all([
-      reject({ catalog: [firstCatalog, ...catalog] }),
-      reject({ placements: [firstPlacement, ...placements] }),
-    ]);
-
-    expect(catalogError).toBeInstanceOf(TryoutClosureError);
-    expect(catalogError.code).toBe("duplicate-locale");
-    expect(placementError).toBeInstanceOf(TryoutClosureError);
-    expect(placementError.code).toBe("duplicate-locale");
-  });
-
-  it("rejects empty catalog and placement streams", async () => {
-    const [catalogError, placementError] = await Promise.all([
-      reject({ catalog: [] }),
-      reject({ placements: [] }),
-    ]);
-
-    expect(catalogError).toBeInstanceOf(TryoutClosureError);
-    expect(catalogError.code).toBe("missing-locale");
-    expect(catalogError.identity).toBe("empty");
-    expect(placementError).toBeInstanceOf(TryoutClosureError);
-    expect(placementError.code).toBe("missing-locale");
-    expect(placementError.identity).toBe("empty");
-  });
-
-  it("rejects a nonempty hierarchy missing one active locale", async () => {
-    const error = await reject({ catalog: catalog.slice(1) });
-
-    expect(error.code).toBe("missing-locale");
-    expect(error.identity).not.toBe("empty");
-  });
-
-  it("rejects locale-neutral catalog fact drift", async () => {
-    const countryIndex = catalog.findIndex(
-      ({ row }) => row.kind === "country" && row.appLocale === "id"
-    );
-    const country = catalog[countryIndex];
-    if (!country) {
-      throw new Error("Expected an Indonesian country fixture.");
-    }
-    const changed = [...catalog];
-    changed[countryIndex] = updateCatalog(country, { countryCode: "DE" });
-
-    const error = await reject({ catalog: changed });
-    expect(error.code).toBe("fact-mismatch");
-  });
-
-  it("rejects placements whose catalog section is absent", async () => {
-    const withoutSections = catalog.filter(({ row }) => row.kind !== "section");
-    const error = await reject({ catalog: withoutSections });
-
-    expect(error.code).toBe("missing-section");
-  });
-
-  it("reuses assessed-language prompt facts across app locales", async () => {
-    const assessedCatalog = catalog.map((record) =>
-      record.row.kind === "section"
-        ? updateCatalog(record, {
-            questionSourcePath:
-              "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1",
-            sectionKey: "english-language",
+        expect(
+          yield* verifyTryoutLocaleClosure({
+            activeAppLocales: germanAppLocales,
+            catalog: Stream.fromIterable(germanRows.catalog),
+            placements: Stream.fromIterable(germanRows.placements),
           })
-        : record
-    );
-    const assessedPlacements = placements.map(englishPlacement);
+        ).toBeUndefined();
+      })
+  );
 
-    await expect(
-      Effect.runPromise(
-        verifyTryoutLocaleClosure({
+  it.effect("rejects missing German catalog and placement rows", () =>
+    Effect.gen(function* () {
+      const germanLocales = yield* Schema.decodeEffect(
+        ActiveAppLocaleListSchema
+      )(["en", "de"]);
+      const error = yield* rejectClosure({
+        activeAppLocales: germanLocales,
+      });
+
+      expect(error).toBeInstanceOf(TryoutClosureError);
+      expect(error.code).toBe("inactive-locale");
+      expect(error.actual).toBe("id");
+      expect(error.expected).toBe('["en","de"]');
+    })
+  );
+
+  it.effect("rejects duplicate catalog and placement locale rows", () =>
+    Effect.gen(function* () {
+      const firstCatalog = yield* Effect.fromNullishOr(catalog[0]);
+      const firstPlacement = yield* Effect.fromNullishOr(placements[0]);
+      const [catalogError, placementError] = yield* Effect.all(
+        [
+          rejectClosure({ catalog: [firstCatalog, ...catalog] }),
+          rejectClosure({ placements: [firstPlacement, ...placements] }),
+        ],
+        { concurrency: "unbounded" }
+      );
+
+      expect(catalogError).toBeInstanceOf(TryoutClosureError);
+      expect(catalogError.code).toBe("duplicate-locale");
+      expect(placementError).toBeInstanceOf(TryoutClosureError);
+      expect(placementError.code).toBe("duplicate-locale");
+    })
+  );
+
+  it.effect("rejects empty catalog and placement streams", () =>
+    Effect.gen(function* () {
+      const [catalogError, placementError] = yield* Effect.all(
+        [rejectClosure({ catalog: [] }), rejectClosure({ placements: [] })],
+        { concurrency: "unbounded" }
+      );
+
+      expect(catalogError).toBeInstanceOf(TryoutClosureError);
+      expect(catalogError.code).toBe("missing-locale");
+      expect(catalogError.identity).toBe("empty");
+      expect(placementError).toBeInstanceOf(TryoutClosureError);
+      expect(placementError.code).toBe("missing-locale");
+      expect(placementError.identity).toBe("empty");
+    })
+  );
+
+  it.effect("rejects a nonempty hierarchy missing one active locale", () =>
+    Effect.gen(function* () {
+      const error = yield* rejectClosure({ catalog: catalog.slice(1) });
+
+      expect(error.code).toBe("missing-locale");
+      expect(error.identity).not.toBe("empty");
+    })
+  );
+
+  it.effect("rejects locale-neutral catalog fact drift", () =>
+    Effect.gen(function* () {
+      const countryIndex = catalog.findIndex(
+        ({ row }) => row.kind === "country" && row.appLocale === "id"
+      );
+      const country = yield* Effect.fromNullishOr(catalog[countryIndex]);
+      const changed = [...catalog];
+      changed[countryIndex] = yield* updateCatalog(country, {
+        countryCode: "DE",
+      });
+
+      const error = yield* rejectClosure({ catalog: changed });
+      expect(error.code).toBe("fact-mismatch");
+    })
+  );
+
+  it.effect("rejects placements whose catalog section is absent", () =>
+    Effect.gen(function* () {
+      const withoutSections = catalog.filter(
+        ({ row }) => row.kind !== "section"
+      );
+      const error = yield* rejectClosure({ catalog: withoutSections });
+
+      expect(error.code).toBe("missing-section");
+    })
+  );
+
+  it.effect("reuses assessed-language prompt facts across app locales", () =>
+    Effect.gen(function* () {
+      const assessedCatalog = yield* Effect.forEach(catalog, (record) =>
+        record.row.kind === "section"
+          ? updateCatalog(record, {
+              questionSourcePath:
+                "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1",
+              sectionKey: "english-language",
+            })
+          : Effect.succeed(record)
+      );
+      const assessedPlacements = yield* Effect.forEach(
+        placements,
+        englishPlacement
+      );
+
+      expect(
+        yield* verifyTryoutLocaleClosure({
           activeAppLocales,
           catalog: Stream.fromIterable(assessedCatalog),
           placements: Stream.fromIterable(assessedPlacements),
         })
-      )
-    ).resolves.toBeUndefined();
+      ).toBeUndefined();
 
-    const changed = assessedPlacements.map((record) =>
-      record.row.appLocale === "id"
-        ? makeTryoutPlacementRecord(
-            Schema.decodeSync(TryoutPlacementSchema)({
+      const changed = yield* Effect.forEach(assessedPlacements, (record) =>
+        record.row.appLocale === "id"
+          ? Schema.decodeEffect(TryoutPlacementSchema)({
               ...record.row,
               questionArtifactHash: `sha256:${"b".repeat(64)}`,
-            })
-          )
-        : record
-    );
-    const error = await reject({
-      catalog: assessedCatalog,
-      placements: changed,
-    });
-    expect(error.code).toBe("assessed-language");
-  });
-
-  it("rejects declared section counts that do not match placements", async () => {
-    const changed = catalog.map((record) =>
-      record.row.kind === "section"
-        ? updateCatalog(record, { questionCount: 2 })
-        : record
-    );
-    const error = await reject({ catalog: changed });
-
-    expect(error.code).toBe("question-count");
-    expect(error.actual).toBe("1");
-    expect(error.expected).toBe("2");
-  });
-
-  it("rejects a localized section with no placements", async () => {
-    const unused = catalog
-      .filter(({ row }) => row.kind === "section")
-      .map((record) =>
-        updateCatalog(record, {
-          questionSourcePath:
-            "packages/corpus/question-bank/tryout/indonesia/snbt/unused/set-1",
-          sectionKey: "unused",
-        })
+            }).pipe(Effect.map(makeTryoutPlacementRecord))
+          : Effect.succeed(record)
       );
-    const error = await reject({ catalog: [...catalog, ...unused] });
+      const error = yield* rejectClosure({
+        catalog: assessedCatalog,
+        placements: changed,
+      });
+      expect(error.code).toBe("assessed-language");
+    })
+  );
 
-    expect(error.code).toBe("question-count");
-    expect(error.actual).toBe("0");
-  });
+  it.effect(
+    "rejects declared section counts that do not match placements",
+    () =>
+      Effect.gen(function* () {
+        const changed = yield* Effect.forEach(catalog, (record) =>
+          record.row.kind === "section"
+            ? updateCatalog(record, { questionCount: 2 })
+            : Effect.succeed(record)
+        );
+        const error = yield* rejectClosure({ catalog: changed });
+
+        expect(error.code).toBe("question-count");
+        expect(error.actual).toBe("1");
+        expect(error.expected).toBe("2");
+      })
+  );
+
+  it.effect("rejects a localized section with no placements", () =>
+    Effect.gen(function* () {
+      const unused = yield* Effect.forEach(
+        catalog.filter(({ row }) => row.kind === "section"),
+        (record) =>
+          updateCatalog(record, {
+            questionSourcePath:
+              "packages/corpus/question-bank/tryout/indonesia/snbt/unused/set-1",
+            sectionKey: "unused",
+          })
+      );
+      const error = yield* rejectClosure({ catalog: [...catalog, ...unused] });
+
+      expect(error.code).toBe("question-count");
+      expect(error.actual).toBe("0");
+    })
+  );
 });
