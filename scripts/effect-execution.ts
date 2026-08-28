@@ -1,112 +1,14 @@
 import ts from "typescript";
 
-const EFFECT_RUNNERS = new Set([
-  "runCallback",
-  "runCallbackWith",
-  "runFork",
-  "runForkWith",
-  "runPromise",
-  "runPromiseExit",
-  "runPromiseExitWith",
-  "runPromiseWith",
-  "runSync",
-  "runSyncExit",
-  "runSyncExitWith",
-  "runSyncWith",
-]);
-
-type NamedImportBindings = ts.NamespaceImport | ts.NamedImports;
-type RuntimeKind = "module" | "namespace" | "runner";
-
-/** Registers local identifiers imported from the root Effect package. */
-function registerEffectPackage(
-  bindings: NamedImportBindings,
-  modules: Map<string, ts.Identifier>,
-  namespaces: Map<string, ts.Identifier>
-) {
-  if (ts.isNamespaceImport(bindings)) {
-    modules.set(bindings.name.text, bindings.name);
-    return;
-  }
-  for (const binding of bindings.elements) {
-    const importedName = binding.propertyName?.text ?? binding.name.text;
-    if (importedName === "Effect") {
-      namespaces.set(binding.name.text, binding.name);
-    }
-  }
-}
-
-/** Registers local identifiers imported from the Effect API module. */
-function registerEffectModule(
-  bindings: NamedImportBindings,
-  namespaces: Map<string, ts.Identifier>,
-  runners: Map<string, ts.Identifier>
-) {
-  if (ts.isNamespaceImport(bindings)) {
-    namespaces.set(bindings.name.text, bindings.name);
-    return;
-  }
-  for (const binding of bindings.elements) {
-    const importedName = binding.propertyName?.text ?? binding.name.text;
-    if (EFFECT_RUNNERS.has(importedName)) {
-      runners.set(binding.name.text, binding.name);
-    }
-  }
-}
-
-/** Collects local identifiers that expose the Effect runtime API. */
-function effectRuntimeBindings(sourceFile: ts.SourceFile) {
-  const modules = new Map<string, ts.Identifier>();
-  const namespaces = new Map<string, ts.Identifier>();
-  const runners = new Map<string, ts.Identifier>();
-  for (const statement of sourceFile.statements) {
-    if (
-      !(
-        ts.isImportDeclaration(statement) &&
-        ts.isStringLiteral(statement.moduleSpecifier) &&
-        statement.importClause?.namedBindings
-      )
-    ) {
-      continue;
-    }
-    const moduleName = statement.moduleSpecifier.text;
-    const bindings = statement.importClause.namedBindings;
-    if (moduleName === "effect") {
-      registerEffectPackage(bindings, modules, namespaces);
-    } else if (moduleName === "effect/Effect") {
-      registerEffectModule(bindings, namespaces, runners);
-    }
-  }
-  return { modules, namespaces, runners };
-}
-
-type EffectRuntimeBindings = ReturnType<typeof effectRuntimeBindings>;
-
-/** Resolves lexical symbols inside the parsed policy source. */
-function sourceSymbols(sourceFile: ts.SourceFile) {
-  const options = {
-    noLib: true,
-    noResolve: true,
-    target: ts.ScriptTarget.Latest,
-  } satisfies ts.CompilerOptions;
-  const host = ts.createCompilerHost(options, true);
-  host.getSourceFile = () => sourceFile;
-  const checker = ts
-    .createProgram({
-      host,
-      options,
-      rootNames: [sourceFile.fileName],
-    })
-    .getTypeChecker();
-  return {
-    matchesBinding: (reference: ts.Identifier, binding: ts.Identifier) =>
-      checker.getSymbolAtLocation(reference) ===
-      checker.getSymbolAtLocation(binding),
-    symbolAt: (node: ts.Identifier) => checker.getSymbolAtLocation(node),
-  };
-}
-
-type SourceSymbols = ReturnType<typeof sourceSymbols>;
+import {
+  dynamicRuntimeKind,
+  EFFECT_RUNNERS,
+  type EffectRuntimeBindings,
+  effectRuntimeBindings,
+  type RuntimeKind,
+  type SourceSymbols,
+  sourceSymbols,
+} from "#scripts/effect-imports";
 
 /** Removes syntax wrappers that preserve the referenced runtime value. */
 function transparentExpression(node: ts.Expression): ts.Expression {
@@ -117,6 +19,7 @@ function transparentExpression(node: ts.Expression): ts.Expression {
     ts.isTypeAssertionExpression(expression) ||
     ts.isSatisfiesExpression(expression) ||
     ts.isNonNullExpression(expression) ||
+    ts.isAwaitExpression(expression) ||
     ts.isPartiallyEmittedExpression(expression) ||
     ts.isExpressionWithTypeArguments(expression)
   ) {
@@ -157,6 +60,7 @@ function importedRuntimeKind(
   const candidates = [
     [bindings.modules, "module"],
     [bindings.namespaces, "namespace"],
+    [bindings.pipes, "pipe"],
     [bindings.runners, "runner"],
   ] as const;
   for (const [runtimeBindings, kind] of candidates) {
@@ -165,6 +69,24 @@ function importedRuntimeKind(
       return kind;
     }
   }
+}
+
+/** Maps a statically named member from its Effect runtime source. */
+function runtimeMemberKind(
+  sourceKind: RuntimeKind | undefined,
+  memberName: string
+): RuntimeKind | undefined {
+  if (sourceKind === "module") {
+    if (memberName === "Effect") {
+      return "namespace";
+    }
+    if (memberName === "pipe") {
+      return "pipe";
+    }
+  }
+  return sourceKind === "namespace" && EFFECT_RUNNERS.has(memberName)
+    ? "runner"
+    : undefined;
 }
 
 /** Resolves a destructured Effect runtime binding to its source. */
@@ -196,12 +118,7 @@ function destructuredRuntimeKind(
     symbols,
     seenSymbols
   );
-  if (sourceKind === "module" && property.text === "Effect") {
-    return "namespace";
-  }
-  if (sourceKind === "namespace" && EFFECT_RUNNERS.has(property.text)) {
-    return "runner";
-  }
+  return runtimeMemberKind(sourceKind, property.text);
 }
 
 /** Traces each local runtime origin at most once per reference. */
@@ -212,6 +129,10 @@ function runtimeReferenceKind(
   seenSymbols = new Set<ts.Symbol>()
 ): RuntimeKind | undefined {
   const reference = transparentExpression(node);
+  const dynamicKind = dynamicRuntimeKind(reference);
+  if (dynamicKind !== undefined) {
+    return dynamicKind;
+  }
   if (!ts.isIdentifier(reference)) {
     const member = staticMember(reference);
     if (member === undefined) {
@@ -223,13 +144,7 @@ function runtimeReferenceKind(
       symbols,
       seenSymbols
     );
-    if (receiverKind === "module" && member.name === "Effect") {
-      return "namespace";
-    }
-    if (receiverKind === "namespace" && EFFECT_RUNNERS.has(member.name)) {
-      return "runner";
-    }
-    return;
+    return runtimeMemberKind(receiverKind, member.name);
   }
   const importedKind = importedRuntimeKind(reference, bindings, symbols);
   if (importedKind !== undefined) {
@@ -274,12 +189,13 @@ function isEffectRunner(
   if (!ts.isCallExpression(node)) {
     return false;
   }
-  if (runtimeReferenceKind(node.expression, bindings, symbols) === "runner") {
+  const calleeKind = runtimeReferenceKind(node.expression, bindings, symbols);
+  if (calleeKind === "runner") {
     return true;
   }
   const callee = staticMember(node.expression);
   return (
-    callee?.name === "pipe" &&
+    (calleeKind === "pipe" || callee?.name === "pipe") &&
     node.arguments.some(
       (argument) =>
         runtimeReferenceKind(argument, bindings, symbols) === "runner"
@@ -290,22 +206,26 @@ function isEffectRunner(
 /** Reports whether authored test code executes an Effect runtime runner. */
 export function hasExecutedEffectRunner(sourceFile: ts.SourceFile) {
   const runtimeBindings = effectRuntimeBindings(sourceFile);
+  const nodes: ts.Node[] = [sourceFile];
+  for (const node of nodes) {
+    ts.forEachChild(node, (child) => {
+      nodes.push(child);
+    });
+  }
   if (
     runtimeBindings.modules.size === 0 &&
     runtimeBindings.namespaces.size === 0 &&
-    runtimeBindings.runners.size === 0
+    runtimeBindings.pipes.size === 0 &&
+    runtimeBindings.runners.size === 0 &&
+    !nodes.some((node) => dynamicRuntimeKind(node) !== undefined)
   ) {
     return false;
   }
   const symbols = sourceSymbols(sourceFile);
-  const nodes: ts.Node[] = [sourceFile];
   for (const node of nodes) {
     if (isEffectRunner(node, runtimeBindings, symbols)) {
       return true;
     }
-    ts.forEachChild(node, (child) => {
-      nodes.push(child);
-    });
   }
   return false;
 }
