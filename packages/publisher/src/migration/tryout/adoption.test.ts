@@ -101,4 +101,50 @@ describe("terminal try-out runtime adoption", () => {
       assert.strictEqual(failureReason(failure), "adoption-evidence");
     })
   );
+
+  it.effect("rejects a runtime without exact Git provenance", () =>
+    Effect.gen(function* () {
+      const rollback = yield* Schema.decodeEffect(
+        TryoutRuntimeAdoptionSourceSchema
+      )({
+        ...adoptionSource,
+        release: {
+          ...adoptionSource.release,
+          manifest: {
+            ...adoptionSource.release.manifest,
+            baseManifestHash: otherHash,
+            baseReleaseId: "retained-base-release",
+            origin: {
+              kind: "rollback",
+              releaseId: "retained-base-release",
+            },
+            snapshots: {
+              ...adoptionSource.release.manifest.snapshots,
+              tryout: {
+                baseSnapshotId: adoptionSource.snapshot.snapshotId,
+                mode: "inherit",
+                resultSnapshotId: adoptionSource.snapshot.snapshotId,
+                rowCount: 0,
+                rowDigest:
+                  "sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f",
+              },
+            },
+          },
+        },
+      });
+      const target = makePublicationTarget({
+        migrateTryoutHistory: () =>
+          Effect.die("Invalid provenance must fail before adoption."),
+      });
+
+      const failure = yield* adoptTryoutRuntimes({
+        migrationId,
+        signer: migrationSigner,
+        sources: [rollback],
+        target,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failureReason(failure), "adoption-evidence");
+    })
+  );
 });
