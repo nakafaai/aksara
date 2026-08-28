@@ -6,6 +6,7 @@ import { Effect } from "effect";
 import { verifyTryoutHistoryMigrationSource } from "#contracts/migration/tryout/history/source";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import {
+  adoptionSource,
   migrationRelease,
   migrationResolver,
   migrationSource,
@@ -23,6 +24,11 @@ describe("try-out history migration source", () => {
   it.effect("authenticates every retained source identity", () =>
     Effect.gen(function* () {
       expect(yield* verify(migrationSource)).toEqual(migrationSource);
+      const withAdoption = migrationSourceFrom({
+        ...migrationSource,
+        adoptions: [adoptionSource],
+      });
+      expect(yield* verify(withAdoption)).toEqual(withAdoption);
     })
   );
 

@@ -3,6 +3,7 @@ import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migra
 import type { SignedTryoutHistoryMigrationReceipt } from "@nakafa/aksara-contracts/migration/tryout/history/spec";
 import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
 import { Effect, Redacted, Stream } from "effect";
+import { adoptTryoutRuntimes } from "#publisher/migration/tryout/adoption";
 import {
   ConvertedTryoutArtifactSchema,
   convertedArtifactMap,
@@ -114,6 +115,12 @@ const prepareAndRun = Effect.fn("AksaraPublisher.prepareTryoutMigration")(
     migrationId: ReleaseId
   ) {
     const source = yield* readHistoricalTryoutSource(target, migrationId);
+    yield* adoptTryoutRuntimes({
+      migrationId,
+      signer,
+      sources: source.adoptions,
+      target,
+    });
     yield* initializeTryoutMigration(target, migrationId, source);
     const rows = yield* readHistoricalTryoutRows(target, migrationId, source);
     const rendererManifest = yield* convertHistoricalRenderer(

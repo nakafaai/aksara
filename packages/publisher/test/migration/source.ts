@@ -4,9 +4,12 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { TryoutRuntimeAdoptionSourceSchema } from "@nakafa/aksara-contracts/migration/tryout/history/adoption";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { TryoutHistoryMigrationSourceSchema } from "@nakafa/aksara-contracts/transport/migration/tryout/response";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Schema } from "effect";
 
 import { transportSignature } from "#test/content";
@@ -53,6 +56,7 @@ const emptySnapshotDigest =
 export const historicalSource = Schema.decodeUnknownSync(
   TryoutHistoryMigrationSourceSchema
 )({
+  adoptions: [],
   evidence: {
     artifactCount: 2,
     attempts: {
@@ -154,3 +158,36 @@ export const historicalSource = Schema.decodeUnknownSync(
 });
 
 export const historicalRenderer = historicalSource.rendererManifest;
+
+const adoptionSnapshot = makeTryoutSnapshot({
+  activeAppLocales: [AppLocaleSchema.make("en"), AppLocaleSchema.make("id")],
+  catalogDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+  counts: { country: 1, exam: 0, section: 0, set: 0, track: 0 },
+  placementCount: 1,
+  placementDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+  routeCount: 1,
+});
+
+/** Structurally exact terminal runtime source for publisher behavior tests. */
+export const adoptionSource = Schema.decodeUnknownSync(
+  TryoutRuntimeAdoptionSourceSchema
+)({
+  attemptCount: 1,
+  inventoryHash: `sha256:${"1".repeat(64)}`,
+  release: {
+    ...historicalSource.releases[0].release,
+    manifest: {
+      ...historicalSource.releases[0].release.manifest,
+      releaseId: "retained-adoption-release",
+      snapshots: {
+        ...historicalSource.releases[0].release.manifest.snapshots,
+        tryout: {
+          ...historicalSource.releases[0].release.manifest.snapshots.tryout,
+          resultSnapshotId: adoptionSnapshot.snapshotId,
+        },
+      },
+    },
+  },
+  rendererManifest: historicalRendererInput,
+  snapshot: adoptionSnapshot,
+});

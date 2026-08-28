@@ -5,6 +5,7 @@ import {
   decodeStoredTryoutSnapshot,
 } from "#contracts/history/read";
 import { validateHistoricalRendererManifestHash } from "#contracts/history/renderer";
+import { verifyTryoutRuntimeAdoptionSource } from "#contracts/migration/tryout/history/adoption";
 import type { TryoutHistoryMigrationSource } from "#contracts/transport/migration/tryout/response";
 
 /** One retained-history source identity contradicts its authenticated bytes. */
@@ -94,7 +95,16 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
     return yield* sourceFail("renderer");
   }
   const snapshot = yield* decodeStoredTryoutSnapshot(source.evidence.snapshot);
-  const releases = yield* verifyReleases(source);
+  const [adoptions, releases] = yield* Effect.all([
+    Effect.forEach(source.adoptions, verifyTryoutRuntimeAdoptionSource),
+    verifyReleases(source),
+  ]);
+  const adoptionReleaseIds = adoptions.map(
+    ({ release }) => release.manifest.releaseId
+  );
+  if (new Set(adoptionReleaseIds).size !== adoptionReleaseIds.length) {
+    return yield* sourceFail("release-evidence");
+  }
   const catalogRowCount = Object.values(snapshot.counts).reduce(
     (total, count) => total + count,
     0
@@ -106,5 +116,5 @@ export const verifyTryoutHistoryMigrationSource = Effect.fn(
   ) {
     return yield* sourceFail("inventory");
   }
-  return { ...source, releases, rendererManifest };
+  return { ...source, adoptions, releases, rendererManifest };
 });

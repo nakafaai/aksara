@@ -68,6 +68,19 @@ function hasBoundStageCount(
   return value.created + value.unchanged === expectedCount;
 }
 
+/** Checks permanent adoption binds the exact signed runtime identities. */
+function hasBoundAdoption(
+  request: Extract<MigrationRequest, { readonly command: "adoptBundle" }>,
+  value: TryoutHistoryMigrationValue
+) {
+  return (
+    value.command === "adoptBundle" &&
+    value.receipt.bundleHash === request.bundle.bundleHash &&
+    value.receipt.snapshotId === request.bundle.payload.snapshot.snapshotId &&
+    value.receipt.sourceReleaseId === request.bundle.payload.sourceReleaseId
+  );
+}
+
 /** Checks signed-plan staging binds every permanent and source identity. */
 function hasBoundPlan(
   request: Extract<MigrationRequest, { readonly command: "stagePlan" }>,
@@ -120,6 +133,7 @@ export function hasBoundMigration(
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("command")({
       abort: () => value.command === "abort",
+      adoptBundle: (exact) => hasBoundAdoption(exact, value),
       artifactBatch: (exact) => hasBoundArtifactBatch(exact, value),
       cleanup: (exact) =>
         value.command === "cleanup" && hasBoundReceipt(exact, value),

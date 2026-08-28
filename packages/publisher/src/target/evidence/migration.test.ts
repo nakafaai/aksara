@@ -6,12 +6,14 @@ import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response"
 import { historicalArtifacts } from "#test/migration/artifact";
 import {
   migrationProtocol,
+  migrationRequest,
   migrationResponse,
   otherHash,
   otherId,
 } from "#test/migration/protocol";
 import { historicalSource, migrationId } from "#test/migration/source";
 import { migrationStatus, readyMigrationStatus } from "#test/migration/status";
+import { makeMigrationTarget } from "#test/migration/target";
 
 describe("migration HTTP evidence", () => {
   it.effect("accepts every exact command-specific response", () =>
@@ -200,5 +202,52 @@ describe("migration HTTP evidence", () => {
           Array.from({ length: invalid.length }, () => false)
         );
       })
+  );
+
+  it.effect("binds permanent adoption to exact signed runtime identities", () =>
+    Effect.gen(function* () {
+      const { prepared } = yield* makeMigrationTarget();
+      const request = migrationRequest({
+        bundle: prepared.bundle,
+        command: "adoptBundle",
+        inventoryHash: otherHash,
+        operation: "migrateTryoutHistory",
+        releaseId: migrationId,
+        rendererManifest: prepared.rendererManifest,
+      });
+      const receipt = {
+        adopted: 1,
+        alreadyAdopted: 0,
+        attemptCount: 1,
+        bundleCreated: 1,
+        bundleHash: prepared.bundle.bundleHash,
+        bundleUnchanged: 0,
+        snapshotId: prepared.bundle.payload.snapshot.snapshotId,
+        sourceReleaseId: prepared.bundle.payload.sourceReleaseId,
+      };
+
+      assert.strictEqual(
+        hasBoundMigration(
+          request,
+          migrationResponse({
+            command: "adoptBundle",
+            migrationId,
+            receipt,
+          })
+        ),
+        true
+      );
+      assert.strictEqual(
+        hasBoundMigration(
+          request,
+          migrationResponse({
+            command: "adoptBundle",
+            migrationId,
+            receipt: { ...receipt, bundleHash: otherHash },
+          })
+        ),
+        false
+      );
+    })
   );
 });
