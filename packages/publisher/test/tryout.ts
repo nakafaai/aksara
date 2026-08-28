@@ -8,12 +8,27 @@ import {
 } from "#test/question/spec";
 import { selectTryoutSlice } from "#test/tryout-slice";
 
-export const tryoutHeads = await publishedQuestionHeads();
-export const tryoutPrompts = questionEntries.filter(
+const tryoutPrompts = questionEntries.filter(
   ({ bodyKind }) => bodyKind === "question"
 );
-const tryoutContent = await Effect.runPromise(
-  loadTryoutContent(checkoutRoot).pipe(Effect.provide(NodeServices.layer))
-);
-export const { catalog: tryoutCatalog, placements: tryoutPlacements } =
-  selectTryoutSlice(tryoutContent.projection, tryoutPrompts);
+
+interface TryoutFixtures {
+  readonly tryoutHeads: Awaited<ReturnType<typeof publishedQuestionHeads>>;
+  readonly tryoutPlacements: ReturnType<typeof selectTryoutSlice>["placements"];
+}
+
+/** Loads the real try-out fixture inside the calling Effect test runtime. */
+export const tryoutFixtures: Effect.Effect<
+  TryoutFixtures,
+  Effect.Error<ReturnType<typeof loadTryoutContent>>
+> = Effect.gen(function* () {
+  const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
+  const tryoutContent = yield* loadTryoutContent(checkoutRoot).pipe(
+    Effect.provide(NodeServices.layer)
+  );
+  const { placements: tryoutPlacements } = selectTryoutSlice(
+    tryoutContent.projection,
+    tryoutPrompts
+  );
+  return { tryoutHeads, tryoutPlacements };
+});

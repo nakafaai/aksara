@@ -23,7 +23,7 @@ import {
   rendererManifest,
   sourceByPath,
 } from "#test/question/spec";
-import { tryoutHeads, tryoutPlacements } from "#test/tryout";
+import { tryoutFixtures } from "#test/tryout";
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
@@ -36,6 +36,7 @@ const EXPECTED_CONTENT_HASHES = [
 const makeContentTestFixtures = Effect.fn("TryoutContentTest.makeFixtures")(
   () =>
     Effect.gen(function* () {
+      const { tryoutHeads, tryoutPlacements } = yield* tryoutFixtures;
       const bindings = [
         ...(yield* bindTryoutHeads(
           tryoutPlacements,
