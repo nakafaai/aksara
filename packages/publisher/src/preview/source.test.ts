@@ -15,7 +15,7 @@ import {
   rendererManifest as materialRenderer,
 } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
-import { questionRendererManifest } from "#test/question/renderer";
+import { questionManifest } from "#test/question/renderer";
 import { questionEntries } from "#test/question/spec";
 
 /** Selects complete real preview closures through platform and article layers. */
@@ -23,6 +23,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
     const page = yield* PageTestFixtures;
+    const questionRenderer = yield* questionManifest();
     const articleEntry = article.entries.find(
       ({ route }) => route.artifactLocale === "en"
     );
@@ -93,6 +94,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
       pageRenderer: page.rendererManifest,
       pageSource,
       promptSource,
+      questionRenderer,
     };
   })
 );
@@ -143,7 +145,7 @@ layer(previewTestLayer)("preview source", (it) => {
           projectSource(
             fixture.checkoutRoot,
             fixture.promptSource,
-            questionRendererManifest
+            fixture.questionRenderer
           ),
         ],
         { concurrency: 4 }
