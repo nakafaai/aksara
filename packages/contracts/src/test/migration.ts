@@ -128,17 +128,24 @@ const manifest = Schema.decodeUnknownSync(
     },
   },
 });
-const manifestHash = hash(
-  canonicalizeHistoricalContentReleaseManifest(manifest)
-);
-export const migrationRelease = Schema.decodeSync(
-  HistoricalSignedContentReleaseSchema
-)({
-  keyId: "retained-migration-key",
-  manifest,
-  manifestHash,
-  signature: sign(historicalReleaseSigningInput(manifestHash, manifest)),
-});
+/** Signs one test-only retained release through the migration key. */
+function createRelease(
+  releaseManifest: typeof HistoricalContentReleaseManifestSchema.Type
+) {
+  const releaseManifestHash = hash(
+    canonicalizeHistoricalContentReleaseManifest(releaseManifest)
+  );
+  return Schema.decodeSync(HistoricalSignedContentReleaseSchema)({
+    keyId: "retained-migration-key",
+    manifest: releaseManifest,
+    manifestHash: releaseManifestHash,
+    signature: sign(
+      historicalReleaseSigningInput(releaseManifestHash, releaseManifest)
+    ),
+  });
+}
+
+export const migrationRelease = createRelease(manifest);
 
 const adoptionManifest = Schema.decodeSync(
   HistoricalContentReleaseManifestSchema
@@ -153,28 +160,38 @@ const adoptionManifest = Schema.decodeSync(
     },
   },
 });
-const adoptionManifestHash = hash(
-  canonicalizeHistoricalContentReleaseManifest(adoptionManifest)
-);
-export const adoptionRelease = Schema.decodeSync(
-  HistoricalSignedContentReleaseSchema
-)({
-  keyId: "retained-migration-key",
-  manifest: adoptionManifest,
-  manifestHash: adoptionManifestHash,
-  signature: sign(
-    historicalReleaseSigningInput(adoptionManifestHash, adoptionManifest)
-  ),
-});
-export const adoptionSource = Schema.decodeSync(
-  TryoutRuntimeAdoptionSourceSchema
-)({
-  attemptCount: 1,
-  inventoryHash: `sha256:${"3".repeat(64)}`,
-  release: adoptionRelease,
-  rendererManifest: historicalRenderer,
-  snapshot: protectedSnapshot,
-});
+
+/** Creates one authenticated adoption source with deliberate test identities. */
+export function adoptionSourceFrom(input: {
+  readonly releaseSnapshotId?: typeof protectedSnapshot.snapshotId;
+  readonly rendererManifestHash?: typeof historicalRenderer.hash;
+  readonly snapshot?: typeof protectedSnapshot;
+}) {
+  const sourceSnapshot = input.snapshot ?? protectedSnapshot;
+  const sourceManifest = Schema.decodeSync(
+    HistoricalContentReleaseManifestSchema
+  )({
+    ...adoptionManifest,
+    rendererManifestHash:
+      input.rendererManifestHash ?? adoptionManifest.rendererManifestHash,
+    snapshots: {
+      ...adoptionManifest.snapshots,
+      tryout: {
+        ...adoptionManifest.snapshots.tryout,
+        resultSnapshotId: input.releaseSnapshotId ?? sourceSnapshot.snapshotId,
+      },
+    },
+  });
+  return Schema.decodeSync(TryoutRuntimeAdoptionSourceSchema)({
+    attemptCount: 1,
+    inventoryHash: `sha256:${"3".repeat(64)}`,
+    release: createRelease(sourceManifest),
+    rendererManifest: historicalRenderer,
+    snapshot: sourceSnapshot,
+  });
+}
+
+export const adoptionSource = adoptionSourceFrom({});
 
 /** Complete authenticated source envelope for contract verification tests. */
 export const migrationSource = Schema.decodeSync(

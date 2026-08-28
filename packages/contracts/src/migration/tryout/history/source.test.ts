@@ -187,4 +187,19 @@ describe("try-out history migration source", () => {
       });
     })
   );
+
+  it.effect("rejects duplicate runtime adoption identities", () =>
+    Effect.gen(function* () {
+      const duplicate = migrationSourceFrom({
+        ...migrationSource,
+        adoptions: [adoptionSource, adoptionSource],
+      });
+      const failure = yield* verify(duplicate).pipe(Effect.flip);
+
+      expect(failure).toMatchObject({
+        _tag: "TryoutHistoryMigrationSourceError",
+        reason: "release-evidence",
+      });
+    })
+  );
 });

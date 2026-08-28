@@ -8,7 +8,11 @@ import {
   verifyTryoutRuntimeAdoptionSource,
 } from "#contracts/migration/tryout/history/adoption";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
-import { adoptionSource, migrationResolver } from "#contracts/test/migration";
+import {
+  adoptionSource,
+  adoptionSourceFrom,
+  migrationResolver,
+} from "#contracts/test/migration";
 
 /** Verifies one adoption source with the exact retained test key. */
 function verify(input: typeof adoptionSource) {
@@ -35,15 +39,27 @@ describe("try-out runtime adoption", () => {
             hash: foreignHash,
           },
         }).pipe(Effect.flip),
-        verify({
-          ...adoptionSource,
-          snapshot: { ...adoptionSource.snapshot, snapshotId: foreignHash },
-        }).pipe(Effect.flip),
+        verify(adoptionSourceFrom({ releaseSnapshotId: foreignHash })).pipe(
+          Effect.flip
+        ),
+        verify(adoptionSourceFrom({ rendererManifestHash: foreignHash })).pipe(
+          Effect.flip
+        ),
+        verify(
+          adoptionSourceFrom({
+            snapshot: {
+              ...adoptionSource.snapshot,
+              snapshotId: foreignHash,
+            },
+          })
+        ).pipe(Effect.flip),
       ]);
 
-      expect(failures.map(({ _tag }) => _tag)).toEqual([
-        "StoredRendererHashMismatchError",
-        "TryoutRuntimeAdoptionSourceError",
+      expect(failures).toMatchObject([
+        { _tag: "StoredRendererHashMismatchError" },
+        { _tag: "TryoutRuntimeAdoptionSourceError", reason: "release" },
+        { _tag: "TryoutRuntimeAdoptionSourceError", reason: "renderer" },
+        { _tag: "TryoutRuntimeAdoptionSourceError", reason: "snapshot" },
       ]);
     })
   );

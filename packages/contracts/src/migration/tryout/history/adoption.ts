@@ -79,7 +79,6 @@ export const verifyTryoutRuntimeAdoptionSource = Effect.fn(
   const { manifest } = release;
   if (
     manifest.origin.kind !== "git" ||
-    manifest.releaseId !== source.release.manifest.releaseId ||
     manifest.snapshots.tryout.resultSnapshotId !== source.snapshot.snapshotId
   ) {
     return yield* new TryoutRuntimeAdoptionSourceError({
