@@ -69,6 +69,48 @@ describe("Effect test execution policy", () => {
     ).toEqual([]);
   });
 
+  it("detects aliased Effect runtime namespaces", () => {
+    const sources = [
+      'import { Effect as Fx } from "effect";\nFx.runPromise(program);',
+      'import * as Fx from "effect/Effect";\nFx.runSync(program);',
+      'import * as Fx from "effect";\nFx.Effect.runFork(program);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
+  it("detects direct Effect runtime imports", () => {
+    const sources = [
+      'import { runPromise } from "effect/Effect";\nrunPromise(program);',
+      'import { runSync as execute } from "effect/Effect";\nexecute(program);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
+  it("allows unrelated aliases from Effect modules", () => {
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Schema as S } from "effect";\nS.decodeUnknownSync(schema)(input);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { succeed } from "effect/Effect";\nsucceed(1);'
+      )
+    ).toEqual([]);
+  });
+
   it("covers every direct Effect runner", () => {
     const runners = [
       "runCallback",
