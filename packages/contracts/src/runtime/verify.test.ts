@@ -1,9 +1,14 @@
 import { createHash } from "node:crypto";
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+import {
+  verifyContentRuntimeEvidenceExchange,
+  verifyContentRuntimeExchange,
+} from "#contracts/runtime/verify";
+import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
 import {
@@ -12,6 +17,7 @@ import {
   incompatibleManifest,
   release,
   tamperSignature,
+  trustedResolver,
 } from "#contracts/test/runtime/fixture";
 import {
   articleFound,
@@ -20,252 +26,277 @@ import {
   found,
   pageFound,
   pageRequest,
-  rejectExchange,
-  verifyEvidenceExchange,
-  verifyExchange,
-  verifyExchangeResult,
+  request,
 } from "#contracts/test/runtime/public";
 
+interface RuntimeExchangeInput {
+  readonly rendererManifest?: unknown;
+  readonly request?: unknown;
+  readonly response: unknown;
+}
+/** Supplies the trusted fixture resolver to one runtime verification effect. */
+const provideFixtureKey = Effect.provideService(
+  ContentVerificationKeyResolver,
+  trustedResolver
+);
+
+/** Verifies one runtime exchange with the fixture key and default request. */
+const verifyRuntimeExchange = Effect.fn(
+  "AksaraContracts.test.verifyRuntimeExchange"
+)(function* (input: RuntimeExchangeInput) {
+  return yield* verifyContentRuntimeExchange({
+    rendererManifest: input.rendererManifest ?? rendererManifest,
+    request: input.request ?? request,
+    response: input.response,
+  }).pipe(provideFixtureKey);
+});
 describe("content runtime verification", () => {
-  it("binds a found response to its exact request", async () => {
-    await expect(verifyExchange({ response: found })).resolves.toEqual(found);
-    const responses = [
-      {
-        ...found,
-        artifact: {
-          ...artifact,
-          payload: { ...artifact.payload, artifactLocale: "id" },
+  it.effect("binds a found response to its exact request", () =>
+    Effect.gen(function* () {
+      expect(yield* verifyRuntimeExchange({ response: found })).toEqual(found);
+      const responses = [
+        {
+          ...found,
+          artifact: {
+            ...artifact,
+            payload: { ...artifact.payload, artifactLocale: "id" },
+          },
+          projection: {
+            ...found.projection,
+            appLocale: "id",
+            artifactLocale: "id",
+            graph: materialGraph("id", "test", "transport", "test-transport"),
+            parentPath: "materi/test",
+            publicPath: "materi/test/transport",
+          },
         },
-        projection: {
-          ...found.projection,
-          appLocale: "id",
-          artifactLocale: "id",
-          graph: materialGraph("id", "test", "transport", "test-transport"),
-          parentPath: "materi/test",
-          publicPath: "materi/test/transport",
+        {
+          ...found,
+          projection: {
+            ...found.projection,
+            publicPath: "subjects/test/other",
+          },
         },
-      },
-      {
-        ...found,
-        projection: {
-          ...found.projection,
-          publicPath: "subjects/test/other",
+        {
+          ...found,
+          sourcePath: "packages/corpus/article/test/other/en.mdx",
         },
-      },
-      {
-        ...found,
-        sourcePath: "packages/corpus/article/test/other/en.mdx",
-      },
-      {
-        ...found,
-        sourcePath: "packages/corpus/material/lesson/test/transport/id.mdx",
-      },
-      { ...found, activeReleaseId: "test-other-release" },
-      { ...found, activeManifestHash: hash },
-      { ...found, projectionHash: hash },
-    ];
-    const outcomes = await Promise.all(
-      responses.map((response) => verifyExchangeResult({ response }))
-    );
-    expect(
-      outcomes.map((outcome) =>
-        Result.isFailure(outcome) &&
-        outcome.failure._tag === "ContentRuntimeMismatchError"
-          ? outcome.failure.reason
-          : "none"
-      )
-    ).toEqual([
-      "locale",
-      "publicPath",
-      "sourcePath",
-      "sourcePath",
-      "activeReleaseId",
-      "activeManifestHash",
-      "projectionHash",
-    ]);
-  });
-
-  it("binds an article response to its pair-grouped physical source", async () => {
-    await expect(
-      verifyExchange({ request: articleRequest, response: articleFound })
-    ).resolves.toEqual(articleFound);
-
-    const invalidSources = [
-      "packages/corpus/articles/politics/dynastic-politics-asian-values/en.mdx",
-      "packages/corpus/articles/politics/dynastic-politics/asian-values/id.mdx",
-      "packages/corpus/articles/politics/flawed-legal/geopolitics/en.mdx",
-      "packages/corpus/material/lesson/politics/dynastic-politics-asian-values/en.mdx",
-    ];
-    const outcomes = await Promise.all(
-      invalidSources.map((sourcePath) =>
-        rejectExchange({
+        {
+          ...found,
+          sourcePath: "packages/corpus/material/lesson/test/transport/id.mdx",
+        },
+        { ...found, activeReleaseId: "test-other-release" },
+        { ...found, activeManifestHash: hash },
+        { ...found, projectionHash: hash },
+      ];
+      const outcomes = yield* Effect.all(
+        responses.map((response) =>
+          verifyRuntimeExchange({ response }).pipe(Effect.result)
+        ),
+        { concurrency: "unbounded" }
+      );
+      expect(
+        outcomes.map((outcome) =>
+          Result.isFailure(outcome) &&
+          outcome.failure._tag === "ContentRuntimeMismatchError"
+            ? outcome.failure.reason
+            : "none"
+        )
+      ).toEqual([
+        "locale",
+        "publicPath",
+        "sourcePath",
+        "sourcePath",
+        "activeReleaseId",
+        "activeManifestHash",
+        "projectionHash",
+      ]);
+    })
+  );
+  it.effect("binds routed responses to their physical sources", () =>
+    Effect.gen(function* () {
+      const cases = [
+        {
+          invalidSources: [
+            "packages/corpus/articles/politics/dynastic-politics-asian-values/en.mdx",
+            "packages/corpus/articles/politics/dynastic-politics/asian-values/id.mdx",
+            "packages/corpus/articles/politics/flawed-legal/geopolitics/en.mdx",
+            "packages/corpus/material/lesson/politics/dynastic-politics-asian-values/en.mdx",
+          ],
           request: articleRequest,
-          response: { ...articleFound, sourcePath },
-        })
-      )
-    );
-
-    expect(outcomes).toEqual(
-      invalidSources.map(() =>
-        expect.objectContaining({
-          _tag: "ContentRuntimeMismatchError",
-          reason: "sourcePath",
-        })
-      )
-    );
-  });
-
-  it("binds a public page to its source-owned physical root", async () => {
-    await expect(
-      verifyExchange({ request: pageRequest, response: pageFound })
-    ).resolves.toEqual(pageFound);
-
-    const invalidSources = [
-      "packages/corpus/pages/terms/id.mdx",
-      "packages/corpus/pages/legal/terms/en.mdx",
-      "packages/corpus/pages/terms.old/en.mdx",
-      "packages/corpus/pages/privacy-policy/en.mdx",
-      "packages/corpus/articles/terms/en.mdx",
-    ];
-    const outcomes = await Promise.all(
-      invalidSources.map((sourcePath) =>
-        rejectExchange({
-          request: pageRequest,
-          response: { ...pageFound, sourcePath },
-        })
-      )
-    );
-
-    expect(outcomes).toEqual(
-      invalidSources.map(() =>
-        expect.objectContaining({
-          _tag: "ContentRuntimeMismatchError",
-          reason: "sourcePath",
-        })
-      )
-    );
-  });
-
-  it("rejects a tampered runtime artifact", async () => {
-    const tamperedArtifact = {
-      ...artifact,
-      signature: tamperSignature(artifact.signature),
-    };
-    const error = await rejectExchange({
-      response: { ...found, artifact: tamperedArtifact },
-    });
-    expect(error).toMatchObject({ _tag: "SignatureInvalidError" });
-  });
-
-  it("rejects an artifact signed by an unavailable key", async () => {
-    const error = await rejectExchange({
-      response: {
-        ...found,
-        artifact: {
-          ...artifact,
-          keyId: SigningKeyIdSchema.make("test-runtime-unknown"),
+          response: articleFound,
         },
-      },
-    });
-    expect(error).toMatchObject({ _tag: "SigningKeyNotFoundError" });
-  });
+        {
+          invalidSources: [
+            "packages/corpus/pages/terms/id.mdx",
+            "packages/corpus/pages/legal/terms/en.mdx",
+            "packages/corpus/pages/terms.old/en.mdx",
+            "packages/corpus/pages/privacy-policy/en.mdx",
+            "packages/corpus/articles/terms/en.mdx",
+          ],
+          request: pageRequest,
+          response: pageFound,
+        },
+      ];
+      for (const sourceCase of cases) {
+        expect(
+          yield* verifyRuntimeExchange({
+            request: sourceCase.request,
+            response: sourceCase.response,
+          })
+        ).toEqual(sourceCase.response);
+        const outcomes = yield* Effect.all(
+          sourceCase.invalidSources.map((sourcePath) =>
+            verifyRuntimeExchange({
+              request: sourceCase.request,
+              response: { ...sourceCase.response, sourcePath },
+            }).pipe(Effect.flip)
+          ),
+          { concurrency: "unbounded" }
+        );
+        expect(outcomes).toEqual(
+          sourceCase.invalidSources.map(() =>
+            expect.objectContaining({
+              _tag: "ContentRuntimeMismatchError",
+              reason: "sourcePath",
+            })
+          )
+        );
+      }
+    })
+  );
+  it.effect("rejects invalid artifact and release signatures or keys", () =>
+    Effect.gen(function* () {
+      expect(tamperSignature("A")).toBe("B");
+      expect(tamperSignature("B")).toBe("A");
+      const responses = [
+        {
+          ...found,
+          artifact: {
+            ...artifact,
+            signature: tamperSignature(artifact.signature),
+          },
+        },
+        {
+          ...found,
+          artifact: {
+            ...artifact,
+            keyId: SigningKeyIdSchema.make("test-runtime-unknown"),
+          },
+        },
+        {
+          ...found,
+          release: {
+            ...release,
+            signature: tamperSignature(release.signature),
+          },
+        },
+      ];
+      const errors = yield* Effect.all(
+        responses.map((response) =>
+          verifyRuntimeExchange({ response }).pipe(Effect.flip)
+        ),
+        { concurrency: "unbounded" }
+      );
+      expect(errors.map(({ _tag }) => _tag)).toEqual([
+        "SignatureInvalidError",
+        "SigningKeyNotFoundError",
+        "SignatureInvalidError",
+      ]);
+    })
+  );
+  it.effect(
+    "accepts compatible live renderer evolution and rejects incompatibility",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyRuntimeExchange({
+            rendererManifest: compatibleManifest,
+            response: found,
+          })
+        ).toEqual(found);
 
-  it("rejects a tampered active release", async () => {
-    expect(tamperSignature("A")).toBe("B");
-    expect(tamperSignature("B")).toBe("A");
-    const tamperedRelease = {
-      ...release,
-      signature: tamperSignature(release.signature),
-    };
-    const error = await rejectExchange({
-      response: { ...found, release: tamperedRelease },
-    });
-    expect(error).toMatchObject({ _tag: "SignatureInvalidError" });
-  });
-
-  it("accepts compatible live renderer evolution and rejects incompatibility", async () => {
-    await expect(
-      verifyExchange({
-        rendererManifest: compatibleManifest,
-        response: found,
+        const error = yield* verifyRuntimeExchange({
+          rendererManifest: incompatibleManifest,
+          response: found,
+        }).pipe(Effect.flip);
+        expect(error).toMatchObject({
+          _tag: "ArtifactRendererComponentMissingError",
+          componentName: "BlockMath",
+        });
       })
-    ).resolves.toEqual(found);
+  );
+  it.effect(
+    "executes an older frozen domain subset on a compatible live superset",
+    () =>
+      Effect.gen(function* () {
+        const domains = rendererManifest.domains.slice(0, -1);
+        const historicalContract = {
+          base: rendererManifest.base,
+          domains,
+          publishedDomains: rendererManifest.publishedDomains,
+        };
+        const historicalRenderer = yield* validateRendererManifestHash({
+          ...rendererManifest,
+          domains,
+          hash: `sha256:${createHash("sha256")
+            .update(canonicalizeRendererManifestContract(historicalContract))
+            .digest("hex")}`,
+        });
+        const historicalRelease = yield* Effect.promise(() =>
+          createSignedRuntimeRelease(historicalRenderer.hash)
+        );
+        const response = {
+          ...found,
+          activeManifestHash: historicalRelease.manifestHash,
+          activeReleaseId: historicalRelease.manifest.releaseId,
+          release: historicalRelease,
+          rendererManifest: historicalRenderer,
+        };
 
-    const error = await rejectExchange({
-      rendererManifest: incompatibleManifest,
-      response: found,
-    });
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererComponentMissingError",
-      componentName: "BlockMath",
-    });
-  });
-
-  it("executes an older frozen domain subset on a compatible live superset", async () => {
-    const domains = rendererManifest.domains.slice(0, -1);
-    const historicalContract = {
-      base: rendererManifest.base,
-      domains,
-      publishedDomains: rendererManifest.publishedDomains,
-    };
-    const historicalRenderer = await Effect.runPromise(
-      validateRendererManifestHash({
-        ...rendererManifest,
-        domains,
-        hash: `sha256:${createHash("sha256")
-          .update(canonicalizeRendererManifestContract(historicalContract))
-          .digest("hex")}`,
+        expect(
+          yield* verifyRuntimeExchange({ rendererManifest, response })
+        ).toEqual(response);
+        expect(
+          yield* verifyContentRuntimeEvidenceExchange({
+            request,
+            response,
+          }).pipe(provideFixtureKey)
+        ).toEqual(response);
       })
-    );
-    const historicalRelease = await createSignedRuntimeRelease(
-      historicalRenderer.hash
-    );
-    const response = {
-      ...found,
-      activeManifestHash: historicalRelease.manifestHash,
-      activeReleaseId: historicalRelease.manifest.releaseId,
-      release: historicalRelease,
-      rendererManifest: historicalRenderer,
-    };
-
-    await expect(
-      verifyExchange({ rendererManifest, response })
-    ).resolves.toEqual(response);
-    await expect(verifyEvidenceExchange({ response })).resolves.toEqual(
-      response
-    );
-  });
-
-  it("rejects a tampered frozen renderer envelope", async () => {
-    const tamperedRenderer = { ...rendererManifest, hash };
-    const error = await rejectExchange({
-      response: { ...found, rendererManifest: tamperedRenderer },
-    });
-    expect(error).toMatchObject({
-      _tag: "ReleaseBundleVerificationDecodeError",
-    });
-  });
-
-  it("authenticates the frozen renderer before live compatibility", async () => {
-    const tamperedRenderer = { ...rendererManifest, hash };
-    const error = await rejectExchange({
-      rendererManifest: compatibleManifest,
-      response: { ...found, rendererManifest: tamperedRenderer },
-    });
-    expect(error).toMatchObject({
-      _tag: "ReleaseBundleVerificationDecodeError",
-    });
-  });
-
-  it("preserves request-bound missing and failure responses", async () => {
-    const responses = [
-      { kind: "missing" },
-      { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
-    ];
-    await Promise.all(
-      responses.map((response) =>
-        expect(verifyExchange({ response })).resolves.toEqual(response)
-      )
-    );
-  });
+  );
+  it.effect("authenticates the frozen renderer before live compatibility", () =>
+    Effect.gen(function* () {
+      const tamperedRenderer = { ...rendererManifest, hash };
+      const errors = yield* Effect.all(
+        [
+          verifyRuntimeExchange({
+            response: { ...found, rendererManifest: tamperedRenderer },
+          }).pipe(Effect.flip),
+          verifyRuntimeExchange({
+            rendererManifest: compatibleManifest,
+            response: { ...found, rendererManifest: tamperedRenderer },
+          }).pipe(Effect.flip),
+        ],
+        { concurrency: "unbounded" }
+      );
+      expect(errors.map(({ _tag }) => _tag)).toEqual([
+        "ReleaseBundleVerificationDecodeError",
+        "ReleaseBundleVerificationDecodeError",
+      ]);
+    })
+  );
+  it.effect("preserves request-bound missing and failure responses", () =>
+    Effect.gen(function* () {
+      const responses = [
+        { kind: "missing" },
+        { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
+      ];
+      const verified = yield* Effect.all(
+        responses.map((response) => verifyRuntimeExchange({ response })),
+        { concurrency: "unbounded" }
+      );
+      expect(verified).toEqual(responses);
+    })
+  );
 });
