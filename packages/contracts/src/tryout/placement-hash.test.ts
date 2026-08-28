@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
