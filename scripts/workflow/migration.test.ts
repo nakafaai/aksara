@@ -32,6 +32,17 @@ describe("migration workflow policy", () => {
     ).toThrow("Migration abort must use the protected exact-revision path");
   });
 
+  it("rejects a redundant package-script argument delimiter", () => {
+    expect(() =>
+      verifyMigrationWorkflow(
+        migration.replace(
+          "migrate\n          --release-id",
+          "migrate --\n          --release-id"
+        )
+      )
+    ).toThrow("Migration sealing must produce and attest one exact receipt");
+  });
+
   it("keeps repository code out of the privileged publish job", () => {
     expect(() =>
       verifyMigrationWorkflow(

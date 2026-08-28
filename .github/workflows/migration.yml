@@ -153,7 +153,7 @@ jobs:
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           MIGRATION_ID: ${{ inputs.migration_id }}
         run: >-
-          pnpm --filter @nakafa/aksara-cli migrate:abort --
+          pnpm --filter @nakafa/aksara-cli migrate:abort
           --release-id "$MIGRATION_ID"
 
   seal:
@@ -226,7 +226,7 @@ jobs:
           MIGRATION_ID: ${{ inputs.migration_id }}
           RECEIPT: ${{ runner.temp }}/receipt.json
         run: >-
-          pnpm --filter @nakafa/aksara-cli migrate --
+          pnpm --filter @nakafa/aksara-cli migrate
           --release-id "$MIGRATION_ID" --receipt-path "$RECEIPT"
 
       - name: Resolve receipt identity
@@ -603,6 +603,6 @@ jobs:
           RECEIPT: ${{ runner.temp }}/migration-release/${{ needs.seal.outputs.asset_name }}
           SOURCE_SHA: ${{ github.sha }}
         run: >-
-          pnpm --filter @nakafa/aksara-cli migrate:cleanup --
+          pnpm --filter @nakafa/aksara-cli migrate:cleanup
           --release-id "$MIGRATION_ID" --receipt-path "$RECEIPT"
           --asset-hash "$ASSET_HASH" --source-sha "$SOURCE_SHA"
