@@ -26,7 +26,7 @@ import {
   historicalReleaseSigningInput,
 } from "#contracts/history/release-bytes";
 import { HistoricalTryoutSnapshotSchema } from "#contracts/history/tryout";
-import { TryoutRuntimeAdoptionSourceSchema } from "#contracts/migration/tryout/history/adoption";
+import { TryoutRuntimeAdoptionSourceSchema } from "#contracts/migration/tryout/history/adoption/spec";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { retainedRelease } from "#contracts/test/history";
 import {

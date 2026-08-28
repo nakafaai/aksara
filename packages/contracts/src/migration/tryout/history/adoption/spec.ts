@@ -1,12 +1,7 @@
-import { Effect, Schema } from "effect";
-import { decodeStoredRelease } from "#contracts/history/read";
+import { Schema } from "effect";
 import { HistoricalSignedContentReleaseSchema } from "#contracts/history/release";
-import {
-  HistoricalRendererManifestSchema,
-  validateHistoricalRendererManifestHash,
-} from "#contracts/history/renderer";
+import { HistoricalRendererManifestSchema } from "#contracts/history/renderer";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 
 const NonNegativeCountSchema = Schema.Int.pipe(
@@ -67,34 +62,3 @@ export class TryoutRuntimeAdoptionSourceError extends Schema.TaggedError<TryoutR
     reason: Schema.Literals(["release", "renderer", "snapshot"]),
   }
 ) {}
-
-/** Authenticates one retained release, renderer, and current snapshot pair. */
-export const verifyTryoutRuntimeAdoptionSource = Effect.fn(
-  "AksaraContracts.verifyTryoutRuntimeAdoptionSource"
-)(function* (source: TryoutRuntimeAdoptionSource) {
-  const release = yield* decodeStoredRelease(source.release);
-  const rendererManifest = yield* validateHistoricalRendererManifestHash(
-    source.rendererManifest
-  );
-  const { manifest } = release;
-  if (
-    manifest.origin.kind !== "git" ||
-    manifest.snapshots.tryout.resultSnapshotId !== source.snapshot.snapshotId
-  ) {
-    return yield* new TryoutRuntimeAdoptionSourceError({
-      reason: "release",
-    });
-  }
-  if (manifest.rendererManifestHash !== rendererManifest.hash) {
-    return yield* new TryoutRuntimeAdoptionSourceError({
-      reason: "renderer",
-    });
-  }
-  const actual = makeTryoutSnapshot(source.snapshot);
-  if (actual.snapshotId !== source.snapshot.snapshotId) {
-    return yield* new TryoutRuntimeAdoptionSourceError({
-      reason: "snapshot",
-    });
-  }
-  return source;
-});

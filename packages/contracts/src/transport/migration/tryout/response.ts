@@ -8,7 +8,7 @@ import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
   TryoutRuntimeAdoptionReceiptSchema,
   TryoutRuntimeAdoptionSourceSchema,
-} from "#contracts/migration/tryout/history/adoption";
+} from "#contracts/migration/tryout/history/adoption/spec";
 import {
   SignedTryoutHistoryMigrationReceiptSchema,
   TryoutHistoryMigrationCompletionSchema,

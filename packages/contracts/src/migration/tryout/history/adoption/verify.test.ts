@@ -1,12 +1,9 @@
 // @vitest-environment node
 
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  TryoutRuntimeAdoptionReceiptSchema,
-  verifyTryoutRuntimeAdoptionSource,
-} from "#contracts/migration/tryout/history/adoption";
+import { verifyTryoutRuntimeAdoptionSource } from "#contracts/migration/tryout/history/adoption/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import {
   adoptionSource,
@@ -63,28 +60,4 @@ describe("try-out runtime adoption", () => {
       ]);
     })
   );
-
-  it("requires complete attempt and bundle outcomes", () => {
-    const receipt = {
-      adopted: 1,
-      alreadyAdopted: 0,
-      attemptCount: 1,
-      bundleCreated: 1,
-      bundleHash: `sha256:${"a".repeat(64)}`,
-      bundleUnchanged: 0,
-      snapshotId: adoptionSource.snapshot.snapshotId,
-      sourceReleaseId: adoptionSource.release.manifest.releaseId,
-    };
-
-    const isReceipt = Schema.is(TryoutRuntimeAdoptionReceiptSchema);
-
-    expect(isReceipt(receipt)).toBe(true);
-    expect(isReceipt({ ...receipt, adopted: 0 })).toBe(false);
-    expect(
-      isReceipt({
-        ...receipt,
-        bundleUnchanged: 1,
-      })
-    ).toBe(false);
-  });
 });

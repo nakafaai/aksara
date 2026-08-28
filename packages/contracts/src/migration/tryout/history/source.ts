@@ -5,7 +5,7 @@ import {
   decodeStoredTryoutSnapshot,
 } from "#contracts/history/read";
 import { validateHistoricalRendererManifestHash } from "#contracts/history/renderer";
-import { verifyTryoutRuntimeAdoptionSource } from "#contracts/migration/tryout/history/adoption";
+import { verifyTryoutRuntimeAdoptionSource } from "#contracts/migration/tryout/history/adoption/verify";
 import type { TryoutHistoryMigrationSource } from "#contracts/transport/migration/tryout/response";
 
 /** One retained-history source identity contradicts its authenticated bytes. */
