@@ -1,13 +1,16 @@
+import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ActiveAppLocaleSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
-import { makeTryoutPlacement } from "#corpus/tryout/placement";
+import {
+  makeTryoutPlacement,
+  TryoutPlacementError,
+} from "#corpus/tryout/placement";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const promptPath = CorpusSourcePathSchema.make(
@@ -15,62 +18,64 @@ const promptPath = CorpusSourcePathSchema.make(
 );
 
 /** Loads one real question and its exact source-owned placement context. */
-async function loadPlacementFixture() {
-  const sources = await Effect.runPromise(decodeTryoutRegistry());
-  const content = await Effect.runPromise(
-    selectQuestionContent(corpusRoot, sources, promptPath).pipe(
-      Effect.provide([makeQuestionLayer(), Path.layer])
-    )
+const loadPlacementFixture = Effect.fn(
+  "AksaraCorpus.test.loadPlacementFixture"
+)(function* () {
+  const sources = yield* decodeTryoutRegistry();
+  const content = yield* selectQuestionContent(
+    corpusRoot,
+    sources,
+    promptPath
+  ).pipe(Effect.provide([makeQuestionLayer(), Path.layer]));
+  const source = yield* Effect.fromNullishOr(
+    sources.find(({ examKey }) => examKey === "snbt")
   );
-  const source = sources.find(({ examKey }) => examKey === "snbt");
-  if (source === undefined) {
-    throw new Error("Expected the canonical SNBT placement hierarchy.");
-  }
-  const track = source.tracks.find(({ key }) => key === "2027");
-  const set = track?.sets.find(({ key }) => key === "set-1");
-  const section = set?.sections.find(
-    ({ key }) => key === "reading-and-writing-skills"
+  const track = yield* Effect.fromNullishOr(
+    source.tracks.find(({ key }) => key === "2027")
   );
-  if (track === undefined || set === undefined || section === undefined) {
-    throw new Error("Expected the canonical SNBT placement hierarchy.");
-  }
+  const set = yield* Effect.fromNullishOr(
+    track.sets.find(({ key }) => key === "set-1")
+  );
+  const section = yield* Effect.fromNullishOr(
+    set.sections.find(({ key }) => key === "reading-and-writing-skills")
+  );
   return {
     context: { section, set, source, track },
     question: content.source,
   };
-}
+});
 
 describe("tryout placement", () => {
-  it("builds the canonical placement from one owned hierarchy", async () => {
-    const fixture = await loadPlacementFixture();
-    const placement = await Effect.runPromise(
-      makeTryoutPlacement(
+  it.effect("builds the canonical placement from one owned hierarchy", () =>
+    Effect.gen(function* () {
+      const fixture = yield* loadPlacementFixture();
+      const placement = yield* makeTryoutPlacement(
         fixture.context,
         fixture.question,
         ActiveAppLocaleSchema.make("en")
-      )
-    );
+      );
 
-    expect(placement).toMatchObject({
-      questionOrder: 1,
-      sectionKey: "reading-and-writing-skills",
-      setKey: "set-1",
-      trackKey: "2027",
-    });
-  });
+      expect(placement).toMatchObject({
+        questionOrder: 1,
+        sectionKey: "reading-and-writing-skills",
+        setKey: "set-1",
+        trackKey: "2027",
+      });
+    })
+  );
 
-  it("rejects an unrelated hierarchy and out-of-range order", async () => {
-    const fixture = await loadPlacementFixture();
-    const detachedContext = {
-      ...fixture.context,
-      section: { ...fixture.context.section },
-    };
-    const outOfRange = {
-      ...fixture.question,
-      questionNumber: fixture.context.section.questionCount + 1,
-    };
-    const [owner, order] = await Effect.runPromise(
-      Effect.all([
+  it.effect("rejects an unrelated hierarchy and out-of-range order", () =>
+    Effect.gen(function* () {
+      const fixture = yield* loadPlacementFixture();
+      const detachedContext = {
+        ...fixture.context,
+        section: { ...fixture.context.section },
+      };
+      const outOfRange = {
+        ...fixture.question,
+        questionNumber: fixture.context.section.questionCount + 1,
+      };
+      const [owner, order] = yield* Effect.all([
         makeTryoutPlacement(
           detachedContext,
           fixture.question,
@@ -81,50 +86,64 @@ describe("tryout placement", () => {
           outOfRange,
           ActiveAppLocaleSchema.make("en")
         ).pipe(Effect.flip),
-      ])
-    );
+      ]);
 
-    expect(owner).toMatchObject({ reason: "owner" });
-    expect(order).toMatchObject({ reason: "order" });
-  });
+      expect(owner).toBeInstanceOf(TryoutPlacementError);
+      expect(owner).toMatchObject({
+        _tag: "TryoutPlacementError",
+        reason: "owner",
+      });
+      expect(order).toBeInstanceOf(TryoutPlacementError);
+      expect(order).toMatchObject({
+        _tag: "TryoutPlacementError",
+        reason: "order",
+      });
+    })
+  );
 
-  it("rejects a prompt without choices in its delivered language", async () => {
-    const fixture = await loadPlacementFixture();
-    const error = await Effect.runPromise(
-      makeTryoutPlacement(
+  it.effect("rejects a prompt without choices in its delivered language", () =>
+    Effect.gen(function* () {
+      const fixture = yield* loadPlacementFixture();
+      const error = yield* makeTryoutPlacement(
         fixture.context,
         { ...fixture.question, choices: { id: fixture.question.choices.id } },
         ActiveAppLocaleSchema.make("en")
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
 
-    expect(error).toMatchObject({ reason: "choices" });
-  });
+      expect(error).toBeInstanceOf(TryoutPlacementError);
+      expect(error).toMatchObject({
+        _tag: "TryoutPlacementError",
+        reason: "choices",
+      });
+    })
+  );
 
-  it("builds the active German placement without mutating source rows", async () => {
-    const fixture = await loadPlacementFixture();
-    const placement = await Effect.runPromise(
-      makeTryoutPlacement(
-        fixture.context,
-        {
-          ...fixture.question,
-          choices: {
-            ...fixture.question.choices,
-            de: [
-              { label: "Antwort A", value: true },
-              { label: "Antwort B", value: false },
-            ],
+  it.effect(
+    "builds the active German placement without mutating source rows",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* loadPlacementFixture();
+        const placement = yield* makeTryoutPlacement(
+          fixture.context,
+          {
+            ...fixture.question,
+            choices: {
+              ...fixture.question.choices,
+              de: [
+                { label: "Antwort A", value: true },
+                { label: "Antwort B", value: false },
+              ],
+            },
           },
-        },
-        AppLocaleSchema.make("de")
-      )
-    );
+          AppLocaleSchema.make("de")
+        );
 
-    expect(placement).toMatchObject({
-      answerArtifactLocale: "de",
-      appLocale: "de",
-      deliveryLanguage: "de",
-      questionArtifactLocale: "de",
-    });
-  });
+        expect(placement).toMatchObject({
+          answerArtifactLocale: "de",
+          appLocale: "de",
+          deliveryLanguage: "de",
+          questionArtifactLocale: "de",
+        });
+      })
+  );
 });
