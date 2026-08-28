@@ -6,6 +6,8 @@ const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
 const OPERATION_SETUP_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
+const PUBLISH_SNAPSHOT_INPUT =
+  /(- name: Publish release[\s\S]*?)\n {10}BASE_SNAPSHOT: [^\n]+/u;
 
 /** Reads the exact workflow set exercised by repository policy. */
 function currentSources(): WorkflowSources {
@@ -290,10 +292,7 @@ describe("workflow policy", () => {
     expect(() =>
       verifyWorkflows({
         ...sources,
-        release: sources.release.replace(
-          'snapshot_args+=(--base-snapshot "$BASE_SNAPSHOT")',
-          'snapshot_args+=("$BASE_SNAPSHOT")'
-        ),
+        release: sources.release.replace(PUBLISH_SNAPSHOT_INPUT, "$1"),
       })
     ).toThrow("Content releases must bind the exact base snapshot");
   });
