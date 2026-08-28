@@ -2,292 +2,114 @@ import { describe, expect, it } from "vitest";
 
 import { effectTestViolations } from "#scripts/effect-tests";
 
-describe("Effect test runner policy", () => {
-  it("rejects direct Effect runtime execution", () => {
-    const file = "packages/example/src/program.test.ts";
-    const source = [
-      'import { Effect } from "effect";',
-      'import { it } from "@effect/vitest";',
-      'it("runs", () => Effect.runPromise(Effect.void));',
-    ].join("\n");
+const FILE = "packages/example/src/program.test.ts";
+const RUNNER_VIOLATION =
+  "packages/example/src/program.test.ts: use @effect/vitest instead of Effect runtime runners.";
 
-    expect(effectTestViolations(file, source)).toEqual([
-      `${file}: use @effect/vitest instead of Effect runtime runners.`,
-    ]);
+/** Asserts the reserved runner diagnostic for one source fixture. */
+const expectRunnerViolation = (source: string) => {
+  expect(effectTestViolations(FILE, source), source).toEqual([
+    RUNNER_VIOLATION,
+  ]);
+};
+
+describe("Effect test policy", () => {
+  it("rejects the removed static and dynamic adapter imports", () => {
+    for (const source of [
+      'import { it } from "@nakafa/testing/effect";',
+      'await import("@nakafa/testing/effect");',
+    ]) {
+      expect(effectTestViolations(FILE, source)).toEqual([
+        `${FILE}: import Effect test APIs directly from @effect/vitest.`,
+      ]);
+    }
   });
 
-  it("rejects the removed pass-through adapter", () => {
-    expect(
-      effectTestViolations(
-        "packages/example/src/program.test.ts",
-        'import { it } from "@nakafa/testing/effect";\nit("pure", () => true);'
-      )
-    ).toEqual([
-      "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
-    ]);
+  it("rejects reserved runner imports and member access", () => {
+    const sources = [
+      'import { Effect } from "effect";\nEffect.runPromise(program);',
+      'import { Effect } from "effect";\nEffect["runSync"](program);',
+      'import { runPromise as execute } from "effect/Effect";\nexecute(program);',
+      'import { runSync } from "effect/ManagedRuntime";\nrunSync(program);',
+      'import { ManagedRuntime } from "effect";\nruntime.runPromise(program);',
+      'const Runtime = await import("effect", { with: {} });\nRuntime.Effect.runPromise(program);',
+    ];
+    for (const source of sources) {
+      expectRunnerViolation(source);
+    }
   });
 
-  it("reports legacy imports and direct runners independently", () => {
-    expect(
-      effectTestViolations(
-        "packages/example/src/program.test.ts",
-        'import { Effect } from "effect";\nimport { it } from "@nakafa/testing/effect";\nEffect.runSync(program);'
-      )
-    ).toEqual([
-      "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
-      "packages/example/src/program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-    ]);
+  it("reserves runner names through aliases and destructuring", () => {
+    const sources = [
+      'const consume = ({ Effect }: typeof import("effect")) => Effect.runPromise(program);\nimport("effect").then(consume);',
+      'import { Effect } from "effect";\nconst holder = { Effect };\nholder.Effect.runPromise(program);',
+      'import { Effect } from "effect";\nconst { runPromise } = Effect;',
+      'import { Effect } from "effect";\nlet run;\n({ runSync: run } = Effect);',
+      'import * as Runtime from "effect";\nlet run;\n({ Effect: { runFork: run } } = Runtime);',
+    ];
+    for (const source of sources) {
+      expectRunnerViolation(source);
+    }
   });
 
-  it("allows native Effect Vitest, pure Vitest, and runtime boundaries", () => {
-    expect(
-      effectTestViolations(
-        "packages/example/src/program.test.ts",
-        'import { it } from "@effect/vitest";\nit.effect("runs", () => program);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "packages/example/src/program.test.ts",
-        'import { it } from "vitest";\nit("pure", () => true);'
-      )
-    ).toEqual([]);
+  it("rejects unknown computed access on direct imported bindings", () => {
+    for (const source of [
+      'import { Effect } from "effect";\nEffect[runner](program);',
+      'import * as Runtime from "effect/Effect";\nRuntime[member];',
+    ]) {
+      expectRunnerViolation(source);
+    }
+  });
+
+  it("allows native tests, types, fixtures, and unrelated APIs", () => {
+    const sources = [
+      'import { Effect } from "effect";\nimport { it } from "@effect/vitest";\nit.effect("runs", () => Effect.succeed(1));',
+      'import { it } from "vitest";\nit("pure", () => true);',
+      'import type { runPromise } from "effect/Effect";\ntype Runner = typeof runPromise;',
+      'import { Effect } from "effect";\ntype Runner = typeof Effect.runPromise;\nEffect.succeed(1);',
+      'import { Schema } from "effect";\nSchema.runSync(program);',
+      'import { Effect } from "effect";\nconst fake = { runPromise: callback };\nfake.work();',
+      'import { Effect } from "effect";\nconst name = "succeed";\nconst { [name]: operation } = Effect;',
+      "const Runtime = await import(moduleName);\nRuntime.runSync(program);",
+    ];
+    for (const source of sources) {
+      expect(effectTestViolations(FILE, source)).toEqual([]);
+    }
     expect(
       effectTestViolations(
         "packages/example/src/program.ts",
-        'import { it } from "vitest";\nEffect.runSync(program);'
+        'import { Effect } from "effect";\nEffect.runSync(program);'
       )
     ).toEqual([]);
-  });
-
-  it("ignores runtime source examples stored in fixture strings", () => {
     expect(
       effectTestViolations(
         "packages/contracts/scripts/consumer.test.ts",
-        'expect(createInstallRunner()).toContain("await Effect.runPromise(");'
+        'expect(source).toContain("await Effect.runPromise(");'
       )
     ).toEqual([]);
   });
 
-  it("detects aliased Effect runtime namespaces", () => {
-    const sources = [
-      'import { Effect as Fx } from "effect";\nFx.runPromise(program);\nFx.runSync(program);',
-      'import * as Fx from "effect/Effect";\nFx.runSync(program);',
-      'import * as Fx from "effect";\nFx.Effect.runFork(program);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("detects statically named element access", () => {
-    const sources = [
-      'import { Effect } from "effect";\nEffect["runPromise"](program);',
-      'import { Effect as Fx } from "effect";\nFx[`runSync`](program);',
-      'import * as Fx from "effect";\nFx["Effect"]["runFork"](program);',
-      'import { Effect } from "effect";\nEffect[dynamicRunner](program);',
-      'import { Effect } from "effect";\nconst runner = "runPromise";\nEffect[runner](program);',
-      'import * as Runtime from "effect";\nRuntime[dynamicMember](program);',
-      'import { Effect } from "effect";\nEffect[](program);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("detects Effect runners passed as pipe steps", () => {
-    const sources = [
-      'import { Effect } from "effect";\nprogram.pipe(Effect.runPromise);',
-      'import { Effect as Fx } from "effect";\nprogram["pipe"](Fx["runSync"]);',
-      'import * as Fx from "effect";\nprogram.pipe(Fx.Effect.runFork);',
-      'import { runPromise as execute } from "effect/Effect";\nprogram.pipe(execute);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("unwraps transparent runtime references", () => {
-    const sources = [
-      'import { Effect } from "effect";\n(Effect.runPromise)(program);',
-      'import { Effect } from "effect";\n(Effect.runPromise as typeof Effect.runPromise)(program);',
-      'import { Effect } from "effect";\nEffect.runPromise!(program);',
-      'import { Effect } from "effect";\n(<typeof Effect.runPromise>Effect.runPromise)(program);',
-      'import { Effect } from "effect";\n(Effect.runPromise satisfies typeof Effect.runPromise)(program);',
-      'import { Effect } from "effect";\nprogram.pipe(Effect.runPromise<string>);',
-      'import { Effect } from "effect";\n(program.pipe)(Effect.runPromise);',
-      'import { Effect } from "effect";\nconst run = (Effect.runPromise as typeof Effect.runPromise);\nrun(program);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("preserves shadowing through transparent references", () => {
-    const sources = [
-      'import { Effect } from "effect";\ncallbacks.forEach((Effect) => (Effect.runPromise)(program));',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([]);
-    }
-  });
-
-  it("resolves Effect namespace aliases through their lexical binding", () => {
-    const sources = [
-      'import { Effect } from "effect";\ncallbacks.forEach((Effect) => Effect.runPromise(program));',
-      'import { Effect as Fx } from "effect";\ncallbacks.forEach((Fx) => Fx.runPromise(program));',
-      'import * as Fx from "effect/Effect";\ncallbacks.forEach((Fx) => Fx.runSync(program));',
-      'import * as Fx from "effect";\ncallbacks.forEach((Fx) => Fx.Effect.runFork(program));',
-      'import { Effect as Fx } from "effect";\ncallbacks.forEach((Fx) => program.pipe(Fx.runPromise));',
-      'import * as Fx from "effect";\ncallbacks.forEach((Fx) => Fx["Effect"]["runFork"](program));',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([]);
-    }
-  });
-
-  it("detects direct Effect runtime imports", () => {
-    const sources = [
-      'import { runPromise } from "effect/Effect";\nrunPromise(program);',
-      'import { runSync as execute } from "effect/Effect";\nexecute(program);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("rejects direct runner imports even when only inspected", () => {
-    const file = "program.test.ts";
-    const source = [
-      'import { runPromise } from "effect/Effect";',
-      "expect(runPromise).toBeDefined();",
-      "callbacks.forEach((runPromise) => runPromise());",
-    ].join("\n");
-
-    expect(effectTestViolations(file, source)).toEqual([
-      `${file}: use @effect/vitest instead of Effect runtime runners.`,
-    ]);
-  });
-
-  it("traces local aliases and static destructuring", () => {
-    const sources = [
-      'import { Effect } from "effect";\nconst Fx = Effect;\nFx.runPromise(program);',
-      'import { Effect } from "effect";\nconst run = Effect.runPromise;\nrun(program);',
-      'import { Effect } from "effect";\nconst { runSync: execute } = Effect;\nexecute(program);',
-      'import { Effect } from "effect";\nconst { "runPromise": execute } = Effect;\nexecute(program);',
-      'import { Effect } from "effect";\nconst { ["runPromise"]: execute } = Effect;\nexecute(program);',
-      'import { Effect } from "effect";\nconst { [`runPromise`]: execute } = Effect;\nexecute(program);',
-      'import * as Runtime from "effect";\nconst { Effect: Fx } = Runtime;\nprogram.pipe(Fx.runFork);',
-      'import * as Runtime from "effect";\nconst { Effect: { runPromise: execute } } = Runtime;\nexecute(program);',
-      'import { Effect } from "effect";\nconst { ...Runtime } = Effect;\nRuntime.runSync(program);',
-      'import { Effect } from "effect";\nconst runtimeName = "succeed";\nconst { [runtimeName]: execute } = Effect;\nexecute(program);',
-      'import { runPromise } from "effect/Effect";\nconst execute = runPromise;\nprogram.pipe(execute);',
-    ];
-
-    for (const source of sources) {
-      expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
-      ]);
-    }
-  });
-
-  it("bounds local alias tracing by lexical symbol identity", () => {
-    const source = [
-      'import { Effect } from "effect";',
-      "const first = second;",
-      "const second = first;",
-      "program.pipe(first);",
-      "callbacks.forEach((Effect) => program.pipe(Effect.runPromise));",
-    ].join("\n");
-
-    expect(effectTestViolations("program.test.ts", source)).toEqual([]);
-  });
-
-  it("allows unrelated aliases from Effect modules", () => {
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import { Schema as S } from "effect";\nS.decodeUnknownSync(schema)(input);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import { succeed } from "effect/Effect";\nsucceed(1);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import * as Fx from "effect";\nFx.Schema.runSync(program);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import { Effect } from "effect";\nconst { succeed } = Effect;\nsucceed(1);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import { Effect } from "effect";\nconst { [0]: execute } = Effect;\nexecute(program);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import { Effect } from "effect";\nconst { 0: execute } = Effect;\nexecute(program);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
-        'import type { runPromise } from "effect/Effect";\ntype Runner = typeof runPromise;'
-      )
-    ).toEqual([]);
-  });
-
-  it("covers every direct Effect runner", () => {
-    const runners = [
-      "runCallback",
-      "runCallbackWith",
-      "runFork",
-      "runForkWith",
-      "runPromise",
-      "runPromiseExit",
-      "runPromiseExitWith",
-      "runPromiseWith",
-      "runSync",
-      "runSyncExit",
-      "runSyncExitWith",
-      "runSyncWith",
-    ];
-
+  it("covers the exact vendored Effect runner names", () => {
+    const runners =
+      "runCallback runCallbackWith runFork runForkWith runPromise runPromiseExit runPromiseExitWith runPromiseWith runSync runSyncExit runSyncExitWith runSyncWith".split(
+        " "
+      );
     for (const runner of runners) {
-      expect(
-        effectTestViolations(
-          "program.test.ts",
-          `import { Effect } from "effect";\nEffect.${runner}(program);`
-        )
-      ).toHaveLength(1);
+      expectRunnerViolation(
+        `import { Effect } from "effect";\nEffect.${runner}(program);`
+      );
+    }
+  });
+
+  it("covers the exact vendored ManagedRuntime runner names", () => {
+    const runners =
+      "runCallback runFork runPromise runPromiseExit runSync runSyncExit".split(
+        " "
+      );
+    for (const runner of runners) {
+      expectRunnerViolation(
+        `import { ManagedRuntime } from "effect";\nruntime.${runner}(program);`
+      );
     }
   });
 });
