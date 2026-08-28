@@ -73,7 +73,8 @@ const tkaMath = requirements([
   "Set1Question30Illustration",
 ]);
 
-export const questionRendererManifest = await Effect.runPromise(
+/** Creates the complete reviewed renderer manifest for question fixtures. */
+export const questionManifest = Effect.fn("QuestionTest.manifest")(() =>
   createRendererManifest({
     base: {
       authoringComponents: base,
