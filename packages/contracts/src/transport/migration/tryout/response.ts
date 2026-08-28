@@ -189,6 +189,7 @@ const CleanupValueSchema = Schema.Struct({
   command: Schema.Literal("cleanup"),
   deleted: NonNegativeCountSchema,
   ...ResponseIdentityFields,
+  repaired: NonNegativeCountSchema,
   status: TryoutHistoryMigrationStatusSchema,
 });
 const StatusValueSchema = Schema.Struct({

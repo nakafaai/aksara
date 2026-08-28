@@ -13,6 +13,7 @@ import type { TryoutHistoryMigrationStatus } from "@nakafa/aksara-contracts/tran
 import { Effect } from "effect";
 
 import { migrationFail } from "#publisher/migration/tryout/error";
+import { getCleanupRepairLimit } from "#publisher/migration/tryout/repair";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationSigner } from "#publisher/signing/service";
 
@@ -119,6 +120,8 @@ export const cleanupMigrationReceipt = Effect.fn(
   } = authenticated;
   let deletedRows = 0;
   let isCleaned = false;
+  let repairedRows = 0;
+  const repairLimit = getCleanupRepairLimit(authenticated.payload.migrationId);
   yield* Effect.whileLoop({
     body: () =>
       Effect.gen(function* () {
@@ -138,10 +141,15 @@ export const cleanupMigrationReceipt = Effect.fn(
           return yield* migrationFail("receipt-evidence");
         }
         deletedRows += value.deleted;
-        if (deletedRows > cleanupLimit) {
+        repairedRows += value.repaired;
+        if (deletedRows > cleanupLimit || repairedRows > repairLimit) {
           return yield* migrationFail("cleanup-limit");
         }
-        if (value.status.phase === "sealed" && value.deleted === 0) {
+        if (
+          value.status.phase === "sealed" &&
+          value.deleted === 0 &&
+          value.repaired === 0
+        ) {
           return yield* migrationFail("cleanup-progress");
         }
         return value.status.phase === "cleaned";
