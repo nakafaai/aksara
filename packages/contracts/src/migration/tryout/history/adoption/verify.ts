@@ -16,10 +16,14 @@ export const verifyTryoutRuntimeAdoptionSource = Effect.fn(
     source.rendererManifest
   );
   const { manifest } = release;
-  if (
-    manifest.origin.kind !== "git" ||
-    manifest.snapshots.tryout.resultSnapshotId !== source.snapshot.snapshotId
-  ) {
+  const transition = manifest.snapshots.tryout;
+  const isResult = transition.resultSnapshotId === source.snapshot.snapshotId;
+  const isRetainedBase =
+    manifest.origin.kind === "git" &&
+    transition.mode === "replace" &&
+    transition.baseSnapshotId !== null &&
+    transition.baseSnapshotId === source.snapshot.snapshotId;
+  if (manifest.origin.kind !== "git" || !(isResult || isRetainedBase)) {
     return yield* new TryoutRuntimeAdoptionSourceError({
       reason: "release",
     });

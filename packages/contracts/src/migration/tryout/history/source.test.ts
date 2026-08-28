@@ -27,6 +27,7 @@ describe("try-out history migration source", () => {
       const withAdoption = migrationSourceFrom({
         ...migrationSource,
         adoptions: [adoptionSource],
+        evidence: { ...migrationSource.evidence, runtimeBundleCount: 1 },
       });
       expect(yield* verify(withAdoption)).toEqual(withAdoption);
     })
@@ -139,6 +140,10 @@ describe("try-out history migration source", () => {
           ...migrationSource,
           evidence: { ...migrationSource.evidence, placementRowCount: 2 },
         },
+        {
+          ...migrationSource,
+          adoptions: [adoptionSource],
+        },
       ].map(migrationSourceFrom);
       const failures = yield* Effect.forEach(cases, (source) =>
         verify(source).pipe(Effect.flip)
@@ -156,6 +161,7 @@ describe("try-out history migration source", () => {
         "release-evidence",
         "attempt-count",
         "creating-release",
+        "inventory",
         "inventory",
         "inventory",
       ]);

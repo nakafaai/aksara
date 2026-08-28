@@ -163,21 +163,32 @@ const adoptionManifest = Schema.decodeSync(
 
 /** Creates one authenticated adoption source with deliberate test identities. */
 export function adoptionSourceFrom(input: {
+  readonly releaseBaseSnapshotId?: typeof protectedSnapshot.snapshotId;
   readonly releaseSnapshotId?: typeof protectedSnapshot.snapshotId;
   readonly rendererManifestHash?: typeof historicalRenderer.hash;
   readonly snapshot?: typeof protectedSnapshot;
 }) {
   const sourceSnapshot = input.snapshot ?? protectedSnapshot;
+  const hasRetainedBase = input.releaseBaseSnapshotId !== undefined;
   const sourceManifest = Schema.decodeSync(
     HistoricalContentReleaseManifestSchema
   )({
     ...adoptionManifest,
+    baseManifestHash: hasRetainedBase
+      ? hash("retained-adoption-parent")
+      : adoptionManifest.baseManifestHash,
+    baseReleaseId: hasRetainedBase
+      ? "retained-adoption-parent"
+      : adoptionManifest.baseReleaseId,
     rendererManifestHash:
       input.rendererManifestHash ?? adoptionManifest.rendererManifestHash,
     snapshots: {
       ...adoptionManifest.snapshots,
       tryout: {
         ...adoptionManifest.snapshots.tryout,
+        baseSnapshotId:
+          input.releaseBaseSnapshotId ??
+          adoptionManifest.snapshots.tryout.baseSnapshotId,
         resultSnapshotId: input.releaseSnapshotId ?? sourceSnapshot.snapshotId,
       },
     },

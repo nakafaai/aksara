@@ -49,6 +49,7 @@ const adoptRuntime = Effect.fn("AksaraPublisher.adoptTryoutRuntime")(function* (
     value.command !== "adoptBundle" ||
     value.migrationId !== migrationId ||
     value.receipt.attemptCount !== source.attemptCount ||
+    value.receipt.bundleHash !== bundle.bundleHash ||
     value.receipt.snapshotId !== source.snapshot.snapshotId ||
     value.receipt.sourceReleaseId !== manifest.releaseId
   ) {

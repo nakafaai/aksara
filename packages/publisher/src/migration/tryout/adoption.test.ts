@@ -102,6 +102,41 @@ describe("terminal try-out runtime adoption", () => {
     })
   );
 
+  it.effect("rejects a receipt for a different signed runtime bundle", () =>
+    Effect.gen(function* () {
+      const target = makePublicationTarget({
+        migrateTryoutHistory: (request) => {
+          if (request.command !== "adoptBundle") {
+            return Effect.die("Expected runtime adoption.");
+          }
+          return Effect.succeed({
+            command: request.command,
+            migrationId,
+            receipt: {
+              adopted: 1,
+              alreadyAdopted: 0,
+              attemptCount: 1,
+              bundleCreated: 1,
+              bundleHash: otherHash,
+              bundleUnchanged: 0,
+              snapshotId: request.bundle.payload.snapshot.snapshotId,
+              sourceReleaseId: request.bundle.payload.sourceReleaseId,
+            },
+          });
+        },
+      });
+
+      const failure = yield* adoptTryoutRuntimes({
+        migrationId,
+        signer: migrationSigner,
+        sources: [adoptionSource],
+        target,
+      }).pipe(Effect.flip);
+
+      assert.strictEqual(failureReason(failure), "adoption-evidence");
+    })
+  );
+
   it.effect("rejects a runtime without exact Git provenance", () =>
     Effect.gen(function* () {
       const rollback = yield* Schema.decodeEffect(

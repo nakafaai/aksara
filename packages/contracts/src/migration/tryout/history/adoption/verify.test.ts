@@ -22,6 +22,11 @@ describe("try-out runtime adoption", () => {
   it.effect("authenticates the retained release, renderer, and snapshot", () =>
     Effect.gen(function* () {
       expect(yield* verify(adoptionSource)).toEqual(adoptionSource);
+      const retainedBase = adoptionSourceFrom({
+        releaseBaseSnapshotId: adoptionSource.snapshot.snapshotId,
+        releaseSnapshotId: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+      });
+      expect(yield* verify(retainedBase)).toEqual(retainedBase);
     })
   );
 
