@@ -83,12 +83,43 @@ describe("Effect test execution policy", () => {
     }
   });
 
+  it("detects statically named element access", () => {
+    const sources = [
+      'import { Effect } from "effect";\nEffect["runPromise"](program);',
+      'import { Effect as Fx } from "effect";\nFx[`runSync`](program);',
+      'import * as Fx from "effect";\nFx["Effect"]["runFork"](program);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
+  it("detects Effect runners passed as pipe steps", () => {
+    const sources = [
+      'import { Effect } from "effect";\nprogram.pipe(Effect.runPromise);',
+      'import { Effect as Fx } from "effect";\nprogram["pipe"](Fx["runSync"]);',
+      'import * as Fx from "effect";\nprogram.pipe(Fx.Effect.runFork);',
+      'import { runPromise as execute } from "effect/Effect";\nprogram.pipe(execute);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
   it("resolves Effect namespace aliases through their lexical binding", () => {
     const sources = [
       'import { Effect } from "effect";\ncallbacks.forEach((Effect) => Effect.runPromise(program));',
       'import { Effect as Fx } from "effect";\ncallbacks.forEach((Fx) => Fx.runPromise(program));',
       'import * as Fx from "effect/Effect";\ncallbacks.forEach((Fx) => Fx.runSync(program));',
       'import * as Fx from "effect";\ncallbacks.forEach((Fx) => Fx.Effect.runFork(program));',
+      'import { Effect as Fx } from "effect";\ncallbacks.forEach((Fx) => program.pipe(Fx.runPromise));',
+      'import * as Fx from "effect";\ncallbacks.forEach((Fx) => Fx["Effect"]["runFork"](program));',
     ];
 
     for (const source of sources) {
@@ -120,6 +151,35 @@ describe("Effect test execution policy", () => {
     expect(effectTestViolations(file, source)).toEqual([]);
   });
 
+  it("traces local aliases and static destructuring", () => {
+    const sources = [
+      'import { Effect } from "effect";\nconst Fx = Effect;\nFx.runPromise(program);',
+      'import { Effect } from "effect";\nconst run = Effect.runPromise;\nrun(program);',
+      'import { Effect } from "effect";\nconst { runSync: execute } = Effect;\nexecute(program);',
+      'import { Effect } from "effect";\nconst { ["runPromise"]: execute } = Effect;\nexecute(program);',
+      'import * as Runtime from "effect";\nconst { Effect: Fx } = Runtime;\nprogram.pipe(Fx.runFork);',
+      'import { runPromise } from "effect/Effect";\nconst execute = runPromise;\nprogram.pipe(execute);',
+    ];
+
+    for (const source of sources) {
+      expect(effectTestViolations("program.test.ts", source)).toEqual([
+        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      ]);
+    }
+  });
+
+  it("bounds local alias tracing by lexical symbol identity", () => {
+    const source = [
+      'import { Effect } from "effect";',
+      "const first = second;",
+      "const second = first;",
+      "program.pipe(first);",
+      "callbacks.forEach((Effect) => program.pipe(Effect.runPromise));",
+    ].join("\n");
+
+    expect(effectTestViolations("program.test.ts", source)).toEqual([]);
+  });
+
   it("allows unrelated aliases from Effect modules", () => {
     expect(
       effectTestViolations(
@@ -137,6 +197,24 @@ describe("Effect test execution policy", () => {
       effectTestViolations(
         "program.test.ts",
         'import * as Fx from "effect";\nFx.Schema.runSync(program);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Effect } from "effect";\nconst { succeed } = Effect;\nsucceed(1);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Effect } from "effect";\nEffect[dynamicRunner](program);'
+      )
+    ).toEqual([]);
+    expect(
+      effectTestViolations(
+        "program.test.ts",
+        'import { Effect } from "effect";\nconst { [0]: execute } = Effect;\nexecute(program);'
       )
     ).toEqual([]);
   });
