@@ -8,7 +8,6 @@ import { gitBundle, releaseId, runtimeBundleFor } from "#test/target";
 
 const TRYOUT_SNAPSHOT_ID = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 const OTHER_SNAPSHOT_ID = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
-const THIRD_SNAPSHOT_ID = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
 
 describe("production runtime bundle transition", () => {
   it.effect("selects every exact candidate and recovery shape", () =>
@@ -28,7 +27,6 @@ describe("production runtime bundle transition", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          recovery: null,
           snapshot: null,
         })
       );
@@ -36,7 +34,6 @@ describe("production runtime bundle transition", () => {
         yield* selectTryoutRuntimeTransition({
           base: null,
           bundle: null,
-          recovery: null,
           snapshot: result,
         }),
         { recovery: null, result }
@@ -45,7 +42,6 @@ describe("production runtime bundle transition", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          recovery: null,
           snapshot: bundle.payload.snapshot,
         }),
         { recovery: null, result: bundle.payload.snapshot }
@@ -54,7 +50,6 @@ describe("production runtime bundle transition", () => {
         yield* selectTryoutRuntimeTransition({
           base,
           bundle,
-          recovery: null,
           snapshot: result,
         }),
         { recovery: bundle.payload.snapshot, result }
@@ -62,52 +57,10 @@ describe("production runtime bundle transition", () => {
       const missing = yield* selectTryoutRuntimeTransition({
         base,
         bundle: null,
-        recovery: null,
         snapshot: result,
       }).pipe(Effect.flip);
-      assert.strictEqual(missing._tag, "BaseTryoutRuntimeMismatchError");
+      assert.strictEqual(missing._tag, "BaseTryoutRuntimeBundleMismatchError");
       assert.strictEqual(missing.reason, "missing-recovery");
-
-      assert.deepStrictEqual(
-        yield* selectTryoutRuntimeTransition({
-          base,
-          bundle: null,
-          recovery: bundle.payload.snapshot,
-          snapshot: result,
-        }),
-        { recovery: bundle.payload.snapshot, result }
-      );
-
-      for (const input of [
-        { base, bundle, recovery: bundle.payload.snapshot, snapshot: result },
-        {
-          base,
-          bundle: null,
-          recovery: bundle.payload.snapshot,
-          snapshot: null,
-        },
-        {
-          base,
-          bundle: null,
-          recovery: result,
-          snapshot: bundle.payload.snapshot,
-        },
-      ] as const) {
-        const failure = yield* selectTryoutRuntimeTransition(input).pipe(
-          Effect.flip
-        );
-        assert.strictEqual(failure._tag, "BaseTryoutRuntimeMismatchError");
-        assert.strictEqual(failure.reason, "unexpected-recovery");
-      }
-
-      const wrong = yield* selectTryoutRuntimeTransition({
-        base,
-        bundle: null,
-        recovery: { ...result, snapshotId: THIRD_SNAPSHOT_ID },
-        snapshot: result,
-      }).pipe(Effect.flip);
-      assert.strictEqual(wrong._tag, "BaseTryoutRuntimeMismatchError");
-      assert.strictEqual(wrong.reason, "snapshot");
     })
   );
 });

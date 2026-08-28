@@ -9,7 +9,6 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -38,7 +37,6 @@ import { validateRecoveryRevision } from "#cli/recovery";
 
 interface GitPreparationBase {
   readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
-  readonly baseTryoutSnapshot: TryoutSnapshot | null;
   readonly checkoutRoot: string;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
@@ -167,7 +165,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     const tryoutRuntime = yield* selectTryoutRuntimeTransition({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
-      recovery: input.baseTryoutSnapshot,
       snapshot:
         snapshots.tryoutRuntimeSnapshot ??
         verifiedBaseTryoutRuntimeBundle?.payload.snapshot ??

@@ -3,12 +3,11 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { LEGACY_TRYOUT_RUNTIME } from "@nakafa/aksara-contracts/release/current/legacy";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect } from "effect";
 import { productionCalls, productionProgram } from "#test/production/harness";
-import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -20,10 +19,6 @@ import {
 const calls = productionCalls();
 const tryoutScope = PublicationScopeSchema.make({
   families: [],
-  snapshots: ["tryout"],
-});
-const tryoutReleaseScope = PublicationScopeSchema.make({
-  families: ["article", "material", "page", "question"],
   snapshots: ["tryout"],
 });
 const inheritedTryoutSnapshot = Sha256HashSchema.make(
@@ -159,62 +154,6 @@ describe("production preparation", () => {
         publishCalls: 1,
         runtimeBundleRefreshes: 0,
         snapshotCalls: 0,
-      });
-    })
-  );
-
-  it.effect("binds the exact active snapshot when its runtime is absent", () =>
-    Effect.gen(function* () {
-      const rendererManifest = {
-        ...RENDERER_MANIFEST,
-        hash: LEGACY_TRYOUT_RUNTIME.rendererManifestHash,
-      };
-      const source = gitBundle(LEGACY_TRYOUT_RUNTIME.releaseId, {
-        baseReleaseId: releaseId("release-runtime-parent"),
-        rendererManifest,
-        tryoutSnapshotId: LEGACY_TRYOUT_RUNTIME.snapshotId,
-      });
-      const completed = completedBundle(source);
-      const active = {
-        ...completed,
-        receipt: {
-          ...completed.receipt,
-          manifestHash: LEGACY_TRYOUT_RUNTIME.manifestHash,
-        },
-        release: {
-          ...completed.release,
-          manifestHash: LEGACY_TRYOUT_RUNTIME.manifestHash,
-        },
-      };
-      const baseSnapshot = runtimeBundleFor(
-        active,
-        LEGACY_TRYOUT_RUNTIME.snapshotId
-      ).payload.snapshot;
-      const replacement = {
-        ...baseSnapshot,
-        snapshotId: inheritedTryoutSnapshot,
-      };
-      calls.current = currentState({
-        active,
-        candidate: null,
-        recovery: null,
-      });
-      calls.tryoutRuntimeSnapshot = replacement;
-
-      const receipt = yield* productionProgram({
-        baseSnapshot,
-        command: "release",
-        recoveryId: releaseId("recovery-runtime-bootstrap"),
-        releaseId: releaseId("release-runtime-bootstrap"),
-        scope: tryoutReleaseScope,
-      });
-
-      expect(receipt).toMatchObject({ releaseId: "release-runtime-bootstrap" });
-      expect(calls).toMatchObject({
-        publishCalls: 1,
-        runtimeRecoverySnapshotId: LEGACY_TRYOUT_RUNTIME.snapshotId,
-        runtimeResultSnapshotId: inheritedTryoutSnapshot,
-        snapshotCalls: 1,
       });
     })
   );

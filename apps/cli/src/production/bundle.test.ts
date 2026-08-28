@@ -58,7 +58,7 @@ layer(Layer.succeed(ContentVerificationKeyResolver, resolver))(
           ],
         ] as const) {
           const failure = yield* effect.pipe(Effect.flip);
-          if (failure._tag !== "BaseTryoutRuntimeMismatchError") {
+          if (failure._tag !== "BaseTryoutRuntimeBundleMismatchError") {
             return yield* Effect.die(
               `Expected a base runtime mismatch, received ${failure._tag}.`
             );
@@ -137,7 +137,7 @@ layer(Layer.succeed(ContentVerificationKeyResolver, resolver))(
           replacement,
           selectSourceBase(replacement)
         ).pipe(Effect.flip);
-        if (retainedFailure._tag !== "BaseTryoutRuntimeMismatchError") {
+        if (retainedFailure._tag !== "BaseTryoutRuntimeBundleMismatchError") {
           return yield* Effect.die(
             `Expected a base runtime mismatch, received ${retainedFailure._tag}.`
           );

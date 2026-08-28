@@ -6,16 +6,9 @@ import { Effect, Schema } from "effect";
 import type { ProductionBaseIdentity } from "#cli/production/base";
 
 /** Current permanent runtime bundle does not identify the active try-out base. */
-export class BaseTryoutRuntimeMismatchError extends Schema.TaggedError<BaseTryoutRuntimeMismatchError>()(
-  "BaseTryoutRuntimeMismatchError",
-  {
-    reason: Schema.Literals([
-      "missing-base",
-      "missing-recovery",
-      "snapshot",
-      "unexpected-recovery",
-    ]),
-  }
+export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
+  "BaseTryoutRuntimeBundleMismatchError",
+  { reason: Schema.Literals(["missing-base", "missing-recovery", "snapshot"]) }
 ) {}
 
 /** Authenticates the optional permanent bundle and binds it to the active base. */
@@ -30,7 +23,7 @@ export const verifyBaseTryoutRuntimeBundle = Effect.fn(
     return null;
   }
   if (baseBundle === null || base === null) {
-    return yield* new BaseTryoutRuntimeMismatchError({
+    return yield* new BaseTryoutRuntimeBundleMismatchError({
       reason: "missing-base",
     });
   }
@@ -42,7 +35,7 @@ export const verifyBaseTryoutRuntimeBundle = Effect.fn(
     verified.payload.snapshot.snapshotId !==
     base.snapshots.tryout.resultSnapshotId
   ) {
-    return yield* new BaseTryoutRuntimeMismatchError({
+    return yield* new BaseTryoutRuntimeBundleMismatchError({
       reason: "snapshot",
     });
   }

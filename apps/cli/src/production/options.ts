@@ -6,7 +6,6 @@ import { productionArgumentsError } from "#cli/production/error";
 /** Raw named options collected before domain decoding. */
 export interface RawProductionOptions {
   assetHash?: string;
-  baseSnapshot?: string;
   receiptPath?: string;
   recoveryId?: string;
   releaseId?: string;
@@ -16,7 +15,6 @@ export interface RawProductionOptions {
 
 type ProductionOption =
   | "--asset-hash"
-  | "--base-snapshot"
   | "--recovery-id"
   | "--release-id"
   | "--receipt-path"
@@ -26,7 +24,6 @@ type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
 
 const OPTION_KEYS = {
   "--asset-hash": "assetHash",
-  "--base-snapshot": "baseSnapshot",
   "--receipt-path": "receiptPath",
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
@@ -39,7 +36,6 @@ function isProductionOption(
 ): value is ProductionOption {
   return (
     value === "--asset-hash" ||
-    value === "--base-snapshot" ||
     value === "--recovery-id" ||
     value === "--receipt-path" ||
     value === "--release-id" ||
@@ -69,11 +65,10 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   }
   if (
     option === "--asset-hash" ||
-    option === "--base-snapshot" ||
     option === "--receipt-path" ||
     option === "--source-sha"
   ) {
-    return command === "release" && option === "--base-snapshot";
+    return false;
   }
   if (option === "--scope") {
     return command === "release";

@@ -5,13 +5,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
-import {
-  type ContentSnapshotManifest,
-  ContentSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
 import {
@@ -22,37 +16,11 @@ import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */
 export interface ReleaseArguments {
-  /** Exact active manifest supplied only when its permanent runtime is absent. */
-  readonly baseSnapshot?: TryoutSnapshot;
   readonly command: "release";
   readonly recoveryId: ReleaseId;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
 }
-
-type TryoutSnapshotManifest = Extract<
-  ContentSnapshotManifest,
-  { readonly family: "tryout" }
->;
-
-/** Decodes one stored manifest and proves its content-addressed identity. */
-const decodeBaseSnapshot = Effect.fn("AksaraCli.decodeBaseSnapshot")(function* (
-  source: string
-) {
-  const snapshot = yield* Schema.decodeEffect(
-    Schema.fromJsonString(ContentSnapshotManifestSchema)
-  )(source, { onExcessProperty: "error" }).pipe(
-    Effect.mapError(() => argumentError("release", "--base-snapshot", "value"))
-  );
-  if (snapshot.family !== "tryout") {
-    return yield* argumentError("release", "--base-snapshot", "value");
-  }
-  const expected = makeTryoutSnapshot(snapshot.manifest);
-  if (expected.snapshotId !== snapshot.manifest.snapshotId) {
-    return yield* argumentError("release", "--base-snapshot", "value");
-  }
-  return snapshot satisfies TryoutSnapshotManifest;
-});
 
 /** Exact invisible release selected for explicit operator abandonment. */
 export interface AbortArguments {
@@ -249,12 +217,7 @@ export const parseProductionArguments = Effect.fn(
   const scope = yield* decodePublicationScopeSelectors(options.scope).pipe(
     Effect.mapError(() => argumentError(command, "--scope", "value"))
   );
-  const baseSnapshot =
-    options.baseSnapshot === undefined
-      ? undefined
-      : (yield* decodeBaseSnapshot(options.baseSnapshot)).manifest;
   return {
-    ...(baseSnapshot === undefined ? {} : { baseSnapshot }),
     command,
     recoveryId,
     releaseId,

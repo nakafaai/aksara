@@ -170,7 +170,6 @@ export const runProductionCommand: (
       publishable = yield* prepareProductionGit({
         baseBundle: action.baseBundle,
         baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
-        baseTryoutSnapshot: input.args.baseSnapshot ?? null,
         checkoutRoot,
         kind: "new",
         releaseId: input.args.releaseId,
@@ -185,7 +184,6 @@ export const runProductionCommand: (
       publishable = yield* prepareProductionGit({
         baseBundle: action.baseBundle,
         baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
-        baseTryoutSnapshot: input.args.baseSnapshot ?? null,
         bundle,
         checkoutRoot,
         kind: "rebuild",
