@@ -187,9 +187,10 @@ const oppositeEntryAt = Effect.fn("TryoutContentTest.oppositeEntryAt")(
     })
 );
 
-const contentTestOptions = { timeout: "30 seconds" } as const;
+/** Runs content-binding tests with bounded shared fixture acquisition. */
+const contentTests = layer(contentTestLayer, { timeout: "30 seconds" });
 
-layer(contentTestLayer, contentTestOptions)("try-out content binding", (it) => {
+contentTests("try-out content binding", (it) => {
   it.effect(
     "uses exact content hashes and both body heads in every locale",
     () =>
