@@ -60,38 +60,20 @@ export const protectedFound = {
   rendererManifest,
 } as const;
 
-/** Builds one protected runtime exchange with the fixture verification key. */
-function exchangeProgram(input: {
-  readonly rendererManifest?: unknown;
-  readonly request?: unknown;
-  readonly response: unknown;
-}) {
-  return verifyProtectedContentRuntimeExchange({
-    rendererManifest: input.rendererManifest ?? rendererManifest,
-    request: input.request ?? protectedRequest,
-    response: input.response,
-  }).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-  );
-}
-
-/** Runs one protected batch expected to authenticate successfully. */
-export function verifyProtectedExchange(
-  input: Parameters<typeof exchangeProgram>[0]
-) {
-  return Effect.runPromise(exchangeProgram(input));
-}
-
-/** Runs one protected batch while preserving typed success and failure values. */
-export function verifyProtectedExchangeResult(
-  input: Parameters<typeof exchangeProgram>[0]
-) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.result));
-}
-
-/** Runs one protected batch expected to return a typed verification failure. */
-export function rejectProtectedExchange(
-  input: Parameters<typeof exchangeProgram>[0]
-) {
-  return Effect.runPromise(exchangeProgram(input).pipe(Effect.flip));
-}
+/** Verifies one protected runtime exchange with the fixture key. */
+export const verifyProtectedExchange = Effect.fn(
+  "AksaraContractsTest.verifyProtectedExchange"
+)(
+  (input: {
+    readonly rendererManifest?: unknown;
+    readonly request?: unknown;
+    readonly response: unknown;
+  }) =>
+    verifyProtectedContentRuntimeExchange({
+      rendererManifest: input.rendererManifest ?? rendererManifest,
+      request: input.request ?? protectedRequest,
+      response: input.response,
+    }).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
+    )
+);
