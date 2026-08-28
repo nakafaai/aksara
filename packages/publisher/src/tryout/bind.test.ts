@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@effect/vitest";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -14,9 +15,14 @@ import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
-import { describe, expect, it } from "@nakafa/testing/effect";
 import { Effect, Schema, Stream } from "effect";
 import { bindTryoutHeads } from "#publisher/tryout/bind";
+import {
+  TryoutHeadDuplicateError,
+  TryoutHeadMismatchError,
+  TryoutHeadMissingError,
+  TryoutHeadOrderError,
+} from "#publisher/tryout/error";
 
 const questionRoot =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
@@ -101,11 +107,9 @@ function collect(
   placements: readonly TryoutPlacementSource[],
   heads: readonly QuestionHead[]
 ) {
-  return Effect.runPromise(
-    bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
-      Stream.runCollect,
-      Effect.map((rows) => [...rows])
-    )
+  return bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
+    Stream.runCollect,
+    Effect.map((rows) => [...rows])
   );
 }
 
@@ -114,11 +118,9 @@ function reject(
   placements: readonly TryoutPlacementSource[],
   heads: readonly QuestionHead[]
 ) {
-  return Effect.runPromise(
-    bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
-      Stream.runDrain,
-      Effect.flip
-    )
+  return bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
+    Stream.runDrain,
+    Effect.flip
   );
 }
 
@@ -141,151 +143,156 @@ function mismatchedHead(field: "delivery" | "rendererDomain" | "sourcePath") {
 }
 
 describe("try-out head binding", () => {
-  it("binds all locales while ignoring a head outside the active catalog", async () => {
-    const unrelatedRoot =
-      "question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1";
-    const heads = [
-      ...activeHeads(),
-      head({
-        artifactLocale: "en",
-        bodyKind: "answer",
-        contentRoot: unrelatedRoot,
-        sourcePath:
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
-      }),
-    ].sort(compareContentHeads);
-    const result = await collect(activePlacements(), heads);
+  it.effect(
+    "binds all locales while ignoring a head outside the active catalog",
+    () =>
+      Effect.gen(function* () {
+        const unrelatedRoot =
+          "question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1";
+        const heads = [
+          ...activeHeads(),
+          head({
+            artifactLocale: "en",
+            bodyKind: "answer",
+            contentRoot: unrelatedRoot,
+            sourcePath:
+              "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
+          }),
+        ].sort(compareContentHeads);
+        const result = yield* collect(activePlacements(), heads);
 
-    expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
-      "de",
-      "en",
-      "id",
-    ]);
-    expect(
-      result.every(
-        ({ answerHead, questionHead }) =>
-          answerHead.artifactHash === hash && questionHead.artifactHash === hash
-      )
-    ).toBe(true);
-  });
-
-  it("rejects duplicate and descending complete head streams", async () => {
-    const answer = head({ artifactLocale: "en", bodyKind: "answer" });
-    const question = head({ artifactLocale: "en", bodyKind: "question" });
-    const errors = await Promise.all(
-      [
-        [answer, answer],
-        [question, answer],
-      ].map((heads) => reject(activePlacements(), heads))
-    );
-
-    expect(errors[0]).toMatchObject({ _tag: "TryoutHeadDuplicateError" });
-    expect(errors[1]).toMatchObject({ _tag: "TryoutHeadOrderError" });
-  });
-
-  it("rejects missing and unexpected active head identities", async () => {
-    const missing = await reject(
-      activePlacements(),
-      activeHeads().filter(
-        ({ artifactLocale, contentKey }) =>
-          !(artifactLocale === "en" && contentKey === `${questionRoot}/answer`)
-      )
-    );
-    const trailing = QuestionHeadSchema.make({
-      ...head({ artifactLocale: "en", bodyKind: "answer" }),
-      contentKey: ContentKeySchema.make(`${questionRoot}/zzz`),
-      sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/zzz.en.mdx`),
-    });
-    const leading = QuestionHeadSchema.make({
-      ...trailing,
-      contentKey: ContentKeySchema.make(`${questionRoot}/aaa`),
-      sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/aaa.en.mdx`),
-    });
-    const trailingError = await reject(
-      activePlacements(),
-      [...activeHeads(), trailing].sort(compareContentHeads)
-    );
-    const leadingError = await reject(
-      activePlacements(),
-      [...activeHeads(), leading].sort(compareContentHeads)
-    );
-
-    expect(missing).toMatchObject({
-      _tag: "TryoutHeadMissingError",
-      artifactLocale: "en",
-      bodyKind: "answer",
-    });
-    expect(trailingError).toMatchObject({
-      _tag: "TryoutHeadMismatchError",
-      field: "contentKey",
-    });
-    expect(leadingError).toMatchObject({
-      _tag: "TryoutHeadMismatchError",
-      field: "contentKey",
-    });
-  });
-
-  it("rejects a missing final active head identity", async () => {
-    const error = await reject(activePlacements(), activeHeads().slice(0, -1));
-
-    expect(error).toMatchObject({
-      _tag: "TryoutHeadMissingError",
-      artifactLocale: "id",
-      bodyKind: "question",
-    });
-  });
-
-  it.each(["delivery", "rendererDomain", "sourcePath"] as const)(
-    "rejects a mismatched %s field",
-    async (field) => {
-      const error = await reject(
-        activePlacements(),
-        [
-          mismatchedHead(field),
-          ...activeHeads().filter(
-            ({ artifactLocale, contentKey }) =>
-              !(
-                artifactLocale === "en" &&
-                contentKey === `${questionRoot}/answer`
-              )
-          ),
-        ].sort(compareContentHeads)
-      );
-
-      expect(error).toMatchObject({
-        _tag: "TryoutHeadMismatchError",
-        field,
-      });
-    }
+        expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
+          "de",
+          "en",
+          "id",
+        ]);
+        expect(
+          result.every(
+            ({ answerHead, questionHead }) =>
+              answerHead.artifactHash === hash &&
+              questionHead.artifactHash === hash
+          )
+        ).toBe(true);
+      })
   );
 
-  it("rejects incomplete and repeated artifactLocale placement pairs", async () => {
-    const [incomplete, repeated, substituted] = await Promise.all([
-      reject(
-        [placement("en")],
-        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
-      ),
-      reject(
-        [placement("en"), placement("en")],
-        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
-      ),
-      reject(
-        [placement("en"), placement("de")],
-        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
-      ),
-    ]);
+  it.effect("rejects duplicate and descending complete head streams", () =>
+    Effect.gen(function* () {
+      const answer = head({ artifactLocale: "en", bodyKind: "answer" });
+      const question = head({ artifactLocale: "en", bodyKind: "question" });
+      const errors = yield* Effect.all(
+        [
+          [answer, answer],
+          [question, answer],
+        ].map((heads) => reject(activePlacements(), heads)),
+        { concurrency: "unbounded" }
+      );
 
-    expect(incomplete).toMatchObject({
-      _tag: "TryoutHeadMismatchError",
-      field: "bodyPair",
-    });
-    expect(repeated).toMatchObject({
-      _tag: "TryoutHeadMismatchError",
-      field: "bodyPair",
-    });
-    expect(substituted).toMatchObject({
-      _tag: "TryoutHeadMismatchError",
-      field: "bodyPair",
-    });
-  });
+      expect(errors[0]).toBeInstanceOf(TryoutHeadDuplicateError);
+      expect(errors[1]).toBeInstanceOf(TryoutHeadOrderError);
+    })
+  );
+
+  it.effect("rejects missing and unexpected active head identities", () =>
+    Effect.gen(function* () {
+      const missing = yield* reject(
+        activePlacements(),
+        activeHeads().filter(
+          ({ artifactLocale, contentKey }) =>
+            !(
+              artifactLocale === "en" && contentKey === `${questionRoot}/answer`
+            )
+        )
+      );
+      const trailing = QuestionHeadSchema.make({
+        ...head({ artifactLocale: "en", bodyKind: "answer" }),
+        contentKey: ContentKeySchema.make(`${questionRoot}/zzz`),
+        sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/zzz.en.mdx`),
+      });
+      const leading = QuestionHeadSchema.make({
+        ...trailing,
+        contentKey: ContentKeySchema.make(`${questionRoot}/aaa`),
+        sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/aaa.en.mdx`),
+      });
+      const trailingError = yield* reject(
+        activePlacements(),
+        [...activeHeads(), trailing].sort(compareContentHeads)
+      );
+      const leadingError = yield* reject(
+        activePlacements(),
+        [...activeHeads(), leading].sort(compareContentHeads)
+      );
+
+      expect(missing).toBeInstanceOf(TryoutHeadMissingError);
+      expect(missing).toMatchObject({
+        artifactLocale: "en",
+        bodyKind: "answer",
+      });
+      expect(trailingError).toBeInstanceOf(TryoutHeadMismatchError);
+      expect(trailingError).toMatchObject({ field: "contentKey" });
+      expect(leadingError).toBeInstanceOf(TryoutHeadMismatchError);
+      expect(leadingError).toMatchObject({ field: "contentKey" });
+    })
+  );
+
+  it.effect("rejects a missing final active head identity", () =>
+    Effect.gen(function* () {
+      const error = yield* reject(
+        activePlacements(),
+        activeHeads().slice(0, -1)
+      );
+
+      expect(error).toBeInstanceOf(TryoutHeadMissingError);
+      expect(error).toMatchObject({
+        artifactLocale: "id",
+        bodyKind: "question",
+      });
+    })
+  );
+
+  it.effect.each(["delivery", "rendererDomain", "sourcePath"] as const)(
+    "rejects a mismatched %s field",
+    (field) =>
+      Effect.gen(function* () {
+        const error = yield* reject(
+          activePlacements(),
+          [
+            mismatchedHead(field),
+            ...activeHeads().filter(
+              ({ artifactLocale, contentKey }) =>
+                !(
+                  artifactLocale === "en" &&
+                  contentKey === `${questionRoot}/answer`
+                )
+            ),
+          ].sort(compareContentHeads)
+        );
+
+        expect(error).toBeInstanceOf(TryoutHeadMismatchError);
+        expect(error).toMatchObject({ field });
+      })
+  );
+
+  it.effect(
+    "rejects incomplete and repeated artifactLocale placement pairs",
+    () =>
+      Effect.gen(function* () {
+        const englishHeads = activeHeads().filter(
+          ({ artifactLocale }) => artifactLocale === "en"
+        );
+        const [incomplete, repeated, substituted] = yield* Effect.all(
+          [
+            reject([placement("en")], englishHeads),
+            reject([placement("en"), placement("en")], englishHeads),
+            reject([placement("en"), placement("de")], englishHeads),
+          ],
+          { concurrency: "unbounded" }
+        );
+
+        for (const error of [incomplete, repeated, substituted]) {
+          expect(error).toBeInstanceOf(TryoutHeadMismatchError);
+          expect(error).toMatchObject({ field: "bodyPair" });
+        }
+      })
+  );
 });
