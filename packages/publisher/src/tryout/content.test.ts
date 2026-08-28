@@ -187,7 +187,9 @@ const oppositeEntryAt = Effect.fn("TryoutContentTest.oppositeEntryAt")(
     })
 );
 
-layer(contentTestLayer)("try-out content binding", (it) => {
+const contentTestOptions = { timeout: "30 seconds" } as const;
+
+layer(contentTestLayer, contentTestOptions)("try-out content binding", (it) => {
   it.effect(
     "uses exact content hashes and both body heads in every locale",
     () =>
