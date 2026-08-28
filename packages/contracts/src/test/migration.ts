@@ -26,6 +26,7 @@ import {
   historicalReleaseSigningInput,
 } from "#contracts/history/release-bytes";
 import { HistoricalTryoutSnapshotSchema } from "#contracts/history/tryout";
+import { TryoutRuntimeAdoptionSourceSchema } from "#contracts/migration/tryout/history/adoption";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import { retainedRelease } from "#contracts/test/history";
 import {
@@ -38,6 +39,7 @@ import {
   historicalPlacement,
 } from "#contracts/test/history-row";
 import { historicalRenderer } from "#contracts/test/history-runtime";
+import { protectedSnapshot } from "#contracts/test/runtime/fixture";
 import { TryoutHistoryMigrationSourceSchema } from "#contracts/transport/migration/tryout/response";
 
 const keys = generateKeyPairSync("ed25519");
@@ -138,10 +140,47 @@ export const migrationRelease = Schema.decodeSync(
   signature: sign(historicalReleaseSigningInput(manifestHash, manifest)),
 });
 
+const adoptionManifest = Schema.decodeSync(
+  HistoricalContentReleaseManifestSchema
+)({
+  ...manifest,
+  releaseId: "retained-adoption-release",
+  snapshots: {
+    ...manifest.snapshots,
+    tryout: {
+      ...manifest.snapshots.tryout,
+      resultSnapshotId: protectedSnapshot.snapshotId,
+    },
+  },
+});
+const adoptionManifestHash = hash(
+  canonicalizeHistoricalContentReleaseManifest(adoptionManifest)
+);
+export const adoptionRelease = Schema.decodeSync(
+  HistoricalSignedContentReleaseSchema
+)({
+  keyId: "retained-migration-key",
+  manifest: adoptionManifest,
+  manifestHash: adoptionManifestHash,
+  signature: sign(
+    historicalReleaseSigningInput(adoptionManifestHash, adoptionManifest)
+  ),
+});
+export const adoptionSource = Schema.decodeSync(
+  TryoutRuntimeAdoptionSourceSchema
+)({
+  attemptCount: 1,
+  inventoryHash: `sha256:${"3".repeat(64)}`,
+  release: adoptionRelease,
+  rendererManifest: historicalRenderer,
+  snapshot: protectedSnapshot,
+});
+
 /** Complete authenticated source envelope for contract verification tests. */
 export const migrationSource = Schema.decodeSync(
   TryoutHistoryMigrationSourceSchema
 )({
+  adoptions: [],
   evidence: {
     artifactCount: 2,
     attempts: {

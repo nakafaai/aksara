@@ -155,6 +155,15 @@ export const TryoutHistoryMigrationStageBundleRequestSchema = Schema.Struct({
   sourceSnapshotId: Sha256HashSchema,
 });
 
+/** Permanently binds terminal attempts to their exact historical runtime pair. */
+export const TryoutHistoryMigrationAdoptBundleRequestSchema = Schema.Struct({
+  ...RequestIdentityFields,
+  bundle: SignedTryoutRuntimeBundleSchema,
+  command: Schema.Literal("adoptBundle"),
+  inventoryHash: Sha256HashSchema,
+  rendererManifest: RendererManifestEnvelopeSchema,
+});
+
 /** Sends the signed authorization only after every target byte is staged. */
 export const TryoutHistoryMigrationStagePlanRequestSchema = Schema.Struct({
   ...RequestIdentityFields,
@@ -194,6 +203,7 @@ export const TryoutHistoryMigrationRequestSchema = Schema.Union([
   TryoutHistoryMigrationSourceRequestSchema,
   TryoutHistoryMigrationInitializeRequestSchema,
   TryoutHistoryMigrationAbortRequestSchema,
+  TryoutHistoryMigrationAdoptBundleRequestSchema,
   TryoutHistoryMigrationRowPageRequestSchema,
   TryoutHistoryMigrationArtifactBatchRequestSchema,
   TryoutHistoryMigrationStageArtifactsRequestSchema,

@@ -11,7 +11,10 @@ import {
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
   type TryoutHistoryMigrationCompletion,
 } from "#contracts/migration/tryout/history/spec";
-import { TryoutHistoryMigrationStatusSchema } from "#contracts/transport/migration/tryout/response";
+import {
+  TryoutHistoryMigrationStatusSchema,
+  TryoutHistoryMigrationValueSchema,
+} from "#contracts/transport/migration/tryout/response";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const migrationId = ReleaseIdSchema.make("retained-history-v1");
@@ -112,6 +115,39 @@ describe("try-out history migration status", () => {
     );
     assert.strictEqual(
       accepts({ ...counts, phase: "cleaned", receipt }),
+      false
+    );
+  });
+
+  it("accepts only a complete runtime adoption receipt", () => {
+    const value = {
+      command: "adoptBundle",
+      migrationId,
+      receipt: {
+        adopted: 1,
+        alreadyAdopted: 0,
+        attemptCount: 1,
+        bundleCreated: 1,
+        bundleHash: hash,
+        bundleUnchanged: 0,
+        snapshotId: hash,
+        sourceReleaseId: "retained-source-v1",
+      },
+    };
+
+    assert.strictEqual(
+      Exit.isSuccess(
+        Schema.decodeUnknownExit(TryoutHistoryMigrationValueSchema)(value)
+      ),
+      true
+    );
+    assert.strictEqual(
+      Exit.isSuccess(
+        Schema.decodeUnknownExit(TryoutHistoryMigrationValueSchema)({
+          ...value,
+          receipt: { ...value.receipt, adopted: 0 },
+        })
+      ),
       false
     );
   });

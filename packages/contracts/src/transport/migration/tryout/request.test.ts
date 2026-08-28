@@ -11,6 +11,8 @@ import {
   SignedTryoutHistoryMigrationReceiptSchema,
   TRYOUT_HISTORY_MIGRATION_RECEIPT_FORMAT,
 } from "#contracts/migration/tryout/history/spec";
+import { rendererManifest } from "#contracts/test/request";
+import { runtimeBundle } from "#contracts/test/runtime/fixture";
 import {
   TRYOUT_HISTORY_MIGRATION_REMOVAL_GATE,
   TryoutHistoryMigrationRequestSchema,
@@ -83,6 +85,28 @@ describe("try-out history migration requests", () => {
         assert.strictEqual(accepted.sourceSnapshotId, sourceSnapshotId);
         assert.match(String(rejected), uniqueHashFailure);
       })
+  );
+
+  it.effect("accepts one exact terminal runtime adoption", () =>
+    Effect.gen(function* () {
+      const request = yield* Schema.decodeEffect(
+        TryoutHistoryMigrationRequestSchema
+      )({
+        bundle: runtimeBundle,
+        command: "adoptBundle",
+        inventoryHash: artifactHash,
+        operation: "migrateTryoutHistory",
+        releaseId: "retained-tryout-history-v1",
+        rendererManifest,
+      });
+
+      assert.strictEqual(request.command, "adoptBundle");
+      if (request.command !== "adoptBundle") {
+        return yield* Effect.die("Expected the adoption variant.");
+      }
+      assert.strictEqual(request.bundle.bundleHash, runtimeBundle.bundleHash);
+      assert.strictEqual(request.inventoryHash, artifactHash);
+    })
   );
 
   it.effect("accepts the same signed receipt for sealing and cleanup", () =>

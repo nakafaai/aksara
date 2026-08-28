@@ -6,6 +6,10 @@ import { HistoricalRendererManifestSchema } from "#contracts/history/renderer";
 import { HistoricalTryoutRowSchema } from "#contracts/history/tryout-row";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
+  TryoutRuntimeAdoptionReceiptSchema,
+  TryoutRuntimeAdoptionSourceSchema,
+} from "#contracts/migration/tryout/history/adoption";
+import {
   SignedTryoutHistoryMigrationReceiptSchema,
   TryoutHistoryMigrationCompletionSchema,
   TryoutHistoryMigrationSourceEvidenceSchema,
@@ -28,6 +32,7 @@ export const TryoutHistoryMigrationSourceReleaseSchema = Schema.Struct({
 
 /** Complete source material required for an offline lossless conversion. */
 export const TryoutHistoryMigrationSourceSchema = Schema.Struct({
+  adoptions: Schema.Array(TryoutRuntimeAdoptionSourceSchema),
   evidence: TryoutHistoryMigrationSourceEvidenceSchema,
   releases: Schema.NonEmptyArray(TryoutHistoryMigrationSourceReleaseSchema),
   rendererManifest: HistoricalRendererManifestSchema,
@@ -170,6 +175,11 @@ const StageBundleValueSchema = Schema.Struct({
   rendererManifestHash: Sha256HashSchema,
   snapshotId: Sha256HashSchema,
 });
+const AdoptBundleValueSchema = Schema.Struct({
+  command: Schema.Literal("adoptBundle"),
+  ...ResponseIdentityFields,
+  receipt: TryoutRuntimeAdoptionReceiptSchema,
+});
 const StagePlanValueSchema = Schema.Struct({
   command: Schema.Literal("stagePlan"),
   ...ResponseIdentityFields,
@@ -202,6 +212,7 @@ export const TryoutHistoryMigrationValueSchema = Schema.Union([
   SourceValueSchema,
   InitializeValueSchema,
   AbortValueSchema,
+  AdoptBundleValueSchema,
   RowPageValueSchema,
   ArtifactBatchValueSchema,
   StageArtifactsValueSchema,
