@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { Effect, Schema } from "effect";
+import { ChildProcess } from "effect/unstable/process";
 
 const CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/iu;
 const CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/iu;
@@ -8,6 +10,20 @@ interface ConsumerManifestInput {
   readonly packageManager: string;
   readonly packageName: string;
   readonly tarballPath: string;
+}
+
+/** Executables used to build and inspect the isolated package. */
+export interface ConsumerTools {
+  readonly pnpm: string;
+  readonly tar: string;
+}
+
+/** Host inputs required to stage one isolated consumer package. */
+export interface ConsumerPackageInput {
+  readonly environment: NodeJS.ProcessEnv;
+  readonly platform: NodeJS.Platform;
+  readonly temporaryDirectory?: string;
+  readonly tools?: Partial<ConsumerTools>;
 }
 
 /** Removes registry credentials and pins empty package-manager configuration. */
@@ -35,6 +51,73 @@ export function createCredentialFreeEnvironment(
 export function executablePath(executable: string, platform: NodeJS.Platform) {
   return platform === "win32" ? `${executable}.cmd` : executable;
 }
+
+/** One expected isolated-consumer verification failure. */
+export class ConsumerVerificationError extends Schema.TaggedError<ConsumerVerificationError>()(
+  "ConsumerVerificationError",
+  {
+    cause: Schema.Unknown,
+    detail: Schema.String,
+    reason: Schema.Literals(["argument", "filesystem", "manifest", "process"]),
+  }
+) {}
+
+/** Creates one stable consumer verification failure. */
+export function consumerError(
+  reason: typeof ConsumerVerificationError.fields.reason.Type,
+  detail: string,
+  cause: unknown
+) {
+  return new ConsumerVerificationError({ cause, detail, reason });
+}
+
+/** Preserves one upstream cause inside a stable consumer failure. */
+export function consumerFailure(
+  reason: typeof ConsumerVerificationError.fields.reason.Type,
+  detail: string
+) {
+  return (cause: unknown) =>
+    consumerError(reason, `${detail}: ${String(cause)}`, cause);
+}
+
+/** Executes one child command without a shell and verifies its exact exit code. */
+export const runConsumerCommand = Effect.fn(
+  "AksaraContracts.runConsumerCommand"
+)(
+  (
+    executable: string,
+    args: readonly string[],
+    environment: NodeJS.ProcessEnv,
+    platform: NodeJS.Platform,
+    stage: string,
+    cwd?: string
+  ) =>
+    Effect.gen(function* () {
+      const exitCode = yield* ChildProcess.make(
+        executablePath(executable, platform),
+        args,
+        {
+          cwd,
+          env: environment,
+          extendEnv: false,
+          stderr: "inherit",
+          stdin: "inherit",
+          stdout: "inherit",
+        }
+      ).pipe(
+        Effect.flatMap((child) => child.exitCode),
+        Effect.mapError(consumerFailure("process", `${stage} command failed`)),
+        Effect.scoped
+      );
+      if (exitCode !== 0) {
+        return yield* consumerError(
+          "process",
+          `${stage} exited unsuccessfully with code ${exitCode}`,
+          { exitCode }
+        );
+      }
+    })
+);
 
 /** Requires package tooling to produce exactly one tarball archive. */
 export function selectPackedArchive(paths: readonly string[]): string {
