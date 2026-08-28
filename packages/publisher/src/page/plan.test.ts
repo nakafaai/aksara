@@ -1,21 +1,33 @@
-import { resolve } from "node:path";
-import { beforeEach, describe, expect, it } from "@effect/vitest";
-import { PageHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { beforeEach, expect, layer } from "@effect/vitest";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  type PageHead,
+  PageHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import {
-  checkoutRoot,
   collectPagePublication,
   collectPageResult,
+  PublishedPageTestFixtures,
+  publishedPageTestLayer,
+} from "#test/page/publication";
+import {
+  PageTestFixtures,
   pageFamilyScope,
+  pageFixtureIdentities,
   pageManifest,
-  publishedPageHeads,
-  sourceByPath,
-} from "#test/page";
+} from "#test/page/spec";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 const registryState = vi.hoisted(() => ({ changedPath: false }));
+const privacySourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/privacy-policy/en.mdx"
+);
+const securitySourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/pages/security-policy/en.mdx"
+);
 
 vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
   const original =
@@ -47,10 +59,7 @@ vi.mock("@nakafa/aksara-corpus/pages/registry", async (importOriginal) => {
             entry.route.artifactLocale === "en"
               ? {
                   ...entry,
-                  route: {
-                    ...entry.route,
-                    publicPath: "privacy-notice",
-                  },
+                  route: { ...entry.route, publicPath: "privacy-notice" },
                 }
               : entry
           )
@@ -59,19 +68,6 @@ vi.mock("@nakafa/aksara-corpus/pages/registry", async (importOriginal) => {
   };
 });
 
-const publishedHeads = await publishedPageHeads();
-/** Requires one exact published page head for focused planning assertions. */
-function requireEnglishHead() {
-  const head = publishedHeads.find(
-    ({ contentKey, artifactLocale }) =>
-      contentKey === "pages/privacy-policy" && artifactLocale === "en"
-  );
-  if (head === undefined) {
-    throw new Error("Expected the published English privacy page head.");
-  }
-  return head;
-}
-const englishHead = requireEnglishHead();
 const fingerprintCases = [
   ["compiler config", { compilerConfigHash: `sha256:${"1".repeat(64)}` }],
   ["delivery", { delivery: "authenticated" }],
@@ -81,14 +77,17 @@ const fingerprintCases = [
 ] as const;
 
 /** Decodes a modified published head without bypassing the wire contract. */
-function modifyHead(input: unknown) {
-  return Schema.decodeUnknownSync(PageHeadSchema)(input, {
+const modifyHead = Effect.fn("PagePlanTest.modifyHead")((input: unknown) =>
+  Schema.decodeUnknownEffect(PageHeadSchema)(input, {
     onExcessProperty: "error",
-  });
-}
+  })
+);
 
 /** Replaces one canonical head while preserving the complete sorted catalog. */
-function replaceHead(replacement: typeof englishHead) {
+function replaceHead(
+  publishedHeads: readonly PageHead[],
+  replacement: PageHead
+) {
   return publishedHeads.map((head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
@@ -97,200 +96,204 @@ function replaceHead(replacement: typeof englishHead) {
   );
 }
 
+/** Returns a mutable source map with one reviewed page body changed. */
+const changedSources = Effect.fn("PagePlanTest.changedSources")(
+  (
+    fixture: PageTestFixtures["Service"],
+    sourcePath: typeof privacySourcePath
+  ) =>
+    Effect.gen(function* () {
+      const sources = new Map(fixture.sources);
+      const absolutePath = yield* Effect.fromNullishOr(
+        fixture.absolutePaths.get(sourcePath)
+      );
+      const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
+      sources.set(absolutePath, `${source}\n`);
+      return sources;
+    })
+);
+
+/** Combines scoped source fixtures with their canonical published heads. */
+const planFixture = Effect.fn("PagePlanTest.fixture")(function* () {
+  return {
+    ...(yield* PageTestFixtures),
+    ...(yield* PublishedPageTestFixtures),
+  };
+});
+
 beforeEach(() => {
   compilerState.calls = 0;
   registryState.changedPath = false;
 });
 
-describe("page plan", () => {
-  it("emits no records and performs no compilation for matching heads", async () => {
-    const records = await collectPagePublication({ heads: publishedHeads });
-
-    expect(records).toEqual([]);
-    expect(compilerState.calls).toBe(0);
-  });
-
-  it("compiles only the real page whose source changed", async () => {
-    const sources = new Map(sourceByPath);
-    const path = resolve(
-      checkoutRoot,
-      "packages/corpus/pages/privacy-policy/en.mdx"
-    );
-    const source = sources.get(path);
-    expect(source).toBeDefined();
-    sources.set(path, `${source}\n`);
-
-    const records = await collectPagePublication({
-      heads: publishedHeads,
-      sources,
-    });
-
-    expect(records).toHaveLength(1);
-    expect(records[0]?.record.change).toMatchObject({
-      artifactLocale: "en",
-      operation: "upsert",
-    });
-    expect(compilerState.calls).toBe(1);
-  });
-
-  it("compiles only the page whose registry projection changed", async () => {
-    registryState.changedPath = true;
-
-    const records = await collectPagePublication({ heads: publishedHeads });
-
-    expect(records).toHaveLength(1);
-    expect(records[0]).toMatchObject({
-      record: {
-        change: { artifactLocale: "en", operation: "upsert" },
-        projection: { publicPath: "privacy-notice" },
-      },
-    });
-    expect(compilerState.calls).toBe(1);
-  });
-
-  it.each(fingerprintCases)(
-    "compiles only a head whose %s fingerprint changed",
-    async (_field, changed) => {
-      const head = modifyHead({ ...englishHead, ...changed });
-      const records = await collectPagePublication({
-        heads: replaceHead(head),
-      });
-
-      expect(records).toHaveLength(1);
-      expect(compilerState.calls).toBe(1);
-    }
+layer(publishedPageTestLayer)("page plan", (it) => {
+  it.effect(
+    "emits no records and performs no compilation for matching heads",
+    () =>
+      Effect.gen(function* () {
+        const { publishedHeads } = yield* PublishedPageTestFixtures;
+        expect(
+          yield* collectPagePublication({ heads: publishedHeads })
+        ).toEqual([]);
+        expect(compilerState.calls).toBe(0);
+      })
   );
 
-  it("recompiles every page whose renderer contract changes", async () => {
-    const renderer = await pageManifest(2);
-    const records = await collectPagePublication({
-      heads: publishedHeads,
-      renderer,
-    });
+  it.effect("compiles only the real page whose source changed", () =>
+    Effect.gen(function* () {
+      const fixture = yield* planFixture();
+      const sources = yield* changedSources(fixture, privacySourcePath);
+      const records = yield* collectPagePublication({
+        heads: fixture.publishedHeads,
+        sources,
+      });
+      expect(records).toHaveLength(1);
+      expect(records[0]?.record.change).toMatchObject({
+        artifactLocale: "en",
+        operation: "upsert",
+      });
+      expect(compilerState.calls).toBe(1);
+    })
+  );
 
-    expect(records).toHaveLength(15);
-    expect(compilerState.calls).toBe(15);
-  });
-
-  it("emits one tombstone without compiling an absent source", async () => {
-    const stale = modifyHead({
-      ...englishHead,
-      contentKey: "pages/zz-removed-page",
-      publicPath: "zz-removed-page",
-      sourcePath: "packages/corpus/pages/zz-removed-page/en.mdx",
-    });
-    const records = await collectPagePublication({
-      heads: [...publishedHeads, stale],
-    });
-
-    expect(records).toContainEqual({
-      prior: { head: stale, state: "page" },
-      record: {
-        change: {
-          artifactLocale: "en",
-          contentKey: stale.contentKey,
-          family: "page",
-          operation: "delete",
+  it.effect("compiles only the page whose registry projection changed", () =>
+    Effect.gen(function* () {
+      const { publishedHeads } = yield* PublishedPageTestFixtures;
+      registryState.changedPath = true;
+      const records = yield* collectPagePublication({ heads: publishedHeads });
+      expect(records).toHaveLength(1);
+      expect(records[0]).toMatchObject({
+        record: {
+          change: { artifactLocale: "en", operation: "upsert" },
+          projection: { publicPath: "privacy-notice" },
         },
-      },
-    });
-    expect(compilerState.calls).toBe(0);
-  });
+      });
+      expect(compilerState.calls).toBe(1);
+    })
+  );
 
-  it("compiles every canonical source for the first release", async () => {
-    const records = await collectPagePublication({ heads: [] });
+  it.effect.each(fingerprintCases)(
+    "compiles only a head whose %s fingerprint changed",
+    ([, changed]) =>
+      Effect.gen(function* () {
+        const fixture = yield* planFixture();
+        const head = yield* modifyHead({ ...fixture.englishHead, ...changed });
+        const records = yield* collectPagePublication({
+          heads: replaceHead(fixture.publishedHeads, head),
+        });
+        expect(records).toHaveLength(1);
+        expect(compilerState.calls).toBe(1);
+      })
+  );
 
-    expect(records).toHaveLength(15);
-    expect(
-      records.every(({ record }) => record.change.operation === "upsert")
-    ).toBe(true);
-    expect(compilerState.calls).toBe(15);
-  });
+  it.effect("recompiles every page whose renderer contract changes", () =>
+    Effect.gen(function* () {
+      const { publishedHeads } = yield* PublishedPageTestFixtures;
+      const renderer = yield* pageManifest(2);
+      const records = yield* collectPagePublication({
+        heads: publishedHeads,
+        renderer,
+      });
+      expect(records).toHaveLength(15);
+      expect(compilerState.calls).toBe(15);
+    })
+  );
 
-  it("compiles the complete selected family for scoped genesis", async () => {
-    const records = await collectPagePublication({
-      heads: [],
-      scope: pageFamilyScope,
-    });
+  it.effect("emits one tombstone without compiling an absent source", () =>
+    Effect.gen(function* () {
+      const fixture = yield* planFixture();
+      const stale = yield* modifyHead({
+        ...fixture.englishHead,
+        contentKey: "pages/zz-removed-page",
+        publicPath: "zz-removed-page",
+        sourcePath: "packages/corpus/pages/zz-removed-page/en.mdx",
+      });
+      const records = yield* collectPagePublication({
+        heads: [...fixture.publishedHeads, stale],
+      });
+      expect(records).toContainEqual({
+        prior: { head: stale, state: "page" },
+        record: {
+          change: {
+            artifactLocale: "en",
+            contentKey: stale.contentKey,
+            family: "page",
+            operation: "delete",
+          },
+        },
+      });
+      expect(compilerState.calls).toBe(0);
+    })
+  );
 
-    expect(
-      records.map(({ record }) => [
-        record.change.contentKey,
-        record.change.artifactLocale,
-      ])
-    ).toEqual([
-      ["pages/developers", "de"],
-      ["pages/developers", "en"],
-      ["pages/developers", "id"],
-      ["pages/imprint", "de"],
-      ["pages/imprint", "en"],
-      ["pages/imprint", "id"],
-      ["pages/privacy-policy", "de"],
-      ["pages/privacy-policy", "en"],
-      ["pages/privacy-policy", "id"],
-      ["pages/security-policy", "de"],
-      ["pages/security-policy", "en"],
-      ["pages/security-policy", "id"],
-      ["pages/terms-of-service", "de"],
-      ["pages/terms-of-service", "en"],
-      ["pages/terms-of-service", "id"],
-    ]);
-    expect(compilerState.calls).toBe(15);
-  });
+  it.effect("compiles every canonical source for the first release", () =>
+    Effect.gen(function* () {
+      const records = yield* collectPagePublication({ heads: [] });
+      expect(records).toHaveLength(15);
+      expect(
+        records.every(({ record }) => record.change.operation === "upsert")
+      ).toBe(true);
+      expect(compilerState.calls).toBe(15);
+    })
+  );
 
-  it("preserves base heads and ignores changes in an unselected family", async () => {
-    const sources = new Map(sourceByPath);
-    const path = resolve(
-      checkoutRoot,
-      "packages/corpus/pages/security-policy/en.mdx"
-    );
-    const source = sources.get(path);
-    expect(source).toBeDefined();
-    sources.set(path, `${source}\n`);
+  it.effect("compiles the complete selected family for scoped genesis", () =>
+    Effect.gen(function* () {
+      const records = yield* collectPagePublication({
+        heads: [],
+        scope: pageFamilyScope,
+      });
+      expect(
+        records.map(({ record }) => [
+          record.change.contentKey,
+          record.change.artifactLocale,
+        ])
+      ).toEqual(pageFixtureIdentities);
+      expect(compilerState.calls).toBe(15);
+    })
+  );
 
-    const unselectedScope = PublicationScopeSchema.make({
-      families: ["article"],
-      snapshots: [],
-    });
-    const records = await collectPagePublication({
-      heads: publishedHeads,
-      scope: unselectedScope,
-      sources,
-    });
-    const result = await collectPageResult({
-      heads: publishedHeads,
-      scope: unselectedScope,
-      sources,
-    });
+  it.effect(
+    "preserves base heads and ignores changes in an unselected family",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* planFixture();
+        const sources = yield* changedSources(fixture, securitySourcePath);
+        const scope = PublicationScopeSchema.make({
+          families: ["article"],
+          snapshots: [],
+        });
+        const input = { heads: fixture.publishedHeads, scope, sources };
+        const records = yield* collectPagePublication(input);
+        const result = yield* collectPageResult(input);
+        expect(records).toEqual([]);
+        expect(result).toEqual(fixture.publishedHeads);
+        expect(compilerState.calls).toBe(0);
+      })
+  );
 
-    expect(records).toEqual([]);
-    expect(result).toEqual(publishedHeads);
-    expect(compilerState.calls).toBe(0);
-  });
-
-  it("tombstones only one scoped missing source", async () => {
-    const stale = modifyHead({
-      ...englishHead,
-      contentKey: "pages/zz-removed-page",
-      publicPath: "zz-removed-page",
-      sourcePath: "packages/corpus/pages/zz-removed-page/en.mdx",
-    });
-    const scope = Schema.decodeSync(PublicationScopeSchema)({
-      families: ["page"],
-      snapshots: [],
-    });
-    const heads = [...publishedHeads, stale];
-    const records = await collectPagePublication({ heads, scope });
-    const result = await collectPageResult({ heads, scope });
-
-    expect(records).toHaveLength(1);
-    expect(records[0]?.record.change).toEqual({
-      artifactLocale: "en",
-      contentKey: stale.contentKey,
-      family: "page",
-      operation: "delete",
-    });
-    expect(result).toEqual(publishedHeads);
-    expect(compilerState.calls).toBe(0);
-  });
+  it.effect("tombstones only one scoped missing source", () =>
+    Effect.gen(function* () {
+      const fixture = yield* planFixture();
+      const stale = yield* modifyHead({
+        ...fixture.englishHead,
+        contentKey: "pages/zz-removed-page",
+        publicPath: "zz-removed-page",
+        sourcePath: "packages/corpus/pages/zz-removed-page/en.mdx",
+      });
+      const heads = [...fixture.publishedHeads, stale];
+      const input = { heads, scope: pageFamilyScope };
+      const records = yield* collectPagePublication(input);
+      const result = yield* collectPageResult(input);
+      expect(records).toHaveLength(1);
+      expect(records[0]?.record.change).toEqual({
+        artifactLocale: "en",
+        contentKey: stale.contentKey,
+        family: "page",
+        operation: "delete",
+      });
+      expect(result).toEqual(fixture.publishedHeads);
+      expect(compilerState.calls).toBe(0);
+    })
+  );
 });

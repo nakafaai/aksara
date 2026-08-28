@@ -14,7 +14,8 @@ import {
   isDerivedRollbackUpsert,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
-import { collectPagePublication } from "#test/page";
+import { collectPagePublication } from "#test/page/publication";
+import { pageTestLayer } from "#test/page/spec";
 import { collectQuestionPublication } from "#test/question/spec";
 import {
   collectRollbackRecords,
@@ -218,8 +219,8 @@ describe("deriveRollbackRecords", () => {
 
   it.effect("reconstructs a page head from a real page state", () =>
     Effect.gen(function* () {
-      const [transition] = yield* Effect.tryPromise(() =>
-        collectPagePublication({ heads: [] })
+      const [transition] = yield* collectPagePublication({ heads: [] }).pipe(
+        Effect.provide(pageTestLayer)
       );
       if (!(transition && "payload" in transition.record)) {
         return yield* Effect.die("Expected one page publication upsert.");

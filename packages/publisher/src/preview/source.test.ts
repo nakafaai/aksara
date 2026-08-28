@@ -14,7 +14,7 @@ import {
   englishPath,
   rendererManifest as materialRenderer,
 } from "#test/material/spec";
-import { pageEntries, rendererManifest as pageRenderer } from "#test/page";
+import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 import { questionRendererManifest } from "#test/question/renderer";
 import { questionEntries } from "#test/question/spec";
 
@@ -22,6 +22,7 @@ import { questionEntries } from "#test/question/spec";
 const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
+    const page = yield* PageTestFixtures;
     const articleEntry = article.entries.find(
       ({ route }) => route.artifactLocale === "en"
     );
@@ -33,7 +34,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
       ({ bodyKind, artifactLocale }) =>
         bodyKind === "answer" && artifactLocale === "en"
     );
-    const pageEntry = pageEntries.find(
+    const pageEntry = page.entries.find(
       ({ route }) =>
         route.pageKey === "privacy-policy" && route.artifactLocale === "en"
     );
@@ -89,6 +90,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
         promptEntry.sourceRoot.concat("/choices.ts")
       ),
       materialSource,
+      pageRenderer: page.rendererManifest,
       pageSource,
       promptSource,
     };
@@ -111,7 +113,11 @@ function projectSource(
   });
 }
 
-const previewTestLayer = Layer.merge(NodeServices.layer, articleTestLayer);
+const previewTestLayer = Layer.mergeAll(
+  NodeServices.layer,
+  articleTestLayer,
+  pageTestLayer
+);
 
 layer(previewTestLayer)("preview source", (it) => {
   it.effect("loads and projects every supported real content family", () =>
@@ -129,7 +135,11 @@ layer(previewTestLayer)("preview source", (it) => {
             fixture.materialSource,
             materialRenderer
           ),
-          projectSource(fixture.checkoutRoot, fixture.pageSource, pageRenderer),
+          projectSource(
+            fixture.checkoutRoot,
+            fixture.pageSource,
+            fixture.pageRenderer
+          ),
           projectSource(
             fixture.checkoutRoot,
             fixture.promptSource,
