@@ -1,5 +1,6 @@
-import { Result } from "effect";
-import { describe, expect, it } from "vitest";
+import { it } from "@effect/vitest";
+import { Effect, Result } from "effect";
+import { describe, expect } from "vitest";
 import {
   compatibleManifest,
   incompatibleManifest,
@@ -10,105 +11,115 @@ import {
   protectedFound,
   protectedRequest,
   protectedSelector,
-  rejectProtectedExchange,
   verifyProtectedExchange,
-  verifyProtectedExchangeResult,
 } from "#contracts/test/runtime/protected";
 
 describe("protected content runtime verification", () => {
-  it("binds ordered bodies to one frozen snapshot request", async () => {
-    await expect(
-      verifyProtectedExchange({ response: protectedFound })
-    ).resolves.toEqual(protectedFound);
-    await expect(
-      verifyProtectedExchange({
-        rendererManifest: compatibleManifest,
+  it.effect("binds ordered bodies to one frozen snapshot request", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyProtectedExchange({ response: protectedFound })
+      ).toEqual(protectedFound);
+      expect(
+        yield* verifyProtectedExchange({
+          rendererManifest: compatibleManifest,
+          response: protectedFound,
+        })
+      ).toEqual(protectedFound);
+
+      const outcomes = yield* Effect.all(
+        protectedMismatchCases.map(([, response, request = protectedRequest]) =>
+          verifyProtectedExchange({ request, response }).pipe(Effect.result)
+        ),
+        { concurrency: "unbounded" }
+      );
+      expect(
+        outcomes.map((outcome) =>
+          Result.isFailure(outcome) &&
+          outcome.failure._tag === "ContentRuntimeMismatchError"
+            ? outcome.failure.reason
+            : "none"
+        )
+      ).toEqual(protectedMismatchCases.map(([reason]) => reason));
+    })
+  );
+
+  it.effect("rejects a response with another selector cardinality", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyProtectedExchange({
+        request: {
+          ...protectedRequest,
+          selectors: [
+            protectedSelector,
+            {
+              ...protectedSelector,
+              artifactHash: `sha256:${"7".repeat(64)}`,
+            },
+          ],
+        },
         response: protectedFound,
-      })
-    ).resolves.toEqual(protectedFound);
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "ContentRuntimeMismatchError",
+        reason: "selectorCount",
+      });
+    })
+  );
 
-    const outcomes = await Promise.all(
-      protectedMismatchCases.map(([, response, request = protectedRequest]) =>
-        verifyProtectedExchangeResult({ request, response })
-      )
-    );
-    expect(
-      outcomes.map((outcome) =>
-        Result.isFailure(outcome) &&
-        outcome.failure._tag === "ContentRuntimeMismatchError"
-          ? outcome.failure.reason
-          : "none"
-      )
-    ).toEqual(protectedMismatchCases.map(([reason]) => reason));
-  });
+  it.effect("rejects an incompatible live renderer", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyProtectedExchange({
+        rendererManifest: incompatibleManifest,
+        response: protectedFound,
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "ArtifactRendererComponentMissingError",
+      });
+    })
+  );
 
-  it("rejects a response with another selector cardinality", async () => {
-    const error = await rejectProtectedExchange({
-      request: {
-        ...protectedRequest,
-        selectors: [
-          protectedSelector,
-          {
-            ...protectedSelector,
-            artifactHash: `sha256:${"7".repeat(64)}`,
-          },
-        ],
-      },
-      response: protectedFound,
-    });
-    expect(error).toMatchObject({
-      _tag: "ContentRuntimeMismatchError",
-      reason: "selectorCount",
-    });
-  });
+  it.effect("rejects an artifact absent from its frozen renderer", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyProtectedExchange({
+        rendererManifest: compatibleManifest,
+        request: {
+          ...protectedRequest,
+          selectors: [
+            {
+              ...protectedSelector,
+              artifactHash: protectedExpandedArtifact.artifactHash,
+            },
+          ],
+        },
+        response: {
+          ...protectedFound,
+          items: [
+            {
+              ...protectedFound.items[0],
+              artifact: protectedExpandedArtifact,
+            },
+          ],
+        },
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "ArtifactRendererComponentMissingError",
+        componentName: "InlineMath",
+      });
+    })
+  );
 
-  it("rejects an incompatible live renderer", async () => {
-    const error = await rejectProtectedExchange({
-      rendererManifest: incompatibleManifest,
-      response: protectedFound,
-    });
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererComponentMissingError",
-    });
-  });
-
-  it("rejects an artifact absent from its frozen renderer", async () => {
-    const error = await rejectProtectedExchange({
-      rendererManifest: compatibleManifest,
-      request: {
-        ...protectedRequest,
-        selectors: [
-          {
-            ...protectedSelector,
-            artifactHash: protectedExpandedArtifact.artifactHash,
-          },
-        ],
-      },
-      response: {
-        ...protectedFound,
-        items: [
-          {
-            ...protectedFound.items[0],
-            artifact: protectedExpandedArtifact,
-          },
-        ],
-      },
-    });
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererComponentMissingError",
-      componentName: "InlineMath",
-    });
-  });
-
-  it("preserves request-bound missing and failure responses", async () => {
-    const responses = [
-      { kind: "missing" },
-      { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
-    ] as const;
-    await Promise.all(
-      responses.map((response) =>
-        expect(verifyProtectedExchange({ response })).resolves.toEqual(response)
-      )
-    );
-  });
+  it.effect("preserves request-bound missing and failure responses", () =>
+    Effect.gen(function* () {
+      const responses = [
+        { kind: "missing" },
+        { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
+      ] as const;
+      expect(
+        yield* Effect.all(
+          responses.map((response) => verifyProtectedExchange({ response })),
+          { concurrency: "unbounded" }
+        )
+      ).toEqual(responses);
+    })
+  );
 });
