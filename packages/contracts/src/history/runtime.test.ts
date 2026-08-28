@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { HistoricalSha256HashSchema } from "#contracts/history/primitives";
 import {
