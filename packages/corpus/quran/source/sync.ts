@@ -4,8 +4,10 @@ import { Duration, Effect, FileSystem, Path, Result, Schema } from "effect";
 import { HttpClient } from "effect/unstable/http";
 
 import {
+  GERMAN_QURAN_EDITION_URL,
   GERMAN_QURAN_PUBLICATION_URL,
   GERMAN_QURAN_SOURCE_URL,
+  GERMAN_QURAN_TERMS_URL,
   type PinnedQuranFile,
   QURAN_SOURCE_POLICY,
 } from "#corpus/quran/source/policy";
@@ -33,9 +35,9 @@ function digest(bytes: Uint8Array) {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
-/** Replaces the complete source pair and restores its prior tree on failure. */
-const replaceGermanSourcePair = Effect.fn(
-  "AksaraCorpus.replaceGermanQuranSourcePair"
+/** Replaces the complete source bundle and restores its prior tree on failure. */
+const replaceGermanSourceBundle = Effect.fn(
+  "AksaraCorpus.replaceGermanQuranSourceBundle"
 )(function* (input: GermanSourceReplacement) {
   const fileSystem = yield* FileSystem.FileSystem;
   const hasTarget = yield* fileSystem.exists(input.target);
@@ -69,8 +71,8 @@ const replaceGermanSourcePair = Effect.fn(
 });
 
 /** Removes staging debt without deleting the only recoverable prior tree. */
-const cleanupGermanSourcePair = Effect.fn(
-  "AksaraCorpus.cleanupGermanQuranSourcePair"
+const cleanupGermanSourceBundle = Effect.fn(
+  "AksaraCorpus.cleanupGermanQuranSourceBundle"
 )(function* (input: GermanSourceReplacement) {
   const fileSystem = yield* FileSystem.FileSystem;
   yield* fileSystem.remove(input.staging, { force: true, recursive: true });
@@ -135,7 +137,7 @@ const downloadSource = Effect.fn("AksaraCorpus.downloadGermanQuranSource")(
     )
 );
 
-/** Writes both authenticated German artifacts into one isolated staging tree. */
+/** Writes every authenticated German artifact into one isolated staging tree. */
 const stageSources = Effect.fn("AksaraCorpus.stageGermanQuranSources")(
   function* (
     staging: string,
@@ -159,23 +161,27 @@ const stageSources = Effect.fn("AksaraCorpus.stageGermanQuranSources")(
         fileSystem
           .writeFile(path.join(staging, path.basename(source.path)), bytes)
           .pipe(Effect.mapError(mapWriteError(source))),
-      { concurrency: 2, discard: true }
+      { concurrency: 4, discard: true }
     );
   }
 );
 
-/** Downloads and installs the exact German translation and publication record. */
+/** Downloads and installs the complete authenticated German source bundle. */
 export const syncGermanQuranSources = Effect.fn(
   "AksaraCorpus.syncGermanQuranSources"
 )(function* (repositoryRoot: string) {
   const translation = QURAN_SOURCE_POLICY.data.translations.de;
   const publication = QURAN_SOURCE_POLICY.evidence.germanPublication;
+  const edition = QURAN_SOURCE_POLICY.data.names.de;
+  const terms = QURAN_SOURCE_POLICY.terms.islamhouse;
   const bytes = yield* Effect.all(
     {
+      edition: downloadSource(edition, GERMAN_QURAN_EDITION_URL),
       publication: downloadSource(publication, GERMAN_QURAN_PUBLICATION_URL),
+      terms: downloadSource(terms, GERMAN_QURAN_TERMS_URL),
       translation: downloadSource(translation, GERMAN_QURAN_SOURCE_URL),
     },
-    { concurrency: 2 }
+    { concurrency: 4 }
   );
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -184,13 +190,13 @@ export const syncGermanQuranSources = Effect.fn(
     backup: path.join(sourceRoot, "german-previous"),
     target: path.join(sourceRoot, "german"),
   };
-  const pairName = "German Quran source pair";
-  /** Maps an atomic pair installation failure to its owned sync phase. */
+  const bundleName = "German Quran source bundle";
+  /** Maps an atomic bundle installation failure to its owned sync phase. */
   const writeError = (cause: unknown) =>
     new GermanQuranSourceSyncError({
       cause,
       phase: "write",
-      source: pairName,
+      source: bundleName,
     });
   yield* fileSystem
     .makeDirectory(sourceRoot, { recursive: true })
@@ -200,23 +206,35 @@ export const syncGermanQuranSources = Effect.fn(
       .makeTempDirectory({ directory: sourceRoot, prefix: "german-stage-" })
       .pipe(Effect.mapError(writeError)),
     (directory) =>
-      cleanupGermanSourcePair({
+      cleanupGermanSourceBundle({
         ...replacement,
         staging: directory,
       }).pipe(Effect.ignore)
   );
   yield* stageSources(staging, [
+    { bytes: bytes.edition, source: edition },
     { bytes: bytes.publication, source: publication },
+    { bytes: bytes.terms, source: terms },
     { bytes: bytes.translation, source: translation },
   ]);
-  yield* replaceGermanSourcePair({ ...replacement, staging }).pipe(
+  yield* replaceGermanSourceBundle({ ...replacement, staging }).pipe(
     Effect.mapError(writeError)
   );
   return {
+    edition: {
+      byteCount: bytes.edition.byteLength,
+      digest: edition.artifact.digest,
+      path: path.join(sourceRoot, edition.path),
+    },
     publication: {
       byteCount: bytes.publication.byteLength,
       digest: publication.artifact.digest,
       path: path.join(sourceRoot, publication.path),
+    },
+    terms: {
+      byteCount: bytes.terms.byteLength,
+      digest: terms.artifact.digest,
+      path: path.join(sourceRoot, terms.path),
     },
     translation: {
       byteCount: bytes.translation.byteLength,

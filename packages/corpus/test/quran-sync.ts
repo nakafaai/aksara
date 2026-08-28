@@ -11,14 +11,18 @@ import {
 import { HttpClient, HttpClientResponse } from "effect/unstable/http";
 
 import {
+  GERMAN_QURAN_EDITION_URL,
   GERMAN_QURAN_PUBLICATION_URL,
   GERMAN_QURAN_SOURCE_URL,
+  GERMAN_QURAN_TERMS_URL,
 } from "#corpus/quran/source/policy";
 import { syncGermanQuranSources } from "#corpus/quran/source/sync";
 
 interface QuranSyncFixtureValue {
+  readonly edition: Uint8Array;
   readonly publication: Uint8Array;
   readonly sources: ReadonlyMap<string, Uint8Array>;
+  readonly terms: Uint8Array;
   readonly translation: Uint8Array;
 }
 
@@ -29,22 +33,28 @@ const loadQuranSyncFixture = Effect.fn(
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const sourceRoot = path.resolve(import.meta.dirname, "../quran/sources");
-  const [publication, translation] = yield* Effect.all(
+  const [edition, publication, terms, translation] = yield* Effect.all(
     [
+      fileSystem.readFile(path.join(sourceRoot, "german/edition.pdf")),
       fileSystem.readFile(path.join(sourceRoot, "german/publication.json")),
+      fileSystem.readFile(path.join(sourceRoot, "german/faq.html")),
       fileSystem.readFile(path.join(sourceRoot, "german/translation.xml")),
     ],
     { concurrency: "unbounded" }
   );
   const fixture = {
+    edition: Uint8Array.from(edition),
     publication: Uint8Array.from(publication),
+    terms: Uint8Array.from(terms),
     translation: Uint8Array.from(translation),
   };
 
   return {
     ...fixture,
     sources: new Map([
+      [GERMAN_QURAN_EDITION_URL, fixture.edition],
       [GERMAN_QURAN_PUBLICATION_URL, fixture.publication],
+      [GERMAN_QURAN_TERMS_URL, fixture.terms],
       [GERMAN_QURAN_SOURCE_URL, fixture.translation],
     ]),
   } satisfies QuranSyncFixtureValue;
@@ -62,15 +72,17 @@ export const quranSyncFixtureLayer = Layer.effect(
   loadQuranSyncFixture()
 ).pipe(Layer.provideMerge(NodeServices.layer));
 
-/** Creates the prior installed pair used by restoration tests. */
+/** Creates the prior installed bundle used by restoration tests. */
 export function makePriorQuranSyncSources() {
   return {
+    edition: new TextEncoder().encode("prior edition"),
     publication: new TextEncoder().encode("prior publication"),
+    terms: new TextEncoder().encode("prior terms"),
     translation: new TextEncoder().encode("prior translation"),
   };
 }
 
-/** Creates one deterministic HTTP adapter for both official artifacts. */
+/** Creates one deterministic HTTP adapter for every official artifact. */
 function sourceClient(
   sources: ReadonlyMap<string, Uint8Array>,
   options: QuranSyncTestOptions
@@ -121,7 +133,9 @@ interface QuranSyncTestOptions {
     fileSystem: FileSystem.FileSystem
   ) => FileSystem.FileSystem;
   readonly prior?: {
+    readonly edition: Uint8Array;
     readonly publication: Uint8Array;
+    readonly terms: Uint8Array;
     readonly translation: Uint8Array;
   };
   readonly stalledUrl?: string;
@@ -144,9 +158,17 @@ export const quranSyncTestProgram = Effect.fn("AksaraCorpus.test.quranSync")(
           prefix: "aksara-quran-source-sync-",
         });
         const targets = {
+          edition: path.join(
+            repositoryRoot,
+            "packages/corpus/quran/sources/german/edition.pdf"
+          ),
           publication: path.join(
             repositoryRoot,
             "packages/corpus/quran/sources/german/publication.json"
+          ),
+          terms: path.join(
+            repositoryRoot,
+            "packages/corpus/quran/sources/german/faq.html"
           ),
           translation: path.join(
             repositoryRoot,
@@ -162,10 +184,12 @@ export const quranSyncTestProgram = Effect.fn("AksaraCorpus.test.quranSync")(
             recursive: true,
           });
           yield* Effect.all([
+            fileSystem.writeFile(targets.edition, options.prior.edition),
             fileSystem.writeFile(
               targets.publication,
               options.prior.publication
             ),
+            fileSystem.writeFile(targets.terms, options.prior.terms),
             fileSystem.writeFile(
               targets.translation,
               options.prior.translation
@@ -185,17 +209,32 @@ export const quranSyncTestProgram = Effect.fn("AksaraCorpus.test.quranSync")(
         const publicationInstalled = yield* fileSystem.exists(
           targets.publication
         );
+        const editionInstalled = yield* fileSystem.exists(targets.edition);
         const translationInstalled = yield* fileSystem.exists(
           targets.translation
         );
+        const termsInstalled = yield* fileSystem.exists(targets.terms);
         return {
           backupExists: yield* fileSystem.exists(backup),
-          installed: publicationInstalled && translationInstalled,
+          installed:
+            editionInstalled &&
+            publicationInstalled &&
+            termsInstalled &&
+            translationInstalled,
           installedBytes:
-            publicationInstalled && translationInstalled
+            editionInstalled &&
+            publicationInstalled &&
+            termsInstalled &&
+            translationInstalled
               ? {
+                  edition: Uint8Array.from(
+                    yield* fileSystem.readFile(targets.edition)
+                  ),
                   publication: Uint8Array.from(
                     yield* fileSystem.readFile(targets.publication)
+                  ),
+                  terms: Uint8Array.from(
+                    yield* fileSystem.readFile(targets.terms)
                   ),
                   translation: Uint8Array.from(
                     yield* fileSystem.readFile(targets.translation)

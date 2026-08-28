@@ -3,8 +3,10 @@ import { Deferred, Effect, Fiber, Result } from "effect";
 import { TestClock } from "effect/testing";
 
 import {
+  GERMAN_QURAN_EDITION_URL,
   GERMAN_QURAN_PUBLICATION_URL,
   GERMAN_QURAN_SOURCE_URL,
+  GERMAN_QURAN_TERMS_URL,
 } from "#corpus/quran/source/policy";
 import {
   makePriorQuranSyncSources,
@@ -17,10 +19,11 @@ import {
 
 layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
   it.effect(
-    "installs only the exact translation and publication record bytes",
+    "installs the complete exact German source bundle",
     () =>
       Effect.gen(function* () {
-        const { publication, sources, translation } = yield* QuranSyncFixture;
+        const { edition, publication, sources, terms, translation } =
+          yield* QuranSyncFixture;
         const prior = makePriorQuranSyncSources();
         const [firstInstall, result] = yield* Effect.all(
           [
@@ -35,11 +38,23 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
         expect(result.outcome).toMatchObject({
           _tag: "Success",
           success: {
+            edition: {
+              byteCount: 4_944_410,
+              digest:
+                "sha256:bdd3a3a52bff49be17ef5b7133c6ee258bf82dad3807775eb712de99e1ce5006",
+              path: result.targets.edition,
+            },
             publication: {
               byteCount: 3485,
               digest:
                 "sha256:df3b2437afa0f52c3621c8c611384c45b00169e00a259a4f205a7ccd9150f645",
               path: result.targets.publication,
+            },
+            terms: {
+              byteCount: 97_233,
+              digest:
+                "sha256:9b28dc4d1b745e98028227488f77d7db8e46a8ac912c322ae34482f0c389d707",
+              path: result.targets.terms,
             },
             translation: {
               byteCount: 1_523_305,
@@ -52,56 +67,49 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
         expect(result.backupExists).toBe(false);
         expect(result.installed).toBe(true);
         expect(result.installedBytes).toEqual({
+          edition,
           publication,
+          terms,
           translation,
         });
       }),
-    30_000
+    60_000
   );
 
-  it.effect("rejects changed bytes for either pinned artifact", () =>
+  it.effect("rejects changed bytes for every pinned artifact", () =>
     Effect.gen(function* () {
       const fixture = yield* QuranSyncFixture;
+      const edition = Uint8Array.from(fixture.edition);
       const translation = Uint8Array.from(fixture.translation);
       const publication = Uint8Array.from(fixture.publication);
+      const terms = Uint8Array.from(fixture.terms);
+      edition[0] = edition[0] === 0 ? 1 : 0;
       translation[0] = translation[0] === 0 ? 1 : 0;
-      const [incomplete, mismatched] = yield* Effect.all(
+      const cases = [
+        [GERMAN_QURAN_EDITION_URL, edition, "bubenheim-edition.pdf"],
         [
-          quranSyncTestProgram(
-            replaceQuranSyncSource(
-              fixture.sources,
-              GERMAN_QURAN_PUBLICATION_URL,
-              publication.subarray(1)
-            )
-          ),
-          quranSyncTestProgram(
-            replaceQuranSyncSource(
-              fixture.sources,
-              GERMAN_QURAN_SOURCE_URL,
-              translation
-            )
-          ),
+          GERMAN_QURAN_PUBLICATION_URL,
+          publication.subarray(1),
+          "islamhouse-german-bubenheim.json",
         ],
+        [GERMAN_QURAN_TERMS_URL, terms.subarray(1), "islamhouse-faq.html"],
+        [GERMAN_QURAN_SOURCE_URL, translation, "quranenc-de.xml"],
+      ] as const;
+      const results = yield* Effect.forEach(
+        cases,
+        ([url, bytes]) =>
+          quranSyncTestProgram(
+            replaceQuranSyncSource(fixture.sources, url, bytes)
+          ),
         { concurrency: "unbounded" }
       );
 
-      expect([incomplete, mismatched]).toMatchObject([
-        {
+      expect(results).toMatchObject(
+        cases.map(([, , source]) => ({
           installed: false,
-          outcome: {
-            failure: {
-              phase: "integrity",
-              source: "islamhouse-german-bubenheim.json",
-            },
-          },
-        },
-        {
-          installed: false,
-          outcome: {
-            failure: { phase: "integrity", source: "quranenc-de.xml" },
-          },
-        },
-      ]);
+          outcome: { failure: { phase: "integrity", source } },
+        }))
+      );
     })
   );
 
@@ -194,7 +202,7 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
   );
 
   it.effect(
-    "restores the complete prior pair when staged installation fails",
+    "restores the complete prior bundle when staged installation fails",
     () =>
       Effect.gen(function* () {
         const { sources } = yield* QuranSyncFixture;
@@ -212,7 +220,7 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
 
         expect(result.outcome).toMatchObject({
           _tag: "Failure",
-          failure: { phase: "write", source: "German Quran source pair" },
+          failure: { phase: "write", source: "German Quran source bundle" },
         });
         expect(result.backupExists).toBe(false);
         expect(result.installedBytes).toEqual(prior);
@@ -241,7 +249,7 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
 
         expect(failure).toMatchObject({
           phase: "write",
-          source: "German Quran source pair",
+          source: "German Quran source bundle",
         });
         expect(failure.cause).toMatchObject({
           installation: { reason: { method: "rename" } },
@@ -272,7 +280,7 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
 
         expect(failure).toMatchObject({
           phase: "write",
-          source: "German Quran source pair",
+          source: "German Quran source bundle",
         });
         expect(failure.cause).toMatchObject({
           reason: { method: "rename" },
