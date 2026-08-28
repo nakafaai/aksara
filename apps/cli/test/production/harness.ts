@@ -48,6 +48,7 @@ const calls = vi.hoisted(() => {
     resumeCalls: 0,
     rootReads: 0,
     runtimeBundleRefreshes: 0,
+    runtimeRecoverySnapshotId: undefined,
     runtimeResultSnapshotId: undefined,
     sha: undefined,
     signingSecretReads: 0,
@@ -56,6 +57,7 @@ const calls = vi.hoisted(() => {
     storedRelease: undefined,
     targetCalls: 0,
     targetServiceReads: 0,
+    tryoutRuntimeSnapshot: null,
     verifiedBundle: undefined,
   });
   const state = initial();
@@ -112,6 +114,8 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
       calls.baseResultCount = input.baseResultCount;
       calls.baseResultDigest = input.baseResultDigest;
       calls.releaseId = input.releaseId;
+      calls.runtimeRecoverySnapshotId =
+        input.tryoutRuntime?.recovery?.snapshotId ?? null;
       calls.runtimeResultSnapshotId =
         input.tryoutRuntime?.result.snapshotId ?? null;
       calls.sha = input.aksaraSha;

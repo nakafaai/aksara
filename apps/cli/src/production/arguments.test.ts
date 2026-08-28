@@ -8,6 +8,9 @@ const baseArguments = [
   "--recovery-id",
   "recovery-2026-07-22",
 ] as const;
+const ACTIVE_TRYOUT_SNAPSHOT =
+  '{"family":"tryout","manifest":{"activeAppLocales":["en","id","de"],"catalogDigest":"sha256:e9f063181d12a22cf086d2bcb4326f52168867d03e8b54664dc0d162cca68be8","counts":{"country":3,"exam":6,"section":51,"set":15,"track":6},"placementCount":1260,"placementDigest":"sha256:ddecd95295c33a12f5dbb5d64a0502a857f07eef7121f1ee9e2fa64879542d3b","routeCount":72,"format":"localized-tryout-snapshot","snapshotId":"sha256:a190bcb61dddbdafaf3c63507726d6822e18f5ac53e17734c03ed835156c6eaa"}}';
+const PROGRAM_SNAPSHOT = `{"family":"program","manifest":{"activeAppLocales":["en"],"curriculumRowCount":0,"format":"localized-program-snapshot","programRowCount":1,"rowCount":1,"rowDigest":"sha256:${"a".repeat(64)}","sitemapCount":0,"slugCount":1,"snapshotId":"sha256:${"b".repeat(64)}"}}`;
 
 /** Decodes one production argument collection. */
 function parse(args: readonly string[]) {
@@ -74,6 +77,53 @@ describe("release production arguments", () => {
         option: "--scope",
         reason: "value",
       });
+    })
+  );
+
+  it.effect("authenticates one exact retained try-out snapshot", () =>
+    Effect.gen(function* () {
+      const result = yield* parse([
+        ...baseArguments,
+        "--scope",
+        "snapshot:tryout",
+        "--base-snapshot",
+        ACTIVE_TRYOUT_SNAPSHOT,
+      ]);
+
+      expect(result).toMatchObject({
+        baseSnapshot: {
+          snapshotId:
+            "sha256:a190bcb61dddbdafaf3c63507726d6822e18f5ac53e17734c03ed835156c6eaa",
+        },
+      });
+    })
+  );
+
+  it.effect("rejects forged or unrelated retained snapshots", () =>
+    Effect.gen(function* () {
+      const values = [
+        "not-json",
+        PROGRAM_SNAPSHOT,
+        ACTIVE_TRYOUT_SNAPSHOT.replace("ddecd9", "adecd9"),
+      ];
+      const failures = yield* Effect.forEach(values, (value) =>
+        reject([
+          ...baseArguments,
+          "--scope",
+          "snapshot:tryout",
+          "--base-snapshot",
+          value,
+        ])
+      );
+
+      expect(failures).toEqual(
+        values.map(() =>
+          expect.objectContaining({
+            option: "--base-snapshot",
+            reason: "value",
+          })
+        )
+      );
     })
   );
 });
