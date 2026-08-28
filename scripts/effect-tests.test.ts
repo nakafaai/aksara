@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { effectTestViolations } from "#scripts/effect-tests";
 
-describe("Effect test execution policy", () => {
+describe("Effect test runner policy", () => {
   it("rejects direct Effect runtime execution", () => {
     const file = "packages/example/src/program.test.ts";
     const source = [
@@ -12,7 +12,7 @@ describe("Effect test execution policy", () => {
     ].join("\n");
 
     expect(effectTestViolations(file, source)).toEqual([
-      `${file}: execute Effects through @effect/vitest instead of Effect.run*.`,
+      `${file}: use @effect/vitest instead of Effect runtime runners.`,
     ]);
   });
 
@@ -35,7 +35,7 @@ describe("Effect test execution policy", () => {
       )
     ).toEqual([
       "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
-      "packages/example/src/program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+      "packages/example/src/program.test.ts: use @effect/vitest instead of Effect runtime runners.",
     ]);
   });
 
@@ -78,7 +78,7 @@ describe("Effect test execution policy", () => {
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
@@ -88,11 +88,15 @@ describe("Effect test execution policy", () => {
       'import { Effect } from "effect";\nEffect["runPromise"](program);',
       'import { Effect as Fx } from "effect";\nFx[`runSync`](program);',
       'import * as Fx from "effect";\nFx["Effect"]["runFork"](program);',
+      'import { Effect } from "effect";\nEffect[dynamicRunner](program);',
+      'import { Effect } from "effect";\nconst runner = "runPromise";\nEffect[runner](program);',
+      'import * as Runtime from "effect";\nRuntime[dynamicMember](program);',
+      'import { Effect } from "effect";\nEffect[](program);',
     ];
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
@@ -107,7 +111,7 @@ describe("Effect test execution policy", () => {
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
@@ -126,7 +130,7 @@ describe("Effect test execution policy", () => {
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
@@ -134,7 +138,6 @@ describe("Effect test execution policy", () => {
   it("preserves shadowing through transparent references", () => {
     const sources = [
       'import { Effect } from "effect";\ncallbacks.forEach((Effect) => (Effect.runPromise)(program));',
-      'import { runPromise } from "effect/Effect";\ncallbacks.forEach((runPromise) => (runPromise as Function)(program));',
     ];
 
     for (const source of sources) {
@@ -165,12 +168,12 @@ describe("Effect test execution policy", () => {
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
 
-  it("resolves direct runner imports through their lexical binding", () => {
+  it("rejects direct runner imports even when only inspected", () => {
     const file = "program.test.ts";
     const source = [
       'import { runPromise } from "effect/Effect";',
@@ -178,7 +181,9 @@ describe("Effect test execution policy", () => {
       "callbacks.forEach((runPromise) => runPromise());",
     ].join("\n");
 
-    expect(effectTestViolations(file, source)).toEqual([]);
+    expect(effectTestViolations(file, source)).toEqual([
+      `${file}: use @effect/vitest instead of Effect runtime runners.`,
+    ]);
   });
 
   it("traces local aliases and static destructuring", () => {
@@ -192,12 +197,13 @@ describe("Effect test execution policy", () => {
       'import * as Runtime from "effect";\nconst { Effect: Fx } = Runtime;\nprogram.pipe(Fx.runFork);',
       'import * as Runtime from "effect";\nconst { Effect: { runPromise: execute } } = Runtime;\nexecute(program);',
       'import { Effect } from "effect";\nconst { ...Runtime } = Effect;\nRuntime.runSync(program);',
+      'import { Effect } from "effect";\nconst runtimeName = "succeed";\nconst { [runtimeName]: execute } = Effect;\nexecute(program);',
       'import { runPromise } from "effect/Effect";\nconst execute = runPromise;\nprogram.pipe(execute);',
     ];
 
     for (const source of sources) {
       expect(effectTestViolations("program.test.ts", source)).toEqual([
-        "program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+        "program.test.ts: use @effect/vitest instead of Effect runtime runners.",
       ]);
     }
   });
@@ -242,12 +248,6 @@ describe("Effect test execution policy", () => {
     expect(
       effectTestViolations(
         "program.test.ts",
-        'import { Effect } from "effect";\nEffect[dynamicRunner](program);'
-      )
-    ).toEqual([]);
-    expect(
-      effectTestViolations(
-        "program.test.ts",
         'import { Effect } from "effect";\nconst { [0]: execute } = Effect;\nexecute(program);'
       )
     ).toEqual([]);
@@ -260,7 +260,7 @@ describe("Effect test execution policy", () => {
     expect(
       effectTestViolations(
         "program.test.ts",
-        'import { Effect } from "effect";\nconst runtimeName = "succeed";\nconst { [runtimeName]: execute } = Effect;\nexecute(program);'
+        'import type { runPromise } from "effect/Effect";\ntype Runner = typeof runPromise;'
       )
     ).toEqual([]);
   });

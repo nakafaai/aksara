@@ -29,24 +29,31 @@ function transparentExpression(node: ts.Expression): ts.Expression {
   return expression;
 }
 
-/** Extracts a statically named property or element access. */
-function staticMember(node: ts.Expression) {
+/** Reads a statically known property without guessing computed identifiers. */
+function staticProperty(node: ts.Node, computed = false) {
+  const isComputed = computed || ts.isComputedPropertyName(node);
+  const property = ts.isComputedPropertyName(node)
+    ? transparentExpression(node.expression)
+    : node;
+  return (!isComputed && ts.isIdentifier(property)) ||
+    ts.isStringLiteral(property) ||
+    ts.isNoSubstitutionTemplateLiteral(property) ||
+    ts.isNumericLiteral(property)
+    ? property.text
+    : undefined;
+}
+
+/** Extracts a property access and its receiver. */
+function memberAccess(node: ts.Expression) {
   const expression = transparentExpression(node);
   if (ts.isPropertyAccessExpression(expression)) {
     return { name: expression.name.text, receiver: expression.expression };
   }
-  if (
-    !ts.isElementAccessExpression(expression) ||
-    expression.argumentExpression === undefined ||
-    !(
-      ts.isStringLiteral(expression.argumentExpression) ||
-      ts.isNoSubstitutionTemplateLiteral(expression.argumentExpression)
-    )
-  ) {
+  if (!ts.isElementAccessExpression(expression)) {
     return;
   }
   return {
-    name: expression.argumentExpression.text,
+    name: staticProperty(expression.argumentExpression, true),
     receiver: expression.expression,
   };
 }
@@ -60,7 +67,6 @@ function importedRuntimeKind(
   const candidates = [
     [bindings.modules, "module"],
     [bindings.namespaces, "namespace"],
-    [bindings.pipes, "pipe"],
     [bindings.runners, "runner"],
   ] as const;
   for (const [runtimeBindings, kind] of candidates) {
@@ -71,36 +77,22 @@ function importedRuntimeKind(
   }
 }
 
-/** Maps a statically named member from its Effect runtime source. */
+/** Maps a property selected from an Effect runtime source. */
 function runtimeMemberKind(
   sourceKind: RuntimeKind | undefined,
-  memberName: string
+  memberName: string | undefined
 ): RuntimeKind | undefined {
   if (sourceKind === "module") {
     if (memberName === "Effect") {
       return "namespace";
     }
-    if (memberName === "pipe") {
-      return "pipe";
-    }
+    return memberName === undefined ? "runner" : undefined;
   }
-  return sourceKind === "namespace" && EFFECT_RUNNERS.has(memberName)
+  if (sourceKind !== "namespace") {
+    return;
+  }
+  return memberName === undefined || EFFECT_RUNNERS.has(memberName)
     ? "runner"
-    : undefined;
-}
-
-/** Reads a statically named binding property without guessing dynamic keys. */
-function staticBindingProperty(binding: ts.BindingElement) {
-  const property = binding.propertyName ?? binding.name;
-  if (!ts.isComputedPropertyName(property)) {
-    return ts.isIdentifier(property) || ts.isStringLiteral(property)
-      ? property.text
-      : undefined;
-  }
-  const expression = transparentExpression(property.expression);
-  return ts.isStringLiteral(expression) ||
-    ts.isNoSubstitutionTemplateLiteral(expression)
-    ? expression.text
     : undefined;
 }
 
@@ -120,9 +112,37 @@ function bindingSourceKind(
       seenSymbols
     );
   }
+  if (ts.isParameter(owner)) {
+    return callbackParameterKind(owner, bindings, symbols, seenSymbols);
+  }
   return ts.isBindingElement(owner)
     ? destructuredRuntimeKind(owner, bindings, symbols, seenSymbols)
     : undefined;
+}
+
+/** Resolves the value supplied to the first callback of a Promise `then`. */
+function callbackParameterKind(
+  parameter: ts.ParameterDeclaration,
+  bindings: EffectRuntimeBindings,
+  symbols: SourceSymbols,
+  seenSymbols: Set<ts.Symbol>
+) {
+  const callback = parameter.parent;
+  if (
+    !(
+      (ts.isArrowFunction(callback) || ts.isFunctionExpression(callback)) &&
+      callback.parameters[0] === parameter &&
+      ts.isCallExpression(callback.parent) &&
+      callback.parent.arguments[0] === callback
+    )
+  ) {
+    return;
+  }
+  const then = memberAccess(callback.parent.expression);
+  if (then?.name !== "then") {
+    return;
+  }
+  return runtimeReferenceKind(then.receiver, bindings, symbols, seenSymbols);
 }
 
 /** Resolves a destructured Effect runtime binding to its source. */
@@ -139,13 +159,13 @@ function destructuredRuntimeKind(
   if (binding.dotDotDotToken !== undefined) {
     return sourceKind;
   }
-  const property = staticBindingProperty(binding);
-  return property === undefined
-    ? undefined
-    : runtimeMemberKind(sourceKind, property);
+  return runtimeMemberKind(
+    sourceKind,
+    staticProperty(binding.propertyName ?? binding.name)
+  );
 }
 
-/** Traces each local runtime origin at most once per reference. */
+/** Traces local aliases back to their imported Effect runtime origin. */
 function runtimeReferenceKind(
   node: ts.Expression,
   bindings: EffectRuntimeBindings,
@@ -158,17 +178,14 @@ function runtimeReferenceKind(
     return dynamicKind;
   }
   if (!ts.isIdentifier(reference)) {
-    const member = staticMember(reference);
+    const member = memberAccess(reference);
     if (member === undefined) {
       return;
     }
-    const receiverKind = runtimeReferenceKind(
-      member.receiver,
-      bindings,
-      symbols,
-      seenSymbols
+    return runtimeMemberKind(
+      runtimeReferenceKind(member.receiver, bindings, symbols, seenSymbols),
+      member.name
     );
-    return runtimeMemberKind(receiverKind, member.name);
   }
   const importedKind = importedRuntimeKind(reference, bindings, symbols);
   if (importedKind !== undefined) {
@@ -199,36 +216,20 @@ function runtimeReferenceKind(
       symbols,
       seenSymbols
     );
+  } else if (declaration !== undefined && ts.isParameter(declaration)) {
+    resolvedKind = callbackParameterKind(
+      declaration,
+      bindings,
+      symbols,
+      seenSymbols
+    );
   }
   seenSymbols.delete(symbol);
   return resolvedKind;
 }
 
-/** Checks whether one call executes an imported Effect runtime runner. */
-function isEffectRunner(
-  node: ts.Node,
-  bindings: EffectRuntimeBindings,
-  symbols: SourceSymbols
-) {
-  if (!ts.isCallExpression(node)) {
-    return false;
-  }
-  const calleeKind = runtimeReferenceKind(node.expression, bindings, symbols);
-  if (calleeKind === "runner") {
-    return true;
-  }
-  const callee = staticMember(node.expression);
-  return (
-    (calleeKind === "pipe" || callee?.name === "pipe") &&
-    node.arguments.some(
-      (argument) =>
-        runtimeReferenceKind(argument, bindings, symbols) === "runner"
-    )
-  );
-}
-
-/** Reports whether authored test code executes an Effect runtime runner. */
-export function hasExecutedEffectRunner(sourceFile: ts.SourceFile) {
+/** Reports whether authored test code references an Effect runtime runner. */
+export function hasEffectRunnerReference(sourceFile: ts.SourceFile) {
   const runtimeBindings = effectRuntimeBindings(sourceFile);
   const nodes: ts.Node[] = [sourceFile];
   for (const node of nodes) {
@@ -239,7 +240,6 @@ export function hasExecutedEffectRunner(sourceFile: ts.SourceFile) {
   if (
     runtimeBindings.modules.size === 0 &&
     runtimeBindings.namespaces.size === 0 &&
-    runtimeBindings.pipes.size === 0 &&
     runtimeBindings.runners.size === 0 &&
     !nodes.some((node) => dynamicRuntimeKind(node) !== undefined)
   ) {
@@ -247,7 +247,17 @@ export function hasExecutedEffectRunner(sourceFile: ts.SourceFile) {
   }
   const symbols = sourceSymbols(sourceFile);
   for (const node of nodes) {
-    if (isEffectRunner(node, runtimeBindings, symbols)) {
+    if (
+      ts.isIdentifier(node) &&
+      runtimeReferenceKind(node, runtimeBindings, symbols) === "runner"
+    ) {
+      return true;
+    }
+    if (
+      (ts.isPropertyAccessExpression(node) ||
+        ts.isElementAccessExpression(node)) &&
+      runtimeReferenceKind(node, runtimeBindings, symbols) === "runner"
+    ) {
       return true;
     }
   }

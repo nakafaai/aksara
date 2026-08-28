@@ -15,12 +15,11 @@ export const EFFECT_RUNNERS = new Set([
   "runSyncWith",
 ]);
 
-export type RuntimeKind = "module" | "namespace" | "pipe" | "runner";
+export type RuntimeKind = "module" | "namespace" | "runner";
 
 export interface EffectRuntimeBindings {
   readonly modules: ReadonlyMap<string, ts.Identifier>;
   readonly namespaces: ReadonlyMap<string, ts.Identifier>;
-  readonly pipes: ReadonlyMap<string, ts.Identifier>;
   readonly runners: ReadonlyMap<string, ts.Identifier>;
 }
 
@@ -30,19 +29,19 @@ type NamedImportBindings = ts.NamespaceImport | ts.NamedImports;
 function registerEffectPackage(
   bindings: NamedImportBindings,
   modules: Map<string, ts.Identifier>,
-  namespaces: Map<string, ts.Identifier>,
-  pipes: Map<string, ts.Identifier>
+  namespaces: Map<string, ts.Identifier>
 ) {
   if (ts.isNamespaceImport(bindings)) {
     modules.set(bindings.name.text, bindings.name);
     return;
   }
   for (const binding of bindings.elements) {
+    if (binding.isTypeOnly) {
+      continue;
+    }
     const importedName = binding.propertyName?.text ?? binding.name.text;
     if (importedName === "Effect") {
       namespaces.set(binding.name.text, binding.name);
-    } else if (importedName === "pipe") {
-      pipes.set(binding.name.text, binding.name);
     }
   }
 }
@@ -58,27 +57,12 @@ function registerEffectModule(
     return;
   }
   for (const binding of bindings.elements) {
+    if (binding.isTypeOnly) {
+      continue;
+    }
     const importedName = binding.propertyName?.text ?? binding.name.text;
     if (EFFECT_RUNNERS.has(importedName)) {
       runners.set(binding.name.text, binding.name);
-    }
-  }
-}
-
-/** Registers bindings imported from the Effect function module. */
-function registerFunctionModule(
-  bindings: NamedImportBindings,
-  modules: Map<string, ts.Identifier>,
-  pipes: Map<string, ts.Identifier>
-) {
-  if (ts.isNamespaceImport(bindings)) {
-    modules.set(bindings.name.text, bindings.name);
-    return;
-  }
-  for (const binding of bindings.elements) {
-    const importedName = binding.propertyName?.text ?? binding.name.text;
-    if (importedName === "pipe") {
-      pipes.set(binding.name.text, binding.name);
     }
   }
 }
@@ -87,14 +71,14 @@ function registerFunctionModule(
 export function effectRuntimeBindings(sourceFile: ts.SourceFile) {
   const modules = new Map<string, ts.Identifier>();
   const namespaces = new Map<string, ts.Identifier>();
-  const pipes = new Map<string, ts.Identifier>();
   const runners = new Map<string, ts.Identifier>();
   for (const statement of sourceFile.statements) {
     if (
       !(
         ts.isImportDeclaration(statement) &&
         ts.isStringLiteral(statement.moduleSpecifier) &&
-        statement.importClause?.namedBindings
+        statement.importClause?.namedBindings &&
+        !statement.importClause.isTypeOnly
       )
     ) {
       continue;
@@ -102,17 +86,14 @@ export function effectRuntimeBindings(sourceFile: ts.SourceFile) {
     const moduleName = statement.moduleSpecifier.text;
     const bindings = statement.importClause.namedBindings;
     if (moduleName === "effect") {
-      registerEffectPackage(bindings, modules, namespaces, pipes);
+      registerEffectPackage(bindings, modules, namespaces);
     } else if (moduleName === "effect/Effect") {
       registerEffectModule(bindings, namespaces, runners);
-    } else if (moduleName === "effect/Function") {
-      registerFunctionModule(bindings, modules, pipes);
     }
   }
   return {
     modules,
     namespaces,
-    pipes,
     runners,
   } satisfies EffectRuntimeBindings;
 }
@@ -122,7 +103,7 @@ export function dynamicRuntimeKind(node: ts.Node): RuntimeKind | undefined {
   if (
     !ts.isCallExpression(node) ||
     node.expression.kind !== ts.SyntaxKind.ImportKeyword ||
-    node.arguments.length !== 1
+    node.arguments.length === 0
   ) {
     return;
   }
@@ -136,7 +117,7 @@ export function dynamicRuntimeKind(node: ts.Node): RuntimeKind | undefined {
   ) {
     return;
   }
-  if (specifier.text === "effect" || specifier.text === "effect/Function") {
+  if (specifier.text === "effect") {
     return "module";
   }
   return specifier.text === "effect/Effect" ? "namespace" : undefined;
