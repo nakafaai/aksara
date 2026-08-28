@@ -1,22 +1,37 @@
 import { beforeEach, expect, it } from "@effect/vitest";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
+import {
+  GitCommitShaSchema,
+  ReleaseIdSchema,
+} from "@nakafa/aksara-contracts/ids";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { vi } from "vitest";
 
+import { prepareMaterialPublication } from "#publisher/material/publication";
+import { prepareContentRelease } from "#publisher/preparation";
 import {
   makePreparedGitRelease,
   makePreparedRollbackRelease,
 } from "#publisher/preparation/prepared";
+import { PublicationSource } from "#publisher/publication/spec";
+import { testFileLayer } from "#test/files";
 import { makeTarget } from "#test/lifecycle/spec";
-import { publishMaterialRelease } from "#test/material/run";
+import {
+  MaterialTestFixtures,
+  materialFamilyScope,
+  materialTestLayer,
+} from "#test/material/spec";
 import { makeRelease, projection, rendererManifest } from "#test/publication";
 import {
   makeRollbackRelease,
   prepareRecoveryPlan,
+  publishFromSource,
   publishPrepared,
   testVerificationResolver,
 } from "#test/publication/run";
-import { emptySnapshotSources } from "#test/snapshot";
+import { emptySnapshotSources, snapshotPolicyBase } from "#test/snapshot";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 
@@ -52,13 +67,88 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   };
 });
 
+/** Publishes the real material fixture through exact Git source resolution. */
+const publishMaterialRelease = Effect.fn("MaterialProgramTest.publishRelease")(
+  () =>
+    Effect.gen(function* () {
+      const fixture = yield* MaterialTestFixtures;
+      return yield* Effect.scoped(
+        Effect.gen(function* () {
+          const material = yield* prepareMaterialPublication({
+            checkoutRoot: fixture.checkoutRoot,
+            published: Stream.empty,
+            rendererManifest: fixture.rendererManifest,
+            scope: materialFamilyScope,
+          });
+          const resultHeads = yield* material.result.pipe(Stream.runCollect);
+          const prepared = yield* prepareContentRelease({
+            aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
+            baseResultCount: 0,
+            baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+            records: material.records,
+            releaseId: ReleaseIdSchema.make("test-material-replay"),
+            rendererManifest: fixture.rendererManifest,
+            result: Stream.fromIterable(resultHeads),
+            routes: material.routes,
+            scope: materialFamilyScope,
+            tryoutRuntime: null,
+            ...snapshotPolicyBase("test-material-base"),
+            ...emptySnapshotSources,
+          });
+          const state = makeTarget(prepared);
+          const source = PublicationSource.of({
+            loadExactRevision: ({ items }) =>
+              items.pipe(
+                Stream.mapEffect((item) => {
+                  if (item.change.operation === "delete") {
+                    return Effect.die(
+                      "Exact-Git source requested for a test tombstone."
+                    );
+                  }
+                  const absolutePath = fixture.absolutePaths.get(
+                    item.change.sourcePath
+                  );
+                  const rawMdx =
+                    absolutePath === undefined
+                      ? undefined
+                      : fixture.sources.get(absolutePath);
+                  if (rawMdx === undefined) {
+                    return Effect.die(
+                      `Missing exact test source ${item.change.sourcePath}.`
+                    );
+                  }
+                  return Effect.succeed(
+                    CompileDocumentSourceSchema.make({
+                      artifactLocale: item.change.artifactLocale,
+                      contentKey: item.change.contentKey,
+                      rawMdx,
+                      rendererDomain: item.change.rendererDomain,
+                      sourcePath: item.change.sourcePath,
+                    })
+                  );
+                })
+              ),
+          });
+          const receipt = yield* publishFromSource(
+            prepared,
+            state.target,
+            source
+          );
+          return { receipt, stageArtifacts: state.stageArtifactBatch };
+        })
+      ).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
+    })
+);
+
 beforeEach(() => {
   compilerState.calls = 0;
 });
 
 it.effect("compiles each source once per reproducibility boundary", () =>
   Effect.gen(function* () {
-    const result = yield* Effect.promise(publishMaterialRelease);
+    const result = yield* publishMaterialRelease().pipe(
+      Effect.provide(materialTestLayer)
+    );
     expect(compilerState.calls).toBe(8);
     expect(result.receipt).toMatchObject({
       activatedHeads: 4,

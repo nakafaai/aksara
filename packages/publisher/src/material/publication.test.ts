@@ -7,6 +7,7 @@ import { Context, Effect, Layer, Schema } from "effect";
 import { vi } from "vitest";
 import {
   collectMaterialRoutes,
+  materialTestLayer,
   publishedMaterialHeads,
   rejectMaterialPublication,
 } from "#test/material/spec";
@@ -91,9 +92,14 @@ class MaterialPublicationTestFixtures extends Context.Service<
   Effect.Success<ReturnType<typeof makePublicationTestFixtures>>
 >()("AksaraPublisherMaterialPublicationTestFixtures") {}
 
-const publicationTestLayer = Layer.effect(
+const publicationFixtureLayer = Layer.effect(
   MaterialPublicationTestFixtures,
   makePublicationTestFixtures()
+).pipe(Layer.provide(materialTestLayer));
+
+const publicationTestLayer = Layer.merge(
+  materialTestLayer,
+  publicationFixtureLayer
 );
 
 layer(publicationTestLayer)("material publication", (it) => {

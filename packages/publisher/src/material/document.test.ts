@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { Effect, Path } from "effect";
 import {
@@ -6,7 +6,11 @@ import {
   makeMaterialProjection,
 } from "#publisher/material/document";
 import { testFileLayer } from "#test/files";
-import { checkoutRoot, englishPath, sourceByPath } from "#test/material/spec";
+import {
+  englishPath,
+  MaterialTestFixtures,
+  materialTestLayer,
+} from "#test/material/spec";
 
 /** Requires the reviewed English material registry fixture. */
 const requireEnglishEntry = Effect.fn(
@@ -18,20 +22,24 @@ const requireEnglishEntry = Effect.fn(
   );
 });
 
-describe("material document", () => {
+layer(materialTestLayer)("material document", (it) => {
   it.effect(
     "maps a missing registry-owned source to its typed checkout error",
     () =>
       Effect.gen(function* () {
+        const fixture = yield* MaterialTestFixtures;
         const entry = yield* requireEnglishEntry();
-        const error = yield* loadMaterialDocument(checkoutRoot, entry).pipe(
+        const error = yield* loadMaterialDocument(
+          fixture.checkoutRoot,
+          entry
+        ).pipe(
           Effect.provide([testFileLayer(new Map()), Path.layer]),
           Effect.flip
         );
 
         expect(error).toMatchObject({
           _tag: "MaterialSourceError",
-          checkoutRoot,
+          checkoutRoot: fixture.checkoutRoot,
         });
       })
   );
@@ -40,11 +48,15 @@ describe("material document", () => {
     "rejects malformed authored metadata with the exact source path",
     () =>
       Effect.gen(function* () {
+        const fixture = yield* MaterialTestFixtures;
         const entry = yield* requireEnglishEntry();
         const error = yield* Effect.gen(function* () {
-          const source = yield* loadMaterialDocument(checkoutRoot, entry);
+          const source = yield* loadMaterialDocument(
+            fixture.checkoutRoot,
+            entry
+          );
           return yield* makeMaterialProjection(source, {}).pipe(Effect.flip);
-        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
+        }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
 
         expect(error).toMatchObject({
           _tag: "MaterialMetadataError",
@@ -57,16 +69,20 @@ describe("material document", () => {
     "rejects non-chronological material dates through the typed metadata error",
     () =>
       Effect.gen(function* () {
+        const fixture = yield* MaterialTestFixtures;
         const entry = yield* requireEnglishEntry();
         const error = yield* Effect.gen(function* () {
-          const source = yield* loadMaterialDocument(checkoutRoot, entry);
+          const source = yield* loadMaterialDocument(
+            fixture.checkoutRoot,
+            entry
+          );
           return yield* makeMaterialProjection(source, {
             authors: [{ name: "Nabil Akbarazzima Fatih" }],
             dateModified: "2025-04-27",
             datePublished: "2025-04-27",
             title: "Invalid material dates",
           }).pipe(Effect.flip);
-        }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
+        }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
 
         expect(error).toMatchObject({
           _tag: "MaterialMetadataError",

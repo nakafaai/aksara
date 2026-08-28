@@ -12,7 +12,8 @@ import {
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
 import {
   englishPath,
-  rendererManifest as materialRenderer,
+  MaterialTestFixtures,
+  materialTestLayer,
 } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 import { questionManifest } from "#test/question/renderer";
@@ -22,6 +23,7 @@ import { questionEntries } from "#test/question/spec";
 const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
+    const material = yield* MaterialTestFixtures;
     const page = yield* PageTestFixtures;
     const questionRenderer = yield* questionManifest();
     const articleEntry = article.entries.find(
@@ -54,7 +56,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
     ] = yield* Effect.all(
       [
         selectPreviewDocument(article.checkoutRoot, articleEntry.sourcePath),
-        selectPreviewDocument(article.checkoutRoot, englishPath),
+        selectPreviewDocument(material.checkoutRoot, englishPath),
         selectPreviewDocument(article.checkoutRoot, pageEntry.sourcePath),
         selectPreviewDocument(article.checkoutRoot, promptEntry.sourcePath),
         selectPreviewDocument(article.checkoutRoot, answerEntry.sourcePath),
@@ -90,6 +92,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
       choicesPath: CorpusSourcePathSchema.make(
         promptEntry.sourceRoot.concat("/choices.ts")
       ),
+      materialRenderer: material.rendererManifest,
       materialSource,
       pageRenderer: page.rendererManifest,
       pageSource,
@@ -118,6 +121,7 @@ function projectSource(
 const previewTestLayer = Layer.mergeAll(
   NodeServices.layer,
   articleTestLayer,
+  materialTestLayer,
   pageTestLayer
 );
 
@@ -135,7 +139,7 @@ layer(previewTestLayer)("preview source", (it) => {
           projectSource(
             fixture.checkoutRoot,
             fixture.materialSource,
-            materialRenderer
+            fixture.materialRenderer
           ),
           projectSource(
             fixture.checkoutRoot,
