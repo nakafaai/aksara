@@ -1,54 +1,93 @@
 import { describe, expect, it } from "vitest";
 
-import { effectTestAdapterViolations } from "#scripts/effect-tests";
+import { effectTestViolations } from "#scripts/effect-tests";
 
-describe("Effect test adapter policy", () => {
-  it("requires the shared adapter for explicit Effect runtime tests", () => {
+describe("Effect test execution policy", () => {
+  it("rejects direct Effect runtime execution", () => {
     const file = "packages/example/src/program.test.ts";
     const source = [
       'import { Effect } from "effect";',
-      'import { it } from "vitest";',
-      'it("runs", async () => Effect.runPromise(Effect.void));',
+      'import { it } from "@effect/vitest";',
+      'it("runs", () => Effect.runPromise(Effect.void));',
     ].join("\n");
 
-    expect(effectTestAdapterViolations(file, source)).toEqual([
-      `${file}: Effect runtime tests must import @nakafa/testing/effect.`,
+    expect(effectTestViolations(file, source)).toEqual([
+      `${file}: execute Effects through @effect/vitest instead of Effect.run*.`,
     ]);
   });
 
-  it("allows the shared adapter, pure tests, and production modules", () => {
+  it("rejects the removed pass-through adapter", () => {
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.test.ts",
-        'import { it } from "@nakafa/testing/effect";\nimport { vi } from "vitest";\nEffect.runPromise(program);'
+        'import { it } from "@nakafa/testing/effect";\nit("pure", () => true);'
+      )
+    ).toEqual([
+      "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
+    ]);
+  });
+
+  it("reports legacy imports and direct runners independently", () => {
+    expect(
+      effectTestViolations(
+        "packages/example/src/program.test.ts",
+        'import { it } from "@nakafa/testing/effect";\nEffect.runSync(program);'
+      )
+    ).toEqual([
+      "packages/example/src/program.test.ts: import Effect test APIs directly from @effect/vitest.",
+      "packages/example/src/program.test.ts: execute Effects through @effect/vitest instead of Effect.run*.",
+    ]);
+  });
+
+  it("allows native Effect Vitest, pure Vitest, and runtime boundaries", () => {
+    expect(
+      effectTestViolations(
+        "packages/example/src/program.test.ts",
+        'import { it } from "@effect/vitest";\nit.effect("runs", () => program);'
       )
     ).toEqual([]);
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.test.ts",
         'import { it } from "vitest";\nit("pure", () => true);'
       )
     ).toEqual([]);
     expect(
-      effectTestAdapterViolations(
+      effectTestViolations(
         "packages/example/src/program.ts",
         'import { it } from "vitest";\nEffect.runSync(program);'
       )
     ).toEqual([]);
   });
 
+  it("ignores runtime source examples stored in fixture strings", () => {
+    expect(
+      effectTestViolations(
+        "packages/contracts/scripts/consumer.test.ts",
+        'expect(createInstallRunner()).toContain("await Effect.runPromise(");'
+      )
+    ).toEqual([]);
+  });
+
   it("covers every direct Effect runner", () => {
     const runners = [
+      "runCallback",
+      "runCallbackWith",
       "runFork",
+      "runForkWith",
       "runPromise",
       "runPromiseExit",
+      "runPromiseExitWith",
+      "runPromiseWith",
       "runSync",
       "runSyncExit",
+      "runSyncExitWith",
+      "runSyncWith",
     ];
 
     for (const runner of runners) {
       expect(
-        effectTestAdapterViolations(
+        effectTestViolations(
           "program.test.ts",
           `import { it } from "vitest";\nEffect.${runner}(program);`
         )

@@ -131,7 +131,7 @@ const multiple = require("first", "second");
     expect(
       importViolations(
         "packages/compiler/src/compile.test.ts",
-        'import { it } from "@nakafa/testing/effect";',
+        'import config from "@nakafa/testing";',
         resolveIdentity
       )
     ).toEqual([]);

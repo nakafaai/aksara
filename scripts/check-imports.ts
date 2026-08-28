@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { isObject } from "effect/Predicate";
 import ts from "typescript";
-import { effectTestAdapterViolations } from "#scripts/effect-tests";
+import { effectTestViolations } from "#scripts/effect-tests";
 import {
   enforceViolations,
   trackedFiles,
@@ -260,9 +260,9 @@ enforceViolations(
   )
 );
 enforceViolations(
-  "Effect runtime tests must use the shared Effect Vitest adapter",
+  "Effect tests must use native Effect Vitest execution",
   typescriptFiles().flatMap((file) =>
-    effectTestAdapterViolations(file, readFileSync(file, "utf8"))
+    effectTestViolations(file, readFileSync(file, "utf8"))
   )
 );
 const workspaceSourceCondition = sourceConditionFromConfig(

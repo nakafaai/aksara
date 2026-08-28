@@ -2,11 +2,18 @@ import ts from "typescript";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;
 const EFFECT_RUNNERS = new Set([
+  "runCallback",
+  "runCallbackWith",
   "runFork",
+  "runForkWith",
   "runPromise",
   "runPromiseExit",
+  "runPromiseExitWith",
+  "runPromiseWith",
   "runSync",
   "runSyncExit",
+  "runSyncExitWith",
+  "runSyncWith",
 ]);
 
 /** Checks whether one call directly runs an Effect through the runtime API. */
@@ -20,8 +27,8 @@ function isEffectRunner(node: ts.Node) {
   );
 }
 
-/** Reports Effect runtime tests that bypass the shared Effect Vitest adapter. */
-export function effectTestAdapterViolations(file: string, sourceText: string) {
+/** Reports test modules that retain legacy or direct Effect execution. */
+export function effectTestViolations(file: string, sourceText: string) {
   if (!TEST_MODULE_PATTERN.test(file)) {
     return [];
   }
@@ -31,7 +38,7 @@ export function effectTestAdapterViolations(file: string, sourceText: string) {
     ts.ScriptTarget.Latest,
     true
   );
-  let importsEffectAdapter = false;
+  let importsLegacyAdapter = false;
   let runsEffect = false;
   const nodes: ts.Node[] = [sourceFile];
   for (const node of nodes) {
@@ -40,7 +47,7 @@ export function effectTestAdapterViolations(file: string, sourceText: string) {
       ts.isStringLiteral(node.moduleSpecifier) &&
       node.moduleSpecifier.text === "@nakafa/testing/effect"
     ) {
-      importsEffectAdapter = true;
+      importsLegacyAdapter = true;
     }
     if (isEffectRunner(node)) {
       runsEffect = true;
@@ -49,8 +56,16 @@ export function effectTestAdapterViolations(file: string, sourceText: string) {
       nodes.push(child);
     });
   }
-  if (!runsEffect || importsEffectAdapter) {
-    return [];
+  const violations: string[] = [];
+  if (importsLegacyAdapter) {
+    violations.push(
+      `${file}: import Effect test APIs directly from @effect/vitest.`
+    );
   }
-  return [`${file}: Effect runtime tests must import @nakafa/testing/effect.`];
+  if (runsEffect) {
+    violations.push(
+      `${file}: execute Effects through @effect/vitest instead of Effect.run*.`
+    );
+  }
+  return violations;
 }
