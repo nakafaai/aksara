@@ -22,6 +22,10 @@ import {
   mokhtasarGermanEdition,
 } from "#corpus/quran/catalog/mokhtasar";
 import {
+  bubenheimNamesAttribution,
+  kemenagNamesAttribution,
+} from "#corpus/quran/catalog/names";
+import {
   quranencEnglishAttribution,
   quranencGermanAttribution,
   quranencIndonesianAttribution,
@@ -34,11 +38,13 @@ import {
 
 export const QuranCatalogEntrySchema = Schema.Struct({
   attribution: QuranSourceAttributionSchema,
-  provenance: Schema.Struct({
-    evidence: Schema.Trimmed.check(Schema.isNonEmpty()),
-    scope: QuranProvenanceScopeSchema,
-    status: QuranProvenanceStatusSchema,
-  }),
+  provenance: Schema.NonEmptyArray(
+    Schema.Struct({
+      evidence: Schema.Trimmed.check(Schema.isNonEmpty()),
+      scope: QuranProvenanceScopeSchema,
+      status: QuranProvenanceStatusSchema,
+    })
+  ),
   tafsirAccess: Schema.optional(QuranTafsirAccessSchema),
 });
 export type QuranCatalogEntry = typeof QuranCatalogEntrySchema.Type;
@@ -71,44 +77,78 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
     )
   )
   .make([
-    catalogEntry(tanzilTextAttribution, {
-      evidence:
-        "The pinned Uthmani v1.1 bytes are generated and published verbatim with the required Tanzil attribution, update link, license notice, and unchanged raw copyright block.",
-      scope: "arabic-text",
-      status: "approved",
-    }),
-    catalogEntry(tanzilMetadataAttribution, {
-      evidence:
-        "Surah identity, verse counts, revelation order and place, partitions, and sajda markers come only from the pinned official metadata v1.0 bytes declaring cc-by.",
-      scope: "metadata",
-      status: "approved",
-    }),
-    catalogEntry(quranencEnglishAttribution, {
-      evidence:
-        "The official exact XML transcript, publisher, v1.0.19-xml.1 identifier, republication terms, and update endpoint are pinned without modifying content.",
-      scope: "en-translation",
-      status: "approved",
-    }),
-    catalogEntry(quranencIndonesianAttribution, {
-      evidence:
-        "The official exact XML transcript, publisher, v1.0.1-xml.1 identifier, republication terms, and update endpoint are pinned without modifying content.",
-      scope: "id-translation",
-      status: "approved",
-    }),
-    catalogEntry(quranencGermanAttribution, {
-      evidence:
-        "The exact Bubenheim XML transcript, named translators, v1.1.4-xml.1 identifier, QuranEnc republication terms and update endpoint, and the official IslamHouse publication record are pinned. Content bytes remain unmodified.",
-      scope: "de-translation",
-      status: "approved",
-    }),
-    catalogEntry(
-      quranencTafsirAttribution,
+    catalogEntry(tanzilTextAttribution, [
       {
         evidence:
-          "All 114 official API responses are pinned as one domain-separated byte bundle; v1.0.0 publisher and republication terms are preserved without short or long reconstruction.",
-        scope: "id-tafsir",
+          "The pinned Uthmani v1.1 bytes are generated and published verbatim with the required Tanzil attribution, update link, license notice, and unchanged raw copyright block.",
+        scope: "arabic-text",
         status: "approved",
       },
+    ]),
+    catalogEntry(tanzilMetadataAttribution, [
+      {
+        evidence:
+          "Surah identity, verse counts, revelation order and place, partitions, and sajda markers come only from the pinned official metadata v1.0 bytes declaring cc-by.",
+        scope: "metadata",
+        status: "approved",
+      },
+      {
+        evidence:
+          "Every English surah-name meaning is read directly from the pinned Tanzil metadata ename field.",
+        scope: "en-surah-name",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(kemenagNamesAttribution, [
+      {
+        evidence:
+          "All 114 Indonesian surah-name meanings were transcribed from the pinned official LPMQ 2019 revision archive. Its publication record, public-use statement, published MD5, and exact SHA-256 are verified before generation.",
+        scope: "id-surah-name",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(bubenheimNamesAttribution, [
+      {
+        evidence:
+          "All 114 German surah headings and stated source-footnote meanings were transcribed from the pinned official Bubenheim and Elyas PDF. The IslamHouse record, open-rights FAQ, publisher, translators, and exact PDF bytes are authenticated.",
+        scope: "de-surah-name",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(quranencEnglishAttribution, [
+      {
+        evidence:
+          "The official exact XML transcript, publisher, v1.0.19-xml.1 identifier, republication terms, and update endpoint are pinned without modifying content.",
+        scope: "en-translation",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(quranencIndonesianAttribution, [
+      {
+        evidence:
+          "The official exact XML transcript, publisher, v1.0.1-xml.1 identifier, republication terms, and update endpoint are pinned without modifying content.",
+        scope: "id-translation",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(quranencGermanAttribution, [
+      {
+        evidence:
+          "The exact Bubenheim XML transcript, named translators, v1.1.4-xml.1 identifier, QuranEnc republication terms and update endpoint, and the official IslamHouse publication record are pinned. Content bytes remain unmodified.",
+        scope: "de-translation",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(
+      quranencTafsirAttribution,
+      [
+        {
+          evidence:
+            "All 114 official API responses are pinned as one domain-separated byte bundle; v1.0.0 publisher and republication terms are preserved without short or long reconstruction.",
+          scope: "id-tafsir",
+          status: "approved",
+        },
+      ],
       QuranTafsirAccessSchema.make({
         appLocale: makeAppLocale(INDONESIAN_APP_LOCALE_CODE),
         kind: "embedded",
@@ -119,11 +159,13 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
     ),
     catalogEntry(
       mokhtasarEnglishAttribution,
-      {
-        evidence: `The official public book page identifies English book ${mokhtasarEnglishEdition.bookId} as complete catalog version ${mokhtasarEnglishEdition.version}. ${mokhtasarCatalog.terms.reason}`,
-        scope: "en-tafsir-access",
-        status: "approved",
-      },
+      [
+        {
+          evidence: `The official public book page identifies English book ${mokhtasarEnglishEdition.bookId} as complete catalog version ${mokhtasarEnglishEdition.version}. ${mokhtasarCatalog.terms.reason}`,
+          scope: "en-tafsir-access",
+          status: "approved",
+        },
+      ],
       QuranTafsirAccessSchema.make({
         appLocale: makeAppLocale(ENGLISH_APP_LOCALE_CODE),
         kind: "external",
@@ -134,11 +176,13 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
     ),
     catalogEntry(
       mokhtasarGermanAttribution,
-      {
-        evidence: `The official public book page identifies German book ${mokhtasarGermanEdition.bookId} as complete catalog version ${mokhtasarGermanEdition.version}. ${mokhtasarCatalog.terms.reason}`,
-        scope: "de-tafsir-access",
-        status: "approved",
-      },
+      [
+        {
+          evidence: `The official public book page identifies German book ${mokhtasarGermanEdition.bookId} as complete catalog version ${mokhtasarGermanEdition.version}. ${mokhtasarCatalog.terms.reason}`,
+          scope: "de-tafsir-access",
+          status: "approved",
+        },
+      ],
       QuranTafsirAccessSchema.make({
         appLocale: makeAppLocale(GERMAN_APP_LOCALE_CODE),
         kind: "external",

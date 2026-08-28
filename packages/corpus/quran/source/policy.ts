@@ -4,10 +4,10 @@ import { QuranSourceArtifactSchema } from "@nakafa/aksara-contracts/quran/source
 import type { LocalizedSourceMap } from "#corpus/locale/source";
 
 /** Domain that authenticates the complete ordered official data bundle. */
-export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle.v2";
+export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle";
 
 /** Domain that authenticates the 114 ordered QuranEnc Tafsir responses. */
-export const QURAN_TAFSIR_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle.v1";
+export const QURAN_TAFSIR_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle";
 
 /** Builds one exact source artifact identity from pinned official bytes. */
 function artifact(byteCount: number, digest: string, fileCount = 1) {
@@ -29,10 +29,12 @@ interface QuranSourcePolicy {
   readonly data: {
     readonly arabic: PinnedQuranFile;
     readonly metadata: PinnedQuranFile;
+    readonly names: LocalizedSourceMap<PinnedQuranFile>;
     readonly translations: LocalizedSourceMap<PinnedQuranFile>;
   };
   readonly evidence: {
     readonly germanPublication: PinnedQuranFile;
+    readonly kemenagPublication: PinnedQuranFile;
   };
   readonly tafsir: {
     readonly artifact: ReturnType<typeof artifact>;
@@ -40,7 +42,9 @@ interface QuranSourcePolicy {
     readonly name: string;
   };
   readonly terms: {
+    readonly islamhouse: PinnedQuranFile;
     readonly quranenc: PinnedQuranFile;
+    readonly kemenag: PinnedQuranFile;
     readonly tanzil: PinnedQuranFile;
   };
 }
@@ -63,6 +67,24 @@ export const QURAN_SOURCE_POLICY = {
       ),
       name: "tanzil-data.xml",
       path: "tanzil/data.xml",
+    },
+    names: {
+      de: {
+        artifact: artifact(
+          4_944_410,
+          "bdd3a3a52bff49be17ef5b7133c6ee258bf82dad3807775eb712de99e1ce5006"
+        ),
+        name: "bubenheim-edition.pdf",
+        path: "german/edition.pdf",
+      },
+      id: {
+        artifact: artifact(
+          2_625_985,
+          "1468325f35e4300f7cbe2bed4f920f6316a7940d7e4542c9bab100355f586563"
+        ),
+        name: "kemenag-translation.rar",
+        path: "kemenag/translation.rar",
+      },
     },
     translations: {
       de: {
@@ -100,17 +122,41 @@ export const QURAN_SOURCE_POLICY = {
       name: "islamhouse-german-bubenheim.json",
       path: "german/publication.json",
     },
+    kemenagPublication: {
+      artifact: artifact(
+        42_174,
+        "18b6cbc3d6ff090bda59e1a6511025b6deb06613be3999bdcbbe631be69c6274"
+      ),
+      name: "kemenag-publication.html",
+      path: "kemenag/publication.html",
+    },
   },
   tafsir: {
     artifact: artifact(
       6_584_353,
-      "b46b730418767dfacdf34ac35cec4277822a019b631910d603def280c3d56364",
+      "39bb758c581712487be03215057cfa697280baf6245d8feb760d86df8361172b",
       114
     ),
     directory: "quranenc/tafsir",
     name: "quranenc-tafsir",
   },
   terms: {
+    islamhouse: {
+      artifact: artifact(
+        97_233,
+        "9b28dc4d1b745e98028227488f77d7db8e46a8ac912c322ae34482f0c389d707"
+      ),
+      name: "islamhouse-faq.html",
+      path: "german/faq.html",
+    },
+    kemenag: {
+      artifact: artifact(
+        49_424,
+        "05f896c4cb9d51a16c32035ae42cd3a5ba9a2245db2e97f7489680f726156115"
+      ),
+      name: "kemenag-rights.html",
+      path: "kemenag/rights.html",
+    },
     quranenc: {
       artifact: artifact(
         1_051_521,
@@ -137,3 +183,10 @@ export const GERMAN_QURAN_SOURCE_URL =
 /** Official IslamHouse record for the German edition and its credited source. */
 export const GERMAN_QURAN_PUBLICATION_URL =
   "https://api3.islamhouse.com/v3/paV29H2gm56kvLPy/main/get-item/59081/de/json";
+
+/** Official full Bubenheim and Elyas edition published through IslamHouse. */
+export const GERMAN_QURAN_EDITION_URL =
+  "https://d1.islamhouse.com/data/de/ih_books/single/de-der-edle-quran-und-die-ubersetzung-seiner-bedeutung.pdf";
+
+/** Official IslamHouse reuse conditions for its published materials. */
+export const GERMAN_QURAN_TERMS_URL = "https://d1.islamhouse.com/html/faq.htm";

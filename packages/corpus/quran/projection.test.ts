@@ -123,6 +123,12 @@ describe("Quran projection", () => {
           openingSearches.find(({ appLocale }) => appLocale === "en")?.text
         ).toContain("The Opening");
         expect(
+          openingSearches.find(({ appLocale }) => appLocale === "id")?.text
+        ).toContain("Pembuka");
+        expect(
+          openingSearches.find(({ appLocale }) => appLocale === "de")?.text
+        ).toContain("Die Eröffnende");
+        expect(
           openingSearches
             .filter(({ appLocale }) => appLocale !== "en")
             .every(({ text }) => !text.includes("The Opening"))

@@ -38,7 +38,7 @@ describe("Quran source catalog", () => {
           records,
         });
 
-        expect(attribution.sources).toHaveLength(8);
+        expect(attribution.sources).toHaveLength(10);
         expect(attribution.sources.every(({ copy }) => copy.length === 3)).toBe(
           true
         );
@@ -55,7 +55,7 @@ describe("Quran source catalog", () => {
             sourceId: "mokhtasar-german",
           },
         ]);
-        expect(records).toHaveLength(8);
+        expect(records).toHaveLength(11);
         expect(manifest.status).toBe("approved");
       })
   );
@@ -106,6 +106,7 @@ describe("Quran source catalog", () => {
       expect(attribution.sources.map(({ id }) => id)).toEqual([
         "tanzil-text",
         "tanzil-metadata",
+        "bubenheim-names",
         "quranenc-german",
         "mokhtasar-german",
       ]);
@@ -195,7 +196,7 @@ describe("Quran source catalog", () => {
         provenance: tafsir.provenance,
       } satisfies QuranCatalogEntry;
       const withoutProvenance = quranCatalog.filter(
-        ({ provenance }) => provenance.scope !== "id-tafsir"
+        ({ attribution }) => attribution.id !== "quranenc-tafsir"
       );
       const duplicateAccess = replace("tanzil-text", {
         ...text,
@@ -203,7 +204,7 @@ describe("Quran source catalog", () => {
       });
       const duplicateProvenance = replace("quranenc-german", {
         ...german,
-        provenance: tafsir.provenance,
+        provenance: [...german.provenance, ...tafsir.provenance],
       });
       const mismatchedProvenance = quranCatalog.map((entry) => {
         if (entry.attribution.id === "quranenc-english") {

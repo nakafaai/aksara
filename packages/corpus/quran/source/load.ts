@@ -79,32 +79,59 @@ function decodeSource(name: string, bytes: Uint8Array) {
   });
 }
 
-/** Reads one source-controlled file and verifies its exact byte identity. */
+/** Reads one source-controlled artifact without changing its bytes. */
+const readSourceFile = Effect.fn("AksaraCorpus.readQuranSourceFile")(function* (
+  fileSystem: FileSystem.FileSystem,
+  path: Path.Path,
+  sourceRoot: string,
+  source: PinnedQuranFile
+) {
+  return yield* fileSystem.readFile(path.join(sourceRoot, source.path)).pipe(
+    Effect.mapError(
+      () =>
+        new QuranSourceFileError({
+          detail: `Could not read pinned source ${source.name}.`,
+        })
+    )
+  );
+});
+
+/** Authenticates one source-controlled artifact against its pinned identity. */
+const authenticateSource = Effect.fn("AksaraCorpus.authenticateQuranSource")(
+  function* (source: PinnedQuranFile, bytes: Uint8Array) {
+    if (
+      bytes.byteLength !== source.artifact.byteCount ||
+      digest(bytes) !== source.artifact.digest.slice("sha256:".length)
+    ) {
+      return yield* new QuranSourceFileError({
+        detail: `Pinned source drifted: ${source.name}.`,
+      });
+    }
+    return bytes;
+  }
+);
+
+/** Reads one binary source artifact and verifies its exact byte identity. */
 const readPinnedFile = Effect.fn("AksaraCorpus.readPinnedQuranFile")(function* (
   fileSystem: FileSystem.FileSystem,
   path: Path.Path,
   sourceRoot: string,
   source: PinnedQuranFile
 ) {
-  const bytes = yield* fileSystem
-    .readFile(path.join(sourceRoot, source.path))
-    .pipe(
-      Effect.mapError(
-        () =>
-          new QuranSourceFileError({
-            detail: `Could not read pinned source ${source.name}.`,
-          })
-      )
-    );
+  const bytes = yield* readSourceFile(fileSystem, path, sourceRoot, source);
+  return yield* authenticateSource(source, bytes);
+});
+
+/** Reads one authenticated text source without accepting replacement bytes. */
+const readPinnedText = Effect.fn("AksaraCorpus.readPinnedQuranText")(function* (
+  fileSystem: FileSystem.FileSystem,
+  path: Path.Path,
+  sourceRoot: string,
+  source: PinnedQuranFile
+) {
+  const bytes = yield* readSourceFile(fileSystem, path, sourceRoot, source);
   const text = yield* decodeSource(source.name, bytes);
-  if (
-    bytes.byteLength !== source.artifact.byteCount ||
-    digest(bytes) !== source.artifact.digest.slice("sha256:".length)
-  ) {
-    return yield* new QuranSourceFileError({
-      detail: `Pinned source drifted: ${source.name}.`,
-    });
-  }
+  yield* authenticateSource(source, bytes);
   return { bytes, text };
 });
 
@@ -172,13 +199,13 @@ export const loadPinnedQuranSources = Effect.fn(
   const sourceRoot = path.join(checkoutRoot, "packages/corpus/quran/sources");
   const dataBytes = yield* Effect.all(
     {
-      arabic: readPinnedFile(
+      arabic: readPinnedText(
         fileSystem,
         path,
         sourceRoot,
         QURAN_SOURCE_POLICY.data.arabic
       ),
-      metadata: readPinnedFile(
+      metadata: readPinnedText(
         fileSystem,
         path,
         sourceRoot,
@@ -189,19 +216,19 @@ export const loadPinnedQuranSources = Effect.fn(
   );
   const translations = yield* Effect.all(
     {
-      de: readPinnedFile(
+      de: readPinnedText(
         fileSystem,
         path,
         sourceRoot,
         QURAN_SOURCE_POLICY.data.translations.de
       ),
-      en: readPinnedFile(
+      en: readPinnedText(
         fileSystem,
         path,
         sourceRoot,
         QURAN_SOURCE_POLICY.data.translations.en
       ),
-      id: readPinnedFile(
+      id: readPinnedText(
         fileSystem,
         path,
         sourceRoot,
@@ -210,11 +237,27 @@ export const loadPinnedQuranSources = Effect.fn(
     },
     { concurrency: 3 }
   );
-  yield* readPinnedFile(
-    fileSystem,
-    path,
-    sourceRoot,
-    QURAN_SOURCE_POLICY.evidence.germanPublication
+  const names = yield* Effect.all(
+    {
+      de: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.names.de
+      ),
+      id: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.names.id
+      ),
+    },
+    { concurrency: 2 }
+  );
+  yield* Effect.forEach(
+    Object.values(QURAN_SOURCE_POLICY.evidence),
+    (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
+    { concurrency: 2, discard: true }
   );
   yield* Effect.forEach(
     Object.values(QURAN_SOURCE_POLICY.terms),
@@ -228,6 +271,8 @@ export const loadPinnedQuranSources = Effect.fn(
   const canonicalData: (readonly [string, Uint8Array])[] = [
     [QURAN_SOURCE_POLICY.data.arabic.name, dataBytes.arabic.bytes],
     [QURAN_SOURCE_POLICY.data.metadata.name, dataBytes.metadata.bytes],
+    [QURAN_SOURCE_POLICY.data.names.id.name, names.id],
+    [QURAN_SOURCE_POLICY.data.names.de.name, names.de],
     [QURAN_SOURCE_POLICY.data.translations.en.name, translations.en.bytes],
     [QURAN_SOURCE_POLICY.data.translations.id.name, translations.id.bytes],
   ];

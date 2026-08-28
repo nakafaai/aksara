@@ -12,6 +12,7 @@ import {
   QuranEmbeddedSourceIdSchema,
   QuranExternalSourceIdSchema,
   type QuranSourceId,
+  quranNameSourceId,
   quranTafsirSourceId,
   quranTranslationSourceId,
 } from "#contracts/quran/identity";
@@ -27,6 +28,7 @@ export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
 ): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
   const sourceIds: QuranSourceId[] = activeAppLocales.flatMap((appLocale) => [
+    quranNameSourceId(appLocale),
     quranTranslationSourceId(appLocale),
     quranTafsirSourceId(appLocale),
   ]);
@@ -41,10 +43,15 @@ export function quranSourceIds(
 
 /** Counts exact source files required by one active locale set. */
 export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
+  const supplementalNameFileCount = activeAppLocales.filter(
+    (appLocale) => quranNameSourceId(appLocale) !== "tanzil-metadata"
+  ).length;
   const tafsirFileCount = activeAppLocales.includes(AppLocaleSchema.make("id"))
     ? QURAN_SURAH_COUNT
     : 0;
-  return 2 + activeAppLocales.length + tafsirFileCount;
+  return (
+    2 + activeAppLocales.length + supplementalNameFileCount + tafsirFileCount
+  );
 }
 
 const HttpsUrlSchema = Schema.String.pipe(

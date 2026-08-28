@@ -48,7 +48,7 @@ describe("Quran row hashing", () => {
     );
 
     expect(payload && canonicalizeQuranRow(payload)).toContain(
-      '"meaning":{"appLocale":"en","text":"Test Surah 1"}'
+      '"meaning":{"de":"Technische Sure 1","en":"Test Surah 1","id":"Surah Teknis 1"}'
     );
   });
 

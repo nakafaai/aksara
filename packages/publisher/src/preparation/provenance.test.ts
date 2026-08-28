@@ -3,6 +3,7 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { quranSourceFileCount } from "@nakafa/aksara-contracts/quran/source";
 import { Effect } from "effect";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 
@@ -22,7 +23,7 @@ const blockedQuran = QuranSnapshotSchema.make({
   snapshotId: Sha256HashSchema.make(`sha256:${"5".repeat(64)}`),
   sourceBytes: 13_030_246,
   sourceDigest: Sha256HashSchema.make(`sha256:${"6".repeat(64)}`),
-  sourceFileCount: 119,
+  sourceFileCount: quranSourceFileCount(ACTIVE_APP_LOCALES),
   surahCount: 114,
   tafsirLocales: ["id"],
   verseCount: 6236,

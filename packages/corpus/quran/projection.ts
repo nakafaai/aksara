@@ -22,6 +22,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Stream } from "effect";
 import {
+  appLocaleCode,
   requireSourceLocale,
   type SourceLocaleUnavailableError,
 } from "#corpus/locale/source";
@@ -72,13 +73,6 @@ function projectSurah(surah: QuranSurah) {
     numberOfVerses: surah.numberOfVerses,
     revelation: surah.revelation,
   });
-}
-
-/** Returns a signed name meaning only to its exact source locale. */
-function nameMeaning(surah: QuranSurah, appLocale: AppLocale) {
-  return surah.name.meaning.appLocale === appLocale
-    ? [surah.name.meaning.text]
-    : [];
 }
 
 /** Builds deterministic contiguous chunks of at most six verses. */
@@ -167,7 +161,7 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
     text: [
       title,
       surah.name.arabic,
-      ...nameMeaning(surah, appLocale),
+      surah.name.meaning[appLocaleCode(appLocale)],
       surah.revelation.place,
       verseText,
     ].join(" "),
