@@ -62,9 +62,10 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
         expect(prepared.manifest).toMatchObject({
           itemCount: 2,
           projectionCount: 1,
-          scope: { content: [] },
+          scope: { families: ["material"], snapshots: [] },
           snapshots: inheritContentSnapshots(null),
         });
+        expect("content" in prepared.manifest.scope).toBe(false);
         expect([...items].map(({ index }) => index)).toEqual([0, 1]);
         expect([...projections]).toEqual([contentRecord.projection]);
         expect([...snapshotManifests]).toEqual([]);
