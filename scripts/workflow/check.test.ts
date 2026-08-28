@@ -287,5 +287,14 @@ describe("workflow policy", () => {
     ).toThrow(
       "Content releases must validate and pass one explicit scalable scope"
     );
+    expect(() =>
+      verifyWorkflows({
+        ...sources,
+        release: sources.release.replace(
+          'snapshot_args+=(--base-snapshot "$BASE_SNAPSHOT")',
+          'snapshot_args+=("$BASE_SNAPSHOT")'
+        ),
+      })
+    ).toThrow("Content releases must bind the exact base snapshot");
   });
 });
