@@ -1,8 +1,11 @@
-import { describe, expect, it } from "@nakafa/testing/effect";
+import { it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
+import { describe, expect, test } from "vitest";
 import { importCorpusModules } from "#corpus/test/imports";
 import {
   defineTryoutExamSource,
+  TryoutDecodeError,
+  TryoutDuplicateError,
   TryoutExamSourceSchema,
 } from "#corpus/tryout/schema";
 
@@ -94,79 +97,83 @@ function withSections(sections: readonly TryoutSectionInput[]) {
 }
 
 describe("tryout schema", () => {
-  it("decodes visible and single direct-entry try-out sources", async () => {
-    const [visible, directEntry] = await Effect.runPromise(
-      Effect.all([
+  it.effect("decodes visible and single direct-entry try-out sources", () =>
+    Effect.gen(function* () {
+      const [visible, directEntry] = yield* Effect.all([
         defineTryoutExamSource(tryoutSource),
         defineTryoutExamSource(withSections([directEntrySection()])),
-      ])
-    );
+      ]);
 
-    expect(visible.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe("visible");
-    expect(directEntry.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
-      "internal-entry"
-    );
-  });
+      expect(visible.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
+        "visible"
+      );
+      expect(directEntry.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
+        "internal-entry"
+      );
+    })
+  );
 
-  it("reports duplicate keys at their exact authored scope", async () => {
-    const duplicate = await Effect.runPromise(
-      defineTryoutExamSource(
+  it.effect("reports duplicate keys at their exact authored scope", () =>
+    Effect.gen(function* () {
+      const duplicate = yield* defineTryoutExamSource(
         withSections([visibleSection(), visibleSection()])
-      ).pipe(Effect.flip)
-    );
+      ).pipe(Effect.flip);
 
-    expect(duplicate).toMatchObject({
-      _tag: "TryoutDuplicateError",
-      key: "general-reasoning",
-      scope: "snbt:2027:set-1:sections",
-    });
-  });
+      expect(duplicate).toBeInstanceOf(TryoutDuplicateError);
+      expect(duplicate).toMatchObject({
+        _tag: "TryoutDuplicateError",
+        key: "general-reasoning",
+        scope: "snbt:2027:set-1:sections",
+      });
+    })
+  );
 
-  it("maps strict decoding failures into the typed domain error", async () => {
-    const failure = await Effect.runPromise(
-      defineTryoutExamSource({
+  it.effect("maps strict decoding failures into the typed domain error", () =>
+    Effect.gen(function* () {
+      const failure = yield* defineTryoutExamSource({
         ...tryoutSource,
         examKey: "SNBT",
-      }).pipe(Effect.flip)
-    );
+      }).pipe(Effect.flip);
 
-    expect(failure).toMatchObject({ _tag: "TryoutDecodeError" });
-    expect(String(failure.cause)).toContain("Invalid try-out key.");
-  });
+      expect(failure).toBeInstanceOf(TryoutDecodeError);
+      expect(failure._tag).toBe("TryoutDecodeError");
+      expect(String(failure.cause)).toContain("Invalid try-out key.");
+    })
+  );
 
-  it("validates both complete authored exam catalogs", async () => {
-    const { snbtTryoutSource } = await import(
-      "#corpus/tryout/indonesia/snbt/source"
-    );
-    const { tkaTryoutSource } = await import(
-      "#corpus/tryout/indonesia/tka/source"
-    );
-    const sources = await Effect.runPromise(
-      Effect.all([snbtTryoutSource, tkaTryoutSource])
-    );
+  it.effect("validates both complete authored exam catalogs", () =>
+    Effect.gen(function* () {
+      const { snbtTryoutSource } = yield* Effect.promise(
+        () => import("#corpus/tryout/indonesia/snbt/source")
+      );
+      const { tkaTryoutSource } = yield* Effect.promise(
+        () => import("#corpus/tryout/indonesia/tka/source")
+      );
+      const sources = yield* Effect.all([snbtTryoutSource, tkaTryoutSource]);
 
-    expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
-    expect(
-      sources.every(
-        (source) =>
-          source.countryRouteSlugs.de !== undefined &&
-          source.examRouteSlugs.de !== undefined &&
-          source.tracks.every(
-            (track) =>
-              track.routeSlugs.de !== undefined &&
-              track.sets.every(
-                (set) =>
-                  set.routeSlugs.de !== undefined &&
-                  set.sections.every(
-                    (entry) => entry.routeSlugs.de !== undefined
-                  )
-              )
-          )
-      )
-    ).toBe(true);
-  });
+      expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
+      expect(
+        sources.every(
+          (source) =>
+            source.countryRouteSlugs.de !== undefined &&
+            source.examRouteSlugs.de !== undefined &&
+            source.tracks.every(
+              (track) =>
+                track.routeSlugs.de !== undefined &&
+                track.sets.every(
+                  (set) =>
+                    set.routeSlugs.de !== undefined &&
+                    set.sections.every(
+                      (entry) => entry.routeSlugs.de !== undefined
+                    )
+                )
+            )
+        )
+      ).toBe(true);
+    })
+  );
 
-  it.each([
+  test.each([
     {
       field: "exam key",
       input: { ...tryoutSource, examKey: "SNBT" },
@@ -193,7 +200,7 @@ describe("tryout schema", () => {
     }
   });
 
-  it.each([
+  it.effect.each([
     {
       name: "country and exam",
       questionSourcePath:
@@ -211,21 +218,21 @@ describe("tryout schema", () => {
     },
   ])(
     "rejects contradictory question-source $name ownership",
-    async ({ questionSourcePath }) => {
-      const failure = await Effect.runPromise(
-        defineTryoutExamSource(
+    ({ questionSourcePath }) =>
+      Effect.gen(function* () {
+        const failure = yield* defineTryoutExamSource(
           withSections([{ ...section, questionSourcePath }])
-        ).pipe(Effect.flip)
-      );
+        ).pipe(Effect.flip);
 
-      expect(failure).toMatchObject({ _tag: "TryoutDecodeError" });
-      expect(String(failure.cause)).toContain(
-        "Question sources must match their country, exam, section, and set."
-      );
-    }
+        expect(failure).toBeInstanceOf(TryoutDecodeError);
+        expect(failure._tag).toBe("TryoutDecodeError");
+        expect(String(failure.cause)).toContain(
+          "Question sources must match their country, exam, section, and set."
+        );
+      })
   );
 
-  it.each([
+  test.each([
     {
       name: "one direct-entry section beside a visible section",
       sections: [
@@ -253,11 +260,11 @@ describe("tryout schema", () => {
     }
   });
 
-  it("loads every authored try-out catalog module", async () => {
-    const files = await Effect.runPromise(
-      importCorpusModules("tryout/**/source.ts")
-    );
+  it.effect("loads every authored try-out catalog module", () =>
+    Effect.gen(function* () {
+      const files = yield* importCorpusModules("tryout/**/source.ts");
 
-    expect(files).toHaveLength(2);
-  });
+      expect(files).toHaveLength(2);
+    })
+  );
 });
