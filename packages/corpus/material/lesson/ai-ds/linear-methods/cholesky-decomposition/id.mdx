@@ -3,7 +3,7 @@ export const metadata = {
     description: "Pelajari dekomposisi Cholesky untuk matriks positif definit dengan algoritma efisien, faktorisasi segitiga bawah, dan analisis kompleksitas komputasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-14",
-    dateModified: "2026-08-22",
+    dateModified: "2026-08-29",
     subject: "Metode Linear AI",
 };
 
@@ -102,7 +102,7 @@ Jadi,
 <BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
 </MathContainer>
 
-Setelah faktor diketahui, penyelesaian <InlineMath math="Ax=b" /> cukup memakai dua substitusi segitiga, bukan invers matriks: selesaikan <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian selesaikan <InlineMath math="\tilde L^Tx=y" />.
+Setelah faktor diketahui, selesaikan <InlineMath math="Ax=b" /> melalui dua sistem segitiga: <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian <InlineMath math="\tilde L^Tx=y" />. Cara ini menghindari perhitungan invers matriks.
 
 ## Kompleksitas Algoritma Cholesky
 

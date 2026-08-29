@@ -3,7 +3,7 @@ export const metadata = {
     description: "Learn how Python iterables support loops, membership checks, truth tests, and positional unpacking.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-08-29",
     subject: "AI Programming",
 };
 
@@ -74,7 +74,7 @@ The operators `in` and `not in` ask whether a container contains a value. The ex
 
 ### Using in and not in Operators
 
-Built-in sequences search their items until they find a match or reach the end. Sets and dictionaries use their own lookup behavior, and dictionary membership checks keys rather than values.
+Built-in sequences search their items until they find a match or reach the end. Sets and dictionaries use their own lookup behavior. A membership check on a dictionary searches its keys.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ print("gram" in text)     # Output: True
 print("program" in text)  # Output: True
 print("java" in text)     # Output: False
 
-# Marker check only, not full email validation
+# Check for the marker used in this small example
 email = "user@example.com"
 if "@" in email and ".com" in email:
     print("Contains basic email markers")
@@ -243,7 +243,7 @@ try:
     print(result)
 except TypeError as e:
     print("Error:", e)
-# Output: Error: must be real number, not list
+# Output: Error: must be real number rather than list
 
 # Manual way that's troublesome for many arguments
 result = math.hypot(coordinates[0], coordinates[1])
@@ -303,7 +303,7 @@ print("Average grade:", average)
 
 ### Practical Uses of Unpacking
 
-The same syntax works in function calls and in collection displays. Use it when expansion is part of the intended interface, not when a function already accepts one iterable directly.
+The same syntax works in function calls and in collection displays. Use it when the interface expects expanded items. Pass the iterable directly when the function accepts one iterable.
 
 <CodeBlock
   data={[

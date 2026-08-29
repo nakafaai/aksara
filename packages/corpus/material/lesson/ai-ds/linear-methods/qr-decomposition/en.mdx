@@ -62,9 +62,9 @@ Economical QR decomposition only uses the parts that are actually needed:
 Here <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" /> only takes the first through <InlineMath math="n" />-th columns
 from <InlineMath math="Q" />, and <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is a square upper triangular matrix.
 
-Why is it called economical? Because we save storage space and computational time.
-Instead of storing matrix <InlineMath math="Q" /> of size <InlineMath math="m \times m" /> which can be very large,
-we only need <InlineMath math="Q_1" /> of size <InlineMath math="m \times n" />.
+Why is it called economical? It saves storage space and computational time.
+We keep <InlineMath math="Q_1" /> of size <InlineMath math="m \times n" />. The full matrix <InlineMath math="Q" />
+would have size <InlineMath math="m \times m" /> and can be very large.
 
 The columns of matrix <InlineMath math="Q_2 \in \mathbb{R}^{m \times (m-n)}" /> that we don't use form
 an orthonormal basis of <InlineMath math="\text{Kernel}A^T" />:
@@ -279,8 +279,8 @@ For <InlineMath math="m\ge n" />, Householder QR requires approximately
    <BlockMath math="s_i=1\text{ when }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ otherwise}" />
    </MathContainer>
 
-3. Instead of constructing <InlineMath math="Q" />, in compact storage one can also store
-   only the information needed for the transformation:
+3. Compact storage keeps only the information needed for the transformation,
+   so constructing <InlineMath math="Q" /> is unnecessary:
 
    <BlockMath math="\text{Store the Householder vector }u_i" />
 

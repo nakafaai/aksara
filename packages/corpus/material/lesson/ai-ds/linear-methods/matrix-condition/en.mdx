@@ -3,7 +3,7 @@ export const metadata = {
   description: "Understand induced matrix norms, spectral radius, singular-value condition numbers, perturbation bounds, and the difference between conditioning and stability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Linear Methods of AI",
 };
 
@@ -62,7 +62,7 @@ For an invertible symmetric matrix, this becomes
 
 <BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-The smallest magnitude, not the algebraically smallest eigenvalue, belongs in the denominator.
+Use the eigenvalue with the smallest magnitude in the denominator. Its sign does not decide the choice.
 
 | Size of <InlineMath math="\kappa(A)" /> | Interpretation |
 | --- | --- |
@@ -100,7 +100,7 @@ then the relative solution change is bounded by
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
-This is a worst-case bound, not a prediction that every perturbation attains the maximum amplification.
+This bound describes the worst case. Most perturbations may produce less amplification.
 
 ## Conditioning is not algorithmic stability
 
@@ -111,4 +111,4 @@ These concepts answer different questions:
 
 A stable algorithm cannot remove sensitivity already present in an ill-conditioned problem. Conversely, a well-conditioned problem can still be solved poorly by an unstable implementation. A small residual <InlineMath math="\|b-A\hat{x}\|" /> alone also does not guarantee a small forward error <InlineMath math="\|x-\hat{x}\|" /> when <InlineMath math="\kappa(A)" /> is large.
 
-In numerical work, estimate the reciprocal condition number from a trusted factorization instead of explicitly forming <InlineMath math="A^{-1}" /> merely to evaluate <InlineMath math="\kappa(A)" />.
+In numerical work, estimate the reciprocal condition number from a trusted factorization. This gives <InlineMath math="\kappa(A)" /> without explicitly forming <InlineMath math="A^{-1}" />.

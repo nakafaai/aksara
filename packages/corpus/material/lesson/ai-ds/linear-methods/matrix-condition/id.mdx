@@ -3,7 +3,7 @@ export const metadata = {
   description: "Pahami norma matriks terinduksi, radius spektral, bilangan kondisi berbasis nilai singular, batas perturbasi, serta perbedaan kondisi masalah dan stabilitas algoritma.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Metode Linear AI",
 };
 
@@ -62,7 +62,7 @@ Untuk matriks simetris yang dapat diinverskan, rumus ini menjadi
 
 <BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-Penyebutnya memuat magnitudo terkecil, bukan nilai eigen yang paling kecil secara aljabar.
+Gunakan nilai eigen dengan magnitudo terkecil pada penyebut. Tanda positif atau negatif tidak menentukan pilihan ini.
 
 | Ukuran <InlineMath math="\kappa(A)" /> | Interpretasi |
 | --- | --- |
@@ -100,7 +100,7 @@ maka perubahan relatif solusi dibatasi oleh
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
-Ini adalah batas kasus terburuk, bukan prediksi bahwa setiap perturbasi mencapai penguatan maksimum.
+Batas ini menjelaskan kasus terburuk. Kebanyakan perturbasi dapat menghasilkan penguatan yang lebih kecil.
 
 ## Kondisi masalah berbeda dari stabilitas algoritma
 

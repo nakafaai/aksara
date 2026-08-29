@@ -99,7 +99,7 @@ Sarrus formula for <InlineMath math="3 \times 3" /> matrices:
 
 Sarrus rule uses diagonal patterns to determine which terms are added and which are subtracted.
 
-Sarrus rule applies only to <InlineMath math="3 \times 3" /> matrices. For larger matrices, use cofactor expansion or a factorization-based method instead of extending the diagonal pattern.
+Sarrus rule applies only to <InlineMath math="3 \times 3" /> matrices. For larger matrices, use cofactor expansion or a factorization-based method. Extending the diagonal pattern gives an invalid rule.
 
 ## Computational Complexity
 
@@ -112,7 +112,7 @@ For a dense <InlineMath math="n \times n" /> matrix, a direct recursive implemen
 
 The factorial growth makes recursive Laplace expansion impractical for large dense matrices. Gaussian elimination or an LU factorization computes a determinant in <InlineMath math="O(n^3)" /> arithmetic operations.
 
-## Utilizing Zero Elements
+## Using Zero Entries
 
 When a matrix has many zero entries, choose a row or column containing as many zeros as possible. Every term whose selected coefficient <InlineMath math="a_{ij}" /> is zero vanishes, so its minor never needs to be evaluated.
 

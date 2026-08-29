@@ -3,7 +3,7 @@ export const metadata = {
   description: "Pelajari atribut array NumPy seperti shape, dtype, size, dan ndim, lalu lihat cara membacanya dari contoh kode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-20",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Pemrograman AI",
 };
 
@@ -169,7 +169,7 @@ print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen
 
 ### Konsistensi Tipe Data
 
-Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan diinterpretasikan dalam memori. Jika masukan memiliki tipe berbeda, NumPy memakai aturan promosi tipe untuk mencari dtype bersama yang kompatibel. Hasilnya bergantung pada presisi dan kategori tipe, bukan pada tipe yang paling sering muncul.
+Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan dibaca di dalam memori. Jika masukan memiliki tipe berbeda, NumPy memakai aturan promosi tipe untuk mencari dtype bersama yang cocok. Presisi dan kategori tipe menentukan hasilnya. Banyaknya kemunculan setiap tipe tidak memengaruhi aturan ini.
 
 <CodeBlock
   data={[
@@ -200,7 +200,7 @@ NumPy menyediakan berbagai cara untuk mengkonversi dan memanipulasi tipe data ar
 
 ### Metode Konversi Tipe Data
 
-Konversi tipe data memungkinkan kamu memilih representasi lain untuk analisis berikutnya. Metode `astype()` mengembalikan array hasil konversi dan tidak mengubah array asal secara langsung. Konversi nilai titik mengambang ke integer memotong bagian pecahan menuju nol, bukan membulatkannya.
+Konversi tipe data memungkinkan kamu memilih bentuk lain untuk analisis berikutnya. Metode `astype()` mengembalikan array hasil konversi dan tidak mengubah array asal secara langsung. Saat mengubah nilai desimal menjadi integer, NumPy memotong bagian pecahan menuju nol.
 
 <CodeBlock
   data={[

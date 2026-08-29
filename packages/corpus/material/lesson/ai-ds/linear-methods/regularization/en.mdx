@@ -3,7 +3,7 @@ export const metadata = {
   description: "Stabilize ill-conditioned least-squares problems with Tikhonov regularization, spectral filtering, informed parameter selection, and robust numerical solvers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Linear Methods of AI",
 };
 
@@ -97,10 +97,10 @@ A diagonal matrix <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Larger <InlineMath math="\omega_i" /> means stronger shrinkage toward <InlineMath math="x_{0i}" />, but weights should reflect units and defensible prior structure, not merely which coefficients are difficult to estimate.
+Larger <InlineMath math="\omega_i" /> means stronger shrinkage toward <InlineMath math="x_{0i}" />. Choose weights from the units and a defensible prior structure. Difficulty in estimating a coefficient is not enough to determine its weight.
 
 An equality such as <InlineMath math="x_i=c" /> should be modeled as an explicit equality constraint when it must hold exactly. Bounds such as <InlineMath math="l_i\le x_i\le u_i" /> require constrained least squares. An extremely large penalty can approximate an equality, but it is not a replacement for an exact constraint and can worsen numerical scaling.
 
 ## Solving the Problem Reliably
 
-The normal equation is useful for analysis, but explicitly forming <InlineMath math="A^TA" /> squares the condition number. In numerical code, solve the augmented least-squares system with QR or SVD whenever stability matters. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm so another reader can understand the tradeoff rather than treating the regularized estimate as data alone.
+The normal equation is useful for analysis, but explicitly forming <InlineMath math="A^TA" /> squares the condition number. In numerical code, solve the augmented least-squares system with QR or SVD whenever stability matters. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm. These details let another reader understand how regularization shaped the estimate.

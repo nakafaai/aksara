@@ -3,7 +3,7 @@ export const metadata = {
   description: "Classify symmetric and Hermitian matrices with quadratic forms, eigenvalues, principal minors, Cholesky factors, and optimization geometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Linear Methods of AI",
 };
 
@@ -69,7 +69,7 @@ Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k"
 
 <BlockMath math="A\text{ is positive definite}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ for }k=1,ldots,n" />
 
-This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness is equivalent to every principal minor being nonnegative, not only the leading ones.
+This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires every principal minor to be nonnegative. Checking the leading ones alone is insufficient.
 
 ## Worked Two-by-Two Checks
 
@@ -153,4 +153,4 @@ For Hermitian <InlineMath math="A" />, the eigenvalues of <InlineMath math="A-tI
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. These facts are useful, but a numerical algorithm should still solve linear systems rather than explicitly form an inverse.
+If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. These facts are useful. In a numerical algorithm, solve the linear system directly to avoid forming an inverse.

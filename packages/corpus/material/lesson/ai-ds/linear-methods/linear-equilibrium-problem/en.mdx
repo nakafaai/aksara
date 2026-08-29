@@ -15,7 +15,7 @@ Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in
 
 has no exact solution. This commonly happens when a model is fitted to noisy measurements or when an overdetermined system has more independent equations than unknowns.
 
-Instead of forcing equality, define the residual
+When exact equality is unavailable, define the residual
 
 <BlockMath math="e(x)=Ax-b" />
 
@@ -142,4 +142,4 @@ There is also a precise statistical interpretation. In the model
 
 <BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
 
-with fixed <InlineMath math="A" /> and independent Gaussian errors of common variance, least squares is the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated or unequal-variance errors require a different weighting rather than the unqualified ordinary least-squares formula.
+with fixed <InlineMath math="A" /> and independent Gaussian errors of common variance, least squares is the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated errors or errors with unequal variance require weights that reflect their covariance.

@@ -102,7 +102,7 @@ Der Operator `//` führt eine Abrundungsdivision aus. Er rundet den Quotienten a
   ]}
 />
 
-Die Abrundung erfolgt in Richtung negativ unendlich. Deshalb ergibt `-7 // 2` den Wert `-4` und nicht `-3`. Ist mindestens ein Operand ein Float, wendet Python dieselbe Abrundung an, gibt das Ergebnis aber als Float zurück.
+Die Abrundung erfolgt in Richtung negativ unendlich. Bei `-7 // 2` erhält Python zunächst `-3.5` und rundet dann auf `-4` ab. Ist mindestens ein Operand ein Float, wendet Python dieselbe Abrundung an, gibt das Ergebnis aber als Float zurück.
 
 **Modulo-Operator `%`**
 
@@ -191,7 +191,7 @@ Die meisten Operatoren gleicher Priorität werden von links nach rechts ausgewer
   ]}
 />
 
-Der Ausdruck `6 / 2 * 4` wird als `(6 / 2) * 4 = 3 * 4 = 12` ausgewertet, nicht als `6 / (2 * 4) = 6 / 8 = 0.75`.
+Multiplikation und Division haben dieselbe Priorität. Deshalb liest Python diesen Ausdruck von links nach rechts: `6 / 2 * 4 = (6 / 2) * 4 = 12`.
 
 **Rechte Assoziativität**
 
@@ -211,7 +211,7 @@ Nur der Potenzierungsoperator `**` wird bei gleicher Verschachtelung von rechts 
   ]}
 />
 
-Der Ausdruck `2 ** 3 ** 2` wird als `2 ** (3 ** 2) = 2 ** 9 = 512` ausgewertet, nicht als `(2 ** 3) ** 2 = 8 ** 2 = 64`.
+Python gruppiert aufeinanderfolgende Potenzen von rechts nach links: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
 
 ## Python Shell als Rechner
 

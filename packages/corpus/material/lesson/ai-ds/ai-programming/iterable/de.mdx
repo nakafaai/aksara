@@ -73,7 +73,7 @@ Die Operatoren `in` und `not in` fragen, ob ein Container einen bestimmten Wert 
 
 ### Verwendung von `in` und `not in`
 
-Eingebaute Sequenzen durchsuchen ihre Elemente bis zu einem Treffer oder bis zum Ende. Mengen und Dictionaries verwenden ihr eigenes Suchverhalten, wobei ein Mitgliedschaftstest bei Dictionaries die Schlüssel und nicht die Werte prüft.
+Eingebaute Sequenzen durchsuchen ihre Elemente bis zu einem Treffer oder bis zum Ende. Mengen und Dictionaries verwenden ihr eigenes Suchverhalten. Ein Mitgliedschaftstest in einem Dictionary durchsucht seine Schlüssel.
 
 <CodeBlock
   data={[
@@ -242,7 +242,7 @@ try:
     print(result)
 except TypeError as e:
     print("Error:", e)
-# Ausgabe: Error: must be real number, not list
+# Ausgabe: Error: must be real number rather than list
 
 # Manueller Weg, der für viele Argumente mühsam ist
 result = math.hypot(coordinates[0], coordinates[1])
@@ -302,7 +302,7 @@ print("Durchschnittsnote:", average)
 
 ### Praktische Anwendungen des Auspackens
 
-Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Erweiterung zur vorgesehenen Schnittstelle gehört, nicht wenn eine Funktion bereits ein einzelnes Iterable annimmt.
+Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Schnittstelle einzelne erweiterte Elemente erwartet. Nimmt die Funktion ein Iterable an, übergibst du dieses direkt.
 
 <CodeBlock
   data={[

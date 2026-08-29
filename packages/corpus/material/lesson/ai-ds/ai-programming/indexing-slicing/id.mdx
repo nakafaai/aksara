@@ -3,7 +3,7 @@ export const metadata = {
     description: "Indexing dan slicing Python untuk mengakses string dan list memakai indeks positif, indeks negatif, dan stride.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-08-22",
+    dateModified: "2026-08-29",
     subject: "Pemrograman AI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Indexing adalah cara untuk mengakses elemen tertentu dalam string atau list dengan menggunakan nomor posisi. Bayangkan kamu memiliki deretan buku di rak, dan setiap buku memiliki nomor urut. Indexing memungkinkan kamu mengambil buku tertentu berdasarkan nomor urutnya.
 
-Python menggunakan sistem penomoran yang dimulai dari <InlineMath math="0" />, bukan <InlineMath math="1" />. Jadi elemen pertama memiliki indeks <InlineMath math="0" />, elemen kedua memiliki indeks <InlineMath math="1" />, dan seterusnya. Selain itu, Python juga mendukung indeks negatif yang menghitung mundur dari akhir.
+Python memulai nomor indeks dari <InlineMath math="0" />. Elemen pertama memiliki indeks <InlineMath math="0" />, elemen kedua memiliki indeks <InlineMath math="1" />, dan seterusnya. Python juga mendukung indeks negatif yang menghitung mundur dari akhir.
 
 ### Indeks Positif dan Negatif
 
@@ -46,11 +46,11 @@ Indeks di luar rentang yang valid menghasilkan `IndexError`. Sequence Python mel
 
 ## Konsep Slicing
 
-Slicing memungkinkan kamu mengambil bagian tertentu dari string atau list, bukan hanya satu elemen. Ini seperti memotong sepotong roti dari roti utuh, kamu bisa menentukan dari mana mulai memotong dan di mana berhenti.
+Slicing mengambil satu bagian dari string atau list yang dapat berisi beberapa elemen. Seperti menentukan potongan pada sepotong roti, kamu memilih tempat mulai dan berhenti.
 
 ### Slicing Sederhana
 
-Sintaks dasar slicing menggunakan format `[i:j]` di mana `i` adalah indeks awal dan `j` adalah indeks akhir. Penting untuk diingat bahwa indeks akhir tidak termasuk dalam hasil.
+Sintaks dasar slicing menggunakan format `[i:j]`, dengan `i` sebagai indeks awal dan `j` sebagai indeks akhir. Hasilnya dimulai dari indeks awal dan berhenti sebelum indeks akhir.
 
 <CodeBlock
   data={[
@@ -275,6 +275,6 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
 
 Contoh-contoh ini memakai indexing ketika posisinya diketahui dan slicing ketika yang dibutuhkan adalah subsequence berurutan atau berjarak tetap. Membalik sequence dengan `[::-1]` memang ringkas. Ekstensi file berbeda karena panjangnya bervariasi, sehingga `Path.suffix` menyatakan aturan domain itu lebih andal daripada slice tetap.
 
-Batas slice dipotong ke rentang sequence, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`, bukan `IndexError`. Indexing langsung seperti `s[10]` tetap menghasilkan error. Pilih berdasarkan apakah elemen yang tidak ada merupakan kesalahan atau subsequence kosong memang bermakna.
+Batas slice mengikuti panjang sequence, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`. Indexing langsung seperti `s[10]` tetap menghasilkan `IndexError`. Pilih bentuk yang sesuai dengan kebutuhanmu akan subsequence kosong.
 
 Penguasaan indeks negatif memberikan perspektif baru dalam mengakses data. Alih-alih menghitung dari depan, kamu bisa langsung mengambil elemen dari belakang dengan `s[-1]` untuk elemen terakhir atau `s[-3:]` untuk tiga elemen terakhir. Pendekatan ini sangat berguna dalam pemrosesan file, parsing teks, dan manipulasi dataset di mana posisi relatif dari akhir lebih penting daripada posisi absolut dari awal.

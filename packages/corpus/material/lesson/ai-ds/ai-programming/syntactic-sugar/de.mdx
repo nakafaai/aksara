@@ -10,7 +10,7 @@ export const metadata = {
 
 Syntaktischer Zucker ist eine knappe Schreibweise für Verhalten, das sich auch ausführlicher ausdrücken ließe. Sie kann wiederkehrenden Ballast entfernen. Kürzerer Code ist aber nur dann hilfreich, wenn sein Zweck weiterhin klar bleibt.
 
-Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Das Ziel ist eine klarere Absicht, nicht die kleinstmögliche Anzahl von Zeichen.
+Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Wähle die Form, in der deine Absicht am leichtesten zu verstehen ist.
 
 ## Listenkomprehension
 
@@ -80,7 +80,7 @@ y = [col for row in x for col in row]
 print(y)
 # Ausgabe: [1, 2, 3, 4, 5, 6]
 
-# Vergleichen Sie mit der Standardsyntax
+# Vergleich mit der Standardsyntax
 y_standard = []
 for row in x:
     for col in row:
@@ -101,7 +101,7 @@ Ein Lambda-Ausdruck erzeugt ein Funktionsobjekt ohne `def`-Anweisung. Er eignet 
 
 Der Lambda-Körper besteht aus genau einem Ausdruck, dessen Wert zurückgegeben wird. Er darf eine Funktion wie `print()` aufrufen, aber keine Anweisungsformen wie `return`, eine gewöhnliche Zuweisung, `for` oder `while` enthalten. Ein Lambda kann an eine Variable gebunden werden. Für wiederverwendetes Verhalten ist eine benannte Funktion mit `def` meist klarer.
 
-### So verwenden Sie Lambda
+### Lambda verwenden
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ print(square(5))  # Ausgabe: 25
 add = lambda x, y: x + y
 print(add(3, 4))  # Ausgabe: 7
 
-# Vergleichen Sie mit der regulären Funktion
+# Vergleich mit der regulären Funktion
 def square_normal(x):
     return x**2
 

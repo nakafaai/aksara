@@ -3,7 +3,7 @@ export const metadata = {
   description: "Stabilkan masalah kuadrat terkecil berkondisi buruk dengan regularisasi Tikhonov, penyaringan spektral, pemilihan parameter yang beralasan, dan penyelesaian numerik yang kokoh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Metode Linear AI",
 };
 
@@ -97,10 +97,10 @@ Matriks diagonal <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega_
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Nilai <InlineMath math="\omega_i" /> yang lebih besar berarti penyusutan yang lebih kuat menuju <InlineMath math="x_{0i}" />, tetapi bobot harus mencerminkan satuan dan struktur prior yang dapat dipertanggungjawabkan, bukan sekadar parameter mana yang sulit ditaksir.
+Nilai <InlineMath math="\omega_i" /> yang lebih besar berarti penyusutan yang lebih kuat menuju <InlineMath math="x_{0i}" />. Pilih bobot berdasarkan satuan dan struktur prior yang dapat dipertanggungjawabkan. Tingkat kesulitan menaksir parameter belum cukup untuk menentukan bobot.
 
 Persamaan seperti <InlineMath math="x_i=c" /> perlu dimodelkan sebagai kendala persamaan eksplisit jika harus dipenuhi secara eksak. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan kuadrat terkecil terkendala. Penalti yang sangat besar dapat mendekati suatu persamaan, tetapi bukan pengganti kendala eksak dan dapat memperburuk skala numerik.
 
 ## Menyelesaikan Masalah secara Andal
 
-Persamaan normal berguna untuk analisis, tetapi membentuk <InlineMath math="A^TA" /> secara eksplisit menguadratkan bilangan kondisi. Dalam kode numerik, selesaikan sistem kuadrat terkecil teraugmentasi dengan QR atau SVD ketika stabilitas penting. Laporkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norm residual, dan norm penalti agar pembaca dapat memahami pertukarannya, bukan menganggap taksiran teregularisasi sebagai hasil data saja.
+Persamaan normal berguna untuk analisis, tetapi membentuk <InlineMath math="A^TA" /> secara langsung akan menguadratkan bilangan kondisi. Dalam kode numerik, selesaikan sistem kuadrat terkecil teraugmentasi dengan QR atau SVD ketika kestabilan penting. Laporkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norm residual, dan norm penalti. Rincian ini membantu pembaca memahami pengaruh regularisasi terhadap hasil taksiran.

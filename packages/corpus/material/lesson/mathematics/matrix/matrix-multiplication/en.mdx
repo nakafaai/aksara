@@ -3,7 +3,7 @@ export const metadata = {
   description: "Learn matrix multiplication rules, conditions, properties, and real-world applications through worked calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Matrix",
 };
 
@@ -13,13 +13,13 @@ Matrix multiplication is a fundamental operation in linear algebra. Unlike matri
 
 ### Condition for Matrix Multiplication
 
-Two matrices, let's say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, can be multiplied (<InlineMath math="A \times B" />) only if **the number of columns in matrix <InlineMath math="A" /> is equal to the number of rows in matrix <InlineMath math="B" />**.
+Two matrices, say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, can be multiplied (<InlineMath math="A \times B" />) only if **the number of columns in matrix <InlineMath math="A" /> is equal to the number of rows in matrix <InlineMath math="B" />**.
 
 Suppose matrix <InlineMath math="A" /> has an order of <InlineMath math="m \times n" /> (meaning <InlineMath math="m" /> rows and <InlineMath math="n" /> columns) and matrix <InlineMath math="B" /> has an order of <InlineMath math="n \times p" /> (meaning <InlineMath math="n" /> rows and <InlineMath math="p" /> columns).
 
 Since the number of columns in matrix <InlineMath math="A" /> (<InlineMath math="n" />) is equal to the number of rows in matrix <InlineMath math="B" /> (<InlineMath math="n" />), then matrix <InlineMath math="A" /> and <InlineMath math="B" /> can be multiplied.
 
-The result of the multiplication, let's call it matrix <InlineMath math="C = AB" />, will have an order of <InlineMath math="m \times p" />.
+The result of the multiplication, call it matrix <InlineMath math="C = AB" />, will have an order of <InlineMath math="m \times p" />.
 
 The dimension check fits in one line: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="B\in\mathbb{R}^{n\times p}" /> imply <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. The shared inner dimension <InlineMath math="n" /> is consumed by each dot product, while the outer dimensions <InlineMath math="m" /> and <InlineMath math="p" /> determine the result.
 
@@ -37,7 +37,7 @@ In the formula above, we sum the products <InlineMath math="a_{ik}b_{kj}" /> for
 
 ## Steps to Multiply Matrices
 
-Let's look at a simple example to understand the process.
+Look at a simple example to understand the process.
 
 Suppose we have matrices <InlineMath math="P = \begin{bmatrix} p_{11} & p_{12} \\ p_{21} & p_{22} \end{bmatrix}" /> and <InlineMath math="Q = \begin{bmatrix} q_{11} & q_{12} \\ q_{21} & q_{22} \end{bmatrix}" />.
 
@@ -69,7 +69,7 @@ The number of columns in matrix <InlineMath math="A" /> (which is <InlineMath ma
 
 So, <InlineMath math="AB" /> can be calculated and will result in a matrix of order <InlineMath math="3 \times 2" />.
 
-Let's calculate <InlineMath math="C = AB" />:
+Calculate <InlineMath math="C = AB" />:
 
 <MathContainer>
   <BlockMath math="C = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \\ c_{31} & c_{32} \end{bmatrix}" />
@@ -175,7 +175,7 @@ Revenue by product requires a different multiplication. First use a vector of on
 
 Matrix <InlineMath math="R" /> therefore gives product revenue: <InlineMath math="\text{Rp}940{,}000" /> for tempeh chips, <InlineMath math="\text{Rp}750{,}000" /> for banana chips, and <InlineMath math="\text{Rp}1{,}500{,}000" /> for potato chips.
 
-The lesson is not merely to match dimensions. A meaningful matrix product must also pair quantities that describe the same category in the same order.
+A meaningful matrix product needs matching dimensions and must pair quantities that describe the same category in the same order.
 
 Here, <InlineMath math="Q^T" /> and <InlineMath math="P" /> produce revenue by place in <InlineMath math="S" />, while the diagonal price matrix and product totals produce revenue by product in <InlineMath math="R" />. Those are different questions, so they require different products.
 

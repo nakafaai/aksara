@@ -3,7 +3,7 @@ export const metadata = {
   description: "Indexing dan slicing NumPy untuk array 1D, array 2D, boolean mask, dan advanced indexing dengan contoh kode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-20",
-  dateModified: "2026-08-22",
+  dateModified: "2026-08-29",
   subject: "Pemrograman AI",
 };
 
@@ -505,7 +505,7 @@ print(a[[0, 2], 1:4])
 
 Aturan seleksi yang sama mendukung filtering, sampling, dan penyusunan ulang data tanpa loop buatan sendiri.
 
-Contoh ini memperlihatkan mask dan assignment. Dalam analisis nyata, ambang suhu dan aturan penggantian harus berasal dari konteks pengukuran, bukan dari resep cleaning umum:
+Contoh ini memperlihatkan mask dan assignment. Dalam analisis nyata, konteks pengukuran harus menentukan ambang suhu dan aturan penggantian:
 
 <CodeBlock
   data={[
@@ -537,7 +537,7 @@ print("Data setelah cleaning:", temperatures_cleaned)  # Output: Data setelah cl
   ]}
 />
 
-Untuk sampling yang dapat direproduksi, buat generator acak lokal dengan seed eksplisit, bukan mengubah random state global lama milik NumPy:
+Untuk memperoleh sampling yang sama saat kode dijalankan ulang, buat generator acak lokal dengan seed yang jelas. Cara ini menjaga random state global lama milik NumPy tetap sama:
 
 <CodeBlock
   data={[
