@@ -20,6 +20,11 @@ addition, revision, review, or translation in this repository.
 - For German prose, also read the complete global `humanizer-de` skill and its
   routed references. Use its deterministic linter as a source of review
   candidates, then judge every candidate in the full MDX and teaching context.
+- If either locale skill is missing, use the global skill installer to install
+  `https://www.skills.sh/ajipurn/bahasa-indonesia-skill/bahasa-indonesia` and
+  `https://github.com/marmbiz/humanizer-de` in the user's Codex environment.
+  Never copy either skill into this repository, and do not continue locale
+  editing until the required skill is available.
 - Inspect the exact neighboring corpus entries and recent Git history. Do not
   infer a file layout, locale rule, or metadata contract from an old Nakafa copy.
 - Classify the target as authored prose, assessed-language content, or an
