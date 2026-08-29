@@ -7,8 +7,19 @@ const migration = readFileSync(".github/workflows/migration.yml", "utf8");
 const PUBLICATION_TOKEN_LINE_PATTERN = / {10}AKSARA_PUBLICATION_TOKEN: .+/u;
 
 describe("migration workflow policy", () => {
-  it("accepts the exact immutable receipt lifecycle", () => {
+  it("accepts the exact immutable recovery lifecycle", () => {
     expect(() => verifyMigrationWorkflow(migration)).not.toThrow();
+  });
+
+  it("requires the exact reviewed genesis identity", () => {
+    expect(() =>
+      verifyMigrationWorkflow(
+        migration.replace(
+          "sha256:6613c0fe37c6fbc94bc88fa59bacf20d664f6568f8da4dab8347396685573bd1",
+          `sha256:${"f".repeat(64)}`
+        )
+      )
+    ).toThrow("Genesis signing must bind the exact reviewed runtime payload");
   });
 
   it("requires cleanup to download the durable public release", () => {
@@ -50,7 +61,7 @@ describe("migration workflow policy", () => {
   it("requires one canonical cleanup migration identity", () => {
     expect(() =>
       verifyMigrationWorkflow(
-        migration.replace("^[a-z0-9][a-z0-9._-]{0,127}$", "^[\\s\\S]+$")
+        migration.replaceAll("^[a-z0-9][a-z0-9._-]{0,127}$", "^[\\s\\S]+$")
       )
     ).toThrow(
       "Migration cleanup must reverify the public receipt before deletion"
@@ -80,8 +91,8 @@ describe("migration workflow policy", () => {
     expect(() =>
       verifyMigrationWorkflow(
         migration.replace(
-          "      - name: Download signed receipt",
-          "      - run: node scripts/publish.ts\n      - name: Download signed receipt"
+          "      - name: Download signed asset",
+          "      - run: node scripts/publish.ts\n      - name: Download signed asset"
         )
       )
     ).toThrow("Migration publication must not execute repository code");

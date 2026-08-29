@@ -1,18 +1,19 @@
-name: Migrate try-out history
+name: Recover try-out history
 
 on:
   workflow_dispatch:
     inputs:
       operation:
-        description: Retained-history migration operation
+        description: Exact try-out recovery operation
         required: true
         type: choice
         options:
+          - genesis
           - migrate
           - cleanup
           - abort
       migration_id:
-        description: Exact retained-history migration ID
+        description: Exact recovery operation identity
         required: true
         type: string
 
@@ -162,7 +163,7 @@ jobs:
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
-      && inputs.operation == 'migrate'
+      && (inputs.operation == 'migrate' || inputs.operation == 'genesis')
       && needs.verify.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest
@@ -174,6 +175,7 @@ jobs:
     outputs:
       asset_hash: ${{ steps.identity.outputs.asset_hash }}
       asset_name: ${{ steps.identity.outputs.asset_name }}
+      artifact_name: ${{ steps.identity.outputs.artifact_name }}
       release_tag: ${{ steps.identity.outputs.release_tag }}
       size: ${{ steps.identity.outputs.size }}
     steps:
@@ -200,9 +202,9 @@ jobs:
             exit 1
           fi
 
-      - name: Prepare isolated migration checkout
+      - name: Prepare isolated recovery checkout
         env:
-          OPERATION_ROOT: ${{ runner.temp }}/aksara-migration
+          OPERATION_ROOT: ${{ runner.temp }}/aksara-recovery
         run: |
           git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
           pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
@@ -215,8 +217,12 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare sealed asset directory
+        run: mkdir -p "${{ runner.temp }}/sealed"
+
       - name: Seal signed migration receipt
-        working-directory: ${{ runner.temp }}/aksara-migration
+        if: inputs.operation == 'migrate'
+        working-directory: ${{ runner.temp }}/aksara-recovery
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -225,54 +231,126 @@ jobs:
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
           MIGRATION_ID: ${{ inputs.migration_id }}
-          RECEIPT: ${{ runner.temp }}/receipt.json
+          RECEIPT: ${{ runner.temp }}/sealed/receipt.json
         run: >-
           pnpm --filter @nakafa/aksara-cli migrate
           --release-id "$MIGRATION_ID" --receipt-path "$RECEIPT"
 
-      - name: Resolve receipt identity
+      - name: Seal signed genesis bundle
+        if: inputs.operation == 'genesis'
+        working-directory: ${{ runner.temp }}/aksara-recovery
+        env:
+          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
+          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          BUNDLE: ${{ runner.temp }}/sealed/bundle.json
+        run: >-
+          pnpm --filter @nakafa/aksara-cli genesis
+          --bundle-path "$BUNDLE"
+
+      - name: Resolve signed asset identity
         id: identity
         env:
+          BUNDLE: ${{ runner.temp }}/sealed/bundle.json
+          EXPECTED_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           MIGRATION_ID: ${{ inputs.migration_id }}
-          RECEIPT: ${{ runner.temp }}/receipt.json
+          OPERATION: ${{ inputs.operation }}
+          RECEIPT: ${{ runner.temp }}/sealed/receipt.json
         run: |
-          receipt_migration_id=$(jq -er '.payload.migrationId' "$RECEIPT")
-          if [[ "$receipt_migration_id" != "$MIGRATION_ID" ]]; then
-            echo "The signed receipt does not own the requested migration." >&2
+          if [[ ! "$MIGRATION_ID" =~ ^[a-z0-9][a-z0-9._-]{0,127}$ ]]; then
+            echo "The recovery operation requires one canonical identity." >&2
             exit 1
           fi
-          digest=$(sha256sum "$RECEIPT" | cut -d ' ' -f 1)
-          size=$(stat --format='%s' "$RECEIPT")
+
+          if [[ "$OPERATION" == "migrate" ]]; then
+            receipt_migration_id=$(jq -er '.payload.migrationId' "$RECEIPT")
+            if [[ "$receipt_migration_id" != "$MIGRATION_ID" ]]; then
+              echo "The signed receipt does not own the requested migration." >&2
+              exit 1
+            fi
+            asset="$RECEIPT"
+            asset_name="receipt.json"
+            release_tag="migration-$receipt_migration_id"
+          elif [[ "$OPERATION" == "genesis" ]]; then
+            if [[ "$MIGRATION_ID" != "genesis-six-scope-v013-20260814-e3a7f1e" ]]; then
+              echo "Genesis signing requires the exact reviewed release identity." >&2
+              exit 1
+            fi
+            if ! jq -e \
+              --arg bundle_hash "sha256:6613c0fe37c6fbc94bc88fa59bacf20d664f6568f8da4dab8347396685573bd1" \
+              --arg catalog_digest "sha256:4a4528d39855367f1a2338e0cdfb1767aa17f22195817c3351ab6814acd027d5" \
+              --arg key_id "$EXPECTED_KEY_ID" \
+              --arg manifest_hash "sha256:bee5d6e2bd95d8088596766f9e5c138c2e2558d0db7bbc16b97e93868c388ede" \
+              --arg placement_digest "sha256:8cb74256608c47cf10c0b0146fb07343cc20a392a88d6d54a5f678791b589a9c" \
+              --arg release_id "$MIGRATION_ID" \
+              --arg renderer_hash "sha256:e06c5326020aeb0c43c0c565948b18a111a4df009ff3b3fe5cd827f35f9275e7" \
+              --arg snapshot_id "sha256:8947def031cc7046d2d488dac2d9058d13de8bb3aad2f76584f96fe5bd5fc813" \
+              --arg source_sha "e3a7f1e05bc64e1439e54084f50f2ad6ce22cd79" \
+              '(keys | sort) == ["bundleHash", "keyId", "payload", "signature"]
+                and .bundleHash == $bundle_hash
+                and .keyId == $key_id
+                and (.signature | test("^[A-Za-z0-9_-]{86}$"))
+                and (.payload | keys | sort) == ["format", "rendererManifestHash", "snapshot", "sourceGitSha", "sourceManifestHash", "sourceReleaseId"]
+                and .payload.format == "signed-tryout-runtime-bundle"
+                and .payload.rendererManifestHash == $renderer_hash
+                and .payload.sourceGitSha == $source_sha
+                and .payload.sourceManifestHash == $manifest_hash
+                and .payload.sourceReleaseId == $release_id
+                and (.payload.snapshot | keys | sort) == ["activeAppLocales", "catalogDigest", "counts", "format", "placementCount", "placementDigest", "routeCount", "snapshotId"]
+                and .payload.snapshot.activeAppLocales == ["en", "id"]
+                and .payload.snapshot.catalogDigest == $catalog_digest
+                and .payload.snapshot.format == "localized-tryout-snapshot"
+                and .payload.snapshot.placementCount == 840
+                and .payload.snapshot.placementDigest == $placement_digest
+                and .payload.snapshot.routeCount == 48
+                and .payload.snapshot.snapshotId == $snapshot_id
+                and (.payload.snapshot.counts | keys | sort) == ["country", "exam", "section", "set", "track"]
+                and .payload.snapshot.counts == {"country": 2, "exam": 4, "section": 34, "set": 10, "track": 4}' \
+              "$BUNDLE" >/dev/null; then
+              echo "The signed genesis bundle differs from the reviewed production source." >&2
+              exit 1
+            fi
+            asset="$BUNDLE"
+            asset_name="bundle.json"
+            release_tag="tryout-runtime-$MIGRATION_ID"
+          else
+            echo "The seal job received an unsupported recovery operation." >&2
+            exit 1
+          fi
+
+          digest=$(sha256sum "$asset" | cut -d ' ' -f 1)
+          size=$(stat --format='%s' "$asset")
           {
             echo "asset_hash=sha256:$digest"
-            echo "asset_name=receipt.json"
-            echo "release_tag=migration-$receipt_migration_id"
+            echo "asset_name=$asset_name"
+            echo "asset_path=$asset"
+            echo "artifact_name=sealed-$MIGRATION_ID"
+            echo "release_tag=$release_tag"
             echo "size=$size"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Attest signed receipt
+      - name: Attest signed asset
         uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
         with:
-          subject-path: ${{ runner.temp }}/receipt.json
+          subject-path: ${{ steps.identity.outputs.asset_path }}
 
-      - name: Verify receipt attestation
+      - name: Verify asset attestation
         env:
+          ASSET: ${{ steps.identity.outputs.asset_path }}
           GH_TOKEN: ${{ github.token }}
-          RECEIPT: ${{ runner.temp }}/receipt.json
         run: >-
-          gh attestation verify "$RECEIPT"
+          gh attestation verify "$ASSET"
           --repo "$GITHUB_REPOSITORY"
           --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml"
           --source-digest "$GITHUB_SHA"
           --source-ref "refs/heads/main"
 
-      - name: Upload signed receipt
+      - name: Upload signed asset
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           compression-level: 0
           if-no-files-found: error
-          name: migration-receipt-${{ inputs.migration_id }}
-          path: ${{ runner.temp }}/receipt.json
+          name: ${{ steps.identity.outputs.artifact_name }}
+          path: ${{ steps.identity.outputs.asset_path }}
           retention-days: 1
 
   publish:
@@ -284,26 +362,26 @@ jobs:
       attestations: read
       contents: write
     steps:
-      - name: Download signed receipt
+      - name: Download signed asset
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: migration-receipt-${{ inputs.migration_id }}
-          path: ${{ runner.temp }}/migration-receipt
+          name: ${{ needs.seal.outputs.artifact_name }}
+          path: ${{ runner.temp }}/sealed-asset
 
-      - name: Verify transported receipt
+      - name: Verify transported asset
         env:
+          ASSET: ${{ runner.temp }}/sealed-asset/${{ needs.seal.outputs.asset_name }}
           EXPECTED_HASH: ${{ needs.seal.outputs.asset_hash }}
           EXPECTED_SIZE: ${{ needs.seal.outputs.size }}
           GH_TOKEN: ${{ github.token }}
-          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
         run: |
-          actual_hash="sha256:$(sha256sum "$RECEIPT" | cut -d ' ' -f 1)"
-          actual_size=$(stat --format='%s' "$RECEIPT")
+          actual_hash="sha256:$(sha256sum "$ASSET" | cut -d ' ' -f 1)"
+          actual_size=$(stat --format='%s' "$ASSET")
           if [[ "$actual_hash" != "$EXPECTED_HASH" || "$actual_size" != "$EXPECTED_SIZE" ]]; then
-            echo "The transported receipt differs from the sealed output." >&2
+            echo "The transported asset differs from the sealed output." >&2
             exit 1
           fi
-          gh attestation verify "$RECEIPT" \
+          gh attestation verify "$ASSET" \
             --repo "$GITHUB_REPOSITORY" \
             --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml" \
             --source-digest "$GITHUB_SHA" \
@@ -331,7 +409,7 @@ jobs:
 
           if [[ -z "$release" ]]; then
             if [[ -n "$tag" ]]; then
-              echo "The migration tag exists without a GitHub Release." >&2
+              echo "The recovery tag exists without a GitHub Release." >&2
               exit 1
             fi
             echo "mode=create" >> "$GITHUB_OUTPUT"
@@ -340,23 +418,23 @@ jobs:
 
           target=$(jq -r '.targetCommitish' <<< "$release")
           if [[ "$target" != "$GITHUB_SHA" ]]; then
-            echo "The migration release belongs to another source commit." >&2
+            echo "The recovery release belongs to another source commit." >&2
             exit 1
           fi
           if [[ "$(jq -r '.isPrerelease' <<< "$release")" == "true" ]]; then
-            echo "The migration receipt cannot be a prerelease." >&2
+            echo "The recovery asset cannot be a prerelease." >&2
             exit 1
           fi
           if [[ -n "$tag" ]] && ! jq -e \
             --arg sha "$GITHUB_SHA" \
             '.object.type == "commit" and .object.sha == $sha' \
             <<< "$tag" >/dev/null; then
-            echo "The migration tag belongs to another source commit." >&2
+            echo "The recovery tag belongs to another source commit." >&2
             exit 1
           fi
           if [[ "$(jq -r '.isImmutable' <<< "$release")" == "true" ]]; then
             if [[ "$(jq -r '.isDraft' <<< "$release")" == "true" ]]; then
-              echo "An immutable migration release cannot remain a draft." >&2
+              echo "An immutable recovery release cannot remain a draft." >&2
               exit 1
             fi
             echo "mode=reuse" >> "$GITHUB_OUTPUT"
@@ -374,16 +452,16 @@ jobs:
           RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
         run: >-
           gh release create "$RELEASE_TAG" --draft --latest=false
-          --notes "Signed retained-history migration receipt from Aksara commit $GITHUB_SHA."
+          --notes "Signed try-out recovery asset from Aksara commit $GITHUB_SHA."
           --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$RELEASE_TAG"
 
-      - name: Attach signed receipt
+      - name: Attach signed asset
         if: steps.state.outputs.mode == 'create'
         env:
           GH_TOKEN: ${{ github.token }}
-          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
+          ASSET: ${{ runner.temp }}/sealed-asset/${{ needs.seal.outputs.asset_name }}
           RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
-        run: gh release upload "$RELEASE_TAG" "$RECEIPT" --repo "$GITHUB_REPOSITORY"
+        run: gh release upload "$RELEASE_TAG" "$ASSET" --repo "$GITHUB_REPOSITORY"
 
       - name: Publish immutable release
         if: steps.state.outputs.mode == 'create'
@@ -394,13 +472,13 @@ jobs:
           gh release edit "$RELEASE_TAG" --draft=false --latest=false
           --repo "$GITHUB_REPOSITORY"
 
-      - name: Verify public receipt
+      - name: Verify public asset
         env:
+          ASSET: ${{ runner.temp }}/sealed-asset/${{ needs.seal.outputs.asset_name }}
           ASSET_NAME: ${{ needs.seal.outputs.asset_name }}
           EXPECTED_HASH: ${{ needs.seal.outputs.asset_hash }}
           EXPECTED_SIZE: ${{ needs.seal.outputs.size }}
           GH_TOKEN: ${{ github.token }}
-          RECEIPT: ${{ runner.temp }}/migration-receipt/${{ needs.seal.outputs.asset_name }}
           RELEASE_TAG: ${{ needs.seal.outputs.release_tag }}
         run: |
           release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")
@@ -421,7 +499,7 @@ jobs:
               and .assets[0].size == $size
               and .assets[0].digest == $digest' \
             <<< "$release" >/dev/null; then
-            echo "The public migration release differs from the sealed receipt." >&2
+            echo "The public recovery release differs from the sealed asset." >&2
             exit 1
           fi
 
@@ -430,14 +508,14 @@ jobs:
             --arg sha "$GITHUB_SHA" \
             '.object.type == "commit" and .object.sha == $sha' \
             <<< "$tag" >/dev/null; then
-            echo "The migration release tag does not target the reviewed commit." >&2
+            echo "The recovery release tag does not target the reviewed commit." >&2
             exit 1
           fi
 
           gh release verify "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"
-          gh release verify-asset "$RELEASE_TAG" "$RECEIPT" \
+          gh release verify-asset "$RELEASE_TAG" "$ASSET" \
             --repo "$GITHUB_REPOSITORY"
-          gh attestation verify "$RECEIPT" \
+          gh attestation verify "$ASSET" \
             --repo "$GITHUB_REPOSITORY" \
             --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/migration.yml" \
             --source-digest "$GITHUB_SHA" \
