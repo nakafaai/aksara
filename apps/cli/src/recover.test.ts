@@ -40,7 +40,6 @@ vi.mock("#cli/environment/read", async () => {
         rendererEndpoint: new URL(
           "https://www.example.test/api/internal/content/renderer"
         ),
-        rendererToken: TestRedacted.make("renderer-token"),
       }),
   };
 });
@@ -159,7 +158,7 @@ describe("recover command", () => {
         expect(calls).toMatchObject({
           activationEndpoint:
             "https://www.example.test/api/internal/content/renderer",
-          activationToken: "renderer-token",
+          activationToken: "publication-token",
           input: { recoveryId, releaseId },
           targetEndpoint: "https://content.example.test/publish",
           targetTimeout: "2 minutes",
