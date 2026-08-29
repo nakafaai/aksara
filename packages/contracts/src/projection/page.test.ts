@@ -3,10 +3,12 @@ import { describe, expect, it } from "vitest";
 import { CorpusSourcePathSchema } from "#contracts/ids";
 import {
   canonicalizePublicPageProjection,
+  HistoricalPublicPageProjectionSchema,
   makePublicPageProjection,
   PageMetadataSchema,
   PublicPageProjectionSchema,
   PublicPageRouteSchema,
+  ReadablePublicPageProjectionSchema,
 } from "#contracts/projection/page";
 
 const route = Schema.decodeSync(PublicPageRouteSchema)({
@@ -110,6 +112,26 @@ describe("public page projection", () => {
           })
       )
     ).toBe(true);
+  });
+
+  it("retains exact predecessor Page bytes only at the readable boundary", () => {
+    const historical = {
+      ...makePublicPageProjection({ metadata, route, sourcePath }),
+      metadata: {
+        description: metadata.description,
+        lastModified: "2026-08-21",
+        title: metadata.title,
+      },
+    };
+
+    expect(accepts(PublicPageProjectionSchema, historical)).toBe(false);
+    expect(accepts(HistoricalPublicPageProjectionSchema, historical)).toBe(
+      true
+    );
+    expect(accepts(ReadablePublicPageProjectionSchema, historical)).toBe(true);
+    expect(canonicalizePublicPageProjection(historical)).toContain(
+      '"metadata":{"description":"How Nakafa processes personal data.","lastModified":"2026-08-21","title":"Privacy Policy"}'
+    );
   });
 
   it("omits an absent modification date from canonical metadata", () => {
