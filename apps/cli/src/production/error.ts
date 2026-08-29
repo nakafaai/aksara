@@ -10,6 +10,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "accept",
       "cleanup",
       "cleanup-tryout-history",
+      "genesis",
       "migrate-tryout-history",
       "recover",
       "release",
@@ -17,6 +18,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
     ]),
     option: Schema.Literals([
       "--asset-hash",
+      "--bundle-path",
       "--recovery-id",
       "--release-id",
       "--receipt-path",
