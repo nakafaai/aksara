@@ -143,9 +143,17 @@ layer(Path.layer)("public page source", (it) => {
           expect(rawMdx).toContain("Mcp-Method: tools/list");
           expect(rawMdx).toContain("npm install --global nakafa-cli");
         }
-        expect(
-          documents.find(({ route }) => route.appLocale === "id")?.rawMdx
-        ).toContain("# Sumber Daya Pengembang Nakafa");
+        const expectedTitles = new Map([
+          ["de", "Entwicklerressourcen"],
+          ["en", "Developer Resources"],
+          ["id", "Panduan Developer"],
+        ]);
+        for (const { rawMdx, route } of documents) {
+          const expectedTitle = expectedTitles.get(route.appLocale);
+          expect(expectedTitle).toBeDefined();
+          expect(rawMdx).toContain(`title: "${expectedTitle}"`);
+          expect(rawMdx).toContain(`# ${expectedTitle}`);
+        }
       })
   );
 });
