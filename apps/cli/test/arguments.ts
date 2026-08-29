@@ -34,30 +34,6 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
       command: "genesis",
     });
   }
-  if (args[0] === "migrate-tryout-history") {
-    return Effect.succeed({
-      command: "migrate-tryout-history",
-      receiptPath: "/tmp/migration-receipt.json",
-      releaseId: "migration-release",
-    });
-  }
-  if (args[0] === "abort-tryout-history") {
-    return Effect.succeed({
-      command: "abort-tryout-history",
-      releaseId: "migration-release",
-    });
-  }
-  if (args[0] === "cleanup-tryout-history") {
-    return Effect.succeed({
-      command: "cleanup-tryout-history",
-      proof: {
-        assetHash: `sha256:${"a".repeat(64)}`,
-        sourceSha: "b".repeat(40),
-      },
-      receiptPath: "/tmp/migration-receipt.json",
-      releaseId: "migration-release",
-    });
-  }
   if (args[0] === "recover") {
     return Effect.succeed({
       command: "recover",

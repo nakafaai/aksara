@@ -39,13 +39,9 @@ import {
 import { Effect, Schema } from "effect";
 import { signCanonicalInput } from "#publisher/signing/canonical";
 import { ContentSigningError } from "#publisher/signing/error";
-import {
-  makeTryoutHistoryMigrationSigner,
-  type TryoutHistoryMigrationSigner,
-} from "#publisher/signing/migration";
 
 /** Single-key signer for every authenticated object in one publication run. */
-export interface PublicationSigner extends TryoutHistoryMigrationSigner {
+export interface PublicationSigner {
   /** Signs one source-verified compiled artifact. */
   readonly signArtifact: (
     payload: CompiledContentPayload
@@ -198,7 +194,6 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
         signRelease(keyId, privateKey, manifest)
       ),
-      ...makeTryoutHistoryMigrationSigner(keyId, privateKey),
       /** Signs one renderer-bound try-out snapshot with the configured key. */
       signTryoutRuntimeBundle: Effect.fn(
         "AksaraPublisher.signTryoutRuntimeBundle"

@@ -4,10 +4,6 @@ import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
-import {
-  isMigrationCommand,
-  runMigrationCommand,
-} from "#cli/migration/program";
 import { runPreviewCommand } from "#cli/preview";
 import { runProductionCommand } from "#cli/production/command";
 import { runRecoverCommand } from "#cli/recover";
@@ -40,9 +36,6 @@ export function makeCliProgram(input: {
     }
     if (args.command === "status") {
       return yield* runStatusCommand;
-    }
-    if (isMigrationCommand(args)) {
-      return yield* runMigrationCommand(args);
     }
     return yield* runProductionCommand({ args, cwd: input.cwd });
   });

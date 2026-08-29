@@ -46,9 +46,6 @@ export function foreignTransportSuccess(
       current: (value) => value,
       headPage: (value) =>
         replaceIdentity(value, "activeReleaseId", foreignReleaseId),
-      migrateTryoutHistory: () => {
-        throw new Error("Expected migration evidence to use focused fixtures.");
-      },
       recovery: (value) => {
         const release = {
           ...transportRecovery,

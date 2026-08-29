@@ -19,7 +19,7 @@ describe("production argument failures", () => {
     {
       args: ["--asset-hash", assetHash],
       command: "release",
-      option: "--asset-hash",
+      option: "command",
       reason: "unknown",
     },
     {

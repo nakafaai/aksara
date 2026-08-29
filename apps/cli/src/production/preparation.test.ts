@@ -188,6 +188,7 @@ describe("production preparation", () => {
           baseReleaseId: releaseId("release-renderer-parent"),
           tryoutSnapshotId: inheritedTryoutSnapshot,
         });
+        /** Restores the exact active runtime before each assertion path. */
         const activate = () => {
           calls.current = currentState({
             active: completedBundle(active),

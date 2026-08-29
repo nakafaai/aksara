@@ -103,7 +103,6 @@ const PublicationReleaseRejectedSchema = Schema.Struct({
     "stageTryoutRuntimeBundle",
     "stageGroup",
     "headPage",
-    "migrateTryoutHistory",
     "recovery",
     "stageItemBatch",
     "stageRouteBatch",
@@ -152,7 +151,6 @@ const ReleaseConflictSchema = Schema.Struct({
     "rollbackPage",
     "routePage",
     "cleanup",
-    "migrateTryoutHistory",
   ]),
   releaseId: ReleaseIdSchema,
 });

@@ -288,7 +288,6 @@ export function makeProductionTarget(
       )
     ),
     headPage: unused,
-    migrateTryoutHistory: unused,
     recovery: unused,
     rollbackPage: unused,
     routePage: unused,

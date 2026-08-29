@@ -1,6 +1,5 @@
 import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { HistoricalAppLocaleListSchema } from "#contracts/history/locale";
 import {
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
@@ -52,17 +51,5 @@ describe("locale", () => {
     ).toContain(
       "Active app locales must be unique and follow en, id, de order."
     );
-  });
-
-  it("keeps the historical decoder fixed to en and id", () => {
-    expect(
-      Schema.decodeSync(HistoricalAppLocaleListSchema)(["en", "id"])
-    ).toEqual(["en", "id"]);
-    for (const locales of [["en"], ["id", "en"], ["en", "id", "de"]] as const) {
-      const result = Schema.decodeUnknownExit(HistoricalAppLocaleListSchema)(
-        locales
-      );
-      expect(Exit.isFailure(result)).toBe(true);
-    }
   });
 });
