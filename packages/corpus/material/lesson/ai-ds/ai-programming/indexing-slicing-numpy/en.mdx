@@ -505,7 +505,7 @@ print(a[[0, 2], 1:4])
 
 The same selection rules support filtering, sampling, and rearranging data without hand-written loops.
 
-This example demonstrates masks and assignment. In a real analysis, the temperature thresholds and replacement rule must come from the measurement context rather than from a generic cleaning recipe:
+This example demonstrates masks and assignment. In a real analysis, the measurement context must determine the temperature thresholds and replacement rule:
 
 <CodeBlock
   data={[
@@ -537,7 +537,7 @@ print("Data after cleaning:", temperatures_cleaned)  # Output: Data after cleani
   ]}
 />
 
-For reproducible sampling, create a local random generator with an explicit seed instead of changing NumPy's legacy global random state:
+For reproducible sampling, create a local random generator with an explicit seed. This keeps NumPy's old global random state unchanged:
 
 <CodeBlock
   data={[

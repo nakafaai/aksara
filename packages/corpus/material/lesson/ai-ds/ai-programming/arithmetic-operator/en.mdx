@@ -103,7 +103,7 @@ The `//` operator performs floor division. It rounds the quotient down to the gr
   ]}
 />
 
-Floor division rounds toward negative infinity. For a negative quotient such as `-7 // 2`, the result is `-4` rather than `-3`. If either operand is a float, Python still applies the floor operation but returns a float.
+Floor division rounds toward negative infinity. For `-7 // 2`, Python gets `-3.5` and rounds down to `-4`. If either operand is a float, Python still applies the floor operation but returns a float.
 
 **Modulo Operator `%`**
 
@@ -192,7 +192,7 @@ Evaluation starts from left to right. Most operators use this rule.
   ]}
 />
 
-The expression `6 / 2 * 4` is evaluated as `(6 / 2) * 4 = 3 * 4 = 12` rather than `6 / (2 * 4) = 6 / 8 = 0.75`.
+Multiplication and division have the same priority, so Python reads this expression from left to right: `6 / 2 * 4 = (6 / 2) * 4 = 12`.
 
 **Right Associativity**
 
@@ -212,13 +212,13 @@ Evaluation starts from right to left. Only the exponentiation operator `**` uses
   ]}
 />
 
-The expression `2 ** 3 ** 2` is evaluated as `2 ** (3 ** 2) = 2 ** 9 = 512` rather than `(2 ** 3) ** 2 = 8 ** 2 = 64`.
+Python groups repeated exponentiation from right to left: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
 
 ## Python Shell as Calculator
 
-Python shell is very effective as a calculator for various mathematical calculations. You can type mathematical expressions directly and Python will evaluate them in real-time.
+You can use the Python shell as a calculator. Type a mathematical expression and Python evaluates it immediately.
 
-Important things to remember are that the `/` operator always produces a float even when the result is a whole number. Conversely, the `//` operator produces an integer unless one of the operands is a float. For the modulo operator, the result will follow the sign of the divisor and use a consistent mathematical formula.
+The `/` operator always produces a float, even when the result is a whole number. The `//` operator produces an integer when both operands are integers and a float when either operand is a float. A nonzero modulo result has the same sign as the divisor and satisfies the equation shown above.
 
 ## Arithmetic Operators Summary Table
 

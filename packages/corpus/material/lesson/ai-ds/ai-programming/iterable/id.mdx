@@ -74,7 +74,7 @@ Operator `in` dan `not in` menanyakan apakah suatu container memuat nilai terten
 
 ### Penggunaan Operator in dan not in
 
-Sequence bawaan memeriksa item hingga menemukan kecocokan atau mencapai akhir. Set dan dictionary memakai mekanisme pencariannya sendiri, dan pemeriksaan keanggotaan dictionary berlaku pada kunci dan bukan nilai.
+Sequence bawaan memeriksa item hingga menemukan kecocokan atau mencapai akhir. Set dan dictionary memakai cara pencariannya sendiri. Pemeriksaan keanggotaan pada dictionary mencari kuncinya.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ print("gram" in text)     # Output: True
 print("program" in text)  # Output: True
 print("java" in text)     # Output: False
 
-# Pemeriksaan penanda saja dan bukan validasi email lengkap
+# Periksa penanda yang dipakai dalam contoh sederhana ini
 email = "user@example.com"
 if "@" in email and ".com" in email:
     print("Memuat penanda dasar email")
@@ -303,7 +303,7 @@ print("Rata-rata nilai:", average)
 
 ### Penggunaan Praktis Unpacking
 
-Sintaks yang sama bekerja dalam pemanggilan fungsi dan tampilan collection. Gunakan ketika ekspansi memang menjadi bagian antarmuka yang dituju dan bukan ketika fungsi sudah menerima satu iterable secara langsung.
+Sintaks yang sama bekerja dalam pemanggilan fungsi dan tampilan collection. Gunakan saat antarmuka mengharapkan item yang sudah dibuka. Berikan iterable secara langsung jika fungsi menerima satu iterable.
 
 <CodeBlock
   data={[

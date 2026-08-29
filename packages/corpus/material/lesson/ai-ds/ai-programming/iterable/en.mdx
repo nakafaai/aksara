@@ -74,7 +74,7 @@ The operators `in` and `not in` ask whether a container contains a value. The ex
 
 ### Using in and not in Operators
 
-Built-in sequences search their items until they find a match or reach the end. Sets and dictionaries use their own lookup behavior, and dictionary membership checks keys rather than values.
+Built-in sequences search their items until they find a match or reach the end. Sets and dictionaries use their own lookup behavior. A membership check on a dictionary searches its keys.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ print("gram" in text)     # Output: True
 print("program" in text)  # Output: True
 print("java" in text)     # Output: False
 
-# Marker check only rather than full email validation
+# Check for the marker used in this small example
 email = "user@example.com"
 if "@" in email and ".com" in email:
     print("Contains basic email markers")
@@ -303,7 +303,7 @@ print("Average grade:", average)
 
 ### Practical Uses of Unpacking
 
-The same syntax works in function calls and in collection displays. Use it when expansion is part of the intended interface rather than when a function already accepts one iterable directly.
+The same syntax works in function calls and in collection displays. Use it when the interface expects expanded items. Pass the iterable directly when the function accepts one iterable.
 
 <CodeBlock
   data={[

@@ -187,7 +187,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### File Position and Reading
 
-A newly opened file starts at its initial stream position. Reading advances that position. In text mode, `tell()` can return an opaque position cookie rather than a simple character index, so store and reuse positions instead of calculating byte offsets yourself.
+A newly opened file starts at its initial stream position. Reading advances that position. In text mode, `tell()` may return a special position marker. Save that marker and pass it back to Python when you need the same position.
 
 <CodeBlock
   data={[

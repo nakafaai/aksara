@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Von der Matrix zu ihren Eigenwerten
 
-Der QR-Algorithmus berechnet alle Eigenwerte einer quadratischen Matrix durch wiederholte Basiswechsel. Die Eigenwerte ändern sich dabei nicht. Stattdessen bewegt sich die Matrix auf eine Form zu, aus der sich die Eigenwerte leichter ablesen lassen.
+Der QR-Algorithmus berechnet alle Eigenwerte einer quadratischen Matrix durch wiederholte Basiswechsel. Die Eigenwerte bleiben dabei gleich, während sich die Matrix einer Form nähert, aus der sie leichter abzulesen sind.
 
 Die folgende Variante ist die unverschobene QR-Iteration. An ihr lässt sich die Grundidee besonders klar erkennen. Praktische Eigenwertlöser verwenden zusätzlich Verschiebungen, reduzieren die Matrix zunächst auf Hessenbergform und trennen konvergierte Blöcke ab. So läuft dieselbe Idee schneller und zuverlässiger.
 
@@ -39,7 +39,7 @@ Da <InlineMath math="Q_k" /> unitär ist, gilt <InlineMath math="Q_k^{*}Q_k=I" /
 <BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
 </MathContainer>
 
-Damit ist <InlineMath math="A_{k+1}" /> unitär ähnlich zu <InlineMath math="A_k" />. Ähnliche Matrizen besitzen dasselbe charakteristische Polynom und somit dieselben Eigenwerte. Die QR-Iteration wechselt die Koordinaten und nicht die zugrunde liegende lineare Abbildung.
+Damit ist <InlineMath math="A_{k+1}" /> unitär ähnlich zu <InlineMath math="A_k" />. Ähnliche Matrizen besitzen dasselbe charakteristische Polynom und somit dieselben Eigenwerte. Jeder QR-Schritt stellt dieselbe lineare Abbildung in neuen Koordinaten dar.
 
 ## Welche Form entsteht
 
@@ -51,7 +51,7 @@ Die Grenzform hängt von der Matrix und dem verwendeten Zahlkörper ab.
 | Allgemein komplex | Obere Dreiecksschurform | Die Diagonaleinträge sind die Eigenwerte |
 | Allgemein reell | Reelle obere Quasidreiecksform | Jeder <InlineMath math="1\times1" />-Block liefert einen reellen Eigenwert; jeder <InlineMath math="2\times2" />-Block liefert ein komplex konjugiertes Paar |
 
-Die Eigenwerte müssen nicht in einer vorgegebenen Reihenfolge erscheinen. Mehrfache Eigenwerte und besondere Eigenwertanordnungen verlangen ebenfalls mehr Sorgfalt als eine einfache strenge Betragsordnung vermuten lässt.
+Die Eigenwerte können in jeder Reihenfolge erscheinen. Mehrfache Werte und besondere Anordnungen müssen gesondert behandelt werden, weil eine strenge Betragsordnung diese Fälle nicht abdeckt.
 
 ## Durchgerechnetes symmetrisches Beispiel
 

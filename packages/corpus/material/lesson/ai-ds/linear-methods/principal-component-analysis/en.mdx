@@ -179,8 +179,8 @@ of the total variance.
 | --- | --- |
 | Center with training-set means only | prevents data leakage and preserves the learned coordinate system |
 | Review feature units and scaling | high numerical variance can otherwise dominate for the wrong reason |
-| Choose <InlineMath math="k" /> from validation needs rather than one fixed threshold | explained variance does not measure predictive relevance |
+| Choose <InlineMath math="k" /> from validation needs | explained variance does not measure predictive relevance |
 | Remember eigenvector signs are arbitrary | <InlineMath math="v_j" /> and <InlineMath math="-v_j" /> define the same component |
 | Inspect nonlinear structure and outliers | PCA is a linear, variance-based summary and can be sensitive to both |
 
-PCA finds directions of variance rather than causal factors. A principal component may combine many original features, and a low-variance direction can still matter for a downstream task.
+PCA finds directions of variance. It cannot identify causes from variance alone. A principal component may combine many original features, and a low-variance direction can still matter for a downstream task.

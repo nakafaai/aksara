@@ -117,7 +117,7 @@ The `title()` method follows a mechanical casing rule. It can be convenient for 
 
 ### Removing Characters at Start and End
 
-With no argument, `strip()`, `lstrip()`, and `rstrip()` remove surrounding whitespace. A `chars` argument is treated as a set of individual characters to remove repeatedly from the relevant ends rather than as one exact prefix or suffix.
+With no argument, `strip()`, `lstrip()`, and `rstrip()` remove surrounding whitespace. A `chars` argument gives Python a set of individual characters. Python repeatedly removes any of those characters from the relevant ends.
 
 <CodeBlock
   data={[
@@ -209,7 +209,7 @@ Choose the method according to the failure contract: `find()` returns `-1`, whil
 
 ### String Character Validation
 
-Python provides predicates that classify the code points in a string. They answer questions about character categories rather than whether the value satisfies a complete business format.
+Python provides predicates that classify the code points in a string. They answer questions about character categories. A complete business format needs its own validation rules.
 
 <CodeBlock
   data={[
@@ -485,7 +485,7 @@ Method chaining works well for a short linear cleanup. It is not automatically c
 
 ## Practical String Method Applications
 
-The following bounded examples combine string methods with explicit assumptions. They illustrate mechanics rather than universal production validators or parsers.
+The following small examples combine string methods with stated assumptions. They teach how the methods work. Production validators and parsers need rules written for their real data.
 
 <CodeBlock
   data={[
@@ -628,4 +628,4 @@ for title in titles:
 
 These four examples combine classification, searching, splitting, and replacement under small, stated formats. A production phone parser, filename parser, log parser, or slug generator also needs a domain contract, error policy, and tests for ambiguous input.
 
-The key is to match each method to its exact semantics instead of treating a convenient string operation as complete validation.
+Match each method to its exact behavior. A convenient string operation can cover one validation step, while the full check may need more rules.

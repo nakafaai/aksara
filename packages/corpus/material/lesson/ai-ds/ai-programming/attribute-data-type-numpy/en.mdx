@@ -169,7 +169,7 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
 
 ### Data Type Consistency
 
-All elements in a regular NumPy array share one data type. The `numpy.dtype` object explains how those values are stored and interpreted in memory. When inputs have different types, NumPy applies its promotion rules to find a compatible common dtype. That result depends on precision and type category rather than on which input type appears most often.
+All elements in a regular NumPy array share one data type. The `numpy.dtype` object explains how those values are stored and interpreted in memory. When inputs have different types, NumPy applies its promotion rules to find a compatible common dtype. Precision and type category determine the result. The number of times each input type appears does not affect this rule.
 
 <CodeBlock
   data={[
@@ -200,7 +200,7 @@ NumPy provides various ways to convert and manipulate array data types according
 
 ### Data Type Conversion Methods
 
-Data type conversion lets you choose another representation for later analysis. The `astype()` method returns a converted array; it does not change the original array in place. Converting floating-point values to integers truncates the fractional part toward zero rather than rounding it.
+Data type conversion lets you choose another representation for later analysis. The `astype()` method returns a converted array; it does not change the original array in place. When converting a floating-point value to an integer, NumPy cuts off the fractional part toward zero.
 
 <CodeBlock
   data={[

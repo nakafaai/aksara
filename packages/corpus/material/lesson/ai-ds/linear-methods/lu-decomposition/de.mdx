@@ -20,7 +20,7 @@ wobei:
 
 Im Eliminationsschritt <InlineMath math="k" /> wählt die partielle Pivotisierung in Spalte <InlineMath math="k" /> den betragsmäßig größten Eintrag auf oder unterhalb der Diagonalen. Dadurch wird eine Division durch einen Nullpivot vermieden und das Wachstum numerischer Fehler gewöhnlich begrenzt.
 
-Für eine Permutationsmatrix gilt <InlineMath math="P^{-1}=P^{\mathsf T}" />. Die Gleichheit <InlineMath math="P^{-1}=P" /> gilt nur für spezielle Permutationen, etwa eine einzelne Zeilenvertauschung, und nicht für jede zusammengesetzte Permutation.
+Für eine Permutationsmatrix gilt <InlineMath math="P^{-1}=P^{\mathsf T}" />. Die Gleichheit <InlineMath math="P^{-1}=P" /> gilt nur für spezielle Permutationen, etwa eine einzelne Zeilenvertauschung. Bei einer zusammengesetzten Permutation kann sie falsch sein.
 
 ## Wie die Elimination die Faktoren erzeugt
 
@@ -187,4 +187,4 @@ Die Prüfungen gehören zum Beispiel, weil eine falsche Faktorordnung und fehler
 
 ## Gültigkeitsbereich der Methode
 
-Diese Implementierung akzeptiert bewusst nur invertierbare quadratische Matrizen. Ein numerischer Nullpivot wird gemeldet und nicht stillschweigend übersprungen. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine rangenthüllende QR-Zerlegung oder eine SVD. Diese Probleme besitzen andere Ausgabeverträge und sollten nicht in einem quadratischen PLU-Löser verborgen werden.
+Diese Implementierung akzeptiert bewusst nur invertierbare quadratische Matrizen. Ein numerischer Nullpivot führt zu einer Fehlermeldung. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine rangenthüllende QR-Zerlegung oder eine SVD. Diese Probleme besitzen andere Ausgabeverträge und sollten nicht in einem quadratischen PLU-Löser verborgen werden.

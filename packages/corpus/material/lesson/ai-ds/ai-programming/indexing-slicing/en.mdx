@@ -11,7 +11,7 @@ export const metadata = {
 
 Indexing is a way to access specific elements in strings or lists using position numbers. Imagine you have a row of books on a shelf, and each book has a sequential number. Indexing allows you to pick a specific book based on its sequence number.
 
-Python uses a numbering system that starts from <InlineMath math="0" /> rather than <InlineMath math="1" />. So the first element has index <InlineMath math="0" />, the second element has index <InlineMath math="1" />, and so on. Additionally, Python also supports negative indices that count backwards from the end.
+Python starts its index numbers at <InlineMath math="0" />. The first element has index <InlineMath math="0" />, the second has index <InlineMath math="1" />, and so on. Python also supports negative indices that count backward from the end.
 
 ### Positive and Negative Indices
 
@@ -42,7 +42,7 @@ except IndexError:
   ]}
 />
 
-An index outside the valid range raises `IndexError`. Python sequences perform this bounds check instead of returning an arbitrary value.
+An index outside the valid range raises `IndexError`. This bounds check prevents Python sequences from returning an unrelated value.
 
 ## Slicing Concept
 
@@ -50,7 +50,7 @@ Slicing takes one part of a string or list that can contain several elements. Li
 
 ### Simple Slicing
 
-Basic slicing syntax uses the format `[i:j]` where `i` is the start index and `j` is the end index. It's important to remember that the end index is not included in the result.
+Basic slicing syntax uses the format `[i:j]` where `i` is the start index and `j` is the end index. The result includes the start index and stops before the end index.
 
 <CodeBlock
   data={[
@@ -275,6 +275,6 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
 
 These examples use indexing where a position is known and slicing where a contiguous or stepped subsequence is intended. Reversing a sequence with `[::-1]` is concise. File extensions are different: their length varies, so `Path.suffix` expresses that domain rule more reliably than a fixed slice.
 
-Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""` rather than raising `IndexError`. Direct indexing such as `s[10]` still raises. Choose between them according to whether an absent element is an error or an empty subsequence is meaningful.
+Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Choose the form that matches whether an empty subsequence makes sense for your task.
 
-Mastering negative indices provides a new perspective in accessing data. Instead of counting from the front, you can directly take elements from the back with `s[-1]` for the last element or `s[-3:]` for the last three elements. This approach is very useful in file processing, text parsing, and dataset manipulation where relative position from the end is more important than absolute position from the start.
+Negative indices let you count from the end. Use `s[-1]` for the last element or `s[-3:]` for the last three elements. This approach is useful in file processing, text parsing, and dataset work when you care about a position near the end.

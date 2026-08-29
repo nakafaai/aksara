@@ -188,4 +188,4 @@ The checks are part of the example because factor order and row-swap bookkeeping
 
 ## Scope of the method
 
-This implementation deliberately accepts only nonsingular square matrices. A zero numerical pivot is reported rather than silently skipped. For rectangular least-squares problems or rank-deficient matrices, use a rank-revealing QR factorization or an SVD. Those problems have different output contracts and should not be hidden inside a square PLU solver.
+This implementation deliberately accepts only nonsingular square matrices. It reports a zero numerical pivot as an error. For rectangular least-squares problems or rank-deficient matrices, use a rank-revealing QR factorization or an SVD. Those problems have different output contracts and should not be hidden inside a square PLU solver.

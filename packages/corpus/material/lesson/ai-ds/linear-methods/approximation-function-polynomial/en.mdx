@@ -11,7 +11,7 @@ export const metadata = {
 
 A function may be expensive to evaluate or too complicated for a later calculation. We then choose a simpler family of functions and ask a precise question: which member of that family is closest to the original function?
 
-Let <InlineMath math="C([a,b])" /> denote the real vector space of continuous functions on <InlineMath math="[a,b]" />. We will measure the error over the whole interval rather than at only one point.
+Let <InlineMath math="C([a,b])" /> denote the real vector space of continuous functions on <InlineMath math="[a,b]" />. We measure the error across the whole interval.
 
 ## Inner Product and L2 Error
 
@@ -22,7 +22,7 @@ For <InlineMath math="f,g\in C([a,b])" />, define
 <BlockMath math="\|f\|_2=\sqrt{\langle f,f\rangle}=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2}" />
 </MathContainer>
 
-This inner product turns <InlineMath math="C([a,b])" /> into an inner-product space. The displayed norm is the <InlineMath math="L^2" /> norm. It is not the root-mean-square value unless it is divided by the square root of the interval length:
+This inner product turns <InlineMath math="C([a,b])" /> into an inner-product space. The displayed norm is the <InlineMath math="L^2" /> norm. Dividing it by the square root of the interval length gives the root-mean-square value:
 
 <BlockMath math="\operatorname{RMS}(f)=\frac{1}{\sqrt{b-a}}\|f\|_2" />
 

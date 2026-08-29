@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Urutan Prioritas Operator
 
-Prioritas operator menentukan cara Python mengelompokkan ekspresi ketika tanda kurung tidak menyatakannya secara eksplisit. Ini adalah aturan parsing dan bukan jaminan bahwa setiap operand dievaluasi mengikuti urutan visual yang sama.
+Prioritas operator menentukan cara Python mengelompokkan ekspresi ketika tanda kurung tidak menyatakannya secara langsung. Aturan ini menjelaskan pengelompokan ekspresi. Urutan evaluasi operand dapat berbeda dari urutan yang terlihat di layar.
 
 <Mermaid
   title="Operator Mana yang Dieksekusi Dulu"
@@ -150,7 +150,7 @@ Python memiliki aturan khusus untuk menentukan nilai mana yang dianggap `False` 
 
 **Nilai yang dianggap `True` (Truthy):**
 
-1. Nilai bawaan lain yang bukan nol dan bukan kosong
+1. Nilai bawaan lain, seperti bilangan selain nol atau koleksi yang berisi item
 
 Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, instance tersebut dianggap truthy secara default.
 

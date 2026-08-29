@@ -45,9 +45,13 @@
   or `schauen wir uns an`. Give the observation or instruction directly.
 - Rewrite rhetorical negation around the actual teaching point. Avoid
   `X, bukan Y`, `X, not Y`, `X, nicht Y`, and their `not only` variants in
-  authored prose. A punctuation change does not fix the prose. Keep a negative
+  authored prose. Replacing them with `rather than`, `instead of`, `dan bukan`,
+  `daripada`, `und nicht`, `statt`, or `stattdessen` leaves the same writing
+  problem behind. A punctuation change does not fix the prose. Keep a negative
   statement only when the learner needs that exact boundary, then explain the
-  correct idea in plain words.
+  correct idea in plain words. Do not flag an ordinary comparison such as
+  `5 lebih besar daripada 3`; the problem is the artificial contrast, not the
+  word by itself.
 - Avoid formal filler such as `ramalan harfiah`, figurative `lanskap`,
   `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
   when a familiar phrase carries the same meaning. These examples are warning
@@ -57,6 +61,10 @@
 
 ## Final language review
 
+- Use phrase searches to find likely problems, then inspect every match in its
+  full paragraph. Record the few exact quotations, assessed forms, code output,
+  or technical names that must remain. A zero count for one phrase does not
+  prove that the writing is natural.
 - Read the complete document aloud in the target locale.
 - Ask whether a teacher could say every sentence to a student without first
   explaining the wording itself.

@@ -11,7 +11,7 @@ export const metadata = {
 
 Python keeps its core language focused and organizes reusable code in modules. A module can own functions, constants, classes, and other names without placing all of them in the global namespace.
 
-An `import` loads a module when needed and binds a name through which your code can reach its public members. The standard library already supplies well-tested mathematical operations, so application code should reuse them instead of recreating formulas carelessly.
+An `import` loads a module when needed and binds a name through which your code can reach its public members. The standard library already supplies well-tested mathematical operations. Reusing them avoids mistakes from rewriting the formulas yourself.
 
 ## The math Module for Mathematical Functions
 
@@ -55,7 +55,7 @@ An alias binds the module to another local name. Use one only when it follows an
       filename: "import_alias.py",
       code: `import math as m
 
-# Using alias 'm' instead of 'math'
+# Import math under the shorter alias 'm'
 print(m.sqrt(9))  # Output: 3.0
 print(m.pi)       # Output: 3.141592653589793
 
@@ -136,7 +136,7 @@ print(fac(5))  # Output: 120
 
 ## Built-in Functions vs Module Functions
 
-Python provides numeric built-ins such as `abs()` and `round()` without an import. They work across types through Python's numeric protocols: a type can define the operation it supports, rather than Python selecting from several statically overloaded function declarations.
+Python provides numeric built-ins such as `abs()` and `round()` without an import. They work across types through Python's numeric protocols. Each type can define the operations it supports.
 
 ### Absolute Value Function
 

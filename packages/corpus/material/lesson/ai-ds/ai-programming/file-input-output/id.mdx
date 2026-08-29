@@ -187,7 +187,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### Posisi File dan Pembacaan
 
-File yang baru dibuka berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan cookie posisi yang opaque dan bukan indeks karakter sederhana. Simpan dan gunakan kembali posisi itu daripada menghitung offset byte sendiri.
+File yang baru dibuka berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan penanda posisi khusus. Simpan penanda itu dan berikan kembali kepada Python saat kamu memerlukan posisi yang sama.
 
 <CodeBlock
   data={[

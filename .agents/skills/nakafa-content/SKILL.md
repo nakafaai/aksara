@@ -78,9 +78,16 @@ addition, revision, review, or translation in this repository.
   including `not only`, `not just`, `bukan hanya`, `tidak hanya`,
   `bukan sekadar`, and `nicht nur`, in authored explanations. Rewrite the
   complete thought as direct positive teaching. Do not evade this rule by
-  moving the same clipped negation into a new sentence. Preserve negation when
+  swapping in `rather than`, `instead of`, `dan bukan`, `daripada`, `und nicht`,
+  `statt`, or `stattdessen`, or by moving the same clipped negation into a new
+  sentence. Those substitutions only move the problem. Preserve negation when
   it is part of the fact, mathematical condition, assessed text, quotation, or
-  correction a learner genuinely needs.
+  correction a learner genuinely needs. Ordinary comparisons remain valid,
+  such as `5 lebih besar daripada 3`; judge the sentence by its meaning.
+- A clean keyword scan is only the start of review. Read every changed
+  paragraph as a complete explanation and reject any rewrite that preserves the
+  same artificial contrast, unexplained term, or stiff sentence structure under
+  different words.
 - Do not translate assessed passages, assessed choices, quotations, code,
   mathematical notation, or immutable official source bytes.
 - Lessons must work from a direct visit. Define required terms, abbreviations,
