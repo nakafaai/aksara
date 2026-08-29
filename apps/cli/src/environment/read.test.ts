@@ -28,7 +28,6 @@ function makeEnvironmentFixture() {
         "AKSARA_RENDERER_ENDPOINT",
         "https://www.example.test/api/internal/content/renderer",
       ],
-      ["AKSARA_RENDERER_TOKEN", "renderer-token"],
       ["AKSARA_SIGNING_KEY_ID", "production-2026"],
       ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],
     ]);
@@ -207,7 +206,6 @@ describe("production environment", () => {
       expect(Redacted.value(environment.publicationToken)).toBe(
         "publication-token"
       );
-      expect(Redacted.value(environment.rendererToken)).toBe("renderer-token");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
       expect(JSON.stringify(environment)).not.toContain("publication-token");
@@ -228,7 +226,6 @@ describe("production environment", () => {
     ],
     ["AKSARA_RENDERER_ENDPOINT", "https://www.example.test/renderer#fragment"],
     ["AKSARA_PUBLICATION_TOKEN", "contains whitespace"],
-    ["AKSARA_RENDERER_TOKEN", ""],
     ["AKSARA_SIGNING_KEY_ID", "INVALID"],
     ["AKSARA_SIGNING_PRIVATE_KEY", "not-a-pem"],
     [

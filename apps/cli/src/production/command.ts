@@ -122,7 +122,7 @@ export const runProductionCommand: (
     const target = retryPublicationTarget(rawTarget);
     const activation = yield* makeProductionActivation({
       endpoint: recoveryEnvironment.rendererEndpoint,
-      token: recoveryEnvironment.rendererToken,
+      token: recoveryEnvironment.publicationToken,
     });
     const current = yield* target.current.pipe(
       Effect.mapError(mapProductionError("target"))
@@ -165,7 +165,7 @@ export const runProductionCommand: (
     if (action.kind === "new") {
       const rendererManifest = yield* fetchProductionRenderer(
         environment.rendererEndpoint,
-        environment.rendererToken
+        environment.publicationToken
       ).pipe(Effect.mapError(mapProductionError("renderer")));
       publishable = yield* prepareProductionGit({
         baseBundle: action.baseBundle,

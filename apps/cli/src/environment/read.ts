@@ -22,7 +22,6 @@ export interface PublicationEnvironment {
 /** Validated secrets and endpoints required by a production content command. */
 interface RecoveryEnvironment extends PublicationEnvironment {
   readonly rendererEndpoint: URL;
-  readonly rendererToken: Redacted.Redacted<string>;
 }
 
 /** The process environment does not satisfy the narrow preview contract. */
@@ -169,14 +168,9 @@ export const readRecoveryEnvironment = Effect.fn(
       validateEndpoint("AKSARA_RENDERER_ENDPOINT", endpoint)
     )
   );
-  const rendererToken = yield* readConfig(
-    tokenConfig("AKSARA_RENDERER_TOKEN"),
-    "AKSARA_RENDERER_TOKEN"
-  );
   return {
     ...publication,
     rendererEndpoint,
-    rendererToken,
   } satisfies RecoveryEnvironment;
 });
 

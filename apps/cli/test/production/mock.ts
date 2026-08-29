@@ -108,7 +108,6 @@ export function environmentMock(calls: TargetCalls) {
     rendererEndpoint: new URL(
       "https://www.example.test/api/internal/content/renderer"
     ),
-    rendererToken: Redacted.make("renderer-token"),
   };
   return {
     readProductionEnvironment: (recovery: typeof recoveryEnvironment) => {

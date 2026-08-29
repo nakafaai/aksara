@@ -40,7 +40,7 @@ export const runRecoverCommand: (args: RecoverArguments) => RecoverCommand =
       const target = retryPublicationTarget(rawTarget);
       const activation = yield* makeProductionActivation({
         endpoint: environment.rendererEndpoint,
-        token: environment.rendererToken,
+        token: environment.publicationToken,
       });
       const receipt = yield* recoverContentRelease({
         recoveryId: args.recoveryId,
