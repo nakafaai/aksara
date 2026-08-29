@@ -44,17 +44,11 @@ export interface RecoverArguments {
   readonly releaseId: ReleaseId;
 }
 
-/** Exclusive destination for the one reviewed signed genesis runtime bundle. */
-export interface GenesisArguments {
-  readonly bundlePath: string;
-  readonly command: "genesis";
-}
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
   | CleanupArguments
-  | GenesisArguments
   | RecoverArguments
   | ReleaseArguments
   | StatusArguments;
@@ -66,7 +60,6 @@ export function isProductionCommand(
 ): value is ProductionCommand {
   return (
     value === "cleanup" ||
-    value === "genesis" ||
     value === "accept" ||
     value === "abort" ||
     value === "recover" ||
@@ -93,18 +86,6 @@ export const parseProductionArguments = Effect.fn(
   const options = yield* parseProductionOptions(command, args);
   if (command === "status") {
     return { command } satisfies StatusArguments;
-  }
-  if (command === "genesis") {
-    if (options.bundlePath === undefined) {
-      return yield* argumentError(command, "--bundle-path", "missing");
-    }
-    if (!options.bundlePath.startsWith("/")) {
-      return yield* argumentError(command, "--bundle-path", "value");
-    }
-    return {
-      bundlePath: options.bundlePath,
-      command,
-    } satisfies GenesisArguments;
   }
   if (options.releaseId === undefined) {
     return yield* argumentError(command, "--release-id", "missing");

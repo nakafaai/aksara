@@ -239,14 +239,9 @@ describe("production arguments", () => {
       })
   );
 
-  it.effect.each([
-    "rollback",
-    "abort-tryout-history",
-    "cleanup-tryout-history",
-    "migrate-tryout-history",
-  ])("rejects retired %s commands", (command) =>
+  it.effect("rejects an unknown production command", () =>
     Effect.gen(function* () {
-      expect(yield* rejectCli([command])).toMatchObject({
+      expect(yield* rejectCli(["unsupported"])).toMatchObject({
         _tag: "PreviewArgumentsError",
         reason: "unknown",
       });

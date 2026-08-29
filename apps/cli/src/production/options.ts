@@ -5,21 +5,15 @@ import { productionArgumentsError } from "#cli/production/error";
 
 /** Raw named options collected before domain decoding. */
 export interface RawProductionOptions {
-  bundlePath?: string;
   recoveryId?: string;
   releaseId?: string;
   scope: string[];
 }
 
-type ProductionOption =
-  | "--bundle-path"
-  | "--recovery-id"
-  | "--release-id"
-  | "--scope";
+type ProductionOption = "--recovery-id" | "--release-id" | "--scope";
 type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
 
 const OPTION_KEYS = {
-  "--bundle-path": "bundlePath",
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
@@ -29,22 +23,13 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
-    value === "--bundle-path" ||
-    value === "--recovery-id" ||
-    value === "--release-id" ||
-    value === "--scope"
+    value === "--recovery-id" || value === "--release-id" || value === "--scope"
   );
 }
 
 /** Checks whether one command owns the selected production option. */
 function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "status") {
-    return false;
-  }
-  if (command === "genesis") {
-    return option === "--bundle-path";
-  }
-  if (option === "--bundle-path") {
     return false;
   }
   if (option === "--scope") {

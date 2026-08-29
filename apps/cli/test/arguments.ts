@@ -28,12 +28,6 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
       releaseId: "release-next",
     });
   }
-  if (args[0] === "genesis") {
-    return Effect.succeed({
-      bundlePath: "/tmp/genesis-runtime.json",
-      command: "genesis",
-    });
-  }
   if (args[0] === "recover") {
     return Effect.succeed({
       command: "recover",

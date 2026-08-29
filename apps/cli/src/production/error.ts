@@ -8,13 +8,11 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "abort",
       "accept",
       "cleanup",
-      "genesis",
       "recover",
       "release",
       "status",
     ]),
     option: Schema.Literals([
-      "--bundle-path",
       "--recovery-id",
       "--release-id",
       "--scope",

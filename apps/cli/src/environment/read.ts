@@ -25,13 +25,6 @@ interface RecoveryEnvironment extends PublicationEnvironment {
   readonly rendererToken: Redacted.Redacted<string>;
 }
 
-/** Validated key material required by one production signing operation. */
-export interface SigningEnvironment {
-  readonly derivedPublicKeyPem: string;
-  readonly keyId: typeof SigningKeyIdSchema.Type;
-  readonly privateKeyPem: Redacted.Redacted<string>;
-}
-
 /** The process environment does not satisfy the narrow preview contract. */
 export class PreviewEnvironmentError extends Schema.TaggedError<PreviewEnvironmentError>()(
   "PreviewEnvironmentError",
@@ -188,28 +181,28 @@ export const readRecoveryEnvironment = Effect.fn(
 });
 
 /** Loads and validates only the active production signing key. */
-export const readSigningEnvironment = Effect.fn(
-  "AksaraCli.readSigningEnvironment"
-)(function* () {
-  const keyIdInput = yield* readConfig(
-    Config.string("AKSARA_SIGNING_KEY_ID"),
-    "AKSARA_SIGNING_KEY_ID"
-  );
-  const keyId = yield* Schema.decodeEffect(SigningKeyIdSchema)(keyIdInput).pipe(
-    Effect.mapError(() => productionError("AKSARA_SIGNING_KEY_ID"))
-  );
-  const privateKeyInput = yield* readConfig(
-    Config.redacted("AKSARA_SIGNING_PRIVATE_KEY"),
-    "AKSARA_SIGNING_PRIVATE_KEY"
-  );
-  const signingKey = yield* validatePrivateKey(privateKeyInput);
+const readSigningEnvironment = Effect.fn("AksaraCli.readSigningEnvironment")(
+  function* () {
+    const keyIdInput = yield* readConfig(
+      Config.string("AKSARA_SIGNING_KEY_ID"),
+      "AKSARA_SIGNING_KEY_ID"
+    );
+    const keyId = yield* Schema.decodeEffect(SigningKeyIdSchema)(
+      keyIdInput
+    ).pipe(Effect.mapError(() => productionError("AKSARA_SIGNING_KEY_ID")));
+    const privateKeyInput = yield* readConfig(
+      Config.redacted("AKSARA_SIGNING_PRIVATE_KEY"),
+      "AKSARA_SIGNING_PRIVATE_KEY"
+    );
+    const signingKey = yield* validatePrivateKey(privateKeyInput);
 
-  return {
-    derivedPublicKeyPem: signingKey.derivedPublicKeyPem,
-    keyId,
-    privateKeyPem: signingKey.privateKeyPem,
-  } satisfies SigningEnvironment;
-});
+    return {
+      derivedPublicKeyPem: signingKey.derivedPublicKeyPem,
+      keyId,
+      privateKeyPem: signingKey.privateKeyPem,
+    };
+  }
+);
 
 /** Adds validated signer values to an already decoded recovery environment. */
 export const readProductionEnvironment = Effect.fn(
