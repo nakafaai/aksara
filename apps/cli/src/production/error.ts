@@ -6,24 +6,16 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
   {
     command: Schema.Literals([
       "abort",
-      "abort-tryout-history",
       "accept",
       "cleanup",
-      "cleanup-tryout-history",
-      "genesis",
-      "migrate-tryout-history",
       "recover",
       "release",
       "status",
     ]),
     option: Schema.Literals([
-      "--asset-hash",
-      "--bundle-path",
       "--recovery-id",
       "--release-id",
-      "--receipt-path",
       "--scope",
-      "--source-sha",
       "command",
     ]),
     reason: Schema.Literals([

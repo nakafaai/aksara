@@ -1,17 +1,8 @@
-import {
-  GitCommitShaSchema,
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
-import type { TryoutHistoryMigrationProof } from "@nakafa/aksara-contracts/migration/tryout/history/proof";
+import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
-import {
-  parseProductionOptions,
-  type RawProductionOptions,
-} from "#cli/production/options";
+import { parseProductionOptions } from "#cli/production/options";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */
@@ -53,60 +44,22 @@ export interface RecoverArguments {
   readonly releaseId: ReleaseId;
 }
 
-/** Exact retained-history migration and exclusive public receipt destination. */
-export interface MigrateTryoutHistoryArguments {
-  readonly command: "migrate-tryout-history";
-  readonly receiptPath: string;
-  readonly releaseId: ReleaseId;
-}
-
-/** Exact externally durable receipt authorizing retained-history cleanup. */
-export interface CleanupTryoutHistoryArguments {
-  readonly command: "cleanup-tryout-history";
-  readonly proof: TryoutHistoryMigrationProof;
-  readonly receiptPath: string;
-  readonly releaseId: ReleaseId;
-}
-
-/** Exact invisible retained-history staging root selected for abandonment. */
-export interface AbortTryoutHistoryArguments {
-  readonly command: "abort-tryout-history";
-  readonly releaseId: ReleaseId;
-}
-
-/** Exclusive destination for the one reviewed signed genesis runtime bundle. */
-export interface GenesisArguments {
-  readonly bundlePath: string;
-  readonly command: "genesis";
-}
-
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
-  | AbortTryoutHistoryArguments
   | CleanupArguments
-  | CleanupTryoutHistoryArguments
-  | GenesisArguments
-  | MigrateTryoutHistoryArguments
   | RecoverArguments
   | ReleaseArguments
   | StatusArguments;
 
 export type ProductionCommand = ProductionArguments["command"];
-type TryoutMigrationCommand =
-  | CleanupTryoutHistoryArguments["command"]
-  | MigrateTryoutHistoryArguments["command"];
 /** Narrows a raw command token to the production command vocabulary. */
 export function isProductionCommand(
   value: string | undefined
 ): value is ProductionCommand {
   return (
     value === "cleanup" ||
-    value === "genesis" ||
-    value === "abort-tryout-history" ||
-    value === "cleanup-tryout-history" ||
-    value === "migrate-tryout-history" ||
     value === "accept" ||
     value === "abort" ||
     value === "recover" ||
@@ -126,51 +79,6 @@ function decodeReleaseId(
   );
 }
 
-/** Decodes the receipt and immutable-proof boundary for history migration. */
-const parseTryoutMigrationArguments = Effect.fn(
-  "AksaraCli.parseTryoutMigrationArguments"
-)(function* (
-  command: TryoutMigrationCommand,
-  options: RawProductionOptions,
-  releaseId: ReleaseId
-) {
-  if (options.receiptPath === undefined) {
-    return yield* argumentError(command, "--receipt-path", "missing");
-  }
-  if (!options.receiptPath.startsWith("/")) {
-    return yield* argumentError(command, "--receipt-path", "value");
-  }
-  if (command === "migrate-tryout-history") {
-    return {
-      command,
-      receiptPath: options.receiptPath,
-      releaseId,
-    } satisfies MigrateTryoutHistoryArguments;
-  }
-  if (options.assetHash === undefined) {
-    return yield* argumentError(command, "--asset-hash", "missing");
-  }
-  if (options.sourceSha === undefined) {
-    return yield* argumentError(command, "--source-sha", "missing");
-  }
-  const assetHash = yield* Schema.decodeEffect(Sha256HashSchema)(
-    options.assetHash
-  ).pipe(
-    Effect.mapError(() => argumentError(command, "--asset-hash", "value"))
-  );
-  const sourceSha = yield* Schema.decodeEffect(GitCommitShaSchema)(
-    options.sourceSha
-  ).pipe(
-    Effect.mapError(() => argumentError(command, "--source-sha", "value"))
-  );
-  return {
-    command,
-    proof: { assetHash, sourceSha },
-    receiptPath: options.receiptPath,
-    releaseId,
-  } satisfies CleanupTryoutHistoryArguments;
-});
-
 /** Decodes one already-selected production command and its strict options. */
 export const parseProductionArguments = Effect.fn(
   "AksaraCli.parseProductionArguments"
@@ -178,18 +86,6 @@ export const parseProductionArguments = Effect.fn(
   const options = yield* parseProductionOptions(command, args);
   if (command === "status") {
     return { command } satisfies StatusArguments;
-  }
-  if (command === "genesis") {
-    if (options.bundlePath === undefined) {
-      return yield* argumentError(command, "--bundle-path", "missing");
-    }
-    if (!options.bundlePath.startsWith("/")) {
-      return yield* argumentError(command, "--bundle-path", "value");
-    }
-    return {
-      bundlePath: options.bundlePath,
-      command,
-    } satisfies GenesisArguments;
   }
   if (options.releaseId === undefined) {
     return yield* argumentError(command, "--release-id", "missing");
@@ -204,15 +100,6 @@ export const parseProductionArguments = Effect.fn(
   }
   if (command === "cleanup") {
     return { command, releaseId } satisfies CleanupArguments;
-  }
-  if (command === "abort-tryout-history") {
-    return { command, releaseId } satisfies AbortTryoutHistoryArguments;
-  }
-  if (
-    command === "migrate-tryout-history" ||
-    command === "cleanup-tryout-history"
-  ) {
-    return yield* parseTryoutMigrationArguments(command, options, releaseId);
   }
   if (options.recoveryId === undefined) {
     return yield* argumentError(command, "--recovery-id", "missing");

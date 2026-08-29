@@ -20,6 +20,7 @@ beforeEach(() => {
     active: completedBundle(active),
     candidate: null,
     recovery: null,
+    tryoutRuntimeBundle: null,
   });
 });
 describe("production command", () => {
@@ -31,6 +32,7 @@ describe("production command", () => {
         active: completedBundle(active),
         candidate: null,
         recovery: recoveryBundle("recovery-active", active),
+        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -61,6 +63,7 @@ describe("production command", () => {
         active: completedBundle(completed),
         candidate: null,
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -115,6 +118,7 @@ describe("production command", () => {
           active: null,
           candidate: { ...candidate, phase: "staging" },
           recovery: null,
+          tryoutRuntimeBundle: null,
         });
         const error = yield* productionProgram({
           command: "release",
@@ -146,6 +150,7 @@ describe("production command", () => {
         active: null,
         candidate: { ...candidate, phase: "staging" },
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       const error = yield* productionProgram({
         command: "release",
@@ -197,6 +202,7 @@ describe("production command", () => {
         active: null,
         candidate: { ...candidate, phase: "verifying" },
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       calls.manifestMismatch = true;
       const error = yield* productionProgram({

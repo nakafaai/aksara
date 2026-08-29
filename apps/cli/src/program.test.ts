@@ -13,9 +13,6 @@ const calls = vi.hoisted(
     cleanup: undefined,
     document:
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
-    migration: undefined,
-    migrationAbort: undefined,
-    migrationCleanup: undefined,
     open: undefined,
     production: undefined,
     recover: undefined,
@@ -99,35 +96,6 @@ vi.mock("#cli/production/command", async () => {
     },
   };
 });
-vi.mock("#cli/migration/seal", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    runTryoutMigrationCommand: (args: NonNullable<typeof calls.migration>) => {
-      calls.migration = args;
-      return TestEffect.succeed("migration-complete");
-    },
-  };
-});
-vi.mock("#cli/migration/cleanup", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    runTryoutCleanupCommand: (
-      args: NonNullable<typeof calls.migrationCleanup>
-    ) => {
-      calls.migrationCleanup = args;
-      return TestEffect.succeed("migration-cleanup-complete");
-    },
-  };
-});
-vi.mock("#cli/migration/abort", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    runTryoutAbortCommand: (args: NonNullable<typeof calls.migrationAbort>) => {
-      calls.migrationAbort = args;
-      return TestEffect.succeed("migration-abort-complete");
-    },
-  };
-});
 vi.mock("#cli/recover", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -152,9 +120,6 @@ beforeEach(() => {
   calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
-  calls.migration = undefined;
-  calls.migrationAbort = undefined;
-  calls.migrationCleanup = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
@@ -171,33 +136,6 @@ describe("CLI program", () => {
         cwd: "/code/aksara",
         environment: { nakafaAppDir: "/code/nakafa.com" },
         requestedDocument: calls.document,
-      });
-    })
-  );
-
-  it.effect("dispatches receipt-gated migration cleanup independently", () =>
-    Effect.gen(function* () {
-      const result = yield* runProgram(["cleanup-tryout-history"]);
-      expect(result).toBe("migration-cleanup-complete");
-      expect(calls.migrationCleanup).toEqual({
-        command: "cleanup-tryout-history",
-        proof: {
-          assetHash: `sha256:${"a".repeat(64)}`,
-          sourceSha: "b".repeat(40),
-        },
-        receiptPath: "/tmp/migration-receipt.json",
-        releaseId: "migration-release",
-      });
-    })
-  );
-
-  it.effect("dispatches staging abort independently", () =>
-    Effect.gen(function* () {
-      const result = yield* runProgram(["abort-tryout-history"]);
-      expect(result).toBe("migration-abort-complete");
-      expect(calls.migrationAbort).toEqual({
-        command: "abort-tryout-history",
-        releaseId: "migration-release",
       });
     })
   );
@@ -236,20 +174,6 @@ describe("CLI program", () => {
             releaseId: "release-next",
           },
           cwd: "/code/aksara",
-        });
-      })
-  );
-
-  it.effect(
-    "dispatches the signed try-out history migration independently",
-    () =>
-      Effect.gen(function* () {
-        const result = yield* runProgram(["migrate-tryout-history"]);
-        expect(result).toBe("migration-complete");
-        expect(calls.migration).toEqual({
-          command: "migrate-tryout-history",
-          receiptPath: "/tmp/migration-receipt.json",
-          releaseId: "migration-release",
         });
       })
   );

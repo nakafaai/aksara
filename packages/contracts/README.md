@@ -31,13 +31,6 @@ Current consumers use unversioned semantic Interfaces:
   validates every signed route and projection against it.
 - `projection/page` owns stable public page identities, localized paths, and
   signed metadata for human, agent, and sitemap delivery.
-- `history/decode` is the single read-only boundary for immutable releases,
-  try-out snapshots and rows, and attempt-bound protected content retained by
-  existing user history.
-
-Current publication and new try-out starts must never import `history/decode`.
-The history boundary has no writer, route fallback, or mixed current wire.
-
 ## Publication dates
 
 Article and material metadata carries one required `datePublished` and one

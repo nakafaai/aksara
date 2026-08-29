@@ -15,12 +15,6 @@ describe("locale source policy", () => {
     ).toEqual([]);
     expect(
       localePolicyViolations(
-        "packages/contracts/src/history/locale.ts",
-        'const Historical = Schema.Literals(["en", "id"]);'
-      )
-    ).toEqual([]);
-    expect(
-      localePolicyViolations(
         "packages/contracts/src/content.ts",
         'import { HistoricalAppLocaleSchema } from "#contracts/locale";\nconst ContentLocaleSchema = HistoricalAppLocaleSchema;'
       )

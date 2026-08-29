@@ -233,7 +233,6 @@ export function makeTarget(release: {
       Effect.succeed({ complete: true, deletedArtifacts: 0, releaseId }),
     current: Effect.suspend(current),
     headPage: (request) => Effect.succeed(rows.headPage(request)),
-    migrateTryoutHistory: () => Effect.die("Unexpected migration target call."),
     recovery: ({ recoveryId }) => {
       const value = completed.get(recoveryId);
       if (!value) {

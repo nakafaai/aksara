@@ -9,8 +9,6 @@ export class ContentSigningError extends Schema.TaggedError<ContentSigningError>
       "configuration",
       "artifact",
       "release",
-      "tryout-history-migration-plan",
-      "tryout-history-migration-receipt",
       "tryout-runtime-bundle",
     ]),
   }

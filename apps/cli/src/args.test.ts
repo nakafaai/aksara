@@ -4,9 +4,6 @@ import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx";
-const MIGRATION_ASSET_HASH = `sha256:${"a".repeat(64)}`;
-const MIGRATION_SOURCE_SHA = "b".repeat(40);
-
 const parse = parsePreviewArguments;
 
 /** Returns the typed preview argument failure for one invalid invocation. */
@@ -83,36 +80,6 @@ describe("production arguments", () => {
       ).toEqual({
         command: "cleanup",
         releaseId: "release-2026-06-22",
-      });
-      const abort = yield* parseCli([
-        "abort-tryout-history",
-        "--release-id",
-        "retained-history-v1",
-      ]);
-      expect(abort).toEqual({
-        command: "abort-tryout-history",
-        releaseId: "retained-history-v1",
-      });
-      expect(
-        yield* parseCli([
-          "cleanup-tryout-history",
-          "--release-id",
-          "retained-history-v1",
-          "--receipt-path",
-          "/tmp/receipt.json",
-          "--asset-hash",
-          MIGRATION_ASSET_HASH,
-          "--source-sha",
-          MIGRATION_SOURCE_SHA,
-        ])
-      ).toEqual({
-        command: "cleanup-tryout-history",
-        proof: {
-          assetHash: MIGRATION_ASSET_HASH,
-          sourceSha: MIGRATION_SOURCE_SHA,
-        },
-        receiptPath: "/tmp/receipt.json",
-        releaseId: "retained-history-v1",
       });
       expect(yield* parseCli(["status"])).toEqual({ command: "status" });
       expect(yield* parseCli(["check"])).toEqual({ command: "check" });
@@ -272,17 +239,9 @@ describe("production arguments", () => {
       })
   );
 
-  it.effect("rejects the deleted forward rollback command", () =>
+  it.effect("rejects an unknown production command", () =>
     Effect.gen(function* () {
-      expect(
-        yield* rejectCli([
-          "rollback",
-          "--release-id",
-          "rollback-next",
-          "--recovery-id",
-          "recovery-next",
-        ])
-      ).toMatchObject({
+      expect(yield* rejectCli(["unsupported"])).toMatchObject({
         _tag: "PreviewArgumentsError",
         reason: "unknown",
       });

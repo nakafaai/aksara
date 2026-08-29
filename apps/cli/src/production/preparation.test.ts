@@ -5,9 +5,10 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { productionCalls, productionProgram } from "#test/production/harness";
-import { FUNCTION_SCOPE } from "#test/real";
+import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -21,9 +22,27 @@ const tryoutScope = PublicationScopeSchema.make({
   families: [],
   snapshots: ["tryout"],
 });
+const rendererScope = PublicationScopeSchema.make({
+  families: ["article", "material", "page", "question"],
+  snapshots: ["tryout"],
+});
 const inheritedTryoutSnapshot = Sha256HashSchema.make(
   `sha256:${"c".repeat(64)}`
 );
+const refreshedRendererManifest = createRendererManifest({
+  base: {
+    authoringComponents: [
+      ...RENDERER_MANIFEST.base.authoringComponents,
+      { name: "RuntimePairProbe", version: 1 },
+    ],
+    supportedComponents: [
+      ...RENDERER_MANIFEST.base.supportedComponents,
+      { name: "RuntimePairProbe", version: 1 },
+    ],
+  },
+  domains: RENDERER_MANIFEST.domains,
+  publishedDomains: RENDERER_MANIFEST.publishedDomains,
+});
 
 beforeEach(() => {
   calls.reset();
@@ -32,6 +51,7 @@ beforeEach(() => {
     active: completedBundle(active),
     candidate: null,
     recovery: null,
+    tryoutRuntimeBundle: null,
   });
 });
 
@@ -82,6 +102,7 @@ describe("production preparation", () => {
         active: null,
         candidate: null,
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -105,6 +126,7 @@ describe("production preparation", () => {
         active: null,
         candidate: null,
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -158,6 +180,53 @@ describe("production preparation", () => {
     })
   );
 
+  it.effect(
+    "requires complete retained-artifact proof for a new renderer",
+    () =>
+      Effect.gen(function* () {
+        const active = gitBundle("release-renderer-base", {
+          baseReleaseId: releaseId("release-renderer-parent"),
+          tryoutSnapshotId: inheritedTryoutSnapshot,
+        });
+        /** Restores the exact active runtime before each assertion path. */
+        const activate = () => {
+          calls.current = currentState({
+            active: completedBundle(active),
+            candidate: null,
+            recovery: null,
+            tryoutRuntimeBundle: runtimeBundleFor(
+              active,
+              inheritedTryoutSnapshot
+            ),
+          });
+        };
+        activate();
+        calls.rendererManifestOverride = yield* refreshedRendererManifest;
+
+        const failure = yield* productionProgram({
+          command: "release",
+          recoveryId: releaseId("recovery-renderer-partial"),
+          releaseId: releaseId("release-renderer-partial"),
+          scope: FUNCTION_SCOPE,
+        }).pipe(Effect.flip);
+        expect(failure.failure).toBe("ReleasePolicyClosureError");
+        expect(calls.catalogCalls).toBe(0);
+
+        calls.reset();
+        activate();
+        calls.rendererManifestOverride = yield* refreshedRendererManifest;
+        const receipt = yield* productionProgram({
+          command: "release",
+          recoveryId: releaseId("recovery-renderer"),
+          releaseId: releaseId("release-renderer"),
+          scope: rendererScope,
+        });
+        expect(receipt.releaseId).toBe("release-renderer");
+        expect(calls.runtimeBundleRefreshes).toBe(1);
+        expect(calls.snapshotCalls).toBe(1);
+      })
+  );
+
   it.effect("reuses the exact candidate Git envelope after key rotation", () =>
     Effect.gen(function* () {
       const active = gitBundle("release-active");
@@ -170,6 +239,7 @@ describe("production preparation", () => {
         active: completedBundle(active),
         candidate: { ...candidate, phase: "staging" },
         recovery: null,
+        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",

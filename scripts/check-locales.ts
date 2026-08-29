@@ -5,10 +5,8 @@ import ts from "typescript";
 import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
-const HISTORICAL_LOCALE_MODULE = "packages/contracts/src/history/locale.ts";
 const LOCALE_POLICY_SCRIPT = "scripts/check-locales.ts";
 const LOCALE_VOCABULARY_MODULES = new Set([
-  HISTORICAL_LOCALE_MODULE,
   LOCALE_CONTRACT_MODULE,
   LOCALE_POLICY_SCRIPT,
 ]);

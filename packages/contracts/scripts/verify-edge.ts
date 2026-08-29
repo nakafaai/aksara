@@ -5,7 +5,6 @@ import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
   "graph/family",
-  "history/decode",
   "release/canonical",
   "release/snapshot/data",
   "renderer/compatibility",

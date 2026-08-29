@@ -265,12 +265,9 @@ export function currentState(input: {
   readonly active: unknown;
   readonly candidate: unknown;
   readonly recovery: unknown;
-  readonly tryoutRuntimeBundle?: unknown;
+  readonly tryoutRuntimeBundle: unknown;
 }): ContentReleaseCurrent {
-  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)({
-    ...input,
-    tryoutRuntimeBundle: input.tryoutRuntimeBundle ?? null,
-  });
+  return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(input);
 }
 
 /** Creates a complete target whose unrelated operations fail immediately. */
@@ -291,7 +288,6 @@ export function makeProductionTarget(
       )
     ),
     headPage: unused,
-    migrateTryoutHistory: unused,
     recovery: unused,
     rollbackPage: unused,
     routePage: unused,
