@@ -14,6 +14,12 @@ addition, revision, review, or translation in this repository.
   tests for the scope being changed.
 - Read the complete global Humanizer skill before revising authored prose or
   translating it. Humanizer review is mandatory for every authored translation.
+- For Indonesian prose, also read the global `bahasa-indonesia` skill and its
+  `references/core.md` and `references/naturalness.md` files. Use plain,
+  Indonesia-first language for learners.
+- For German prose, also read the complete global `humanizer-de` skill and its
+  routed references. Use its deterministic linter as a source of review
+  candidates, then judge every candidate in the full MDX and teaching context.
 - Inspect the exact neighboring corpus entries and recent Git history. Do not
   infer a file layout, locale rule, or metadata contract from an old Nakafa copy.
 - Classify the target as authored prose, assessed-language content, or an
@@ -61,6 +67,20 @@ addition, revision, review, or translation in this repository.
   corrected document into every locale in the authorized scope.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
+- Prefer the shortest familiar word that keeps the subject meaning exact. Keep
+  a necessary subject term, define it in one plain sentence on first use, and
+  never replace an everyday word with a formal synonym merely to sound
+  academic.
+- State the teaching point directly. Do not use stock invitations such as
+  `mari kita`, `let's`, `schauen wir uns`, or `sehen wir uns` as empty
+  signposting. Start with the observation, instruction, or calculation.
+- Do not use the rhetorical forms `X, bukan Y`, `X, not Y`, or `X, nicht Y`,
+  including `not only`, `not just`, `bukan hanya`, `tidak hanya`,
+  `bukan sekadar`, and `nicht nur`, in authored explanations. Rewrite the
+  complete thought as direct positive teaching. Do not evade this rule by
+  moving the same clipped negation into a new sentence. Preserve negation when
+  it is part of the fact, mathematical condition, assessed text, quotation, or
+  correction a learner genuinely needs.
 - Do not translate assessed passages, assessed choices, quotations, code,
   mathematical notation, or immutable official source bytes.
 - Lessons must work from a direct visit. Define required terms, abbreviations,

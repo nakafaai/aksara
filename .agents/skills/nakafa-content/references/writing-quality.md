@@ -10,6 +10,10 @@
   it forces the learner to invent a missing premise or reasoning step.
 - Use concrete examples only when they immediately clarify the concept.
 - Define technical terms before using them as shortcuts.
+- Use everyday words for the explanation around a technical term. A student
+  should not need to translate the explanation before learning the subject.
+- If a sentence would sound unusual when spoken by a teacher, rewrite the idea
+  instead of replacing one formal word with another.
 - Reintroduce prerequisite context briefly so each document stands alone.
 - Do not rely on another lesson unless a specific link and reason are present.
 
@@ -37,12 +41,25 @@
 - Check every localized title, description, label, and route slug with the body.
 - Remove vague intensifiers, canned transitions, false balance, repetitive
   conclusions, and prose that explains its own writing process.
+- Remove empty lesson choreography such as `mari kita lihat`, `let's examine`,
+  or `schauen wir uns an`. Give the observation or instruction directly.
+- Rewrite rhetorical negation around the actual teaching point. Avoid
+  `X, bukan Y`, `X, not Y`, `X, nicht Y`, and their `not only` variants in
+  authored prose. A punctuation change does not fix the prose. Keep a negative
+  statement only when the learner needs that exact boundary, then explain the
+  correct idea in plain words.
+- Avoid formal filler such as `ramalan harfiah`, figurative `lanskap`,
+  `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
+  when a familiar phrase carries the same meaning. These examples are warning
+  signs, not a replacement dictionary.
 - Never use Humanizer as a compression rule. It removes artificial prose
   patterns, not necessary teaching context, worked reasoning, or evidence.
 
 ## Final language review
 
 - Read the complete document aloud in the target locale.
+- Ask whether a teacher could say every sentence to a student without first
+  explaining the wording itself.
 - Confirm terminology is consistent with the current glossary.
 - Confirm the prose does not preserve unnatural source-language syntax.
 - Confirm headings contain no formula notation or decorative numbering.

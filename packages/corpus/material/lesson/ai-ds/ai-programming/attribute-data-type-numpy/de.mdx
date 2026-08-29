@@ -168,7 +168,7 @@ print("Von den Elementen belegte Bytes:", a.nbytes)  # Ausgabe: Von den Elemente
 
 ### Datentypkonsistenz
 
-Alle Elemente eines gewöhnlichen NumPy-Arrays haben denselben Datentyp. Das `numpy.dtype`-Objekt beschreibt, wie diese Werte im Speicher liegen und interpretiert werden. Haben Eingaben unterschiedliche Typen, ermittelt NumPy mit festen Promotionsregeln einen kompatiblen gemeinsamen dtype. Entscheidend sind dabei Genauigkeit und Typkategorie, nicht die Häufigkeit eines Eingabetyps.
+Alle Elemente eines gewöhnlichen NumPy-Arrays haben denselben Datentyp. Das `numpy.dtype`-Objekt beschreibt, wie diese Werte im Speicher liegen und interpretiert werden. Haben Eingaben unterschiedliche Typen, ermittelt NumPy mit festen Promotionsregeln einen kompatiblen gemeinsamen dtype. Entscheidend sind dabei Genauigkeit und Typkategorie und nicht die Häufigkeit eines Eingabetyps.
 
 <CodeBlock
   data={[
@@ -199,7 +199,7 @@ NumPy bietet verschiedene Möglichkeiten zum Konvertieren und Bearbeiten von Arr
 
 ### Datentyp-Konvertierungsmethoden
 
-Mit einer Datentypkonvertierung wählst du eine andere Darstellung für die weitere Analyse. `astype()` gibt ein konvertiertes Array zurück und verändert das ursprüngliche Array nicht direkt. Beim Umwandeln von Gleitkommazahlen in Ganzzahlen wird der Nachkommaanteil in Richtung null abgeschnitten, nicht gerundet.
+Mit einer Datentypkonvertierung wählst du eine andere Darstellung für die weitere Analyse. `astype()` gibt ein konvertiertes Array zurück und verändert das ursprüngliche Array nicht direkt. Beim Umwandeln von Gleitkommazahlen in Ganzzahlen wird der Nachkommaanteil in Richtung null abgeschnitten und nicht gerundet.
 
 <CodeBlock
   data={[

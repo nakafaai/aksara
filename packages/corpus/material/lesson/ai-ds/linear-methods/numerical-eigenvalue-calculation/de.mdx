@@ -43,7 +43,7 @@ Daraus folgen zwei mögliche Fehlerfälle. Gleiche dominante Beträge können di
 
 ### Mit dem Residuum abbrechen
 
-Brich nicht nur deshalb ab, weil zwei aufeinanderfolgende Eigenwertschätzungen ähnlich aussehen. Prüfe das Eigenpaarresiduum
+Brich erst ab, nachdem du das Eigenpaarresiduum geprüft hast. Ähnliche aufeinanderfolgende Eigenwertschätzungen reichen dafür nicht aus:
 
 <BlockMath math="r_k=Aq_k-\mu_kq_k" />
 
@@ -51,7 +51,7 @@ Eine skalierungsbewusste Bedingung lautet
 
 <BlockMath math="\|r_k\|_2\le \tau\bigl(\|A\|_2+|\mu_k|\bigr)" />
 
-wobei <InlineMath math="\tau" /> die geforderte Toleranz ist. Ein kleines Residuum bestätigt, dass das berechnete Paar die Eigenwertgleichung annähernd erfüllt. Es zeigt jedoch nicht allein, welcher benachbarte Eigenwert gefunden wurde.
+wobei <InlineMath math="\tau" /> die geforderte Toleranz ist. Ein kleines Residuum bestätigt, dass das berechnete Paar die Eigenwertgleichung annähernd erfüllt. Welcher benachbarte Eigenwert gefunden wurde, muss getrennt geprüft werden.
 
 ## Beispiel zur Potenziteration
 
@@ -118,4 +118,4 @@ Jeder Schritt ist eine orthogonale Ähnlichkeitstransformation und erhält daher
 | Mehrere Eigenpaare einer großen unsymmetrischen dünn besetzten Matrix | Arnoldi | Unterraumgröße, Neustarts und Residuen |
 | Vollständiges Spektrum einer dichten Matrix | Verschobenes QR-Verfahren zur Schur-Form | konvergierte diagonale oder quasidiagonale Blöcke |
 
-Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: Kontrolliere die Residuen, erhalte komplex konjugierte Paare reeller Matrizen und erkläre einen Eigenvektor nicht allein deshalb für genau, weil sich die Eigenwertschätzung stabilisiert hat.
+Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: Kontrolliere die Residuen, erhalte komplex konjugierte Paare reeller Matrizen und prüfe die Genauigkeit eines Eigenvektors getrennt von einer stabilen Eigenwertschätzung.

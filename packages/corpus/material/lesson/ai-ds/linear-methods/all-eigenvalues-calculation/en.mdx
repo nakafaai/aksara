@@ -3,7 +3,7 @@ export const metadata = {
     description: "Follow QR iteration from orthogonal factorization to Schur form, then read real and complex eigenvalues without forming a characteristic polynomial.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-08-22",
+    dateModified: "2026-08-29",
     subject: "Linear Methods of AI",
 };
 
@@ -40,7 +40,7 @@ Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />
 <BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
 </MathContainer>
 
-Thus <InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. Similar matrices have the same characteristic polynomial and therefore the same eigenvalues. QR iteration changes coordinates, not the underlying linear transformation.
+Thus <InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. Similar matrices have the same characteristic polynomial and therefore the same eigenvalues. QR iteration changes coordinates rather than the underlying linear transformation.
 
 ## What the Iteration Converges To
 
@@ -71,6 +71,6 @@ The off-diagonal magnitude has already fallen from <InlineMath math="1" /> to <I
 
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
-The limiting diagonal reveals the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Since every iterate is similar to <InlineMath math="A_0" />, these are the eigenvalues of the original matrix, not approximations created by changing the problem.
+The limiting diagonal reveals the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Since every iterate is similar to <InlineMath math="A_0" />, these are the eigenvalues of the original matrix rather than approximations created by changing the problem.
 
 > QR iteration is a similarity process. For symmetric matrices it approaches a diagonal form; for general real matrices it approaches a real Schur form that may contain essential <InlineMath math="2\times2" /> blocks.
