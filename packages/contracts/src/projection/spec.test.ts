@@ -60,8 +60,8 @@ const page = Schema.decodeSync(PublicPageProjectionSchema)({
   contentKey: "pages/privacy-policy",
   kind: "public-page",
   metadata: {
+    datePublished: "2026-08-20",
     description: "How Nakafa processes personal data.",
-    lastModified: "2026-08-20",
     title: "Privacy Policy",
   },
   pageKey: "privacy-policy",

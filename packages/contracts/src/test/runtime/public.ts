@@ -102,8 +102,8 @@ const pageProjection = Schema.decodeSync(PublicPageProjectionSchema)({
   contentKey: pageContentKey,
   kind: "public-page",
   metadata: {
+    datePublished: "2026-08-20",
     description: "Reviewed public terms.",
-    lastModified: "2026-08-20",
     title: "Terms of Service",
   },
   pageKey: "terms-of-service",

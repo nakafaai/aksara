@@ -17,8 +17,9 @@ const route = Schema.decodeSync(PublicPageRouteSchema)({
   publicPath: "privacy-policy",
 });
 const metadata = Schema.decodeSync(PageMetadataSchema)({
+  dateModified: "2026-08-21",
+  datePublished: "2026-08-20",
   description: "How Nakafa processes personal data.",
-  lastModified: "2026-08-20",
   title: "Privacy Policy",
 });
 const sourcePath = CorpusSourcePathSchema.make(
@@ -50,6 +51,9 @@ describe("public page projection", () => {
     expect(JSON.parse(canonicalizePublicPageProjection(projection))).toEqual(
       projection
     );
+    expect(canonicalizePublicPageProjection(projection)).toContain(
+      '"metadata":{"dateModified":"2026-08-21","datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"}'
+    );
   });
 
   it("rejects incoherent locale and stable content identity", () => {
@@ -73,11 +77,54 @@ describe("public page projection", () => {
         { ...projection, metadata: { ...metadata, description: " " } },
         {
           ...projection,
-          metadata: { ...metadata, lastModified: "2026-20-08" },
+          metadata: { ...metadata, datePublished: "2026-20-08" },
         },
         { ...projection, metadata: { ...metadata, title: " " } },
         { ...projection, layout: "legal" },
       ].every((candidate) => !accepts(PublicPageProjectionSchema, candidate))
     ).toBe(true);
+  });
+
+  it("rejects legacy or non-chronological page dates", () => {
+    const projection = makePublicPageProjection({
+      metadata,
+      route,
+      sourcePath,
+    });
+    const invalidMetadata = [
+      {
+        description: metadata.description,
+        lastModified: "2026-08-20",
+        title: metadata.title,
+      },
+      { ...metadata, dateModified: metadata.datePublished },
+      { ...metadata, dateModified: "2026-08-19" },
+    ];
+
+    expect(
+      invalidMetadata.every(
+        (candidate) =>
+          !accepts(PublicPageProjectionSchema, {
+            ...projection,
+            metadata: candidate,
+          })
+      )
+    ).toBe(true);
+  });
+
+  it("omits an absent modification date from canonical metadata", () => {
+    const projection = makePublicPageProjection({
+      metadata: Schema.decodeSync(PageMetadataSchema)({
+        datePublished: "2026-08-20",
+        description: metadata.description,
+        title: metadata.title,
+      }),
+      route,
+      sourcePath,
+    });
+
+    expect(canonicalizePublicPageProjection(projection)).not.toContain(
+      "dateModified"
+    );
   });
 });

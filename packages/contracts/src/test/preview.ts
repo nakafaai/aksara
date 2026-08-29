@@ -105,8 +105,8 @@ export const testPageProjection = Schema.decodeSync(PublicPageProjectionSchema)(
     ...testPageDocument.route,
     kind: "public-page",
     metadata: {
+      datePublished: "2026-08-20",
       description: "How Nakafa processes personal data.",
-      lastModified: "2026-08-20",
       title: "Privacy Policy",
     },
     sitemap: true,

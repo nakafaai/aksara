@@ -33,8 +33,9 @@ Current consumers use unversioned semantic Interfaces:
   signed metadata for human, agent, and sitemap delivery.
 ## Publication dates
 
-Article and material metadata carries one required `datePublished` and one
-optional `dateModified`, both as exact `DateOnly` values.
+Article, material, and public page metadata carries one required
+`datePublished` and one optional `dateModified`, both as exact `DateOnly`
+values.
 
 - `datePublished` is the first verified public availability of that specific
   locale page.

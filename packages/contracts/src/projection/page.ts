@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { DateOnlySchema } from "#contracts/date";
+import { withPublicationDates } from "#contracts/date";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -16,9 +16,8 @@ export const PageKeySchema = Schema.String.pipe(
 export type PageKey = typeof PageKeySchema.Type;
 
 /** Exact metadata consumed by human, agent, and sitemap page surfaces. */
-export const PageMetadataSchema = Schema.Struct({
+export const PageMetadataSchema = withPublicationDates({
   description: Schema.Trimmed.check(Schema.isNonEmpty()),
-  lastModified: DateOnlySchema,
   title: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 export type PageMetadata = typeof PageMetadataSchema.Type;
@@ -108,8 +107,11 @@ export function canonicalizePublicPageProjection(
     contentKey: projection.contentKey,
     kind: projection.kind,
     metadata: {
+      ...(projection.metadata.dateModified === undefined
+        ? {}
+        : { dateModified: projection.metadata.dateModified }),
+      datePublished: projection.metadata.datePublished,
       description: projection.metadata.description,
-      lastModified: projection.metadata.lastModified,
       title: projection.metadata.title,
     },
     pageKey: projection.pageKey,
