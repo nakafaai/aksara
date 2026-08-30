@@ -21,6 +21,12 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
   if (args[0] === "check") {
     return Effect.succeed({ command: "check" });
   }
+  if (args[0] === "--help") {
+    return Effect.succeed({ command: "help" });
+  }
+  if (args[0] === "--version") {
+    return Effect.succeed({ command: "version" });
+  }
   if (args[0] === "release") {
     return Effect.succeed({
       command: "release",

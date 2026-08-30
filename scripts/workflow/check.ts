@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/files";
+import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -55,6 +56,7 @@ const WORKFLOW_PATH_PATTERN = /^\.github\/workflows\/[^/]+\.ya?ml$/u;
 export interface WorkflowSources {
   readonly all: readonly string[];
   readonly ci: string;
+  readonly cli: string;
   readonly contracts: string;
   readonly release: string;
 }
@@ -63,12 +65,14 @@ export interface WorkflowSources {
 export function verifyWorkflows({
   all,
   ci,
+  cli,
   contracts,
   release,
 }: WorkflowSources): void {
-  const combined = `${ci}\n${contracts}\n${release}`;
+  const releaseCombined = `${ci}\n${contracts}\n${release}`;
+  const combined = `${releaseCombined}\n${cli}`;
   assert.doesNotMatch(
-    combined,
+    releaseCombined,
     FORBIDDEN_REGISTRY_PATTERN,
     "Workflows must not retain registry or Changesets publication machinery"
   );
@@ -77,7 +81,8 @@ export function verifyWorkflows({
     SWALLOWED_CLI_OUTPUT_PATTERN,
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
-  verifyWorkflowToolchains([...new Set([ci, contracts, release, ...all])]);
+  verifyWorkflowToolchains([...new Set([ci, cli, contracts, release, ...all])]);
+  verifyCliWorkflow(cli);
   assert.match(
     ci,
     FROZEN_INSTALL_PATTERN,
@@ -257,6 +262,7 @@ const trackedSources = workflowPaths.map((path) => readFileSync(path, "utf8"));
 verifyWorkflows({
   all: trackedSources,
   ci: readFileSync(".github/workflows/ci.yml", "utf8"),
+  cli: readFileSync(".github/workflows/cli.yml", "utf8"),
   contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
 });

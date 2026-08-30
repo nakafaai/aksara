@@ -4,7 +4,7 @@ import { mergeConfig } from "vitest/config";
 export default mergeConfig(config, {
   test: {
     coverage: {
-      include: ["main.ts", "src/**/*.{ts,tsx,mts,cts}"],
+      include: ["src/**/*.{ts,tsx,mts,cts}"],
     },
   },
 });
