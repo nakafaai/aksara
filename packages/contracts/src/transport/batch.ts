@@ -1,10 +1,7 @@
 import { Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
-import {
-  ContentProjectionSchema,
-  CurrentContentProjectionSchema,
-} from "#contracts/projection/spec";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import { ContentReleaseItemSchema } from "#contracts/release/spec";
 import {
@@ -131,7 +128,7 @@ export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
-  projections: Schema.NonEmptyArray(CurrentContentProjectionSchema).pipe(
+  projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
     Schema.check(Schema.isMaxLength(MAX_PROJECTION_BATCH_COUNT))
   ),
   releaseId: ReleaseIdSchema,
@@ -151,29 +148,6 @@ export const StageProjectionBatchRequestSchema = Schema.Struct({
 });
 export type StageProjectionBatchRequest =
   typeof StageProjectionBatchRequestSchema.Type;
-
-const StageRollbackProjectionBatchFields = {
-  batchIndex: BatchIndexSchema,
-  projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
-    Schema.check(Schema.isMaxLength(MAX_PROJECTION_BATCH_COUNT))
-  ),
-  releaseId: ReleaseIdSchema,
-};
-
-/** Canonical input reserved for one authenticated rollback release. */
-export const StageRollbackProjectionBatchInputSchema = Schema.Struct(
-  StageRollbackProjectionBatchFields
-);
-export type StageRollbackProjectionBatchInput =
-  typeof StageRollbackProjectionBatchInputSchema.Type;
-
-/** Carries historical projections only inside a rollback staging group. */
-export const StageRollbackProjectionBatchRequestSchema = Schema.Struct({
-  ...StageRollbackProjectionBatchFields,
-  operation: Schema.Literal("stageRollbackProjectionBatch"),
-});
-export type StageRollbackProjectionBatchRequest =
-  typeof StageRollbackProjectionBatchRequestSchema.Type;
 
 const StageArtifactBatchFields = {
   artifacts: Schema.NonEmptyArray(SignedContentArtifactSchema).pipe(
