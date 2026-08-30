@@ -45,7 +45,7 @@ function rejectQuestionSources(
 
 layer(Path.layer)("question source", (it) => {
   it.effect(
-    "discovers and validates all 840 real question directories",
+    "discovers and validates all 860 real question directories",
     () =>
       Effect.gen(function* () {
         const sources = yield* questionSources(
@@ -55,8 +55,8 @@ layer(Path.layer)("question source", (it) => {
         const choicesByRoot = indexQuestionChoices(sources);
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
 
-        expect(sources).toHaveLength(840);
-        expect(choicesByRoot.size).toBe(840);
+        expect(sources).toHaveLength(860);
+        expect(choicesByRoot.size).toBe(860);
         expect(choicesByRoot.get(first.sourceRoot)).toBe(first.choices);
         expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(38);
         for (const { count, rendererDomain } of questionRendererCounts) {

@@ -32,11 +32,11 @@ export const catalogSnapshotEvidence = {
     snapshotId: CATALOG_HASH,
     sourceDigest: CATALOG_HASH,
   },
-  stagedRows: 3474,
+  stagedRows: 3534,
   tryout: {
     catalogCount: 81,
     catalogDigest: CATALOG_HASH,
-    placementCount: 1260,
+    placementCount: 1320,
     placementDigest: CATALOG_HASH,
     routeCount: 72,
     snapshotId: CATALOG_HASH,

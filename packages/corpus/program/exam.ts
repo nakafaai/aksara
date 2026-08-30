@@ -63,11 +63,11 @@ export const examProgramSources = [
     recommendedCountry: "ID",
     sources: [
       {
-        label: "Informasi Umum UTBK-SNBT 2026",
-        retrievedAt: "2026-06-14",
+        label: "Framework UTBK-SNBT 2026",
+        retrievedAt: "2026-08-30",
         reviewAfter: "2026-12-31",
         type: "official-blueprint",
-        url: "https://snpmb.id/utbk-snbt/informasi-umum",
+        url: "https://snpmb.id/fr/",
       },
     ],
     translations: [
