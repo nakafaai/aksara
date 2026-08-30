@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "vor Satz " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "vor Satz $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "nach Satz " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "nach Satz $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "nach Satz " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "nach Satz $$2$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "nach Satz " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "nach Satz $$3$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "nach Satz " },
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "nach Satz $$4$$.",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "before sentence " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "before sentence $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "after sentence " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "after sentence $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "after sentence " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "after sentence $$2$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "after sentence " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "after sentence $$3$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "after sentence " },
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "after sentence $$4$$.",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sebelum kalimat " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "sebelum kalimat $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "setelah kalimat " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: "." },
-          ],
+          label: "setelah kalimat $$1$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "setelah kalimat " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "setelah kalimat $$2$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "setelah kalimat " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "setelah kalimat $$3$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "setelah kalimat " },
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "setelah kalimat $$4$$.",
         },
       ],
     },

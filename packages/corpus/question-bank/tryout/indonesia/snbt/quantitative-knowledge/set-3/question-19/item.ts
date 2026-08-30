@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$1{,}5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2{,}5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3{,}5$$ cm",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1.5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$1.5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2.5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2.5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3.5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3.5$$ cm",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$1{,}5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$2{,}5$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3{,}5" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$3{,}5$$ cm",
         },
       ],
     },

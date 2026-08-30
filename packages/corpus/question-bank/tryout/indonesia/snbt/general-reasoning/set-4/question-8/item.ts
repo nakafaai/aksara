@@ -7,52 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tempeh enthält mehr Energie als fettes Rindfleisch",
-            },
-          ],
+          label: "Tempeh enthält mehr Energie als fettes Rindfleisch",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Fettes Rindfleisch enthält " },
-            { display: "block", kind: "math", math: "3{,}3\\text{ g}" },
-            { kind: "text", text: " mehr Protein pro " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " als Tempeh" },
-          ],
+          label:
+            "Fettes Rindfleisch enthält $$3{,}3\\text{ g}$$ mehr Protein pro $$100\\text{ g}$$ als Tempeh",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tempeh enthält " },
-            { display: "block", kind: "math", math: "13{,}2\\text{ g}" },
-            { kind: "text", text: " mehr Fett pro " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " als fettes Rindfleisch" },
-          ],
+          label:
+            "Tempeh enthält $$13{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$ als fettes Rindfleisch",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tempeh enthält " },
-            { display: "block", kind: "math", math: "3{,}3\\text{ g}" },
-            { kind: "text", text: " mehr Protein pro " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " als fettes Rindfleisch" },
-          ],
+          label:
+            "Tempeh enthält $$3{,}3\\text{ g}$$ mehr Protein pro $$100\\text{ g}$$ als fettes Rindfleisch",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Fettes Rindfleisch enthält " },
-            { display: "block", kind: "math", math: "12{,}2\\text{ g}" },
-            { kind: "text", text: " mehr Fett pro " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " als Tempeh" },
-          ],
+          label:
+            "Fettes Rindfleisch enthält $$12{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$ als Tempeh",
         },
       ],
     },
@@ -61,52 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tempeh contains more energy than fatty beef",
-            },
-          ],
+          label: "Tempeh contains more energy than fatty beef",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Fatty beef contains " },
-            { display: "block", kind: "math", math: "3.3\\text{ g}" },
-            { kind: "text", text: " more protein per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " than tempeh" },
-          ],
+          label:
+            "Fatty beef contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than tempeh",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tempeh contains " },
-            { display: "block", kind: "math", math: "13.2\\text{ g}" },
-            { kind: "text", text: " more fat per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " than fatty beef" },
-          ],
+          label:
+            "Tempeh contains $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than fatty beef",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tempeh contains " },
-            { display: "block", kind: "math", math: "3.3\\text{ g}" },
-            { kind: "text", text: " more protein per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " than fatty beef" },
-          ],
+          label:
+            "Tempeh contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than fatty beef",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Fatty beef contains " },
-            { display: "block", kind: "math", math: "12.2\\text{ g}" },
-            { kind: "text", text: " more fat per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " than tempeh" },
-          ],
+          label:
+            "Fatty beef contains $$12.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than tempeh",
         },
       ],
     },
@@ -115,52 +65,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tempe mengandung energi lebih tinggi daripada daging sapi gemuk",
-            },
-          ],
+          label:
+            "Tempe mengandung energi lebih tinggi daripada daging sapi gemuk",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Daging sapi gemuk mengandung protein " },
-            { display: "block", kind: "math", math: "3{,}3\\text{ g}" },
-            { kind: "text", text: " lebih banyak per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " daripada tempe" },
-          ],
+          label:
+            "Daging sapi gemuk mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tempe mengandung lemak " },
-            { display: "block", kind: "math", math: "13{,}2\\text{ g}" },
-            { kind: "text", text: " lebih banyak per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " daripada daging sapi gemuk" },
-          ],
+          label:
+            "Tempe mengandung lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tempe mengandung protein " },
-            { display: "block", kind: "math", math: "3{,}3\\text{ g}" },
-            { kind: "text", text: " lebih banyak per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " daripada daging sapi gemuk" },
-          ],
+          label:
+            "Tempe mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Daging sapi gemuk mengandung lemak " },
-            { display: "block", kind: "math", math: "12{,}2\\text{ g}" },
-            { kind: "text", text: " lebih banyak per " },
-            { display: "block", kind: "math", math: "100\\text{ g}" },
-            { kind: "text", text: " daripada tempe" },
-          ],
+          label:
+            "Daging sapi gemuk mengandung lemak $$12{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
         },
       ],
     },

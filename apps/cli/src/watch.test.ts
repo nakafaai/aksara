@@ -197,7 +197,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           "packages/corpus/tryout/indonesia/snbt/source.ts",
           "packages/corpus/tryout/indonesia/country.ts",
           "packages/corpus/tryout/indonesia/snbt/readiness.ts",
-          "packages/corpus/tryout/readiness.ts",
+          "packages/corpus/tryout/readiness/schema.ts",
           "packages/corpus/tryout/schema.ts",
           "packages/corpus/locale/source.ts",
           "packages/corpus/route/schema.ts",

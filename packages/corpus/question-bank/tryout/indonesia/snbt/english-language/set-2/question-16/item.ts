@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "A complete failure" }],
+          label: "A complete failure",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "A legal requirement" }],
+          label: "A legal requirement",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "A historical sequence" }],
+          label: "A historical sequence",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "A guaranteed advantage" }],
+          label: "A guaranteed advantage",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "A compromise between competing benefits and costs",
-            },
-          ],
+          label: "A compromise between competing benefits and costs",
         },
       ],
     },

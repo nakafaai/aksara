@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Stärkt Aussage A" }],
+          label: "Stärkt Aussage A",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Schwächt Aussage A" }],
+          label: "Schwächt Aussage A",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Stärkt Aussage B" }],
+          label: "Stärkt Aussage B",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Schwächt Aussage B" }],
+          label: "Schwächt Aussage B",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Ist für beide Aussagen irrelevant" }],
+          label: "Ist für beide Aussagen irrelevant",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Strengthens Statement A" }],
+          label: "Strengthens Statement A",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Weakens Statement A" }],
+          label: "Weakens Statement A",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Strengthens Statement B" }],
+          label: "Strengthens Statement B",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Weakens Statement B" }],
+          label: "Weakens Statement B",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Is irrelevant to both statements" }],
+          label: "Is irrelevant to both statements",
         },
       ],
     },
@@ -57,25 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Memperkuat Pernyataan A" }],
+          label: "Memperkuat Pernyataan A",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Memperlemah Pernyataan A" }],
+          label: "Memperlemah Pernyataan A",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Memperkuat Pernyataan B" }],
+          label: "Memperkuat Pernyataan B",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Memperlemah Pernyataan B" }],
+          label: "Memperlemah Pernyataan B",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tidak relevan dengan kedua pernyataan" },
-          ],
+          label: "Tidak relevan dengan kedua pernyataan",
         },
       ],
     },

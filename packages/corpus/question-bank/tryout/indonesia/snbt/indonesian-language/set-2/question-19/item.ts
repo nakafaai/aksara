@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Luas, terang, dan terbuka langsung ke jalan",
-            },
-          ],
+          label: "Luas, terang, dan terbuka langsung ke jalan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
-            },
-          ],
+          label: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Sempit, tanpa pandangan ke luar, dan berjendela kecil berjeruji",
-            },
-          ],
+          label:
+            "Sempit, tanpa pandangan ke luar, dan berjendela kecil berjeruji",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mewah, berhias lukisan, dan memiliki banyak pintu",
-            },
-          ],
+          label: "Mewah, berhias lukisan, dan memiliki banyak pintu",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Berada di bawah tanah dan hanya dapat dicapai melalui tangga",
-            },
-          ],
+          label: "Berada di bawah tanah dan hanya dapat dicapai melalui tangga",
         },
       ],
     },

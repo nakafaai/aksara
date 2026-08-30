@@ -12,15 +12,15 @@ const itemObject = `{
     "en": {
       "kind": "single-choice",
       "options": [
-        { "isCorrect": true, "label": [{ "kind": "text", "text": \`A\` }] },
-        { isCorrect: false, label: [{ kind: "text", text: "B" }] },
+        { "isCorrect": true, "label": \`A\` },
+        { isCorrect: false, label: "B" },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
+        { isCorrect: true, label: "A (ID)" },
+        { isCorrect: false, label: "B (ID)" },
       ],
     },
   },
@@ -70,11 +70,11 @@ describe("question item source", () => {
             options: [
               {
                 isCorrect: true,
-                label: [{ kind: "text", text: "A" }],
+                label: "A",
               },
               {
                 isCorrect: false,
-                label: [{ kind: "text", text: "B" }],
+                label: "B",
               },
             ],
           },
@@ -83,11 +83,11 @@ describe("question item source", () => {
             options: [
               {
                 isCorrect: true,
-                label: [{ kind: "text", text: "A (ID)" }],
+                label: "A (ID)",
               },
               {
                 isCorrect: false,
-                label: [{ kind: "text", text: "B (ID)" }],
+                label: "B (ID)",
               },
             ],
           },
@@ -140,9 +140,9 @@ describe("question item source", () => {
   it.effect(
     "rejects executable, computed, incomplete, and invalid item values",
     () => {
-      const textLabel = '[{ kind: "text", text: "A" }]';
-      const correctOption = `{ isCorrect: true, label: ${textLabel} }`;
-      const distractor = `{ isCorrect: false, label: ${textLabel} }`;
+      const label = '"A"';
+      const correctOption = `{ isCorrect: true, label: ${label} }`;
+      const distractor = `{ isCorrect: false, label: ${label} }`;
       const response = `{ kind: "single-choice", options: [${correctOption}, ${distractor}] }`;
       const invalidObjects = [
         "[]",
@@ -154,14 +154,14 @@ describe("question item source", () => {
         "{ responses: call() }",
         '{ responses: { en: ["A"] } }',
         "{ responses: { en: { ...other } } }",
-        `{ responses: { en: { kind: "single-choice", options: [{ label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ label: ${label} }, ${distractor}] } } }`,
         `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${textLabel}, other: "A" }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${label}, other: "A" }, ${distractor}] } } }`,
         `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: 1 }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: 1, label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: 1, label: ${label} }, ${distractor}] } } }`,
         `{ responses: { [locale]: ${response} } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${textLabel}, label: ${textLabel} }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, isCorrect: false, label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${label}, label: ${label} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, isCorrect: false, label: ${label} }, ${distractor}] } } }`,
         `{ responses: { en: { kind: "single-choice", options: [${distractor}, ${distractor}] } } }`,
         `{ responses: { en: { kind: "single-choice", options: [${correctOption}, ${correctOption}] } } }`,
       ];

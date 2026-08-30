@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Nama ibu kandungnya" }],
+          label: "Nama ibu kandungnya",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tempat kelahirannya" }],
+          label: "Tempat kelahirannya",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tahun kelahirannya" }],
+          label: "Tahun kelahirannya",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Identitas ayah biologisnya" }],
+          label: "Identitas ayah biologisnya",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Nama keluarga asuhnya" }],
+          label: "Nama keluarga asuhnya",
         },
       ],
     },

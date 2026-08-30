@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Migration immediately strengthens every bird's immunity.",
-            },
-          ],
+          label: "Migration immediately strengthens every bird's immunity.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Bird migration provides direct medical advice for humans.",
-            },
-          ],
+          label: "Bird migration provides direct medical advice for humans.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Greater MHC-I diversity can have benefits but never costs.",
-            },
-          ],
+          label: "Greater MHC-I diversity can have benefits but never costs.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
-            },
-          ],
+          label:
+            "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "All songbird lineages originated in the Palaearctic.",
-            },
-          ],
+          label: "All songbird lineages originated in the Palaearctic.",
         },
       ],
     },

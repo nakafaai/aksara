@@ -7,45 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Während es regnet, werden die Straßen nass.",
-            },
-          ],
+          label: "Während es regnet, werden die Straßen nass.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Wenn das Abendessen fertig ist, können die Kinder essen.",
-            },
-          ],
+          label: "Wenn das Abendessen fertig ist, können die Kinder essen.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Vor Sonnenaufgang singen die Vögel laut." },
-          ],
+          label: "Vor Sonnenaufgang singen die Vögel laut.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Nachdem der Unterricht endet, sollte jeder Schüler die Aufgabe umgehend abgeben.",
-            },
-          ],
+          label:
+            "Nachdem der Unterricht endet, sollte jeder Schüler die Aufgabe umgehend abgeben.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Wenn die Glocke läutet, wird der Schulflur laut.",
-            },
-          ],
+          label: "Wenn die Glocke läutet, wird der Schulflur laut.",
         },
       ],
     },
@@ -54,37 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "While rain falls, the streets become wet." },
-          ],
+          label: "While rain falls, the streets become wet.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "If dinner is ready, the children can eat." },
-          ],
+          label: "If dinner is ready, the children can eat.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Before sunrise, birds sing loudly." }],
+          label: "Before sunrise, birds sing loudly.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "After the lesson ends, each student should submit the assignment promptly.",
-            },
-          ],
+          label:
+            "After the lesson ends, each student should submit the assignment promptly.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "When the bell rings, the school corridor becomes noisy.",
-            },
-          ],
+          label: "When the bell rings, the school corridor becomes noisy.",
         },
       ],
     },
@@ -93,45 +59,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Ketika hujan turun, jalan menjadi basah." },
-          ],
+          label: "Ketika hujan turun, jalan menjadi basah.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Jika makan malam sudah siap, anak-anak dapat makan.",
-            },
-          ],
+          label: "Jika makan malam sudah siap, anak-anak dapat makan.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sebelum matahari terbit, burung berkicau nyaring.",
-            },
-          ],
+          label: "Sebelum matahari terbit, burung berkicau nyaring.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
-            },
-          ],
+          label:
+            "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
-            },
-          ],
+          label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
         },
       ],
     },

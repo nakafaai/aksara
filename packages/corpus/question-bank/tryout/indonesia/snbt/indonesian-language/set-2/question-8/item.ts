@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Uwet mencoba mengambil buah ceri" }],
+          label: "Uwet mencoba mengambil buah ceri",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Uwet berkebun di bawah pohon ceri" }],
+          label: "Uwet berkebun di bawah pohon ceri",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Uwet mencari siput" }],
+          label: "Uwet mencari siput",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Uwet menangkap siput" }],
+          label: "Uwet menangkap siput",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Uwet menunggu kedatangan Enjin dan Ensi" },
-          ],
+          label: "Uwet menunggu kedatangan Enjin dan Ensi",
         },
       ],
     },

@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " oder " },
-            { display: "block", kind: "math", math: "-5" },
-          ],
+          label: "$$2$$ oder $$-5$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " oder " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$2$$ oder $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " oder " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$4$$ oder $$-2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " oder " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$-2$$ oder $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4" },
-            { kind: "text", text: " oder " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$-4$$ oder $$-2$$",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " or " },
-            { display: "block", kind: "math", math: "-5" },
-          ],
+          label: "$$2$$ or $$-5$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " or " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$2$$ or $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " or " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$4$$ or $$-2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " or " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$-2$$ or $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4" },
-            { kind: "text", text: " or " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$-4$$ or $$-2$$",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " atau " },
-            { display: "block", kind: "math", math: "-5" },
-          ],
+          label: "$$2$$ atau $$-5$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " atau " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$2$$ atau $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " atau " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$4$$ atau $$-2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " atau " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "$$-2$$ atau $$5$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4" },
-            { kind: "text", text: " atau " },
-            { display: "block", kind: "math", math: "-2" },
-          ],
+          label: "$$-4$$ atau $$-2$$",
         },
       ],
     },

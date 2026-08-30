@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "175" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$175$$ cm",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "189" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "192" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$192$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "221" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$221$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "235" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$235$$ cm",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "175" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$175$$ cm",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "189" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "192" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$192$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "221" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$221$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "235" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$235$$ cm",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "175" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$175$$ cm",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "189" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "192" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$192$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "221" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$221$$ cm",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "235" },
-            { kind: "text", text: " cm" },
-          ],
+          label: "$$235$$ cm",
         },
       ],
     },

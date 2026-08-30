@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "3" }],
+          label: "3",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "5" }],
+          label: "5",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "7" }],
+          label: "7",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "3" }],
+          label: "3",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "5" }],
+          label: "5",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "7" }],
+          label: "7",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "3" }],
+          label: "3",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "5" }],
+          label: "5",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "7" }],
+          label: "7",
         },
       ],
     },

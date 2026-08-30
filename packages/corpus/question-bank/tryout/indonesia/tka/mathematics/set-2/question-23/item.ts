@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-3,5)" }],
+          label: "$$(-3,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,4)" }],
+          label: "$$(-2,4)$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "(-2,5)" }],
+          label: "$$(-2,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-1,5)" }],
+          label: "$$(-1,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,6)" }],
+          label: "$$(-2,6)$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-3,5)" }],
+          label: "$$(-3,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,4)" }],
+          label: "$$(-2,4)$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "(-2,5)" }],
+          label: "$$(-2,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-1,5)" }],
+          label: "$$(-1,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,6)" }],
+          label: "$$(-2,6)$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-3,5)" }],
+          label: "$$(-3,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,4)" }],
+          label: "$$(-2,4)$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "(-2,5)" }],
+          label: "$$(-2,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-1,5)" }],
+          label: "$$(-1,5)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(-2,6)" }],
+          label: "$$(-2,6)$$",
         },
       ],
     },

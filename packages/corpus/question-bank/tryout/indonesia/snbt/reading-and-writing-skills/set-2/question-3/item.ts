@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Familien-Medienplan sollte Kindern Grenzen setzen, aber die gleichen Grenzen sollten auch für Erwachsene gelten.",
-            },
-          ],
+          label:
+            "Ein Familien-Medienplan sollte Kindern Grenzen setzen, aber die gleichen Grenzen sollten auch für Erwachsene gelten.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Familien-Medienplan sollte Kindern Grenzen setzen, weil die gleichen Grenzen auch für Erwachsene gelten sollten.",
-            },
-          ],
+          label:
+            "Ein Familien-Medienplan sollte Kindern Grenzen setzen, weil die gleichen Grenzen auch für Erwachsene gelten sollten.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Familien-Medienplan sollte Kindern Grenzen setzen, obwohl die gleichen Grenzen auch für Erwachsene gelten sollten.",
-            },
-          ],
+          label:
+            "Ein Familien-Medienplan sollte Kindern Grenzen setzen, obwohl die gleichen Grenzen auch für Erwachsene gelten sollten.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Familien-Medienplan sollte Kindern Grenzen setzen, die gleichen Grenzen sollten auch für Erwachsene gelten.",
-            },
-          ],
+          label:
+            "Ein Familien-Medienplan sollte Kindern Grenzen setzen, die gleichen Grenzen sollten auch für Erwachsene gelten.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Familien-Medienplan sollte Kindern Grenzen setzen; deshalb sollten die gleichen Grenzen auch für Erwachsene gelten.",
-            },
-          ],
+          label:
+            "Ein Familien-Medienplan sollte Kindern Grenzen setzen; deshalb sollten die gleichen Grenzen auch für Erwachsene gelten.",
         },
       ],
     },
@@ -57,48 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "A family media plan should set boundaries for children, but the same boundaries should also apply to adults.",
-            },
-          ],
+          label:
+            "A family media plan should set boundaries for children, but the same boundaries should also apply to adults.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A family media plan should set boundaries for children, because the same boundaries should also apply to adults.",
-            },
-          ],
+          label:
+            "A family media plan should set boundaries for children, because the same boundaries should also apply to adults.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A family media plan should set boundaries for children, although the same boundaries should also apply to adults.",
-            },
-          ],
+          label:
+            "A family media plan should set boundaries for children, although the same boundaries should also apply to adults.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A family media plan should set boundaries for children, the same boundaries should also apply to adults.",
-            },
-          ],
+          label:
+            "A family media plan should set boundaries for children, the same boundaries should also apply to adults.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A family media plan should set boundaries for children; therefore, the same boundaries should also apply to adults.",
-            },
-          ],
+          label:
+            "A family media plan should set boundaries for children; therefore, the same boundaries should also apply to adults.",
         },
       ],
     },
@@ -107,48 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Rencana media keluarga perlu menetapkan batas bagi anak, tetapi batas yang sama juga perlu berlaku bagi orang dewasa.",
-            },
-          ],
+          label:
+            "Rencana media keluarga perlu menetapkan batas bagi anak, tetapi batas yang sama juga perlu berlaku bagi orang dewasa.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Rencana media keluarga perlu menetapkan batas bagi anak, karena batas yang sama juga perlu berlaku bagi orang dewasa.",
-            },
-          ],
+          label:
+            "Rencana media keluarga perlu menetapkan batas bagi anak, karena batas yang sama juga perlu berlaku bagi orang dewasa.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Rencana media keluarga perlu menetapkan batas bagi anak, meskipun batas yang sama juga perlu berlaku bagi orang dewasa.",
-            },
-          ],
+          label:
+            "Rencana media keluarga perlu menetapkan batas bagi anak, meskipun batas yang sama juga perlu berlaku bagi orang dewasa.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Rencana media keluarga perlu menetapkan batas bagi anak, batas yang sama juga perlu berlaku bagi orang dewasa.",
-            },
-          ],
+          label:
+            "Rencana media keluarga perlu menetapkan batas bagi anak, batas yang sama juga perlu berlaku bagi orang dewasa.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Rencana media keluarga perlu menetapkan batas bagi anak; oleh karena itu, batas yang sama juga perlu berlaku bagi orang dewasa.",
-            },
-          ],
+          label:
+            "Rencana media keluarga perlu menetapkan batas bagi anak; oleh karena itu, batas yang sama juga perlu berlaku bagi orang dewasa.",
         },
       ],
     },

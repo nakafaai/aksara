@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Insekten." }],
+          label: "Insekten.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "kleine Tiere." }],
+          label: "kleine Tiere.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Beutetiere der Fledermäuse." }],
+          label: "Beutetiere der Fledermäuse.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Fledermäuse." }],
+          label: "Fledermäuse.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Insekten und Kleintiere." }],
+          label: "Insekten und Kleintiere.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "insects." }],
+          label: "insects.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "small animals." }],
+          label: "small animals.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bat prey." }],
+          label: "bat prey.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "bats." }],
+          label: "bats.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "insects and small animals." }],
+          label: "insects and small animals.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "serangga." }],
+          label: "serangga.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "hewan kecil." }],
+          label: "hewan kecil.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "mangsa kelelawar." }],
+          label: "mangsa kelelawar.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "kelelawar." }],
+          label: "kelelawar.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "serangga dan hewan kecil." }],
+          label: "serangga dan hewan kecil.",
         },
       ],
     },

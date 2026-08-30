@@ -17,7 +17,7 @@ function itemSource(locale: AppLocaleCode) {
 
 const item: QuestionItem = {
   responses: {
-    ${locale}: { kind: "single-choice", options: [{ isCorrect: true, label: [{ kind: "text", text: "A" }] }, { isCorrect: false, label: [{ kind: "text", text: "B" }] }] },
+    ${locale}: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
   },
 };
 
@@ -56,11 +56,11 @@ layer(Path.layer)("question source language policy", (it) => {
             options: [
               {
                 isCorrect: true,
-                label: [{ kind: "text", text: "A" }],
+                label: "A",
               },
               {
                 isCorrect: false,
-                label: [{ kind: "text", text: "B" }],
+                label: "B",
               },
             ],
           },
@@ -101,11 +101,11 @@ layer(Path.layer)("question source language policy", (it) => {
             options: [
               {
                 isCorrect: true,
-                label: [{ kind: "text", text: "A" }],
+                label: "A",
               },
               {
                 isCorrect: false,
-                label: [{ kind: "text", text: "B" }],
+                label: "B",
               },
             ],
           },

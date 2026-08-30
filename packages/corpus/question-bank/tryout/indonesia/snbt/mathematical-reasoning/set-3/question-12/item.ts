@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60" },
-            { kind: "text", text: " Leute" },
-          ],
+          label: "$$60$$ Leute",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " Leute" },
-          ],
+          label: "$$48$$ Leute",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "36" },
-            { kind: "text", text: " Leute" },
-          ],
+          label: "$$36$$ Leute",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " Leute" },
-          ],
+          label: "$$30$$ Leute",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20" },
-            { kind: "text", text: " Leute" },
-          ],
+          label: "$$20$$ Leute",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60" },
-            { kind: "text", text: " People" },
-          ],
+          label: "$$60$$ People",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " People" },
-          ],
+          label: "$$48$$ People",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "36" },
-            { kind: "text", text: " People" },
-          ],
+          label: "$$36$$ People",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " People" },
-          ],
+          label: "$$30$$ People",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20" },
-            { kind: "text", text: " People" },
-          ],
+          label: "$$20$$ People",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60" },
-            { kind: "text", text: " Orang" },
-          ],
+          label: "$$60$$ Orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " Orang" },
-          ],
+          label: "$$48$$ Orang",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "36" },
-            { kind: "text", text: " Orang" },
-          ],
+          label: "$$36$$ Orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " Orang" },
-          ],
+          label: "$$30$$ Orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20" },
-            { kind: "text", text: " Orang" },
-          ],
+          label: "$$20$$ Orang",
         },
       ],
     },

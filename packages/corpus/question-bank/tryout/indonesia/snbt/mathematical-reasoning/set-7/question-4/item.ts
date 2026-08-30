@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$3\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$4\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{3} \\text{ Meter}",
-            },
-          ],
+          label: "$$2\\frac{1}{3} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{3} \\text{ Meter}",
-            },
-          ],
+          label: "$$3\\frac{1}{3} \\text{ Meter}$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{2} \\text{ Meters}",
-            },
-          ],
+          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{2} \\text{ Meters}",
-            },
-          ],
+          label: "$$3\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\frac{1}{2} \\text{ Meters}",
-            },
-          ],
+          label: "$$4\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{3} \\text{ Meters}",
-            },
-          ],
+          label: "$$2\\frac{1}{3} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{3} \\text{ Meters}",
-            },
-          ],
+          label: "$$3\\frac{1}{3} \\text{ Meters}$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$3\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\frac{1}{2} \\text{ Meter}",
-            },
-          ],
+          label: "$$4\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "2\\frac{1}{3} \\text{ Meter}",
-            },
-          ],
+          label: "$$2\\frac{1}{3} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "3\\frac{1}{3} \\text{ Meter}",
-            },
-          ],
+          label: "$$3\\frac{1}{3} \\text{ Meter}$$",
         },
       ],
     },

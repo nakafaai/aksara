@@ -7,48 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
-            },
-          ],
+          label:
+            "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Menghentikan seluruh pekerjaan untuk beristirahat sepanjang hari",
-            },
-          ],
+          label:
+            "Menghentikan seluruh pekerjaan untuk beristirahat sepanjang hari",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mengabaikan keadaan sekitar agar dapat menikmati hidup",
-            },
-          ],
+          label: "Mengabaikan keadaan sekitar agar dapat menikmati hidup",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Menjauhi semua kesibukan di kota secara permanen",
-            },
-          ],
+          label: "Menjauhi semua kesibukan di kota secara permanen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Menghitung waktu yang tersisa sebelum malam",
-            },
-          ],
+          label: "Menghitung waktu yang tersisa sebelum malam",
         },
       ],
     },

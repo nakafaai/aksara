@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4x + 3y = 25" }],
+          label: "$$4x + 3y = 25$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x + 4y = 24" }],
+          label: "$$3x + 4y = 24$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4x - 3y = 7" }],
+          label: "$$4x - 3y = 7$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x - 4y = 0" }],
+          label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-3x + 4y = 25" }],
+          label: "$$-3x + 4y = 25$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4x + 3y = 25" }],
+          label: "$$4x + 3y = 25$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x + 4y = 24" }],
+          label: "$$3x + 4y = 24$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4x - 3y = 7" }],
+          label: "$$4x - 3y = 7$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x - 4y = 0" }],
+          label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-3x + 4y = 25" }],
+          label: "$$-3x + 4y = 25$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4x + 3y = 25" }],
+          label: "$$4x + 3y = 25$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x + 4y = 24" }],
+          label: "$$3x + 4y = 24$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4x - 3y = 7" }],
+          label: "$$4x - 3y = 7$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3x - 4y = 0" }],
+          label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-3x + 4y = 25" }],
+          label: "$$-3x + 4y = 25$$",
         },
       ],
     },

@@ -7,47 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Aussagen " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " sind richtig" },
-          ],
+          label: "Die Aussagen $$(1)$$, $$(2)$$ und $$(3)$$ sind richtig",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Aussagen " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " sind richtig" },
-          ],
+          label: "Die Aussagen $$(1)$$ und $$(3)$$ sind richtig",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Die Aussagen " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " sind richtig" },
-          ],
+          label: "Die Aussagen $$(2)$$ und $$(4)$$ sind richtig",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Nur Aussage " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " ist richtig" },
-          ],
+          label: "Nur Aussage $$(4)$$ ist richtig",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Alle Aussagen sind richtig" }],
+          label: "Alle Aussagen sind richtig",
         },
       ],
     },
@@ -56,47 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Statements " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: ", and " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " are correct" },
-          ],
+          label: "Statements $$(1)$$, $$(2)$$, and $$(3)$$ are correct",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Statements " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " are correct" },
-          ],
+          label: "Statements $$(1)$$ and $$(3)$$ are correct",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Statements " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " are correct" },
-          ],
+          label: "Statements $$(2)$$ and $$(4)$$ are correct",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Only statement " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " is correct" },
-          ],
+          label: "Only statement $$(4)$$ is correct",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "All statements are correct" }],
+          label: "All statements are correct",
         },
       ],
     },
@@ -105,47 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pernyataan " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: ", dan " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " benar" },
-          ],
+          label: "Pernyataan $$(1)$$, $$(2)$$, dan $$(3)$$ benar",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pernyataan " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " benar" },
-          ],
+          label: "Pernyataan $$(1)$$ dan $$(3)$$ benar",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Pernyataan " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " benar" },
-          ],
+          label: "Pernyataan $$(2)$$ dan $$(4)$$ benar",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Hanya pernyataan " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " yang benar" },
-          ],
+          label: "Hanya pernyataan $$(4)$$ yang benar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Semua pernyataan benar" }],
+          label: "Semua pernyataan benar",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "V" }],
+          label: "$$V$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "W" }],
+          label: "$$W$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "X" }],
+          label: "$$X$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "Y" }],
+          label: "$$Y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "Z" }],
+          label: "$$Z$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "V" }],
+          label: "$$V$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "W" }],
+          label: "$$W$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "X" }],
+          label: "$$X$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "Y" }],
+          label: "$$Y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "Z" }],
+          label: "$$Z$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "V" }],
+          label: "$$V$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "W" }],
+          label: "$$W$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "X" }],
+          label: "$$X$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "Y" }],
+          label: "$$Y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "Z" }],
+          label: "$$Z$$",
         },
       ],
     },

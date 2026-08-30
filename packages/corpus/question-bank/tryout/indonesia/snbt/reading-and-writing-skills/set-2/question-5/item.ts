@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Satz $$(1)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Satz $$(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Satz $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Satz $$(8)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(10)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Satz $$(10)$$.",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sentence " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sentence $$(1)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sentence " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sentence $$(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sentence " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sentence $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sentence " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sentence $$(8)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "sentence " },
-            { display: "block", kind: "math", math: "(10)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sentence $$(10)$$.",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "kalimat " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: "." },
-          ],
+          label: "kalimat $$(1)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "kalimat " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "kalimat $$(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "kalimat " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "kalimat $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "kalimat " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "kalimat $$(8)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "kalimat " },
-            { display: "block", kind: "math", math: "(10)" },
-            { kind: "text", text: "." },
-          ],
+          label: "kalimat $$(10)$$.",
         },
       ],
     },

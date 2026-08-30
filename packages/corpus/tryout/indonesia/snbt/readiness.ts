@@ -1,4 +1,4 @@
-import { defineAssessmentReadiness } from "#corpus/tryout/readiness";
+import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
 
 /** Binds one official schedule value to the current SNPMB evidence. */
 const official = (value: number) => ({

@@ -7,61 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der GKP-Erzeugerpreis sinkt von Jahr zu Jahr weiter",
-            },
-          ],
+          label: "Der GKP-Erzeugerpreis sinkt von Jahr zu Jahr weiter",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Regierung muss den Ankaufspreis erhöhen und den Landwirten zusätzliche Hilfen gewähren",
-            },
-          ],
+          label:
+            "Die Regierung muss den Ankaufspreis erhöhen und den Landwirten zusätzliche Hilfen gewähren",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die zuständigen Stellen müssen die Präsidialverordnung Nr. ",
-            },
-            { display: "block", kind: "math", math: "63" },
-            { kind: "text", text: " von " },
-            { display: "block", kind: "math", math: "2017" },
-            {
-              kind: "text",
-              text: " zur bargeldlosen Sozialhilfe überarbeiten",
-            },
-          ],
+          label:
+            "Die zuständigen Stellen müssen die Präsidialverordnung Nr. $$63$$ von $$2017$$ zur bargeldlosen Sozialhilfe überarbeiten",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Eine schwächere Preisstabilisierung auf Erzeugerebene verringert Kaufkraft und Lebensstandard der Landwirte",
-            },
-          ],
+          label:
+            "Eine schwächere Preisstabilisierung auf Erzeugerebene verringert Kaufkraft und Lebensstandard der Landwirte",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Zahl der Rohreisverkäufe in " },
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " Provinzen sank im April " },
-            { display: "block", kind: "math", math: "2019" },
-            { kind: "text", text: " um " },
-            { display: "block", kind: "math", math: "5{,}37\\%" },
-            {
-              kind: "text",
-              text: ", während Grundnahrungsmittel teurer wurden",
-            },
-          ],
+          label:
+            "Die Zahl der Rohreisverkäufe in $$30$$ Provinzen sank im April $$2019$$ um $$5{,}37\\%$$, während Grundnahrungsmittel teurer wurden",
         },
       ],
     },
@@ -70,61 +36,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The price of grain, GKP (dry harvested grain), at the farmer level continues to decline from year to year",
-            },
-          ],
+          label:
+            "The price of grain, GKP (dry harvested grain), at the farmer level continues to decline from year to year",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The government is forced to increase the purchase price of farmers' grain and provide assistance to farmers",
-            },
-          ],
+          label:
+            "The government is forced to increase the purchase price of farmers' grain and provide assistance to farmers",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Related parties must revise Presidential Regulation Number ",
-            },
-            { display: "block", kind: "math", math: "63" },
-            { kind: "text", text: " of " },
-            { display: "block", kind: "math", math: "2017" },
-            {
-              kind: "text",
-              text: " regarding Non-Cash Social Assistance Distribution",
-            },
-          ],
+          label:
+            "Related parties must revise Presidential Regulation Number $$63$$ of $$2017$$ regarding Non-Cash Social Assistance Distribution",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
-            },
-          ],
+          label:
+            "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Grain sales transactions in " },
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " provinces during April " },
-            { display: "block", kind: "math", math: "2019" },
-            { kind: "text", text: " fell " },
-            { display: "block", kind: "math", math: "5.37\\%" },
-            {
-              kind: "text",
-              text: ", in stark contrast to the increase in prices of basic needs",
-            },
-          ],
+          label:
+            "Grain sales transactions in $$30$$ provinces during April $$2019$$ fell $$5.37\\%$$, in stark contrast to the increase in prices of basic needs",
         },
       ],
     },
@@ -133,61 +66,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Harga gabah, GKP (gabah kering panen), di tingkat petani terus mengalami penurunan dari tahun ke tahun",
-            },
-          ],
+          label:
+            "Harga gabah, GKP (gabah kering panen), di tingkat petani terus mengalami penurunan dari tahun ke tahun",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pemerintah terpaksa menaikkan harga pembelian gabah petani dan memberikan bantuan pada petani",
-            },
-          ],
+          label:
+            "Pemerintah terpaksa menaikkan harga pembelian gabah petani dan memberikan bantuan pada petani",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pihak terkait harus merevisi Peraturan Presiden Nomor ",
-            },
-            { display: "block", kind: "math", math: "63" },
-            { kind: "text", text: " Tahun " },
-            { display: "block", kind: "math", math: "2017" },
-            {
-              kind: "text",
-              text: " tentang Penyaluran Bantuan Sosial secara Nontunai",
-            },
-          ],
+          label:
+            "Pihak terkait harus merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ tentang Penyaluran Bantuan Sosial secara Nontunai",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
-            },
-          ],
+          label:
+            "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Transaksi penjualan gabah di " },
-            { display: "block", kind: "math", math: "30" },
-            { kind: "text", text: " provinsi selama April " },
-            { display: "block", kind: "math", math: "2019" },
-            { kind: "text", text: " turun " },
-            { display: "block", kind: "math", math: "5{,}37\\%" },
-            {
-              kind: "text",
-              text: " sangat kontras dengan kenaikan harga kebutuhan",
-            },
-          ],
+          label:
+            "Transaksi penjualan gabah di $$30$$ provinsi selama April $$2019$$ turun $$5{,}37\\%$$ sangat kontras dengan kenaikan harga kebutuhan",
         },
       ],
     },

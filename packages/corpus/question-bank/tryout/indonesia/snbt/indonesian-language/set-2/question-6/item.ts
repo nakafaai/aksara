@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Komik dan novel" }],
+          label: "Komik dan novel",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Dongeng dan pengetahuan" }],
+          label: "Dongeng dan pengetahuan",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Cerita fiksi dan komik" }],
+          label: "Cerita fiksi dan komik",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Dongeng dan penelitian" }],
+          label: "Dongeng dan penelitian",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Cerita fiksi dan keagamaan" }],
+          label: "Cerita fiksi dan keagamaan",
         },
       ],
     },

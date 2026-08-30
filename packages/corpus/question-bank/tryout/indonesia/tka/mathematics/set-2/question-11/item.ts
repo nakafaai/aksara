@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 33.000" }],
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 36.000" }],
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Rp 37.000" }],
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 38.000" }],
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 41.000" }],
+          label: "Rp 41.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 33.000" }],
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 36.000" }],
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Rp 37.000" }],
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 38.000" }],
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 41.000" }],
+          label: "Rp 41.000",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 33.000" }],
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 36.000" }],
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Rp 37.000" }],
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 38.000" }],
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Rp 41.000" }],
+          label: "Rp 41.000",
         },
       ],
     },

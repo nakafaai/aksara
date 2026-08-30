@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{I, II und III}" },
-          ],
+          label: "$$\\text{I, II und III}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{I und II}" }],
+          label: "$$\\text{I und II}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{II und III}" },
-          ],
+          label: "$$\\text{II und III}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{I}" }],
+          label: "$$\\text{I}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{III}" }],
+          label: "$$\\text{III}$$",
         },
       ],
     },
@@ -36,27 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{I, II, and III}" },
-          ],
+          label: "$$\\text{I, II, and III}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{I and II}" }],
+          label: "$$\\text{I and II}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{II and III}" },
-          ],
+          label: "$$\\text{II and III}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{I}" }],
+          label: "$$\\text{I}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{III}" }],
+          label: "$$\\text{III}$$",
         },
       ],
     },
@@ -65,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{I, II, dan III}" },
-          ],
+          label: "$$\\text{I, II, dan III}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{I dan II}" }],
+          label: "$$\\text{I dan II}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{II dan III}" },
-          ],
+          label: "$$\\text{II dan III}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{I}" }],
+          label: "$$\\text{I}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{III}" }],
+          label: "$$\\text{III}$$",
         },
       ],
     },

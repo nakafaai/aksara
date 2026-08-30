@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = -y" }],
+          label: "$$x = -y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + y = 1" }],
+          label: "$$x + y = 1$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = -y" }],
+          label: "$$x = -y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + y = 1" }],
+          label: "$$x + y = 1$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = -y" }],
+          label: "$$x = -y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + y = 1" }],
+          label: "$$x + y = 1$$",
         },
       ],
     },

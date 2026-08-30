@@ -9,7 +9,7 @@ import {
 import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
 import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
-import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness-inventory";
+import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** Loads the actual TKA source, readiness gate, and physical question bank. */

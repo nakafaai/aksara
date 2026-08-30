@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
-          ],
+          label: "$$-13x - y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
+          label: "$$13x - y - 15 = 0$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
+          label: "$$13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
-          ],
+          label: "$$-13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
+          label: "$$13x + y - 37 = 0$$",
         },
       ],
     },
@@ -36,27 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
-          ],
+          label: "$$-13x - y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
+          label: "$$13x - y - 15 = 0$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
+          label: "$$13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
-          ],
+          label: "$$-13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
+          label: "$$13x + y - 37 = 0$$",
         },
       ],
     },
@@ -65,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
-          ],
+          label: "$$-13x - y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
+          label: "$$13x - y - 15 = 0$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
+          label: "$$13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
-          ],
+          label: "$$-13x + y - 15 = 0$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
+          label: "$$13x + y - 37 = 0$$",
         },
       ],
     },

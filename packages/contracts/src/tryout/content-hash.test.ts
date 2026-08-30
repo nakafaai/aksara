@@ -23,13 +23,13 @@ const source = Schema.decodeSync(TryoutContentInputSchema)({
     options: [
       {
         isCorrect: true,
-        label: [{ kind: "text", text: "Choice 1" }],
+        label: "Choice 1",
         optionKey: "option-1",
         order: 1,
       },
       {
         isCorrect: false,
-        label: [{ kind: "text", text: "Choice 2" }],
+        label: "Choice 2",
         optionKey: "option-2",
         order: 2,
       },
@@ -44,10 +44,10 @@ const source = Schema.decodeSync(TryoutContentInputSchema)({
 describe("try-out content hash", () => {
   it("matches the durable question-pair canonical bytes", () => {
     expect(canonicalizeTryoutContent(source)).toBe(
-      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":[{"kind":"text","text":"Choice 1"}],"optionKey":"option-1","order":1},{"isCorrect":false,"label":[{"kind":"text","text":"Choice 2"}],"optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1","sourceRevision":"2026-07-05"}'
+      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1","sourceRevision":"2026-07-05"}'
     );
     expect(hashTryoutContent(source)).toBe(
-      "b2b4c7e2b720b89fd7f5e578ee5214e9bdb0e273cb5311cba0f9ba02851d6464"
+      "d4eb2a12169c017cc8c047a7e18e2b5fa71dd82f7039aa46c70c530cd6caea26"
     );
   });
 

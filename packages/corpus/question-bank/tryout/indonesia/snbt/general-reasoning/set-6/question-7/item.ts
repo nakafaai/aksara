@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "85 \\text{ km/h}" }],
+          label: "$$85 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "95 \\text{ km/h}" }],
+          label: "$$95 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "80 \\text{ km/h}" }],
+          label: "$$80 \\text{ km/h}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "75 \\text{ km/h}" }],
+          label: "$$75 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 \\text{ km/h}" }],
+          label: "$$90 \\text{ km/h}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "85 \\text{ km/h}" }],
+          label: "$$85 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "95 \\text{ km/h}" }],
+          label: "$$95 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "80 \\text{ km/h}" }],
+          label: "$$80 \\text{ km/h}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "75 \\text{ km/h}" }],
+          label: "$$75 \\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 \\text{ km/h}" }],
+          label: "$$90 \\text{ km/h}$$",
         },
       ],
     },
@@ -57,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "85 \\text{ km/jam}" },
-          ],
+          label: "$$85 \\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "95 \\text{ km/jam}" },
-          ],
+          label: "$$95 \\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "80 \\text{ km/jam}" },
-          ],
+          label: "$$80 \\text{ km/jam}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "75 \\text{ km/jam}" },
-          ],
+          label: "$$75 \\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "90 \\text{ km/jam}" },
-          ],
+          label: "$$90 \\text{ km/jam}$$",
         },
       ],
     },

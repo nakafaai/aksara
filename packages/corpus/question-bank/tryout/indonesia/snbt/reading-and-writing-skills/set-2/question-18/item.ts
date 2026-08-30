@@ -7,58 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
         },
       ],
     },
@@ -67,58 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
         },
       ],
     },
@@ -127,58 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)",
-            },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
         },
       ],
     },

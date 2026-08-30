@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "2" }],
+          label: "2",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "2" }],
+          label: "2",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "2" }],
+          label: "2",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "4" }],
+          label: "4",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
       ],
     },

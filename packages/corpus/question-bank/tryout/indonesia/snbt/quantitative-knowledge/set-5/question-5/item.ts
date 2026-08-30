@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 11" }],
+          label: "$$2x^2 + 8x - 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 6" }],
+          label: "$$2x^2 + 8x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 9" }],
+          label: "$$2x^2 + 8x - 9$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 6" }],
+          label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 9" }],
+          label: "$$2x^2 + 4x - 9$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 11" }],
+          label: "$$2x^2 + 8x - 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 6" }],
+          label: "$$2x^2 + 8x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 9" }],
+          label: "$$2x^2 + 8x - 9$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 6" }],
+          label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 9" }],
+          label: "$$2x^2 + 4x - 9$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 11" }],
+          label: "$$2x^2 + 8x - 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 6" }],
+          label: "$$2x^2 + 8x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 8x - 9" }],
+          label: "$$2x^2 + 8x - 9$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 6" }],
+          label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x^2 + 4x - 9" }],
+          label: "$$2x^2 + 4x - 9$$",
         },
       ],
     },

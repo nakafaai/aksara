@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{4}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{4}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{3}{7}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{3}{7}$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{4}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{4}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{3}{7}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{3}{7}$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{4}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{4}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{2}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{2}{7}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} + \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} + \\frac{3}{7}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{x}{28} - \\frac{3}{7}",
-            },
-          ],
+          label: "$$\\frac{x}{28} - \\frac{3}{7}$$",
         },
       ],
     },

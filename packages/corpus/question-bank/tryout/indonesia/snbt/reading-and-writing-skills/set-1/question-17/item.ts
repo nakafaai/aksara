@@ -7,49 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "zwischen den Sätzen " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "zwischen den Sätzen $$(5)$$ und $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "vor Satz " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: "." },
-          ],
+          label: "vor Satz $$(7)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "zwischen den Sätzen " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "zwischen den Sätzen $$(1)$$ und $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "nach dem Satz " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "nach dem Satz $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "zwischen den Sätzen " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "zwischen den Sätzen $$(4)$$ und $$(5)$$.",
         },
       ],
     },
@@ -58,49 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "between sentences " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "between sentences $$(5)$$ and $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "before sentence " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: "." },
-          ],
+          label: "before sentence $$(7)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "between sentences " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "between sentences $$(1)$$ and $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "after sentence " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "after sentence $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "between sentences " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "between sentences $$(4)$$ and $$(5)$$.",
         },
       ],
     },
@@ -109,49 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "antara kalimat " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "(6)" },
-            { kind: "text", text: "." },
-          ],
+          label: "antara kalimat $$(5)$$ dan $$(6)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sebelum kalimat " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: "." },
-          ],
+          label: "sebelum kalimat $$(7)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "antara kalimat " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "antara kalimat $$(1)$$ dan $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "setelah kalimat " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "setelah kalimat $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "antara kalimat " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: "." },
-          ],
+          label: "antara kalimat $$(4)$$ dan $$(5)$$.",
         },
       ],
     },

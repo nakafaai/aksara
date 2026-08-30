@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$0$$ und $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$1$$ und $$2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-1" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "0" },
-          ],
+          label: "$$-1$$ und $$0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$-2$$ und $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "$$-2$$ und $$1$$",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$0$$ and $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$1$$ and $$2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-1" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "0" },
-          ],
+          label: "$$-1$$ and $$0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$-2$$ and $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "$$-2$$ and $$1$$",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$0$$ dan $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$1$$ dan $$2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-1" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "0" },
-          ],
+          label: "$$-1$$ dan $$0$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "$$-2$$ dan $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "$$-2$$ dan $$1$$",
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{14}{55}" }],
+          label: "$$\\frac{14}{55}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{29}{110}" }],
+          label: "$$\\frac{29}{110}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{11}" }],
+          label: "$$\\frac{3}{11}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{31}{110}" }],
+          label: "$$\\frac{31}{110}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{16}{55}" }],
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{14}{55}" }],
+          label: "$$\\frac{14}{55}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{29}{110}" }],
+          label: "$$\\frac{29}{110}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{11}" }],
+          label: "$$\\frac{3}{11}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{31}{110}" }],
+          label: "$$\\frac{31}{110}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{16}{55}" }],
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{14}{55}" }],
+          label: "$$\\frac{14}{55}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{29}{110}" }],
+          label: "$$\\frac{29}{110}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{11}" }],
+          label: "$$\\frac{3}{11}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{31}{110}" }],
+          label: "$$\\frac{31}{110}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{16}{55}" }],
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },

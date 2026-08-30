@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{12}" }],
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{11}{12}" }],
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{13}{12}" }],
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{4}" }],
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{12}" }],
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{11}{12}" }],
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{13}{12}" }],
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{4}" }],
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{12}" }],
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{11}{12}" }],
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{13}{12}" }],
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{4}" }],
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15^\\circ" }],
+          label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "20^\\circ" }],
+          label: "$$20^\\circ$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "25^\\circ" }],
+          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "30^\\circ" }],
+          label: "$$30^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35^\\circ" }],
+          label: "$$35^\\circ$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15^\\circ" }],
+          label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "20^\\circ" }],
+          label: "$$20^\\circ$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "25^\\circ" }],
+          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "30^\\circ" }],
+          label: "$$30^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35^\\circ" }],
+          label: "$$35^\\circ$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15^\\circ" }],
+          label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "20^\\circ" }],
+          label: "$$20^\\circ$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "25^\\circ" }],
+          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "30^\\circ" }],
+          label: "$$30^\\circ$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35^\\circ" }],
+          label: "$$35^\\circ$$",
         },
       ],
     },

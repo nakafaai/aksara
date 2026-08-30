@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "gefallen." }],
+          label: "gefallen.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Onkel." }],
+          label: "Onkel.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Nation." }],
+          label: "Nation.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Held." }],
+          label: "Held.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Feind." }],
+          label: "Feind.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "fell." }],
+          label: "fell.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "uncle." }],
+          label: "uncle.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "nation." }],
+          label: "nation.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "hero." }],
+          label: "hero.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "enemy." }],
+          label: "enemy.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "gugur." }],
+          label: "gugur.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "paman." }],
+          label: "paman.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bangsa." }],
+          label: "bangsa.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "pahlawan." }],
+          label: "pahlawan.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "musuh." }],
+          label: "musuh.",
         },
       ],
     },

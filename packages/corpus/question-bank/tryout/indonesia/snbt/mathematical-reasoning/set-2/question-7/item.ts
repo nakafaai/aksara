@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}24{.}750{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}24{.}750{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}25{.}000{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}25{.}000{.}000{,}00$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}26{.}250{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}26{.}250{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}28{.}000{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}28{.}000{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}32{.}750{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}32{.}750{.}000{,}00$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}24{,}750{,}000.00",
-            },
-          ],
+          label: "$$\\text{Rp}24{,}750{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}25{,}000{,}000.00",
-            },
-          ],
+          label: "$$\\text{Rp}25{,}000{,}000.00$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}26{,}250{,}000.00",
-            },
-          ],
+          label: "$$\\text{Rp}26{,}250{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}28{,}000{,}000.00",
-            },
-          ],
+          label: "$$\\text{Rp}28{,}000{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}32{,}750{,}000.00",
-            },
-          ],
+          label: "$$\\text{Rp}32{,}750{,}000.00$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}24{.}750{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}24{.}750{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}25{.}000{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}25{.}000{.}000{,}00$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}26{.}250{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}26{.}250{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}28{.}000{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}28{.}000{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}32{.}750{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}32{.}750{.}000{,}00$$",
         },
       ],
     },

@@ -7,45 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "wie Fledermäuse nachts Nahrung suchen." },
-          ],
+          label: "wie Fledermäuse nachts Nahrung suchen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "wie das Fallenlassen von einer Sitzfläche den Abflug erleichtert.",
-            },
-          ],
+          label:
+            "wie das Fallenlassen von einer Sitzfläche den Abflug erleichtert.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "die Vorteile des kopfüber hängenden Ruhens für Fledermäuse.",
-            },
-          ],
+          label: "die Vorteile des kopfüber hängenden Ruhens für Fledermäuse.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "die Orte, an denen Fledermäuse tagsüber ruhen.",
-            },
-          ],
+          label: "die Orte, an denen Fledermäuse tagsüber ruhen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "wie hohe Quartiere Fledermäuse vor Raubtieren schützen können.",
-            },
-          ],
+          label:
+            "wie hohe Quartiere Fledermäuse vor Raubtieren schützen können.",
         },
       ],
     },
@@ -54,43 +34,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "how bats search for food at night." }],
+          label: "how bats search for food at night.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "how dropping from a perch helps a bat take flight.",
-            },
-          ],
+          label: "how dropping from a perch helps a bat take flight.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "the advantages of upside-down roosting for bats.",
-            },
-          ],
+          label: "the advantages of upside-down roosting for bats.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "the places where bats rest during the day.",
-            },
-          ],
+          label: "the places where bats rest during the day.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "how high roosts may help bats avoid predators.",
-            },
-          ],
+          label: "how high roosts may help bats avoid predators.",
         },
       ],
     },
@@ -99,48 +59,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "cara kelelawar mencari makan pada malam hari.",
-            },
-          ],
+          label: "cara kelelawar mencari makan pada malam hari.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "cara menjatuhkan diri dari tempat bertengger membantu kelelawar terbang.",
-            },
-          ],
+          label:
+            "cara menjatuhkan diri dari tempat bertengger membantu kelelawar terbang.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "keuntungan bertengger terbalik bagi kelelawar.",
-            },
-          ],
+          label: "keuntungan bertengger terbalik bagi kelelawar.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "tempat kelelawar beristirahat pada siang hari.",
-            },
-          ],
+          label: "tempat kelelawar beristirahat pada siang hari.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "cara tempat bertengger yang tinggi dapat melindungi kelelawar dari predator.",
-            },
-          ],
+          label:
+            "cara tempat bertengger yang tinggi dapat melindungi kelelawar dari predator.",
         },
       ],
     },

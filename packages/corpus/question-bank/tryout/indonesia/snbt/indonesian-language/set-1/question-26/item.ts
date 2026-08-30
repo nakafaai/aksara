@@ -7,29 +7,20 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Perkampungan yang terletak di pesisir pantai",
-            },
-          ],
+          label: "Perkampungan yang terletak di pesisir pantai",
         },
-        { isCorrect: false, label: [{ kind: "text", text: "Desa wisata" }] },
+        { isCorrect: false, label: "Desa wisata" },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Laut yang menjadi objek wisata" }],
+          label: "Laut yang menjadi objek wisata",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Proyek pemerintah yang sedang dibangun" },
-          ],
+          label: "Proyek pemerintah yang sedang dibangun",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pantai yang sedang ada perbaikan tanggul" },
-          ],
+          label: "Pantai yang sedang ada perbaikan tanggul",
         },
       ],
     },

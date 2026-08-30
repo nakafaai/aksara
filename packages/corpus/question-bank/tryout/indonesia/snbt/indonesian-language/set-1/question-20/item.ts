@@ -7,42 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Merekrutnya langsung sebagai pemeran utama film",
-            },
-          ],
+          label: "Merekrutnya langsung sebagai pemeran utama film",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Menjadi wali yang membiayai hidupnya" },
-          ],
+          label: "Menjadi wali yang membiayai hidupnya",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mengatur pernikahannya dengan James Dougherty",
-            },
-          ],
+          label: "Mengatur pernikahannya dengan James Dougherty",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Mengajarinya berakting di Actors Studio" },
-          ],
+          label: "Mengajarinya berakting di Actors Studio",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
-            },
-          ],
+          label:
+            "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
         },
       ],
     },

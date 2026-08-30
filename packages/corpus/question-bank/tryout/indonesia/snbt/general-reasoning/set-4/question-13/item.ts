@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo ckeeck? bluwwppz" }],
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ckeeck? mwbluwpz bo" }],
+          label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo mwbluwpz ckeeck?" }],
+          label: "bo mwbluwpz ckeeck?",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "bo bluwpz mwckeeck?" }],
+          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "mwbluwpz ckeeck? bo" }],
+          label: "mwbluwpz ckeeck? bo",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo ckeeck? bluwwppz" }],
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ckeeck? mwbluwpz bo" }],
+          label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo mwbluwpz ckeeck?" }],
+          label: "bo mwbluwpz ckeeck?",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "bo bluwpz mwckeeck?" }],
+          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "mwbluwpz ckeeck? bo" }],
+          label: "mwbluwpz ckeeck? bo",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo ckeeck? bluwwppz" }],
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ckeeck? mwbluwpz bo" }],
+          label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bo mwbluwpz ckeeck?" }],
+          label: "bo mwbluwpz ckeeck?",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "bo bluwpz mwckeeck?" }],
+          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "mwbluwpz ckeeck? bo" }],
+          label: "mwbluwpz ckeeck? bo",
         },
       ],
     },

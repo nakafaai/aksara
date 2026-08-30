@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1.45; \\frac{5}{3}; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1.45; \\frac{5}{3}; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1.45; \\sqrt{12}; \\frac{5}{3}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1.45; \\sqrt{12}; \\frac{5}{3}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1.45; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1.45; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; 123\\%; 1.45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; 123\\%; 1.45; \\sqrt{12}; \\frac{17}{14}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "123\\%; \\frac{5}{3}; 1.45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$123\\%; \\frac{5}{3}; 1.45; \\sqrt{12}; \\frac{17}{14}$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}",
-            },
-          ],
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; \\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$\\frac{5}{3}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}",
-            },
-          ],
+          label: "$$123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
         },
       ],
     },

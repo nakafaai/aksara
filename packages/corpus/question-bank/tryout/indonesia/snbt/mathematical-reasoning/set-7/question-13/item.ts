@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1{,}2 \\text{ Minuten}" },
-          ],
+          label: "$$1{,}2 \\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4{,}8 \\text{ Minuten}" },
-          ],
+          label: "$$4{,}8 \\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "18{,}8 \\text{ Minuten}" },
-          ],
+          label: "$$18{,}8 \\text{ Minuten}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16{,}8 \\text{ Minuten}" },
-          ],
+          label: "$$16{,}8 \\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14{,}2 \\text{ Minuten}" },
-          ],
+          label: "$$14{,}2 \\text{ Minuten}$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1.2 \\text{ minutes}" },
-          ],
+          label: "$$1.2 \\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4.8 \\text{ minutes}" },
-          ],
+          label: "$$4.8 \\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "18.8 \\text{ minutes}" },
-          ],
+          label: "$$18.8 \\text{ minutes}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16.8 \\text{ minutes}" },
-          ],
+          label: "$$16.8 \\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14.2 \\text{ minutes}" },
-          ],
+          label: "$$14.2 \\text{ minutes}$$",
         },
       ],
     },
@@ -77,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1{,}2 \\text{ menit}" },
-          ],
+          label: "$$1{,}2 \\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4{,}8 \\text{ menit}" },
-          ],
+          label: "$$4{,}8 \\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "18{,}8 \\text{ menit}" },
-          ],
+          label: "$$18{,}8 \\text{ menit}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16{,}8 \\text{ menit}" },
-          ],
+          label: "$$16{,}8 \\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14{,}2 \\text{ menit}" },
-          ],
+          label: "$$14{,}2 \\text{ menit}$$",
         },
       ],
     },

@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Wahr, wahr, wahr" }],
+          label: "Wahr, wahr, wahr",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Wahr, wahr, falsch" }],
+          label: "Wahr, wahr, falsch",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Falsch, wahr, falsch" }],
+          label: "Falsch, wahr, falsch",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Falsch, wahr, wahr" }],
+          label: "Falsch, wahr, wahr",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Falsch, falsch, wahr" }],
+          label: "Falsch, falsch, wahr",
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "True, True, True" }],
+          label: "True, True, True",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "True, True, False" }],
+          label: "True, True, False",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "False, True, False" }],
+          label: "False, True, False",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "False, True, True" }],
+          label: "False, True, True",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "False, False, True" }],
+          label: "False, False, True",
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Benar, Benar, Benar" }],
+          label: "Benar, Benar, Benar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Benar, Benar, Salah" }],
+          label: "Benar, Benar, Salah",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Salah, Benar, Salah" }],
+          label: "Salah, Benar, Salah",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Salah, Benar, Benar" }],
+          label: "Salah, Benar, Benar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Salah, Salah, Benar" }],
+          label: "Salah, Salah, Benar",
         },
       ],
     },

@@ -5,7 +5,7 @@ import { describe, expect } from "vitest";
 import {
   defineAssessmentReadiness,
   validateAssessmentSourceReadiness,
-} from "#corpus/tryout/readiness";
+} from "#corpus/tryout/readiness/schema";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 const sections = [

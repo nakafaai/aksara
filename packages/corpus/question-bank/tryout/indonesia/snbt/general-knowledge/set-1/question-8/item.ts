@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "dramatische Veränderung." }],
+          label: "dramatische Veränderung.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "rasante Entwicklung." }],
+          label: "rasante Entwicklung.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Veränderung von Viruslinien über Generationen hinweg.",
-            },
-          ],
+          label: "Veränderung von Viruslinien über Generationen hinweg.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Veränderung, die schnell erfolgt." }],
+          label: "Veränderung, die schnell erfolgt.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Wachstum." }],
+          label: "Wachstum.",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "dramatic change." }],
+          label: "dramatic change.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "rapid development." }],
+          label: "rapid development.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "change in viral lineages across generations.",
-            },
-          ],
+          label: "change in viral lineages across generations.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "change that occurs rapidly." }],
+          label: "change that occurs rapidly.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "growth." }],
+          label: "growth.",
         },
       ],
     },
@@ -67,30 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "perubahan secara dramatis." }],
+          label: "perubahan secara dramatis.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "perkembangan yang pesat." }],
+          label: "perkembangan yang pesat.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "perubahan garis keturunan virus dari generasi ke generasi.",
-            },
-          ],
+          label: "perubahan garis keturunan virus dari generasi ke generasi.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "perubahan yang terjadi secara cepat." },
-          ],
+          label: "perubahan yang terjadi secara cepat.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "pertumbuhan." }],
+          label: "pertumbuhan.",
         },
       ],
     },

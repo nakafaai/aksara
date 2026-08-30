@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x - 5" }],
+          label: "$$x - 5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + 5" }],
+          label: "$$x + 5$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "5 - x" }],
+          label: "$$5 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5 - 2x" }],
+          label: "$$5 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x - 5" }],
+          label: "$$2x - 5$$",
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x - 5" }],
+          label: "$$x - 5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + 5" }],
+          label: "$$x + 5$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "5 - x" }],
+          label: "$$5 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5 - 2x" }],
+          label: "$$5 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x - 5" }],
+          label: "$$2x - 5$$",
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x - 5" }],
+          label: "$$x - 5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x + 5" }],
+          label: "$$x + 5$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "5 - x" }],
+          label: "$$5 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5 - 2x" }],
+          label: "$$5 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x - 5" }],
+          label: "$$2x - 5$$",
         },
       ],
     },

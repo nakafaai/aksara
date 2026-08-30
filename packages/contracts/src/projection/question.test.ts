@@ -35,15 +35,15 @@ const item = Schema.decodeSync(QuestionItemSchema)({
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: [{ kind: "text", text: "A" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "B" }] },
+        { isCorrect: true, label: "A" },
+        { isCorrect: false, label: "B" },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
+        { isCorrect: true, label: "A (ID)" },
+        { isCorrect: false, label: "B (ID)" },
       ],
     },
   },
@@ -109,13 +109,13 @@ describe("question projection", () => {
         options: [
           {
             isCorrect: true,
-            label: [{ kind: "text", text: "A (ID)" }],
+            label: "A (ID)",
             optionKey: "option-1",
             order: 1,
           },
           {
             isCorrect: false,
-            label: [{ kind: "text", text: "B (ID)" }],
+            label: "B (ID)",
             optionKey: "option-2",
             order: 2,
           },

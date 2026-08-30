@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "widerstandsfähig (Satz " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "widerstandsfähig (Satz $$(1)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Folge (Satz " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "Folge (Satz $$(2)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "erfüllen (Satz " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "erfüllen (Satz $$(3)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "nennt (Satz " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "nennt (Satz $$(4)$$).",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "verringern (Satz " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "verringern (Satz $$(7)$$).",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "resilient (sentence " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "resilient (sentence $$(1)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "consequence (sentence " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "consequence (sentence $$(2)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "meet (sentence " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "meet (sentence $$(3)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "recognizes (sentence " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "recognizes (sentence $$(4)$$).",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "reduce (sentence " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "reduce (sentence $$(7)$$).",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "tangguh (kalimat " },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "tangguh (kalimat $$(1)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "akibat (kalimat " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "akibat (kalimat $$(2)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "memenuhi (kalimat " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "memenuhi (kalimat $$(3)$$).",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "mengakui (kalimat " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "mengakui (kalimat $$(4)$$).",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "memperkecil (kalimat " },
-            { display: "block", kind: "math", math: "(7)" },
-            { kind: "text", text: ")." },
-          ],
+          label: "memperkecil (kalimat $$(7)$$).",
         },
       ],
     },

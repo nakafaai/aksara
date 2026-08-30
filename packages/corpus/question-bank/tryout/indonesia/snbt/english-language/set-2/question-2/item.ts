@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Water exercise can be helpful for some people with arthritis.",
-            },
-          ],
+          label:
+            "Water exercise can be helpful for some people with arthritis.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Water exercise may improve older adults' quality of life.",
-            },
-          ],
+          label: "Water exercise may improve older adults' quality of life.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Swimming has health benefits and therefore carries no risks.",
-            },
-          ],
+          label: "Swimming has health benefits and therefore carries no risks.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Swimming may improve mood for some people.",
-            },
-          ],
+          label: "Swimming may improve mood for some people.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A balanced decision includes suitable safety measures.",
-            },
-          ],
+          label: "A balanced decision includes suitable safety measures.",
         },
       ],
     },

@@ -7,48 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "293" },
-            { kind: "text", text: " Personen" },
-          ],
+          label: "$$1268$$ und $$293$$ Personen",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "266" },
-            { kind: "text", text: " Personen" },
-          ],
+          label: "$$1268$$ und $$266$$ Personen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " Personen" },
-          ],
+          label: "$$1270$$ und $$281$$ Personen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "264" },
-            { kind: "text", text: " Personen" },
-          ],
+          label: "$$1270$$ und $$264$$ Personen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1272" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " Personen" },
-          ],
+          label: "$$1272$$ und $$281$$ Personen",
         },
       ],
     },
@@ -57,48 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "293" },
-            { kind: "text", text: " people" },
-          ],
+          label: "$$1268$$ and $$293$$ people",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "266" },
-            { kind: "text", text: " people" },
-          ],
+          label: "$$1268$$ and $$266$$ people",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " people" },
-          ],
+          label: "$$1270$$ and $$281$$ people",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "264" },
-            { kind: "text", text: " people" },
-          ],
+          label: "$$1270$$ and $$264$$ people",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1272" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " people" },
-          ],
+          label: "$$1272$$ and $$281$$ people",
         },
       ],
     },
@@ -107,48 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "293" },
-            { kind: "text", text: " orang" },
-          ],
+          label: "$$1268$$ dan $$293$$ orang",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1268" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "266" },
-            { kind: "text", text: " orang" },
-          ],
+          label: "$$1268$$ dan $$266$$ orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " orang" },
-          ],
+          label: "$$1270$$ dan $$281$$ orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1270" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "264" },
-            { kind: "text", text: " orang" },
-          ],
+          label: "$$1270$$ dan $$264$$ orang",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1272" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "281" },
-            { kind: "text", text: " orang" },
-          ],
+          label: "$$1272$$ dan $$281$$ orang",
         },
       ],
     },

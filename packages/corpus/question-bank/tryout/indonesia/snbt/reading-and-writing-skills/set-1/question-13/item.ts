@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Das Wort _untersuchten_ in Satz " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das Wort _untersuchten_ in Satz $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Das Wort _begünstigen_ in Satz " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das Wort _begünstigen_ in Satz $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Das Wort _lässt_ in Satz " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das Wort _lässt_ in Satz $$(4)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Das Wort _erzeugen_ in Satz " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das Wort _erzeugen_ in Satz $$(8)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Das Wort _bedrohen_ in Satz " },
-            { display: "block", kind: "math", math: "(9)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das Wort _bedrohen_ in Satz $$(9)$$.",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The word _tested_ in sentence " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "The word _tested_ in sentence $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The word _facilitate_ in sentence " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "The word _facilitate_ in sentence $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The word _allows_ in sentence " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: "." },
-          ],
+          label: "The word _allows_ in sentence $$(4)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "The word _produce_ in sentence " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "The word _produce_ in sentence $$(8)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The word _threaten_ in sentence " },
-            { display: "block", kind: "math", math: "(9)" },
-            { kind: "text", text: "." },
-          ],
+          label: "The word _threaten_ in sentence $$(9)$$.",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kata _diuji_ pada kalimat " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Kata _diuji_ pada kalimat $$(2)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kata _membantu_ pada kalimat " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Kata _membantu_ pada kalimat $$(3)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kata _memungkinkan_ pada kalimat " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Kata _memungkinkan_ pada kalimat $$(4)$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Kata _menghasilkan_ pada kalimat " },
-            { display: "block", kind: "math", math: "(8)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Kata _menghasilkan_ pada kalimat $$(8)$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kata _mengancam_ pada kalimat " },
-            { display: "block", kind: "math", math: "(9)" },
-            { kind: "text", text: "." },
-          ],
+          label: "Kata _mengancam_ pada kalimat $$(9)$$.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "64" }],
+          label: "$$64$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "64{,}89" }],
+          label: "$$64{,}89$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}09" }],
+          label: "$$65{,}09$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}20" }],
+          label: "$$65{,}20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}34" }],
+          label: "$$65{,}34$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "64" }],
+          label: "$$64$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "64.89" }],
+          label: "$$64.89$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65.09" }],
+          label: "$$65.09$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65.20" }],
+          label: "$$65.20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65.34" }],
+          label: "$$65.34$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "64" }],
+          label: "$$64$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "64{,}89" }],
+          label: "$$64{,}89$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}09" }],
+          label: "$$65{,}09$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}20" }],
+          label: "$$65{,}20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "65{,}34" }],
+          label: "$$65{,}34$$",
         },
       ],
     },

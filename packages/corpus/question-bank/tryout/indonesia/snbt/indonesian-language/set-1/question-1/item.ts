@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Berani mengambil risiko" }],
+          label: "Berani mengambil risiko",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Mengutamakan kenyamanan kerja" }],
+          label: "Mengutamakan kenyamanan kerja",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Sangat teliti dan ulet" }],
+          label: "Sangat teliti dan ulet",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Sosok yang rapi" }],
+          label: "Sosok yang rapi",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Peduli terhadap kemanusiaan" }],
+          label: "Peduli terhadap kemanusiaan",
         },
       ],
     },

@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "22" },
-            { kind: "text", text: " Schülerinnen und Schüler" },
-          ],
+          label: "$$22$$ Schülerinnen und Schüler",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "23" },
-            { kind: "text", text: " Schülerinnen und Schüler" },
-          ],
+          label: "$$23$$ Schülerinnen und Schüler",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "24" },
-            { kind: "text", text: " Schülerinnen und Schüler" },
-          ],
+          label: "$$24$$ Schülerinnen und Schüler",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "25" },
-            { kind: "text", text: " Schülerinnen und Schüler" },
-          ],
+          label: "$$25$$ Schülerinnen und Schüler",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "26" },
-            { kind: "text", text: " Schülerinnen und Schüler" },
-          ],
+          label: "$$26$$ Schülerinnen und Schüler",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "22" },
-            { kind: "text", text: " students" },
-          ],
+          label: "$$22$$ students",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "23" },
-            { kind: "text", text: " students" },
-          ],
+          label: "$$23$$ students",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "24" },
-            { kind: "text", text: " students" },
-          ],
+          label: "$$24$$ students",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "25" },
-            { kind: "text", text: " students" },
-          ],
+          label: "$$25$$ students",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "26" },
-            { kind: "text", text: " students" },
-          ],
+          label: "$$26$$ students",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "22" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "$$22$$ siswa",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "23" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "$$23$$ siswa",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "24" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "$$24$$ siswa",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "25" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "$$25$$ siswa",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "26" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "$$26$$ siswa",
         },
       ],
     },

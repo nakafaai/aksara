@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}360{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}360{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}480{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}480{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}120{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}120{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}365{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}365{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}420{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}420{.}000{,}00$$",
         },
       ],
     },
@@ -62,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\text{Rp}360{,}000.00" },
-          ],
+          label: "$$\\text{Rp}360{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{Rp}480{,}000.00" },
-          ],
+          label: "$$\\text{Rp}480{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{Rp}120{,}000.00" },
-          ],
+          label: "$$\\text{Rp}120{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{Rp}365{,}000.00" },
-          ],
+          label: "$$\\text{Rp}365{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\text{Rp}420{,}000.00" },
-          ],
+          label: "$$\\text{Rp}420{,}000.00$$",
         },
       ],
     },
@@ -97,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}360{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}360{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}480{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}480{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}120{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}120{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}365{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}365{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\text{Rp}420{.}000{,}00",
-            },
-          ],
+          label: "$$\\text{Rp}420{.}000{,}00$$",
         },
       ],
     },

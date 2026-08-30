@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Berendam di dalam lumpur" }],
+          label: "Berendam di dalam lumpur",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Bekerja dengan sangat sibuk" }],
+          label: "Bekerja dengan sangat sibuk",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Berkumpul dalam satu kelompok" }],
+          label: "Berkumpul dalam satu kelompok",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Berlumuran oleh suatu benda" }],
+          label: "Berlumuran oleh suatu benda",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Terjebak dalam keadaan yang tidak menyenangkan",
-            },
-          ],
+          label: "Terjebak dalam keadaan yang tidak menyenangkan",
         },
       ],
     },

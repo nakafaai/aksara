@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14 \\text{ und } 2" },
-          ],
+          label: "$$14 \\text{ und } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12 \\text{ und } 2" },
-          ],
+          label: "$$12 \\text{ und } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8 \\text{ und } 2" },
-          ],
+          label: "$$8 \\text{ und } 2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ und } 2" },
-          ],
+          label: "$$4 \\text{ und } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ und } 2" },
-          ],
+          label: "$$2 \\text{ und } 2$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14 \\text{ and } 2" },
-          ],
+          label: "$$14 \\text{ and } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12 \\text{ and } 2" },
-          ],
+          label: "$$12 \\text{ and } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8 \\text{ and } 2" },
-          ],
+          label: "$$8 \\text{ and } 2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ and } 2" },
-          ],
+          label: "$$4 \\text{ and } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ and } 2" },
-          ],
+          label: "$$2 \\text{ and } 2$$",
         },
       ],
     },
@@ -77,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14 \\text{ dan } 2" },
-          ],
+          label: "$$14 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12 \\text{ dan } 2" },
-          ],
+          label: "$$12 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8 \\text{ dan } 2" },
-          ],
+          label: "$$8 \\text{ dan } 2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ dan } 2" },
-          ],
+          label: "$$4 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ dan } 2" },
-          ],
+          label: "$$2 \\text{ dan } 2$$",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "konkurriert mit." }],
+          label: "konkurriert mit.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ahmt nach." }],
+          label: "ahmt nach.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "gleicht." }],
+          label: "gleicht.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "folgt." }],
+          label: "folgt.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ersetzt." }],
+          label: "ersetzt.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "competes with." }],
+          label: "competes with.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "imitates." }],
+          label: "imitates.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "looks like." }],
+          label: "looks like.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "follows." }],
+          label: "follows.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "replaces." }],
+          label: "replaces.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "menyaingi." }],
+          label: "menyaingi.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "menirukan." }],
+          label: "menirukan.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "mirip dengan." }],
+          label: "mirip dengan.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "mengikuti." }],
+          label: "mengikuti.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "menggantikan." }],
+          label: "menggantikan.",
         },
       ],
     },

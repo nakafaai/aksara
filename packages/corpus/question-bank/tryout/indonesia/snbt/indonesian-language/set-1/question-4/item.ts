@@ -7,45 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Setiap orang memiliki kisah yang berbeda" },
-          ],
+          label: "Setiap orang memiliki kisah yang berbeda",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Mungkin setiap orang akan mengalami fase ini juga",
-            },
-          ],
+          label: "Mungkin setiap orang akan mengalami fase ini juga",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
-            },
-          ],
+          label: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
-            },
-          ],
+          label: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
-            },
-          ],
+          label:
+            "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
         },
       ],
     },

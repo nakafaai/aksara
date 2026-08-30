@@ -8,131 +8,69 @@ const item: QuestionItem = {
   },
   responses: {
     de: {
-      categories: [
-        [{ kind: "text", text: "Richtig" }],
-        [{ kind: "text", text: "Falsch" }],
-      ],
+      categories: ["Richtig", "Falsch"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Der Umfang einer ebenen Figur wird mit " },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: " multipliziert." },
-          ],
+          label: "Der Umfang einer ebenen Figur wird mit $4$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            {
-              kind: "text",
-              text: "Der Flächeninhalt einer ebenen Figur wird mit ",
-            },
-            { display: "inline", kind: "math", math: "4^2" },
-            { kind: "text", text: " multipliziert." },
-          ],
+          label:
+            "Der Flächeninhalt einer ebenen Figur wird mit $4^2$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Das Volumen eines Körpers wird mit " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: " multipliziert." },
-          ],
+          label: "Das Volumen eines Körpers wird mit $4^3$ multipliziert.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Die Oberfläche eines Körpers wird mit " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: " multipliziert." },
-          ],
+          label: "Die Oberfläche eines Körpers wird mit $4^3$ multipliziert.",
         },
       ],
     },
     en: {
-      categories: [
-        [{ kind: "text", text: "True" }],
-        [{ kind: "text", text: "False" }],
-      ],
+      categories: ["True", "False"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            {
-              kind: "text",
-              text: "A plane figure's perimeter is multiplied by ",
-            },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "A plane figure's perimeter is multiplied by $4$.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "A plane figure's area is multiplied by " },
-            { display: "inline", kind: "math", math: "4^2" },
-            { kind: "text", text: "." },
-          ],
+          label: "A plane figure's area is multiplied by $4^2$.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "A solid's volume is multiplied by " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: "." },
-          ],
+          label: "A solid's volume is multiplied by $4^3$.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "A solid's surface area is multiplied by " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: "." },
-          ],
+          label: "A solid's surface area is multiplied by $4^3$.",
         },
       ],
     },
     id: {
-      categories: [
-        [{ kind: "text", text: "Benar" }],
-        [{ kind: "text", text: "Salah" }],
-      ],
+      categories: ["Benar", "Salah"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Keliling bangun datar dikalikan " },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "Keliling bangun datar dikalikan $4$.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Luas bangun datar dikalikan " },
-            { display: "inline", kind: "math", math: "4^2" },
-            { kind: "text", text: "." },
-          ],
+          label: "Luas bangun datar dikalikan $4^2$.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Volume bangun ruang dikalikan " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: "." },
-          ],
+          label: "Volume bangun ruang dikalikan $4^3$.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Luas permukaan bangun ruang dikalikan " },
-            { display: "inline", kind: "math", math: "4^3" },
-            { kind: "text", text: "." },
-          ],
+          label: "Luas permukaan bangun ruang dikalikan $4^3$.",
         },
       ],
     },

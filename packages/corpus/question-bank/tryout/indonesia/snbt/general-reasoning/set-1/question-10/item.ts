@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "6\\text{ Minuten}" },
-          ],
+          label: "$$6\\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "7\\text{ Minuten}" },
-          ],
+          label: "$$7\\text{ Minuten}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "8\\text{ Minuten}" },
-          ],
+          label: "$$8\\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "9\\text{ Minuten}" },
-          ],
+          label: "$$9\\text{ Minuten}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10\\text{ Minuten}" },
-          ],
+          label: "$$10\\text{ Minuten}$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "6\\text{ minutes}" },
-          ],
+          label: "$$6\\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "7\\text{ minutes}" },
-          ],
+          label: "$$7\\text{ minutes}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "8\\text{ minutes}" },
-          ],
+          label: "$$8\\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "9\\text{ minutes}" },
-          ],
+          label: "$$9\\text{ minutes}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10\\text{ minutes}" },
-          ],
+          label: "$$10\\text{ minutes}$$",
         },
       ],
     },
@@ -77,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "6\\text{ menit}" }],
+          label: "$$6\\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7\\text{ menit}" }],
+          label: "$$7\\text{ menit}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "8\\text{ menit}" }],
+          label: "$$8\\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "9\\text{ menit}" }],
+          label: "$$9\\text{ menit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "10\\text{ menit}" }],
+          label: "$$10\\text{ menit}$$",
         },
       ],
     },

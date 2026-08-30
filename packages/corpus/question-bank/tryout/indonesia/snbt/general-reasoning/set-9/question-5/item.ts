@@ -7,48 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Überschwemmungen können Trinkwasserquellen verunreinigen",
-            },
-          ],
+          label: "Überschwemmungen können Trinkwasserquellen verunreinigen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Stehendes Wasser kann Mücken als Brutstätte dienen",
-            },
-          ],
+          label: "Stehendes Wasser kann Mücken als Brutstätte dienen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Eine Überschwemmung allein beweist nicht, dass ein Ausbruch stattfinden wird",
-            },
-          ],
+          label:
+            "Eine Überschwemmung allein beweist nicht, dass ein Ausbruch stattfinden wird",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Mehr stehendes Wasser verringert die Brutmöglichkeiten für Mücken immer",
-            },
-          ],
+          label:
+            "Mehr stehendes Wasser verringert die Brutmöglichkeiten für Mücken immer",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
-            },
-          ],
+          label:
+            "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
         },
       ],
     },
@@ -57,48 +35,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Floods can contaminate drinking-water supplies",
-            },
-          ],
+          label: "Floods can contaminate drinking-water supplies",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Standing water can provide breeding sites for mosquitoes",
-            },
-          ],
+          label: "Standing water can provide breeding sites for mosquitoes",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A flood by itself does not prove that an outbreak will occur",
-            },
-          ],
+          label: "A flood by itself does not prove that an outbreak will occur",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "More standing water always lowers the potential for mosquito breeding",
-            },
-          ],
+          label:
+            "More standing water always lowers the potential for mosquito breeding",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Local conditions and control measures can affect outbreak risk",
-            },
-          ],
+          label:
+            "Local conditions and control measures can affect outbreak risk",
         },
       ],
     },
@@ -107,45 +62,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Banjir dapat mencemari sumber air minum" },
-          ],
+          label: "Banjir dapat mencemari sumber air minum",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
-            },
-          ],
+          label: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
-            },
-          ],
+          label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
-            },
-          ],
+          label:
+            "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
-            },
-          ],
+          label:
+            "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
         },
       ],
     },

@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 \\leq x, x \\in \\text{ganze Zahlen}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 \\leq x, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x, x \\in \\text{ganze Zahlen}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}",
-            },
-          ],
+          label: "$$\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x < 7, x \\in \\text{ganze Zahlen}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x < 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 \\leq x, x \\in \\text{integers}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 \\leq x, x \\in \\text{integers}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x, x \\in \\text{integers}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x, x \\in \\text{integers}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | x \\leq 7, x \\in \\text{integers}\\}",
-            },
-          ],
+          label: "$$\\{x | x \\leq 7, x \\in \\text{integers}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x < 7, x \\in \\text{integers}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x < 7, x \\in \\text{integers}\\}$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 \\leq x, x \\in \\text{bilangan bulat}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 \\leq x, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x, x \\in \\text{bilangan bulat}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}",
-            },
-          ],
+          label: "$$\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x | -3 < x < 7, x \\in \\text{bilangan bulat}\\}",
-            },
-          ],
+          label: "$$\\{x | -3 < x < 7, x \\in \\text{bilangan bulat}\\}$$",
         },
       ],
     },

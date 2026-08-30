@@ -7,42 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Semua bacaannya merupakan karya terkenal" },
-          ],
+          label: "Semua bacaannya merupakan karya terkenal",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Semua fitur dapat digunakan tanpa berlangganan",
-            },
-          ],
+          label: "Semua fitur dapat digunakan tanpa berlangganan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Aplikasi dapat digunakan tanpa perangkat digital",
-            },
-          ],
+          label: "Aplikasi dapat digunakan tanpa perangkat digital",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Aplikasi tidak memerlukan ruang penyimpanan",
-            },
-          ],
+          label: "Aplikasi tidak memerlukan ruang penyimpanan",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Bacaan tersedia dalam berbagai bahasa" },
-          ],
+          label: "Bacaan tersedia dalam berbagai bahasa",
         },
       ],
     },

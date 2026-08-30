@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$2$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$4$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$6$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$8$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "9" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$9$$.",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$2$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$4$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$6$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$8$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "9" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$9$$.",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$2$$.",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$4$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$6$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "8" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$8$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "9" },
-            { kind: "text", text: "." },
-          ],
+          label: "$$9$$.",
         },
       ],
     },

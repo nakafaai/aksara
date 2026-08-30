@@ -7,52 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Jedes Gewürz erreicht seinen höchsten Verkaufswert im November ",
-            },
-            { display: "block", kind: "math", math: "2020" },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "Jedes Gewürz erreicht seinen höchsten Verkaufswert im November $$2020$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Schalottenverkäufe im Januar " },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " werden voraussichtlich " },
-            { display: "block", kind: "math", math: "76" },
-            { kind: "text", text: " Tonnen betragen." },
-          ],
+          label:
+            "Die Schalottenverkäufe im Januar $$2021$$ werden voraussichtlich $$76$$ Tonnen betragen.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Der Knoblauchabsatz im Januar " },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " wird " },
-            { display: "block", kind: "math", math: "100" },
-            { kind: "text", text: " Tonnen übersteigen." },
-          ],
+          label:
+            "Der Knoblauchabsatz im Januar $$2021$$ wird $$100$$ Tonnen übersteigen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "In jedem Monat werden weniger Schalotten als rote Chilischoten verkauft.",
-            },
-          ],
+          label:
+            "In jedem Monat werden weniger Schalotten als rote Chilischoten verkauft.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Schalotten sind in jedem Monat allein das Gewürz mit dem niedrigsten Verkaufswert.",
-            },
-          ],
+          label:
+            "Schalotten sind in jedem Monat allein das Gewürz mit dem niedrigsten Verkaufswert.",
         },
       ],
     },
@@ -61,52 +37,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Each spice recorded its highest sales in November ",
-            },
-            { display: "block", kind: "math", math: "2020" },
-            { kind: "text", text: "." },
-          ],
+          label: "Each spice recorded its highest sales in November $$2020$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Shallot sales in January " },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " are predicted to be " },
-            { display: "block", kind: "math", math: "76" },
-            { kind: "text", text: " tons." },
-          ],
+          label:
+            "Shallot sales in January $$2021$$ are predicted to be $$76$$ tons.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Garlic sales in January " },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " will exceed " },
-            { display: "block", kind: "math", math: "100" },
-            { kind: "text", text: " tons." },
-          ],
+          label: "Garlic sales in January $$2021$$ will exceed $$100$$ tons.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Shallot sales are lower than red chili sales in every month.",
-            },
-          ],
+          label: "Shallot sales are lower than red chili sales in every month.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Shallot is the sole lowest-selling spice in every month.",
-            },
-          ],
+          label: "Shallot is the sole lowest-selling spice in every month.",
         },
       ],
     },
@@ -115,58 +63,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Setiap jenis rempah mencapai penjualan tertinggi pada November ",
-            },
-            { display: "block", kind: "math", math: "2020" },
-            { kind: "text", text: "." },
-          ],
+          label:
+            "Setiap jenis rempah mencapai penjualan tertinggi pada November $$2020$$.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan bawang merah pada bulan Januari ",
-            },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " diprediksi sebesar " },
-            { display: "block", kind: "math", math: "76" },
-            { kind: "text", text: " ton." },
-          ],
+          label:
+            "Penjualan bawang merah pada bulan Januari $$2021$$ diprediksi sebesar $$76$$ ton.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan bawang putih pada bulan Januari ",
-            },
-            { display: "block", kind: "math", math: "2021" },
-            { kind: "text", text: " akan melebihi " },
-            { display: "block", kind: "math", math: "100" },
-            { kind: "text", text: " ton." },
-          ],
+          label:
+            "Penjualan bawang putih pada bulan Januari $$2021$$ akan melebihi $$100$$ ton.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan bawang merah lebih rendah daripada penjualan cabai merah pada setiap bulan.",
-            },
-          ],
+          label:
+            "Penjualan bawang merah lebih rendah daripada penjualan cabai merah pada setiap bulan.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Bawang merah menjadi satu-satunya rempah dengan penjualan terendah pada setiap bulan.",
-            },
-          ],
+          label:
+            "Bawang merah menjadi satu-satunya rempah dengan penjualan terendah pada setiap bulan.",
         },
       ],
     },

@@ -7,45 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sri Utami erklärte, dass der Frost jedes Jahr auftritt.",
-            },
-          ],
+          label: "Sri Utami erklärte, dass der Frost jedes Jahr auftritt.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Nach Sonnenaufgang erreichte die Lufttemperatur fünf Grad.",
-            },
-          ],
+          label: "Nach Sonnenaufgang erreichte die Lufttemperatur fünf Grad.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Klare Eiskristalle bedeckten das Gras." },
-          ],
+          label: "Klare Eiskristalle bedeckten das Gras.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Besucher, die früh ankamen, fotografierten den Frost.",
-            },
-          ],
+          label: "Besucher, die früh ankamen, fotografierten den Frost.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Weil der Himmel klar war, bildete sich Frost auf dem Gras.",
-            },
-          ],
+          label: "Weil der Himmel klar war, bildete sich Frost auf dem Gras.",
         },
       ],
     },
@@ -54,45 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sri Utami explained that frost occurs every year.",
-            },
-          ],
+          label: "Sri Utami explained that frost occurs every year.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "After sunrise, the air temperature reached five degrees.",
-            },
-          ],
+          label: "After sunrise, the air temperature reached five degrees.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Clear ice crystals covered the grass." },
-          ],
+          label: "Clear ice crystals covered the grass.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Visitors who arrived early photographed the frost.",
-            },
-          ],
+          label: "Visitors who arrived early photographed the frost.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Because the sky was clear, frost formed on the grass.",
-            },
-          ],
+          label: "Because the sky was clear, frost formed on the grass.",
         },
       ],
     },
@@ -101,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
-            },
-          ],
+          label: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
-            },
-          ],
+          label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kristal es bening menutupi rumput." }],
+          label: "Kristal es bening menutupi rumput.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pengunjung yang datang lebih awal memotret embun es.",
-            },
-          ],
+          label: "Pengunjung yang datang lebih awal memotret embun es.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Karena langit cerah, embun es terbentuk di atas rumput.",
-            },
-          ],
+          label: "Karena langit cerah, embun es terbentuk di atas rumput.",
         },
       ],
     },

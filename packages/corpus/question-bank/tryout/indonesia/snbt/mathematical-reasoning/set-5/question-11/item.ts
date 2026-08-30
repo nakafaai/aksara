@@ -7,29 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Beziehung zwischen " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "Q" },
-            { kind: "text", text: " lässt sich nicht bestimmen" },
-          ],
+          label:
+            "Die Beziehung zwischen $$P$$ und $$Q$$ lässt sich nicht bestimmen",
         },
       ],
     },
@@ -38,29 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The relationship between " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "Q" },
-            { kind: "text", text: " cannot be determined" },
-          ],
+          label:
+            "The relationship between $$P$$ and $$Q$$ cannot be determined",
         },
       ],
     },
@@ -69,29 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Hubungan " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "Q" },
-            { kind: "text", text: " tidak dapat ditentukan" },
-          ],
+          label: "Hubungan $$P$$ dan $$Q$$ tidak dapat ditentukan",
         },
       ],
     },

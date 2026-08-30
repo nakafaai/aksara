@@ -7,45 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Daftar seluruh produk plastik yang dibuat di Indonesia",
-            },
-          ],
+          label: "Daftar seluruh produk plastik yang dibuat di Indonesia",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Sejarah terbentuknya kepulauan Seychelles" },
-          ],
+          label: "Sejarah terbentuknya kepulauan Seychelles",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
-            },
-          ],
+          label:
+            "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
-            },
-          ],
+          label:
+            "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Perbandingan jumlah penduduk Indonesia dan Seychelles",
-            },
-          ],
+          label: "Perbandingan jumlah penduduk Indonesia dan Seychelles",
         },
       ],
     },

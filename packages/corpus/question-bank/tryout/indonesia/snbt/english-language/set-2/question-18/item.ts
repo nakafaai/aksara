@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Who invented the first electronic computer?",
-            },
-          ],
+          label: "Who invented the first electronic computer?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Which country has the cheapest office rent?",
-            },
-          ],
+          label: "Which country has the cheapest office rent?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "How can every human task be removed immediately?",
-            },
-          ],
+          label: "How can every human task be removed immediately?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Why should all workers avoid digital tools?",
-            },
-          ],
+          label: "Why should all workers avoid digital tools?",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "How could GenAI transform occupational tasks, and what factors shape the outcome?",
-            },
-          ],
+          label:
+            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
         },
       ],
     },

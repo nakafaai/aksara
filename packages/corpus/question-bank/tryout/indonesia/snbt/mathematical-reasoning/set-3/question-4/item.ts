@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ cm}" }],
+          label: "$$6 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7 \\text{ cm}" }],
+          label: "$$7 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8 \\text{ cm}" }],
+          label: "$$8 \\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ cm}" }],
+          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "10 \\text{ cm}" }],
+          label: "$$10 \\text{ cm}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ cm}" }],
+          label: "$$6 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7 \\text{ cm}" }],
+          label: "$$7 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8 \\text{ cm}" }],
+          label: "$$8 \\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ cm}" }],
+          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "10 \\text{ cm}" }],
+          label: "$$10 \\text{ cm}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ cm}" }],
+          label: "$$6 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7 \\text{ cm}" }],
+          label: "$$7 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8 \\text{ cm}" }],
+          label: "$$8 \\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ cm}" }],
+          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "10 \\text{ cm}" }],
+          label: "$$10 \\text{ cm}$$",
         },
       ],
     },

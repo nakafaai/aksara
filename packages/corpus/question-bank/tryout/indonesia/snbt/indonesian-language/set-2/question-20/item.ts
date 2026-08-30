@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kereta seremonial" }],
+          label: "Kereta seremonial",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kedai makanan siap saji Romawi" }],
+          label: "Kedai makanan siap saji Romawi",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Lukisan dinding erotis" }],
+          label: "Lukisan dinding erotis",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Perbudakan dan kerja paksa" }],
+          label: "Perbudakan dan kerja paksa",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kampanye pemilihan umum" }],
+          label: "Kampanye pemilihan umum",
         },
       ],
     },

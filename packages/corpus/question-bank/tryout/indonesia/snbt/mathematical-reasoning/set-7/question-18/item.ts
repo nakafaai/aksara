@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ m}" }],
+          label: "$$6 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ m}" }],
+          label: "$$9 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12 \\text{ m}" }],
+          label: "$$12 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "16 \\text{ m}" }],
+          label: "$$16 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "18 \\text{ m}" }],
+          label: "$$18 \\text{ m}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ m}" }],
+          label: "$$6 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ m}" }],
+          label: "$$9 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12 \\text{ m}" }],
+          label: "$$12 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "16 \\text{ m}" }],
+          label: "$$16 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "18 \\text{ m}" }],
+          label: "$$18 \\text{ m}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "6 \\text{ m}" }],
+          label: "$$6 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "9 \\text{ m}" }],
+          label: "$$9 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12 \\text{ m}" }],
+          label: "$$12 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "16 \\text{ m}" }],
+          label: "$$16 \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "18 \\text{ m}" }],
+          label: "$$18 \\text{ m}$$",
         },
       ],
     },

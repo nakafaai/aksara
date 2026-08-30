@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt2" }],
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt{3}" }],
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8" }],
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt5" }],
+          label: "$$4\\sqrt5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12" }],
+          label: "$$12$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt2" }],
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt{3}" }],
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8" }],
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt5" }],
+          label: "$$4\\sqrt5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12" }],
+          label: "$$12$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt2" }],
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt{3}" }],
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "8" }],
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "4\\sqrt5" }],
+          label: "$$4\\sqrt5$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "12" }],
+          label: "$$12$$",
         },
       ],
     },

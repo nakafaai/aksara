@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
+          label: "$$\\text{it}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
+          label: "$$\\text{pit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
+          label: "$$\\text{nit}$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "nichts davon" }],
+          label: "nichts davon",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
+          label: "$$\\text{it}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
+          label: "$$\\text{pit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
+          label: "$$\\text{nit}$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "none of the above" }],
+          label: "none of the above",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
+          label: "$$\\text{it}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
+          label: "$$\\text{pit}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
+          label: "$$\\text{nit}$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "tidak ada satupun" }],
+          label: "tidak ada satupun",
         },
       ],
     },
