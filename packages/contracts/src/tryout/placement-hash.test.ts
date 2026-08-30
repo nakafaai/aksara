@@ -28,24 +28,34 @@ function placement(appLocale: AppLocaleCode, order: number) {
     answerArtifactLocale: appLocale,
     answerContentKey: `${root}/answer`,
     appLocale,
-    choices: [
-      {
-        isCorrect: true,
-        label: "Test-only choice",
-        optionKey: "option-1",
-        order: 1,
-      },
-    ],
     contentHash: hashes.content,
     countryKey: "indonesia",
     deliveryLanguage: appLocale,
     examKey: "snbt",
+    languagePolicy: { kind: "app-locale" },
     questionArtifactHash: hashes.question,
     questionArtifactLocale: appLocale,
     questionContentKey: `${root}/question`,
     questionOrder: order,
     questionSourcePath: `packages/corpus/${root}`,
     rendererDomain: "snbt-quant",
+    response: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: "Test-only correct option",
+          optionKey: "option-1",
+          order: 1,
+        },
+        {
+          isCorrect: false,
+          label: "Test-only distractor",
+          optionKey: "option-2",
+          order: 2,
+        },
+      ],
+    },
     scope: "server",
     sectionKey: "quantitative-knowledge",
     setKey: "set-1",
@@ -70,6 +80,26 @@ describe("try-out placement hashing", () => {
     );
     expect(makeTryoutPlacementRecord(english).rowHash).not.toBe(
       makeTryoutPlacementRecord(german).rowHash
+    );
+  });
+
+  it("binds complete blueprint and grouped-stimulus facts", () => {
+    const base = placement("en", 1);
+    const documented = Schema.decodeSync(TryoutPlacementSchema)({
+      ...base,
+      blueprint: {
+        cognitiveLevel: "reasoning",
+        contentDomain: "algebra",
+        topic: "functions",
+      },
+      stimulusKey: "shared-table",
+    });
+
+    expect(JSON.parse(canonicalizeTryoutPlacement(documented))).toEqual(
+      documented
+    );
+    expect(makeTryoutPlacementRecord(documented).rowHash).not.toBe(
+      makeTryoutPlacementRecord(base).rowHash
     );
   });
 

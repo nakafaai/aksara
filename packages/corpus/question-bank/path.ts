@@ -11,8 +11,11 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import type { TryoutKey } from "@nakafa/aksara-contracts/tryout/key";
-import { questionArtifactLocalesForSection } from "@nakafa/aksara-contracts/tryout/language";
+import {
+  type AssessmentLanguagePolicy,
+  AssessmentLanguagePolicySchema,
+  questionArtifactLocalesForPolicy,
+} from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
@@ -25,6 +28,7 @@ const isQuestionSegment = Schema.is(QuestionSegmentSchema);
 
 /** Canonical logical identity derived from one physical question directory. */
 export const QuestionLocationSchema = Schema.Struct({
+  languagePolicy: AssessmentLanguagePolicySchema,
   questionKey: QuestionKeySchema,
   questionNumber: Schema.Finite.pipe(
     Schema.check(Schema.isInt()),
@@ -35,18 +39,19 @@ export const QuestionLocationSchema = Schema.Struct({
   sourceRoot: CorpusSourcePathSchema,
 });
 export type QuestionLocation = typeof QuestionLocationSchema.Type;
-export type QuestionBankIndex = ReadonlyMap<
-  string,
-  typeof RendererDomainSchema.Type
->;
+export interface QuestionBankDefinition {
+  readonly languagePolicy: AssessmentLanguagePolicy;
+  readonly rendererDomain: typeof RendererDomainSchema.Type;
+}
+export type QuestionBankIndex = ReadonlyMap<string, QuestionBankDefinition>;
 
 /** Derives exact answer and assessed-language prompt files for one section. */
-export function questionSourceFiles(sectionKey: TryoutKey) {
+export function questionSourceFiles(languagePolicy: AssessmentLanguagePolicy) {
   return Object.freeze(
     [
-      "choices.ts",
+      "item.ts",
       ...ACTIVE_APP_LOCALES.map((appLocale) => `answer.${appLocale}.mdx`),
-      ...questionArtifactLocalesForSection(sectionKey).map(
+      ...questionArtifactLocalesForPolicy(languagePolicy).map(
         (artifactLocale) => `question.${artifactLocale}.mdx`
       ),
     ].sort()
@@ -75,34 +80,69 @@ export function locateQuestionEntry(entry: string, separator: string) {
 export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
   "QuestionPathError",
   {
-    reason: Schema.Literals(["grammar", "renderer"]),
+    reason: Schema.Literals(["grammar", "language", "renderer"]),
     sourcePath: Schema.String,
   }
 ) {}
 
+/** Flattens reviewed hierarchy into the section-owned question-bank seams. */
+function questionBankSections(sources: readonly TryoutExamSource[]) {
+  return sources.flatMap(({ tracks }) =>
+    tracks.flatMap(({ sets }) => sets.flatMap(({ sections }) => sections))
+  );
+}
+
+/** Compares source-owned policies without relying on object serialization. */
+function hasSameLanguagePolicy(
+  left: AssessmentLanguagePolicy,
+  right: AssessmentLanguagePolicy
+) {
+  return (
+    left.kind === right.kind &&
+    (left.kind === "app-locale" ||
+      (right.kind === "fixed" && left.language === right.language))
+  );
+}
+
+/** Requires repeated use of one physical bank to retain one exact contract. */
+const registerQuestionBank = Effect.fn("AksaraCorpus.registerQuestionBank")(
+  function* (
+    banks: Map<string, QuestionBankDefinition>,
+    section: ReturnType<typeof questionBankSections>[number]
+  ) {
+    const bankKey = questionBankKey(section.questionSourcePath);
+    const definition = banks.get(bankKey);
+    if (
+      definition !== undefined &&
+      definition.rendererDomain !== section.rendererDomain
+    ) {
+      return yield* new QuestionPathError({
+        reason: "renderer",
+        sourcePath: `packages/corpus/${bankKey}`,
+      });
+    }
+    if (
+      definition !== undefined &&
+      !hasSameLanguagePolicy(definition.languagePolicy, section.languagePolicy)
+    ) {
+      return yield* new QuestionPathError({
+        reason: "language",
+        sourcePath: `packages/corpus/${bankKey}`,
+      });
+    }
+    banks.set(bankKey, {
+      languagePolicy: section.languagePolicy,
+      rendererDomain: section.rendererDomain,
+    });
+  }
+);
+
 /** Indexes reviewed question banks once and rejects renderer conflicts. */
 export const indexQuestionBanks = Effect.fn("AksaraCorpus.indexQuestionBanks")(
   function* (sources: readonly TryoutExamSource[]) {
-    const banks = new Map<string, typeof RendererDomainSchema.Type>();
-    for (const source of sources) {
-      for (const track of source.tracks) {
-        for (const set of track.sets) {
-          for (const section of set.sections) {
-            const bankKey = questionBankKey(section.questionSourcePath);
-            const rendererDomain = banks.get(bankKey);
-            if (
-              rendererDomain !== undefined &&
-              rendererDomain !== section.rendererDomain
-            ) {
-              return yield* new QuestionPathError({
-                reason: "renderer",
-                sourcePath: `packages/corpus/${bankKey}`,
-              });
-            }
-            banks.set(bankKey, section.rendererDomain);
-          }
-        }
-      }
+    const banks = new Map<string, QuestionBankDefinition>();
+    for (const section of questionBankSections(sources)) {
+      yield* registerQuestionBank(banks, section);
     }
     return banks;
   }
@@ -120,15 +160,15 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
       )
     );
     const { questionNumber, questionSetKey } = questionKeyParts(questionKey);
-    const rendererDomain = questionBanks.get(questionBankKey(questionSetKey));
-    if (rendererDomain === undefined) {
+    const definition = questionBanks.get(questionBankKey(questionSetKey));
+    if (definition === undefined) {
       return yield* new QuestionPathError({ reason: "renderer", sourcePath });
     }
 
     return {
       questionKey,
       questionNumber,
-      rendererDomain,
+      ...definition,
       setKey: questionSetKey,
       sourceRoot: CorpusSourcePathSchema.make(sourcePath),
     };

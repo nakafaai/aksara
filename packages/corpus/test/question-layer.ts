@@ -1,11 +1,11 @@
 import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
 import {
   indexQuestionBanks,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
+import { discoverQuestionSources } from "#corpus/question-bank/source";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
@@ -26,8 +26,8 @@ for (const sourcePath of globSync("packages/corpus/**/*.ts", {
   const absolutePath = resolve(corpusRoot, sourcePath);
   sources.set(absolutePath, readFileSync(absolutePath, "utf8"));
 }
-export const realQuestionChoices = new Map(
-  [...sources].filter(([sourcePath]) => sourcePath.endsWith("/choices.ts"))
+export const realQuestionItems = new Map(
+  [...sources].filter(([sourcePath]) => sourcePath.endsWith("/item.ts"))
 );
 export const realTryoutSources = await Effect.runPromise(
   decodeTryoutRegistry()
@@ -35,6 +35,25 @@ export const realTryoutSources = await Effect.runPromise(
 export const realQuestionBanks = await Effect.runPromise(
   indexQuestionBanks(realTryoutSources)
 );
+
+/** Discovers synthetic question sources through the controlled test layer. */
+export function discoverSyntheticQuestionSources(
+  directoryEntries: readonly string[],
+  sourceFiles: ReadonlyMap<string, string>,
+  failDirectory = false
+) {
+  return Effect.provide(
+    discoverQuestionSources(corpusRoot, realQuestionBanks),
+    makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
+  );
+}
+
+/** Flips one typed synthetic discovery failure into the success channel. */
+export function rejectSyntheticQuestionSources(
+  ...arguments_: Parameters<typeof discoverSyntheticQuestionSources>
+) {
+  return Effect.flip(discoverSyntheticQuestionSources(...arguments_));
+}
 
 /** One observed directory read made through the controlled corpus test layer. */
 export interface QuestionDirectoryRead {
@@ -48,28 +67,28 @@ export interface QuestionLayerOverrides {
   readonly sources?: ReadonlyMap<string, string>;
 }
 
-export const validQuestionChoicesSource = `import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+export const validQuestionItemSource = `import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
-const choices: QuestionChoices = {
-  de: [{ label: "A", value: true }, { label: "B", value: false }],
-  en: [{ label: "A", value: true }, { label: "B", value: false }],
-  id: [{ label: "A", value: false }, { label: "B", value: true }],
+const item: QuestionItem = {
+  responses: {
+    de: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
+    en: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
+    id: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
+  },
 };
 
-export default choices;`;
-export const generalQuestionSourceFiles = questionSourceFiles(
-  TryoutKeySchema.make("general-reasoning")
-);
-export const germanChoiceFixture =
-  /\n {2}de: \[\{ label: "A", value: true \}, \{ label: "B", value: false \}\],/u;
-export const indonesianChoiceFixture =
-  /\n {2}id: \[\{ label: "A", value: false \}, \{ label: "B", value: true \}\],/u;
-export const invalidQuestionChoiceSources = [
-  "export default choices;",
-  "const choices = { broken: };",
-  `const choices = {
-    en: [{ label: "A", value: false }],
-    id: [{ label: "A", value: true }],
+export default item;`;
+export const generalQuestionSourceFiles = questionSourceFiles({
+  kind: "app-locale",
+});
+export const invalidQuestionItemSources = [
+  "export default item;",
+  "const item = { broken: };",
+  `const item = {
+    responses: {
+      en: { kind: "single-choice", options: [{ isCorrect: false, label: "A" }] },
+      id: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }] },
+    },
   };`,
 ];
 export const questionRendererCounts = [
@@ -85,13 +104,13 @@ export function questionEntries(root: string, files: readonly string[]) {
   return [root, ...files.map((file) => `${root}/${file}`)];
 }
 
-/** Maps a physical synthetic question root to its absolute choices source. */
-export function choicesForQuestion(
+/** Maps a physical synthetic question root to its absolute item source. */
+export function itemForQuestion(
   root: string,
-  source = validQuestionChoicesSource
+  source = validQuestionItemSource
 ) {
   return new Map([
-    [resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"), source],
+    [resolve(absoluteQuestionTestSourceRoot, root, "item.ts"), source],
   ]);
 }
 

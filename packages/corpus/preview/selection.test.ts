@@ -161,7 +161,7 @@ describe("preview selection", () => {
               dependencies: [
                 {
                   mode: "reload",
-                  sourcePath: `${questionRoot}/choices.ts`,
+                  sourcePath: `${questionRoot}/item.ts`,
                 },
                 {
                   mode: "restart",
@@ -178,15 +178,15 @@ describe("preview selection", () => {
                 {
                   mode: "restart",
                   sourcePath:
-                    "packages/corpus/tryout/indonesia/snbt/official-schedule.ts",
+                    "packages/corpus/tryout/indonesia/snbt/readiness.ts",
+                },
+                {
+                  mode: "restart",
+                  sourcePath: "packages/corpus/tryout/readiness.ts",
                 },
                 {
                   mode: "restart",
                   sourcePath: "packages/corpus/tryout/schema.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/specification.ts",
                 },
                 {
                   mode: "restart",
@@ -203,7 +203,7 @@ describe("preview selection", () => {
                     "answer.de.mdx",
                     "answer.en.mdx",
                     "answer.id.mdx",
-                    "choices.ts",
+                    "item.ts",
                     "question.de.mdx",
                     "question.en.mdx",
                     "question.id.mdx",

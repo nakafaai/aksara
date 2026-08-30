@@ -1,6 +1,7 @@
 import { Effect, Schema, Stream } from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
+import { canonicalQuestionResponse } from "#contracts/question/response";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import {
   canonicalizeTryoutCatalogFacts,
@@ -8,10 +9,7 @@ import {
   tryoutSectionLogicalIdentity,
 } from "#contracts/tryout/catalog-hash";
 import { tryoutPlacementLogicalIdentity } from "#contracts/tryout/identity";
-import {
-  ENGLISH_LANGUAGE_SECTION_KEY,
-  INDONESIAN_LANGUAGE_SECTION_KEY,
-} from "#contracts/tryout/language";
+import { canonicalAssessmentLanguagePolicy } from "#contracts/tryout/language";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
@@ -158,20 +156,13 @@ function addCatalogRow(
 /** Serializes assessed prompt facts that must be reused across app locales. */
 function assessedLanguageFacts(row: TryoutPlacementRecord["row"]) {
   return JSON.stringify({
-    choices: row.choices,
     deliveryLanguage: row.deliveryLanguage,
+    languagePolicy: canonicalAssessmentLanguagePolicy(row.languagePolicy),
     questionArtifactHash: row.questionArtifactHash,
     questionArtifactLocale: row.questionArtifactLocale,
     questionContentKey: row.questionContentKey,
+    response: canonicalQuestionResponse(row.response),
   });
-}
-
-/** Checks whether one section owns byte-identical assessed-language content. */
-function isAssessedLanguageSection(sectionKey: string) {
-  return (
-    sectionKey === ENGLISH_LANGUAGE_SECTION_KEY ||
-    sectionKey === INDONESIAN_LANGUAGE_SECTION_KEY
-  );
 }
 
 /** Adds one placement after binding it to a real catalog section. */
@@ -193,7 +184,7 @@ function addPlacement(
       })
     );
   }
-  if (isAssessedLanguageSection(row.sectionKey)) {
+  if (row.languagePolicy.kind === "fixed") {
     const facts = assessedLanguageFacts(row);
     const expectedFacts = state.assessedFacts.get(identity);
     if (expectedFacts !== undefined && expectedFacts !== facts) {

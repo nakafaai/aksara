@@ -15,6 +15,7 @@ type TryoutSectionInput =
 
 const section = {
   key: "general-reasoning",
+  languagePolicy: { kind: "app-locale" },
   order: 1,
   questionCount: 20,
   questionSourcePath:

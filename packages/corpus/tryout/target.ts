@@ -147,7 +147,7 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
       selectCatalogRow(rows, placement, "set", entry.sourcePath),
       selectCatalogRow(rows, placement, "section", entry.sourcePath),
     ]);
-    const { choices: _choices, ...previewPlacement } = placement;
+    const { response: _response, ...previewPlacement } = placement;
     return yield* Schema.decodeUnknownEffect(TryoutPreviewTargetSchema)(
       { exam, placement: previewPlacement, section, set, track },
       { onExcessProperty: "error" }

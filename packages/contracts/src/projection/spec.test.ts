@@ -73,16 +73,12 @@ const page = Schema.decodeSync(PublicPageProjectionSchema)({
 const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   artifactLocale: "en",
   bodyKind: "question",
-  choices: [
-    { label: "A", value: true },
-    { label: "B", value: false },
-  ],
   contentKey:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
   kind: "question-body",
   metadata: {
     authors: [{ name: "Test Author" }],
-    date: "2026-01-01",
+    datePublished: "2026-01-01",
     title: "Question 1",
   },
   peerContentKey:
@@ -90,6 +86,23 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   questionKey:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
   questionNumber: 1,
+  response: {
+    kind: "single-choice",
+    options: [
+      {
+        isCorrect: true,
+        label: "A",
+        optionKey: "option-1",
+        order: 1,
+      },
+      {
+        isCorrect: false,
+        label: "B",
+        optionKey: "option-2",
+        order: 2,
+      },
+    ],
+  },
   setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
 });
 const historicalPage = {

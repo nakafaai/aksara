@@ -81,12 +81,12 @@ describe("question body identity", () => {
     });
   });
 
-  it("derives body and choice source identities from one grammar", () => {
+  it("derives body and item source identities from one grammar", () => {
     const bodyPath = Schema.decodeSync(QuestionSourcePathSchema)(
       `packages/corpus/${questionKey}/answer.id.mdx`
     );
-    const choicePath = Schema.decodeSync(QuestionSourcePathSchema)(
-      `packages/corpus/${questionKey}/choices.ts`
+    const itemPath = Schema.decodeSync(QuestionSourcePathSchema)(
+      `packages/corpus/${questionKey}/item.ts`
     );
 
     expect(questionSourcePathParts(bodyPath)).toMatchObject({
@@ -101,10 +101,10 @@ describe("question body identity", () => {
       sectionKey: "general-reasoning",
       setKey: "set-1",
     });
-    expect(questionSourcePathParts(choicePath)).toMatchObject({
+    expect(questionSourcePathParts(itemPath)).toMatchObject({
       countryKey: "indonesia",
       examKey: "snbt",
-      kind: "choices",
+      kind: "item",
       questionKey,
       questionNumber: 1,
       sectionKey: "general-reasoning",
@@ -117,12 +117,12 @@ describe("question body identity", () => {
       "/"
     );
     const invalidPaths = [
-      "packages/corpus/not-a-question/choices.ts",
+      "packages/corpus/not-a-question/item.ts",
       `packages/corpus/${questionKey}/notes.ts`,
       `packages/corpus/${questionKey}/question.mdx`,
       `packages/corpus/${questionKey}/prompt.en.mdx`,
       `packages/corpus/${questionKey}/question.fr.mdx`,
-      `packages/corpus/question-bank/tryout/germany/abitur/${longHierarchy}/mathematics/set-1/question-1/choices.ts`,
+      `packages/corpus/question-bank/tryout/germany/abitur/${longHierarchy}/mathematics/set-1/question-1/item.ts`,
     ];
 
     for (const sourcePath of invalidPaths) {

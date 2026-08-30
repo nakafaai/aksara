@@ -11,18 +11,18 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import {
-  type TryoutPlacementSource,
-  TryoutPlacementSourceSchema,
-} from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Schema, Stream } from "effect";
-import { bindTryoutHeads } from "#publisher/tryout/bind";
+import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
+import { Effect, Schema } from "effect";
 import {
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
   TryoutHeadMissingError,
   TryoutHeadOrderError,
 } from "#publisher/tryout/error";
+import {
+  collectTryoutHeadBindings,
+  rejectTryoutHeadBindings,
+} from "#test/tryout-heads";
 
 const questionRoot =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
@@ -36,18 +36,32 @@ function placement(artifactLocale: typeof ArtifactLocaleSchema.Encoded) {
     answerArtifactLocale: artifactLocale,
     answerContentKey: `${questionRoot}/answer`,
     appLocale: artifactLocale,
-    choices: [
-      { isCorrect: true, label: "Test A", optionKey: "option-1", order: 1 },
-      { isCorrect: false, label: "Test B", optionKey: "option-2", order: 2 },
-    ],
     countryKey: "indonesia",
     deliveryLanguage: artifactLocale,
     examKey: "snbt",
+    languagePolicy: { kind: "app-locale" },
     questionArtifactLocale: artifactLocale,
     questionContentKey: `${questionRoot}/question`,
     questionOrder: 1,
     questionSourcePath: sourceRoot,
     rendererDomain: "snbt-general",
+    response: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: "Test A",
+          optionKey: "option-1",
+          order: 1,
+        },
+        {
+          isCorrect: false,
+          label: "Test B",
+          optionKey: "option-2",
+          order: 2,
+        },
+      ],
+    },
     scope: "server",
     sectionKey: "general-reasoning",
     setKey: "set-1",
@@ -102,28 +116,6 @@ function activePlacements() {
   return [placement("en"), placement("id"), placement("de")];
 }
 
-/** Collects one binding stream as plain readonly values. */
-function collect(
-  placements: readonly TryoutPlacementSource[],
-  heads: readonly QuestionHead[]
-) {
-  return bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
-    Stream.runCollect,
-    Effect.map((rows) => [...rows])
-  );
-}
-
-/** Returns one typed stream failure without a FiberFailure wrapper. */
-function reject(
-  placements: readonly TryoutPlacementSource[],
-  heads: readonly QuestionHead[]
-) {
-  return bindTryoutHeads(placements, Stream.fromIterable(heads)).pipe(
-    Stream.runDrain,
-    Effect.flip
-  );
-}
-
 /** Alters exactly one active-head ownership field for failure coverage. */
 function mismatchedHead(field: "delivery" | "rendererDomain" | "sourcePath") {
   const current = head({ artifactLocale: "en", bodyKind: "answer" });
@@ -159,7 +151,10 @@ describe("try-out head binding", () => {
               "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
           }),
         ].sort(compareContentHeads);
-        const result = yield* collect(activePlacements(), heads);
+        const result = yield* collectTryoutHeadBindings(
+          activePlacements(),
+          heads
+        );
 
         expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
           "de",
@@ -184,7 +179,7 @@ describe("try-out head binding", () => {
         [
           [answer, answer],
           [question, answer],
-        ].map((heads) => reject(activePlacements(), heads)),
+        ].map((heads) => rejectTryoutHeadBindings(activePlacements(), heads)),
         { concurrency: "unbounded" }
       );
 
@@ -195,7 +190,7 @@ describe("try-out head binding", () => {
 
   it.effect("rejects missing and unexpected active head identities", () =>
     Effect.gen(function* () {
-      const missing = yield* reject(
+      const missing = yield* rejectTryoutHeadBindings(
         activePlacements(),
         activeHeads().filter(
           ({ artifactLocale, contentKey }) =>
@@ -214,11 +209,11 @@ describe("try-out head binding", () => {
         contentKey: ContentKeySchema.make(`${questionRoot}/aaa`),
         sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/aaa.en.mdx`),
       });
-      const trailingError = yield* reject(
+      const trailingError = yield* rejectTryoutHeadBindings(
         activePlacements(),
         [...activeHeads(), trailing].sort(compareContentHeads)
       );
-      const leadingError = yield* reject(
+      const leadingError = yield* rejectTryoutHeadBindings(
         activePlacements(),
         [...activeHeads(), leading].sort(compareContentHeads)
       );
@@ -237,7 +232,7 @@ describe("try-out head binding", () => {
 
   it.effect("rejects a missing final active head identity", () =>
     Effect.gen(function* () {
-      const error = yield* reject(
+      const error = yield* rejectTryoutHeadBindings(
         activePlacements(),
         activeHeads().slice(0, -1)
       );
@@ -254,7 +249,7 @@ describe("try-out head binding", () => {
     "rejects a mismatched %s field",
     (field) =>
       Effect.gen(function* () {
-        const error = yield* reject(
+        const error = yield* rejectTryoutHeadBindings(
           activePlacements(),
           [
             mismatchedHead(field),
@@ -282,9 +277,15 @@ describe("try-out head binding", () => {
         );
         const [incomplete, repeated, substituted] = yield* Effect.all(
           [
-            reject([placement("en")], englishHeads),
-            reject([placement("en"), placement("en")], englishHeads),
-            reject([placement("en"), placement("de")], englishHeads),
+            rejectTryoutHeadBindings([placement("en")], englishHeads),
+            rejectTryoutHeadBindings(
+              [placement("en"), placement("en")],
+              englishHeads
+            ),
+            rejectTryoutHeadBindings(
+              [placement("en"), placement("de")],
+              englishHeads
+            ),
           ],
           { concurrency: "unbounded" }
         );

@@ -159,20 +159,20 @@ export const QuestionBodySourcePartsSchema = Schema.Struct({
   kind: Schema.Literal("body"),
 });
 
-/** Complete physical TypeScript source identity for one choice registry. */
-export const QuestionChoiceSourcePartsSchema = Schema.Struct({
+/** Complete physical TypeScript source identity for one assessment item. */
+export const QuestionItemSourcePartsSchema = Schema.Struct({
   ...QuestionSourceFields,
-  kind: Schema.Literal("choices"),
+  kind: Schema.Literal("item"),
 });
 
 /** Every direct authored source accepted inside one question directory. */
 export const QuestionSourcePartsSchema = Schema.Union([
   QuestionBodySourcePartsSchema,
-  QuestionChoiceSourcePartsSchema,
+  QuestionItemSourcePartsSchema,
 ]);
 export type QuestionSourceParts = typeof QuestionSourcePartsSchema.Type;
 
-/** Parses one exact body or choice source below the question corpus. */
+/** Parses one exact body or item source below the question corpus. */
 function parseQuestionSourceParts(
   input: string
 ): QuestionSourceParts | undefined {
@@ -187,10 +187,10 @@ function parseQuestionSourceParts(
     return;
   }
   const sourceFile = input.slice(fileSeparator + 1);
-  if (sourceFile === "choices.ts") {
-    return Schema.decodeSync(QuestionChoiceSourcePartsSchema)({
+  if (sourceFile === "item.ts") {
+    return Schema.decodeSync(QuestionItemSourcePartsSchema)({
       ...questionParts,
-      kind: "choices",
+      kind: "item",
       questionKey,
       sourcePath: input,
     });

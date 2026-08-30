@@ -48,7 +48,7 @@ const familyCases = [
     "question",
     {
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/choices.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/item.ts",
     },
   ],
   [

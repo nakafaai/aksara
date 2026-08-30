@@ -11,14 +11,11 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
-import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
+import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import {
-  type QuestionBodyKind,
-  questionKeyParts,
-} from "@nakafa/aksara-contracts/question/identity";
-import {
-  questionArtifactLocaleForSection,
-  questionArtifactLocalesForSection,
+  questionArtifactLocaleForPolicy,
+  questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, FileSystem, Path, Schema, Struct } from "effect";
 import {
@@ -35,7 +32,7 @@ import {
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const QuestionEntrySourceSchema = QuestionSourceSchema.mapFields(
-  Struct.omit(["choices", "files"])
+  Struct.omit(["files", "item"])
 );
 const QuestionEntryBaseSchema = Schema.Struct({
   ...QuestionEntrySourceSchema.fields,
@@ -66,9 +63,9 @@ const QuestionEntrySchema = Schema.Union([
 ]);
 export type QuestionEntry = typeof QuestionEntrySchema.Type;
 
-/** Complete authored question or answer body joined with canonical choices. */
+/** Complete authored question or answer body joined with its canonical item. */
 export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
-  readonly choices: QuestionChoices;
+  readonly item: QuestionItem;
   readonly rawMdx: string;
 };
 
@@ -90,6 +87,7 @@ function projectQuestionEntry(
   const entry = {
     artifactLocale,
     contentKey: ContentKeySchema.make(`${source.questionKey}/${bodyKind}`),
+    languagePolicy: source.languagePolicy,
     peerContentKey: ContentKeySchema.make(
       `${source.questionKey}/${bodyKind === "question" ? "answer" : "question"}`
     ),
@@ -124,14 +122,13 @@ export function questionContentForEntry(
   if (selected.bodyKind === "question") {
     return { entries: [selected], selected, source };
   }
-  const { sectionKey } = questionKeyParts(source.questionKey);
   const appLocale = AppLocaleSchema.make(
     artifactLocaleCode(selected.artifactLocale)
   );
   const prompt = projectQuestionEntry(
     source,
     "question",
-    questionArtifactLocaleForSection(sectionKey, appLocale)
+    questionArtifactLocaleForPolicy(source.languagePolicy, appLocale)
   );
   return { entries: [prompt, selected], selected, source };
 }
@@ -140,7 +137,6 @@ export function questionContentForEntry(
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
   return sources
     .flatMap((source) => {
-      const { sectionKey } = questionKeyParts(source.questionKey);
       const answers = ACTIVE_APP_LOCALES.map((appLocale) =>
         projectQuestionEntry(
           source,
@@ -148,9 +144,10 @@ function projectQuestionEntries(sources: readonly QuestionSource[]) {
           ArtifactLocaleSchema.make(appLocale)
         )
       );
-      const prompts = questionArtifactLocalesForSection(sectionKey).map(
-        (artifactLocale) =>
-          projectQuestionEntry(source, "question", artifactLocale)
+      const prompts = questionArtifactLocalesForPolicy(
+        source.languagePolicy
+      ).map((artifactLocale) =>
+        projectQuestionEntry(source, "question", artifactLocale)
       );
       return [...answers, ...prompts];
     })
@@ -192,7 +189,7 @@ export const readQuestionDocument = Effect.fn(
 )(function* <Entry extends QuestionEntry>(
   corpusRoot: string,
   entry: Entry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -204,5 +201,5 @@ export const readQuestionDocument = Effect.fn(
       )
     );
   const { sourceRoot: _sourceRoot, ...document } = entry;
-  return { ...document, choices, rawMdx } satisfies QuestionDocumentSource;
+  return { ...document, item, rawMdx } satisfies QuestionDocumentSource;
 });

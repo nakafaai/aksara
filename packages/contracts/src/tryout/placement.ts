@@ -14,11 +14,15 @@ import {
   QuestionKeySchema,
   questionKeyParts,
 } from "#contracts/question/identity";
+import { QuestionBlueprintSchema } from "#contracts/question/item";
+import { QuestionResponseSchema } from "#contracts/question/response";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { TryoutKeySchema } from "#contracts/tryout/key";
-import { deliveryLanguageForSection } from "#contracts/tryout/language";
 import {
-  TryoutChoiceListSchema,
+  AssessmentLanguagePolicySchema,
+  deliveryLanguageForPolicy,
+} from "#contracts/tryout/language";
+import {
   TryoutContentHashSchema,
   TryoutSourceRevisionSchema,
 } from "#contracts/tryout/spec";
@@ -32,19 +36,22 @@ const PlacementFields = {
   answerArtifactLocale: ArtifactLocaleSchema,
   answerContentKey: ContentKeySchema,
   appLocale: AppLocaleSchema,
-  choices: TryoutChoiceListSchema,
+  blueprint: Schema.optionalKey(QuestionBlueprintSchema),
   countryKey: TryoutKeySchema,
   deliveryLanguage: DeliveryLanguageSchema,
   examKey: TryoutKeySchema,
+  languagePolicy: AssessmentLanguagePolicySchema,
   questionArtifactLocale: ArtifactLocaleSchema,
   questionContentKey: ContentKeySchema,
   questionOrder: PositiveCountSchema,
   questionSourcePath: CorpusSourcePathSchema,
   rendererDomain: RendererDomainSchema,
+  response: QuestionResponseSchema,
   scope: Schema.Literal("server"),
   sectionKey: TryoutKeySchema,
   setKey: TryoutKeySchema,
   sourceRevision: TryoutSourceRevisionSchema,
+  stimulusKey: Schema.optionalKey(TryoutKeySchema),
   trackKey: TryoutKeySchema,
 };
 
@@ -88,11 +95,11 @@ function hasCoherentPlacementLanguages(input: {
   readonly answerArtifactLocale: string;
   readonly appLocale: typeof AppLocaleSchema.Type;
   readonly deliveryLanguage: string;
+  readonly languagePolicy: typeof AssessmentLanguagePolicySchema.Type;
   readonly questionArtifactLocale: string;
-  readonly sectionKey: typeof TryoutKeySchema.Type;
 }) {
-  const expectedDeliveryLanguage = deliveryLanguageForSection(
-    input.sectionKey,
+  const expectedDeliveryLanguage = deliveryLanguageForPolicy(
+    input.languagePolicy,
     input.appLocale
   );
   return (

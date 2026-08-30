@@ -3,7 +3,6 @@ import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspe
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import type { QuestionChoiceLocaleMissingError } from "@nakafa/aksara-contracts/projection/question";
 import {
   QuestionKeySchema,
   QuestionSourcePathSchema,
@@ -11,6 +10,7 @@ import {
   questionKeyParts,
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
+import type { QuestionResponseLocaleMissingError } from "@nakafa/aksara-contracts/question/item";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -29,7 +29,7 @@ import {
 } from "#publisher/question/document";
 import {
   planQuestionPublication,
-  type QuestionChoiceJoinError,
+  type QuestionItemJoinError,
   QuestionPublicationPlanSchema,
 } from "#publisher/question/plan";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -81,7 +81,7 @@ export type QuestionPublicationStreamError<E> =
   | QuestionHeadDuplicateError
   | QuestionHeadFamilyError
   | QuestionHeadOrderError
-  | QuestionChoiceLocaleMissingError
+  | QuestionResponseLocaleMissingError
   | QuestionMetadataError
   | QuestionSourceError;
 
@@ -112,7 +112,7 @@ type TryoutRegistryError = Effect.Error<
 /** Every failure possible before the replayable question plan is constructed. */
 export type PrepareQuestionPublicationError<E> =
   | E
-  | QuestionChoiceJoinError
+  | QuestionItemJoinError
   | QuestionPublicationStreamError<never>
   | ReplaySpoolError
   | RendererManifestError
@@ -159,8 +159,11 @@ function mismatchedFamilyField(
     return "sourcePath";
   }
   const { questionSetKey } = questionKeyParts(document.questionKey);
-  const rendererDomain = questionBanks.get(questionBankKey(questionSetKey));
-  if (rendererDomain !== undefined && head.rendererDomain !== rendererDomain) {
+  const definition = questionBanks.get(questionBankKey(questionSetKey));
+  if (
+    definition !== undefined &&
+    head.rendererDomain !== definition.rendererDomain
+  ) {
     return "rendererDomain";
   }
 }

@@ -1,12 +1,12 @@
 import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
 import { Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
-import { snbtOfficialSchedule } from "#corpus/tryout/indonesia/snbt/official-schedule";
+import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
+import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness";
 import {
   defineTryoutExamSource,
   type TryoutSectionSourceInput,
 } from "#corpus/tryout/schema";
-import { validateAssessmentSpecification } from "#corpus/tryout/specification";
 
 const EXAM_KEY = "snbt";
 const QUESTION_ROOT = `${QUESTION_BANK_KEY_ROOT}/${indonesiaTryoutCountry.countryKey}/${EXAM_KEY}`;
@@ -19,6 +19,7 @@ type SnbtSection = Omit<
 const snbtSections: readonly SnbtSection[] = [
   {
     key: "general-reasoning",
+    languagePolicy: { kind: "app-locale" },
     questionCount: 30,
     rendererDomain: "snbt-general",
     routeSlugs: {
@@ -35,6 +36,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "general-knowledge",
+    languagePolicy: { kind: "app-locale" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -51,6 +53,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "reading-and-writing-skills",
+    languagePolicy: { kind: "app-locale" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -67,6 +70,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "quantitative-knowledge",
+    languagePolicy: { kind: "app-locale" },
     questionCount: 20,
     rendererDomain: "snbt-quant",
     routeSlugs: {
@@ -83,6 +87,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "indonesian-language",
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 30,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -99,6 +104,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "english-language",
+    languagePolicy: { kind: "fixed", language: "en" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -115,6 +121,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "mathematical-reasoning",
+    languagePolicy: { kind: "app-locale" },
     questionCount: 20,
     rendererDomain: "snbt-math",
     routeSlugs: {
@@ -190,11 +197,11 @@ const snbtTryoutCatalog = defineTryoutExamSource({
   ],
 });
 
-/** Validates the active SNBT catalog against its latest official schedule. */
+/** Validates the active SNBT catalog against its latest official readiness. */
 export const snbtTryoutSource = Effect.gen(function* () {
-  const [source, schedule] = yield* Effect.all([
+  const [source, readiness] = yield* Effect.all([
     snbtTryoutCatalog,
-    snbtOfficialSchedule,
+    snbtReadiness,
   ]);
-  return yield* validateAssessmentSpecification(source, schedule);
+  return yield* validateAssessmentSourceReadiness(source, readiness);
 });

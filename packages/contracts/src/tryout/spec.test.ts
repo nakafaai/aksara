@@ -2,7 +2,6 @@ import { Exit, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
-  TryoutChoiceListSchema,
   TryoutContentHashSchema,
   TryoutScoringSchema,
   TryoutSourceRevisionSchema,
@@ -16,37 +15,6 @@ describe("try-out shared contracts", () => {
       "internal-entry",
       "visible",
     ]);
-  });
-
-  it("requires one correct choice and contiguous option identity", () => {
-    const valid = [
-      { isCorrect: true, label: "A", optionKey: "option-1", order: 1 },
-      { isCorrect: false, label: "B", optionKey: "option-2", order: 2 },
-    ];
-    expect(Schema.decodeUnknownSync(TryoutChoiceListSchema)(valid)).toEqual(
-      valid
-    );
-
-    for (const candidate of [
-      valid.map((choice) => ({ ...choice, isCorrect: false })),
-      [valid[1], valid[0]],
-      [{ ...valid[0], optionKey: "option-2" }],
-    ]) {
-      expect(
-        Exit.isFailure(
-          Schema.decodeUnknownExit(TryoutChoiceListSchema)(candidate)
-        )
-      ).toBe(true);
-    }
-    expect(
-      String(
-        Schema.decodeUnknownExit(TryoutChoiceListSchema)([
-          { ...valid[0], isCorrect: false },
-        ])
-      )
-    ).toContain(
-      "Choices require contiguous option identities and one correct answer."
-    );
   });
 
   it("keeps revision and durable content hashes bounded", () => {

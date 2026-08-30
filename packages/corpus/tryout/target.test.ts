@@ -88,7 +88,7 @@ function findSelectedTrack(rows: readonly TryoutCatalogRow[]) {
 
 describe("tryout target", () => {
   it.effect(
-    "resolves real prompt and answer targets without duplicating choices",
+    "resolves real prompt and answer targets without duplicating responses",
     () =>
       Effect.gen(function* () {
         const fixture = yield* loadFixture();
@@ -119,7 +119,7 @@ describe("tryout target", () => {
           set: { setKey: "set-1" },
           track: { trackKey: "2027" },
         });
-        expect("choices" in prompt.placement).toBe(false);
+        expect("response" in prompt.placement).toBe(false);
         expect(answer).toMatchObject({
           exam: { appLocale: "id", examKey: "snbt" },
           placement: {

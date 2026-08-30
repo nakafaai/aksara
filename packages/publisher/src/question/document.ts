@@ -15,11 +15,13 @@ import {
   makeQuestionPromptProjection,
   type QuestionAnswerProjection,
   type QuestionBodyProjection,
-  type QuestionChoiceLocaleMissingError,
-  type QuestionChoices,
   QuestionMetadataSchema,
   type QuestionPromptProjection,
 } from "@nakafa/aksara-contracts/projection/question";
+import type {
+  QuestionItem,
+  QuestionResponseLocaleMissingError,
+} from "@nakafa/aksara-contracts/question/item";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import {
@@ -30,7 +32,7 @@ import {
 import { Effect, Schema } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
-/** Authored question metadata does not satisfy its exact three-field contract. */
+/** Authored question metadata does not satisfy its exact publication contract. */
 export class QuestionMetadataError extends Schema.TaggedError<QuestionMetadataError>()(
   "QuestionMetadataError",
   { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
@@ -97,7 +99,7 @@ export const makeQuestionProjectionFromSource: (
   metadata: unknown
 ) => Effect.Effect<
   QuestionBodyProjection,
-  QuestionChoiceLocaleMissingError | QuestionMetadataError
+  QuestionMetadataError | QuestionResponseLocaleMissingError
 > = Effect.fn("AksaraPublisher.makeQuestionProjection")(function* (
   source: QuestionDocumentSource,
   metadata: unknown
@@ -112,9 +114,9 @@ export const loadQuestionDocument = Effect.fn(
 )(function* <Entry extends QuestionEntry>(
   checkoutRoot: string,
   entry: Entry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
-  return yield* readQuestionDocument(checkoutRoot, entry, choices).pipe(
+  return yield* readQuestionDocument(checkoutRoot, entry, item).pipe(
     Effect.mapError(mapQuestionSourceError(checkoutRoot))
   );
 });
@@ -126,9 +128,9 @@ const inspectQuestionSource = Effect.fn(
   checkoutRoot: string,
   rendererManifest: RendererManifestEnvelope,
   entry: Entry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
-  const source = yield* loadQuestionDocument(checkoutRoot, entry, choices);
+  const source = yield* loadQuestionDocument(checkoutRoot, entry, item);
   const inspection = yield* inspectContentSource({
     ...makeQuestionCompileSource(source),
     rendererManifest,
@@ -158,13 +160,13 @@ export const inspectQuestionPromptDocument = Effect.fn(
   checkoutRoot: string,
   rendererManifest: RendererManifestEnvelope,
   entry: QuestionPromptEntry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
   const document = yield* inspectQuestionSource(
     checkoutRoot,
     rendererManifest,
     entry,
-    choices
+    item
   );
   const projection: QuestionPromptProjection =
     yield* makeQuestionPromptProjection({
@@ -182,13 +184,13 @@ export const inspectQuestionAnswerDocument = Effect.fn(
   checkoutRoot: string,
   rendererManifest: RendererManifestEnvelope,
   entry: QuestionAnswerEntry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
   const document = yield* inspectQuestionSource(
     checkoutRoot,
     rendererManifest,
     entry,
-    choices
+    item
   );
   const projection: QuestionAnswerProjection = makeQuestionAnswerProjection({
     ...document.source,
@@ -205,21 +207,21 @@ export const inspectQuestionDocument = Effect.fn(
   checkoutRoot: string,
   rendererManifest: RendererManifestEnvelope,
   entry: QuestionEntry,
-  choices: QuestionChoices
+  item: QuestionItem
 ) {
   if (entry.bodyKind === "question") {
     return yield* inspectQuestionPromptDocument(
       checkoutRoot,
       rendererManifest,
       entry,
-      choices
+      item
     );
   }
   return yield* inspectQuestionAnswerDocument(
     checkoutRoot,
     rendererManifest,
     entry,
-    choices
+    item
   );
 });
 

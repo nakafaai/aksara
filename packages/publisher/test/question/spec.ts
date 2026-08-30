@@ -34,7 +34,7 @@ const [firstSource] = questionSources;
 if (!(firstEntry && firstSource)) {
   throw new Error("Expected the real question-bank source and body slice.");
 }
-export const questionChoices = firstSource.choices;
+export const questionItem = firstSource.item;
 export const questionPaths = firstSource.files.map(
   (file) => `${firstSource.sourceRoot}/${file}`
 );

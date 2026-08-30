@@ -1,70 +1,14 @@
-
 export const metadata = {
-    title: "Lösung zu Aufgabe 37",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-06-11",
+  title: "Lösung zu Aufgabe 37",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-06-11",
+  dateModified: "2026-08-30",
 };
 
-Der Modus gruppierter Daten lässt sich aus der Modalklasse und ihren beiden Nachbarklassen bestimmen.
-
-#### Datenhistogramm
-
-<HistogramChart
-  title="Histogramm der Punkteverteilung"
-  description="Häufigkeitsverteilung der Schülerergebnisse mit der angegebenen Modalklasse."
-  yAxisLabel="Häufigkeit"
-  data={[
-    { name: "49,5-54,5", value: 5 },
-    { name: "54,5-59,5", value: 9 },
-    { name: "59,5-64,5", value: 14 },
-    { name: "64,5-69,5", value: 11 },
-    { name: "69,5-74,5", value: 6 },
-  ]}
-  chartConfig={{
-    value: {
-      label: "Häufigkeit",
-      colors: {
-        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
-        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
-      },
-    },
-  }}
-/>
-
-#### Bestimmung der Modalklasse
-
-Die größte Häufigkeit ist <InlineMath math="14" />. Damit ist <InlineMath math="59{,}5 - 64{,}5" /> die Modalklasse.
-
-#### Berechnung von Frequenzunterschieden
-
-Unterschied zwischen der Häufigkeit der Modalklasse und der Häufigkeit der vorherigen Klasse
-
-<BlockMath math="d_1 = 14 - 9 = 5" />
-
-Unterschied zwischen der Häufigkeit der Modalklasse und der Häufigkeit der nächsten Klasse
-
-<BlockMath math="d_2 = 14 - 11 = 3" />
-
-#### Parameter ermitteln
-
-Untere Grenze der Modalklasse
-
-<BlockMath math="T_b = 59{,}5" />
-
-Klassenbreite
-
-<BlockMath math="L = 64{,}5 - 59{,}5 = 5" />
-
-#### Berechnung des Modus
-
-In die Modusformel eingesetzt ergibt sich
+Die geraden Ergebnisse sind <InlineMath math="\\{2,4,6\\}" />, also drei von sechs gleich wahrscheinlichen Ergebnissen.
 
 <MathContainer>
-<BlockMath math="M_o = T_b + \left(\frac{d_1}{d_1 + d_2}\right) \cdot L" />
-<BlockMath math="= 59{,}5 + \left(\frac{5}{5 + 3}\right) \cdot 5" />
-<BlockMath math="= 59{,}5 + \left(\frac{5}{8}\right) \cdot 5" />
-<BlockMath math="= 59{,}5 + 3{,}125" />
-<BlockMath math="= 62{,}625 \approx 62{,}6" />
+<BlockMath math="P(\\text{gerade})=\\frac36=\\frac12" />
 </MathContainer>
 
-Der Modus beträgt gerundet <InlineMath math="62{,}6" />.
+Die Wahrscheinlichkeit beträgt <InlineMath math="\\frac12" />.

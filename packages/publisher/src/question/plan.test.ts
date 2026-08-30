@@ -8,7 +8,7 @@ import { Context, Effect, Layer, Path, Schema, Stream } from "effect";
 import { vi } from "vitest";
 import {
   planQuestionPublication,
-  QuestionChoiceJoinError,
+  QuestionItemJoinError,
 } from "#publisher/question/plan";
 import { testFileLayer } from "#test/files";
 import {
@@ -201,7 +201,7 @@ layer(planTestLayer)("question plan", (it) => {
     })
   );
 
-  it.effect("fails when a body cannot join its canonical choice source", () =>
+  it.effect("fails when a body cannot join its canonical item source", () =>
     Effect.gen(function* () {
       const { englishEntry } = yield* QuestionPlanTestFixtures;
       const error = yield* planQuestionPublication({
@@ -216,9 +216,9 @@ layer(planTestLayer)("question plan", (it) => {
         Effect.flip
       );
 
-      expect(error).toBeInstanceOf(QuestionChoiceJoinError);
+      expect(error).toBeInstanceOf(QuestionItemJoinError);
       expect(error).toMatchObject({
-        _tag: "QuestionChoiceJoinError",
+        _tag: "QuestionItemJoinError",
         sourceRoot: englishEntry.sourceRoot,
       });
     })
