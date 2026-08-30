@@ -13,13 +13,7 @@ function currentSources(): WorkflowSources {
   const cli = readFileSync(".github/workflows/cli.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return {
-    all: [ci, cli, contracts, release],
-    ci,
-    cli,
-    contracts,
-    release,
-  };
+  return { all: [ci, cli, contracts, release], ci, cli, contracts, release };
 }
 
 const sources = currentSources();
@@ -55,6 +49,12 @@ describe("workflow policy", () => {
     ).toThrow(
       "Workflows must not retain registry or Changesets publication machinery"
     );
+    for (const prefix of ["http://", "//", ""]) {
+      const contracts = `${sources.contracts}\n# ${prefix}registry.npmjs.org`;
+      expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(
+        "Registry reads must use only the exact npm attestation endpoint"
+      );
+    }
   });
 
   it("requires CI to use the tested archive identity decision", () => {

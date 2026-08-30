@@ -6,7 +6,8 @@ import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|package-proof/iu;
-const REGISTRY_URL_PATTERN = /https:\/\/registry\.npmjs\.org[^\s"']+/gu;
+const REGISTRY_REFERENCE_PATTERN =
+  /(?:https?:\/\/|\/\/)?registry\.npmjs\.org(?:[^\s"'`]+)?/giu;
 const NPM_ATTESTATION_URL =
   "https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
@@ -84,7 +85,7 @@ export function verifyWorkflows({
   assert.deepEqual(
     [
       ...new Set(
-        [...combined.matchAll(REGISTRY_URL_PATTERN)].map(([url]) => url)
+        [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)].map(([url]) => url)
       ),
     ],
     [NPM_ATTESTATION_URL],
