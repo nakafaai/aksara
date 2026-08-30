@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tiere, die gejagt werden.",
+          label: [{ kind: "text", text: "Tiere, die gejagt werden." }],
         },
         {
           isCorrect: false,
-          label: "kleine Tiere, die von anderen Tieren gefressen werden.",
+          label: [
+            {
+              kind: "text",
+              text: "kleine Tiere, die von anderen Tieren gefressen werden.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "kleine Insekten.",
+          label: [{ kind: "text", text: "kleine Insekten." }],
         },
         {
           isCorrect: false,
-          label: "Insekten und andere Kleintiere.",
+          label: [{ kind: "text", text: "Insekten und andere Kleintiere." }],
         },
         {
           isCorrect: true,
-          label: "Tiere, die andere Tiere jagen.",
+          label: [{ kind: "text", text: "Tiere, die andere Tiere jagen." }],
         },
       ],
     },
@@ -32,23 +37,30 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "animals that are preyed upon.",
+          label: [{ kind: "text", text: "animals that are preyed upon." }],
         },
         {
           isCorrect: false,
-          label: "small animals that are eaten by other animals.",
+          label: [
+            {
+              kind: "text",
+              text: "small animals that are eaten by other animals.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "small insects.",
+          label: [{ kind: "text", text: "small insects." }],
         },
         {
           isCorrect: false,
-          label: "insects and other small animals.",
+          label: [{ kind: "text", text: "insects and other small animals." }],
         },
         {
           isCorrect: true,
-          label: "animals that prey on other animals.",
+          label: [
+            { kind: "text", text: "animals that prey on other animals." },
+          ],
         },
       ],
     },
@@ -57,23 +69,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "hewan yang dimangsa.",
+          label: [{ kind: "text", text: "hewan yang dimangsa." }],
         },
         {
           isCorrect: false,
-          label: "hewan kecil yang dimakan oleh hewan lainnya.",
+          label: [
+            {
+              kind: "text",
+              text: "hewan kecil yang dimakan oleh hewan lainnya.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "serangga kecil.",
+          label: [{ kind: "text", text: "serangga kecil." }],
         },
         {
           isCorrect: false,
-          label: "serangga dan hewan kecil lainnya.",
+          label: [{ kind: "text", text: "serangga dan hewan kecil lainnya." }],
         },
         {
           isCorrect: true,
-          label: "hewan pemangsa hewan lainnya.",
+          label: [{ kind: "text", text: "hewan pemangsa hewan lainnya." }],
         },
       ],
     },

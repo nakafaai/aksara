@@ -7,44 +7,152 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ Meter}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3}\\text{ Meter}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$250\\sqrt{2}\\text{ Meter}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{2}\\text{ Meter}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{3}\\text{ Meter}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{3}\\text{ Meter}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{2}\\text{ Meter}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{2}\\text{ Meter}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$250\\text{ Meter}$$",
+          label: [
+            { display: "block", kind: "math", math: "250\\text{ Meter}" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$250\\sqrt{3}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$250\\sqrt{2}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$500\\sqrt{3}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$500\\sqrt{2}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$250\\text{ meter}$$" },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{2}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{3}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{2}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "250\\text{ meter}" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$250\\sqrt{3}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$250\\sqrt{2}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$500\\sqrt{3}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$500\\sqrt{2}\\text{ meter}$$" },
-        { isCorrect: false, label: "$$250\\text{ meter}$$" },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{2}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{3}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "500\\sqrt{2}\\text{ meter}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "250\\text{ meter}" },
+          ],
+        },
       ],
     },
   },

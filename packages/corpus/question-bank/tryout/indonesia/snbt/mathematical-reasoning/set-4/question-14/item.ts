@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$7$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$8$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$9$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$10$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$11$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "11" },
+            { kind: "text", text: " Tage" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$7$$ days" },
-        { isCorrect: false, label: "$$8$$ days" },
-        { isCorrect: false, label: "$$9$$ days" },
-        { isCorrect: true, label: "$$10$$ days" },
-        { isCorrect: false, label: "$$11$$ days" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "11" },
+            { kind: "text", text: " days" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$7$$ hari" },
-        { isCorrect: false, label: "$$8$$ hari" },
-        { isCorrect: false, label: "$$9$$ hari" },
-        { isCorrect: true, label: "$$10$$ hari" },
-        { isCorrect: false, label: "$$11$$ hari" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "11" },
+            { kind: "text", text: " hari" },
+          ],
+        },
       ],
     },
   },

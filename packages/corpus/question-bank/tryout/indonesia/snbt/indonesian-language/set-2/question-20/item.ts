@@ -5,11 +5,26 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Kereta seremonial" },
-        { isCorrect: false, label: "Kedai makanan siap saji Romawi" },
-        { isCorrect: false, label: "Lukisan dinding erotis" },
-        { isCorrect: true, label: "Perbudakan dan kerja paksa" },
-        { isCorrect: false, label: "Kampanye pemilihan umum" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Kereta seremonial" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Kedai makanan siap saji Romawi" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Lukisan dinding erotis" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Perbudakan dan kerja paksa" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Kampanye pemilihan umum" }],
+        },
       ],
     },
   },

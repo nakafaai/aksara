@@ -13,24 +13,27 @@ import {
 const singleChoice = {
   kind: "single-choice",
   options: [
-    { isCorrect: true, label: "A" },
-    { isCorrect: false, label: "B" },
+    { isCorrect: true, label: [{ kind: "text", text: "A" }] },
+    { isCorrect: false, label: [{ kind: "text", text: "B" }] },
   ],
 } as const;
 const multipleChoice = {
   kind: "multiple-choice",
   options: [
-    { isCorrect: true, label: "A" },
-    { isCorrect: true, label: "B" },
-    { isCorrect: false, label: "C" },
+    { isCorrect: true, label: [{ kind: "text", text: "A" }] },
+    { isCorrect: true, label: [{ kind: "text", text: "B" }] },
+    { isCorrect: false, label: [{ kind: "text", text: "C" }] },
   ],
 } as const;
 const category = {
-  categories: ["True", "False"],
+  categories: [
+    [{ kind: "text", text: "True" }],
+    [{ kind: "text", text: "False" }],
+  ],
   kind: "category",
   statements: [
-    { correctCategoryOrder: 1, label: "Statement A" },
-    { correctCategoryOrder: 2, label: "Statement B" },
+    { correctCategoryOrder: 1, label: [{ kind: "text", text: "Statement A" }] },
+    { correctCategoryOrder: 2, label: [{ kind: "text", text: "Statement B" }] },
   ],
 } as const;
 
@@ -86,11 +89,16 @@ describe("question item", () => {
 
   it("rejects invalid category structure", () => {
     for (const response of [
-      { ...category, categories: ["Only"] },
+      { ...category, categories: [[{ kind: "text", text: "Only" }]] },
       { ...category, statements: [] },
       {
         ...category,
-        statements: [{ correctCategoryOrder: 3, label: "Out of range" }],
+        statements: [
+          {
+            correctCategoryOrder: 3,
+            label: [{ kind: "text", text: "Out of range" }],
+          },
+        ],
       },
     ]) {
       expect(
@@ -108,8 +116,8 @@ describe("question item", () => {
         id: {
           ...singleChoice,
           options: [
-            { isCorrect: true, label: "A (ID)" },
-            { isCorrect: false, label: "B (ID)" },
+            { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
+            { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
           ],
         },
       },
@@ -148,20 +156,28 @@ describe("question item", () => {
 
       expect(response).toEqual({
         categories: [
-          { categoryKey: "category-1", label: "True", order: 1 },
-          { categoryKey: "category-2", label: "False", order: 2 },
+          {
+            categoryKey: "category-1",
+            label: [{ kind: "text", text: "True" }],
+            order: 1,
+          },
+          {
+            categoryKey: "category-2",
+            label: [{ kind: "text", text: "False" }],
+            order: 2,
+          },
         ],
         kind: "category",
         statements: [
           {
             correctCategoryKey: "category-1",
-            label: "Statement A",
+            label: [{ kind: "text", text: "Statement A" }],
             order: 1,
             statementKey: "statement-1",
           },
           {
             correctCategoryKey: "category-2",
-            label: "Statement B",
+            label: [{ kind: "text", text: "Statement B" }],
             order: 2,
             statementKey: "statement-2",
           },

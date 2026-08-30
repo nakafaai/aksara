@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$45^\\circ$$",
+          label: [{ display: "block", kind: "math", math: "45^\\circ" }],
         },
         {
           isCorrect: false,
-          label: "$$65^\\circ$$",
+          label: [{ display: "block", kind: "math", math: "65^\\circ" }],
         },
         {
           isCorrect: true,
-          label: "$$70^\\circ$$",
+          label: [{ display: "block", kind: "math", math: "70^\\circ" }],
         },
         {
           isCorrect: false,
-          label: "$$75^\\circ$$",
+          label: [{ display: "block", kind: "math", math: "75^\\circ" }],
         },
         {
           isCorrect: false,
-          label: "$$80^\\circ$$",
+          label: [{ display: "block", kind: "math", math: "80^\\circ" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$45^\\circ$$" },
-        { isCorrect: false, label: "$$65^\\circ$$" },
-        { isCorrect: true, label: "$$70^\\circ$$" },
-        { isCorrect: false, label: "$$75^\\circ$$" },
-        { isCorrect: false, label: "$$80^\\circ$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "45^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "65^\\circ" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "70^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "75^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80^\\circ" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$45^\\circ$$" },
-        { isCorrect: false, label: "$$65^\\circ$$" },
-        { isCorrect: true, label: "$$70^\\circ$$" },
-        { isCorrect: false, label: "$$75^\\circ$$" },
-        { isCorrect: false, label: "$$80^\\circ$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "45^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "65^\\circ" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "70^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "75^\\circ" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80^\\circ" }],
+        },
       ],
     },
   },

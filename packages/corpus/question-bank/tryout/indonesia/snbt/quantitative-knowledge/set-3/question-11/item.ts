@@ -7,23 +7,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{7} > \\frac{1}{3}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{5} > \\frac{2}{9}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2}{3} > \\frac{7}{8}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2}{3} > \\frac{7}{8}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{5} > \\frac{5}{6}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{9} > \\frac{3}{4}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{5}{9} > \\frac{3}{4}",
+            },
+          ],
         },
       ],
     },
@@ -32,23 +62,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{7} > \\frac{1}{3}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{5} > \\frac{2}{9}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2}{3} > \\frac{7}{8}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2}{3} > \\frac{7}{8}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{5} > \\frac{5}{6}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{9} > \\frac{3}{4}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{5}{9} > \\frac{3}{4}",
+            },
+          ],
         },
       ],
     },
@@ -57,23 +117,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{7} > \\frac{1}{3}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{5} > \\frac{2}{9}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2}{3} > \\frac{7}{8}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2}{3} > \\frac{7}{8}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{3}{5} > \\frac{5}{6}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{9} > \\frac{3}{4}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{5}{9} > \\frac{3}{4}",
+            },
+          ],
         },
       ],
     },

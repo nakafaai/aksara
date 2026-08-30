@@ -7,44 +7,134 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A = B$$ dann $$E = F$$",
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " dann " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$A = B$$ oder $$E = F$$",
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " oder " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$A \\neq B$$ und $$E = F$$",
+          label: [
+            { display: "block", kind: "math", math: "A \\neq B" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$E \\neq F$$ oder $$A \\neq B$$",
+          label: [
+            { display: "block", kind: "math", math: "E \\neq F" },
+            { kind: "text", text: " oder " },
+            { display: "block", kind: "math", math: "A \\neq B" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$A = B$$ oder $$E \\neq F$$",
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " oder " },
+            { display: "block", kind: "math", math: "E \\neq F" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$A = B$$ then $$E = F$$" },
-        { isCorrect: false, label: "$$A = B$$ or $$E = F$$" },
-        { isCorrect: false, label: "$$A \\neq B$$ and $$E = F$$" },
-        { isCorrect: false, label: "$$E \\neq F$$ or $$A \\neq B$$" },
-        { isCorrect: true, label: "$$A = B$$ or $$E \\neq F$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " then " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " or " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A \\neq B" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "E \\neq F" },
+            { kind: "text", text: " or " },
+            { display: "block", kind: "math", math: "A \\neq B" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " or " },
+            { display: "block", kind: "math", math: "E \\neq F" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$A = B$$ maka $$E = F$$" },
-        { isCorrect: false, label: "$$A = B$$ atau $$E = F$$" },
-        { isCorrect: false, label: "$$A \\neq B$$ dan $$E = F$$" },
-        { isCorrect: false, label: "$$E \\neq F$$ atau $$A \\neq B$$" },
-        { isCorrect: true, label: "$$A = B$$ atau $$E \\neq F$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " maka " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " atau " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A \\neq B" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "E = F" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "E \\neq F" },
+            { kind: "text", text: " atau " },
+            { display: "block", kind: "math", math: "A \\neq B" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "A = B" },
+            { kind: "text", text: " atau " },
+            { display: "block", kind: "math", math: "E \\neq F" },
+          ],
+        },
       ],
     },
   },

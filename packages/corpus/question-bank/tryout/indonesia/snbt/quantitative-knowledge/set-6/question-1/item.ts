@@ -7,28 +7,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Aussage $$(1)$$ allein ist ausreichend, Aussage $$(2)$$ allein jedoch nicht.",
+          label: [
+            { kind: "text", text: "Aussage " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " allein ist ausreichend, Aussage " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " allein jedoch nicht." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Aussage $$(2)$$ allein ist ausreichend, Aussage $$(1)$$ allein jedoch nicht.",
+          label: [
+            { kind: "text", text: "Aussage " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " allein ist ausreichend, Aussage " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " allein jedoch nicht." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Beide Aussagen zusammen sind ausreichend, aber keine Aussage allein ist ausreichend.",
+          label: [
+            {
+              kind: "text",
+              text: "Beide Aussagen zusammen sind ausreichend, aber keine Aussage allein ist ausreichend.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Aussage $$(1)$$ allein ist ausreichend, und Aussage $$(2)$$ allein ist ausreichend.",
+          label: [
+            { kind: "text", text: "Aussage " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " allein ist ausreichend, und Aussage " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " allein ist ausreichend." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen $$(1)$$ und $$(2)$$ sind auch zusammen nicht ausreichend.",
+          label: [
+            { kind: "text", text: "Die Aussagen " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " sind auch zusammen nicht ausreichend." },
+          ],
         },
       ],
     },
@@ -37,27 +61,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Statement $$(1)$$ ALONE is sufficient, but statement $$(2)$$ alone is not sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " ALONE is sufficient, but statement " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " alone is not sufficient." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ alone is not sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " ALONE is sufficient, but statement " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " alone is not sufficient." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.",
+          label: [
+            {
+              kind: "text",
+              text: "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Statement $$(1)$$ ALONE is sufficient, and statement $$(2)$$ ALONE is sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " ALONE is sufficient, and statement " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " ALONE is sufficient." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Statements $$(1)$$ and $$(2)$$ TOGETHER are NOT sufficient.",
+          label: [
+            { kind: "text", text: "Statements " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " TOGETHER are NOT sufficient." },
+          ],
         },
       ],
     },
@@ -66,28 +115,61 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Pernyataan $$(1)$$ saja cukup untuk menjawab pertanyaan tetapi pernyataan $$(2)$$ saja tidak cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            {
+              kind: "text",
+              text: " saja cukup untuk menjawab pertanyaan tetapi pernyataan ",
+            },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " saja tidak cukup." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pernyataan $$(2)$$ saja cukup untuk menjawab pertanyaan tetapi pernyataan $$(1)$$ saja tidak cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(2)" },
+            {
+              kind: "text",
+              text: " saja cukup untuk menjawab pertanyaan tetapi pernyataan ",
+            },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " saja tidak cukup." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+          label: [
+            {
+              kind: "text",
+              text: "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pernyataan $$(1)$$ saja cukup untuk menjawab pertanyaan dan pernyataan $$(2)$$ saja cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            {
+              kind: "text",
+              text: " saja cukup untuk menjawab pertanyaan dan pernyataan ",
+            },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " saja cukup." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pernyataan $$(1)$$ dan pernyataan $$(2)$$ tidak cukup untuk menjawab pertanyaan.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan pernyataan " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " tidak cukup untuk menjawab pertanyaan." },
+          ],
         },
       ],
     },

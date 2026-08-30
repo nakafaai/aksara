@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: [{ kind: "text", text: "5" }],
         },
         {
           isCorrect: false,
-          label: "6",
+          label: [{ kind: "text", text: "6" }],
         },
         {
           isCorrect: true,
-          label: "7",
+          label: [{ kind: "text", text: "7" }],
         },
         {
           isCorrect: false,
-          label: "8",
+          label: [{ kind: "text", text: "8" }],
         },
         {
           isCorrect: false,
-          label: "9",
+          label: [{ kind: "text", text: "9" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: [{ kind: "text", text: "5" }],
         },
         {
           isCorrect: false,
-          label: "6",
+          label: [{ kind: "text", text: "6" }],
         },
         {
           isCorrect: true,
-          label: "7",
+          label: [{ kind: "text", text: "7" }],
         },
         {
           isCorrect: false,
-          label: "8",
+          label: [{ kind: "text", text: "8" }],
         },
         {
           isCorrect: false,
-          label: "9",
+          label: [{ kind: "text", text: "9" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: [{ kind: "text", text: "5" }],
         },
         {
           isCorrect: false,
-          label: "6",
+          label: [{ kind: "text", text: "6" }],
         },
         {
           isCorrect: true,
-          label: "7",
+          label: [{ kind: "text", text: "7" }],
         },
         {
           isCorrect: false,
-          label: "8",
+          label: [{ kind: "text", text: "8" }],
         },
         {
           isCorrect: false,
-          label: "9",
+          label: [{ kind: "text", text: "9" }],
         },
       ],
     },

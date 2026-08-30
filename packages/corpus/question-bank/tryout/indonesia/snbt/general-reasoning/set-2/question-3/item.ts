@@ -7,53 +7,110 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Anwohner verloren ihre Motorräder",
+          label: [{ kind: "text", text: "Anwohner verloren ihre Motorräder" }],
         },
         {
           isCorrect: false,
-          label: "Die Bewohner sind ängstlich und unruhig",
+          label: [
+            { kind: "text", text: "Die Bewohner sind ängstlich und unruhig" },
+          ],
         },
         {
           isCorrect: false,
-          label: "In Gang Mawar kommt es fast jede Woche zu Diebstählen",
+          label: [
+            {
+              kind: "text",
+              text: "In Gang Mawar kommt es fast jede Woche zu Diebstählen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sicherheitskräfte patrouillieren nicht regelmäßig",
+          label: [
+            {
+              kind: "text",
+              text: "Sicherheitskräfte patrouillieren nicht regelmäßig",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Der Sicherheitsdienst patrouilliert regelmäßig",
+          label: [
+            {
+              kind: "text",
+              text: "Der Sicherheitsdienst patrouilliert regelmäßig",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Residents lost their motorcycles" },
-        { isCorrect: false, label: "Residents are anxious and restless" },
         {
           isCorrect: false,
-          label: "Theft occurs almost every week in Gang Mawar",
+          label: [{ kind: "text", text: "Residents lost their motorcycles" }],
         },
-        { isCorrect: false, label: "Security guards do not patrol regularly" },
-        { isCorrect: true, label: "Security guards patrol regularly" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Residents are anxious and restless" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Theft occurs almost every week in Gang Mawar",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Security guards do not patrol regularly" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Security guards patrol regularly" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Warga kehilangan motor" },
-        { isCorrect: false, label: "Warga resah dan gelisah" },
         {
           isCorrect: false,
-          label: "Hampir setiap minggu terjadi pencurian di Gang Mawar",
+          label: [{ kind: "text", text: "Warga kehilangan motor" }],
         },
         {
           isCorrect: false,
-          label: "Petugas keamanan tidak berpatroli secara rutin",
+          label: [{ kind: "text", text: "Warga resah dan gelisah" }],
         },
-        { isCorrect: true, label: "Petugas keamanan berpatroli secara rutin" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Hampir setiap minggu terjadi pencurian di Gang Mawar",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Petugas keamanan tidak berpatroli secara rutin",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Petugas keamanan berpatroli secara rutin" },
+          ],
+        },
       ],
     },
   },

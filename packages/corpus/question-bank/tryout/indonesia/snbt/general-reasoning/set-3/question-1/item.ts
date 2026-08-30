@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Interesse am Basketball steigt mit jeder Klassenstufe",
+          label: [
+            {
+              kind: "text",
+              text: "Das Interesse am Basketball steigt mit jeder Klassenstufe",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Tanz hat beste Aussichten, weil das Interesse immer größer wird",
+          label: [
+            {
+              kind: "text",
+              text: "Tanz hat beste Aussichten, weil das Interesse immer größer wird",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Malerei hat beste Aussichten, da das Interesse immer größer wird",
+          label: [
+            {
+              kind: "text",
+              text: "Die Malerei hat beste Aussichten, da das Interesse immer größer wird",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "In jeder Klassenstufe ist Singen das am wenigsten beliebte Hobby",
+          label: [
+            {
+              kind: "text",
+              text: "In jeder Klassenstufe ist Singen das am wenigsten beliebte Hobby",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Schauspiel ist bei den Schülern am wenigsten beliebt, da es in jeder Jahrgangsstufe immer die wenigsten Teilnehmer gibt",
+          label: [
+            {
+              kind: "text",
+              text: "Schauspiel ist bei den Schülern am wenigsten beliebt, da es in jeder Jahrgangsstufe immer die wenigsten Teilnehmer gibt",
+            },
+          ],
         },
       ],
     },
@@ -36,26 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Interest in basketball increases at every grade level",
+          label: [
+            {
+              kind: "text",
+              text: "Interest in basketball increases at every grade level",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Dance has the best prospects because interest is always increasing",
+          label: [
+            {
+              kind: "text",
+              text: "Dance has the best prospects because interest is always increasing",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Painting has the best prospects because interest is always increasing",
+          label: [
+            {
+              kind: "text",
+              text: "Painting has the best prospects because interest is always increasing",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "In every grade level, singing is the least popular hobby",
+          label: [
+            {
+              kind: "text",
+              text: "In every grade level, singing is the least popular hobby",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Acting is the least popular among students because it always has the fewest participants in every grade",
+          label: [
+            {
+              kind: "text",
+              text: "Acting is the least popular among students because it always has the fewest participants in every grade",
+            },
+          ],
         },
       ],
     },
@@ -64,27 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Peminat bola basket meningkat pada setiap jenjang kelas",
+          label: [
+            {
+              kind: "text",
+              text: "Peminat bola basket meningkat pada setiap jenjang kelas",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Seni tari memiliki prospek paling baik karena peminatnya selalu meningkat",
+          label: [
+            {
+              kind: "text",
+              text: "Seni tari memiliki prospek paling baik karena peminatnya selalu meningkat",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Seni lukis memiliki prospek paling baik karena peminatnya selalu meningkat",
+          label: [
+            {
+              kind: "text",
+              text: "Seni lukis memiliki prospek paling baik karena peminatnya selalu meningkat",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
+          label: [
+            {
+              kind: "text",
+              text: "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
+          label: [
+            {
+              kind: "text",
+              text: "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
+            },
+          ],
         },
       ],
     },

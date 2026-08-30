@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{37}{40}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{37}{40}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{32}{40}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{32}{40}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{21}{40}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{21}{40}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{15}{40}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{15}{40}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{9}{40}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{9}{40}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{37}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{32}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{21}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{15}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{9}{40}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{37}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{32}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{21}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{15}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{9}{40}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{37}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{32}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{21}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{15}{40}$$" },
-        { isCorrect: false, label: "$$\\frac{9}{40}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{37}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{32}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{21}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{15}{40}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{9}{40}" }],
+        },
       ],
     },
   },

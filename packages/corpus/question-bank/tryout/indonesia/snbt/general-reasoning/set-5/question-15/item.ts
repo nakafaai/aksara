@@ -7,27 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Treffen fand im Staatspalast statt",
+          label: [
+            { kind: "text", text: "Das Treffen fand im Staatspalast statt" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Das Leistungsbilanzdefizit war mehr als dreimal so hoch wie das Handelsbilanzdefizit",
+          label: [
+            {
+              kind: "text",
+              text: "Das Leistungsbilanzdefizit war mehr als dreimal so hoch wie das Handelsbilanzdefizit",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
+          label: [
+            {
+              kind: "text",
+              text: "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Der Text beweist, dass der Handelskrieg das Handelsdefizit dauerhaft verursachte",
+          label: [
+            {
+              kind: "text",
+              text: "Der Text beweist, dass der Handelskrieg das Handelsdefizit dauerhaft verursachte",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Nach dem Text kann die Wirtschaft künftige Herausforderungen ohne die Regierung bewältigen",
+          label: [
+            {
+              kind: "text",
+              text: "Nach dem Text kann die Wirtschaft künftige Herausforderungen ohne die Regierung bewältigen",
+            },
+          ],
         },
       ],
     },
@@ -36,27 +54,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The meeting took place at the State Palace",
+          label: [
+            {
+              kind: "text",
+              text: "The meeting took place at the State Palace",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The current-account deficit was more than three times the trade-balance deficit",
+          label: [
+            {
+              kind: "text",
+              text: "The current-account deficit was more than three times the trade-balance deficit",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "The government requested concrete, quickly implementable input from business representatives",
+          label: [
+            {
+              kind: "text",
+              text: "The government requested concrete, quickly implementable input from business representatives",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The passage proves that the trade war permanently caused the trade deficit",
+          label: [
+            {
+              kind: "text",
+              text: "The passage proves that the trade war permanently caused the trade deficit",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The passage says business can address future challenges without government",
+          label: [
+            {
+              kind: "text",
+              text: "The passage says business can address future challenges without government",
+            },
+          ],
         },
       ],
     },
@@ -65,27 +104,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Pertemuan berlangsung di Istana Negara",
+          label: [
+            { kind: "text", text: "Pertemuan berlangsung di Istana Negara" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
+          label: [
+            {
+              kind: "text",
+              text: "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
+          label: [
+            {
+              kind: "text",
+              text: "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa perang dagang secara permanen menyebabkan defisit perdagangan",
+          label: [
+            {
+              kind: "text",
+              text: "Bacaan membuktikan bahwa perang dagang secara permanen menyebabkan defisit perdagangan",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Bacaan menyatakan dunia usaha dapat menghadapi tantangan mendatang tanpa pemerintah",
+          label: [
+            {
+              kind: "text",
+              text: "Bacaan menyatakan dunia usaha dapat menghadapi tantangan mendatang tanpa pemerintah",
+            },
+          ],
         },
       ],
     },

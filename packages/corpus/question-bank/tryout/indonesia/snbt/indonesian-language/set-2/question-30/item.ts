@@ -7,15 +7,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Baik letaknya untuk mendukung suatu tujuan",
+          label: [
+            {
+              kind: "text",
+              text: "Baik letaknya untuk mendukung suatu tujuan",
+            },
+          ],
         },
-        { isCorrect: false, label: "Disusun berdasarkan strategi militer" },
         {
           isCorrect: false,
-          label: "Berkaitan langsung dengan catatan sejarah",
+          label: [
+            { kind: "text", text: "Disusun berdasarkan strategi militer" },
+          ],
         },
-        { isCorrect: false, label: "Mencakup seluruh kebudayaan yang ada" },
-        { isCorrect: false, label: "Terpisah dari jalur perdagangan pesisir" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Berkaitan langsung dengan catatan sejarah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Mencakup seluruh kebudayaan yang ada" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Terpisah dari jalur perdagangan pesisir" },
+          ],
+        },
       ],
     },
   },

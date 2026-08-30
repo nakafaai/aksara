@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "die Zunahme sportlicher Aktivität während der COVID-19-Pandemie.",
+          label: [
+            {
+              kind: "text",
+              text: "die Zunahme sportlicher Aktivität während der COVID-19-Pandemie.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "die Notwendigkeit, evidenzbasierte Empfehlungen zum Sport während der Pandemie von Mythen zu unterscheiden.",
+          label: [
+            {
+              kind: "text",
+              text: "die Notwendigkeit, evidenzbasierte Empfehlungen zum Sport während der Pandemie von Mythen zu unterscheiden.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "die positiven Auswirkungen des Trainings auf unseren Körper.",
+          label: [
+            {
+              kind: "text",
+              text: "die positiven Auswirkungen des Trainings auf unseren Körper.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "die Vielfalt der sportlichen Aktivitäten während der Pandemie.",
+          label: [
+            {
+              kind: "text",
+              text: "die Vielfalt der sportlichen Aktivitäten während der Pandemie.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Bewegung ist eine der Möglichkeiten, Corona vorzubeugen.",
+          label: [
+            {
+              kind: "text",
+              text: "Bewegung ist eine der Möglichkeiten, Corona vorzubeugen.",
+            },
+          ],
         },
       ],
     },
@@ -35,25 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "the increase in exercise participation during the COVID-19 pandemic.",
+          label: [
+            {
+              kind: "text",
+              text: "the increase in exercise participation during the COVID-19 pandemic.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "the need to distinguish evidence-based exercise guidance from myths during the pandemic.",
+          label: [
+            {
+              kind: "text",
+              text: "the need to distinguish evidence-based exercise guidance from myths during the pandemic.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the positive impact of exercising for our bodies.",
+          label: [
+            {
+              kind: "text",
+              text: "the positive impact of exercising for our bodies.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the variety of sports activities during the pandemic.",
+          label: [
+            {
+              kind: "text",
+              text: "the variety of sports activities during the pandemic.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "exercise is one of the ways to prevent corona.",
+          label: [
+            {
+              kind: "text",
+              text: "exercise is one of the ways to prevent corona.",
+            },
+          ],
         },
       ],
     },
@@ -62,24 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "peningkatan partisipasi olahraga selama pandemi COVID-19.",
+          label: [
+            {
+              kind: "text",
+              text: "peningkatan partisipasi olahraga selama pandemi COVID-19.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "perlunya membedakan panduan olahraga berbasis bukti dari mitos selama pandemi.",
+          label: [
+            {
+              kind: "text",
+              text: "perlunya membedakan panduan olahraga berbasis bukti dari mitos selama pandemi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "dampak positif berolahraga bagi tubuh kita.",
+          label: [
+            {
+              kind: "text",
+              text: "dampak positif berolahraga bagi tubuh kita.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "ragam kegiatan olahraga pada masa pandemi.",
+          label: [
+            {
+              kind: "text",
+              text: "ragam kegiatan olahraga pada masa pandemi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "olahraga merupakan satu di antara cara mencegah corona.",
+          label: [
+            {
+              kind: "text",
+              text: "olahraga merupakan satu di antara cara mencegah corona.",
+            },
+          ],
         },
       ],
     },

@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$1 : \\sqrt[3]{2}$$",
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt[3]{2}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\sqrt[3]{2} : 1$$",
+          label: [{ display: "block", kind: "math", math: "\\sqrt[3]{2} : 1" }],
         },
         {
           isCorrect: false,
-          label: "$$1 : \\sqrt{2}$$",
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{2}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\sqrt{2} : 1$$",
+          label: [{ display: "block", kind: "math", math: "\\sqrt{2} : 1" }],
         },
         {
           isCorrect: false,
-          label: "$$1 : \\sqrt{3}$$",
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{3}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$1 : \\sqrt[3]{2}$$" },
-        { isCorrect: false, label: "$$\\sqrt[3]{2} : 1$$" },
-        { isCorrect: false, label: "$$1 : \\sqrt{2}$$" },
-        { isCorrect: false, label: "$$\\sqrt{2} : 1$$" },
-        { isCorrect: false, label: "$$1 : \\sqrt{3}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt[3]{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\sqrt[3]{2} : 1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\sqrt{2} : 1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{3}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$1 : \\sqrt[3]{2}$$" },
-        { isCorrect: false, label: "$$\\sqrt[3]{2} : 1$$" },
-        { isCorrect: false, label: "$$1 : \\sqrt{2}$$" },
-        { isCorrect: false, label: "$$\\sqrt{2} : 1$$" },
-        { isCorrect: false, label: "$$1 : \\sqrt{3}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt[3]{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\sqrt[3]{2} : 1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\sqrt{2} : 1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : \\sqrt{3}" }],
+        },
       ],
     },
   },

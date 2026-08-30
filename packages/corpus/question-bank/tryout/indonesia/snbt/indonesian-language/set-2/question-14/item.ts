@@ -5,11 +5,14 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "GPS Collar" },
-        { isCorrect: false, label: "Kamera jebak" },
-        { isCorrect: false, label: "Kompas" },
-        { isCorrect: false, label: "Radio genggam" },
-        { isCorrect: false, label: "Penerima satelit" },
+        { isCorrect: true, label: [{ kind: "text", text: "GPS Collar" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "Kamera jebak" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "Kompas" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "Radio genggam" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Penerima satelit" }],
+        },
       ],
     },
   },

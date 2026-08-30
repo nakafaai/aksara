@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$30\\text{ m}^2$$",
+          label: [{ display: "block", kind: "math", math: "30\\text{ m}^2" }],
         },
         {
           isCorrect: true,
-          label: "$$60\\text{ m}^2$$",
+          label: [{ display: "block", kind: "math", math: "60\\text{ m}^2" }],
         },
         {
           isCorrect: false,
-          label: "$$70\\text{ m}^2$$",
+          label: [{ display: "block", kind: "math", math: "70\\text{ m}^2" }],
         },
         {
           isCorrect: false,
-          label: "$$80\\text{ m}^2$$",
+          label: [{ display: "block", kind: "math", math: "80\\text{ m}^2" }],
         },
         {
           isCorrect: false,
-          label: "$$90\\text{ m}^2$$",
+          label: [{ display: "block", kind: "math", math: "90\\text{ m}^2" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$30\\text{ m}^2$$" },
-        { isCorrect: true, label: "$$60\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$70\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$80\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$90\\text{ m}^2$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "30\\text{ m}^2" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "60\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "70\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "90\\text{ m}^2" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$30\\text{ m}^2$$" },
-        { isCorrect: true, label: "$$60\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$70\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$80\\text{ m}^2$$" },
-        { isCorrect: false, label: "$$90\\text{ m}^2$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "30\\text{ m}^2" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "60\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "70\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80\\text{ m}^2" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "90\\text{ m}^2" }],
+        },
       ],
     },
   },

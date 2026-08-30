@@ -1,7 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
-import { canonicalQuestionResponse } from "#contracts/question/response";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import {
   canonicalizeTryoutCatalogFacts,
@@ -9,8 +8,11 @@ import {
   tryoutSectionLogicalIdentity,
 } from "#contracts/tryout/catalog-hash";
 import { tryoutPlacementLogicalIdentity } from "#contracts/tryout/identity";
-import { canonicalAssessmentLanguagePolicy } from "#contracts/tryout/language";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
+import {
+  canonicalizeAssessedLanguagePlacementFacts,
+  canonicalizeLocaleNeutralPlacementFacts,
+} from "#contracts/tryout/placement-closure";
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
 export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
@@ -40,6 +42,7 @@ interface CatalogClosureState {
 interface PlacementClosureState {
   readonly assessedFacts: Map<string, string>;
   readonly countsBySectionLocale: Map<string, number>;
+  readonly factsByIdentity: Map<string, string>;
   readonly localesByIdentity: Map<string, Set<AppLocale>>;
 }
 
@@ -153,18 +156,6 @@ function addCatalogRow(
   ).pipe(Effect.as(state));
 }
 
-/** Serializes assessed prompt facts that must be reused across app locales. */
-function assessedLanguageFacts(row: TryoutPlacementRecord["row"]) {
-  return JSON.stringify({
-    deliveryLanguage: row.deliveryLanguage,
-    languagePolicy: canonicalAssessmentLanguagePolicy(row.languagePolicy),
-    questionArtifactHash: row.questionArtifactHash,
-    questionArtifactLocale: row.questionArtifactLocale,
-    questionContentKey: row.questionContentKey,
-    response: canonicalQuestionResponse(row.response),
-  });
-}
-
 /** Adds one placement after binding it to a real catalog section. */
 function addPlacement(
   state: PlacementClosureState,
@@ -184,20 +175,36 @@ function addPlacement(
       })
     );
   }
+  const facts = canonicalizeLocaleNeutralPlacementFacts(row);
+  const expectedFacts = state.factsByIdentity.get(identity);
+  if (expectedFacts !== undefined && expectedFacts !== facts) {
+    return Effect.fail(
+      new TryoutClosureError({
+        actual: facts,
+        code: "fact-mismatch",
+        expected: expectedFacts,
+        identity,
+      })
+    );
+  }
+  state.factsByIdentity.set(identity, facts);
   if (row.languagePolicy.kind === "fixed") {
-    const facts = assessedLanguageFacts(row);
-    const expectedFacts = state.assessedFacts.get(identity);
-    if (expectedFacts !== undefined && expectedFacts !== facts) {
+    const assessedFacts = canonicalizeAssessedLanguagePlacementFacts(row);
+    const expectedAssessedFacts = state.assessedFacts.get(identity);
+    if (
+      expectedAssessedFacts !== undefined &&
+      expectedAssessedFacts !== assessedFacts
+    ) {
       return Effect.fail(
         new TryoutClosureError({
-          actual: facts,
+          actual: assessedFacts,
           code: "assessed-language",
-          expected: expectedFacts,
+          expected: expectedAssessedFacts,
           identity,
         })
       );
     }
-    state.assessedFacts.set(identity, facts);
+    state.assessedFacts.set(identity, assessedFacts);
   }
   const sectionLocaleIdentity = `${sectionIdentity}\0${row.appLocale}`;
   state.countsBySectionLocale.set(
@@ -286,6 +293,7 @@ export const verifyTryoutLocaleClosure = Effect.fn(
         ({
           assessedFacts: new Map(),
           countsBySectionLocale: new Map(),
+          factsByIdentity: new Map(),
           localesByIdentity: new Map(),
         }) satisfies PlacementClosureState,
       (state, record) =>

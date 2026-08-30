@@ -7,44 +7,98 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1170}{37}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{3510}{1111}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1177}{111}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1170}{999}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1177}{999}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{1170}{37}$$" },
-        { isCorrect: true, label: "$$\\frac{3510}{1111}$$" },
-        { isCorrect: false, label: "$$\\frac{1177}{111}$$" },
-        { isCorrect: false, label: "$$\\frac{1170}{999}$$" },
-        { isCorrect: false, label: "$$\\frac{1177}{999}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{1170}{37}$$" },
-        { isCorrect: true, label: "$$\\frac{3510}{1111}$$" },
-        { isCorrect: false, label: "$$\\frac{1177}{111}$$" },
-        { isCorrect: false, label: "$$\\frac{1170}{999}$$" },
-        { isCorrect: false, label: "$$\\frac{1177}{999}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
+          ],
+        },
       ],
     },
   },

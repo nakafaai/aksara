@@ -7,26 +7,51 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Der Beitrag des privaten Konsums bliebe genau bei $$2{,}74$$ Prozentpunkten",
+          label: [
+            {
+              kind: "text",
+              text: "Der Beitrag des privaten Konsums bliebe genau bei ",
+            },
+            { display: "block", kind: "math", math: "2{,}74" },
+            { kind: "text", text: " Prozentpunkten" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Der Investitionsbeitrag müsste unter $$2{,}17$$ Prozentpunkte fallen",
+          label: [
+            { kind: "text", text: "Der Investitionsbeitrag müsste unter " },
+            { display: "block", kind: "math", math: "2{,}17" },
+            { kind: "text", text: " Prozentpunkte fallen" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Der Beitrag des privaten Konsums läge unter $$2{,}74$$ Prozentpunkten",
+          label: [
+            {
+              kind: "text",
+              text: "Der Beitrag des privaten Konsums läge unter ",
+            },
+            { display: "block", kind: "math", math: "2{,}74" },
+            { kind: "text", text: " Prozentpunkten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Das gesamte Wirtschaftswachstum müsste negativ werden",
+          label: [
+            {
+              kind: "text",
+              text: "Das gesamte Wirtschaftswachstum müsste negativ werden",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der private Konsum würde keinen Beitrag leisten",
+          label: [
+            {
+              kind: "text",
+              text: "Der private Konsum würde keinen Beitrag leisten",
+            },
+          ],
         },
       ],
     },
@@ -35,26 +60,54 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The household-consumption contribution would remain exactly $$2.74$$ percentage points",
+          label: [
+            {
+              kind: "text",
+              text: "The household-consumption contribution would remain exactly ",
+            },
+            { display: "block", kind: "math", math: "2.74" },
+            { kind: "text", text: " percentage points" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The investment contribution would necessarily fall below $$2.17$$ percentage points",
+          label: [
+            {
+              kind: "text",
+              text: "The investment contribution would necessarily fall below ",
+            },
+            { display: "block", kind: "math", math: "2.17" },
+            { kind: "text", text: " percentage points" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "The household-consumption contribution would be below $$2.74$$ percentage points",
+          label: [
+            {
+              kind: "text",
+              text: "The household-consumption contribution would be below ",
+            },
+            { display: "block", kind: "math", math: "2.74" },
+            { kind: "text", text: " percentage points" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Total economic growth would necessarily become negative",
+          label: [
+            {
+              kind: "text",
+              text: "Total economic growth would necessarily become negative",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Household consumption would contribute nothing",
+          label: [
+            {
+              kind: "text",
+              text: "Household consumption would contribute nothing",
+            },
+          ],
         },
       ],
     },
@@ -63,26 +116,51 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Sumbangan konsumsi rumah tangga tetap tepat $$2{,}74$$ poin persentase",
+          label: [
+            {
+              kind: "text",
+              text: "Sumbangan konsumsi rumah tangga tetap tepat ",
+            },
+            { display: "block", kind: "math", math: "2{,}74" },
+            { kind: "text", text: " poin persentase" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Sumbangan investasi pasti turun di bawah $$2{,}17$$ poin persentase",
+          label: [
+            { kind: "text", text: "Sumbangan investasi pasti turun di bawah " },
+            { display: "block", kind: "math", math: "2{,}17" },
+            { kind: "text", text: " poin persentase" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Sumbangan konsumsi rumah tangga berada di bawah $$2{,}74$$ poin persentase",
+          label: [
+            {
+              kind: "text",
+              text: "Sumbangan konsumsi rumah tangga berada di bawah ",
+            },
+            { display: "block", kind: "math", math: "2{,}74" },
+            { kind: "text", text: " poin persentase" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pertumbuhan ekonomi total pasti menjadi negatif",
+          label: [
+            {
+              kind: "text",
+              text: "Pertumbuhan ekonomi total pasti menjadi negatif",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Konsumsi rumah tangga tidak memberikan sumbangan sama sekali",
+          label: [
+            {
+              kind: "text",
+              text: "Konsumsi rumah tangga tidak memberikan sumbangan sama sekali",
+            },
+          ],
         },
       ],
     },

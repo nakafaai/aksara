@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1 : 3$$",
+          label: [{ display: "block", kind: "math", math: "1 : 3" }],
         },
         {
           isCorrect: false,
-          label: "$$1 : 4$$",
+          label: [{ display: "block", kind: "math", math: "1 : 4" }],
         },
         {
           isCorrect: false,
-          label: "$$1 : 8$$",
+          label: [{ display: "block", kind: "math", math: "1 : 8" }],
         },
         {
           isCorrect: true,
-          label: "$$1 : 9$$",
+          label: [{ display: "block", kind: "math", math: "1 : 9" }],
         },
         {
           isCorrect: false,
-          label: "$$2 : 3$$",
+          label: [{ display: "block", kind: "math", math: "2 : 3" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1 : 3$$" },
-        { isCorrect: false, label: "$$1 : 4$$" },
-        { isCorrect: false, label: "$$1 : 8$$" },
-        { isCorrect: true, label: "$$1 : 9$$" },
-        { isCorrect: false, label: "$$2 : 3$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 3" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 4" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 8" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "1 : 9" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "2 : 3" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1 : 3$$" },
-        { isCorrect: false, label: "$$1 : 4$$" },
-        { isCorrect: false, label: "$$1 : 8$$" },
-        { isCorrect: true, label: "$$1 : 9$$" },
-        { isCorrect: false, label: "$$2 : 3$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 3" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 4" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1 : 8" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "1 : 9" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "2 : 3" }],
+        },
       ],
     },
   },

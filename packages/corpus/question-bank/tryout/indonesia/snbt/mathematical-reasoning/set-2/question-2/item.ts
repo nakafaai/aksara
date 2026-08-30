@@ -7,23 +7,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2",
+            },
+          ],
         },
       ],
     },
@@ -32,23 +62,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2",
+            },
+          ],
         },
       ],
     },
@@ -57,23 +117,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 2\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "4\\text{ m}^2, 5\\text{ m}^2, 6\\text{ m}^2",
+            },
+          ],
         },
       ],
     },

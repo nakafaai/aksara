@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0{,}15$$ Teil",
+          label: [
+            { display: "block", kind: "math", math: "0{,}15" },
+            { kind: "text", text: " Teil" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$0{,}3$$ Teil",
+          label: [
+            { display: "block", kind: "math", math: "0{,}3" },
+            { kind: "text", text: " Teil" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$0{,}45$$ Teil",
+          label: [
+            { display: "block", kind: "math", math: "0{,}45" },
+            { kind: "text", text: " Teil" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$0{,}6$$ Teil",
+          label: [
+            { display: "block", kind: "math", math: "0{,}6" },
+            { kind: "text", text: " Teil" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$0{,}75$$ Teil",
+          label: [
+            { display: "block", kind: "math", math: "0{,}75" },
+            { kind: "text", text: " Teil" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0.15$$ part" },
-        { isCorrect: false, label: "$$0.3$$ part" },
-        { isCorrect: false, label: "$$0.45$$ part" },
-        { isCorrect: false, label: "$$0.6$$ part" },
-        { isCorrect: true, label: "$$0.75$$ part" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0.15" },
+            { kind: "text", text: " part" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0.3" },
+            { kind: "text", text: " part" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0.45" },
+            { kind: "text", text: " part" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0.6" },
+            { kind: "text", text: " part" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "0.75" },
+            { kind: "text", text: " part" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0{,}15$$ bagian" },
-        { isCorrect: false, label: "$$0{,}3$$ bagian" },
-        { isCorrect: false, label: "$$0{,}45$$ bagian" },
-        { isCorrect: false, label: "$$0{,}6$$ bagian" },
-        { isCorrect: true, label: "$$0{,}75$$ bagian" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0{,}15" },
+            { kind: "text", text: " bagian" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0{,}3" },
+            { kind: "text", text: " bagian" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0{,}45" },
+            { kind: "text", text: " bagian" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0{,}6" },
+            { kind: "text", text: " bagian" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "0{,}75" },
+            { kind: "text", text: " bagian" },
+          ],
+        },
       ],
     },
   },

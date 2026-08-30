@@ -63,8 +63,8 @@
   to the same derivation and should remain visually distinct. Do not use it to
   group a formula with a graph, diagram, simulation, code block, or other
   non-math component.
-- MDX math props use a single LaTeX backslash. TypeScript choice strings escape
-  the backslash.
+- MDX math props use a single LaTeX backslash. TypeScript semantic math parts
+  escape the backslash.
 - Format learner-facing numbers according to the authored locale without
   changing their value. English uses `.` for decimals and `{,}` for grouped
   thousands. Indonesian and German use `{,}` for decimals and `{.}` for grouped

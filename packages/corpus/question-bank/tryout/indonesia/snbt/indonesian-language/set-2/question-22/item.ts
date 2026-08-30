@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
+          label: [
+            {
+              kind: "text",
+              text: "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
+          label: [
+            {
+              kind: "text",
+              text: "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Seluruh individu merupakan anggota satu pasukan",
+          label: [
+            {
+              kind: "text",
+              text: "Seluruh individu merupakan anggota satu pasukan",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Penelitian hanya menganalisis satu kerangka manusia",
+          label: [
+            {
+              kind: "text",
+              text: "Penelitian hanya menganalisis satu kerangka manusia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "DNA membuktikan bahwa wabah menewaskan seluruh individu",
+          label: [
+            {
+              kind: "text",
+              text: "DNA membuktikan bahwa wabah menewaskan seluruh individu",
+            },
+          ],
         },
       ],
     },

@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Jahr $$1$$",
+          label: [
+            { kind: "text", text: "Jahr " },
+            { display: "block", kind: "math", math: "1" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jahr $$2$$",
+          label: [
+            { kind: "text", text: "Jahr " },
+            { display: "block", kind: "math", math: "2" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jahr $$3$$",
+          label: [
+            { kind: "text", text: "Jahr " },
+            { display: "block", kind: "math", math: "3" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jahr $$4$$",
+          label: [
+            { kind: "text", text: "Jahr " },
+            { display: "block", kind: "math", math: "4" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jahr $$5$$",
+          label: [
+            { kind: "text", text: "Jahr " },
+            { display: "block", kind: "math", math: "5" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Year $$1$$" },
-        { isCorrect: false, label: "Year $$2$$" },
-        { isCorrect: false, label: "Year $$3$$" },
-        { isCorrect: false, label: "Year $$4$$" },
-        { isCorrect: false, label: "Year $$5$$" },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Year " },
+            { display: "block", kind: "math", math: "1" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Year " },
+            { display: "block", kind: "math", math: "2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Year " },
+            { display: "block", kind: "math", math: "3" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Year " },
+            { display: "block", kind: "math", math: "4" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Year " },
+            { display: "block", kind: "math", math: "5" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Tahun ke-$$1$$" },
-        { isCorrect: false, label: "Tahun ke-$$2$$" },
-        { isCorrect: false, label: "Tahun ke-$$3$$" },
-        { isCorrect: false, label: "Tahun ke-$$4$$" },
-        { isCorrect: false, label: "Tahun ke-$$5$$" },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Tahun ke-" },
+            { display: "block", kind: "math", math: "1" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tahun ke-" },
+            { display: "block", kind: "math", math: "2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tahun ke-" },
+            { display: "block", kind: "math", math: "3" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tahun ke-" },
+            { display: "block", kind: "math", math: "4" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tahun ke-" },
+            { display: "block", kind: "math", math: "5" },
+          ],
+        },
       ],
     },
   },

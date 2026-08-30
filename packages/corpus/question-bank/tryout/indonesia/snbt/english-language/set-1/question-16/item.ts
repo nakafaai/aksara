@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To prove that yoga cures every chronic illness.",
+          label: [
+            {
+              kind: "text",
+              text: "To prove that yoga cures every chronic illness.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "To persuade readers to replace medical care with yoga.",
+          label: [
+            {
+              kind: "text",
+              text: "To persuade readers to replace medical care with yoga.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
+          label: [
+            {
+              kind: "text",
+              text: "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "To compare the religious traditions behind different yoga styles.",
+          label: [
+            {
+              kind: "text",
+              text: "To compare the religious traditions behind different yoga styles.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "To teach a complete sequence of advanced yoga poses.",
+          label: [
+            {
+              kind: "text",
+              text: "To teach a complete sequence of advanced yoga poses.",
+            },
+          ],
         },
       ],
     },

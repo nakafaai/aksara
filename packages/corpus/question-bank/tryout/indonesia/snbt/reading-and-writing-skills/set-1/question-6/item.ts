@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Dagegen",
+          label: [{ kind: "text", text: "Dagegen" }],
         },
         {
           isCorrect: true,
-          label: "Außerdem",
+          label: [{ kind: "text", text: "Außerdem" }],
         },
         {
           isCorrect: false,
-          label: "Deshalb",
+          label: [{ kind: "text", text: "Deshalb" }],
         },
         {
           isCorrect: false,
-          label: "Dennoch",
+          label: [{ kind: "text", text: "Dennoch" }],
         },
         {
           isCorrect: false,
-          label: "Zum Beispiel",
+          label: [{ kind: "text", text: "Zum Beispiel" }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "In contrast",
+          label: [{ kind: "text", text: "In contrast" }],
         },
         {
           isCorrect: true,
-          label: "In addition",
+          label: [{ kind: "text", text: "In addition" }],
         },
         {
           isCorrect: false,
-          label: "Therefore",
+          label: [{ kind: "text", text: "Therefore" }],
         },
         {
           isCorrect: false,
-          label: "Nevertheless",
+          label: [{ kind: "text", text: "Nevertheless" }],
         },
         {
           isCorrect: false,
-          label: "For example",
+          label: [{ kind: "text", text: "For example" }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Sebaliknya",
+          label: [{ kind: "text", text: "Sebaliknya" }],
         },
         {
           isCorrect: true,
-          label: "Selain itu",
+          label: [{ kind: "text", text: "Selain itu" }],
         },
         {
           isCorrect: false,
-          label: "Oleh karena itu",
+          label: [{ kind: "text", text: "Oleh karena itu" }],
         },
         {
           isCorrect: false,
-          label: "Namun",
+          label: [{ kind: "text", text: "Namun" }],
         },
         {
           isCorrect: false,
-          label: "Misalnya",
+          label: [{ kind: "text", text: "Misalnya" }],
         },
       ],
     },

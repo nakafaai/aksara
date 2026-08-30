@@ -7,23 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "das Wort *gewann* im Satz $$(3)$$.",
+          label: [
+            { kind: "text", text: "das Wort *gewann* im Satz " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "das Wort *datiert* im Satz $$(4)$$.",
+          label: [
+            { kind: "text", text: "das Wort *datiert* im Satz " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "das Wort *Proben* im Satz $$(5)$$.",
+          label: [
+            { kind: "text", text: "das Wort *Proben* im Satz " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "das Wort *Forschung* im Satz $$(6)$$.",
+          label: [
+            { kind: "text", text: "das Wort *Forschung* im Satz " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "das Wort *zirkulierten* im Satz $$(8)$$.",
+          label: [
+            { kind: "text", text: "das Wort *zirkulierten* im Satz " },
+            { display: "block", kind: "math", math: "(8)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -32,23 +52,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "the word *recovered* in sentence $$(3)$$.",
+          label: [
+            { kind: "text", text: "the word *recovered* in sentence " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "the word *date* in sentence $$(4)$$.",
+          label: [
+            { kind: "text", text: "the word *date* in sentence " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "the word *samples* in sentence $$(5)$$.",
+          label: [
+            { kind: "text", text: "the word *samples* in sentence " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "the word *research* in sentence $$(6)$$.",
+          label: [
+            { kind: "text", text: "the word *research* in sentence " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "the word *circulated* in sentence $$(8)$$.",
+          label: [
+            { kind: "text", text: "the word *circulated* in sentence " },
+            { display: "block", kind: "math", math: "(8)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -57,23 +97,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kata *menemukan* pada kalimat $$(3)$$.",
+          label: [
+            { kind: "text", text: "kata *menemukan* pada kalimat " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "kata *hidup* pada kalimat $$(4)$$.",
+          label: [
+            { kind: "text", text: "kata *hidup* pada kalimat " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "kata *sampel* pada kalimat $$(5)$$.",
+          label: [
+            { kind: "text", text: "kata *sampel* pada kalimat " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "kata *penelitian* pada kalimat $$(6)$$.",
+          label: [
+            { kind: "text", text: "kata *penelitian* pada kalimat " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "kata *beredar* pada kalimat $$(8)$$.",
+          label: [
+            { kind: "text", text: "kata *beredar* pada kalimat " },
+            { display: "block", kind: "math", math: "(8)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

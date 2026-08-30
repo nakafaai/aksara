@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$63$$",
+          label: [{ display: "block", kind: "math", math: "63" }],
         },
         {
           isCorrect: false,
-          label: "$$75$$",
+          label: [{ display: "block", kind: "math", math: "75" }],
         },
         {
           isCorrect: false,
-          label: "$$81$$",
+          label: [{ display: "block", kind: "math", math: "81" }],
         },
         {
           isCorrect: false,
-          label: "$$92$$",
+          label: [{ display: "block", kind: "math", math: "92" }],
         },
         {
           isCorrect: false,
-          label: "$$100$$",
+          label: [{ display: "block", kind: "math", math: "100" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$63$$" },
-        { isCorrect: false, label: "$$75$$" },
-        { isCorrect: false, label: "$$81$$" },
-        { isCorrect: false, label: "$$92$$" },
-        { isCorrect: false, label: "$$100$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "63" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "75" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "81" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "92" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "100" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$63$$" },
-        { isCorrect: false, label: "$$75$$" },
-        { isCorrect: false, label: "$$81$$" },
-        { isCorrect: false, label: "$$92$$" },
-        { isCorrect: false, label: "$$100$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "63" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "75" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "81" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "92" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "100" }],
+        },
       ],
     },
   },

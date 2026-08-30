@@ -7,24 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$P > Q$$",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P < Q$$",
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P = Q$$",
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
         },
         {
           isCorrect: true,
-          label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+          label: [
+            {
+              kind: "text",
+              text: "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$P = 2Q$$",
+          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
         },
       ],
     },
@@ -33,24 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$P > Q$$",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P < Q$$",
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P = Q$$",
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
         },
         {
           isCorrect: true,
-          label:
-            "The information provided is not sufficient to decide on one of the three options above",
+          label: [
+            {
+              kind: "text",
+              text: "The information provided is not sufficient to decide on one of the three options above",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$P = 2Q$$",
+          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
         },
       ],
     },
@@ -59,24 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$P > Q$$",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P < Q$$",
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P = Q$$",
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
         },
         {
           isCorrect: true,
-          label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+          label: [
+            {
+              kind: "text",
+              text: "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$P = 2Q$$",
+          label: [{ display: "block", kind: "math", math: "P = 2Q" }],
         },
       ],
     },

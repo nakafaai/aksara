@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4x^2 - 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 3x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 3x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 4x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 4x + 2" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 5x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 5x + 2" }],
         },
         {
           isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 6x + 2" }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4x^2 - 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 3x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 3x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 4x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 4x + 2" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 5x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 5x + 2" }],
         },
         {
           isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 6x + 2" }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4x^2 - 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 3x + 1$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 3x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 4x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 4x + 2" }],
         },
         {
           isCorrect: false,
-          label: "$$4x^2 - 5x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 5x + 2" }],
         },
         {
           isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
+          label: [{ display: "block", kind: "math", math: "4x^2 - 6x + 2" }],
         },
       ],
     },

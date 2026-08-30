@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "GenAI has already eliminated one quarter of all jobs worldwide.",
+          label: [
+            {
+              kind: "text",
+              text: "GenAI has already eliminated one quarter of all jobs worldwide.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
+          label: [
+            {
+              kind: "text",
+              text: "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Only low-income countries have occupations exposed to GenAI.",
+          label: [
+            {
+              kind: "text",
+              text: "Only low-income countries have occupations exposed to GenAI.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The ILO index predicts the exact date on which each worker will lose a job.",
+          label: [
+            {
+              kind: "text",
+              text: "The ILO index predicts the exact date on which each worker will lose a job.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Infrastructure and worker skills have no influence on technology adoption.",
+          label: [
+            {
+              kind: "text",
+              text: "Infrastructure and worker skills have no influence on technology adoption.",
+            },
+          ],
         },
       ],
     },

@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$975$$",
+          label: [{ display: "block", kind: "math", math: "975" }],
         },
         {
           isCorrect: false,
-          label: "$$974$$",
+          label: [{ display: "block", kind: "math", math: "974" }],
         },
         {
           isCorrect: false,
-          label: "$$973$$",
+          label: [{ display: "block", kind: "math", math: "973" }],
         },
         {
           isCorrect: false,
-          label: "$$972$$",
+          label: [{ display: "block", kind: "math", math: "972" }],
         },
         {
           isCorrect: false,
-          label: "$$971$$",
+          label: [{ display: "block", kind: "math", math: "971" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$975$$" },
-        { isCorrect: false, label: "$$974$$" },
-        { isCorrect: false, label: "$$973$$" },
-        { isCorrect: false, label: "$$972$$" },
-        { isCorrect: false, label: "$$971$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "975" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "974" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "973" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "972" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "971" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$975$$" },
-        { isCorrect: false, label: "$$974$$" },
-        { isCorrect: false, label: "$$973$$" },
-        { isCorrect: false, label: "$$972$$" },
-        { isCorrect: false, label: "$$971$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "975" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "974" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "973" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "972" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "971" }],
+        },
       ],
     },
   },

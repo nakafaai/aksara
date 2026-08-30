@@ -7,23 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ Snackstrauß und $$2$$ Geldsträuße",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Snackstrauß und " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Geldsträuße" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$2$$ Snacksträuße und $$2$$ Geldsträuße",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Snacksträuße und " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Geldsträuße" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ großer Blumenstrauß und $$2$$ Geldsträuße",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " großer Blumenstrauß und " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Geldsträuße" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ großer Blumenstrauß und $$2$$ Snacksträuße",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " großer Blumenstrauß und " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Snacksträuße" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ kleiner Blumenstrauß und $$2$$ Snacksträuße",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " kleiner Blumenstrauß und " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Snacksträuße" },
+          ],
         },
       ],
     },
@@ -32,23 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ snack bouquet and $$2$$ money bouquets",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " snack bouquet and " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquets" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$2$$ snack bouquets and $$2$$ money bouquets",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquets and " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquets" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ large flower and $$2$$ money bouquets",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " large flower and " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquets" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ large flower and $$2$$ snack bouquets",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " large flower and " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquets" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ small flower and $$2$$ snack bouquets",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " small flower and " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquets" },
+          ],
         },
       ],
     },
@@ -57,23 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ snack bouquet dan $$2$$ money bouquet",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " snack bouquet dan " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquet" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$2$$ snack bouquet dan $$2$$ money bouquet",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquet dan " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquet" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga besar dan $$2$$ money bouquet",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " bunga besar dan " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " money bouquet" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga besar dan $$2$$ snack bouquet",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " bunga besar dan " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquet" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga kecil dan $$2$$ snack bouquet",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " bunga kecil dan " },
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " snack bouquet" },
+          ],
         },
       ],
     },

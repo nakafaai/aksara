@@ -8,23 +8,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90 \\text{ Gramm}$$",
+          label: [
+            { display: "block", kind: "math", math: "90 \\text{ Gramm}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$92 \\text{ Gramm}$$",
+          label: [
+            { display: "block", kind: "math", math: "92 \\text{ Gramm}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$94 \\text{ Gramm}$$",
+          label: [
+            { display: "block", kind: "math", math: "94 \\text{ Gramm}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$96 \\text{ Gramm}$$",
+          label: [
+            { display: "block", kind: "math", math: "96 \\text{ Gramm}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$98 \\text{ Gramm}$$",
+          label: [
+            { display: "block", kind: "math", math: "98 \\text{ Gramm}" },
+          ],
         },
       ],
     },
@@ -33,23 +43,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90 \\text{ grams}$$",
+          label: [
+            { display: "block", kind: "math", math: "90 \\text{ grams}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$92 \\text{ grams}$$",
+          label: [
+            { display: "block", kind: "math", math: "92 \\text{ grams}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$94 \\text{ grams}$$",
+          label: [
+            { display: "block", kind: "math", math: "94 \\text{ grams}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$96 \\text{ grams}$$",
+          label: [
+            { display: "block", kind: "math", math: "96 \\text{ grams}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$98 \\text{ grams}$$",
+          label: [
+            { display: "block", kind: "math", math: "98 \\text{ grams}" },
+          ],
         },
       ],
     },
@@ -58,23 +78,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90 \\text{ gram}$$",
+          label: [{ display: "block", kind: "math", math: "90 \\text{ gram}" }],
         },
         {
           isCorrect: false,
-          label: "$$92 \\text{ gram}$$",
+          label: [{ display: "block", kind: "math", math: "92 \\text{ gram}" }],
         },
         {
           isCorrect: true,
-          label: "$$94 \\text{ gram}$$",
+          label: [{ display: "block", kind: "math", math: "94 \\text{ gram}" }],
         },
         {
           isCorrect: false,
-          label: "$$96 \\text{ gram}$$",
+          label: [{ display: "block", kind: "math", math: "96 \\text{ gram}" }],
         },
         {
           isCorrect: false,
-          label: "$$98 \\text{ gram}$$",
+          label: [{ display: "block", kind: "math", math: "98 \\text{ gram}" }],
         },
       ],
     },

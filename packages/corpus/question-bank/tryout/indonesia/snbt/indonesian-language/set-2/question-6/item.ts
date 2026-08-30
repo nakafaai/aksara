@@ -5,11 +5,26 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Komik dan novel" },
-        { isCorrect: true, label: "Dongeng dan pengetahuan" },
-        { isCorrect: false, label: "Cerita fiksi dan komik" },
-        { isCorrect: false, label: "Dongeng dan penelitian" },
-        { isCorrect: false, label: "Cerita fiksi dan keagamaan" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Komik dan novel" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Dongeng dan pengetahuan" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cerita fiksi dan komik" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dongeng dan penelitian" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cerita fiksi dan keagamaan" }],
+        },
       ],
     },
   },

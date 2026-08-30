@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The Kīholo Bay fishery can be harvested without ecological limits.",
+          label: [
+            {
+              kind: "text",
+              text: "The Kīholo Bay fishery can be harvested without ecological limits.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Every small-scale reef fishery distributes its catch in exactly the same way.",
+          label: [
+            {
+              kind: "text",
+              text: "Every small-scale reef fishery distributes its catch in exactly the same way.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Most of the Kīholo Bay catch was sold through commercial markets.",
+          label: [
+            {
+              kind: "text",
+              text: "Most of the Kīholo Bay catch was sold through commercial markets.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sharing seafood at cultural events has no social value.",
+          label: [
+            {
+              kind: "text",
+              text: "Sharing seafood at cultural events has no social value.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Commercial sales records alone would greatly underestimate the fishery's value to the community.",
+          label: [
+            {
+              kind: "text",
+              text: "Commercial sales records alone would greatly underestimate the fishery's value to the community.",
+            },
+          ],
         },
       ],
     },

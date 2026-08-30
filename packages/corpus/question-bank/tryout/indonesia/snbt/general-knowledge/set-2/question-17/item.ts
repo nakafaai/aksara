@@ -7,23 +7,38 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3$$.",
+          label: [
+            { display: "block", kind: "math", math: "3" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4$$.",
+          label: [
+            { display: "block", kind: "math", math: "4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$5$$.",
+          label: [
+            { display: "block", kind: "math", math: "5" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$6$$.",
+          label: [
+            { display: "block", kind: "math", math: "6" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$7$$.",
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -32,23 +47,38 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3$$.",
+          label: [
+            { display: "block", kind: "math", math: "3" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4$$.",
+          label: [
+            { display: "block", kind: "math", math: "4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$5$$.",
+          label: [
+            { display: "block", kind: "math", math: "5" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$6$$.",
+          label: [
+            { display: "block", kind: "math", math: "6" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$7$$.",
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -57,23 +87,38 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3$$.",
+          label: [
+            { display: "block", kind: "math", math: "3" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4$$.",
+          label: [
+            { display: "block", kind: "math", math: "4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$5$$.",
+          label: [
+            { display: "block", kind: "math", math: "5" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$6$$.",
+          label: [
+            { display: "block", kind: "math", math: "6" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$7$$.",
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

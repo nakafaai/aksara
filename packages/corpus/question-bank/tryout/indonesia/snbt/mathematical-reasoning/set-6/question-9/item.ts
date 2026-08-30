@@ -7,44 +7,164 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$y = -x^2 + 150x + 60{.}000$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 + 150x + 60{.}000",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$y = x^2 + 150x + 60{.}000$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 150x + 60{.}000",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$y = -x^2 - 150x + 60{.}000$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 - 150x + 60{.}000",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$y = x^2 - 150x + 60{.}000$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 - 150x + 60{.}000",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$y = x^2 + 200x + 60{.}000$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 200x + 60{.}000",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$y = -x^2 + 150x + 60{,}000$$" },
-        { isCorrect: true, label: "$$y = x^2 + 150x + 60{,}000$$" },
-        { isCorrect: false, label: "$$y = -x^2 - 150x + 60{,}000$$" },
-        { isCorrect: false, label: "$$y = x^2 - 150x + 60{,}000$$" },
-        { isCorrect: false, label: "$$y = x^2 + 200x + 60{,}000$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 + 150x + 60{,}000",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 150x + 60{,}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 - 150x + 60{,}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 - 150x + 60{,}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 200x + 60{,}000",
+            },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$y = -x^2 + 150x + 60{.}000$$" },
-        { isCorrect: true, label: "$$y = x^2 + 150x + 60{.}000$$" },
-        { isCorrect: false, label: "$$y = -x^2 - 150x + 60{.}000$$" },
-        { isCorrect: false, label: "$$y = x^2 - 150x + 60{.}000$$" },
-        { isCorrect: false, label: "$$y = x^2 + 200x + 60{.}000$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 + 150x + 60{.}000",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 150x + 60{.}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = -x^2 - 150x + 60{.}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 - 150x + 60{.}000",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "y = x^2 + 200x + 60{.}000",
+            },
+          ],
+        },
       ],
     },
   },

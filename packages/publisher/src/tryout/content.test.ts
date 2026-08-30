@@ -24,9 +24,9 @@ import {
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
-  "f49609cb49d4c3c585ce118399915b2d7ac18b035e0e47507d8bd1dc4ccae719",
-  "7e60c5c751bbbb607db4ef6977b21f72888a5b871107e95294607c3fbd5b286d",
-  "8ce174d1d7c42fb4436a0a6537b4f4eb9af95b9c8f289564fe67e3aa3da68292",
+  "e06972b164034889f9f7fd12aa7e6a439ac91ab98920511d8ff330d9c72f173a",
+  "7f0f8eddc95a80c096386511016a2a47c96b5e88714c0f2f12d67abf82254a01",
+  "f171a62ffa862d09e6f8738df07636603e6cc3dbbba2bef4df502c00aaef18d1",
 ];
 
 /** Loads exact real bindings once for every content-binding test. */

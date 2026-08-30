@@ -7,25 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Beras merupakan bahan pangan pokok bagi masyarakat Indonesia",
+          label: [
+            {
+              kind: "text",
+              text: "Beras merupakan bahan pangan pokok bagi masyarakat Indonesia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pasokan beras di Indonesia sedang menipis",
+          label: [
+            { kind: "text", text: "Pasokan beras di Indonesia sedang menipis" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
+          label: [
+            {
+              kind: "text",
+              text: "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
+          label: [
+            {
+              kind: "text",
+              text: "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pengolahan beras mengundang pertanyaan di setiap dapur",
+          label: [
+            {
+              kind: "text",
+              text: "Pengolahan beras mengundang pertanyaan di setiap dapur",
+            },
+          ],
         },
       ],
     },

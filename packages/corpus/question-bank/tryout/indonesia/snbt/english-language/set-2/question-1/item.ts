@@ -5,19 +5,39 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Why Everyone Should Swim Every Day" },
-        { isCorrect: false, label: "How Recreational Water Spreads Illness" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Why Everyone Should Swim Every Day" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "How Recreational Water Spreads Illness" },
+          ],
+        },
         {
           isCorrect: true,
-          label: "Swimming: Possible Benefits and Safety Considerations",
+          label: [
+            {
+              kind: "text",
+              text: "Swimming: Possible Benefits and Safety Considerations",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The Best Exercise for People with Arthritis",
+          label: [
+            {
+              kind: "text",
+              text: "The Best Exercise for People with Arthritis",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Why Water Exercise Prevents Every Illness",
+          label: [
+            { kind: "text", text: "Why Water Exercise Prevents Every Illness" },
+          ],
         },
       ],
     },

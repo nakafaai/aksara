@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Produkt.",
+          label: [{ kind: "text", text: "Produkt." }],
         },
         {
           isCorrect: false,
-          label: "produktiv.",
+          label: [{ kind: "text", text: "produktiv." }],
         },
         {
           isCorrect: false,
-          label: "Produktion.",
+          label: [{ kind: "text", text: "Produktion." }],
         },
         {
           isCorrect: false,
-          label: "Produzent.",
+          label: [{ kind: "text", text: "Produzent." }],
         },
         {
           isCorrect: true,
-          label: "Produktivität.",
+          label: [{ kind: "text", text: "Produktivität." }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "product.",
+          label: [{ kind: "text", text: "product." }],
         },
         {
           isCorrect: false,
-          label: "productive.",
+          label: [{ kind: "text", text: "productive." }],
         },
         {
           isCorrect: false,
-          label: "production.",
+          label: [{ kind: "text", text: "production." }],
         },
         {
           isCorrect: false,
-          label: "producer.",
+          label: [{ kind: "text", text: "producer." }],
         },
         {
           isCorrect: true,
-          label: "productivity.",
+          label: [{ kind: "text", text: "productivity." }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "produk.",
+          label: [{ kind: "text", text: "produk." }],
         },
         {
           isCorrect: false,
-          label: "produktif.",
+          label: [{ kind: "text", text: "produktif." }],
         },
         {
           isCorrect: false,
-          label: "produksi.",
+          label: [{ kind: "text", text: "produksi." }],
         },
         {
           isCorrect: false,
-          label: "produsen.",
+          label: [{ kind: "text", text: "produsen." }],
         },
         {
           isCorrect: true,
-          label: "produktivitas.",
+          label: [{ kind: "text", text: "produktivitas." }],
         },
       ],
     },

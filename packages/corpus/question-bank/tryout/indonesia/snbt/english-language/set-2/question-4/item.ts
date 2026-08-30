@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "It produces identical weight loss for every person who fasts.",
+          label: [
+            {
+              kind: "text",
+              text: "It produces identical weight loss for every person who fasts.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "It is designed primarily as a clinical treatment for obesity.",
+          label: [
+            {
+              kind: "text",
+              text: "It is designed primarily as a clinical treatment for obesity.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Its short-term average effects do not by themselves establish lasting weight loss.",
+          label: [
+            {
+              kind: "text",
+              text: "Its short-term average effects do not by themselves establish lasting weight loss.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "It permanently reduces fat-free mass and total body water.",
+          label: [
+            {
+              kind: "text",
+              text: "It permanently reduces fat-free mass and total body water.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "It always reduces calorie intake by a fixed amount.",
+          label: [
+            {
+              kind: "text",
+              text: "It always reduces calorie intake by a fixed amount.",
+            },
+          ],
         },
       ],
     },

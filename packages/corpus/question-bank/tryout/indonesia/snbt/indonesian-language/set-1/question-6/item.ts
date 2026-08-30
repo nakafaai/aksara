@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
+          label: [
+            {
+              kind: "text",
+              text: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
+          label: [
+            {
+              kind: "text",
+              text: "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pernyataan seorang peneliti tanpa data pemodelan",
+          label: [
+            {
+              kind: "text",
+              text: "Pernyataan seorang peneliti tanpa data pemodelan",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Penilaian umum terhadap kebijakan sampah Indonesia",
+          label: [
+            {
+              kind: "text",
+              text: "Penilaian umum terhadap kebijakan sampah Indonesia",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
+          label: [
+            {
+              kind: "text",
+              text: "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
+            },
+          ],
         },
       ],
     },

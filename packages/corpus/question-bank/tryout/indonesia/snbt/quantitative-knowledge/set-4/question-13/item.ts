@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$32$$",
+          label: [{ display: "block", kind: "math", math: "32" }],
         },
         {
           isCorrect: true,
-          label: "$$60$$",
+          label: [{ display: "block", kind: "math", math: "60" }],
         },
         {
           isCorrect: false,
-          label: "$$128$$",
+          label: [{ display: "block", kind: "math", math: "128" }],
         },
         {
           isCorrect: false,
-          label: "$$256$$",
+          label: [{ display: "block", kind: "math", math: "256" }],
         },
         {
           isCorrect: false,
-          label: "$$512$$",
+          label: [{ display: "block", kind: "math", math: "512" }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$32$$",
+          label: [{ display: "block", kind: "math", math: "32" }],
         },
         {
           isCorrect: true,
-          label: "$$60$$",
+          label: [{ display: "block", kind: "math", math: "60" }],
         },
         {
           isCorrect: false,
-          label: "$$128$$",
+          label: [{ display: "block", kind: "math", math: "128" }],
         },
         {
           isCorrect: false,
-          label: "$$256$$",
+          label: [{ display: "block", kind: "math", math: "256" }],
         },
         {
           isCorrect: false,
-          label: "$$512$$",
+          label: [{ display: "block", kind: "math", math: "512" }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$32$$",
+          label: [{ display: "block", kind: "math", math: "32" }],
         },
         {
           isCorrect: true,
-          label: "$$60$$",
+          label: [{ display: "block", kind: "math", math: "60" }],
         },
         {
           isCorrect: false,
-          label: "$$128$$",
+          label: [{ display: "block", kind: "math", math: "128" }],
         },
         {
           isCorrect: false,
-          label: "$$256$$",
+          label: [{ display: "block", kind: "math", math: "256" }],
         },
         {
           isCorrect: false,
-          label: "$$512$$",
+          label: [{ display: "block", kind: "math", math: "512" }],
         },
       ],
     },

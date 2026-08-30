@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kalimat (13)",
+          label: [{ kind: "text", text: "Kalimat (13)" }],
         },
         {
           isCorrect: true,
-          label: "Kalimat (9)",
+          label: [{ kind: "text", text: "Kalimat (9)" }],
         },
         {
           isCorrect: false,
-          label: "Kalimat (15)",
+          label: [{ kind: "text", text: "Kalimat (15)" }],
         },
         {
           isCorrect: false,
-          label: "Kalimat (7)",
+          label: [{ kind: "text", text: "Kalimat (7)" }],
         },
         {
           isCorrect: false,
-          label: "Kalimat (12)",
+          label: [{ kind: "text", text: "Kalimat (12)" }],
         },
       ],
     },

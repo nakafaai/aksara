@@ -5,16 +5,37 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Namun, sayangnya" },
-        { isCorrect: false, label: "Akhirnya, orang menganggap" },
         {
           isCorrect: false,
-          label: "Walaupun demikian, banyak orang yang beranggapan",
+          label: [{ kind: "text", text: "Namun, sayangnya" }],
         },
-        { isCorrect: true, label: "Meskipun memiliki daya tarik universal" },
         {
           isCorrect: false,
-          label: "Dibalik semua itu, ada peran pemerintah secara agregat",
+          label: [{ kind: "text", text: "Akhirnya, orang menganggap" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Walaupun demikian, banyak orang yang beranggapan",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Meskipun memiliki daya tarik universal" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Dibalik semua itu, ada peran pemerintah secara agregat",
+            },
+          ],
         },
       ],
     },

@@ -12,19 +12,29 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$, da $5>0$",
+          label: [
+            { display: "inline", kind: "math", math: "\\sqrt{5^2}=5" },
+            { kind: "text", text: ", da " },
+            { display: "inline", kind: "math", math: "5>0" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: [{ display: "inline", kind: "math", math: "(-5)^2=5^2" }],
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: [{ display: "inline", kind: "math", math: "5^{-1}=-5" }],
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: [
+            {
+              display: "inline",
+              kind: "math",
+              math: "5^{\\frac12}\\cdot 5^{\\frac12}=5",
+            },
+          ],
         },
       ],
     },
@@ -33,19 +43,29 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ because $5>0$",
+          label: [
+            { display: "inline", kind: "math", math: "\\sqrt{5^2}=5" },
+            { kind: "text", text: " because " },
+            { display: "inline", kind: "math", math: "5>0" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: [{ display: "inline", kind: "math", math: "(-5)^2=5^2" }],
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: [{ display: "inline", kind: "math", math: "5^{-1}=-5" }],
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: [
+            {
+              display: "inline",
+              kind: "math",
+              math: "5^{\\frac12}\\cdot 5^{\\frac12}=5",
+            },
+          ],
         },
       ],
     },
@@ -54,19 +74,29 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ untuk $5>0$",
+          label: [
+            { display: "inline", kind: "math", math: "\\sqrt{5^2}=5" },
+            { kind: "text", text: " untuk " },
+            { display: "inline", kind: "math", math: "5>0" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: [{ display: "inline", kind: "math", math: "(-5)^2=5^2" }],
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: [{ display: "inline", kind: "math", math: "5^{-1}=-5" }],
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: [
+            {
+              display: "inline",
+              kind: "math",
+              math: "5^{\\frac12}\\cdot 5^{\\frac12}=5",
+            },
+          ],
         },
       ],
     },

@@ -8,23 +8,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [2, 5) \\cup [5, 8)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [0, 2) \\cup [5, 10)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [0, 2) \\cup [5, 10)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 8)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 8)" }],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [5, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [5, 10)" }],
         },
         {
           isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 10)" }],
         },
       ],
     },
@@ -33,23 +45,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [2, 5) \\cup [5, 8)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [0, 2) \\cup [5, 10)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [0, 2) \\cup [5, 10)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 8)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 8)" }],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [5, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [5, 10)" }],
         },
         {
           isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 10)" }],
         },
       ],
     },
@@ -58,23 +82,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [2, 5) \\cup [5, 8)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [0, 2) \\cup [5, 10)$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "x \\in [0, 2) \\cup [5, 10)",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 8)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 8)" }],
         },
         {
           isCorrect: false,
-          label: "$$x \\in [5, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [5, 10)" }],
         },
         {
           isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
+          label: [{ display: "block", kind: "math", math: "x \\in [2, 10)" }],
         },
       ],
     },

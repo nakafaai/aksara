@@ -7,44 +7,69 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Erstes Angebot",
+          label: [{ kind: "text", text: "Erstes Angebot" }],
         },
         {
           isCorrect: true,
-          label: "Zweites Angebot",
+          label: [{ kind: "text", text: "Zweites Angebot" }],
         },
         {
           isCorrect: false,
-          label: "Beide Angebote sind gleichwertig",
+          label: [{ kind: "text", text: "Beide Angebote sind gleichwertig" }],
         },
         {
           isCorrect: false,
-          label: "Das erste Angebot ist doppelt so groß",
+          label: [
+            { kind: "text", text: "Das erste Angebot ist doppelt so groß" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kann nicht bestimmt werden",
+          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "First offer" },
-        { isCorrect: true, label: "Second offer" },
-        { isCorrect: false, label: "Both offers are equal" },
-        { isCorrect: false, label: "First offer is twice as large" },
-        { isCorrect: false, label: "Cannot be determined" },
+        { isCorrect: false, label: [{ kind: "text", text: "First offer" }] },
+        { isCorrect: true, label: [{ kind: "text", text: "Second offer" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Both offers are equal" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "First offer is twice as large" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cannot be determined" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Tawaran pertama" },
-        { isCorrect: true, label: "Tawaran kedua" },
-        { isCorrect: false, label: "Kedua tawaran sama besar" },
-        { isCorrect: false, label: "Tawaran pertama dua kali lebih besar" },
-        { isCorrect: false, label: "Tidak dapat ditentukan" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Tawaran pertama" }],
+        },
+        { isCorrect: true, label: [{ kind: "text", text: "Tawaran kedua" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Kedua tawaran sama besar" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tawaran pertama dua kali lebih besar" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+        },
       ],
     },
   },

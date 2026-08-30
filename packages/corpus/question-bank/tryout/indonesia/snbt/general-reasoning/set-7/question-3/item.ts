@@ -5,51 +5,104 @@ const item: QuestionItem = {
     de: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Am Sensor trat eine Störung auf." },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Am Sensor trat eine Störung auf." }],
+        },
         {
           isCorrect: true,
-          label: "Die planmäßige tägliche Reinigung wurde nicht ausgelassen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die planmäßige tägliche Reinigung wurde nicht ausgelassen.",
+            },
+          ],
         },
-        { isCorrect: false, label: "Die Warnlampe leuchtete." },
         {
           isCorrect: false,
-          label: "Auf dem Sensor blieben Rückstände zurück.",
+          label: [{ kind: "text", text: "Die Warnlampe leuchtete." }],
         },
         {
           isCorrect: false,
-          label: "Die planmäßige tägliche Reinigung wurde ausgelassen.",
+          label: [
+            { kind: "text", text: "Auf dem Sensor blieben Rückstände zurück." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Die planmäßige tägliche Reinigung wurde ausgelassen.",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "The sensor developed a fault." },
-        {
-          isCorrect: true,
-          label: "The scheduled daily cleaning was not skipped.",
-        },
-        { isCorrect: false, label: "The warning light turned on." },
-        { isCorrect: false, label: "Residue remained on the sensor." },
         {
           isCorrect: false,
-          label: "The scheduled daily cleaning was skipped.",
+          label: [{ kind: "text", text: "The sensor developed a fault." }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "The scheduled daily cleaning was not skipped.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The warning light turned on." }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Residue remained on the sensor." }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "The scheduled daily cleaning was skipped." },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Sensor mengalami gangguan." },
-        {
-          isCorrect: true,
-          label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
-        },
-        { isCorrect: false, label: "Lampu peringatan menyala." },
-        { isCorrect: false, label: "Residu tertinggal pada sensor." },
         {
           isCorrect: false,
-          label: "Pembersihan harian yang dijadwalkan dilewatkan.",
+          label: [{ kind: "text", text: "Sensor mengalami gangguan." }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Lampu peringatan menyala." }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Residu tertinggal pada sensor." }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Pembersihan harian yang dijadwalkan dilewatkan.",
+            },
+          ],
         },
       ],
     },

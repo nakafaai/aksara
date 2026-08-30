@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(0,4)$$",
+          label: [{ display: "block", kind: "math", math: "(0,4)" }],
         },
         {
           isCorrect: false,
-          label: "$$(1,4)$$",
+          label: [{ display: "block", kind: "math", math: "(1,4)" }],
         },
         {
           isCorrect: true,
-          label: "$$(1,3)$$",
+          label: [{ display: "block", kind: "math", math: "(1,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,3)$$",
+          label: [{ display: "block", kind: "math", math: "(2,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,4)$$",
+          label: [{ display: "block", kind: "math", math: "(2,4)" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(0,4)$$",
+          label: [{ display: "block", kind: "math", math: "(0,4)" }],
         },
         {
           isCorrect: false,
-          label: "$$(1,4)$$",
+          label: [{ display: "block", kind: "math", math: "(1,4)" }],
         },
         {
           isCorrect: true,
-          label: "$$(1,3)$$",
+          label: [{ display: "block", kind: "math", math: "(1,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,3)$$",
+          label: [{ display: "block", kind: "math", math: "(2,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,4)$$",
+          label: [{ display: "block", kind: "math", math: "(2,4)" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(0,4)$$",
+          label: [{ display: "block", kind: "math", math: "(0,4)" }],
         },
         {
           isCorrect: false,
-          label: "$$(1,4)$$",
+          label: [{ display: "block", kind: "math", math: "(1,4)" }],
         },
         {
           isCorrect: true,
-          label: "$$(1,3)$$",
+          label: [{ display: "block", kind: "math", math: "(1,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,3)$$",
+          label: [{ display: "block", kind: "math", math: "(2,3)" }],
         },
         {
           isCorrect: false,
-          label: "$$(2,4)$$",
+          label: [{ display: "block", kind: "math", math: "(2,4)" }],
         },
       ],
     },

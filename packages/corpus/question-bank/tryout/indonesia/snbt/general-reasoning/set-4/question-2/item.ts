@@ -5,31 +5,139 @@ const item: QuestionItem = {
     de: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$2$$ Teddybären" },
-        { isCorrect: false, label: "$$2$$ Murmeln" },
-        { isCorrect: false, label: "$$1$$ Ball und $$1$$ Barbie-Puppe" },
-        { isCorrect: false, label: "$$1$$ Barbie-Puppe und $$1$$ Murmel" },
-        { isCorrect: true, label: "$$1$$ Teddybär und $$1$$ Ball" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Teddybären" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " Murmeln" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Ball und " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Barbie-Puppe" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Barbie-Puppe und " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Murmel" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Teddybär und " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Ball" },
+          ],
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$2$$ teddy bears" },
-        { isCorrect: false, label: "$$2$$ marbles" },
-        { isCorrect: false, label: "$$1$$ ball and $$1$$ Barbie doll" },
-        { isCorrect: false, label: "$$1$$ Barbie doll and $$1$$ marble" },
-        { isCorrect: true, label: "$$1$$ teddy bear and $$1$$ ball" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " teddy bears" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " marbles" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " ball and " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Barbie doll" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Barbie doll and " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " marble" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " teddy bear and " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " ball" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$2$$ boneka beruang" },
-        { isCorrect: false, label: "$$2$$ kelereng" },
-        { isCorrect: false, label: "$$1$$ bola dan $$1$$ boneka Barbie" },
-        { isCorrect: false, label: "$$1$$ boneka Barbie dan $$1$$ kelereng" },
-        { isCorrect: true, label: "$$1$$ boneka beruang dan $$1$$ bola" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " boneka beruang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " kelereng" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " bola dan " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " boneka Barbie" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " boneka Barbie dan " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " kelereng" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " boneka beruang dan " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " bola" },
+          ],
+        },
       ],
     },
   },

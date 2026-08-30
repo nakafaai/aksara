@@ -7,28 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "the other sentences list devices without explaining the opening claim.",
+          label: [
+            {
+              kind: "text",
+              text: "the other sentences list devices without explaining the opening claim.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
+          label: [
+            {
+              kind: "text",
+              text: "the other sentences explain what successful integration looks like and how it supports the opening claim.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "the other sentences give historical examples that are unrelated to the opening claim.",
+          label: [
+            {
+              kind: "text",
+              text: "the other sentences give historical examples that are unrelated to the opening claim.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "the first sentence contradicts the warnings in the other sentences.",
+          label: [
+            {
+              kind: "text",
+              text: "the first sentence contradicts the warnings in the other sentences.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "the other sentences repeat the first sentence without adding detail.",
+          label: [
+            {
+              kind: "text",
+              text: "the other sentences repeat the first sentence without adding detail.",
+            },
+          ],
         },
       ],
     },

@@ -7,21 +7,46 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "the rapid growth of internet access worldwide.",
+          label: [
+            {
+              kind: "text",
+              text: "the rapid growth of internet access worldwide.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the replacement of teachers by digital tools.",
+          label: [
+            {
+              kind: "text",
+              text: "the replacement of teachers by digital tools.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "the conditions under which technology can support education.",
+          label: [
+            {
+              kind: "text",
+              text: "the conditions under which technology can support education.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the superiority of online learning over classrooms.",
+          label: [
+            {
+              kind: "text",
+              text: "the superiority of online learning over classrooms.",
+            },
+          ],
         },
-        { isCorrect: false, label: "the features of one educational device." },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "the features of one educational device." },
+          ],
+        },
       ],
     },
   },

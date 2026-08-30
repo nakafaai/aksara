@@ -7,23 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "NUR $$(1)$$, $$(2)$$ und $$(3)$$ sind wahr",
+          label: [
+            { kind: "text", text: "NUR " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " sind wahr" },
+          ],
         },
         {
           isCorrect: false,
-          label: "NUR $$(1)$$ und $$(3)$$ sind wahr",
+          label: [
+            { kind: "text", text: "NUR " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " sind wahr" },
+          ],
         },
         {
           isCorrect: false,
-          label: "NUR $$(2)$$ und $$(4)$$ sind wahr",
+          label: [
+            { kind: "text", text: "NUR " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " sind wahr" },
+          ],
         },
         {
           isCorrect: false,
-          label: "ALLE Aussagen sind wahr",
+          label: [{ kind: "text", text: "ALLE Aussagen sind wahr" }],
         },
         {
           isCorrect: false,
-          label: "ALLE Aussagen sind falsch",
+          label: [{ kind: "text", text: "ALLE Aussagen sind falsch" }],
         },
       ],
     },
@@ -32,23 +52,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$(1)$$, $$(2)$$, and $$(3)$$ ONLY are true",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", and " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " ONLY are true" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$(1)$$ and $$(3)$$ ONLY are true",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " ONLY are true" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ and $$(4)$$ ONLY are true",
+          label: [
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " ONLY are true" },
+          ],
         },
         {
           isCorrect: false,
-          label: "ALL statements are true",
+          label: [{ kind: "text", text: "ALL statements are true" }],
         },
         {
           isCorrect: false,
-          label: "ALL statements are false",
+          label: [{ kind: "text", text: "ALL statements are false" }],
         },
       ],
     },
@@ -57,23 +94,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ SAJA yang benar",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", dan " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " SAJA yang benar" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$(1)$$ dan $$(3)$$ SAJA yang benar",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " SAJA yang benar" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ dan $$(4)$$ SAJA yang benar",
+          label: [
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " SAJA yang benar" },
+          ],
         },
         {
           isCorrect: false,
-          label: "SEMUA pernyataan benar",
+          label: [{ kind: "text", text: "SEMUA pernyataan benar" }],
         },
         {
           isCorrect: false,
-          label: "SEMUA pernyataan salah",
+          label: [{ kind: "text", text: "SEMUA pernyataan salah" }],
         },
       ],
     },

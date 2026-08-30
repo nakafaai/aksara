@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$44{,}2$$",
+          label: [{ display: "block", kind: "math", math: "44{,}2" }],
         },
         {
           isCorrect: false,
-          label: "$$51{,}8$$",
+          label: [{ display: "block", kind: "math", math: "51{,}8" }],
         },
         {
           isCorrect: false,
-          label: "$$56{,}4$$",
+          label: [{ display: "block", kind: "math", math: "56{,}4" }],
         },
         {
           isCorrect: false,
-          label: "$$63{,}5$$",
+          label: [{ display: "block", kind: "math", math: "63{,}5" }],
         },
         {
           isCorrect: true,
-          label: "$$67{,}2$$",
+          label: [{ display: "block", kind: "math", math: "67{,}2" }],
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$44.2$$",
+          label: [{ display: "block", kind: "math", math: "44.2" }],
         },
         {
           isCorrect: false,
-          label: "$$51.8$$",
+          label: [{ display: "block", kind: "math", math: "51.8" }],
         },
         {
           isCorrect: false,
-          label: "$$56.4$$",
+          label: [{ display: "block", kind: "math", math: "56.4" }],
         },
         {
           isCorrect: false,
-          label: "$$63.5$$",
+          label: [{ display: "block", kind: "math", math: "63.5" }],
         },
         {
           isCorrect: true,
-          label: "$$67.2$$",
+          label: [{ display: "block", kind: "math", math: "67.2" }],
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$44{,}2$$",
+          label: [{ display: "block", kind: "math", math: "44{,}2" }],
         },
         {
           isCorrect: false,
-          label: "$$51{,}8$$",
+          label: [{ display: "block", kind: "math", math: "51{,}8" }],
         },
         {
           isCorrect: false,
-          label: "$$56{,}4$$",
+          label: [{ display: "block", kind: "math", math: "56{,}4" }],
         },
         {
           isCorrect: false,
-          label: "$$63{,}5$$",
+          label: [{ display: "block", kind: "math", math: "63{,}5" }],
         },
         {
           isCorrect: true,
-          label: "$$67{,}2$$",
+          label: [{ display: "block", kind: "math", math: "67{,}2" }],
         },
       ],
     },

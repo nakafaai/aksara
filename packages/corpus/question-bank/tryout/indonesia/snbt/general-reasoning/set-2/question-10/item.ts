@@ -7,44 +7,125 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2$$ große Äpfel",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " große Äpfel" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2$$ kleine Äpfel",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " kleine Äpfel" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2$$ große Orangen",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " große Orangen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2$$ kleine Orangen",
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " kleine Orangen" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$1$$ großer Apfel und $$1$$ kleine Orange",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " großer Apfel und " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " kleine Orange" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$2$$ large apples" },
-        { isCorrect: false, label: "$$2$$ small apples" },
-        { isCorrect: false, label: "$$2$$ large oranges" },
-        { isCorrect: false, label: "$$2$$ small oranges" },
-        { isCorrect: true, label: "$$1$$ large apple and $$1$$ small orange" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " large apples" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " small apples" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " large oranges" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " small oranges" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " large apple and " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " small orange" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$2$$ apel besar" },
-        { isCorrect: false, label: "$$2$$ apel kecil" },
-        { isCorrect: false, label: "$$2$$ jeruk besar" },
-        { isCorrect: false, label: "$$2$$ jeruk kecil" },
-        { isCorrect: true, label: "$$1$$ apel besar dan $$1$$ jeruk kecil" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " apel besar" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " apel kecil" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " jeruk besar" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " jeruk kecil" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " apel besar dan " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jeruk kecil" },
+          ],
+        },
       ],
     },
   },

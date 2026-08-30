@@ -7,23 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "a ranking of sports by the calories they burn.",
+          label: [
+            {
+              kind: "text",
+              text: "a ranking of sports by the calories they burn.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "replacing balanced meals with dietary supplements.",
+          label: [
+            {
+              kind: "text",
+              text: "replacing balanced meals with dietary supplements.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "ways to eliminate every source of stress.",
+          label: [
+            { kind: "text", text: "ways to eliminate every source of stress." },
+          ],
         },
         {
           isCorrect: true,
-          label: "when and how to seek additional support for stress.",
+          label: [
+            {
+              kind: "text",
+              text: "when and how to seek additional support for stress.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the history of international nutrition guidance.",
+          label: [
+            {
+              kind: "text",
+              text: "the history of international nutrition guidance.",
+            },
+          ],
         },
       ],
     },

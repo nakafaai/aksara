@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Überlauftor öffnet sich auf jeden Fall automatisch.",
+          label: [
+            {
+              kind: "text",
+              text: "Das Überlauftor öffnet sich auf jeden Fall automatisch.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die westlichen Beete bleiben auf jeden Fall trocken.",
+          label: [
+            {
+              kind: "text",
+              text: "Die westlichen Beete bleiben auf jeden Fall trocken.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Auf keinem Weg kann Wasser zu den westlichen Beeten gelangen.",
+          label: [
+            {
+              kind: "text",
+              text: "Auf keinem Weg kann Wasser zu den westlichen Beeten gelangen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die westlichen Beete können nicht grün werden.",
+          label: [
+            {
+              kind: "text",
+              text: "Die westlichen Beete können nicht grün werden.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Ob die westlichen Beete Wasser erhalten, lässt sich nicht ableiten.",
+          label: [
+            {
+              kind: "text",
+              text: "Ob die westlichen Beete Wasser erhalten, lässt sich nicht ableiten.",
+            },
+          ],
         },
       ],
     },
@@ -34,24 +57,39 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The overflow gate definitely opens automatically.",
+          label: [
+            {
+              kind: "text",
+              text: "The overflow gate definitely opens automatically.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The western beds definitely remain dry.",
+          label: [
+            { kind: "text", text: "The western beds definitely remain dry." },
+          ],
         },
         {
           isCorrect: false,
-          label: "No water can reach the western beds.",
+          label: [
+            { kind: "text", text: "No water can reach the western beds." },
+          ],
         },
         {
           isCorrect: false,
-          label: "The western beds cannot become green.",
+          label: [
+            { kind: "text", text: "The western beds cannot become green." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "It cannot be concluded whether the western beds receive water.",
+          label: [
+            {
+              kind: "text",
+              text: "It cannot be concluded whether the western beds receive water.",
+            },
+          ],
         },
       ],
     },
@@ -60,25 +98,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Pintu pelimpah pasti terbuka secara otomatis.",
+          label: [
+            {
+              kind: "text",
+              text: "Pintu pelimpah pasti terbuka secara otomatis.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Petak tanaman bagian barat pasti tetap kering.",
+          label: [
+            {
+              kind: "text",
+              text: "Petak tanaman bagian barat pasti tetap kering.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Tidak ada air yang dapat mencapai petak tanaman bagian barat.",
+          label: [
+            {
+              kind: "text",
+              text: "Tidak ada air yang dapat mencapai petak tanaman bagian barat.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Petak tanaman bagian barat tidak mungkin menghijau.",
+          label: [
+            {
+              kind: "text",
+              text: "Petak tanaman bagian barat tidak mungkin menghijau.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Tidak dapat disimpulkan apakah petak tanaman bagian barat menerima air.",
+          label: [
+            {
+              kind: "text",
+              text: "Tidak dapat disimpulkan apakah petak tanaman bagian barat menerima air.",
+            },
+          ],
         },
       ],
     },

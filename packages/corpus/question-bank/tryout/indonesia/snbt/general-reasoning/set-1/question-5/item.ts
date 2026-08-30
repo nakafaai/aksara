@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Es war der Anteil des Gesamtbudgets, der für landwirtschaftliche Produktionsmittel und Infrastruktur ausgegeben wurde.",
+          label: [
+            {
+              kind: "text",
+              text: "Es war der Anteil des Gesamtbudgets, der für landwirtschaftliche Produktionsmittel und Infrastruktur ausgegeben wurde.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Es war der Anteil des Budgets, der für andere Aufgaben des Ministeriums übrig blieb.",
+          label: [
+            {
+              kind: "text",
+              text: "Es war der Anteil des Budgets, der für andere Aufgaben des Ministeriums übrig blieb.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Es war der gemeldete Anstieg der Reisproduktion.",
+          label: [
+            {
+              kind: "text",
+              text: "Es war der gemeldete Anstieg der Reisproduktion.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Es war der gemeldete Anstieg der Maisproduktion.",
+          label: [
+            {
+              kind: "text",
+              text: "Es war der gemeldete Anstieg der Maisproduktion.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Es war der Anteil des Budgets, der ausschließlich zur Regelung von Importen diente.",
+          label: [
+            {
+              kind: "text",
+              text: "Es war der Anteil des Budgets, der ausschließlich zur Regelung von Importen diente.",
+            },
+          ],
         },
       ],
     },
@@ -35,26 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "It was the share of the ministry's total budget spent on agricultural production facilities and infrastructure.",
+          label: [
+            {
+              kind: "text",
+              text: "It was the share of the ministry's total budget spent on agricultural production facilities and infrastructure.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "It was the share of the budget left for other ministry needs.",
+          label: [
+            {
+              kind: "text",
+              text: "It was the share of the budget left for other ministry needs.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "It was the reported increase in rice production.",
+          label: [
+            {
+              kind: "text",
+              text: "It was the reported increase in rice production.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "It was the reported increase in corn production.",
+          label: [
+            {
+              kind: "text",
+              text: "It was the reported increase in corn production.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "It was the share of the budget used only to regulate imports.",
+          label: [
+            {
+              kind: "text",
+              text: "It was the share of the budget used only to regulate imports.",
+            },
+          ],
         },
       ],
     },
@@ -63,27 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
+          label: [
+            {
+              kind: "text",
+              text: "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
+          label: [
+            {
+              kind: "text",
+              text: "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
+          label: [
+            {
+              kind: "text",
+              text: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Angka itu merupakan kenaikan produksi jagung yang dilaporkan.",
+          label: [
+            {
+              kind: "text",
+              text: "Angka itu merupakan kenaikan produksi jagung yang dilaporkan.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Angka itu merupakan bagian anggaran yang hanya digunakan untuk mengatur impor.",
+          label: [
+            {
+              kind: "text",
+              text: "Angka itu merupakan bagian anggaran yang hanya digunakan untuk mengatur impor.",
+            },
+          ],
         },
       ],
     },

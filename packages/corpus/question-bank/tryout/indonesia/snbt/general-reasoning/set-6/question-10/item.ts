@@ -7,44 +7,50 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "it",
+          label: [{ kind: "text", text: "it" }],
         },
         {
           isCorrect: false,
-          label: "pit",
+          label: [{ kind: "text", text: "pit" }],
         },
         {
           isCorrect: false,
-          label: "sit",
+          label: [{ kind: "text", text: "sit" }],
         },
         {
           isCorrect: true,
-          label: "nit",
+          label: [{ kind: "text", text: "nit" }],
         },
         {
           isCorrect: false,
-          label: "nichts davon",
+          label: [{ kind: "text", text: "nichts davon" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "it" },
-        { isCorrect: false, label: "pit" },
-        { isCorrect: false, label: "sit" },
-        { isCorrect: true, label: "nit" },
-        { isCorrect: false, label: "none of the above" },
+        { isCorrect: false, label: [{ kind: "text", text: "it" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "pit" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "sit" }] },
+        { isCorrect: true, label: [{ kind: "text", text: "nit" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "none of the above" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "it" },
-        { isCorrect: false, label: "pit" },
-        { isCorrect: false, label: "sit" },
-        { isCorrect: true, label: "nit" },
-        { isCorrect: false, label: "tidak ada satupun" },
+        { isCorrect: false, label: [{ kind: "text", text: "it" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "pit" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "sit" }] },
+        { isCorrect: true, label: [{ kind: "text", text: "nit" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "tidak ada satupun" }],
+        },
       ],
     },
   },

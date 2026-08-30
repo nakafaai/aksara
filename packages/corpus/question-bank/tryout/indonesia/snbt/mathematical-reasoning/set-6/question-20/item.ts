@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0{,}72$$ Km",
+          label: [
+            { display: "block", kind: "math", math: "0{,}72" },
+            { kind: "text", text: " Km" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1{,}44$$ Km",
+          label: [
+            { display: "block", kind: "math", math: "1{,}44" },
+            { kind: "text", text: " Km" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$2{,}88$$ Km",
+          label: [
+            { display: "block", kind: "math", math: "2{,}88" },
+            { kind: "text", text: " Km" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3{,}66$$ Km",
+          label: [
+            { display: "block", kind: "math", math: "3{,}66" },
+            { kind: "text", text: " Km" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4{,}20$$ Km",
+          label: [
+            { display: "block", kind: "math", math: "4{,}20" },
+            { kind: "text", text: " Km" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0.72$$ Km" },
-        { isCorrect: false, label: "$$1.44$$ Km" },
-        { isCorrect: true, label: "$$2.88$$ Km" },
-        { isCorrect: false, label: "$$3.66$$ Km" },
-        { isCorrect: false, label: "$$4.20$$ Km" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0.72" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1.44" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "2.88" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3.66" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "4.20" },
+            { kind: "text", text: " Km" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0{,}72$$ Km" },
-        { isCorrect: false, label: "$$1{,}44$$ Km" },
-        { isCorrect: true, label: "$$2{,}88$$ Km" },
-        { isCorrect: false, label: "$$3{,}66$$ Km" },
-        { isCorrect: false, label: "$$4{,}20$$ Km" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0{,}72" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1{,}44" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "2{,}88" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3{,}66" },
+            { kind: "text", text: " Km" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "4{,}20" },
+            { kind: "text", text: " Km" },
+          ],
+        },
       ],
     },
   },

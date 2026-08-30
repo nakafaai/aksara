@@ -7,23 +7,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "achtundvierzig-Komma-drei-fünf-Prozent.",
+          label: [
+            { kind: "text", text: "achtundvierzig-Komma-drei-fünf-Prozent." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$48{,}35\\,\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35\\,\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48{,}35\\text{-}\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35\\text{-}\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48{,}35$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4835\\,\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "4835\\,\\%" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -32,23 +46,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "forty-eight-point-three-five-percent.",
+          label: [
+            { kind: "text", text: "forty-eight-point-three-five-percent." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$48.35\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48.35\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48.35\\text{-}\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48.35\\text{-}\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48.35$$.",
+          label: [
+            { display: "block", kind: "math", math: "48.35" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4835\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "4835\\%" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -57,23 +85,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "empat-puluh-delapan-koma-tiga-lima-persen.",
+          label: [
+            {
+              kind: "text",
+              text: "empat-puluh-delapan-koma-tiga-lima-persen.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$48{,}35\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48{,}35\\text{-}\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35\\text{-}\\%" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48{,}35$$.",
+          label: [
+            { display: "block", kind: "math", math: "48{,}35" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4835\\%$$.",
+          label: [
+            { display: "block", kind: "math", math: "4835\\%" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

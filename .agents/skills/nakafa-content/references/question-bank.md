@@ -54,13 +54,36 @@ its choices merely because the application locale changes.
 - Do not remove reasoning merely to reduce line count. Remove only duplicated
   conclusions, generic headings, filler transitions, and presentation noise.
 
-## Choices
+## Response items
 
-- Import `QuestionChoices` from
-  `@nakafa/aksara-contracts/projection/question`.
-- Include exactly the artifact locales derived for the stable section identity.
-- Keep exactly one correct choice unless the assessment format explicitly owns
-  another rule.
-- Use `$$...$$` for math labels and escape LaTeX backslashes in TypeScript
+- Author exactly one `item.ts` beside the question and answer MDX files. Import
+  only the `QuestionItem` type from
+  `@nakafa/aksara-contracts/question/item`, assign one literal `item` constant,
+  and export it as default. The corpus reader deliberately rejects executable
+  values, helper imports, spreads, computed keys, duplicate keys, and additional
+  statements.
+- Put responses under their exact artifact locale. Include every locale derived
+  from the stable section language policy and no others.
+- Use the stable response kinds `single-choice`, `multiple-choice`, and
+  `category`. Array position is the authoring order. Publication derives stable
+  option, statement, and category keys once, so authors must not duplicate those
+  runtime identities.
+- A response label is a non-empty ordered array of semantic fragments. Use
+  `{ kind: "text", text: "..." }` for prose and
+  `{ kind: "math", display: "inline", math: "..." }` or
+  `{ kind: "math", display: "block", math: "..." }` for LaTeX. Never place
+  `$...$` or `$$...$$` delimiters inside a text fragment, and never flatten
+  mathematics into a label string. Escape LaTeX backslashes in TypeScript math
   strings.
-- Preserve assessed-language choices across app locales.
+- A `single-choice` response has at least two options and exactly one correct
+  option. A `multiple-choice` response has at least two correct options and at
+  least one distractor. A `category` response has at least two categories and
+  one or more statements whose one-based `correctCategoryOrder` refers to an
+  existing category.
+- Locale siblings may translate their labels, but they must preserve the same
+  response kind, array structure, and answer key. An assessed-language section
+  owns one response in that assessed language instead of duplicating it for the
+  application locale.
+- When an official blueprint applies, record `cognitiveLevel`, `contentDomain`,
+  and `topic` on the item. Use one `stimulusKey` for a contiguous grouped
+  stimulus and preserve it across every localized placement.

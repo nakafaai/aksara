@@ -7,6 +7,39 @@ const PositiveOrderSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThan(0))
 );
 
+const NonEmptyContentSchema = Schema.String.pipe(
+  Schema.check(
+    Schema.makeFilter((value) => value.length > 0, {
+      message: "Response content parts must not be empty.",
+    })
+  )
+);
+
+const QuestionResponseTextPartSchema = Schema.Struct({
+  kind: Schema.Literal("text"),
+  text: NonEmptyContentSchema,
+});
+
+const QuestionResponseMathPartSchema = Schema.Struct({
+  display: Schema.Literals(["block", "inline"]),
+  kind: Schema.Literal("math"),
+  math: NonEmptyContentSchema,
+});
+
+/** One semantic text or mathematics fragment in a response label. */
+export const QuestionResponseContentPartSchema = Schema.Union([
+  QuestionResponseMathPartSchema,
+  QuestionResponseTextPartSchema,
+]);
+export type QuestionResponseContentPart =
+  typeof QuestionResponseContentPartSchema.Type;
+
+/** Ordered semantic content rendered without reparsing delimiter strings. */
+export const QuestionResponseContentSchema = Schema.NonEmptyArray(
+  QuestionResponseContentPartSchema
+);
+export type QuestionResponseContent = typeof QuestionResponseContentSchema.Type;
+
 /** Response formats supported by one assessment item. */
 export const QuestionResponseKindSchema = Schema.Literals([
   "category",
@@ -17,7 +50,7 @@ export type QuestionResponseKind = typeof QuestionResponseKindSchema.Type;
 
 const QuestionOptionSchema = Schema.Struct({
   isCorrect: Schema.Boolean,
-  label: Schema.String,
+  label: QuestionResponseContentSchema,
   optionKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(OPTION_KEY_PATTERN))
   ),
@@ -77,7 +110,7 @@ const QuestionCategorySchema = Schema.Struct({
   categoryKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(CATEGORY_KEY_PATTERN))
   ),
-  label: Schema.String,
+  label: QuestionResponseContentSchema,
   order: PositiveOrderSchema,
 });
 
@@ -85,7 +118,7 @@ const QuestionCategoryStatementSchema = Schema.Struct({
   correctCategoryKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(CATEGORY_KEY_PATTERN))
   ),
-  label: Schema.String,
+  label: QuestionResponseContentSchema,
   order: PositiveOrderSchema,
   statementKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(STATEMENT_KEY_PATTERN))
@@ -144,20 +177,59 @@ export const QuestionResponseSchema = Schema.Union([
 ]);
 export type QuestionResponse = typeof QuestionResponseSchema.Type;
 
+/** Returns response content in stable field order for signed canonicalizers. */
+export function canonicalQuestionResponseContent(
+  content: QuestionResponseContent
+) {
+  return content.map((part) =>
+    part.kind === "text"
+      ? { kind: part.kind, text: part.text }
+      : { display: part.display, kind: part.kind, math: part.math }
+  );
+}
+
+/** Returns locale-neutral response identity without localized label content. */
+export function canonicalQuestionResponseStructure(response: QuestionResponse) {
+  if (response.kind === "category") {
+    return {
+      categories: response.categories.map(({ categoryKey, order }) => ({
+        categoryKey,
+        order,
+      })),
+      kind: response.kind,
+      statements: response.statements.map(
+        ({ correctCategoryKey, order, statementKey }) => ({
+          correctCategoryKey,
+          order,
+          statementKey,
+        })
+      ),
+    };
+  }
+  return {
+    kind: response.kind,
+    options: response.options.map(({ isCorrect, optionKey, order }) => ({
+      isCorrect,
+      optionKey,
+      order,
+    })),
+  };
+}
+
 /** Returns response facts in stable field order for signed canonicalizers. */
 export function canonicalQuestionResponse(response: QuestionResponse) {
   if (response.kind === "category") {
     return {
       categories: response.categories.map(({ categoryKey, label, order }) => ({
         categoryKey,
-        label,
+        label: canonicalQuestionResponseContent(label),
         order,
       })),
       kind: response.kind,
       statements: response.statements.map(
         ({ correctCategoryKey, label, order, statementKey }) => ({
           correctCategoryKey,
-          label,
+          label: canonicalQuestionResponseContent(label),
           order,
           statementKey,
         })
@@ -168,7 +240,7 @@ export function canonicalQuestionResponse(response: QuestionResponse) {
     kind: response.kind,
     options: response.options.map(({ isCorrect, label, optionKey, order }) => ({
       isCorrect,
-      label,
+      label: canonicalQuestionResponseContent(label),
       optionKey,
       order,
     })),

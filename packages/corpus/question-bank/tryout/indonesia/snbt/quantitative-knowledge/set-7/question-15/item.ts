@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$P > Q$$",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
         },
         {
           isCorrect: true,
-          label: "$$P < Q$$",
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P = Q$$",
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P + Q = 80$$",
+          label: [{ display: "block", kind: "math", math: "P + Q = 80" }],
         },
         {
           isCorrect: false,
-          label: "Kann nicht bestimmt werden",
+          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$P > Q$$" },
-        { isCorrect: true, label: "$$P < Q$$" },
-        { isCorrect: false, label: "$$P = Q$$" },
-        { isCorrect: false, label: "$$P + Q = 80$$" },
-        { isCorrect: false, label: "Cannot be determined" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P + Q = 80" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cannot be determined" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$P > Q$$" },
-        { isCorrect: true, label: "$$P < Q$$" },
-        { isCorrect: false, label: "$$P = Q$$" },
-        { isCorrect: false, label: "$$P + Q = 80$$" },
-        { isCorrect: false, label: "Tidak dapat ditentukan" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P + Q = 80" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+        },
       ],
     },
   },

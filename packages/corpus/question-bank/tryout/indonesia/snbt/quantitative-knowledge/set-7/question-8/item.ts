@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$900$$",
+          label: [{ display: "block", kind: "math", math: "900" }],
         },
         {
           isCorrect: false,
-          label: "$$600$$",
+          label: [{ display: "block", kind: "math", math: "600" }],
         },
         {
           isCorrect: true,
-          label: "$$450$$",
+          label: [{ display: "block", kind: "math", math: "450" }],
         },
         {
           isCorrect: false,
-          label: "$$300$$",
+          label: [{ display: "block", kind: "math", math: "300" }],
         },
         {
           isCorrect: false,
-          label: "$$150$$",
+          label: [{ display: "block", kind: "math", math: "150" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$900$$" },
-        { isCorrect: false, label: "$$600$$" },
-        { isCorrect: true, label: "$$450$$" },
-        { isCorrect: false, label: "$$300$$" },
-        { isCorrect: false, label: "$$150$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "900" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "600" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "450" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "300" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "150" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$900$$" },
-        { isCorrect: false, label: "$$600$$" },
-        { isCorrect: true, label: "$$450$$" },
-        { isCorrect: false, label: "$$300$$" },
-        { isCorrect: false, label: "$$150$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "900" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "600" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "450" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "300" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "150" }],
+        },
       ],
     },
   },

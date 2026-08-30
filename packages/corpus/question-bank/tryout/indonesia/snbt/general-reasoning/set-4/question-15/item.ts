@@ -5,64 +5,135 @@ const item: QuestionItem = {
     de: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Der Preis von Nudel A ist nie gesunken" },
         {
           isCorrect: false,
-          label: "Der Preis von Nudel B ist in jedem Zeitraum gestiegen",
+          label: [
+            { kind: "text", text: "Der Preis von Nudel A ist nie gesunken" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Der Preis von Nudel B ist in jedem Zeitraum gestiegen",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Bei einem Nudelprodukt sank der Preis genau einmal",
+          label: [
+            {
+              kind: "text",
+              text: "Bei einem Nudelprodukt sank der Preis genau einmal",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Bei jedem Produkt gab es mehr Anstiege als Rückgänge",
+          label: [
+            {
+              kind: "text",
+              text: "Bei jedem Produkt gab es mehr Anstiege als Rückgänge",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der Preis von Nudel A lag jedes Jahr unter Rp $$3000$$",
+          label: [
+            {
+              kind: "text",
+              text: "Der Preis von Nudel A lag jedes Jahr unter Rp ",
+            },
+            { display: "block", kind: "math", math: "3000" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "The price of Noodle A never decreased" },
         {
           isCorrect: false,
-          label: "The price of Noodle B increased in every interval",
+          label: [
+            { kind: "text", text: "The price of Noodle A never decreased" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "The price of Noodle B increased in every interval",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "One noodle product experienced exactly one price decrease",
+          label: [
+            {
+              kind: "text",
+              text: "One noodle product experienced exactly one price decrease",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Every product rose more often than it fell",
+          label: [
+            {
+              kind: "text",
+              text: "Every product rose more often than it fell",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The price of Noodle A stayed below Rp $$3000$$ every year",
+          label: [
+            { kind: "text", text: "The price of Noodle A stayed below Rp " },
+            { display: "block", kind: "math", math: "3000" },
+            { kind: "text", text: " every year" },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Harga Mie A tidak pernah turun" },
-        { isCorrect: false, label: "Harga Mie B naik pada setiap periode" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Harga Mie A tidak pernah turun" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Harga Mie B naik pada setiap periode" },
+          ],
+        },
         {
           isCorrect: true,
-          label:
-            "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
+          label: [
+            {
+              kind: "text",
+              text: "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Setiap produk lebih sering naik daripada turun",
+          label: [
+            {
+              kind: "text",
+              text: "Setiap produk lebih sering naik daripada turun",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Harga Mie A selalu di bawah Rp $$3000$$ setiap tahun",
+          label: [
+            { kind: "text", text: "Harga Mie A selalu di bawah Rp " },
+            { display: "block", kind: "math", math: "3000" },
+            { kind: "text", text: " setiap tahun" },
+          ],
         },
       ],
     },

@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$175$$ cm",
+          label: [
+            { display: "block", kind: "math", math: "175" },
+            { kind: "text", text: " cm" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$189$$ cm",
+          label: [
+            { display: "block", kind: "math", math: "189" },
+            { kind: "text", text: " cm" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$192$$ cm",
+          label: [
+            { display: "block", kind: "math", math: "192" },
+            { kind: "text", text: " cm" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$221$$ cm",
+          label: [
+            { display: "block", kind: "math", math: "221" },
+            { kind: "text", text: " cm" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$235$$ cm",
+          label: [
+            { display: "block", kind: "math", math: "235" },
+            { kind: "text", text: " cm" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$175$$ cm" },
-        { isCorrect: true, label: "$$189$$ cm" },
-        { isCorrect: false, label: "$$192$$ cm" },
-        { isCorrect: false, label: "$$221$$ cm" },
-        { isCorrect: false, label: "$$235$$ cm" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "175" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "189" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "192" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "221" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "235" },
+            { kind: "text", text: " cm" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$175$$ cm" },
-        { isCorrect: true, label: "$$189$$ cm" },
-        { isCorrect: false, label: "$$192$$ cm" },
-        { isCorrect: false, label: "$$221$$ cm" },
-        { isCorrect: false, label: "$$235$$ cm" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "175" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "189" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "192" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "221" },
+            { kind: "text", text: " cm" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "235" },
+            { kind: "text", text: " cm" },
+          ],
+        },
       ],
     },
   },

@@ -7,23 +7,32 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Die Besucher waren fasziniert.",
+          label: [{ kind: "text", text: "Die Besucher waren fasziniert." }],
         },
         {
           isCorrect: false,
-          label: "Die Fläche war mit Eiskristallen bedeckt.",
+          label: [
+            { kind: "text", text: "Die Fläche war mit Eiskristallen bedeckt." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sie waren mit Eiskristallen bedeckt.",
+          label: [
+            { kind: "text", text: "Sie waren mit Eiskristallen bedeckt." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Fasziniert von der Schönheit der Weite der Eiskristalle",
+          label: [
+            {
+              kind: "text",
+              text: "Fasziniert von der Schönheit der Weite der Eiskristalle",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Bedeckt mit klaren Eiskristallen.",
+          label: [{ kind: "text", text: "Bedeckt mit klaren Eiskristallen." }],
         },
       ],
     },
@@ -32,23 +41,30 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Visitors were fascinated.",
+          label: [{ kind: "text", text: "Visitors were fascinated." }],
         },
         {
           isCorrect: false,
-          label: "The expanse was covered in ice crystals.",
+          label: [
+            { kind: "text", text: "The expanse was covered in ice crystals." },
+          ],
         },
         {
           isCorrect: false,
-          label: "They were covered in ice crystals.",
+          label: [{ kind: "text", text: "They were covered in ice crystals." }],
         },
         {
           isCorrect: false,
-          label: "Fascinated by the beauty of the expanse of ice crystals",
+          label: [
+            {
+              kind: "text",
+              text: "Fascinated by the beauty of the expanse of ice crystals",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Covered in clear ice crystals.",
+          label: [{ kind: "text", text: "Covered in clear ice crystals." }],
         },
       ],
     },
@@ -57,23 +73,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Para pengunjung terpesona.",
+          label: [{ kind: "text", text: "Para pengunjung terpesona." }],
         },
         {
           isCorrect: false,
-          label: "Hamparan diselimuti kristal es.",
+          label: [{ kind: "text", text: "Hamparan diselimuti kristal es." }],
         },
         {
           isCorrect: false,
-          label: "Mereka diselimuti kristal es.",
+          label: [{ kind: "text", text: "Mereka diselimuti kristal es." }],
         },
         {
           isCorrect: false,
-          label: "Terpesona kecantikan hamparan kristal es",
+          label: [
+            { kind: "text", text: "Terpesona kecantikan hamparan kristal es" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Diselimuti kristal es bening.",
+          label: [{ kind: "text", text: "Diselimuti kristal es bening." }],
         },
       ],
     },

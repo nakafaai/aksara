@@ -7,23 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Bumi akan kembali persis seperti pada masa lampau",
+          label: [
+            {
+              kind: "text",
+              text: "Bumi akan kembali persis seperti pada masa lampau",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Seluruh bentuk polusi udara akan hilang",
+          label: [
+            { kind: "text", text: "Seluruh bentuk polusi udara akan hilang" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
+          label: [
+            {
+              kind: "text",
+              text: "Lingkungan mendapat kesempatan untuk memulihkan diri",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kehidupan baru pasti tercipta tanpa campur tangan manusia",
+          label: [
+            {
+              kind: "text",
+              text: "Kehidupan baru pasti tercipta tanpa campur tangan manusia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Keadaan Bumi akan menjadi tidak terkendali",
+          label: [
+            {
+              kind: "text",
+              text: "Keadaan Bumi akan menjadi tidak terkendali",
+            },
+          ],
         },
       ],
     },

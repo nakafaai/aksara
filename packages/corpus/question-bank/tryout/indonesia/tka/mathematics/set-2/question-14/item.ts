@@ -12,23 +12,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Der Definitionsbereich von $f$ enthält $x=1$ nicht.",
+          label: [
+            { kind: "text", text: "Der Definitionsbereich von " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " enthält " },
+            { display: "inline", kind: "math", math: "x=1" },
+            { kind: "text", text: " nicht." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(0)=-4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Der Wertebereich von $f$ enthält $y=2$ nicht.",
+          label: [
+            { kind: "text", text: "Der Wertebereich von " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " enthält " },
+            { display: "inline", kind: "math", math: "y=2" },
+            { kind: "text", text: " nicht." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Die Umkehrfunktion lautet $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: [
+            { kind: "text", text: "Die Umkehrfunktion lautet " },
+            {
+              display: "inline",
+              kind: "math",
+              math: "f^{-1}(x)=\\frac{x+4}{x-2}",
+            },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(1)=0" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -37,23 +63,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "The domain of $f$ excludes $x=1$.",
+          label: [
+            { kind: "text", text: "The domain of " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " excludes " },
+            { display: "inline", kind: "math", math: "x=1" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(0)=-4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "The range of $f$ excludes $y=2$.",
+          label: [
+            { kind: "text", text: "The range of " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " excludes " },
+            { display: "inline", kind: "math", math: "y=2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Its inverse is $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: [
+            { kind: "text", text: "Its inverse is " },
+            {
+              display: "inline",
+              kind: "math",
+              math: "f^{-1}(x)=\\frac{x+4}{x-2}",
+            },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(1)=0" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -62,23 +114,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Domain $f$ mengecualikan $x=1$.",
+          label: [
+            { kind: "text", text: "Domain " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " mengecualikan " },
+            { display: "inline", kind: "math", math: "x=1" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(0)=-4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Range $f$ mengecualikan $y=2$.",
+          label: [
+            { kind: "text", text: "Range " },
+            { display: "inline", kind: "math", math: "f" },
+            { kind: "text", text: " mengecualikan " },
+            { display: "inline", kind: "math", math: "y=2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Inversnya adalah $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: [
+            { kind: "text", text: "Inversnya adalah " },
+            {
+              display: "inline",
+              kind: "math",
+              math: "f^{-1}(x)=\\frac{x+4}{x-2}",
+            },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: [
+            { display: "inline", kind: "math", math: "f(1)=0" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

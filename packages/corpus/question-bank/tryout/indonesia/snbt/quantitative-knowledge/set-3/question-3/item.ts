@@ -7,23 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ Stunde $$15$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Stunde " },
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$1$$ Stunde $$20$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Stunde " },
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ Stunde $$30$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Stunde " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ Stunde $$40$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Stunde " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ Stunde $$45$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " Stunde " },
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
       ],
     },
@@ -32,23 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ hour $$15$$ minutes",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " hour " },
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " minutes" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$1$$ hour $$20$$ minutes",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " hour " },
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " minutes" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ hour $$30$$ minutes",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " hour " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " minutes" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ hour $$40$$ minutes",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " hour " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " minutes" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ hour $$45$$ minutes",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " hour " },
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " minutes" },
+          ],
         },
       ],
     },
@@ -57,23 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ jam $$15$$ menit",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jam " },
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " menit" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$1$$ jam $$20$$ menit",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jam " },
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " menit" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ jam $$30$$ menit",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jam " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " menit" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ jam $$40$$ menit",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jam " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " menit" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$1$$ jam $$45$$ menit",
+          label: [
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " jam " },
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " menit" },
+          ],
         },
       ],
     },

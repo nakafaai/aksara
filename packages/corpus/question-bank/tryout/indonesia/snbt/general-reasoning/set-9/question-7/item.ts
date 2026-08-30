@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bei Nettoablagerung können Sedimente und Nährstoffe in der Aue zurückgehalten werden",
+          label: [
+            {
+              kind: "text",
+              text: "Bei Nettoablagerung können Sedimente und Nährstoffe in der Aue zurückgehalten werden",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Erosion kann Sedimente und Nährstoffe aus der Aue forttragen",
+          label: [
+            {
+              kind: "text",
+              text: "Erosion kann Sedimente und Nährstoffe aus der Aue forttragen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Wirkung einer Überflutung hängt unter anderem vom Verhältnis zwischen Ablagerung und Erosion ab",
+          label: [
+            {
+              kind: "text",
+              text: "Die Wirkung einer Überflutung hängt unter anderem vom Verhältnis zwischen Ablagerung und Erosion ab",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Jede saisonale Überschwemmung verbessert immer jeden Boden",
+          label: [
+            {
+              kind: "text",
+              text: "Jede saisonale Überschwemmung verbessert immer jeden Boden",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Zurückgehaltene Nährstoffe können das Pflanzenwachstum unterstützen, wenn die Ablagerung überwiegt",
+          label: [
+            {
+              kind: "text",
+              text: "Zurückgehaltene Nährstoffe können das Pflanzenwachstum unterstützen, wenn die Ablagerung überwiegt",
+            },
+          ],
         },
       ],
     },
@@ -35,27 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Net deposition can retain sediment and nutrients on a floodplain",
+          label: [
+            {
+              kind: "text",
+              text: "Net deposition can retain sediment and nutrients on a floodplain",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Erosion can carry sediment and nutrients away from a floodplain",
+          label: [
+            {
+              kind: "text",
+              text: "Erosion can carry sediment and nutrients away from a floodplain",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The effect of inundation depends partly on the balance between deposition and erosion",
+          label: [
+            {
+              kind: "text",
+              text: "The effect of inundation depends partly on the balance between deposition and erosion",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Every seasonal flood always improves every soil",
+          label: [
+            {
+              kind: "text",
+              text: "Every seasonal flood always improves every soil",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Retained nutrients can support plant growth where deposition exceeds erosion",
+          label: [
+            {
+              kind: "text",
+              text: "Retained nutrients can support plant growth where deposition exceeds erosion",
+            },
+          ],
         },
       ],
     },
@@ -64,27 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Pengendapan bersih dapat menahan sedimen dan unsur hara di dataran banjir",
+          label: [
+            {
+              kind: "text",
+              text: "Pengendapan bersih dapat menahan sedimen dan unsur hara di dataran banjir",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Erosi dapat membawa sedimen dan unsur hara keluar dari dataran banjir",
+          label: [
+            {
+              kind: "text",
+              text: "Erosi dapat membawa sedimen dan unsur hara keluar dari dataran banjir",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
+          label: [
+            {
+              kind: "text",
+              text: "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
+          label: [
+            {
+              kind: "text",
+              text: "Setiap banjir musiman selalu memperbaiki setiap tanah",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Unsur hara yang tertahan dapat mendukung pertumbuhan tanaman jika pengendapan melebihi erosi",
+          label: [
+            {
+              kind: "text",
+              text: "Unsur hara yang tertahan dapat mendukung pertumbuhan tanaman jika pengendapan melebihi erosi",
+            },
+          ],
         },
       ],
     },

@@ -7,28 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Jede traditionelle Tracht muss von einem Familienmitglied hergestellt werden",
+          label: [
+            {
+              kind: "text",
+              text: "Jede traditionelle Tracht muss von einem Familienmitglied hergestellt werden",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
+          label: [
+            {
+              kind: "text",
+              text: "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Traditionelle Trachten werden nur bei öffentlichen Feiern getragen",
+          label: [
+            {
+              kind: "text",
+              text: "Traditionelle Trachten werden nur bei öffentlichen Feiern getragen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Lokale Fachleute spielen keine Rolle, weil Wissen ausschließlich in Familien weitergegeben wird",
+          label: [
+            {
+              kind: "text",
+              text: "Lokale Fachleute spielen keine Rolle, weil Wissen ausschließlich in Familien weitergegeben wird",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Unterschiedliche traditionelle Trachten verhindern ein Gefühl der Wiedererkennung",
+          label: [
+            {
+              kind: "text",
+              text: "Unterschiedliche traditionelle Trachten verhindern ein Gefühl der Wiedererkennung",
+            },
+          ],
         },
       ],
     },
@@ -37,26 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every traditional costume must be made by a relative",
+          label: [
+            {
+              kind: "text",
+              text: "Every traditional costume must be made by a relative",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
+          label: [
+            {
+              kind: "text",
+              text: "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Traditional costumes are worn only at public celebrations",
+          label: [
+            {
+              kind: "text",
+              text: "Traditional costumes are worn only at public celebrations",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Local craftspeople have no role because knowledge is transmitted only within families",
+          label: [
+            {
+              kind: "text",
+              text: "Local craftspeople have no role because knowledge is transmitted only within families",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Wearing different traditional costumes prevents people from feeling a sense of recognition",
+          label: [
+            {
+              kind: "text",
+              text: "Wearing different traditional costumes prevents people from feeling a sense of recognition",
+            },
+          ],
         },
       ],
     },
@@ -65,26 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Setiap busana tradisional harus dibuat oleh anggota keluarga",
+          label: [
+            {
+              kind: "text",
+              text: "Setiap busana tradisional harus dibuat oleh anggota keluarga",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
+          label: [
+            {
+              kind: "text",
+              text: "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Busana tradisional hanya dikenakan dalam perayaan publik",
+          label: [
+            {
+              kind: "text",
+              text: "Busana tradisional hanya dikenakan dalam perayaan publik",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Perajin lokal tidak berperan karena pengetahuan hanya diwariskan dalam keluarga",
+          label: [
+            {
+              kind: "text",
+              text: "Perajin lokal tidak berperan karena pengetahuan hanya diwariskan dalam keluarga",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Penggunaan beragam busana tradisional menghalangi orang untuk merasa saling mengenali",
+          label: [
+            {
+              kind: "text",
+              text: "Penggunaan beragam busana tradisional menghalangi orang untuk merasa saling mengenali",
+            },
+          ],
         },
       ],
     },

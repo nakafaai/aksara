@@ -7,23 +7,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}",
+            },
+          ],
         },
       ],
     },
@@ -32,23 +62,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}",
+            },
+          ],
         },
       ],
     },
@@ -57,23 +117,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}",
+            },
+          ],
         },
       ],
     },

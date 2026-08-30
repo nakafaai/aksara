@@ -7,20 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mencuci beras akan mengurangi jumlah beras",
+          label: [
+            {
+              kind: "text",
+              text: "Mencuci beras akan mengurangi jumlah beras",
+            },
+          ],
         },
-        { isCorrect: false, label: "Mencuci beras akan merusak bentuk beras" },
         {
           isCorrect: false,
-          label: "Beras yang dicuci akan mengurangi cita rasa khas dari beras",
+          label: [
+            { kind: "text", text: "Mencuci beras akan merusak bentuk beras" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
+          label: [
+            {
+              kind: "text",
+              text: "Beras yang dicuci akan mengurangi cita rasa khas dari beras",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Pati bebas pada permukaan butiran beras berkurang",
+          label: [
+            {
+              kind: "text",
+              text: "Pati bebas pada permukaan butiran beras berkurang",
+            },
+          ],
         },
       ],
     },

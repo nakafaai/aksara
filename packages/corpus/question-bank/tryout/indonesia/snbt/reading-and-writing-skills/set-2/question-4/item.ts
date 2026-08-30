@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Eine Unterkühlung bedroht nur Menschen im Freien in den Bergen.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine Unterkühlung bedroht nur Menschen im Freien in den Bergen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Zittern ist das einzige verlässliche Warnzeichen einer Unterkühlung.",
+          label: [
+            {
+              kind: "text",
+              text: "Zittern ist das einzige verlässliche Warnzeichen einer Unterkühlung.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Eine Unterkühlung ist ein medizinischer Notfall, der schnelles und sicheres Handeln erfordert.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine Unterkühlung ist ein medizinischer Notfall, der schnelles und sicheres Handeln erfordert.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Direkte Hitze ist die beste Behandlung einer Unterkühlung.",
+          label: [
+            {
+              kind: "text",
+              text: "Direkte Hitze ist die beste Behandlung einer Unterkühlung.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Eine wache Person benötigt keine medizinische Hilfe.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine wache Person benötigt keine medizinische Hilfe.",
+            },
+          ],
         },
       ],
     },
@@ -35,24 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Hypothermia only threatens people outdoors in mountains.",
+          label: [
+            {
+              kind: "text",
+              text: "Hypothermia only threatens people outdoors in mountains.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Shivering is the only reliable sign of hypothermia.",
+          label: [
+            {
+              kind: "text",
+              text: "Shivering is the only reliable sign of hypothermia.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Hypothermia is a medical emergency that requires prompt and safe action.",
+          label: [
+            {
+              kind: "text",
+              text: "Hypothermia is a medical emergency that requires prompt and safe action.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Direct heat is the best way to treat hypothermia.",
+          label: [
+            {
+              kind: "text",
+              text: "Direct heat is the best way to treat hypothermia.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "A person who remains awake does not need medical help.",
+          label: [
+            {
+              kind: "text",
+              text: "A person who remains awake does not need medical help.",
+            },
+          ],
         },
       ],
     },
@@ -61,26 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
+          label: [
+            {
+              kind: "text",
+              text: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
+          label: [
+            {
+              kind: "text",
+              text: "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
+          label: [
+            {
+              kind: "text",
+              text: "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Panas langsung merupakan cara terbaik untuk menangani hipotermia.",
+          label: [
+            {
+              kind: "text",
+              text: "Panas langsung merupakan cara terbaik untuk menangani hipotermia.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Orang yang masih sadar tidak memerlukan pertolongan medis.",
+          label: [
+            {
+              kind: "text",
+              text: "Orang yang masih sadar tidak memerlukan pertolongan medis.",
+            },
+          ],
         },
       ],
     },

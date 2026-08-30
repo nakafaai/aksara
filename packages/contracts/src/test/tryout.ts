@@ -8,6 +8,7 @@ import {
   ArtifactLocaleSchema,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
+import { QuestionResponseContentSchema } from "#contracts/question/response";
 import { materialGraph } from "#contracts/test/graph";
 import {
   type TryoutCatalogRecord,
@@ -21,6 +22,11 @@ import {
 import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+
+/** Builds one semantic plain-text response label for test fixtures. */
+export function responseText(text: string) {
+  return QuestionResponseContentSchema.make([{ kind: "text", text }]);
+}
 
 /** Builds all five current hierarchy kinds for one app locale. */
 function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
@@ -128,13 +134,13 @@ function placement(appLocale: AppLocale): TryoutPlacementRecord {
         options: [
           {
             isCorrect: true,
-            label: "Test-only correct option",
+            label: responseText("Test-only correct option"),
             optionKey: "option-1",
             order: 1,
           },
           {
             isCorrect: false,
-            label: "Test-only distractor",
+            label: responseText("Test-only distractor"),
             optionKey: "option-2",
             order: 2,
           },

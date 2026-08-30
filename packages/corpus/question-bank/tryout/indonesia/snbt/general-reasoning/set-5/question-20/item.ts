@@ -7,26 +7,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Das erste Ergebnis, bei dem die Beschäftigten kündigen und eine Abfindung erhalten, tritt nicht ein",
+          label: [
+            {
+              kind: "text",
+              text: "Das erste Ergebnis, bei dem die Beschäftigten kündigen und eine Abfindung erhalten, tritt nicht ein",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Beschäftigten haben die Schließung des Unternehmens gewählt",
+          label: [
+            {
+              kind: "text",
+              text: "Die Beschäftigten haben die Schließung des Unternehmens gewählt",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Einige Beschäftigte erhalten nach dem ersten Ergebnis eine Abfindung",
+          label: [
+            {
+              kind: "text",
+              text: "Einige Beschäftigte erhalten nach dem ersten Ergebnis eine Abfindung",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Beide Ergebnisse treten ein",
+          label: [{ kind: "text", text: "Beide Ergebnisse treten ein" }],
         },
         {
           isCorrect: false,
-          label: "Keines der beiden Ergebnisse tritt ein",
+          label: [
+            { kind: "text", text: "Keines der beiden Ergebnisse tritt ein" },
+          ],
         },
       ],
     },
@@ -35,24 +49,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "The first outcome, in which employees resign and receive severance pay, does not occur",
+          label: [
+            {
+              kind: "text",
+              text: "The first outcome, in which employees resign and receive severance pay, does not occur",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The employees chose to close the company",
+          label: [
+            { kind: "text", text: "The employees chose to close the company" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Some employees receive severance pay under the first outcome",
+          label: [
+            {
+              kind: "text",
+              text: "Some employees receive severance pay under the first outcome",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Both outcomes occur",
+          label: [{ kind: "text", text: "Both outcomes occur" }],
         },
         {
           isCorrect: false,
-          label: "Neither outcome occurs",
+          label: [{ kind: "text", text: "Neither outcome occurs" }],
         },
       ],
     },
@@ -61,24 +86,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
+          label: [
+            {
+              kind: "text",
+              text: "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Karyawan memilih untuk menutup perusahaan",
+          label: [
+            { kind: "text", text: "Karyawan memilih untuk menutup perusahaan" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sebagian karyawan menerima pesangon menurut hasil pertama",
+          label: [
+            {
+              kind: "text",
+              text: "Sebagian karyawan menerima pesangon menurut hasil pertama",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kedua hasil terjadi",
+          label: [{ kind: "text", text: "Kedua hasil terjadi" }],
         },
         {
           isCorrect: false,
-          label: "Tidak satu pun hasil terjadi",
+          label: [{ kind: "text", text: "Tidak satu pun hasil terjadi" }],
         },
       ],
     },

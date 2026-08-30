@@ -7,23 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "lang und zerzaust.",
+          label: [{ kind: "text", text: "lang und zerzaust." }],
         },
         {
           isCorrect: false,
-          label: "seine Wangen waren rau.",
+          label: [{ kind: "text", text: "seine Wangen waren rau." }],
         },
         {
           isCorrect: false,
-          label: "dunkle Ringe.",
+          label: [{ kind: "text", text: "dunkle Ringe." }],
         },
         {
           isCorrect: true,
-          label: "seine Gestalt war schlanker geworden.",
+          label: [
+            { kind: "text", text: "seine Gestalt war schlanker geworden." },
+          ],
         },
         {
           isCorrect: false,
-          label: "sich rasieren.",
+          label: [{ kind: "text", text: "sich rasieren." }],
         },
       ],
     },
@@ -32,23 +34,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "long and messy.",
+          label: [{ kind: "text", text: "long and messy." }],
         },
         {
           isCorrect: false,
-          label: "his cheeks were rough.",
+          label: [{ kind: "text", text: "his cheeks were rough." }],
         },
         {
           isCorrect: false,
-          label: "dark circles.",
+          label: [{ kind: "text", text: "dark circles." }],
         },
         {
           isCorrect: true,
-          label: "his frame had grown leaner.",
+          label: [{ kind: "text", text: "his frame had grown leaner." }],
         },
         {
           isCorrect: false,
-          label: "shaving.",
+          label: [{ kind: "text", text: "shaving." }],
         },
       ],
     },
@@ -57,23 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "gondrong berantakan.",
+          label: [{ kind: "text", text: "gondrong berantakan." }],
         },
         {
           isCorrect: false,
-          label: "pipinya kasar.",
+          label: [{ kind: "text", text: "pipinya kasar." }],
         },
         {
           isCorrect: false,
-          label: "lingkaran hitam.",
+          label: [{ kind: "text", text: "lingkaran hitam." }],
         },
         {
           isCorrect: true,
-          label: "tubuhnya tampak makin ramping.",
+          label: [{ kind: "text", text: "tubuhnya tampak makin ramping." }],
         },
         {
           isCorrect: false,
-          label: "bercukur.",
+          label: [{ kind: "text", text: "bercukur." }],
         },
       ],
     },

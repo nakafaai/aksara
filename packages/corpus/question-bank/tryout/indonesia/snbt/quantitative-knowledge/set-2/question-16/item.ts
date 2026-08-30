@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: [{ display: "block", kind: "math", math: "8" }],
         },
         {
           isCorrect: true,
-          label: "$$9$$",
+          label: [{ display: "block", kind: "math", math: "9" }],
         },
         {
           isCorrect: false,
-          label: "$$10$$",
+          label: [{ display: "block", kind: "math", math: "10" }],
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: [{ display: "block", kind: "math", math: "11" }],
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: [{ display: "block", kind: "math", math: "12" }],
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: [{ display: "block", kind: "math", math: "8" }],
         },
         {
           isCorrect: true,
-          label: "$$9$$",
+          label: [{ display: "block", kind: "math", math: "9" }],
         },
         {
           isCorrect: false,
-          label: "$$10$$",
+          label: [{ display: "block", kind: "math", math: "10" }],
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: [{ display: "block", kind: "math", math: "11" }],
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: [{ display: "block", kind: "math", math: "12" }],
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: [{ display: "block", kind: "math", math: "8" }],
         },
         {
           isCorrect: true,
-          label: "$$9$$",
+          label: [{ display: "block", kind: "math", math: "9" }],
         },
         {
           isCorrect: false,
-          label: "$$10$$",
+          label: [{ display: "block", kind: "math", math: "10" }],
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: [{ display: "block", kind: "math", math: "11" }],
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: [{ display: "block", kind: "math", math: "12" }],
         },
       ],
     },

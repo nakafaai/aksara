@@ -7,23 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kesiapan persenjataan",
+          label: [{ kind: "text", text: "Kesiapan persenjataan" }],
         },
         {
           isCorrect: false,
-          label: "Perlindungan terhadap pemimpin",
+          label: [{ kind: "text", text: "Perlindungan terhadap pemimpin" }],
         },
         {
           isCorrect: false,
-          label: "Jumlah tentara yang tersedia",
+          label: [{ kind: "text", text: "Jumlah tentara yang tersedia" }],
         },
         {
           isCorrect: false,
-          label: "Ketersediaan rumah sakit dan obat-obatan",
+          label: [
+            { kind: "text", text: "Ketersediaan rumah sakit dan obat-obatan" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Biaya dan dampak perang",
+          label: [{ kind: "text", text: "Biaya dan dampak perang" }],
         },
       ],
     },

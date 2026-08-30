@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "definitiv wahr",
+          label: [{ kind: "text", text: "definitiv wahr" }],
         },
         {
           isCorrect: true,
-          label: "möglicherweise wahr",
+          label: [{ kind: "text", text: "möglicherweise wahr" }],
         },
         {
           isCorrect: false,
-          label: "definitiv falsch",
+          label: [{ kind: "text", text: "definitiv falsch" }],
         },
         {
           isCorrect: false,
-          label: "möglicherweise falsch",
+          label: [{ kind: "text", text: "möglicherweise falsch" }],
         },
         {
           isCorrect: false,
-          label: "kann nicht bestimmt werden",
+          label: [{ kind: "text", text: "kann nicht bestimmt werden" }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "definitely true",
+          label: [{ kind: "text", text: "definitely true" }],
         },
         {
           isCorrect: true,
-          label: "possibly true",
+          label: [{ kind: "text", text: "possibly true" }],
         },
         {
           isCorrect: false,
-          label: "definitely false",
+          label: [{ kind: "text", text: "definitely false" }],
         },
         {
           isCorrect: false,
-          label: "possibly false",
+          label: [{ kind: "text", text: "possibly false" }],
         },
         {
           isCorrect: false,
-          label: "cannot be determined",
+          label: [{ kind: "text", text: "cannot be determined" }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pasti benar",
+          label: [{ kind: "text", text: "pasti benar" }],
         },
         {
           isCorrect: true,
-          label: "mungkin benar",
+          label: [{ kind: "text", text: "mungkin benar" }],
         },
         {
           isCorrect: false,
-          label: "pasti salah",
+          label: [{ kind: "text", text: "pasti salah" }],
         },
         {
           isCorrect: false,
-          label: "mungkin salah",
+          label: [{ kind: "text", text: "mungkin salah" }],
         },
         {
           isCorrect: false,
-          label: "tidak dapat ditentukan",
+          label: [{ kind: "text", text: "tidak dapat ditentukan" }],
         },
       ],
     },

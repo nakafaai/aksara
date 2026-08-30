@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "eine Stellungnahme oder Erklärung abgeben.",
+          label: [
+            {
+              kind: "text",
+              text: "eine Stellungnahme oder Erklärung abgeben.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "etwas bestreiten.",
+          label: [{ kind: "text", text: "etwas bestreiten." }],
         },
         {
           isCorrect: false,
-          label: "über einen Preis verhandeln.",
+          label: [{ kind: "text", text: "über einen Preis verhandeln." }],
         },
         {
           isCorrect: false,
-          label: "über etwas reden.",
+          label: [{ kind: "text", text: "über etwas reden." }],
         },
         {
           isCorrect: false,
-          label: "etwas besprechen.",
+          label: [{ kind: "text", text: "etwas besprechen." }],
         },
       ],
     },
@@ -32,23 +37,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "providing an explanation or response.",
+          label: [
+            { kind: "text", text: "providing an explanation or response." },
+          ],
         },
         {
           isCorrect: false,
-          label: "denying something.",
+          label: [{ kind: "text", text: "denying something." }],
         },
         {
           isCorrect: false,
-          label: "the activity of bargaining for something.",
+          label: [
+            { kind: "text", text: "the activity of bargaining for something." },
+          ],
         },
         {
           isCorrect: false,
-          label: "talking about something.",
+          label: [{ kind: "text", text: "talking about something." }],
         },
         {
           isCorrect: false,
-          label: "discussing something.",
+          label: [{ kind: "text", text: "discussing something." }],
         },
       ],
     },
@@ -57,23 +66,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "memberikan penjelasan atau tanggapan.",
+          label: [
+            { kind: "text", text: "memberikan penjelasan atau tanggapan." },
+          ],
         },
         {
           isCorrect: false,
-          label: "menyangkal sesuatu hal.",
+          label: [{ kind: "text", text: "menyangkal sesuatu hal." }],
         },
         {
           isCorrect: false,
-          label: "kegiatan menawar sesuatu.",
+          label: [{ kind: "text", text: "kegiatan menawar sesuatu." }],
         },
         {
           isCorrect: false,
-          label: "membicarakan sesuatu hal.",
+          label: [{ kind: "text", text: "membicarakan sesuatu hal." }],
         },
         {
           isCorrect: false,
-          label: "berdiskusi tentang sesuatu.",
+          label: [{ kind: "text", text: "berdiskusi tentang sesuatu." }],
         },
       ],
     },

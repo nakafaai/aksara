@@ -7,23 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kinder spielen im Freien.",
+          label: [{ kind: "text", text: "Kinder spielen im Freien." }],
         },
         {
           isCorrect: false,
-          label: "Kinder haben mehr Gelegenheiten.",
+          label: [{ kind: "text", text: "Kinder haben mehr Gelegenheiten." }],
         },
         {
           isCorrect: true,
-          label: "Der Sommer bietet Kindern Gelegenheiten.",
+          label: [
+            { kind: "text", text: "Der Sommer bietet Kindern Gelegenheiten." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der Sommer spielt im Freien.",
+          label: [{ kind: "text", text: "Der Sommer spielt im Freien." }],
         },
         {
           isCorrect: false,
-          label: "Gelegenheiten finden im Freien statt.",
+          label: [
+            { kind: "text", text: "Gelegenheiten finden im Freien statt." },
+          ],
         },
       ],
     },
@@ -32,23 +36,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Children play outdoors.",
+          label: [{ kind: "text", text: "Children play outdoors." }],
         },
         {
           isCorrect: false,
-          label: "Children have more opportunities.",
+          label: [{ kind: "text", text: "Children have more opportunities." }],
         },
         {
           isCorrect: true,
-          label: "Summer gives children opportunities.",
+          label: [
+            { kind: "text", text: "Summer gives children opportunities." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Summer plays outdoors.",
+          label: [{ kind: "text", text: "Summer plays outdoors." }],
         },
         {
           isCorrect: false,
-          label: "Opportunities occur outdoors.",
+          label: [{ kind: "text", text: "Opportunities occur outdoors." }],
         },
       ],
     },
@@ -57,23 +63,31 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Anak bermain di luar ruangan.",
+          label: [{ kind: "text", text: "Anak bermain di luar ruangan." }],
         },
         {
           isCorrect: false,
-          label: "Anak memiliki lebih banyak kesempatan.",
+          label: [
+            { kind: "text", text: "Anak memiliki lebih banyak kesempatan." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Musim panas memberi anak kesempatan.",
+          label: [
+            { kind: "text", text: "Musim panas memberi anak kesempatan." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Musim panas bermain di luar ruangan.",
+          label: [
+            { kind: "text", text: "Musim panas bermain di luar ruangan." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kesempatan terjadi di luar ruangan.",
+          label: [
+            { kind: "text", text: "Kesempatan terjadi di luar ruangan." },
+          ],
         },
       ],
     },

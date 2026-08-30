@@ -7,23 +7,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Warna jingga yang tampak di langit",
+          label: [{ kind: "text", text: "Warna jingga yang tampak di langit" }],
         },
         {
           isCorrect: false,
-          label: "Saat matahari tepat menyentuh cakrawala",
+          label: [
+            { kind: "text", text: "Saat matahari tepat menyentuh cakrawala" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Tanda bahwa seluruh kegiatan harus berakhir",
+          label: [
+            {
+              kind: "text",
+              text: "Tanda bahwa seluruh kegiatan harus berakhir",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Waktu setengah gelap setelah matahari terbenam",
+          label: [
+            {
+              kind: "text",
+              text: "Waktu setengah gelap setelah matahari terbenam",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Suasana yang selalu tenang dan damai",
+          label: [
+            { kind: "text", text: "Suasana yang selalu tenang dan damai" },
+          ],
         },
       ],
     },

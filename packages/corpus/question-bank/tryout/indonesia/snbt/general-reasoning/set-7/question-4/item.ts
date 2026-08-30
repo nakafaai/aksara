@@ -7,24 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Arins Arbeitssitzung läuft ohne Unterbrechung weiter.",
+          label: [
+            {
+              kind: "text",
+              text: "Arins Arbeitssitzung läuft ohne Unterbrechung weiter.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Arins Zugangsausweis bleibt während der Überprüfung aktiv.",
+          label: [
+            {
+              kind: "text",
+              text: "Arins Zugangsausweis bleibt während der Überprüfung aktiv.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Arins Zugangsausweis wird bis zum Abschluss der Überprüfung gesperrt.",
+          label: [
+            {
+              kind: "text",
+              text: "Arins Zugangsausweis wird bis zum Abschluss der Überprüfung gesperrt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der Zugangsausweis der Aufsichtsperson wird gesperrt.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Zugangsausweis der Aufsichtsperson wird gesperrt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der Laserschneider wird dauerhaft aus dem Labor entfernt.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Laserschneider wird dauerhaft aus dem Labor entfernt.",
+            },
+          ],
         },
       ],
     },
@@ -33,43 +57,90 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Arin's session continues without interruption.",
+          label: [
+            {
+              kind: "text",
+              text: "Arin's session continues without interruption.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Arin's access badge remains active during the review.",
+          label: [
+            {
+              kind: "text",
+              text: "Arin's access badge remains active during the review.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Arin's access badge is suspended pending review.",
+          label: [
+            {
+              kind: "text",
+              text: "Arin's access badge is suspended pending review.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The supervisor's access badge is suspended.",
+          label: [
+            {
+              kind: "text",
+              text: "The supervisor's access badge is suspended.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The laser cutter is permanently removed from the laboratory.",
+          label: [
+            {
+              kind: "text",
+              text: "The laser cutter is permanently removed from the laboratory.",
+            },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Sesi Arin berlanjut tanpa dihentikan." },
         {
           isCorrect: false,
-          label: "Kartu akses Arin tetap aktif selama peninjauan.",
+          label: [
+            { kind: "text", text: "Sesi Arin berlanjut tanpa dihentikan." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Kartu akses Arin tetap aktif selama peninjauan.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Kartu akses Arin ditangguhkan sampai peninjauan selesai.",
+          label: [
+            {
+              kind: "text",
+              text: "Kartu akses Arin ditangguhkan sampai peninjauan selesai.",
+            },
+          ],
         },
-        { isCorrect: false, label: "Kartu akses pengawas ditangguhkan." },
         {
           isCorrect: false,
-          label:
-            "Mesin pemotong laser dikeluarkan secara permanen dari laboratorium.",
+          label: [{ kind: "text", text: "Kartu akses pengawas ditangguhkan." }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Mesin pemotong laser dikeluarkan secara permanen dari laboratorium.",
+            },
+          ],
         },
       ],
     },

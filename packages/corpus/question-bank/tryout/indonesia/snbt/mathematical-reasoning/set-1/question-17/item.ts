@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "WWF",
+          label: [{ kind: "text", text: "WWF" }],
         },
         {
           isCorrect: true,
-          label: "WFW",
+          label: [{ kind: "text", text: "WFW" }],
         },
         {
           isCorrect: false,
-          label: "WFF",
+          label: [{ kind: "text", text: "WFF" }],
         },
         {
           isCorrect: false,
-          label: "FWW",
+          label: [{ kind: "text", text: "FWW" }],
         },
         {
           isCorrect: false,
-          label: "FWF",
+          label: [{ kind: "text", text: "FWF" }],
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "TTF",
+          label: [{ kind: "text", text: "TTF" }],
         },
         {
           isCorrect: true,
-          label: "TFT",
+          label: [{ kind: "text", text: "TFT" }],
         },
         {
           isCorrect: false,
-          label: "TFF",
+          label: [{ kind: "text", text: "TFF" }],
         },
         {
           isCorrect: false,
-          label: "FTT",
+          label: [{ kind: "text", text: "FTT" }],
         },
         {
           isCorrect: false,
-          label: "FTF",
+          label: [{ kind: "text", text: "FTF" }],
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "BBS",
+          label: [{ kind: "text", text: "BBS" }],
         },
         {
           isCorrect: true,
-          label: "BSB",
+          label: [{ kind: "text", text: "BSB" }],
         },
         {
           isCorrect: false,
-          label: "BSS",
+          label: [{ kind: "text", text: "BSS" }],
         },
         {
           isCorrect: false,
-          label: "SBB",
+          label: [{ kind: "text", text: "SBB" }],
         },
         {
           isCorrect: false,
-          label: "SBS",
+          label: [{ kind: "text", text: "SBS" }],
         },
       ],
     },

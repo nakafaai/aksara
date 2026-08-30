@@ -7,22 +7,46 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
+          label: [
+            {
+              kind: "text",
+              text: "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Memiliki penduduk yang berpengetahuan sangat luas",
+          label: [
+            {
+              kind: "text",
+              text: "Memiliki penduduk yang berpengetahuan sangat luas",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Berada di wilayah pesisir yang mudah dicapai",
+          label: [
+            {
+              kind: "text",
+              text: "Berada di wilayah pesisir yang mudah dicapai",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Telah berkembang menjadi kota yang sepenuhnya modern",
+          label: [
+            {
+              kind: "text",
+              text: "Telah berkembang menjadi kota yang sepenuhnya modern",
+            },
+          ],
         },
-        { isCorrect: false, label: "Menutup diri dari pengaruh budaya luar" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Menutup diri dari pengaruh budaya luar" },
+          ],
+        },
       ],
     },
   },

@@ -8,25 +8,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Größe $$P$$ ist größer als Größe $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist größer als Größe " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Größe $$P$$ ist kleiner als Größe $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist kleiner als Größe " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Größe $$P$$ ist gleich Größe $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist gleich Größe " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Beziehung zwischen den Größen $$P$$ und $$Q$$ lässt sich nicht bestimmen",
+          label: [
+            { kind: "text", text: "Die Beziehung zwischen den Größen " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "Q" },
+            { kind: "text", text: " lässt sich nicht bestimmen" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+          label: [
+            {
+              kind: "text",
+              text: "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+            },
+          ],
         },
       ],
     },
@@ -35,25 +59,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Quantity $$P$$ is greater than $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is greater than " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Quantity $$P$$ is less than $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is less than " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Quantity $$P$$ is equal to $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is equal to " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The relationship between quantity $$P$$ and $$Q$$ cannot be determined",
+          label: [
+            { kind: "text", text: "The relationship between quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "Q" },
+            { kind: "text", text: " cannot be determined" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The information provided is not sufficient to decide one of the three options above",
+          label: [
+            {
+              kind: "text",
+              text: "The information provided is not sufficient to decide one of the three options above",
+            },
+          ],
         },
       ],
     },
@@ -62,25 +110,51 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " lebih besar daripada " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " lebih kecil daripada " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kuantitas $$P$$ sama dengan $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " sama dengan " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Tidak dapat ditentukan hubungan antara kuantitas $$P$$ dan $$Q$$",
+          label: [
+            {
+              kind: "text",
+              text: "Tidak dapat ditentukan hubungan antara kuantitas ",
+            },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+          label: [
+            {
+              kind: "text",
+              text: "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            },
+          ],
         },
       ],
     },

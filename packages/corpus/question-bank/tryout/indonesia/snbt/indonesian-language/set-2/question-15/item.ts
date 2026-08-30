@@ -5,20 +5,44 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Tahapan mengidentifikasi gajah sasaran" },
-        { isCorrect: false, label: "Perkiraan populasi gajah sumatra di Riau" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Tahapan mengidentifikasi gajah sasaran" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Perkiraan populasi gajah sumatra di Riau" },
+          ],
+        },
         {
           isCorrect: true,
-          label:
-            "Pemanfaatan GPS Collar untuk memitigasi interaksi negatif manusia dan gajah",
+          label: [
+            {
+              kind: "text",
+              text: "Pemanfaatan GPS Collar untuk memitigasi interaksi negatif manusia dan gajah",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Peran BBKSDA Riau dalam konservasi satwa liar",
+          label: [
+            {
+              kind: "text",
+              text: "Peran BBKSDA Riau dalam konservasi satwa liar",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kerja sama masyarakat dalam memulihkan habitat gajah",
+          label: [
+            {
+              kind: "text",
+              text: "Kerja sama masyarakat dalam memulihkan habitat gajah",
+            },
+          ],
         },
       ],
     },

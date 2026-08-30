@@ -5,11 +5,23 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "The songbird species" },
-        { isCorrect: true, label: "The researchers" },
-        { isCorrect: false, label: "The pathogen communities" },
-        { isCorrect: false, label: "The Palaearctic regions" },
-        { isCorrect: false, label: "The immune-recognition genes" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The songbird species" }],
+        },
+        { isCorrect: true, label: [{ kind: "text", text: "The researchers" }] },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The pathogen communities" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The Palaearctic regions" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The immune-recognition genes" }],
+        },
       ],
     },
   },

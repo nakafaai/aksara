@@ -5,26 +5,45 @@ const item: QuestionItem = {
     de: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Die Bildungszuweisung steigt" },
         {
           isCorrect: false,
-          label:
-            "Viele leistungsstarke Studierende können an führenden Universitäten in Indonesien studieren",
+          label: [{ kind: "text", text: "Die Bildungszuweisung steigt" }],
         },
         {
           isCorrect: false,
-          label:
-            "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+          label: [
+            {
+              kind: "text",
+              text: "Viele leistungsstarke Studierende können an führenden Universitäten in Indonesien studieren",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Ein Teil der Bildungszuweisung wird nicht vollständig ausgegeben",
+          label: [
+            {
+              kind: "text",
+              text: "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Ein Teil der Bildungszuweisung wird nicht vollständig ausgegeben",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+          label: [
+            {
+              kind: "text",
+              text: "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+            },
+          ],
         },
       ],
     },
@@ -33,52 +52,95 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The education budget allocation is increasing",
+          label: [
+            {
+              kind: "text",
+              text: "The education budget allocation is increasing",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Many high-achieving students can attend leading universities within Indonesia",
+          label: [
+            {
+              kind: "text",
+              text: "Many high-achieving students can attend leading universities within Indonesia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Some of Indonesia's highest-achieving students can study at leading universities abroad",
+          label: [
+            {
+              kind: "text",
+              text: "Some of Indonesia's highest-achieving students can study at leading universities abroad",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Part of the education budget allocation is not fully spent",
+          label: [
+            {
+              kind: "text",
+              text: "Part of the education budget allocation is not fully spent",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Many of Indonesia's highest-achieving students can study at leading universities abroad",
+          label: [
+            {
+              kind: "text",
+              text: "Many of Indonesia's highest-achieving students can study at leading universities abroad",
+            },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Alokasi anggaran pendidikan meningkat" },
         {
           isCorrect: false,
-          label:
-            "Banyak mahasiswa berprestasi dapat berkuliah di universitas terkemuka dalam negeri",
+          label: [
+            { kind: "text", text: "Alokasi anggaran pendidikan meningkat" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+          label: [
+            {
+              kind: "text",
+              text: "Banyak mahasiswa berprestasi dapat berkuliah di universitas terkemuka dalam negeri",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
+          label: [
+            {
+              kind: "text",
+              text: "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+          label: [
+            {
+              kind: "text",
+              text: "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+            },
+          ],
         },
       ],
     },

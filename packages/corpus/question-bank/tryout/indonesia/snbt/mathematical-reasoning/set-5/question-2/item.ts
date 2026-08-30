@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$6$$",
+          label: [{ display: "block", kind: "math", math: "6" }],
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: [{ display: "block", kind: "math", math: "8" }],
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: [{ display: "block", kind: "math", math: "9" }],
         },
         {
           isCorrect: false,
-          label: "$$10$$",
+          label: [{ display: "block", kind: "math", math: "10" }],
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: [{ display: "block", kind: "math", math: "11" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$6$$" },
-        { isCorrect: false, label: "$$8$$" },
-        { isCorrect: false, label: "$$9$$" },
-        { isCorrect: false, label: "$$10$$" },
-        { isCorrect: false, label: "$$11$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "6" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "8" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "9" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "10" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "11" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$6$$" },
-        { isCorrect: false, label: "$$8$$" },
-        { isCorrect: false, label: "$$9$$" },
-        { isCorrect: false, label: "$$10$$" },
-        { isCorrect: false, label: "$$11$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "6" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "8" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "9" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "10" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "11" }],
+        },
       ],
     },
   },

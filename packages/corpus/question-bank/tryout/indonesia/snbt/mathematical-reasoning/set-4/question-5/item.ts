@@ -7,44 +7,146 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$27\\text{ cm}^2$$",
+          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$27\\text{ cm}^2$$" },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$" },
-        { isCorrect: false, label: "$$27\\text{ cm}^2$$" },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
+        },
       ],
     },
   },

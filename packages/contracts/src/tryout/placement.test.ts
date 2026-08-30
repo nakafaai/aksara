@@ -29,13 +29,13 @@ const placement = {
     options: [
       {
         isCorrect: true,
-        label: "Correct",
+        label: [{ kind: "text", text: "Correct" }],
         optionKey: "option-1",
         order: 1,
       },
       {
         isCorrect: false,
-        label: "Wrong",
+        label: [{ kind: "text", text: "Wrong" }],
         optionKey: "option-2",
         order: 2,
       },

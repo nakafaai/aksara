@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Indonesia memproduksi semua jenis plastik yang ditemukan di Seychelles",
+          label: [
+            {
+              kind: "text",
+              text: "Indonesia memproduksi semua jenis plastik yang ditemukan di Seychelles",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Indonesia merupakan negara yang paling dekat dengan Seychelles",
+          label: [
+            {
+              kind: "text",
+              text: "Indonesia merupakan negara yang paling dekat dengan Seychelles",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Semua sampah di Seychelles memiliki label produk Indonesia",
+          label: [
+            {
+              kind: "text",
+              text: "Semua sampah di Seychelles memiliki label produk Indonesia",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
+          label: [
+            {
+              kind: "text",
+              text: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Model memperkirakan Indonesia sebagai negara sumber tunggal terbesar untuk banyak sampah daratan yang lama mengapung",
+          label: [
+            {
+              kind: "text",
+              text: "Model memperkirakan Indonesia sebagai negara sumber tunggal terbesar untuk banyak sampah daratan yang lama mengapung",
+            },
+          ],
         },
       ],
     },

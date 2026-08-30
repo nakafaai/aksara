@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "weil.",
+          label: [{ kind: "text", text: "weil." }],
         },
         {
           isCorrect: false,
-          label: "obwohl.",
+          label: [{ kind: "text", text: "obwohl." }],
         },
         {
           isCorrect: false,
-          label: "damit.",
+          label: [{ kind: "text", text: "damit." }],
         },
         {
           isCorrect: false,
-          label: "sofern nicht.",
+          label: [{ kind: "text", text: "sofern nicht." }],
         },
         {
           isCorrect: false,
-          label: "nachdem.",
+          label: [{ kind: "text", text: "nachdem." }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "because.",
+          label: [{ kind: "text", text: "because." }],
         },
         {
           isCorrect: false,
-          label: "although.",
+          label: [{ kind: "text", text: "although." }],
         },
         {
           isCorrect: false,
-          label: "so that.",
+          label: [{ kind: "text", text: "so that." }],
         },
         {
           isCorrect: false,
-          label: "unless.",
+          label: [{ kind: "text", text: "unless." }],
         },
         {
           isCorrect: false,
-          label: "after.",
+          label: [{ kind: "text", text: "after." }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "karena.",
+          label: [{ kind: "text", text: "karena." }],
         },
         {
           isCorrect: false,
-          label: "meskipun.",
+          label: [{ kind: "text", text: "meskipun." }],
         },
         {
           isCorrect: false,
-          label: "agar.",
+          label: [{ kind: "text", text: "agar." }],
         },
         {
           isCorrect: false,
-          label: "kecuali.",
+          label: [{ kind: "text", text: "kecuali." }],
         },
         {
           isCorrect: false,
-          label: "setelah.",
+          label: [{ kind: "text", text: "setelah." }],
         },
       ],
     },

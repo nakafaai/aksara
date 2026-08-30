@@ -5,13 +5,32 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Mencuci beras sebelum dimasak" },
-        { isCorrect: false, label: "Harga beras di Indonesia" },
-        { isCorrect: false, label: "Beras memiliki daya tarik universal" },
-        { isCorrect: false, label: "Pengolahan beras" },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Mencuci beras sebelum dimasak" }],
+        },
         {
           isCorrect: false,
-          label: "Evangeline Mantzioris, ahli diet terakreditasi",
+          label: [{ kind: "text", text: "Harga beras di Indonesia" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Beras memiliki daya tarik universal" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Pengolahan beras" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Evangeline Mantzioris, ahli diet terakreditasi",
+            },
+          ],
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$y = -x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = -x + 1" }],
         },
         {
           isCorrect: true,
-          label: "$$y = x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x - 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x - 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 2$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 2" }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$y = -x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = -x + 1" }],
         },
         {
           isCorrect: true,
-          label: "$$y = x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x - 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x - 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 2$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 2" }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$y = -x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = -x + 1" }],
         },
         {
           isCorrect: true,
-          label: "$$y = x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x - 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x - 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 1$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 1" }],
         },
         {
           isCorrect: false,
-          label: "$$y = 2x + 2$$",
+          label: [{ display: "block", kind: "math", math: "y = 2x + 2" }],
         },
       ],
     },

@@ -7,15 +7,38 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Evidence and trade-offs in choosing an office layout",
+          label: [
+            {
+              kind: "text",
+              text: "Evidence and trade-offs in choosing an office layout",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "How to calculate the construction cost of an office",
+          label: [
+            {
+              kind: "text",
+              text: "How to calculate the construction cost of an office",
+            },
+          ],
         },
-        { isCorrect: false, label: "Why email should replace every meeting" },
-        { isCorrect: false, label: "The history of corporate architecture" },
-        { isCorrect: false, label: "How to decorate a private office" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Why email should replace every meeting" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "The history of corporate architecture" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "How to decorate a private office" }],
+        },
       ],
     },
   },

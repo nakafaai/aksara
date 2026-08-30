@@ -7,24 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Norma Jeane menolak tinggal bersama ibunya",
+          label: [
+            {
+              kind: "text",
+              text: "Norma Jeane menolak tinggal bersama ibunya",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
+          label: [
+            {
+              kind: "text",
+              text: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
+          label: [
+            {
+              kind: "text",
+              text: "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
+          label: [
+            {
+              kind: "text",
+              text: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
+          label: [
+            {
+              kind: "text",
+              text: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
+            },
+          ],
         },
       ],
     },

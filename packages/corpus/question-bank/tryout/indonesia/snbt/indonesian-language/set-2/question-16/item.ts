@@ -7,23 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Membuktikan bahwa semua catatan Romawi keliru",
+          label: [
+            {
+              kind: "text",
+              text: "Membuktikan bahwa semua catatan Romawi keliru",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
+          label: [
+            {
+              kind: "text",
+              text: "Menentukan secara pasti identitas setiap penduduk Pompeii",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Menetapkan harga setiap benda peninggalan Romawi",
+          label: [
+            {
+              kind: "text",
+              text: "Menetapkan harga setiap benda peninggalan Romawi",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
+          label: [
+            {
+              kind: "text",
+              text: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
+          label: [
+            {
+              kind: "text",
+              text: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
+            },
+          ],
         },
       ],
     },

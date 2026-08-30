@@ -8,70 +8,134 @@ const item: QuestionItem = {
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
+      categories: [
+        [{ kind: "text", text: "Richtig" }],
+        [{ kind: "text", text: "Falsch" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Rot ist $\\frac{4}{7}$.",
+          label: [
+            { kind: "text", text: "Die Wahrscheinlichkeit für Rot ist " },
+            { display: "inline", kind: "math", math: "\\frac{4}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Blau ist $\\frac{3}{7}$.",
+          label: [
+            { kind: "text", text: "Die Wahrscheinlichkeit für Blau ist " },
+            { display: "inline", kind: "math", math: "\\frac{3}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label:
-            "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+          label: [
+            {
+              kind: "text",
+              text: "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+            },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Wahrscheinlichkeit für Rot oder Blau ist $\\frac12$.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Wahrscheinlichkeit für Rot oder Blau ist ",
+            },
+            { display: "inline", kind: "math", math: "\\frac12" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
+      categories: [
+        [{ kind: "text", text: "True" }],
+        [{ kind: "text", text: "False" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of red is $\\frac{4}{7}$.",
+          label: [
+            { kind: "text", text: "The probability of red is " },
+            { display: "inline", kind: "math", math: "\\frac{4}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "The probability of blue is $\\frac{3}{7}$.",
+          label: [
+            { kind: "text", text: "The probability of blue is " },
+            { display: "inline", kind: "math", math: "\\frac{3}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "On one draw, the red and blue events are mutually exclusive.",
+          label: [
+            {
+              kind: "text",
+              text: "On one draw, the red and blue events are mutually exclusive.",
+            },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "The probability of red or blue is $\\frac12$.",
+          label: [
+            { kind: "text", text: "The probability of red or blue is " },
+            { display: "inline", kind: "math", math: "\\frac12" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
+      categories: [
+        [{ kind: "text", text: "Benar" }],
+        [{ kind: "text", text: "Salah" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola merah adalah $\\frac{4}{7}$.",
+          label: [
+            { kind: "text", text: "Peluang mengambil bola merah adalah " },
+            { display: "inline", kind: "math", math: "\\frac{4}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola biru adalah $\\frac{3}{7}$.",
+          label: [
+            { kind: "text", text: "Peluang mengambil bola biru adalah " },
+            { display: "inline", kind: "math", math: "\\frac{3}{7}" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label:
-            "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
+          label: [
+            {
+              kind: "text",
+              text: "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
+            },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "Peluang memperoleh bola merah atau biru adalah $\\frac12$.",
+          label: [
+            {
+              kind: "text",
+              text: "Peluang memperoleh bola merah atau biru adalah ",
+            },
+            { display: "inline", kind: "math", math: "\\frac12" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

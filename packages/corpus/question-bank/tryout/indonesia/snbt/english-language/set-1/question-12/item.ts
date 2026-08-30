@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "UNESCO works only to protect famous cultural monuments.",
+          label: [
+            {
+              kind: "text",
+              text: "UNESCO works only to protect famous cultural monuments.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "UNESCO mainly writes domestic laws that every government must adopt.",
+          label: [
+            {
+              kind: "text",
+              text: "UNESCO mainly writes domestic laws that every government must adopt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "UNESCO was created to manage the Sustainable Development Goals after 2015.",
+          label: [
+            {
+              kind: "text",
+              text: "UNESCO was created to manage the Sustainable Development Goals after 2015.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
+          label: [
+            {
+              kind: "text",
+              text: "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "UNESCO replaces national education and science institutions with one global system.",
+          label: [
+            {
+              kind: "text",
+              text: "UNESCO replaces national education and science institutions with one global system.",
+            },
+          ],
         },
       ],
     },

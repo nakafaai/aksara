@@ -7,52 +7,88 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$P > Q$$",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P < Q$$",
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
         },
         {
           isCorrect: true,
-          label: "$$P = Q$$",
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
         },
         {
           isCorrect: false,
-          label: "$$P + Q = 12x$$",
+          label: [{ display: "block", kind: "math", math: "P + Q = 12x" }],
         },
         {
           isCorrect: false,
-          label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der vier oben genannten Möglichkeiten zu entscheiden",
+          label: [
+            {
+              kind: "text",
+              text: "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der vier oben genannten Möglichkeiten zu entscheiden",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$P > Q$$" },
-        { isCorrect: false, label: "$$P < Q$$" },
-        { isCorrect: true, label: "$$P = Q$$" },
-        { isCorrect: false, label: "$$P + Q = 12x$$" },
         {
           isCorrect: false,
-          label:
-            "The information provided is not sufficient to decide on one of the four choices above",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P + Q = 12x" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "The information provided is not sufficient to decide on one of the four choices above",
+            },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$P > Q$$" },
-        { isCorrect: false, label: "$$P < Q$$" },
-        { isCorrect: true, label: "$$P = Q$$" },
-        { isCorrect: false, label: "$$P + Q = 12x$$" },
         {
           isCorrect: false,
-          label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari keempat pilihan di atas",
+          label: [{ display: "block", kind: "math", math: "P > Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P < Q" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "P = Q" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "P + Q = 12x" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari keempat pilihan di atas",
+            },
+          ],
         },
       ],
     },

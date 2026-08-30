@@ -5,11 +5,26 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$(7)$$" },
-        { isCorrect: false, label: "$$(12)$$" },
-        { isCorrect: false, label: "$$(29)$$" },
-        { isCorrect: false, label: "$$(32)$$" },
-        { isCorrect: true, label: "$$(2)$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "(7)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "(12)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "(29)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "(32)" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "(2)" }],
+        },
       ],
     },
   },

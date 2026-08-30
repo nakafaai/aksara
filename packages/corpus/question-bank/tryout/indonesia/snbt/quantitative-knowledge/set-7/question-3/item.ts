@@ -7,44 +7,125 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1)$$, $$(2)$$ und $$(3)$$",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$(1)$$ und $$(3)$$",
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ und $$(4)$$",
+          label: [
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Nur $$(4)$$",
+          label: [
+            { kind: "text", text: "Nur " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Alle vier Zahlen",
+          label: [{ kind: "text", text: "Alle vier Zahlen" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$(1)$$, $$(2)$$, and $$(3)$$" },
-        { isCorrect: true, label: "$$(1)$$ and $$(3)$$" },
-        { isCorrect: false, label: "$$(2)$$ and $$(4)$$" },
-        { isCorrect: false, label: "Only $$(4)$$" },
-        { isCorrect: false, label: "All four numbers" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", and " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Only " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "All four numbers" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$(1)$$, $$(2)$$, dan $$(3)$$" },
-        { isCorrect: true, label: "$$(1)$$ dan $$(3)$$" },
-        { isCorrect: false, label: "$$(2)$$ dan $$(4)$$" },
-        { isCorrect: false, label: "Hanya $$(4)$$" },
-        { isCorrect: false, label: "Keempat bilangan" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", dan " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(3)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Hanya " },
+            { display: "block", kind: "math", math: "(4)" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Keempat bilangan" }],
+        },
       ],
     },
   },

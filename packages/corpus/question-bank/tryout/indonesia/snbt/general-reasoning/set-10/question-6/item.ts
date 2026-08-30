@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\text{MMM}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{MMM}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{NNN}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{NNN}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{PPP}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{PPP}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{QQQ}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{QQQ}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{RRR}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{RRR}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\text{MMM}$$" },
-        { isCorrect: false, label: "$$\\text{NNN}$$" },
-        { isCorrect: false, label: "$$\\text{PPP}$$" },
-        { isCorrect: false, label: "$$\\text{QQQ}$$" },
-        { isCorrect: false, label: "$$\\text{RRR}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\text{MMM}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{NNN}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{PPP}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{QQQ}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{RRR}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\text{MMM}$$" },
-        { isCorrect: false, label: "$$\\text{NNN}$$" },
-        { isCorrect: false, label: "$$\\text{PPP}$$" },
-        { isCorrect: false, label: "$$\\text{QQQ}$$" },
-        { isCorrect: false, label: "$$\\text{RRR}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\text{MMM}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{NNN}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{PPP}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{QQQ}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{RRR}" }],
+        },
       ],
     },
   },

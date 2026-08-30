@@ -7,44 +7,149 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$60$$ und $$155$$ Personen",
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " Personen" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$60$$ und $$145$$ Personen",
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " Personen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$62$$ und $$155$$ Personen",
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " Personen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$62$$ und $$145$$ Personen",
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " Personen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$65$$ und $$155$$ Personen",
+          label: [
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " Personen" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$60$$ and $$155$$ people" },
-        { isCorrect: true, label: "$$60$$ and $$145$$ people" },
-        { isCorrect: false, label: "$$62$$ and $$155$$ people" },
-        { isCorrect: false, label: "$$62$$ and $$145$$ people" },
-        { isCorrect: false, label: "$$65$$ and $$155$$ people" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " people" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " people" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " people" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " people" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " people" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$60$$ dan $$155$$ orang" },
-        { isCorrect: true, label: "$$60$$ dan $$145$$ orang" },
-        { isCorrect: false, label: "$$62$$ dan $$155$$ orang" },
-        { isCorrect: false, label: "$$62$$ dan $$145$$ orang" },
-        { isCorrect: false, label: "$$65$$ dan $$155$$ orang" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " orang" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "62" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "145" },
+            { kind: "text", text: " orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "155" },
+            { kind: "text", text: " orang" },
+          ],
+        },
       ],
     },
   },

@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$11{.}760$$",
+          label: [{ display: "block", kind: "math", math: "11{.}760" }],
         },
         {
           isCorrect: false,
-          label: "$$12{.}000$$",
+          label: [{ display: "block", kind: "math", math: "12{.}000" }],
         },
         {
           isCorrect: true,
-          label: "$$13{.}600$$",
+          label: [{ display: "block", kind: "math", math: "13{.}600" }],
         },
         {
           isCorrect: false,
-          label: "$$14{.}000$$",
+          label: [{ display: "block", kind: "math", math: "14{.}000" }],
         },
         {
           isCorrect: false,
-          label: "$$15{.}600$$",
+          label: [{ display: "block", kind: "math", math: "15{.}600" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$11{,}760$$" },
-        { isCorrect: false, label: "$$12{,}000$$" },
-        { isCorrect: true, label: "$$13{,}600$$" },
-        { isCorrect: false, label: "$$14{,}000$$" },
-        { isCorrect: false, label: "$$15{,}600$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "11{,}760" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12{,}000" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "13{,}600" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "14{,}000" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "15{,}600" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$11{.}760$$" },
-        { isCorrect: false, label: "$$12{.}000$$" },
-        { isCorrect: true, label: "$$13{.}600$$" },
-        { isCorrect: false, label: "$$14{.}000$$" },
-        { isCorrect: false, label: "$$15{.}600$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "11{.}760" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12{.}000" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "13{.}600" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "14{.}000" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "15{.}600" }],
+        },
       ],
     },
   },

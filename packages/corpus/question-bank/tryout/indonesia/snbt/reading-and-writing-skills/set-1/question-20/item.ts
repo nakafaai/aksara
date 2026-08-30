@@ -7,23 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das eine sichere Alter für das erste eigene Gerät.",
+          label: [
+            {
+              kind: "text",
+              text: "Das eine sichere Alter für das erste eigene Gerät.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Altersgerechte Mediennutzung in der Familie.",
+          label: [
+            {
+              kind: "text",
+              text: "Altersgerechte Mediennutzung in der Familie.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Warum jede Bildschirmzeit schädlich ist.",
+          label: [
+            { kind: "text", text: "Warum jede Bildschirmzeit schädlich ist." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Wie man das erste Smartphone eines Kindes kauft.",
+          label: [
+            {
+              kind: "text",
+              text: "Wie man das erste Smartphone eines Kindes kauft.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Eine Ein-Stunden-Regel für alle Familienmitglieder.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine Ein-Stunden-Regel für alle Familienmitglieder.",
+            },
+          ],
         },
       ],
     },
@@ -32,23 +54,32 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The One Safe Age for a Child's First Device.",
+          label: [
+            {
+              kind: "text",
+              text: "The One Safe Age for a Child's First Device.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Age-Appropriate Family Media Use.",
+          label: [{ kind: "text", text: "Age-Appropriate Family Media Use." }],
         },
         {
           isCorrect: false,
-          label: "Why All Screen Time Is Harmful.",
+          label: [{ kind: "text", text: "Why All Screen Time Is Harmful." }],
         },
         {
           isCorrect: false,
-          label: "How to Buy a Child's First Smartphone.",
+          label: [
+            { kind: "text", text: "How to Buy a Child's First Smartphone." },
+          ],
         },
         {
           isCorrect: false,
-          label: "A One-Hour Rule for Every Family Member.",
+          label: [
+            { kind: "text", text: "A One-Hour Rule for Every Family Member." },
+          ],
         },
       ],
     },
@@ -57,23 +88,34 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Satu Usia Aman untuk Gawai Pertama Anak.",
+          label: [
+            { kind: "text", text: "Satu Usia Aman untuk Gawai Pertama Anak." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Penggunaan Media Keluarga Sesuai Usia.",
+          label: [
+            { kind: "text", text: "Penggunaan Media Keluarga Sesuai Usia." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Mengapa Semua Waktu Layar Berbahaya.",
+          label: [
+            { kind: "text", text: "Mengapa Semua Waktu Layar Berbahaya." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Cara Membeli Ponsel Pertama Anak.",
+          label: [{ kind: "text", text: "Cara Membeli Ponsel Pertama Anak." }],
         },
         {
           isCorrect: false,
-          label: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
+          label: [
+            {
+              kind: "text",
+              text: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
+            },
+          ],
         },
       ],
     },

@@ -193,13 +193,13 @@ export const testPromptProjection = Schema.decodeSync(
     options: [
       {
         isCorrect: true,
-        label: "Test correct choice",
+        label: [{ kind: "text", text: "Test correct choice" }],
         optionKey: "option-1",
         order: 1,
       },
       {
         isCorrect: false,
-        label: "Test incorrect choice",
+        label: [{ kind: "text", text: "Test incorrect choice" }],
         optionKey: "option-2",
         order: 2,
       },

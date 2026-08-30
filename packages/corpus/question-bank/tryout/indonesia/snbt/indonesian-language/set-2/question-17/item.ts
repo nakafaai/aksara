@@ -7,21 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tiga korban yang ditemukan di bagian hunian",
+          label: [
+            {
+              kind: "text",
+              text: "Tiga korban yang ditemukan di bagian hunian",
+            },
+          ],
         },
-        { isCorrect: false, label: "Lukisan dinding mewah di atrium rumah" },
         {
           isCorrect: false,
-          label: "Prasasti pemilihan umum pada dinding bangunan",
+          label: [
+            { kind: "text", text: "Lukisan dinding mewah di atrium rumah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Prasasti pemilihan umum pada dinding bangunan",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
+          label: [
+            {
+              kind: "text",
+              text: "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Oven besar dan wadah untuk mengaduk adonan",
+          label: [
+            {
+              kind: "text",
+              text: "Oven besar dan wadah untuk mengaduk adonan",
+            },
+          ],
         },
       ],
     },

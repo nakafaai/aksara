@@ -12,15 +12,15 @@ const itemObject = `{
     "en": {
       "kind": "single-choice",
       "options": [
-        { "isCorrect": true, "label": \`A\` },
-        { isCorrect: false, label: "B" },
+        { "isCorrect": true, "label": [{ "kind": "text", "text": \`A\` }] },
+        { isCorrect: false, label: [{ kind: "text", text: "B" }] },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "A (ID)" },
-        { isCorrect: false, label: "B (ID)" },
+        { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
       ],
     },
   },
@@ -68,15 +68,27 @@ describe("question item source", () => {
           en: {
             kind: "single-choice",
             options: [
-              { isCorrect: true, label: "A" },
-              { isCorrect: false, label: "B" },
+              {
+                isCorrect: true,
+                label: [{ kind: "text", text: "A" }],
+              },
+              {
+                isCorrect: false,
+                label: [{ kind: "text", text: "B" }],
+              },
             ],
           },
           id: {
             kind: "single-choice",
             options: [
-              { isCorrect: true, label: "A (ID)" },
-              { isCorrect: false, label: "B (ID)" },
+              {
+                isCorrect: true,
+                label: [{ kind: "text", text: "A (ID)" }],
+              },
+              {
+                isCorrect: false,
+                label: [{ kind: "text", text: "B (ID)" }],
+              },
             ],
           },
         },
@@ -128,26 +140,30 @@ describe("question item source", () => {
   it.effect(
     "rejects executable, computed, incomplete, and invalid item values",
     () => {
+      const textLabel = '[{ kind: "text", text: "A" }]';
+      const correctOption = `{ isCorrect: true, label: ${textLabel} }`;
+      const distractor = `{ isCorrect: false, label: ${textLabel} }`;
+      const response = `{ kind: "single-choice", options: [${correctOption}, ${distractor}] }`;
       const invalidObjects = [
         "[]",
         "{}",
         "{ ...other }",
-        "{ en: [], en: [], id: [] }",
-        "{ en: [] }",
-        "{ en: [], id: [], de: [] }",
-        "{ en: call(), id: [] }",
-        '{ en: ["A"], id: [] }',
-        "{ en: [{ ...other }], id: [] }",
-        '{ en: [{ value: true }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A" }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ other: "A", value: true }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: 1, value: true }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A", value: 1 }], id: [{ label: "A", value: true }] }',
-        '{ [locale]: [], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A", label: "B", value: true }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A", value: true, value: false }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A", value: false }], id: [{ label: "A", value: true }] }',
-        '{ en: [{ label: "A", value: true }, { label: "B", value: true }], id: [{ label: "A", value: true }] }',
+        "{ responses: {}, responses: {} }",
+        "{ responses: {} }",
+        `{ responses: { en: ${response}, fr: ${response} } }`,
+        "{ responses: call() }",
+        '{ responses: { en: ["A"] } }',
+        "{ responses: { en: { ...other } } }",
+        `{ responses: { en: { kind: "single-choice", options: [{ label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${textLabel}, other: "A" }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: 1 }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: 1, label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { [locale]: ${response} } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${textLabel}, label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, isCorrect: false, label: ${textLabel} }, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [${distractor}, ${distractor}] } } }`,
+        `{ responses: { en: { kind: "single-choice", options: [${correctOption}, ${correctOption}] } } }`,
       ];
 
       return expectRejections(

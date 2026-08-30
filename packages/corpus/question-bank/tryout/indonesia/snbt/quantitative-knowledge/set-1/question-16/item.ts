@@ -7,23 +7,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{2x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3x + y}{12}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{4x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{4x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{5x + y}{12}" },
+          ],
         },
       ],
     },
@@ -32,23 +42,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{2x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3x + y}{12}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{4x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{4x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{5x + y}{12}" },
+          ],
         },
       ],
     },
@@ -57,23 +77,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{2x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{2x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{3x + y}{12}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{4x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{4x + y}{12}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5x + y}{12}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{5x + y}{12}" },
+          ],
         },
       ],
     },

@@ -7,24 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Geschäft verkauft $$24$$ Bergo-Tücher.",
+          label: [
+            { kind: "text", text: "Das Geschäft verkauft " },
+            { display: "block", kind: "math", math: "24" },
+            { kind: "text", text: " Bergo-Tücher." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pashmina ist mit $$35$$ verkauften Tüchern das meistverkaufte Modell.",
+          label: [
+            { kind: "text", text: "Pashmina ist mit " },
+            { display: "block", kind: "math", math: "35" },
+            {
+              kind: "text",
+              text: " verkauften Tüchern das meistverkaufte Modell.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Das Geschäft verkauft $$42$$ quadratische Tücher.",
+          label: [
+            { kind: "text", text: "Das Geschäft verkauft " },
+            { display: "block", kind: "math", math: "42" },
+            { kind: "text", text: " quadratische Tücher." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Es werden weniger Pashmina- als Bergo-Tücher verkauft.",
+          label: [
+            {
+              kind: "text",
+              text: "Es werden weniger Pashmina- als Bergo-Tücher verkauft.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Bergo ist das meistverkaufte Kopftuchmodell.",
+          label: [
+            {
+              kind: "text",
+              text: "Bergo ist das meistverkaufte Kopftuchmodell.",
+            },
+          ],
         },
       ],
     },
@@ -33,24 +57,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The shop sells $$24$$ bergo headscarves.",
+          label: [
+            { kind: "text", text: "The shop sells " },
+            { display: "block", kind: "math", math: "24" },
+            { kind: "text", text: " bergo headscarves." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pashmina is the best-selling style, with $$35$$ headscarves sold.",
+          label: [
+            { kind: "text", text: "Pashmina is the best-selling style, with " },
+            { display: "block", kind: "math", math: "35" },
+            { kind: "text", text: " headscarves sold." },
+          ],
         },
         {
           isCorrect: true,
-          label: "The shop sells $$42$$ square headscarves.",
+          label: [
+            { kind: "text", text: "The shop sells " },
+            { display: "block", kind: "math", math: "42" },
+            { kind: "text", text: " square headscarves." },
+          ],
         },
         {
           isCorrect: false,
-          label: "The shop sells fewer pashmina than bergo headscarves.",
+          label: [
+            {
+              kind: "text",
+              text: "The shop sells fewer pashmina than bergo headscarves.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Bergo is the best-selling headscarf style.",
+          label: [
+            {
+              kind: "text",
+              text: "Bergo is the best-selling headscarf style.",
+            },
+          ],
         },
       ],
     },
@@ -59,27 +104,54 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
+          label: [
+            {
+              kind: "text",
+              text: "Banyak kerudung jenis bergo yang terjual adalah ",
+            },
+            { display: "block", kind: "math", math: "24" },
+            { kind: "text", text: " buah." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kerudung jenis pasmina paling banyak terjual yaitu sebesar $$35$$ buah.",
+          label: [
+            {
+              kind: "text",
+              text: "Kerudung jenis pasmina paling banyak terjual yaitu sebesar ",
+            },
+            { display: "block", kind: "math", math: "35" },
+            { kind: "text", text: " buah." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Penjualan jenis kerudung segiempat adalah sebanyak $$42$$ buah.",
+          label: [
+            {
+              kind: "text",
+              text: "Penjualan jenis kerudung segiempat adalah sebanyak ",
+            },
+            { display: "block", kind: "math", math: "42" },
+            { kind: "text", text: " buah." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kerudung jenis pasmina lebih sedikit terjual dibandingkan kerudung jenis bergo.",
+          label: [
+            {
+              kind: "text",
+              text: "Kerudung jenis pasmina lebih sedikit terjual dibandingkan kerudung jenis bergo.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kerudung jenis bergo adalah kerudung yang paling banyak terjual.",
+          label: [
+            {
+              kind: "text",
+              text: "Kerudung jenis bergo adalah kerudung yang paling banyak terjual.",
+            },
+          ],
         },
       ],
     },

@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$120{.}000$$ Rupiah",
+          label: [
+            { display: "block", kind: "math", math: "120{.}000" },
+            { kind: "text", text: " Rupiah" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$160{.}000$$ Rupiah",
+          label: [
+            { display: "block", kind: "math", math: "160{.}000" },
+            { kind: "text", text: " Rupiah" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$200{.}000$$ Rupiah",
+          label: [
+            { display: "block", kind: "math", math: "200{.}000" },
+            { kind: "text", text: " Rupiah" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$240{.}000$$ Rupiah",
+          label: [
+            { display: "block", kind: "math", math: "240{.}000" },
+            { kind: "text", text: " Rupiah" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$280{.}000$$ Rupiah",
+          label: [
+            { display: "block", kind: "math", math: "280{.}000" },
+            { kind: "text", text: " Rupiah" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$120{,}000$$ rupiah" },
-        { isCorrect: false, label: "$$160{,}000$$ rupiah" },
-        { isCorrect: false, label: "$$200{,}000$$ rupiah" },
-        { isCorrect: true, label: "$$240{,}000$$ rupiah" },
-        { isCorrect: false, label: "$$280{,}000$$ rupiah" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "120{,}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "160{,}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "200{,}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "240{,}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "280{,}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$120{.}000$$ rupiah" },
-        { isCorrect: false, label: "$$160{.}000$$ rupiah" },
-        { isCorrect: false, label: "$$200{.}000$$ rupiah" },
-        { isCorrect: true, label: "$$240{.}000$$ rupiah" },
-        { isCorrect: false, label: "$$280{.}000$$ rupiah" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "120{.}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "160{.}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "200{.}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "240{.}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "280{.}000" },
+            { kind: "text", text: " rupiah" },
+          ],
+        },
       ],
     },
   },

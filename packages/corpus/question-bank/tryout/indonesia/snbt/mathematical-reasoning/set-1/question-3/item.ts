@@ -8,23 +8,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp}80{.}000{,}00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}80{.}000{,}00" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp}90{.}000{,}00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}90{.}000{,}00" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}100{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}100{.}000{,}00",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}110{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}110{.}000{,}00",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}120{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}120{.}000{,}00",
+            },
+          ],
         },
       ],
     },
@@ -33,23 +55,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp}80{,}000.00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}80{,}000.00" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp}90{,}000.00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}90{,}000.00" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}100{,}000.00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}100{,}000.00" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}110{,}000.00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}110{,}000.00" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}120{,}000.00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}120{,}000.00" },
+          ],
         },
       ],
     },
@@ -58,23 +90,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp}80{.}000{,}00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}80{.}000{,}00" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp}90{.}000{,}00$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp}90{.}000{,}00" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}100{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}100{.}000{,}00",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}110{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}110{.}000{,}00",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp}120{.}000{,}00$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\text{Rp}120{.}000{,}00",
+            },
+          ],
         },
       ],
     },

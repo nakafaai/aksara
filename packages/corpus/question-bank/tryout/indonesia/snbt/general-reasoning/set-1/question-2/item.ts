@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Die Forschenden nutzen sowohl Selektion als auch Kreuzung, um die Mango-Genressourcensammlung weiterzuentwickeln.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Forschenden nutzen sowohl Selektion als auch Kreuzung, um die Mango-Genressourcensammlung weiterzuentwickeln.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Örtliche Landwirte erzeugten Agri Gardina 45 ausschließlich durch Selektion.",
+          label: [
+            {
+              kind: "text",
+              text: "Örtliche Landwirte erzeugten Agri Gardina 45 ausschließlich durch Selektion.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti wurde aus kommerziellen Mangos in Kalifornien selektiert.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti wurde aus kommerziellen Mangos in Kalifornien selektiert.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti besitzt einen hohen Anteil grober Fruchtfasern.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti besitzt einen hohen Anteil grober Fruchtfasern.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jede Akzession der Cukurgondang-Sammlung ist exportreif.",
+          label: [
+            {
+              kind: "text",
+              text: "Jede Akzession der Cukurgondang-Sammlung ist exportreif.",
+            },
+          ],
         },
       ],
     },
@@ -36,28 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Researchers use both selection and crossbreeding to develop the mango germplasm collection.",
+          label: [
+            {
+              kind: "text",
+              text: "Researchers use both selection and crossbreeding to develop the mango germplasm collection.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Local farmers created Agri Gardina 45 through selection alone.",
+          label: [
+            {
+              kind: "text",
+              text: "Local farmers created Agri Gardina 45 through selection alone.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti was selected from commercial mangoes grown in California.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti was selected from commercial mangoes grown in California.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti is characterized by a high amount of coarse fruit fiber.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti is characterized by a high amount of coarse fruit fiber.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Every accession in the Cukurgondang collection is ready for export.",
+          label: [
+            {
+              kind: "text",
+              text: "Every accession in the Cukurgondang collection is ready for export.",
+            },
+          ],
         },
       ],
     },
@@ -66,28 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
+          label: [
+            {
+              kind: "text",
+              text: "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
+          label: [
+            {
+              kind: "text",
+              text: "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
+          label: [
+            {
+              kind: "text",
+              text: "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
+            },
+          ],
         },
       ],
     },

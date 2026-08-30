@@ -7,23 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "erhöht den Blutdruck",
+          label: [{ kind: "text", text: "erhöht den Blutdruck" }],
         },
         {
           isCorrect: false,
-          label: "senkt den Blutdruck",
+          label: [{ kind: "text", text: "senkt den Blutdruck" }],
         },
         {
           isCorrect: false,
-          label: "beugt Herz-Kreislauf-Erkrankungen vor",
+          label: [
+            { kind: "text", text: "beugt Herz-Kreislauf-Erkrankungen vor" },
+          ],
         },
         {
           isCorrect: false,
-          label: "beschleunigt die Verdauung",
+          label: [{ kind: "text", text: "beschleunigt die Verdauung" }],
         },
         {
           isCorrect: false,
-          label: "beseitigt den Kaliumbedarf des Körpers",
+          label: [
+            { kind: "text", text: "beseitigt den Kaliumbedarf des Körpers" },
+          ],
         },
       ],
     },
@@ -32,23 +36,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "raises blood pressure",
+          label: [{ kind: "text", text: "raises blood pressure" }],
         },
         {
           isCorrect: false,
-          label: "lowers blood pressure",
+          label: [{ kind: "text", text: "lowers blood pressure" }],
         },
         {
           isCorrect: false,
-          label: "prevents cardiovascular disease",
+          label: [{ kind: "text", text: "prevents cardiovascular disease" }],
         },
         {
           isCorrect: false,
-          label: "accelerates digestion",
+          label: [{ kind: "text", text: "accelerates digestion" }],
         },
         {
           isCorrect: false,
-          label: "removes the body's need for potassium",
+          label: [
+            { kind: "text", text: "removes the body's need for potassium" },
+          ],
         },
       ],
     },
@@ -57,23 +63,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "meningkatkan tekanan darah",
+          label: [{ kind: "text", text: "meningkatkan tekanan darah" }],
         },
         {
           isCorrect: false,
-          label: "menurunkan tekanan darah",
+          label: [{ kind: "text", text: "menurunkan tekanan darah" }],
         },
         {
           isCorrect: false,
-          label: "mencegah penyakit kardiovaskular",
+          label: [{ kind: "text", text: "mencegah penyakit kardiovaskular" }],
         },
         {
           isCorrect: false,
-          label: "mempercepat pencernaan",
+          label: [{ kind: "text", text: "mempercepat pencernaan" }],
         },
         {
           isCorrect: false,
-          label: "menghilangkan kebutuhan tubuh akan kalium",
+          label: [
+            { kind: "text", text: "menghilangkan kebutuhan tubuh akan kalium" },
+          ],
         },
       ],
     },

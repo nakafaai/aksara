@@ -5,7 +5,11 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "#contracts/locale";
-import { QuestionResponseSchema } from "#contracts/question/response";
+import {
+  type QuestionResponseContent,
+  QuestionResponseContentSchema,
+  QuestionResponseSchema,
+} from "#contracts/question/response";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 const PositiveOrderSchema = Schema.Int.pipe(
@@ -15,7 +19,7 @@ const PositiveOrderSchema = Schema.Int.pipe(
 /** One source-authored option before stable runtime identities are derived. */
 const QuestionOptionSourceSchema = Schema.Struct({
   isCorrect: Schema.Boolean,
-  label: Schema.String,
+  label: QuestionResponseContentSchema,
 }).mapFields(Struct.map(Schema.mutableKey));
 
 type QuestionOptionSource = typeof QuestionOptionSourceSchema.Type;
@@ -72,12 +76,12 @@ const MultipleChoiceResponseSourceSchema = Schema.Struct({
 
 const CategoryStatementSourceSchema = Schema.Struct({
   correctCategoryOrder: PositiveOrderSchema,
-  label: Schema.String,
+  label: QuestionResponseContentSchema,
 }).mapFields(Struct.map(Schema.mutableKey));
 
 /** Checks category cardinality and every statement's category reference. */
 function hasCoherentCategoryResponse(input: {
-  readonly categories: readonly string[];
+  readonly categories: readonly QuestionResponseContent[];
   readonly statements: readonly { readonly correctCategoryOrder: number }[];
 }) {
   return (
@@ -91,7 +95,7 @@ function hasCoherentCategoryResponse(input: {
 }
 
 const CategoryResponseSourceSchema = Schema.Struct({
-  categories: Schema.Array(Schema.String).pipe(Schema.mutable),
+  categories: Schema.Array(QuestionResponseContentSchema).pipe(Schema.mutable),
   kind: Schema.Literal("category"),
   statements: Schema.Array(CategoryStatementSourceSchema).pipe(Schema.mutable),
 })

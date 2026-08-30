@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "oft.",
+          label: [{ kind: "text", text: "oft." }],
         },
         {
           isCorrect: false,
-          label: "selten.",
+          label: [{ kind: "text", text: "selten." }],
         },
         {
           isCorrect: false,
-          label: "plötzlich.",
+          label: [{ kind: "text", text: "plötzlich." }],
         },
         {
           isCorrect: false,
-          label: "getrennt.",
+          label: [{ kind: "text", text: "getrennt." }],
         },
         {
           isCorrect: false,
-          label: "vielleicht.",
+          label: [{ kind: "text", text: "vielleicht." }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "often.",
+          label: [{ kind: "text", text: "often." }],
         },
         {
           isCorrect: false,
-          label: "rarely.",
+          label: [{ kind: "text", text: "rarely." }],
         },
         {
           isCorrect: false,
-          label: "suddenly.",
+          label: [{ kind: "text", text: "suddenly." }],
         },
         {
           isCorrect: false,
-          label: "separately.",
+          label: [{ kind: "text", text: "separately." }],
         },
         {
           isCorrect: false,
-          label: "perhaps.",
+          label: [{ kind: "text", text: "perhaps." }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "sering.",
+          label: [{ kind: "text", text: "sering." }],
         },
         {
           isCorrect: false,
-          label: "jarang.",
+          label: [{ kind: "text", text: "jarang." }],
         },
         {
           isCorrect: false,
-          label: "tiba-tiba.",
+          label: [{ kind: "text", text: "tiba-tiba." }],
         },
         {
           isCorrect: false,
-          label: "terpisah.",
+          label: [{ kind: "text", text: "terpisah." }],
         },
         {
           isCorrect: false,
-          label: "mungkin.",
+          label: [{ kind: "text", text: "mungkin." }],
         },
       ],
     },

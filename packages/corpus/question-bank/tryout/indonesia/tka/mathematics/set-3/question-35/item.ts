@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{42}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{43}{17}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{44}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{45}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{46}{17}" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{42}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{43}{17}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{44}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{45}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{46}{17}" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{42}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{43}{17}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{44}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{45}{17}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{46}{17}" }],
         },
       ],
     },

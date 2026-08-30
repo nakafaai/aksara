@@ -7,44 +7,98 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0 \\leq x \\leq 30$$",
+          label: [
+            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$30 \\leq x \\leq 35$$",
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$30 \\leq x \\leq 40$$",
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$20 \\leq x \\leq 30$$",
+          label: [
+            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kann nicht bestimmt werden",
+          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0 \\leq x \\leq 30$$" },
-        { isCorrect: false, label: "$$30 \\leq x \\leq 35$$" },
-        { isCorrect: true, label: "$$30 \\leq x \\leq 40$$" },
-        { isCorrect: false, label: "$$20 \\leq x \\leq 30$$" },
-        { isCorrect: false, label: "Cannot be determined" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cannot be determined" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$0 \\leq x \\leq 30$$" },
-        { isCorrect: false, label: "$$30 \\leq x \\leq 35$$" },
-        { isCorrect: true, label: "$$30 \\leq x \\leq 40$$" },
-        { isCorrect: false, label: "$$20 \\leq x \\leq 30$$" },
-        { isCorrect: false, label: "Tidak dapat ditentukan" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+        },
       ],
     },
   },

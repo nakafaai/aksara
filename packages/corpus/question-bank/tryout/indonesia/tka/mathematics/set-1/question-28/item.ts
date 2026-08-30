@@ -8,69 +8,131 @@ const item: QuestionItem = {
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
+      categories: [
+        [{ kind: "text", text: "Richtig" }],
+        [{ kind: "text", text: "Falsch" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Der Umfang einer ebenen Figur wird mit $2$ multipliziert.",
+          label: [
+            { kind: "text", text: "Der Umfang einer ebenen Figur wird mit " },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: " multipliziert." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label:
-            "Der Flächeninhalt einer ebenen Figur wird mit $2^2$ multipliziert.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Flächeninhalt einer ebenen Figur wird mit ",
+            },
+            { display: "inline", kind: "math", math: "2^2" },
+            { kind: "text", text: " multipliziert." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "Das Volumen eines Körpers wird mit $2^3$ multipliziert.",
+          label: [
+            { kind: "text", text: "Das Volumen eines Körpers wird mit " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: " multipliziert." },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Oberfläche eines Körpers wird mit $2^3$ multipliziert.",
+          label: [
+            { kind: "text", text: "Die Oberfläche eines Körpers wird mit " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: " multipliziert." },
+          ],
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
+      categories: [
+        [{ kind: "text", text: "True" }],
+        [{ kind: "text", text: "False" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's perimeter is multiplied by $2$.",
+          label: [
+            {
+              kind: "text",
+              text: "A plane figure's perimeter is multiplied by ",
+            },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's area is multiplied by $2^2$.",
+          label: [
+            { kind: "text", text: "A plane figure's area is multiplied by " },
+            { display: "inline", kind: "math", math: "2^2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "A solid's volume is multiplied by $2^3$.",
+          label: [
+            { kind: "text", text: "A solid's volume is multiplied by " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "A solid's surface area is multiplied by $2^3$.",
+          label: [
+            { kind: "text", text: "A solid's surface area is multiplied by " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
+      categories: [
+        [{ kind: "text", text: "Benar" }],
+        [{ kind: "text", text: "Salah" }],
+      ],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Keliling bangun datar dikalikan $2$.",
+          label: [
+            { kind: "text", text: "Keliling bangun datar dikalikan " },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "Luas bangun datar dikalikan $2^2$.",
+          label: [
+            { kind: "text", text: "Luas bangun datar dikalikan " },
+            { display: "inline", kind: "math", math: "2^2" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 1,
-          label: "Volume bangun ruang dikalikan $2^3$.",
+          label: [
+            { kind: "text", text: "Volume bangun ruang dikalikan " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           correctCategoryOrder: 2,
-          label: "Luas permukaan bangun ruang dikalikan $2^3$.",
+          label: [
+            { kind: "text", text: "Luas permukaan bangun ruang dikalikan " },
+            { display: "inline", kind: "math", math: "2^3" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

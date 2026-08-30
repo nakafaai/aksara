@@ -7,44 +7,110 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1{,}1$$ Millionen Tonnen",
+          label: [
+            { display: "block", kind: "math", math: "1{,}1" },
+            { kind: "text", text: " Millionen Tonnen" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$1{,}8$$ Millionen Tonnen",
+          label: [
+            { display: "block", kind: "math", math: "1{,}8" },
+            { kind: "text", text: " Millionen Tonnen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2{,}5$$ Millionen Tonnen",
+          label: [
+            { display: "block", kind: "math", math: "2{,}5" },
+            { kind: "text", text: " Millionen Tonnen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3{,}0$$ Millionen Tonnen",
+          label: [
+            { display: "block", kind: "math", math: "3{,}0" },
+            { kind: "text", text: " Millionen Tonnen" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kann nicht bestimmt werden",
+          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1.1$$ million tons" },
-        { isCorrect: true, label: "$$1.8$$ million tons" },
-        { isCorrect: false, label: "$$2.5$$ million tons" },
-        { isCorrect: false, label: "$$3.0$$ million tons" },
-        { isCorrect: false, label: "Cannot be determined" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1.1" },
+            { kind: "text", text: " million tons" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1.8" },
+            { kind: "text", text: " million tons" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2.5" },
+            { kind: "text", text: " million tons" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3.0" },
+            { kind: "text", text: " million tons" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Cannot be determined" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1{,}1$$ juta ton" },
-        { isCorrect: true, label: "$$1{,}8$$ juta ton" },
-        { isCorrect: false, label: "$$2{,}5$$ juta ton" },
-        { isCorrect: false, label: "$$3{,}0$$ juta ton" },
-        { isCorrect: false, label: "Tidak dapat ditentukan" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1{,}1" },
+            { kind: "text", text: " juta ton" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "1{,}8" },
+            { kind: "text", text: " juta ton" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2{,}5" },
+            { kind: "text", text: " juta ton" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3{,}0" },
+            { kind: "text", text: " juta ton" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+        },
       ],
     },
   },

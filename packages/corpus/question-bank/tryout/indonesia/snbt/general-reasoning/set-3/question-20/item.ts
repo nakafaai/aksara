@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "phipllowg cz ?hmmphng",
+          label: [{ kind: "text", text: "phipllowg cz ?hmmphng" }],
         },
         {
           isCorrect: false,
-          label: "?hhmmpowg cz ?hmmphng",
+          label: [{ kind: "text", text: "?hhmmpowg cz ?hmmphng" }],
         },
         {
           isCorrect: true,
-          label: "?hhmmphng ?hmmpowg cz",
+          label: [{ kind: "text", text: "?hhmmphng ?hmmpowg cz" }],
         },
         {
           isCorrect: false,
-          label: "ng?hmmphowg ?hmmp cz",
+          label: [{ kind: "text", text: "ng?hmmphowg ?hmmp cz" }],
         },
         {
           isCorrect: false,
-          label: "ng?hmmph ?hmmpowg cz",
+          label: [{ kind: "text", text: "ng?hmmph ?hmmpowg cz" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "phipllowg cz ?hmmphng" },
-        { isCorrect: false, label: "?hhmmpowg cz ?hmmphng" },
-        { isCorrect: true, label: "?hhmmphng ?hmmpowg cz" },
-        { isCorrect: false, label: "ng?hmmphowg ?hmmp cz" },
-        { isCorrect: false, label: "ng?hmmph ?hmmpowg cz" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "phipllowg cz ?hmmphng" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "?hhmmpowg cz ?hmmphng" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "?hhmmphng ?hmmpowg cz" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "ng?hmmphowg ?hmmp cz" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "ng?hmmph ?hmmpowg cz" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "phipllowg cz ?hmmphng" },
-        { isCorrect: false, label: "?hhmmpowg cz ?hmmphng" },
-        { isCorrect: true, label: "?hhmmphng ?hmmpowg cz" },
-        { isCorrect: false, label: "ng?hmmphowg ?hmmp cz" },
-        { isCorrect: false, label: "ng?hmmph ?hmmpowg cz" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "phipllowg cz ?hmmphng" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "?hhmmpowg cz ?hmmphng" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "?hhmmphng ?hmmpowg cz" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "ng?hmmphowg ?hmmp cz" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "ng?hmmph ?hmmpowg cz" }],
+        },
       ],
     },
   },

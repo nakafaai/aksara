@@ -7,25 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "der Ursprung des Coronavirus.",
+          label: [{ kind: "text", text: "der Ursprung des Coronavirus." }],
         },
         {
           isCorrect: false,
-          label:
-            "Pocken sind im Vergleich zum Coronavirus eine gefährlichere Krankheit.",
+          label: [
+            {
+              kind: "text",
+              text: "Pocken sind im Vergleich zum Coronavirus eine gefährlichere Krankheit.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Forschung mit alter DNA zur Geschichte und Evolution des Variola-Virus.",
+          label: [
+            {
+              kind: "text",
+              text: "Forschung mit alter DNA zur Geschichte und Evolution des Variola-Virus.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "die Ursache für das Verschwinden der Wikinger.",
+          label: [
+            {
+              kind: "text",
+              text: "die Ursache für das Verschwinden der Wikinger.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "die Ursache für das Aussterben der alten Pocken.",
+          label: [
+            {
+              kind: "text",
+              text: "die Ursache für das Aussterben der alten Pocken.",
+            },
+          ],
         },
       ],
     },
@@ -34,25 +52,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "the origin of the coronavirus.",
+          label: [{ kind: "text", text: "the origin of the coronavirus." }],
         },
         {
           isCorrect: false,
-          label:
-            "smallpox is a more dangerous disease compared to the coronavirus.",
+          label: [
+            {
+              kind: "text",
+              text: "smallpox is a more dangerous disease compared to the coronavirus.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "ancient-DNA research on the history and evolution of the variola virus.",
+          label: [
+            {
+              kind: "text",
+              text: "ancient-DNA research on the history and evolution of the variola virus.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the cause of the disappearance of the Vikings.",
+          label: [
+            {
+              kind: "text",
+              text: "the cause of the disappearance of the Vikings.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "the cause of the extinction of ancient smallpox.",
+          label: [
+            {
+              kind: "text",
+              text: "the cause of the extinction of ancient smallpox.",
+            },
+          ],
         },
       ],
     },
@@ -61,25 +97,33 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "asal mula virus corona.",
+          label: [{ kind: "text", text: "asal mula virus corona." }],
         },
         {
           isCorrect: false,
-          label:
-            "cacar merupakan penyakit yang berbahaya dibandingkan virus corona.",
+          label: [
+            {
+              kind: "text",
+              text: "cacar merupakan penyakit yang berbahaya dibandingkan virus corona.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
+          label: [
+            {
+              kind: "text",
+              text: "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "penyebab hilangnya orang Viking.",
+          label: [{ kind: "text", text: "penyebab hilangnya orang Viking." }],
         },
         {
           isCorrect: false,
-          label: "penyebab punahnya cacar purba.",
+          label: [{ kind: "text", text: "penyebab punahnya cacar purba." }],
         },
       ],
     },

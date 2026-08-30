@@ -5,23 +5,47 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Setiap orang memiliki kisah yang berbeda" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Setiap orang memiliki kisah yang berbeda" },
+          ],
+        },
         {
           isCorrect: true,
-          label: "Mungkin setiap orang akan mengalami fase ini juga",
+          label: [
+            {
+              kind: "text",
+              text: "Mungkin setiap orang akan mengalami fase ini juga",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
+          label: [
+            {
+              kind: "text",
+              text: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
+          label: [
+            {
+              kind: "text",
+              text: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
+          label: [
+            {
+              kind: "text",
+              text: "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
+            },
+          ],
         },
       ],
     },

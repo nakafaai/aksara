@@ -7,58 +7,163 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$h(t) = 8 \\sin 6{,}2 \\pi t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin 6{,}2 \\pi t",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$h(t) = 8 \\sin \\frac{2\\pi}{6{,}2} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{6{,}2} t",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$h(t) = 8 \\sin \\frac{2\\pi}{12{,}4} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{12{,}4} t",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$h(t) = 16 \\sin \\frac{2\\pi}{6{,}2} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{6{,}2} t",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$h(t) = 16 \\sin \\frac{2\\pi}{12{,}4} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{12{,}4} t",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$h(t) = 8 \\sin 6.2 \\pi t$$" },
-        { isCorrect: false, label: "$$h(t) = 8 \\sin \\frac{2\\pi}{6.2} t$$" },
-        { isCorrect: true, label: "$$h(t) = 8 \\sin \\frac{2\\pi}{12.4} t$$" },
-        { isCorrect: false, label: "$$h(t) = 16 \\sin \\frac{2\\pi}{6.2} t$$" },
         {
           isCorrect: false,
-          label: "$$h(t) = 16 \\sin \\frac{2\\pi}{12.4} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin 6.2 \\pi t",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{6.2} t",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{12.4} t",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{6.2} t",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{12.4} t",
+            },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$h(t) = 8 \\sin 6{,}2 \\pi t$$" },
         {
           isCorrect: false,
-          label: "$$h(t) = 8 \\sin \\frac{2\\pi}{6{,}2} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin 6{,}2 \\pi t",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{6{,}2} t",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$h(t) = 8 \\sin \\frac{2\\pi}{12{,}4} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 8 \\sin \\frac{2\\pi}{12{,}4} t",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$h(t) = 16 \\sin \\frac{2\\pi}{6{,}2} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{6{,}2} t",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$h(t) = 16 \\sin \\frac{2\\pi}{12{,}4} t$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "h(t) = 16 \\sin \\frac{2\\pi}{12{,}4} t",
+            },
+          ],
         },
       ],
     },

@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$48$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48{,}5$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "48{,}5" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$49$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "49" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$49{,}5$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "49{,}5" },
+            { kind: "text", text: " Tage" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$50$$ Tage",
+          label: [
+            { display: "block", kind: "math", math: "50" },
+            { kind: "text", text: " Tage" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$48$$ days" },
-        { isCorrect: false, label: "$$48.5$$ days" },
-        { isCorrect: false, label: "$$49$$ days" },
-        { isCorrect: true, label: "$$49.5$$ days" },
-        { isCorrect: false, label: "$$50$$ days" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48.5" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "49" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "49.5" },
+            { kind: "text", text: " days" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "50" },
+            { kind: "text", text: " days" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$48$$ hari" },
-        { isCorrect: false, label: "$$48{,}5$$ hari" },
-        { isCorrect: false, label: "$$49$$ hari" },
-        { isCorrect: true, label: "$$49{,}5$$ hari" },
-        { isCorrect: false, label: "$$50$$ hari" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48{,}5" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "49" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "49{,}5" },
+            { kind: "text", text: " hari" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "50" },
+            { kind: "text", text: " hari" },
+          ],
+        },
       ],
     },
   },

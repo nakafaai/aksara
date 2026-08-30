@@ -7,28 +7,58 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Erntefläche in $$2018$$ war mehr als doppelt so groß wie die Erntefläche in $$2016$$",
+          label: [
+            { kind: "text", text: "Die Erntefläche in " },
+            { display: "block", kind: "math", math: "2018" },
+            {
+              kind: "text",
+              text: " war mehr als doppelt so groß wie die Erntefläche in ",
+            },
+            { display: "block", kind: "math", math: "2016" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Knoblauchproduktion in $$2018$$ war doppelt so hoch wie die Knoblauchproduktion in $$2017$$",
+          label: [
+            { kind: "text", text: "Die Knoblauchproduktion in " },
+            { display: "block", kind: "math", math: "2018" },
+            {
+              kind: "text",
+              text: " war doppelt so hoch wie die Knoblauchproduktion in ",
+            },
+            { display: "block", kind: "math", math: "2017" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Im Zeitraum $$2015\\text{-}2017$$ verringerte sich die Knoblaucherntefläche kontinuierlich",
+          label: [
+            { kind: "text", text: "Im Zeitraum " },
+            { display: "block", kind: "math", math: "2015\\text{-}2017" },
+            {
+              kind: "text",
+              text: " verringerte sich die Knoblaucherntefläche kontinuierlich",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "In $$2017$$ gab es einen Rückgang der Erntefläche, der Produktion und des Imports von Knoblauch",
+          label: [
+            { kind: "text", text: "In " },
+            { display: "block", kind: "math", math: "2017" },
+            {
+              kind: "text",
+              text: " gab es einen Rückgang der Erntefläche, der Produktion und des Imports von Knoblauch",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "In den letzten beiden Jahren kam es zu einem kontinuierlichen Anstieg der Menge an Knoblauchimporten",
+          label: [
+            {
+              kind: "text",
+              text: "In den letzten beiden Jahren kam es zu einem kontinuierlichen Anstieg der Menge an Knoblauchimporten",
+            },
+          ],
         },
       ],
     },
@@ -37,28 +67,55 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The harvest area in $$2018$$ was more than double the harvest area in $$2016$$",
+          label: [
+            { kind: "text", text: "The harvest area in " },
+            { display: "block", kind: "math", math: "2018" },
+            {
+              kind: "text",
+              text: " was more than double the harvest area in ",
+            },
+            { display: "block", kind: "math", math: "2016" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Garlic production in $$2018$$ was double the garlic production in $$2017$$",
+          label: [
+            { kind: "text", text: "Garlic production in " },
+            { display: "block", kind: "math", math: "2018" },
+            { kind: "text", text: " was double the garlic production in " },
+            { display: "block", kind: "math", math: "2017" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "In the $$2015\\text{-}2017$$ period, the garlic harvest area decreased continuously",
+          label: [
+            { kind: "text", text: "In the " },
+            { display: "block", kind: "math", math: "2015\\text{-}2017" },
+            {
+              kind: "text",
+              text: " period, the garlic harvest area decreased continuously",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "In $$2017$$, there was a decrease in harvest area, production, and import of garlic",
+          label: [
+            { kind: "text", text: "In " },
+            { display: "block", kind: "math", math: "2017" },
+            {
+              kind: "text",
+              text: ", there was a decrease in harvest area, production, and import of garlic",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "There was a continuous increase in the amount of garlic imports in the last two years",
+          label: [
+            {
+              kind: "text",
+              text: "There was a continuous increase in the amount of garlic imports in the last two years",
+            },
+          ],
         },
       ],
     },
@@ -67,28 +124,58 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Luas panen di tahun $$2018$$ lebih dari dua kali lipat luas panen di tahun $$2016$$",
+          label: [
+            { kind: "text", text: "Luas panen di tahun " },
+            { display: "block", kind: "math", math: "2018" },
+            {
+              kind: "text",
+              text: " lebih dari dua kali lipat luas panen di tahun ",
+            },
+            { display: "block", kind: "math", math: "2016" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Produksi bawang putih di tahun $$2018$$ dua kali lipat dari produksi bawang putih di tahun $$2017$$",
+          label: [
+            { kind: "text", text: "Produksi bawang putih di tahun " },
+            { display: "block", kind: "math", math: "2018" },
+            {
+              kind: "text",
+              text: " dua kali lipat dari produksi bawang putih di tahun ",
+            },
+            { display: "block", kind: "math", math: "2017" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Periode $$2015\\text{-}2017$$, luas panen bawang putih mengalami penurunan terus menerus",
+          label: [
+            { kind: "text", text: "Periode " },
+            { display: "block", kind: "math", math: "2015\\text{-}2017" },
+            {
+              kind: "text",
+              text: ", luas panen bawang putih mengalami penurunan terus menerus",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Pada tahun $$2017$$ terjadi penurunan dalam luas panen, produksi dan impor bawang putih",
+          label: [
+            { kind: "text", text: "Pada tahun " },
+            { display: "block", kind: "math", math: "2017" },
+            {
+              kind: "text",
+              text: " terjadi penurunan dalam luas panen, produksi dan impor bawang putih",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Terjadi kenaikan terus menerus pada jumlah impor bawang putih di dua tahun terakhir",
+          label: [
+            {
+              kind: "text",
+              text: "Terjadi kenaikan terus menerus pada jumlah impor bawang putih di dua tahun terakhir",
+            },
+          ],
         },
       ],
     },

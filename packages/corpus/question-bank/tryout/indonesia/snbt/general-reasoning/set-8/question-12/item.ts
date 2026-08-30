@@ -7,28 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Teilnehmende berichten, dass die Mentorinnen und Mentoren hilfreiches Karrierefeedback geben.",
+          label: [
+            {
+              kind: "text",
+              text: "Teilnehmende berichten, dass die Mentorinnen und Mentoren hilfreiches Karrierefeedback geben.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Zahl der Anmeldungen zum Mentoringprogramm ist im Laufe des Jahres gestiegen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Zahl der Anmeldungen zum Mentoringprogramm ist im Laufe des Jahres gestiegen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Eine unabhängige Prüfung bestätigt die angegebene Verlängerungsquote.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine unabhängige Prüfung bestätigt die angegebene Verlängerungsquote.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
+          label: [
+            {
+              kind: "text",
+              text: "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Mehrere Abteilungen planen für das nächste Jahr zusätzliche Mentoringsitzungen.",
+          label: [
+            {
+              kind: "text",
+              text: "Mehrere Abteilungen planen für das nächste Jahr zusätzliche Mentoringsitzungen.",
+            },
+          ],
         },
       ],
     },
@@ -37,28 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Participants report that mentors provide useful career feedback.",
+          label: [
+            {
+              kind: "text",
+              text: "Participants report that mentors provide useful career feedback.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Enrollment in the mentoring program increased during the year.",
+          label: [
+            {
+              kind: "text",
+              text: "Enrollment in the mentoring program increased during the year.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "An independent audit confirms the reported contract-renewal rate.",
+          label: [
+            {
+              kind: "text",
+              text: "An independent audit confirms the reported contract-renewal rate.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Contracts renew automatically unless employees submit an opt-out form.",
+          label: [
+            {
+              kind: "text",
+              text: "Contracts renew automatically unless employees submit an opt-out form.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Several departments plan to offer more mentoring sessions next year.",
+          label: [
+            {
+              kind: "text",
+              text: "Several departments plan to offer more mentoring sessions next year.",
+            },
+          ],
         },
       ],
     },
@@ -67,28 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
+          label: [
+            {
+              kind: "text",
+              text: "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
+          label: [
+            {
+              kind: "text",
+              text: "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
+          label: [
+            {
+              kind: "text",
+              text: "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
+          label: [
+            {
+              kind: "text",
+              text: "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
+          label: [
+            {
+              kind: "text",
+              text: "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
+            },
+          ],
         },
       ],
     },

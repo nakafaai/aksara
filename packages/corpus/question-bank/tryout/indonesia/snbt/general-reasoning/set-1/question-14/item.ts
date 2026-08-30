@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{139}{28}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{149}{30}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{154}{31}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{159}{32}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{164}{33}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{139}{28}$$" },
-        { isCorrect: false, label: "$$\\frac{149}{30}$$" },
-        { isCorrect: false, label: "$$\\frac{154}{31}$$" },
-        { isCorrect: false, label: "$$\\frac{159}{32}$$" },
-        { isCorrect: false, label: "$$\\frac{164}{33}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$\\frac{139}{28}$$" },
-        { isCorrect: false, label: "$$\\frac{149}{30}$$" },
-        { isCorrect: false, label: "$$\\frac{154}{31}$$" },
-        { isCorrect: false, label: "$$\\frac{159}{32}$$" },
-        { isCorrect: false, label: "$$\\frac{164}{33}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
+        },
       ],
     },
   },

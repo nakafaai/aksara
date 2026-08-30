@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$15$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$30$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$45$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$60$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$75$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$15$$ minutes" },
-        { isCorrect: false, label: "$$30$$ minutes" },
-        { isCorrect: false, label: "$$45$$ minutes" },
-        { isCorrect: true, label: "$$60$$ minutes" },
-        { isCorrect: false, label: "$$75$$ minutes" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$15$$ menit" },
-        { isCorrect: false, label: "$$30$$ menit" },
-        { isCorrect: false, label: "$$45$$ menit" },
-        { isCorrect: true, label: "$$60$$ menit" },
-        { isCorrect: false, label: "$$75$$ menit" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "45" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " menit" },
+          ],
+        },
       ],
     },
   },

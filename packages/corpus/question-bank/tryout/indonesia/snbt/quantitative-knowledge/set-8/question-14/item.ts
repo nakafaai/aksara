@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{11}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{11}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{2}{11}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{11}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{4}{11}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{4}{11}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{5}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{3}{5}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{7}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{7}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{1}{11}$$" },
-        { isCorrect: true, label: "$$\\frac{2}{11}$$" },
-        { isCorrect: false, label: "$$\\frac{4}{11}$$" },
-        { isCorrect: false, label: "$$\\frac{3}{5}$$" },
-        { isCorrect: false, label: "$$\\frac{5}{7}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{11}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{11}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{4}{11}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{3}{5}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{7}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{1}{11}$$" },
-        { isCorrect: true, label: "$$\\frac{2}{11}$$" },
-        { isCorrect: false, label: "$$\\frac{4}{11}$$" },
-        { isCorrect: false, label: "$$\\frac{3}{5}$$" },
-        { isCorrect: false, label: "$$\\frac{5}{7}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{11}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{11}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{4}{11}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{3}{5}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{7}" }],
+        },
       ],
     },
   },

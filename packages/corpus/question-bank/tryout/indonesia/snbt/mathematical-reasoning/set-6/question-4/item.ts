@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$7$$ Monate",
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " Monate" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$8$$ Monate",
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " Monate" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$9$$ Monate",
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " Monate" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$10$$ Monate",
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " Monate" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$12$$ Monate",
+          label: [
+            { display: "block", kind: "math", math: "12" },
+            { kind: "text", text: " Monate" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$7$$ months" },
-        { isCorrect: false, label: "$$8$$ months" },
-        { isCorrect: false, label: "$$9$$ months" },
-        { isCorrect: true, label: "$$10$$ months" },
-        { isCorrect: false, label: "$$12$$ months" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " months" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " months" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " months" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " months" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "12" },
+            { kind: "text", text: " months" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$7$$ bulan" },
-        { isCorrect: false, label: "$$8$$ bulan" },
-        { isCorrect: false, label: "$$9$$ bulan" },
-        { isCorrect: true, label: "$$10$$ bulan" },
-        { isCorrect: false, label: "$$12$$ bulan" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " bulan" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8" },
+            { kind: "text", text: " bulan" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "9" },
+            { kind: "text", text: " bulan" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " bulan" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "12" },
+            { kind: "text", text: " bulan" },
+          ],
+        },
       ],
     },
   },

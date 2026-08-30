@@ -7,17 +7,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Dito hat die vorausgesetzten Übungen abgeschlossen",
-        },
-        { isCorrect: false, label: "Dito hat am Übungstest teilgenommen" },
-        { isCorrect: false, label: "Dito ist kein Lernender" },
-        {
-          isCorrect: true,
-          label: "Dito hat die vorausgesetzten Übungen nicht abgeschlossen",
+          label: [
+            {
+              kind: "text",
+              text: "Dito hat die vorausgesetzten Übungen abgeschlossen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Dito hat einen Auswertungsbericht erhalten",
+          label: [
+            { kind: "text", text: "Dito hat am Übungstest teilgenommen" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito ist kein Lernender" }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "Dito hat die vorausgesetzten Übungen nicht abgeschlossen",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Dito hat einen Auswertungsbericht erhalten",
+            },
+          ],
         },
       ],
     },
@@ -26,28 +49,63 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Dito completed the prerequisite exercises",
+          label: [
+            { kind: "text", text: "Dito completed the prerequisite exercises" },
+          ],
         },
-        { isCorrect: false, label: "Dito took the practice test" },
-        { isCorrect: false, label: "Dito is not a student" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito took the practice test" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito is not a student" }],
+        },
         {
           isCorrect: true,
-          label: "Dito did not complete the prerequisite exercises",
+          label: [
+            {
+              kind: "text",
+              text: "Dito did not complete the prerequisite exercises",
+            },
+          ],
         },
-        { isCorrect: false, label: "Dito received an evaluation report" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito received an evaluation report" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Dito menyelesaikan latihan prasyarat" },
-        { isCorrect: false, label: "Dito mengikuti tes latihan" },
-        { isCorrect: false, label: "Dito bukan seorang siswa" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Dito menyelesaikan latihan prasyarat" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito mengikuti tes latihan" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito bukan seorang siswa" }],
+        },
         {
           isCorrect: true,
-          label: "Dito tidak menyelesaikan latihan prasyarat",
+          label: [
+            {
+              kind: "text",
+              text: "Dito tidak menyelesaikan latihan prasyarat",
+            },
+          ],
         },
-        { isCorrect: false, label: "Dito menerima laporan evaluasi" },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Dito menerima laporan evaluasi" }],
+        },
       ],
     },
   },

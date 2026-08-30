@@ -7,28 +7,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Seit Januar $$1941$$ wurden in Cukurgondang Mango-Akzessionen angepflanzt, und die Anlage umfasste $$11{,}87$$ Hektar.",
+          label: [
+            { kind: "text", text: "Seit Januar " },
+            { display: "block", kind: "math", math: "1941" },
+            {
+              kind: "text",
+              text: " wurden in Cukurgondang Mango-Akzessionen angepflanzt, und die Anlage umfasste ",
+            },
+            { display: "block", kind: "math", math: "11{,}87" },
+            { kind: "text", text: " Hektar." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Nationale Mango-Innovationswoche fand am IP2TP Cukurgondang in Pasuruan, Ostjava, statt.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Nationale Mango-Innovationswoche fand am IP2TP Cukurgondang in Pasuruan, Ostjava, statt.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Bäuerliche Betriebe in Pasuruan bauten jede Akzession der Cukurgondang-Sammlung an.",
+          label: [
+            {
+              kind: "text",
+              text: "Bäuerliche Betriebe in Pasuruan bauten jede Akzession der Cukurgondang-Sammlung an.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Das Ministerium bezeichnete Cukurgondang als zweitgrößte Mangosammlung der Welt.",
+          label: [
+            {
+              kind: "text",
+              text: "Das Ministerium bezeichnete Cukurgondang als zweitgrößte Mangosammlung der Welt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Veranstaltung diente der Verbreitung von Mangoforschung und -technologie.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Veranstaltung diente der Verbreitung von Mangoforschung und -technologie.",
+            },
+          ],
         },
       ],
     },
@@ -37,28 +61,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Mango accessions had been planted at Cukurgondang since January $$1941$$, and the site covered $$11.87$$ hectares.",
+          label: [
+            {
+              kind: "text",
+              text: "Mango accessions had been planted at Cukurgondang since January ",
+            },
+            { display: "block", kind: "math", math: "1941" },
+            { kind: "text", text: ", and the site covered " },
+            { display: "block", kind: "math", math: "11.87" },
+            { kind: "text", text: " hectares." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "National Mango Innovation Week was held at IP2TP Cukurgondang in Pasuruan, East Java.",
+          label: [
+            {
+              kind: "text",
+              text: "National Mango Innovation Week was held at IP2TP Cukurgondang in Pasuruan, East Java.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Community plantations in Pasuruan cultivated every accession in the Cukurgondang collection.",
+          label: [
+            {
+              kind: "text",
+              text: "Community plantations in Pasuruan cultivated every accession in the Cukurgondang collection.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The ministry described Cukurgondang as the world's second-largest mango collection.",
+          label: [
+            {
+              kind: "text",
+              text: "The ministry described Cukurgondang as the world's second-largest mango collection.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The event served to disseminate mango research and technology.",
+          label: [
+            {
+              kind: "text",
+              text: "The event served to disseminate mango research and technology.",
+            },
+          ],
         },
       ],
     },
@@ -67,28 +115,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Aksesi mangga telah ditanam di Cukurgondang sejak Januari $$1941$$, dan luas kebunnya $$11{,}87$$ hektare.",
+          label: [
+            {
+              kind: "text",
+              text: "Aksesi mangga telah ditanam di Cukurgondang sejak Januari ",
+            },
+            { display: "block", kind: "math", math: "1941" },
+            { kind: "text", text: ", dan luas kebunnya " },
+            { display: "block", kind: "math", math: "11{,}87" },
+            { kind: "text", text: " hektare." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pekan Inovasi Mangga Nasional diselenggarakan di IP2TP Cukurgondang, Pasuruan, Jawa Timur.",
+          label: [
+            {
+              kind: "text",
+              text: "Pekan Inovasi Mangga Nasional diselenggarakan di IP2TP Cukurgondang, Pasuruan, Jawa Timur.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
+          label: [
+            {
+              kind: "text",
+              text: "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kementerian menyebut Cukurgondang sebagai kebun koleksi mangga terbesar kedua di dunia.",
+          label: [
+            {
+              kind: "text",
+              text: "Kementerian menyebut Cukurgondang sebagai kebun koleksi mangga terbesar kedua di dunia.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kegiatan tersebut menjadi sarana untuk menyebarluaskan penelitian dan teknologi mangga.",
+          label: [
+            {
+              kind: "text",
+              text: "Kegiatan tersebut menjadi sarana untuk menyebarluaskan penelitian dan teknologi mangga.",
+            },
+          ],
         },
       ],
     },

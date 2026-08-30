@@ -7,23 +7,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Kind nimmt wenig Fett und viel Vitamin B6 auf",
+          label: [
+            {
+              kind: "text",
+              text: "Das Kind nimmt wenig Fett und viel Vitamin B6 auf",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Manche Kinder, die Bananen essen, nehmen wenig Fett auf",
+          label: [
+            {
+              kind: "text",
+              text: "Manche Kinder, die Bananen essen, nehmen wenig Fett auf",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Fleisch kann viel Fett, aber wenig Vitamin B6 liefern",
+          label: [
+            {
+              kind: "text",
+              text: "Fleisch kann viel Fett, aber wenig Vitamin B6 liefern",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Das Kind nimmt überhaupt kein Fett auf",
+          label: [
+            { kind: "text", text: "Das Kind nimmt überhaupt kein Fett auf" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Manche Kinder, die Bananen essen, nehmen viel Vitamin B6 auf",
+          label: [
+            {
+              kind: "text",
+              text: "Manche Kinder, die Bananen essen, nehmen viel Vitamin B6 auf",
+            },
+          ],
         },
       ],
     },
@@ -32,20 +54,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The child gets a small amount of fat and a lot of vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "The child gets a small amount of fat and a lot of vitamin B6",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Some children who eat bananas get a small amount of fat",
+          label: [
+            {
+              kind: "text",
+              text: "Some children who eat bananas get a small amount of fat",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Meat can provide a lot of fat but little vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "Meat can provide a lot of fat but little vitamin B6",
+            },
+          ],
         },
-        { isCorrect: true, label: "The child will not get any fat" },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "The child will not get any fat" }],
+        },
         {
           isCorrect: false,
-          label: "Some children who eat bananas get a lot of vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "Some children who eat bananas get a lot of vitamin B6",
+            },
+          ],
         },
       ],
     },
@@ -54,21 +99,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Anak memperoleh sedikit lemak dan banyak vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "Anak memperoleh sedikit lemak dan banyak vitamin B6",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sebagian anak yang makan pisang memperoleh sedikit lemak",
+          label: [
+            {
+              kind: "text",
+              text: "Sebagian anak yang makan pisang memperoleh sedikit lemak",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Daging dapat memberikan banyak lemak tetapi sedikit vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "Daging dapat memberikan banyak lemak tetapi sedikit vitamin B6",
+            },
+          ],
         },
-        { isCorrect: true, label: "Anak tidak akan mendapatkan lemak" },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Anak tidak akan mendapatkan lemak" }],
+        },
         {
           isCorrect: false,
-          label: "Sebagian anak yang makan pisang memperoleh banyak vitamin B6",
+          label: [
+            {
+              kind: "text",
+              text: "Sebagian anak yang makan pisang memperoleh banyak vitamin B6",
+            },
+          ],
         },
       ],
     },

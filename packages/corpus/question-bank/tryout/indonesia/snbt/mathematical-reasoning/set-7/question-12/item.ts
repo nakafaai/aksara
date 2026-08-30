@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$50 \\text{ km}$$",
+          label: [{ display: "block", kind: "math", math: "50 \\text{ km}" }],
         },
         {
           isCorrect: true,
-          label: "$$60 \\text{ km}$$",
+          label: [{ display: "block", kind: "math", math: "60 \\text{ km}" }],
         },
         {
           isCorrect: false,
-          label: "$$80 \\text{ km}$$",
+          label: [{ display: "block", kind: "math", math: "80 \\text{ km}" }],
         },
         {
           isCorrect: false,
-          label: "$$90 \\text{ km}$$",
+          label: [{ display: "block", kind: "math", math: "90 \\text{ km}" }],
         },
         {
           isCorrect: false,
-          label: "$$95 \\text{ km}$$",
+          label: [{ display: "block", kind: "math", math: "95 \\text{ km}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$50 \\text{ km}$$" },
-        { isCorrect: true, label: "$$60 \\text{ km}$$" },
-        { isCorrect: false, label: "$$80 \\text{ km}$$" },
-        { isCorrect: false, label: "$$90 \\text{ km}$$" },
-        { isCorrect: false, label: "$$95 \\text{ km}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "50 \\text{ km}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "60 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "90 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "95 \\text{ km}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$50 \\text{ km}$$" },
-        { isCorrect: true, label: "$$60 \\text{ km}$$" },
-        { isCorrect: false, label: "$$80 \\text{ km}$$" },
-        { isCorrect: false, label: "$$90 \\text{ km}$$" },
-        { isCorrect: false, label: "$$95 \\text{ km}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "50 \\text{ km}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "60 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "80 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "90 \\text{ km}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "95 \\text{ km}" }],
+        },
       ],
     },
   },

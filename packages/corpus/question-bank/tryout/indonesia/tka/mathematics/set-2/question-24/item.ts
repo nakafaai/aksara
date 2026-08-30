@@ -12,20 +12,35 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Eine Verschiebung erhält die Abstände zwischen Punkten.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine Verschiebung erhält die Abstände zwischen Punkten.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Eine Spiegelung erhält Winkelgrößen.",
+          label: [
+            { kind: "text", text: "Eine Spiegelung erhält Winkelgrößen." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Eine Streckung mit dem Faktor $2$ vervierfacht den Flächeninhalt.",
+          label: [
+            { kind: "text", text: "Eine Streckung mit dem Faktor " },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: " vervierfacht den Flächeninhalt." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Eine Drehung verändert die Länge jeder Strecke.",
+          label: [
+            {
+              kind: "text",
+              text: "Eine Drehung verändert die Länge jeder Strecke.",
+            },
+          ],
         },
       ],
     },
@@ -34,19 +49,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A translation preserves distances between points.",
+          label: [
+            {
+              kind: "text",
+              text: "A translation preserves distances between points.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "A reflection preserves angle measures.",
+          label: [
+            { kind: "text", text: "A reflection preserves angle measures." },
+          ],
         },
         {
           isCorrect: true,
-          label: "A dilation with scale factor $2$ multiplies area by $4$.",
+          label: [
+            { kind: "text", text: "A dilation with scale factor " },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: " multiplies area by " },
+            { display: "inline", kind: "math", math: "4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "A rotation changes the length of every line segment.",
+          label: [
+            {
+              kind: "text",
+              text: "A rotation changes the length of every line segment.",
+            },
+          ],
         },
       ],
     },
@@ -55,19 +88,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Translasi mempertahankan jarak antartitik.",
+          label: [
+            {
+              kind: "text",
+              text: "Translasi mempertahankan jarak antartitik.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Refleksi mempertahankan besar sudut.",
+          label: [
+            { kind: "text", text: "Refleksi mempertahankan besar sudut." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Dilatasi dengan faktor $2$ mengalikan luas dengan $4$.",
+          label: [
+            { kind: "text", text: "Dilatasi dengan faktor " },
+            { display: "inline", kind: "math", math: "2" },
+            { kind: "text", text: " mengalikan luas dengan " },
+            { display: "inline", kind: "math", math: "4" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Rotasi mengubah panjang setiap ruas garis.",
+          label: [
+            {
+              kind: "text",
+              text: "Rotasi mengubah panjang setiap ruas garis.",
+            },
+          ],
         },
       ],
     },

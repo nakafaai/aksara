@@ -7,44 +7,149 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$70$$ Minuten oder $$30$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "70" },
+            { kind: "text", text: " Minuten oder " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$21$$ Minuten oder $$10$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "21" },
+            { kind: "text", text: " Minuten oder " },
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$15$$ Minuten oder $$16$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " Minuten oder " },
+            { display: "block", kind: "math", math: "16" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$30$$ Minuten oder $$40$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Minuten oder " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$10$$ Minuten oder $$30$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " Minuten oder " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$70$$ minutes or $$30$$ minutes" },
-        { isCorrect: false, label: "$$21$$ minutes or $$10$$ minutes" },
-        { isCorrect: false, label: "$$15$$ minutes or $$16$$ minutes" },
-        { isCorrect: false, label: "$$30$$ minutes or $$40$$ minutes" },
-        { isCorrect: false, label: "$$10$$ minutes or $$30$$ minutes" },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "70" },
+            { kind: "text", text: " minutes or " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "21" },
+            { kind: "text", text: " minutes or " },
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " minutes or " },
+            { display: "block", kind: "math", math: "16" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " minutes or " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " minutes or " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$70$$ menit atau $$30$$ menit" },
-        { isCorrect: false, label: "$$21$$ menit atau $$10$$ menit" },
-        { isCorrect: false, label: "$$15$$ menit atau $$16$$ menit" },
-        { isCorrect: false, label: "$$30$$ menit atau $$40$$ menit" },
-        { isCorrect: false, label: "$$10$$ menit atau $$30$$ menit" },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "70" },
+            { kind: "text", text: " menit atau " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "21" },
+            { kind: "text", text: " menit atau " },
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "15" },
+            { kind: "text", text: " menit atau " },
+            { display: "block", kind: "math", math: "16" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " menit atau " },
+            { display: "block", kind: "math", math: "40" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "10" },
+            { kind: "text", text: " menit atau " },
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " menit" },
+          ],
+        },
       ],
     },
   },

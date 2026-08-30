@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every participant lost exactly 1.24 kg and kept it off.",
+          label: [
+            {
+              kind: "text",
+              text: "Every participant lost exactly 1.24 kg and kept it off.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Only one of the 35 studies reported any weight change.",
+          label: [
+            {
+              kind: "text",
+              text: "Only one of the 35 studies reported any weight change.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Average weight increased during Ramadan and fell afterward.",
+          label: [
+            {
+              kind: "text",
+              text: "Average weight increased during Ramadan and fell afterward.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The review prescribed a fixed calorie target for all participants.",
+          label: [
+            {
+              kind: "text",
+              text: "The review prescribed a fixed calorie target for all participants.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
+          label: [
+            {
+              kind: "text",
+              text: "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
+            },
+          ],
         },
       ],
     },

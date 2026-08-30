@@ -7,44 +7,152 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$m < 0 \\lor m > \\frac{1}{2}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < 0 \\lor m > \\frac{1}{2}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "-\\frac{1}{2} < m < \\frac{1}{2}",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$0 < m < \\frac{1}{2}$$",
+          label: [
+            { display: "block", kind: "math", math: "0 < m < \\frac{1}{2}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$0 \\leq m < \\frac{1}{2}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "0 \\leq m < \\frac{1}{2}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$m < -\\frac{1}{2} \\lor m > 0$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < -\\frac{1}{2} \\lor m > 0",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$m < 0 \\lor m > \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$" },
-        { isCorrect: true, label: "$$0 < m < \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$0 \\leq m < \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$m < -\\frac{1}{2} \\lor m > 0$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < 0 \\lor m > \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "-\\frac{1}{2} < m < \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "0 < m < \\frac{1}{2}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "0 \\leq m < \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < -\\frac{1}{2} \\lor m > 0",
+            },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$m < 0 \\lor m > \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$" },
-        { isCorrect: true, label: "$$0 < m < \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$0 \\leq m < \\frac{1}{2}$$" },
-        { isCorrect: false, label: "$$m < -\\frac{1}{2} \\lor m > 0$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < 0 \\lor m > \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "-\\frac{1}{2} < m < \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "0 < m < \\frac{1}{2}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "0 \\leq m < \\frac{1}{2}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "m < -\\frac{1}{2} \\lor m > 0",
+            },
+          ],
+        },
       ],
     },
   },

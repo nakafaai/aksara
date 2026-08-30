@@ -7,24 +7,39 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Letak geografis Indonesia yang strategis",
+          label: [
+            { kind: "text", text: "Letak geografis Indonesia yang strategis" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Keunggulan produk pertanian Indonesia",
+          label: [
+            { kind: "text", text: "Keunggulan produk pertanian Indonesia" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
+          label: [
+            {
+              kind: "text",
+              text: "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Banyak masyarakat Indonesia yang berusia produktif",
+          label: [
+            {
+              kind: "text",
+              text: "Banyak masyarakat Indonesia yang berusia produktif",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Peningkatan produktivitas Indonesia",
+          label: [
+            { kind: "text", text: "Peningkatan produktivitas Indonesia" },
+          ],
         },
       ],
     },

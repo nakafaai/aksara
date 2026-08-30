@@ -7,24 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "the architectural history of UNESCO's offices.",
+          label: [
+            {
+              kind: "text",
+              text: "the architectural history of UNESCO's offices.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "a list of the capitals of UNESCO Member States.",
+          label: [
+            {
+              kind: "text",
+              text: "a list of the capitals of UNESCO Member States.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "a current UNESCO initiative that puts its mission into practice.",
+          label: [
+            {
+              kind: "text",
+              text: "a current UNESCO initiative that puts its mission into practice.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "an unrelated comparison of national budgets.",
+          label: [
+            {
+              kind: "text",
+              text: "an unrelated comparison of national budgets.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "a personal biography of one UNESCO employee.",
+          label: [
+            {
+              kind: "text",
+              text: "a personal biography of one UNESCO employee.",
+            },
+          ],
         },
       ],
     },

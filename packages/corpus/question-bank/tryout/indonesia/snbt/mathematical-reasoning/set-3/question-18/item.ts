@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$16(\\sqrt{3}-1)$$",
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{3}-1)" }],
         },
         {
           isCorrect: false,
-          label: "$$16(\\sqrt{2}-1)$$",
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{2}-1)" }],
         },
         {
           isCorrect: false,
-          label: "$$16$$",
+          label: [{ display: "block", kind: "math", math: "16" }],
         },
         {
           isCorrect: false,
-          label: "$$16\\sqrt{3}$$",
+          label: [{ display: "block", kind: "math", math: "16\\sqrt{3}" }],
         },
         {
           isCorrect: false,
-          label: "$$32\\sqrt{3}$$",
+          label: [{ display: "block", kind: "math", math: "32\\sqrt{3}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$16(\\sqrt{3}-1)$$" },
-        { isCorrect: false, label: "$$16(\\sqrt{2}-1)$$" },
-        { isCorrect: false, label: "$$16$$" },
-        { isCorrect: false, label: "$$16\\sqrt{3}$$" },
-        { isCorrect: false, label: "$$32\\sqrt{3}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{3}-1)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{2}-1)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16\\sqrt{3}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "32\\sqrt{3}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "$$16(\\sqrt{3}-1)$$" },
-        { isCorrect: false, label: "$$16(\\sqrt{2}-1)$$" },
-        { isCorrect: false, label: "$$16$$" },
-        { isCorrect: false, label: "$$16\\sqrt{3}$$" },
-        { isCorrect: false, label: "$$32\\sqrt{3}$$" },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{3}-1)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16(\\sqrt{2}-1)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "16\\sqrt{3}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "32\\sqrt{3}" }],
+        },
       ],
     },
   },

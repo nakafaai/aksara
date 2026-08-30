@@ -7,44 +7,128 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{2x + 12}{x^2 - 4}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2x + 12}{x^2 - 4}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{x - 12}{x^2 - 4}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 12}{x^2 - 4}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{-x + 12}{x^2 - 4}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{-x + 12}{x^2 - 4}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{-2x}{x^2 - 4}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{-2x}{x^2 - 4}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{x - 4}{x^2 - 4}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 4}{x^2 - 4}" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{2x + 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{x - 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{-x + 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{-2x}{x^2 - 4}$$" },
-        { isCorrect: true, label: "$$\\frac{x - 4}{x^2 - 4}$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2x + 12}{x^2 - 4}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 12}{x^2 - 4}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{-x + 12}{x^2 - 4}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{-2x}{x^2 - 4}" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 4}{x^2 - 4}" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{2x + 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{x - 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{-x + 12}{x^2 - 4}$$" },
-        { isCorrect: false, label: "$$\\frac{-2x}{x^2 - 4}$$" },
-        { isCorrect: true, label: "$$\\frac{x - 4}{x^2 - 4}$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{2x + 12}{x^2 - 4}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 12}{x^2 - 4}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "\\frac{-x + 12}{x^2 - 4}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{-2x}{x^2 - 4}" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\frac{x - 4}{x^2 - 4}" },
+          ],
+        },
       ],
     },
   },

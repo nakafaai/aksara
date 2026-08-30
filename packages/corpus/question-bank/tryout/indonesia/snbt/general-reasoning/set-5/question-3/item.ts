@@ -7,46 +7,92 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Stunting bedeutet ein zu geringes Gewicht für die Körpergröße",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting bedeutet ein zu geringes Gewicht für die Körpergröße",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Stunting kann nur durch genetische Faktoren verursacht werden",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting kann nur durch genetische Faktoren verursacht werden",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Stunting verursacht immer eine kognitive Behinderung",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting verursacht immer eine kognitive Behinderung",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Stunting ist eine zu geringe Körpergröße für das Alter und steht häufig mit chronischer oder wiederkehrender Unterernährung in Verbindung",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting ist eine zu geringe Körpergröße für das Alter und steht häufig mit chronischer oder wiederkehrender Unterernährung in Verbindung",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Überernährung ist die einzige Ursache von Stunting",
+          label: [
+            {
+              kind: "text",
+              text: "Überernährung ist die einzige Ursache von Stunting",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Stunting means low weight for height" },
-        { isCorrect: false, label: "Only genetic factors can cause stunting" },
         {
           isCorrect: false,
-          label: "Stunting always causes cognitive disability",
+          label: [
+            { kind: "text", text: "Stunting means low weight for height" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Only genetic factors can cause stunting" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Stunting always causes cognitive disability",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Stunting is low height for age and is commonly linked to chronic or recurrent undernutrition",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting is low height for age and is commonly linked to chronic or recurrent undernutrition",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Overnutrition is the only cause of stunting",
+          label: [
+            {
+              kind: "text",
+              text: "Overnutrition is the only cause of stunting",
+            },
+          ],
         },
       ],
     },
@@ -55,24 +101,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Stunting berarti berat badan rendah menurut tinggi badan",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting berarti berat badan rendah menurut tinggi badan",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Stunting hanya dapat disebabkan oleh faktor genetik",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting hanya dapat disebabkan oleh faktor genetik",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Stunting selalu menyebabkan disabilitas kognitif",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting selalu menyebabkan disabilitas kognitif",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
+          label: [
+            {
+              kind: "text",
+              text: "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kelebihan gizi adalah satu-satunya penyebab stunting",
+          label: [
+            {
+              kind: "text",
+              text: "Kelebihan gizi adalah satu-satunya penyebab stunting",
+            },
+          ],
         },
       ],
     },

@@ -7,23 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "nach dem Satz $$(2)$$.",
+          label: [
+            { kind: "text", text: "nach dem Satz " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "vor Satz $$(5)$$.",
+          label: [
+            { kind: "text", text: "vor Satz " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "nach dem Satz $$(4)$$.",
+          label: [
+            { kind: "text", text: "nach dem Satz " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "vor Satz $$(6)$$.",
+          label: [
+            { kind: "text", text: "vor Satz " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "nach dem Satz $$(7)$$.",
+          label: [
+            { kind: "text", text: "nach dem Satz " },
+            { display: "block", kind: "math", math: "(7)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -32,23 +52,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "after sentence $$(2)$$.",
+          label: [
+            { kind: "text", text: "after sentence " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "before sentence $$(5)$$.",
+          label: [
+            { kind: "text", text: "before sentence " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "after sentence $$(4)$$.",
+          label: [
+            { kind: "text", text: "after sentence " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "before sentence $$(6)$$.",
+          label: [
+            { kind: "text", text: "before sentence " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "after sentence $$(7)$$.",
+          label: [
+            { kind: "text", text: "after sentence " },
+            { display: "block", kind: "math", math: "(7)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },
@@ -57,23 +97,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "setelah kalimat $$(2)$$.",
+          label: [
+            { kind: "text", text: "setelah kalimat " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "sebelum kalimat $$(5)$$.",
+          label: [
+            { kind: "text", text: "sebelum kalimat " },
+            { display: "block", kind: "math", math: "(5)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(4)$$.",
+          label: [
+            { kind: "text", text: "setelah kalimat " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "sebelum kalimat $$(6)$$.",
+          label: [
+            { kind: "text", text: "sebelum kalimat " },
+            { display: "block", kind: "math", math: "(6)" },
+            { kind: "text", text: "." },
+          ],
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(7)$$.",
+          label: [
+            { kind: "text", text: "setelah kalimat " },
+            { display: "block", kind: "math", math: "(7)" },
+            { kind: "text", text: "." },
+          ],
         },
       ],
     },

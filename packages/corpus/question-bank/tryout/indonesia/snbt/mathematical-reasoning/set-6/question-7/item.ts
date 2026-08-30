@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1960$$ Einheiten",
+          label: [
+            { display: "block", kind: "math", math: "1960" },
+            { kind: "text", text: " Einheiten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2000$$ Einheiten",
+          label: [
+            { display: "block", kind: "math", math: "2000" },
+            { kind: "text", text: " Einheiten" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$2520$$ Einheiten",
+          label: [
+            { display: "block", kind: "math", math: "2520" },
+            { kind: "text", text: " Einheiten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2720$$ Einheiten",
+          label: [
+            { display: "block", kind: "math", math: "2720" },
+            { kind: "text", text: " Einheiten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$3000$$ Einheiten",
+          label: [
+            { display: "block", kind: "math", math: "3000" },
+            { kind: "text", text: " Einheiten" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1960$$ units" },
-        { isCorrect: false, label: "$$2000$$ units" },
-        { isCorrect: true, label: "$$2520$$ units" },
-        { isCorrect: false, label: "$$2720$$ units" },
-        { isCorrect: false, label: "$$3000$$ units" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1960" },
+            { kind: "text", text: " units" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2000" },
+            { kind: "text", text: " units" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "2520" },
+            { kind: "text", text: " units" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2720" },
+            { kind: "text", text: " units" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3000" },
+            { kind: "text", text: " units" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1960$$ unit" },
-        { isCorrect: false, label: "$$2000$$ unit" },
-        { isCorrect: true, label: "$$2520$$ unit" },
-        { isCorrect: false, label: "$$2720$$ unit" },
-        { isCorrect: false, label: "$$3000$$ unit" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1960" },
+            { kind: "text", text: " unit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2000" },
+            { kind: "text", text: " unit" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "2520" },
+            { kind: "text", text: " unit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2720" },
+            { kind: "text", text: " unit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3000" },
+            { kind: "text", text: " unit" },
+          ],
+        },
       ],
     },
   },

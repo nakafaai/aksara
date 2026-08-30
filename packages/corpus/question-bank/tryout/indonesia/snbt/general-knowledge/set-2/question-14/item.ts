@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "schnelle Veränderungen.",
+          label: [{ kind: "text", text: "schnelle Veränderungen." }],
         },
         {
           isCorrect: false,
-          label: "sorgfältige Behandlung.",
+          label: [{ kind: "text", text: "sorgfältige Behandlung." }],
         },
         {
           isCorrect: false,
-          label: "laut singen.",
+          label: [{ kind: "text", text: "laut singen." }],
         },
         {
           isCorrect: true,
-          label: "Vogelrufe.",
+          label: [{ kind: "text", text: "Vogelrufe." }],
         },
         {
           isCorrect: false,
-          label: "sanftes Waschen.",
+          label: [{ kind: "text", text: "sanftes Waschen." }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "rapid changes.",
+          label: [{ kind: "text", text: "rapid changes." }],
         },
         {
           isCorrect: false,
-          label: "careful treatment.",
+          label: [{ kind: "text", text: "careful treatment." }],
         },
         {
           isCorrect: false,
-          label: "singing loudly.",
+          label: [{ kind: "text", text: "singing loudly." }],
         },
         {
           isCorrect: true,
-          label: "bird calls.",
+          label: [{ kind: "text", text: "bird calls." }],
         },
         {
           isCorrect: false,
-          label: "gentle washing.",
+          label: [{ kind: "text", text: "gentle washing." }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "perubahan cepat.",
+          label: [{ kind: "text", text: "perubahan cepat." }],
         },
         {
           isCorrect: false,
-          label: "perawatan cermat.",
+          label: [{ kind: "text", text: "perawatan cermat." }],
         },
         {
           isCorrect: false,
-          label: "bernyanyi nyaring.",
+          label: [{ kind: "text", text: "bernyanyi nyaring." }],
         },
         {
           isCorrect: true,
-          label: "kicauan burung.",
+          label: [{ kind: "text", text: "kicauan burung." }],
         },
         {
           isCorrect: false,
-          label: "pencucian lembut.",
+          label: [{ kind: "text", text: "pencucian lembut." }],
         },
       ],
     },

@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12, -1$$",
+          label: [{ display: "block", kind: "math", math: "12, -1" }],
         },
         {
           isCorrect: true,
-          label: "$$16, -1$$",
+          label: [{ display: "block", kind: "math", math: "16, -1" }],
         },
         {
           isCorrect: false,
-          label: "$$-2, 12$$",
+          label: [{ display: "block", kind: "math", math: "-2, 12" }],
         },
         {
           isCorrect: false,
-          label: "$$12, 16$$",
+          label: [{ display: "block", kind: "math", math: "12, 16" }],
         },
         {
           isCorrect: false,
-          label: "$$-1, -2$$",
+          label: [{ display: "block", kind: "math", math: "-1, -2" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$12, -1$$" },
-        { isCorrect: true, label: "$$16, -1$$" },
-        { isCorrect: false, label: "$$-2, 12$$" },
-        { isCorrect: false, label: "$$12, 16$$" },
-        { isCorrect: false, label: "$$-1, -2$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12, -1" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "16, -1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "-2, 12" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12, 16" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "-1, -2" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$12, -1$$" },
-        { isCorrect: true, label: "$$16, -1$$" },
-        { isCorrect: false, label: "$$-2, 12$$" },
-        { isCorrect: false, label: "$$12, 16$$" },
-        { isCorrect: false, label: "$$-1, -2$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12, -1" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "16, -1" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "-2, 12" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "12, 16" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "-1, -2" }],
+        },
       ],
     },
   },

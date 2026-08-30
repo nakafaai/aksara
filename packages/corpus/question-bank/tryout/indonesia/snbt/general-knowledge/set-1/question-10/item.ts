@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "wuchs.",
+          label: [{ kind: "text", text: "wuchs." }],
         },
         {
           isCorrect: false,
-          label: "entwickelte sich.",
+          label: [{ kind: "text", text: "entwickelte sich." }],
         },
         {
           isCorrect: true,
-          label: "nahm ab.",
+          label: [{ kind: "text", text: "nahm ab." }],
         },
         {
           isCorrect: false,
-          label: "stieg.",
+          label: [{ kind: "text", text: "stieg." }],
         },
         {
           isCorrect: false,
-          label: "erhöhte sich.",
+          label: [{ kind: "text", text: "erhöhte sich." }],
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "growth.",
+          label: [{ kind: "text", text: "growth." }],
         },
         {
           isCorrect: false,
-          label: "progressive.",
+          label: [{ kind: "text", text: "progressive." }],
         },
         {
           isCorrect: true,
-          label: "decreased.",
+          label: [{ kind: "text", text: "decreased." }],
         },
         {
           isCorrect: false,
-          label: "climbing.",
+          label: [{ kind: "text", text: "climbing." }],
         },
         {
           isCorrect: false,
-          label: "rising.",
+          label: [{ kind: "text", text: "rising." }],
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pertumbuhan.",
+          label: [{ kind: "text", text: "pertumbuhan." }],
         },
         {
           isCorrect: false,
-          label: "progresif.",
+          label: [{ kind: "text", text: "progresif." }],
         },
         {
           isCorrect: true,
-          label: "menurun.",
+          label: [{ kind: "text", text: "menurun." }],
         },
         {
           isCorrect: false,
-          label: "menaiki.",
+          label: [{ kind: "text", text: "menaiki." }],
         },
         {
           isCorrect: false,
-          label: "meninggi.",
+          label: [{ kind: "text", text: "meninggi." }],
         },
       ],
     },

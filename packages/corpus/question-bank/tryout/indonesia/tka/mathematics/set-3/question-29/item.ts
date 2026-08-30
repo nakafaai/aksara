@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: [{ display: "block", kind: "math", math: "\\frac34" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: [{ display: "block", kind: "math", math: "\\frac45" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: [{ display: "block", kind: "math", math: "\\frac35" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: [{ display: "block", kind: "math", math: "\\frac53" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: [{ display: "block", kind: "math", math: "\\frac54" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: [{ display: "block", kind: "math", math: "\\frac34" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: [{ display: "block", kind: "math", math: "\\frac45" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: [{ display: "block", kind: "math", math: "\\frac35" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: [{ display: "block", kind: "math", math: "\\frac53" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: [{ display: "block", kind: "math", math: "\\frac54" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: [{ display: "block", kind: "math", math: "\\frac34" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: [{ display: "block", kind: "math", math: "\\frac45" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: [{ display: "block", kind: "math", math: "\\frac35" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: [{ display: "block", kind: "math", math: "\\frac53" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: [{ display: "block", kind: "math", math: "\\frac54" }],
         },
       ],
     },

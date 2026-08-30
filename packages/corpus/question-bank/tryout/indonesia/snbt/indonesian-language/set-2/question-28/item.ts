@@ -7,24 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
+          label: [
+            {
+              kind: "text",
+              text: "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Mengirim bahan baku batik dari Atapupu ke Lasem",
+          label: [
+            {
+              kind: "text",
+              text: "Mengirim bahan baku batik dari Atapupu ke Lasem",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Membangun Museum Nyah Lasem pada masa perang",
+          label: [
+            {
+              kind: "text",
+              text: "Membangun Museum Nyah Lasem pada masa perang",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Membuka jaringan dagang menuju Mediterania",
+          label: [
+            {
+              kind: "text",
+              text: "Membuka jaringan dagang menuju Mediterania",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Menetapkan arsip sebagai Memori Kolektif Bangsa",
+          label: [
+            {
+              kind: "text",
+              text: "Menetapkan arsip sebagai Memori Kolektif Bangsa",
+            },
+          ],
         },
       ],
     },

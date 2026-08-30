@@ -7,27 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Tägliches Trinken von grünem Tee beseitigt Akne nachweislich.",
+          label: [
+            {
+              kind: "text",
+              text: "Tägliches Trinken von grünem Tee beseitigt Akne nachweislich.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Oral eingenommener grüner Tee wird auf mögliche Hautwirkungen untersucht, doch die Evidenz rechtfertigt weder ein Heilversprechen bei Akne noch eine sichere Vorbeugung gegen lichtbedingte Hautalterung.",
+          label: [
+            {
+              kind: "text",
+              text: "Oral eingenommener grüner Tee wird auf mögliche Hautwirkungen untersucht, doch die Evidenz rechtfertigt weder ein Heilversprechen bei Akne noch eine sichere Vorbeugung gegen lichtbedingte Hautalterung.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Klinische Studien haben bewiesen, dass grüner Tee jede Form UV-bedingter Hautschädigung verhindert.",
+          label: [
+            {
+              kind: "text",
+              text: "Klinische Studien haben bewiesen, dass grüner Tee jede Form UV-bedingter Hautschädigung verhindert.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Grüner Tee kann bewährten Sonnenschutz ersetzen.",
+          label: [
+            {
+              kind: "text",
+              text: "Grüner Tee kann bewährten Sonnenschutz ersetzen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Konzentrierte Grünteepräparate sind nachweislich für alle Menschen sicher, weil sie pflanzlich sind.",
+          label: [
+            {
+              kind: "text",
+              text: "Konzentrierte Grünteepräparate sind nachweislich für alle Menschen sicher, weil sie pflanzlich sind.",
+            },
+          ],
         },
       ],
     },
@@ -36,27 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Drinking green tea every day is a proven way to eliminate acne.",
+          label: [
+            {
+              kind: "text",
+              text: "Drinking green tea every day is a proven way to eliminate acne.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Oral green tea is being studied for possible skin effects, but the evidence does not justify promising that it treats acne or prevents photoaging.",
+          label: [
+            {
+              kind: "text",
+              text: "Oral green tea is being studied for possible skin effects, but the evidence does not justify promising that it treats acne or prevents photoaging.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Clinical studies have proved that green tea prevents every form of UV-related skin damage.",
+          label: [
+            {
+              kind: "text",
+              text: "Clinical studies have proved that green tea prevents every form of UV-related skin damage.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Drinking green tea can replace established sun protection.",
+          label: [
+            {
+              kind: "text",
+              text: "Drinking green tea can replace established sun protection.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Concentrated green tea supplements are proven safe for everyone because they are herbal.",
+          label: [
+            {
+              kind: "text",
+              text: "Concentrated green tea supplements are proven safe for everyone because they are herbal.",
+            },
+          ],
         },
       ],
     },
@@ -65,28 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Minum teh hijau setiap hari terbukti mampu menghilangkan jerawat.",
+          label: [
+            {
+              kind: "text",
+              text: "Minum teh hijau setiap hari terbukti mampu menghilangkan jerawat.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Teh hijau oral sedang diteliti untuk kemungkinan efek pada kulit, tetapi buktinya belum cukup untuk menjanjikan bahwa teh hijau mengatasi jerawat atau mencegah penuaan akibat cahaya.",
+          label: [
+            {
+              kind: "text",
+              text: "Teh hijau oral sedang diteliti untuk kemungkinan efek pada kulit, tetapi buktinya belum cukup untuk menjanjikan bahwa teh hijau mengatasi jerawat atau mencegah penuaan akibat cahaya.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Studi klinis telah membuktikan bahwa teh hijau mencegah semua bentuk kerusakan kulit akibat UV.",
+          label: [
+            {
+              kind: "text",
+              text: "Studi klinis telah membuktikan bahwa teh hijau mencegah semua bentuk kerusakan kulit akibat UV.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Minum teh hijau dapat menggantikan perlindungan matahari yang sudah mapan.",
+          label: [
+            {
+              kind: "text",
+              text: "Minum teh hijau dapat menggantikan perlindungan matahari yang sudah mapan.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Suplemen ekstrak teh hijau pekat terbukti aman untuk semua orang karena berasal dari tumbuhan.",
+          label: [
+            {
+              kind: "text",
+              text: "Suplemen ekstrak teh hijau pekat terbukti aman untuk semua orang karena berasal dari tumbuhan.",
+            },
+          ],
         },
       ],
     },

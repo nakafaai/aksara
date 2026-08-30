@@ -7,25 +7,53 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Alle $$120$$ Tomatensetzlinge überlebten den ersten Monat.",
+          label: [
+            { kind: "text", text: "Alle " },
+            { display: "block", kind: "math", math: "120" },
+            {
+              kind: "text",
+              text: " Tomatensetzlinge überlebten den ersten Monat.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Alle $$96$$ überlebenden Setzlinge bildeten neue Blätter.",
+          label: [
+            { kind: "text", text: "Alle " },
+            { display: "block", kind: "math", math: "96" },
+            {
+              kind: "text",
+              text: " überlebenden Setzlinge bildeten neue Blätter.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Der Bericht bewies, dass die überlebenden Setzlinge krankheitsfrei waren.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Bericht bewies, dass die überlebenden Setzlinge krankheitsfrei waren.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
+          label: [
+            { display: "block", kind: "math", math: "72" },
+            {
+              kind: "text",
+              text: " der überlebenden Setzlinge bildeten neue Blätter.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die überlebenden Setzlinge trugen mehr Früchte als die übrigen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die überlebenden Setzlinge trugen mehr Früchte als die übrigen.",
+            },
+          ],
         },
       ],
     },
@@ -34,24 +62,50 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "All $$120$$ tomato seedlings survived the first month.",
+          label: [
+            { kind: "text", text: "All " },
+            { display: "block", kind: "math", math: "120" },
+            {
+              kind: "text",
+              text: " tomato seedlings survived the first month.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "All $$96$$ surviving seedlings produced new leaves.",
+          label: [
+            { kind: "text", text: "All " },
+            { display: "block", kind: "math", math: "96" },
+            { kind: "text", text: " surviving seedlings produced new leaves." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The report proved that the surviving seedlings were disease-free.",
+          label: [
+            {
+              kind: "text",
+              text: "The report proved that the surviving seedlings were disease-free.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$72$$ of the surviving seedlings produced new leaves.",
+          label: [
+            { display: "block", kind: "math", math: "72" },
+            {
+              kind: "text",
+              text: " of the surviving seedlings produced new leaves.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The surviving seedlings produced more fruit than the others.",
+          label: [
+            {
+              kind: "text",
+              text: "The surviving seedlings produced more fruit than the others.",
+            },
+          ],
         },
       ],
     },
@@ -60,28 +114,54 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Seluruh $$120$$ bibit tomat bertahan hidup selama bulan pertama.",
+          label: [
+            { kind: "text", text: "Seluruh " },
+            { display: "block", kind: "math", math: "120" },
+            {
+              kind: "text",
+              text: " bibit tomat bertahan hidup selama bulan pertama.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Seluruh $$96$$ bibit yang bertahan hidup menghasilkan daun baru.",
+          label: [
+            { kind: "text", text: "Seluruh " },
+            { display: "block", kind: "math", math: "96" },
+            {
+              kind: "text",
+              text: " bibit yang bertahan hidup menghasilkan daun baru.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
+          label: [
+            {
+              kind: "text",
+              text: "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
+          label: [
+            { kind: "text", text: "Sebanyak " },
+            { display: "block", kind: "math", math: "72" },
+            {
+              kind: "text",
+              text: " bibit yang bertahan hidup menghasilkan daun baru.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
+          label: [
+            {
+              kind: "text",
+              text: "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
+            },
+          ],
         },
       ],
     },

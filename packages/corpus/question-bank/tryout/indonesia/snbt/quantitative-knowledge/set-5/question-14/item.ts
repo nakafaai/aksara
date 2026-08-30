@@ -7,44 +7,86 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-13x - y - 15 = 0$$",
+          label: [
+            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$13x - y - 15 = 0$$",
+          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
         },
         {
           isCorrect: true,
-          label: "$$13x + y - 15 = 0$$",
+          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
         },
         {
           isCorrect: false,
-          label: "$$-13x + y - 15 = 0$$",
+          label: [
+            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$13x + y - 37 = 0$$",
+          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$-13x - y - 15 = 0$$" },
-        { isCorrect: false, label: "$$13x - y - 15 = 0$$" },
-        { isCorrect: true, label: "$$13x + y - 15 = 0$$" },
-        { isCorrect: false, label: "$$-13x + y - 15 = 0$$" },
-        { isCorrect: false, label: "$$13x + y - 37 = 0$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$-13x - y - 15 = 0$$" },
-        { isCorrect: false, label: "$$13x - y - 15 = 0$$" },
-        { isCorrect: true, label: "$$13x + y - 15 = 0$$" },
-        { isCorrect: false, label: "$$-13x + y - 15 = 0$$" },
-        { isCorrect: false, label: "$$13x + y - 37 = 0$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "-13x - y - 15 = 0" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "13x - y - 15 = 0" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "13x + y - 15 = 0" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "-13x + y - 15 = 0" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "13x + y - 37 = 0" }],
+        },
       ],
     },
   },

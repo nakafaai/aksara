@@ -5,20 +5,44 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "A biography of the first clerical worker" },
         {
           isCorrect: false,
-          label: "A list of jobs that will certainly disappear next year",
+          label: [
+            { kind: "text", text: "A biography of the first clerical worker" },
+          ],
         },
-        { isCorrect: false, label: "The history of electricity generation" },
         {
           isCorrect: false,
-          label: "Instructions for building a language model from scratch",
+          label: [
+            {
+              kind: "text",
+              text: "A list of jobs that will certainly disappear next year",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "The history of electricity generation" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Instructions for building a language model from scratch",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Examples of how workers and organizations can adapt tasks through training and social dialogue",
+          label: [
+            {
+              kind: "text",
+              text: "Examples of how workers and organizations can adapt tasks through training and social dialogue",
+            },
+          ],
         },
       ],
     },

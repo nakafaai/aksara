@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
+          label: [
+            {
+              kind: "text",
+              text: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Welches Land hat das Sendai-Rahmenwerk zuerst angenommen?",
+          label: [
+            {
+              kind: "text",
+              text: "Welches Land hat das Sendai-Rahmenwerk zuerst angenommen?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Wie viel kostet die Wiederherstellung eines geschädigten Ökosystems?",
+          label: [
+            {
+              kind: "text",
+              text: "Wie viel kostet die Wiederherstellung eines geschädigten Ökosystems?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Wann begann die Umweltdegradation in Indonesien?",
+          label: [
+            {
+              kind: "text",
+              text: "Wann begann die Umweltdegradation in Indonesien?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Welche Methode zur Wiederherstellung von Ökosystemen ist am wirksamsten?",
+          label: [
+            {
+              kind: "text",
+              text: "Welche Methode zur Wiederherstellung von Ökosystemen ist am wirksamsten?",
+            },
+          ],
         },
       ],
     },
@@ -34,24 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Which three drivers of risk does the Sendai Framework recognize?",
+          label: [
+            {
+              kind: "text",
+              text: "Which three drivers of risk does the Sendai Framework recognize?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Which country first adopted the Sendai Framework?",
+          label: [
+            {
+              kind: "text",
+              text: "Which country first adopted the Sendai Framework?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "How much does it cost to restore a damaged ecosystem?",
+          label: [
+            {
+              kind: "text",
+              text: "How much does it cost to restore a damaged ecosystem?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "When did environmental degradation begin in Indonesia?",
+          label: [
+            {
+              kind: "text",
+              text: "When did environmental degradation begin in Indonesia?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Which ecosystem restoration method is the most effective?",
+          label: [
+            {
+              kind: "text",
+              text: "Which ecosystem restoration method is the most effective?",
+            },
+          ],
         },
       ],
     },
@@ -60,23 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
+          label: [
+            {
+              kind: "text",
+              text: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
+          label: [
+            {
+              kind: "text",
+              text: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Berapa biaya untuk memulihkan ekosistem yang rusak?",
+          label: [
+            {
+              kind: "text",
+              text: "Berapa biaya untuk memulihkan ekosistem yang rusak?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
+          label: [
+            {
+              kind: "text",
+              text: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Metode pemulihan ekosistem mana yang paling efektif?",
+          label: [
+            {
+              kind: "text",
+              text: "Metode pemulihan ekosistem mana yang paling efektif?",
+            },
+          ],
         },
       ],
     },

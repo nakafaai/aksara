@@ -7,25 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Naturreis liefert $$7$$ kcal weniger Energie als weißer Reis",
+          label: [
+            { kind: "text", text: "Naturreis liefert " },
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " kcal weniger Energie als weißer Reis" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Naturreis enthält $$1{,}2$$ g mehr Ballaststoffe als weißer Reis",
+          label: [
+            { kind: "text", text: "Naturreis enthält " },
+            { display: "block", kind: "math", math: "1{,}2" },
+            { kind: "text", text: " g mehr Ballaststoffe als weißer Reis" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Naturreis enthält $$27$$ mg mehr Magnesium als weißer Reis",
+          label: [
+            { kind: "text", text: "Naturreis enthält " },
+            { display: "block", kind: "math", math: "27" },
+            { kind: "text", text: " mg mehr Magnesium als weißer Reis" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Naturreis enthält $$2{,}59$$ g mehr Kohlenhydrate als weißer Reis",
+          label: [
+            { kind: "text", text: "Naturreis enthält " },
+            { display: "block", kind: "math", math: "2{,}59" },
+            { kind: "text", text: " g mehr Kohlenhydrate als weißer Reis" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Naturreis enthält $$60$$ mg mehr Phosphor als weißer Reis",
+          label: [
+            { kind: "text", text: "Naturreis enthält " },
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " mg mehr Phosphor als weißer Reis" },
+          ],
         },
       ],
     },
@@ -34,25 +52,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Brown rice provides $$7$$ kcal less energy than white rice",
+          label: [
+            { kind: "text", text: "Brown rice provides " },
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " kcal less energy than white rice" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Brown rice provides $$1.2$$ g more fiber than white rice",
+          label: [
+            { kind: "text", text: "Brown rice provides " },
+            { display: "block", kind: "math", math: "1.2" },
+            { kind: "text", text: " g more fiber than white rice" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Brown rice provides $$27$$ mg more magnesium than white rice",
+          label: [
+            { kind: "text", text: "Brown rice provides " },
+            { display: "block", kind: "math", math: "27" },
+            { kind: "text", text: " mg more magnesium than white rice" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Brown rice provides $$2.59$$ g more carbohydrate than white rice",
+          label: [
+            { kind: "text", text: "Brown rice provides " },
+            { display: "block", kind: "math", math: "2.59" },
+            { kind: "text", text: " g more carbohydrate than white rice" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Brown rice provides $$60$$ mg more phosphorus than white rice",
+          label: [
+            { kind: "text", text: "Brown rice provides " },
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " mg more phosphorus than white rice" },
+          ],
         },
       ],
     },
@@ -61,28 +97,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Nasi merah mengandung energi $$7$$ kkal lebih rendah daripada nasi putih",
+          label: [
+            { kind: "text", text: "Nasi merah mengandung energi " },
+            { display: "block", kind: "math", math: "7" },
+            { kind: "text", text: " kkal lebih rendah daripada nasi putih" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Nasi merah mengandung serat $$1{,}2$$ g lebih tinggi daripada nasi putih",
+          label: [
+            { kind: "text", text: "Nasi merah mengandung serat " },
+            { display: "block", kind: "math", math: "1{,}2" },
+            { kind: "text", text: " g lebih tinggi daripada nasi putih" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Nasi merah mengandung magnesium $$27$$ mg lebih tinggi daripada nasi putih",
+          label: [
+            { kind: "text", text: "Nasi merah mengandung magnesium " },
+            { display: "block", kind: "math", math: "27" },
+            { kind: "text", text: " mg lebih tinggi daripada nasi putih" },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Nasi merah mengandung karbohidrat $$2{,}59$$ g lebih tinggi daripada nasi putih",
+          label: [
+            { kind: "text", text: "Nasi merah mengandung karbohidrat " },
+            { display: "block", kind: "math", math: "2{,}59" },
+            { kind: "text", text: " g lebih tinggi daripada nasi putih" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Nasi merah mengandung fosfor $$60$$ mg lebih tinggi daripada nasi putih",
+          label: [
+            { kind: "text", text: "Nasi merah mengandung fosfor " },
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " mg lebih tinggi daripada nasi putih" },
+          ],
         },
       ],
     },

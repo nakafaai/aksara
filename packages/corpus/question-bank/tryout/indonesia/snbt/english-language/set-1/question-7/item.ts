@@ -5,11 +5,38 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1$$" },
-        { isCorrect: true, label: "$$2$$ and $$3$$" },
-        { isCorrect: false, label: "$$2$$ and $$4$$" },
-        { isCorrect: false, label: "$$3$$ and $$4$$" },
-        { isCorrect: false, label: "$$4$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "1" }],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "3" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "4" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "3" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "4" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "4" }],
+        },
       ],
     },
   },

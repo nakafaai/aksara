@@ -7,50 +7,92 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Importe steigen und fallen von Jahr zu Jahr.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Importe steigen und fallen von Jahr zu Jahr.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Produktion, Verbrauch und Importe steigen jedes Jahr um denselben Betrag.",
+          label: [
+            {
+              kind: "text",
+              text: "Produktion, Verbrauch und Importe steigen jedes Jahr um denselben Betrag.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der höchste Verbrauch tritt im Jahr A auf.",
+          label: [
+            {
+              kind: "text",
+              text: "Der höchste Verbrauch tritt im Jahr A auf.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Der Verbrauch übersteigt in jedem aufgeführten Jahr die inländische Produktion, und die Importe decken die Lücke.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Verbrauch übersteigt in jedem aufgeführten Jahr die inländische Produktion, und die Importe decken die Lücke.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Importe übersteigen in jedem aufgeführten Jahr die inländische Produktion.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Importe übersteigen in jedem aufgeführten Jahr die inländische Produktion.",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Imports rise and fall from year to year." },
         {
           isCorrect: false,
-          label:
-            "Production, consumption, and imports rise by the same amount each year.",
+          label: [
+            { kind: "text", text: "Imports rise and fall from year to year." },
+          ],
         },
         {
           isCorrect: false,
-          label: "The highest consumption occurs in year A.",
+          label: [
+            {
+              kind: "text",
+              text: "Production, consumption, and imports rise by the same amount each year.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "The highest consumption occurs in year A." },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Consumption exceeds domestic production in every listed year, and imports cover the gap.",
+          label: [
+            {
+              kind: "text",
+              text: "Consumption exceeds domestic production in every listed year, and imports cover the gap.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Imports exceed domestic production in every listed year.",
+          label: [
+            {
+              kind: "text",
+              text: "Imports exceed domestic production in every listed year.",
+            },
+          ],
         },
       ],
     },
@@ -59,23 +101,42 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Impor naik dan turun dari tahun ke tahun.",
+          label: [
+            { kind: "text", text: "Impor naik dan turun dari tahun ke tahun." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Produksi, konsumsi, dan impor bertambah dengan jumlah yang sama setiap tahun.",
+          label: [
+            {
+              kind: "text",
+              text: "Produksi, konsumsi, dan impor bertambah dengan jumlah yang sama setiap tahun.",
+            },
+          ],
         },
-        { isCorrect: false, label: "Konsumsi tertinggi terjadi pada tahun A." },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Konsumsi tertinggi terjadi pada tahun A." },
+          ],
+        },
         {
           isCorrect: true,
-          label:
-            "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
+          label: [
+            {
+              kind: "text",
+              text: "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Impor melebihi produksi dalam negeri pada setiap tahun yang tercantum.",
+          label: [
+            {
+              kind: "text",
+              text: "Impor melebihi produksi dalam negeri pada setiap tahun yang tercantum.",
+            },
+          ],
         },
       ],
     },

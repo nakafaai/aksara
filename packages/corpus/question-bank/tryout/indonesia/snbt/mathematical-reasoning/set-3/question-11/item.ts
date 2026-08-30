@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{5!}{2}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
         },
         {
           isCorrect: false,
-          label: "$$5!$$",
+          label: [{ display: "block", kind: "math", math: "5!" }],
         },
         {
           isCorrect: true,
-          label: "$$2(5!)$$",
+          label: [{ display: "block", kind: "math", math: "2(5!)" }],
         },
         {
           isCorrect: false,
-          label: "$$2(6!)$$",
+          label: [{ display: "block", kind: "math", math: "2(6!)" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7!}{2}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{5!}{2}$$" },
-        { isCorrect: false, label: "$$5!$$" },
-        { isCorrect: true, label: "$$2(5!)$$" },
-        { isCorrect: false, label: "$$2(6!)$$" },
-        { isCorrect: false, label: "$$\\frac{7!}{2}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "5!" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "2(5!)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "2(6!)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\frac{5!}{2}$$" },
-        { isCorrect: false, label: "$$5!$$" },
-        { isCorrect: true, label: "$$2(5!)$$" },
-        { isCorrect: false, label: "$$2(6!)$$" },
-        { isCorrect: false, label: "$$\\frac{7!}{2}$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "5!" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "2(5!)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "2(6!)" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
+        },
       ],
     },
   },

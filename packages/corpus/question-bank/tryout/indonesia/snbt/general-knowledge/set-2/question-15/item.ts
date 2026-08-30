@@ -7,23 +7,40 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Der **Abstellraum** wurde gestern gereinigt.",
+          label: [
+            {
+              kind: "text",
+              text: "Der **Abstellraum** wurde gestern gereinigt.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "Die **Zeichnung** wird morgen ausgestellt.",
+          label: [
+            {
+              kind: "text",
+              text: "Die **Zeichnung** wird morgen ausgestellt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Der **Tanz** beginnt mittags.",
+          label: [{ kind: "text", text: "Der **Tanz** beginnt mittags." }],
         },
         {
           isCorrect: false,
-          label: "Sie hörte einen **Ruf** von hinten.",
+          label: [
+            { kind: "text", text: "Sie hörte einen **Ruf** von hinten." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Künstlerin erhielt **Lob** für ihr neues Werk.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Künstlerin erhielt **Lob** für ihr neues Werk.",
+            },
+          ],
         },
       ],
     },
@@ -32,23 +49,38 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The **storage room** was cleaned yesterday.",
+          label: [
+            {
+              kind: "text",
+              text: "The **storage room** was cleaned yesterday.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "The **drawing** will be displayed tomorrow.",
+          label: [
+            {
+              kind: "text",
+              text: "The **drawing** will be displayed tomorrow.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The **dance** begins at noon.",
+          label: [{ kind: "text", text: "The **dance** begins at noon." }],
         },
         {
           isCorrect: false,
-          label: "She heard a **call** from behind.",
+          label: [{ kind: "text", text: "She heard a **call** from behind." }],
         },
         {
           isCorrect: false,
-          label: "The artist received **praise** for the new work.",
+          label: [
+            {
+              kind: "text",
+              text: "The artist received **praise** for the new work.",
+            },
+          ],
         },
       ],
     },
@@ -57,23 +89,37 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "**Ruangan** itu dibersihkan kemarin.",
+          label: [
+            { kind: "text", text: "**Ruangan** itu dibersihkan kemarin." },
+          ],
         },
         {
           isCorrect: true,
-          label: "**Tulisan** itu akan segera diterbitkan.",
+          label: [
+            { kind: "text", text: "**Tulisan** itu akan segera diterbitkan." },
+          ],
         },
         {
           isCorrect: false,
-          label: "**Tarian** itu dimulai siang hari.",
+          label: [{ kind: "text", text: "**Tarian** itu dimulai siang hari." }],
         },
         {
           isCorrect: false,
-          label: "Ia mendengar **panggilan** dari arah belakang.",
+          label: [
+            {
+              kind: "text",
+              text: "Ia mendengar **panggilan** dari arah belakang.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Seniman itu menerima **pujian** atas karya barunya.",
+          label: [
+            {
+              kind: "text",
+              text: "Seniman itu menerima **pujian** atas karya barunya.",
+            },
+          ],
         },
       ],
     },

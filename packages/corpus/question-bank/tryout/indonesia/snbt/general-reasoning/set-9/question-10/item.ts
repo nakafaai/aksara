@@ -7,57 +7,118 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Die Schlussfolgerung ist mit Sicherheit wahr",
+          label: [
+            {
+              kind: "text",
+              text: "Die Schlussfolgerung ist mit Sicherheit wahr",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist möglicherweise wahr",
+          label: [
+            {
+              kind: "text",
+              text: "Die Schlussfolgerung ist möglicherweise wahr",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist mit Sicherheit falsch",
+          label: [
+            {
+              kind: "text",
+              text: "Die Schlussfolgerung ist mit Sicherheit falsch",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist für die Angaben irrelevant",
+          label: [
+            {
+              kind: "text",
+              text: "Die Schlussfolgerung ist für die Angaben irrelevant",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Schlussfolgerung lässt sich aus den Angaben nicht bewerten",
+          label: [
+            {
+              kind: "text",
+              text: "Die Schlussfolgerung lässt sich aus den Angaben nicht bewerten",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "The conclusion is definitely true" },
-        { isCorrect: false, label: "The conclusion is possibly true" },
-        { isCorrect: false, label: "The conclusion is definitely false" },
         {
-          isCorrect: false,
-          label: "The conclusion is irrelevant to the information",
+          isCorrect: true,
+          label: [{ kind: "text", text: "The conclusion is definitely true" }],
         },
         {
           isCorrect: false,
-          label: "The conclusion cannot be evaluated from the information",
+          label: [{ kind: "text", text: "The conclusion is possibly true" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "The conclusion is definitely false" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "The conclusion is irrelevant to the information",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "The conclusion cannot be evaluated from the information",
+            },
+          ],
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Simpulan tersebut pasti benar" },
-        { isCorrect: false, label: "Simpulan tersebut mungkin benar" },
-        { isCorrect: false, label: "Simpulan tersebut pasti salah" },
         {
-          isCorrect: false,
-          label: "Simpulan tersebut tidak relevan dengan informasi",
+          isCorrect: true,
+          label: [{ kind: "text", text: "Simpulan tersebut pasti benar" }],
         },
         {
           isCorrect: false,
-          label:
-            "Simpulan tersebut tidak dapat dinilai dari informasi yang ada",
+          label: [{ kind: "text", text: "Simpulan tersebut mungkin benar" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Simpulan tersebut pasti salah" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Simpulan tersebut tidak relevan dengan informasi",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Simpulan tersebut tidak dapat dinilai dari informasi yang ada",
+            },
+          ],
         },
       ],
     },

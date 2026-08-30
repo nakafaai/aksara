@@ -7,27 +7,51 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Basketball ist das beliebteste Freizeitinteresse",
+          label: [
+            {
+              kind: "text",
+              text: "Basketball ist das beliebteste Freizeitinteresse",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Insgesamt interessieren sich $$65$$ Schülerinnen und Schüler für Schauspiel",
+          label: [
+            { kind: "text", text: "Insgesamt interessieren sich " },
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " Schülerinnen und Schüler für Schauspiel" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Gesamtzahl der Schülerinnen und Schüler in Klasse $$\\text{XII}$$ beträgt $$306$$",
+          label: [
+            {
+              kind: "text",
+              text: "Die Gesamtzahl der Schülerinnen und Schüler in Klasse ",
+            },
+            { display: "block", kind: "math", math: "\\text{XII}" },
+            { kind: "text", text: " beträgt " },
+            { display: "block", kind: "math", math: "306" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "In Klasse $$\\text{X}$$ interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
+          label: [
+            { kind: "text", text: "In Klasse " },
+            { display: "block", kind: "math", math: "\\text{X}" },
+            {
+              kind: "text",
+              text: " interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Insgesamt interessieren sich $$160$$ Schülerinnen und Schüler für Malerei",
+          label: [
+            { kind: "text", text: "Insgesamt interessieren sich " },
+            { display: "block", kind: "math", math: "160" },
+            { kind: "text", text: " Schülerinnen und Schüler für Malerei" },
+          ],
         },
       ],
     },
@@ -36,25 +60,46 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Basketball is the most popular interest",
+          label: [
+            { kind: "text", text: "Basketball is the most popular interest" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The number of students interested in acting is $$65$$ students",
+          label: [
+            {
+              kind: "text",
+              text: "The number of students interested in acting is ",
+            },
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " students" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The number of class $$\\text{XII}$$ students according to interest is $$306$$",
+          label: [
+            { kind: "text", text: "The number of class " },
+            { display: "block", kind: "math", math: "\\text{XII}" },
+            { kind: "text", text: " students according to interest is " },
+            { display: "block", kind: "math", math: "306" },
+          ],
         },
         {
           isCorrect: false,
-          label: "The least interest in dance is in class $$\\text{X}$$",
+          label: [
+            { kind: "text", text: "The least interest in dance is in class " },
+            { display: "block", kind: "math", math: "\\text{X}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "The number of students interested in painting is $$160$$",
+          label: [
+            {
+              kind: "text",
+              text: "The number of students interested in painting is ",
+            },
+            { display: "block", kind: "math", math: "160" },
+          ],
         },
       ],
     },
@@ -63,25 +108,46 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kegemaran basket adalah paling banyak diminati",
+          label: [
+            {
+              kind: "text",
+              text: "Kegemaran basket adalah paling banyak diminati",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jumlah siswa gemar seni peran adalah $$65$$ siswa",
+          label: [
+            { kind: "text", text: "Jumlah siswa gemar seni peran adalah " },
+            { display: "block", kind: "math", math: "65" },
+            { kind: "text", text: " siswa" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Jumlah siswa kelas $$\\text{XII}$$ sesuai kegemaran adalah $$306$$",
+          label: [
+            { kind: "text", text: "Jumlah siswa kelas " },
+            { display: "block", kind: "math", math: "\\text{XII}" },
+            { kind: "text", text: " sesuai kegemaran adalah " },
+            { display: "block", kind: "math", math: "306" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{X}$$",
+          label: [
+            {
+              kind: "text",
+              text: "Kegemaran seni tari yang paling sedikit ada di kelas ",
+            },
+            { display: "block", kind: "math", math: "\\text{X}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Jumlah siswa gemar melukis adalah $$160$$",
+          label: [
+            { kind: "text", text: "Jumlah siswa gemar melukis adalah " },
+            { display: "block", kind: "math", math: "160" },
+          ],
         },
       ],
     },

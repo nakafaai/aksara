@@ -5,14 +5,33 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Dismissive of all nutritional advice" },
         {
           isCorrect: false,
-          label: "Certain that one food can prevent every infection",
+          label: [
+            { kind: "text", text: "Dismissive of all nutritional advice" },
+          ],
         },
-        { isCorrect: false, label: "Alarmist about eating any sugar" },
-        { isCorrect: true, label: "Practical and evidence-based" },
-        { isCorrect: false, label: "Indifferent to dietary habits" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Certain that one food can prevent every infection",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Alarmist about eating any sugar" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Practical and evidence-based" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Indifferent to dietary habits" }],
+        },
       ],
     },
   },

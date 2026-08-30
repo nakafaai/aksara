@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1{,}2$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "1{,}2" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4{,}8$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "4{,}8" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$18{,}8$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "18{,}8" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$16{,}8$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "16{,}8" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$14{,}2$$ Minuten",
+          label: [
+            { display: "block", kind: "math", math: "14{,}2" },
+            { kind: "text", text: " Minuten" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1.2$$ minutes" },
-        { isCorrect: false, label: "$$4.8$$ minutes" },
-        { isCorrect: false, label: "$$18.8$$ minutes" },
-        { isCorrect: true, label: "$$16.8$$ minutes" },
-        { isCorrect: false, label: "$$14.2$$ minutes" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1.2" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "4.8" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "18.8" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "16.8" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "14.2" },
+            { kind: "text", text: " minutes" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$1{,}2$$ menit" },
-        { isCorrect: false, label: "$$4{,}8$$ menit" },
-        { isCorrect: false, label: "$$18{,}8$$ menit" },
-        { isCorrect: true, label: "$$16{,}8$$ menit" },
-        { isCorrect: false, label: "$$14{,}2$$ menit" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "1{,}2" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "4{,}8" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "18{,}8" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "16{,}8" },
+            { kind: "text", text: " menit" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "14{,}2" },
+            { kind: "text", text: " menit" },
+          ],
+        },
       ],
     },
   },

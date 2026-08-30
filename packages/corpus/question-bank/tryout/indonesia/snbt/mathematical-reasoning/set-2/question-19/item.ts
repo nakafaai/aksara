@@ -7,44 +7,164 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$150\\sqrt{3} \\text{ m/s}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "150\\sqrt{3} \\text{ m/s}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$300\\sqrt{3} \\text{ m/s}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "300\\sqrt{3} \\text{ m/s}",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "100(\\sqrt{3}-1) \\text{ m/s}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$450\\sqrt{3} \\text{ m/s}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "450\\sqrt{3} \\text{ m/s}",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$250\\sqrt{3} \\text{ m/s}$$",
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3} \\text{ m/s}",
+            },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$150\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$300\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: true, label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$450\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$250\\sqrt{3} \\text{ m/s}$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "150\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "300\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "100(\\sqrt{3}-1) \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "450\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$150\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$300\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: true, label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$450\\sqrt{3} \\text{ m/s}$$" },
-        { isCorrect: false, label: "$$250\\sqrt{3} \\text{ m/s}$$" },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "150\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "300\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "100(\\sqrt{3}-1) \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "450\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              display: "block",
+              kind: "math",
+              math: "250\\sqrt{3} \\text{ m/s}",
+            },
+          ],
+        },
       ],
     },
   },

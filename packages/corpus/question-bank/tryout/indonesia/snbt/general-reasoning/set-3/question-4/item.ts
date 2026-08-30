@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$85$$ km/h",
+          label: [
+            { display: "block", kind: "math", math: "85" },
+            { kind: "text", text: " km/h" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$95$$ km/h",
+          label: [
+            { display: "block", kind: "math", math: "95" },
+            { kind: "text", text: " km/h" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$80$$ km/h",
+          label: [
+            { display: "block", kind: "math", math: "80" },
+            { kind: "text", text: " km/h" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$75$$ km/h",
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " km/h" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$90$$ km/h",
+          label: [
+            { display: "block", kind: "math", math: "90" },
+            { kind: "text", text: " km/h" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$85$$ km/h" },
-        { isCorrect: false, label: "$$95$$ km/h" },
-        { isCorrect: false, label: "$$80$$ km/h" },
-        { isCorrect: true, label: "$$75$$ km/h" },
-        { isCorrect: false, label: "$$90$$ km/h" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "85" },
+            { kind: "text", text: " km/h" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "95" },
+            { kind: "text", text: " km/h" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "80" },
+            { kind: "text", text: " km/h" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " km/h" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "90" },
+            { kind: "text", text: " km/h" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$85$$ km/jam" },
-        { isCorrect: false, label: "$$95$$ km/jam" },
-        { isCorrect: false, label: "$$80$$ km/jam" },
-        { isCorrect: true, label: "$$75$$ km/jam" },
-        { isCorrect: false, label: "$$90$$ km/jam" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "85" },
+            { kind: "text", text: " km/jam" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "95" },
+            { kind: "text", text: " km/jam" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "80" },
+            { kind: "text", text: " km/jam" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "75" },
+            { kind: "text", text: " km/jam" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "90" },
+            { kind: "text", text: " km/jam" },
+          ],
+        },
       ],
     },
   },

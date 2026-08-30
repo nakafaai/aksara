@@ -7,24 +7,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Größe $$P$$ ist größer als $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist größer als " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Größe $$P$$ ist kleiner als $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist kleiner als " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Größe $$P$$ ist gleich $$Q$$",
+          label: [
+            { kind: "text", text: "Größe " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " ist gleich " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Informationen reichen nicht aus, um den Zusammenhang festzustellen",
+          label: [
+            {
+              kind: "text",
+              text: "Die Informationen reichen nicht aus, um den Zusammenhang festzustellen",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Beide Größen sind nicht definiert",
+          label: [{ kind: "text", text: "Beide Größen sind nicht definiert" }],
         },
       ],
     },
@@ -33,24 +52,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Quantity $$P$$ is greater than $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is greater than " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Quantity $$P$$ is less than $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is less than " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Quantity $$P$$ is equal to $$Q$$",
+          label: [
+            { kind: "text", text: "Quantity " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " is equal to " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The information is insufficient to determine the relationship",
+          label: [
+            {
+              kind: "text",
+              text: "The information is insufficient to determine the relationship",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Neither quantity is defined",
+          label: [{ kind: "text", text: "Neither quantity is defined" }],
         },
       ],
     },
@@ -59,23 +97,43 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " lebih besar daripada " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " lebih kecil daripada " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kuantitas $$P$$ sama dengan $$Q$$",
+          label: [
+            { kind: "text", text: "Kuantitas " },
+            { display: "block", kind: "math", math: "P" },
+            { kind: "text", text: " sama dengan " },
+            { display: "block", kind: "math", math: "Q" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Informasi tidak cukup untuk menentukan hubungan",
+          label: [
+            {
+              kind: "text",
+              text: "Informasi tidak cukup untuk menentukan hubungan",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Kedua kuantitas tidak terdefinisi",
+          label: [{ kind: "text", text: "Kedua kuantitas tidak terdefinisi" }],
         },
       ],
     },

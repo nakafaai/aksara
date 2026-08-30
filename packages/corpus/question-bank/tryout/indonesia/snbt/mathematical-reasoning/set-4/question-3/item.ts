@@ -7,44 +7,104 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp2{.}500{,}00}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp2{.}500{,}00}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp3{.}000{,}00}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp3{.}000{,}00}" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp4{.}000{,}00}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp4{.}000{,}00}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}000{,}00}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{.}000{,}00}" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}500{,}00}$$",
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{.}500{,}00}" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\text{Rp2{,}500.00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp3{,}000.00}$$" },
-        { isCorrect: true, label: "$$\\text{Rp4{,}000.00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp5{,}000.00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp5{,}500.00}$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp2{,}500.00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp3{,}000.00}" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp4{,}000.00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{,}000.00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{,}500.00}" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\text{Rp2{.}500{,}00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp3{.}000{,}00}$$" },
-        { isCorrect: true, label: "$$\\text{Rp4{.}000{,}00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp5{.}000{,}00}$$" },
-        { isCorrect: false, label: "$$\\text{Rp5{.}500{,}00}$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp2{.}500{,}00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp3{.}000{,}00}" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp4{.}000{,}00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{.}000{,}00}" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "\\text{Rp5{.}500{,}00}" },
+          ],
+        },
       ],
     },
   },

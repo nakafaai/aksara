@@ -7,23 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$1, 2, 3$$",
+          label: [{ display: "block", kind: "math", math: "1, 2, 3" }],
         },
         {
           isCorrect: false,
-          label: "$$1 \\text{ und } 3$$",
+          label: [
+            { display: "block", kind: "math", math: "1 \\text{ und } 3" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2 \\text{ und } 4$$",
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ und } 4" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4 \\text{ nur}$$",
+          label: [{ display: "block", kind: "math", math: "4 \\text{ nur}" }],
         },
         {
           isCorrect: false,
-          label: "alle",
+          label: [{ kind: "text", text: "alle" }],
         },
       ],
     },
@@ -32,23 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$1, 2, 3$$",
+          label: [{ display: "block", kind: "math", math: "1, 2, 3" }],
         },
         {
           isCorrect: false,
-          label: "$$1 \\text{ and } 3$$",
+          label: [
+            { display: "block", kind: "math", math: "1 \\text{ and } 3" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2 \\text{ and } 4$$",
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ and } 4" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4 \\text{ only}$$",
+          label: [{ display: "block", kind: "math", math: "4 \\text{ only}" }],
         },
         {
           isCorrect: false,
-          label: "all",
+          label: [{ kind: "text", text: "all" }],
         },
       ],
     },
@@ -57,23 +65,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$1, 2, 3$$",
+          label: [{ display: "block", kind: "math", math: "1, 2, 3" }],
         },
         {
           isCorrect: false,
-          label: "$$1 \\text{ dan } 3$$",
+          label: [
+            { display: "block", kind: "math", math: "1 \\text{ dan } 3" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2 \\text{ dan } 4$$",
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ dan } 4" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$4 \\text{ saja}$$",
+          label: [{ display: "block", kind: "math", math: "4 \\text{ saja}" }],
         },
         {
           isCorrect: false,
-          label: "semua",
+          label: [{ kind: "text", text: "semua" }],
         },
       ],
     },

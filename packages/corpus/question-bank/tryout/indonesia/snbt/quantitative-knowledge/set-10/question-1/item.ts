@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$V$$",
+          label: [{ display: "block", kind: "math", math: "V" }],
         },
         {
           isCorrect: false,
-          label: "$$W$$",
+          label: [{ display: "block", kind: "math", math: "W" }],
         },
         {
           isCorrect: false,
-          label: "$$X$$",
+          label: [{ display: "block", kind: "math", math: "X" }],
         },
         {
           isCorrect: true,
-          label: "$$Y$$",
+          label: [{ display: "block", kind: "math", math: "Y" }],
         },
         {
           isCorrect: false,
-          label: "$$Z$$",
+          label: [{ display: "block", kind: "math", math: "Z" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$V$$" },
-        { isCorrect: false, label: "$$W$$" },
-        { isCorrect: false, label: "$$X$$" },
-        { isCorrect: true, label: "$$Y$$" },
-        { isCorrect: false, label: "$$Z$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "V" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "W" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "X" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "Y" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "Z" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$V$$" },
-        { isCorrect: false, label: "$$W$$" },
-        { isCorrect: false, label: "$$X$$" },
-        { isCorrect: true, label: "$$Y$$" },
-        { isCorrect: false, label: "$$Z$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "V" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "W" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "X" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "Y" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "Z" }],
+        },
       ],
     },
   },

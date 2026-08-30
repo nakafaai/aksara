@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 660.000",
+          label: [{ kind: "text", text: "Rp 660.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 816.000",
+          label: [{ kind: "text", text: "Rp 816.000" }],
         },
         {
           isCorrect: true,
-          label: "Rp 972.000",
+          label: [{ kind: "text", text: "Rp 972.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.128.000",
+          label: [{ kind: "text", text: "Rp 1.128.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.284.000",
+          label: [{ kind: "text", text: "Rp 1.284.000" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 660.000",
+          label: [{ kind: "text", text: "Rp 660.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 816.000",
+          label: [{ kind: "text", text: "Rp 816.000" }],
         },
         {
           isCorrect: true,
-          label: "Rp 972.000",
+          label: [{ kind: "text", text: "Rp 972.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.128.000",
+          label: [{ kind: "text", text: "Rp 1.128.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.284.000",
+          label: [{ kind: "text", text: "Rp 1.284.000" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 660.000",
+          label: [{ kind: "text", text: "Rp 660.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 816.000",
+          label: [{ kind: "text", text: "Rp 816.000" }],
         },
         {
           isCorrect: true,
-          label: "Rp 972.000",
+          label: [{ kind: "text", text: "Rp 972.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.128.000",
+          label: [{ kind: "text", text: "Rp 1.128.000" }],
         },
         {
           isCorrect: false,
-          label: "Rp 1.284.000",
+          label: [{ kind: "text", text: "Rp 1.284.000" }],
         },
       ],
     },

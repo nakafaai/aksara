@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nudel A in $$2019\\text{-}2020$$",
+          label: [
+            { kind: "text", text: "Nudel A in " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Nudel B in $$2017\\text{-}2018$$",
+          label: [
+            { kind: "text", text: "Nudel B in " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Nudel B in $$2018\\text{-}2019$$",
+          label: [
+            { kind: "text", text: "Nudel B in " },
+            { display: "block", kind: "math", math: "2018\\text{-}2019" },
+          ],
         },
         {
           isCorrect: false,
-          label: "Nudel C in $$2019\\text{-}2020$$",
+          label: [
+            { kind: "text", text: "Nudel C in " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
         },
         {
           isCorrect: true,
-          label: "Nudel A in $$2017\\text{-}2018$$",
+          label: [
+            { kind: "text", text: "Nudel A in " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Noodle A in $$2019\\text{-}2020$$" },
-        { isCorrect: false, label: "Noodle B in $$2017\\text{-}2018$$" },
-        { isCorrect: false, label: "Noodle B in $$2018\\text{-}2019$$" },
-        { isCorrect: false, label: "Noodle C in $$2019\\text{-}2020$$" },
-        { isCorrect: true, label: "Noodle A in $$2017\\text{-}2018$$" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Noodle A in " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Noodle B in " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Noodle B in " },
+            { display: "block", kind: "math", math: "2018\\text{-}2019" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Noodle C in " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Noodle A in " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Mie A pada tahun $$2019\\text{-}2020$$" },
-        { isCorrect: false, label: "Mie B pada tahun $$2017\\text{-}2018$$" },
-        { isCorrect: false, label: "Mie B pada tahun $$2018\\text{-}2019$$" },
-        { isCorrect: false, label: "Mie C pada tahun $$2019\\text{-}2020$$" },
-        { isCorrect: true, label: "Mie A pada tahun $$2017\\text{-}2018$$" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Mie A pada tahun " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Mie B pada tahun " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Mie B pada tahun " },
+            { display: "block", kind: "math", math: "2018\\text{-}2019" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Mie C pada tahun " },
+            { display: "block", kind: "math", math: "2019\\text{-}2020" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Mie A pada tahun " },
+            { display: "block", kind: "math", math: "2017\\text{-}2018" },
+          ],
+        },
       ],
     },
   },

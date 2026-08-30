@@ -7,44 +7,80 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A = B$$",
+          label: [{ display: "block", kind: "math", math: "A = B" }],
         },
         {
           isCorrect: false,
-          label: "$$A = 2B$$",
+          label: [{ display: "block", kind: "math", math: "A = 2B" }],
         },
         {
           isCorrect: true,
-          label: "$$A > B$$",
+          label: [{ display: "block", kind: "math", math: "A > B" }],
         },
         {
           isCorrect: false,
-          label: "$$A < B$$",
+          label: [{ display: "block", kind: "math", math: "A < B" }],
         },
         {
           isCorrect: false,
-          label: "$$A = \\frac{1}{2}B$$",
+          label: [
+            { display: "block", kind: "math", math: "A = \\frac{1}{2}B" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$A = B$$" },
-        { isCorrect: false, label: "$$A = 2B$$" },
-        { isCorrect: true, label: "$$A > B$$" },
-        { isCorrect: false, label: "$$A < B$$" },
-        { isCorrect: false, label: "$$A = \\frac{1}{2}B$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A = B" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A = 2B" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "A > B" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A < B" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = \\frac{1}{2}B" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$A = B$$" },
-        { isCorrect: false, label: "$$A = 2B$$" },
-        { isCorrect: true, label: "$$A > B$$" },
-        { isCorrect: false, label: "$$A < B$$" },
-        { isCorrect: false, label: "$$A = \\frac{1}{2}B$$" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A = B" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A = 2B" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "A > B" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "A < B" }],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "A = \\frac{1}{2}B" },
+          ],
+        },
       ],
     },
   },

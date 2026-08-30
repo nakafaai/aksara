@@ -7,44 +7,119 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$60$$ Leute",
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " Leute" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$48$$ Leute",
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " Leute" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$36$$ Leute",
+          label: [
+            { display: "block", kind: "math", math: "36" },
+            { kind: "text", text: " Leute" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$30$$ Leute",
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Leute" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$20$$ Leute",
+          label: [
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " Leute" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$60$$ People" },
-        { isCorrect: false, label: "$$48$$ People" },
-        { isCorrect: true, label: "$$36$$ People" },
-        { isCorrect: false, label: "$$30$$ People" },
-        { isCorrect: false, label: "$$20$$ People" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " People" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " People" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "36" },
+            { kind: "text", text: " People" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " People" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " People" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$60$$ Orang" },
-        { isCorrect: false, label: "$$48$$ Orang" },
-        { isCorrect: true, label: "$$36$$ Orang" },
-        { isCorrect: false, label: "$$30$$ Orang" },
-        { isCorrect: false, label: "$$20$$ Orang" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "60" },
+            { kind: "text", text: " Orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "48" },
+            { kind: "text", text: " Orang" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "36" },
+            { kind: "text", text: " Orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "30" },
+            { kind: "text", text: " Orang" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "20" },
+            { kind: "text", text: " Orang" },
+          ],
+        },
       ],
     },
   },

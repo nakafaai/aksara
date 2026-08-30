@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Verunreinigung von Wasserquellen in vielen indonesischen Gemeinden hängt eng mit Sanitärversorgung und Abwasser zusammen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Verunreinigung von Wasserquellen in vielen indonesischen Gemeinden hängt eng mit Sanitärversorgung und Abwasser zusammen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Unsichere Sanitärversorgung verunreinigt Wasserquellen.",
+          label: [
+            {
+              kind: "text",
+              text: "Unsichere Sanitärversorgung verunreinigt Wasserquellen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Verunreinigung von Wasserquellen hängt eng zusammen.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Verunreinigung von Wasserquellen hängt eng zusammen.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Verunreinigung von Wasserquellen verursacht Sanitärversorgung und Abwasser.",
+          label: [
+            {
+              kind: "text",
+              text: "Die Verunreinigung von Wasserquellen verursacht Sanitärversorgung und Abwasser.",
+            },
+          ],
         },
       ],
     },
@@ -35,25 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Water-source contamination is linked to sanitation and wastewater.",
+          label: [
+            {
+              kind: "text",
+              text: "Water-source contamination is linked to sanitation and wastewater.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Water-source contamination in many Indonesian communities is closely linked to sanitation and wastewater.",
+          label: [
+            {
+              kind: "text",
+              text: "Water-source contamination in many Indonesian communities is closely linked to sanitation and wastewater.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Unsafe sanitation contaminates water sources.",
+          label: [
+            {
+              kind: "text",
+              text: "Unsafe sanitation contaminates water sources.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Water-source contamination is closely linked.",
+          label: [
+            {
+              kind: "text",
+              text: "Water-source contamination is closely linked.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Water-source contamination causes sanitation and wastewater.",
+          label: [
+            {
+              kind: "text",
+              text: "Water-source contamination causes sanitation and wastewater.",
+            },
+          ],
         },
       ],
     },
@@ -62,25 +107,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
+          label: [
+            {
+              kind: "text",
+              text: "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
+          label: [
+            {
+              kind: "text",
+              text: "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Sanitasi yang tidak aman mencemari sumber air.",
+          label: [
+            {
+              kind: "text",
+              text: "Sanitasi yang tidak aman mencemari sumber air.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pencemaran sumber air berkaitan erat.",
+          label: [
+            { kind: "text", text: "Pencemaran sumber air berkaitan erat." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
+          label: [
+            {
+              kind: "text",
+              text: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
+            },
+          ],
         },
       ],
     },

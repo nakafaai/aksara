@@ -7,28 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Wer kein hohes Prüfungsergebnis erzielt, hat die eigene Zeit nicht gut eingeteilt.",
+          label: [
+            {
+              kind: "text",
+              text: "Wer kein hohes Prüfungsergebnis erzielt, hat die eigene Zeit nicht gut eingeteilt.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Wer die eigene Zeit gut einteilt, erzielt kein hohes Prüfungsergebnis.",
+          label: [
+            {
+              kind: "text",
+              text: "Wer die eigene Zeit gut einteilt, erzielt kein hohes Prüfungsergebnis.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Wer regelmäßig lernt, muss die eigene Zeit gut eingeteilt haben.",
+          label: [
+            {
+              kind: "text",
+              text: "Wer regelmäßig lernt, muss die eigene Zeit gut eingeteilt haben.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Ein hohes Prüfungsergebnis garantiert, dass regelmäßig gelernt wurde.",
+          label: [
+            {
+              kind: "text",
+              text: "Ein hohes Prüfungsergebnis garantiert, dass regelmäßig gelernt wurde.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Schlechte Zeiteinteilung garantiert ein hohes Prüfungsergebnis.",
+          label: [
+            {
+              kind: "text",
+              text: "Schlechte Zeiteinteilung garantiert ein hohes Prüfungsergebnis.",
+            },
+          ],
         },
       ],
     },
@@ -37,28 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "A student who does not achieve a high exam score did not manage their time well.",
+          label: [
+            {
+              kind: "text",
+              text: "A student who does not achieve a high exam score did not manage their time well.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "A student who manages their time well does not achieve a high exam score.",
+          label: [
+            {
+              kind: "text",
+              text: "A student who manages their time well does not achieve a high exam score.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Every student who studies consistently must manage their time well.",
+          label: [
+            {
+              kind: "text",
+              text: "Every student who studies consistently must manage their time well.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "A high exam score guarantees that a student studied consistently.",
+          label: [
+            {
+              kind: "text",
+              text: "A high exam score guarantees that a student studied consistently.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Poor time management guarantees that a student achieves a high exam score.",
+          label: [
+            {
+              kind: "text",
+              text: "Poor time management guarantees that a student achieves a high exam score.",
+            },
+          ],
         },
       ],
     },
@@ -67,28 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Mahasiswa yang tidak meraih nilai ujian tinggi tidak mengatur waktunya dengan baik.",
+          label: [
+            {
+              kind: "text",
+              text: "Mahasiswa yang tidak meraih nilai ujian tinggi tidak mengatur waktunya dengan baik.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Mahasiswa yang mengatur waktunya dengan baik tidak meraih nilai ujian tinggi.",
+          label: [
+            {
+              kind: "text",
+              text: "Mahasiswa yang mengatur waktunya dengan baik tidak meraih nilai ujian tinggi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Setiap mahasiswa yang belajar secara konsisten pasti mengatur waktunya dengan baik.",
+          label: [
+            {
+              kind: "text",
+              text: "Setiap mahasiswa yang belajar secara konsisten pasti mengatur waktunya dengan baik.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Nilai ujian tinggi menjamin bahwa mahasiswa belajar secara konsisten.",
+          label: [
+            {
+              kind: "text",
+              text: "Nilai ujian tinggi menjamin bahwa mahasiswa belajar secara konsisten.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pengaturan waktu yang buruk menjamin mahasiswa meraih nilai ujian tinggi.",
+          label: [
+            {
+              kind: "text",
+              text: "Pengaturan waktu yang buruk menjamin mahasiswa meraih nilai ujian tinggi.",
+            },
+          ],
         },
       ],
     },

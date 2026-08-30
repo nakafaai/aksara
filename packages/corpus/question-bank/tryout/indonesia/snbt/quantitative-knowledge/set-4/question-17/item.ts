@@ -7,25 +7,52 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Anweisung $$(1)$$ ist ausreichend.",
+          label: [
+            { kind: "text", text: "Die Anweisung " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " ist ausreichend." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Die Anweisung $$(2)$$ ist ausreichend.",
+          label: [
+            { kind: "text", text: "Die Anweisung " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " ist ausreichend." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die Anweisungen $$(1)$$ und $$(2)$$ sind ausreichend, wenn sie zusammen verwendet werden.",
+          label: [
+            { kind: "text", text: "Die Anweisungen " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(2)" },
+            {
+              kind: "text",
+              text: " sind ausreichend, wenn sie zusammen verwendet werden.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Anweisung $$(1)$$ ist ausreichend, Anweisung $$(2)$$ ist ausreichend.",
+          label: [
+            { kind: "text", text: "Anweisung " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " ist ausreichend, Anweisung " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " ist ausreichend." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Die Anweisungen $$(1)$$ und $$(2)$$ sind nicht ausreichend.",
+          label: [
+            { kind: "text", text: "Die Anweisungen " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " sind nicht ausreichend." },
+          ],
         },
       ],
     },
@@ -34,25 +61,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Statement $$(1)$$ is sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " is sufficient." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Statement $$(2)$$ is sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " is sufficient." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Statements $$(1)$$ and $$(2)$$ are sufficient if used together.",
+          label: [
+            { kind: "text", text: "Statements " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " are sufficient if used together." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Statement $$(1)$$ is sufficient, statement $$(2)$$ is sufficient.",
+          label: [
+            { kind: "text", text: "Statement " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " is sufficient, statement " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " is sufficient." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Statements $$(1)$$ and $$(2)$$ are not sufficient.",
+          label: [
+            { kind: "text", text: "Statements " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " are not sufficient." },
+          ],
         },
       ],
     },
@@ -61,24 +112,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " cukup." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Pernyataan $$(2)$$ cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " cukup." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Pernyataan $$(1)$$ dan $$(2)$$ cukup jika digunakan bersama-sama.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " cukup jika digunakan bersama-sama." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ cukup, pernyataan $$(2)$$ cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " cukup, pernyataan " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " cukup." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ dan $$(2)$$ tidak cukup.",
+          label: [
+            { kind: "text", text: "Pernyataan " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " tidak cukup." },
+          ],
         },
       ],
     },

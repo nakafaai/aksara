@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{it}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{pit}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\text{sit}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\text{nit}$$",
+          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
         },
         {
           isCorrect: false,
-          label: "nichts davon",
+          label: [{ kind: "text", text: "nichts davon" }],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\text{it}$$" },
-        { isCorrect: false, label: "$$\\text{pit}$$" },
-        { isCorrect: false, label: "$$\\text{sit}$$" },
-        { isCorrect: true, label: "$$\\text{nit}$$" },
-        { isCorrect: false, label: "none of the above" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "none of the above" }],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$\\text{it}$$" },
-        { isCorrect: false, label: "$$\\text{pit}$$" },
-        { isCorrect: false, label: "$$\\text{sit}$$" },
-        { isCorrect: true, label: "$$\\text{nit}$$" },
-        { isCorrect: false, label: "tidak ada satupun" },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{it}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{pit}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ display: "block", kind: "math", math: "\\text{sit}" }],
+        },
+        {
+          isCorrect: true,
+          label: [{ display: "block", kind: "math", math: "\\text{nit}" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "tidak ada satupun" }],
+        },
       ],
     },
   },

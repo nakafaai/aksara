@@ -7,26 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geschützte Lebensräume müssen vor Baubeginn kartiert werden.",
+          label: [
+            {
+              kind: "text",
+              text: "Geschützte Lebensräume müssen vor Baubeginn kartiert werden.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Ein Planungsabschnitt durch einen geschützten Lebensraum muss verlegt werden.",
+          label: [
+            {
+              kind: "text",
+              text: "Ein Planungsabschnitt durch einen geschützten Lebensraum muss verlegt werden.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Die ursprüngliche Brückentrasse darf während des Baus unverändert bleiben.",
+          label: [
+            {
+              kind: "text",
+              text: "Die ursprüngliche Brückentrasse darf während des Baus unverändert bleiben.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Die ursprüngliche Brückentrasse durchquerte einen geschützten Nashornvogel-Lebensraum.",
+          label: [
+            {
+              kind: "text",
+              text: "Die ursprüngliche Brückentrasse durchquerte einen geschützten Nashornvogel-Lebensraum.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Das Team verlegte die Brückentrasse vor Baubeginn.",
+          label: [
+            {
+              kind: "text",
+              text: "Das Team verlegte die Brückentrasse vor Baubeginn.",
+            },
+          ],
         },
       ],
     },
@@ -35,27 +57,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Protected habitats must be mapped before construction begins.",
+          label: [
+            {
+              kind: "text",
+              text: "Protected habitats must be mapped before construction begins.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "A design segment crossing a protected habitat must be relocated.",
+          label: [
+            {
+              kind: "text",
+              text: "A design segment crossing a protected habitat must be relocated.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "The original bridge alignment may remain unchanged through construction.",
+          label: [
+            {
+              kind: "text",
+              text: "The original bridge alignment may remain unchanged through construction.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "The original bridge alignment crossed a protected hornbill habitat.",
+          label: [
+            {
+              kind: "text",
+              text: "The original bridge alignment crossed a protected hornbill habitat.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "The team relocated the bridge alignment before construction.",
+          label: [
+            {
+              kind: "text",
+              text: "The team relocated the bridge alignment before construction.",
+            },
+          ],
         },
       ],
     },
@@ -64,27 +107,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Habitat yang dilindungi harus dipetakan sebelum konstruksi dimulai.",
+          label: [
+            {
+              kind: "text",
+              text: "Habitat yang dilindungi harus dipetakan sebelum konstruksi dimulai.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Bagian rancangan yang melintasi habitat yang dilindungi harus dipindahkan.",
+          label: [
+            {
+              kind: "text",
+              text: "Bagian rancangan yang melintasi habitat yang dilindungi harus dipindahkan.",
+            },
+          ],
         },
         {
           isCorrect: true,
-          label:
-            "Jalur jembatan semula boleh tetap digunakan tanpa perubahan selama konstruksi.",
+          label: [
+            {
+              kind: "text",
+              text: "Jalur jembatan semula boleh tetap digunakan tanpa perubahan selama konstruksi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Jalur jembatan semula melintasi habitat rangkong yang dilindungi.",
+          label: [
+            {
+              kind: "text",
+              text: "Jalur jembatan semula melintasi habitat rangkong yang dilindungi.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label: "Tim memindahkan jalur jembatan sebelum konstruksi.",
+          label: [
+            {
+              kind: "text",
+              text: "Tim memindahkan jalur jembatan sebelum konstruksi.",
+            },
+          ],
         },
       ],
     },

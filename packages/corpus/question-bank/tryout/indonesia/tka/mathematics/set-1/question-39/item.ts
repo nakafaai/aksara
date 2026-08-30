@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{5}{21}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{21}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{11}{42}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{2}{7}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{7}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{13}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{13}{42}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{5}{21}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{21}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{11}{42}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{2}{7}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{7}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{13}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{13}{42}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{5}{21}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{5}{21}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{11}{42}" }],
         },
         {
           isCorrect: true,
-          label: "$$\\frac{2}{7}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{2}{7}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{13}{42}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{13}{42}" }],
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}$$",
+          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
         },
       ],
     },

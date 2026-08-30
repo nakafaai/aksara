@@ -8,23 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\%$$",
+          label: [{ display: "block", kind: "math", math: "5\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$8\\%$$",
+          label: [{ display: "block", kind: "math", math: "8\\%" }],
         },
         {
           isCorrect: true,
-          label: "$$10\\%$$",
+          label: [{ display: "block", kind: "math", math: "10\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$12\\%$$",
+          label: [{ display: "block", kind: "math", math: "12\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$15\\%$$",
+          label: [{ display: "block", kind: "math", math: "15\\%" }],
         },
       ],
     },
@@ -33,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\%$$",
+          label: [{ display: "block", kind: "math", math: "5\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$8\\%$$",
+          label: [{ display: "block", kind: "math", math: "8\\%" }],
         },
         {
           isCorrect: true,
-          label: "$$10\\%$$",
+          label: [{ display: "block", kind: "math", math: "10\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$12\\%$$",
+          label: [{ display: "block", kind: "math", math: "12\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$15\\%$$",
+          label: [{ display: "block", kind: "math", math: "15\\%" }],
         },
       ],
     },
@@ -58,23 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\%$$",
+          label: [{ display: "block", kind: "math", math: "5\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$8\\%$$",
+          label: [{ display: "block", kind: "math", math: "8\\%" }],
         },
         {
           isCorrect: true,
-          label: "$$10\\%$$",
+          label: [{ display: "block", kind: "math", math: "10\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$12\\%$$",
+          label: [{ display: "block", kind: "math", math: "12\\%" }],
         },
         {
           isCorrect: false,
-          label: "$$15\\%$$",
+          label: [{ display: "block", kind: "math", math: "15\\%" }],
         },
       ],
     },

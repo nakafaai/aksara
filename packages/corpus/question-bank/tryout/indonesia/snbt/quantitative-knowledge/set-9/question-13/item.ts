@@ -7,44 +7,104 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$14 \\text{ und } 2$$",
+          label: [
+            { display: "block", kind: "math", math: "14 \\text{ und } 2" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$12 \\text{ und } 2$$",
+          label: [
+            { display: "block", kind: "math", math: "12 \\text{ und } 2" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$8 \\text{ und } 2$$",
+          label: [
+            { display: "block", kind: "math", math: "8 \\text{ und } 2" },
+          ],
         },
         {
           isCorrect: true,
-          label: "$$4 \\text{ und } 2$$",
+          label: [
+            { display: "block", kind: "math", math: "4 \\text{ und } 2" },
+          ],
         },
         {
           isCorrect: false,
-          label: "$$2 \\text{ und } 2$$",
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ und } 2" },
+          ],
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$14 \\text{ and } 2$$" },
-        { isCorrect: false, label: "$$12 \\text{ and } 2$$" },
-        { isCorrect: false, label: "$$8 \\text{ and } 2$$" },
-        { isCorrect: true, label: "$$4 \\text{ and } 2$$" },
-        { isCorrect: false, label: "$$2 \\text{ and } 2$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "14 \\text{ and } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "12 \\text{ and } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8 \\text{ and } 2" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "4 \\text{ and } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ and } 2" },
+          ],
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "$$14 \\text{ dan } 2$$" },
-        { isCorrect: false, label: "$$12 \\text{ dan } 2$$" },
-        { isCorrect: false, label: "$$8 \\text{ dan } 2$$" },
-        { isCorrect: true, label: "$$4 \\text{ dan } 2$$" },
-        { isCorrect: false, label: "$$2 \\text{ dan } 2$$" },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "14 \\text{ dan } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "12 \\text{ dan } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "8 \\text{ dan } 2" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { display: "block", kind: "math", math: "4 \\text{ dan } 2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { display: "block", kind: "math", math: "2 \\text{ dan } 2" },
+          ],
+        },
       ],
     },
   },

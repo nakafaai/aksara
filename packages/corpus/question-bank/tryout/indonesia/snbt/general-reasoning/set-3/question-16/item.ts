@@ -7,25 +7,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Jicama liefert $$14$$ Kilokalorien weniger als der Apfel.",
+          label: [
+            { kind: "text", text: "Jicama liefert " },
+            { display: "block", kind: "math", math: "14" },
+            { kind: "text", text: " Kilokalorien weniger als der Apfel." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jicama enthält $$0{,}46$$ g mehr Eiweiß als der Apfel.",
+          label: [
+            { kind: "text", text: "Jicama enthält " },
+            { display: "block", kind: "math", math: "0{,}46" },
+            { kind: "text", text: " g mehr Eiweiß als der Apfel." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Der Apfel enthält weniger Fett als Jicama.",
+          label: [
+            {
+              kind: "text",
+              text: "Der Apfel enthält weniger Fett als Jicama.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Beide Lebensmittel enthalten weniger als $$1$$ g Eiweiß pro $$100$$ g.",
+          label: [
+            { kind: "text", text: "Beide Lebensmittel enthalten weniger als " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g Eiweiß pro " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Beide Lebensmittel enthalten weniger als $$1$$ g Fett pro $$100$$ g.",
+          label: [
+            { kind: "text", text: "Beide Lebensmittel enthalten weniger als " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g Fett pro " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
       ],
     },
@@ -34,24 +57,45 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Jicama provides $$14$$ fewer kilocalories than apple.",
+          label: [
+            { kind: "text", text: "Jicama provides " },
+            { display: "block", kind: "math", math: "14" },
+            { kind: "text", text: " fewer kilocalories than apple." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Jicama provides $$0.46$$ g more protein than apple.",
+          label: [
+            { kind: "text", text: "Jicama provides " },
+            { display: "block", kind: "math", math: "0.46" },
+            { kind: "text", text: " g more protein than apple." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Apple provides less fat than jicama.",
+          label: [
+            { kind: "text", text: "Apple provides less fat than jicama." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Both foods provide less than $$1$$ g of protein per $$100$$ g.",
+          label: [
+            { kind: "text", text: "Both foods provide less than " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g of protein per " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Both foods provide less than $$1$$ g of fat per $$100$$ g.",
+          label: [
+            { kind: "text", text: "Both foods provide less than " },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g of fat per " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
       ],
     },
@@ -60,27 +104,54 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bengkuang memberikan energi $$14$$ kkal lebih sedikit daripada apel.",
+          label: [
+            { kind: "text", text: "Bengkuang memberikan energi " },
+            { display: "block", kind: "math", math: "14" },
+            { kind: "text", text: " kkal lebih sedikit daripada apel." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Bengkuang mengandung protein $$0{,}46$$ g lebih banyak daripada apel.",
+          label: [
+            { kind: "text", text: "Bengkuang mengandung protein " },
+            { display: "block", kind: "math", math: "0{,}46" },
+            { kind: "text", text: " g lebih banyak daripada apel." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
+          label: [
+            {
+              kind: "text",
+              text: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
+            },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kedua pangan mengandung protein kurang dari $$1$$ g per $$100$$ g.",
+          label: [
+            {
+              kind: "text",
+              text: "Kedua pangan mengandung protein kurang dari ",
+            },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g per " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
         {
           isCorrect: false,
-          label:
-            "Kedua pangan mengandung lemak kurang dari $$1$$ g per $$100$$ g.",
+          label: [
+            {
+              kind: "text",
+              text: "Kedua pangan mengandung lemak kurang dari ",
+            },
+            { display: "block", kind: "math", math: "1" },
+            { kind: "text", text: " g per " },
+            { display: "block", kind: "math", math: "100" },
+            { kind: "text", text: " g." },
+          ],
         },
       ],
     },

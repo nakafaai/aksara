@@ -44,13 +44,13 @@ function placement(appLocale: AppLocaleCode, order: number) {
       options: [
         {
           isCorrect: true,
-          label: "Test-only correct option",
+          label: [{ kind: "text", text: "Test-only correct option" }],
           optionKey: "option-1",
           order: 1,
         },
         {
           isCorrect: false,
-          label: "Test-only distractor",
+          label: [{ kind: "text", text: "Test-only distractor" }],
           optionKey: "option-2",
           order: 2,
         },

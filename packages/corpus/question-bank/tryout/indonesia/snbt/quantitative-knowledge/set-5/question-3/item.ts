@@ -7,23 +7,47 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Wenn $$(1)$$, $$(2)$$ und $$(3)$$ korrekt sind.",
+          label: [
+            { kind: "text", text: "Wenn " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " korrekt sind." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Wenn $$(1)$$ und $$(3)$$ korrekt sind.",
+          label: [
+            { kind: "text", text: "Wenn " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " korrekt sind." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Wenn $$(2)$$ und $$(4)$$ korrekt sind.",
+          label: [
+            { kind: "text", text: "Wenn " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " und " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " korrekt sind." },
+          ],
         },
         {
           isCorrect: true,
-          label: "Wenn nur $$(4)$$ korrekt ist.",
+          label: [
+            { kind: "text", text: "Wenn nur " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " korrekt ist." },
+          ],
         },
         {
           isCorrect: false,
-          label: "Wenn alles richtig ist.",
+          label: [{ kind: "text", text: "Wenn alles richtig ist." }],
         },
       ],
     },
@@ -32,12 +56,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
+          label: [
+            { kind: "text", text: "If " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", and " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " are correct." },
+          ],
         },
-        { isCorrect: false, label: "If $$(1)$$ and $$(3)$$ are correct." },
-        { isCorrect: false, label: "If $$(2)$$ and $$(4)$$ are correct." },
-        { isCorrect: true, label: "If only $$(4)$$ is correct." },
-        { isCorrect: false, label: "If all are correct." },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "If " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " are correct." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "If " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " and " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " are correct." },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "If only " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " is correct." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "If all are correct." }],
+        },
       ],
     },
     id: {
@@ -45,12 +105,48 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul.",
+          label: [
+            { kind: "text", text: "Jika " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: ", " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: ", dan " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " yang betul." },
+          ],
         },
-        { isCorrect: false, label: "Jika $$(1)$$ dan $$(3)$$ yang betul." },
-        { isCorrect: false, label: "Jika $$(2)$$ dan $$(4)$$ yang betul." },
-        { isCorrect: true, label: "Jika $$(4)$$ saja yang betul." },
-        { isCorrect: false, label: "Jika semuanya betul." },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Jika " },
+            { display: "block", kind: "math", math: "(1)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(3)" },
+            { kind: "text", text: " yang betul." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Jika " },
+            { display: "block", kind: "math", math: "(2)" },
+            { kind: "text", text: " dan " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " yang betul." },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Jika " },
+            { display: "block", kind: "math", math: "(4)" },
+            { kind: "text", text: " saja yang betul." },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Jika semuanya betul." }],
+        },
       ],
     },
   },

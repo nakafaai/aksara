@@ -5,11 +5,17 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Proyek tanggul" },
-        { isCorrect: false, label: "Tambrauw" },
-        { isCorrect: false, label: "Pantai" },
-        { isCorrect: true, label: "Kampung Pesisir Werur" },
-        { isCorrect: false, label: "Kawasan pesisir Papua Barat Daya" },
+        { isCorrect: false, label: [{ kind: "text", text: "Proyek tanggul" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "Tambrauw" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "Pantai" }] },
+        {
+          isCorrect: true,
+          label: [{ kind: "text", text: "Kampung Pesisir Werur" }],
+        },
+        {
+          isCorrect: false,
+          label: [{ kind: "text", text: "Kawasan pesisir Papua Barat Daya" }],
+        },
       ],
     },
   },

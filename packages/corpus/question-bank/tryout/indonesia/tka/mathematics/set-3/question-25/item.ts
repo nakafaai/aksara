@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-2\\pi" }],
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-8\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "32-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63+4\\pi" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-2\\pi" }],
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-8\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "32-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63+4\\pi" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-2\\pi" }],
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63-8\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "32-4\\pi" }],
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: [{ display: "block", kind: "math", math: "63+4\\pi" }],
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "33",
+          label: [{ kind: "text", text: "33" }],
         },
         {
           isCorrect: false,
-          label: "37",
+          label: [{ kind: "text", text: "37" }],
         },
         {
           isCorrect: true,
-          label: "41",
+          label: [{ kind: "text", text: "41" }],
         },
         {
           isCorrect: false,
-          label: "45",
+          label: [{ kind: "text", text: "45" }],
         },
         {
           isCorrect: false,
-          label: "49",
+          label: [{ kind: "text", text: "49" }],
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "33",
+          label: [{ kind: "text", text: "33" }],
         },
         {
           isCorrect: false,
-          label: "37",
+          label: [{ kind: "text", text: "37" }],
         },
         {
           isCorrect: true,
-          label: "41",
+          label: [{ kind: "text", text: "41" }],
         },
         {
           isCorrect: false,
-          label: "45",
+          label: [{ kind: "text", text: "45" }],
         },
         {
           isCorrect: false,
-          label: "49",
+          label: [{ kind: "text", text: "49" }],
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "33",
+          label: [{ kind: "text", text: "33" }],
         },
         {
           isCorrect: false,
-          label: "37",
+          label: [{ kind: "text", text: "37" }],
         },
         {
           isCorrect: true,
-          label: "41",
+          label: [{ kind: "text", text: "41" }],
         },
         {
           isCorrect: false,
-          label: "45",
+          label: [{ kind: "text", text: "45" }],
         },
         {
           isCorrect: false,
-          label: "49",
+          label: [{ kind: "text", text: "49" }],
         },
       ],
     },

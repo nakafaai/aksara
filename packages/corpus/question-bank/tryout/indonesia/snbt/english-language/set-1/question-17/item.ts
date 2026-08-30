@@ -5,11 +5,41 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Paragraph $$1$$" },
-        { isCorrect: false, label: "Paragraph $$2$$" },
-        { isCorrect: false, label: "Paragraph $$3$$" },
-        { isCorrect: true, label: "Paragraph $$4$$" },
-        { isCorrect: false, label: "Paragraph $$5$$" },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Paragraph " },
+            { display: "block", kind: "math", math: "1" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Paragraph " },
+            { display: "block", kind: "math", math: "2" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Paragraph " },
+            { display: "block", kind: "math", math: "3" },
+          ],
+        },
+        {
+          isCorrect: true,
+          label: [
+            { kind: "text", text: "Paragraph " },
+            { display: "block", kind: "math", math: "4" },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            { kind: "text", text: "Paragraph " },
+            { display: "block", kind: "math", math: "5" },
+          ],
+        },
       ],
     },
   },

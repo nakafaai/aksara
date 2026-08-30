@@ -50,13 +50,13 @@ function placement(artifactLocale: typeof ArtifactLocaleSchema.Encoded) {
       options: [
         {
           isCorrect: true,
-          label: "Test A",
+          label: [{ kind: "text", text: "Test A" }],
           optionKey: "option-1",
           order: 1,
         },
         {
           isCorrect: false,
-          label: "Test B",
+          label: [{ kind: "text", text: "Test B" }],
           optionKey: "option-2",
           order: 2,
         },
