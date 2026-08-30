@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
+          label: "$$\\frac{1}{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{99}" }],
+          label: "$$\\frac{32}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{23}{99}" }],
+          label: "$$\\frac{23}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{232}{999}" }],
+          label: "$$\\frac{232}{999}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{323}{999}" }],
+          label: "$$\\frac{323}{999}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
+          label: "$$\\frac{1}{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{99}" }],
+          label: "$$\\frac{32}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{23}{99}" }],
+          label: "$$\\frac{23}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{232}{999}" }],
+          label: "$$\\frac{232}{999}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{323}{999}" }],
+          label: "$$\\frac{323}{999}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{3}" }],
+          label: "$$\\frac{1}{3}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{99}" }],
+          label: "$$\\frac{32}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{23}{99}" }],
+          label: "$$\\frac{23}{99}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{232}{999}" }],
+          label: "$$\\frac{232}{999}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{323}{999}" }],
+          label: "$$\\frac{323}{999}$$",
         },
       ],
     },

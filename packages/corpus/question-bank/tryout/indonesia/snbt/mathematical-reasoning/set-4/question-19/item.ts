@@ -7,49 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{3}\\text{ Meter}",
-            },
-          ],
+          label: "$$250\\sqrt{3}\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{2}\\text{ Meter}",
-            },
-          ],
+          label: "$$250\\sqrt{2}\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{3}\\text{ Meter}",
-            },
-          ],
+          label: "$$500\\sqrt{3}\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{2}\\text{ Meter}",
-            },
-          ],
+          label: "$$500\\sqrt{2}\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "250\\text{ Meter}" },
-          ],
+          label: "$$250\\text{ Meter}$$",
         },
       ],
     },
@@ -58,49 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{3}\\text{ meter}",
-            },
-          ],
+          label: "$$250\\sqrt{3}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{2}\\text{ meter}",
-            },
-          ],
+          label: "$$250\\sqrt{2}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{3}\\text{ meter}",
-            },
-          ],
+          label: "$$500\\sqrt{3}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{2}\\text{ meter}",
-            },
-          ],
+          label: "$$500\\sqrt{2}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "250\\text{ meter}" },
-          ],
+          label: "$$250\\text{ meter}$$",
         },
       ],
     },
@@ -109,49 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{3}\\text{ meter}",
-            },
-          ],
+          label: "$$250\\sqrt{3}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "250\\sqrt{2}\\text{ meter}",
-            },
-          ],
+          label: "$$250\\sqrt{2}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{3}\\text{ meter}",
-            },
-          ],
+          label: "$$500\\sqrt{3}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "500\\sqrt{2}\\text{ meter}",
-            },
-          ],
+          label: "$$500\\sqrt{2}\\text{ meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "250\\text{ meter}" },
-          ],
+          label: "$$250\\text{ meter}$$",
         },
       ],
     },

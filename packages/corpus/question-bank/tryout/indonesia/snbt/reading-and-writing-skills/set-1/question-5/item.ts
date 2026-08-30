@@ -7,36 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Bootsform des Sarkophags von Tomok." },
-          ],
+          label: "Die Bootsform des Sarkophags von Tomok.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Megalithische Überreste am Tobasee." },
-          ],
+          label: "Megalithische Überreste am Tobasee.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Schutzfiguren auf Gräbern der Toba-Batak." },
-          ],
+          label: "Schutzfiguren auf Gräbern der Toba-Batak.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Der Sarkophag von Tomok in der megalithischen Tradition der Toba-Batak.",
-            },
-          ],
+          label:
+            "Der Sarkophag von Tomok in der megalithischen Tradition der Toba-Batak.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bestattungsbräuche auf der Insel Samosir." },
-          ],
+          label: "Bestattungsbräuche auf der Insel Samosir.",
         },
       ],
     },
@@ -45,34 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The Boat Form of the Tomok Sarcophagus." },
-          ],
+          label: "The Boat Form of the Tomok Sarcophagus.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Megalithic Remains around Lake Toba." },
-          ],
+          label: "Megalithic Remains around Lake Toba.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Protective Figures on Toba Batak Graves." },
-          ],
+          label: "Protective Figures on Toba Batak Graves.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The Tomok Sarcophagus in the Toba Batak Megalithic Tradition.",
-            },
-          ],
+          label:
+            "The Tomok Sarcophagus in the Toba Batak Megalithic Tradition.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Burial Customs on Samosir Island." }],
+          label: "Burial Customs on Samosir Island.",
         },
       ],
     },
@@ -81,37 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bentuk Kapal pada Sarkofagus Tomok." },
-          ],
+          label: "Bentuk Kapal pada Sarkofagus Tomok.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tinggalan Megalitik di Sekitar Danau Toba.",
-            },
-          ],
+          label: "Tinggalan Megalitik di Sekitar Danau Toba.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Figur Pelindung pada Kubur Batak Toba." },
-          ],
+          label: "Figur Pelindung pada Kubur Batak Toba.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
-            },
-          ],
+          label: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Adat Penguburan di Pulau Samosir." }],
+          label: "Adat Penguburan di Pulau Samosir.",
         },
       ],
     },

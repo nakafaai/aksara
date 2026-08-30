@@ -12,29 +12,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{3^2}=3" },
-            { kind: "text", text: ", da " },
-            { display: "inline", kind: "math", math: "3>0" },
-          ],
+          label: "$\\sqrt{3^2}=3$, da $3>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-3)^2=3^2" }],
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "3^{-1}=-3" }],
+          label: "$3^{-1}=-3$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "3^{\\frac12}\\cdot 3^{\\frac12}=3",
-            },
-          ],
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },
@@ -43,29 +33,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{3^2}=3" },
-            { kind: "text", text: " because " },
-            { display: "inline", kind: "math", math: "3>0" },
-          ],
+          label: "$\\sqrt{3^2}=3$ because $3>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-3)^2=3^2" }],
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "3^{-1}=-3" }],
+          label: "$3^{-1}=-3$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "3^{\\frac12}\\cdot 3^{\\frac12}=3",
-            },
-          ],
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },
@@ -74,29 +54,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{3^2}=3" },
-            { kind: "text", text: " untuk " },
-            { display: "inline", kind: "math", math: "3>0" },
-          ],
+          label: "$\\sqrt{3^2}=3$ untuk $3>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-3)^2=3^2" }],
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "3^{-1}=-3" }],
+          label: "$3^{-1}=-3$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "3^{\\frac12}\\cdot 3^{\\frac12}=3",
-            },
-          ],
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },

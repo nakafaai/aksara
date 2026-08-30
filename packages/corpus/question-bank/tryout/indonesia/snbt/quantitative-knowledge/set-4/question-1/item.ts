@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-\\frac{5}{2}" }],
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{3}{2}" }],
+          label: "$$-\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{1}{2}" }],
+          label: "$$-\\frac{1}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{2}" }],
+          label: "$$\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-\\frac{5}{2}" }],
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{3}{2}" }],
+          label: "$$-\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{1}{2}" }],
+          label: "$$-\\frac{1}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{2}" }],
+          label: "$$\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-\\frac{5}{2}" }],
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{3}{2}" }],
+          label: "$$-\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-\\frac{1}{2}" }],
+          label: "$$-\\frac{1}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{2}" }],
+          label: "$$\\frac{3}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
       ],
     },

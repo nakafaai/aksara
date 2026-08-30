@@ -7,7 +7,7 @@ import {
   requireReadinessTrack,
   validateAssessmentSourceReadiness,
   validateReadinessField,
-} from "#corpus/tryout/readiness";
+} from "#corpus/tryout/readiness/schema";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 type ReadinessSection = AssessmentReadiness["sections"][number];

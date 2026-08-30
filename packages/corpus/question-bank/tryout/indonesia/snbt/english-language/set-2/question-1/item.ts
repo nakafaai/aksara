@@ -7,37 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Why Everyone Should Swim Every Day" }],
+          label: "Why Everyone Should Swim Every Day",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "How Recreational Water Spreads Illness" },
-          ],
+          label: "How Recreational Water Spreads Illness",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Swimming: Possible Benefits and Safety Considerations",
-            },
-          ],
+          label: "Swimming: Possible Benefits and Safety Considerations",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The Best Exercise for People with Arthritis",
-            },
-          ],
+          label: "The Best Exercise for People with Arthritis",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Why Water Exercise Prevents Every Illness" },
-          ],
+          label: "Why Water Exercise Prevents Every Illness",
         },
       ],
     },

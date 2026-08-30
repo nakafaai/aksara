@@ -8,53 +8,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },
@@ -63,53 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },
@@ -118,53 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}",
-            },
-          ],
+          label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },

@@ -5,11 +5,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: [{ kind: "text", text: "Serikat" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Program" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Lembaga" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Negara" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Bangsa" }] },
+        { isCorrect: true, label: "Serikat" },
+        { isCorrect: false, label: "Program" },
+        { isCorrect: false, label: "Lembaga" },
+        { isCorrect: false, label: "Negara" },
+        { isCorrect: false, label: "Bangsa" },
       ],
     },
   },

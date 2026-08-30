@@ -8,125 +8,68 @@ const item: QuestionItem = {
   },
   responses: {
     de: {
-      categories: [
-        [{ kind: "text", text: "Richtig" }],
-        [{ kind: "text", text: "Falsch" }],
-      ],
+      categories: ["Richtig", "Falsch"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Der Punkt " },
-            { display: "inline", kind: "math", math: "(0,0)" },
-            { kind: "text", text: " erfüllt alle Nebenbedingungen." },
-          ],
+          label: "Der Punkt $(0,0)$ erfüllt alle Nebenbedingungen.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Der Punkt " },
-            { display: "inline", kind: "math", math: "(3,2)" },
-            { kind: "text", text: " erfüllt alle Nebenbedingungen." },
-          ],
+          label: "Der Punkt $(3,2)$ erfüllt alle Nebenbedingungen.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Der Punkt " },
-            { display: "inline", kind: "math", math: "(11,0)" },
-            { kind: "text", text: " erfüllt alle Nebenbedingungen." },
-          ],
+          label: "Der Punkt $(11,0)$ erfüllt alle Nebenbedingungen.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Der Punkt " },
-            { display: "inline", kind: "math", math: "(0,13)" },
-            { kind: "text", text: " erfüllt alle Nebenbedingungen." },
-          ],
+          label: "Der Punkt $(0,13)$ erfüllt alle Nebenbedingungen.",
         },
       ],
     },
     en: {
-      categories: [
-        [{ kind: "text", text: "True" }],
-        [{ kind: "text", text: "False" }],
-      ],
+      categories: ["True", "False"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "The point " },
-            { display: "inline", kind: "math", math: "(0,0)" },
-            { kind: "text", text: " satisfies every constraint." },
-          ],
+          label: "The point $(0,0)$ satisfies every constraint.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "The point " },
-            { display: "inline", kind: "math", math: "(3,2)" },
-            { kind: "text", text: " satisfies every constraint." },
-          ],
+          label: "The point $(3,2)$ satisfies every constraint.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "The point " },
-            { display: "inline", kind: "math", math: "(11,0)" },
-            { kind: "text", text: " satisfies every constraint." },
-          ],
+          label: "The point $(11,0)$ satisfies every constraint.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "The point " },
-            { display: "inline", kind: "math", math: "(0,13)" },
-            { kind: "text", text: " satisfies every constraint." },
-          ],
+          label: "The point $(0,13)$ satisfies every constraint.",
         },
       ],
     },
     id: {
-      categories: [
-        [{ kind: "text", text: "Benar" }],
-        [{ kind: "text", text: "Salah" }],
-      ],
+      categories: ["Benar", "Salah"],
       kind: "category",
       statements: [
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Titik " },
-            { display: "inline", kind: "math", math: "(0,0)" },
-            { kind: "text", text: " memenuhi semua kendala." },
-          ],
+          label: "Titik $(0,0)$ memenuhi semua kendala.",
         },
         {
           correctCategoryOrder: 1,
-          label: [
-            { kind: "text", text: "Titik " },
-            { display: "inline", kind: "math", math: "(3,2)" },
-            { kind: "text", text: " memenuhi semua kendala." },
-          ],
+          label: "Titik $(3,2)$ memenuhi semua kendala.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Titik " },
-            { display: "inline", kind: "math", math: "(11,0)" },
-            { kind: "text", text: " memenuhi semua kendala." },
-          ],
+          label: "Titik $(11,0)$ memenuhi semua kendala.",
         },
         {
           correctCategoryOrder: 2,
-          label: [
-            { kind: "text", text: "Titik " },
-            { display: "inline", kind: "math", math: "(0,13)" },
-            { kind: "text", text: " memenuhi semua kendala." },
-          ],
+          label: "Titik $(0,13)$ memenuhi semua kendala.",
         },
       ],
     },

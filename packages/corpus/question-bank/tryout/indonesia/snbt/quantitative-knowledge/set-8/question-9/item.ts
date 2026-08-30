@@ -7,31 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "m > 6" }],
+          label: "$$m > 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-2 < m < 6" }],
+          label: "$$-2 < m < 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-6 < m < 2" }],
+          label: "$$-6 < m < 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "m \\leq -2 \\lor m \\geq 6",
-            },
-          ],
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "m < -2 \\lor m > 6" },
-          ],
+          label: "$$m < -2 \\lor m > 6$$",
         },
       ],
     },
@@ -40,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "m > 6" }],
+          label: "$$m > 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-2 < m < 6" }],
+          label: "$$-2 < m < 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-6 < m < 2" }],
+          label: "$$-6 < m < 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "m \\leq -2 \\lor m \\geq 6",
-            },
-          ],
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "m < -2 \\lor m > 6" },
-          ],
+          label: "$$m < -2 \\lor m > 6$$",
         },
       ],
     },
@@ -73,31 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "m > 6" }],
+          label: "$$m > 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-2 < m < 6" }],
+          label: "$$-2 < m < 6$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-6 < m < 2" }],
+          label: "$$-6 < m < 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "m \\leq -2 \\lor m \\geq 6",
-            },
-          ],
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "m < -2 \\lor m > 6" },
-          ],
+          label: "$$m < -2 \\lor m > 6$$",
         },
       ],
     },

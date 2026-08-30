@@ -7,29 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 11" }],
+          label: "$$x_0 + 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 12" }],
+          label: "$$x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 11" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 11$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 12" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 21" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 21$$",
         },
       ],
     },
@@ -38,29 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 11" }],
+          label: "$$x_0 + 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 12" }],
+          label: "$$x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 11" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 11$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 12" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 21" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 21$$",
         },
       ],
     },
@@ -69,29 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 11" }],
+          label: "$$x_0 + 11$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x_0 + 12" }],
+          label: "$$x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 11" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 11$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 12" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1}{2}x_0 + 21" },
-          ],
+          label: "$$\\frac{1}{2}x_0 + 21$$",
         },
       ],
     },

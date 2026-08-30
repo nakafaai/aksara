@@ -182,7 +182,7 @@ describe("preview selection", () => {
                 },
                 {
                   mode: "restart",
-                  sourcePath: "packages/corpus/tryout/readiness.ts",
+                  sourcePath: "packages/corpus/tryout/readiness/schema.ts",
                 },
                 {
                   mode: "restart",

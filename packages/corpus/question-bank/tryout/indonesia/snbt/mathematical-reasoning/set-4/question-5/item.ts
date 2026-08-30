@@ -7,47 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
+          label: "$$27\\text{ cm}^2$$",
         },
       ],
     },
@@ -56,47 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
+          label: "$$27\\text{ cm}^2$$",
         },
       ],
     },
@@ -105,47 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{5}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{6}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{3}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{27\\sqrt{2}}{2}\\text{ cm}^2",
-            },
-          ],
+          label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "27\\text{ cm}^2" }],
+          label: "$$27\\text{ cm}^2$$",
         },
       ],
     },

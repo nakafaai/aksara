@@ -1,4 +1,4 @@
-import { defineAssessmentReadiness } from "#corpus/tryout/readiness";
+import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
 
 /** Current official TKA structure plus explicitly editorial set sizing. */
 export const tkaReadiness = defineAssessmentReadiness({

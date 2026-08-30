@@ -7,46 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " enthält einen Zeichensetzungsfehler." },
-          ],
+          label: "Satz $$(2)$$ enthält einen Zeichensetzungsfehler.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Die Verbindung *Als Inselstaat, daher ...* macht Satz ",
-            },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " grammatisch fehlerhaft." },
-          ],
+          label:
+            "Die Verbindung *Als Inselstaat, daher ...* macht Satz $$(1)$$ grammatisch fehlerhaft.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " verwendet die falsche Konjunktion." },
-          ],
+          label: "Satz $$(3)$$ verwendet die falsche Konjunktion.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " benötigt ein zusätzliches Komma." },
-          ],
+          label: "Satz $$(4)$$ benötigt ein zusätzliches Komma.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Satz " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " ist unnötig weitschweifig." },
-          ],
+          label: "Satz $$(5)$$ ist unnötig weitschweifig.",
         },
       ],
     },
@@ -55,46 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Sentence " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " contains a punctuation error." },
-          ],
+          label: "Sentence $$(2)$$ contains a punctuation error.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The pattern *As an archipelagic country, therefore ...* makes sentence ",
-            },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " ineffective." },
-          ],
+          label:
+            "The pattern *As an archipelagic country, therefore ...* makes sentence $$(1)$$ ineffective.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Sentence " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " uses the wrong conjunction." },
-          ],
+          label: "Sentence $$(3)$$ uses the wrong conjunction.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Sentence " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " needs an additional comma." },
-          ],
+          label: "Sentence $$(4)$$ needs an additional comma.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Sentence " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " is needlessly wordy." },
-          ],
+          label: "Sentence $$(5)$$ is needlessly wordy.",
         },
       ],
     },
@@ -103,46 +59,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kalimat " },
-            { display: "block", kind: "math", math: "(2)" },
-            { kind: "text", text: " mengandung kesalahan tanda baca." },
-          ],
+          label: "Kalimat $$(2)$$ mengandung kesalahan tanda baca.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Pola *Sebagai negara kepulauan, maka ...* membuat kalimat ",
-            },
-            { display: "block", kind: "math", math: "(1)" },
-            { kind: "text", text: " tidak efektif." },
-          ],
+          label:
+            "Pola *Sebagai negara kepulauan, maka ...* membuat kalimat $$(1)$$ tidak efektif.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kalimat " },
-            { display: "block", kind: "math", math: "(3)" },
-            { kind: "text", text: " menggunakan konjungsi yang salah." },
-          ],
+          label: "Kalimat $$(3)$$ menggunakan konjungsi yang salah.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kalimat " },
-            { display: "block", kind: "math", math: "(4)" },
-            { kind: "text", text: " memerlukan tambahan tanda koma." },
-          ],
+          label: "Kalimat $$(4)$$ memerlukan tambahan tanda koma.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kalimat " },
-            { display: "block", kind: "math", math: "(5)" },
-            { kind: "text", text: " mengandung pemborosan kata." },
-          ],
+          label: "Kalimat $$(5)$$ mengandung pemborosan kata.",
         },
       ],
     },

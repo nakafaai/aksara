@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "127" },
-            { kind: "text", text: " Besucher" },
-          ],
+          label: "$$127$$ Besucher",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "126" },
-            { kind: "text", text: " Besucher" },
-          ],
+          label: "$$126$$ Besucher",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "125" },
-            { kind: "text", text: " Besucher" },
-          ],
+          label: "$$125$$ Besucher",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "124" },
-            { kind: "text", text: " Besucher" },
-          ],
+          label: "$$124$$ Besucher",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "123" },
-            { kind: "text", text: " Besucher" },
-          ],
+          label: "$$123$$ Besucher",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "127" },
-            { kind: "text", text: " visitors" },
-          ],
+          label: "$$127$$ visitors",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "126" },
-            { kind: "text", text: " visitors" },
-          ],
+          label: "$$126$$ visitors",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "125" },
-            { kind: "text", text: " visitors" },
-          ],
+          label: "$$125$$ visitors",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "124" },
-            { kind: "text", text: " visitors" },
-          ],
+          label: "$$124$$ visitors",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "123" },
-            { kind: "text", text: " visitors" },
-          ],
+          label: "$$123$$ visitors",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "127" },
-            { kind: "text", text: " pengunjung" },
-          ],
+          label: "$$127$$ pengunjung",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "126" },
-            { kind: "text", text: " pengunjung" },
-          ],
+          label: "$$126$$ pengunjung",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "125" },
-            { kind: "text", text: " pengunjung" },
-          ],
+          label: "$$125$$ pengunjung",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "124" },
-            { kind: "text", text: " pengunjung" },
-          ],
+          label: "$$124$$ pengunjung",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "123" },
-            { kind: "text", text: " pengunjung" },
-          ],
+          label: "$$123$$ pengunjung",
         },
       ],
     },

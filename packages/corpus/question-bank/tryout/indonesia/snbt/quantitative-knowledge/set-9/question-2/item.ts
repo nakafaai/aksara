@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "144\\pi\\text{ cm}^2" },
-          ],
+          label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "225\\pi\\text{ cm}^2" },
-          ],
+          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "256\\pi\\text{ cm}^2" },
-          ],
+          label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "336\\pi\\text{ cm}^2" },
-          ],
+          label: "$$336\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "425\\pi\\text{ cm}^2" },
-          ],
+          label: "$$425\\pi\\text{ cm}^2$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "144\\pi\\text{ cm}^2" },
-          ],
+          label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "225\\pi\\text{ cm}^2" },
-          ],
+          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "256\\pi\\text{ cm}^2" },
-          ],
+          label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "336\\pi\\text{ cm}^2" },
-          ],
+          label: "$$336\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "425\\pi\\text{ cm}^2" },
-          ],
+          label: "$$425\\pi\\text{ cm}^2$$",
         },
       ],
     },
@@ -77,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "144\\pi\\text{ cm}^2" },
-          ],
+          label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "225\\pi\\text{ cm}^2" },
-          ],
+          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "256\\pi\\text{ cm}^2" },
-          ],
+          label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "336\\pi\\text{ cm}^2" },
-          ],
+          label: "$$336\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "425\\pi\\text{ cm}^2" },
-          ],
+          label: "$$425\\pi\\text{ cm}^2$$",
         },
       ],
     },

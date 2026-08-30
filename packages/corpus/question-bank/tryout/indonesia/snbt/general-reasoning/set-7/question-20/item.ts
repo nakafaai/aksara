@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist mit Sicherheit wahr.",
-            },
-          ],
+          label: "Die Schlussfolgerung ist mit Sicherheit wahr.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist möglicherweise wahr.",
-            },
-          ],
+          label: "Die Schlussfolgerung ist möglicherweise wahr.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist mit Sicherheit falsch.",
-            },
-          ],
+          label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist für die Angaben irrelevant.",
-            },
-          ],
+          label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung lässt sich wegen unzureichender Angaben nicht bewerten.",
-            },
-          ],
+          label:
+            "Die Schlussfolgerung lässt sich wegen unzureichender Angaben nicht bewerten.",
         },
       ],
     },
@@ -57,35 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "The conclusion is definitely true." }],
+          label: "The conclusion is definitely true.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The conclusion is possibly true." }],
+          label: "The conclusion is possibly true.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The conclusion is definitely false." },
-          ],
+          label: "The conclusion is definitely false.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The conclusion is irrelevant to the information provided.",
-            },
-          ],
+          label: "The conclusion is irrelevant to the information provided.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The conclusion cannot be assessed because there is insufficient information.",
-            },
-          ],
+          label:
+            "The conclusion cannot be assessed because there is insufficient information.",
         },
       ],
     },
@@ -94,33 +59,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Simpulan tersebut pasti benar." }],
+          label: "Simpulan tersebut pasti benar.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Simpulan tersebut mungkin benar." }],
+          label: "Simpulan tersebut mungkin benar.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Simpulan tersebut pasti salah." }],
+          label: "Simpulan tersebut pasti salah.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
-            },
-          ],
+          label:
+            "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Simpulan tersebut tidak dapat dinilai karena informasi tidak cukup.",
-            },
-          ],
+          label:
+            "Simpulan tersebut tidak dapat dinilai karena informasi tidak cukup.",
         },
       ],
     },

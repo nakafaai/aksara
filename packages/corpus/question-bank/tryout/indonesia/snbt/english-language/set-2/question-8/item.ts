@@ -7,20 +7,20 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The songbird species" }],
+          label: "The songbird species",
         },
-        { isCorrect: true, label: [{ kind: "text", text: "The researchers" }] },
+        { isCorrect: true, label: "The researchers" },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The pathogen communities" }],
-        },
-        {
-          isCorrect: false,
-          label: [{ kind: "text", text: "The Palaearctic regions" }],
+          label: "The pathogen communities",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The immune-recognition genes" }],
+          label: "The Palaearctic regions",
+        },
+        {
+          isCorrect: false,
+          label: "The immune-recognition genes",
         },
       ],
     },

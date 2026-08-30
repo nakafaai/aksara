@@ -7,30 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Mencuci beras sebelum dimasak" }],
+          label: "Mencuci beras sebelum dimasak",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Harga beras di Indonesia" }],
+          label: "Harga beras di Indonesia",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Beras memiliki daya tarik universal" },
-          ],
+          label: "Beras memiliki daya tarik universal",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Pengolahan beras" }],
+          label: "Pengolahan beras",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Evangeline Mantzioris, ahli diet terakreditasi",
-            },
-          ],
+          label: "Evangeline Mantzioris, ahli diet terakreditasi",
         },
       ],
     },

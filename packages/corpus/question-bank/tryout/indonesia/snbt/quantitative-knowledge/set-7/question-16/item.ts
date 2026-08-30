@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "120{.}000" },
-            { kind: "text", text: " Rupiah" },
-          ],
+          label: "$$120{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "160{.}000" },
-            { kind: "text", text: " Rupiah" },
-          ],
+          label: "$$160{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "200{.}000" },
-            { kind: "text", text: " Rupiah" },
-          ],
+          label: "$$200{.}000$$ Rupiah",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "240{.}000" },
-            { kind: "text", text: " Rupiah" },
-          ],
+          label: "$$240{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "280{.}000" },
-            { kind: "text", text: " Rupiah" },
-          ],
+          label: "$$280{.}000$$ Rupiah",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "120{,}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$120{,}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "160{,}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$160{,}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "200{,}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$200{,}000$$ rupiah",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "240{,}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$240{,}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "280{,}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$280{,}000$$ rupiah",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "120{.}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$120{.}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "160{.}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$160{.}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "200{.}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$200{.}000$$ rupiah",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "240{.}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$240{.}000$$ rupiah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "280{.}000" },
-            { kind: "text", text: " rupiah" },
-          ],
+          label: "$$280{.}000$$ rupiah",
         },
       ],
     },

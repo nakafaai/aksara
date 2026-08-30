@@ -7,41 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ und } -3" },
-          ],
+          label: "$$5 \\text{ und } -3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-5 \\text{ und } 3" },
-          ],
+          label: "$$-5 \\text{ und } 3$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3} \\text{ und } -1",
-            },
-          ],
+          label: "$$\\frac{5}{3} \\text{ und } -1$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "-\\frac{5}{3} \\text{ und } 1",
-            },
-          ],
+          label: "$$-\\frac{5}{3} \\text{ und } 1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ und } -1" },
-          ],
+          label: "$$5 \\text{ und } -1$$",
         },
       ],
     },
@@ -50,41 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ and } -3" },
-          ],
+          label: "$$5 \\text{ and } -3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-5 \\text{ and } 3" },
-          ],
+          label: "$$-5 \\text{ and } 3$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3} \\text{ and } -1",
-            },
-          ],
+          label: "$$\\frac{5}{3} \\text{ and } -1$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "-\\frac{5}{3} \\text{ and } 1",
-            },
-          ],
+          label: "$$-\\frac{5}{3} \\text{ and } 1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ and } -1" },
-          ],
+          label: "$$5 \\text{ and } -1$$",
         },
       ],
     },
@@ -93,41 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ dan } -3" },
-          ],
+          label: "$$5 \\text{ dan } -3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-5 \\text{ dan } 3" },
-          ],
+          label: "$$-5 \\text{ dan } 3$$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "\\frac{5}{3} \\text{ dan } -1",
-            },
-          ],
+          label: "$$\\frac{5}{3} \\text{ dan } -1$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "-\\frac{5}{3} \\text{ dan } 1",
-            },
-          ],
+          label: "$$-\\frac{5}{3} \\text{ dan } 1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5 \\text{ dan } -1" },
-          ],
+          label: "$$5 \\text{ dan } -1$$",
         },
       ],
     },

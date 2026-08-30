@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "104 m" }],
+          label: "104 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "108 m" }],
+          label: "108 m",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "112 m" }],
+          label: "112 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "116 m" }],
+          label: "116 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "120 m" }],
+          label: "120 m",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "104 m" }],
+          label: "104 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "108 m" }],
+          label: "108 m",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "112 m" }],
+          label: "112 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "116 m" }],
+          label: "116 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "120 m" }],
+          label: "120 m",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "104 m" }],
+          label: "104 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "108 m" }],
+          label: "108 m",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "112 m" }],
+          label: "112 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "116 m" }],
+          label: "116 m",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "120 m" }],
+          label: "120 m",
         },
       ],
     },

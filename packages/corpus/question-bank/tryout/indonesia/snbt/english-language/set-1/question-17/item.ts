@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Paragraph " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "Paragraph $$1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Paragraph " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "Paragraph $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Paragraph " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "Paragraph $$3$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Paragraph " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "Paragraph $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Paragraph " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "Paragraph $$5$$",
         },
       ],
     },

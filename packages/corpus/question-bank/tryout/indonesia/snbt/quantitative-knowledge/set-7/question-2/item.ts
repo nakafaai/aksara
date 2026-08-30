@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = 2x - 4" }],
+          label: "$$y = 2x - 4$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x - 2" }],
+          label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 4" }],
+          label: "$$y = -2x + 4$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "y = 2x + 12" }],
+          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 12" }],
+          label: "$$y = -2x + 12$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = 2x - 4" }],
+          label: "$$y = 2x - 4$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x - 2" }],
+          label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 4" }],
+          label: "$$y = -2x + 4$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "y = 2x + 12" }],
+          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 12" }],
+          label: "$$y = -2x + 12$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = 2x - 4" }],
+          label: "$$y = 2x - 4$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x - 2" }],
+          label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 4" }],
+          label: "$$y = -2x + 4$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "y = 2x + 12" }],
+          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "y = -2x + 12" }],
+          label: "$$y = -2x + 12$$",
         },
       ],
     },

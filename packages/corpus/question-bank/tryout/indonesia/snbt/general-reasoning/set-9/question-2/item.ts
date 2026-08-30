@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10{.}000" },
-            { kind: "text", text: " Stimmen" },
-          ],
+          label: "$$10{.}000$$ Stimmen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30{.}000" },
-            { kind: "text", text: " Stimmen" },
-          ],
+          label: "$$30{.}000$$ Stimmen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50{.}000" },
-            { kind: "text", text: " Stimmen" },
-          ],
+          label: "$$50{.}000$$ Stimmen",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "60{.}000" },
-            { kind: "text", text: " Stimmen" },
-          ],
+          label: "$$60{.}000$$ Stimmen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "80{.}000" },
-            { kind: "text", text: " Stimmen" },
-          ],
+          label: "$$80{.}000$$ Stimmen",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10{,}000" },
-            { kind: "text", text: " votes" },
-          ],
+          label: "$$10{,}000$$ votes",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30{,}000" },
-            { kind: "text", text: " votes" },
-          ],
+          label: "$$30{,}000$$ votes",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50{,}000" },
-            { kind: "text", text: " votes" },
-          ],
+          label: "$$50{,}000$$ votes",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "60{,}000" },
-            { kind: "text", text: " votes" },
-          ],
+          label: "$$60{,}000$$ votes",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "80{,}000" },
-            { kind: "text", text: " votes" },
-          ],
+          label: "$$80{,}000$$ votes",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10{.}000" },
-            { kind: "text", text: " suara" },
-          ],
+          label: "$$10{.}000$$ suara",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30{.}000" },
-            { kind: "text", text: " suara" },
-          ],
+          label: "$$30{.}000$$ suara",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50{.}000" },
-            { kind: "text", text: " suara" },
-          ],
+          label: "$$50{.}000$$ suara",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "60{.}000" },
-            { kind: "text", text: " suara" },
-          ],
+          label: "$$60{.}000$$ suara",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "80{.}000" },
-            { kind: "text", text: " suara" },
-          ],
+          label: "$$80{.}000$$ suara",
         },
       ],
     },

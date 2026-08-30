@@ -7,42 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mudah menerima citra yang ditentukan orang lain",
-            },
-          ],
+          label: "Mudah menerima citra yang ditentukan orang lain",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Berani meninggalkan dunia perfilman" },
-          ],
+          label: "Berani meninggalkan dunia perfilman",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tekun mengembangkan kemampuan aktingnya" },
-          ],
+          label: "Tekun mengembangkan kemampuan aktingnya",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mengutamakan ketenaran daripada keterampilan",
-            },
-          ],
+          label: "Mengutamakan ketenaran daripada keterampilan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tidak puas terhadap penghargaan yang diterimanya",
-            },
-          ],
+          label: "Tidak puas terhadap penghargaan yang diterimanya",
         },
       ],
     },

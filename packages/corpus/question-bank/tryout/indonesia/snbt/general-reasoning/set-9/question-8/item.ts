@@ -7,50 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Studienanfänger der Universität " },
-            { display: "block", kind: "math", math: "P" },
-            {
-              kind: "text",
-              text: " gehören zur Gruppe der Schulabgänger ohne Abschluss",
-            },
-          ],
+          label:
+            "Studienanfänger der Universität $$P$$ gehören zur Gruppe der Schulabgänger ohne Abschluss",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jeder Studienanfänger der Universität " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " hat die Schule abgeschlossen" },
-          ],
+          label:
+            "Jeder Studienanfänger der Universität $$P$$ hat die Schule abgeschlossen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kein Schüler ohne Abschluss beginnt im selben Jahrgang an der Universität ",
-            },
-            { display: "block", kind: "math", math: "P" },
-          ],
+          label:
+            "Kein Schüler ohne Abschluss beginnt im selben Jahrgang an der Universität $$P$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Jeder Schüler ohne Abschluss nimmt am Vermittlungsprogramm der Schule teil",
-            },
-          ],
+          label:
+            "Jeder Schüler ohne Abschluss nimmt am Vermittlungsprogramm der Schule teil",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die beiden Gruppen Schulabschluss und Abgang ohne Abschluss überschneiden sich nicht",
-            },
-          ],
+          label:
+            "Die beiden Gruppen Schulabschluss und Abgang ohne Abschluss überschneiden sich nicht",
         },
       ],
     },
@@ -59,45 +37,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Students entering University " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " belong to the withdrawal category" },
-          ],
+          label:
+            "Students entering University $$P$$ belong to the withdrawal category",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Every student entering University " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " completed school" },
-          ],
+          label: "Every student entering University $$P$$ completed school",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "No withdrawn student enters University " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " in the same intake" },
-          ],
+          label:
+            "No withdrawn student enters University $$P$$ in the same intake",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Every withdrawn student joins the school's job-placement program",
-            },
-          ],
+          label:
+            "Every withdrawn student joins the school's job-placement program",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The completed-school and withdrawal categories do not overlap",
-            },
-          ],
+          label:
+            "The completed-school and withdrawal categories do not overlap",
         },
       ],
     },
@@ -106,48 +66,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Siswa yang masuk Universitas " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " termasuk kategori mengundurkan diri" },
-          ],
+          label:
+            "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Setiap siswa yang masuk Universitas " },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " telah lulus sekolah" },
-          ],
+          label:
+            "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas ",
-            },
-            { display: "block", kind: "math", math: "P" },
-            { kind: "text", text: " pada angkatan yang sama" },
-          ],
+          label:
+            "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas $$P$$ pada angkatan yang sama",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
-            },
-          ],
+          label:
+            "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
-            },
-          ],
+          label:
+            "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
         },
       ],
     },

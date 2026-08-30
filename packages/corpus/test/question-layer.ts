@@ -71,9 +71,9 @@ export const validQuestionItemSource = `import type { QuestionItem } from "@naka
 
 const item: QuestionItem = {
   responses: {
-    de: { kind: "single-choice", options: [{ isCorrect: true, label: [{ kind: "text", text: "A" }] }, { isCorrect: false, label: [{ kind: "text", text: "B" }] }] },
-    en: { kind: "single-choice", options: [{ isCorrect: true, label: [{ kind: "text", text: "A" }] }, { isCorrect: false, label: [{ kind: "text", text: "B" }] }] },
-    id: { kind: "single-choice", options: [{ isCorrect: true, label: [{ kind: "text", text: "A" }] }, { isCorrect: false, label: [{ kind: "text", text: "B" }] }] },
+    de: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
+    en: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
+    id: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
   },
 };
 
@@ -86,8 +86,8 @@ export const invalidQuestionItemSources = [
   "const item = { broken: };",
   `const item = {
     responses: {
-      en: { kind: "single-choice", options: [{ isCorrect: false, label: [{ kind: "text", text: "A" }] }] },
-      id: { kind: "single-choice", options: [{ isCorrect: true, label: [{ kind: "text", text: "A" }] }] },
+      en: { kind: "single-choice", options: [{ isCorrect: false, label: "A" }] },
+      id: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }] },
     },
   };`,
 ];

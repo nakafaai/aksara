@@ -5,19 +5,19 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: [{ kind: "text", text: "expensive" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "experimental" }] },
+        { isCorrect: false, label: "expensive" },
+        { isCorrect: false, label: "experimental" },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "not equal or consistent" }],
+          label: "not equal or consistent",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "widely available" }],
+          label: "widely available",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "carefully planned" }],
+          label: "carefully planned",
         },
       ],
     },

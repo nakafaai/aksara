@@ -12,13 +12,13 @@ const single = {
   options: [
     {
       isCorrect: true,
-      label: [{ kind: "text", text: "A" }],
+      label: "A",
       optionKey: "option-1",
       order: 1,
     },
     {
       isCorrect: false,
-      label: [{ kind: "text", text: "B" }],
+      label: "B",
       optionKey: "option-2",
       order: 2,
     },
@@ -31,18 +31,13 @@ describe("question response", () => {
     expect(canonicalQuestionResponse(decoded)).toEqual(single);
   });
 
-  it("preserves semantic text and mathematics without delimiter parsing", () => {
-    const semantic = Schema.decodeSync(QuestionResponseSchema)({
+  it("preserves Markdown labels while structure excludes localized content", () => {
+    const response = Schema.decodeSync(QuestionResponseSchema)({
       kind: "single-choice",
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Nilai " },
-            { display: "inline", kind: "math", math: "x + 1" },
-            { kind: "text", text: " berasal dari" },
-            { display: "block", kind: "math", math: "x = 2" },
-          ],
+          label: "Nilai $x + 1$ berasal dari$$x = 2$$",
           optionKey: "option-1",
           order: 1,
         },
@@ -50,8 +45,8 @@ describe("question response", () => {
       ],
     });
 
-    expect(canonicalQuestionResponse(semantic)).toEqual(semantic);
-    expect(canonicalQuestionResponseStructure(semantic)).toEqual({
+    expect(canonicalQuestionResponse(response)).toEqual(response);
+    expect(canonicalQuestionResponseStructure(response)).toEqual({
       kind: "single-choice",
       options: [
         { isCorrect: true, optionKey: "option-1", order: 1 },
@@ -73,17 +68,7 @@ describe("question response", () => {
       { ...single, options: [] },
       {
         ...single,
-        options: [{ ...single.options[0], label: [] }, single.options[1]],
-      },
-      {
-        ...single,
-        options: [
-          {
-            ...single.options[0],
-            label: [{ display: "inline", kind: "math", math: "" }],
-          },
-          single.options[1],
-        ],
+        options: [{ ...single.options[0], label: "" }, single.options[1]],
       },
       {
         kind: "multiple-choice",
@@ -106,7 +91,7 @@ describe("question response", () => {
         { ...single.options[1], isCorrect: true },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "C" }],
+          label: "C",
           optionKey: "option-3",
           order: 3,
         },
@@ -116,12 +101,12 @@ describe("question response", () => {
       categories: [
         {
           categoryKey: "category-1",
-          label: [{ kind: "text", text: "True" }],
+          label: "True",
           order: 1,
         },
         {
           categoryKey: "category-2",
-          label: [{ kind: "text", text: "False" }],
+          label: "False",
           order: 2,
         },
       ],
@@ -129,7 +114,7 @@ describe("question response", () => {
       statements: [
         {
           correctCategoryKey: "category-1",
-          label: [{ kind: "text", text: "Statement" }],
+          label: "Statement",
           order: 1,
           statementKey: "statement-1",
         },
@@ -161,12 +146,12 @@ describe("question response", () => {
         categories: [
           {
             categoryKey: "category-2",
-            label: [{ kind: "text", text: "Wrong order" }],
+            label: "Wrong order",
             order: 1,
           },
           {
             categoryKey: "category-1",
-            label: [{ kind: "text", text: "Wrong order" }],
+            label: "Wrong order",
             order: 2,
           },
         ],
@@ -174,7 +159,7 @@ describe("question response", () => {
         statements: [
           {
             correctCategoryKey: "category-3",
-            label: [{ kind: "text", text: "Unknown category" }],
+            label: "Unknown category",
             order: 1,
             statementKey: "statement-1",
           },

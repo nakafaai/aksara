@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - x" }],
+          label: "$$90 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - 2x" }],
+          label: "$$90 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "180 - x" }],
+          label: "$$180 - x$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "180 - 2x" }],
+          label: "$$180 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Unbekannt" }],
+          label: "Unbekannt",
         },
       ],
     },
@@ -32,21 +32,21 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - x" }],
+          label: "$$90 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - 2x" }],
+          label: "$$90 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "180 - x" }],
+          label: "$$180 - x$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "180 - 2x" }],
+          label: "$$180 - 2x$$",
         },
-        { isCorrect: false, label: [{ kind: "text", text: "Unknown" }] },
+        { isCorrect: false, label: "Unknown" },
       ],
     },
     id: {
@@ -54,23 +54,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - x" }],
+          label: "$$90 - x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "90 - 2x" }],
+          label: "$$90 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "180 - x" }],
+          label: "$$180 - x$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "180 - 2x" }],
+          label: "$$180 - 2x$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tidak diketahui" }],
+          label: "Tidak diketahui",
         },
       ],
     },

@@ -7,49 +7,49 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "it" }],
+          label: "it",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "pit" }],
+          label: "pit",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "sit" }],
+          label: "sit",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "nit" }],
+          label: "nit",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "nichts davon" }],
+          label: "nichts davon",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: [{ kind: "text", text: "it" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "pit" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "sit" }] },
-        { isCorrect: true, label: [{ kind: "text", text: "nit" }] },
+        { isCorrect: false, label: "it" },
+        { isCorrect: false, label: "pit" },
+        { isCorrect: false, label: "sit" },
+        { isCorrect: true, label: "nit" },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "none of the above" }],
+          label: "none of the above",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: [{ kind: "text", text: "it" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "pit" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "sit" }] },
-        { isCorrect: true, label: [{ kind: "text", text: "nit" }] },
+        { isCorrect: false, label: "it" },
+        { isCorrect: false, label: "pit" },
+        { isCorrect: false, label: "sit" },
+        { isCorrect: true, label: "nit" },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "tidak ada satupun" }],
+          label: "tidak ada satupun",
         },
       ],
     },

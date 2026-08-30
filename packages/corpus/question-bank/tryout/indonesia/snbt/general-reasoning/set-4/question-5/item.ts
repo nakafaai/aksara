@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "57\\text{ kcal}" }],
+          label: "$$57\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "70\\text{ kcal}" }],
+          label: "$$70\\text{ kcal}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "75\\text{ kcal}" }],
+          label: "$$75\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "72\\text{ kcal}" }],
+          label: "$$72\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "87{,}72\\text{ kcal}" },
-          ],
+          label: "$$87{,}72\\text{ kcal}$$",
         },
       ],
     },
@@ -34,25 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "57\\text{ kcal}" }],
+          label: "$$57\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "70\\text{ kcal}" }],
+          label: "$$70\\text{ kcal}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "75\\text{ kcal}" }],
+          label: "$$75\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "72\\text{ kcal}" }],
+          label: "$$72\\text{ kcal}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "87.72\\text{ kcal}" },
-          ],
+          label: "$$87.72\\text{ kcal}$$",
         },
       ],
     },
@@ -61,25 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "57\\text{ kkal}" }],
+          label: "$$57\\text{ kkal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "70\\text{ kkal}" }],
+          label: "$$70\\text{ kkal}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "75\\text{ kkal}" }],
+          label: "$$75\\text{ kkal}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "72\\text{ kkal}" }],
+          label: "$$72\\text{ kkal}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "87{,}72\\text{ kkal}" },
-          ],
+          label: "$$87{,}72\\text{ kkal}$$",
         },
       ],
     },

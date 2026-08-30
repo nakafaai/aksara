@@ -7,40 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " große Äpfel" },
-          ],
+          label: "$$2$$ große Äpfel",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " kleine Äpfel" },
-          ],
+          label: "$$2$$ kleine Äpfel",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " große Orangen" },
-          ],
+          label: "$$2$$ große Orangen",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " kleine Orangen" },
-          ],
+          label: "$$2$$ kleine Orangen",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " großer Apfel und " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " kleine Orange" },
-          ],
+          label: "$$1$$ großer Apfel und $$1$$ kleine Orange",
         },
       ],
     },
@@ -49,40 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " large apples" },
-          ],
+          label: "$$2$$ large apples",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " small apples" },
-          ],
+          label: "$$2$$ small apples",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " large oranges" },
-          ],
+          label: "$$2$$ large oranges",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " small oranges" },
-          ],
+          label: "$$2$$ small oranges",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " large apple and " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " small orange" },
-          ],
+          label: "$$1$$ large apple and $$1$$ small orange",
         },
       ],
     },
@@ -91,40 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " apel besar" },
-          ],
+          label: "$$2$$ apel besar",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " apel kecil" },
-          ],
+          label: "$$2$$ apel kecil",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " jeruk besar" },
-          ],
+          label: "$$2$$ jeruk besar",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " jeruk kecil" },
-          ],
+          label: "$$2$$ jeruk kecil",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " apel besar dan " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " jeruk kecil" },
-          ],
+          label: "$$1$$ apel besar dan $$1$$ jeruk kecil",
         },
       ],
     },

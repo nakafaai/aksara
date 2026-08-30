@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60 \\text{ Jahre}" },
-          ],
+          label: "$$60 \\text{ Jahre}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "57 \\text{ Jahre}" },
-          ],
+          label: "$$57 \\text{ Jahre}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "56 \\text{ Jahre}" },
-          ],
+          label: "$$56 \\text{ Jahre}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "54 \\text{ Jahre}" },
-          ],
+          label: "$$54 \\text{ Jahre}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52 \\text{ Jahre}" },
-          ],
+          label: "$$52 \\text{ Jahre}$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60 \\text{ years}" },
-          ],
+          label: "$$60 \\text{ years}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "57 \\text{ years}" },
-          ],
+          label: "$$57 \\text{ years}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "56 \\text{ years}" },
-          ],
+          label: "$$56 \\text{ years}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "54 \\text{ years}" },
-          ],
+          label: "$$54 \\text{ years}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52 \\text{ years}" },
-          ],
+          label: "$$52 \\text{ years}$$",
         },
       ],
     },
@@ -77,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "60 \\text{ tahun}" },
-          ],
+          label: "$$60 \\text{ tahun}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "57 \\text{ tahun}" },
-          ],
+          label: "$$57 \\text{ tahun}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "56 \\text{ tahun}" },
-          ],
+          label: "$$56 \\text{ tahun}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "54 \\text{ tahun}" },
-          ],
+          label: "$$54 \\text{ tahun}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52 \\text{ tahun}" },
-          ],
+          label: "$$52 \\text{ tahun}$$",
         },
       ],
     },

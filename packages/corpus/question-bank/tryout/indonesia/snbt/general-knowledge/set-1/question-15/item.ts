@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "das Frostphänomen." }],
+          label: "das Frostphänomen.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "die Grasfläche." }],
+          label: "die Grasfläche.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "hohes Plateau." }],
+          label: "hohes Plateau.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "der Frost." }],
+          label: "der Frost.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "noch vorhanden." }],
+          label: "noch vorhanden.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "dew phenomenon." }],
+          label: "dew phenomenon.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "expanse of grass." }],
+          label: "expanse of grass.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "high plateau." }],
+          label: "high plateau.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "frost." }],
+          label: "frost.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "still located." }],
+          label: "still located.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "fenomena embun." }],
+          label: "fenomena embun.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "hamparan rumput." }],
+          label: "hamparan rumput.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "dataran tinggi." }],
+          label: "dataran tinggi.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "embun es." }],
+          label: "embun es.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "masih berada." }],
+          label: "masih berada.",
         },
       ],
     },

@@ -8,7 +8,6 @@ import {
   ArtifactLocaleSchema,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
-import { QuestionResponseContentSchema } from "#contracts/question/response";
 import { materialGraph } from "#contracts/test/graph";
 import {
   type TryoutCatalogRecord,
@@ -23,9 +22,9 @@ import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-/** Builds one semantic plain-text response label for test fixtures. */
+/** Builds one plain-text response label for test fixtures. */
 export function responseText(text: string) {
-  return QuestionResponseContentSchema.make([{ kind: "text", text }]);
+  return text;
 }
 
 /** Builds all five current hierarchy kinds for one app locale. */

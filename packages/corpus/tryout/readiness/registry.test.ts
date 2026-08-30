@@ -9,7 +9,7 @@ import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
 import {
   validateAssessmentReadinessEntries,
   validateAssessmentReadinessRegistry,
-} from "#corpus/tryout/readiness-registry";
+} from "#corpus/tryout/readiness/registry";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** Loads all explicit readiness, hierarchy, and physical item facts once. */

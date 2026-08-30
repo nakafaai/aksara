@@ -91,13 +91,13 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
     options: [
       {
         isCorrect: true,
-        label: [{ kind: "text", text: "A" }],
+        label: "A",
         optionKey: "option-1",
         order: 1,
       },
       {
         isCorrect: false,
-        label: [{ kind: "text", text: "B" }],
+        label: "B",
         optionKey: "option-2",
         order: 2,
       },

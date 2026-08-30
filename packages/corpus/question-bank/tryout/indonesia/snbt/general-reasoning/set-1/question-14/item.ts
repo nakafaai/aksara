@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
+          label: "$$\\frac{139}{28}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
+          label: "$$\\frac{149}{30}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
+          label: "$$\\frac{154}{31}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
+          label: "$$\\frac{159}{32}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
+          label: "$$\\frac{164}{33}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
+          label: "$$\\frac{139}{28}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
+          label: "$$\\frac{149}{30}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
+          label: "$$\\frac{154}{31}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
+          label: "$$\\frac{159}{32}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
+          label: "$$\\frac{164}{33}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{139}{28}" }],
+          label: "$$\\frac{139}{28}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{149}{30}" }],
+          label: "$$\\frac{149}{30}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{154}{31}" }],
+          label: "$$\\frac{154}{31}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{159}{32}" }],
+          label: "$$\\frac{159}{32}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{164}{33}" }],
+          label: "$$\\frac{164}{33}$$",
         },
       ],
     },

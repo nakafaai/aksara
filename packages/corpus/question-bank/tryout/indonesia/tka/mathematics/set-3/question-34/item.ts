@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{37}{16}" }],
+          label: "$$\\frac{37}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{19}{8}" }],
+          label: "$$\\frac{19}{8}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{39}{16}" }],
+          label: "$$\\frac{39}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{41}{16}" }],
+          label: "$$\\frac{41}{16}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{37}{16}" }],
+          label: "$$\\frac{37}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{19}{8}" }],
+          label: "$$\\frac{19}{8}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{39}{16}" }],
+          label: "$$\\frac{39}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{41}{16}" }],
+          label: "$$\\frac{41}{16}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{37}{16}" }],
+          label: "$$\\frac{37}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{19}{8}" }],
+          label: "$$\\frac{19}{8}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{39}{16}" }],
+          label: "$$\\frac{39}{16}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5}{2}" }],
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{41}{16}" }],
+          label: "$$\\frac{41}{16}$$",
         },
       ],
     },

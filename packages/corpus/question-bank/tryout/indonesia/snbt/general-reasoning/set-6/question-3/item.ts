@@ -7,45 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Wegen des Regens fallen beide Tätigkeiten aus",
-            },
-          ],
+          label: "Wegen des Regens fallen beide Tätigkeiten aus",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Am Sonntag werden Wertstoffe gesammelt" },
-          ],
+          label: "Am Sonntag werden Wertstoffe gesammelt",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Am Sonntag werden beide Tätigkeiten durchgeführt",
-            },
-          ],
+          label: "Am Sonntag werden beide Tätigkeiten durchgeführt",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Am Sonntag werden nur die Abflussrinnen gereinigt",
-            },
-          ],
+          label: "Am Sonntag werden nur die Abflussrinnen gereinigt",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Gemeinschaftsaktion wird ohne Alternative verschoben",
-            },
-          ],
+          label: "Die Gemeinschaftsaktion wird ohne Alternative verschoben",
         },
       ],
     },
@@ -54,42 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Both activities are canceled because of the rain",
-            },
-          ],
+          label: "Both activities are canceled because of the rain",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Recyclable materials are collected on Sunday",
-            },
-          ],
+          label: "Recyclable materials are collected on Sunday",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Both activities are carried out on Sunday" },
-          ],
+          label: "Both activities are carried out on Sunday",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Only the drains are cleaned on Sunday" },
-          ],
+          label: "Only the drains are cleaned on Sunday",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The activity is postponed without choosing an alternative",
-            },
-          ],
+          label: "The activity is postponed without choosing an alternative",
         },
       ],
     },
@@ -98,45 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kedua kegiatan dibatalkan karena hujan" },
-          ],
+          label: "Kedua kegiatan dibatalkan karena hujan",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Barang daur ulang dikumpulkan pada hari Minggu",
-            },
-          ],
+          label: "Barang daur ulang dikumpulkan pada hari Minggu",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kedua kegiatan dilaksanakan pada hari Minggu",
-            },
-          ],
+          label: "Kedua kegiatan dilaksanakan pada hari Minggu",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
-            },
-          ],
+          label: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kerja bakti ditunda tanpa memilih kegiatan pengganti",
-            },
-          ],
+          label: "Kerja bakti ditunda tanpa memilih kegiatan pengganti",
         },
       ],
     },

@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " Tage" },
-          ],
+          label: "$$48$$ Tage",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48{,}5" },
-            { kind: "text", text: " Tage" },
-          ],
+          label: "$$48{,}5$$ Tage",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "49" },
-            { kind: "text", text: " Tage" },
-          ],
+          label: "$$49$$ Tage",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "49{,}5" },
-            { kind: "text", text: " Tage" },
-          ],
+          label: "$$49{,}5$$ Tage",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50" },
-            { kind: "text", text: " Tage" },
-          ],
+          label: "$$50$$ Tage",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " days" },
-          ],
+          label: "$$48$$ days",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48.5" },
-            { kind: "text", text: " days" },
-          ],
+          label: "$$48.5$$ days",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "49" },
-            { kind: "text", text: " days" },
-          ],
+          label: "$$49$$ days",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "49.5" },
-            { kind: "text", text: " days" },
-          ],
+          label: "$$49.5$$ days",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50" },
-            { kind: "text", text: " days" },
-          ],
+          label: "$$50$$ days",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48" },
-            { kind: "text", text: " hari" },
-          ],
+          label: "$$48$$ hari",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "48{,}5" },
-            { kind: "text", text: " hari" },
-          ],
+          label: "$$48{,}5$$ hari",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "49" },
-            { kind: "text", text: " hari" },
-          ],
+          label: "$$49$$ hari",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "49{,}5" },
-            { kind: "text", text: " hari" },
-          ],
+          label: "$$49{,}5$$ hari",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "50" },
-            { kind: "text", text: " hari" },
-          ],
+          label: "$$50$$ hari",
         },
       ],
     },

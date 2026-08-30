@@ -7,49 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$, $$2$$ und $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$ und $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$2$$ und $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Nur " },
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "Nur $$4$$.",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$1$$, $$2$$, $$3$$ und $$4$$",
         },
       ],
     },
@@ -58,48 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: ", and " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$, $$2$$, and $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$ and $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$2$$ and $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " only" },
-          ],
+          label: "$$4$$ only",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: ", and " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$1$$, $$2$$, $$3$$, and $$4$$",
         },
       ],
     },
@@ -108,48 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: ", dan " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$, $$2$$, dan $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "$$1$$ dan $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$2$$ dan $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " saja" },
-          ],
+          label: "$$4$$ saja",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: ", " },
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: ", dan " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
         },
       ],
     },

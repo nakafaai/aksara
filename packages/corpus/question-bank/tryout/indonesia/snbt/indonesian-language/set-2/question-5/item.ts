@@ -7,35 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Namun, sayangnya" }],
+          label: "Namun, sayangnya",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Akhirnya, orang menganggap" }],
+          label: "Akhirnya, orang menganggap",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Walaupun demikian, banyak orang yang beranggapan",
-            },
-          ],
+          label: "Walaupun demikian, banyak orang yang beranggapan",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Meskipun memiliki daya tarik universal" },
-          ],
+          label: "Meskipun memiliki daya tarik universal",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Dibalik semua itu, ada peran pemerintah secara agregat",
-            },
-          ],
+          label: "Dibalik semua itu, ada peran pemerintah secara agregat",
         },
       ],
     },

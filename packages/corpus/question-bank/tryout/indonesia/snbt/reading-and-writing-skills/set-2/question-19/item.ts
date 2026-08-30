@@ -7,45 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "die Geschichte von Papeda in Ostindonesien.",
-            },
-          ],
+          label: "die Geschichte von Papeda in Ostindonesien.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "die Entwicklung von Sago durch die Diversifizierung des Lebensmittelangebots und Produktinnovationen.",
-            },
-          ],
+          label:
+            "die Entwicklung von Sago durch die Diversifizierung des Lebensmittelangebots und Produktinnovationen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "das Verfahren zur Gewinnung von Stärke aus Sagostämmen.",
-            },
-          ],
+          label: "das Verfahren zur Gewinnung von Stärke aus Sagostämmen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "die sieben Teilsektoren der indonesischen Landwirtschaftszählung.",
-            },
-          ],
+          label:
+            "die sieben Teilsektoren der indonesischen Landwirtschaftszählung.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "der Exportpreis indonesischer Sagostärke." },
-          ],
+          label: "der Exportpreis indonesischer Sagostärke.",
         },
       ],
     },
@@ -54,48 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "the history of papeda in eastern Indonesia.",
-            },
-          ],
+          label: "the history of papeda in eastern Indonesia.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "developing sago through food diversification and product innovation.",
-            },
-          ],
+          label:
+            "developing sago through food diversification and product innovation.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "the procedure for extracting starch from sago trunks.",
-            },
-          ],
+          label: "the procedure for extracting starch from sago trunks.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "the seven subsectors of Indonesia's Agricultural Census.",
-            },
-          ],
+          label: "the seven subsectors of Indonesia's Agricultural Census.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "the export price of Indonesian sago starch.",
-            },
-          ],
+          label: "the export price of Indonesian sago starch.",
         },
       ],
     },
@@ -104,40 +60,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "sejarah papeda di Indonesia bagian timur." },
-          ],
+          label: "sejarah papeda di Indonesia bagian timur.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
-            },
-          ],
+          label:
+            "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "tata cara mengekstraksi pati dari batang sagu.",
-            },
-          ],
+          label: "tata cara mengekstraksi pati dari batang sagu.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "tujuh subsektor dalam Sensus Pertanian Indonesia.",
-            },
-          ],
+          label: "tujuh subsektor dalam Sensus Pertanian Indonesia.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "harga ekspor pati sagu Indonesia." }],
+          label: "harga ekspor pati sagu Indonesia.",
         },
       ],
     },

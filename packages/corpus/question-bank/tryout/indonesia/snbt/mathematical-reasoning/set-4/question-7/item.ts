@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "31\\text{ km}" }],
+          label: "$$31\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35\\text{ km}" }],
+          label: "$$35\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41\\text{ km}" }],
+          label: "$$41\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "45\\text{ km}" }],
+          label: "$$45\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "48\\text{ km}" }],
+          label: "$$48\\text{ km}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "31\\text{ km}" }],
+          label: "$$31\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35\\text{ km}" }],
+          label: "$$35\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41\\text{ km}" }],
+          label: "$$41\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "45\\text{ km}" }],
+          label: "$$45\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "48\\text{ km}" }],
+          label: "$$48\\text{ km}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "31\\text{ km}" }],
+          label: "$$31\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "35\\text{ km}" }],
+          label: "$$35\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41\\text{ km}" }],
+          label: "$$41\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "45\\text{ km}" }],
+          label: "$$45\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "48\\text{ km}" }],
+          label: "$$48\\text{ km}$$",
         },
       ],
     },

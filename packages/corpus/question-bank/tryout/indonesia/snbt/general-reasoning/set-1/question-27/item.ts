@@ -7,42 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Die Schlussfolgerung ist definitiv wahr" },
-          ],
+          label: "Die Schlussfolgerung ist definitiv wahr",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist möglicherweise wahr",
-            },
-          ],
+          label: "Die Schlussfolgerung ist möglicherweise wahr",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Schlussfolgerung ist definitiv falsch" },
-          ],
+          label: "Die Schlussfolgerung ist definitiv falsch",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
-            },
-          ],
+          label:
+            "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
-            },
-          ],
+          label:
+            "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
         },
       ],
     },
@@ -51,33 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "The conclusion is definitely true" }],
+          label: "The conclusion is definitely true",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The conclusion is possibly true" }],
+          label: "The conclusion is possibly true",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "The conclusion is definitely false" }],
+          label: "The conclusion is definitely false",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The conclusion is irrelevant to the information provided",
-            },
-          ],
+          label: "The conclusion is irrelevant to the information provided",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The conclusion cannot be evaluated due to insufficient information",
-            },
-          ],
+          label:
+            "The conclusion cannot be evaluated due to insufficient information",
         },
       ],
     },
@@ -86,33 +60,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Simpulan tersebut pasti benar" }],
+          label: "Simpulan tersebut pasti benar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Simpulan tersebut mungkin benar" }],
+          label: "Simpulan tersebut mungkin benar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Simpulan tersebut pasti salah" }],
+          label: "Simpulan tersebut pasti salah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Simpulan tidak relevan dengan informasi yang diberikan",
-            },
-          ],
+          label: "Simpulan tidak relevan dengan informasi yang diberikan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
-            },
-          ],
+          label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
         },
       ],
     },

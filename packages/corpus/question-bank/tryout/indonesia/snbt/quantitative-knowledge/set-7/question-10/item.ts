@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "PQ = 32" }],
+          label: "$$PQ = 32$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
+          label: "Kann nicht bestimmt werden",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "PQ = 32" }],
+          label: "$$PQ = 32$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Cannot be determined" }],
+          label: "Cannot be determined",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "P > Q" }],
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P < Q" }],
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "P = Q" }],
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "PQ = 32" }],
+          label: "$$PQ = 32$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+          label: "Tidak dapat ditentukan",
         },
       ],
     },

@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Das ist eine große Menge, doch Nachhaltigkeit lässt sich nicht allein an der Tonnage messen.",
-            },
-          ],
+          label:
+            "Das ist eine große Menge, doch Nachhaltigkeit lässt sich nicht allein an der Tonnage messen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Das von der FAO und dem Ministerium unterstützte IFish-Programm fördert ökosystembasiertes Management, nationale Kompetenzstandards und die Beteiligung lokaler Gemeinschaften an der Binnenfischerei.",
-            },
-          ],
+          label:
+            "Das von der FAO und dem Ministerium unterstützte IFish-Programm fördert ökosystembasiertes Management, nationale Kompetenzstandards und die Beteiligung lokaler Gemeinschaften an der Binnenfischerei.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Das Fischereimanagement braucht verlässliche Daten, sodass Entscheidungen auf örtliche Bedingungen reagieren können.",
-            },
-          ],
+          label:
+            "Das Fischereimanagement braucht verlässliche Daten, sodass Entscheidungen auf örtliche Bedingungen reagieren können.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Einfach mehr Fanggeräte einzusetzen, könnte den Druck erhöhen, ohne Management- oder Umweltprobleme zu lösen.",
-            },
-          ],
+          label:
+            "Einfach mehr Fanggeräte einzusetzen, könnte den Druck erhöhen, ohne Management- oder Umweltprobleme zu lösen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Langfristige Produktion hängt von leistungsfähigen Systemen ab, in denen Bestände und Lebensräume gesund bleiben.",
-            },
-          ],
+          label:
+            "Langfristige Produktion hängt von leistungsfähigen Systemen ab, in denen Bestände und Lebensräume gesund bleiben.",
         },
       ],
     },
@@ -57,48 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "That is a large volume, but production cannot be judged sustainably by tonnage alone.",
-            },
-          ],
+          label:
+            "That is a large volume, but production cannot be judged sustainably by tonnage alone.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The FAO and ministry-backed IFish programme promotes ecosystem-based management, national competency standards, and community participation in inland fisheries.",
-            },
-          ],
+          label:
+            "The FAO and ministry-backed IFish programme promotes ecosystem-based management, national competency standards, and community participation in inland fisheries.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Fisheries managers need reliable data, so decisions can respond to local conditions.",
-            },
-          ],
+          label:
+            "Fisheries managers need reliable data, so decisions can respond to local conditions.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Simply adding more fishing gear could intensify pressure without solving management or environmental problems.",
-            },
-          ],
+          label:
+            "Simply adding more fishing gear could intensify pressure without solving management or environmental problems.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Long-term production depends on productive systems whose stocks and habitats remain healthy.",
-            },
-          ],
+          label:
+            "Long-term production depends on productive systems whose stocks and habitats remain healthy.",
         },
       ],
     },
@@ -107,48 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Volumenya besar, tetapi keberlanjutan produksi tidak dapat dinilai dari jumlah tonase saja.",
-            },
-          ],
+          label:
+            "Volumenya besar, tetapi keberlanjutan produksi tidak dapat dinilai dari jumlah tonase saja.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Program IFish yang didukung FAO dan kementerian mendorong pengelolaan berbasis ekosistem, standar kompetensi nasional, dan partisipasi masyarakat dalam perikanan darat.",
-            },
-          ],
+          label:
+            "Program IFish yang didukung FAO dan kementerian mendorong pengelolaan berbasis ekosistem, standar kompetensi nasional, dan partisipasi masyarakat dalam perikanan darat.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
-            },
-          ],
+          label:
+            "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sekadar menambah alat tangkap dapat meningkatkan tekanan tanpa menyelesaikan masalah pengelolaan atau lingkungan.",
-            },
-          ],
+          label:
+            "Sekadar menambah alat tangkap dapat meningkatkan tekanan tanpa menyelesaikan masalah pengelolaan atau lingkungan.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Produksi jangka panjang bergantung pada sistem produktif yang menjaga kesehatan stok dan habitat.",
-            },
-          ],
+          label:
+            "Produksi jangka panjang bergantung pada sistem produktif yang menjaga kesehatan stok dan habitat.",
         },
       ],
     },

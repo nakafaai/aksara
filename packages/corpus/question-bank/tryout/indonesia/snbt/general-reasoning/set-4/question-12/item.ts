@@ -7,43 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Die Art ist nur in Papua heimisch" }],
+          label: "Die Art ist nur in Papua heimisch",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Art ist überall außerhalb Neuguineas eingeführt",
-            },
-          ],
+          label: "Die Art ist überall außerhalb Neuguineas eingeführt",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Art wächst vor allem in einem trockenen gemäßigten Biom",
-            },
-          ],
+          label: "Die Art wächst vor allem in einem trockenen gemäßigten Biom",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Das natürliche Verbreitungsgebiet der Art reicht weit über Neuguinea hinaus",
-            },
-          ],
+          label:
+            "Das natürliche Verbreitungsgebiet der Art reicht weit über Neuguinea hinaus",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Art ist eine krautige Pflanze und kein Baum",
-            },
-          ],
+          label: "Die Art ist eine krautige Pflanze und kein Baum",
         },
       ],
     },
@@ -52,42 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The species is native only to Papua" },
-          ],
+          label: "The species is native only to Papua",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The species is introduced everywhere outside New Guinea",
-            },
-          ],
+          label: "The species is introduced everywhere outside New Guinea",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The species grows primarily in a dry temperate biome",
-            },
-          ],
+          label: "The species grows primarily in a dry temperate biome",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The species' native range extends well beyond New Guinea",
-            },
-          ],
+          label: "The species' native range extends well beyond New Guinea",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The species is an herb rather than a tree" },
-          ],
+          label: "The species is an herb rather than a tree",
         },
       ],
     },
@@ -96,42 +58,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Spesies ini hanya berasal dari Papua" },
-          ],
+          label: "Spesies ini hanya berasal dari Papua",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
-            },
-          ],
+          label:
+            "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Spesies ini terutama hidup di bioma kering beriklim sedang",
-            },
-          ],
+          label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
-            },
-          ],
+          label:
+            "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Spesies ini merupakan herba, bukan pohon" },
-          ],
+          label: "Spesies ini merupakan herba, bukan pohon",
         },
       ],
     },

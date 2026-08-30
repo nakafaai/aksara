@@ -1,7 +1,7 @@
 import { Effect } from "effect";
 import { loadQuestionContent } from "#corpus/question-bank/content";
 import { projectTryoutSources } from "#corpus/tryout/projection";
-import { validateAssessmentReadinessRegistry } from "#corpus/tryout/readiness-registry";
+import { validateAssessmentReadinessRegistry } from "#corpus/tryout/readiness/registry";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** Loads the canonical question registry and try-out projection from one scan. */

@@ -7,41 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Basketball ist das beliebteste Hobby" },
-          ],
+          label: "Basketball ist das beliebteste Hobby",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Insgesamt interessieren sich " },
-            { display: "block", kind: "math", math: "65" },
-            { kind: "text", text: " Schüler für Schauspiel" },
-          ],
+          label: "Insgesamt interessieren sich $$65$$ Schüler für Schauspiel",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Gesamtzahl in Klasse XII beträgt " },
-            { display: "block", kind: "math", math: "306" },
-          ],
+          label: "Die Gesamtzahl in Klasse XII beträgt $$306$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tanz hat in Klasse X die wenigsten Teilnehmenden",
-            },
-          ],
+          label: "Tanz hat in Klasse X die wenigsten Teilnehmenden",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Insgesamt interessieren sich " },
-            { display: "block", kind: "math", math: "160" },
-            { kind: "text", text: " Schüler für Malen" },
-          ],
+          label: "Insgesamt interessieren sich $$160$$ Schüler für Malen",
         },
       ],
     },
@@ -50,48 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Basketball is the most popular hobby" },
-          ],
+          label: "Basketball is the most popular hobby",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The number of students who like acting is ",
-            },
-            { display: "block", kind: "math", math: "65" },
-          ],
+          label: "The number of students who like acting is $$65$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The total number of Grade XII students based on hobbies is ",
-            },
-            { display: "block", kind: "math", math: "306" },
-          ],
+          label:
+            "The total number of Grade XII students based on hobbies is $$306$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The lowest interest in dance is in Grade X",
-            },
-          ],
+          label: "The lowest interest in dance is in Grade X",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The number of students who like painting is ",
-            },
-            { display: "block", kind: "math", math: "160" },
-          ],
+          label: "The number of students who like painting is $$160$$",
         },
       ],
     },
@@ -100,46 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kegemaran basket adalah paling banyak diminati",
-            },
-          ],
+          label: "Kegemaran basket adalah paling banyak diminati",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jumlah siswa gemar seni peran adalah " },
-            { display: "block", kind: "math", math: "65" },
-            { kind: "text", text: " siswa" },
-          ],
+          label: "Jumlah siswa gemar seni peran adalah $$65$$ siswa",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Jumlah siswa kelas XII sesuai kegemaran adalah ",
-            },
-            { display: "block", kind: "math", math: "306" },
-          ],
+          label: "Jumlah siswa kelas XII sesuai kegemaran adalah $$306$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kegemaran seni tari yang paling sedikit ada di kelas X",
-            },
-          ],
+          label: "Kegemaran seni tari yang paling sedikit ada di kelas X",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Jumlah siswa gemar melukis adalah " },
-            { display: "block", kind: "math", math: "160" },
-          ],
+          label: "Jumlah siswa gemar melukis adalah $$160$$",
         },
       ],
     },

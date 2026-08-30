@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
+          label: "$$\\frac{5!}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5!" }],
+          label: "$$5!$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2(5!)" }],
+          label: "$$2(5!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2(6!)" }],
+          label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
+          label: "$$\\frac{7!}{2}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
+          label: "$$\\frac{5!}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5!" }],
+          label: "$$5!$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2(5!)" }],
+          label: "$$2(5!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2(6!)" }],
+          label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
+          label: "$$\\frac{7!}{2}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{5!}{2}" }],
+          label: "$$\\frac{5!}{2}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "5!" }],
+          label: "$$5!$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "2(5!)" }],
+          label: "$$2(5!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2(6!)" }],
+          label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7!}{2}" }],
+          label: "$$\\frac{7!}{2}$$",
         },
       ],
     },

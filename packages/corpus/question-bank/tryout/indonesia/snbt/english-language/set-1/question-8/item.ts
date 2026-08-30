@@ -5,11 +5,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: [{ kind: "text", text: "pessimistic" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "assertive" }] },
-        { isCorrect: true, label: [{ kind: "text", text: "objective" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "responsive" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "reactive" }] },
+        { isCorrect: false, label: "pessimistic" },
+        { isCorrect: false, label: "assertive" },
+        { isCorrect: true, label: "objective" },
+        { isCorrect: false, label: "responsive" },
+        { isCorrect: false, label: "reactive" },
       ],
     },
   },

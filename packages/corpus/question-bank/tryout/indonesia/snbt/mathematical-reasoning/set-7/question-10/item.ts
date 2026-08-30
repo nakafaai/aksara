@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{20}" }],
+          label: "$$\\frac{1}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{10}" }],
+          label: "$$\\frac{1}{10}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{8}" }],
+          label: "$$\\frac{1}{8}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{4}" }],
+          label: "$$\\frac{1}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{20}" }],
+          label: "$$\\frac{1}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{10}" }],
+          label: "$$\\frac{1}{10}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{8}" }],
+          label: "$$\\frac{1}{8}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{4}" }],
+          label: "$$\\frac{1}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{20}" }],
+          label: "$$\\frac{1}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{10}" }],
+          label: "$$\\frac{1}{10}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{8}" }],
+          label: "$$\\frac{1}{8}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{4}" }],
+          label: "$$\\frac{1}{4}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{4}" }],
+          label: "$$\\frac{3}{4}$$",
         },
       ],
     },

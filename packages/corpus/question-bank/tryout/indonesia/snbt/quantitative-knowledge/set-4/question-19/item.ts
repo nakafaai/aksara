@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2{,}5" },
-            { kind: "text", text: " Liter" },
-          ],
+          label: "$$2{,}5$$ Liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " Liter" },
-          ],
+          label: "$$5$$ Liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "7{,}5" },
-            { kind: "text", text: " Liter" },
-          ],
+          label: "$$7{,}5$$ Liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " Liter" },
-          ],
+          label: "$$10$$ Liter",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "12{,}5" },
-            { kind: "text", text: " Liter" },
-          ],
+          label: "$$12{,}5$$ Liter",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2.5" },
-            { kind: "text", text: " liters" },
-          ],
+          label: "$$2.5$$ liters",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " liters" },
-          ],
+          label: "$$5$$ liters",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "7.5" },
-            { kind: "text", text: " liters" },
-          ],
+          label: "$$7.5$$ liters",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " liters" },
-          ],
+          label: "$$10$$ liters",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "12.5" },
-            { kind: "text", text: " liters" },
-          ],
+          label: "$$12.5$$ liters",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2{,}5" },
-            { kind: "text", text: " liter" },
-          ],
+          label: "$$2{,}5$$ liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " liter" },
-          ],
+          label: "$$5$$ liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "7{,}5" },
-            { kind: "text", text: " liter" },
-          ],
+          label: "$$7{,}5$$ liter",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " liter" },
-          ],
+          label: "$$10$$ liter",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "12{,}5" },
-            { kind: "text", text: " liter" },
-          ],
+          label: "$$12{,}5$$ liter",
         },
       ],
     },

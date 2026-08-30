@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Neue Studierende suchen nach privaten Universitäten mit umfassender Ausstattung",
-            },
-          ],
+          label:
+            "Neue Studierende suchen nach privaten Universitäten mit umfassender Ausstattung",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Eine gute Dozentenqualität kann die Zahl neuer Studierender erhöhen",
-            },
-          ],
+          label:
+            "Eine gute Dozentenqualität kann die Zahl neuer Studierender erhöhen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Neue Studierende entscheiden sich für private Universitäten mit geringen Kosten",
-            },
-          ],
+          label:
+            "Neue Studierende entscheiden sich für private Universitäten mit geringen Kosten",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Eine gute Universität verfügt über gute Dozenten und angemessene Einrichtungen",
-            },
-          ],
+          label:
+            "Eine gute Universität verfügt über gute Dozenten und angemessene Einrichtungen",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Neue Studierende werden sich dennoch für eine gute Privatuniversität entscheiden, auch wenn diese teuer ist",
-            },
-          ],
+          label:
+            "Neue Studierende werden sich dennoch für eine gute Privatuniversität entscheiden, auch wenn diese teuer ist",
         },
       ],
     },
@@ -57,48 +37,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "New students look for private universities with complete facilities",
-            },
-          ],
+          label:
+            "New students look for private universities with complete facilities",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Good lecturer quality can increase the number of new students enrolling",
-            },
-          ],
+          label:
+            "Good lecturer quality can increase the number of new students enrolling",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "New students choose private universities with low costs",
-            },
-          ],
+          label: "New students choose private universities with low costs",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A good university has good lecturers and adequate facilities",
-            },
-          ],
+          label: "A good university has good lecturers and adequate facilities",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "New students will still choose a good private university even if it is expensive",
-            },
-          ],
+          label:
+            "New students will still choose a good private university even if it is expensive",
         },
       ],
     },
@@ -107,48 +65,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mahasiswa baru mencari perguruan tinggi swasta dengan fasilitas yang lengkap",
-            },
-          ],
+          label:
+            "Mahasiswa baru mencari perguruan tinggi swasta dengan fasilitas yang lengkap",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kualitas dosen yang baik dapat meningkatkan banyaknya mahasiswa baru yang mendaftar",
-            },
-          ],
+          label:
+            "Kualitas dosen yang baik dapat meningkatkan banyaknya mahasiswa baru yang mendaftar",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mahasiswa baru memilih perguruan tinggi swasta yang biayanya murah",
-            },
-          ],
+          label:
+            "Mahasiswa baru memilih perguruan tinggi swasta yang biayanya murah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Perguruan tinggi yang baik memiliki dosen yang baik dan fasilitas yang memadai",
-            },
-          ],
+          label:
+            "Perguruan tinggi yang baik memiliki dosen yang baik dan fasilitas yang memadai",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Mahasiswa baru akan tetap memilih perguruan tinggi swasta yang baik meskipun biayanya mahal",
-            },
-          ],
+          label:
+            "Mahasiswa baru akan tetap memilih perguruan tinggi swasta yang baik meskipun biayanya mahal",
         },
       ],
     },

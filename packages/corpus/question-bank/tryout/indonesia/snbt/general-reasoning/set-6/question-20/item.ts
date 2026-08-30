@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15{,}7%" }],
+          label: "$$15{,}7%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "28{,}3%" }],
+          label: "$$28{,}3%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "34{,}5%" }],
+          label: "$$34{,}5%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41{,}8%" }],
+          label: "$$41{,}8%$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "52{,}3%" }],
+          label: "$$52{,}3%$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15.7\\%" }],
+          label: "$$15.7\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "28.3\\%" }],
+          label: "$$28.3\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "34.5\\%" }],
+          label: "$$34.5\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41.8\\%" }],
+          label: "$$41.8\\%$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "52.3\\%" }],
+          label: "$$52.3\\%$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "15{,}7\\%" }],
+          label: "$$15{,}7\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "28{,}3\\%" }],
+          label: "$$28{,}3\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "34{,}5\\%" }],
+          label: "$$34{,}5\\%$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "41{,}8\\%" }],
+          label: "$$41{,}8\\%$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "52{,}3\\%" }],
+          label: "$$52{,}3\\%$$",
         },
       ],
     },

@@ -7,42 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " Belletristikbücher" },
-          ],
+          label: "$$2$$ Belletristikbücher",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " Belletristikbuch und " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " Wissenschaftsbuch" },
-          ],
+          label: "$$1$$ Belletristikbuch und $$1$$ Wissenschaftsbuch",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " Wissenschaftsbuch und " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " Geschichtsbuch" },
-          ],
+          label: "$$1$$ Wissenschaftsbuch und $$1$$ Geschichtsbuch",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " Geschichtsbücher" },
-          ],
+          label: "$$2$$ Geschichtsbücher",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " Wissenschaftsbücher" },
-          ],
+          label: "$$2$$ Wissenschaftsbücher",
         },
       ],
     },
@@ -51,42 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " fiction books" },
-          ],
+          label: "$$2$$ fiction books",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " fiction book and " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " science book" },
-          ],
+          label: "$$1$$ fiction book and $$1$$ science book",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " science book and " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " history book" },
-          ],
+          label: "$$1$$ science book and $$1$$ history book",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " history books" },
-          ],
+          label: "$$2$$ history books",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " science books" },
-          ],
+          label: "$$2$$ science books",
         },
       ],
     },
@@ -95,42 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " buku fiksi" },
-          ],
+          label: "$$2$$ buku fiksi",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " buku fiksi dan " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " buku sains" },
-          ],
+          label: "$$1$$ buku fiksi dan $$1$$ buku sains",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " buku sains dan " },
-            { display: "block", kind: "math", math: "1" },
-            { kind: "text", text: " buku sejarah" },
-          ],
+          label: "$$1$$ buku sains dan $$1$$ buku sejarah",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " buku sejarah" },
-          ],
+          label: "$$2$$ buku sejarah",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " buku sains" },
-          ],
+          label: "$$2$$ buku sains",
         },
       ],
     },

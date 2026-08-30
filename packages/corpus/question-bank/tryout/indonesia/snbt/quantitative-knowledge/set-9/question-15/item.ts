@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x = y" }],
+          label: "$$2x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = 4y" }],
+          label: "$$x = 4y$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x = y" }],
+          label: "$$2x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = 4y" }],
+          label: "$$x = 4y$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x > y" }],
+          label: "$$x > y$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "x < y" }],
+          label: "$$x < y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = y" }],
+          label: "$$x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "2x = y" }],
+          label: "$$2x = y$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "x = 4y" }],
+          label: "$$x = 4y$$",
         },
       ],
     },

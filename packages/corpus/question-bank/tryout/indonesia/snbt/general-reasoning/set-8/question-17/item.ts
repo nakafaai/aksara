@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Jahr " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "Jahr $$1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jahr " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "Jahr $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jahr " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "Jahr $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jahr " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "Jahr $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jahr " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "Jahr $$5$$",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Year " },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "Year $$1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Year " },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "Year $$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Year " },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "Year $$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Year " },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "Year $$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Year " },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "Year $$5$$",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tahun ke-" },
-            { display: "block", kind: "math", math: "1" },
-          ],
+          label: "Tahun ke-$$1$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tahun ke-" },
-            { display: "block", kind: "math", math: "2" },
-          ],
+          label: "Tahun ke-$$2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tahun ke-" },
-            { display: "block", kind: "math", math: "3" },
-          ],
+          label: "Tahun ke-$$3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tahun ke-" },
-            { display: "block", kind: "math", math: "4" },
-          ],
+          label: "Tahun ke-$$4$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Tahun ke-" },
-            { display: "block", kind: "math", math: "5" },
-          ],
+          label: "Tahun ke-$$5$$",
         },
       ],
     },

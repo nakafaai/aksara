@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "9 cm" }],
+          label: "9 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12 cm" }],
+          label: "12 cm",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "15 cm" }],
+          label: "15 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "18 cm" }],
+          label: "18 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "21 cm" }],
+          label: "21 cm",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "9 cm" }],
+          label: "9 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12 cm" }],
+          label: "12 cm",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "15 cm" }],
+          label: "15 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "18 cm" }],
+          label: "18 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "21 cm" }],
+          label: "21 cm",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "9 cm" }],
+          label: "9 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12 cm" }],
+          label: "12 cm",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "15 cm" }],
+          label: "15 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "18 cm" }],
+          label: "18 cm",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "21 cm" }],
+          label: "21 cm",
         },
       ],
     },

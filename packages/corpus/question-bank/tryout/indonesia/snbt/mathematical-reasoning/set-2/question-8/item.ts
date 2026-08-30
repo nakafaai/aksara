@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "37." },
-            { kind: "text", text: " Monat" },
-          ],
+          label: "$$37.$$ Monat",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "38." },
-            { kind: "text", text: " Monat" },
-          ],
+          label: "$$38.$$ Monat",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "39." },
-            { kind: "text", text: " Monat" },
-          ],
+          label: "$$39.$$ Monat",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "40." },
-            { kind: "text", text: " Monat" },
-          ],
+          label: "$$40.$$ Monat",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "41." },
-            { kind: "text", text: " Monat" },
-          ],
+          label: "$$41.$$ Monat",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "37^{\\text{th}}" },
-            { kind: "text", text: " Month" },
-          ],
+          label: "$$37^{\\text{th}}$$ Month",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "38^{\\text{th}}" },
-            { kind: "text", text: " Month" },
-          ],
+          label: "$$38^{\\text{th}}$$ Month",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "39^{\\text{th}}" },
-            { kind: "text", text: " Month" },
-          ],
+          label: "$$39^{\\text{th}}$$ Month",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "40^{\\text{th}}" },
-            { kind: "text", text: " Month" },
-          ],
+          label: "$$40^{\\text{th}}$$ Month",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "41^{\\text{st}}" },
-            { kind: "text", text: " Month" },
-          ],
+          label: "$$41^{\\text{st}}$$ Month",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bulan ke-" },
-            { display: "block", kind: "math", math: "37" },
-          ],
+          label: "Bulan ke-$$37$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Bulan ke-" },
-            { display: "block", kind: "math", math: "38" },
-          ],
+          label: "Bulan ke-$$38$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bulan ke-" },
-            { display: "block", kind: "math", math: "39" },
-          ],
+          label: "Bulan ke-$$39$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bulan ke-" },
-            { display: "block", kind: "math", math: "40" },
-          ],
+          label: "Bulan ke-$$40$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Bulan ke-" },
-            { display: "block", kind: "math", math: "41" },
-          ],
+          label: "Bulan ke-$$41$$",
         },
       ],
     },

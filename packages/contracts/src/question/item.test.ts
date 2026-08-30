@@ -13,27 +13,24 @@ import {
 const singleChoice = {
   kind: "single-choice",
   options: [
-    { isCorrect: true, label: [{ kind: "text", text: "A" }] },
-    { isCorrect: false, label: [{ kind: "text", text: "B" }] },
+    { isCorrect: true, label: "A" },
+    { isCorrect: false, label: "B" },
   ],
 } as const;
 const multipleChoice = {
   kind: "multiple-choice",
   options: [
-    { isCorrect: true, label: [{ kind: "text", text: "A" }] },
-    { isCorrect: true, label: [{ kind: "text", text: "B" }] },
-    { isCorrect: false, label: [{ kind: "text", text: "C" }] },
+    { isCorrect: true, label: "A" },
+    { isCorrect: true, label: "B" },
+    { isCorrect: false, label: "C" },
   ],
 } as const;
 const category = {
-  categories: [
-    [{ kind: "text", text: "True" }],
-    [{ kind: "text", text: "False" }],
-  ],
+  categories: ["True", "False"],
   kind: "category",
   statements: [
-    { correctCategoryOrder: 1, label: [{ kind: "text", text: "Statement A" }] },
-    { correctCategoryOrder: 2, label: [{ kind: "text", text: "Statement B" }] },
+    { correctCategoryOrder: 1, label: "Statement A" },
+    { correctCategoryOrder: 2, label: "Statement B" },
   ],
 } as const;
 
@@ -89,14 +86,14 @@ describe("question item", () => {
 
   it("rejects invalid category structure", () => {
     for (const response of [
-      { ...category, categories: [[{ kind: "text", text: "Only" }]] },
+      { ...category, categories: ["Only"] },
       { ...category, statements: [] },
       {
         ...category,
         statements: [
           {
             correctCategoryOrder: 3,
-            label: [{ kind: "text", text: "Out of range" }],
+            label: "Out of range",
           },
         ],
       },
@@ -116,8 +113,8 @@ describe("question item", () => {
         id: {
           ...singleChoice,
           options: [
-            { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
-            { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
+            { isCorrect: true, label: "A (ID)" },
+            { isCorrect: false, label: "B (ID)" },
           ],
         },
       },
@@ -158,12 +155,12 @@ describe("question item", () => {
         categories: [
           {
             categoryKey: "category-1",
-            label: [{ kind: "text", text: "True" }],
+            label: "True",
             order: 1,
           },
           {
             categoryKey: "category-2",
-            label: [{ kind: "text", text: "False" }],
+            label: "False",
             order: 2,
           },
         ],
@@ -171,13 +168,13 @@ describe("question item", () => {
         statements: [
           {
             correctCategoryKey: "category-1",
-            label: [{ kind: "text", text: "Statement A" }],
+            label: "Statement A",
             order: 1,
             statementKey: "statement-1",
           },
           {
             correctCategoryKey: "category-2",
-            label: [{ kind: "text", text: "Statement B" }],
+            label: "Statement B",
             order: 2,
             statementKey: "statement-2",
           },

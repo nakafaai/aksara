@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { pathViolations } from "#scripts/check-paths";
+import { pathViolations } from "#scripts/check/paths";
 
 describe("path policy", () => {
   it("rejects alternate toolchains, JavaScript, and long semantic names", () => {

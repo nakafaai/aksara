@@ -7,48 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Everyone should take the largest possible dose of every vitamin.",
-            },
-          ],
+          label:
+            "Everyone should take the largest possible dose of every vitamin.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Supplements always cure an infection after symptoms begin.",
-            },
-          ],
+          label: "Supplements always cure an infection after symptoms begin.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A nutrient deficiency has no effect on normal immune function.",
-            },
-          ],
+          label:
+            "A nutrient deficiency has no effect on normal immune function.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Vitamin and mineral supplements prevent every common cold.",
-            },
-          ],
+          label: "Vitamin and mineral supplements prevent every common cold.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
-            },
-          ],
+          label:
+            "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
         },
       ],
     },

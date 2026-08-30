@@ -7,48 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Jede tropische Fischpopulation wandert polwärts",
-            },
-          ],
+          label: "Jede tropische Fischpopulation wandert polwärts",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben",
-            },
-          ],
+          label:
+            "Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Beobachtung eines einzelnen polwärts wandernden Fisches reicht als Beweis für die Erwärmung des Ozeans aus",
-            },
-          ],
+          label:
+            "Die Beobachtung eines einzelnen polwärts wandernden Fisches reicht als Beweis für die Erwärmung des Ozeans aus",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der Klimawandel beeinflusst die Produktivität der Fischerei in jeder Region gleich",
-            },
-          ],
+          label:
+            "Der Klimawandel beeinflusst die Produktivität der Fischerei in jeder Region gleich",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Für tropische und subtropische Fischereien werden größere Produktivitätsgewinne erwartet als für polnähere Regionen",
-            },
-          ],
+          label:
+            "Für tropische und subtropische Fischereien werden größere Produktivitätsgewinne erwartet als für polnähere Regionen",
         },
       ],
     },
@@ -57,48 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Every tropical fish population moves toward the poles",
-            },
-          ],
+          label: "Every tropical fish population moves toward the poles",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Warming has shifted the distributions of many marine species toward the poles",
-            },
-          ],
+          label:
+            "Warming has shifted the distributions of many marine species toward the poles",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Observing one fish move toward a pole is enough to prove ocean warming",
-            },
-          ],
+          label:
+            "Observing one fish move toward a pole is enough to prove ocean warming",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Climate change affects fisheries productivity equally in every region",
-            },
-          ],
+          label:
+            "Climate change affects fisheries productivity equally in every region",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tropical and subtropical fisheries are projected to gain more productivity than poleward regions",
-            },
-          ],
+          label:
+            "Tropical and subtropical fisheries are projected to gain more productivity than poleward regions",
         },
       ],
     },
@@ -107,48 +65,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Setiap populasi ikan tropis berpindah ke arah kutub",
-            },
-          ],
+          label: "Setiap populasi ikan tropis berpindah ke arah kutub",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
-            },
-          ],
+          label:
+            "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mengamati satu ikan bergerak ke arah kutub sudah cukup untuk membuktikan pemanasan laut",
-            },
-          ],
+          label:
+            "Mengamati satu ikan bergerak ke arah kutub sudah cukup untuk membuktikan pemanasan laut",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Perubahan iklim memengaruhi produktivitas perikanan secara sama di setiap wilayah",
-            },
-          ],
+          label:
+            "Perubahan iklim memengaruhi produktivitas perikanan secara sama di setiap wilayah",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Perikanan tropis dan subtropis diproyeksikan memperoleh kenaikan produktivitas yang lebih besar daripada wilayah dekat kutub",
-            },
-          ],
+          label:
+            "Perikanan tropis dan subtropis diproyeksikan memperoleh kenaikan produktivitas yang lebih besar daripada wilayah dekat kutub",
         },
       ],
     },

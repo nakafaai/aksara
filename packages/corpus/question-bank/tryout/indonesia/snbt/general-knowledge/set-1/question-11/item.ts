@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "mangelnde Klarheit." }],
+          label: "mangelnde Klarheit.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Gewissheit." }],
+          label: "Gewissheit.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Aktualität." }],
+          label: "Aktualität.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Vielfalt." }],
+          label: "Vielfalt.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Einheitlichkeit." }],
+          label: "Einheitlichkeit.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "lack of clarity." }],
+          label: "lack of clarity.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "certainty." }],
+          label: "certainty.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "timeliness." }],
+          label: "timeliness.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "diversity." }],
+          label: "diversity.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "uniformity." }],
+          label: "uniformity.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "ketidakjelasan." }],
+          label: "ketidakjelasan.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "kepastian." }],
+          label: "kepastian.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ketepatwaktuan." }],
+          label: "ketepatwaktuan.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "keanekaragaman." }],
+          label: "keanekaragaman.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "keseragaman." }],
+          label: "keseragaman.",
         },
       ],
     },

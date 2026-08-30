@@ -7,53 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ m und }5\\text{ m}",
-            },
-          ],
+          label: "$$5\\text{ m und }5\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ m und }6\\text{ m}",
-            },
-          ],
+          label: "$$5\\text{ m und }6\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\text{ m und }6\\text{ m}",
-            },
-          ],
+          label: "$$4\\text{ m und }6\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "6\\text{ m und }4\\text{ m}",
-            },
-          ],
+          label: "$$6\\text{ m und }4\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "8\\text{ m und }2\\text{ m}",
-            },
-          ],
+          label: "$$8\\text{ m und }2\\text{ m}$$",
         },
       ],
     },
@@ -62,53 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ Meters and }5\\text{ Meters}",
-            },
-          ],
+          label: "$$5\\text{ Meters and }5\\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ Meters and }6\\text{ Meters}",
-            },
-          ],
+          label: "$$5\\text{ Meters and }6\\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\text{ Meters and }6\\text{ Meters}",
-            },
-          ],
+          label: "$$4\\text{ Meters and }6\\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "6\\text{ Meters and }4\\text{ Meters}",
-            },
-          ],
+          label: "$$6\\text{ Meters and }4\\text{ Meters}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "8\\text{ Meters and }2\\text{ Meters}",
-            },
-          ],
+          label: "$$8\\text{ Meters and }2\\text{ Meters}$$",
         },
       ],
     },
@@ -117,53 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ Meter dan }5\\text{ Meter}",
-            },
-          ],
+          label: "$$5\\text{ Meter dan }5\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "5\\text{ Meter dan }6\\text{ Meter}",
-            },
-          ],
+          label: "$$5\\text{ Meter dan }6\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "4\\text{ Meter dan }6\\text{ Meter}",
-            },
-          ],
+          label: "$$4\\text{ Meter dan }6\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "6\\text{ Meter dan }4\\text{ Meter}",
-            },
-          ],
+          label: "$$6\\text{ Meter dan }4\\text{ Meter}$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              display: "block",
-              kind: "math",
-              math: "8\\text{ Meter dan }2\\text{ Meter}",
-            },
-          ],
+          label: "$$8\\text{ Meter dan }2\\text{ Meter}$$",
         },
       ],
     },

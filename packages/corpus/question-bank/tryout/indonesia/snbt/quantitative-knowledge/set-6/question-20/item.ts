@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x + 30" }],
+          label: "$$-9x^2 + 30x + 30$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x - 20" }],
+          label: "$$-9x^2 + 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 30x - 20" }],
+          label: "$$-9x^2 - 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30" }],
+          label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 20" }],
+          label: "$$-9x^2 - 20$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x + 30" }],
+          label: "$$-9x^2 + 30x + 30$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x - 20" }],
+          label: "$$-9x^2 + 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 30x - 20" }],
+          label: "$$-9x^2 - 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30" }],
+          label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 20" }],
+          label: "$$-9x^2 - 20$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x + 30" }],
+          label: "$$-9x^2 + 30x + 30$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30x - 20" }],
+          label: "$$-9x^2 + 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 30x - 20" }],
+          label: "$$-9x^2 - 30x - 20$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 + 30" }],
+          label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "-9x^2 - 20" }],
+          label: "$$-9x^2 - 20$$",
         },
       ],
     },

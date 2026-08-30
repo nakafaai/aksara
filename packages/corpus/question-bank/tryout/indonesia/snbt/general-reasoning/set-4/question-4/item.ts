@@ -7,43 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "10{,}85\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ und $$10{,}85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "10{,}58\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ und $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "53{,}2\\text{ g}" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "10{,}58\\text{ g}" },
-          ],
+          label: "$$53{,}2\\text{ g}$$ und $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "53{,}2\\text{ g}" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "10{,}85\\text{ g}" },
-          ],
+          label: "$$53{,}2\\text{ g}$$ und $$10{,}85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "10{,}50\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ und $$10{,}50\\text{ g}$$",
         },
       ],
     },
@@ -52,43 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52.3\\text{ g}" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "10.85\\text{ g}" },
-          ],
+          label: "$$52.3\\text{ g}$$ and $$10.85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52.3\\text{ g}" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "10.58\\text{ g}" },
-          ],
+          label: "$$52.3\\text{ g}$$ and $$10.58\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "53.2\\text{ g}" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "10.58\\text{ g}" },
-          ],
+          label: "$$53.2\\text{ g}$$ and $$10.58\\text{ g}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "53.2\\text{ g}" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "10.85\\text{ g}" },
-          ],
+          label: "$$53.2\\text{ g}$$ and $$10.85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52.3\\text{ g}" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "10.50\\text{ g}" },
-          ],
+          label: "$$52.3\\text{ g}$$ and $$10.50\\text{ g}$$",
         },
       ],
     },
@@ -97,43 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "10{,}85\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ dan $$10{,}85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "10{,}58\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "53{,}2\\text{ g}" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "10{,}58\\text{ g}" },
-          ],
+          label: "$$53{,}2\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "53{,}2\\text{ g}" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "10{,}85\\text{ g}" },
-          ],
+          label: "$$53{,}2\\text{ g}$$ dan $$10{,}85\\text{ g}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "52{,}3\\text{ g}" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "10{,}50\\text{ g}" },
-          ],
+          label: "$$52{,}3\\text{ g}$$ dan $$10{,}50\\text{ g}$$",
         },
       ],
     },

@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Semua kelompok selalu mempunyai tujuan yang sama",
-            },
-          ],
+          label: "Semua kelompok selalu mempunyai tujuan yang sama",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Perang tidak pernah menghasilkan perubahan politik",
-            },
-          ],
+          label: "Perang tidak pernah menghasilkan perubahan politik",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
-            },
-          ],
+          label:
+            "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kelompok yang bertikai selalu memiliki informasi lengkap",
-            },
-          ],
+          label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Lembaga internasional menyelesaikan setiap perselisihan",
-            },
-          ],
+          label: "Lembaga internasional menyelesaikan setiap perselisihan",
         },
       ],
     },

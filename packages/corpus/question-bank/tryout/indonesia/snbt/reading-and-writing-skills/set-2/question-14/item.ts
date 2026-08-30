@@ -7,35 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
-            },
-          ],
+          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "*dienen* durch *dient* ersetzen." }],
+          label: "*dienen* durch *dient* ersetzen.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "das Wort *auch* entfernen." }],
+          label: "das Wort *auch* entfernen.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "*Bezugsgrundlage* durch *Schätzung* ersetzen.",
-            },
-          ],
+          label: "*Bezugsgrundlage* durch *Schätzung* ersetzen.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "das Wort *den* vor *aktuellen* einfügen." },
-          ],
+          label: "das Wort *den* vor *aktuellen* einfügen.",
         },
       ],
     },
@@ -44,34 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "removing the word *Regarding* at the beginning of the sentence.",
-            },
-          ],
+          label:
+            "removing the word *Regarding* at the beginning of the sentence.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "replacing *provide* with *provides*." },
-          ],
+          label: "replacing *provide* with *provides*.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "removing the word *also*." }],
+          label: "removing the word *also*.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "replacing *benchmark* with *estimate*." },
-          ],
+          label: "replacing *benchmark* with *estimate*.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "adding the word *the* before *current*." },
-          ],
+          label: "adding the word *the* before *current*.",
         },
       ],
     },
@@ -80,43 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "menghilangkan kata *mengenai* pada awal kalimat.",
-            },
-          ],
+          label: "menghilangkan kata *mengenai* pada awal kalimat.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "mengganti *menyediakan* dengan *disediakan*.",
-            },
-          ],
+          label: "mengganti *menyediakan* dengan *disediakan*.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "menghilangkan kata *juga*." }],
+          label: "menghilangkan kata *juga*.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "mengganti *tolok ukur* dengan *perkiraan*.",
-            },
-          ],
+          label: "mengganti *tolok ukur* dengan *perkiraan*.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "menambahkan kata *yang* sebelum *terkini*.",
-            },
-          ],
+          label: "menambahkan kata *yang* sebelum *terkini*.",
         },
       ],
     },

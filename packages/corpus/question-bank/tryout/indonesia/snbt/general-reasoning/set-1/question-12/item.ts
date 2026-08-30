@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "72\\text{ Stunden}" },
-          ],
+          label: "$$72\\text{ Stunden}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "132\\text{ Stunden}" },
-          ],
+          label: "$$132\\text{ Stunden}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "144\\text{ Stunden}" },
-          ],
+          label: "$$144\\text{ Stunden}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "240\\text{ Stunden}" },
-          ],
+          label: "$$240\\text{ Stunden}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "360\\text{ Stunden}" },
-          ],
+          label: "$$360\\text{ Stunden}$$",
         },
       ],
     },
@@ -42,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "72\\text{ hours}" }],
+          label: "$$72\\text{ hours}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "132\\text{ hours}" },
-          ],
+          label: "$$132\\text{ hours}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "144\\text{ hours}" },
-          ],
+          label: "$$144\\text{ hours}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "240\\text{ hours}" },
-          ],
+          label: "$$240\\text{ hours}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "360\\text{ hours}" },
-          ],
+          label: "$$360\\text{ hours}$$",
         },
       ],
     },
@@ -75,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "72\\text{ jam}" }],
+          label: "$$72\\text{ jam}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "132\\text{ jam}" }],
+          label: "$$132\\text{ jam}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "144\\text{ jam}" }],
+          label: "$$144\\text{ jam}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "240\\text{ jam}" }],
+          label: "$$240\\text{ jam}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "360\\text{ jam}" }],
+          label: "$$360\\text{ jam}$$",
         },
       ],
     },

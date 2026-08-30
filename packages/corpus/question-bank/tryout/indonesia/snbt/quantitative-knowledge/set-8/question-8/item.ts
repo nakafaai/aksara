@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " Jahre" },
-          ],
+          label: "$$2$$ Jahre",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " Jahre" },
-          ],
+          label: "$$3$$ Jahre",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " Jahre" },
-          ],
+          label: "$$4$$ Jahre",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " Jahre" },
-          ],
+          label: "$$5$$ Jahre",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: " Jahre" },
-          ],
+          label: "$$6$$ Jahre",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " years" },
-          ],
+          label: "$$2$$ years",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " years" },
-          ],
+          label: "$$3$$ years",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " years" },
-          ],
+          label: "$$4$$ years",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " years" },
-          ],
+          label: "$$5$$ years",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: " years" },
-          ],
+          label: "$$6$$ years",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2" },
-            { kind: "text", text: " tahun" },
-          ],
+          label: "$$2$$ tahun",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3" },
-            { kind: "text", text: " tahun" },
-          ],
+          label: "$$3$$ tahun",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "4" },
-            { kind: "text", text: " tahun" },
-          ],
+          label: "$$4$$ tahun",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "5" },
-            { kind: "text", text: " tahun" },
-          ],
+          label: "$$5$$ tahun",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "6" },
-            { kind: "text", text: " tahun" },
-          ],
+          label: "$$6$$ tahun",
         },
       ],
     },

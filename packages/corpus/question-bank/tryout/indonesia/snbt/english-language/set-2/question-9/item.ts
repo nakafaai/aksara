@@ -7,48 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The analysis included 1,311 Afro-Palaearctic songbird species.",
-            },
-          ],
+          label:
+            "The analysis included 1,311 Afro-Palaearctic songbird species.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Colonization from a higher- to a lower-pathogen region was more frequent.",
-            },
-          ],
+          label:
+            "Colonization from a higher- to a lower-pathogen region was more frequent.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "MHC-I genes are involved in pathogen recognition.",
-            },
-          ],
+          label: "MHC-I genes are involved in pathogen recognition.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "An individual bird immediately loses immune genes when it migrates.",
-            },
-          ],
+          label:
+            "An individual bird immediately loses immune genes when it migrates.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "High MHC-I diversity may involve both benefits and costs.",
-            },
-          ],
+          label: "High MHC-I diversity may involve both benefits and costs.",
         },
       ],
     },

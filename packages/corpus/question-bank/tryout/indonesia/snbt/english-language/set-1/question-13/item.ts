@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "To advertise employment opportunities at UNESCO.",
-            },
-          ],
+          label: "To advertise employment opportunities at UNESCO.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "To argue that culture is UNESCO's only field of work.",
-            },
-          ],
+          label: "To argue that culture is UNESCO's only field of work.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "To explain why UNESCO was created and how its mission guides its current work.",
-            },
-          ],
+          label:
+            "To explain why UNESCO was created and how its mission guides its current work.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "To compare UNESCO with every other United Nations agency.",
-            },
-          ],
+          label: "To compare UNESCO with every other United Nations agency.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "To criticize Member States for refusing all cooperation.",
-            },
-          ],
+          label: "To criticize Member States for refusing all cooperation.",
         },
       ],
     },

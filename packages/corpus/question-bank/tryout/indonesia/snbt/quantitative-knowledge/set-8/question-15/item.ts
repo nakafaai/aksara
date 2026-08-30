@@ -7,31 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1007}{2015}" },
-          ],
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1008}{2015}" },
-          ],
+          label: "$$-\\frac{1008}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{2015}" }],
+          label: "$$\\frac{1}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1007}{2015}" },
-          ],
+          label: "$$\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1008}{2015}" },
-          ],
+          label: "$$\\frac{1008}{2015}$$",
         },
       ],
     },
@@ -40,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1007}{2015}" },
-          ],
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1008}{2015}" },
-          ],
+          label: "$$-\\frac{1008}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{2015}" }],
+          label: "$$\\frac{1}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1007}{2015}" },
-          ],
+          label: "$$\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1008}{2015}" },
-          ],
+          label: "$$\\frac{1008}{2015}$$",
         },
       ],
     },
@@ -73,31 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1007}{2015}" },
-          ],
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-\\frac{1008}{2015}" },
-          ],
+          label: "$$-\\frac{1008}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1}{2015}" }],
+          label: "$$\\frac{1}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1007}{2015}" },
-          ],
+          label: "$$\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1008}{2015}" },
-          ],
+          label: "$$\\frac{1008}{2015}$$",
         },
       ],
     },

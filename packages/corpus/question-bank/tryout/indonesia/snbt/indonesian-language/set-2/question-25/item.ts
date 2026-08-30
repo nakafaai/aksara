@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Seluruh individu meninggal dalam badai yang sama",
-            },
-          ],
+          label: "Seluruh individu meninggal dalam badai yang sama",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
-            },
-          ],
+          label:
+            "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kelompok Mediterania timur merupakan kelompok tertua",
-            },
-          ],
+          label: "Kelompok Mediterania timur merupakan kelompok tertua",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Semua individu Asia Selatan meninggal pada hari yang sama",
-            },
-          ],
+          label: "Semua individu Asia Selatan meninggal pada hari yang sama",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penanggalan radiokarbon membuktikan penyebab kematian",
-            },
-          ],
+          label: "Penanggalan radiokarbon membuktikan penyebab kematian",
         },
       ],
     },

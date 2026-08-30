@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ oder } -2" },
-          ],
+          label: "$$4 \\text{ oder } -2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4 \\text{ oder } 2" },
-          ],
+          label: "$$-4 \\text{ oder } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2 \\text{ oder } 3" },
-          ],
+          label: "$$-2 \\text{ oder } 3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ oder } -3" },
-          ],
+          label: "$$2 \\text{ oder } -3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3 \\text{ oder } 8" },
-          ],
+          label: "$$3 \\text{ oder } 8$$",
         },
       ],
     },
@@ -42,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ or } -2" },
-          ],
+          label: "$$4 \\text{ or } -2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4 \\text{ or } 2" },
-          ],
+          label: "$$-4 \\text{ or } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2 \\text{ or } 3" },
-          ],
+          label: "$$-2 \\text{ or } 3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ or } -3" },
-          ],
+          label: "$$2 \\text{ or } -3$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "3 \\text{ or } 8" }],
+          label: "$$3 \\text{ or } 8$$",
         },
       ],
     },
@@ -75,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "4 \\text{ atau } -2" },
-          ],
+          label: "$$4 \\text{ atau } -2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-4 \\text{ atau } 2" },
-          ],
+          label: "$$-4 \\text{ atau } 2$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "-2 \\text{ atau } 3" },
-          ],
+          label: "$$-2 \\text{ atau } 3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "2 \\text{ atau } -3" },
-          ],
+          label: "$$2 \\text{ atau } -3$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "3 \\text{ atau } 8" },
-          ],
+          label: "$$3 \\text{ atau } 8$$",
         },
       ],
     },

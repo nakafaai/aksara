@@ -12,29 +12,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{4^2}=4" },
-            { kind: "text", text: ", da " },
-            { display: "inline", kind: "math", math: "4>0" },
-          ],
+          label: "$\\sqrt{4^2}=4$, da $4>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-4)^2=4^2" }],
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "4^{-1}=-4" }],
+          label: "$4^{-1}=-4$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "4^{\\frac12}\\cdot 4^{\\frac12}=4",
-            },
-          ],
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },
@@ -43,29 +33,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{4^2}=4" },
-            { kind: "text", text: " because " },
-            { display: "inline", kind: "math", math: "4>0" },
-          ],
+          label: "$\\sqrt{4^2}=4$ because $4>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-4)^2=4^2" }],
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "4^{-1}=-4" }],
+          label: "$4^{-1}=-4$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "4^{\\frac12}\\cdot 4^{\\frac12}=4",
-            },
-          ],
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },
@@ -74,29 +54,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { display: "inline", kind: "math", math: "\\sqrt{4^2}=4" },
-            { kind: "text", text: " untuk " },
-            { display: "inline", kind: "math", math: "4>0" },
-          ],
+          label: "$\\sqrt{4^2}=4$ untuk $4>0$",
         },
         {
           isCorrect: true,
-          label: [{ display: "inline", kind: "math", math: "(-4)^2=4^2" }],
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: [{ display: "inline", kind: "math", math: "4^{-1}=-4" }],
+          label: "$4^{-1}=-4$",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              display: "inline",
-              kind: "math",
-              math: "4^{\\frac12}\\cdot 4^{\\frac12}=4",
-            },
-          ],
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },

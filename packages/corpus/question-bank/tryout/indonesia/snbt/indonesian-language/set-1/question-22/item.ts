@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
-            },
-          ],
+          label:
+            "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Percakapan tanpa tujuan di dalam suatu kelompok",
-            },
-          ],
+          label: "Percakapan tanpa tujuan di dalam suatu kelompok",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Kerja sama yang menghapus seluruh perbedaan",
-            },
-          ],
+          label: "Kerja sama yang menghapus seluruh perbedaan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pemungutan suara untuk menentukan pihak yang menang",
-            },
-          ],
+          label: "Pemungutan suara untuk menentukan pihak yang menang",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penyerahan penuh satu pihak kepada pihak lain",
-            },
-          ],
+          label: "Penyerahan penuh satu pihak kepada pihak lain",
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{13}" }],
+          label: "$$\\frac{32}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{33}{13}" }],
+          label: "$$\\frac{33}{13}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{34}{13}" }],
+          label: "$$\\frac{34}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{35}{13}" }],
+          label: "$$\\frac{35}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{36}{13}" }],
+          label: "$$\\frac{36}{13}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{13}" }],
+          label: "$$\\frac{32}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{33}{13}" }],
+          label: "$$\\frac{33}{13}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{34}{13}" }],
+          label: "$$\\frac{34}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{35}{13}" }],
+          label: "$$\\frac{35}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{36}{13}" }],
+          label: "$$\\frac{36}{13}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{32}{13}" }],
+          label: "$$\\frac{32}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{33}{13}" }],
+          label: "$$\\frac{33}{13}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{34}{13}" }],
+          label: "$$\\frac{34}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{35}{13}" }],
+          label: "$$\\frac{35}{13}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{36}{13}" }],
+          label: "$$\\frac{36}{13}$$",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "aber." }],
+          label: "aber.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "jedoch." }],
+          label: "jedoch.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "das." }],
+          label: "das.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "also." }],
+          label: "also.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "weil." }],
+          label: "weil.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "but." }],
+          label: "but.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "however." }],
+          label: "however.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "that." }],
+          label: "that.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "so." }],
+          label: "so.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "because." }],
+          label: "because.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "tetapi." }],
+          label: "tetapi.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "akan tetapi." }],
+          label: "akan tetapi.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "bahwa." }],
+          label: "bahwa.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "sehingga." }],
+          label: "sehingga.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "karena." }],
+          label: "karena.",
         },
       ],
     },

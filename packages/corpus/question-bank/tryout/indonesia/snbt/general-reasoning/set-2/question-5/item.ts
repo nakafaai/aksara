@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Hemden in " },
-            { display: "block", kind: "math", math: "2011\\text{-}2012" },
-          ],
+          label: "Hemden in $$2011\\text{-}2012$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Anzüge in " },
-            { display: "block", kind: "math", math: "2014\\text{-}2015" },
-          ],
+          label: "Anzüge in $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Hemden in " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Hemden in $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Anzüge in " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Anzüge in $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Hosen in " },
-            { display: "block", kind: "math", math: "2013\\text{-}2014" },
-          ],
+          label: "Hosen in $$2013\\text{-}2014$$",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Shirts in " },
-            { display: "block", kind: "math", math: "2011\\text{-}2012" },
-          ],
+          label: "Shirts in $$2011\\text{-}2012$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Suits in " },
-            { display: "block", kind: "math", math: "2014\\text{-}2015" },
-          ],
+          label: "Suits in $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Shirts in " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Shirts in $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Suits in " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Suits in $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pants in " },
-            { display: "block", kind: "math", math: "2013\\text{-}2014" },
-          ],
+          label: "Pants in $$2013\\text{-}2014$$",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Baju pada tahun " },
-            { display: "block", kind: "math", math: "2011\\text{-}2012" },
-          ],
+          label: "Baju pada tahun $$2011\\text{-}2012$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Jas pada tahun " },
-            { display: "block", kind: "math", math: "2014\\text{-}2015" },
-          ],
+          label: "Jas pada tahun $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Baju pada tahun " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Baju pada tahun $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jas pada tahun " },
-            { display: "block", kind: "math", math: "2012\\text{-}2013" },
-          ],
+          label: "Jas pada tahun $$2012\\text{-}2013$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Celana pada tahun " },
-            { display: "block", kind: "math", math: "2013\\text{-}2014" },
-          ],
+          label: "Celana pada tahun $$2013\\text{-}2014$$",
         },
       ],
     },

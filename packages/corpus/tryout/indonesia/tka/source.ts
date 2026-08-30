@@ -2,7 +2,7 @@ import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identi
 import { Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
 import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
-import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness";
+import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/schema";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 const EXAM_KEY = "tka";

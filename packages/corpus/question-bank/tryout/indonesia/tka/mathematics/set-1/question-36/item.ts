@@ -12,35 +12,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Das arithmetische Mittel ist " },
-            { display: "inline", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "Das arithmetische Mittel ist $3$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Der Median ist " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "Der Median ist $2$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Der Modalwert ist " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "Der Modalwert ist $2$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Die Spannweite ist " },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "Die Spannweite ist $4$.",
         },
       ],
     },
@@ -49,35 +33,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "The mean is " },
-            { display: "inline", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "The mean is $3$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "The median is " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "The median is $2$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "The mode is " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "The mode is $2$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The range is " },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "The range is $4$.",
         },
       ],
     },
@@ -86,35 +54,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Rata-ratanya " },
-            { display: "inline", kind: "math", math: "3" },
-            { kind: "text", text: "." },
-          ],
+          label: "Rata-ratanya $3$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Mediannya " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "Mediannya $2$.",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Modusnya " },
-            { display: "inline", kind: "math", math: "2" },
-            { kind: "text", text: "." },
-          ],
+          label: "Modusnya $2$.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Jangkauannya " },
-            { display: "inline", kind: "math", math: "4" },
-            { kind: "text", text: "." },
-          ],
+          label: "Jangkauannya $4$.",
         },
       ],
     },

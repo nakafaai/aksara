@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(2)" }],
+          label: "$$(2)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(5)" }],
+          label: "$$(5)$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "(7)" }],
+          label: "$$(7)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(10)" }],
+          label: "$$(10)$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "(4)" }],
+          label: "$$(4)$$",
         },
       ],
     },

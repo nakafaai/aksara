@@ -7,40 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
-            },
-          ],
+          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Menjaga pintu masuk rumah dari pencuri" },
-          ],
+          label: "Menjaga pintu masuk rumah dari pencuri",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Membawa hasil panen dari luar kota" }],
+          label: "Membawa hasil panen dari luar kota",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Menghias bagian hunian dengan lukisan dinding",
-            },
-          ],
+          label: "Menghias bagian hunian dengan lukisan dinding",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Menjual roti langsung kepada pembeli di jalan",
-            },
-          ],
+          label: "Menjual roti langsung kepada pembeli di jalan",
         },
       ],
     },

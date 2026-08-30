@@ -7,31 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
+          label: "$$\\frac{1170}{37}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
-          ],
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
-          ],
+          label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
-          ],
+          label: "$$\\frac{1170}{999}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
-          ],
+          label: "$$\\frac{1177}{999}$$",
         },
       ],
     },
@@ -40,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
+          label: "$$\\frac{1170}{37}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
-          ],
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
-          ],
+          label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
-          ],
+          label: "$$\\frac{1170}{999}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
-          ],
+          label: "$$\\frac{1177}{999}$$",
         },
       ],
     },
@@ -73,31 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{1170}{37}" }],
+          label: "$$\\frac{1170}{37}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{3510}{1111}" },
-          ],
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{111}" },
-          ],
+          label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1170}{999}" },
-          ],
+          label: "$$\\frac{1170}{999}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "\\frac{1177}{999}" },
-          ],
+          label: "$$\\frac{1177}{999}$$",
         },
       ],
     },

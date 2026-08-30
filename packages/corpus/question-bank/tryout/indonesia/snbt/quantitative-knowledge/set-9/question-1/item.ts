@@ -7,31 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7\\pi\\text{ cm}" }],
+          label: "$$7\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10\\pi\\text{ cm}" },
-          ],
+          label: "$$10\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12\\pi\\text{ cm}" },
-          ],
+          label: "$$12\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14\\pi\\text{ cm}" },
-          ],
+          label: "$$14\\pi\\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16\\pi\\text{ cm}" },
-          ],
+          label: "$$16\\pi\\text{ cm}$$",
         },
       ],
     },
@@ -40,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7\\pi\\text{ cm}" }],
+          label: "$$7\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10\\pi\\text{ cm}" },
-          ],
+          label: "$$10\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12\\pi\\text{ cm}" },
-          ],
+          label: "$$12\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14\\pi\\text{ cm}" },
-          ],
+          label: "$$14\\pi\\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16\\pi\\text{ cm}" },
-          ],
+          label: "$$16\\pi\\text{ cm}$$",
         },
       ],
     },
@@ -73,31 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "7\\pi\\text{ cm}" }],
+          label: "$$7\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "10\\pi\\text{ cm}" },
-          ],
+          label: "$$10\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "12\\pi\\text{ cm}" },
-          ],
+          label: "$$12\\pi\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "14\\pi\\text{ cm}" },
-          ],
+          label: "$$14\\pi\\text{ cm}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "16\\pi\\text{ cm}" },
-          ],
+          label: "$$16\\pi\\text{ cm}$$",
         },
       ],
     },

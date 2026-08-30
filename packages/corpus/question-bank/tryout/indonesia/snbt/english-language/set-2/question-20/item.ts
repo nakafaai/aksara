@@ -7,42 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "A biography of the first clerical worker" },
-          ],
+          label: "A biography of the first clerical worker",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A list of jobs that will certainly disappear next year",
-            },
-          ],
+          label: "A list of jobs that will certainly disappear next year",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The history of electricity generation" },
-          ],
+          label: "The history of electricity generation",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Instructions for building a language model from scratch",
-            },
-          ],
+          label: "Instructions for building a language model from scratch",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Examples of how workers and organizations can adapt tasks through training and social dialogue",
-            },
-          ],
+          label:
+            "Examples of how workers and organizations can adapt tasks through training and social dialogue",
         },
       ],
     },

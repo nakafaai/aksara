@@ -7,48 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Gajah betina selalu menjaga anaknya sendirian",
-            },
-          ],
+          label: "Gajah betina selalu menjaga anaknya sendirian",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
-            },
-          ],
+          label:
+            "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Gajah betina jumlahnya lebih banyak daripada jantan",
-            },
-          ],
+          label: "Gajah betina jumlahnya lebih banyak daripada jantan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Gajah betina selalu menempuh perjalanan paling jauh",
-            },
-          ],
+          label: "Gajah betina selalu menempuh perjalanan paling jauh",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Gajah betina selalu dikawal oleh gajah jantan",
-            },
-          ],
+          label: "Gajah betina selalu dikawal oleh gajah jantan",
         },
       ],
     },

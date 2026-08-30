@@ -5,19 +5,14 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: [{ kind: "text", text: "Guru" }] },
-        { isCorrect: true, label: [{ kind: "text", text: "Reporter" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Kepala Desa" }] },
+        { isCorrect: false, label: "Guru" },
+        { isCorrect: true, label: "Reporter" },
+        { isCorrect: false, label: "Kepala Desa" },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ketua acara adat Festival Munara Beba Byak Karon",
-            },
-          ],
+          label: "Ketua acara adat Festival Munara Beba Byak Karon",
         },
-        { isCorrect: false, label: [{ kind: "text", text: "Penyuluh" }] },
+        { isCorrect: false, label: "Penyuluh" },
       ],
     },
   },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{70}" }],
+          label: "$$\\frac{3}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{20}" }],
+          label: "$$\\frac{7}{20}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{12}{70}" }],
+          label: "$$\\frac{12}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{17}{20}" }],
+          label: "$$\\frac{17}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{61}{70}" }],
+          label: "$$\\frac{61}{70}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{70}" }],
+          label: "$$\\frac{3}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{20}" }],
+          label: "$$\\frac{7}{20}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{12}{70}" }],
+          label: "$$\\frac{12}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{17}{20}" }],
+          label: "$$\\frac{17}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{61}{70}" }],
+          label: "$$\\frac{61}{70}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{3}{70}" }],
+          label: "$$\\frac{3}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{7}{20}" }],
+          label: "$$\\frac{7}{20}$$",
         },
         {
           isCorrect: true,
-          label: [{ display: "block", kind: "math", math: "\\frac{12}{70}" }],
+          label: "$$\\frac{12}{70}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{17}{20}" }],
+          label: "$$\\frac{17}{20}$$",
         },
         {
           isCorrect: false,
-          label: [{ display: "block", kind: "math", math: "\\frac{61}{70}" }],
+          label: "$$\\frac{61}{70}$$",
         },
       ],
     },

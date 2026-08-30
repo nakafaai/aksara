@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "245 m²" }],
+          label: "245 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "250 m²" }],
+          label: "250 m²",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "255 m²" }],
+          label: "255 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "260 m²" }],
+          label: "260 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "265 m²" }],
+          label: "265 m²",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "245 m²" }],
+          label: "245 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "250 m²" }],
+          label: "250 m²",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "255 m²" }],
+          label: "255 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "260 m²" }],
+          label: "260 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "265 m²" }],
+          label: "265 m²",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "245 m²" }],
+          label: "245 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "250 m²" }],
+          label: "250 m²",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "255 m²" }],
+          label: "255 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "260 m²" }],
+          label: "260 m²",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "265 m²" }],
+          label: "265 m²",
         },
       ],
     },

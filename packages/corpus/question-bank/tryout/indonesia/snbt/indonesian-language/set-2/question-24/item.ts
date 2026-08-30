@@ -5,14 +5,14 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: [{ kind: "text", text: "Asia Selatan" }] },
+        { isCorrect: true, label: "Asia Selatan" },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Mediterania timur" }],
+          label: "Mediterania timur",
         },
-        { isCorrect: false, label: [{ kind: "text", text: "Asia Tenggara" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Afrika Barat" }] },
-        { isCorrect: false, label: [{ kind: "text", text: "Eropa Utara" }] },
+        { isCorrect: false, label: "Asia Tenggara" },
+        { isCorrect: false, label: "Afrika Barat" },
+        { isCorrect: false, label: "Eropa Utara" },
       ],
     },
   },

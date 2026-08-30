@@ -7,38 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}15" },
-            { kind: "text", text: " Teil" },
-          ],
+          label: "$$0{,}15$$ Teil",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}3" },
-            { kind: "text", text: " Teil" },
-          ],
+          label: "$$0{,}3$$ Teil",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}45" },
-            { kind: "text", text: " Teil" },
-          ],
+          label: "$$0{,}45$$ Teil",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}6" },
-            { kind: "text", text: " Teil" },
-          ],
+          label: "$$0{,}6$$ Teil",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "0{,}75" },
-            { kind: "text", text: " Teil" },
-          ],
+          label: "$$0{,}75$$ Teil",
         },
       ],
     },
@@ -47,38 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0.15" },
-            { kind: "text", text: " part" },
-          ],
+          label: "$$0.15$$ part",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0.3" },
-            { kind: "text", text: " part" },
-          ],
+          label: "$$0.3$$ part",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0.45" },
-            { kind: "text", text: " part" },
-          ],
+          label: "$$0.45$$ part",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0.6" },
-            { kind: "text", text: " part" },
-          ],
+          label: "$$0.6$$ part",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "0.75" },
-            { kind: "text", text: " part" },
-          ],
+          label: "$$0.75$$ part",
         },
       ],
     },
@@ -87,38 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}15" },
-            { kind: "text", text: " bagian" },
-          ],
+          label: "$$0{,}15$$ bagian",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}3" },
-            { kind: "text", text: " bagian" },
-          ],
+          label: "$$0{,}3$$ bagian",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}45" },
-            { kind: "text", text: " bagian" },
-          ],
+          label: "$$0{,}45$$ bagian",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0{,}6" },
-            { kind: "text", text: " bagian" },
-          ],
+          label: "$$0{,}6$$ bagian",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "0{,}75" },
-            { kind: "text", text: " bagian" },
-          ],
+          label: "$$0{,}75$$ bagian",
         },
       ],
     },

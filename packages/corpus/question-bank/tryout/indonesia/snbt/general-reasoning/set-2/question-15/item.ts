@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der staatliche Ankaufspreis für GKP sinkt von Januar bis April durchgehend",
-            },
-          ],
+          label:
+            "Der staatliche Ankaufspreis für GKP sinkt von Januar bis April durchgehend",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der Erzeugerpreis für Rohreis steigt und fällt in jedem der vier Monate",
-            },
-          ],
+          label:
+            "Der Erzeugerpreis für Rohreis steigt und fällt in jedem der vier Monate",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
-            },
-          ],
+          label:
+            "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
-            },
-          ],
+          label:
+            "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Im März und April ist die Differenz zwischen Erzeugerpreis und staatlichem Ankaufspreis gleich groß",
-            },
-          ],
+          label:
+            "Im März und April ist die Differenz zwischen Erzeugerpreis und staatlichem Ankaufspreis gleich groß",
         },
       ],
     },
@@ -57,48 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The government purchase price for grain, GKP, from farmers always decreases from January to April",
-            },
-          ],
+          label:
+            "The government purchase price for grain, GKP, from farmers always decreases from January to April",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Grain prices at the farmer level always fluctuate (up and down) during the last four months",
-            },
-          ],
+          label:
+            "Grain prices at the farmer level always fluctuate (up and down) during the last four months",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
-            },
-          ],
+          label:
+            "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The government purchase price for GKP remained unchanged from January to April",
-            },
-          ],
+          label:
+            "The government purchase price for GKP remained unchanged from January to April",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The lowest difference between grain prices and government purchase prices occurred in April as happened in March",
-            },
-          ],
+          label:
+            "The lowest difference between grain prices and government purchase prices occurred in April as happened in March",
         },
       ],
     },
@@ -107,48 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Harga pembelian pemerintah terhadap gabah, GKP, petani selalu mengalami penurunan dari Januari hingga April",
-            },
-          ],
+          label:
+            "Harga pembelian pemerintah terhadap gabah, GKP, petani selalu mengalami penurunan dari Januari hingga April",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Harga gabah di tingkat petani selalu mengalami naik turun (fluktuasi) selama empat bulan terakhir",
-            },
-          ],
+          label:
+            "Harga gabah di tingkat petani selalu mengalami naik turun (fluktuasi) selama empat bulan terakhir",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
-            },
-          ],
+          label:
+            "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
-            },
-          ],
+          label:
+            "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Selisih harga gabah dengan harga pembelian pemerintah terendah terjadi pada bulan April sebagaimana yang terjadi pada bulan Maret",
-            },
-          ],
+          label:
+            "Selisih harga gabah dengan harga pembelian pemerintah terendah terjadi pada bulan April sebagaimana yang terjadi pada bulan Maret",
         },
       ],
     },

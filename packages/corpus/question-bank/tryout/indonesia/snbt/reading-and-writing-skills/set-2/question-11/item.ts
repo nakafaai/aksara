@@ -7,48 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Entwicklung der indonesischen Landwirtschaft",
-            },
-          ],
+          label: "Die Entwicklung der indonesischen Landwirtschaft",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
-            },
-          ],
+          label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der Rückgang landwirtschaftlicher Einzelbetriebe",
-            },
-          ],
+          label: "Der Rückgang landwirtschaftlicher Einzelbetriebe",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Warum braucht Indonesien eine Modernisierung der Landwirtschaft?",
-            },
-          ],
+          label:
+            "Warum braucht Indonesien eine Modernisierung der Landwirtschaft?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Landwirtschaftszählung 2023 wurde in ganz Indonesien durchgeführt",
-            },
-          ],
+          label:
+            "Die Landwirtschaftszählung 2023 wurde in ganz Indonesien durchgeführt",
         },
       ],
     },
@@ -57,45 +34,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The Development of Indonesian Agriculture" },
-          ],
+          label: "The Development of Indonesian Agriculture",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "A Profile from Indonesia's 2023 Agricultural Census",
-            },
-          ],
+          label: "A Profile from Indonesia's 2023 Agricultural Census",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The Decline in Individual Agricultural Holdings",
-            },
-          ],
+          label: "The Decline in Individual Agricultural Holdings",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Why Does Indonesia Need Agricultural Modernization?",
-            },
-          ],
+          label: "Why Does Indonesia Need Agricultural Modernization?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The 2023 Agricultural Census Was Conducted Across Indonesia",
-            },
-          ],
+          label: "The 2023 Agricultural Census Was Conducted Across Indonesia",
         },
       ],
     },
@@ -104,40 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Perkembangan Pertanian Indonesia" }],
+          label: "Perkembangan Pertanian Indonesia",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Potret dari Sensus Pertanian Indonesia 2023",
-            },
-          ],
+          label: "Potret dari Sensus Pertanian Indonesia 2023",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penurunan Usaha Pertanian Perorangan" },
-          ],
+          label: "Penurunan Usaha Pertanian Perorangan",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
-            },
-          ],
+          label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sensus Pertanian 2023 Dilaksanakan di Seluruh Indonesia",
-            },
-          ],
+          label: "Sensus Pertanian 2023 Dilaksanakan di Seluruh Indonesia",
         },
       ],
     },

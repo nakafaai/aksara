@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "vollständige Verdauung." }],
+          label: "vollständige Verdauung.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "schnelle Fermentation." }],
+          label: "schnelle Fermentation.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "unvollständige Aufnahme." }],
+          label: "unvollständige Aufnahme.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "übermäßige Enzymbildung." }],
+          label: "übermäßige Enzymbildung.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Vorliebe für ein Lebensmittel." }],
+          label: "Vorliebe für ein Lebensmittel.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "complete digestion." }],
+          label: "complete digestion.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "rapid fermentation." }],
+          label: "rapid fermentation.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "incomplete absorption." }],
+          label: "incomplete absorption.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "excess enzyme production." }],
+          label: "excess enzyme production.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "food preference." }],
+          label: "food preference.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "pencernaan sempurna." }],
+          label: "pencernaan sempurna.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "fermentasi cepat." }],
+          label: "fermentasi cepat.",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "penyerapan yang tidak sempurna." }],
+          label: "penyerapan yang tidak sempurna.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "produksi enzim berlebih." }],
+          label: "produksi enzim berlebih.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "kesukaan terhadap makanan." }],
+          label: "kesukaan terhadap makanan.",
         },
       ],
     },

@@ -7,43 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Der Verkauf von Hosen ist " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " geringer als der von Hemden" },
-          ],
+          label: "Der Verkauf von Hosen ist $$10$$ geringer als der von Hemden",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Der Verkauf von Anzügen ist " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " höher als der von Hosen" },
-          ],
+          label: "Der Verkauf von Anzügen ist $$35$$ höher als der von Hosen",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Zusammen werden weniger als " },
-            { display: "block", kind: "math", math: "70" },
-            { kind: "text", text: " Hemden und Hosen verkauft" },
-          ],
+          label: "Zusammen werden weniger als $$70$$ Hemden und Hosen verkauft",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Der Verkauf von Hemden ist " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " höher als der von Hosen" },
-          ],
+          label: "Der Verkauf von Hemden ist $$10$$ höher als der von Hosen",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Der Verkauf von Hosen ist " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " geringer als der von Anzügen" },
-          ],
+          label:
+            "Der Verkauf von Hosen ist $$35$$ geringer als der von Anzügen",
         },
       ],
     },
@@ -52,45 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pants sales are " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " fewer than shirts" },
-          ],
+          label: "Pants sales are $$10$$ fewer than shirts",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Suits sales are " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " more than pants" },
-          ],
+          label: "Suits sales are $$35$$ more than pants",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "The combined number of shirts and pants sold is less than ",
-            },
-            { display: "block", kind: "math", math: "70" },
-          ],
+          label:
+            "The combined number of shirts and pants sold is less than $$70$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Shirts sales are " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " more than pants" },
-          ],
+          label: "Shirts sales are $$10$$ more than pants",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pants sales are " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " less than suits" },
-          ],
+          label: "Pants sales are $$35$$ less than suits",
         },
       ],
     },
@@ -99,45 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penjualan celana " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " lebih sedikit dari baju" },
-          ],
+          label: "Penjualan celana $$10$$ lebih sedikit dari baju",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penjualan jas " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " lebih banyak dari celana" },
-          ],
+          label: "Penjualan jas $$35$$ lebih banyak dari celana",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Jumlah penjualan baju dan celana kurang dari ",
-            },
-            { display: "block", kind: "math", math: "70" },
-          ],
+          label: "Jumlah penjualan baju dan celana kurang dari $$70$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penjualan baju " },
-            { display: "block", kind: "math", math: "10" },
-            { kind: "text", text: " lebih banyak dari celana" },
-          ],
+          label: "Penjualan baju $$10$$ lebih banyak dari celana",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penjualan celana " },
-            { display: "block", kind: "math", math: "35" },
-            { kind: "text", text: " lebih sedikit dari jas" },
-          ],
+          label: "Penjualan celana $$35$$ lebih sedikit dari jas",
         },
       ],
     },

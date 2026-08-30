@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong ybeeppz! yum!meeongw" }],
+          label: "ong ybeeppz! yum!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum ybeeppzpz! ong!meeongw" }],
+          label: "yum ybeeppzpz! ong!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum !meeongw ongybeeppz!" }],
+          label: "yum !meeongw ongybeeppz!",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "yum y!meeongw ongbeeppzpz!" }],
+          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong beeppz! yum y!meeongw" }],
+          label: "ong beeppz! yum y!meeongw",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong ybeeppz! yum!meeongw" }],
+          label: "ong ybeeppz! yum!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum ybeeppzpz! ong!meeongw" }],
+          label: "yum ybeeppzpz! ong!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum !meeongw ongybeeppz!" }],
+          label: "yum !meeongw ongybeeppz!",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "yum y!meeongw ongbeeppzpz!" }],
+          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong beeppz! yum y!meeongw" }],
+          label: "ong beeppz! yum y!meeongw",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong ybeeppz! yum!meeongw" }],
+          label: "ong ybeeppz! yum!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum ybeeppzpz! ong!meeongw" }],
+          label: "yum ybeeppzpz! ong!meeongw",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "yum !meeongw ongybeeppz!" }],
+          label: "yum !meeongw ongybeeppz!",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "yum y!meeongw ongbeeppzpz!" }],
+          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "ong beeppz! yum y!meeongw" }],
+          label: "ong beeppz! yum y!meeongw",
         },
       ],
     },

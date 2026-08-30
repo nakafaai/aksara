@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
-            },
-          ],
+          label:
+            "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
-            },
-          ],
+          label:
+            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die wöchentlichen Verkaufszahlen der Bergo-Tücher bilden eine arithmetische Folge.",
-            },
-          ],
+          label:
+            "Die wöchentlichen Verkaufszahlen der Bergo-Tücher bilden eine arithmetische Folge.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Von jedem Kopftuchmodell werden in jeder Woche mehr Stück als in der Vorwoche verkauft.",
-            },
-          ],
+          label:
+            "Von jedem Kopftuchmodell werden in jeder Woche mehr Stück als in der Vorwoche verkauft.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Verkaufszahl der Bergo-Tücher steigt von Woche 1 bis Woche 4 am wenigsten.",
-            },
-          ],
+          label:
+            "Die Verkaufszahl der Bergo-Tücher steigt von Woche 1 bis Woche 4 am wenigsten.",
         },
       ],
     },
@@ -57,48 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pashmina headscarf sales are lower than square headscarf sales in every week.",
-            },
-          ],
+          label:
+            "Pashmina headscarf sales are lower than square headscarf sales in every week.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Bergo headscarf sales are higher than square headscarf sales in every week.",
-            },
-          ],
+          label:
+            "Bergo headscarf sales are higher than square headscarf sales in every week.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The weekly number of bergo headscarves sold forms an arithmetic sequence.",
-            },
-          ],
+          label:
+            "The weekly number of bergo headscarves sold forms an arithmetic sequence.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Sales of each headscarf style are higher than in the preceding week.",
-            },
-          ],
+          label:
+            "Sales of each headscarf style are higher than in the preceding week.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Bergo headscarf sales have the smallest increase from week 1 to week 4.",
-            },
-          ],
+          label:
+            "Bergo headscarf sales have the smallest increase from week 1 to week 4.",
         },
       ],
     },
@@ -107,48 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
-            },
-          ],
+          label:
+            "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
-            },
-          ],
+          label:
+            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Banyak penjualan kerudung jenis bergo mengikuti pola barisan aritmetika.",
-            },
-          ],
+          label:
+            "Banyak penjualan kerudung jenis bergo mengikuti pola barisan aritmetika.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tingkat penjualan jenis kerudung tiap minggu selalu lebih tinggi dibandingkan minggu sebelumnya.",
-            },
-          ],
+          label:
+            "Tingkat penjualan jenis kerudung tiap minggu selalu lebih tinggi dibandingkan minggu sebelumnya.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-1 hingga minggu ke-4.",
-            },
-          ],
+          label:
+            "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-1 hingga minggu ke-4.",
         },
       ],
     },

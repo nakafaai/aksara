@@ -7,42 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Paket M wird ins Kühllager geschickt." },
-          ],
+          label: "Paket M wird ins Kühllager geschickt.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Paket M wird wegen seines blauen Etiketts in die manuelle Prüfung geschickt.",
-            },
-          ],
+          label:
+            "Paket M wird wegen seines blauen Etiketts in die manuelle Prüfung geschickt.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Ein Paket mit rotem Etikett wird in die manuelle Prüfung geschickt.",
-            },
-          ],
+          label:
+            "Ein Paket mit rotem Etikett wird in die manuelle Prüfung geschickt.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Paket M wird nicht in die manuelle Prüfung geschickt.",
-            },
-          ],
+          label: "Paket M wird nicht in die manuelle Prüfung geschickt.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Kein Paket wird beiden Wegen zugewiesen." },
-          ],
+          label: "Kein Paket wird beiden Wegen zugewiesen.",
         },
       ],
     },
@@ -51,40 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Parcel M is sent to refrigerated storage." },
-          ],
+          label: "Parcel M is sent to refrigerated storage.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Parcel M is sent to manual inspection because it has a blue label.",
-            },
-          ],
+          label:
+            "Parcel M is sent to manual inspection because it has a blue label.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "A parcel with a red label is sent to manual inspection.",
-            },
-          ],
+          label: "A parcel with a red label is sent to manual inspection.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Parcel M is not sent to manual inspection.",
-            },
-          ],
+          label: "Parcel M is not sent to manual inspection.",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "No parcel is sent to both routes." }],
+          label: "No parcel is sent to both routes.",
         },
       ],
     },
@@ -93,48 +60,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Paket M dikirim ke penyimpanan berpendingin.",
-            },
-          ],
+          label: "Paket M dikirim ke penyimpanan berpendingin.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
-            },
-          ],
+          label:
+            "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Paket berlabel merah dikirim ke pemeriksaan manual.",
-            },
-          ],
+          label: "Paket berlabel merah dikirim ke pemeriksaan manual.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Paket M tidak dikirim ke pemeriksaan manual.",
-            },
-          ],
+          label: "Paket M tidak dikirim ke pemeriksaan manual.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Tidak ada paket yang dikirim ke kedua jalur.",
-            },
-          ],
+          label: "Tidak ada paket yang dikirim ke kedua jalur.",
         },
       ],
     },

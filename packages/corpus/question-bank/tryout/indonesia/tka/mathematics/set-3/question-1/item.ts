@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12" }],
+          label: "12",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "14" }],
+          label: "14",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12" }],
+          label: "12",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "14" }],
+          label: "14",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "6" }],
+          label: "6",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "8" }],
+          label: "8",
         },
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "10" }],
+          label: "10",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "12" }],
+          label: "12",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "14" }],
+          label: "14",
         },
       ],
     },

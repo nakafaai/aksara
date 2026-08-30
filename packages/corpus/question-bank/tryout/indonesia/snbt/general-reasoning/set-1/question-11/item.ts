@@ -7,31 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
-          ],
+          label: "$$0 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
-          ],
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
-          ],
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
-          ],
+          label: "$$20 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Kann nicht bestimmt werden" }],
+          label: "Kann nicht bestimmt werden",
         },
       ],
     },
@@ -40,31 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
-          ],
+          label: "$$0 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
-          ],
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
-          ],
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
-          ],
+          label: "$$20 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Cannot be determined" }],
+          label: "Cannot be determined",
         },
       ],
     },
@@ -73,31 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "0 \\leq x \\leq 30" },
-          ],
+          label: "$$0 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 35" },
-          ],
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "30 \\leq x \\leq 40" },
-          ],
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "20 \\leq x \\leq 30" },
-          ],
+          label: "$$20 \\leq x \\leq 30$$",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tidak dapat ditentukan" }],
+          label: "Tidak dapat ditentukan",
         },
       ],
     },

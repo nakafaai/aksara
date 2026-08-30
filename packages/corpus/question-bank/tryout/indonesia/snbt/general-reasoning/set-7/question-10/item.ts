@@ -7,33 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "760\\text{ Personen}" },
-          ],
+          label: "$$760\\text{ Personen}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "890\\text{ Personen}" },
-          ],
+          label: "$$890\\text{ Personen}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "960\\text{ Personen}" },
-          ],
+          label: "$$960\\text{ Personen}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1060\\text{ Personen}" },
-          ],
+          label: "$$1060\\text{ Personen}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1160\\text{ Personen}" },
-          ],
+          label: "$$1160\\text{ Personen}$$",
         },
       ],
     },
@@ -42,33 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "760\\text{ people}" },
-          ],
+          label: "$$760\\text{ people}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "890\\text{ people}" },
-          ],
+          label: "$$890\\text{ people}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "960\\text{ people}" },
-          ],
+          label: "$$960\\text{ people}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1060\\text{ people}" },
-          ],
+          label: "$$1060\\text{ people}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1160\\text{ people}" },
-          ],
+          label: "$$1160\\text{ people}$$",
         },
       ],
     },
@@ -77,33 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "760\\text{ orang}" },
-          ],
+          label: "$$760\\text{ orang}$$",
         },
         {
           isCorrect: true,
-          label: [
-            { display: "block", kind: "math", math: "890\\text{ orang}" },
-          ],
+          label: "$$890\\text{ orang}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "960\\text{ orang}" },
-          ],
+          label: "$$960\\text{ orang}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1060\\text{ orang}" },
-          ],
+          label: "$$1060\\text{ orang}$$",
         },
         {
           isCorrect: false,
-          label: [
-            { display: "block", kind: "math", math: "1160\\text{ orang}" },
-          ],
+          label: "$$1160\\text{ orang}$$",
         },
       ],
     },

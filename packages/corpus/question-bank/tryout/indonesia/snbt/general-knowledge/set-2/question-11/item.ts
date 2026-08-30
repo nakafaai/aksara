@@ -7,48 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "ein Milcherzeugnis, das garantiert keine Laktose enthält.",
-            },
-          ],
+          label: "ein Milcherzeugnis, das garantiert keine Laktose enthält.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "ein Milcherzeugnis, das nur für ältere Menschen bestimmt ist.",
-            },
-          ],
+          label:
+            "ein Milcherzeugnis, das nur für ältere Menschen bestimmt ist.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "ein Arzneimittel zur Behandlung von Verdauungskrankheiten.",
-            },
-          ],
+          label: "ein Arzneimittel zur Behandlung von Verdauungskrankheiten.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
-            },
-          ],
+          label:
+            "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "ein vor dem Verzehr mit Sauerstoff vermischtes Milcherzeugnis.",
-            },
-          ],
+          label:
+            "ein vor dem Verzehr mit Sauerstoff vermischtes Milcherzeugnis.",
         },
       ],
     },
@@ -57,45 +35,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "dairy that is guaranteed to contain no lactose.",
-            },
-          ],
+          label: "dairy that is guaranteed to contain no lactose.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "dairy intended only for older adults." },
-          ],
+          label: "dairy intended only for older adults.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "a medicine for treating digestive disease.",
-            },
-          ],
+          label: "a medicine for treating digestive disease.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "dairy transformed by microorganisms through fermentation.",
-            },
-          ],
+          label: "dairy transformed by microorganisms through fermentation.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "dairy mixed with oxygen before consumption.",
-            },
-          ],
+          label: "dairy mixed with oxygen before consumption.",
         },
       ],
     },
@@ -104,45 +60,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "produk susu yang dijamin tidak mengandung laktosa.",
-            },
-          ],
+          label: "produk susu yang dijamin tidak mengandung laktosa.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "produk susu yang hanya ditujukan bagi lansia.",
-            },
-          ],
+          label: "produk susu yang hanya ditujukan bagi lansia.",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "obat untuk menangani penyakit pencernaan." },
-          ],
+          label: "obat untuk menangani penyakit pencernaan.",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
-            },
-          ],
+          label:
+            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "produk susu yang dicampur oksigen sebelum diminum.",
-            },
-          ],
+          label: "produk susu yang dicampur oksigen sebelum diminum.",
         },
       ],
     },

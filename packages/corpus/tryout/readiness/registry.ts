@@ -3,8 +3,8 @@ import { Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
-import type { AssessmentReadiness } from "#corpus/tryout/readiness";
-import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness-inventory";
+import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
+import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const readinessPrograms = [snbtReadiness, tkaReadiness];

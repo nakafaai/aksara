@@ -7,48 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Pflanz- oder Rendengsaison der Landwirte wird ungewiss und den Landwirten mangelt es an Saatgut und Dünger",
-            },
-          ],
+          label:
+            "Die Pflanz- oder Rendengsaison der Landwirte wird ungewiss und den Landwirten mangelt es an Saatgut und Dünger",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Die Umsetzung der Reisbeschaffung wird zunehmend suboptimal und die Regierung ist gezwungen, Reis zu importieren",
-            },
-          ],
+          label:
+            "Die Umsetzung der Reisbeschaffung wird zunehmend suboptimal und die Regierung ist gezwungen, Reis zu importieren",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Die staatlichen Reisvorräte oder CBP (staatliche Reisreserven) drohen zurückzugehen",
-            },
-          ],
+          label:
+            "Die staatlichen Reisvorräte oder CBP (staatliche Reisreserven) drohen zurückzugehen",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der Lebensmittelverteilungsmechanismus für Raskin oder Rastra wird auf direkte Transfers umgestellt",
-            },
-          ],
+          label:
+            "Der Lebensmittelverteilungsmechanismus für Raskin oder Rastra wird auf direkte Transfers umgestellt",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Der HPP (Government Purchase Price) wird im Vergleich zu den Marktpreisen immer niedriger",
-            },
-          ],
+          label:
+            "Der HPP (Government Purchase Price) wird im Vergleich zu den Marktpreisen immer niedriger",
         },
       ],
     },
@@ -57,48 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Farmers' planting season or rendeng season becomes uncertain and farmers lack seeds and fertilizer",
-            },
-          ],
+          label:
+            "Farmers' planting season or rendeng season becomes uncertain and farmers lack seeds and fertilizer",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Realization of rice procurement becomes increasingly suboptimal and the government is forced to import rice",
-            },
-          ],
+          label:
+            "Realization of rice procurement becomes increasingly suboptimal and the government is forced to import rice",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Government rice stocks or CBP (government rice reserves) will be threatened to decrease",
-            },
-          ],
+          label:
+            "Government rice stocks or CBP (government rice reserves) will be threatened to decrease",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "The food distribution mechanism for Raskin or Rastra undergoes a change to direct transfers",
-            },
-          ],
+          label:
+            "The food distribution mechanism for Raskin or Rastra undergoes a change to direct transfers",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "HPP (Government Purchase Price) becomes increasingly lower compared to market prices",
-            },
-          ],
+          label:
+            "HPP (Government Purchase Price) becomes increasingly lower compared to market prices",
         },
       ],
     },
@@ -107,48 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Musim tanam petani atau musim rendeng menjadi tidak menentu serta petani kekurangan bibit dan pupuk",
-            },
-          ],
+          label:
+            "Musim tanam petani atau musim rendeng menjadi tidak menentu serta petani kekurangan bibit dan pupuk",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Realisasi pengadaan beras semakin tidak optimal dan pemerintah terpaksa melakukan impor beras",
-            },
-          ],
+          label:
+            "Realisasi pengadaan beras semakin tidak optimal dan pemerintah terpaksa melakukan impor beras",
         },
         {
           isCorrect: true,
-          label: [
-            {
-              kind: "text",
-              text: "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
-            },
-          ],
+          label:
+            "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Mekanisme penyaluran pangan untuk raskin atau rastra mengalami perubahan menjadi transfer langsung",
-            },
-          ],
+          label:
+            "Mekanisme penyaluran pangan untuk raskin atau rastra mengalami perubahan menjadi transfer langsung",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "HPP (harga pembelian pemerintah) menjadi semakin rendah dibandingkan dengan harga di pasar",
-            },
-          ],
+          label:
+            "HPP (harga pembelian pemerintah) menjadi semakin rendah dibandingkan dengan harga di pasar",
         },
       ],
     },

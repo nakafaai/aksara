@@ -7,58 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Das Wachstum sank von " },
-            { display: "block", kind: "math", math: "2013" },
-            { kind: "text", text: " bis " },
-            { display: "block", kind: "math", math: "2018" },
-            { kind: "text", text: " in jedem Jahr" },
-          ],
+          label: "Das Wachstum sank von $$2013$$ bis $$2018$$ in jedem Jahr",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Zwischen " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " und " },
-            { display: "block", kind: "math", math: "2017" },
-            { kind: "text", text: " ging das Wachstum nie zurück" },
-          ],
+          label: "Zwischen $$2014$$ und $$2017$$ ging das Wachstum nie zurück",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Nach " },
-            { display: "block", kind: "math", math: "2015" },
-            {
-              kind: "text",
-              text: " war keine Erholung des Wachstums erkennbar",
-            },
-          ],
+          label: "Nach $$2015$$ war keine Erholung des Wachstums erkennbar",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Der Rückgang von " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " auf " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " war größer als der Anstieg von " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " auf " },
-            { display: "block", kind: "math", math: "2016" },
-          ],
+          label:
+            "Der Rückgang von $$2014$$ auf $$2015$$ war größer als der Anstieg von $$2015$$ auf $$2016$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Die Wachstumsrate von " },
-            { display: "block", kind: "math", math: "2013" },
-            { kind: "text", text: " war höher als jede Rate von " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " bis " },
-            { display: "block", kind: "math", math: "2018" },
-          ],
+          label:
+            "Die Wachstumsrate von $$2013$$ war höher als jede Rate von $$2014$$ bis $$2018$$",
         },
       ],
     },
@@ -67,55 +34,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Growth declined every year from " },
-            { display: "block", kind: "math", math: "2013" },
-            { kind: "text", text: " through " },
-            { display: "block", kind: "math", math: "2018" },
-          ],
+          label: "Growth declined every year from $$2013$$ through $$2018$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Growth never declined between " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " and " },
-            { display: "block", kind: "math", math: "2017" },
-          ],
+          label: "Growth never declined between $$2014$$ and $$2017$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Growth showed no recovery after " },
-            { display: "block", kind: "math", math: "2015" },
-          ],
+          label: "Growth showed no recovery after $$2015$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "The decline from " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " to " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " was larger than the rise from " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " to " },
-            { display: "block", kind: "math", math: "2016" },
-          ],
+          label:
+            "The decline from $$2014$$ to $$2015$$ was larger than the rise from $$2015$$ to $$2016$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "The " },
-            { display: "block", kind: "math", math: "2013" },
-            {
-              kind: "text",
-              text: " growth rate was higher than every rate from ",
-            },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " through " },
-            { display: "block", kind: "math", math: "2018" },
-          ],
+          label:
+            "The $$2013$$ growth rate was higher than every rate from $$2014$$ through $$2018$$",
         },
       ],
     },
@@ -124,58 +61,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pertumbuhan menurun setiap tahun dari " },
-            { display: "block", kind: "math", math: "2013" },
-            { kind: "text", text: " hingga " },
-            { display: "block", kind: "math", math: "2018" },
-          ],
+          label:
+            "Pertumbuhan menurun setiap tahun dari $$2013$$ hingga $$2018$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Pertumbuhan tidak pernah menurun antara " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " dan " },
-            { display: "block", kind: "math", math: "2017" },
-          ],
+          label:
+            "Pertumbuhan tidak pernah menurun antara $$2014$$ dan $$2017$$",
         },
         {
           isCorrect: false,
-          label: [
-            {
-              kind: "text",
-              text: "Pertumbuhan tidak menunjukkan pemulihan setelah ",
-            },
-            { display: "block", kind: "math", math: "2015" },
-          ],
+          label: "Pertumbuhan tidak menunjukkan pemulihan setelah $$2015$$",
         },
         {
           isCorrect: false,
-          label: [
-            { kind: "text", text: "Penurunan dari " },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " ke " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " lebih besar daripada kenaikan dari " },
-            { display: "block", kind: "math", math: "2015" },
-            { kind: "text", text: " ke " },
-            { display: "block", kind: "math", math: "2016" },
-          ],
+          label:
+            "Penurunan dari $$2014$$ ke $$2015$$ lebih besar daripada kenaikan dari $$2015$$ ke $$2016$$",
         },
         {
           isCorrect: true,
-          label: [
-            { kind: "text", text: "Tingkat pertumbuhan " },
-            { display: "block", kind: "math", math: "2013" },
-            {
-              kind: "text",
-              text: " lebih tinggi daripada setiap tingkat pada ",
-            },
-            { display: "block", kind: "math", math: "2014" },
-            { kind: "text", text: " hingga " },
-            { display: "block", kind: "math", math: "2018" },
-          ],
+          label:
+            "Tingkat pertumbuhan $$2013$$ lebih tinggi daripada setiap tingkat pada $$2014$$ hingga $$2018$$",
         },
       ],
     },

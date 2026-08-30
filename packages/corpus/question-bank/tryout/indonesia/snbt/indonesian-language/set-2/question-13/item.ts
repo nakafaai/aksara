@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: [{ kind: "text", text: "Tindakan mengurangi dampak bencana" }],
+          label: "Tindakan mengurangi dampak bencana",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Pemantauan pergerakan gajah" }],
+          label: "Pemantauan pergerakan gajah",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Perlindungan satwa liar" }],
+          label: "Perlindungan satwa liar",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Penghapusan semua sumber bahaya" }],
+          label: "Penghapusan semua sumber bahaya",
         },
         {
           isCorrect: false,
-          label: [{ kind: "text", text: "Tindakan mendeteksi posisi" }],
+          label: "Tindakan mendeteksi posisi",
         },
       ],
     },
