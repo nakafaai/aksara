@@ -82,24 +82,37 @@ export function readSignalTermination(
   );
 }
 
+interface LauncherTeardownInput {
+  /** Records a numeric status without forcing process termination. */
+  readonly setExitCode: (exitCode: number) => void;
+  /** Re-emits an exact delegated signal at the host boundary. */
+  readonly terminate: (signal: NodeSignal) => void;
+}
+
 /** Preserves delegated signal termination after Effect removes its listeners. */
 export function makeLauncherTeardown(
-  terminate: (signal: NodeSignal) => void
+  input: LauncherTeardownInput
 ): Runtime.Teardown {
   return (exit, onExit) => {
     const termination = Exit.isSuccess(exit)
       ? Schema.decodeUnknownOption(SignalTerminationSchema)(exit.value)
       : Option.none();
     if (Option.isSome(termination)) {
-      terminate(termination.value.signal);
+      input.terminate(termination.value.signal);
       return;
     }
     if (Exit.isSuccess(exit) && typeof exit.value === "number") {
-      onExit(exit.value);
+      input.setExitCode(exit.value);
+      onExit(0);
       return;
     }
     Runtime.defaultTeardown(exit, onExit);
   };
+}
+
+/** Records a numeric status while allowing Node streams to drain naturally. */
+export function setProcessExitCode(exitCode: number): void {
+  process.exitCode = exitCode;
 }
 
 /** Clears launcher listeners and re-emits delegated signal termination. */

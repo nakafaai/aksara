@@ -1,14 +1,21 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, FileSystem, Option, Path, PlatformError } from "effect";
-import { vi } from "vitest";
-import { runLauncher } from "#cli/launcher";
+import { afterEach, vi } from "vitest";
 import {
   makeLauncherTeardown,
   readExitSignal,
   readSignalTermination,
+  setProcessExitCode,
   terminateSelf,
-} from "#cli/signal";
+} from "#cli/exit";
+import { runLauncher } from "#cli/launcher";
+
+const initialExitCode = process.exitCode;
+
+afterEach(() => {
+  process.exitCode = initialExitCode;
+});
 
 vi.mock("@effect/platform-node/NodeRuntime", async (importOriginal) => {
   const platform =
@@ -25,7 +32,7 @@ const signalFailure = (cause: unknown) =>
     module: "ChildProcess",
   });
 
-describe("CLI signal boundary", () => {
+describe("CLI exit boundary", () => {
   it.effect("preserves delegated signal termination", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
@@ -104,11 +111,17 @@ describe("CLI signal boundary", () => {
     ).toBe(true);
   });
 
-  it("delegates exit codes and re-emits signal termination", () => {
+  it("records numeric status without forcing exit and re-emits signals", () => {
     const signals: string[] = [];
     const codes: number[] = [];
-    const teardown = makeLauncherTeardown((signal) => {
-      signals.push(signal);
+    const recorded: number[] = [];
+    const teardown = makeLauncherTeardown({
+      setExitCode: (exitCode) => {
+        recorded.push(exitCode);
+      },
+      terminate: (signal) => {
+        signals.push(signal);
+      },
     });
 
     teardown(Exit.succeed(7), (code) => codes.push(code));
@@ -122,8 +135,15 @@ describe("CLI signal boundary", () => {
       (code) => codes.push(code)
     );
 
-    expect(codes).toEqual([7, 0, 1]);
+    expect(codes).toEqual([0, 0, 1]);
+    expect(recorded).toEqual([7]);
     expect(signals).toEqual(["SIGTERM"]);
+  });
+
+  it("sets one numeric status at the Node boundary", () => {
+    setProcessExitCode(7);
+
+    expect(process.exitCode).toBe(7);
   });
 
   it("re-emits one validated signal at the Node boundary", () => {

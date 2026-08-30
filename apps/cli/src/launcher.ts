@@ -18,12 +18,13 @@ import {
   printCliInfo,
 } from "#cli/about";
 import { findAksaraRoot, PreviewCheckoutError } from "#cli/checkout";
-import { type CliPackageError, readPackageVersion } from "#cli/package";
 import {
   makeLauncherTeardown,
   readSignalTermination,
+  setProcessExitCode,
   terminateSelf,
-} from "#cli/signal";
+} from "#cli/exit";
+import { type CliPackageError, readPackageVersion } from "#cli/package";
 
 /** The installed launcher could not execute the checkout-owned CLI source. */
 export class CliLaunchError extends Schema.TaggedError<CliLaunchError>()(
@@ -173,6 +174,9 @@ runMain(
   }).pipe(Effect.provide(launcherLayer)),
   {
     disableErrorReporting: true,
-    teardown: makeLauncherTeardown(terminateSelf),
+    teardown: makeLauncherTeardown({
+      setExitCode: setProcessExitCode,
+      terminate: terminateSelf,
+    }),
   }
 );
