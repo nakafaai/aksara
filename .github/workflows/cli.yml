@@ -1,0 +1,129 @@
+name: Release CLI
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: release-cli
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      archive: ${{ steps.archive.outputs.archive }}
+      package_sha256: ${{ steps.archive.outputs.package_sha256 }}
+      sha256: ${{ steps.archive.outputs.sha256 }}
+      size: ${{ steps.archive.outputs.size }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit dependencies
+        run: pnpm security:audit
+
+      - name: Verify repository policies
+        run: |
+          pnpm lint
+          pnpm names
+          pnpm jsdocs
+          pnpm lines
+          pnpm workflows
+          pnpm boundaries
+
+      - name: Verify CLI package
+        run: pnpm exec turbo run test typecheck build --filter=@nakafa/aksara-cli
+
+      - name: Build release archive
+        id: archive
+        env:
+          ARCHIVE_ROOT: ${{ runner.temp }}/cli-package
+        run: |
+          mkdir -p "$ARCHIVE_ROOT"
+          pack=$(npm pack apps/cli/dist/package --ignore-scripts --json \
+            --pack-destination "$ARCHIVE_ROOT")
+          archive=$(jq -r '.[0].filename' <<< "$pack")
+          if [[ -z "$archive" || "$archive" == "null" ]]; then
+            echo "npm did not report the CLI archive name." >&2
+            exit 1
+          fi
+          cp package.json "$ARCHIVE_ROOT/package.json"
+          {
+            echo "archive=$archive"
+            echo "package_sha256=$(sha256sum "$ARCHIVE_ROOT/package.json" | cut -d ' ' -f 1)"
+            echo "sha256=$(sha256sum "$ARCHIVE_ROOT/$archive" | cut -d ' ' -f 1)"
+            echo "size=$(stat --format='%s' "$ARCHIVE_ROOT/$archive")"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload verified archive
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          compression-level: 0
+          if-no-files-found: error
+          name: cli-package
+          path: ${{ runner.temp }}/cli-package
+          retention-days: 1
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      id-token: write
+    steps:
+      - name: Download verified archive
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: cli-package
+          path: .
+
+      - name: Verify transported archive
+        env:
+          EXPECTED_PACKAGE_SHA256: ${{ needs.build.outputs.package_sha256 }}
+          EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
+          EXPECTED_SIZE: ${{ needs.build.outputs.size }}
+          TARBALL: ${{ needs.build.outputs.archive }}
+        run: |
+          actual_package_sha256=$(sha256sum package.json | cut -d ' ' -f 1)
+          actual_sha256=$(sha256sum "$TARBALL" | cut -d ' ' -f 1)
+          actual_size=$(stat --format='%s' "$TARBALL")
+          if [[ "$actual_package_sha256" != "$EXPECTED_PACKAGE_SHA256" \
+            || "$actual_sha256" != "$EXPECTED_SHA256" \
+            || "$actual_size" != "$EXPECTED_SIZE" ]]; then
+            echo "The transported CLI package differs from the verified build output." >&2
+            exit 1
+          fi
+
+      - name: Setup toolchain
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: false
+          install: false
+
+      - name: Publish public package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
+          NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/npmrc
+          TARBALL: ${{ needs.build.outputs.archive }}
+        run: |
+          printf '%s\n' "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" \
+            > "$NPM_CONFIG_USERCONFIG"
+          npm publish "$TARBALL" --access public --provenance

@@ -3,9 +3,10 @@ import { describe, expect, it } from "vitest";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const ci = readFileSync(".github/workflows/ci.yml", "utf8");
+const cli = readFileSync(".github/workflows/cli.yml", "utf8");
 const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
 const release = readFileSync(".github/workflows/release.yml", "utf8");
-const sources = [ci, contracts, release];
+const sources = [ci, cli, contracts, release];
 const TOOLCHAIN_STEP = `      - name: Setup toolchain
         uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:

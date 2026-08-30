@@ -10,11 +10,13 @@ const OPERATION_SETUP_INPUT =
 /** Reads the exact workflow set exercised by repository policy. */
 function currentSources(): WorkflowSources {
   const ci = readFileSync(".github/workflows/ci.yml", "utf8");
+  const cli = readFileSync(".github/workflows/cli.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
   return {
-    all: [ci, contracts, release],
+    all: [ci, cli, contracts, release],
     ci,
+    cli,
     contracts,
     release,
   };
