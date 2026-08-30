@@ -1,23 +1,41 @@
 export const metadata = {
-  title: "Explanation for Question 8",
+  title: "Solution to Question 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2026-01-30",
 };
 
-This question tests the ability to draw logical conclusions (syllogism). We can break down the sentences in the text into symbolic logical premises. Define three basic statements:
+We will analyze the pattern of visitor increases for each store separately to determine the number of visitors on the eighth day.
 
-- <InlineMath math="P" />: It is currently the dry season.
-- <InlineMath math="Q" />: Plants shed their leaves.
-- <InlineMath math="R" />: There is a lot of scattered leaf litter.
+#### Store A Pattern Analysis
 
-Based on the text, we derive two logical implications. The sentence "In the dry season, plants will shed their leaves" can be written as <InlineMath math="P \rightarrow Q" />. Furthermore, the sentence "when plants shed their leaves, there is a lot of scattered leaf litter" can be written as <InlineMath math="Q \rightarrow R" />.
-
-Using the principle of **Hypothetical Syllogism**, we can draw a direct conclusion from <InlineMath math="P" /> to <InlineMath math="R" />:
+The visitor data for store <InlineMath math="A" /> is <InlineMath math="30, 33, 35, 36, 39, 41, 42" />. If we observe the differences between consecutive terms, there is a repeating addition pattern as follows:
 
 <MathContainer>
-  <BlockMath math="\begin{align*} \text{Premise 1} &: P \rightarrow Q \\ \text{Premise 2} &: Q \rightarrow R \\ \hline \therefore \text{Conclusion} &: P \rightarrow R \end{align*}" />
+  <BlockMath math="30 \xrightarrow{+3} 33 \xrightarrow{+2} 35 \xrightarrow{+1} 36 \xrightarrow{+3} 39 \xrightarrow{+2} 41 \xrightarrow{+1} 42" />
 </MathContainer>
 
-This means that if <InlineMath math="P" /> occurs, then <InlineMath math="R" /> must occur. In plain language: "If it is currently the dry season, then there is a lot of scattered leaf litter." Deductive logic makes <InlineMath math="R" /> certain under the stated premises, so options containing "might be" are too weak.
+The addition pattern is a constantly repeating <InlineMath math="+3, +2, +1" />. Based on this pattern, to find the number of visitors on the eighth day, we must add <InlineMath math="3" /> to the last term (continuing the pattern sequence after <InlineMath math="+1" />).
 
-Thus, the correct statement is **if it is currently the dry season, then there is a lot of scattered leaf litter**.
+<MathContainer>
+  <BlockMath math="\text{Visitors A} = 42 + 3 = 45 \text{ people}" />
+</MathContainer>
+
+#### Store B Pattern Analysis
+
+The visitor data for store <InlineMath math="B" /> is <InlineMath math="7, 10, 17, 27, 44, 71, 115" />. This pattern follows the Fibonacci sequence rule, where the next term is obtained by summing the two previous terms.
+
+<MathContainer>
+  <BlockMath math="7 + 10 = 17" />
+  <BlockMath math="10 + 17 = 27" />
+  <BlockMath math="17 + 27 = 44" />
+  <BlockMath math="27 + 44 = 71" />
+  <BlockMath math="44 + 71 = 115" />
+</MathContainer>
+
+Therefore, the number of visitors on the eighth day is the sum of the last two terms, which are <InlineMath math="71" /> and <InlineMath math="115" />.
+
+<MathContainer>
+  <BlockMath math="\text{Visitors B} = 71 + 115 = 186 \text{ people}" />
+</MathContainer>
+
+Thus, the number of visitors to store <InlineMath math="A" /> and <InlineMath math="B" /> on the eighth day is <InlineMath math="45" /> and <InlineMath math="186\text{ people}" />, respectively.

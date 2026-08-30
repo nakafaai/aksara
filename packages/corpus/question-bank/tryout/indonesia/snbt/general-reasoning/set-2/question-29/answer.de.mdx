@@ -1,19 +1,25 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-Insgesamt gibt es <InlineMath math="9" /> Kugeln. Die Zahl aller möglichen Paare beträgt
+Wir untersuchen die Aussagen mit mathematischer Logik und bezeichnen sie mit:
 
-<BlockMath math="\binom{9}{2}=36" />
+- <InlineMath math="P" />: Anstieg der Treibstoffpreise (BBM).
+- <InlineMath math="Q" />: Erhöhung der Fahrpreise für öffentliche Verkehrsmittel.
+- <InlineMath math="R" />: höhere Preise für Güter des täglichen Bedarfs.
 
-Ein gleichfarbiges Paar kann aus zwei roten, zwei blauen oder zwei grünen Kugeln bestehen:
+Aus dem Text folgen zwei Prämissen:
+1. „Jeder Anstieg der Kraftstoffpreise führt zu höheren Fahrpreisen“ wird als <InlineMath math="P \rightarrow Q" /> geschrieben.
+2. „Höhere Fahrpreise führen zu höheren Preisen für Güter des täglichen Bedarfs“ wird als <InlineMath math="Q \rightarrow R" /> geschrieben.
 
-<BlockMath math="\binom{4}{2}+\binom{3}{2}+\binom{2}{2}=6+3+1=10" />
+Die passende Antwort folgt aus dem **Modus Tollens** beziehungsweise aus der **Kontraposition** der ersten Prämisse. Eine Implikation <InlineMath math="P \rightarrow Q" /> hat denselben Wahrheitswert wie ihre Kontraposition <InlineMath math="\sim Q \rightarrow \sim P" />.
 
-Damit ergibt sich die Wahrscheinlichkeit
+<MathContainer>
+  <BlockMath math="\begin{align*} \text{Implikation} &amp;: P \rightarrow Q \\ \text{Kontraposition} &amp;: \sim Q \rightarrow \sim P \end{align*}" />
+</MathContainer>
 
-<BlockMath math="\frac{10}{36}=\frac{5}{18}" />
+Wenn die Fahrpreise **nicht steigen** (<InlineMath math="\sim Q" />), können nach der ersten Prämisse auch die Kraftstoffpreise **nicht gestiegen sein** (<InlineMath math="\sim P" />). Genau das besagt die Antwortmöglichkeit, die ausbleibende Fahrpreiserhöhungen mit ausbleibenden Kraftstoffpreiserhöhungen verknüpft.
 
-Die Wahrscheinlichkeit für zwei gleichfarbige Kugeln beträgt **<InlineMath math="\frac{5}{18}" />**.
+Richtig ist daher: **Wenn die Fahrpreise für öffentliche Verkehrsmittel nicht steigen, sind auch die Kraftstoffpreise nicht gestiegen.**

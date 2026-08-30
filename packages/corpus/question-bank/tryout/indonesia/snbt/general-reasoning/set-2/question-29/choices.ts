@@ -2,25 +2,85 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "$$\frac{5}{18}$$", value: true },
-    { label: "$$\frac{1}{3}$$", value: false },
-    { label: "$$\frac{7}{18}$$", value: false },
-    { label: "$$\frac{4}{9}$$", value: false },
-    { label: "$$\frac{5}{9}$$", value: false },
+    {
+      label:
+        "Wenn die Fahrpreise für öffentliche Verkehrsmittel steigen, steigen auch die Treibstoffpreise (BBM).",
+      value: false,
+    },
+    {
+      label:
+        "Wenn es keine Erhöhung der Fahrpreise für öffentliche Verkehrsmittel gibt, dann gibt es auch keine Erhöhung der Treibstoffpreise (BBM).",
+      value: true,
+    },
+    {
+      label:
+        "Wenn die Preise für Grundbedürfnisse steigen, dann sind auch die Treibstoffpreise (BBM) gestiegen",
+      value: false,
+    },
+    {
+      label:
+        "Jede Erhöhung der Treibstoffpreise (BBM) führt nicht zu einer Erhöhung der Preise für Grundbedürfnisse",
+      value: false,
+    },
+    {
+      label:
+        "Wenn es keine Erhöhung der Treibstoffpreise (BBM) gibt, dann gibt es auch keine Erhöhung der Preise für Grundbedürfnisse",
+      value: false,
+    },
   ],
   en: [
-    { label: "$$\frac{5}{18}$$", value: true },
-    { label: "$$\frac{1}{3}$$", value: false },
-    { label: "$$\frac{7}{18}$$", value: false },
-    { label: "$$\frac{4}{9}$$", value: false },
-    { label: "$$\frac{5}{9}$$", value: false },
+    {
+      label:
+        "If there is an increase in public transportation fares, then there is an increase in fuel (BBM) prices",
+      value: false,
+    },
+    {
+      label:
+        "If there is no increase in public transportation fares, then there is no increase in fuel (BBM) prices",
+      value: true,
+    },
+    {
+      label:
+        "If there is an increase in the prices of basic needs, then there has been an increase in fuel (BBM) prices",
+      value: false,
+    },
+    {
+      label:
+        "Every increase in fuel (BBM) prices results in no increase in the prices of basic needs",
+      value: false,
+    },
+    {
+      label:
+        "If there is no increase in fuel (BBM) prices, then there is no increase in the prices of basic needs",
+      value: false,
+    },
   ],
   id: [
-    { label: "$$\frac{5}{18}$$", value: true },
-    { label: "$$\frac{1}{3}$$", value: false },
-    { label: "$$\frac{7}{18}$$", value: false },
-    { label: "$$\frac{4}{9}$$", value: false },
-    { label: "$$\frac{5}{9}$$", value: false },
+    {
+      label:
+        "Jika terjadi kenaikan tarif angkutan umum maka terjadi kenaikan harga bahan bakar minyak (BBM)",
+      value: false,
+    },
+    {
+      label:
+        "Jika tidak ada kenaikan tarif angkutan umum maka tidak terjadi kenaikan harga bahan bakar minyak (BBM)",
+      value: true,
+    },
+    {
+      label:
+        "Jika terjadi kenaikan harga kebutuhan pokok maka telah terjadi kenaikan harga bahan bakar minyak (BBM)",
+      value: false,
+    },
+    {
+      label:
+        "Setiap kenaikan harga bahan bakar minyak (BBM) maka tidak terjadi kenaikan harga kebutuhan pokok",
+      value: false,
+    },
+    {
+      label:
+        "Jika tidak terjadi kenaikan harga bahan bakar minyak (BBM) maka tidak terjadi kenaikan harga kebutuhan pokok",
+      value: false,
+    },
   ],
 };
 

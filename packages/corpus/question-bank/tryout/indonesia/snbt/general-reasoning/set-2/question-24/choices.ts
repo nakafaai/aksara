@@ -2,25 +2,40 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "A", value: false },
-    { label: "B", value: true },
-    { label: "C", value: false },
-    { label: "D", value: false },
-    { label: "E", value: false },
+    {
+      label: "Nur $$4$$.",
+      value: false,
+    },
+    {
+      label: "$$1$$ und $$4$$",
+      value: false,
+    },
+    {
+      label: "$$3$$ und $$4$$",
+      value: true,
+    },
+    {
+      label: "$$2$$, $$3$$ und $$4$$",
+      value: false,
+    },
+    {
+      label: "$$1$$, $$2$$, $$3$$ und $$4$$",
+      value: false,
+    },
   ],
   en: [
-    { label: "A", value: false },
-    { label: "B", value: true },
-    { label: "C", value: false },
-    { label: "D", value: false },
-    { label: "E", value: false },
+    { label: "$$4$$ only", value: false },
+    { label: "$$1$$ and $$4$$", value: false },
+    { label: "$$3$$ and $$4$$", value: true },
+    { label: "$$2$$, $$3$$, and $$4$$", value: false },
+    { label: "$$1$$, $$2$$, $$3$$, and $$4$$", value: false },
   ],
   id: [
-    { label: "A", value: false },
-    { label: "B", value: true },
-    { label: "C", value: false },
-    { label: "D", value: false },
-    { label: "E", value: false },
+    { label: "$$4$$ saja", value: false },
+    { label: "$$1$$ dan $$4$$", value: false },
+    { label: "$$3$$ dan $$4$$", value: true },
+    { label: "$$2$$, $$3$$, dan $$4$$", value: false },
+    { label: "$$1$$, $$2$$, $$3$$, dan $$4$$", value: false },
   ],
 };
 

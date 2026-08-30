@@ -2,40 +2,25 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    {
-      label: "Klasse A",
-      value: false,
-    },
-    {
-      label: "Klasse B",
-      value: false,
-    },
-    {
-      label: "Klasse C",
-      value: true,
-    },
-    {
-      label: "Klasse D",
-      value: false,
-    },
-    {
-      label: "Klasse E",
-      value: false,
-    },
+    { label: "Stärkt Aussage A", value: false },
+    { label: "Schwächt Aussage A", value: false },
+    { label: "Stärkt Aussage B", value: true },
+    { label: "Schwächt Aussage B", value: false },
+    { label: "Ist für beide Aussagen irrelevant", value: false },
   ],
   en: [
-    { label: "Class A", value: false },
-    { label: "Class B", value: false },
-    { label: "Class C", value: true },
-    { label: "Class D", value: false },
-    { label: "Class E", value: false },
+    { label: "Strengthens Statement A", value: false },
+    { label: "Weakens Statement A", value: false },
+    { label: "Strengthens Statement B", value: true },
+    { label: "Weakens Statement B", value: false },
+    { label: "Is irrelevant to both statements", value: false },
   ],
   id: [
-    { label: "Kelas A", value: false },
-    { label: "Kelas B", value: false },
-    { label: "Kelas C", value: true },
-    { label: "Kelas D", value: false },
-    { label: "Kelas E", value: false },
+    { label: "Memperkuat Pernyataan A", value: false },
+    { label: "Memperlemah Pernyataan A", value: false },
+    { label: "Memperkuat Pernyataan B", value: true },
+    { label: "Memperlemah Pernyataan B", value: false },
+    { label: "Tidak relevan dengan kedua pernyataan", value: false },
   ],
 };
 

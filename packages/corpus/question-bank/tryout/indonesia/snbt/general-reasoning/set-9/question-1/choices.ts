@@ -3,39 +3,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "$$127$$ Besucher",
+      label: "$$10{.}000$$ Stimmen",
       value: false,
     },
     {
-      label: "$$126$$ Besucher",
-      value: false,
-    },
-    {
-      label: "$$125$$ Besucher",
-      value: false,
-    },
-    {
-      label: "$$124$$ Besucher",
-      value: false,
-    },
-    {
-      label: "$$123$$ Besucher",
+      label: "$$30{.}000$$ Stimmen",
       value: true,
+    },
+    {
+      label: "$$50{.}000$$ Stimmen",
+      value: false,
+    },
+    {
+      label: "$$60{.}000$$ Stimmen",
+      value: false,
+    },
+    {
+      label: "$$80{.}000$$ Stimmen",
+      value: false,
     },
   ],
   en: [
-    { label: "$$127$$ visitors", value: false },
-    { label: "$$126$$ visitors", value: false },
-    { label: "$$125$$ visitors", value: false },
-    { label: "$$124$$ visitors", value: false },
-    { label: "$$123$$ visitors", value: true },
+    { label: "$$10{,}000$$ votes", value: false },
+    { label: "$$30{,}000$$ votes", value: true },
+    { label: "$$50{,}000$$ votes", value: false },
+    { label: "$$60{,}000$$ votes", value: false },
+    { label: "$$80{,}000$$ votes", value: false },
   ],
   id: [
-    { label: "$$127$$ pengunjung", value: false },
-    { label: "$$126$$ pengunjung", value: false },
-    { label: "$$125$$ pengunjung", value: false },
-    { label: "$$124$$ pengunjung", value: false },
-    { label: "$$123$$ pengunjung", value: true },
+    { label: "$$10{.}000$$ suara", value: false },
+    { label: "$$30{.}000$$ suara", value: true },
+    { label: "$$50{.}000$$ suara", value: false },
+    { label: "$$60{.}000$$ suara", value: false },
+    { label: "$$80{.}000$$ suara", value: false },
   ],
 };
 

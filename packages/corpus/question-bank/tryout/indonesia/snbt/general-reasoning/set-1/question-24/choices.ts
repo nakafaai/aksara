@@ -2,25 +2,82 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "A findet vor D statt.", value: false },
-    { label: "B findet vor C statt.", value: false },
-    { label: "C findet vor A statt.", value: false },
-    { label: "D findet vor B statt.", value: true },
-    { label: "C findet im ersten Zeitslot statt.", value: false },
+    {
+      label: "Jede tropische Fischpopulation wandert polwärts",
+      value: false,
+    },
+    {
+      label:
+        "Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben",
+      value: true,
+    },
+    {
+      label:
+        "Die Beobachtung eines einzelnen polwärts wandernden Fisches reicht als Beweis für die Erwärmung des Ozeans aus",
+      value: false,
+    },
+    {
+      label:
+        "Der Klimawandel beeinflusst die Produktivität der Fischerei in jeder Region gleich",
+      value: false,
+    },
+    {
+      label:
+        "Für tropische und subtropische Fischereien werden größere Produktivitätsgewinne erwartet als für polnähere Regionen",
+      value: false,
+    },
   ],
   en: [
-    { label: "A takes place before D.", value: false },
-    { label: "B takes place before C.", value: false },
-    { label: "C takes place before A.", value: false },
-    { label: "D takes place before B.", value: true },
-    { label: "C is in the first session.", value: false },
+    {
+      label: "Every tropical fish population moves toward the poles",
+      value: false,
+    },
+    {
+      label:
+        "Warming has shifted the distributions of many marine species toward the poles",
+      value: true,
+    },
+    {
+      label:
+        "Observing one fish move toward a pole is enough to prove ocean warming",
+      value: false,
+    },
+    {
+      label:
+        "Climate change affects fisheries productivity equally in every region",
+      value: false,
+    },
+    {
+      label:
+        "Tropical and subtropical fisheries are projected to gain more productivity than poleward regions",
+      value: false,
+    },
   ],
   id: [
-    { label: "A berlangsung sebelum D.", value: false },
-    { label: "B berlangsung sebelum C.", value: false },
-    { label: "C berlangsung sebelum A.", value: false },
-    { label: "D berlangsung sebelum B.", value: true },
-    { label: "C berlangsung pada sesi pertama.", value: false },
+    {
+      label: "Setiap populasi ikan tropis berpindah ke arah kutub",
+      value: false,
+    },
+    {
+      label:
+        "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
+      value: true,
+    },
+    {
+      label:
+        "Mengamati satu ikan bergerak ke arah kutub sudah cukup untuk membuktikan pemanasan laut",
+      value: false,
+    },
+    {
+      label:
+        "Perubahan iklim memengaruhi produktivitas perikanan secara sama di setiap wilayah",
+      value: false,
+    },
+    {
+      label:
+        "Perikanan tropis dan subtropis diproyeksikan memperoleh kenaikan produktivitas yang lebih besar daripada wilayah dekat kutub",
+      value: false,
+    },
   ],
 };
 

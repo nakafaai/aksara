@@ -2,37 +2,40 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "Beide Zahlen addieren", value: false },
-    { label: "Beide Zahlen multiplizieren", value: false },
     {
-      label: "Die erste Zahl quadrieren und die zweite addieren",
-      value: true,
-    },
-    {
-      label: "Die zweite Zahl quadrieren und die erste addieren",
+      label: "$$127$$ Besucher",
       value: false,
     },
-    { label: "Die Summe beider Zahlen quadrieren", value: false },
+    {
+      label: "$$126$$ Besucher",
+      value: false,
+    },
+    {
+      label: "$$125$$ Besucher",
+      value: false,
+    },
+    {
+      label: "$$124$$ Besucher",
+      value: false,
+    },
+    {
+      label: "$$123$$ Besucher",
+      value: true,
+    },
   ],
   en: [
-    { label: "Add the two numbers", value: false },
-    { label: "Multiply the two numbers", value: false },
-    { label: "Square the first number and add the second", value: true },
-    { label: "Square the second number and add the first", value: false },
-    { label: "Square the sum of the two numbers", value: false },
+    { label: "$$127$$ visitors", value: false },
+    { label: "$$126$$ visitors", value: false },
+    { label: "$$125$$ visitors", value: false },
+    { label: "$$124$$ visitors", value: false },
+    { label: "$$123$$ visitors", value: true },
   ],
   id: [
-    { label: "Menjumlahkan kedua bilangan", value: false },
-    { label: "Mengalikan kedua bilangan", value: false },
-    {
-      label: "Mengkuadratkan bilangan pertama, lalu menambah bilangan kedua",
-      value: true,
-    },
-    {
-      label: "Mengkuadratkan bilangan kedua, lalu menambah bilangan pertama",
-      value: false,
-    },
-    { label: "Mengkuadratkan jumlah kedua bilangan", value: false },
+    { label: "$$127$$ pengunjung", value: false },
+    { label: "$$126$$ pengunjung", value: false },
+    { label: "$$125$$ pengunjung", value: false },
+    { label: "$$124$$ pengunjung", value: false },
+    { label: "$$123$$ pengunjung", value: true },
   ],
 };
 

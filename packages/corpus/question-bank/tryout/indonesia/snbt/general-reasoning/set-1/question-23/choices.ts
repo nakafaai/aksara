@@ -4,74 +4,75 @@ const choices: QuestionChoices = {
   de: [
     {
       label:
-        "Abrufübungen erhöhen immer die Leistung jedes einzelnen Schülers.",
+        "Allein die Temperatur entscheidet darüber, ob der Schädlingsdruck zunimmt",
       value: false,
     },
     {
       label:
-        "Unter den getesteten Bedingungen gingen Abrufübungen meist mit höheren Medianwerten einher; weitere Versuche sind nötig.",
+        "Der Klimawandel kann beeinflussen, wo sich Schädlinge ausbreiten und wie große Schäden sie anrichten",
       value: true,
     },
     {
       label:
-        "Da eine Klasse unverändert blieb, hatten die Übungen keine Wirkung.",
+        "Pflanzenschädlinge und Pflanzenkrankheiten vernichten jedes Jahr bei jeder Nutzpflanze genau denselben Anteil",
       value: false,
     },
     {
       label:
-        "Der Versuch beweist, dass allein die Qualität der Lehrkräfte die Ergebnisse bestimmte.",
+        "Niederschlag und Landnutzung haben keinen Einfluss auf den Schädlingsdruck",
       value: false,
     },
     {
-      label: "Jede Schule würde eine gleich große Verbesserung erzielen.",
+      label: "Der Klimawandel macht jeden Schädling überall schädlicher",
       value: false,
     },
   ],
   en: [
     {
-      label: "Retrieval practice always raises every student's score.",
+      label: "Temperature alone determines whether pest pressure increases",
       value: false,
     },
     {
       label:
-        "Under the tested conditions, retrieval practice was usually associated with higher median scores; more trials are needed.",
+        "Climate change can alter where pests spread and how damaging they become",
       value: true,
     },
     {
-      label: "Because one class did not change, the sessions had no effect.",
+      label:
+        "Plant pests and diseases destroy exactly the same share of every crop each year",
       value: false,
     },
     {
-      label: "The trial proves teacher quality alone determined the scores.",
+      label: "Rainfall and land use have no effect on pest pressure",
       value: false,
     },
     {
-      label: "Every school would obtain an improvement of the same size.",
+      label: "Climate change makes every pest more destructive everywhere",
       value: false,
     },
   ],
   id: [
     {
-      label: "Sesi mengingat kembali selalu menaikkan nilai setiap siswa.",
+      label: "Suhu saja menentukan apakah tekanan hama meningkat",
       value: false,
     },
     {
       label:
-        "Dalam kondisi yang diuji, latihan mengingat kembali umumnya berkaitan dengan kenaikan median nilai; percobaan lanjutan masih diperlukan.",
+        "Perubahan iklim dapat mengubah persebaran hama dan tingkat kerusakan yang ditimbulkannya",
       value: true,
     },
     {
       label:
-        "Karena satu kelas tidak berubah, sesi tersebut tidak berpengaruh.",
+        "Hama dan penyakit tanaman merusak bagian yang sama persis dari setiap jenis tanaman setiap tahun",
+      value: false,
+    },
+    {
+      label: "Curah hujan dan penggunaan lahan tidak memengaruhi tekanan hama",
       value: false,
     },
     {
       label:
-        "Percobaan membuktikan bahwa mutu guru adalah satu-satunya penentu nilai.",
-      value: false,
-    },
-    {
-      label: "Setiap sekolah akan mengalami kenaikan dengan besar yang sama.",
+        "Perubahan iklim membuat setiap hama lebih merusak di semua tempat",
       value: false,
     },
   ],

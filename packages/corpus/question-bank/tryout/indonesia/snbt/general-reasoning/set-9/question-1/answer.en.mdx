@@ -4,16 +4,17 @@ export const metadata = {
   date: "2026-01-30",
 };
 
-The changes alternate between <InlineMath math="+3" /> and <InlineMath math="-2" />. Writing them between the recorded values makes that repetition visible:
+Let <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> denote the votes received by the three candidates. Because these are the only candidates, their votes must add up to <InlineMath math="100{,}000" />.
+
+Candidate <InlineMath math="A" /> received half as many votes as Candidate <InlineMath math="B" />, so <InlineMath math="B=2A" />. Candidate <InlineMath math="C" /> received <InlineMath math="10{,}000" /> votes. Substitute both facts into the total:
 
 <MathContainer>
-  <BlockMath math="120 \xrightarrow{+3} 123 \xrightarrow{-2} 121 \xrightarrow{+3} 124 \xrightarrow{-2} 122 \xrightarrow{+3} 125" />
+  <BlockMath math="A+B+C=100{,}000" />
+  <BlockMath math="A+2A+10{,}000=100{,}000" />
+  <BlockMath math="3A=90{,}000" />
+  <BlockMath math="A=30{,}000" />
 </MathContainer>
 
-After the last <InlineMath math="+3" /> step, the next change is therefore <InlineMath math="-2" />:
+As a check, the three vote counts are <InlineMath math="30{,}000" />, <InlineMath math="60{,}000" />, and <InlineMath math="10{,}000" />, which total <InlineMath math="100{,}000" />.
 
-<MathContainer>
-  <BlockMath math="125 - 2 = 123" />
-</MathContainer>
-
-Under the stated pattern, the library will have <InlineMath math="123" /> visitors on day <InlineMath math="7" />.
+> Candidate <InlineMath math="A" /> received **<InlineMath math="30{,}000" /> votes**.

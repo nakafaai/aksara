@@ -1,13 +1,37 @@
 export const metadata = {
   title: "Pembahasan Soal 26",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-Karena <InlineMath math="X" /> berada di kotak <InlineMath math="Q" />, premis kedua memastikan bahwa <InlineMath math="X" /> terbuat dari keramik. Premis pertama menyatakan bahwa setiap benda keramik tidak menghantarkan listrik.
+Untuk menemukan pola barisan ini, kita perlu melihat selisih antar suku yang berurutan. Bedah perubahannya satu per satu.
 
-Rantai simpulannya adalah
+Barisan awal kita adalah:
 
-<BlockMath math="X\in Q\rightarrow X\text{ keramik}\rightarrow X\text{ tidak menghantarkan listrik}" />
+<MathContainer>
+  <BlockMath math="2, 3, 5, 9, 17, \dots" />
+</MathContainer>
 
-Jadi, simpulan yang pasti benar adalah **X tidak menghantarkan listrik**.
+Sekarang, perhatikan lompatan penambahan dari satu angka ke angka berikutnya:
+- Dari <InlineMath math="2" /> ke <InlineMath math="3" />, bertambah <InlineMath math="1" />.
+- Dari <InlineMath math="3" /> ke <InlineMath math="5" />, bertambah <InlineMath math="2" />.
+- Dari <InlineMath math="5" /> ke <InlineMath math="9" />, bertambah <InlineMath math="4" />.
+- Dari <InlineMath math="9" /> ke <InlineMath math="17" />, bertambah <InlineMath math="8" />.
+
+Jika kita tuliskan pola penambahannya, kita mendapatkan deret baru:
+
+<MathContainer>
+  <BlockMath math="+1, +2, +4, +8" />
+</MathContainer>
+
+Terlihat jelas bahwa setiap penambahan adalah **dua kali lipat** dari penambahan sebelumnya (atau perpangkatan bilangan <InlineMath math="2" />: <InlineMath math="2^0, 2^1, 2^2, 2^3" />).
+
+Oleh karena itu, penambahan selanjutnya haruslah dua kali lipat dari <InlineMath math="8" />, yaitu <InlineMath math="16" />.
+
+Hitung suku berikutnya:
+
+<MathContainer>
+  <BlockMath math="17 + 16 = 33" />
+</MathContainer>
+
+Jadi, bilangan yang tepat untuk mengisi barisan tersebut adalah <InlineMath math="33" />.

@@ -3,79 +3,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Das neue System verkürzt die Wartezeit ausnahmslos an jedem Tag.",
+      label: "Abteilung A",
       value: false,
     },
     {
-      label:
-        "Das neue System führte an den meisten Testtagen zu kürzeren medianen Wartezeiten.",
+      label: "Abteilung B",
+      value: false,
+    },
+    {
+      label: "Abteilung C",
       value: true,
     },
     {
-      label:
-        "Der zusätzliche Schalter war die einzige Ursache der Veränderung.",
+      label: "Abteilung D",
       value: false,
     },
     {
-      label:
-        "Der vierte Tag beweist, dass das System grundsätzlich unwirksam ist.",
-      value: false,
-    },
-    {
-      label:
-        "Die Wartezeit sank im Durchschnitt an jedem Tag um genau zwölf Minuten.",
+      label: "Abteilung E",
       value: false,
     },
   ],
   en: [
-    {
-      label:
-        "The new system reduces waiting time on every day without exception.",
-      value: false,
-    },
-    {
-      label:
-        "The new system coincided with shorter median waits on most trial days.",
-      value: true,
-    },
-    {
-      label: "An extra service desk was the sole cause of the change.",
-      value: false,
-    },
-    {
-      label: "The fourth day proves the system is generally ineffective.",
-      value: false,
-    },
-    {
-      label:
-        "Waiting time fell by exactly twelve minutes on average every day.",
-      value: false,
-    },
+    { label: "Division A", value: false },
+    { label: "Division B", value: false },
+    { label: "Division C", value: true },
+    { label: "Division D", value: false },
+    { label: "Division E", value: false },
   ],
   id: [
-    {
-      label:
-        "Sistem baru selalu mempersingkat waktu tunggu tanpa pengecualian.",
-      value: false,
-    },
-    {
-      label:
-        "Sistem baru berkaitan dengan median waktu tunggu yang lebih singkat pada sebagian besar hari uji.",
-      value: true,
-    },
-    {
-      label: "Penambahan loket adalah satu-satunya penyebab perubahan.",
-      value: false,
-    },
-    {
-      label:
-        "Hari keempat membuktikan bahwa sistem tersebut tidak efektif secara umum.",
-      value: false,
-    },
-    {
-      label: "Waktu tunggu turun tepat dua belas menit setiap hari.",
-      value: false,
-    },
+    { label: "Divisi A", value: false },
+    { label: "Divisi B", value: false },
+    { label: "Divisi C", value: true },
+    { label: "Divisi D", value: false },
+    { label: "Divisi E", value: false },
   ],
 };
 

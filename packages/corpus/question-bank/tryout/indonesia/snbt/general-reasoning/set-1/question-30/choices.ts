@@ -2,25 +2,40 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "81", value: false },
-    { label: "86", value: false },
-    { label: "90", value: false },
-    { label: "92", value: true },
-    { label: "96", value: false },
+    {
+      label: "Klasse A",
+      value: false,
+    },
+    {
+      label: "Klasse B",
+      value: false,
+    },
+    {
+      label: "Klasse C",
+      value: false,
+    },
+    {
+      label: "Klasse D",
+      value: true,
+    },
+    {
+      label: "Klasse E",
+      value: false,
+    },
   ],
   en: [
-    { label: "81", value: false },
-    { label: "86", value: false },
-    { label: "90", value: false },
-    { label: "92", value: true },
-    { label: "96", value: false },
+    { label: "Class A", value: false },
+    { label: "Class B", value: false },
+    { label: "Class C", value: false },
+    { label: "Class D", value: true },
+    { label: "Class E", value: false },
   ],
   id: [
-    { label: "81", value: false },
-    { label: "86", value: false },
-    { label: "90", value: false },
-    { label: "92", value: true },
-    { label: "96", value: false },
+    { label: "Kelas A", value: false },
+    { label: "Kelas B", value: false },
+    { label: "Kelas C", value: false },
+    { label: "Kelas D", value: true },
+    { label: "Kelas E", value: false },
   ],
 };
 

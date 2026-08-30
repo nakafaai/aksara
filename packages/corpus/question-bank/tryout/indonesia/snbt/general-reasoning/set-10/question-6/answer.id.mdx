@@ -4,34 +4,24 @@ export const metadata = {
   date: "2026-01-30",
 };
 
-Untuk menemukan pola barisan ini, kita perlu melihat selisih antar suku yang berurutan. Bedah perubahannya satu per satu.
+Untuk menentukan kelas dengan persentase siswa yang menyukai matematika paling rendah, kita perlu membandingkan proporsi siswa yang suka terhadap total siswa di setiap kelas. Total siswa dihitung dengan menjumlahkan siswa yang suka dan tidak suka.
 
-Barisan awal kita adalah:
-
-<MathContainer>
-  <BlockMath math="2, 3, 5, 9, 17, \dots" />
-</MathContainer>
-
-Sekarang, perhatikan lompatan penambahan dari satu angka ke angka berikutnya:
-- Dari <InlineMath math="2" /> ke <InlineMath math="3" />, bertambah <InlineMath math="1" />.
-- Dari <InlineMath math="3" /> ke <InlineMath math="5" />, bertambah <InlineMath math="2" />.
-- Dari <InlineMath math="5" /> ke <InlineMath math="9" />, bertambah <InlineMath math="4" />.
-- Dari <InlineMath math="9" /> ke <InlineMath math="17" />, bertambah <InlineMath math="8" />.
-
-Jika kita tuliskan pola penambahannya, kita mendapatkan deret baru:
+Rumus yang digunakan adalah:
 
 <MathContainer>
-  <BlockMath math="+1, +2, +4, +8" />
+  <BlockMath math="\text{Persentase} = \frac{\text{Suka}}{\text{Suka} + \text{Tidak Suka}} \times 100\%" />
 </MathContainer>
 
-Terlihat jelas bahwa setiap penambahan adalah **dua kali lipat** dari penambahan sebelumnya (atau perpangkatan bilangan <InlineMath math="2" />: <InlineMath math="2^0, 2^1, 2^2, 2^3" />).
-
-Oleh karena itu, penambahan selanjutnya haruslah dua kali lipat dari <InlineMath math="8" />, yaitu <InlineMath math="16" />.
-
-Hitung suku berikutnya:
+Berikut adalah perhitungan persentase untuk setiap kelas secara rinci:
 
 <MathContainer>
-  <BlockMath math="17 + 16 = 33" />
+  <BlockMath math="\text{MMM} = \frac{23}{23+40} \times 100\% = \frac{23}{63} \approx 36{,}5\%" />
+  <BlockMath math="\text{NNN} = \frac{18}{18+20} \times 100\% = \frac{18}{38} \approx 47{,}4\%" />
+  <BlockMath math="\text{PPP} = \frac{10}{10+15} \times 100\% = \frac{10}{25} = 40{,}0\%" />
+  <BlockMath math="\text{QQQ} = \frac{17}{17+23} \times 100\% = \frac{17}{40} = 42{,}5\%" />
+  <BlockMath math="\text{RRR} = \frac{21}{21+35} \times 100\% = \frac{21}{56} = 37{,}5\%" />
 </MathContainer>
 
-Jadi, bilangan yang tepat untuk mengisi barisan tersebut adalah <InlineMath math="33" />.
+Dari hasil perhitungan di atas, kita dapat membandingkan nilai persentase masing-masing kelas.
+
+Terlihat jelas bahwa kelas <InlineMath math="\text{MMM}" /> memiliki persentase terkecil yaitu sekitar <InlineMath math="36{,}5\%" />, yang lebih rendah dibandingkan kelas <InlineMath math="\text{RRR}" /> (<InlineMath math="37{,}5\%" />) dan kelas-kelas lainnya.

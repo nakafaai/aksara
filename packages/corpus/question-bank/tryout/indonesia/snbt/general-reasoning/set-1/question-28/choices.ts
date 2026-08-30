@@ -2,25 +2,55 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "um 10 % niedriger", value: false },
-    { label: "um 12 % niedriger", value: true },
-    { label: "um 18 % niedriger", value: false },
-    { label: "gleich hoch", value: false },
-    { label: "um 8 % höher", value: false },
+    {
+      label: "Die Schlussfolgerung ist definitiv wahr",
+      value: false,
+    },
+    {
+      label: "Die Schlussfolgerung ist möglicherweise wahr",
+      value: false,
+    },
+    {
+      label: "Die Schlussfolgerung ist definitiv falsch",
+      value: true,
+    },
+    {
+      label:
+        "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
+      value: false,
+    },
+    {
+      label:
+        "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
+      value: false,
+    },
   ],
   en: [
-    { label: "10% lower", value: false },
-    { label: "12% lower", value: true },
-    { label: "18% lower", value: false },
-    { label: "unchanged", value: false },
-    { label: "8% higher", value: false },
+    { label: "The conclusion is definitely true", value: false },
+    { label: "The conclusion is possibly true", value: false },
+    { label: "The conclusion is definitely false", value: true },
+    {
+      label: "The conclusion is irrelevant to the information provided",
+      value: false,
+    },
+    {
+      label:
+        "The conclusion cannot be evaluated due to insufficient information",
+      value: false,
+    },
   ],
   id: [
-    { label: "10% lebih rendah", value: false },
-    { label: "12% lebih rendah", value: true },
-    { label: "18% lebih rendah", value: false },
-    { label: "sama dengan harga awal", value: false },
-    { label: "8% lebih tinggi", value: false },
+    { label: "Simpulan tersebut pasti benar", value: false },
+    { label: "Simpulan tersebut mungkin benar", value: false },
+    { label: "Simpulan tersebut pasti salah", value: true },
+    {
+      label: "Simpulan tidak relevan dengan informasi yang diberikan",
+      value: false,
+    },
+    {
+      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
+      value: false,
+    },
   ],
 };
 

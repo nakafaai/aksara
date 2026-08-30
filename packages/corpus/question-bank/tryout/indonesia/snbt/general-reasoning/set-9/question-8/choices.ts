@@ -3,52 +3,77 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Die Schlussfolgerung ist definitiv wahr",
-      value: false,
-    },
-    {
-      label: "Die Schlussfolgerung ist möglicherweise wahr",
-      value: false,
-    },
-    {
-      label: "Die Schlussfolgerung ist definitiv falsch",
+      label:
+        "Studienanfänger der Universität $$P$$ gehören zur Gruppe der Schulabgänger ohne Abschluss",
       value: true,
     },
     {
       label:
-        "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
+        "Jeder Studienanfänger der Universität $$P$$ hat die Schule abgeschlossen",
       value: false,
     },
     {
       label:
-        "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
+        "Kein Schüler ohne Abschluss beginnt im selben Jahrgang an der Universität $$P$$",
+      value: false,
+    },
+    {
+      label:
+        "Jeder Schüler ohne Abschluss nimmt am Vermittlungsprogramm der Schule teil",
+      value: false,
+    },
+    {
+      label:
+        "Die beiden Gruppen Schulabschluss und Abgang ohne Abschluss überschneiden sich nicht",
       value: false,
     },
   ],
   en: [
-    { label: "The conclusion is definitely true", value: false },
-    { label: "The conclusion is possibly true", value: false },
-    { label: "The conclusion is definitely false", value: true },
     {
-      label: "The conclusion is irrelevant to the information provided",
+      label:
+        "Students entering University $$P$$ belong to the withdrawal category",
+      value: true,
+    },
+    {
+      label: "Every student entering University $$P$$ completed school",
       value: false,
     },
     {
-      label:
-        "The conclusion cannot be evaluated due to insufficient information",
+      label: "No withdrawn student enters University $$P$$ in the same intake",
+      value: false,
+    },
+    {
+      label: "Every withdrawn student joins the school's job-placement program",
+      value: false,
+    },
+    {
+      label: "The completed-school and withdrawal categories do not overlap",
       value: false,
     },
   ],
   id: [
-    { label: "Simpulan tersebut pasti benar", value: false },
-    { label: "Simpulan tersebut mungkin benar", value: false },
-    { label: "Simpulan tersebut pasti salah", value: true },
     {
-      label: "Simpulan tidak relevan dengan informasi yang diberikan",
+      label:
+        "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
+      value: true,
+    },
+    {
+      label: "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
       value: false,
     },
     {
-      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
+      label:
+        "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas $$P$$ pada angkatan yang sama",
+      value: false,
+    },
+    {
+      label:
+        "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
+      value: false,
+    },
+    {
+      label:
+        "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
       value: false,
     },
   ],

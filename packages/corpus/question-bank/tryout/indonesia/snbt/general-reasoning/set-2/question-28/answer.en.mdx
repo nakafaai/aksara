@@ -1,19 +1,23 @@
 export const metadata = {
-  title: "Solution for Problem 28",
+  title: "Explanation for Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-The machines' combined hourly rate is
+This question tests the ability to draw logical conclusions (syllogism). We can break down the sentences in the text into symbolic logical premises. Define three basic statements:
 
-<BlockMath math="\frac{1}{12}+\frac{1}{18}=\frac{5}{36}" />
+- <InlineMath math="P" />: It is currently the dry season.
+- <InlineMath math="Q" />: Plants shed their leaves.
+- <InlineMath math="R" />: There is a lot of scattered leaf litter.
 
-In three hours, they complete
+Based on the text, we derive two logical implications. The sentence "In the dry season, plants will shed their leaves" can be written as <InlineMath math="P \rightarrow Q" />. Furthermore, the sentence "when plants shed their leaves, there is a lot of scattered leaf litter" can be written as <InlineMath math="Q \rightarrow R" />.
 
-<BlockMath math="3\times\frac{5}{36}=\frac{5}{12}" />
+Using the principle of **Hypothetical Syllogism**, we can draw a direct conclusion from <InlineMath math="P" /> to <InlineMath math="R" />:
 
-of the job. The remaining part is <InlineMath math="1-\frac{5}{12}=\frac{7}{12}" />. Machine <InlineMath math="B" /> works at <InlineMath math="\frac{1}{18}" /> of the job per hour, so the required time is
+<MathContainer>
+  <BlockMath math="\begin{align*} \text{Premise 1} &: P \rightarrow Q \\ \text{Premise 2} &: Q \rightarrow R \\ \hline \therefore \text{Conclusion} &: P \rightarrow R \end{align*}" />
+</MathContainer>
 
-<BlockMath math="\frac{7}{12}\div\frac{1}{18}=\frac{7}{12}\times18=10.5\text{ hours}" />
+This means that if <InlineMath math="P" /> occurs, then <InlineMath math="R" /> must occur. In plain language: "If it is currently the dry season, then there is a lot of scattered leaf litter." Deductive logic makes <InlineMath math="R" /> certain under the stated premises, so options containing "might be" are too weak.
 
-Machine <InlineMath math="B" /> must therefore work for another **<InlineMath math="10.5\text{ hours}" />**.
+Thus, the correct statement is **if it is currently the dry season, then there is a lot of scattered leaf litter**.

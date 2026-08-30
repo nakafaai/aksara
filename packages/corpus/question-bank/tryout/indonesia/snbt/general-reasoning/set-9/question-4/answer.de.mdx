@@ -4,10 +4,22 @@ export const metadata = {
   date: "2026-01-30",
 };
 
-Richtig ist die Aussage:
+Die Folge verwendet dieselbe Rekursion wie die Fibonacci-Folge: Ab dem dritten Glied ist jedes Glied die Summe der beiden vorherigen. Für die bekannten Glieder gilt:
 
-> *„Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben.“*
+<MathContainer>
+  <BlockMath math="\begin{aligned} 3 + 6 &= 9 \\ 6 + 9 &= 15 \\ 9 + 15 &= 24 \\ 15 + 24 &= 39 \end{aligned}" />
+</MathContainer>
 
-Das ist das in Absatz <InlineMath math="3" /> beschriebene Muster auf Populationsebene. Dabei ist *viele* nicht gleichbedeutend mit *jede tropische Fischpopulation*.
+Um das Glied nach <InlineMath math="39" /> zu bestimmen, addieren wir die beiden unmittelbar vorherigen Glieder:
 
-Auch die Bewegung eines einzelnen Fisches kann die Erwärmung des Ozeans nicht beweisen. Belege für klimabedingte Verbreitungsverschiebungen beruhen auf wiederholten Beobachtungen verschiedener Populationen, Orte und Zeiträume. Zudem beschreibt der Text regionale Unterschiede: Für tropische und subtropische Gewässer werden stärkere Produktivitätsverluste erwartet.
+<MathContainer>
+  <BlockMath math="24 + 39 = 63" />
+</MathContainer>
+
+Die beiden nachfolgenden Glieder bestätigen das Ergebnis:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} 39 + 63 &= 102 \\ 63 + 102 &= 165 \end{aligned}" />
+</MathContainer>
+
+Beide Ergebnisse stimmen mit der Folge überein. Die gesuchte Zahl ist daher <InlineMath math="63" />.

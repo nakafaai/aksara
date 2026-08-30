@@ -2,25 +2,81 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "14", value: false },
-    { label: "16", value: false },
-    { label: "17", value: true },
-    { label: "19", value: false },
-    { label: "36", value: false },
+    {
+      label:
+        "Der Klimawandel hat die Ernährungssicherheit bereits beeinträchtigt",
+      value: false,
+    },
+    {
+      label:
+        "Seine Auswirkungen können je nach Nutzpflanze und Region unterschiedlich ausfallen",
+      value: false,
+    },
+    {
+      label:
+        "Mehr Kohlendioxid in der Atmosphäre kann die Nährstoffkonzentration mancher Nutzpflanzen verringern",
+      value: false,
+    },
+    {
+      label:
+        "Mehr Kohlendioxid in der Atmosphäre kann Wachstum und Ertrag von Nutzpflanzen nur verringern",
+      value: true,
+    },
+    {
+      label:
+        "Höhere Temperaturen, veränderte Niederschläge und Extremereignisse können die Ernährungssicherheit beeinträchtigen",
+      value: false,
+    },
   ],
   en: [
-    { label: "14", value: false },
-    { label: "16", value: false },
-    { label: "17", value: true },
-    { label: "19", value: false },
-    { label: "36", value: false },
+    {
+      label: "Climate change has already affected food security",
+      value: false,
+    },
+    {
+      label: "Its effects can differ by crop and region",
+      value: false,
+    },
+    {
+      label:
+        "More atmospheric carbon dioxide can reduce nutrient concentrations in some crops",
+      value: false,
+    },
+    {
+      label:
+        "More atmospheric carbon dioxide can only reduce crop growth and yield",
+      value: true,
+    },
+    {
+      label:
+        "Higher temperatures, changing rainfall, and extreme events can affect food security",
+      value: false,
+    },
   ],
   id: [
-    { label: "14", value: false },
-    { label: "16", value: false },
-    { label: "17", value: true },
-    { label: "19", value: false },
-    { label: "36", value: false },
+    {
+      label: "Perubahan iklim telah memengaruhi ketahanan pangan",
+      value: false,
+    },
+    {
+      label: "Dampaknya dapat berbeda menurut tanaman dan wilayah",
+      value: false,
+    },
+    {
+      label:
+        "Karbon dioksida atmosfer yang lebih tinggi dapat menurunkan kadar zat gizi pada sebagian tanaman",
+      value: false,
+    },
+    {
+      label:
+        "Karbon dioksida atmosfer yang lebih tinggi hanya dapat menurunkan pertumbuhan dan hasil tanaman",
+      value: true,
+    },
+    {
+      label:
+        "Kenaikan suhu, perubahan curah hujan, dan kejadian ekstrem dapat memengaruhi ketahanan pangan",
+      value: false,
+    },
   ],
 };
 

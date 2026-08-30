@@ -1,19 +1,25 @@
 export const metadata = {
   title: "Pembahasan Soal 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-Terdapat <InlineMath math="9" /> bola. Banyak pasangan yang mungkin adalah
+Analisis pernyataan di atas menggunakan logika matematika dengan mendefinisikan variabel-variabel berikut:
 
-<BlockMath math="\binom{9}{2}=36" />
+- <InlineMath math="P" />: Kenaikan harga bahan bakar minyak (BBM).
+- <InlineMath math="Q" />: Kenaikan tarif angkutan umum.
+- <InlineMath math="R" />: Kenaikan harga kebutuhan pokok.
 
-Pasangan dengan warna sama dapat berupa dua bola merah, dua bola biru, atau dua bola hijau:
+Dari teks soal, kita mendapatkan dua premis utama:
+1. "Setiap kenaikan harga BBM pasti diikuti oleh kenaikan tarif angkutan umum" dapat ditulis sebagai <InlineMath math="P \rightarrow Q" />.
+2. "Kenaikan tarif angkutan umum selalu diikuti oleh kenaikan harga kebutuhan pokok" dapat ditulis sebagai <InlineMath math="Q \rightarrow R" />.
 
-<BlockMath math="\binom{4}{2}+\binom{3}{2}+\binom{2}{2}=6+3+1=10" />
+Pernyataan yang paling tepat dapat ditemukan dengan menggunakan prinsip **Modus Tollens** atau ekuivalensi **Kontraposisi** pada premis pertama. Sebuah implikasi <InlineMath math="P \rightarrow Q" /> memiliki nilai kebenaran yang sama dengan kontraposisinya, yaitu <InlineMath math="\sim Q \rightarrow \sim P" />.
 
-Jadi, peluangnya adalah
+<MathContainer>
+  <BlockMath math="\begin{align*} \text{Implikasi} &: P \rightarrow Q \\ \text{Kontraposisi} &: \sim Q \rightarrow \sim P \end{align*}" />
+</MathContainer>
 
-<BlockMath math="\frac{10}{36}=\frac{5}{18}" />
+Artinya, jika **tidak ada kenaikan tarif angkutan umum** (<InlineMath math="\sim Q" />), maka dapat dipastikan **tidak terjadi kenaikan harga BBM** (<InlineMath math="\sim P" />). Hal ini sesuai dengan pilihan jawaban yang menyatakan bahwa ketiadaan kenaikan tarif angkutan umum menandakan tidak adanya kenaikan harga BBM.
 
-Peluang kedua bola berwarna sama adalah **<InlineMath math="\frac{5}{18}" />**.
+Jadi, pernyataan yang benar adalah **jika tidak ada kenaikan tarif angkutan umum maka tidak terjadi kenaikan harga bahan bakar minyak (BBM)**.

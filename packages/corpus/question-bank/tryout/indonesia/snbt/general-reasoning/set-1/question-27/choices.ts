@@ -2,25 +2,55 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "$$60\text{ km/h}$$", value: false },
-    { label: "$$64\text{ km/h}$$", value: false },
-    { label: "$$66\frac{2}{3}\text{ km/h}$$", value: true },
-    { label: "$$70\text{ km/h}$$", value: false },
-    { label: "$$72\text{ km/h}$$", value: false },
+    {
+      label: "Die Schlussfolgerung ist definitiv wahr",
+      value: true,
+    },
+    {
+      label: "Die Schlussfolgerung ist möglicherweise wahr",
+      value: false,
+    },
+    {
+      label: "Die Schlussfolgerung ist definitiv falsch",
+      value: false,
+    },
+    {
+      label:
+        "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
+      value: false,
+    },
+    {
+      label:
+        "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
+      value: false,
+    },
   ],
   en: [
-    { label: "$$60\text{ km/h}$$", value: false },
-    { label: "$$64\text{ km/h}$$", value: false },
-    { label: "$$66\frac{2}{3}\text{ km/h}$$", value: true },
-    { label: "$$70\text{ km/h}$$", value: false },
-    { label: "$$72\text{ km/h}$$", value: false },
+    { label: "The conclusion is definitely true", value: true },
+    { label: "The conclusion is possibly true", value: false },
+    { label: "The conclusion is definitely false", value: false },
+    {
+      label: "The conclusion is irrelevant to the information provided",
+      value: false,
+    },
+    {
+      label:
+        "The conclusion cannot be evaluated due to insufficient information",
+      value: false,
+    },
   ],
   id: [
-    { label: "$$60\text{ km/jam}$$", value: false },
-    { label: "$$64\text{ km/jam}$$", value: false },
-    { label: "$$66\frac{2}{3}\text{ km/jam}$$", value: true },
-    { label: "$$70\text{ km/jam}$$", value: false },
-    { label: "$$72\text{ km/jam}$$", value: false },
+    { label: "Simpulan tersebut pasti benar", value: true },
+    { label: "Simpulan tersebut mungkin benar", value: false },
+    { label: "Simpulan tersebut pasti salah", value: false },
+    {
+      label: "Simpulan tidak relevan dengan informasi yang diberikan",
+      value: false,
+    },
+    {
+      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
+      value: false,
+    },
   ],
 };
 

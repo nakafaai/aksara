@@ -4,22 +4,16 @@ export const metadata = {
   date: "2026-01-30",
 };
 
-Analisis pernyataan di atas menggunakan logika matematika dengan mendefinisikan variabel-variabel berikut:
-
-- <InlineMath math="P" />: Kenaikan harga bahan bakar minyak (BBM).
-- <InlineMath math="Q" />: Kenaikan tarif angkutan umum.
-- <InlineMath math="R" />: Kenaikan harga kebutuhan pokok.
-
-Dari teks soal, kita mendapatkan dua premis utama:
-1. "Setiap kenaikan harga BBM pasti diikuti oleh kenaikan tarif angkutan umum" dapat ditulis sebagai <InlineMath math="P \rightarrow Q" />.
-2. "Kenaikan tarif angkutan umum selalu diikuti oleh kenaikan harga kebutuhan pokok" dapat ditulis sebagai <InlineMath math="Q \rightarrow R" />.
-
-Pernyataan yang paling tepat dapat ditemukan dengan menggunakan prinsip **Modus Tollens** atau ekuivalensi **Kontraposisi** pada premis pertama. Sebuah implikasi <InlineMath math="P \rightarrow Q" /> memiliki nilai kebenaran yang sama dengan kontraposisinya, yaitu <InlineMath math="\sim Q \rightarrow \sim P" />.
+Data kunjungan siswa membentuk barisan bilangan: <InlineMath math="7, 10, 12, 15, 17, 20" />. Kita akan menganalisis selisih antar suku untuk menemukan polanya.
 
 <MathContainer>
-  <BlockMath math="\begin{align*} \text{Implikasi} &: P \rightarrow Q \\ \text{Kontraposisi} &: \sim Q \rightarrow \sim P \end{align*}" />
+  <BlockMath math="7 \xrightarrow{+3} 10 \xrightarrow{+2} 12 \xrightarrow{+3} 15 \xrightarrow{+2} 17 \xrightarrow{+3} 20" />
 </MathContainer>
 
-Artinya, jika **tidak ada kenaikan tarif angkutan umum** (<InlineMath math="\sim Q" />), maka dapat dipastikan **tidak terjadi kenaikan harga BBM** (<InlineMath math="\sim P" />). Hal ini sesuai dengan pilihan jawaban yang menyatakan bahwa ketiadaan kenaikan tarif angkutan umum menandakan tidak adanya kenaikan harga BBM.
+Terlihat bahwa pola penambahannya adalah selang-seling antara <InlineMath math="+3" /> dan <InlineMath math="+2" />. Karena suku terakhir (<InlineMath math="20" />) diperoleh dari penambahan <InlineMath math="+3" />, maka langkah selanjutnya untuk mendapatkan hari ke-<InlineMath math="7" /> adalah menambahkan <InlineMath math="+2" />.
 
-Jadi, pernyataan yang benar adalah **jika tidak ada kenaikan tarif angkutan umum maka tidak terjadi kenaikan harga bahan bakar minyak (BBM)**.
+<MathContainer>
+  <BlockMath math="\text{Hari ke-7} = 20 + 2 = 22 \text{ siswa}" />
+</MathContainer>
+
+Jadi, jumlah siswa yang berkunjung pada hari ke-<InlineMath math="7" /> diprediksi sebanyak <InlineMath math="22\text{ orang}" />.

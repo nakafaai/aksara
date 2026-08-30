@@ -1,18 +1,54 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-Beim gemeinsamen Durchschnitt müssen die unterschiedlichen Klassengrößen berücksichtigt werden. Die Punktsummen der beiden Klassen sind
+In dieser Folge wechseln sich **zwei verschiedene Muster** ab. Wir trennen deshalb die Glieder an ungeraden und geraden Positionen.
+
+**Erstes Muster (ungerade Glieder)**
+
+Wir betrachten das <InlineMath math="1" />., <InlineMath math="3" />., <InlineMath math="5" />. und <InlineMath math="7" />. Glied sowie die Fortsetzung:
 
 <MathContainer>
-  <BlockMath math="30\times72=2160" />
-  <BlockMath math="20\times84=1680" />
+  <BlockMath math="1, 6, 11, 16, \dots, 26" />
 </MathContainer>
 
-Insgesamt ergeben sich <InlineMath math="2160+1680=3840" /> Punkte für <InlineMath math="50" /> Schüler. Daher gilt
+Jedes Glied nimmt um <InlineMath math="5" /> zu:
+- <InlineMath math="1 + 5 = 6" />
+- <InlineMath math="6 + 5 = 11" />
+- <InlineMath math="11 + 5 = 16" />
 
-<BlockMath math="\frac{3840}{50}=76{,}8" />
+Das nächste Glied in diesem Muster lautet also:
 
-Der gemeinsame Durchschnitt beträgt **<InlineMath math="76{,}8" />**.
+<MathContainer>
+  <BlockMath math="16 + 5 = 21" />
+</MathContainer>
+
+Die Kontrolle mit dem letzten Glied bestätigt das Muster: <InlineMath math="21 + 5 = 26" />.
+
+**Zweites Muster (gerade Glieder)**
+
+Nun betrachten wir das <InlineMath math="2" />., <InlineMath math="4" />. und <InlineMath math="6" />. Glied sowie die Fortsetzung:
+
+<MathContainer>
+  <BlockMath math="3, 5, 7, \dots, 11" />
+</MathContainer>
+
+Hier nimmt jedes Glied um <InlineMath math="2" /> zu:
+- <InlineMath math="3 + 2 = 5" />
+- <InlineMath math="5 + 2 = 7" />
+
+Das nächste Glied, das die erste Lücke füllt, lautet:
+
+<MathContainer>
+  <BlockMath math="7 + 2 = 9" />
+</MathContainer>
+
+Auch das folgende Glied passt: <InlineMath math="9 + 2 = 11" />.
+
+**Fazit**
+
+Die erste Lücke setzt das zweite Muster mit <InlineMath math="9" /> fort. In die zweite Lücke gehört als Fortsetzung des ersten Musters <InlineMath math="21" />.
+
+Das richtige Zahlenpaar ist also <InlineMath math="9, 21" />.

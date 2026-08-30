@@ -2,46 +2,70 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 
 const choices: QuestionChoices = {
   de: [
-    { label: "Alle geschulten Personen sind Laborassistenten.", value: false },
-    { label: "Einige Laborassistenten sind ehrenamtlich tätig.", value: false },
     {
-      label: "Einige geschulte Personen gehören nicht zum bezahlten Personal.",
+      label: "Bekräftigt Aussage A",
+      value: false,
+    },
+    {
+      label: "Schwächt Aussage A",
+      value: false,
+    },
+    {
+      label: "Bekräftigt Aussage B",
+      value: false,
+    },
+    {
+      label: "Schwächt Aussage B",
+      value: false,
+    },
+    {
+      label: "Für die Aussagen A und B irrelevant",
       value: true,
-    },
-    {
-      label: "Kein Laborassistent gehört zum bezahlten Personal.",
-      value: false,
-    },
-    {
-      label: "Alle bezahlten Mitarbeiter sind Laborassistenten.",
-      value: false,
     },
   ],
   en: [
     {
-      label: "Everyone with safety training is a laboratory assistant.",
+      label: "Strengthens statement A",
       value: false,
     },
-    { label: "Some laboratory assistants are volunteers.", value: false },
     {
-      label: "Some people with safety training are not paid staff.",
+      label: "Weakens statement A",
+      value: false,
+    },
+    {
+      label: "Strengthens statement B",
+      value: false,
+    },
+    {
+      label: "Weakens statement B",
+      value: false,
+    },
+    {
+      label: "Irrelevant to statements A and B",
       value: true,
     },
-    { label: "No laboratory assistant is paid staff.", value: false },
-    { label: "All paid staff are laboratory assistants.", value: false },
   ],
   id: [
     {
-      label: "Semua peserta pelatihan adalah asisten laboratorium.",
+      label: "Memperkuat pernyataan A",
       value: false,
     },
-    { label: "Sebagian asisten laboratorium adalah relawan.", value: false },
-    { label: "Sebagian peserta pelatihan bukan staf bergaji.", value: true },
     {
-      label: "Tidak ada asisten laboratorium yang menjadi staf bergaji.",
+      label: "Memperlemah pernyataan A",
       value: false,
     },
-    { label: "Semua staf bergaji adalah asisten laboratorium.", value: false },
+    {
+      label: "Memperkuat pernyataan B",
+      value: false,
+    },
+    {
+      label: "Memperlemah pernyataan B",
+      value: false,
+    },
+    {
+      label: "Tidak relevan dengan pernyataan A dan B",
+      value: true,
+    },
   ],
 };
 

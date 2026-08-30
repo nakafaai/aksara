@@ -1,19 +1,23 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  date: "2026-08-30",
+  date: "2026-01-30",
 };
 
-Gemeinsam erledigen die Maschinen pro Stunde
+Diese Aufgabe prüft das Ziehen einer logischen Schlussfolgerung durch einen Syllogismus. Dazu übersetzen wir die Aussagen in drei logische Variablen:
 
-<BlockMath math="\frac{1}{12}+\frac{1}{18}=\frac{5}{36}" />
+- <InlineMath math="P" />: Es ist derzeit Trockenzeit.
+- <InlineMath math="Q" />: Pflanzen werfen ihre Blätter ab.
+- <InlineMath math="R" />: Auf dem Boden sammelt sich viel Laub.
 
-des Auftrags. In drei Stunden schaffen sie
+Aus dem Text folgen zwei Implikationen. „In der Trockenzeit werfen die Pflanzen ihre Blätter ab“ entspricht <InlineMath math="P \rightarrow Q" />. „Wenn die Pflanzen ihre Blätter abwerfen, sammelt sich viel Laub“ entspricht <InlineMath math="Q \rightarrow R" />.
 
-<BlockMath math="3\times\frac{5}{36}=\frac{5}{12}" />
+Mit dem **hypothetischen Syllogismus** können wir direkt von <InlineMath math="P" /> auf <InlineMath math="R" /> schließen:
 
-Damit bleiben <InlineMath math="1-\frac{5}{12}=\frac{7}{12}" /> des Auftrags übrig. Maschine <InlineMath math="B" /> erledigt pro Stunde <InlineMath math="\frac{1}{18}" /> des Auftrags. Die verbleibende Arbeitszeit beträgt daher
+<MathContainer>
+  <BlockMath math="\begin{align*} \text{Prämisse 1} &amp;: P \rightarrow Q \\ \text{Prämisse 2} &amp;: Q \rightarrow R \\ \hline \therefore \text{Fazit} &amp;: P \rightarrow R \end{align*}" />
+</MathContainer>
 
-<BlockMath math="\frac{7}{12}\div\frac{1}{18}=\frac{7}{12}\times18=10{,}5\text{ Stunden}" />
+Das bedeutet: Wenn <InlineMath math="P" /> eintritt, muss auch <InlineMath math="R" /> eintreten. In Worten: „Wenn derzeit Trockenzeit ist, sammelt sich viel Laub auf dem Boden.“ Antwortmöglichkeiten mit „möglicherweise“ sind hier falsch, weil die deduktive Kette eine notwendige und keine bloß mögliche Folge beschreibt.
 
-Maschine <InlineMath math="B" /> muss also noch **<InlineMath math="10{,}5\text{ Stunden}" />** arbeiten.
+Richtig ist deshalb: **Wenn Trockenzeit ist, sammelt sich viel Laub auf dem Boden.**

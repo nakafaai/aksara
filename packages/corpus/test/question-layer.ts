@@ -73,7 +73,7 @@ export const invalidQuestionChoiceSources = [
   };`,
 ];
 export const questionRendererCounts = [
-  { count: 220, rendererDomain: "snbt-general" },
+  { count: 200, rendererDomain: "snbt-general" },
   { count: 140, rendererDomain: "snbt-math" },
   { count: 180, rendererDomain: "snbt-plain" },
   { count: 200, rendererDomain: "snbt-quant" },
