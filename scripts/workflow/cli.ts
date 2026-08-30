@@ -6,8 +6,10 @@ const IDENTITY_PATTERN = /id-token: write/u;
 const IDENTITY_GLOBAL_PATTERN = /id-token: write/gu;
 const PERMISSION_PATTERN = /permissions:\n {6}id-token: write/u;
 const PROTECTED_ENVIRONMENT_PATTERN = /^ {4}environment: npm-production$/mu;
-const BOOTSTRAP_AUTH_PATTERN =
-  /^ {10}NODE_AUTH_TOKEN: \$\{\{ secrets\.NPM_BOOTSTRAP_TOKEN \}\}$[\s\S]*^ {10}NPM_CONFIG_USERCONFIG: [^\n]+$[\s\S]*^ {10}printf '%s\\n' "\/\/registry\.npmjs\.org\/:_authToken=\\\$\{NODE_AUTH_TOKEN\}"/mu;
+const LONG_LIVED_CREDENTIAL_PATTERN =
+  /NODE_AUTH_TOKEN|NPM_CONFIG_USERCONFIG|_authToken|\$\{\{\s*secrets\./u;
+const TRUSTED_PUBLISH_PATTERN =
+  /^ {6}- name: Publish public package\n^ {8}env:\n^ {10}TARBALL: \$\{\{ needs\.build\.outputs\.archive \}\}$\n^ {8}run: npm publish "\$TARBALL" --access public --provenance$/mu;
 const STABLE_VERSION_PATTERN =
   /^ {6}- name: Verify stable package version\n^ {8}run: \|\n[\s\S]*^ {10}version=\$\(jq -er '\.version' apps\/cli\/dist\/package\/package\.json\)$[\s\S]*^ {10}if \[\[ ! "\$version" =~ \^\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\$ \]\]; then$/mu;
 const TRANSPORT_PATTERN =
@@ -53,10 +55,15 @@ export function verifyCliWorkflow(source: string): void {
     PROTECTED_ENVIRONMENT_PATTERN,
     "CLI publication must require the protected npm production environment"
   );
+  assert.doesNotMatch(
+    publishJob,
+    LONG_LIVED_CREDENTIAL_PATTERN,
+    "CLI publication must not receive a long-lived registry credential"
+  );
   assert.match(
     publishJob,
-    BOOTSTRAP_AUTH_PATTERN,
-    "Initial CLI publication must use the protected bootstrap credential"
+    TRUSTED_PUBLISH_PATTERN,
+    "CLI publication must use the registered npm trusted publisher"
   );
   assert.match(
     buildJob,

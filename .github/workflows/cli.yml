@@ -129,10 +129,5 @@ jobs:
 
       - name: Publish public package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
-          NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/npmrc
           TARBALL: ${{ needs.build.outputs.archive }}
-        run: |
-          printf '%s\n' "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" \
-            > "$NPM_CONFIG_USERCONFIG"
-          npm publish "$TARBALL" --access public --provenance
+        run: npm publish "$TARBALL" --access public --provenance

@@ -25,7 +25,7 @@ describe("CLI workflow policy", () => {
     );
   });
 
-  it("requires exact transport and protected bootstrap publication", () => {
+  it("requires exact transport and trusted publication", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replaceAll(
@@ -56,13 +56,21 @@ describe("CLI workflow policy", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replace(
-          "secrets.NPM_BOOTSTRAP_TOKEN",
-          "secrets.UNPROTECTED_TOKEN"
+          'npm publish "$TARBALL"',
+          'NODE_AUTH_TOKEN=credential npm publish "$TARBALL"'
         )
       )
     ).toThrow(
-      "Initial CLI publication must use the protected bootstrap credential"
+      "CLI publication must not receive a long-lived registry credential"
     );
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          'npm publish "$TARBALL" --access public --provenance',
+          'npm pack "$TARBALL"'
+        )
+      )
+    ).toThrow("CLI publication must use the registered npm trusted publisher");
     expect(() =>
       verifyCliWorkflow(
         source.replace(
