@@ -4,8 +4,8 @@ import { Effect, Schema } from "effect";
 const CONTRACT_NAME = "@nakafa/aksara-contracts";
 const FIRST_VERSION = "0.1.0";
 const VERSION_PATTERN = /^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/u;
-const TAG_PATTERN =
-  /^contracts-v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/u;
+const ARCHIVE_PATTERN =
+  /^nakafa-aksara-contracts-((?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))\.tgz$/u;
 const LINE_PATTERN = /\r?\n/u;
 
 const PackageIdentitySchema = Schema.fromJsonString(
@@ -15,7 +15,7 @@ const PackageIdentitySchema = Schema.fromJsonString(
   })
 );
 
-/** Stable contract package identity used by its tag and archive. */
+/** Stable contract package identity used by its archive and release tag. */
 export interface ContractIdentity {
   readonly assetName: string;
   readonly major: number;
@@ -64,7 +64,7 @@ export function releaseError(
 
 /** Parses one stable semantic version without evaluating tag-controlled text. */
 export const parseVersion = Effect.fn("AksaraContracts.parseVersion")(
-  function* (version: string) {
+  function* (version: string, releaseTag = `${CONTRACT_NAME}@${version}`) {
     const match = VERSION_PATTERN.exec(version);
     if (!match) {
       return yield* releaseError(
@@ -86,7 +86,7 @@ export const parseVersion = Effect.fn("AksaraContracts.parseVersion")(
       major,
       minor,
       patch,
-      releaseTag: `contracts-v${version}`,
+      releaseTag,
       version,
     } satisfies ContractIdentity;
   }
@@ -123,21 +123,34 @@ export const packageIdentity = Effect.fn("AksaraContracts.packageIdentity")(
   }
 );
 
-/** Resolves the newest valid contract tag and rejects malformed lookalike tags. */
+/** Resolves the newest immutable archive without depending on historical tag syntax. */
 export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
   function* (source: string) {
     const identities: ContractIdentity[] = [];
-    for (const tag of source.split(LINE_PATTERN).filter(Boolean)) {
-      const match = TAG_PATTERN.exec(tag);
-      if (!match) {
+    const versions = new Set<string>();
+    for (const release of source.split(LINE_PATTERN).filter(Boolean)) {
+      const [releaseTag, assetName, ...extra] = release.split("\t");
+      if (!(releaseTag && assetName) || extra.length > 0) {
         return yield* releaseError(
           "identity",
-          `Contract tag ${tag} is not a stable release tag`
+          "Contract release metadata must pair one tag with one stable archive"
         );
       }
-      identities.push(
-        yield* parseVersion(`${match[1]}.${match[2]}.${match[3]}`)
-      );
+      const version = ARCHIVE_PATTERN.exec(assetName)?.[1];
+      if (!version) {
+        return yield* releaseError(
+          "identity",
+          "Contract release metadata must reference one stable package archive"
+        );
+      }
+      if (versions.has(version)) {
+        return yield* releaseError(
+          "identity",
+          `Contract version ${version} has multiple immutable releases`
+        );
+      }
+      versions.add(version);
+      identities.push(yield* parseVersion(version, releaseTag));
     }
     return identities.sort(compareVersions).at(-1);
   }
@@ -145,9 +158,9 @@ export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
 
 /** Validates the source version against the complete fetched contract tag set. */
 export const resolveIdentity = Effect.fn("AksaraContracts.resolveIdentity")(
-  function* (packageSource: string, tagsSource: string) {
+  function* (packageSource: string, releasesSource: string) {
     const current = yield* packageIdentity(packageSource);
-    const latest = yield* latestIdentity(tagsSource);
+    const latest = yield* latestIdentity(releasesSource);
     if (!latest) {
       if (current.version !== FIRST_VERSION) {
         return yield* releaseError(

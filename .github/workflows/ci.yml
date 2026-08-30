@@ -41,22 +41,23 @@ jobs:
 
       - name: Capture immutable contract releases
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
           GH_TOKEN: ${{ github.token }}
         run: >-
           gh api --paginate
           "repos/$GITHUB_REPOSITORY/releases?per_page=100"
           --jq '.[] | select(.draft == false and .immutable == true and
-          .prerelease == false) | .tag_name |
-          select(startswith("contracts-v"))' > "$CONTRACT_TAGS"
+          .prerelease == false) | .tag_name as $tag | .assets[] |
+          select(.name | test("^nakafa-aksara-contracts-(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.tgz$")) |
+          [$tag, .name] | @tsv' > "$CONTRACT_RELEASES"
 
       - name: Contract release identity
         id: identity
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
         run: >-
           node packages/contracts/scripts/release-command.ts describe
-          --tags "$CONTRACT_TAGS" --output "$GITHUB_OUTPUT"
+          --releases "$CONTRACT_RELEASES" --output "$GITHUB_OUTPUT"
 
       - name: Lint
         run: pnpm lint
@@ -122,12 +123,12 @@ jobs:
 
       - name: Verify exact archive release identity
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
           CURRENT_ARCHIVE: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
           HAS_LATEST: ${{ steps.identity.outputs.has_latest }}
           LATEST_ARCHIVE: ${{ runner.temp }}/latest-contract/${{ steps.identity.outputs.latest_asset_name }}
         run: |
-          arguments=(decide --tags "$CONTRACT_TAGS" \
+          arguments=(decide --releases "$CONTRACT_RELEASES" \
             --archive "$CURRENT_ARCHIVE" --output "$GITHUB_OUTPUT")
           if [[ "$HAS_LATEST" == "true" ]]; then
             arguments+=(--previous "$LATEST_ARCHIVE")

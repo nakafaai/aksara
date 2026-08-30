@@ -30,15 +30,18 @@ layer(NodeServices.layer)("contract release command", (it) => {
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-release-command-",
       });
-      const tags = path.join(root, "tags.txt");
+      const releases = path.join(root, "releases.txt");
       const output = path.join(root, "output.txt");
-      yield* fileSystem.writeFileString(tags, "contracts-v0.1.0\n");
+      yield* fileSystem.writeFileString(
+        releases,
+        "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\n"
+      );
       yield* runReleaseCommand([
         "describe",
         "--package",
         "package.json",
-        "--tags",
-        tags,
+        "--releases",
+        releases,
         "--output",
         output,
       ]);

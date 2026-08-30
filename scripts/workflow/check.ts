@@ -26,9 +26,9 @@ const CONTRACT_TRIGGER_PATTERN =
   /push:[\s\S]*branches: \[main\][\s\S]*workflow_dispatch:/u;
 const CONTRACT_PATH_TRIGGER_PATTERN = /\bpaths(?:-ignore)?:/u;
 const RELEASE_IDENTITY_PATTERN =
-  /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*startswith\("contracts-v"\)[\s\S]*release-command\.ts describe[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
+  /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*\.assets\[\][\s\S]*nakafa-aksara-contracts-[\s\S]*@tsv[\s\S]*release-command\.ts describe[\s\S]*--releases[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
 const SHELL_VERSION_PATTERN =
-  /IFS=|current_(?:major|minor|patch)|latest_(?:major|minor|patch)|latest_version=\$\{|release_tag="contracts-v\$|asset_name="nakafa-aksara-contracts-\$/u;
+  /IFS=|current_(?:major|minor|patch)|latest_(?:major|minor|patch)|latest_version=\$\{|release_tag="(?:contracts-v|@nakafa\/aksara-contracts@)\$|asset_name="nakafa-aksara-contracts-\$/u;
 const ARCHIVE_IDENTITY_PATTERN =
   /release-command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
 const ATTESTATION_PATTERN =
