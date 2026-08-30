@@ -179,7 +179,10 @@ function stopsOnFailure(step: YAMLMap): boolean {
 }
 
 /** Rejects alternate or legacy toolchain owners. */
-function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
+function verifyPnpmSelectors(
+  steps: readonly YAMLMap[],
+  hasPnpmCommand: boolean
+): void {
   for (const step of steps) {
     const command = scalarText(mapValue(step, "run"));
     assert.equal(
@@ -195,7 +198,7 @@ function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
       "Workflows must not use legacy pnpm/action-setup"
     );
     assert.equal(
-      uses.startsWith(NODE_SETUP_PREFIX),
+      hasPnpmCommand && uses.startsWith(NODE_SETUP_PREFIX),
       false,
       "Workflows must not use a second Node.js setup action"
     );
@@ -208,9 +211,8 @@ function verifyPnpmJob(
   environment: ReadonlyMap<string, string>
 ): void {
   const steps = jobSteps(job);
-  verifyPnpmSelectors(steps);
-
   const commandIndex = firstPnpmCommand(steps, environment);
+  verifyPnpmSelectors(steps, commandIndex !== -1);
   if (commandIndex === -1) {
     return;
   }

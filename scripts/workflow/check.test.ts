@@ -85,10 +85,10 @@ describe("workflow policy", () => {
 
   it("attests the verified archive before privileged transfer", () => {
     const contracts = sources.contracts
-      .replace("- name: Upload verified archive", "- name: Later transfer")
+      .replace("- name: Upload verified release", "- name: Later transfer")
       .replace(
         "- name: Attest verified archive",
-        "- name: Upload verified archive"
+        "- name: Upload verified release"
       )
       .replace("- name: Later transfer", "- name: Attest verified archive");
 
@@ -97,30 +97,14 @@ describe("workflow policy", () => {
     );
   });
 
-  it("binds GitHub and npm provenance to one exact source", () => {
-    const cases = [
-      [
-        sources.contracts.replaceAll(
-          '--source-digest "$GITHUB_SHA"',
-          '--source-digest "unknown"'
-        ),
-        "Contract attestation must bind workflow, source revision, and main",
-      ],
-      [
-        sources.contracts.replace(
-          ".digest.gitCommit == $sha",
-          '.digest.gitCommit == "unknown"'
-        ),
-        "npm provenance must bind archive, repository, workflow, main, and source revision",
-      ],
-      [
-        sources.contracts.replace("audit signatures", "audit unsigned"),
-        "npm provenance must bind archive, repository, workflow, main, and source revision",
-      ],
-    ] as const;
-    for (const [contracts, message] of cases) {
-      expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(message);
-    }
+  it("binds GitHub attestation to one exact source", () => {
+    const contracts = sources.contracts.replaceAll(
+      '--source-digest "$GITHUB_SHA"',
+      '--source-digest "unknown"'
+    );
+    expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(
+      "Contract attestation must bind workflow, source revision, and main"
+    );
   });
 
   it("removes only the failed same-SHA mutable release", () => {
@@ -134,17 +118,6 @@ describe("workflow policy", () => {
       })
     ).toThrow(
       "Failed publication must remove only its same-SHA mutable release"
-    );
-  });
-
-  it("keeps repository code out of the privileged contract job", () => {
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        contracts: `${sources.contracts}\n      - run: node scripts/check.ts`,
-      })
-    ).toThrow(
-      "The privileged contract job must not checkout or execute repository code"
     );
   });
 

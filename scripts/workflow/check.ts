@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/files";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
+import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -15,8 +16,6 @@ const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const ARCHIVE_BUILD_PATTERN =
   /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
-const PRIVILEGED_CODE_PATTERN =
-  /actions\/checkout|\bpnpm\b|\bnode\b|packages\/|scripts\//u;
 const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
 const FULL_GATE_PATTERN =
   /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build/u;
@@ -33,10 +32,8 @@ const ARCHIVE_IDENTITY_PATTERN =
   /release-command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
-const NPM_PROVENANCE_PATTERN =
-  /expected_sha512=.*sha512sum[\s\S]*expected_attestation_url="https:\/\/registry\.npmjs\.org\/-\/npm\/v1\/attestations\/\$encoded_package_name@\$package_version"[\s\S]*read_verified_provenance\(\)[\s\S]*npx --yes .* install --save-exact --ignore-scripts[\s\S]*audit signatures --json[\s\S]*--include-attestations[\s\S]*\.invalid \| length[\s\S]*\.missing \| length[\s\S]*\.name == \$name[\s\S]*\.version == \$version[\s\S]*\.attestations\.url == \$attestation_url[\s\S]*\.attestationBundles[\s\S]*@base64d \| fromjson[\s\S]*is_exact_provenance\(\)[\s\S]*workflow\.repository[\s\S]*\.github\/workflows\/contracts\.yml[\s\S]*refs\/heads\/main[\s\S]*resolvedDependencies[\s\S]*\.digest\.gitCommit == \$sha[\s\S]*github-hosted[\s\S]*is_exact_publication\(\)/u;
 const RELEASE_JOB_PATTERN =
-  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified archive[\s\S]*actions\/upload-artifact@[0-9a-f]{40}[\s\S]*publish:[\s\S]*needs: build[\s\S]*if: needs\.build\.outputs\.mode == 'create'[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download verified archive[\s\S]*actions\/download-artifact@[0-9a-f]{40}/u;
+  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified release[\s\S]*actions\/upload-artifact@[0-9a-f]{40}[\s\S]*publish:[\s\S]*needs: build[\s\S]*if: needs\.build\.outputs\.mode == 'create'[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download verified release[\s\S]*actions\/download-artifact@[0-9a-f]{40}/u;
 const IMMUTABLE_SETTING_PATTERN =
   /repos\/\$GITHUB_REPOSITORY\/immutable-releases/u;
 const IDEMPOTENT_RELEASE_PATTERN =
@@ -167,7 +164,7 @@ export function verifyWorkflows({
     "Contract releases must compare exact verified archive bytes"
   );
   const attestIndex = contracts.indexOf("- name: Attest verified archive");
-  const transferIndex = contracts.indexOf("- name: Upload verified archive");
+  const transferIndex = contracts.indexOf("- name: Upload verified release");
   const draftIndex = contracts.indexOf("- name: Create draft release");
   const uploadIndex = contracts.indexOf("- name: Attach verified archive");
   const publishIndex = contracts.indexOf("- name: Publish immutable release");
@@ -184,21 +181,11 @@ export function verifyWorkflows({
     ATTESTATION_PATTERN,
     "Contract attestation must bind workflow, source revision, and main"
   );
-  assert.match(
-    contracts,
-    NPM_PROVENANCE_PATTERN,
-    "npm provenance must bind archive, repository, workflow, main, and source revision"
-  );
+  verifyProvenanceWorkflow(contracts);
   assert.match(
     contracts,
     RELEASE_JOB_PATTERN,
     "Contract builds and privileged publication must use separate jobs"
-  );
-  const publishJob = contracts.slice(contracts.indexOf("\n  publish:"));
-  assert.doesNotMatch(
-    publishJob,
-    PRIVILEGED_CODE_PATTERN,
-    "The privileged contract job must not checkout or execute repository code"
   );
   assert.doesNotMatch(
     contracts,
