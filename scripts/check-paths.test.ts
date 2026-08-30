@@ -7,12 +7,16 @@ describe("path policy", () => {
       pathViolations([
         ".npmrc",
         "src/legacy.jsx",
+        "src/legacy.cjsx",
+        "src/legacy.mjsx",
         "packages/compiler/three-word-policy.ts",
         "packages/compiler/HTTPClientPolicy.ts",
       ])
     ).toEqual([
       ".npmrc: pnpm and package.json own the toolchain contract",
       "src/legacy.jsx: hand-written JavaScript source is not allowed",
+      "src/legacy.cjsx: hand-written JavaScript source is not allowed",
+      "src/legacy.mjsx: hand-written JavaScript source is not allowed",
       "packages/compiler/three-word-policy.ts: three-word-policy.ts",
       "packages/compiler/HTTPClientPolicy.ts: HTTPClientPolicy.ts",
     ]);
@@ -37,16 +41,22 @@ describe("path policy", () => {
     ).toEqual([]);
   });
 
-  it("rejects orphan and TSX test modules", () => {
+  it("rejects orphan and every non-final Vitest test suffix", () => {
     expect(
       pathViolations([
         "packages/compiler/orphan.test.ts",
         "packages/compiler/view.ts",
         "packages/compiler/view.test.tsx",
+        "packages/compiler/worker.spec.ts",
+        "packages/compiler/runtime.test.mts",
+        "packages/compiler/server.spec.cts",
       ])
     ).toEqual([
       "packages/compiler/orphan.test.ts: final test has no colocated packages/compiler/orphan.ts owner",
       "packages/compiler/view.test.tsx: final tests must use .test.ts",
+      "packages/compiler/worker.spec.ts: final tests must use .test.ts",
+      "packages/compiler/runtime.test.mts: final tests must use .test.ts",
+      "packages/compiler/server.spec.cts: final tests must use .test.ts",
     ]);
   });
 
