@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { pathViolations } from "#scripts/check-paths";
 
 describe("path policy", () => {
@@ -7,12 +7,16 @@ describe("path policy", () => {
       pathViolations([
         ".npmrc",
         "src/legacy.jsx",
+        "src/legacy.cjsx",
+        "src/legacy.mjsx",
         "packages/compiler/three-word-policy.ts",
         "packages/compiler/HTTPClientPolicy.ts",
       ])
     ).toEqual([
       ".npmrc: pnpm and package.json own the toolchain contract",
       "src/legacy.jsx: hand-written JavaScript source is not allowed",
+      "src/legacy.cjsx: hand-written JavaScript source is not allowed",
+      "src/legacy.mjsx: hand-written JavaScript source is not allowed",
       "packages/compiler/three-word-policy.ts: three-word-policy.ts",
       "packages/compiler/HTTPClientPolicy.ts: HTTPClientPolicy.ts",
     ]);
@@ -22,6 +26,7 @@ describe("path policy", () => {
     expect(
       pathViolations([
         "",
+        "packages/compiler/policy.config.ts",
         "packages/compiler/policy.config.test.ts",
         "packages/compiler/release-2026-state.ts",
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
@@ -34,6 +39,25 @@ describe("path policy", () => {
         "packages/corpus/question-bank/tryout/malaysia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
       ])
     ).toEqual([]);
+  });
+
+  it("rejects orphan and every non-final Vitest test suffix", () => {
+    expect(
+      pathViolations([
+        "packages/compiler/orphan.test.ts",
+        "packages/compiler/view.ts",
+        "packages/compiler/view.test.tsx",
+        "packages/compiler/worker.spec.ts",
+        "packages/compiler/runtime.test.mts",
+        "packages/compiler/server.spec.cts",
+      ])
+    ).toEqual([
+      "packages/compiler/orphan.test.ts: final test has no colocated packages/compiler/orphan.ts owner",
+      "packages/compiler/view.test.tsx: final tests must use .test.ts",
+      "packages/compiler/worker.spec.ts: final tests must use .test.ts",
+      "packages/compiler/runtime.test.mts: final tests must use .test.ts",
+      "packages/compiler/server.spec.cts: final tests must use .test.ts",
+    ]);
   });
 
   it("still validates source names and folders outside educational roots", () => {

@@ -4,7 +4,9 @@ const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
 const ACRONYM_WORD_PATTERN = /(\p{Lu}+)(\p{Lu}\p{Ll})/gu;
 const NUMBER_PATTERN = /^\d+$/u;
-const JAVASCRIPT_PATTERN = /\.(?:[cm]?js|jsx)$/u;
+const JAVASCRIPT_PATTERN = /\.[cm]?jsx?$/u;
+const RUNNABLE_TEST_FILE_PATTERN = /\.(?:spec|test)\.[cm]?[jt]sx?$/u;
+const FINAL_TEST_FILE_PATTERN = /\.test\.ts$/u;
 const FORBIDDEN_FILE_NAMES = new Set([
   ".node-version",
   ".npmrc",
@@ -107,6 +109,7 @@ function isEducationalFolder(segments: readonly string[], index: number) {
 
 /** Collects forbidden toolchains, JavaScript, and overlong semantic path names. */
 export function pathViolations(files: readonly string[]): readonly string[] {
+  const tracked = new Set(files);
   return files.flatMap((file) => {
     const basename = file.split("/").at(-1);
     const toolchainViolation =
@@ -116,6 +119,16 @@ export function pathViolations(files: readonly string[]): readonly string[] {
     const sourceViolation = JAVASCRIPT_PATTERN.test(file)
       ? [`${file}: hand-written JavaScript source is not allowed`]
       : [];
+    const ownerPath = file.replace(FINAL_TEST_FILE_PATTERN, ".ts");
+    const ownerViolation =
+      FINAL_TEST_FILE_PATTERN.test(file) && !tracked.has(ownerPath)
+        ? [`${file}: final test has no colocated ${ownerPath} owner`]
+        : [];
+    const testSourceViolation =
+      RUNNABLE_TEST_FILE_PATTERN.test(file) &&
+      !FINAL_TEST_FILE_PATTERN.test(file)
+        ? [`${file}: final tests must use .test.ts`]
+        : [];
     const segments = file.split("/");
     const nameViolations = segments.flatMap((segment, index) => {
       if (isEducationalFolder(segments, index) || words(segment).length <= 2) {
@@ -124,7 +137,13 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       return [`${file}: ${segment}`];
     });
 
-    return [...toolchainViolation, ...sourceViolation, ...nameViolations];
+    return [
+      ...toolchainViolation,
+      ...sourceViolation,
+      ...ownerViolation,
+      ...testSourceViolation,
+      ...nameViolations,
+    ];
   });
 }
 

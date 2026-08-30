@@ -1,10 +1,9 @@
 import { Exit, Schema } from "effect";
-
+import type { PreviewArtifact } from "#contracts/preview/artifact";
 import type { ArticlePreviewDocument } from "#contracts/preview/document";
 import {
   LOCAL_PREVIEW_FORMAT,
   LocalPreviewManifestSchema,
-  type PreviewArtifact,
   PreviewRepositorySchema,
 } from "#contracts/preview/spec";
 

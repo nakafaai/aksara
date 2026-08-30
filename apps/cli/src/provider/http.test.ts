@@ -1,14 +1,13 @@
-import { describe, expect, it } from "@effect/vitest";
+import { describe, expect, it, vi } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { localPreviewArtifactPath } from "@nakafa/aksara-contracts/preview/artifact";
 import { MaterialPreviewDocumentSchema } from "@nakafa/aksara-contracts/preview/document";
 import {
   LOCAL_PREVIEW_FORMAT,
   LocalPreviewManifestSchema,
-  localPreviewArtifactPath,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { Effect, HashMap, Schema } from "effect";
-import { vi } from "vitest";
 import {
   PREVIEW_EVENTS_PATH,
   PREVIEW_MANIFEST_PATH,

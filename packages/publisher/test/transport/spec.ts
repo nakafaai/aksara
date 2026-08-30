@@ -13,7 +13,10 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
+import {
+  type StageOperation,
+  StageOperationSchema,
+} from "@nakafa/aksara-contracts/transport/group";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
@@ -235,6 +238,20 @@ const transportStageRequests = Schema.decodeUnknownSync(
   },
 ]);
 
+/** Excludes the rollback-only child operation from top-level ingress fixtures. */
+function isTopLevelStageOperation(
+  request: StageOperation
+): request is Exclude<
+  StageOperation,
+  { readonly operation: "stageRollbackProjectionBatch" }
+> {
+  return request.operation !== "stageRollbackProjectionBatch";
+}
+
+const transportTopLevelStageRequests = transportStageRequests.filter(
+  isTopLevelStageOperation
+);
+
 export const transportRequests: readonly PublicationRequest[] =
   Schema.decodeSync(Schema.Array(PublicationRequestSchema))([
     { operation: "current" },
@@ -252,7 +269,7 @@ export const transportRequests: readonly PublicationRequest[] =
       release: transportRecovery,
       rendererManifest: transportRenderer,
     },
-    ...transportStageRequests,
+    ...transportTopLevelStageRequests,
     {
       operation: "stageGroup",
       releaseId: transportReleaseId,

@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ITEM_BATCH_BYTES,
@@ -37,7 +38,9 @@ import {
 import { readPublicationResponse } from "#publisher/target/response";
 
 const REQUEST_BYTE_LIMITS: Readonly<{
-  [Operation in PublicationRequest["operation"]]: number;
+  [Operation in
+    | PublicationRequest["operation"]
+    | StageOperation["operation"]]: number;
 }> = {
   abort: MAX_PUBLICATION_REQUEST_BYTES,
   accept: MAX_PUBLICATION_REQUEST_BYTES,
@@ -55,6 +58,7 @@ const REQUEST_BYTE_LIMITS: Readonly<{
   stageProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
   stageRecovery: MAX_PUBLICATION_REQUEST_BYTES,
   stageRelease: MAX_PUBLICATION_REQUEST_BYTES,
+  stageRollbackProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
   stageRouteBatch: MAX_ROUTE_BATCH_BYTES,
   stageSnapshot: MAX_PUBLICATION_REQUEST_BYTES,
   stageSnapshotBatch: MAX_SNAPSHOT_BATCH_BYTES,

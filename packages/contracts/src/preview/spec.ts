@@ -1,6 +1,7 @@
 import { Schema } from "effect";
 import { GitCommitShaSchema, Sha256HashSchema } from "#contracts/ids";
 import type { ArtifactLocale } from "#contracts/locale";
+import { PreviewArtifactSchema } from "#contracts/preview/artifact";
 import {
   type ArticlePreviewDocument,
   type MaterialPreviewDocument,
@@ -13,10 +14,7 @@ import type { ArticleProjection } from "#contracts/projection/article";
 import type { MaterialLessonProjection } from "#contracts/projection/material";
 import type { PublicPageProjection } from "#contracts/projection/page";
 import type { QuestionBodyProjection } from "#contracts/projection/question";
-import {
-  type CurrentContentProjection,
-  CurrentContentProjectionSchema,
-} from "#contracts/projection/spec";
+import type { CurrentContentProjection } from "#contracts/projection/spec";
 import type {
   QuestionAnswerIdentity,
   QuestionBodyIdentity,
@@ -24,12 +22,6 @@ import type {
 
 /** Stable protocol implemented by the loopback-only authoring provider. */
 export const LOCAL_PREVIEW_FORMAT = "aksara-local-preview";
-export const LOCAL_PREVIEW_ARTIFACT_PREFIX = "/v1/artifacts/";
-
-/** Builds the one content-addressed path owned by the preview protocol. */
-export function localPreviewArtifactPath(artifactHash: string) {
-  return `${LOCAL_PREVIEW_ARTIFACT_PREFIX}${encodeURIComponent(artifactHash)}`;
-}
 
 /** Exact Git evidence printed and served for one participating checkout. */
 export const PreviewRepositorySchema = Schema.Struct({
@@ -37,28 +29,6 @@ export const PreviewRepositorySchema = Schema.Struct({
   sha: GitCommitShaSchema,
 });
 export type PreviewRepository = typeof PreviewRepositorySchema.Type;
-
-/** Ensures one artifact endpoint is addressed only by its signed hash. */
-function hasCoherentArtifactPath(input: {
-  readonly artifactHash: string;
-  readonly artifactPath: string;
-}) {
-  return input.artifactPath === localPreviewArtifactPath(input.artifactHash);
-}
-
-/** One signed artifact reference and its exact renderer projection. */
-export const PreviewArtifactSchema = Schema.Struct({
-  artifactHash: Sha256HashSchema,
-  artifactPath: Schema.Trimmed.check(Schema.isNonEmpty()),
-  projection: CurrentContentProjectionSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCoherentArtifactPath, {
-      message: "Expected the artifact path to match its signed hash.",
-    })
-  )
-);
-export type PreviewArtifact = typeof PreviewArtifactSchema.Type;
 
 const PreviewArtifactListSchema = Schema.NonEmptyArray(
   PreviewArtifactSchema

@@ -1,20 +1,21 @@
-import { describe, expect, it } from "@effect/vitest";
+import { describe, expect, it, vi } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
 import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Schema, Stream } from "effect";
-import { vi } from "vitest";
 
 import {
   stagePreparedRelease,
   stageRuntimeBundles,
 } from "#publisher/stage/plan";
 import { makeRelease } from "#test/publication";
+import { makeRollbackRelease } from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";
 import { transportRelease, transportRuntimeBundle } from "#test/transport/spec";
 
 const { prepared } = await makeRelease(transportRelease.manifest.releaseId);
+const rollback = await makeRollbackRelease("test-rollback-stage");
 const recoveryRuntimeBundle = Schema.decodeSync(
   SignedTryoutRuntimeBundleSchema
 )({
@@ -47,7 +48,6 @@ describe("prepared release staging", () => {
         artifacts: Stream.empty,
         items: prepared.items,
         prepared,
-        projections: Stream.empty,
         routes: Stream.empty,
         target,
       });
@@ -70,6 +70,24 @@ describe("prepared release staging", () => {
       expect(releaseGroup?.requests[0]).toMatchObject({
         operation: "stageItemBatch",
       });
+    })
+  );
+
+  it.effect("confines rollback projections to the group-only operation", () =>
+    Effect.gen(function* () {
+      const stageGroup = vi.fn((_group: StageGroupInput) => Effect.void);
+      const target = makePublicationTarget({ stageGroup });
+      yield* stagePreparedRelease({
+        artifacts: Stream.empty,
+        items: Stream.empty,
+        prepared: rollback.prepared,
+        routes: Stream.empty,
+        target,
+      });
+      expect(stageGroup).toHaveBeenCalledOnce();
+      expect(stageGroup.mock.calls[0]?.[0].requests).toMatchObject([
+        { operation: "stageRollbackProjectionBatch" },
+      ]);
     })
   );
 });

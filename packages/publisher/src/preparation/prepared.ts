@@ -1,5 +1,8 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import type {
+  ContentProjection,
+  CurrentContentProjection,
+} from "@nakafa/aksara-contracts/projection/spec";
 import type {
   ContentReleaseItem,
   ContentReleaseManifest,
@@ -40,7 +43,7 @@ export interface PreparedTryoutRuntimeTransition {
 
 /** Exact-Git release whose artifacts must be reproducibly recompiled. */
 export interface PreparedGitRelease<E, R>
-  extends PreparedContentReleaseBase<E, R, ContentProjection> {
+  extends PreparedContentReleaseBase<E, R, CurrentContentProjection> {
   readonly kind: "git";
   readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
