@@ -1,6 +1,5 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
@@ -12,7 +11,10 @@ import {
   makeRouteBatches,
 } from "#publisher/batching";
 import type { PreparedContentRelease } from "#publisher/preparation/prepared";
-import { makeProjectionBatches } from "#publisher/projection-batch";
+import {
+  makeProjectionBatches,
+  makeRollbackProjectionBatches,
+} from "#publisher/projection-batch";
 import { makeSnapshotRequests } from "#publisher/publication/snapshots";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import { makeStageGroups } from "#publisher/stage/group";
@@ -49,8 +51,6 @@ export const stagePreparedRelease = Effect.fn(
   ArtifactRequirements,
   ItemError,
   ItemRequirements,
-  ProjectionError,
-  ProjectionRequirements,
   RouteError,
   RouteRequirements,
 >(input: {
@@ -68,11 +68,6 @@ export const stagePreparedRelease = Effect.fn(
     PreparedError,
     PreparedRequirements
   >;
-  readonly projections: Stream.Stream<
-    ContentProjection,
-    ProjectionError,
-    ProjectionRequirements
-  >;
   readonly routes: Stream.Stream<
     ContentRouteItem,
     RouteError,
@@ -87,14 +82,24 @@ export const stagePreparedRelease = Effect.fn(
       (batch): StageOperation => ({ ...batch, operation: "stageItemBatch" })
     )
   );
-  const projections = makeProjectionBatches(releaseId, input.projections).pipe(
-    Stream.map(
-      (batch): StageOperation => ({
-        ...batch,
-        operation: "stageProjectionBatch",
-      })
-    )
-  );
+  const projections =
+    prepared.kind === "git"
+      ? makeProjectionBatches(releaseId, prepared.projections).pipe(
+          Stream.map(
+            (batch): StageOperation => ({
+              ...batch,
+              operation: "stageProjectionBatch",
+            })
+          )
+        )
+      : makeRollbackProjectionBatches(releaseId, prepared.projections).pipe(
+          Stream.map(
+            (batch): StageOperation => ({
+              ...batch,
+              operation: "stageRollbackProjectionBatch",
+            })
+          )
+        );
   const routes = makeRouteBatches(releaseId, input.routes).pipe(
     Stream.map(
       (batch): StageOperation => ({ ...batch, operation: "stageRouteBatch" })

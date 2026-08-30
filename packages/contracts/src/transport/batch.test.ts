@@ -1,6 +1,7 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { batchCeilingCases, emptyBatchCases } from "#contracts/test/batch";
+import { testPageProjection } from "#contracts/test/preview";
 import {
   artifact,
   items,
@@ -13,6 +14,9 @@ import {
   StageItemBatchInputSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchInputSchema,
+  StageProjectionBatchRequestSchema,
+  StageRollbackProjectionBatchInputSchema,
+  StageRollbackProjectionBatchRequestSchema,
   StageRouteBatchInputSchema,
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
@@ -102,6 +106,47 @@ describe("batch transport", () => {
         releaseId,
       })
     ).toBe(false);
+  });
+
+  it("rejects predecessor Page metadata from projection staging", () => {
+    const historicalPage = {
+      ...testPageProjection,
+      metadata: {
+        description: testPageProjection.metadata.description,
+        lastModified: testPageProjection.metadata.datePublished,
+        title: testPageProjection.metadata.title,
+      },
+    };
+    expect(
+      accepts(StageProjectionBatchInputSchema, {
+        batchIndex: 0,
+        projections: [historicalPage],
+        releaseId,
+      })
+    ).toBe(false);
+    expect(
+      accepts(StageProjectionBatchRequestSchema, {
+        batchIndex: 0,
+        operation: "stageProjectionBatch",
+        projections: [historicalPage],
+        releaseId,
+      })
+    ).toBe(false);
+    expect(
+      accepts(StageRollbackProjectionBatchInputSchema, {
+        batchIndex: 0,
+        projections: [historicalPage],
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts(StageRollbackProjectionBatchRequestSchema, {
+        batchIndex: 0,
+        operation: "stageRollbackProjectionBatch",
+        projections: [historicalPage],
+        releaseId,
+      })
+    ).toBe(true);
   });
 
   it("requires non-empty batches and enforces canonical count ceilings", () => {

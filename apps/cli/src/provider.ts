@@ -5,13 +5,15 @@ import {
   type SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import {
+  localPreviewArtifactPath,
+  type PreviewArtifact,
+} from "@nakafa/aksara-contracts/preview/artifact";
 import type { PreviewDocument } from "@nakafa/aksara-contracts/preview/document";
 import {
   LOCAL_PREVIEW_FORMAT,
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
-  localPreviewArtifactPath,
-  type PreviewArtifact,
 } from "@nakafa/aksara-contracts/preview/spec";
 import type { CurrentContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import { Effect, HashMap, Redacted, Schema } from "effect";

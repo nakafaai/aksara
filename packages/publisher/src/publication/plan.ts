@@ -5,10 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
-import {
-  decodeContentProjections,
-  verifyContentProjections,
-} from "@nakafa/aksara-contracts/projection/verify";
+import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
   SignedContentRelease,
@@ -196,8 +193,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     items: input.items,
     manifest: input.manifest,
   });
-  /** Replays strictly decoded projections for bounded target staging. */
-  const decodedProjections = decodeContentProjections(input.projections);
   /** Replays strictly decoded routes for bounded target staging. */
   const decodedRoutes = decodeContentRoutes({
     manifest: input.manifest,
@@ -289,7 +284,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     artifacts,
     items: decodedItems,
     prepared: input,
-    projections: decodedProjections,
     routes: decodedRoutes,
     target,
   });

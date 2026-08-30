@@ -5,6 +5,8 @@ import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import { PublicPageProjectionSchema } from "@nakafa/aksara-contracts/projection/page";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
@@ -12,11 +14,36 @@ import {
 import { Effect, Schema, Stream } from "effect";
 import {
   canonicalizeProjectionBatch,
+  canonicalizeRollbackProjectionBatch,
   makeProjectionBatches,
+  makeRollbackProjectionBatches,
 } from "#publisher/projection-batch";
 import { materialGraph } from "#test/graph";
 
 const releaseId = ReleaseIdSchema.make("test-release-projections");
+const currentPage = Schema.decodeSync(PublicPageProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
+  contentKey: "pages/test",
+  kind: "public-page",
+  metadata: {
+    datePublished: "2026-01-01",
+    description: "Test page",
+    title: "Test Page",
+  },
+  pageKey: "test",
+  publicPath: "test",
+  sitemap: true,
+  sourcePath: "packages/corpus/pages/test/en.mdx",
+});
+const historicalPage = Schema.decodeSync(ContentProjectionSchema)({
+  ...currentPage,
+  metadata: {
+    description: currentPage.metadata.description,
+    lastModified: currentPage.metadata.datePublished,
+    title: currentPage.metadata.title,
+  },
+});
 
 /** Builds one unmistakably test-only material projection. */
 const projection = Effect.fn("ProjectionBatchTest.projection")(
@@ -121,6 +148,27 @@ describe("projection batching", () => {
       ).pipe(Stream.runDrain, Effect.flip);
       expect(byteError._tag).toBe("PublicationBatchLimitError");
       expect(byteError.actualBytes).toBeGreaterThan(MAX_PROJECTION_BATCH_BYTES);
+    })
+  );
+
+  it.effect("preserves predecessor Page bytes only in rollback envelopes", () =>
+    Effect.gen(function* () {
+      const batches = yield* makeRollbackProjectionBatches(
+        releaseId,
+        Stream.make(historicalPage)
+      ).pipe(Stream.runCollect);
+      expect(batches).toHaveLength(1);
+      const [batch] = batches;
+      expect(batch).toBeDefined();
+      if (batch === undefined) {
+        return;
+      }
+      expect(JSON.parse(canonicalizeRollbackProjectionBatch(batch))).toEqual({
+        batchIndex: 0,
+        operation: "stageRollbackProjectionBatch",
+        projections: [historicalPage],
+        releaseId,
+      });
     })
   );
 });

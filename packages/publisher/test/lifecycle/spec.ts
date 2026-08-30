@@ -1,3 +1,4 @@
+import { vi } from "@effect/vitest";
 import {
   type ContentReleaseManifest,
   ReleaseVerificationCompleteSchema,
@@ -21,7 +22,6 @@ import type {
 } from "@nakafa/aksara-contracts/transport/group";
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import { Effect, Schema } from "effect";
-import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { PublicationTargetRejectedError } from "#publisher/target/errors";
 import {
@@ -110,7 +110,7 @@ export function makeTarget(release: {
     if (request.operation === "stageItemBatch") {
       return stageItemBatch(request);
     }
-    if (request.operation === "stageProjectionBatch") {
+    if ("projections" in request) {
       return stageProjectionBatch(request);
     }
     if (request.operation === "stageRouteBatch") {
