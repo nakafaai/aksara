@@ -49,6 +49,7 @@ const englishPlacement = Effect.fn(
     ...record.row,
     answerContentKey: `${root}/answer`,
     deliveryLanguage: "en",
+    languagePolicy: { kind: "fixed", language: "en" },
     questionArtifactLocale: "en",
     questionContentKey: `${root}/question`,
     questionSourcePath: `packages/corpus/${root}`,

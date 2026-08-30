@@ -1,13 +1,15 @@
 import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
+import { Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
+import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
-const TKA_SECONDS_PER_QUESTION = 90;
 const EXAM_KEY = "tka";
 const QUESTION_ROOT = `${QUESTION_BANK_KEY_ROOT}/${indonesiaTryoutCountry.countryKey}/${EXAM_KEY}`;
 
 /** Lazily validates the source-controlled TKA catalog and placements. */
-export const tkaTryoutSource = defineTryoutExamSource({
+const tkaTryoutCatalog = defineTryoutExamSource({
   ...indonesiaTryoutCountry,
   examKey: EXAM_KEY,
   examOrder: 2,
@@ -28,7 +30,7 @@ export const tkaTryoutSource = defineTryoutExamSource({
     },
   },
   scoringStrategy: "raw",
-  sourceRevision: "2026-07-05",
+  sourceRevision: "2026-08-30",
   tracks: [
     {
       key: "mathematics",
@@ -52,6 +54,7 @@ export const tkaTryoutSource = defineTryoutExamSource({
           sections: [
             {
               key: "mathematics",
+              languagePolicy: { kind: "app-locale" },
               order: 1,
               questionCount: 40,
               questionSourcePath: `${QUESTION_ROOT}/mathematics/${setKey}`,
@@ -61,7 +64,7 @@ export const tkaTryoutSource = defineTryoutExamSource({
                 en: "mathematics",
                 id: "matematika",
               },
-              timeLimitSeconds: 40 * TKA_SECONDS_PER_QUESTION,
+              timeLimitSeconds: 3000,
               translations: {
                 de: { title: "Mathematik" },
                 en: { title: "Mathematics" },
@@ -84,4 +87,13 @@ export const tkaTryoutSource = defineTryoutExamSource({
       },
     },
   ],
+});
+
+/** Validates the active TKA catalog against official and editorial readiness. */
+export const tkaTryoutSource = Effect.gen(function* () {
+  const [source, readiness] = yield* Effect.all([
+    tkaTryoutCatalog,
+    tkaReadiness,
+  ]);
+  return yield* validateAssessmentSourceReadiness(source, readiness);
 });

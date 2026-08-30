@@ -1,46 +1,22 @@
 import { describe, expect, it } from "@effect/vitest";
+import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import { Effect } from "effect";
-import { indexQuestionBanks } from "#corpus/question-bank/path";
-import { discoverQuestionSources } from "#corpus/question-bank/source";
-import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
-import { loadTryoutContent } from "#corpus/tryout/content";
+import {
+  hasValidQuestionResponse,
+  loadTryoutProjectionContent,
+  loadTryoutProjectionSources,
+} from "#corpus/test/tryout";
 import { projectTryoutSources } from "#corpus/tryout/projection";
-import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const ENGLISH_PATH_PATTERN = /\/mathematics$/u;
 const INDONESIAN_PATH_PATTERN = /\/matematika$/u;
-
-/** Loads the exact active content and projection from one corpus scan. */
-const loadContent = Effect.fn("AksaraCorpus.test.loadTryoutProjectionContent")(
-  function* () {
-    return yield* loadTryoutContent(corpusRoot).pipe(
-      Effect.provide(questionLayer)
-    );
-  }
-);
-
-/** Loads reviewed hierarchy and question sources for typed failure tests. */
-const loadSources = Effect.fn("AksaraCorpus.test.loadTryoutProjectionSources")(
-  function* () {
-    const sources = yield* decodeTryoutRegistry();
-    const questionBanks = yield* indexQuestionBanks(sources);
-    const questions = yield* discoverQuestionSources(
-      corpusRoot,
-      questionBanks
-    ).pipe(Effect.provide(questionLayer));
-    return [sources, questions] satisfies readonly [
-      typeof sources,
-      typeof questions,
-    ];
-  }
-);
 
 describe("tryout projection", () => {
   it.effect(
     "projects the exact active hierarchy and localized placements",
     () =>
       Effect.gen(function* () {
-        const { projection } = yield* loadContent();
+        const { projection } = yield* loadTryoutProjectionContent();
         const counts = Object.fromEntries(
           ["country", "exam", "track", "set", "section"].map((kind) => [
             kind,
@@ -74,9 +50,8 @@ describe("tryout projection", () => {
         expect(bodyHeads.size).toBe(2640);
         expect(
           projection.placements.every(
-            ({ choices, scope }) =>
-              scope === "server" &&
-              choices.filter(({ isCorrect }) => isCorrect).length === 1
+            ({ response, scope }) =>
+              scope === "server" && hasValidQuestionResponse(response)
           )
         ).toBe(true);
       }),
@@ -84,10 +59,11 @@ describe("tryout projection", () => {
   );
 
   it.effect(
-    "reuses exact assessed-language choices across app locales",
+    "reuses the exact assessed-language response across app locales",
     () =>
       Effect.gen(function* () {
-        const { projection, sources: questions } = yield* loadContent();
+        const { projection, sources: questions } =
+          yield* loadTryoutProjectionContent();
         const english = projection.placements.filter(({ questionContentKey }) =>
           questionContentKey.includes("/snbt/english-language/")
         );
@@ -107,25 +83,14 @@ describe("tryout projection", () => {
               `${questionKey}/question` === placement.questionContentKey
           )
         );
-        const englishChoices = yield* Effect.fromNullishOr(source.choices.en);
+        const englishResponse = yield* questionResponseFor(
+          source.item,
+          placement.questionArtifactLocale
+        );
 
-        expect(placement.choices).toEqual(
-          englishChoices.map(({ label, value }, index) => ({
-            isCorrect: value,
-            label,
-            optionKey: `option-${index + 1}`,
-            order: index + 1,
-          }))
-        );
-        expect(peer.choices).toEqual(
-          englishChoices.map(({ label, value }, index) => ({
-            isCorrect: value,
-            label,
-            optionKey: `option-${index + 1}`,
-            order: index + 1,
-          }))
-        );
-        expect(source.choices.id).toBeUndefined();
+        expect(placement.response).toEqual(englishResponse);
+        expect(peer.response).toEqual(englishResponse);
+        expect(source.item.responses.id).toBeUndefined();
         expect("questionLanguage" in placement).toBe(false);
       }),
     { timeout: 30_000 }
@@ -135,7 +100,7 @@ describe("tryout projection", () => {
     "derives graph identity from source keys for routes and internal entries",
     () =>
       Effect.gen(function* () {
-        const { projection } = yield* loadContent();
+        const { projection } = yield* loadTryoutProjectionContent();
         const trackEn = yield* Effect.fromNullishOr(
           projection.catalog.find(
             ({ row }) =>
@@ -189,7 +154,7 @@ describe("tryout projection", () => {
     "excludes every physical set outside the active source registry",
     () =>
       Effect.gen(function* () {
-        const { projection } = yield* loadContent();
+        const { projection } = yield* loadTryoutProjectionContent();
         const snbt = projection.placements.filter(
           ({ examKey }) => examKey === "snbt"
         );
@@ -215,25 +180,23 @@ describe("tryout projection", () => {
     "rejects missing, duplicate, malformed, and colliding source facts",
     () =>
       Effect.gen(function* () {
-        const [sources, questions] = yield* loadSources();
+        const [sources, questions] = yield* loadTryoutProjectionSources();
         const active = yield* Effect.fromNullishOr(
           questions.find(({ questionKey }) =>
             questionKey.includes("/snbt/general-reasoning/set-1/question-1")
           )
         );
-        const activeEnglishChoices = yield* Effect.fromNullishOr(
-          active.choices.en
+        const activeIndonesianResponse = yield* Effect.fromNullishOr(
+          active.item.responses.id
         );
-        const invalidChoices = questions.map((question) =>
+        const invalidItems = questions.map((question) =>
           question.questionKey === active.questionKey
             ? {
                 ...question,
-                choices: {
-                  ...question.choices,
-                  en: activeEnglishChoices.map((choice) => ({
-                    ...choice,
-                    value: false,
-                  })),
+                item: {
+                  responses: {
+                    id: activeIndonesianResponse,
+                  },
                 },
               }
             : question
@@ -248,13 +211,68 @@ describe("tryout projection", () => {
           projectTryoutSources(sources, [...questions, active]).pipe(
             Effect.flip
           ),
-          projectTryoutSources(sources, invalidChoices).pipe(Effect.flip),
+          projectTryoutSources(sources, invalidItems).pipe(Effect.flip),
         ]);
 
         expect(failures.map(({ _tag }) => _tag)).toEqual([
           "TryoutQuestionMissingError",
           "TryoutQuestionDuplicateError",
           "TryoutPlacementError",
+        ]);
+      }),
+    { timeout: 30_000 }
+  );
+
+  it.effect(
+    "rejects isolated and noncontiguous shared stimuli",
+    () =>
+      Effect.gen(function* () {
+        const [sources, questions] = yield* loadTryoutProjectionSources();
+        const groupPath = "/tka/mathematics/set-1/";
+        const sixth = yield* Effect.fromNullishOr(
+          questions.find(({ questionKey }) =>
+            questionKey.includes(`${groupPath}question-6`)
+          )
+        );
+        const seventh = yield* Effect.fromNullishOr(
+          questions.find(({ questionKey }) =>
+            questionKey.includes(`${groupPath}question-7`)
+          )
+        );
+        const eighth = yield* Effect.fromNullishOr(
+          questions.find(({ questionKey }) =>
+            questionKey.includes(`${groupPath}question-8`)
+          )
+        );
+        const stimulusKey = yield* Effect.fromNullishOr(sixth.item.stimulusKey);
+        const withoutSeventh = questions.map((question) => {
+          if (question !== seventh) {
+            return question;
+          }
+          const { stimulusKey: _stimulusKey, ...item } = question.item;
+          return { ...question, item };
+        });
+        const noncontiguous = withoutSeventh.map((question) =>
+          question === eighth
+            ? { ...question, item: { ...question.item, stimulusKey } }
+            : question
+        );
+        const [isolated, separated] = yield* Effect.all([
+          projectTryoutSources(sources, withoutSeventh).pipe(Effect.flip),
+          projectTryoutSources(sources, noncontiguous).pipe(Effect.flip),
+        ]);
+
+        expect([isolated, separated]).toEqual([
+          expect.objectContaining({
+            _tag: "TryoutStimulusGroupError",
+            reason: "isolated",
+            stimulusKey,
+          }),
+          expect.objectContaining({
+            _tag: "TryoutStimulusGroupError",
+            reason: "noncontiguous",
+            stimulusKey,
+          }),
         ]);
       }),
     { timeout: 30_000 }

@@ -9,7 +9,7 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
-import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
+import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
 import {
@@ -42,9 +42,9 @@ type PlanQuestionPublicationContext =
   | Effect.Services<ReturnType<typeof compileQuestionDocument>>
   | Effect.Services<ReturnType<typeof inspectQuestionDocument>>;
 
-/** A question body cannot join its canonical source-owned choices. */
-export class QuestionChoiceJoinError extends Schema.TaggedError<QuestionChoiceJoinError>()(
-  "QuestionChoiceJoinError",
+/** A question body cannot join its canonical source-owned item. */
+export class QuestionItemJoinError extends Schema.TaggedError<QuestionItemJoinError>()(
+  "QuestionItemJoinError",
   { sourceRoot: CorpusSourcePathSchema }
 ) {}
 
@@ -80,17 +80,17 @@ function absentQuestion(entry: QuestionEntry): RollbackSnapshotState {
   };
 }
 
-/** Joins one body entry with the choices owned by its physical source. */
+/** Joins one body entry with the item owned by its physical source. */
 const inspectQuestionEntry = Effect.fn("AksaraPublisher.inspectQuestionEntry")(
   function* (
     checkoutRoot: string,
     rendererManifest: RendererManifestEnvelope,
     entry: QuestionEntry,
-    choicesByRoot: ReturnType<typeof indexQuestionChoices>
+    itemsByRoot: ReturnType<typeof indexQuestionItems>
   ) {
-    const choices = choicesByRoot.get(entry.sourceRoot);
-    if (choices === undefined) {
-      return yield* new QuestionChoiceJoinError({
+    const item = itemsByRoot.get(entry.sourceRoot);
+    if (item === undefined) {
+      return yield* new QuestionItemJoinError({
         sourceRoot: entry.sourceRoot,
       });
     }
@@ -98,7 +98,7 @@ const inspectQuestionEntry = Effect.fn("AksaraPublisher.inspectQuestionEntry")(
       checkoutRoot,
       rendererManifest,
       entry,
-      choices
+      item
     );
   }
 );
@@ -113,10 +113,10 @@ export function planQuestionPublication<E, R>(input: {
   readonly sources: readonly QuestionSource[];
 }): Stream.Stream<
   QuestionPublicationPlan,
-  E | PlanQuestionPublicationError | QuestionChoiceJoinError,
+  E | PlanQuestionPublicationError | QuestionItemJoinError,
   R | PlanQuestionPublicationContext
 > {
-  const choicesByRoot = indexQuestionChoices(input.sources);
+  const itemsByRoot = indexQuestionItems(input.sources);
   return planFamilyPublication({
     adapter: {
       absent: absentQuestion,
@@ -128,7 +128,7 @@ export function planQuestionPublication<E, R>(input: {
           checkoutRoot,
           rendererManifest,
           entry,
-          choicesByRoot
+          itemsByRoot
         ),
       prior: priorQuestion,
       publicPath: () => undefined,

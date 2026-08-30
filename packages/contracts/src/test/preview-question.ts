@@ -19,7 +19,7 @@ const graph = {
 };
 const metadata = {
   authors: [{ name: "Test Author" }],
-  date: "2026-07-24",
+  datePublished: "2026-07-24",
   title: "Test Preview",
 };
 const setKey = "question-bank/tryout/indonesia/snbt/general-reasoning/set-1";
@@ -48,6 +48,7 @@ export const testPreviewTarget = Schema.decodeSync(TryoutPreviewTargetSchema)({
     countryKey: "indonesia",
     deliveryLanguage: "en",
     examKey: "snbt",
+    languagePolicy: { kind: "app-locale" },
     questionArtifactLocale: "en",
     questionContentKey: `${questionKey}/question`,
     questionOrder: 1,
@@ -122,6 +123,7 @@ const testAssessedPreviewTarget = Schema.decodeSync(TryoutPreviewTargetSchema)({
     answerArtifactLocale: "de",
     appLocale: "de",
     deliveryLanguage: "en",
+    languagePolicy: { kind: "fixed", language: "en" },
     questionArtifactLocale: "en",
   },
   section: { ...testPreviewTarget.section, appLocale: "de" },
@@ -184,12 +186,25 @@ export const testPromptProjection = Schema.decodeSync(
   QuestionPromptProjectionSchema
 )({
   ...promptIdentity,
-  choices: [
-    { label: "Test correct choice", value: true },
-    { label: "Test incorrect choice", value: false },
-  ],
   kind: "question-body",
   metadata,
+  response: {
+    kind: "single-choice",
+    options: [
+      {
+        isCorrect: true,
+        label: [{ kind: "text", text: "Test correct choice" }],
+        optionKey: "option-1",
+        order: 1,
+      },
+      {
+        isCorrect: false,
+        label: [{ kind: "text", text: "Test incorrect choice" }],
+        optionKey: "option-2",
+        order: 2,
+      },
+    ],
+  },
 });
 
 /** Invalid German prompt fixture for an English assessed-language document. */

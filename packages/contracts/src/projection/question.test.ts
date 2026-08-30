@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
+
 import { ContentKeySchema } from "#contracts/ids";
 import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import {
@@ -7,14 +8,16 @@ import {
   makeQuestionBodyProjection,
   QuestionAnswerProjectionSchema,
   QuestionBodyProjectionSchema,
-  QuestionChoiceLocaleMissingError,
-  QuestionChoicesSchema,
   QuestionPromptProjectionSchema,
 } from "#contracts/projection/question";
 import {
   QuestionKeySchema,
   QuestionSetKeySchema,
 } from "#contracts/question/identity";
+import {
+  QuestionItemSchema,
+  QuestionResponseLocaleMissingError,
+} from "#contracts/question/item";
 
 const questionKey = QuestionKeySchema.make(
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1"
@@ -24,18 +27,35 @@ const setKey = QuestionSetKeySchema.make(
 );
 const metadata = {
   authors: [{ name: "Nakafa" }],
-  date: "2026-07-01",
+  datePublished: "2026-07-01",
   title: "Question 1",
 };
-const choices = Schema.decodeSync(QuestionChoicesSchema)({
-  en: [
-    { label: "A", value: true },
-    { label: "B", value: false },
-  ],
-  id: [
-    { label: "A", value: false },
-    { label: "B", value: true },
-  ],
+const item = Schema.decodeSync(QuestionItemSchema)({
+  responses: {
+    en: {
+      kind: "single-choice",
+      options: [
+        { isCorrect: true, label: [{ kind: "text", text: "A" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "B" }] },
+      ],
+    },
+    id: {
+      kind: "single-choice",
+      options: [
+        { isCorrect: true, label: [{ kind: "text", text: "A (ID)" }] },
+        { isCorrect: false, label: [{ kind: "text", text: "B (ID)" }] },
+      ],
+    },
+  },
+});
+const documentedItem = Schema.decodeSync(QuestionItemSchema)({
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "algebra",
+    topic: "functions",
+  },
+  responses: item.responses,
+  stimulusKey: "shared-table",
 });
 
 /** Builds one strict prompt projection for the selected locale. */
@@ -45,8 +65,8 @@ const promptProjection = Effect.fn("QuestionProjectionTest.prompt")(function* (
   const projection = yield* makeQuestionBodyProjection({
     artifactLocale,
     bodyKind: "question",
-    choices,
     contentKey: ContentKeySchema.make(`${questionKey}/question`),
+    item,
     metadata,
     peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
     questionKey,
@@ -65,8 +85,8 @@ const answerProjection = Effect.fn("QuestionProjectionTest.answer")(function* (
   const projection = yield* makeQuestionBodyProjection({
     artifactLocale,
     bodyKind: "answer",
-    choices,
     contentKey: ContentKeySchema.make(`${questionKey}/answer`),
+    item,
     metadata,
     peerContentKey: ContentKeySchema.make(`${questionKey}/question`),
     questionKey,
@@ -79,13 +99,29 @@ const answerProjection = Effect.fn("QuestionProjectionTest.answer")(function* (
 });
 
 describe("question projection", () => {
-  it.effect("projects only locale choices on prompts and none on answers", () =>
+  it.effect("projects one frozen locale response only on the prompt", () =>
     Effect.gen(function* () {
       const prompt = yield* promptProjection(ArtifactLocaleSchema.make("id"));
       const answer = yield* answerProjection(ArtifactLocaleSchema.make("en"));
 
-      expect(prompt.choices).toEqual(choices.id);
-      expect("choices" in answer).toBe(false);
+      expect(prompt.response).toEqual({
+        kind: "single-choice",
+        options: [
+          {
+            isCorrect: true,
+            label: [{ kind: "text", text: "A (ID)" }],
+            optionKey: "option-1",
+            order: 1,
+          },
+          {
+            isCorrect: false,
+            label: [{ kind: "text", text: "B (ID)" }],
+            optionKey: "option-2",
+            order: 2,
+          },
+        ],
+      });
+      expect("response" in answer).toBe(false);
       expect(
         [prompt, answer].map((value) =>
           Schema.decodeSync(QuestionBodyProjectionSchema)(value)
@@ -108,26 +144,31 @@ describe("question projection", () => {
     })
   );
 
-  it("requires exactly one correct choice in every locale", () => {
-    for (const localized of [
-      [{ label: "A", value: false }],
-      [
-        { label: "A", value: true },
-        { label: "B", value: true },
-      ],
-    ]) {
-      const result = Schema.decodeExit(QuestionChoicesSchema)({
-        en: localized,
-        id: choices.id,
+  it.effect("preserves complete editorial facts in canonical bytes", () =>
+    Effect.gen(function* () {
+      const projection = yield* makeQuestionBodyProjection({
+        artifactLocale: ArtifactLocaleSchema.make("en"),
+        bodyKind: "question",
+        contentKey: ContentKeySchema.make(`${questionKey}/question`),
+        item: documentedItem,
+        metadata: { ...metadata, dateModified: "2026-07-02" },
+        peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
+        questionKey,
+        questionNumber: 1,
+        setKey,
       });
-      expect(Exit.isFailure(result)).toBe(true);
-      expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
-        "Expected exactly one correct choice."
-      );
-    }
-  });
 
-  it.effect("rejects invented metadata and answer choices", () =>
+      expect(JSON.parse(canonicalizeQuestionProjection(projection))).toEqual(
+        projection
+      );
+      expect(projection).toMatchObject({
+        blueprint: documentedItem.blueprint,
+        stimulusKey: "shared-table",
+      });
+    })
+  );
+
+  it.effect("rejects invented metadata and an answer response", () =>
     Effect.gen(function* () {
       const prompt = yield* promptProjection(ArtifactLocaleSchema.make("en"));
       const answer = yield* answerProjection(ArtifactLocaleSchema.make("en"));
@@ -138,19 +179,19 @@ describe("question projection", () => {
       expect(
         Exit.isFailure(decode({ ...prompt, description: "Invented" }))
       ).toBe(true);
-      expect(Exit.isFailure(decode({ ...answer, choices: choices.en }))).toBe(
-        true
-      );
+      expect(
+        Exit.isFailure(decode({ ...answer, response: prompt.response }))
+      ).toBe(true);
     })
   );
 
-  it.effect("returns a typed failure when prompt choices are missing", () =>
+  it.effect("returns a typed failure when the response locale is missing", () =>
     Effect.gen(function* () {
       const error = yield* makeQuestionBodyProjection({
         artifactLocale: ArtifactLocaleSchema.make("de"),
         bodyKind: "question",
-        choices,
         contentKey: ContentKeySchema.make(`${questionKey}/question`),
+        item,
         metadata,
         peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
         questionKey,
@@ -158,7 +199,7 @@ describe("question projection", () => {
         setKey,
       }).pipe(Effect.flip);
 
-      expect(error).toBeInstanceOf(QuestionChoiceLocaleMissingError);
+      expect(error).toBeInstanceOf(QuestionResponseLocaleMissingError);
     })
   );
 });

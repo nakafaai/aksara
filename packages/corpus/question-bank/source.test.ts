@@ -2,62 +2,40 @@ import { expect, layer } from "@effect/vitest";
 import { Effect, Path } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
-  discoverQuestionSources,
-  indexQuestionChoices,
-  readQuestionChoices,
+  indexQuestionItems,
   readQuestionSource,
 } from "#corpus/question-bank/source";
 import {
-  choicesForQuestion,
   corpusRoot,
+  discoverSyntheticQuestionSources,
   generalQuestionSourceFiles,
-  germanChoiceFixture,
-  indonesianChoiceFixture,
-  invalidQuestionChoiceSources,
+  invalidQuestionItemSources,
+  itemForQuestion,
   makeQuestionSourceLayer,
   questionEntries,
   questionRendererCounts,
   questionTestSourceRoot,
   realQuestionBanks,
-  realQuestionChoices,
   realQuestionEntries,
-  validQuestionChoicesSource,
+  realQuestionItems,
+  rejectSyntheticQuestionSources,
 } from "#corpus/test/question-layer";
-
-/** Discovers synthetic question sources through the Effect test layer. */
-function questionSources(
-  directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>,
-  failDirectory = false
-) {
-  return Effect.provide(
-    discoverQuestionSources(corpusRoot, realQuestionBanks),
-    makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
-  );
-}
-
-/** Flips one typed synthetic discovery failure into the success channel. */
-function rejectQuestionSources(
-  ...arguments_: Parameters<typeof questionSources>
-) {
-  return Effect.flip(questionSources(...arguments_));
-}
 
 layer(Path.layer)("question source", (it) => {
   it.effect(
     "discovers and validates all 840 real question directories",
     () =>
       Effect.gen(function* () {
-        const sources = yield* questionSources(
+        const sources = yield* discoverSyntheticQuestionSources(
           realQuestionEntries,
-          realQuestionChoices
+          realQuestionItems
         );
-        const choicesByRoot = indexQuestionChoices(sources);
+        const itemsByRoot = indexQuestionItems(sources);
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
 
         expect(sources).toHaveLength(840);
-        expect(choicesByRoot.size).toBe(840);
-        expect(choicesByRoot.get(first.sourceRoot)).toBe(first.choices);
+        expect(itemsByRoot.size).toBe(840);
+        expect(itemsByRoot.get(first.sourceRoot)).toBe(first.item);
         expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(38);
         for (const { count, rendererDomain } of questionRendererCounts) {
           expect(
@@ -84,13 +62,18 @@ layer(Path.layer)("question source", (it) => {
 
   it.effect("allows an empty checkout without inventing question sources", () =>
     Effect.gen(function* () {
-      expect(yield* questionSources([], new Map())).toEqual([]);
+      expect(yield* discoverSyntheticQuestionSources([], new Map())).toEqual(
+        []
+      );
     })
   );
 
   it.effect("rejects files outside the canonical question hierarchy", () =>
     Effect.gen(function* () {
-      const error = yield* rejectQuestionSources(["notes.ts"], new Map());
+      const error = yield* rejectSyntheticQuestionSources(
+        ["notes.ts"],
+        new Map()
+      );
 
       expect(error).toMatchObject({
         _tag: "QuestionPathError",
@@ -99,10 +82,14 @@ layer(Path.layer)("question source", (it) => {
     })
   );
 
-  it.effect("maps directory and choice reads to typed failures", () =>
+  it.effect("maps directory and item reads to typed failures", () =>
     Effect.gen(function* () {
       const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const directoryError = yield* rejectQuestionSources([], new Map(), true);
+      const directoryError = yield* rejectSyntheticQuestionSources(
+        [],
+        new Map(),
+        true
+      );
       const location = yield* decodeQuestionPath(realQuestionBanks, root);
       const selectedDirectoryError = yield* readQuestionSource(
         corpusRoot,
@@ -111,7 +98,7 @@ layer(Path.layer)("question source", (it) => {
         Effect.provide(makeQuestionSourceLayer([], new Map(), true)),
         Effect.flip
       );
-      const choiceError = yield* rejectQuestionSources(
+      const itemError = yield* rejectSyntheticQuestionSources(
         questionEntries(root, generalQuestionSourceFiles),
         new Map()
       );
@@ -124,9 +111,9 @@ layer(Path.layer)("question source", (it) => {
         _tag: "QuestionReadError",
         path: `${questionTestSourceRoot}/${root}`,
       });
-      expect(choiceError).toMatchObject({
+      expect(itemError).toMatchObject({
         _tag: "QuestionReadError",
-        path: `${questionTestSourceRoot}/${root}/choices.ts`,
+        path: `${questionTestSourceRoot}/${root}/item.ts`,
       });
     })
   );
@@ -136,25 +123,25 @@ layer(Path.layer)("question source", (it) => {
       const [missing, replaced, nested, missingGermanPrompt] =
         yield* Effect.all(
           [
-            rejectQuestionSources(
+            rejectSyntheticQuestionSources(
               questionEntries(root, generalQuestionSourceFiles.slice(1)),
               new Map()
             ),
-            rejectQuestionSources(
+            rejectSyntheticQuestionSources(
               questionEntries(root, [
                 ...generalQuestionSourceFiles.slice(0, 4),
                 "wrong.mdx",
               ]),
               new Map()
             ),
-            rejectQuestionSources(
+            rejectSyntheticQuestionSources(
               questionEntries(root, [
                 ...generalQuestionSourceFiles,
                 "nested/extra.mdx",
               ]),
               new Map()
             ),
-            rejectQuestionSources(
+            rejectSyntheticQuestionSources(
               questionEntries(
                 root,
                 generalQuestionSourceFiles.filter(
@@ -176,103 +163,23 @@ layer(Path.layer)("question source", (it) => {
       expect(missingGermanPrompt._tag).toBe("QuestionFileSetError");
     })
   );
-  it.effect("rejects unevaluable and invalid localized choice catalogs", () =>
+  it.effect("rejects unevaluable and invalid localized item catalogs", () =>
     Effect.gen(function* () {
       const errors = yield* Effect.forEach(
-        invalidQuestionChoiceSources,
+        invalidQuestionItemSources,
         (source, index) => {
           const root = `indonesia/snbt/general-reasoning/set-1/question-${index + 1}`;
-          return rejectQuestionSources(
+          return rejectSyntheticQuestionSources(
             questionEntries(root, generalQuestionSourceFiles),
-            choicesForQuestion(root, source)
+            itemForQuestion(root, source)
           );
         },
         { concurrency: "unbounded" }
       );
 
-      expect(errors.every(({ _tag }) => _tag === "QuestionChoiceError")).toBe(
+      expect(errors.every(({ _tag }) => _tag === "QuestionItemError")).toBe(
         true
       );
-    })
-  );
-
-  it.effect("requires exactly the section-derived choice locales", () =>
-    Effect.gen(function* () {
-      const path = yield* Path.Path;
-      const location = yield* decodeQuestionPath(
-        realQuestionBanks,
-        "indonesia/snbt/english-language/set-1/question-1"
-      );
-      const sourcePath = path.join(
-        corpusRoot,
-        location.sourceRoot,
-        "choices.ts"
-      );
-      const englishOnly = validQuestionChoicesSource
-        .replace(indonesianChoiceFixture, "")
-        .replace(germanChoiceFixture, "");
-      const indonesianOnly = validQuestionChoicesSource
-        .replace(
-          '\n  en: [{ label: "A", value: true }, { label: "B", value: false }],',
-          ""
-        )
-        .replace(germanChoiceFixture, "");
-      /** Reads the language-section choices through the synthetic source adapter. */
-      const read = (source: string) =>
-        readQuestionChoices(corpusRoot, location).pipe(
-          Effect.provide(
-            makeQuestionSourceLayer([], new Map([[sourcePath, source]]))
-          )
-        );
-      const [choices, extraLocales, wrongLocale] = yield* Effect.all(
-        [
-          read(englishOnly),
-          read(validQuestionChoicesSource).pipe(Effect.flip),
-          read(indonesianOnly).pipe(Effect.flip),
-        ],
-        { concurrency: "unbounded" }
-      );
-
-      expect(choices).toEqual({
-        en: [
-          { label: "A", value: true },
-          { label: "B", value: false },
-        ],
-      });
-      expect(extraLocales).toMatchObject({
-        _tag: "QuestionChoiceLocaleError",
-        actualLocales: ["en", "id", "de"],
-        expectedLocales: ["en"],
-      });
-      expect(wrongLocale).toMatchObject({
-        _tag: "QuestionChoiceLocaleError",
-        actualLocales: ["id"],
-        expectedLocales: ["en"],
-      });
-    })
-  );
-
-  it.effect("loads every general-section locale from one owner source", () =>
-    Effect.gen(function* () {
-      const path = yield* Path.Path;
-      const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const location = yield* decodeQuestionPath(realQuestionBanks, root);
-      const basePath = path.join(corpusRoot, location.sourceRoot, "choices.ts");
-      const choices = yield* readQuestionChoices(corpusRoot, location).pipe(
-        Effect.provide(
-          makeQuestionSourceLayer(
-            [],
-            new Map([[basePath, validQuestionChoicesSource]])
-          )
-        )
-      );
-
-      expect(choices).toMatchObject({
-        de: [
-          { label: "A", value: true },
-          { label: "B", value: false },
-        ],
-      });
     })
   );
 
@@ -284,11 +191,11 @@ layer(Path.layer)("question source", (it) => {
         ...questionEntries(first, generalQuestionSourceFiles),
         ...questionEntries(third, generalQuestionSourceFiles),
       ];
-      const choices = new Map([
-        ...choicesForQuestion(first),
-        ...choicesForQuestion(third),
+      const items = new Map([
+        ...itemForQuestion(first),
+        ...itemForQuestion(third),
       ]);
-      const error = yield* rejectQuestionSources(entries, choices);
+      const error = yield* rejectSyntheticQuestionSources(entries, items);
 
       expect(error).toMatchObject({
         _tag: "QuestionSequenceError",

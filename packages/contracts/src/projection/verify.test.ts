@@ -56,7 +56,7 @@ const questionProjection = Schema.decodeSync(QuestionBodyProjectionSchema)({
   kind: "question-body",
   metadata: {
     authors: [{ name: "Test Author" }],
-    date: "2026-01-01",
+    datePublished: "2026-01-01",
     title: "Question 1 answer",
   },
   peerContentKey:

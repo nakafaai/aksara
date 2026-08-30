@@ -1,7 +1,8 @@
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { assert, describe, expect, it } from "vitest";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
+import { responseText } from "#contracts/test/tryout";
 import {
   canonicalizeTryoutContent,
   hashTryoutContent,
@@ -12,14 +13,28 @@ const source = Schema.decodeSync(TryoutContentInputSchema)({
   answerArtifactLocale: "de",
   answerBody: "\nAnswer\n\n\nDetail\n",
   appLocale: "de",
-  choices: [
-    { label: "Choice 1", value: true },
-    { label: "Choice 2", value: false },
-  ],
-  date: DateOnlySchema.make("2025-03-04"),
+  datePublished: DateOnlySchema.make("2025-03-04"),
   deliveryLanguage: "en",
+  languagePolicy: { kind: "fixed", language: "en" },
   questionArtifactLocale: "en",
   questionBody: "\nQuestion\n",
+  response: {
+    kind: "single-choice",
+    options: [
+      {
+        isCorrect: true,
+        label: [{ kind: "text", text: "Choice 1" }],
+        optionKey: "option-1",
+        order: 1,
+      },
+      {
+        isCorrect: false,
+        label: [{ kind: "text", text: "Choice 2" }],
+        optionKey: "option-2",
+        order: 2,
+      },
+    ],
+  },
   sourcePath: QuestionKeySchema.make(
     "question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1"
   ),
@@ -29,16 +44,36 @@ const source = Schema.decodeSync(TryoutContentInputSchema)({
 describe("try-out content hash", () => {
   it("matches the durable question-pair canonical bytes", () => {
     expect(canonicalizeTryoutContent(source)).toBe(
-      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","choices":[{"label":"Choice 1","value":true},{"label":"Choice 2","value":false}],"date":1741046400000,"deliveryLanguage":"en","questionArtifactLocale":"en","questionBody":"Question","sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1","sourceRevision":"2026-07-05"}'
+      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":[{"kind":"text","text":"Choice 1"}],"optionKey":"option-1","order":1},{"isCorrect":false,"label":[{"kind":"text","text":"Choice 2"}],"optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1","sourceRevision":"2026-07-05"}'
     );
     expect(hashTryoutContent(source)).toBe(
-      "89ea75fa90865dc3a86269000c2d297981b56624a659b960fd298d11e136b5e6"
+      "b2b4c7e2b720b89fd7f5e578ee5214e9bdb0e273cb5311cba0f9ba02851d6464"
     );
+  });
+
+  it("binds complete blueprint, modification, and stimulus facts", () => {
+    const documented = Schema.decodeSync(TryoutContentInputSchema)({
+      ...source,
+      blueprint: {
+        cognitiveLevel: "reasoning",
+        contentDomain: "algebra",
+        topic: "functions",
+      },
+      dateModified: DateOnlySchema.make("2025-03-05"),
+      stimulusKey: "shared-table",
+    });
+
+    expect(JSON.parse(canonicalizeTryoutContent(documented))).toMatchObject({
+      blueprint: documented.blueprint,
+      dateModified: Date.UTC(2025, 2, 5),
+      stimulusKey: "shared-table",
+    });
+    expect(hashTryoutContent(documented)).not.toBe(hashTryoutContent(source));
   });
 
   it.each([
     ["answerBody", "changed answer"],
-    ["date", DateOnlySchema.make("2025-03-05")],
+    ["datePublished", DateOnlySchema.make("2025-03-05")],
     ["answerArtifactLocale", "id"],
     ["appLocale", "id"],
     ["deliveryLanguage", "id"],
@@ -57,25 +92,47 @@ describe("try-out content hash", () => {
     );
   });
 
-  it("changes when choice label, order, or correctness changes", () => {
+  it("changes when response label, order, or correctness changes", () => {
+    assert(source.response.kind !== "category");
     const variants = [
-      [
-        { label: "Changed", value: true },
-        { label: "Choice 2", value: false },
-      ],
-      [...source.choices].reverse(),
-      [
-        { label: "Choice 1", value: false },
-        { label: "Choice 2", value: true },
-      ],
+      {
+        ...source.response,
+        options: source.response.options.map((option, index) =>
+          index === 0 ? { ...option, label: responseText("Changed") } : option
+        ),
+      },
+      {
+        ...source.response,
+        options: source.response.options.map((option) => ({
+          ...option,
+          order: option.order === 1 ? 2 : 1,
+        })),
+      },
+      {
+        ...source.response,
+        options: source.response.options.map((option) => ({
+          ...option,
+          isCorrect: !option.isCorrect,
+        })),
+      },
     ];
     expect(
       variants.every(
-        (choices) =>
-          hashTryoutContent({ ...source, choices }) !==
+        (response) =>
+          hashTryoutContent({ ...source, response }) !==
           hashTryoutContent(source)
       )
     ).toBe(true);
+  });
+
+  it("rejects modification dates that are not later than publication", () => {
+    const result = Schema.decodeExit(TryoutContentInputSchema)({
+      ...source,
+      dateModified: source.datePublished,
+    });
+    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
+      "Expected dateModified to be later than datePublished."
+    );
   });
 
   it("rejects app, answer, delivery, and question locale drift", () => {

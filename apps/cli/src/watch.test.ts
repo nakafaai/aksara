@@ -175,12 +175,12 @@ layer(NodeServices.layer)("selected document watch", (it) => {
   );
 
   it.effect(
-    "watches one question body closure and its choices dependency",
+    "watches one question body closure and its source-owned item dependency",
     () =>
       Effect.gen(function* () {
         const selected = yield* selectRealDocument(answerPath);
         const events = Stream.concat(
-          Stream.make(updateEvent("choices.ts")),
+          Stream.make(updateEvent("item.ts")),
           Stream.never
         );
         const count = yield* Ref.make(0);
@@ -192,13 +192,13 @@ layer(NodeServices.layer)("selected document watch", (it) => {
         yield* Fiber.interrupt(watcher);
         expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
           questionPath,
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/choices.ts",
+          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/item.ts",
           "packages/corpus/tryout/registry.ts",
           "packages/corpus/tryout/indonesia/snbt/source.ts",
           "packages/corpus/tryout/indonesia/country.ts",
-          "packages/corpus/tryout/indonesia/snbt/official-schedule.ts",
+          "packages/corpus/tryout/indonesia/snbt/readiness.ts",
+          "packages/corpus/tryout/readiness.ts",
           "packages/corpus/tryout/schema.ts",
-          "packages/corpus/tryout/specification.ts",
           "packages/corpus/locale/source.ts",
           "packages/corpus/route/schema.ts",
           answerPath,

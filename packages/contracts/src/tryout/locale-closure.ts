@@ -8,11 +8,11 @@ import {
   tryoutSectionLogicalIdentity,
 } from "#contracts/tryout/catalog-hash";
 import { tryoutPlacementLogicalIdentity } from "#contracts/tryout/identity";
-import {
-  ENGLISH_LANGUAGE_SECTION_KEY,
-  INDONESIAN_LANGUAGE_SECTION_KEY,
-} from "#contracts/tryout/language";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
+import {
+  canonicalizeAssessedLanguagePlacementFacts,
+  canonicalizeLocaleNeutralPlacementFacts,
+} from "#contracts/tryout/placement-closure";
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
 export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
@@ -42,6 +42,7 @@ interface CatalogClosureState {
 interface PlacementClosureState {
   readonly assessedFacts: Map<string, string>;
   readonly countsBySectionLocale: Map<string, number>;
+  readonly factsByIdentity: Map<string, string>;
   readonly localesByIdentity: Map<string, Set<AppLocale>>;
 }
 
@@ -155,25 +156,6 @@ function addCatalogRow(
   ).pipe(Effect.as(state));
 }
 
-/** Serializes assessed prompt facts that must be reused across app locales. */
-function assessedLanguageFacts(row: TryoutPlacementRecord["row"]) {
-  return JSON.stringify({
-    choices: row.choices,
-    deliveryLanguage: row.deliveryLanguage,
-    questionArtifactHash: row.questionArtifactHash,
-    questionArtifactLocale: row.questionArtifactLocale,
-    questionContentKey: row.questionContentKey,
-  });
-}
-
-/** Checks whether one section owns byte-identical assessed-language content. */
-function isAssessedLanguageSection(sectionKey: string) {
-  return (
-    sectionKey === ENGLISH_LANGUAGE_SECTION_KEY ||
-    sectionKey === INDONESIAN_LANGUAGE_SECTION_KEY
-  );
-}
-
 /** Adds one placement after binding it to a real catalog section. */
 function addPlacement(
   state: PlacementClosureState,
@@ -193,20 +175,36 @@ function addPlacement(
       })
     );
   }
-  if (isAssessedLanguageSection(row.sectionKey)) {
-    const facts = assessedLanguageFacts(row);
-    const expectedFacts = state.assessedFacts.get(identity);
-    if (expectedFacts !== undefined && expectedFacts !== facts) {
+  const facts = canonicalizeLocaleNeutralPlacementFacts(row);
+  const expectedFacts = state.factsByIdentity.get(identity);
+  if (expectedFacts !== undefined && expectedFacts !== facts) {
+    return Effect.fail(
+      new TryoutClosureError({
+        actual: facts,
+        code: "fact-mismatch",
+        expected: expectedFacts,
+        identity,
+      })
+    );
+  }
+  state.factsByIdentity.set(identity, facts);
+  if (row.languagePolicy.kind === "fixed") {
+    const assessedFacts = canonicalizeAssessedLanguagePlacementFacts(row);
+    const expectedAssessedFacts = state.assessedFacts.get(identity);
+    if (
+      expectedAssessedFacts !== undefined &&
+      expectedAssessedFacts !== assessedFacts
+    ) {
       return Effect.fail(
         new TryoutClosureError({
-          actual: facts,
+          actual: assessedFacts,
           code: "assessed-language",
-          expected: expectedFacts,
+          expected: expectedAssessedFacts,
           identity,
         })
       );
     }
-    state.assessedFacts.set(identity, facts);
+    state.assessedFacts.set(identity, assessedFacts);
   }
   const sectionLocaleIdentity = `${sectionIdentity}\0${row.appLocale}`;
   state.countsBySectionLocale.set(
@@ -295,6 +293,7 @@ export const verifyTryoutLocaleClosure = Effect.fn(
         ({
           assessedFacts: new Map(),
           countsBySectionLocale: new Map(),
+          factsByIdentity: new Map(),
           localesByIdentity: new Map(),
         }) satisfies PlacementClosureState,
       (state, record) =>

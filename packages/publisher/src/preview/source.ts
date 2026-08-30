@@ -1,8 +1,8 @@
 import type { CompileDocumentSource } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { readQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
+import { readQuestionItem } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema } from "effect";
 import {
   type InspectedArticleDocument,
@@ -70,9 +70,9 @@ export type LoadedPreviewSource =
   | LoadedPagePreview
   | LoadedQuestionPreview;
 
-/** Reading current choices failed at the trusted preview source seam. */
-export class PreviewChoiceSourceError extends Schema.TaggedError<PreviewChoiceSourceError>()(
-  "PreviewChoiceSourceError",
+/** Reading the current item failed at the trusted preview source seam. */
+export class PreviewItemSourceError extends Schema.TaggedError<PreviewItemSourceError>()(
+  "PreviewItemSourceError",
   {
     cause: Schema.Unknown,
     checkoutRoot: Schema.String,
@@ -80,40 +80,40 @@ export class PreviewChoiceSourceError extends Schema.TaggedError<PreviewChoiceSo
   }
 ) {}
 
-/** Reads one choice source once for every selected preview closure. */
-const loadQuestionChoices = Effect.fn("AksaraPublisher.loadPreviewChoices")(
+/** Reads one item source once for every selected preview closure. */
+const loadQuestionItem = Effect.fn("AksaraPublisher.loadPreviewItem")(
   function* (
     checkoutRoot: string,
     selected: Extract<PreviewSource, { readonly family: "question" }>,
-    choicesByRoot: Map<QuestionSourceRoot, QuestionChoices>
+    itemsByRoot: Map<QuestionSourceRoot, QuestionItem>
   ) {
     const { entry } = selected;
     const { sourceRoot } = entry;
-    const cached = choicesByRoot.get(sourceRoot);
+    const cached = itemsByRoot.get(sourceRoot);
     if (cached !== undefined) {
       return cached;
     }
-    const choices = yield* readQuestionChoices(checkoutRoot, entry).pipe(
+    const item = yield* readQuestionItem(checkoutRoot, entry).pipe(
       Effect.mapError(
         (cause) =>
-          new PreviewChoiceSourceError({
+          new PreviewItemSourceError({
             cause,
             checkoutRoot,
-            sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/choices.ts`),
+            sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/item.ts`),
           })
       )
     );
-    choicesByRoot.set(sourceRoot, choices);
-    return choices;
+    itemsByRoot.set(sourceRoot, item);
+    return item;
   }
 );
 
-/** Loads one registry source through its family adapter and shared choices. */
+/** Loads one registry source through its family adapter and shared item. */
 const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
   function* (
     checkoutRoot: string,
     selected: PreviewSource,
-    choicesByRoot: Map<QuestionSourceRoot, QuestionChoices>
+    itemsByRoot: Map<QuestionSourceRoot, QuestionItem>
   ) {
     if (selected.family === "article") {
       const source = yield* loadArticleDocument(checkoutRoot, selected.entry);
@@ -142,15 +142,11 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
       } satisfies LoadedPreviewSource;
     }
 
-    const choices = yield* loadQuestionChoices(
-      checkoutRoot,
-      selected,
-      choicesByRoot
-    );
+    const item = yield* loadQuestionItem(checkoutRoot, selected, itemsByRoot);
     const source = yield* loadQuestionDocument(
       checkoutRoot,
       selected.entry,
-      choices
+      item
     );
     return {
       body: makeQuestionCompileSource(source),
@@ -160,22 +156,22 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
   }
 );
 
-/** Loads one ordered closure while parsing each shared choices file once. */
+/** Loads one ordered closure while parsing each shared item file once. */
 export const loadPreviewSources = Effect.fn(
   "AksaraPublisher.loadPreviewSources"
 )(function* (
   checkoutRoot: string,
   sources: readonly [PreviewSource, ...PreviewSource[]]
 ) {
-  const choicesByRoot = new Map<QuestionSourceRoot, QuestionChoices>();
+  const itemsByRoot = new Map<QuestionSourceRoot, QuestionItem>();
   const [firstSource, ...remainingSources] = sources;
   const first = yield* loadSelectedSource(
     checkoutRoot,
     firstSource,
-    choicesByRoot
+    itemsByRoot
   );
   const remaining = yield* Effect.forEach(remainingSources, (source) =>
-    loadSelectedSource(checkoutRoot, source, choicesByRoot)
+    loadSelectedSource(checkoutRoot, source, itemsByRoot)
   );
   return [first, ...remaining] satisfies readonly [
     LoadedPreviewSource,

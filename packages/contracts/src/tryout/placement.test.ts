@@ -13,13 +13,10 @@ const placement = {
   answerContentKey:
     "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/answer",
   appLocale: "de",
-  choices: [
-    { isCorrect: true, label: "Correct", optionKey: "option-1", order: 1 },
-    { isCorrect: false, label: "Wrong", optionKey: "option-2", order: 2 },
-  ],
   countryKey: "indonesia",
   deliveryLanguage: "en",
   examKey: "snbt",
+  languagePolicy: { kind: "fixed", language: "en" },
   questionArtifactLocale: "en",
   questionContentKey:
     "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question",
@@ -27,6 +24,23 @@ const placement = {
   questionSourcePath:
     "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1",
   rendererDomain: "snbt-plain",
+  response: {
+    kind: "single-choice",
+    options: [
+      {
+        isCorrect: true,
+        label: [{ kind: "text", text: "Correct" }],
+        optionKey: "option-1",
+        order: 1,
+      },
+      {
+        isCorrect: false,
+        label: [{ kind: "text", text: "Wrong" }],
+        optionKey: "option-2",
+        order: 2,
+      },
+    ],
+  },
   scope: "server",
   sectionKey: "english-language",
   setKey: "set-1",
@@ -71,6 +85,7 @@ describe("try-out placement", () => {
       answerContentKey:
         "question-bank/tryout/indonesia/snbt/mathematical-reasoning/set-1/question-1/answer",
       deliveryLanguage: "de",
+      languagePolicy: { kind: "app-locale" },
       questionArtifactLocale: "de",
       questionContentKey:
         "question-bank/tryout/indonesia/snbt/mathematical-reasoning/set-1/question-1/question",

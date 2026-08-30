@@ -1,4 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import { Effect, Path } from "effect";
 import {
@@ -8,8 +10,8 @@ import {
 import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
-  questionChoices,
   questionEntries,
+  questionItem,
   sourceByPath,
 } from "#test/question/spec";
 
@@ -33,7 +35,7 @@ const requireEntries = Effect.fn("QuestionDocumentTest.requireEntries")(
 
 /** Loads one selected question body through the deterministic test filesystem. */
 const load = Effect.fn("QuestionDocumentTest.load")((entry: QuestionEntry) =>
-  loadQuestionDocument(checkoutRoot, entry, questionChoices).pipe(
+  loadQuestionDocument(checkoutRoot, entry, questionItem).pipe(
     Effect.provide([testFileLayer(sourceByPath), Path.layer])
   )
 );
@@ -47,7 +49,7 @@ describe("question document", () => {
         const error = yield* loadQuestionDocument(
           checkoutRoot,
           prompt,
-          questionChoices
+          questionItem
         ).pipe(
           Effect.provide([testFileLayer(new Map()), Path.layer]),
           Effect.flip
@@ -67,7 +69,12 @@ describe("question document", () => {
       const errors = yield* Effect.all(
         [
           {},
-          { authors: [], date: "2026-01-01", extra: true, title: "Test" },
+          {
+            authors: [],
+            datePublished: "2026-01-01",
+            extra: true,
+            title: "Test",
+          },
         ].map((metadata) =>
           makeQuestionProjectionFromSource(source, metadata).pipe(Effect.flip)
         )
@@ -84,7 +91,7 @@ describe("question document", () => {
   );
 
   it.effect(
-    "keeps canonical artifactLocale choices only on the prompt projection",
+    "keeps the canonical artifact-locale response only on the prompt",
     () =>
       Effect.gen(function* () {
         const { answer: answerEntryValue, prompt: promptEntryValue } =
@@ -96,26 +103,30 @@ describe("question document", () => {
         const [prompt, answer] = yield* Effect.all([
           makeQuestionProjectionFromSource(promptSource, {
             authors: [{ name: "Nabil Akbarazzima Fatih" }],
-            date: "2026-01-01",
+            datePublished: "2026-01-01",
             title: "Problem 1",
           }),
           makeQuestionProjectionFromSource(answerSource, {
             authors: [{ name: "Nabil Akbarazzima Fatih" }],
-            date: "2026-01-01",
+            datePublished: "2026-01-01",
             title: "Solution to Problem 1",
           }),
         ]);
+        const response = yield* questionResponseFor(
+          questionItem,
+          ArtifactLocaleSchema.make("en")
+        );
 
         expect(prompt).toMatchObject({
           bodyKind: "question",
-          choices: questionChoices.en,
           peerContentKey: answerEntryValue.contentKey,
+          response,
         });
         expect(answer).toMatchObject({
           bodyKind: "answer",
           peerContentKey: promptEntryValue.contentKey,
         });
-        expect("choices" in answer).toBe(false);
+        expect("response" in answer).toBe(false);
       })
   );
 });

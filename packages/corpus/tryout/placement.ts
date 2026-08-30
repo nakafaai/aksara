@@ -1,12 +1,12 @@
 import {
   type AppLocale,
   ArtifactLocaleSchema,
-  artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
+import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import {
-  deliveryLanguageForSection,
-  questionArtifactLocaleForSection,
+  deliveryLanguageForPolicy,
+  questionArtifactLocaleForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
@@ -30,7 +30,7 @@ export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementErro
   "TryoutPlacementError",
   {
     questionKey: QuestionKeySchema,
-    reason: Schema.Literals(["choices", "decode", "order", "owner"]),
+    reason: Schema.Literals(["decode", "order", "owner", "response"]),
   }
 ) {}
 
@@ -72,42 +72,52 @@ export const makeTryoutPlacement = Effect.fn(
     });
   }
   const { section, set, source, track } = context;
-  const deliveryLanguage = deliveryLanguageForSection(section.key, appLocale);
-  const questionArtifactLocale = questionArtifactLocaleForSection(
-    section.key,
+  const deliveryLanguage = deliveryLanguageForPolicy(
+    section.languagePolicy,
+    appLocale
+  );
+  const questionArtifactLocale = questionArtifactLocaleForPolicy(
+    section.languagePolicy,
     appLocale
   );
   const answerArtifactLocale = ArtifactLocaleSchema.make(appLocale);
-  const choices = question.choices[artifactLocaleCode(questionArtifactLocale)];
-  if (choices === undefined) {
-    return yield* new TryoutPlacementError({
-      questionKey: question.questionKey,
-      reason: "choices",
-    });
-  }
-  return yield* Schema.decodeUnknownEffect(TryoutPlacementSourceSchema)(
+  const response = yield* questionResponseFor(
+    question.item,
+    questionArtifactLocale
+  ).pipe(
+    Effect.mapError(
+      () =>
+        new TryoutPlacementError({
+          questionKey: question.questionKey,
+          reason: "response",
+        })
+    )
+  );
+  return yield* Schema.decodeEffect(TryoutPlacementSourceSchema)(
     {
       answerArtifactLocale,
       answerContentKey: `${question.questionKey}/answer`,
       appLocale,
-      choices: choices.map(({ label, value }, index) => ({
-        isCorrect: value,
-        label,
-        optionKey: `option-${index + 1}`,
-        order: index + 1,
-      })),
+      ...(question.item.blueprint === undefined
+        ? {}
+        : { blueprint: question.item.blueprint }),
       countryKey: source.countryKey,
       deliveryLanguage,
       examKey: source.examKey,
+      languagePolicy: section.languagePolicy,
       questionArtifactLocale,
       questionContentKey: `${question.questionKey}/question`,
       questionOrder: question.questionNumber,
       questionSourcePath: question.sourceRoot,
       rendererDomain: section.rendererDomain,
+      response,
       scope: "server",
       sectionKey: section.key,
       setKey: set.key,
       sourceRevision: source.sourceRevision,
+      ...(question.item.stimulusKey === undefined
+        ? {}
+        : { stimulusKey: question.item.stimulusKey }),
       trackKey: track.key,
     },
     { onExcessProperty: "error" }

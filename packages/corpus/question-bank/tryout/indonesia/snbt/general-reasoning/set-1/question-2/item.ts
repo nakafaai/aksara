@@ -1,0 +1,158 @@
+import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+
+const item: QuestionItem = {
+  responses: {
+    de: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "Die Forschenden nutzen sowohl Selektion als auch Kreuzung, um die Mango-Genressourcensammlung weiterzuentwickeln.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Örtliche Landwirte erzeugten Agri Gardina 45 ausschließlich durch Selektion.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti wurde aus kommerziellen Mangos in Kalifornien selektiert.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti besitzt einen hohen Anteil grober Fruchtfasern.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Jede Akzession der Cukurgondang-Sammlung ist exportreif.",
+            },
+          ],
+        },
+      ],
+    },
+    en: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "Researchers use both selection and crossbreeding to develop the mango germplasm collection.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Local farmers created Agri Gardina 45 through selection alone.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti was selected from commercial mangoes grown in California.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti is characterized by a high amount of coarse fruit fiber.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Every accession in the Cukurgondang collection is ready for export.",
+            },
+          ],
+        },
+      ],
+    },
+    id: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: [
+            {
+              kind: "text",
+              text: "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
+            },
+          ],
+        },
+        {
+          isCorrect: false,
+          label: [
+            {
+              kind: "text",
+              text: "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+};
+
+export default item;

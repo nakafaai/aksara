@@ -64,11 +64,11 @@ describe("question preview", () => {
         expect(germanSource.appLocale).toBe("de");
         expect(germanSource.dependencies[0]).toEqual({
           mode: "reload",
-          sourcePath: `${sharedRoot}/choices.ts`,
+          sourcePath: `${sharedRoot}/item.ts`,
         });
         expect(
           germanSource.dependencies.filter(({ sourcePath }) =>
-            sourcePath.endsWith("/choices.ts")
+            sourcePath.endsWith("/item.ts")
           )
         ).toHaveLength(1);
         expect(ambiguous).toMatchObject({ reason: "locale" });
@@ -76,7 +76,7 @@ describe("question preview", () => {
   );
 
   it.effect(
-    "watches owner-co-located choices for an ordinary German prompt",
+    "watches the owner-co-located item for an ordinary German prompt",
     () =>
       Effect.gen(function* () {
         const genericRoot =
@@ -98,7 +98,7 @@ describe("question preview", () => {
         expect(source).toMatchObject({ appLocale: "de" });
         expect(source.dependencies[0]).toEqual({
           mode: "reload",
-          sourcePath: `${genericRoot}/choices.ts`,
+          sourcePath: `${genericRoot}/item.ts`,
         });
       })
   );

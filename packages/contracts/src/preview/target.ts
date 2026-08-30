@@ -21,10 +21,10 @@ export const PreviewRouteSchema = Schema.Struct({
 
 /**
  * Placement identity needed to select one preview body.
- * Choices remain owned by the canonical question registry and projections.
+ * Responses remain owned by the canonical question registry and projections.
  */
 export const TryoutPreviewPlacementSchema = TryoutPlacementSourceSchema.pipe(
-  (schema) => schema.mapFields(Struct.omit(["choices"]))
+  (schema) => schema.mapFields(Struct.omit(["response"]))
 );
 type TryoutPreviewPlacement = typeof TryoutPreviewPlacementSchema.Type;
 

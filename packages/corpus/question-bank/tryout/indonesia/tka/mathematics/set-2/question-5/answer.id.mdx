@@ -1,124 +1,14 @@
-
 export const metadata = {
-    title: "Pembahasan Soal 5",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-10-11",
+  title: "Pembahasan Soal 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-10-11",
+  dateModified: "2026-08-30",
 };
 
-Pertama, tentukan persamaan garis yang melalui <InlineMath math="(0, -2)" /> dan <InlineMath math="\left(\frac{3}{2}, 0\right)" />.
-
 <MathContainer>
-<BlockMath math="\frac{y - y_1}{y_2 - y_1} = \frac{x - x_1}{x_2 - x_1}" />
-<BlockMath math="\frac{y - (-2)}{0 - (-2)} = \frac{x - 0}{\frac{3}{2} - 0}" />
-<BlockMath math="\frac{y + 2}{2} = \frac{2x}{3}" />
-<BlockMath math="3y + 6 = 4x" />
-<BlockMath math="-4x + 3y + 6 = 0" />
+<BlockMath math="4x-3=17" />
+<BlockMath math="4x=20" />
+<BlockMath math="x=5" />
 </MathContainer>
 
-Setiap titik pada parabola dapat ditulis sebagai <InlineMath math="(a, b)" />, dengan
-
-<MathContainer>
-<BlockMath math="y = x^2 - 1" />
-<BlockMath math="b = a^2 - 1" />
-</MathContainer>
-
-Jadi, bentuk umum titik pada parabola adalah <InlineMath math="(a, a^2 - 1)" />. Ilustrasi berikut menunjukkan titik tersebut dan jarak tegak lurusnya ke garis.
-
-<LineEquation
-  title="Visualisasi Parabola dan Garis"
-  description={<>Grafik menunjukkan parabola <InlineMath math="y = x^2 - 1" /> dan garis <InlineMath math="-4x + 3y + 6 = 0" /> dengan titik terdekat <InlineMath math="\left(\frac{2}{3}, -\frac{5}{9}\right)" />.</>}
-  data={[
-    {
-      points: Array.from({ length: 100 }, (_, i) => {
-        const x = -3 + (i / 99) * 6;
-        return {
-          x: x,
-          y: x * x - 1,
-          z: 0
-        };
-      }),
-      color: "#9333ea",
-      smooth: true,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=x^2 - 1" />,
-          at: 70,
-          offset: [-4.5, 0, 0]
-        }
-      ]
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = -3 + i * 8;
-        const y = (4 * x - 6) / 3;
-        return {
-          x: x,
-          y: y,
-          z: 0
-        };
-      }),
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="-4x + 3y + 6=0" />,
-          at: 1,
-          offset: [1, -2, 0]
-        }
-      ]
-    },
-    {
-      points: [
-        { x: 2/3, y: -5/9, z: 0 },
-        { x: 14/15, y: -34/45, z: 0 }
-      ],
-      color: "#0891b2",
-      smooth: false,
-      labels: [
-        {
-          text: <InlineMath math="\left(\frac{2}{3},-\frac{5}{9}\right)" />,
-          at: 0,
-          offset: [-2, 0, 0]
-        },
-        {
-          text: "Jarak",
-          at: 1,
-          offset: [1.5, -0.5, 0]
-        }
-      ]
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
-/>
-
-Gunakan rumus jarak titik ke garis untuk titik <InlineMath math="(a, a^2 - 1)" />.
-
-<MathContainer>
-<BlockMath math="f(a) = \frac{|-4a + 3(a^2 - 1) + 6|}{\sqrt{(-4)^2 + 3^2}}" />
-<BlockMath math="f(a) = \frac{|-4a + 3(a^2 - 1) + 6|}{5}" />
-<BlockMath math="f(a) = \frac{|3a^2 - 4a + 3|}{5}" />
-<BlockMath math="3a^2 - 4a + 3 = 3\left(a - \frac{2}{3}\right)^2 + \frac{5}{3} > 0" />
-<BlockMath math="f(a) = \frac{1}{5}(3a^2 - 4a + 3)" />
-</MathContainer>
-
-Bentuk kuadrat sempurna tersebut membuktikan bahwa bagian di dalam nilai mutlak selalu positif. Karena itu, tanda nilai mutlak dapat dihilangkan. Pada titik minimum berlaku <InlineMath math="f'(a) = 0" />.
-
-<MathContainer>
-<BlockMath math="f'(a) = \frac{1}{5}(6a - 4)" />
-<BlockMath math="f'(a) = 0" />
-<BlockMath math="\frac{1}{5}(6a - 4) = 0" />
-<BlockMath math="6a = 4" />
-<BlockMath math="a = \frac{4}{6} = \frac{2}{3}" />
-</MathContainer>
-
-Substitusikan <InlineMath math="a = \frac{2}{3}" /> untuk memperoleh jarak minimum antara parabola dan garis.
-
-<MathContainer>
-<BlockMath math="f(a) = \frac{1}{5}(3a^2 - 4a + 3)" />
-<BlockMath math="f(a) = \frac{1}{5}\left(3\left(\frac{2}{3}\right)^2 - 4\left(\frac{2}{3}\right) + 3\right)" />
-<BlockMath math="f(a) = \frac{1}{5}\left(\frac{4}{3} - \frac{8}{3} + \frac{9}{3}\right)" />
-<BlockMath math="f(a) = \frac{1}{5}\left(\frac{5}{3}\right) = \frac{1}{3}" />
-</MathContainer>
+Jadi, <InlineMath math="x=5" />.

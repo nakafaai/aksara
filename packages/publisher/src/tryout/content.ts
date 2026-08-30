@@ -5,7 +5,7 @@ import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement
 import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
-import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
+import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Option, Stream } from "effect";
 import {
   type InspectedQuestionDocument,
@@ -52,20 +52,20 @@ function requiredEntry(
     : Effect.succeed(entry);
 }
 
-/** Joins one body entry to the choices owned by its physical question source. */
-function requiredChoices(
-  choicesByRoot: ReturnType<typeof indexQuestionChoices>,
+/** Joins one body entry to the item owned by its physical question source. */
+function requiredItem(
+  itemsByRoot: ReturnType<typeof indexQuestionItems>,
   entry: QuestionEntry
 ) {
-  const choices = choicesByRoot.get(entry.sourceRoot);
-  return choices === undefined
+  const item = itemsByRoot.get(entry.sourceRoot);
+  return item === undefined
     ? Effect.fail(
         new TryoutContentMissingError({
           artifactLocale: entry.artifactLocale,
           contentKey: entry.contentKey,
         })
       )
-    : Effect.succeed(choices);
+    : Effect.succeed(item);
 }
 
 type FingerprintField = "compilerConfigHash" | "projectionHash" | "sourceHash";
@@ -111,7 +111,7 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
     checkoutRoot: string,
     rendererManifest: RendererManifestEnvelope,
     entries: ReadonlyMap<string, QuestionEntry>,
-    choicesByRoot: ReturnType<typeof indexQuestionChoices>,
+    itemsByRoot: ReturnType<typeof indexQuestionItems>,
     binding: BoundTryoutPlacement
   ) {
     const [answerEntry, questionEntry] = yield* Effect.all([
@@ -130,22 +130,22 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
         contentKey: binding.placement.questionContentKey,
       });
     }
-    const [answerChoices, questionChoices] = yield* Effect.all([
-      requiredChoices(choicesByRoot, answerEntry),
-      requiredChoices(choicesByRoot, questionEntry),
+    const [answerItem, questionItem] = yield* Effect.all([
+      requiredItem(itemsByRoot, answerEntry),
+      requiredItem(itemsByRoot, questionEntry),
     ]);
     const [answerDocument, questionDocument] = yield* Effect.all([
       inspectQuestionAnswerDocument(
         checkoutRoot,
         rendererManifest,
         answerEntry,
-        answerChoices
+        answerItem
       ),
       inspectQuestionPromptDocument(
         checkoutRoot,
         rendererManifest,
         questionEntry,
-        questionChoices
+        questionItem
       ),
     ]);
     yield* Effect.all([
@@ -160,13 +160,25 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
           answerArtifactLocale: binding.placement.answerArtifactLocale,
           answerBody: answerDocument.inspection.bodyMdx,
           appLocale: binding.placement.appLocale,
-          choices: questionDocument.projection.choices,
-          date: questionDocument.projection.metadata.date,
+          ...(binding.placement.blueprint === undefined
+            ? {}
+            : { blueprint: binding.placement.blueprint }),
+          ...(questionDocument.projection.metadata.dateModified === undefined
+            ? {}
+            : {
+                dateModified: questionDocument.projection.metadata.dateModified,
+              }),
+          datePublished: questionDocument.projection.metadata.datePublished,
           deliveryLanguage: binding.placement.deliveryLanguage,
+          languagePolicy: binding.placement.languagePolicy,
           questionArtifactLocale: binding.placement.questionArtifactLocale,
           questionBody: questionDocument.inspection.bodyMdx,
+          response: questionDocument.projection.response,
           sourcePath: questionDocument.projection.questionKey,
           sourceRevision: binding.placement.sourceRevision,
+          ...(binding.placement.stimulusKey === undefined
+            ? {}
+            : { stimulusKey: binding.placement.stimulusKey }),
         }),
         questionArtifactHash: binding.questionHead.artifactHash,
       })
@@ -185,14 +197,14 @@ export function bindTryoutContent<E, R>(input: {
   const entries = new Map(
     input.entries.map((entry) => [entryIdentity(entry), entry])
   );
-  const choicesByRoot = indexQuestionChoices(input.sources);
+  const itemsByRoot = indexQuestionItems(input.sources);
   return input.bindings.pipe(
     Stream.mapEffect((binding) =>
       inspectPlacement(
         input.checkoutRoot,
         input.rendererManifest,
         entries,
-        choicesByRoot,
+        itemsByRoot,
         binding
       )
     )

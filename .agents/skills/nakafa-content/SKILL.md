@@ -1,6 +1,6 @@
 ---
 name: nakafa-content
-description: Author and review Nakafa educational content in Aksara. Use for articles, materials, questions, answers, choices, program metadata, Quran shell copy, routes, and translations.
+description: Author and review Nakafa educational content in Aksara. Use for articles, materials, questions, answers, response items, program metadata, Quran shell copy, routes, and translations.
 ---
 
 # Nakafa Content in Aksara
@@ -35,7 +35,7 @@ addition, revision, review, or translation in this repository.
 
 - Articles live under `packages/corpus/articles/`.
 - Lesson materials live under `packages/corpus/material/`.
-- Questions, answers, and choices live under
+- Questions, answers, and response items live under
   `packages/corpus/question-bank/`.
 - Learning programs and localized route metadata live in the corresponding
   registries under `packages/corpus/`.
@@ -49,7 +49,7 @@ addition, revision, review, or translation in this repository.
 | --- | --- |
 | Any authored revision or translation | `references/editorial-workflow.md`, `references/writing-quality.md` |
 | Lesson or article MDX | `references/mdx-quality.md` |
-| Question or choices | `references/question-bank.md` |
+| Question or response items | `references/question-bank.md` |
 | Worked answer explanation | `references/question-bank.md`, `references/worked-solutions.md`, `references/mdx-quality.md` |
 | Preview and release checks | `references/verification.md` |
 
@@ -57,7 +57,7 @@ addition, revision, review, or translation in this repository.
 
 - `appLocale` and `deliveryLanguage` are different concepts. Localize shell and
   explanations through `appLocale`. Preserve the language being assessed in
-  prompts and choices through `deliveryLanguage`.
+  prompts and response items through `deliveryLanguage`.
 - Localized authored prose must preserve the reconciled, reviewed meaning of
   every canonical source sibling. Never translate from an unreviewed or
   disputed source.

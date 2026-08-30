@@ -1,3 +1,5 @@
+import { Schema } from "effect";
+
 import {
   ACTIVE_APP_LOCALES,
   type AppLocale,
@@ -6,45 +8,56 @@ import {
   type DeliveryLanguage,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
-import type { TryoutKey } from "#contracts/tryout/key";
 
-/** Stable section key whose prompt and choices assess English. */
-export const ENGLISH_LANGUAGE_SECTION_KEY = "english-language";
+/** Source-owned policy for the language presented by one assessment section. */
+export const AssessmentLanguagePolicySchema = Schema.Union([
+  Schema.Struct({ kind: Schema.Literal("app-locale") }),
+  Schema.Struct({
+    kind: Schema.Literal("fixed"),
+    language: DeliveryLanguageSchema,
+  }),
+]);
+export type AssessmentLanguagePolicy =
+  typeof AssessmentLanguagePolicySchema.Type;
 
-/** Stable section key whose prompt and choices assess Indonesian. */
-export const INDONESIAN_LANGUAGE_SECTION_KEY = "indonesian-language";
-
-/** Derives delivered question language from stable section identity. */
-export function deliveryLanguageForSection(
-  sectionKey: TryoutKey,
+/** Resolves one section's delivered language without inspecting its name. */
+export function deliveryLanguageForPolicy(
+  policy: AssessmentLanguagePolicy,
   appLocale: AppLocale
 ): DeliveryLanguage {
-  if (sectionKey === ENGLISH_LANGUAGE_SECTION_KEY) {
-    return DeliveryLanguageSchema.make("en");
-  }
-  if (sectionKey === INDONESIAN_LANGUAGE_SECTION_KEY) {
-    return DeliveryLanguageSchema.make("id");
-  }
-  return DeliveryLanguageSchema.make(appLocale);
+  return policy.kind === "fixed"
+    ? policy.language
+    : DeliveryLanguageSchema.make(appLocale);
 }
 
-/** Derives the immutable question artifact locale from section language policy. */
-export function questionArtifactLocaleForSection(
-  sectionKey: TryoutKey,
+/** Resolves the exact immutable question artifact locale for one app locale. */
+export function questionArtifactLocaleForPolicy(
+  policy: AssessmentLanguagePolicy,
   appLocale: AppLocale
 ): ArtifactLocale {
   return ArtifactLocaleSchema.make(
-    deliveryLanguageForSection(sectionKey, appLocale)
+    deliveryLanguageForPolicy(policy, appLocale)
   );
 }
 
-/** Lists the unique prompt and choice locales required by one current section. */
-export function questionArtifactLocalesForSection(sectionKey: TryoutKey) {
+/** Lists unique prompt and response locales required by one section policy. */
+export function questionArtifactLocalesForPolicy(
+  policy: AssessmentLanguagePolicy
+) {
   return Object.freeze([
     ...new Set(
       ACTIVE_APP_LOCALES.map((appLocale) =>
-        questionArtifactLocaleForSection(sectionKey, appLocale)
+        questionArtifactLocaleForPolicy(policy, appLocale)
       )
     ),
   ]);
+}
+
+/** Returns policy facts in stable field order for signed canonicalizers. */
+export function canonicalAssessmentLanguagePolicy(
+  policy: AssessmentLanguagePolicy
+) {
+  return policy.kind === "fixed"
+    ? { kind: policy.kind, language: policy.language }
+    : { kind: policy.kind };
 }

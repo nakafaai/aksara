@@ -1,12 +1,8 @@
-import { Effect, Schema, Struct } from "effect";
+import { Effect, Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
-import { DateOnlySchema } from "#contracts/date";
+import { withPublicationDates } from "#contracts/date";
 import type { ContentKeySchema } from "#contracts/ids";
-import {
-  AppLocaleCodeSchema,
-  type ArtifactLocale,
-  ArtifactLocaleSchema,
-} from "#contracts/locale";
+import type { ArtifactLocaleSchema } from "#contracts/locale";
 import {
   QuestionAnswerIdentitySchema,
   type QuestionBodyKind,
@@ -14,97 +10,46 @@ import {
   QuestionPromptIdentitySchema,
   type QuestionSetKey,
 } from "#contracts/question/identity";
-
-/** One literal answer choice preserved from a reviewed authoring module. */
-export const QuestionChoiceSchema = Schema.Struct({
-  label: Schema.String,
-  value: Schema.Boolean,
-}).mapFields(Struct.map(Schema.mutableKey));
-export type QuestionChoice = typeof QuestionChoiceSchema.Type;
-
-/** Reports whether a localized choice list has exactly one correct answer. */
-function hasExactlyOneCorrectChoice(choices: readonly QuestionChoice[]) {
-  return choices.filter(({ value }) => value).length === 1;
-}
-
-/** Canonical choices for one projected question locale. */
-export const QuestionChoiceListSchema = Schema.Array(QuestionChoiceSchema).pipe(
-  Schema.mutable,
-  Schema.check(
-    Schema.makeFilter(hasExactlyOneCorrectChoice, {
-      identifier: "QuestionChoiceList",
-      message: "Expected exactly one correct choice.",
-    })
-  )
-);
-export type QuestionChoiceList = typeof QuestionChoiceListSchema.Type;
-
-/** Checks that authored choices cover at least one exact artifact locale. */
-function hasChoiceSet(choices: {
-  readonly de?: QuestionChoiceList | undefined;
-  readonly en?: QuestionChoiceList | undefined;
-  readonly id?: QuestionChoiceList | undefined;
-}) {
-  return Object.values(choices).some((choiceSet) => choiceSet !== undefined);
-}
-
-/** Localized single-answer choices available to authored prompts. */
-export const QuestionChoicesSchema = Schema.Record(
-  AppLocaleCodeSchema,
-  Schema.optional(QuestionChoiceListSchema)
-).pipe(
-  Schema.check(
-    Schema.makeFilter(hasChoiceSet, {
-      message: "Expected choices for at least one artifact locale.",
-    })
-  )
-);
-export type QuestionChoices = typeof QuestionChoicesSchema.Type;
-
-/** Resolves one required choice set for an exact artifact locale. */
-function choicesFor(choices: QuestionChoices, artifactLocale: ArtifactLocale) {
-  if (artifactLocale === ArtifactLocaleSchema.make("en")) {
-    return choices.en;
-  }
-  if (artifactLocale === ArtifactLocaleSchema.make("id")) {
-    return choices.id;
-  }
-  return choices.de;
-}
-
-/** A question prompt has no reviewed choices for its exact artifact locale. */
-export class QuestionChoiceLocaleMissingError extends Schema.TaggedError<QuestionChoiceLocaleMissingError>()(
-  "QuestionChoiceLocaleMissingError",
-  { artifactLocale: ArtifactLocaleSchema }
-) {}
+import {
+  canonicalQuestionBlueprint,
+  QuestionBlueprintSchema,
+  type QuestionItem,
+  questionResponseFor,
+} from "#contracts/question/item";
+import {
+  canonicalQuestionResponse,
+  QuestionResponseSchema,
+} from "#contracts/question/response";
+import { TryoutKeySchema } from "#contracts/tryout/key";
 
 /** Exact metadata authored by every current question and answer body. */
-export const QuestionMetadataSchema = Schema.Struct({
+export const QuestionMetadataSchema = withPublicationDates({
   authors: Schema.Array(ContentAuthorSchema),
-  date: DateOnlySchema,
   title: Schema.String,
 });
 export type QuestionMetadata = typeof QuestionMetadataSchema.Type;
 
 const QuestionProjectionFields = {
+  blueprint: Schema.optionalKey(QuestionBlueprintSchema),
   kind: Schema.Literal("question-body"),
   metadata: QuestionMetadataSchema,
+  stimulusKey: Schema.optionalKey(TryoutKeySchema),
 };
 
-/** Published body and localized choices for one authored question prompt. */
+/** Published body and localized response for one authored question prompt. */
 export const QuestionPromptProjectionSchema =
   QuestionPromptIdentitySchema.mapFields(
     (fields) => ({
       ...fields,
       ...QuestionProjectionFields,
-      choices: QuestionChoiceListSchema,
+      response: QuestionResponseSchema,
     }),
     { unsafePreserveChecks: true }
   );
 export type QuestionPromptProjection =
   typeof QuestionPromptProjectionSchema.Type;
 
-/** Published body for one entitled answer without duplicated choices. */
+/** Published body for one entitled answer without a duplicated response. */
 export const QuestionAnswerProjectionSchema =
   QuestionAnswerIdentitySchema.mapFields(
     (fields) => ({ ...fields, ...QuestionProjectionFields }),
@@ -123,8 +68,8 @@ export type QuestionBodyProjection = typeof QuestionBodyProjectionSchema.Type;
 interface QuestionProjectionInput {
   readonly artifactLocale: typeof ArtifactLocaleSchema.Type;
   readonly bodyKind: QuestionBodyKind;
-  readonly choices: QuestionChoices;
   readonly contentKey: typeof ContentKeySchema.Type;
+  readonly item: QuestionItem;
   readonly metadata: QuestionMetadata;
   readonly peerContentKey: typeof ContentKeySchema.Type;
   readonly questionKey: QuestionKey;
@@ -142,30 +87,31 @@ function questionProjectionFields(input: QuestionProjectionInput) {
     questionKey: input.questionKey,
     questionNumber: input.questionNumber,
     setKey: input.setKey,
+    ...(input.item.blueprint === undefined
+      ? {}
+      : { blueprint: input.item.blueprint }),
+    ...(input.item.stimulusKey === undefined
+      ? {}
+      : { stimulusKey: input.item.stimulusKey }),
   };
 }
 
-/** Builds one prompt projection with its required exact-locale choices. */
+/** Builds one prompt projection with its exact-locale frozen response. */
 export const makeQuestionPromptProjection = Effect.fn(
   "AksaraContracts.makeQuestionPromptProjection"
 )(function* (
   input: QuestionProjectionInput & { readonly bodyKind: "question" }
 ) {
-  const choices = choicesFor(input.choices, input.artifactLocale);
-  if (choices === undefined) {
-    return yield* new QuestionChoiceLocaleMissingError({
-      artifactLocale: input.artifactLocale,
-    });
-  }
+  const response = yield* questionResponseFor(input.item, input.artifactLocale);
   return {
     ...questionProjectionFields(input),
     bodyKind: "question",
-    choices,
     kind: "question-body",
+    response,
   } satisfies QuestionPromptProjection;
 });
 
-/** Builds one answer projection without duplicating prompt choices. */
+/** Builds one answer projection without duplicating the prompt response. */
 export function makeQuestionAnswerProjection(
   input: QuestionProjectionInput & { readonly bodyKind: "answer" }
 ) {
@@ -197,23 +143,29 @@ export function canonicalizeQuestionProjection(
     bodyKind: projection.bodyKind,
     ...(projection.bodyKind === "question"
       ? {
-          choices: projection.choices.map(({ label, value }) => ({
-            label,
-            value,
-          })),
+          response: canonicalQuestionResponse(projection.response),
         }
       : {}),
     artifactLocale: projection.artifactLocale,
+    ...(projection.blueprint === undefined
+      ? {}
+      : { blueprint: canonicalQuestionBlueprint(projection.blueprint) }),
     contentKey: projection.contentKey,
     kind: projection.kind,
     metadata: {
       authors: projection.metadata.authors.map(({ name }) => ({ name })),
-      date: projection.metadata.date,
+      ...(projection.metadata.dateModified === undefined
+        ? {}
+        : { dateModified: projection.metadata.dateModified }),
+      datePublished: projection.metadata.datePublished,
       title: projection.metadata.title,
     },
     peerContentKey: projection.peerContentKey,
     questionKey: projection.questionKey,
     questionNumber: projection.questionNumber,
     setKey: projection.setKey,
+    ...(projection.stimulusKey === undefined
+      ? {}
+      : { stimulusKey: projection.stimulusKey }),
   });
 }

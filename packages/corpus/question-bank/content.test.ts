@@ -16,10 +16,10 @@ import {
   generalQuestionSourceFiles,
   makeQuestionSourceLayer,
   questionTestSourceRoot,
-  realQuestionChoices,
   realQuestionEntries,
+  realQuestionItems,
   realTryoutSources,
-  validQuestionChoicesSource,
+  validQuestionItemSource,
 } from "#corpus/test/question-layer";
 
 const readingSetKey =
@@ -35,12 +35,12 @@ function questionEntries(...roots: readonly string[]) {
   ]);
 }
 
-/** Creates localized choice sources for synthetic question directories. */
-function choicesFor(...roots: readonly string[]) {
+/** Creates localized item sources for synthetic question directories. */
+function itemsFor(...roots: readonly string[]) {
   return new Map(
     roots.map((root) => [
-      resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"),
-      validQuestionChoicesSource,
+      resolve(absoluteQuestionTestSourceRoot, root, "item.ts"),
+      validQuestionItemSource,
     ])
   );
 }
@@ -48,11 +48,11 @@ function choicesFor(...roots: readonly string[]) {
 /** Builds one synthetic question registry Effect without hiding its error type. */
 function registry(
   discoveredEntries: readonly string[],
-  choices: ReadonlyMap<string, string>
+  items: ReadonlyMap<string, string>
 ) {
   return loadQuestionContent(corpusRoot, realTryoutSources).pipe(
     Effect.provide([
-      makeQuestionSourceLayer(discoveredEntries, choices),
+      makeQuestionSourceLayer(discoveredEntries, items),
       Path.layer,
     ])
   );
@@ -61,9 +61,9 @@ function registry(
 /** Projects one synthetic question registry without leaving Effect. */
 function questionRegistry(
   discoveredEntries: readonly string[],
-  choices: ReadonlyMap<string, string>
+  items: ReadonlyMap<string, string>
 ) {
-  return registry(discoveredEntries, choices).pipe(
+  return registry(discoveredEntries, items).pipe(
     Effect.map(({ entries }) => entries)
   );
 }
@@ -71,9 +71,9 @@ function questionRegistry(
 /** Returns one typed registry rejection for native Effect composition. */
 function rejectRegistry(
   discoveredEntries: readonly string[],
-  choices: ReadonlyMap<string, string>
+  items: ReadonlyMap<string, string>
 ) {
-  return questionRegistry(discoveredEntries, choices).pipe(Effect.flip);
+  return questionRegistry(discoveredEntries, items).pipe(Effect.flip);
 }
 
 layer(NodeServices.layer)("question registry", (it) => {
@@ -84,7 +84,7 @@ layer(NodeServices.layer)("question registry", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const entries = yield* questionRegistry(
           realQuestionEntries,
-          realQuestionChoices
+          realQuestionItems
         );
         const authoredPaths = (yield* fileSystem.glob(
           "packages/corpus/question-bank/tryout/indonesia/**/*.mdx",
@@ -149,7 +149,7 @@ layer(NodeServices.layer)("question registry", (it) => {
       Effect.gen(function* () {
         const entries = yield* questionRegistry(
           realQuestionEntries,
-          realQuestionChoices
+          realQuestionItems
         );
         const question = entries.find(
           ({ artifactLocale, contentKey }) =>
@@ -167,6 +167,7 @@ layer(NodeServices.layer)("question registry", (it) => {
           bodyKind: "question",
           contentKey: `${readingQuestionKey}/question`,
           delivery: "authenticated",
+          languagePolicy: { kind: "app-locale" },
           peerContentKey: `${readingQuestionKey}/answer`,
           questionKey: readingQuestionKey,
           questionNumber: 1,
@@ -234,8 +235,8 @@ layer(NodeServices.layer)("question registry", (it) => {
           resolve(corpusRoot, entry.sourcePath)
         );
         const [document, error] = yield* Effect.all([
-          readQuestionDocument(corpusRoot, entry, source.choices),
-          readQuestionDocument(corpusRoot, entry, source.choices).pipe(
+          readQuestionDocument(corpusRoot, entry, source.item),
+          readQuestionDocument(corpusRoot, entry, source.item).pipe(
             Effect.provide([
               makeQuestionSourceLayer([], new Map()),
               Path.layer,
@@ -263,7 +264,7 @@ layer(NodeServices.layer)("question registry", (it) => {
       )}/question-1`;
       const error = yield* rejectRegistry(
         questionEntries(root),
-        choicesFor(root)
+        itemsFor(root)
       );
 
       expect(error).toMatchObject({
@@ -285,7 +286,7 @@ layer(NodeServices.layer)("question registry", (it) => {
       const root = "indonesia/snbt/general-reasoning/set-1/question-1";
       const content = yield* registry(
         [root, ...generalQuestionSourceFiles.map((file) => `${root}/${file}`)],
-        choicesFor(root)
+        itemsFor(root)
       );
 
       expect(

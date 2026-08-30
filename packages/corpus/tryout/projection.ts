@@ -5,6 +5,7 @@ import {
   makeTryoutCatalogRecord,
 } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
@@ -25,6 +26,16 @@ export class TryoutQuestionMissingError extends Schema.TaggedError<TryoutQuestio
 export class TryoutQuestionDuplicateError extends Schema.TaggedError<TryoutQuestionDuplicateError>()(
   "TryoutQuestionDuplicateError",
   { questionKey: QuestionKeySchema }
+) {}
+
+/** One grouped stimulus is isolated or interrupted inside its active section. */
+export class TryoutStimulusGroupError extends Schema.TaggedError<TryoutStimulusGroupError>()(
+  "TryoutStimulusGroupError",
+  {
+    questionKey: QuestionKeySchema,
+    reason: Schema.Literals(["isolated", "noncontiguous"]),
+    stimulusKey: TryoutKeySchema,
+  }
 ) {}
 
 /** Exact active try-out hierarchy and server-only placement expectations. */
@@ -66,6 +77,51 @@ function activeSections(sources: readonly TryoutExamSource[]) {
   );
 }
 
+/** Requires every shared-stimulus group to contain contiguous sibling items. */
+const validateStimulusGroups = Effect.fn(
+  "AksaraCorpus.validateTryoutStimulusGroups"
+)(function* (questions: readonly QuestionSource[]) {
+  const groups = new Map<
+    NonNullable<QuestionSource["item"]["stimulusKey"]>,
+    [QuestionSource, ...QuestionSource[]]
+  >();
+  for (const question of questions) {
+    const { stimulusKey } = question.item;
+    if (stimulusKey === undefined) {
+      continue;
+    }
+    const group = groups.get(stimulusKey);
+    if (group === undefined) {
+      groups.set(stimulusKey, [question]);
+    } else {
+      group.push(question);
+    }
+  }
+  for (const [stimulusKey, group] of groups) {
+    const [first] = group;
+    if (group.length < 2) {
+      return yield* new TryoutStimulusGroupError({
+        questionKey: first.questionKey,
+        reason: "isolated",
+        stimulusKey,
+      });
+    }
+    if (
+      group.some(
+        ({ questionNumber }, index) =>
+          questionNumber !== first.questionNumber + index
+      )
+    ) {
+      return yield* new TryoutStimulusGroupError({
+        questionKey: first.questionKey,
+        reason: "noncontiguous",
+        stimulusKey,
+      });
+    }
+  }
+  return questions;
+});
+
 /** Builds localized placement rows for one exact active section. */
 const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
   function* (
@@ -73,7 +129,7 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
     questions: ReadonlyMap<QuestionSource["questionKey"], QuestionSource>
   ) {
     const { section, set, source, track } = context;
-    const rows: TryoutPlacementSource[][] = [];
+    const selected: QuestionSource[] = [];
     for (
       let questionOrder = 1;
       questionOrder <= section.questionCount;
@@ -86,16 +142,18 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
       if (question === undefined) {
         return yield* new TryoutQuestionMissingError({ questionKey });
       }
-      rows.push(
-        yield* Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
-          makeTryoutPlacement(
-            { section, set, source, track },
-            question,
-            appLocale
-          )
-        )
-      );
+      selected.push(question);
     }
+    yield* validateStimulusGroups(selected);
+    const rows = yield* Effect.forEach(selected, (question) =>
+      Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
+        makeTryoutPlacement(
+          { section, set, source, track },
+          question,
+          appLocale
+        )
+      )
+    );
     return rows.flat();
   }
 );

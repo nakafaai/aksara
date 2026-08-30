@@ -1,7 +1,10 @@
 import type { Stream } from "effect";
 
+import { canonicalQuestionBlueprint } from "#contracts/question/item";
+import { canonicalQuestionResponse } from "#contracts/question/response";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import { tryoutPlacementIdentity } from "#contracts/tryout/identity";
+import { canonicalAssessmentLanguagePolicy } from "#contracts/tryout/language";
 import {
   type TryoutPlacement,
   type TryoutPlacementRecord,
@@ -11,16 +14,6 @@ import { digestTryoutRecords } from "#contracts/tryout/row-hash";
 
 const PLACEMENT_DOMAIN = "nakafa.aksara.tryout-placements";
 
-/** Serializes answer choices without trusting object insertion order. */
-function canonicalizeChoices(choices: TryoutPlacement["choices"]) {
-  return choices.map(({ isCorrect, label, optionKey, order }) => ({
-    isCorrect,
-    label,
-    optionKey,
-    order,
-  }));
-}
-
 /** Serializes one artifact-bound placement with stable field order. */
 export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
   return JSON.stringify({
@@ -28,21 +21,26 @@ export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
     answerArtifactLocale: row.answerArtifactLocale,
     answerContentKey: row.answerContentKey,
     appLocale: row.appLocale,
-    choices: canonicalizeChoices(row.choices),
+    ...(row.blueprint === undefined
+      ? {}
+      : { blueprint: canonicalQuestionBlueprint(row.blueprint) }),
     contentHash: row.contentHash,
     countryKey: row.countryKey,
     deliveryLanguage: row.deliveryLanguage,
     examKey: row.examKey,
+    languagePolicy: canonicalAssessmentLanguagePolicy(row.languagePolicy),
     questionArtifactHash: row.questionArtifactHash,
     questionArtifactLocale: row.questionArtifactLocale,
     questionContentKey: row.questionContentKey,
     questionOrder: row.questionOrder,
     questionSourcePath: row.questionSourcePath,
     rendererDomain: row.rendererDomain,
+    response: canonicalQuestionResponse(row.response),
     scope: row.scope,
     sectionKey: row.sectionKey,
     setKey: row.setKey,
     sourceRevision: row.sourceRevision,
+    ...(row.stimulusKey === undefined ? {} : { stimulusKey: row.stimulusKey }),
     trackKey: row.trackKey,
   });
 }

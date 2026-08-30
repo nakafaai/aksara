@@ -89,8 +89,8 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
       articleRenderer: article.rendererManifest,
       articleSource,
       checkoutRoot: article.checkoutRoot,
-      choicesPath: CorpusSourcePathSchema.make(
-        promptEntry.sourceRoot.concat("/choices.ts")
+      itemPath: CorpusSourcePathSchema.make(
+        promptEntry.sourceRoot.concat("/item.ts")
       ),
       materialRenderer: material.rendererManifest,
       materialSource,
@@ -172,44 +172,42 @@ layer(previewTestLayer)("preview source", (it) => {
     })
   );
 
-  it.effect(
-    "parses one shared choices source for an ordered answer closure",
-    () =>
-      Effect.gen(function* () {
-        const fixture = yield* previewSources();
-        const loaded = yield* loadPreviewSources(fixture.checkoutRoot, [
-          fixture.answerPromptSource,
-          fixture.answerSource,
-        ]);
-        const [prompt, answer] = loaded;
-        if (!(prompt.family === "question" && answer?.family === "question")) {
-          return yield* Effect.die(
-            "Expected the real prompt and answer closure."
-          );
-        }
+  it.effect("parses one shared item source for an ordered answer closure", () =>
+    Effect.gen(function* () {
+      const fixture = yield* previewSources();
+      const loaded = yield* loadPreviewSources(fixture.checkoutRoot, [
+        fixture.answerPromptSource,
+        fixture.answerSource,
+      ]);
+      const [prompt, answer] = loaded;
+      if (!(prompt.family === "question" && answer?.family === "question")) {
+        return yield* Effect.die(
+          "Expected the real prompt and answer closure."
+        );
+      }
 
-        expect(loaded).toHaveLength(2);
-        expect(loaded.map(({ source }) => source.sourcePath)).toEqual([
-          fixture.answerPromptSource.entry.sourcePath,
-          fixture.answerSource.entry.sourcePath,
-        ]);
-        expect(prompt.source.choices).toEqual(answer.source.choices);
-      })
+      expect(loaded).toHaveLength(2);
+      expect(loaded.map(({ source }) => source.sourcePath)).toEqual([
+        fixture.answerPromptSource.entry.sourcePath,
+        fixture.answerSource.entry.sourcePath,
+      ]);
+      expect(prompt.source.item).toBe(answer.source.item);
+    })
   );
 
   it.effect(
-    "maps a missing choices dependency to the preview source boundary",
+    "maps a missing item dependency to the preview source boundary",
     () =>
       Effect.gen(function* () {
-        const { choicesPath, promptSource } = yield* previewSources();
+        const { itemPath, promptSource } = yield* previewSources();
         const error = yield* loadPreviewSources("/missing", [
           promptSource,
         ]).pipe(Effect.flip);
 
         expect(error).toMatchObject({
-          _tag: "PreviewChoiceSourceError",
+          _tag: "PreviewItemSourceError",
           checkoutRoot: "/missing",
-          sourcePath: choicesPath,
+          sourcePath: itemPath,
         });
       })
   );

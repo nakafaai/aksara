@@ -5,31 +5,28 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Path, Stream } from "effect";
+import { Context, Effect, Layer, Stream } from "effect";
 import {
   type BoundTryoutPlacement,
   bindTryoutHeads,
 } from "#publisher/tryout/bind";
-import { bindTryoutContent } from "#publisher/tryout/content";
 import {
   TryoutContentMissingError,
   TryoutHeadMismatchError,
 } from "#publisher/tryout/error";
-import { testFileLayer } from "#test/files";
-import {
-  checkoutRoot,
-  questionEntries,
-  questionSources,
-  rendererManifest,
-  sourceByPath,
-} from "#test/question/spec";
+import { questionEntries } from "#test/question/spec";
 import { tryoutFixtures } from "#test/tryout";
+import {
+  collectEnrichedTryoutContent,
+  collectTryoutContent,
+  rejectTryoutContent,
+} from "#test/tryout-content";
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
-  "d667f56c7b21a5b7ed2af9b95cf520d05f2b528d12218ddf8604dca464e60ca7",
-  "2dcf89d75760f2fe16e5a31fb7c8446a83ad6de70882a451b0e0ef9454ba4cba",
-  "7da4b489f83c4cd4b8a99ed95a7bcc5333e5efaa0ca37772f6c1f7fea57a001d",
+  "e06972b164034889f9f7fd12aa7e6a439ac91ab98920511d8ff330d9c72f173a",
+  "7f0f8eddc95a80c096386511016a2a47c96b5e88714c0f2f12d67abf82254a01",
+  "f171a62ffa862d09e6f8738df07636603e6cc3dbbba2bef4df502c00aaef18d1",
 ];
 
 /** Loads exact real bindings once for every content-binding test. */
@@ -56,52 +53,6 @@ class TryoutContentTestFixtures extends Context.Service<
 const contentTestLayer = Layer.effect(
   TryoutContentTestFixtures,
   makeContentTestFixtures()
-);
-
-/** Collects exact artifact records through the real question inspection seam. */
-const collect = Effect.fn("TryoutContentTest.collect")(
-  (
-    bindings: readonly BoundTryoutPlacement[],
-    input: {
-      readonly entries?: typeof questionEntries;
-      readonly sources?: typeof questionSources;
-      readonly values?: readonly BoundTryoutPlacement[];
-    }
-  ) =>
-    bindTryoutContent({
-      bindings: Stream.fromIterable(input.values ?? bindings),
-      checkoutRoot,
-      entries: input.entries ?? questionEntries,
-      rendererManifest,
-      sources: input.sources ?? questionSources,
-    }).pipe(
-      Stream.runCollect,
-      Effect.map((records) => [...records]),
-      Effect.provide([testFileLayer(sourceByPath), Path.layer])
-    )
-);
-
-/** Returns one inspected content-binding failure without a FiberFailure wrapper. */
-const reject = Effect.fn("TryoutContentTest.reject")(
-  (
-    bindings: readonly BoundTryoutPlacement[],
-    input: {
-      readonly entries?: typeof questionEntries;
-      readonly sources?: typeof questionSources;
-      readonly values?: readonly BoundTryoutPlacement[];
-    }
-  ) =>
-    bindTryoutContent({
-      bindings: Stream.fromIterable(input.values ?? bindings),
-      checkoutRoot,
-      entries: input.entries ?? questionEntries,
-      rendererManifest,
-      sources: input.sources ?? questionSources,
-    }).pipe(
-      Stream.runDrain,
-      Effect.flip,
-      Effect.provide([testFileLayer(sourceByPath), Path.layer])
-    )
 );
 
 /** Alters one retained body fingerprint without changing its source identity. */
@@ -196,7 +147,7 @@ contentTests("try-out content binding", (it) => {
     () =>
       Effect.gen(function* () {
         const { bindings } = yield* TryoutContentTestFixtures;
-        const records = yield* collect(bindings, {});
+        const records = yield* collectTryoutContent(bindings, {});
 
         expect(records.map(({ row }) => row.contentHash)).toEqual(
           EXPECTED_CONTENT_HASHES
@@ -214,28 +165,50 @@ contentTests("try-out content binding", (it) => {
       })
   );
 
-  it.effect("rejects a missing body entry or canonical choice source", () =>
+  it.effect("rejects a missing body entry or canonical item source", () =>
     Effect.gen(function* () {
       const { binding, bindings } = yield* TryoutContentTestFixtures;
-      const [answer, question, choices] = yield* Effect.all(
+      const [answer, question, item] = yield* Effect.all(
         [
-          reject(bindings, {
+          rejectTryoutContent(bindings, {
             entries: entriesWithout(binding, "answer"),
             values: [binding],
           }),
-          reject(bindings, {
+          rejectTryoutContent(bindings, {
             entries: entriesWithout(binding, "question"),
             values: [binding],
           }),
-          reject(bindings, { sources: [], values: [binding] }),
+          rejectTryoutContent(bindings, {
+            sources: [],
+            values: [binding],
+          }),
         ],
         { concurrency: "unbounded" }
       );
 
-      for (const error of [answer, question, choices]) {
+      for (const error of [answer, question, item]) {
         expect(error).toBeInstanceOf(TryoutContentMissingError);
       }
     })
+  );
+
+  it.effect(
+    "binds blueprint, modification date, and shared stimulus into the hash",
+    () =>
+      Effect.gen(function* () {
+        const { binding } = yield* TryoutContentTestFixtures;
+        const {
+          blueprint,
+          modifiedQuestionSource,
+          questionSource,
+          record,
+          stimulusKey,
+        } = yield* collectEnrichedTryoutContent(binding);
+
+        expect(modifiedQuestionSource).not.toBe(questionSource);
+        expect(record?.row).toMatchObject({ blueprint, stimulusKey });
+        expect(EXPECTED_CONTENT_HASHES).not.toContain(record?.row.contentHash);
+      })
   );
 
   it.effect("rejects entries bound to the opposite body identity", () =>
@@ -246,7 +219,10 @@ contentTests("try-out content binding", (it) => {
         oppositeEntryAt(binding, "answer"),
       ]);
       const [answerAtQuestion, questionAtAnswer] = yield* Effect.all(
-        [reject(bindings, questionInput), reject(bindings, answerInput)],
+        [
+          rejectTryoutContent(bindings, questionInput),
+          rejectTryoutContent(bindings, answerInput),
+        ],
         { concurrency: "unbounded" }
       );
 
@@ -270,7 +246,7 @@ contentTests("try-out content binding", (it) => {
   ] as const)("rejects a stale %s %s", ([bodyKind, field]) =>
     Effect.gen(function* () {
       const { binding, bindings } = yield* TryoutContentTestFixtures;
-      const error = yield* reject(bindings, {
+      const error = yield* rejectTryoutContent(bindings, {
         values: [alterFingerprint(binding, bodyKind, field)],
       });
 

@@ -5,6 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { AssessmentLanguagePolicySchema } from "@nakafa/aksara-contracts/tryout/language";
 import {
   TryoutScoringSchema,
   TryoutTrackKindSchema,
@@ -29,6 +30,7 @@ const TryoutTranslationMapSchema = localizedSourceMapSchema(
 
 const TryoutSectionSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
+  languagePolicy: AssessmentLanguagePolicySchema,
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionSourcePath: QuestionSetKeySchema,

@@ -8,6 +8,7 @@ import {
   ArtifactLocaleSchema,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
+import { QuestionResponseContentSchema } from "#contracts/question/response";
 import { materialGraph } from "#contracts/test/graph";
 import {
   type TryoutCatalogRecord,
@@ -21,6 +22,11 @@ import {
 import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+
+/** Builds one semantic plain-text response label for test fixtures. */
+export function responseText(text: string) {
+  return QuestionResponseContentSchema.make([{ kind: "text", text }]);
+}
 
 /** Builds all five current hierarchy kinds for one app locale. */
 function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
@@ -112,24 +118,34 @@ function placement(appLocale: AppLocale): TryoutPlacementRecord {
       answerArtifactLocale: ArtifactLocaleSchema.make(localeCode),
       answerContentKey: `${root}/answer`,
       appLocale,
-      choices: [
-        {
-          isCorrect: true,
-          label: "Test-only choice",
-          optionKey: "option-1",
-          order: 1,
-        },
-      ],
       contentHash: "c".repeat(64),
       countryKey: "indonesia",
       deliveryLanguage: DeliveryLanguageSchema.make(localeCode),
       examKey: "snbt",
+      languagePolicy: { kind: "app-locale" },
       questionArtifactHash: artifactHash,
       questionArtifactLocale: ArtifactLocaleSchema.make(localeCode),
       questionContentKey: `${root}/question`,
       questionOrder: 1,
       questionSourcePath: `packages/corpus/${root}`,
       rendererDomain: "snbt-quant",
+      response: {
+        kind: "single-choice",
+        options: [
+          {
+            isCorrect: true,
+            label: responseText("Test-only correct option"),
+            optionKey: "option-1",
+            order: 1,
+          },
+          {
+            isCorrect: false,
+            label: responseText("Test-only distractor"),
+            optionKey: "option-2",
+            order: 2,
+          },
+        ],
+      },
       scope: "server",
       sectionKey: "quantitative-knowledge",
       setKey: "set-1",

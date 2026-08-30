@@ -5,43 +5,39 @@ import {
   AppLocaleSchema,
   type ArtifactLocale,
   type DeliveryLanguage,
+  DeliveryLanguageSchema,
 } from "#contracts/locale";
-import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
-  deliveryLanguageForSection,
-  ENGLISH_LANGUAGE_SECTION_KEY,
-  INDONESIAN_LANGUAGE_SECTION_KEY,
-  questionArtifactLocaleForSection,
-  questionArtifactLocalesForSection,
+  canonicalAssessmentLanguagePolicy,
+  deliveryLanguageForPolicy,
+  questionArtifactLocaleForPolicy,
+  questionArtifactLocalesForPolicy,
 } from "#contracts/tryout/language";
 
 describe("try-out language", () => {
+  const english = DeliveryLanguageSchema.make("en");
+  const indonesian = DeliveryLanguageSchema.make("id");
+
   it("keeps app, delivery, and artifact locale types distinct", () => {
     expectTypeOf<AppLocale>().not.toEqualTypeOf<DeliveryLanguage>();
     expectTypeOf<AppLocale>().not.toEqualTypeOf<ArtifactLocale>();
     expectTypeOf<DeliveryLanguage>().not.toEqualTypeOf<ArtifactLocale>();
   });
 
-  it("preserves assessed English and Indonesian section language", () => {
+  it("preserves a source-owned assessed language", () => {
     const german = AppLocaleSchema.make("de");
     expect(
-      deliveryLanguageForSection(
-        TryoutKeySchema.make(ENGLISH_LANGUAGE_SECTION_KEY),
-        german
-      )
+      deliveryLanguageForPolicy({ kind: "fixed", language: english }, german)
     ).toBe("en");
     expect(
-      deliveryLanguageForSection(
-        TryoutKeySchema.make(INDONESIAN_LANGUAGE_SECTION_KEY),
-        german
-      )
+      deliveryLanguageForPolicy({ kind: "fixed", language: indonesian }, german)
     ).toBe("id");
   });
 
-  it("uses the app locale for every other section", () => {
+  it("uses the app locale only when the source policy declares it", () => {
     expect(
-      deliveryLanguageForSection(
-        TryoutKeySchema.make("mathematical-reasoning"),
+      deliveryLanguageForPolicy(
+        { kind: "app-locale" },
         AppLocaleSchema.make("de")
       )
     ).toBe("de");
@@ -49,23 +45,30 @@ describe("try-out language", () => {
 
   it("derives the immutable question artifact locale without exchanging brands", () => {
     expect(
-      questionArtifactLocaleForSection(
-        TryoutKeySchema.make(ENGLISH_LANGUAGE_SECTION_KEY),
+      questionArtifactLocaleForPolicy(
+        { kind: "fixed", language: english },
         AppLocaleSchema.make("de")
       )
     ).toBe("en");
   });
 
-  it("deduplicates assessed prompt and choice locales across app locales", () => {
+  it("deduplicates source-required item locales across app locales", () => {
     expect(
-      questionArtifactLocalesForSection(
-        TryoutKeySchema.make(ENGLISH_LANGUAGE_SECTION_KEY)
-      )
+      questionArtifactLocalesForPolicy({ kind: "fixed", language: english })
     ).toEqual(["en"]);
+    expect(questionArtifactLocalesForPolicy({ kind: "app-locale" })).toEqual([
+      "en",
+      "id",
+      "de",
+    ]);
+  });
+
+  it("canonically orders both policy variants", () => {
+    expect(canonicalAssessmentLanguagePolicy({ kind: "app-locale" })).toEqual({
+      kind: "app-locale",
+    });
     expect(
-      questionArtifactLocalesForSection(
-        TryoutKeySchema.make("mathematical-reasoning")
-      )
-    ).toEqual(["en", "id", "de"]);
+      canonicalAssessmentLanguagePolicy({ kind: "fixed", language: english })
+    ).toEqual({ kind: "fixed", language: "en" });
   });
 });

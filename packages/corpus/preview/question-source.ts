@@ -36,7 +36,7 @@ export const makeQuestionPreviewSource = Effect.fn(
   const dependencies = [
     {
       mode: "reload",
-      sourcePath: CorpusSourcePathSchema.make(`${entry.sourceRoot}/choices.ts`),
+      sourcePath: CorpusSourcePathSchema.make(`${entry.sourceRoot}/item.ts`),
     },
     { mode: "restart", sourcePath: QUESTION_OWNER },
     ...(yield* dependenciesFor(sourceModule)),

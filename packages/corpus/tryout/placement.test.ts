@@ -101,21 +101,54 @@ describe("tryout placement", () => {
     })
   );
 
-  it.effect("rejects a prompt without choices in its delivered language", () =>
-    Effect.gen(function* () {
-      const fixture = yield* loadPlacementFixture();
-      const error = yield* makeTryoutPlacement(
-        fixture.context,
-        { ...fixture.question, choices: { id: fixture.question.choices.id } },
-        ActiveAppLocaleSchema.make("en")
-      ).pipe(Effect.flip);
+  it.effect(
+    "rejects a source path that contradicts its question identity",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* loadPlacementFixture();
+        const inconsistentSourcePath = {
+          ...fixture.question,
+          sourceRoot: CorpusSourcePathSchema.make(
+            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-2"
+          ),
+        };
+        const error = yield* makeTryoutPlacement(
+          fixture.context,
+          inconsistentSourcePath,
+          ActiveAppLocaleSchema.make("en")
+        ).pipe(Effect.flip);
 
-      expect(error).toBeInstanceOf(TryoutPlacementError);
-      expect(error).toMatchObject({
-        _tag: "TryoutPlacementError",
-        reason: "choices",
-      });
-    })
+        expect(error).toBeInstanceOf(TryoutPlacementError);
+        expect(error).toMatchObject({
+          _tag: "TryoutPlacementError",
+          reason: "decode",
+        });
+      })
+  );
+
+  it.effect(
+    "rejects an item without a response in its delivered language",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* loadPlacementFixture();
+        const indonesian = yield* Effect.fromNullishOr(
+          fixture.question.item.responses.id
+        );
+        const error = yield* makeTryoutPlacement(
+          fixture.context,
+          {
+            ...fixture.question,
+            item: { responses: { id: indonesian } },
+          },
+          ActiveAppLocaleSchema.make("en")
+        ).pipe(Effect.flip);
+
+        expect(error).toBeInstanceOf(TryoutPlacementError);
+        expect(error).toMatchObject({
+          _tag: "TryoutPlacementError",
+          reason: "response",
+        });
+      })
   );
 
   it.effect(
@@ -125,16 +158,7 @@ describe("tryout placement", () => {
         const fixture = yield* loadPlacementFixture();
         const placement = yield* makeTryoutPlacement(
           fixture.context,
-          {
-            ...fixture.question,
-            choices: {
-              ...fixture.question.choices,
-              de: [
-                { label: "Antwort A", value: true },
-                { label: "Antwort B", value: false },
-              ],
-            },
-          },
+          fixture.question,
           AppLocaleSchema.make("de")
         );
 
