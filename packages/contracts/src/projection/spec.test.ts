@@ -1,11 +1,12 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { ArticleProjectionSchema } from "#contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { PublicPageProjectionSchema } from "#contracts/projection/page";
 import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
 import {
   ContentProjectionSchema,
+  CurrentContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
   projectionPublicPath,
@@ -60,8 +61,8 @@ const page = Schema.decodeSync(PublicPageProjectionSchema)({
   contentKey: "pages/privacy-policy",
   kind: "public-page",
   metadata: {
+    datePublished: "2026-08-20",
     description: "How Nakafa processes personal data.",
-    lastModified: "2026-08-20",
     title: "Privacy Policy",
   },
   pageKey: "privacy-policy",
@@ -91,6 +92,14 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   questionNumber: 1,
   setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
 });
+const historicalPage = {
+  ...page,
+  metadata: {
+    description: page.metadata.description,
+    lastModified: "2026-08-20",
+    title: page.metadata.title,
+  },
+};
 
 describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
@@ -104,6 +113,20 @@ describe("content projection", () => {
         Schema.decodeUnknownExit(RoutedContentProjectionSchema)(question)
       )
     ).toBe(true);
+  });
+
+  it("keeps predecessor Page bytes outside the current staging contract", () => {
+    expect(Schema.decodeSync(ContentProjectionSchema)(historicalPage)).toEqual(
+      historicalPage
+    );
+    expect(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(CurrentContentProjectionSchema)(historicalPage)
+      )
+    ).toBe(true);
+    expect(JSON.parse(canonicalizeContentProjection(historicalPage))).toEqual(
+      historicalPage
+    );
   });
 
   it("dispatches canonicalization and family selection exhaustively", () => {

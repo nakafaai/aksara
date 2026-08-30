@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { DateOnlySchema } from "#contracts/date";
+import { DateOnlySchema, withPublicationDates } from "#contracts/date";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -16,12 +16,18 @@ export const PageKeySchema = Schema.String.pipe(
 export type PageKey = typeof PageKeySchema.Type;
 
 /** Exact metadata consumed by human, agent, and sitemap page surfaces. */
-export const PageMetadataSchema = Schema.Struct({
+export const PageMetadataSchema = withPublicationDates({
+  description: Schema.Trimmed.check(Schema.isNonEmpty()),
+  title: Schema.Trimmed.check(Schema.isNonEmpty()),
+});
+export type PageMetadata = typeof PageMetadataSchema.Type;
+
+/** Immutable metadata retained only for authenticated historical Page reads. */
+const HistoricalPageMetadataSchema = Schema.Struct({
   description: Schema.Trimmed.check(Schema.isNonEmpty()),
   lastModified: DateOnlySchema,
   title: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
-export type PageMetadata = typeof PageMetadataSchema.Type;
 
 const PublicPageRouteFields = {
   appLocale: AppLocaleSchema,
@@ -83,6 +89,37 @@ export const PublicPageProjectionSchema = Schema.Struct({
 );
 export type PublicPageProjection = typeof PublicPageProjectionSchema.Type;
 
+/** Exact predecessor Page bytes required for rollback and stored-state reads. */
+export const HistoricalPublicPageProjectionSchema = Schema.Struct({
+  ...PublicPageRouteFields,
+  kind: Schema.Literal("public-page"),
+  metadata: HistoricalPageMetadataSchema,
+  sitemap: Schema.Literal(true),
+  sourcePath: CorpusSourcePathSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(hasCoherentPageLocales, {
+      message: "Expected historical page route and artifact locales to match.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPageRoute, {
+      message:
+        "Expected the historical page content key to match its page key.",
+    })
+  )
+);
+export type HistoricalPublicPageProjection =
+  typeof HistoricalPublicPageProjectionSchema.Type;
+
+/** Current Page values plus exact predecessor bytes needed for safe rollout. */
+export const ReadablePublicPageProjectionSchema = Schema.Union([
+  PublicPageProjectionSchema,
+  HistoricalPublicPageProjectionSchema,
+]);
+export type ReadablePublicPageProjection =
+  typeof ReadablePublicPageProjectionSchema.Type;
+
 /** Combines one reviewed page route with its strict localized metadata. */
 export function makePublicPageProjection(input: {
   readonly metadata: PageMetadata;
@@ -100,18 +137,29 @@ export function makePublicPageProjection(input: {
 
 /** Serializes one public page projection with stable signed field order. */
 export function canonicalizePublicPageProjection(
-  projection: PublicPageProjection
+  projection: ReadablePublicPageProjection
 ) {
+  const metadata =
+    "lastModified" in projection.metadata
+      ? {
+          description: projection.metadata.description,
+          lastModified: projection.metadata.lastModified,
+          title: projection.metadata.title,
+        }
+      : {
+          ...(projection.metadata.dateModified === undefined
+            ? {}
+            : { dateModified: projection.metadata.dateModified }),
+          datePublished: projection.metadata.datePublished,
+          description: projection.metadata.description,
+          title: projection.metadata.title,
+        };
   return JSON.stringify({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,
     kind: projection.kind,
-    metadata: {
-      description: projection.metadata.description,
-      lastModified: projection.metadata.lastModified,
-      title: projection.metadata.title,
-    },
+    metadata,
     pageKey: projection.pageKey,
     publicPath: projection.publicPath,
     sitemap: projection.sitemap,

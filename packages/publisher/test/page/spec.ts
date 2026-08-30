@@ -50,7 +50,7 @@ const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>
       const source = `export const metadata = {
   title: "Test ${entry.route.pageKey}",
   description: "Reviewed public page fixture.",
-  lastModified: "2026-08-20",
+  datePublished: "2026-08-20",
 };
 
 # Test ${entry.route.pageKey}

@@ -39,7 +39,7 @@ const PublicationDatesStruct = Schema.Struct(PublicationDateFields).annotate({
 });
 
 /**
- * Public article and material dates backed by signed activation history.
+ * Public authored dates backed by signed activation history.
  * Publication is locale-specific; modification records only a later meaningful
  * content activation and is never synthesized from a runtime clock.
  */
