@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { LOCAL_PREVIEW_FORMAT } from "#contracts/preview/spec";
 import { testPageDocument, testPageProjection } from "#contracts/test/preview";
 import {
