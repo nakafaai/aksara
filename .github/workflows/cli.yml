@@ -129,5 +129,17 @@ jobs:
 
       - name: Publish public package
         env:
+          NPM_CLI: npm@12.0.2
           TARBALL: ${{ needs.build.outputs.archive }}
-        run: npm publish "$TARBALL" --access public --provenance
+        run: |
+          version=$(npx --yes "$NPM_CLI" --version)
+          if [[ "$version" != "${NPM_CLI#npm@}" ]]; then
+            echo "The trusted publisher requires the pinned npm CLI." >&2
+            exit 1
+          fi
+          if [[ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" \
+            || -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]]; then
+            echo "The trusted publisher requires GitHub OIDC identity." >&2
+            exit 1
+          fi
+          npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance

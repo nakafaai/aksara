@@ -56,8 +56,8 @@ describe("CLI workflow policy", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replace(
-          'npm publish "$TARBALL"',
-          'NODE_AUTH_TOKEN=credential npm publish "$TARBALL"'
+          'npx --yes "$NPM_CLI" publish "$TARBALL"',
+          'NODE_AUTH_TOKEN=credential npx --yes "$NPM_CLI" publish "$TARBALL"'
         )
       )
     ).toThrow(
@@ -66,11 +66,35 @@ describe("CLI workflow policy", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replace(
-          'npm publish "$TARBALL" --access public --provenance',
+          'npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance',
           'npm pack "$TARBALL"'
         )
       )
     ).toThrow("CLI publication must use the registered npm trusted publisher");
+    expect(() =>
+      verifyCliWorkflow(source.replace("npm@12.0.2", "npm@11.4.2"))
+    ).toThrow("CLI publication must pin an OIDC-capable npm client");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          'echo "The trusted publisher requires the pinned npm CLI." >&2\n            exit 1',
+          'echo "The npm CLI differs; continuing." >&2\n            :'
+        )
+      )
+    ).toThrow("CLI publication must pin an OIDC-capable npm client");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace("ACTIONS_ID_TOKEN_REQUEST_URL", "MISSING_OIDC_URL")
+      )
+    ).toThrow("CLI publication must fail closed without GitHub OIDC identity");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          'echo "The trusted publisher requires GitHub OIDC identity." >&2\n            exit 1',
+          'echo "OIDC is unavailable; continuing." >&2\n            :'
+        )
+      )
+    ).toThrow("CLI publication must fail closed without GitHub OIDC identity");
     expect(() =>
       verifyCliWorkflow(
         source.replace(
