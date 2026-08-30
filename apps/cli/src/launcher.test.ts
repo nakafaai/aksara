@@ -137,7 +137,6 @@ describe("CLI launcher", () => {
         }).pipe(Effect.result);
 
         expect(success).toBe(0);
-        expect(process.exitCode).toBe(0);
         expect(delegatedFailure).toBe(7);
         expect(
           Result.isFailure(spawnFailure) && spawnFailure.failure

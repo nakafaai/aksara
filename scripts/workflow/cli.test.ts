@@ -25,7 +25,7 @@ describe("CLI workflow policy", () => {
     );
   });
 
-  it("requires exact archive transport and bootstrap authentication", () => {
+  it("requires exact transport and protected bootstrap publication", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replaceAll(
@@ -38,10 +38,46 @@ describe("CLI workflow policy", () => {
     );
     expect(() =>
       verifyCliWorkflow(
-        source.replace("NPM_CONFIG_USERCONFIG:", "UNCONFIGURED_USERCONFIG:")
+        source.replace("environment: npm-production", "environment: staging")
       )
     ).toThrow(
-      "The initial CLI publication must configure the bootstrap npm credential"
+      "CLI publication must require the protected npm production environment"
     );
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "    environment: npm-production",
+          "    # environment: npm-production"
+        )
+      )
+    ).toThrow(
+      "CLI publication must require the protected npm production environment"
+    );
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "secrets.NPM_BOOTSTRAP_TOKEN",
+          "secrets.UNPROTECTED_TOKEN"
+        )
+      )
+    ).toThrow(
+      "Initial CLI publication must use the protected bootstrap credential"
+    );
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "      - name: Verify stable package version",
+          "      - name: Accept any package version"
+        )
+      )
+    ).toThrow("CLI production publication must reject prerelease versions");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "      - name: Verify stable package version\n        run: |",
+          "      - name: Verify stable package version\n        if: false\n        run: |"
+        )
+      )
+    ).toThrow("CLI production publication must reject prerelease versions");
   });
 });

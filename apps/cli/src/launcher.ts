@@ -18,6 +18,12 @@ import {
   printCliInfo,
 } from "#cli/about";
 import { findAksaraRoot, PreviewCheckoutError } from "#cli/checkout";
+import {
+  makeLauncherTeardown,
+  readSignalTermination,
+  setProcessExitCode,
+  terminateSelf,
+} from "#cli/exit";
 import { type CliPackageError, readPackageVersion } from "#cli/package";
 
 /** The installed launcher could not execute the checkout-owned CLI source. */
@@ -70,7 +76,17 @@ export const runLauncher = Effect.fn("AksaraCli.runLauncher")(
   }) =>
     makeLaunchCommand(input).pipe(
       Effect.flatMap((command) =>
-        Effect.scoped(command.pipe(Effect.flatMap((handle) => handle.exitCode)))
+        Effect.scoped(
+          command.pipe(
+            Effect.flatMap((handle) => handle.exitCode),
+            Effect.catch((cause) =>
+              Option.match(readSignalTermination(cause), {
+                onNone: () => Effect.fail(cause),
+                onSome: Effect.succeed,
+              })
+            )
+          )
+        )
       ),
       Effect.mapError((cause) =>
         cause instanceof CliLaunchError
@@ -82,7 +98,9 @@ export const runLauncher = Effect.fn("AksaraCli.runLauncher")(
                 cause instanceof PreviewCheckoutError ? "checkout" : "process",
             })
       ),
-      Effect.map(Number)
+      Effect.map((termination) =>
+        typeof termination === "number" ? Number(termination) : termination
+      )
     )
 );
 
@@ -114,7 +132,7 @@ const reportLauncherError = (
   );
 };
 
-/** Records the delegated checkout process status at the Node boundary. */
+/** Builds the delegated checkout program for the Node runtime boundary. */
 export const makeLauncherProgram = Effect.fn("AksaraCli.makeLauncherProgram")(
   (input: {
     readonly args: readonly string[];
@@ -138,12 +156,7 @@ export const makeLauncherProgram = Effect.fn("AksaraCli.makeLauncherProgram")(
           reportLauncherError(error).pipe(Effect.as(1)),
         InfoArgumentsError: (error) =>
           reportLauncherError(error).pipe(Effect.as(1)),
-      }),
-      Effect.tap((exitCode) =>
-        Effect.sync(() => {
-          process.exitCode = exitCode;
-        })
-      )
+      })
     )
 );
 
@@ -159,5 +172,11 @@ runMain(
     executable: process.execPath,
     packageUrl: new URL("../package.json", import.meta.url),
   }).pipe(Effect.provide(launcherLayer)),
-  { disableErrorReporting: true }
+  {
+    disableErrorReporting: true,
+    teardown: makeLauncherTeardown({
+      setExitCode: setProcessExitCode,
+      terminate: terminateSelf,
+    }),
+  }
 );
