@@ -68,13 +68,12 @@ its choices merely because the application locale changes.
   `category`. Array position is the authoring order. Publication derives stable
   option, statement, and category keys once, so authors must not duplicate those
   runtime identities.
-- A response label is a non-empty ordered array of semantic fragments. Use
-  `{ kind: "text", text: "..." }` for prose and
-  `{ kind: "math", display: "inline", math: "..." }` or
-  `{ kind: "math", display: "block", math: "..." }` for LaTeX. Never place
-  `$...$` or `$$...$$` delimiters inside a text fragment, and never flatten
-  mathematics into a label string. Escape LaTeX backslashes in TypeScript math
-  strings.
+- A response label is one non-empty rich Markdown string. Plain prose needs no
+  wrapper. Combine prose and inline math with `$...$` in one sentence, and use
+  `$$...$$` when the expression needs its own block. Markdown emphasis, lists,
+  tables, and other supported syntax use the same string contract. Never add a
+  plain-versus-rich mode, text-versus-math union, fragment array, or
+  renderer-specific AST. Escape LaTeX backslashes in TypeScript strings.
 - A `single-choice` response has at least two options and exactly one correct
   option. A `multiple-choice` response has at least two correct options and at
   least one distractor. A `category` response has at least two categories and
