@@ -5,8 +5,11 @@ const PUBLISH_CODE_PATTERN =
 const IDENTITY_PATTERN = /id-token: write/u;
 const IDENTITY_GLOBAL_PATTERN = /id-token: write/gu;
 const PERMISSION_PATTERN = /permissions:\n {6}id-token: write/u;
+const PROTECTED_ENVIRONMENT_PATTERN = /^ {4}environment: npm-production$/mu;
 const BOOTSTRAP_AUTH_PATTERN =
-  /NODE_AUTH_TOKEN: \$\{\{ secrets\.NPM_BOOTSTRAP_TOKEN \}\}[\s\S]*NPM_CONFIG_USERCONFIG:[\s\S]*\/\/registry\.npmjs\.org\/:_authToken=\\\$\{NODE_AUTH_TOKEN\}/u;
+  /^ {10}NODE_AUTH_TOKEN: \$\{\{ secrets\.NPM_BOOTSTRAP_TOKEN \}\}$[\s\S]*^ {10}NPM_CONFIG_USERCONFIG: [^\n]+$[\s\S]*^ {10}printf '%s\\n' "\/\/registry\.npmjs\.org\/:_authToken=\\\$\{NODE_AUTH_TOKEN\}"/mu;
+const STABLE_VERSION_PATTERN =
+  /^ {6}- name: Verify stable package version\n^ {8}run: \|\n[\s\S]*^ {10}version=\$\(jq -er '\.version' apps\/cli\/dist\/package\/package\.json\)$[\s\S]*^ {10}if \[\[ ! "\$version" =~ \^\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\$ \]\]; then$/mu;
 const TRANSPORT_PATTERN =
   /package_sha256:[\s\S]*sha256:[\s\S]*size:[\s\S]*Build release archive[\s\S]*sha256sum[\s\S]*Upload verified archive[\s\S]*publish:[\s\S]*needs: build[\s\S]*Download verified archive[\s\S]*Verify transported archive[\s\S]*EXPECTED_PACKAGE_SHA256[\s\S]*EXPECTED_SHA256[\s\S]*EXPECTED_SIZE/u;
 
@@ -47,8 +50,18 @@ export function verifyCliWorkflow(source: string): void {
   );
   assert.match(
     publishJob,
+    PROTECTED_ENVIRONMENT_PATTERN,
+    "CLI publication must require the protected npm production environment"
+  );
+  assert.match(
+    publishJob,
     BOOTSTRAP_AUTH_PATTERN,
-    "The initial CLI publication must configure the bootstrap npm credential"
+    "Initial CLI publication must use the protected bootstrap credential"
+  );
+  assert.match(
+    buildJob,
+    STABLE_VERSION_PATTERN,
+    "CLI production publication must reject prerelease versions"
   );
   const downloadIndex = publishJob.indexOf("- name: Download verified archive");
   const verifyIndex = publishJob.indexOf("- name: Verify transported archive");

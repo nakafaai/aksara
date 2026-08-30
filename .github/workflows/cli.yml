@@ -52,6 +52,14 @@ jobs:
       - name: Verify CLI package
         run: pnpm exec turbo run test typecheck build --filter=@nakafa/aksara-cli
 
+      - name: Verify stable package version
+        run: |
+          version=$(jq -er '.version' apps/cli/dist/package/package.json)
+          if [[ ! "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "CLI production releases require a stable semantic version." >&2
+            exit 1
+          fi
+
       - name: Build release archive
         id: archive
         env:
@@ -84,6 +92,7 @@ jobs:
 
   publish:
     needs: build
+    environment: npm-production
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
