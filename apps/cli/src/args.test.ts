@@ -83,6 +83,12 @@ describe("production arguments", () => {
       });
       expect(yield* parseCli(["status"])).toEqual({ command: "status" });
       expect(yield* parseCli(["check"])).toEqual({ command: "check" });
+      expect(yield* parseCli(["--help"])).toEqual({ command: "help" });
+      expect(yield* parseCli(["-h"])).toEqual({ command: "help" });
+      expect(yield* parseCli(["--version"])).toEqual({
+        command: "version",
+      });
+      expect(yield* parseCli(["-v"])).toEqual({ command: "version" });
       expect(
         yield* parseCli([
           "accept",
@@ -252,6 +258,19 @@ describe("production arguments", () => {
     Effect.gen(function* () {
       expect(yield* rejectCli(["check", "--unknown"])).toMatchObject({
         _tag: "CheckArgumentsError",
+        reason: "unknown",
+      });
+    })
+  );
+
+  it.effect("rejects values attached to informational commands", () =>
+    Effect.gen(function* () {
+      expect(yield* rejectCli(["--help", "extra"])).toMatchObject({
+        _tag: "InfoArgumentsError",
+        reason: "unknown",
+      });
+      expect(yield* rejectCli(["--version", "extra"])).toMatchObject({
+        _tag: "InfoArgumentsError",
         reason: "unknown",
       });
     })

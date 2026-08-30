@@ -22,6 +22,9 @@ export interface ProgramCalls {
   check: string | undefined;
   cleanup: ReleaseCommand | undefined;
   document: string;
+  info:
+    | { readonly command: "help" | "version"; readonly version: string }
+    | undefined;
   open:
     | {
         readonly cwd: string;
@@ -46,7 +49,7 @@ export interface ProgramCalls {
 /** Builds one CLI program with the real Node boundary services. */
 export const runProgram = Effect.fn("AksaraCliTest.runProgram")(
   (args: readonly string[]) =>
-    makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
+    makeCliProgram({ args, cwd: "/code/aksara", version: "9.8.7" }).pipe(
       Effect.provide(NodeHttpClient.layerNodeHttp),
       Effect.provideService(ExactProcess, unusedExactProcess),
       Effect.provide(NodeServices.layer)

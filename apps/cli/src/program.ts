@@ -1,5 +1,6 @@
 import { Effect } from "effect";
 import { runAbortCommand } from "#cli/abort";
+import { printCliInfo } from "#cli/about";
 import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
@@ -13,9 +14,13 @@ import { runStatusCommand } from "#cli/status";
 export function makeCliProgram(input: {
   readonly args: readonly string[];
   readonly cwd: string;
+  readonly version: string;
 }) {
   return Effect.gen(function* () {
     const args = yield* parseCliArguments(input.args);
+    if (args.command === "help" || args.command === "version") {
+      return yield* printCliInfo(args.command, input.version);
+    }
     if (args.command === "preview") {
       return yield* runPreviewCommand({ cwd: input.cwd, preview: args });
     }

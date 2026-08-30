@@ -13,12 +13,25 @@ const calls = vi.hoisted(
     cleanup: undefined,
     document:
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
+    info: undefined,
     open: undefined,
     production: undefined,
     recover: undefined,
     status: false,
   })
 );
+vi.mock("#cli/about", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    printCliInfo: (
+      command: NonNullable<typeof calls.info>["command"],
+      version: string
+    ) => {
+      calls.info = { command, version };
+      return TestEffect.succeed("info-complete");
+    },
+  };
+});
 vi.mock("#cli/args", async () => {
   const { programArguments } = await import("#test/arguments");
   return {
@@ -120,6 +133,7 @@ beforeEach(() => {
   calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
+  calls.info = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
@@ -219,5 +233,18 @@ describe("CLI program", () => {
       expect(result).toBe("check-complete");
       expect(calls.check).toBe("/code/aksara");
     })
+  );
+
+  it.effect.each(["--help", "--version"] as const)(
+    "dispatches %s without entering authoring",
+    (argument) =>
+      Effect.gen(function* () {
+        const result = yield* runProgram([argument]);
+        expect(result).toBe("info-complete");
+        expect(calls.info).toEqual({
+          command: argument === "--help" ? "help" : "version",
+          version: "9.8.7",
+        });
+      })
   );
 });

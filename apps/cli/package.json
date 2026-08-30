@@ -2,28 +2,51 @@
   "name": "@nakafa/aksara-cli",
   "version": "0.1.0",
   "private": true,
+  "description": "Official command-line interface for Aksara content authoring and publication.",
+  "keywords": [
+    "nakafa",
+    "aksara",
+    "education",
+    "content",
+    "publishing"
+  ],
+  "homepage": "https://github.com/nakafaai/aksara#readme",
+  "bugs": {
+    "url": "https://github.com/nakafaai/aksara/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakafaai/aksara.git",
+    "directory": "apps/cli"
+  },
+  "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "imports": {
-    "#cli/main": "./main.ts",
-    "#cli/*": {
-      "aksara-source": "./src/*.ts",
-      "types": "./src/*.ts",
-      "default": "./dist/*.js"
-    },
+    "#cli/*": "./src/*.ts",
+    "#scripts/*": "./scripts/*.ts",
     "#test/*": "./test/*.ts"
   },
+  "bin": {
+    "aksara": "dist/main.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
   "scripts": {
-    "accept": "node --conditions=aksara-source main.ts accept",
-    "abort": "node --conditions=aksara-source main.ts abort",
+    "accept": "node --conditions=aksara-source src/main.ts accept",
+    "abort": "node --conditions=aksara-source src/main.ts abort",
     "clean": "git clean -xdf dist coverage",
-    "prebuild": "git clean -xdf dist",
-    "build": "tsc --project tsconfig.build.json",
-    "check": "node --conditions=aksara-source main.ts check",
-    "cleanup": "node --conditions=aksara-source main.ts cleanup",
-    "dev": "node --conditions=aksara-source main.ts",
-    "release": "node --conditions=aksara-source main.ts release",
-    "recover": "node --conditions=aksara-source main.ts recover",
-    "status": "node --conditions=aksara-source main.ts status",
+    "build": "node scripts/build.ts",
+    "check": "node --conditions=aksara-source src/main.ts check",
+    "cleanup": "node --conditions=aksara-source src/main.ts cleanup",
+    "dev": "node --conditions=aksara-source src/main.ts",
+    "release": "node --conditions=aksara-source src/main.ts release",
+    "recover": "node --conditions=aksara-source src/main.ts recover",
+    "status": "node --conditions=aksara-source src/main.ts status",
+    "prepack": "pnpm build",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json"
   },
@@ -41,6 +64,14 @@
     "@nakafa/testing": "workspace:*",
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
+    "esbuild": "0.28.2",
     "vitest": "catalog:"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

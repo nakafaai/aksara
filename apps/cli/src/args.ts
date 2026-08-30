@@ -2,7 +2,8 @@ import {
   type AppLocale,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, Option, Schema } from "effect";
+import { type InfoCommand, parseInfoArguments } from "#cli/about";
 import {
   isProductionCommand,
   type ProductionArguments,
@@ -24,6 +25,7 @@ export interface CheckArguments {
 export type CliArguments =
   | ({ readonly command: "preview" } & PreviewArguments)
   | CheckArguments
+  | { readonly command: InfoCommand }
   | ProductionArguments;
 
 /** Command-line arguments do not describe one unambiguous document. */
@@ -86,6 +88,12 @@ export const parsePreviewArguments = Effect.fn("AksaraCli.parseArguments")(
 /** Dispatches implicit preview and explicit production command arguments. */
 export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
   function* (args: readonly string[]) {
+    const info = yield* parseInfoArguments(args);
+    if (Option.isSome(info)) {
+      return info.value === "help"
+        ? ({ command: "help" } satisfies CliArguments)
+        : ({ command: "version" } satisfies CliArguments);
+    }
     const [command] = args;
     if (command === "check") {
       if (args.length !== 1) {
