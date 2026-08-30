@@ -17,19 +17,16 @@ function currentSources(): WorkflowSources {
 }
 
 const sources = currentSources();
-
 describe("workflow policy", () => {
   it("accepts immutable archives and the direct content release path", () => {
     expect(() => verifyWorkflows(sources)).not.toThrow();
   });
-
   it("verifies every tracked workflow source", () => {
     const unconfigured = "jobs:\n  verify:\n    steps:\n      - run: pnpm test";
     expect(() =>
       verifyWorkflows({ ...sources, all: [...sources.all, unconfigured] })
     ).toThrow("Every pnpm job must set up the toolchain once");
   });
-
   it("always verifies each named release workflow", () => {
     const release = sources.release.replaceAll(
       "pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2",
@@ -39,7 +36,6 @@ describe("workflow policy", () => {
       "Every pnpm job must set up the toolchain once"
     );
   });
-
   it("rejects registry publication machinery", () => {
     expect(() =>
       verifyWorkflows({
@@ -115,6 +111,10 @@ describe("workflow policy", () => {
           ".digest.gitCommit == $sha",
           '.digest.gitCommit == "unknown"'
         ),
+        "npm provenance must bind archive, repository, workflow, main, and source revision",
+      ],
+      [
+        sources.contracts.replace("audit signatures", "audit unsigned"),
         "npm provenance must bind archive, repository, workflow, main, and source revision",
       ],
     ] as const;

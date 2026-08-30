@@ -322,21 +322,43 @@ jobs:
                   == "https://slsa.dev/provenance/v1"'
           }
 
-          read_provenance() {
-            local raw
-            if ! raw=$(curl --fail --silent --show-error \
-              "$expected_attestation_url"); then
+          read_verified_provenance() {
+            local audit_root raw
+            audit_root=$(mktemp -d "$RUNNER_TEMP/npm-audit.XXXXXX")
+            if ! raw=$(
+              set -euo pipefail
+              cd "$audit_root"
+              npx --yes "$NPM_CLI" init --yes >/dev/null
+              npx --yes "$NPM_CLI" install --save-exact --ignore-scripts \
+                --no-audit --no-fund "$package_specifier" >/dev/null
+              npx --yes "$NPM_CLI" audit signatures --json \
+                --include-attestations
+            ); then
               return 1
             fi
-            jq -ce '
-              .attestations
-              | map(select(
-                  .predicateType == "https://slsa.dev/provenance/v1"
-                ))
-              | if length == 1 then
-                  .[0].bundle.dsseEnvelope.payload | @base64d | fromjson
-                else empty
-                end
+            jq -ce \
+              --arg attestation_url "$expected_attestation_url" \
+              --arg name "$package_name" \
+              --arg version "$package_version" \
+              'if (.invalid | length) != 0 or (.missing | length) != 0 then
+                empty
+              else
+                [.verified[] | select(
+                  .name == $name
+                  and .version == $version
+                  and .attestations.url == $attestation_url
+                  and .attestations.provenance.predicateType
+                    == "https://slsa.dev/provenance/v1"
+                )]
+                | if length == 1 then .[0].attestationBundles else empty end
+                | map(select(
+                    .predicateType == "https://slsa.dev/provenance/v1"
+                  ))
+                | if length == 1 then
+                    .[0].bundle.dsseEnvelope.payload | @base64d | fromjson
+                  else empty
+                  end
+              end
             ' <<< "$raw"
           }
 
@@ -367,7 +389,7 @@ jobs:
             local metadata provenance
             if ! metadata=$(read_metadata) \
               || ! is_exact_package <<< "$metadata" >/dev/null \
-              || ! provenance=$(read_provenance); then
+              || ! provenance=$(read_verified_provenance); then
               return 1
             fi
             is_exact_provenance <<< "$provenance" >/dev/null
