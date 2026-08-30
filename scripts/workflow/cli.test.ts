@@ -70,7 +70,19 @@ describe("CLI workflow policy", () => {
           'npm pack "$TARBALL"'
         )
       )
-    ).toThrow("CLI publication must use the registered npm trusted publisher");
+    ).toThrow(
+      "CLI publication must use only the registered npm trusted publisher"
+    );
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          'npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance',
+          'npm publish "$TARBALL" --access public --provenance\n          npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance'
+        )
+      )
+    ).toThrow(
+      "CLI publication must use only the registered npm trusted publisher"
+    );
     expect(() =>
       verifyCliWorkflow(source.replace("npm@12.0.2", "npm@11.4.2"))
     ).toThrow("CLI publication must pin an OIDC-capable npm client");
