@@ -3,39 +3,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "$$33$$",
+      label: "$$\\text{MMM}$$",
       value: true,
     },
     {
-      label: "$$35$$",
+      label: "$$\\text{NNN}$$",
       value: false,
     },
     {
-      label: "$$37$$",
+      label: "$$\\text{PPP}$$",
       value: false,
     },
     {
-      label: "$$39$$",
+      label: "$$\\text{QQQ}$$",
       value: false,
     },
     {
-      label: "$$41$$",
+      label: "$$\\text{RRR}$$",
       value: false,
     },
   ],
   en: [
-    { label: "$$33$$", value: true },
-    { label: "$$35$$", value: false },
-    { label: "$$37$$", value: false },
-    { label: "$$39$$", value: false },
-    { label: "$$41$$", value: false },
+    { label: "$$\\text{MMM}$$", value: true },
+    { label: "$$\\text{NNN}$$", value: false },
+    { label: "$$\\text{PPP}$$", value: false },
+    { label: "$$\\text{QQQ}$$", value: false },
+    { label: "$$\\text{RRR}$$", value: false },
   ],
   id: [
-    { label: "$$33$$", value: true },
-    { label: "$$35$$", value: false },
-    { label: "$$37$$", value: false },
-    { label: "$$39$$", value: false },
-    { label: "$$41$$", value: false },
+    { label: "$$\\text{MMM}$$", value: true },
+    { label: "$$\\text{NNN}$$", value: false },
+    { label: "$$\\text{PPP}$$", value: false },
+    { label: "$$\\text{QQQ}$$", value: false },
+    { label: "$$\\text{RRR}$$", value: false },
   ],
 };
 

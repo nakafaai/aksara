@@ -63,15 +63,15 @@ describe("tryout projection", () => {
         });
         expect(projection.catalog).toHaveLength(81);
         expect(projection.routeCount).toBe(72);
-        expect(projection.placements).toHaveLength(1260);
+        expect(projection.placements).toHaveLength(1320);
         expect(
           new Set(
             projection.placements.map(
               ({ questionContentKey }) => questionContentKey
             )
           ).size
-        ).toBe(420);
-        expect(bodyHeads.size).toBe(2520);
+        ).toBe(440);
+        expect(bodyHeads.size).toBe(2640);
         expect(
           projection.placements.every(
             ({ choices, scope }) =>
@@ -197,7 +197,7 @@ describe("tryout projection", () => {
           ({ examKey }) => examKey === "tka"
         );
 
-        expect(snbt).toHaveLength(900);
+        expect(snbt).toHaveLength(960);
         expect(tka).toHaveLength(360);
         expect(
           snbt.some(({ questionContentKey }) =>

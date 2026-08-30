@@ -3,52 +3,76 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Die Schlussfolgerung ist definitiv wahr",
+      label:
+        "Bei Nettoablagerung können Sedimente und Nährstoffe in der Aue zurückgehalten werden",
+      value: false,
+    },
+    {
+      label: "Erosion kann Sedimente und Nährstoffe aus der Aue forttragen",
+      value: false,
+    },
+    {
+      label:
+        "Die Wirkung einer Überflutung hängt unter anderem vom Verhältnis zwischen Ablagerung und Erosion ab",
+      value: false,
+    },
+    {
+      label: "Jede saisonale Überschwemmung verbessert immer jeden Boden",
       value: true,
     },
     {
-      label: "Die Schlussfolgerung ist möglicherweise wahr",
-      value: false,
-    },
-    {
-      label: "Die Schlussfolgerung ist definitiv falsch",
-      value: false,
-    },
-    {
       label:
-        "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
-      value: false,
-    },
-    {
-      label:
-        "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
+        "Zurückgehaltene Nährstoffe können das Pflanzenwachstum unterstützen, wenn die Ablagerung überwiegt",
       value: false,
     },
   ],
   en: [
-    { label: "The conclusion is definitely true", value: true },
-    { label: "The conclusion is possibly true", value: false },
-    { label: "The conclusion is definitely false", value: false },
     {
-      label: "The conclusion is irrelevant to the information provided",
+      label: "Net deposition can retain sediment and nutrients on a floodplain",
+      value: false,
+    },
+    {
+      label: "Erosion can carry sediment and nutrients away from a floodplain",
       value: false,
     },
     {
       label:
-        "The conclusion cannot be evaluated due to insufficient information",
+        "The effect of inundation depends partly on the balance between deposition and erosion",
+      value: false,
+    },
+    {
+      label: "Every seasonal flood always improves every soil",
+      value: true,
+    },
+    {
+      label:
+        "Retained nutrients can support plant growth where deposition exceeds erosion",
       value: false,
     },
   ],
   id: [
-    { label: "Simpulan tersebut pasti benar", value: true },
-    { label: "Simpulan tersebut mungkin benar", value: false },
-    { label: "Simpulan tersebut pasti salah", value: false },
     {
-      label: "Simpulan tidak relevan dengan informasi yang diberikan",
+      label:
+        "Pengendapan bersih dapat menahan sedimen dan unsur hara di dataran banjir",
       value: false,
     },
     {
-      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
+      label:
+        "Erosi dapat membawa sedimen dan unsur hara keluar dari dataran banjir",
+      value: false,
+    },
+    {
+      label:
+        "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
+      value: false,
+    },
+    {
+      label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
+      value: true,
+    },
+    {
+      label:
+        "Unsur hara yang tertahan dapat mendukung pertumbuhan tanaman jika pengendapan melebihi erosi",
       value: false,
     },
   ],

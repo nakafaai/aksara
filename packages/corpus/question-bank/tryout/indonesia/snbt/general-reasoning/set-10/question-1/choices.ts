@@ -3,52 +3,73 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Die Schlussfolgerung ist definitiv wahr.",
+      label: "Entwaldung kann Böden anfälliger für Erosion machen",
       value: false,
     },
     {
-      label: "Die Schlussfolgerung ist möglicherweise wahr.",
+      label:
+        "Entwaldung allein verursachte 2019 fast alle vom Menschen verursachten Treibhausgasemissionen",
       value: true,
     },
     {
-      label: "Die Schlussfolgerung ist definitiv falsch.",
+      label:
+        "Von der Abholzung betroffen sind auch Gemeinden, die Brennholz nutzen",
       value: false,
     },
     {
-      label:
-        "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
+      label: "Entwaldung bedroht die Lebensräume von Wildtieren",
       value: false,
     },
     {
-      label:
-        "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden.",
+      label: "Der Landnutzungssektor umfasst mehr als nur Entwaldung",
       value: false,
     },
   ],
   en: [
-    { label: "The conclusion is definitely true.", value: false },
-    { label: "The conclusion is possibly true.", value: true },
-    { label: "The conclusion is definitely false.", value: false },
     {
-      label: "The conclusion is irrelevant to the information provided",
+      label: "Deforestation can make soil more vulnerable to erosion",
       value: false,
     },
     {
       label:
-        "The conclusion cannot be evaluated because there is insufficient information.",
+        "Deforestation alone produced almost all human-caused greenhouse gas emissions in 2019",
+      value: true,
+    },
+    {
+      label:
+        "Communities that use firewood are among those affected by deforestation",
+      value: false,
+    },
+    {
+      label: "Deforestation threatens wildlife habitats",
+      value: false,
+    },
+    {
+      label: "The land-use sector includes more than deforestation alone",
       value: false,
     },
   ],
   id: [
-    { label: "Simpulan tersebut pasti benar.", value: false },
-    { label: "Simpulan tersebut mungkin benar.", value: true },
-    { label: "Simpulan tersebut pasti salah.", value: false },
     {
-      label: "Simpulan tidak relevan dengan informasi yang diberikan",
+      label: "Deforestasi dapat membuat tanah lebih rentan terhadap erosi",
       value: false,
     },
     {
-      label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+      label:
+        "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada 2019",
+      value: true,
+    },
+    {
+      label:
+        "Masyarakat yang menggunakan kayu bakar menjadi salah satu yang terdampak deforestasi",
+      value: false,
+    },
+    {
+      label: "Deforestasi mengancam habitat satwa liar",
+      value: false,
+    },
+    {
+      label: "Sektor penggunaan lahan mencakup lebih dari deforestasi saja",
       value: false,
     },
   ],

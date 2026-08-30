@@ -3,39 +3,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Abteilung A",
+      label: "Bekräftigt Aussage A",
       value: false,
     },
     {
-      label: "Abteilung B",
+      label: "Schwächt Aussage A",
       value: false,
     },
     {
-      label: "Abteilung C",
-      value: false,
-    },
-    {
-      label: "Abteilung D",
+      label: "Bekräftigt Aussage B",
       value: true,
     },
     {
-      label: "Abteilung E",
+      label: "Schwächt Aussage B",
+      value: false,
+    },
+    {
+      label: "Für die Aussagen A und B irrelevant",
       value: false,
     },
   ],
   en: [
-    { label: "Division A", value: false },
-    { label: "Division B", value: false },
-    { label: "Division C", value: false },
-    { label: "Division D", value: true },
-    { label: "Division E", value: false },
+    { label: "Strengthens statement A", value: false },
+    { label: "Weakens statement A", value: false },
+    { label: "Strengthens statement B", value: true },
+    { label: "Weakens statement B", value: false },
+    { label: "Irrelevant to statements A and B", value: false },
   ],
   id: [
-    { label: "Divisi A", value: false },
-    { label: "Divisi B", value: false },
-    { label: "Divisi C", value: false },
-    { label: "Divisi D", value: true },
-    { label: "Divisi E", value: false },
+    { label: "Memperkuat pernyataan A", value: false },
+    { label: "Memperlemah pernyataan A", value: false },
+    { label: "Memperkuat pernyataan B", value: true },
+    { label: "Memperlemah pernyataan B", value: false },
+    { label: "Tidak relevan dengan pernyataan A dan B", value: false },
   ],
 };
 

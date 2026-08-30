@@ -1,0 +1,38 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 26",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-30",
+};
+
+Um das Muster der Folge zu erkennen, betrachten wir die Differenzen zwischen aufeinanderfolgenden Gliedern Schritt für Schritt.
+
+Die Folge lautet:
+
+<MathContainer>
+  <BlockMath math="2, 3, 5, 9, 17, \dots" />
+</MathContainer>
+
+Nun prüfen wir den Zuwachs von einem Glied zum nächsten:
+
+- Von <InlineMath math="2" /> zu <InlineMath math="3" /> beträgt der Zuwachs <InlineMath math="1" />.
+- Von <InlineMath math="3" /> zu <InlineMath math="5" /> beträgt der Zuwachs <InlineMath math="2" />.
+- Von <InlineMath math="5" /> zu <InlineMath math="9" /> beträgt der Zuwachs <InlineMath math="4" />.
+- Von <InlineMath math="9" /> zu <InlineMath math="17" /> beträgt der Zuwachs <InlineMath math="8" />.
+
+Als eigene Folge geschrieben lauten die Zuwächse:
+
+<MathContainer>
+  <BlockMath math="+1, +2, +4, +8" />
+</MathContainer>
+
+Jeder Zuwachs ist doppelt so groß wie der vorherige. Es handelt sich um Zweierpotenzen, also <InlineMath math="2" /> hoch <InlineMath math="2^0, 2^1, 2^2, 2^3" />.
+
+Der nächste Zuwachs ist deshalb das Doppelte von <InlineMath math="8" />, also <InlineMath math="16" />.
+
+Damit lautet das nächste Glied:
+
+<MathContainer>
+  <BlockMath math="17 + 16 = 33" />
+</MathContainer>
+
+Die Folge wird mit <InlineMath math="33" /> fortgesetzt.

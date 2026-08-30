@@ -177,7 +177,16 @@ describe("preview selection", () => {
                 },
                 {
                   mode: "restart",
+                  sourcePath:
+                    "packages/corpus/tryout/indonesia/snbt/official-schedule.ts",
+                },
+                {
+                  mode: "restart",
                   sourcePath: "packages/corpus/tryout/schema.ts",
+                },
+                {
+                  mode: "restart",
+                  sourcePath: "packages/corpus/tryout/specification.ts",
                 },
                 {
                   mode: "restart",

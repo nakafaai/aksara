@@ -3,77 +3,73 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label:
-        "Die Seitenlage kann bei manchen Menschen das Schnarchen verringern",
+      label: "Überschwemmungen können Trinkwasserquellen verunreinigen",
+      value: false,
+    },
+    {
+      label: "Stehendes Wasser kann Mücken als Brutstätte dienen",
       value: false,
     },
     {
       label:
-        "In Rückenlage können sich die Atemwege bei manchen Menschen verengen",
-      value: false,
-    },
-    {
-      label: "Schnarchen kann andere Ursachen als die Schlafposition haben",
+        "Eine Überschwemmung allein beweist nicht, dass ein Ausbruch stattfinden wird",
       value: false,
     },
     {
       label:
-        "Die Seitenlage beendet garantiert jedes Schnarchen und macht eine ärztliche Abklärung überflüssig",
+        "Mehr stehendes Wasser verringert die Brutmöglichkeiten für Mücken immer",
       value: true,
     },
     {
       label:
-        "Schnarchen mit Atempausen, Luftschnappen oder Erstickungsgefühlen sollte ärztlich abgeklärt werden",
+        "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
       value: false,
     },
   ],
   en: [
     {
-      label: "Side sleeping may help reduce snoring for some people",
+      label: "Floods can contaminate drinking-water supplies",
       value: false,
     },
     {
-      label: "Back sleeping can narrow the airway in some people",
+      label: "Standing water can provide breeding sites for mosquitoes",
       value: false,
     },
     {
-      label: "Snoring can have causes other than sleep position",
+      label: "A flood by itself does not prove that an outbreak will occur",
       value: false,
     },
     {
       label:
-        "Side sleeping guarantees that all snoring will stop and makes medical assessment unnecessary",
+        "More standing water always lowers the potential for mosquito breeding",
       value: true,
     },
     {
-      label:
-        "Snoring with breathing pauses, gasping, or choking should be medically assessed",
+      label: "Local conditions and control measures can affect outbreak risk",
       value: false,
     },
   ],
   id: [
     {
-      label:
-        "Tidur menyamping dapat membantu mengurangi dengkuran pada sebagian orang",
+      label: "Banjir dapat mencemari sumber air minum",
+      value: false,
+    },
+    {
+      label: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
+      value: false,
+    },
+    {
+      label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
       value: false,
     },
     {
       label:
-        "Tidur telentang dapat mempersempit jalan napas pada sebagian orang",
-      value: false,
-    },
-    {
-      label: "Dengkuran dapat disebabkan oleh faktor selain posisi tidur",
-      value: false,
-    },
-    {
-      label:
-        "Tidur menyamping menjamin semua dengkuran berhenti dan membuat pemeriksaan medis tidak diperlukan",
+        "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
       value: true,
     },
     {
       label:
-        "Dengkuran yang disertai jeda napas, terengah-engah, atau tersedak perlu diperiksakan",
+        "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
       value: false,
     },
   ],

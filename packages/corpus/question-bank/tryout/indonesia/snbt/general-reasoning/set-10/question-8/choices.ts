@@ -3,81 +3,39 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label:
-        "Wenn keine Trockenzeit ist, werfen die Pflanzen ihre Blätter nicht ab.",
-      value: false,
-    },
-    {
-      label: "Wenn keine Trockenzeit ist, werfen die Pflanzen ihre Blätter ab.",
-      value: false,
-    },
-    {
-      label: "Wenn sich nicht viel Laub am Boden sammelt, ist Trockenzeit.",
-      value: false,
-    },
-    {
-      label:
-        "Wenn Trockenzeit ist, sammelt sich möglicherweise viel Laub am Boden.",
-      value: false,
-    },
-    {
-      label: "Wenn Trockenzeit ist, sammelt sich viel Laub am Boden.",
+      label: "$$45$$ und $$186$$ Personen",
       value: true,
+    },
+    {
+      label: "$$45$$ und $$187$$ Personen",
+      value: false,
+    },
+    {
+      label: "$$45$$ und $$188$$ Personen",
+      value: false,
+    },
+    {
+      label: "$$46$$ und $$189$$ Personen",
+      value: false,
+    },
+    {
+      label: "$$46$$ und $$190$$ Personen",
+      value: false,
     },
   ],
   en: [
-    {
-      label:
-        "If it is currently not the dry season, then plants will not shed their leaves",
-      value: false,
-    },
-    {
-      label:
-        "If it is currently not the dry season, then plants will shed their leaves",
-      value: false,
-    },
-    {
-      label:
-        "If there is currently not much scattered leaf litter, then it is currently the dry season",
-      value: false,
-    },
-    {
-      label:
-        "If it is currently the dry season, then there might be a lot of scattered leaf litter",
-      value: false,
-    },
-    {
-      label:
-        "If it is currently the dry season, then there is a lot of scattered leaf litter",
-      value: true,
-    },
+    { label: "$$45$$ and $$186$$ people", value: true },
+    { label: "$$45$$ and $$187$$ people", value: false },
+    { label: "$$45$$ and $$188$$ people", value: false },
+    { label: "$$46$$ and $$189$$ people", value: false },
+    { label: "$$46$$ and $$190$$ people", value: false },
   ],
   id: [
-    {
-      label:
-        "Jika saat ini sedang tidak musim kemarau maka tumbuh-tumbuhan tidak akan meranggas",
-      value: false,
-    },
-    {
-      label:
-        "Jika saat ini sedang tidak musim kemarau maka tumbuh-tumbuhan akan meranggas",
-      value: false,
-    },
-    {
-      label:
-        "Jika saat ini tidak banyak sampah daun maka sekarang sedang musim kemarau",
-      value: false,
-    },
-    {
-      label:
-        "Jika saat ini sedang musim kemarau maka bisa saja banyak sampah daun berserakan",
-      value: false,
-    },
-    {
-      label:
-        "Jika saat ini sedang musim kemarau maka banyak sampah daun berserakan",
-      value: true,
-    },
+    { label: "$$45$$ dan $$186$$ orang", value: true },
+    { label: "$$45$$ dan $$187$$ orang", value: false },
+    { label: "$$45$$ dan $$188$$ orang", value: false },
+    { label: "$$46$$ dan $$189$$ orang", value: false },
+    { label: "$$46$$ dan $$190$$ orang", value: false },
   ],
 };
 

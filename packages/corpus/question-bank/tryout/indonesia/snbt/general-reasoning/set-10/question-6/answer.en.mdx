@@ -1,37 +1,27 @@
 export const metadata = {
-  title: "Explanation for Question 6",
+  title: "Solution to Question 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2026-01-30",
 };
 
-To find the pattern of this sequence, we need to look at the difference between consecutive terms. Dissect the changes one by one.
+To determine which class has the lowest percentage of students who like mathematics, we need to compare the proportion of students who like the subject to the total number of students in each class. The total number of students is calculated by adding those who like and dislike the subject.
 
-Our initial sequence is:
-
-<MathContainer>
-  <BlockMath math="2, 3, 5, 9, 17, \dots" />
-</MathContainer>
-
-Now, observe the jump in addition from one number to the next:
-- From <InlineMath math="2" /> to <InlineMath math="3" />, it increases by <InlineMath math="1" />.
-- From <InlineMath math="3" /> to <InlineMath math="5" />, it increases by <InlineMath math="2" />.
-- From <InlineMath math="5" /> to <InlineMath math="9" />, it increases by <InlineMath math="4" />.
-- From <InlineMath math="9" /> to <InlineMath math="17" />, it increases by <InlineMath math="8" />.
-
-If we write down the addition pattern, we get a new series:
+The formula used is:
 
 <MathContainer>
-  <BlockMath math="+1, +2, +4, +8" />
+  <BlockMath math="\text{Percentage} = \frac{\text{Like}}{\text{Like} + \text{Dislike}} \times 100\%" />
 </MathContainer>
 
-It is clear that each addition is **double** the previous addition (or powers of <InlineMath math="2" />: <InlineMath math="2^0, 2^1, 2^2, 2^3" />).
-
-Therefore, the next addition must be double of <InlineMath math="8" />, which is <InlineMath math="16" />.
-
-Calculate the next term:
+Here is the detailed percentage calculation for each class:
 
 <MathContainer>
-  <BlockMath math="17 + 16 = 33" />
+  <BlockMath math="\text{MMM} = \frac{23}{23+40} \times 100\% = \frac{23}{63} \approx 36.5\%" />
+  <BlockMath math="\text{NNN} = \frac{18}{18+20} \times 100\% = \frac{18}{38} \approx 47.4\%" />
+  <BlockMath math="\text{PPP} = \frac{10}{10+15} \times 100\% = \frac{10}{25} = 40.0\%" />
+  <BlockMath math="\text{QQQ} = \frac{17}{17+23} \times 100\% = \frac{17}{40} = 42.5\%" />
+  <BlockMath math="\text{RRR} = \frac{21}{21+35} \times 100\% = \frac{21}{56} = 37.5\%" />
 </MathContainer>
 
-So, the correct number to fill the sequence is <InlineMath math="33" />.
+From the calculation results above, we can compare the percentage values of each class.
+
+It is clear that class <InlineMath math="\text{MMM}" /> has the smallest percentage, which is approximately <InlineMath math="36.5\%" />, lower than class <InlineMath math="\text{RRR}" /> (<InlineMath math="37.5\%" />) and the other classes.

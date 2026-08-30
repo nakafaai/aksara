@@ -1,11 +1,13 @@
 import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
+import { Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { snbtOfficialSchedule } from "#corpus/tryout/indonesia/snbt/official-schedule";
 import {
   defineTryoutExamSource,
   type TryoutSectionSourceInput,
 } from "#corpus/tryout/schema";
+import { validateAssessmentSpecification } from "#corpus/tryout/specification";
 
-const SNBT_SECONDS_PER_QUESTION = 90;
 const EXAM_KEY = "snbt";
 const QUESTION_ROOT = `${QUESTION_BANK_KEY_ROOT}/${indonesiaTryoutCountry.countryKey}/${EXAM_KEY}`;
 
@@ -16,83 +18,19 @@ type SnbtSection = Omit<
 
 const snbtSections: readonly SnbtSection[] = [
   {
-    key: "quantitative-knowledge",
-    questionCount: 20,
-    rendererDomain: "snbt-quant",
-    routeSlugs: {
-      de: "quantitatives-wissen",
-      en: "quantitative-knowledge",
-      id: "pengetahuan-kuantitatif",
-    },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
-    translations: {
-      de: { title: "Quantitatives Wissen" },
-      en: { title: "Quantitative Knowledge" },
-      id: { title: "Pengetahuan Kuantitatif" },
-    },
-  },
-  {
-    key: "mathematical-reasoning",
-    questionCount: 20,
-    rendererDomain: "snbt-math",
-    routeSlugs: {
-      de: "mathematisches-schlussfolgern",
-      en: "mathematical-reasoning",
-      id: "penalaran-matematika",
-    },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
-    translations: {
-      de: { title: "Mathematisches Schlussfolgern" },
-      en: { title: "Mathematical Reasoning" },
-      id: { title: "Penalaran Matematika" },
-    },
-  },
-  {
     key: "general-reasoning",
-    questionCount: 20,
+    questionCount: 30,
     rendererDomain: "snbt-general",
     routeSlugs: {
       de: "allgemeines-logisches-denken",
       en: "general-reasoning",
       id: "penalaran-umum",
     },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
+    timeLimitSeconds: 1800,
     translations: {
       de: { title: "Allgemeines logisches Denken" },
       en: { title: "General Reasoning" },
       id: { title: "Penalaran Umum" },
-    },
-  },
-  {
-    key: "indonesian-language",
-    questionCount: 30,
-    rendererDomain: "snbt-plain",
-    routeSlugs: {
-      de: "indonesische-sprache",
-      en: "indonesian-language",
-      id: "bahasa-indonesia",
-    },
-    timeLimitSeconds: 30 * SNBT_SECONDS_PER_QUESTION,
-    translations: {
-      de: { title: "Indonesische Sprache" },
-      en: { title: "Indonesian Language" },
-      id: { title: "Bahasa Indonesia" },
-    },
-  },
-  {
-    key: "english-language",
-    questionCount: 20,
-    rendererDomain: "snbt-plain",
-    routeSlugs: {
-      de: "englische-sprache",
-      en: "english-language",
-      id: "bahasa-inggris",
-    },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
-    translations: {
-      de: { title: "Englische Sprache" },
-      en: { title: "English Language" },
-      id: { title: "Bahasa Inggris" },
     },
   },
   {
@@ -104,11 +42,11 @@ const snbtSections: readonly SnbtSection[] = [
       en: "general-knowledge",
       id: "pengetahuan-umum",
     },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
+    timeLimitSeconds: 900,
     translations: {
-      de: { title: "Allgemeinwissen" },
-      en: { title: "General Knowledge" },
-      id: { title: "Pengetahuan Umum" },
+      de: { title: "Allgemeines Wissen und Verständnis" },
+      en: { title: "General Knowledge and Understanding" },
+      id: { title: "Pengetahuan dan Pemahaman Umum" },
     },
   },
   {
@@ -120,17 +58,80 @@ const snbtSections: readonly SnbtSection[] = [
       en: "reading-and-writing-skills",
       id: "literasi-membaca-menulis",
     },
-    timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
+    timeLimitSeconds: 1500,
     translations: {
-      de: { title: "Lese- und Schreibkompetenz" },
-      en: { title: "Reading and Writing Skills" },
-      id: { title: "Literasi Membaca dan Menulis" },
+      de: { title: "Leseverständnis und Schreiben" },
+      en: { title: "Reading Comprehension and Writing" },
+      id: { title: "Pemahaman Bacaan dan Menulis" },
+    },
+  },
+  {
+    key: "quantitative-knowledge",
+    questionCount: 20,
+    rendererDomain: "snbt-quant",
+    routeSlugs: {
+      de: "quantitatives-wissen",
+      en: "quantitative-knowledge",
+      id: "pengetahuan-kuantitatif",
+    },
+    timeLimitSeconds: 1200,
+    translations: {
+      de: { title: "Quantitatives Wissen" },
+      en: { title: "Quantitative Knowledge" },
+      id: { title: "Pengetahuan Kuantitatif" },
+    },
+  },
+  {
+    key: "indonesian-language",
+    questionCount: 30,
+    rendererDomain: "snbt-plain",
+    routeSlugs: {
+      de: "indonesische-sprache",
+      en: "indonesian-language",
+      id: "bahasa-indonesia",
+    },
+    timeLimitSeconds: 2550,
+    translations: {
+      de: { title: "Lesekompetenz in indonesischer Sprache" },
+      en: { title: "Literacy in Indonesian" },
+      id: { title: "Literasi dalam Bahasa Indonesia" },
+    },
+  },
+  {
+    key: "english-language",
+    questionCount: 20,
+    rendererDomain: "snbt-plain",
+    routeSlugs: {
+      de: "englische-sprache",
+      en: "english-language",
+      id: "bahasa-inggris",
+    },
+    timeLimitSeconds: 1200,
+    translations: {
+      de: { title: "Lesekompetenz in englischer Sprache" },
+      en: { title: "Literacy in English" },
+      id: { title: "Literasi dalam Bahasa Inggris" },
+    },
+  },
+  {
+    key: "mathematical-reasoning",
+    questionCount: 20,
+    rendererDomain: "snbt-math",
+    routeSlugs: {
+      de: "mathematisches-schlussfolgern",
+      en: "mathematical-reasoning",
+      id: "penalaran-matematika",
+    },
+    timeLimitSeconds: 2550,
+    translations: {
+      de: { title: "Mathematisches Schlussfolgern" },
+      en: { title: "Mathematical Reasoning" },
+      id: { title: "Penalaran Matematika" },
     },
   },
 ];
 
-/** Lazily validates the source-controlled SNBT catalog and placements. */
-export const snbtTryoutSource = defineTryoutExamSource({
+const snbtTryoutCatalog = defineTryoutExamSource({
   ...indonesiaTryoutCountry,
   examKey: EXAM_KEY,
   examOrder: 1,
@@ -151,7 +152,7 @@ export const snbtTryoutSource = defineTryoutExamSource({
     },
   },
   scoringStrategy: "irt",
-  sourceRevision: "2026-07-05",
+  sourceRevision: "2026-08-30",
   tracks: [
     {
       key: "2027",
@@ -187,4 +188,13 @@ export const snbtTryoutSource = defineTryoutExamSource({
       },
     },
   ],
+});
+
+/** Validates the active SNBT catalog against its latest official schedule. */
+export const snbtTryoutSource = Effect.gen(function* () {
+  const [source, schedule] = yield* Effect.all([
+    snbtTryoutCatalog,
+    snbtOfficialSchedule,
+  ]);
+  return yield* validateAssessmentSpecification(source, schedule);
 });

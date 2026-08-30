@@ -3,68 +3,72 @@ import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/questi
 const choices: QuestionChoices = {
   de: [
     {
-      label: "Bekräftigt Aussage A",
+      label: "Stickstoff und Phosphor schädigen Auenböden immer",
       value: false,
     },
     {
-      label: "Schwächt Aussage A",
+      label: "Auen können Material nur abgeben und niemals zurückhalten",
       value: false,
     },
     {
-      label: "Bekräftigt Aussage B",
-      value: false,
-    },
-    {
-      label: "Schwächt Aussage B",
-      value: false,
-    },
-    {
-      label: "Für die Aussagen A und B irrelevant",
+      label: "Auen können Sedimente und Nährstoffe zurückhalten",
       value: true,
+    },
+    {
+      label:
+        "In Auen sammelt sich Material nur an und geht durch Erosion nie verloren",
+      value: false,
+    },
+    {
+      label: "Jede Überschwemmung macht jeden Auenboden fruchtbarer",
+      value: false,
     },
   ],
   en: [
     {
-      label: "Strengthens statement A",
+      label: "Nitrogen and phosphorus always harm floodplain soils",
       value: false,
     },
     {
-      label: "Weakens statement A",
+      label: "Floodplains can only export material and never retain it",
       value: false,
     },
     {
-      label: "Strengthens statement B",
-      value: false,
-    },
-    {
-      label: "Weakens statement B",
-      value: false,
-    },
-    {
-      label: "Irrelevant to statements A and B",
+      label: "Floodplains can retain sediment and nutrients",
       value: true,
+    },
+    {
+      label:
+        "Floodplains only accumulate material and never lose it through erosion",
+      value: false,
+    },
+    {
+      label: "Every flood makes every floodplain soil more fertile",
+      value: false,
     },
   ],
   id: [
     {
-      label: "Memperkuat pernyataan A",
+      label: "Nitrogen dan fosfor selalu merusak tanah dataran banjir",
       value: false,
     },
     {
-      label: "Memperlemah pernyataan A",
+      label:
+        "Dataran banjir hanya dapat melepas bahan dan tidak pernah menahannya",
       value: false,
     },
     {
-      label: "Memperkuat pernyataan B",
-      value: false,
-    },
-    {
-      label: "Memperlemah pernyataan B",
-      value: false,
-    },
-    {
-      label: "Tidak relevan dengan pernyataan A dan B",
+      label: "Dataran banjir dapat menahan sedimen dan unsur hara",
       value: true,
+    },
+    {
+      label:
+        "Dataran banjir hanya menumpuk bahan dan tidak pernah kehilangannya akibat erosi",
+      value: false,
+    },
+    {
+      label: "Setiap banjir membuat semua tanah dataran banjir lebih subur",
+      value: false,
     },
   ],
 };
