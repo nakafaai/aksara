@@ -46,7 +46,7 @@ describe("workflow policy", () => {
       "Workflows must not retain registry or Changesets publication machinery"
     );
     for (const prefix of ["http://", "//", ""]) {
-      const contracts = `${sources.contracts}\n# ${prefix}registry.npmjs.org`;
+      const contracts = `${sources.contracts}\n# ${prefix}registry.npmjs.org/-/unexpected`;
       expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(
         "Registry reads must use only the exact npm attestation endpoint"
       );
@@ -85,10 +85,10 @@ describe("workflow policy", () => {
 
   it("attests the verified archive before privileged transfer", () => {
     const contracts = sources.contracts
-      .replace("- name: Upload verified release", "- name: Later transfer")
+      .replace("- name: Upload verified package", "- name: Later transfer")
       .replace(
         "- name: Attest verified archive",
-        "- name: Upload verified release"
+        "- name: Upload verified package"
       )
       .replace("- name: Later transfer", "- name: Attest verified archive");
 
@@ -166,9 +166,7 @@ describe("workflow policy", () => {
           "      statuses: read"
         ),
       })
-    ).toThrow(
-      "Contract builds and privileged publication must use separate jobs"
-    );
+    ).toThrow("Contract publication must verify archive attestations");
   });
 
   it("requires exact immutable release rerun handling", () => {

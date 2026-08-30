@@ -11,6 +11,7 @@ const REGISTRY_REFERENCE_PATTERN =
   /(?:https?:\/\/|\/\/)?registry\.npmjs\.org(?:[^\s"'`]+)?/giu;
 const NPM_ATTESTATION_URL =
   "https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version";
+const NPM_REGISTRY = "https://registry.npmjs.org";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
 const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
@@ -33,7 +34,7 @@ const ARCHIVE_IDENTITY_PATTERN =
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
 const RELEASE_JOB_PATTERN =
-  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified release[\s\S]*actions\/upload-artifact@[0-9a-f]{40}[\s\S]*publish:[\s\S]*needs: build[\s\S]*if: needs\.build\.outputs\.mode == 'create'[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download verified release[\s\S]*actions\/download-artifact@[0-9a-f]{40}/u;
+  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified package[\s\S]*contract-package[\s\S]*Upload publication verifier[\s\S]*contract-verifier[\s\S]*publish:[\s\S]*needs: build[\s\S]*environment: npm-production[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*id-token: write[\s\S]*Download verified package[\s\S]*contract-package[\s\S]*verify:[\s\S]*needs: \[build, publish\][\s\S]*permissions: \{\}[\s\S]*Download publication verifier[\s\S]*contract-verifier[\s\S]*finalize:[\s\S]*needs: \[build, publish, verify\][\s\S]*contents: write/u;
 const IMMUTABLE_SETTING_PATTERN =
   /repos\/\$GITHUB_REPOSITORY\/immutable-releases/u;
 const IDEMPOTENT_RELEASE_PATTERN =
@@ -41,7 +42,7 @@ const IDEMPOTENT_RELEASE_PATTERN =
 const PUBLISHED_RELEASE_PATTERN =
   /Publish immutable release[\s\S]*gh release edit "\$RELEASE_TAG"[\s\S]*--draft=false[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*git\/ref\/tags\/\$RELEASE_TAG[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify "\$RELEASE_TAG"[\s\S]*gh release verify-asset "\$RELEASE_TAG" "\$TARBALL"[\s\S]*gh attestation verify "\$TARBALL"/u;
 const MUTABLE_RECOVERY_PATTERN =
-  /Remove failed mutable release[\s\S]*if: failure\(\) && steps\.state\.outputs\.mode == 'create'[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--cleanup-tag/u;
+  /if: failure\(\)(?: && steps\.state\.outputs\.mode == 'create')?[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--cleanup-tag/u;
 const ISOLATED_OPERATION_PATTERN =
   /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
 const TERMINAL_GATE_PATTERN =
@@ -54,6 +55,7 @@ const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
 const WORKFLOW_PATH_PATTERN = /^\.github\/workflows\/[^/]+\.ya?ml$/u;
+const TOP_LEVEL_JOB_PATTERN = /\n {2}[a-z][a-z_]*:\n/u;
 
 /** Workflow sources whose release controls must remain coherent. */
 export interface WorkflowSources {
@@ -85,7 +87,7 @@ export function verifyWorkflows({
         [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)].map(([url]) => url)
       ),
     ],
-    [NPM_ATTESTATION_URL],
+    [NPM_REGISTRY, NPM_ATTESTATION_URL],
     "Registry reads must use only the exact npm attestation endpoint"
   );
   assert.doesNotMatch(
@@ -164,7 +166,7 @@ export function verifyWorkflows({
     "Contract releases must compare exact verified archive bytes"
   );
   const attestIndex = contracts.indexOf("- name: Attest verified archive");
-  const transferIndex = contracts.indexOf("- name: Upload verified release");
+  const transferIndex = contracts.indexOf("- name: Upload verified package");
   const draftIndex = contracts.indexOf("- name: Create draft release");
   const uploadIndex = contracts.indexOf("- name: Attach verified archive");
   const publishIndex = contracts.indexOf("- name: Publish immutable release");
@@ -181,12 +183,6 @@ export function verifyWorkflows({
     ATTESTATION_PATTERN,
     "Contract attestation must bind workflow, source revision, and main"
   );
-  verifyProvenanceWorkflow(contracts);
-  assert.match(
-    contracts,
-    RELEASE_JOB_PATTERN,
-    "Contract builds and privileged publication must use separate jobs"
-  );
   assert.doesNotMatch(
     contracts,
     IMMUTABLE_SETTING_PATTERN,
@@ -202,10 +198,29 @@ export function verifyWorkflows({
     PUBLISHED_RELEASE_PATTERN,
     "Published releases must match the verified asset and source tag"
   );
+  const recoveries = [
+    ...contracts.matchAll(/- name: Remove failed mutable release/gu),
+  ];
+  assert.equal(
+    recoveries.length,
+    2,
+    "Every failed release boundary must own one mutable cleanup"
+  );
+  for (const recovery of recoveries) {
+    const tail = contracts.slice(recovery.index);
+    const nextJob = tail.slice(1).search(TOP_LEVEL_JOB_PATTERN);
+    const step = nextJob < 0 ? tail : tail.slice(0, nextJob + 1);
+    assert.match(
+      step,
+      MUTABLE_RECOVERY_PATTERN,
+      "Failed publication must remove only its same-SHA mutable release"
+    );
+  }
+  verifyProvenanceWorkflow(contracts);
   assert.match(
     contracts,
-    MUTABLE_RECOVERY_PATTERN,
-    "Failed publication must remove only its same-SHA mutable release"
+    RELEASE_JOB_PATTERN,
+    "Contract release privileges must remain separated by capability"
   );
 
   const actionReferences = [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)].map(
