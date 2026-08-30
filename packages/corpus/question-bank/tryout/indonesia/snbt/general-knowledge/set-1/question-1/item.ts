@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "warum ungewöhnliche Verknüpfungen in einem Traum normal wirken können.",
         },
         {
-          isCorrect: true,
-          label:
-            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
-        },
-        {
           isCorrect: false,
           label:
             "die Schwierigkeit, die Erlebnisse schlafender Tiere genau zu kennen.",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "ausschließlich die geringere bewusste Kontrolle im REM-Schlaf.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
         },
         {
           isCorrect: false,
@@ -40,11 +40,6 @@ const item: QuestionItem = {
           label: "why unusual associations can feel normal inside a dream.",
         },
         {
-          isCorrect: true,
-          label:
-            "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
-        },
-        {
           isCorrect: false,
           label:
             "the difficulty of knowing exactly what sleeping animals experience.",
@@ -52,6 +47,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "the role of REM sleep in reducing deliberate control alone.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
         },
         {
           isCorrect: false,
@@ -68,11 +68,6 @@ const item: QuestionItem = {
             "alasan hubungan yang tidak biasa dapat terasa wajar di dalam mimpi.",
         },
         {
-          isCorrect: true,
-          label:
-            "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
-        },
-        {
           isCorrect: false,
           label:
             "kesulitan mengetahui secara pasti pengalaman hewan yang sedang tidur.",
@@ -80,6 +75,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "peran tidur REM dalam mengurangi pengendalian sadar saja.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
         },
         {
           isCorrect: false,

@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "data-probability",
-    topic: "data",
+    contentDomain: "algebra",
+    topic: "sequences-series",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
+          label: "Rp 1.280.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
+          label: "Rp 1.520.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "Rp 1.760.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "Rp 2.000.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "Rp 2.240.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
+          label: "Rp 1.280.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
+          label: "Rp 1.520.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "Rp 1.760.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "Rp 2.000.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "Rp 2.240.000",
         },
       ],
     },
@@ -62,28 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
+          label: "Rp 1.280.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
+          label: "Rp 1.520.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "Rp 1.760.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "Rp 2.000.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "Rp 2.240.000",
         },
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "monthly-savings",
 };
 
 export default item;

@@ -2,83 +2,75 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    topic: "measurement",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "Der Umfang einer ebenen Figur wird mit $4$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label:
+            "Der Flächeninhalt einer ebenen Figur wird mit $4^2$ multipliziert.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "Das Volumen eines Körpers wird mit $4^3$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
-        },
-        {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "Die Oberfläche eines Körpers wird mit $4^3$ multipliziert.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "A plane figure's perimeter is multiplied by $4$.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label: "A plane figure's area is multiplied by $4^2$.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "A solid's volume is multiplied by $4^3$.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
-        },
-        {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "A solid's surface area is multiplied by $4^3$.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "Keliling bangun datar dikalikan $4$.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label: "Luas bangun datar dikalikan $4^2$.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "Volume bangun ruang dikalikan $4^3$.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
-        },
-        {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "Luas permukaan bangun ruang dikalikan $4^3$.",
         },
       ],
     },

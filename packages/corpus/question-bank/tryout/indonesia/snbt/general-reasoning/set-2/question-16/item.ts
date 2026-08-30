@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Wenn der Tätigkeitsbericht nicht eingereicht wurde, bedeutet dies, dass das Managerhonorar nicht gezahlt wird",
         },
         {
-          isCorrect: false,
-          label:
-            "Wenn der Manager einen Bericht verlangt, wird die Aktivität sofort ausgeführt",
-        },
-        {
           isCorrect: true,
           label:
             "Wird das Honorar nicht ausgezahlt, wurde die Tätigkeit nicht durchgeführt",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wenn der Manager einen Bericht verlangt, wird die Aktivität sofort ausgeführt",
         },
         {
           isCorrect: false,
@@ -45,14 +45,14 @@ const item: QuestionItem = {
             "If the activity report has not been submitted, it means the manager's honorarium is not paid",
         },
         {
-          isCorrect: false,
-          label:
-            "If the manager asks for a report, the activity is immediately carried out",
-        },
-        {
           isCorrect: true,
           label:
             "If the employee's honorarium is not paid, it means the activity has not been carried out",
+        },
+        {
+          isCorrect: false,
+          label:
+            "If the manager asks for a report, the activity is immediately carried out",
         },
         {
           isCorrect: false,
@@ -75,13 +75,13 @@ const item: QuestionItem = {
             "Laporan kegiatan belum diserahkan berarti honor pimpinan tidak dibayarkan",
         },
         {
-          isCorrect: false,
-          label: "Jika pimpinan meminta laporan, kegiatan segera dilaksanakan",
-        },
-        {
           isCorrect: true,
           label:
             "Honor karyawan tidak dibayarkan berarti kegiatan belum dilaksanakan",
+        },
+        {
+          isCorrect: false,
+          label: "Jika pimpinan meminta laporan, kegiatan segera dilaksanakan",
         },
         {
           isCorrect: false,

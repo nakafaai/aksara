@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    cognitiveLevel: "application",
+    contentDomain: "algebra",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: "Rp 41.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: "Rp 41.000",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac34$$",
+          label: "Rp 33.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac45$$",
+          label: "Rp 36.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac35$$",
+          label: "Rp 37.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac53$$",
+          label: "Rp 38.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac54$$",
+          label: "Rp 41.000",
         },
       ],
     },

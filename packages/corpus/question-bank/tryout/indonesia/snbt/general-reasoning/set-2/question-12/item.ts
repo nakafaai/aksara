@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "Die Umsetzung der Reisbeschaffung wird zunehmend suboptimal und die Regierung ist gezwungen, Reis zu importieren",
         },
         {
-          isCorrect: true,
-          label:
-            "Die staatlichen Reisvorräte oder CBP (staatliche Reisreserven) drohen zurückzugehen",
-        },
-        {
           isCorrect: false,
           label:
             "Der Lebensmittelverteilungsmechanismus für Raskin oder Rastra wird auf direkte Transfers umgestellt",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Der HPP (Government Purchase Price) wird im Vergleich zu den Marktpreisen immer niedriger",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die staatlichen Reisvorräte oder CBP (staatliche Reisreserven) drohen zurückzugehen",
         },
       ],
     },
@@ -46,11 +46,6 @@ const item: QuestionItem = {
             "Realization of rice procurement becomes increasingly suboptimal and the government is forced to import rice",
         },
         {
-          isCorrect: true,
-          label:
-            "Government rice stocks or CBP (government rice reserves) will be threatened to decrease",
-        },
-        {
           isCorrect: false,
           label:
             "The food distribution mechanism for Raskin or Rastra undergoes a change to direct transfers",
@@ -59,6 +54,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "HPP (Government Purchase Price) becomes increasingly lower compared to market prices",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Government rice stocks or CBP (government rice reserves) will be threatened to decrease",
         },
       ],
     },
@@ -76,11 +76,6 @@ const item: QuestionItem = {
             "Realisasi pengadaan beras semakin tidak optimal dan pemerintah terpaksa melakukan impor beras",
         },
         {
-          isCorrect: true,
-          label:
-            "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
-        },
-        {
           isCorrect: false,
           label:
             "Mekanisme penyaluran pangan untuk raskin atau rastra mengalami perubahan menjadi transfer langsung",
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "HPP (harga pembelian pemerintah) menjadi semakin rendah dibandingkan dengan harga di pasar",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
         },
       ],
     },

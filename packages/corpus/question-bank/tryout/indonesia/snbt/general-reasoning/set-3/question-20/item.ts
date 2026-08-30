@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "?hhmmpowg cz ?hmmphng",
         },
         {
-          isCorrect: true,
-          label: "?hhmmphng ?hmmpowg cz",
-        },
-        {
           isCorrect: false,
           label: "ng?hmmphowg ?hmmp cz",
+        },
+        {
+          isCorrect: true,
+          label: "?hhmmphng ?hmmpowg cz",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "?hhmmpowg cz ?hmmphng",
         },
         {
-          isCorrect: true,
-          label: "?hhmmphng ?hmmpowg cz",
-        },
-        {
           isCorrect: false,
           label: "ng?hmmphowg ?hmmp cz",
+        },
+        {
+          isCorrect: true,
+          label: "?hhmmphng ?hmmpowg cz",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "?hhmmpowg cz ?hmmphng",
         },
         {
-          isCorrect: true,
-          label: "?hhmmphng ?hmmpowg cz",
-        },
-        {
           isCorrect: false,
           label: "ng?hmmphowg ?hmmp cz",
+        },
+        {
+          isCorrect: true,
+          label: "?hhmmphng ?hmmpowg cz",
         },
         {
           isCorrect: false,

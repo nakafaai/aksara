@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht",
-        },
-        {
           isCorrect: true,
           label:
             "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Statement $$(1)$$ ALONE is sufficient, but statement $$(2)$$ ALONE is not sufficient",
-        },
-        {
           isCorrect: true,
           label:
             "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ ALONE is not sufficient",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Statement $$(1)$$ ALONE is sufficient, but statement $$(2)$$ ALONE is not sufficient",
         },
         {
           isCorrect: false,
@@ -65,14 +65,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Pernyataan $$(1)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(2)$$ SAJA tidak cukup",
-        },
-        {
           isCorrect: true,
           label:
             "Pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(1)$$ SAJA tidak cukup",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pernyataan $$(1)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(2)$$ SAJA tidak cukup",
         },
         {
           isCorrect: false,

@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Das erste Ergebnis, bei dem die Beschäftigten kündigen und eine Abfindung erhalten, tritt nicht ein",
-        },
-        {
           isCorrect: false,
           label:
             "Die Beschäftigten haben die Schließung des Unternehmens gewählt",
@@ -28,16 +23,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Keines der beiden Ergebnisse tritt ein",
         },
+        {
+          isCorrect: true,
+          label:
+            "Das erste Ergebnis, bei dem die Beschäftigten kündigen und eine Abfindung erhalten, tritt nicht ein",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "The first outcome, in which employees resign and receive severance pay, does not occur",
-        },
         {
           isCorrect: false,
           label: "The employees chose to close the company",
@@ -54,16 +49,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Neither outcome occurs",
         },
+        {
+          isCorrect: true,
+          label:
+            "The first outcome, in which employees resign and receive severance pay, does not occur",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
-        },
         {
           isCorrect: false,
           label: "Karyawan memilih untuk menutup perusahaan",
@@ -79,6 +74,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Tidak satu pun hasil terjadi",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
         },
       ],
     },

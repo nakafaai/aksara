@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Der Verbrauch übersteigt in jedem aufgeführten Jahr die inländische Produktion, und die Importe decken die Lücke.",
+        },
+        {
           isCorrect: false,
           label: "Die Importe steigen und fallen von Jahr zu Jahr.",
         },
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           label: "Der höchste Verbrauch tritt im Jahr A auf.",
         },
         {
-          isCorrect: true,
-          label:
-            "Der Verbrauch übersteigt in jedem aufgeführten Jahr die inländische Produktion, und die Importe decken die Lücke.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Importe übersteigen in jedem aufgeführten Jahr die inländische Produktion.",
@@ -33,6 +33,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Consumption exceeds domestic production in every listed year, and imports cover the gap.",
+        },
         {
           isCorrect: false,
           label: "Imports rise and fall from year to year.",
@@ -47,11 +52,6 @@ const item: QuestionItem = {
           label: "The highest consumption occurs in year A.",
         },
         {
-          isCorrect: true,
-          label:
-            "Consumption exceeds domestic production in every listed year, and imports cover the gap.",
-        },
-        {
           isCorrect: false,
           label: "Imports exceed domestic production in every listed year.",
         },
@@ -60,6 +60,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
+        },
         {
           isCorrect: false,
           label: "Impor naik dan turun dari tahun ke tahun.",
@@ -72,11 +77,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Konsumsi tertinggi terjadi pada tahun A.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
         },
         {
           isCorrect: false,

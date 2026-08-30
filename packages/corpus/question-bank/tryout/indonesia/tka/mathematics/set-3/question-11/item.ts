@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "functions",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 41.500",
+          label: "8 m",
         },
         {
           isCorrect: false,
-          label: "Rp 45.000",
+          label: "9 m",
+        },
+        {
+          isCorrect: false,
+          label: "11 m",
+        },
+        {
+          isCorrect: false,
+          label: "12 m",
         },
         {
           isCorrect: true,
-          label: "Rp 46.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 47.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 50.500",
+          label: "10 m",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 41.500",
+          label: "8 m",
         },
         {
           isCorrect: false,
-          label: "Rp 45.000",
+          label: "9 m",
+        },
+        {
+          isCorrect: false,
+          label: "11 m",
+        },
+        {
+          isCorrect: false,
+          label: "12 m",
         },
         {
           isCorrect: true,
-          label: "Rp 46.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 47.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 50.500",
+          label: "10 m",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 41.500",
+          label: "8 m",
         },
         {
           isCorrect: false,
-          label: "Rp 45.000",
+          label: "9 m",
+        },
+        {
+          isCorrect: false,
+          label: "11 m",
+        },
+        {
+          isCorrect: false,
+          label: "12 m",
         },
         {
           isCorrect: true,
-          label: "Rp 46.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 47.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 50.500",
+          label: "10 m",
         },
       ],
     },

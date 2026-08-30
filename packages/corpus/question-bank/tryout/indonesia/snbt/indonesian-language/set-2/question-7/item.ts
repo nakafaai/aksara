@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Semua bacaannya merupakan karya terkenal",
         },
         {
+          isCorrect: true,
+          label: "Bacaan tersedia dalam berbagai bahasa",
+        },
+        {
           isCorrect: false,
           label: "Semua fitur dapat digunakan tanpa berlangganan",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Aplikasi tidak memerlukan ruang penyimpanan",
-        },
-        {
-          isCorrect: true,
-          label: "Bacaan tersedia dalam berbagai bahasa",
         },
       ],
     },

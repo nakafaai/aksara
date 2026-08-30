@@ -2,83 +2,71 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-transformations",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "33",
-        },
-        {
-          isCorrect: false,
-          label: "37",
+          isCorrect: true,
+          label: "Eine Verschiebung erhält die Parallelität von Geraden.",
         },
         {
           isCorrect: true,
-          label: "41",
+          label: "Eine Drehung erhält Abstände zwischen Punkten.",
+        },
+        {
+          isCorrect: true,
+          label: "Eine Streckung mit dem Faktor $3$ verdreifacht den Umfang.",
         },
         {
           isCorrect: false,
-          label: "45",
-        },
-        {
-          isCorrect: false,
-          label: "49",
+          label: "Eine Spiegelung erhält immer die Orientierung einer Figur.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "33",
-        },
-        {
-          isCorrect: false,
-          label: "37",
+          isCorrect: true,
+          label: "A translation preserves parallel lines.",
         },
         {
           isCorrect: true,
-          label: "41",
+          label: "A rotation preserves distances between points.",
+        },
+        {
+          isCorrect: true,
+          label: "A dilation with scale factor $3$ triples the perimeter.",
         },
         {
           isCorrect: false,
-          label: "45",
-        },
-        {
-          isCorrect: false,
-          label: "49",
+          label: "A reflection always preserves a figure's orientation.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "33",
-        },
-        {
-          isCorrect: false,
-          label: "37",
+          isCorrect: true,
+          label: "Translasi mempertahankan kesejajaran garis.",
         },
         {
           isCorrect: true,
-          label: "41",
+          label: "Rotasi mempertahankan jarak antartitik.",
+        },
+        {
+          isCorrect: true,
+          label: "Dilatasi dengan faktor $3$ mengalikan keliling dengan $3$.",
         },
         {
           isCorrect: false,
-          label: "45",
-        },
-        {
-          isCorrect: false,
-          label: "49",
+          label: "Refleksi selalu mempertahankan orientasi suatu bangun.",
         },
       ],
     },

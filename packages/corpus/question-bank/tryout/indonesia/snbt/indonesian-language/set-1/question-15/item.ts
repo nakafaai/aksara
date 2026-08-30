@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Tanda bahwa seluruh kegiatan harus berakhir",
         },
         {
-          isCorrect: true,
-          label: "Waktu setengah gelap setelah matahari terbenam",
-        },
-        {
           isCorrect: false,
           label: "Suasana yang selalu tenang dan damai",
+        },
+        {
+          isCorrect: true,
+          label: "Waktu setengah gelap setelah matahari terbenam",
         },
       ],
     },

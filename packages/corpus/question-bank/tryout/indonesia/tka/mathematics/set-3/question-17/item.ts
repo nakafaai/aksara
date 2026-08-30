@@ -3,32 +3,32 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 1.280.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 1.520.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "383 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
+          label: "369 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "376 m²",
+        },
+        {
+          isCorrect: false,
+          label: "390 m²",
+        },
+        {
+          isCorrect: false,
+          label: "397 m²",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 1.280.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 1.520.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "383 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
+          label: "369 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "376 m²",
+        },
+        {
+          isCorrect: false,
+          label: "390 m²",
+        },
+        {
+          isCorrect: false,
+          label: "397 m²",
         },
       ],
     },
@@ -61,29 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 1.280.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 1.520.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "383 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
+          label: "369 m²",
         },
         {
           isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "376 m²",
+        },
+        {
+          isCorrect: false,
+          label: "390 m²",
+        },
+        {
+          isCorrect: false,
+          label: "397 m²",
         },
       ],
     },
   },
-  stimulusKey: "monthly-savings",
+  stimulusKey: "park-and-pond",
 };
 
 export default item;

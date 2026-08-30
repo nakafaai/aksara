@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,6)$$",
+          label: "$$\\frac{42}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$\\frac{43}{17}$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,6)$$",
+          label: "$$\\frac{44}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,6)$$",
+          label: "$$\\frac{45}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,7)$$",
+          label: "$$\\frac{46}{17}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,6)$$",
+          label: "$$\\frac{42}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$\\frac{43}{17}$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,6)$$",
+          label: "$$\\frac{44}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,6)$$",
+          label: "$$\\frac{45}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,7)$$",
+          label: "$$\\frac{46}{17}$$",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,6)$$",
+          label: "$$\\frac{42}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$\\frac{43}{17}$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,6)$$",
+          label: "$$\\frac{44}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,6)$$",
+          label: "$$\\frac{45}{17}$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,7)$$",
+          label: "$$\\frac{46}{17}$$",
         },
       ],
     },
   },
+  stimulusKey: "study-time-survey",
 };
 
 export default item;

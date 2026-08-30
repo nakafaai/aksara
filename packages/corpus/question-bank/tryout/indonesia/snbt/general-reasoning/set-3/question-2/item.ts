@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Insgesamt interessieren sich $$160$$ Schülerinnen und Schüler für Malerei",
+        },
+        {
           isCorrect: false,
           label: "Basketball ist das beliebteste Freizeitinteresse",
         },
@@ -24,16 +29,15 @@ const item: QuestionItem = {
           label:
             "In Klasse $$\\text{X}$$ interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
         },
-        {
-          isCorrect: true,
-          label:
-            "Insgesamt interessieren sich $$160$$ Schülerinnen und Schüler für Malerei",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "The number of students interested in painting is $$160$$",
+        },
         {
           isCorrect: false,
           label: "Basketball is the most popular interest",
@@ -52,15 +56,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The least interest in dance is in class $$\\text{X}$$",
         },
-        {
-          isCorrect: true,
-          label: "The number of students interested in painting is $$160$$",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Jumlah siswa gemar melukis adalah $$160$$",
+        },
         {
           isCorrect: false,
           label: "Kegemaran basket adalah paling banyak diminati",
@@ -78,10 +82,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{X}$$",
-        },
-        {
-          isCorrect: true,
-          label: "Jumlah siswa gemar melukis adalah $$160$$",
         },
       ],
     },

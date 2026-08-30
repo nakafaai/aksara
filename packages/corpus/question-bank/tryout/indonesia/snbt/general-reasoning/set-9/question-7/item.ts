@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Jede saisonale Überschwemmung verbessert immer jeden Boden",
+        },
+        {
           isCorrect: false,
           label:
             "Bei Nettoablagerung können Sedimente und Nährstoffe in der Aue zurückgehalten werden",
@@ -20,10 +24,6 @@ const item: QuestionItem = {
             "Die Wirkung einer Überflutung hängt unter anderem vom Verhältnis zwischen Ablagerung und Erosion ab",
         },
         {
-          isCorrect: true,
-          label: "Jede saisonale Überschwemmung verbessert immer jeden Boden",
-        },
-        {
           isCorrect: false,
           label:
             "Zurückgehaltene Nährstoffe können das Pflanzenwachstum unterstützen, wenn die Ablagerung überwiegt",
@@ -33,6 +33,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Every seasonal flood always improves every soil",
+        },
         {
           isCorrect: false,
           label:
@@ -49,10 +53,6 @@ const item: QuestionItem = {
             "The effect of inundation depends partly on the balance between deposition and erosion",
         },
         {
-          isCorrect: true,
-          label: "Every seasonal flood always improves every soil",
-        },
-        {
           isCorrect: false,
           label:
             "Retained nutrients can support plant growth where deposition exceeds erosion",
@@ -62,6 +62,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
+        },
         {
           isCorrect: false,
           label:
@@ -76,10 +80,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
-        },
-        {
-          isCorrect: true,
-          label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
         },
         {
           isCorrect: false,

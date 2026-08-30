@@ -7,8 +7,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Biskuit" },
         { isCorrect: false, label: "Molen" },
-        { isCorrect: false, label: "Pia" },
         { isCorrect: true, label: "Sus" },
+        { isCorrect: false, label: "Pia" },
         { isCorrect: false, label: "Tart" },
       ],
     },
@@ -17,8 +17,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "biscuit" },
         { isCorrect: false, label: "molen" },
-        { isCorrect: false, label: "pia" },
         { isCorrect: true, label: "sus" },
+        { isCorrect: false, label: "pia" },
         { isCorrect: false, label: "tart" },
       ],
     },
@@ -27,8 +27,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "biskuit" },
         { isCorrect: false, label: "molen" },
-        { isCorrect: false, label: "pia" },
         { isCorrect: true, label: "sus" },
+        { isCorrect: false, label: "pia" },
         { isCorrect: false, label: "tart" },
       ],
     },

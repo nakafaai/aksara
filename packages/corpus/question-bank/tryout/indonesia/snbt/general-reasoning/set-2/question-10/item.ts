@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$2$$ große Orangen",
         },
         {
-          isCorrect: false,
-          label: "$$2$$ kleine Orangen",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ großer Apfel und $$1$$ kleine Orange",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$ kleine Orangen",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$2$$ large oranges",
         },
         {
-          isCorrect: false,
-          label: "$$2$$ small oranges",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ large apple and $$1$$ small orange",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$ small oranges",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$2$$ jeruk besar",
         },
         {
-          isCorrect: false,
-          label: "$$2$$ jeruk kecil",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ apel besar dan $$1$$ jeruk kecil",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$ jeruk kecil",
         },
       ],
     },

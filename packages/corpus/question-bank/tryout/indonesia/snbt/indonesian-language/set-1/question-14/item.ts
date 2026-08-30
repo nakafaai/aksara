@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Terjebak dalam keadaan yang tidak menyenangkan",
+        },
+        {
           isCorrect: false,
           label: "Berendam di dalam lumpur",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Berlumuran oleh suatu benda",
-        },
-        {
-          isCorrect: true,
-          label: "Terjebak dalam keadaan yang tidak menyenangkan",
         },
       ],
     },

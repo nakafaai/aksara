@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Verschobene Jahreszeiten, die Aussaat und Ernte erschweren.",
         },
         {
-          isCorrect: false,
-          label: "Meeresspiegelanstieg und Küstenhochwasser.",
-        },
-        {
           isCorrect: true,
           label:
             "Dürren und Überschwemmungen, die Nutzpflanzen schädigen können.",
+        },
+        {
+          isCorrect: false,
+          label: "Meeresspiegelanstieg und Küstenhochwasser.",
         },
         {
           isCorrect: false,
@@ -38,12 +38,12 @@ const item: QuestionItem = {
           label: "Shifts in seasons that complicate planting and harvesting.",
         },
         {
-          isCorrect: false,
-          label: "Sea-level rise and coastal flooding.",
-        },
-        {
           isCorrect: true,
           label: "Droughts and floods that can damage crops.",
+        },
+        {
+          isCorrect: false,
+          label: "Sea-level rise and coastal flooding.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
             "Pergeseran musim yang menyulitkan penentuan masa tanam dan panen.",
         },
         {
-          isCorrect: false,
-          label: "Kenaikan muka laut dan banjir pesisir.",
-        },
-        {
           isCorrect: true,
           label: "Kekeringan dan banjir yang dapat merusak tanaman.",
+        },
+        {
+          isCorrect: false,
+          label: "Kenaikan muka laut dan banjir pesisir.",
         },
         {
           isCorrect: false,

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
+        },
+        {
           isCorrect: false,
           label: "ong ybeeppz! yum!meeongw",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "yum !meeongw ongybeeppz!",
-        },
-        {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
+        },
+        {
           isCorrect: false,
           label: "ong ybeeppz! yum!meeongw",
         },
@@ -41,10 +45,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "yum !meeongw ongybeeppz!",
-        },
-        {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
+        },
+        {
           isCorrect: false,
           label: "ong ybeeppz! yum!meeongw",
         },
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "yum !meeongw ongybeeppz!",
-        },
-        {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
         },
         {
           isCorrect: false,

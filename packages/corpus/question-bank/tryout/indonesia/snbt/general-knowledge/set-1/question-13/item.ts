@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Die Besucher waren fasziniert.",
-        },
-        {
           isCorrect: false,
           label: "Die Fläche war mit Eiskristallen bedeckt.",
+        },
+        {
+          isCorrect: true,
+          label: "Die Besucher waren fasziniert.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Visitors were fascinated.",
-        },
-        {
           isCorrect: false,
           label: "The expanse was covered in ice crystals.",
+        },
+        {
+          isCorrect: true,
+          label: "Visitors were fascinated.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Para pengunjung terpesona.",
-        },
-        {
           isCorrect: false,
           label: "Hamparan diselimuti kristal es.",
+        },
+        {
+          isCorrect: true,
+          label: "Para pengunjung terpesona.",
         },
         {
           isCorrect: false,

@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "die Grasfläche.",
         },
         {
-          isCorrect: true,
-          label: "hohes Plateau.",
-        },
-        {
           isCorrect: false,
           label: "der Frost.",
         },
         {
           isCorrect: false,
           label: "noch vorhanden.",
+        },
+        {
+          isCorrect: true,
+          label: "hohes Plateau.",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "expanse of grass.",
         },
         {
-          isCorrect: true,
-          label: "high plateau.",
-        },
-        {
           isCorrect: false,
           label: "frost.",
         },
         {
           isCorrect: false,
           label: "still located.",
+        },
+        {
+          isCorrect: true,
+          label: "high plateau.",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "hamparan rumput.",
         },
         {
-          isCorrect: true,
-          label: "dataran tinggi.",
-        },
-        {
           isCorrect: false,
           label: "embun es.",
         },
         {
           isCorrect: false,
           label: "masih berada.",
+        },
+        {
+          isCorrect: true,
+          label: "dataran tinggi.",
         },
       ],
     },

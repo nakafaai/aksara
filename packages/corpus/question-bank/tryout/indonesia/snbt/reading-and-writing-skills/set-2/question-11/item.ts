@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Die Entwicklung der indonesischen Landwirtschaft",
         },
         {
-          isCorrect: true,
-          label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
-        },
-        {
           isCorrect: false,
           label: "Der Rückgang landwirtschaftlicher Einzelbetriebe",
         },
@@ -21,6 +17,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Warum braucht Indonesien eine Modernisierung der Landwirtschaft?",
+        },
+        {
+          isCorrect: true,
+          label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
         },
         {
           isCorrect: false,
@@ -37,16 +37,16 @@ const item: QuestionItem = {
           label: "The Development of Indonesian Agriculture",
         },
         {
-          isCorrect: true,
-          label: "A Profile from Indonesia's 2023 Agricultural Census",
-        },
-        {
           isCorrect: false,
           label: "The Decline in Individual Agricultural Holdings",
         },
         {
           isCorrect: false,
           label: "Why Does Indonesia Need Agricultural Modernization?",
+        },
+        {
+          isCorrect: true,
+          label: "A Profile from Indonesia's 2023 Agricultural Census",
         },
         {
           isCorrect: false,
@@ -62,16 +62,16 @@ const item: QuestionItem = {
           label: "Perkembangan Pertanian Indonesia",
         },
         {
-          isCorrect: true,
-          label: "Potret dari Sensus Pertanian Indonesia 2023",
-        },
-        {
           isCorrect: false,
           label: "Penurunan Usaha Pertanian Perorangan",
         },
         {
           isCorrect: false,
           label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
+        },
+        {
+          isCorrect: true,
+          label: "Potret dari Sensus Pertanian Indonesia 2023",
         },
         {
           isCorrect: false,

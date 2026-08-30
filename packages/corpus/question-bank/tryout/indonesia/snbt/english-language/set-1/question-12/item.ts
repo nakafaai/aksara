@@ -20,14 +20,14 @@ const item: QuestionItem = {
             "UNESCO was created to manage the Sustainable Development Goals after 2015.",
         },
         {
-          isCorrect: true,
-          label:
-            "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
-        },
-        {
           isCorrect: false,
           label:
             "UNESCO replaces national education and science institutions with one global system.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
         },
       ],
     },

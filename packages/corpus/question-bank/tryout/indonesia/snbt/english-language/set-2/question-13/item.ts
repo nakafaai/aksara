@@ -19,13 +19,13 @@ const item: QuestionItem = {
           label: "One serving of fruit makes a person immune to infection.",
         },
         {
+          isCorrect: false,
+          label: "Dietary change is useful only when completed in one day.",
+        },
+        {
           isCorrect: true,
           label:
             "A varied, balanced diet supports adequate nutrient intake without guaranteeing immunity from illness.",
-        },
-        {
-          isCorrect: false,
-          label: "Dietary change is useful only when completed in one day.",
         },
       ],
     },

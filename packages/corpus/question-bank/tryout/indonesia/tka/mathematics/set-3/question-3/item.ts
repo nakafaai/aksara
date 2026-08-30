@@ -2,83 +2,71 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$\\sqrt{5^2}=5$, da $5>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$(-5)^2=5^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$5^{-1}=-5$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$\\sqrt{5^2}=5$ because $5>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$(-5)^2=5^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$5^{-1}=-5$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$\\sqrt{5^2}=5$ untuk $5>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$(-5)^2=5^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$5^{-1}=-5$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
         },
       ],
     },

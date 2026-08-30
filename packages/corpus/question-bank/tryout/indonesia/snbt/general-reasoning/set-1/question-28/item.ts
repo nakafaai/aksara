@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist definitiv wahr",
         },
         {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist möglicherweise wahr",
-        },
-        {
           isCorrect: true,
           label: "Die Schlussfolgerung ist definitiv falsch",
+        },
+        {
+          isCorrect: false,
+          label: "Die Schlussfolgerung ist möglicherweise wahr",
         },
         {
           isCorrect: false,
@@ -37,12 +37,12 @@ const item: QuestionItem = {
           label: "The conclusion is definitely true",
         },
         {
-          isCorrect: false,
-          label: "The conclusion is possibly true",
-        },
-        {
           isCorrect: true,
           label: "The conclusion is definitely false",
+        },
+        {
+          isCorrect: false,
+          label: "The conclusion is possibly true",
         },
         {
           isCorrect: false,
@@ -63,12 +63,12 @@ const item: QuestionItem = {
           label: "Simpulan tersebut pasti benar",
         },
         {
-          isCorrect: false,
-          label: "Simpulan tersebut mungkin benar",
-        },
-        {
           isCorrect: true,
           label: "Simpulan tersebut pasti salah",
+        },
+        {
+          isCorrect: false,
+          label: "Simpulan tersebut mungkin benar",
         },
         {
           isCorrect: false,

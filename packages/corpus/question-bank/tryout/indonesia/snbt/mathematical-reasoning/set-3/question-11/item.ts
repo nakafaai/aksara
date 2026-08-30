@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$5!$$",
         },
         {
-          isCorrect: true,
-          label: "$$2(5!)$$",
-        },
-        {
           isCorrect: false,
           label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2(5!)$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$5!$$",
         },
         {
-          isCorrect: true,
-          label: "$$2(5!)$$",
-        },
-        {
           isCorrect: false,
           label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2(5!)$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$5!$$",
         },
         {
-          isCorrect: true,
-          label: "$$2(5!)$$",
-        },
-        {
           isCorrect: false,
           label: "$$2(6!)$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2(5!)$$",
         },
       ],
     },

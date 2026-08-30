@@ -2,76 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "application",
     contentDomain: "data-probability",
     topic: "probability",
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Rot ist $\\frac{6}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{14}{55}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Blau ist $\\frac{5}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{29}{110}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label:
-            "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+          isCorrect: true,
+          label: "$$\\frac{3}{11}$$",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Die Wahrscheinlichkeit für Rot oder Blau ist $\\frac12$.",
+          isCorrect: false,
+          label: "$$\\frac{31}{110}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The probability of red is $\\frac{6}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{14}{55}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label: "The probability of blue is $\\frac{5}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{29}{110}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label: "On one draw, the red and blue events are mutually exclusive.",
+          isCorrect: true,
+          label: "$$\\frac{3}{11}$$",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The probability of red or blue is $\\frac12$.",
+          isCorrect: false,
+          label: "$$\\frac{31}{110}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Peluang mengambil bola merah adalah $\\frac{6}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{14}{55}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Peluang mengambil bola biru adalah $\\frac{5}{11}$.",
+          isCorrect: false,
+          label: "$$\\frac{29}{110}$$",
         },
         {
-          correctCategoryOrder: 1,
-          label:
-            "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
+          isCorrect: true,
+          label: "$$\\frac{3}{11}$$",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Peluang memperoleh bola merah atau biru adalah $\\frac12$.",
+          isCorrect: false,
+          label: "$$\\frac{31}{110}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{16}{55}$$",
         },
       ],
     },

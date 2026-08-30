@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$1{,}1$$ Millionen Tonnen",
         },
         {
-          isCorrect: true,
-          label: "$$1{,}8$$ Millionen Tonnen",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}5$$ Millionen Tonnen",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Kann nicht bestimmt werden",
         },
+        {
+          isCorrect: true,
+          label: "$$1{,}8$$ Millionen Tonnen",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1.1$$ million tons",
-        },
-        {
-          isCorrect: true,
-          label: "$$1.8$$ million tons",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Cannot be determined",
         },
+        {
+          isCorrect: true,
+          label: "$$1.8$$ million tons",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1{,}1$$ juta ton",
-        },
-        {
-          isCorrect: true,
-          label: "$$1{,}8$$ juta ton",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Tidak dapat ditentukan",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}8$$ juta ton",
         },
       ],
     },

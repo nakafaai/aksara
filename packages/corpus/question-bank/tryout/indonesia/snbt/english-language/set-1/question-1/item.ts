@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "the replacement of teachers by digital tools.",
         },
         {
-          isCorrect: true,
-          label: "the conditions under which technology can support education.",
-        },
-        {
           isCorrect: false,
           label: "the superiority of online learning over classrooms.",
         },
         {
           isCorrect: false,
           label: "the features of one educational device.",
+        },
+        {
+          isCorrect: true,
+          label: "the conditions under which technology can support education.",
         },
       ],
     },

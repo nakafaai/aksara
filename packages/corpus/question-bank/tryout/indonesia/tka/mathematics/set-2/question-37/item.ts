@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "data-probability",
-    topic: "probability",
+    cognitiveLevel: "reasoning",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac13$$",
+          label: "$$10\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$12\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac13$$",
+          label: "$$10\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$12\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac13$$",
+          label: "$$10\\sqrt2$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$12\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },

@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
         },
         {
           isCorrect: false,

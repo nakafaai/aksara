@@ -19,13 +19,13 @@ const item: QuestionItem = {
           label: "Laktase wandelt Laktose im Dickdarm in Gas um.",
         },
         {
+          isCorrect: false,
+          label: "Fermentierte Milcherzeugnisse sind immer laktosefrei.",
+        },
+        {
           isCorrect: true,
           label:
             "Menschen verdauen Laktose unterschiedlich, und ein niedriger Laktasespiegel kann eine Malabsorption verursachen.",
-        },
-        {
-          isCorrect: false,
-          label: "Fermentierte Milcherzeugnisse sind immer laktosefrei.",
         },
       ],
     },
@@ -45,13 +45,13 @@ const item: QuestionItem = {
           label: "lactase turns lactose into gas in the colon.",
         },
         {
+          isCorrect: false,
+          label: "fermented dairy products are always lactose-free.",
+        },
+        {
           isCorrect: true,
           label:
             "people digest lactose differently, and low lactase can cause malabsorption.",
-        },
-        {
-          isCorrect: false,
-          label: "fermented dairy products are always lactose-free.",
         },
       ],
     },
@@ -72,13 +72,13 @@ const item: QuestionItem = {
           label: "laktase mengubah laktosa menjadi gas di usus besar.",
         },
         {
+          isCorrect: false,
+          label: "produk susu fermentasi selalu bebas laktosa.",
+        },
+        {
           isCorrect: true,
           label:
             "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
-        },
-        {
-          isCorrect: false,
-          label: "produk susu fermentasi selalu bebas laktosa.",
         },
       ],
     },

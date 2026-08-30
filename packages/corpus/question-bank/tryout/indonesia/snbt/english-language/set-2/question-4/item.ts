@@ -16,17 +16,17 @@ const item: QuestionItem = {
             "It is designed primarily as a clinical treatment for obesity.",
         },
         {
-          isCorrect: true,
-          label:
-            "Its short-term average effects do not by themselves establish lasting weight loss.",
-        },
-        {
           isCorrect: false,
           label: "It permanently reduces fat-free mass and total body water.",
         },
         {
           isCorrect: false,
           label: "It always reduces calorie intake by a fixed amount.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Its short-term average effects do not by themselves establish lasting weight loss.",
         },
       ],
     },

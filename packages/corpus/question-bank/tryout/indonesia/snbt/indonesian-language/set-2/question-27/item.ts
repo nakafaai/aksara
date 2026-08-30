@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
-        },
-        {
           isCorrect: false,
           label: "Memiliki penduduk yang berpengetahuan sangat luas",
         },
@@ -25,6 +20,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Menutup diri dari pengaruh budaya luar",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
         },
       ],
     },

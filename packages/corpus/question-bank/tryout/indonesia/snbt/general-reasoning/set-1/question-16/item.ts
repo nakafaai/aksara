@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Instantnudeln liefern bei täglichem Verzehr alle Nährstoffe, die der Körper benötigt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Instantnudeln sollten nur gelegentlich gegessen und mit weniger Würzmischung sowie mit Gemüse und Protein ergänzt werden.",
-        },
-        {
           isCorrect: false,
           label:
             "Durch den Austausch des Kochwassers verschwindet sämtliches Natrium aus den Instantnudeln.",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           label:
             "Gemüse hebt den Natriumgehalt der Würzmischung vollständig auf.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Instantnudeln sollten nur gelegentlich gegessen und mit weniger Würzmischung sowie mit Gemüse und Protein ergänzt werden.",
+        },
       ],
     },
     en: {
@@ -38,11 +38,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Instant noodles provide every nutrient the body needs when eaten daily.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
         },
         {
           isCorrect: false,
@@ -59,6 +54,11 @@ const item: QuestionItem = {
           label:
             "Adding vegetables completely cancels the sodium in the seasoning.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
+        },
       ],
     },
     id: {
@@ -68,11 +68,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Mie instan menyediakan seluruh zat gizi yang dibutuhkan tubuh jika dimakan setiap hari.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
         },
         {
           isCorrect: false,
@@ -88,6 +83,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Menambahkan sayuran sepenuhnya meniadakan natrium dalam bumbu.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
         },
       ],
     },

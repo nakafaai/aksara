@@ -2,33 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "functions",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "9",
-        },
-        {
-          isCorrect: false,
-          label: "11",
-        },
-        {
           isCorrect: true,
-          label: "13",
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "9",
-        },
-        {
-          isCorrect: false,
-          label: "11",
-        },
-        {
           isCorrect: true,
-          label: "13",
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "9",
-        },
-        {
-          isCorrect: false,
-          label: "11",
-        },
-        {
           isCorrect: true,
-          label: "13",
+          label: "$$4\\sqrt{3}$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$4\\sqrt2$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
         },
       ],
     },

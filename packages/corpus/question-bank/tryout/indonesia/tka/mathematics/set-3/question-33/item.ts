@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "data-probability",
-    topic: "data",
+    cognitiveLevel: "application",
+    contentDomain: "algebra",
+    topic: "sequences-series",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "Rp 208.000",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "Rp 224.000",
         },
         {
           isCorrect: true,
-          label: "7",
+          label: "Rp 240.000",
         },
         {
           isCorrect: false,
-          label: "8",
+          label: "Rp 256.000",
         },
         {
           isCorrect: false,
-          label: "9",
+          label: "Rp 272.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "Rp 208.000",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "Rp 224.000",
         },
         {
           isCorrect: true,
-          label: "7",
+          label: "Rp 240.000",
         },
         {
           isCorrect: false,
-          label: "8",
+          label: "Rp 256.000",
         },
         {
           isCorrect: false,
-          label: "9",
+          label: "Rp 272.000",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "Rp 208.000",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "Rp 224.000",
         },
         {
           isCorrect: true,
-          label: "7",
+          label: "Rp 240.000",
         },
         {
           isCorrect: false,
-          label: "8",
+          label: "Rp 256.000",
         },
         {
           isCorrect: false,
-          label: "9",
+          label: "Rp 272.000",
         },
       ],
     },
   },
+  stimulusKey: "monthly-savings",
 };
 
 export default item;

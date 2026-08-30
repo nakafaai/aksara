@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$60$$ Minuten",
+        },
+        {
           isCorrect: false,
           label: "$$15$$ Minuten",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$45$$ Minuten",
         },
         {
-          isCorrect: true,
-          label: "$$60$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$75$$ Minuten",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$60$$ minutes",
+        },
         {
           isCorrect: false,
           label: "$$15$$ minutes",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$45$$ minutes",
         },
         {
-          isCorrect: true,
-          label: "$$60$$ minutes",
-        },
-        {
           isCorrect: false,
           label: "$$75$$ minutes",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$60$$ menit",
+        },
         {
           isCorrect: false,
           label: "$$15$$ menit",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$45$$ menit",
-        },
-        {
-          isCorrect: true,
-          label: "$$60$$ menit",
         },
         {
           isCorrect: false,

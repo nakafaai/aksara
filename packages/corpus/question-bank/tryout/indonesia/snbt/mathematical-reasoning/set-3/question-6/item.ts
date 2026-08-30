@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "Erstes Angebot",
         },
         {
-          isCorrect: true,
-          label: "Zweites Angebot",
-        },
-        {
           isCorrect: false,
           label: "Beide Angebote sind gleichwertig",
         },
         {
           isCorrect: false,
           label: "Das erste Angebot ist doppelt so groß",
+        },
+        {
+          isCorrect: true,
+          label: "Zweites Angebot",
         },
         {
           isCorrect: false,
@@ -31,7 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "First offer" },
-        { isCorrect: true, label: "Second offer" },
         {
           isCorrect: false,
           label: "Both offers are equal",
@@ -40,6 +39,7 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "First offer is twice as large",
         },
+        { isCorrect: true, label: "Second offer" },
         {
           isCorrect: false,
           label: "Cannot be determined",
@@ -53,7 +53,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Tawaran pertama",
         },
-        { isCorrect: true, label: "Tawaran kedua" },
         {
           isCorrect: false,
           label: "Kedua tawaran sama besar",
@@ -62,6 +61,7 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Tawaran pertama dua kali lebih besar",
         },
+        { isCorrect: true, label: "Tawaran kedua" },
         {
           isCorrect: false,
           label: "Tidak dapat ditentukan",

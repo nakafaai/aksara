@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 23.500",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 27.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 25.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 29.500",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 23.500",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 27.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 25.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 29.500",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 23.500",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 27.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 25.500",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 29.500",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Die Karte zeigt, dass die Frucht Fett liefert",
+        },
+        {
           isCorrect: false,
           label: "Die Karte zeigt einen hohen Wassergehalt",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "Die Karte zeigt kein Fett",
         },
         {
-          isCorrect: true,
-          label: "Die Karte zeigt, dass die Frucht Fett liefert",
-        },
-        {
           isCorrect: false,
           label: "Die Karte zeigt keinen hohen Kohlenhydratgehalt",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "The card shows that the fruit provides fat",
+        },
         {
           isCorrect: false,
           label: "The card shows high water",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "The card shows no fat",
         },
         {
-          isCorrect: true,
-          label: "The card shows that the fruit provides fat",
-        },
-        {
           isCorrect: false,
           label: "The card does not show high carbohydrates",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Kartu menunjukkan buah tersebut memberikan lemak",
+        },
         {
           isCorrect: false,
           label: "Kartu menunjukkan kadar air tinggi",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kartu menunjukkan tidak ada lemak",
-        },
-        {
-          isCorrect: true,
-          label: "Kartu menunjukkan buah tersebut memberikan lemak",
         },
         {
           isCorrect: false,

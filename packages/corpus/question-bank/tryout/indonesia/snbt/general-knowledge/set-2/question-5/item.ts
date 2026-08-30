@@ -15,14 +15,14 @@ const item: QuestionItem = {
             "Fledermäuse müssen ihre Krallen mit ständiger Muskelarbeit um eine Sitzfläche geschlossen halten.",
         },
         {
-          isCorrect: true,
-          label:
-            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
-        },
-        {
           isCorrect: false,
           label:
             "Jede Fledermausart zeigt genau dasselbe Ruhe- und Startverhalten.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
         },
         {
           isCorrect: false,
@@ -44,14 +44,14 @@ const item: QuestionItem = {
             "Bats must use continuous muscular effort to keep their claws closed around a perch.",
         },
         {
-          isCorrect: true,
-          label:
-            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
-        },
-        {
           isCorrect: false,
           label:
             "Every bat species uses exactly the same roosting and takeoff behavior.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
         },
         {
           isCorrect: false,
@@ -73,14 +73,14 @@ const item: QuestionItem = {
             "Kelelawar harus terus memakai tenaga otot agar cakarnya mencengkeram tempat bertengger.",
         },
         {
-          isCorrect: true,
-          label:
-            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
-        },
-        {
           isCorrect: false,
           label:
             "Setiap spesies kelelawar memiliki cara bertengger dan lepas landas yang sama persis.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
         },
         {
           isCorrect: false,

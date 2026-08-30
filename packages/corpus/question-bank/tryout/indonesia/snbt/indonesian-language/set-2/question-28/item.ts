@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
-        },
-        {
           isCorrect: false,
           label: "Mengirim bahan baku batik dari Atapupu ke Lasem",
         },
@@ -25,6 +20,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Menetapkan arsip sebagai Memori Kolektif Bangsa",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
         },
       ],
     },

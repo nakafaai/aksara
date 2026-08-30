@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Größe $$P$$ ist größer als $$Q$$",
-        },
-        {
           isCorrect: true,
           label: "Größe $$P$$ ist kleiner als $$Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Größe $$P$$ ist größer als $$Q$$",
         },
         {
           isCorrect: false,
@@ -32,12 +32,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Quantity $$P$$ is greater than $$Q$$",
-        },
-        {
           isCorrect: true,
           label: "Quantity $$P$$ is less than $$Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Quantity $$P$$ is greater than $$Q$$",
         },
         {
           isCorrect: false,
@@ -58,12 +58,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
-        },
-        {
           isCorrect: true,
           label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
         },
         {
           isCorrect: false,

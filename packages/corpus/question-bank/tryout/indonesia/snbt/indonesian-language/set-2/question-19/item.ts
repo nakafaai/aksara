@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Luas, terang, dan terbuka langsung ke jalan",
         },
         {
-          isCorrect: false,
-          label: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
-        },
-        {
           isCorrect: true,
           label:
             "Sempit, tanpa pandangan ke luar, dan berjendela kecil berjeruji",
+        },
+        {
+          isCorrect: false,
+          label: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
         },
         {
           isCorrect: false,

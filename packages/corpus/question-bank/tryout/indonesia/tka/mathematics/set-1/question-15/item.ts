@@ -2,83 +2,72 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-transformations",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "25",
+          isCorrect: true,
+          label: "Eine Verschiebung erhält die Abstände zwischen Punkten.",
         },
         {
           isCorrect: true,
-          label: "28",
+          label: "Eine Spiegelung erhält Winkelgrößen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Eine Streckung mit dem Faktor $2$ vervierfacht den Flächeninhalt.",
         },
         {
           isCorrect: false,
-          label: "31",
-        },
-        {
-          isCorrect: false,
-          label: "34",
+          label: "Eine Drehung verändert die Länge jeder Strecke.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "25",
+          isCorrect: true,
+          label: "A translation preserves distances between points.",
         },
         {
           isCorrect: true,
-          label: "28",
+          label: "A reflection preserves angle measures.",
+        },
+        {
+          isCorrect: true,
+          label: "A dilation with scale factor $2$ multiplies area by $4$.",
         },
         {
           isCorrect: false,
-          label: "31",
-        },
-        {
-          isCorrect: false,
-          label: "34",
+          label: "A rotation changes the length of every line segment.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "25",
+          isCorrect: true,
+          label: "Translasi mempertahankan jarak antartitik.",
         },
         {
           isCorrect: true,
-          label: "28",
+          label: "Refleksi mempertahankan besar sudut.",
+        },
+        {
+          isCorrect: true,
+          label: "Dilatasi dengan faktor $2$ mengalikan luas dengan $4$.",
         },
         {
           isCorrect: false,
-          label: "31",
-        },
-        {
-          isCorrect: false,
-          label: "34",
+          label: "Rotasi mengubah panjang setiap ruas garis.",
         },
       ],
     },

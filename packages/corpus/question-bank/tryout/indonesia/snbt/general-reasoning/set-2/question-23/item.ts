@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Abteilung B",
         },
         {
-          isCorrect: false,
-          label: "Abteilung C",
-        },
-        {
           isCorrect: true,
           label: "Abteilung D",
+        },
+        {
+          isCorrect: false,
+          label: "Abteilung C",
         },
         {
           isCorrect: false,
@@ -32,8 +32,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Division A" },
         { isCorrect: false, label: "Division B" },
-        { isCorrect: false, label: "Division C" },
         { isCorrect: true, label: "Division D" },
+        { isCorrect: false, label: "Division C" },
         { isCorrect: false, label: "Division E" },
       ],
     },
@@ -42,8 +42,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Divisi A" },
         { isCorrect: false, label: "Divisi B" },
-        { isCorrect: false, label: "Divisi C" },
         { isCorrect: true, label: "Divisi D" },
+        { isCorrect: false, label: "Divisi C" },
         { isCorrect: false, label: "Divisi E" },
       ],
     },

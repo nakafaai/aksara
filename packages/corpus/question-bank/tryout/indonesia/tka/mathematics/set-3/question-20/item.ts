@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
   responses: {
     de: {
@@ -15,12 +15,12 @@ const item: QuestionItem = {
           label: "8 m",
         },
         {
-          isCorrect: false,
-          label: "9 m",
-        },
-        {
           isCorrect: true,
           label: "10 m",
+        },
+        {
+          isCorrect: false,
+          label: "9 m",
         },
         {
           isCorrect: false,
@@ -40,12 +40,12 @@ const item: QuestionItem = {
           label: "8 m",
         },
         {
-          isCorrect: false,
-          label: "9 m",
-        },
-        {
           isCorrect: true,
           label: "10 m",
+        },
+        {
+          isCorrect: false,
+          label: "9 m",
         },
         {
           isCorrect: false,
@@ -65,12 +65,12 @@ const item: QuestionItem = {
           label: "8 m",
         },
         {
-          isCorrect: false,
-          label: "9 m",
-        },
-        {
           isCorrect: true,
           label: "10 m",
+        },
+        {
+          isCorrect: false,
+          label: "9 m",
         },
         {
           isCorrect: false,

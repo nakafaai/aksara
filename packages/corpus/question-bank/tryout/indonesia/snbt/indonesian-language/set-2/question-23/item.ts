@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$(5)$$",
         },
         {
-          isCorrect: true,
-          label: "$$(7)$$",
-        },
-        {
           isCorrect: false,
           label: "$$(10)$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$(7)$$",
         },
         {
           isCorrect: false,

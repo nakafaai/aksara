@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
+        },
+        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv wahr.",
         },
@@ -21,16 +26,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
+        },
         {
           isCorrect: false,
           label: "The conclusion is definitely true.",
@@ -47,16 +52,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The conclusion is irrelevant to the given information.",
         },
-        {
-          isCorrect: true,
-          label:
-            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
+        },
         {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
@@ -72,11 +77,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tidak relevan dengan informasi yang diberikan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
         },
       ],
     },

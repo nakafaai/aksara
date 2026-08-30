@@ -20,14 +20,14 @@ const item: QuestionItem = {
             "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
         },
         {
-          isCorrect: false,
-          label:
-            "Ein Teil der Bildungszuweisung wird nicht vollständig ausgegeben",
-        },
-        {
           isCorrect: true,
           label:
             "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein Teil der Bildungszuweisung wird nicht vollständig ausgegeben",
         },
       ],
     },
@@ -49,13 +49,13 @@ const item: QuestionItem = {
             "Some of Indonesia's highest-achieving students can study at leading universities abroad",
         },
         {
-          isCorrect: false,
-          label: "Part of the education budget allocation is not fully spent",
-        },
-        {
           isCorrect: true,
           label:
             "Many of Indonesia's highest-achieving students can study at leading universities abroad",
+        },
+        {
+          isCorrect: false,
+          label: "Part of the education budget allocation is not fully spent",
         },
       ],
     },
@@ -77,14 +77,14 @@ const item: QuestionItem = {
             "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
         },
         {
-          isCorrect: false,
-          label:
-            "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
-        },
-        {
           isCorrect: true,
           label:
             "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
         },
       ],
     },

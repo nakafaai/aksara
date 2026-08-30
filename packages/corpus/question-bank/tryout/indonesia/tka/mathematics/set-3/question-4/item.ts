@@ -2,71 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "numbers",
-    topic: "real-numbers",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
   responses: {
     de: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{5^2}=5$, da $5>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          isCorrect: false,
+          label: "4",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "6",
+        },
+        {
+          isCorrect: false,
+          label: "8",
         },
       ],
     },
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ because $5>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          isCorrect: false,
+          label: "4",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "6",
+        },
+        {
+          isCorrect: false,
+          label: "8",
         },
       ],
     },
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ untuk $5>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          isCorrect: false,
+          label: "4",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "6",
+        },
+        {
+          isCorrect: false,
+          label: "8",
         },
       ],
     },

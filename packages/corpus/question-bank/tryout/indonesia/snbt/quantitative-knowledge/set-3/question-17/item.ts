@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Die Aussagen $$(1)$$ und $$(3)$$ sind richtig",
         },
         {
-          isCorrect: true,
-          label: "Die Aussagen $$(2)$$ und $$(4)$$ sind richtig",
-        },
-        {
           isCorrect: false,
           label: "Nur Aussage $$(4)$$ ist richtig",
+        },
+        {
+          isCorrect: true,
+          label: "Die Aussagen $$(2)$$ und $$(4)$$ sind richtig",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "Statements $$(1)$$ and $$(3)$$ are correct",
         },
         {
-          isCorrect: true,
-          label: "Statements $$(2)$$ and $$(4)$$ are correct",
-        },
-        {
           isCorrect: false,
           label: "Only statement $$(4)$$ is correct",
+        },
+        {
+          isCorrect: true,
+          label: "Statements $$(2)$$ and $$(4)$$ are correct",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "Pernyataan $$(1)$$ dan $$(3)$$ benar",
         },
         {
-          isCorrect: true,
-          label: "Pernyataan $$(2)$$ dan $$(4)$$ benar",
-        },
-        {
           isCorrect: false,
           label: "Hanya pernyataan $$(4)$$ yang benar",
+        },
+        {
+          isCorrect: true,
+          label: "Pernyataan $$(2)$$ dan $$(4)$$ benar",
         },
         {
           isCorrect: false,

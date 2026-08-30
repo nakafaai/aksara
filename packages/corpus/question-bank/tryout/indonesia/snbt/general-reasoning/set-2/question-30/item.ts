@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Kaliumreiche Lebensmittel können eine verordnete Blutdruckbehandlung ersetzen",
         },
         {
-          isCorrect: true,
-          label:
-            "Kaliumreiche Lebensmittel können die Behandlung von Bluthochdruck unterstützen, doch mehr Kalium ist nicht automatisch für alle Menschen unbedenklich",
-        },
-        {
           isCorrect: false,
           label: "Kalium entfernt das gesamte Natrium aus dem Körper",
         },
@@ -23,6 +18,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Je mehr Kalium jemand zu sich nimmt, desto niedriger ist sein Blutdruck in jedem Fall",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Kaliumreiche Lebensmittel können die Behandlung von Bluthochdruck unterstützen, doch mehr Kalium ist nicht automatisch für alle Menschen unbedenklich",
         },
         {
           isCorrect: false,
@@ -40,11 +40,6 @@ const item: QuestionItem = {
             "Potassium-rich foods can replace prescribed blood-pressure treatment",
         },
         {
-          isCorrect: true,
-          label:
-            "Potassium-rich foods may support blood-pressure management, but increasing potassium is not automatically safe for everyone",
-        },
-        {
           isCorrect: false,
           label: "Potassium removes all sodium from the body",
         },
@@ -52,6 +47,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The more potassium someone consumes, the lower their blood pressure will always be",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Potassium-rich foods may support blood-pressure management, but increasing potassium is not automatically safe for everyone",
         },
         {
           isCorrect: false,
@@ -69,11 +69,6 @@ const item: QuestionItem = {
             "Makanan kaya kalium dapat menggantikan pengobatan tekanan darah yang diresepkan",
         },
         {
-          isCorrect: true,
-          label:
-            "Makanan kaya kalium dapat membantu pengelolaan tekanan darah, tetapi menambah kalium tidak otomatis aman bagi semua orang",
-        },
-        {
           isCorrect: false,
           label: "Kalium menghilangkan seluruh natrium dari tubuh",
         },
@@ -81,6 +76,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Semakin banyak kalium dikonsumsi, tekanan darah akan selalu semakin rendah",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Makanan kaya kalium dapat membantu pengelolaan tekanan darah, tetapi menambah kalium tidak otomatis aman bagi semua orang",
         },
         {
           isCorrect: false,

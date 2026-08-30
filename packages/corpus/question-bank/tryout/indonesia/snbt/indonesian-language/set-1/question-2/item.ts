@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Seluruh bentuk polusi udara akan hilang",
         },
         {
-          isCorrect: true,
-          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
-        },
-        {
           isCorrect: false,
           label: "Kehidupan baru pasti tercipta tanpa campur tangan manusia",
         },
         {
           isCorrect: false,
           label: "Keadaan Bumi akan menjadi tidak terkendali",
+        },
+        {
+          isCorrect: true,
+          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
         },
       ],
     },

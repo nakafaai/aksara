@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "die Geschichte von Papeda in Ostindonesien.",
         },
         {
+          isCorrect: false,
+          label: "das Verfahren zur Gewinnung von Stärke aus Sagostämmen.",
+        },
+        {
           isCorrect: true,
           label:
             "die Entwicklung von Sago durch die Diversifizierung des Lebensmittelangebots und Produktinnovationen.",
-        },
-        {
-          isCorrect: false,
-          label: "das Verfahren zur Gewinnung von Stärke aus Sagostämmen.",
         },
         {
           isCorrect: false,
@@ -37,13 +37,13 @@ const item: QuestionItem = {
           label: "the history of papeda in eastern Indonesia.",
         },
         {
+          isCorrect: false,
+          label: "the procedure for extracting starch from sago trunks.",
+        },
+        {
           isCorrect: true,
           label:
             "developing sago through food diversification and product innovation.",
-        },
-        {
-          isCorrect: false,
-          label: "the procedure for extracting starch from sago trunks.",
         },
         {
           isCorrect: false,
@@ -63,13 +63,13 @@ const item: QuestionItem = {
           label: "sejarah papeda di Indonesia bagian timur.",
         },
         {
+          isCorrect: false,
+          label: "tata cara mengekstraksi pati dari batang sagu.",
+        },
+        {
           isCorrect: true,
           label:
             "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
-        },
-        {
-          isCorrect: false,
-          label: "tata cara mengekstraksi pati dari batang sagu.",
         },
         {
           isCorrect: false,

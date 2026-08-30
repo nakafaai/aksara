@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Am Sensor trat eine Störung auf.",
         },
         {
-          isCorrect: true,
-          label: "Die planmäßige tägliche Reinigung wurde nicht ausgelassen.",
-        },
-        {
           isCorrect: false,
           label: "Die Warnlampe leuchtete.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Die planmäßige tägliche Reinigung wurde ausgelassen.",
         },
+        {
+          isCorrect: true,
+          label: "Die planmäßige tägliche Reinigung wurde nicht ausgelassen.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The sensor developed a fault.",
-        },
-        {
-          isCorrect: true,
-          label: "The scheduled daily cleaning was not skipped.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The scheduled daily cleaning was skipped.",
         },
+        {
+          isCorrect: true,
+          label: "The scheduled daily cleaning was not skipped.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Sensor mengalami gangguan.",
-        },
-        {
-          isCorrect: true,
-          label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pembersihan harian yang dijadwalkan dilewatkan.",
+        },
+        {
+          isCorrect: true,
+          label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
         },
       ],
     },

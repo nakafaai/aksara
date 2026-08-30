@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Jedes Bauteil in Regal C hat die Erstprüfung bestanden.",
         },
         {
+          isCorrect: true,
+          label: "Jedes Bauteil mit blauem Siegel wird in Regal C abgelegt.",
+        },
+        {
           isCorrect: false,
           label:
             "Ein Bauteil, das die Erstprüfung nicht besteht, durchläuft niemals die Belastungsprüfung.",
-        },
-        {
-          isCorrect: true,
-          label: "Jedes Bauteil mit blauem Siegel wird in Regal C abgelegt.",
         },
         {
           isCorrect: false,
@@ -37,13 +37,13 @@ const item: QuestionItem = {
           label: "Every component on rack C passed the initial inspection.",
         },
         {
+          isCorrect: true,
+          label: "Every component with a blue seal is placed on rack C.",
+        },
+        {
           isCorrect: false,
           label:
             "A component that fails the initial inspection never enters the durability test.",
-        },
-        {
-          isCorrect: true,
-          label: "Every component with a blue seal is placed on rack C.",
         },
         {
           isCorrect: false,
@@ -63,13 +63,13 @@ const item: QuestionItem = {
           label: "Setiap komponen di rak C telah lolos pemeriksaan awal.",
         },
         {
+          isCorrect: true,
+          label: "Setiap komponen bersegel biru ditempatkan di rak C.",
+        },
+        {
           isCorrect: false,
           label:
             "Komponen yang gagal dalam pemeriksaan awal tidak pernah menjalani uji ketahanan.",
-        },
-        {
-          isCorrect: true,
-          label: "Setiap komponen bersegel biru ditempatkan di rak C.",
         },
         {
           isCorrect: false,

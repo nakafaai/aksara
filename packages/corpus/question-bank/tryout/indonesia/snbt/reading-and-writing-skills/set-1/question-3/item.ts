@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Produktion.",
         },
         {
-          isCorrect: false,
-          label: "Produzent.",
-        },
-        {
           isCorrect: true,
           label: "Produktivität.",
+        },
+        {
+          isCorrect: false,
+          label: "Produzent.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "production.",
         },
         {
-          isCorrect: false,
-          label: "producer.",
-        },
-        {
           isCorrect: true,
           label: "productivity.",
+        },
+        {
+          isCorrect: false,
+          label: "producer.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "produksi.",
         },
         {
-          isCorrect: false,
-          label: "produsen.",
-        },
-        {
           isCorrect: true,
           label: "produktivitas.",
+        },
+        {
+          isCorrect: false,
+          label: "produsen.",
         },
       ],
     },

@@ -4,81 +4,72 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "sequences-series",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "Das dritte Glied ist $8$.",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "Die Summe der ersten drei Glieder ist $14$.",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "Das fünfte Glied ist $16$.",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "Für jedes $n\\geq1$ gilt $\\frac{u_{n+1}}{u_n}=2$.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "The third term is $8$.",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "The sum of the first three terms is $14$.",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "The fifth term is $16$.",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "For every $n\\geq1$, $\\frac{u_{n+1}}{u_n}=2$.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "Suku ketiga adalah $8$.",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "Jumlah tiga suku pertama adalah $14$.",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "Suku kelima adalah $16$.",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "Untuk setiap $n\\geq1$, berlaku $\\frac{u_{n+1}}{u_n}=2$.",
         },
       ],
     },

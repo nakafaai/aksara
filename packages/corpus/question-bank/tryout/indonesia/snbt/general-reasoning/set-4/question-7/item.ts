@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$A \\neq B$$ und $$E = F$$",
         },
         {
-          isCorrect: false,
-          label: "$$E \\neq F$$ oder $$A \\neq B$$",
-        },
-        {
           isCorrect: true,
           label: "$$A = B$$ oder $$E \\neq F$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$E \\neq F$$ oder $$A \\neq B$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$A \\neq B$$ and $$E = F$$",
         },
         {
-          isCorrect: false,
-          label: "$$E \\neq F$$ or $$A \\neq B$$",
-        },
-        {
           isCorrect: true,
           label: "$$A = B$$ or $$E \\neq F$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$E \\neq F$$ or $$A \\neq B$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$A \\neq B$$ dan $$E = F$$",
         },
         {
-          isCorrect: false,
-          label: "$$E \\neq F$$ atau $$A \\neq B$$",
-        },
-        {
           isCorrect: true,
           label: "$$A = B$$ atau $$E \\neq F$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$E \\neq F$$ atau $$A \\neq B$$",
         },
       ],
     },

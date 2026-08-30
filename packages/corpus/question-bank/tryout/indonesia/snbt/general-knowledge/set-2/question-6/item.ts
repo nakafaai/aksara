@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "kleine Tiere.",
         },
         {
-          isCorrect: false,
-          label: "Beutetiere der Fledermäuse.",
-        },
-        {
           isCorrect: true,
           label: "Fledermäuse.",
+        },
+        {
+          isCorrect: false,
+          label: "Beutetiere der Fledermäuse.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "small animals.",
         },
         {
-          isCorrect: false,
-          label: "bat prey.",
-        },
-        {
           isCorrect: true,
           label: "bats.",
+        },
+        {
+          isCorrect: false,
+          label: "bat prey.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "hewan kecil.",
         },
         {
-          isCorrect: false,
-          label: "mangsa kelelawar.",
-        },
-        {
           isCorrect: true,
           label: "kelelawar.",
+        },
+        {
+          isCorrect: false,
+          label: "mangsa kelelawar.",
         },
         {
           isCorrect: false,

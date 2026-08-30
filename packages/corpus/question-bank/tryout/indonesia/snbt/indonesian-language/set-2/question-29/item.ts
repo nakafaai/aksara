@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
-        },
-        {
           isCorrect: false,
           label: "Tahapan pembuatan motif batik Lasem",
         },
         {
           isCorrect: false,
           label: "Biografi seluruh pedagang batik dalam arsip",
+        },
+        {
+          isCorrect: true,
+          label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
         },
         {
           isCorrect: false,

@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Beras yang dicuci akan mengurangi cita rasa khas dari beras",
         },
         {
-          isCorrect: false,
-          label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
-        },
-        {
           isCorrect: true,
           label: "Pati bebas pada permukaan butiran beras berkurang",
+        },
+        {
+          isCorrect: false,
+          label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
         },
       ],
     },

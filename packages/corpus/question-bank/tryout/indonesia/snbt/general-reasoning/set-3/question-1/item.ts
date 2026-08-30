@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Das Interesse am Basketball steigt mit jeder Klassenstufe",
         },
         {
+          isCorrect: true,
+          label:
+            "Schauspiel ist bei den Schülern am wenigsten beliebt, da es in jeder Jahrgangsstufe immer die wenigsten Teilnehmer gibt",
+        },
+        {
           isCorrect: false,
           label:
             "Tanz hat beste Aussichten, weil das Interesse immer größer wird",
@@ -24,11 +29,6 @@ const item: QuestionItem = {
           label:
             "In jeder Klassenstufe ist Singen das am wenigsten beliebte Hobby",
         },
-        {
-          isCorrect: true,
-          label:
-            "Schauspiel ist bei den Schülern am wenigsten beliebt, da es in jeder Jahrgangsstufe immer die wenigsten Teilnehmer gibt",
-        },
       ],
     },
     en: {
@@ -37,6 +37,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Interest in basketball increases at every grade level",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Acting is the least popular among students because it always has the fewest participants in every grade",
         },
         {
           isCorrect: false,
@@ -52,11 +57,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "In every grade level, singing is the least popular hobby",
         },
-        {
-          isCorrect: true,
-          label:
-            "Acting is the least popular among students because it always has the fewest participants in every grade",
-        },
       ],
     },
     id: {
@@ -65,6 +65,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Peminat bola basket meningkat pada setiap jenjang kelas",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
         },
         {
           isCorrect: false,
@@ -80,11 +85,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
         },
       ],
     },

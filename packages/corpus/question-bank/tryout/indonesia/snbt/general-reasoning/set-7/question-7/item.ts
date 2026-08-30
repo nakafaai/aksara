@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist wahrscheinlich wahr.",
         },
         {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
-        },
-        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
+        },
+        {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
         },
         {
           isCorrect: false,
@@ -40,12 +40,12 @@ const item: QuestionItem = {
           label: "The conclusion is probably true.",
         },
         {
-          isCorrect: true,
-          label: "The conclusion is definitely false.",
-        },
-        {
           isCorrect: false,
           label: "The conclusion is irrelevant to the information provided.",
+        },
+        {
+          isCorrect: true,
+          label: "The conclusion is definitely false.",
         },
         {
           isCorrect: false,
@@ -66,13 +66,13 @@ const item: QuestionItem = {
           label: "Simpulan tersebut mungkin benar.",
         },
         {
-          isCorrect: true,
-          label: "Simpulan tersebut pasti salah.",
-        },
-        {
           isCorrect: false,
           label:
             "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
+        },
+        {
+          isCorrect: true,
+          label: "Simpulan tersebut pasti salah.",
         },
         {
           isCorrect: false,

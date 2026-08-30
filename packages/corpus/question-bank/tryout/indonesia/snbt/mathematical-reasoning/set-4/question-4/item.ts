@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
         },
       ],
     },
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
         },
@@ -49,6 +45,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
         },
       ],
     },
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
         },
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
         },
       ],
     },

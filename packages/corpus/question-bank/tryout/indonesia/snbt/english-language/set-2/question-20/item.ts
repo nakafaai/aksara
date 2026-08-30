@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "The history of electricity generation",
         },
         {
-          isCorrect: false,
-          label: "Instructions for building a language model from scratch",
-        },
-        {
           isCorrect: true,
           label:
             "Examples of how workers and organizations can adapt tasks through training and social dialogue",
+        },
+        {
+          isCorrect: false,
+          label: "Instructions for building a language model from scratch",
         },
       ],
     },

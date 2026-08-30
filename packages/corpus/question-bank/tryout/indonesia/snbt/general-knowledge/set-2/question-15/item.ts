@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Der **Abstellraum** wurde gestern gereinigt.",
         },
         {
-          isCorrect: true,
-          label: "Die **Zeichnung** wird morgen ausgestellt.",
-        },
-        {
           isCorrect: false,
           label: "Der **Tanz** beginnt mittags.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Die Künstlerin erhielt **Lob** für ihr neues Werk.",
         },
+        {
+          isCorrect: true,
+          label: "Die **Zeichnung** wird morgen ausgestellt.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The **storage room** was cleaned yesterday.",
-        },
-        {
-          isCorrect: true,
-          label: "The **drawing** will be displayed tomorrow.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The artist received **praise** for the new work.",
         },
+        {
+          isCorrect: true,
+          label: "The **drawing** will be displayed tomorrow.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "**Ruangan** itu dibersihkan kemarin.",
-        },
-        {
-          isCorrect: true,
-          label: "**Tulisan** itu akan segera diterbitkan.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Seniman itu menerima **pujian** atas karya barunya.",
+        },
+        {
+          isCorrect: true,
+          label: "**Tulisan** itu akan segera diterbitkan.",
         },
       ],
     },

@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Der Preis von Nudel B ist in jedem Zeitraum gestiegen",
         },
         {
-          isCorrect: true,
-          label: "Bei einem Nudelprodukt sank der Preis genau einmal",
-        },
-        {
           isCorrect: false,
           label: "Bei jedem Produkt gab es mehr Anstiege als Rückgänge",
         },
         {
           isCorrect: false,
           label: "Der Preis von Nudel A lag jedes Jahr unter Rp $$3000$$",
+        },
+        {
+          isCorrect: true,
+          label: "Bei einem Nudelprodukt sank der Preis genau einmal",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "The price of Noodle B increased in every interval",
         },
         {
-          isCorrect: true,
-          label: "One noodle product experienced exactly one price decrease",
-        },
-        {
           isCorrect: false,
           label: "Every product rose more often than it fell",
         },
         {
           isCorrect: false,
           label: "The price of Noodle A stayed below Rp $$3000$$ every year",
+        },
+        {
+          isCorrect: true,
+          label: "One noodle product experienced exactly one price decrease",
         },
       ],
     },
@@ -64,17 +64,17 @@ const item: QuestionItem = {
           label: "Harga Mie B naik pada setiap periode",
         },
         {
-          isCorrect: true,
-          label:
-            "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
-        },
-        {
           isCorrect: false,
           label: "Setiap produk lebih sering naik daripada turun",
         },
         {
           isCorrect: false,
           label: "Harga Mie A selalu di bawah Rp $$3000$$ setiap tahun",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
         },
       ],
     },

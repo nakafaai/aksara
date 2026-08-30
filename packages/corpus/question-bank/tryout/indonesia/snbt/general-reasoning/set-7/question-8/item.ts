@@ -15,14 +15,14 @@ const item: QuestionItem = {
             "Sie ist wahrscheinlich wahr, weil die Landoberflächentemperatur zunahm.",
         },
         {
-          isCorrect: false,
-          label:
-            "Sie ist mit Sicherheit falsch, weil das Projekt keine Überschwemmungsdaten erfasste.",
-        },
-        {
           isCorrect: true,
           label:
             "Sie wird von den Angaben nicht gestützt, weil sie eine weder gemessene noch durch eine Regel verknüpfte Folge einführt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sie ist mit Sicherheit falsch, weil das Projekt keine Überschwemmungsdaten erfasste.",
         },
         {
           isCorrect: false,
@@ -44,14 +44,14 @@ const item: QuestionItem = {
             "It is probably true because land surface temperature increased.",
         },
         {
-          isCorrect: false,
-          label:
-            "It is definitely false because the project recorded no flooding data.",
-        },
-        {
           isCorrect: true,
           label:
             "It is not supported by the information because it introduces an outcome that was neither measured nor linked by a stated rule.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "It is definitely false because the project recorded no flooding data.",
         },
         {
           isCorrect: false,
@@ -74,14 +74,14 @@ const item: QuestionItem = {
             "Simpulan itu mungkin benar karena suhu permukaan lahan meningkat.",
         },
         {
-          isCorrect: false,
-          label:
-            "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
-        },
-        {
           isCorrect: true,
           label:
             "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
         },
         {
           isCorrect: false,

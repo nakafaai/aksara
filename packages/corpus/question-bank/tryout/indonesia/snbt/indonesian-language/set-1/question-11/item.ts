@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
-        },
-        {
           isCorrect: false,
           label:
             "Menghentikan seluruh pekerjaan untuk beristirahat sepanjang hari",
@@ -26,6 +21,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Menghitung waktu yang tersisa sebelum malam",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
         },
       ],
     },

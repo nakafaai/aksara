@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    cognitiveLevel: "reasoning",
+    contentDomain: "algebra",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$(0,4)$$",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$(1,4)$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "$$(1,3)$$",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "$$(2,3)$$",
         },
         {
           isCorrect: false,
-          label: "14 m",
+          label: "$$(2,4)$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$(0,4)$$",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$(1,4)$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "$$(1,3)$$",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "$$(2,3)$$",
         },
         {
           isCorrect: false,
-          label: "14 m",
+          label: "$$(2,4)$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$(0,4)$$",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$(1,4)$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "$$(1,3)$$",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "$$(2,3)$$",
         },
         {
           isCorrect: false,
-          label: "14 m",
+          label: "$$(2,4)$$",
         },
       ],
     },

@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Alle vier Apfelzubereitungen führten zum gleichen Sättigungsgefühl.",
         },
         {
-          isCorrect: false,
-          label:
-            "Apfelsaft führte zu einer niedrigeren gesamten Energieaufnahme als der ganze Apfel.",
-        },
-        {
           isCorrect: true,
           label:
             "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Apfelsaft führte zu einer niedrigeren gesamten Energieaufnahme als der ganze Apfel.",
         },
         {
           isCorrect: false,
@@ -45,14 +45,14 @@ const item: QuestionItem = {
             "All four apple preparations produced the same level of fullness.",
         },
         {
-          isCorrect: false,
-          label:
-            "Apple juice led to a lower total energy intake than the whole apple.",
-        },
-        {
           isCorrect: true,
           label:
             "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Apple juice led to a lower total energy intake than the whole apple.",
         },
         {
           isCorrect: false,
@@ -75,14 +75,14 @@ const item: QuestionItem = {
             "Keempat olahan apel menghasilkan tingkat rasa kenyang yang sama.",
         },
         {
-          isCorrect: false,
-          label:
-            "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
-        },
-        {
           isCorrect: true,
           label:
             "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
         },
         {
           isCorrect: false,

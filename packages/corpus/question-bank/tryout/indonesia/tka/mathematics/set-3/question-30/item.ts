@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    contentDomain: "algebra",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "15",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "17",
         },
         {
           isCorrect: false,
-          label: "11 m",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "21",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "15",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "17",
         },
         {
           isCorrect: false,
-          label: "11 m",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "21",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "15",
         },
         {
           isCorrect: true,
-          label: "10 m",
+          label: "17",
         },
         {
           isCorrect: false,
-          label: "11 m",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "12 m",
+          label: "21",
         },
       ],
     },

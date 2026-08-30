@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Jede Gesellschaft verändert sich, und die Ursachen sozialen Wandels können innerhalb oder außerhalb der Gesellschaft liegen",
-        },
-        {
           isCorrect: false,
           label:
             "Sozialer Wandel wird ausschließlich durch Beziehungen zwischen Einzelpersonen verursacht",
@@ -29,16 +24,16 @@ const item: QuestionItem = {
           label:
             "Eine Gesellschaft verändert sich nur unter dem Einfluss einer anderen Gesellschaft",
         },
+        {
+          isCorrect: true,
+          label:
+            "Jede Gesellschaft verändert sich, und die Ursachen sozialen Wandels können innerhalb oder außerhalb der Gesellschaft liegen",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Every society changes, and the sources of social change can be internal or external",
-        },
         {
           isCorrect: false,
           label:
@@ -57,16 +52,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "A society changes only when another society influences it",
         },
+        {
+          isCorrect: true,
+          label:
+            "Every society changes, and the sources of social change can be internal or external",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
-        },
         {
           isCorrect: false,
           label:
@@ -86,6 +81,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Masyarakat hanya berubah ketika dipengaruhi oleh masyarakat lain",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
         },
       ],
     },

@@ -5,12 +5,12 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "expensive" },
-        { isCorrect: false, label: "experimental" },
         {
           isCorrect: true,
           label: "not equal or consistent",
         },
+        { isCorrect: false, label: "expensive" },
+        { isCorrect: false, label: "experimental" },
         {
           isCorrect: false,
           label: "widely available",

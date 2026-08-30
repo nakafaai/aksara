@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "die Notwendigkeit einer Katastrophenfrühwarnung zur Risikominderung.",
-        },
-        {
           isCorrect: true,
           label:
             "Entwicklungsinvestitionen als Element der Katastrophenvorsorge.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "die Notwendigkeit einer Katastrophenfrühwarnung zur Risikominderung.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "the need for disaster early warning for risk reduction.",
-        },
-        {
           isCorrect: true,
           label: "development investment as an element of disaster mitigation.",
+        },
+        {
+          isCorrect: false,
+          label: "the need for disaster early warning for risk reduction.",
         },
         {
           isCorrect: false,
@@ -61,12 +61,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "perlunya peringatan dini bencana guna pengurangan risiko.",
-        },
-        {
           isCorrect: true,
           label: "investasi pembangunan sebagai elemen mitigasi bencana.",
+        },
+        {
+          isCorrect: false,
+          label: "perlunya peringatan dini bencana guna pengurangan risiko.",
         },
         {
           isCorrect: false,

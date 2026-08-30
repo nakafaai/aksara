@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "versorgt.",
         },
         {
-          isCorrect: false,
-          label: "aufgewacht.",
-        },
-        {
           isCorrect: true,
           label: "tief und fest schlafend.",
+        },
+        {
+          isCorrect: false,
+          label: "aufgewacht.",
         },
         {
           isCorrect: false,
@@ -31,8 +31,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "cared for." },
-        { isCorrect: false, label: "woken up." },
         { isCorrect: true, label: "fast asleep." },
+        { isCorrect: false, label: "woken up." },
         { isCorrect: false, label: "maintained." },
         { isCorrect: false, label: "protected." },
       ],
@@ -41,8 +41,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "terawat." },
-        { isCorrect: false, label: "terbangun." },
         { isCorrect: true, label: "terlelap." },
+        { isCorrect: false, label: "terbangun." },
         { isCorrect: false, label: "terpelihara." },
         { isCorrect: false, label: "terlindungi." },
       ],

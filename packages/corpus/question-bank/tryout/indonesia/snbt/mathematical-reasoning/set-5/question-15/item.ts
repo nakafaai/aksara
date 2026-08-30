@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$60 \\text{ Jahre}$$",
         },
         {
-          isCorrect: true,
-          label: "$$57 \\text{ Jahre}$$",
-        },
-        {
           isCorrect: false,
           label: "$$56 \\text{ Jahre}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$57 \\text{ Jahre}$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$60 \\text{ years}$$",
         },
         {
-          isCorrect: true,
-          label: "$$57 \\text{ years}$$",
-        },
-        {
           isCorrect: false,
           label: "$$56 \\text{ years}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$57 \\text{ years}$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$60 \\text{ tahun}$$",
         },
         {
-          isCorrect: true,
-          label: "$$57 \\text{ tahun}$$",
-        },
-        {
           isCorrect: false,
           label: "$$56 \\text{ tahun}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$57 \\text{ tahun}$$",
         },
         {
           isCorrect: false,

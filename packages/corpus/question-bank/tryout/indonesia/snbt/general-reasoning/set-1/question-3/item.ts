@@ -20,14 +20,14 @@ const item: QuestionItem = {
             "An beiden Bezugspunkten hatte derselbe Sektor den höchsten Wert.",
         },
         {
-          isCorrect: true,
-          label:
-            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
-        },
-        {
           isCorrect: false,
           label:
             "Abfall und Industrieprozesse übertrafen zusammen den Energiesektor im Basisjahr 2010.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
         },
       ],
     },
@@ -48,14 +48,14 @@ const item: QuestionItem = {
             "The same sector had the highest value at both reference points.",
         },
         {
-          isCorrect: true,
-          label:
-            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
-        },
-        {
           isCorrect: false,
           label:
             "Waste and industrial processes together exceeded energy in the 2010 baseline.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
         },
       ],
     },
@@ -77,14 +77,14 @@ const item: QuestionItem = {
           label: "Sektor yang sama memiliki nilai tertinggi pada kedua acuan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
-        },
-        {
           isCorrect: false,
           label:
             "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar 2010.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
         },
       ],
     },

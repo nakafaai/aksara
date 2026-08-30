@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$2$$ Jahre",
         },
         {
+          isCorrect: true,
+          label: "$$6$$ Jahre",
+        },
+        {
           isCorrect: false,
           label: "$$3$$ Jahre",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$5$$ Jahre",
         },
-        {
-          isCorrect: true,
-          label: "$$6$$ Jahre",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ years",
+        },
+        {
+          isCorrect: true,
+          label: "$$6$$ years",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$5$$ years",
         },
-        {
-          isCorrect: true,
-          label: "$$6$$ years",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ tahun",
+        },
+        {
+          isCorrect: true,
+          label: "$$6$$ tahun",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$5$$ tahun",
-        },
-        {
-          isCorrect: true,
-          label: "$$6$$ tahun",
         },
       ],
     },

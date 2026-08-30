@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$2000$$ Einheiten",
         },
         {
-          isCorrect: true,
-          label: "$$2520$$ Einheiten",
-        },
-        {
           isCorrect: false,
           label: "$$2720$$ Einheiten",
         },
         {
           isCorrect: false,
           label: "$$3000$$ Einheiten",
+        },
+        {
+          isCorrect: true,
+          label: "$$2520$$ Einheiten",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$2000$$ units",
         },
         {
-          isCorrect: true,
-          label: "$$2520$$ units",
-        },
-        {
           isCorrect: false,
           label: "$$2720$$ units",
         },
         {
           isCorrect: false,
           label: "$$3000$$ units",
+        },
+        {
+          isCorrect: true,
+          label: "$$2520$$ units",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$2000$$ unit",
         },
         {
-          isCorrect: true,
-          label: "$$2520$$ unit",
-        },
-        {
           isCorrect: false,
           label: "$$2720$$ unit",
         },
         {
           isCorrect: false,
           label: "$$3000$$ unit",
+        },
+        {
+          isCorrect: true,
+          label: "$$2520$$ unit",
         },
       ],
     },

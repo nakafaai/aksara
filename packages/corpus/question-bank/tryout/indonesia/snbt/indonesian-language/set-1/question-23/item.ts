@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Kesiapan persenjataan",
         },
         {
+          isCorrect: true,
+          label: "Biaya dan dampak perang",
+        },
+        {
           isCorrect: false,
           label: "Perlindungan terhadap pemimpin",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Ketersediaan rumah sakit dan obat-obatan",
-        },
-        {
-          isCorrect: true,
-          label: "Biaya dan dampak perang",
         },
       ],
     },

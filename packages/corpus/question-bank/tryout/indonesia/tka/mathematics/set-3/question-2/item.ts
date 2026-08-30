@@ -2,7 +2,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "Rp 205.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{17}{12}$$",
+          label: "Rp 220.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{12}$$",
+          label: "Rp 200.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{4}$$",
+          label: "Rp 230.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 250.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "Rp 205.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{17}{12}$$",
+          label: "Rp 220.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{12}$$",
+          label: "Rp 200.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{4}$$",
+          label: "Rp 230.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 250.000",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "Rp 205.000",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{17}{12}$$",
+          label: "Rp 220.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{12}$$",
+          label: "Rp 200.000",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{4}$$",
+          label: "Rp 230.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 250.000",
         },
       ],
     },

@@ -2,72 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "data-probability",
+    topic: "probability",
   },
   responses: {
     de: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
           isCorrect: true,
-          label: "Eine Verschiebung erhält die Abstände zwischen Punkten.",
-        },
-        {
-          isCorrect: true,
-          label: "Eine Spiegelung erhält Winkelgrößen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Eine Streckung mit dem Faktor $2$ vervierfacht den Flächeninhalt.",
+          label: "$$\\frac38$$",
         },
         {
           isCorrect: false,
-          label: "Eine Drehung verändert die Länge jeder Strecke.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac58$$",
         },
       ],
     },
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
           isCorrect: true,
-          label: "A translation preserves distances between points.",
-        },
-        {
-          isCorrect: true,
-          label: "A reflection preserves angle measures.",
-        },
-        {
-          isCorrect: true,
-          label: "A dilation with scale factor $2$ multiplies area by $4$.",
+          label: "$$\\frac38$$",
         },
         {
           isCorrect: false,
-          label: "A rotation changes the length of every line segment.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac58$$",
         },
       ],
     },
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
           isCorrect: true,
-          label: "Translasi mempertahankan jarak antartitik.",
-        },
-        {
-          isCorrect: true,
-          label: "Refleksi mempertahankan besar sudut.",
-        },
-        {
-          isCorrect: true,
-          label: "Dilatasi dengan faktor $2$ mengalikan luas dengan $4$.",
+          label: "$$\\frac38$$",
         },
         {
           isCorrect: false,
-          label: "Rotasi mengubah panjang setiap ruas garis.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac58$$",
         },
       ],
     },

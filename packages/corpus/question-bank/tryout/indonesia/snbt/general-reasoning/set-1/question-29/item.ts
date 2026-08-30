@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Klasse C",
+        },
+        {
           isCorrect: false,
           label: "Klasse A",
         },
         {
           isCorrect: false,
           label: "Klasse B",
-        },
-        {
-          isCorrect: true,
-          label: "Klasse C",
         },
         {
           isCorrect: false,
@@ -30,9 +30,9 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "Class C" },
         { isCorrect: false, label: "Class A" },
         { isCorrect: false, label: "Class B" },
-        { isCorrect: true, label: "Class C" },
         { isCorrect: false, label: "Class D" },
         { isCorrect: false, label: "Class E" },
       ],
@@ -40,9 +40,9 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "Kelas C" },
         { isCorrect: false, label: "Kelas A" },
         { isCorrect: false, label: "Kelas B" },
-        { isCorrect: true, label: "Kelas C" },
         { isCorrect: false, label: "Kelas D" },
         { isCorrect: false, label: "Kelas E" },
       ],

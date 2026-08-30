@@ -5,8 +5,8 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Jawa Barat" },
         { isCorrect: true, label: "Jawa Tengah" },
+        { isCorrect: false, label: "Jawa Barat" },
         { isCorrect: false, label: "Jawa Timur" },
         {
           isCorrect: false,

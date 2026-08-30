@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    contentDomain: "algebra",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4 m",
+          label: "5",
         },
         {
           isCorrect: false,
-          label: "5 m",
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "6 m",
+          label: "9",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "11",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4 m",
+          label: "5",
         },
         {
           isCorrect: false,
-          label: "5 m",
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "6 m",
+          label: "9",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "11",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4 m",
+          label: "5",
         },
         {
           isCorrect: false,
-          label: "5 m",
+          label: "7",
         },
         {
           isCorrect: true,
-          label: "6 m",
+          label: "9",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "11",
         },
         {
           isCorrect: false,
-          label: "8 m",
+          label: "13",
         },
       ],
     },

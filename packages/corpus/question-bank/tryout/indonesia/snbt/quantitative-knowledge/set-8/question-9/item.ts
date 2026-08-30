@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$-6 < m < 2$$",
         },
         {
-          isCorrect: false,
-          label: "$$m \\leq -2 \\lor m \\geq 6$$",
-        },
-        {
           isCorrect: true,
           label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$-6 < m < 2$$",
         },
         {
-          isCorrect: false,
-          label: "$$m \\leq -2 \\lor m \\geq 6$$",
-        },
-        {
           isCorrect: true,
           label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$-6 < m < 2$$",
         },
         {
-          isCorrect: false,
-          label: "$$m \\leq -2 \\lor m \\geq 6$$",
-        },
-        {
           isCorrect: true,
           label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$m \\leq -2 \\lor m \\geq 6$$",
         },
       ],
     },

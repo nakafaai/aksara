@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4$$ Monate",
-        },
-        {
           isCorrect: false,
           label: "$$5$$ Monate",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$9$$ Monate",
         },
+        {
+          isCorrect: true,
+          label: "$$4$$ Monate",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$4$$ months",
-        },
         {
           isCorrect: false,
           label: "$$5$$ months",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$9$$ months",
         },
+        {
+          isCorrect: true,
+          label: "$$4$$ months",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$4$$ bulan",
-        },
         {
           isCorrect: false,
           label: "$$5$$ bulan",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$9$$ bulan",
+        },
+        {
+          isCorrect: true,
+          label: "$$4$$ bulan",
         },
       ],
     },

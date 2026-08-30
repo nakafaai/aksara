@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$P < Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$P > Q$$",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$P = 2Q$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
@@ -32,10 +32,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$P < Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$P > Q$$",
         },
@@ -46,6 +42,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$P = 2Q$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
@@ -58,10 +58,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$P < Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$P > Q$$",
         },
@@ -72,6 +68,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$P = 2Q$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,

@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
         },
         {
+          isCorrect: true,
+          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
+        },
+        {
           isCorrect: false,
           label: "Menetapkan harga setiap benda peninggalan Romawi",
         },
         {
           isCorrect: false,
           label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
-        },
-        {
-          isCorrect: true,
-          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
         },
       ],
     },

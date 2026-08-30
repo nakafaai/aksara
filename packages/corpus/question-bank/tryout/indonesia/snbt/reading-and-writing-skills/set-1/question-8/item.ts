@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "gleicht.",
+        },
+        {
           isCorrect: false,
           label: "konkurriert mit.",
         },
         {
           isCorrect: false,
           label: "ahmt nach.",
-        },
-        {
-          isCorrect: true,
-          label: "gleicht.",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "looks like.",
+        },
+        {
           isCorrect: false,
           label: "competes with.",
         },
         {
           isCorrect: false,
           label: "imitates.",
-        },
-        {
-          isCorrect: true,
-          label: "looks like.",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "mirip dengan.",
+        },
+        {
           isCorrect: false,
           label: "menyaingi.",
         },
         {
           isCorrect: false,
           label: "menirukan.",
-        },
-        {
-          isCorrect: true,
-          label: "mirip dengan.",
         },
         {
           isCorrect: false,

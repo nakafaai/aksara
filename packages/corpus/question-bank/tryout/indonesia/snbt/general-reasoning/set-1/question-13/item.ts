@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$0{,}11 \\times \\frac{35}{9}$$",
-        },
-        {
           isCorrect: false,
           label: "$$0{,}22 \\times \\frac{17}{9}$$",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$0{,}66 \\times \\frac{17}{27}$$",
         },
+        {
+          isCorrect: true,
+          label: "$$0{,}11 \\times \\frac{35}{9}$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$0.11 \\times \\frac{35}{9}$$",
-        },
         {
           isCorrect: false,
           label: "$$0.22 \\times \\frac{17}{9}$$",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$0.66 \\times \\frac{17}{27}$$",
         },
+        {
+          isCorrect: true,
+          label: "$$0.11 \\times \\frac{35}{9}$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$0{,}11 \\times \\frac{35}{9}$$",
-        },
         {
           isCorrect: false,
           label: "$$0{,}22 \\times \\frac{17}{9}$$",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$0{,}66 \\times \\frac{17}{27}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$0{,}11 \\times \\frac{35}{9}$$",
         },
       ],
     },

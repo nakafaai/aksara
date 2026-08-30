@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Das Fischereimanagement braucht verlässliche Daten, sodass Entscheidungen auf örtliche Bedingungen reagieren können.",
+        },
+        {
           isCorrect: false,
           label:
             "Das ist eine große Menge, doch Nachhaltigkeit lässt sich nicht allein an der Tonnage messen.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Das von der FAO und dem Ministerium unterstützte IFish-Programm fördert ökosystembasiertes Management, nationale Kompetenzstandards und die Beteiligung lokaler Gemeinschaften an der Binnenfischerei.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Das Fischereimanagement braucht verlässliche Daten, sodass Entscheidungen auf örtliche Bedingungen reagieren können.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Fisheries managers need reliable data, so decisions can respond to local conditions.",
+        },
+        {
           isCorrect: false,
           label:
             "That is a large volume, but production cannot be judged sustainably by tonnage alone.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The FAO and ministry-backed IFish programme promotes ecosystem-based management, national competency standards, and community participation in inland fisheries.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Fisheries managers need reliable data, so decisions can respond to local conditions.",
         },
         {
           isCorrect: false,
@@ -66,6 +66,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
+        },
+        {
           isCorrect: false,
           label:
             "Volumenya besar, tetapi keberlanjutan produksi tidak dapat dinilai dari jumlah tonase saja.",
@@ -74,11 +79,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Program IFish yang didukung FAO dan kementerian mendorong pengelolaan berbasis ekosistem, standar kompetensi nasional, dan partisipasi masyarakat dalam perikanan darat.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
         },
         {
           isCorrect: false,

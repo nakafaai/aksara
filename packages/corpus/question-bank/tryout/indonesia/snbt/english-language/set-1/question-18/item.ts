@@ -6,10 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Increase" },
+        { isCorrect: true, label: "Relieve" },
         { isCorrect: false, label: "Ignore" },
         { isCorrect: false, label: "Prevent" },
         { isCorrect: false, label: "Measure" },
-        { isCorrect: true, label: "Relieve" },
       ],
     },
   },

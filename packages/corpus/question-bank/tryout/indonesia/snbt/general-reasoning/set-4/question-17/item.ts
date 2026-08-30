@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$40\\text{ km}$$",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$40\\text{ km}$$",
         },
@@ -41,10 +45,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$40\\text{ km}$$",
         },
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,

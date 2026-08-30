@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
+        },
+        {
           isCorrect: false,
           label: "Who invented the first electronic computer?",
         },
@@ -20,11 +25,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Why should all workers avoid digital tools?",
-        },
-        {
-          isCorrect: true,
-          label:
-            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
         },
       ],
     },

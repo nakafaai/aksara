@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$1, 2, 3$$",
-        },
-        {
           isCorrect: false,
           label: "$$1 \\text{ und } 3$$",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "alle",
         },
+        {
+          isCorrect: true,
+          label: "$$1, 2, 3$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$1, 2, 3$$",
-        },
         {
           isCorrect: false,
           label: "$$1 \\text{ and } 3$$",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "all",
         },
+        {
+          isCorrect: true,
+          label: "$$1, 2, 3$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$1, 2, 3$$",
-        },
         {
           isCorrect: false,
           label: "$$1 \\text{ dan } 3$$",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "semua",
+        },
+        {
+          isCorrect: true,
+          label: "$$1, 2, 3$$",
         },
       ],
     },

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Berani mengambil risiko",
-        },
-        {
           isCorrect: false,
           label: "Mengutamakan kenyamanan kerja",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Sosok yang rapi",
+        },
+        {
+          isCorrect: true,
+          label: "Berani mengambil risiko",
         },
         {
           isCorrect: false,

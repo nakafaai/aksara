@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "eng.",
         },
         {
-          isCorrect: true,
-          label: "hoch.",
-        },
-        {
           isCorrect: false,
           label: "begrenzt.",
         },
         {
           isCorrect: false,
           label: "klein.",
+        },
+        {
+          isCorrect: true,
+          label: "hoch.",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "narrow.",
         },
         {
-          isCorrect: true,
-          label: "high.",
-        },
-        {
           isCorrect: false,
           label: "limited.",
         },
         {
           isCorrect: false,
           label: "small.",
+        },
+        {
+          isCorrect: true,
+          label: "high.",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "sempit.",
         },
         {
-          isCorrect: true,
-          label: "tinggi.",
-        },
-        {
           isCorrect: false,
           label: "terbatas.",
         },
         {
           isCorrect: false,
           label: "kecil.",
+        },
+        {
+          isCorrect: true,
+          label: "tinggi.",
         },
         {
           isCorrect: false,

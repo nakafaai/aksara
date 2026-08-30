@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
-        },
-        {
           isCorrect: false,
           label: "$$2x^2 + 8x - 6$$",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
-        },
-        {
           isCorrect: false,
           label: "$$2x^2 + 8x - 6$$",
         },
@@ -49,6 +45,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
-        },
-        {
           isCorrect: false,
           label: "$$2x^2 + 8x - 6$$",
         },
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },

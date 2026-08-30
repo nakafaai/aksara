@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$1$$ Ball und $$1$$ Barbie-Puppe",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ Barbie-Puppe und $$1$$ Murmel",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ Teddybär und $$1$$ Ball",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ Barbie-Puppe und $$1$$ Murmel",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$1$$ ball and $$1$$ Barbie doll",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ Barbie doll and $$1$$ marble",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ teddy bear and $$1$$ ball",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ Barbie doll and $$1$$ marble",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$1$$ bola dan $$1$$ boneka Barbie",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ boneka Barbie dan $$1$$ kelereng",
-        },
-        {
           isCorrect: true,
           label: "$$1$$ boneka beruang dan $$1$$ bola",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ boneka Barbie dan $$1$$ kelereng",
         },
       ],
     },

@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Nur Schulgebäude benötigen eine Verringerung des Katastrophenrisikos, weil andere Infrastruktur bereits sicher ist.",
         },
         {
+          isCorrect: true,
+          label:
+            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
+        },
+        {
           isCorrect: false,
           label:
             "Frühwarnsysteme können risikobewusste Planung und die Durchsetzung von Vorschriften bei Bauvorhaben ersetzen.",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Katastrophenrisiken müssen erst nach Abschluss einer Entwicklungsinvestition berücksichtigt werden.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
         },
         {
           isCorrect: false,
@@ -41,6 +41,11 @@ const item: QuestionItem = {
             "Only school buildings need disaster-risk reduction because other infrastructure is already safe.",
         },
         {
+          isCorrect: true,
+          label:
+            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
+        },
+        {
           isCorrect: false,
           label:
             "Early-warning systems can replace risk-aware planning and enforcement in development projects.",
@@ -49,11 +54,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Disaster risks need to be considered only after a development investment has been completed.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
         },
         {
           isCorrect: false,
@@ -71,6 +71,11 @@ const item: QuestionItem = {
             "Hanya bangunan sekolah yang memerlukan pengurangan risiko bencana karena infrastruktur lain sudah aman.",
         },
         {
+          isCorrect: true,
+          label:
+            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
+        },
+        {
           isCorrect: false,
           label:
             "Sistem peringatan dini dapat menggantikan perencanaan berbasis risiko dan penegakan aturan dalam pembangunan.",
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Risiko bencana baru perlu diperhitungkan setelah investasi pembangunan selesai dijalankan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
         },
         {
           isCorrect: false,

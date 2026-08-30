@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$P < Q$$",
         },
         {
-          isCorrect: true,
-          label: "$$P = Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$PQ = 1$$",
         },
         {
           isCorrect: false,
           label: "Kann nicht bestimmt werden",
+        },
+        {
+          isCorrect: true,
+          label: "$$P = Q$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$P < Q$$",
         },
         {
-          isCorrect: true,
-          label: "$$P = Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$PQ = 1$$",
         },
         {
           isCorrect: false,
           label: "Cannot be determined",
+        },
+        {
+          isCorrect: true,
+          label: "$$P = Q$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$P < Q$$",
         },
         {
-          isCorrect: true,
-          label: "$$P = Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$PQ = 1$$",
         },
         {
           isCorrect: false,
           label: "Tidak dapat ditentukan",
+        },
+        {
+          isCorrect: true,
+          label: "$$P = Q$$",
         },
       ],
     },

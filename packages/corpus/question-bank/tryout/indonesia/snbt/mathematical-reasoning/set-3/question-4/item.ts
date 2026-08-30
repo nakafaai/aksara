@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$9 \\text{ cm}$$",
+        },
+        {
           isCorrect: false,
           label: "$$6 \\text{ cm}$$",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$8 \\text{ cm}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$9 \\text{ cm}$$",
+        },
+        {
           isCorrect: false,
           label: "$$6 \\text{ cm}$$",
         },
@@ -41,10 +45,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$8 \\text{ cm}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$9 \\text{ cm}$$",
+        },
+        {
           isCorrect: false,
           label: "$$6 \\text{ cm}$$",
         },
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$8 \\text{ cm}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$9 \\text{ cm}$$",
         },
         {
           isCorrect: false,

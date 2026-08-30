@@ -16,13 +16,13 @@ const item: QuestionItem = {
             "Colonization from a higher- to a lower-pathogen region was more frequent.",
         },
         {
-          isCorrect: false,
-          label: "MHC-I genes are involved in pathogen recognition.",
-        },
-        {
           isCorrect: true,
           label:
             "An individual bird immediately loses immune genes when it migrates.",
+        },
+        {
+          isCorrect: false,
+          label: "MHC-I genes are involved in pathogen recognition.",
         },
         {
           isCorrect: false,

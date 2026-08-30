@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$7$$ Tage",
         },
         {
+          isCorrect: true,
+          label: "$$10$$ Tage",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ Tage",
         },
         {
           isCorrect: false,
           label: "$$9$$ Tage",
-        },
-        {
-          isCorrect: true,
-          label: "$$10$$ Tage",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$7$$ days",
         },
         {
+          isCorrect: true,
+          label: "$$10$$ days",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ days",
         },
         {
           isCorrect: false,
           label: "$$9$$ days",
-        },
-        {
-          isCorrect: true,
-          label: "$$10$$ days",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$7$$ hari",
         },
         {
+          isCorrect: true,
+          label: "$$10$$ hari",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ hari",
         },
         {
           isCorrect: false,
           label: "$$9$$ hari",
-        },
-        {
-          isCorrect: true,
-          label: "$$10$$ hari",
         },
         {
           isCorrect: false,

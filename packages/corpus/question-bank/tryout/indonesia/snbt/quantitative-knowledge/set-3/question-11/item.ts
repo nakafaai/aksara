@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
         },
         {
           isCorrect: false,
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
         },
@@ -45,6 +41,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
         },
         {
           isCorrect: false,
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{5} > \\frac{2}{9}$$",
         },
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{3}{5} > \\frac{5}{6}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3}{7} > \\frac{1}{3}$$",
         },
         {
           isCorrect: false,

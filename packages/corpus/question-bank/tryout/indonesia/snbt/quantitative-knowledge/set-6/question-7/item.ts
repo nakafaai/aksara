@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{5}{3} \\text{ und } -1$$",
+        },
+        {
           isCorrect: false,
           label: "$$5 \\text{ und } -3$$",
         },
         {
           isCorrect: false,
           label: "$$-5 \\text{ und } 3$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{5}{3} \\text{ und } -1$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{5}{3} \\text{ and } -1$$",
+        },
+        {
           isCorrect: false,
           label: "$$5 \\text{ and } -3$$",
         },
         {
           isCorrect: false,
           label: "$$-5 \\text{ and } 3$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{5}{3} \\text{ and } -1$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{5}{3} \\text{ dan } -1$$",
+        },
+        {
           isCorrect: false,
           label: "$$5 \\text{ dan } -3$$",
         },
         {
           isCorrect: false,
           label: "$$-5 \\text{ dan } 3$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{5}{3} \\text{ dan } -1$$",
         },
         {
           isCorrect: false,

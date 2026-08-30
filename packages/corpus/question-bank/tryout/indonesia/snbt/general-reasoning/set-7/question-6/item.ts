@@ -15,13 +15,13 @@ const item: QuestionItem = {
             "Sie ist weniger langlebig, aber teurer als die Terrassenlampe.",
         },
         {
+          isCorrect: false,
+          label: "Sie ist langlebiger, aber günstiger als die Terrassenlampe.",
+        },
+        {
           isCorrect: true,
           label:
             "Sie ist weniger langlebig und günstiger als die Terrassenlampe.",
-        },
-        {
-          isCorrect: false,
-          label: "Sie ist langlebiger, aber günstiger als die Terrassenlampe.",
         },
         {
           isCorrect: false,
@@ -42,12 +42,12 @@ const item: QuestionItem = {
           label: "It is less durable but more expensive than the terrace lamp.",
         },
         {
-          isCorrect: true,
-          label: "It is less durable and less expensive than the terrace lamp.",
-        },
-        {
           isCorrect: false,
           label: "It is more durable but less expensive than the terrace lamp.",
+        },
+        {
+          isCorrect: true,
+          label: "It is less durable and less expensive than the terrace lamp.",
         },
         {
           isCorrect: false,
@@ -70,14 +70,14 @@ const item: QuestionItem = {
             "Lampu itu kurang tahan lama, tetapi lebih mahal daripada lampu teras.",
         },
         {
-          isCorrect: true,
-          label:
-            "Lampu itu kurang tahan lama dan lebih murah daripada lampu teras.",
-        },
-        {
           isCorrect: false,
           label:
             "Lampu itu lebih tahan lama, tetapi lebih murah daripada lampu teras.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Lampu itu kurang tahan lama dan lebih murah daripada lampu teras.",
         },
         {
           isCorrect: false,

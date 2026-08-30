@@ -18,14 +18,14 @@ const item: QuestionItem = {
           label: "Mehrere Vertriebswege bleiben gestört",
         },
         {
-          isCorrect: false,
-          label:
-            "Die Eierproduktion sinkt, während die Nachfrage weiter steigt",
-        },
-        {
           isCorrect: true,
           label:
             "Produktion und Auslieferung steigen so weit, dass die zusätzliche Nachfrage gedeckt wird",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Eierproduktion sinkt, während die Nachfrage weiter steigt",
         },
       ],
     },
@@ -45,13 +45,13 @@ const item: QuestionItem = {
           label: "Several distribution routes remain disrupted",
         },
         {
-          isCorrect: false,
-          label: "Egg production falls while demand continues to rise",
-        },
-        {
           isCorrect: true,
           label:
             "Egg output and deliveries increase enough to meet the extra demand",
+        },
+        {
+          isCorrect: false,
+          label: "Egg production falls while demand continues to rise",
         },
       ],
     },
@@ -71,13 +71,13 @@ const item: QuestionItem = {
           label: "Beberapa jalur distribusi masih tersendat",
         },
         {
-          isCorrect: false,
-          label: "Produksi telur turun sementara permintaan terus meningkat",
-        },
-        {
           isCorrect: true,
           label:
             "Produksi dan pengiriman telur meningkat hingga cukup memenuhi tambahan permintaan",
+        },
+        {
+          isCorrect: false,
+          label: "Produksi telur turun sementara permintaan terus meningkat",
         },
       ],
     },

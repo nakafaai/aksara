@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Kaninchen",
         },
         {
-          isCorrect: true,
-          label: "Lamm",
-        },
-        {
           isCorrect: false,
           label: "Ente",
+        },
+        {
+          isCorrect: true,
+          label: "Lamm",
         },
       ],
     },
@@ -33,8 +33,8 @@ const item: QuestionItem = {
         { isCorrect: false, label: "Chicken" },
         { isCorrect: false, label: "Beef" },
         { isCorrect: false, label: "Rabbit" },
-        { isCorrect: true, label: "Lamb" },
         { isCorrect: false, label: "Duck" },
+        { isCorrect: true, label: "Lamb" },
       ],
     },
     id: {
@@ -43,8 +43,8 @@ const item: QuestionItem = {
         { isCorrect: false, label: "Ayam" },
         { isCorrect: false, label: "Sapi" },
         { isCorrect: false, label: "Kelinci" },
-        { isCorrect: true, label: "Domba" },
         { isCorrect: false, label: "Bebek" },
+        { isCorrect: true, label: "Domba" },
       ],
     },
   },

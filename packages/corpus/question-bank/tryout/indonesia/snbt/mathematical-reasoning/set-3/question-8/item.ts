@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$180$$ und $$20$$",
-        },
-        {
           isCorrect: false,
           label: "$$180$$ und $$10$$",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$160$$ und $$25$$",
         },
+        {
+          isCorrect: true,
+          label: "$$180$$ und $$20$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$180$$ and $$20$$",
-        },
         {
           isCorrect: false,
           label: "$$180$$ and $$10$$",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$160$$ and $$25$$",
         },
+        {
+          isCorrect: true,
+          label: "$$180$$ and $$20$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$180$$ dan $$20$$",
-        },
         {
           isCorrect: false,
           label: "$$180$$ dan $$10$$",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$160$$ dan $$25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$180$$ dan $$20$$",
         },
       ],
     },

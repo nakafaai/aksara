@@ -3,74 +3,82 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "measurement",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Der Umfang einer ebenen Figur wird mit $4$ multipliziert.",
+          isCorrect: false,
+          label: "21",
         },
         {
-          correctCategoryOrder: 1,
-          label:
-            "Der Flächeninhalt einer ebenen Figur wird mit $4^2$ multipliziert.",
+          isCorrect: false,
+          label: "24",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Das Volumen eines Körpers wird mit $4^3$ multipliziert.",
+          isCorrect: true,
+          label: "27",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Die Oberfläche eines Körpers wird mit $4^3$ multipliziert.",
+          isCorrect: false,
+          label: "30",
+        },
+        {
+          isCorrect: false,
+          label: "33",
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "A plane figure's perimeter is multiplied by $4$.",
+          isCorrect: false,
+          label: "21",
         },
         {
-          correctCategoryOrder: 1,
-          label: "A plane figure's area is multiplied by $4^2$.",
+          isCorrect: false,
+          label: "24",
         },
         {
-          correctCategoryOrder: 1,
-          label: "A solid's volume is multiplied by $4^3$.",
+          isCorrect: true,
+          label: "27",
         },
         {
-          correctCategoryOrder: 2,
-          label: "A solid's surface area is multiplied by $4^3$.",
+          isCorrect: false,
+          label: "30",
+        },
+        {
+          isCorrect: false,
+          label: "33",
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Keliling bangun datar dikalikan $4$.",
+          isCorrect: false,
+          label: "21",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Luas bangun datar dikalikan $4^2$.",
+          isCorrect: false,
+          label: "24",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Volume bangun ruang dikalikan $4^3$.",
+          isCorrect: true,
+          label: "27",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Luas permukaan bangun ruang dikalikan $4^3$.",
+          isCorrect: false,
+          label: "30",
+        },
+        {
+          isCorrect: false,
+          label: "33",
         },
       ],
     },

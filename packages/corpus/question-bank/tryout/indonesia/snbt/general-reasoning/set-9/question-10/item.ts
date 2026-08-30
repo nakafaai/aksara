@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist mit Sicherheit wahr",
-        },
-        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist möglicherweise wahr",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist für die Angaben irrelevant",
         },
         {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist mit Sicherheit wahr",
+        },
+        {
           isCorrect: false,
           label:
             "Die Schlussfolgerung lässt sich aus den Angaben nicht bewerten",
@@ -31,10 +31,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "The conclusion is definitely true",
-        },
         {
           isCorrect: false,
           label: "The conclusion is possibly true",
@@ -48,6 +44,10 @@ const item: QuestionItem = {
           label: "The conclusion is irrelevant to the information",
         },
         {
+          isCorrect: true,
+          label: "The conclusion is definitely true",
+        },
+        {
           isCorrect: false,
           label: "The conclusion cannot be evaluated from the information",
         },
@@ -56,10 +56,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Simpulan tersebut pasti benar",
-        },
         {
           isCorrect: false,
           label: "Simpulan tersebut mungkin benar",
@@ -71,6 +67,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tersebut tidak relevan dengan informasi",
+        },
+        {
+          isCorrect: true,
+          label: "Simpulan tersebut pasti benar",
         },
         {
           isCorrect: false,

@@ -2,88 +2,78 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "measurement",
+    cognitiveLevel: "reasoning",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "92 m",
+          correctCategoryOrder: 1,
+          label: "Der Punkt $(0,0)$ erfüllt alle Nebenbedingungen.",
         },
         {
-          isCorrect: false,
-          label: "96 m",
+          correctCategoryOrder: 1,
+          label: "Der Punkt $(2,2)$ erfüllt alle Nebenbedingungen.",
         },
         {
-          isCorrect: true,
-          label: "100 m",
+          correctCategoryOrder: 2,
+          label: "Der Punkt $(10,0)$ erfüllt alle Nebenbedingungen.",
         },
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
+          correctCategoryOrder: 2,
+          label: "Der Punkt $(0,12)$ erfüllt alle Nebenbedingungen.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "92 m",
+          correctCategoryOrder: 1,
+          label: "The point $(0,0)$ satisfies every constraint.",
         },
         {
-          isCorrect: false,
-          label: "96 m",
+          correctCategoryOrder: 1,
+          label: "The point $(2,2)$ satisfies every constraint.",
         },
         {
-          isCorrect: true,
-          label: "100 m",
+          correctCategoryOrder: 2,
+          label: "The point $(10,0)$ satisfies every constraint.",
         },
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
+          correctCategoryOrder: 2,
+          label: "The point $(0,12)$ satisfies every constraint.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "92 m",
+          correctCategoryOrder: 1,
+          label: "Titik $(0,0)$ memenuhi semua kendala.",
         },
         {
-          isCorrect: false,
-          label: "96 m",
+          correctCategoryOrder: 1,
+          label: "Titik $(2,2)$ memenuhi semua kendala.",
         },
         {
-          isCorrect: true,
-          label: "100 m",
+          correctCategoryOrder: 2,
+          label: "Titik $(10,0)$ memenuhi semua kendala.",
         },
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
+          correctCategoryOrder: 2,
+          label: "Titik $(0,12)$ memenuhi semua kendala.",
         },
       ],
     },
   },
-  stimulusKey: "park-and-pond",
 };
 
 export default item;

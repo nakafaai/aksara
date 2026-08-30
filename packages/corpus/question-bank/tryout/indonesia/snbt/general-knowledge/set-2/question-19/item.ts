@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "mehr Beratungspersonal einsetzen, ohne Management oder Umweltschutz zu verändern.",
         },
         {
-          isCorrect: true,
-          label:
-            "menschliche Fähigkeiten, wissenschaftlich begründetes Management, Lebensraumschutz und passende Aquakulturtechnik gemeinsam stärken.",
-        },
-        {
           isCorrect: false,
           label:
             "sich ausschließlich auf die Wasserqualität dicht besiedelter Küstengebiete konzentrieren.",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Fanggeräte und Subventionen ausweiten, damit die Fangmenge kurzfristig steigt.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "menschliche Fähigkeiten, wissenschaftlich begründetes Management, Lebensraumschutz und passende Aquakulturtechnik gemeinsam stärken.",
         },
         {
           isCorrect: false,
@@ -41,11 +41,6 @@ const item: QuestionItem = {
             "increase the number of extension workers without changing management or environmental safeguards.",
         },
         {
-          isCorrect: true,
-          label:
-            "strengthen human capacity, science-based management, habitat protection, and suitable aquaculture technology.",
-        },
-        {
           isCorrect: false,
           label:
             "focus only on water quality in densely populated coastal areas.",
@@ -54,6 +49,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "add fishing gear and subsidies so that short-term catch volume rises.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "strengthen human capacity, science-based management, habitat protection, and suitable aquaculture technology.",
         },
         {
           isCorrect: false,
@@ -71,11 +71,6 @@ const item: QuestionItem = {
             "menambah jumlah penyuluh tanpa memperbaiki pengelolaan atau perlindungan lingkungan.",
         },
         {
-          isCorrect: true,
-          label:
-            "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
-        },
-        {
           isCorrect: false,
           label:
             "hanya memperbaiki kualitas air di kawasan pesisir yang padat penduduk.",
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
         },
         {
           isCorrect: false,

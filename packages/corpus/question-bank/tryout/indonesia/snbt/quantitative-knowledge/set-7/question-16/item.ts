@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$160{.}000$$ Rupiah",
         },
         {
-          isCorrect: false,
-          label: "$$200{.}000$$ Rupiah",
-        },
-        {
           isCorrect: true,
           label: "$$240{.}000$$ Rupiah",
+        },
+        {
+          isCorrect: false,
+          label: "$$200{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$160{,}000$$ rupiah",
         },
         {
-          isCorrect: false,
-          label: "$$200{,}000$$ rupiah",
-        },
-        {
           isCorrect: true,
           label: "$$240{,}000$$ rupiah",
+        },
+        {
+          isCorrect: false,
+          label: "$$200{,}000$$ rupiah",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$160{.}000$$ rupiah",
         },
         {
-          isCorrect: false,
-          label: "$$200{.}000$$ rupiah",
-        },
-        {
           isCorrect: true,
           label: "$$240{.}000$$ rupiah",
+        },
+        {
+          isCorrect: false,
+          label: "$$200{.}000$$ rupiah",
         },
         {
           isCorrect: false,

@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Jede traditionelle Tracht muss von einem Familienmitglied hergestellt werden",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
-        },
-        {
           isCorrect: false,
           label:
             "Traditionelle Trachten werden nur bei öffentlichen Feiern getragen",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
         },
         {
           isCorrect: false,
@@ -40,13 +40,13 @@ const item: QuestionItem = {
           label: "Every traditional costume must be made by a relative",
         },
         {
+          isCorrect: false,
+          label: "Traditional costumes are worn only at public celebrations",
+        },
+        {
           isCorrect: true,
           label:
             "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
-        },
-        {
-          isCorrect: false,
-          label: "Traditional costumes are worn only at public celebrations",
         },
         {
           isCorrect: false,
@@ -68,13 +68,13 @@ const item: QuestionItem = {
           label: "Setiap busana tradisional harus dibuat oleh anggota keluarga",
         },
         {
+          isCorrect: false,
+          label: "Busana tradisional hanya dikenakan dalam perayaan publik",
+        },
+        {
           isCorrect: true,
           label:
             "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
-        },
-        {
-          isCorrect: false,
-          label: "Busana tradisional hanya dikenakan dalam perayaan publik",
         },
         {
           isCorrect: false,

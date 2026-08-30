@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Wissenschaft",
         },
         {
-          isCorrect: true,
-          label: "Wörterbuch",
-        },
-        {
           isCorrect: false,
           label: "Religion",
+        },
+        {
+          isCorrect: true,
+          label: "Wörterbuch",
         },
         {
           isCorrect: false,
@@ -31,8 +31,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Science" },
-        { isCorrect: true, label: "Dictionary" },
         { isCorrect: false, label: "Religion" },
+        { isCorrect: true, label: "Dictionary" },
         { isCorrect: false, label: "Literature" },
         { isCorrect: false, label: "History" },
       ],
@@ -41,8 +41,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Sains" },
-        { isCorrect: true, label: "Kamus" },
         { isCorrect: false, label: "Agama" },
+        { isCorrect: true, label: "Kamus" },
         { isCorrect: false, label: "Sastra" },
         { isCorrect: false, label: "Sejarah" },
       ],

@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Open layouts may reduce visual and acoustic privacy.",
         },
         {
+          isCorrect: true,
+          label: "Removing walls always increases face-to-face collaboration.",
+        },
+        {
           isCorrect: false,
           label:
             "Private offices received the highest satisfaction ratings in one study.",
-        },
-        {
-          isCorrect: true,
-          label: "Removing walls always increases face-to-face collaboration.",
         },
         {
           isCorrect: false,

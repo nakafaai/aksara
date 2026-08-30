@@ -2,83 +2,71 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$\\sqrt{3^2}=3$, da $3>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$3^{-1}=-3$",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$\\sqrt{3^2}=3$ because $3>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$3^{-1}=-3$",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$\\sqrt{3^2}=3$ untuk $3>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(-3)^2=3^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$3^{-1}=-3$",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
         },
       ],
     },

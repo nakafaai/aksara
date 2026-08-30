@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Teilnehmende berichten, dass die Mentorinnen und Mentoren hilfreiches Karrierefeedback geben.",
         },
         {
+          isCorrect: true,
+          label:
+            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Zahl der Anmeldungen zum Mentoringprogramm ist im Laufe des Jahres gestiegen.",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Eine unabhängige Prüfung bestätigt die angegebene Verlängerungsquote.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
         },
         {
           isCorrect: false,
@@ -41,6 +41,11 @@ const item: QuestionItem = {
             "Participants report that mentors provide useful career feedback.",
         },
         {
+          isCorrect: true,
+          label:
+            "Contracts renew automatically unless employees submit an opt-out form.",
+        },
+        {
           isCorrect: false,
           label:
             "Enrollment in the mentoring program increased during the year.",
@@ -49,11 +54,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "An independent audit confirms the reported contract-renewal rate.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Contracts renew automatically unless employees submit an opt-out form.",
         },
         {
           isCorrect: false,
@@ -71,6 +71,11 @@ const item: QuestionItem = {
             "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
         },
         {
+          isCorrect: true,
+          label:
+            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
+        },
+        {
           isCorrect: false,
           label:
             "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
         },
         {
           isCorrect: false,

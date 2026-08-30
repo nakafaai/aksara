@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Identitas ayah biologisnya",
+        },
+        {
           isCorrect: false,
           label: "Nama ibu kandungnya",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Tahun kelahirannya",
-        },
-        {
-          isCorrect: true,
-          label: "Identitas ayah biologisnya",
         },
         {
           isCorrect: false,

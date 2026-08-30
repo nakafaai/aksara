@@ -10,11 +10,6 @@ const item: QuestionItem = {
           label: "Jede tropische Fischpopulation wandert polwärts",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben",
-        },
-        {
           isCorrect: false,
           label:
             "Die Beobachtung eines einzelnen polwärts wandernden Fisches reicht als Beweis für die Erwärmung des Ozeans aus",
@@ -23,6 +18,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Der Klimawandel beeinflusst die Produktivität der Fischerei in jeder Region gleich",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Erwärmung hat die Verbreitungsgebiete vieler Meeresarten polwärts verschoben",
         },
         {
           isCorrect: false,
@@ -39,11 +39,6 @@ const item: QuestionItem = {
           label: "Every tropical fish population moves toward the poles",
         },
         {
-          isCorrect: true,
-          label:
-            "Warming has shifted the distributions of many marine species toward the poles",
-        },
-        {
           isCorrect: false,
           label:
             "Observing one fish move toward a pole is enough to prove ocean warming",
@@ -52,6 +47,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Climate change affects fisheries productivity equally in every region",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Warming has shifted the distributions of many marine species toward the poles",
         },
         {
           isCorrect: false,
@@ -68,11 +68,6 @@ const item: QuestionItem = {
           label: "Setiap populasi ikan tropis berpindah ke arah kutub",
         },
         {
-          isCorrect: true,
-          label:
-            "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
-        },
-        {
           isCorrect: false,
           label:
             "Mengamati satu ikan bergerak ke arah kutub sudah cukup untuk membuktikan pemanasan laut",
@@ -81,6 +76,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Perubahan iklim memengaruhi produktivitas perikanan secara sama di setiap wilayah",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pemanasan telah menggeser persebaran banyak spesies laut ke arah kutub",
         },
         {
           isCorrect: false,

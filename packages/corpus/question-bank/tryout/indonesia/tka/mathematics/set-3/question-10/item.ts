@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "functions",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "12 cm",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "16 cm",
+        },
+        {
+          isCorrect: false,
+          label: "24 cm",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "20 cm",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "28 cm",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "12 cm",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "16 cm",
+        },
+        {
+          isCorrect: false,
+          label: "24 cm",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "20 cm",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "28 cm",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "12 cm",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "16 cm",
+        },
+        {
+          isCorrect: false,
+          label: "24 cm",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "20 cm",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "28 cm",
         },
       ],
     },

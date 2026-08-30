@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Der Erzeugerpreis für Rohreis steigt und fällt in jedem der vier Monate",
         },
         {
-          isCorrect: false,
-          label:
-            "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
-        },
-        {
           isCorrect: true,
           label:
             "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "Grain prices at the farmer level always fluctuate (up and down) during the last four months",
         },
         {
-          isCorrect: false,
-          label:
-            "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
-        },
-        {
           isCorrect: true,
           label:
             "The government purchase price for GKP remained unchanged from January to April",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "Harga gabah di tingkat petani selalu mengalami naik turun (fluktuasi) selama empat bulan terakhir",
         },
         {
-          isCorrect: false,
-          label:
-            "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
-        },
-        {
           isCorrect: true,
           label:
             "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
         },
         {
           isCorrect: false,

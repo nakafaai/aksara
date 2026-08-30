@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "bo ckeeck? bluwwppz",
         },
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "bo ckeeck? bluwwppz",
         },
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "bo ckeeck? bluwwppz",
         },
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "ckeeck? mwbluwpz bo",
         },
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,

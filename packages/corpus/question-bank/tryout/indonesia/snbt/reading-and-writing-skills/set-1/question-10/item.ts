@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
-        },
-        {
           isCorrect: false,
           label: "Welches Land hat das Sendai-Rahmenwerk zuerst angenommen?",
         },
@@ -23,6 +19,10 @@ const item: QuestionItem = {
           label: "Wann begann die Umweltdegradation in Indonesien?",
         },
         {
+          isCorrect: true,
+          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
+        },
+        {
           isCorrect: false,
           label:
             "Welche Methode zur Wiederherstellung von Ökosystemen ist am wirksamsten?",
@@ -32,11 +32,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Which three drivers of risk does the Sendai Framework recognize?",
-        },
         {
           isCorrect: false,
           label: "Which country first adopted the Sendai Framework?",
@@ -50,6 +45,11 @@ const item: QuestionItem = {
           label: "When did environmental degradation begin in Indonesia?",
         },
         {
+          isCorrect: true,
+          label:
+            "Which three drivers of risk does the Sendai Framework recognize?",
+        },
+        {
           isCorrect: false,
           label: "Which ecosystem restoration method is the most effective?",
         },
@@ -58,10 +58,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
-        },
         {
           isCorrect: false,
           label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
@@ -73,6 +69,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
+        },
+        {
+          isCorrect: true,
+          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
         },
         {
           isCorrect: false,

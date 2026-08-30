@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "SUSAHNYA",
         },
         {
+          isCorrect: true,
+          label: "UTBKSERU",
+        },
+        {
           isCorrect: false,
           label: "MENANGIS",
         },
@@ -21,30 +25,26 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "BERSEDIH",
         },
-        {
-          isCorrect: true,
-          label: "UTBKSERU",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "SUSAHNYA" },
+        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
         { isCorrect: false, label: "BERSEDIH" },
-        { isCorrect: true, label: "UTBKSERU" },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "SUSAHNYA" },
+        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
         { isCorrect: false, label: "BERSEDIH" },
-        { isCorrect: true, label: "UTBKSERU" },
       ],
     },
   },

@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
         },
         {
-          isCorrect: true,
-          label:
-            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
-        },
-        {
           isCorrect: false,
           label:
             "Die wöchentlichen Verkaufszahlen der Bergo-Tücher bilden eine arithmetische Folge.",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Von jedem Kopftuchmodell werden in jeder Woche mehr Stück als in der Vorwoche verkauft.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
         },
         {
           isCorrect: false,
@@ -41,11 +41,6 @@ const item: QuestionItem = {
             "Pashmina headscarf sales are lower than square headscarf sales in every week.",
         },
         {
-          isCorrect: true,
-          label:
-            "Bergo headscarf sales are higher than square headscarf sales in every week.",
-        },
-        {
           isCorrect: false,
           label:
             "The weekly number of bergo headscarves sold forms an arithmetic sequence.",
@@ -54,6 +49,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sales of each headscarf style are higher than in the preceding week.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Bergo headscarf sales are higher than square headscarf sales in every week.",
         },
         {
           isCorrect: false,
@@ -71,11 +71,6 @@ const item: QuestionItem = {
             "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
-          isCorrect: true,
-          label:
-            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
-        },
-        {
           isCorrect: false,
           label:
             "Banyak penjualan kerudung jenis bergo mengikuti pola barisan aritmetika.",
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Tingkat penjualan jenis kerudung tiap minggu selalu lebih tinggi dibandingkan minggu sebelumnya.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
           isCorrect: false,

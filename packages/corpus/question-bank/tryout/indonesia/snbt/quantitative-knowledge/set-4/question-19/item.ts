@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$2{,}5$$ Liter",
         },
         {
+          isCorrect: true,
+          label: "$$12{,}5$$ Liter",
+        },
+        {
           isCorrect: false,
           label: "$$5$$ Liter",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$10$$ Liter",
         },
-        {
-          isCorrect: true,
-          label: "$$12{,}5$$ Liter",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2.5$$ liters",
+        },
+        {
+          isCorrect: true,
+          label: "$$12.5$$ liters",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$10$$ liters",
         },
-        {
-          isCorrect: true,
-          label: "$$12.5$$ liters",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2{,}5$$ liter",
+        },
+        {
+          isCorrect: true,
+          label: "$$12{,}5$$ liter",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$10$$ liter",
-        },
-        {
-          isCorrect: true,
-          label: "$$12{,}5$$ liter",
         },
       ],
     },

@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "sorgfältige Behandlung.",
         },
         {
-          isCorrect: false,
-          label: "laut singen.",
-        },
-        {
           isCorrect: true,
           label: "Vogelrufe.",
+        },
+        {
+          isCorrect: false,
+          label: "laut singen.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "careful treatment.",
         },
         {
-          isCorrect: false,
-          label: "singing loudly.",
-        },
-        {
           isCorrect: true,
           label: "bird calls.",
+        },
+        {
+          isCorrect: false,
+          label: "singing loudly.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "perawatan cermat.",
         },
         {
-          isCorrect: false,
-          label: "bernyanyi nyaring.",
-        },
-        {
           isCorrect: true,
           label: "kicauan burung.",
+        },
+        {
+          isCorrect: false,
+          label: "bernyanyi nyaring.",
         },
         {
           isCorrect: false,

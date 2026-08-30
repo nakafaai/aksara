@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Dito hat die vorausgesetzten Übungen nicht abgeschlossen",
+        },
+        {
           isCorrect: false,
           label: "Dito hat die vorausgesetzten Übungen abgeschlossen",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "Dito ist kein Lernender",
         },
         {
-          isCorrect: true,
-          label: "Dito hat die vorausgesetzten Übungen nicht abgeschlossen",
-        },
-        {
           isCorrect: false,
           label: "Dito hat einen Auswertungsbericht erhalten",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Dito did not complete the prerequisite exercises",
+        },
         {
           isCorrect: false,
           label: "Dito completed the prerequisite exercises",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "Dito is not a student",
         },
         {
-          isCorrect: true,
-          label: "Dito did not complete the prerequisite exercises",
-        },
-        {
           isCorrect: false,
           label: "Dito received an evaluation report",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Dito tidak menyelesaikan latihan prasyarat",
+        },
         {
           isCorrect: false,
           label: "Dito menyelesaikan latihan prasyarat",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Dito bukan seorang siswa",
-        },
-        {
-          isCorrect: true,
-          label: "Dito tidak menyelesaikan latihan prasyarat",
         },
         {
           isCorrect: false,

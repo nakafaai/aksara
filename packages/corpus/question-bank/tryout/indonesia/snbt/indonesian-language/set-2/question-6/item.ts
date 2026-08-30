@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "Komik dan novel",
         },
         {
-          isCorrect: true,
-          label: "Dongeng dan pengetahuan",
-        },
-        {
           isCorrect: false,
           label: "Cerita fiksi dan komik",
         },
         {
           isCorrect: false,
           label: "Dongeng dan penelitian",
+        },
+        {
+          isCorrect: true,
+          label: "Dongeng dan pengetahuan",
         },
         {
           isCorrect: false,

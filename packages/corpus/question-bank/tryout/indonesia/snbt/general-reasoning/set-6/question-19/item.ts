@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "Sowohl die höchsten Reisimporte als auch die höchste Reisbeschaffung treten 1999 auf.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die höchste Reisproduktion und die höchste Reisbeschaffung treten im selben Jahr auf.",
-        },
-        {
           isCorrect: false,
           label:
             "Die höchste Reisproduktion steht in derselben Zeile wie die niedrigste Reisbeschaffung.",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sowohl die niedrigsten Reisimporte als auch die niedrigste Reisbeschaffung treten 2004 auf.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die höchste Reisproduktion und die höchste Reisbeschaffung treten im selben Jahr auf.",
         },
       ],
     },
@@ -46,11 +46,6 @@ const item: QuestionItem = {
             "The highest rice imports and the highest rice procurement both occur in 1999.",
         },
         {
-          isCorrect: true,
-          label:
-            "The highest rice production and the highest rice procurement occur in the same year.",
-        },
-        {
           isCorrect: false,
           label:
             "The highest rice production occurs in the same row as the lowest rice procurement.",
@@ -59,6 +54,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The lowest rice imports and the lowest rice procurement both occur in 2004.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The highest rice production and the highest rice procurement occur in the same year.",
         },
       ],
     },
@@ -76,11 +76,6 @@ const item: QuestionItem = {
             "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada 1999.",
         },
         {
-          isCorrect: true,
-          label:
-            "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
-        },
-        {
           isCorrect: false,
           label:
             "Produksi beras tertinggi terjadi pada baris yang sama dengan pengadaan beras terendah.",
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada 2004.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
         },
       ],
     },

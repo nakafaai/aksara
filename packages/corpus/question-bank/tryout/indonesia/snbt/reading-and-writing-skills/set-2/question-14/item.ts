@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
-        },
-        {
           isCorrect: false,
           label: "*dienen* durch *dient* ersetzen.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "*Bezugsgrundlage* durch *Schätzung* ersetzen.",
         },
         {
+          isCorrect: true,
+          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
+        },
+        {
           isCorrect: false,
           label: "das Wort *den* vor *aktuellen* einfügen.",
         },
@@ -30,11 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "removing the word *Regarding* at the beginning of the sentence.",
-        },
         {
           isCorrect: false,
           label: "replacing *provide* with *provides*.",
@@ -48,6 +43,11 @@ const item: QuestionItem = {
           label: "replacing *benchmark* with *estimate*.",
         },
         {
+          isCorrect: true,
+          label:
+            "removing the word *Regarding* at the beginning of the sentence.",
+        },
+        {
           isCorrect: false,
           label: "adding the word *the* before *current*.",
         },
@@ -56,10 +56,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "menghilangkan kata *mengenai* pada awal kalimat.",
-        },
         {
           isCorrect: false,
           label: "mengganti *menyediakan* dengan *disediakan*.",
@@ -71,6 +67,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mengganti *tolok ukur* dengan *perkiraan*.",
+        },
+        {
+          isCorrect: true,
+          label: "menghilangkan kata *mengenai* pada awal kalimat.",
         },
         {
           isCorrect: false,

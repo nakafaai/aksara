@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Lukisan dinding erotis",
         },
         {
-          isCorrect: true,
-          label: "Perbudakan dan kerja paksa",
-        },
-        {
           isCorrect: false,
           label: "Kampanye pemilihan umum",
+        },
+        {
+          isCorrect: true,
+          label: "Perbudakan dan kerja paksa",
         },
       ],
     },

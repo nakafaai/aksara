@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$4 \\text{ und } 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$14 \\text{ und } 2$$",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$8 \\text{ und } 2$$",
         },
         {
-          isCorrect: true,
-          label: "$$4 \\text{ und } 2$$",
-        },
-        {
           isCorrect: false,
           label: "$$2 \\text{ und } 2$$",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$4 \\text{ and } 2$$",
+        },
         {
           isCorrect: false,
           label: "$$14 \\text{ and } 2$$",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$8 \\text{ and } 2$$",
         },
         {
-          isCorrect: true,
-          label: "$$4 \\text{ and } 2$$",
-        },
-        {
           isCorrect: false,
           label: "$$2 \\text{ and } 2$$",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$4 \\text{ dan } 2$$",
+        },
         {
           isCorrect: false,
           label: "$$14 \\text{ dan } 2$$",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$8 \\text{ dan } 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,

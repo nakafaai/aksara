@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "und.",
         },
         {
-          isCorrect: true,
-          label: "dass.",
-        },
-        {
           isCorrect: false,
           label: "wann.",
+        },
+        {
+          isCorrect: true,
+          label: "dass.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "and.",
         },
         {
-          isCorrect: true,
-          label: "that.",
-        },
-        {
           isCorrect: false,
           label: "when.",
+        },
+        {
+          isCorrect: true,
+          label: "that.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "dan.",
         },
         {
-          isCorrect: true,
-          label: "bahwa.",
-        },
-        {
           isCorrect: false,
           label: "ketika.",
+        },
+        {
+          isCorrect: true,
+          label: "bahwa.",
         },
         {
           isCorrect: false,

@@ -14,11 +14,6 @@ const item: QuestionItem = {
           label: "To persuade readers to replace medical care with yoga.",
         },
         {
-          isCorrect: true,
-          label:
-            "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
-        },
-        {
           isCorrect: false,
           label:
             "To compare the religious traditions behind different yoga styles.",
@@ -26,6 +21,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "To teach a complete sequence of advanced yoga poses.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
         },
       ],
     },

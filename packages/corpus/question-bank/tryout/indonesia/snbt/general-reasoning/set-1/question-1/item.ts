@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Die Nationale Mango-Innovationswoche fand am IP2TP Cukurgondang in Pasuruan, Ostjava, statt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Bäuerliche Betriebe in Pasuruan bauten jede Akzession der Cukurgondang-Sammlung an.",
-        },
-        {
           isCorrect: false,
           label:
             "Das Ministerium bezeichnete Cukurgondang als zweitgrößte Mangosammlung der Welt.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Bäuerliche Betriebe in Pasuruan bauten jede Akzession der Cukurgondang-Sammlung an.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "National Mango Innovation Week was held at IP2TP Cukurgondang in Pasuruan, East Java.",
         },
         {
-          isCorrect: true,
-          label:
-            "Community plantations in Pasuruan cultivated every accession in the Cukurgondang collection.",
-        },
-        {
           isCorrect: false,
           label:
             "The ministry described Cukurgondang as the world's second-largest mango collection.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Community plantations in Pasuruan cultivated every accession in the Cukurgondang collection.",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "Pekan Inovasi Mangga Nasional diselenggarakan di IP2TP Cukurgondang, Pasuruan, Jawa Timur.",
         },
         {
-          isCorrect: true,
-          label:
-            "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
-        },
-        {
           isCorrect: false,
           label:
             "Kementerian menyebut Cukurgondang sebagai kebun koleksi mangga terbesar kedua di dunia.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
         },
         {
           isCorrect: false,

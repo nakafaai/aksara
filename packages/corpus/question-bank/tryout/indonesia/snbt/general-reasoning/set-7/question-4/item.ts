@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Arins Arbeitssitzung läuft ohne Unterbrechung weiter.",
         },
         {
-          isCorrect: false,
-          label: "Arins Zugangsausweis bleibt während der Überprüfung aktiv.",
-        },
-        {
           isCorrect: true,
           label:
             "Arins Zugangsausweis wird bis zum Abschluss der Überprüfung gesperrt.",
+        },
+        {
+          isCorrect: false,
+          label: "Arins Zugangsausweis bleibt während der Überprüfung aktiv.",
         },
         {
           isCorrect: false,
@@ -36,12 +36,12 @@ const item: QuestionItem = {
           label: "Arin's session continues without interruption.",
         },
         {
-          isCorrect: false,
-          label: "Arin's access badge remains active during the review.",
-        },
-        {
           isCorrect: true,
           label: "Arin's access badge is suspended pending review.",
+        },
+        {
+          isCorrect: false,
+          label: "Arin's access badge remains active during the review.",
         },
         {
           isCorrect: false,
@@ -61,12 +61,12 @@ const item: QuestionItem = {
           label: "Sesi Arin berlanjut tanpa dihentikan.",
         },
         {
-          isCorrect: false,
-          label: "Kartu akses Arin tetap aktif selama peninjauan.",
-        },
-        {
           isCorrect: true,
           label: "Kartu akses Arin ditangguhkan sampai peninjauan selesai.",
+        },
+        {
+          isCorrect: false,
+          label: "Kartu akses Arin tetap aktif selama peninjauan.",
         },
         {
           isCorrect: false,

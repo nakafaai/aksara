@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "How Recreational Water Spreads Illness",
         },
         {
-          isCorrect: true,
-          label: "Swimming: Possible Benefits and Safety Considerations",
-        },
-        {
           isCorrect: false,
           label: "The Best Exercise for People with Arthritis",
+        },
+        {
+          isCorrect: true,
+          label: "Swimming: Possible Benefits and Safety Considerations",
         },
         {
           isCorrect: false,

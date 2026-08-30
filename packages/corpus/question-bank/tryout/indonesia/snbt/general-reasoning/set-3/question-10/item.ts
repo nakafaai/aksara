@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Der Gesamtproteingehalt von Pampelmuse und Jackfrucht ist höher als der Gesamtproteingehalt von Avocado und Ambarella.",
         },
         {
-          isCorrect: true,
-          label:
-            "Der Gesamtkalziumgehalt von Pampelmuse und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Jackfrucht hat bei jedem aufgeführten Nährstoff den höchsten Wert.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Der Gesamtkalziumgehalt von Pampelmuse und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
         },
       ],
     },
@@ -51,13 +51,13 @@ const item: QuestionItem = {
             "The total protein content of pomelo and jackfruit is higher than the total protein content of avocado and ambarella.",
         },
         {
+          isCorrect: false,
+          label: "Jackfruit has the highest value for every nutrient listed.",
+        },
+        {
           isCorrect: true,
           label:
             "The total calcium content of pomelo and avocado is lower than the total calcium content of ambarella and jackfruit.",
-        },
-        {
-          isCorrect: false,
-          label: "Jackfruit has the highest value for every nutrient listed.",
         },
       ],
     },
@@ -80,14 +80,14 @@ const item: QuestionItem = {
             "Jumlah kandungan protein jeruk bali dan nangka lebih tinggi dibandingkan jumlah kandungan protein alpukat dan kedondong.",
         },
         {
-          isCorrect: true,
-          label:
-            "Jumlah kandungan kalsium jeruk bali dan alpukat lebih rendah dibandingkan jumlah kandungan kalsium kedondong dan nangka.",
-        },
-        {
           isCorrect: false,
           label:
             "Nangka memiliki nilai tertinggi untuk setiap zat gizi yang tercantum.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jumlah kandungan kalsium jeruk bali dan alpukat lebih rendah dibandingkan jumlah kandungan kalsium kedondong dan nangka.",
         },
       ],
     },

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Practical and evidence-based",
+        },
+        {
           isCorrect: false,
           label: "Dismissive of all nutritional advice",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Alarmist about eating any sugar",
-        },
-        {
-          isCorrect: true,
-          label: "Practical and evidence-based",
         },
         {
           isCorrect: false,

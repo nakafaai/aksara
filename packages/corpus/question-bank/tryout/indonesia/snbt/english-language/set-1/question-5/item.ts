@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Every classroom activity should include a screen so that children become digitally fluent.",
         },
         {
-          isCorrect: true,
-          label:
-            "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
-        },
-        {
           isCorrect: false,
           label:
             "passive and interactive screen use are equally suitable in early childhood settings.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
         },
       ],
     },

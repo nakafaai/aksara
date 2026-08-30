@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "data-probability",
-    topic: "data",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$\\frac34$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
+          label: "$$\\frac53$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$\\frac54$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$\\frac34$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
+          label: "$$\\frac53$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$\\frac54$$",
         },
       ],
     },
@@ -62,28 +62,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$\\frac34$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
+          label: "$$\\frac53$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$\\frac54$$",
         },
       ],
     },
   },
-  stimulusKey: "study-time-survey",
 };
 
 export default item;

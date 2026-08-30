@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Letak geografis Indonesia yang strategis",
         },
         {
+          isCorrect: true,
+          label: "Banyak masyarakat Indonesia yang berusia produktif",
+        },
+        {
           isCorrect: false,
           label: "Keunggulan produk pertanian Indonesia",
         },
@@ -17,10 +21,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
-        },
-        {
-          isCorrect: true,
-          label: "Banyak masyarakat Indonesia yang berusia produktif",
         },
         {
           isCorrect: false,

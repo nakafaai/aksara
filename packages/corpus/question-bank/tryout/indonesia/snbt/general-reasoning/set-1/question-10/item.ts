@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$7\\text{ Minuten}$$",
         },
         {
-          isCorrect: true,
-          label: "$$8\\text{ Minuten}$$",
-        },
-        {
           isCorrect: false,
           label: "$$9\\text{ Minuten}$$",
         },
         {
           isCorrect: false,
           label: "$$10\\text{ Minuten}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$8\\text{ Minuten}$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$7\\text{ minutes}$$",
         },
         {
-          isCorrect: true,
-          label: "$$8\\text{ minutes}$$",
-        },
-        {
           isCorrect: false,
           label: "$$9\\text{ minutes}$$",
         },
         {
           isCorrect: false,
           label: "$$10\\text{ minutes}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$8\\text{ minutes}$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$7\\text{ menit}$$",
         },
         {
-          isCorrect: true,
-          label: "$$8\\text{ menit}$$",
-        },
-        {
           isCorrect: false,
           label: "$$9\\text{ menit}$$",
         },
         {
           isCorrect: false,
           label: "$$10\\text{ menit}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$8\\text{ menit}$$",
         },
       ],
     },

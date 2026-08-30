@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$10{.}000$$ Stimmen",
         },
         {
-          isCorrect: true,
-          label: "$$30{.}000$$ Stimmen",
-        },
-        {
           isCorrect: false,
           label: "$$50{.}000$$ Stimmen",
+        },
+        {
+          isCorrect: true,
+          label: "$$30{.}000$$ Stimmen",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$10{,}000$$ votes",
         },
         {
-          isCorrect: true,
-          label: "$$30{,}000$$ votes",
-        },
-        {
           isCorrect: false,
           label: "$$50{,}000$$ votes",
+        },
+        {
+          isCorrect: true,
+          label: "$$30{,}000$$ votes",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$10{.}000$$ suara",
         },
         {
-          isCorrect: true,
-          label: "$$30{.}000$$ suara",
-        },
-        {
           isCorrect: false,
           label: "$$50{.}000$$ suara",
+        },
+        {
+          isCorrect: true,
+          label: "$$30{.}000$$ suara",
         },
         {
           isCorrect: false,

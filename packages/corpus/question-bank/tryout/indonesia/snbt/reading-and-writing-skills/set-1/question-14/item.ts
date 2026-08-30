@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Satz $$(2)$$.",
         },
         {
-          isCorrect: true,
-          label: "Satz $$(4)$$.",
-        },
-        {
           isCorrect: false,
           label: "Satz $$(5)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "Satz $$(4)$$.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "sentence $$(2)$$.",
         },
         {
-          isCorrect: true,
-          label: "sentence $$(4)$$.",
-        },
-        {
           isCorrect: false,
           label: "sentence $$(5)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "sentence $$(4)$$.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "kalimat $$(2)$$.",
         },
         {
-          isCorrect: true,
-          label: "kalimat $$(4)$$.",
-        },
-        {
           isCorrect: false,
           label: "kalimat $$(5)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "kalimat $$(4)$$.",
         },
         {
           isCorrect: false,

@@ -5,11 +5,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        { isCorrect: false, label: "Desa wisata" },
         {
           isCorrect: true,
           label: "Perkampungan yang terletak di pesisir pantai",
         },
-        { isCorrect: false, label: "Desa wisata" },
         {
           isCorrect: false,
           label: "Laut yang menjadi objek wisata",

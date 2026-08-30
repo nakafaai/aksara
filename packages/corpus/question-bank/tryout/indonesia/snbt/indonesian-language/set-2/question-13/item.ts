@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Tindakan mengurangi dampak bencana",
-        },
-        {
           isCorrect: false,
           label: "Pemantauan pergerakan gajah",
+        },
+        {
+          isCorrect: true,
+          label: "Tindakan mengurangi dampak bencana",
         },
         {
           isCorrect: false,

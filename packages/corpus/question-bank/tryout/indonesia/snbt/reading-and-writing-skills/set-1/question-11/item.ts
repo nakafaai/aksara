@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "verringern (Satz $$(7)$$).",
+        },
+        {
           isCorrect: false,
           label: "widerstandsfähig (Satz $$(1)$$).",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "nennt (Satz $$(4)$$).",
         },
-        {
-          isCorrect: true,
-          label: "verringern (Satz $$(7)$$).",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "reduce (sentence $$(7)$$).",
+        },
         {
           isCorrect: false,
           label: "resilient (sentence $$(1)$$).",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "recognizes (sentence $$(4)$$).",
         },
-        {
-          isCorrect: true,
-          label: "reduce (sentence $$(7)$$).",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "memperkecil (kalimat $$(7)$$).",
+        },
         {
           isCorrect: false,
           label: "tangguh (kalimat $$(1)$$).",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mengakui (kalimat $$(4)$$).",
-        },
-        {
-          isCorrect: true,
-          label: "memperkecil (kalimat $$(7)$$).",
         },
       ],
     },

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{1007}{2015}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{1008}{2015}$$",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1007}{2015}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{1007}{2015}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{1008}{2015}$$",
         },
@@ -45,6 +41,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1007}{2015}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{1007}{2015}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{1008}{2015}$$",
         },
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1007}{2015}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{1007}{2015}$$",
         },
         {
           isCorrect: false,

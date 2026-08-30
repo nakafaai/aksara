@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
+        },
+        {
           isCorrect: false,
           label: "Das Treffen fand im Staatspalast statt",
         },
@@ -13,11 +18,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Das Leistungsbilanzdefizit war mehr als dreimal so hoch wie das Handelsbilanzdefizit",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
         },
         {
           isCorrect: false,
@@ -35,6 +35,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "The government requested concrete, quickly implementable input from business representatives",
+        },
+        {
           isCorrect: false,
           label: "The meeting took place at the State Palace",
         },
@@ -42,11 +47,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The current-account deficit was more than three times the trade-balance deficit",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The government requested concrete, quickly implementable input from business representatives",
         },
         {
           isCorrect: false,
@@ -64,6 +64,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
+        },
+        {
           isCorrect: false,
           label: "Pertemuan berlangsung di Istana Negara",
         },
@@ -71,11 +76,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
         },
         {
           isCorrect: false,

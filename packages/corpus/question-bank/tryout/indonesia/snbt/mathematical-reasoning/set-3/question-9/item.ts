@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$70$$ Minuten oder $$30$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$21$$ Minuten oder $$10$$ Minuten",
         },
         {
           isCorrect: false,
           label: "$$15$$ Minuten oder $$16$$ Minuten",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ Minuten oder $$30$$ Minuten",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$70$$ minutes or $$30$$ minutes",
-        },
-        {
           isCorrect: false,
           label: "$$21$$ minutes or $$10$$ minutes",
         },
         {
           isCorrect: false,
           label: "$$15$$ minutes or $$16$$ minutes",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ minutes or $$30$$ minutes",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$70$$ menit atau $$30$$ menit",
-        },
-        {
           isCorrect: false,
           label: "$$21$$ menit atau $$10$$ menit",
         },
         {
           isCorrect: false,
           label: "$$15$$ menit atau $$16$$ menit",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ menit atau $$30$$ menit",
         },
         {
           isCorrect: false,

@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "eng no!miaw mee!ow",
         },
         {
+          isCorrect: true,
+          label: "mee!ow no!miawi eng",
+        },
+        {
           isCorrect: false,
           label: "no!miaw eng mee!ow",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "no!miawi mee!ow eng",
-        },
-        {
-          isCorrect: true,
-          label: "mee!ow no!miawi eng",
         },
       ],
     },
@@ -35,6 +35,10 @@ const item: QuestionItem = {
           label: "eng no!miaw mee!ow",
         },
         {
+          isCorrect: true,
+          label: "mee!ow no!miawi eng",
+        },
+        {
           isCorrect: false,
           label: "no!miaw eng mee!ow",
         },
@@ -45,10 +49,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "no!miawi mee!ow eng",
-        },
-        {
-          isCorrect: true,
-          label: "mee!ow no!miawi eng",
         },
       ],
     },
@@ -60,6 +60,10 @@ const item: QuestionItem = {
           label: "eng no!miaw mee!ow",
         },
         {
+          isCorrect: true,
+          label: "mee!ow no!miawi eng",
+        },
+        {
           isCorrect: false,
           label: "no!miaw eng mee!ow",
         },
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "no!miawi mee!ow eng",
-        },
-        {
-          isCorrect: true,
-          label: "mee!ow no!miawi eng",
         },
       ],
     },

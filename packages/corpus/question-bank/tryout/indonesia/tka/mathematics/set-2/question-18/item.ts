@@ -2,78 +2,88 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "application",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Das dritte Glied ist $12$.",
+          isCorrect: false,
+          label: "92 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Die Summe der ersten drei Glieder ist $21$.",
+          isCorrect: false,
+          label: "96 m",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Das fünfte Glied ist $24$.",
+          isCorrect: false,
+          label: "104 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Für jedes $n\\geq1$ gilt $\\frac{u_{n+1}}{u_n}=2$.",
+          isCorrect: true,
+          label: "100 m",
+        },
+        {
+          isCorrect: false,
+          label: "108 m",
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The third term is $12$.",
+          isCorrect: false,
+          label: "92 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "The sum of the first three terms is $21$.",
+          isCorrect: false,
+          label: "96 m",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The fifth term is $24$.",
+          isCorrect: false,
+          label: "104 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "For every $n\\geq1$, $\\frac{u_{n+1}}{u_n}=2$.",
+          isCorrect: true,
+          label: "100 m",
+        },
+        {
+          isCorrect: false,
+          label: "108 m",
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Suku ketiga adalah $12$.",
+          isCorrect: false,
+          label: "92 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Jumlah tiga suku pertama adalah $21$.",
+          isCorrect: false,
+          label: "96 m",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Suku kelima adalah $24$.",
+          isCorrect: false,
+          label: "104 m",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Untuk setiap $n\\geq1$, berlaku $\\frac{u_{n+1}}{u_n}=2$.",
+          isCorrect: true,
+          label: "100 m",
+        },
+        {
+          isCorrect: false,
+          label: "108 m",
         },
       ],
     },
   },
+  stimulusKey: "park-and-pond",
 };
 
 export default item;

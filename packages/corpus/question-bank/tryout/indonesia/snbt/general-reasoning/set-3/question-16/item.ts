@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Jicama enthält $$0{,}46$$ g mehr Eiweiß als der Apfel.",
         },
         {
-          isCorrect: true,
-          label: "Der Apfel enthält weniger Fett als Jicama.",
-        },
-        {
           isCorrect: false,
           label:
             "Beide Lebensmittel enthalten weniger als $$1$$ g Eiweiß pro $$100$$ g.",
+        },
+        {
+          isCorrect: true,
+          label: "Der Apfel enthält weniger Fett als Jicama.",
         },
         {
           isCorrect: false,
@@ -41,13 +41,13 @@ const item: QuestionItem = {
           label: "Jicama provides $$0.46$$ g more protein than apple.",
         },
         {
-          isCorrect: true,
-          label: "Apple provides less fat than jicama.",
-        },
-        {
           isCorrect: false,
           label:
             "Both foods provide less than $$1$$ g of protein per $$100$$ g.",
+        },
+        {
+          isCorrect: true,
+          label: "Apple provides less fat than jicama.",
         },
         {
           isCorrect: false,
@@ -69,13 +69,13 @@ const item: QuestionItem = {
             "Bengkuang mengandung protein $$0{,}46$$ g lebih banyak daripada apel.",
         },
         {
-          isCorrect: true,
-          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
-        },
-        {
           isCorrect: false,
           label:
             "Kedua pangan mengandung protein kurang dari $$1$$ g per $$100$$ g.",
+        },
+        {
+          isCorrect: true,
+          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
         },
         {
           isCorrect: false,

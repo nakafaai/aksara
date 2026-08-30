@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Studienanfänger der Universität $$P$$ gehören zur Gruppe der Schulabgänger ohne Abschluss",
-        },
-        {
           isCorrect: false,
           label:
             "Jeder Studienanfänger der Universität $$P$$ hat die Schule abgeschlossen",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Studienanfänger der Universität $$P$$ gehören zur Gruppe der Schulabgänger ohne Abschluss",
         },
         {
           isCorrect: false,
@@ -36,13 +36,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Every student entering University $$P$$ completed school",
+        },
+        {
           isCorrect: true,
           label:
             "Students entering University $$P$$ belong to the withdrawal category",
-        },
-        {
-          isCorrect: false,
-          label: "Every student entering University $$P$$ completed school",
         },
         {
           isCorrect: false,
@@ -65,14 +65,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
-        },
-        {
           isCorrect: false,
           label:
             "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
         },
         {
           isCorrect: false,

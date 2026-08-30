@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "technology should replace established classroom practice whenever a digital option is available.",
-        },
-        {
           isCorrect: true,
           label:
             "successful integration depends on educators making informed judgments about when and how to use a tool.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "technology should replace established classroom practice whenever a digital option is available.",
         },
         {
           isCorrect: false,

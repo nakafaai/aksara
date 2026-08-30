@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Akhirnya, orang menganggap",
         },
         {
-          isCorrect: false,
-          label: "Walaupun demikian, banyak orang yang beranggapan",
-        },
-        {
           isCorrect: true,
           label: "Meskipun memiliki daya tarik universal",
+        },
+        {
+          isCorrect: false,
+          label: "Walaupun demikian, banyak orang yang beranggapan",
         },
         {
           isCorrect: false,

@@ -68,6 +68,9 @@ describe("Nakafa child process", () => {
         );
         const started = capture.input;
         assert(started !== undefined, "Expected the child command to start.");
+        const internalContentToken = Redacted.value(
+          input.credentials.internalContentToken
+        );
 
         expect(started.args.slice(0, 7)).toEqual([
           "--filter",
@@ -93,6 +96,7 @@ describe("Nakafa child process", () => {
           "AKSARA_PREVIEW_PUBLIC_KEY",
           "AKSARA_PREVIEW_RENDERER_SECRET",
           "AKSARA_PREVIEW_RENDERER_TOKEN",
+          "AKSARA_PUBLICATION_TOKEN",
           "CONTENT_RUNTIME_TOKEN",
           "HOME",
           "INTERNAL_CONTENT_API_KEY",
@@ -121,13 +125,12 @@ describe("Nakafa child process", () => {
           AKSARA_PREVIEW_RENDERER_TOKEN: Redacted.value(
             input.credentials.renderer.token
           ),
+          AKSARA_PUBLICATION_TOKEN: internalContentToken,
           CONTENT_RUNTIME_TOKEN: Redacted.value(
             input.credentials.contentRuntimeToken
           ),
           HOME: process.env.HOME,
-          INTERNAL_CONTENT_API_KEY: Redacted.value(
-            input.credentials.internalContentToken
-          ),
+          INTERNAL_CONTENT_API_KEY: internalContentToken,
           NEXT_PUBLIC_APP_URL: result.child.origin.toString(),
           NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
             "/__aksara-preview/convex-site",

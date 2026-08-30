@@ -2,33 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 132.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 144.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 156.000",
+          label: "$$35-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$35-2\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 180.000",
+          label: "$$35-8\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$35+4\\pi$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 132.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 144.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 156.000",
+          label: "$$35-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$35-2\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 180.000",
+          label: "$$35-8\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$35+4\\pi$$",
         },
       ],
     },
@@ -61,29 +61,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 132.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 144.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 156.000",
+          label: "$$35-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$35-2\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 180.000",
+          label: "$$35-8\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$35+4\\pi$$",
         },
       ],
     },
   },
-  stimulusKey: "monthly-savings",
 };
 
 export default item;

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Naturreis enthält $$2{,}59$$ g mehr Kohlenhydrate als weißer Reis",
+        },
+        {
           isCorrect: false,
           label: "Naturreis liefert $$7$$ kcal weniger Energie als weißer Reis",
         },
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           label: "Naturreis enthält $$27$$ mg mehr Magnesium als weißer Reis",
         },
         {
-          isCorrect: true,
-          label:
-            "Naturreis enthält $$2{,}59$$ g mehr Kohlenhydrate als weißer Reis",
-        },
-        {
           isCorrect: false,
           label: "Naturreis enthält $$60$$ mg mehr Phosphor als weißer Reis",
         },
@@ -32,6 +32,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Brown rice provides $$2.59$$ g more carbohydrate than white rice",
+        },
         {
           isCorrect: false,
           label: "Brown rice provides $$7$$ kcal less energy than white rice",
@@ -45,11 +50,6 @@ const item: QuestionItem = {
           label: "Brown rice provides $$27$$ mg more magnesium than white rice",
         },
         {
-          isCorrect: true,
-          label:
-            "Brown rice provides $$2.59$$ g more carbohydrate than white rice",
-        },
-        {
           isCorrect: false,
           label:
             "Brown rice provides $$60$$ mg more phosphorus than white rice",
@@ -59,6 +59,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Nasi merah mengandung karbohidrat $$2{,}59$$ g lebih tinggi daripada nasi putih",
+        },
         {
           isCorrect: false,
           label:
@@ -73,11 +78,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Nasi merah mengandung magnesium $$27$$ mg lebih tinggi daripada nasi putih",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Nasi merah mengandung karbohidrat $$2{,}59$$ g lebih tinggi daripada nasi putih",
         },
         {
           isCorrect: false,

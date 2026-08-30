@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Satz $$(1)$$.",
         },
         {
+          isCorrect: true,
+          label: "Satz $$(10)$$.",
+        },
+        {
           isCorrect: false,
           label: "Satz $$(5)$$.",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Satz $$(8)$$.",
         },
-        {
-          isCorrect: true,
-          label: "Satz $$(10)$$.",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "sentence $$(1)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "sentence $$(10)$$.",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "sentence $$(8)$$.",
         },
-        {
-          isCorrect: true,
-          label: "sentence $$(10)$$.",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "kalimat $$(1)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "kalimat $$(10)$$.",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "kalimat $$(8)$$.",
-        },
-        {
-          isCorrect: true,
-          label: "kalimat $$(10)$$.",
         },
       ],
     },

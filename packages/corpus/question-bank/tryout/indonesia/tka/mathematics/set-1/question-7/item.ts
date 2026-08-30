@@ -2,33 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 18.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 20.500",
-        },
-        {
           isCorrect: true,
-          label: "Rp 22.500",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "Rp 24.500",
+          label: "3",
         },
         {
           isCorrect: false,
-          label: "Rp 26.500",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "9",
+        },
+        {
+          isCorrect: false,
+          label: "11",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 18.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 20.500",
-        },
-        {
           isCorrect: true,
-          label: "Rp 22.500",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "Rp 24.500",
+          label: "3",
         },
         {
           isCorrect: false,
-          label: "Rp 26.500",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "9",
+        },
+        {
+          isCorrect: false,
+          label: "11",
         },
       ],
     },
@@ -61,29 +61,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 18.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 20.500",
-        },
-        {
           isCorrect: true,
-          label: "Rp 22.500",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "Rp 24.500",
+          label: "3",
         },
         {
           isCorrect: false,
-          label: "Rp 26.500",
+          label: "5",
+        },
+        {
+          isCorrect: false,
+          label: "9",
+        },
+        {
+          isCorrect: false,
+          label: "11",
         },
       ],
     },
   },
-  stimulusKey: "stationery-bundles",
 };
 
 export default item;

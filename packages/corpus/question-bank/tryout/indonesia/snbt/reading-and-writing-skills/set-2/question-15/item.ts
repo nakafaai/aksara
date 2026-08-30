@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Die Zählung beweist, dass die meisten indonesischen Landwirte jung sind.",
         },
         {
-          isCorrect: true,
-          label:
-            "Daher bietet die Landwirtschaftszählung 2023 eine breite, standardisierte Datengrundlage für die Gestaltung der indonesischen Agrarpolitik.",
-        },
-        {
           isCorrect: false,
           label:
             "Der Rückgang landwirtschaftlicher Einzelbetriebe beweist, dass Indonesiens Agrarsektor schrumpft.",
@@ -30,6 +25,11 @@ const item: QuestionItem = {
           label:
             "Die Einhaltung internationaler Zählungsstandards verbessert allein das Wohlergehen der Landwirte.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Daher bietet die Landwirtschaftszählung 2023 eine breite, standardisierte Datengrundlage für die Gestaltung der indonesischen Agrarpolitik.",
+        },
       ],
     },
     en: {
@@ -38,11 +38,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The census proves that most Indonesian farmers are young.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Therefore, the 2023 Agricultural Census provides a broad, standardized evidence base for designing Indonesia's agricultural policies.",
         },
         {
           isCorrect: false,
@@ -59,6 +54,11 @@ const item: QuestionItem = {
           label:
             "Following international census standards will by itself improve farmer welfare.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Therefore, the 2023 Agricultural Census provides a broad, standardized evidence base for designing Indonesia's agricultural policies.",
+        },
       ],
     },
     id: {
@@ -68,11 +68,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sensus tersebut membuktikan bahwa sebagian besar petani Indonesia masih muda.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
         },
         {
           isCorrect: false,
@@ -88,6 +83,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Penerapan standar sensus internasional dengan sendirinya akan meningkatkan kesejahteraan petani.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
         },
       ],
     },

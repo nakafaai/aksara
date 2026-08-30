@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$y = 2x - 4$$",
         },
         {
+          isCorrect: true,
+          label: "$$y = 2x + 12$$",
+        },
+        {
           isCorrect: false,
           label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
           label: "$$y = -2x + 4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$y = 2x - 4$$",
         },
         {
+          isCorrect: true,
+          label: "$$y = 2x + 12$$",
+        },
+        {
           isCorrect: false,
           label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
           label: "$$y = -2x + 4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$y = 2x - 4$$",
         },
         {
+          isCorrect: true,
+          label: "$$y = 2x + 12$$",
+        },
+        {
           isCorrect: false,
           label: "$$y = -2x - 2$$",
         },
         {
           isCorrect: false,
           label: "$$y = -2x + 4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$y = 2x + 12$$",
         },
         {
           isCorrect: false,

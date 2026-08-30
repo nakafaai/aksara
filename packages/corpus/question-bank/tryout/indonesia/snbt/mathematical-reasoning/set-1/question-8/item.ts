@@ -11,12 +11,12 @@ const item: QuestionItem = {
           label: "$$x - 5$$",
         },
         {
-          isCorrect: false,
-          label: "$$x + 5$$",
-        },
-        {
           isCorrect: true,
           label: "$$5 - x$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$x + 5$$",
         },
         {
           isCorrect: false,
@@ -36,12 +36,12 @@ const item: QuestionItem = {
           label: "$$x - 5$$",
         },
         {
-          isCorrect: false,
-          label: "$$x + 5$$",
-        },
-        {
           isCorrect: true,
           label: "$$5 - x$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$x + 5$$",
         },
         {
           isCorrect: false,
@@ -61,12 +61,12 @@ const item: QuestionItem = {
           label: "$$x - 5$$",
         },
         {
-          isCorrect: false,
-          label: "$$x + 5$$",
-        },
-        {
           isCorrect: true,
           label: "$$5 - x$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$x + 5$$",
         },
         {
           isCorrect: false,

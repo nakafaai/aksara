@@ -6,13 +6,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Jeder Mensch mit Delir muss mit SARS-CoV-2 infiziert sein.",
+        },
+        {
           isCorrect: false,
           label:
             "Ein Delir kann auch bei anderen akuten Erkrankungen als COVID-19 auftreten.",
-        },
-        {
-          isCorrect: true,
-          label: "Jeder Mensch mit Delir muss mit SARS-CoV-2 infiziert sein.",
         },
         {
           isCorrect: false,
@@ -34,13 +34,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Delirium can occur in acute illnesses other than COVID-19.",
-        },
-        {
           isCorrect: true,
           label:
             "Everyone who experiences delirium must be infected with SARS-CoV-2.",
+        },
+        {
+          isCorrect: false,
+          label: "Delirium can occur in acute illnesses other than COVID-19.",
         },
         {
           isCorrect: false,
@@ -61,13 +61,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Delirium dapat terjadi pada penyakit akut selain COVID-19.",
-        },
-        {
           isCorrect: true,
           label:
             "Setiap orang yang mengalami delirium pasti terinfeksi SARS-CoV-2.",
+        },
+        {
+          isCorrect: false,
+          label: "Delirium dapat terjadi pada penyakit akut selain COVID-19.",
         },
         {
           isCorrect: false,

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
+        },
+        {
           isCorrect: false,
           label: "Alle $$120$$ Tomatensetzlinge überlebten den ersten Monat.",
         },
@@ -19,10 +23,6 @@ const item: QuestionItem = {
             "Der Bericht bewies, dass die überlebenden Setzlinge krankheitsfrei waren.",
         },
         {
-          isCorrect: true,
-          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
-        },
-        {
           isCorrect: false,
           label:
             "Die überlebenden Setzlinge trugen mehr Früchte als die übrigen.",
@@ -32,6 +32,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$72$$ of the surviving seedlings produced new leaves.",
+        },
         {
           isCorrect: false,
           label: "All $$120$$ tomato seedlings survived the first month.",
@@ -46,10 +50,6 @@ const item: QuestionItem = {
             "The report proved that the surviving seedlings were disease-free.",
         },
         {
-          isCorrect: true,
-          label: "$$72$$ of the surviving seedlings produced new leaves.",
-        },
-        {
           isCorrect: false,
           label: "The surviving seedlings produced more fruit than the others.",
         },
@@ -58,6 +58,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
+        },
         {
           isCorrect: false,
           label:
@@ -72,11 +77,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
         },
         {
           isCorrect: false,

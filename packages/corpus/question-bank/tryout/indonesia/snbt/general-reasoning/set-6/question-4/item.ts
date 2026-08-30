@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "erhöht den Blutdruck",
-        },
-        {
           isCorrect: false,
           label: "senkt den Blutdruck",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "beschleunigt die Verdauung",
         },
         {
+          isCorrect: true,
+          label: "erhöht den Blutdruck",
+        },
+        {
           isCorrect: false,
           label: "beseitigt den Kaliumbedarf des Körpers",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "raises blood pressure",
-        },
         {
           isCorrect: false,
           label: "lowers blood pressure",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "accelerates digestion",
         },
         {
+          isCorrect: true,
+          label: "raises blood pressure",
+        },
+        {
           isCorrect: false,
           label: "removes the body's need for potassium",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "meningkatkan tekanan darah",
-        },
         {
           isCorrect: false,
           label: "menurunkan tekanan darah",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mempercepat pencernaan",
+        },
+        {
+          isCorrect: true,
+          label: "meningkatkan tekanan darah",
         },
         {
           isCorrect: false,

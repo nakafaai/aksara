@@ -2,83 +2,71 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
-    topic: "probability",
+    topic: "data",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "19",
-        },
-        {
-          isCorrect: false,
-          label: "20",
+          isCorrect: true,
+          label: "Das arithmetische Mittel ist $4$.",
         },
         {
           isCorrect: true,
-          label: "21",
+          label: "Der Median ist $3$.",
+        },
+        {
+          isCorrect: true,
+          label: "Der Modalwert ist $3$.",
         },
         {
           isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "23",
+          label: "Die Spannweite ist $4$.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "19",
-        },
-        {
-          isCorrect: false,
-          label: "20",
+          isCorrect: true,
+          label: "The mean is $4$.",
         },
         {
           isCorrect: true,
-          label: "21",
+          label: "The median is $3$.",
+        },
+        {
+          isCorrect: true,
+          label: "The mode is $3$.",
         },
         {
           isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "23",
+          label: "The range is $4$.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "19",
-        },
-        {
-          isCorrect: false,
-          label: "20",
+          isCorrect: true,
+          label: "Rata-ratanya $4$.",
         },
         {
           isCorrect: true,
-          label: "21",
+          label: "Mediannya $3$.",
+        },
+        {
+          isCorrect: true,
+          label: "Modusnya $3$.",
         },
         {
           isCorrect: false,
-          label: "22",
-        },
-        {
-          isCorrect: false,
-          label: "23",
+          label: "Jangkauannya $4$.",
         },
       ],
     },

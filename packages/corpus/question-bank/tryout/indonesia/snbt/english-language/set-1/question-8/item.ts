@@ -7,8 +7,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "pessimistic" },
         { isCorrect: false, label: "assertive" },
-        { isCorrect: true, label: "objective" },
         { isCorrect: false, label: "responsive" },
+        { isCorrect: true, label: "objective" },
         { isCorrect: false, label: "reactive" },
       ],
     },

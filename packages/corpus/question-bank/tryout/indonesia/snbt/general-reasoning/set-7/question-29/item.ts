@@ -1,0 +1,83 @@
+import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+
+const item: QuestionItem = {
+  responses: {
+    de: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+      ],
+    },
+    en: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+      ],
+    },
+    id: {
+      kind: "single-choice",
+      options: [
+        {
+          isCorrect: true,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+      ],
+    },
+  },
+};
+
+export default item;

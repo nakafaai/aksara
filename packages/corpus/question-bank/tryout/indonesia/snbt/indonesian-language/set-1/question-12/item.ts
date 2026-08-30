@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Ilmu",
         },
         {
-          isCorrect: false,
-          label: "Pengalaman",
-        },
-        {
           isCorrect: true,
           label: "Nasihat",
+        },
+        {
+          isCorrect: false,
+          label: "Pengalaman",
         },
         {
           isCorrect: false,

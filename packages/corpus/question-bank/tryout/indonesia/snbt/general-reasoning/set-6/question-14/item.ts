@@ -15,16 +15,16 @@ const item: QuestionItem = {
             "Der Direktor verschiebt beide Vorhaben bis zur Erteilung der Genehmigung.",
         },
         {
+          isCorrect: true,
+          label: "PT Batik verkauft das neue Produkt in diesem Jahr.",
+        },
+        {
           isCorrect: false,
           label: "PT Batik verkauft das neue Produkt in diesem Jahr nicht.",
         },
         {
           isCorrect: false,
           label: "PT Batik setzt in diesem Jahr keines der beiden Vorhaben um.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik verkauft das neue Produkt in diesem Jahr.",
         },
       ],
     },
@@ -41,16 +41,16 @@ const item: QuestionItem = {
             "The director postpones both programs until the permit is complete.",
         },
         {
+          isCorrect: true,
+          label: "PT Batik sells the new product this year.",
+        },
+        {
           isCorrect: false,
           label: "PT Batik does not sell the new product this year.",
         },
         {
           isCorrect: false,
           label: "PT Batik carries out neither program this year.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik sells the new product this year.",
         },
       ],
     },
@@ -66,16 +66,16 @@ const item: QuestionItem = {
           label: "Direktur menunda kedua program sampai izin selesai.",
         },
         {
+          isCorrect: true,
+          label: "PT Batik menjual produk baru pada tahun ini.",
+        },
+        {
           isCorrect: false,
           label: "PT Batik tidak menjual produk baru pada tahun ini.",
         },
         {
           isCorrect: false,
           label: "PT Batik tidak menjalankan satu pun program pada tahun ini.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik menjual produk baru pada tahun ini.",
         },
       ],
     },

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
+        },
+        {
           isCorrect: false,
           label:
             "Niedrigere Mindestgeldstrafen würden die Rückgewinnung staatlicher Verluste erschweren.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die milderen Bestimmungen würden die Abschreckung schwächen und die Rückgewinnung staatlicher Verluste erschweren.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
         },
         {
           isCorrect: false,
@@ -35,6 +35,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
+        },
+        {
           isCorrect: false,
           label:
             "Lower minimum fines would make it harder to recover state losses.",
@@ -43,11 +48,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The lighter provisions would weaken deterrence and make the recovery of state losses more difficult.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
         },
         {
           isCorrect: false,
@@ -64,6 +64,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
+        },
+        {
           isCorrect: false,
           label:
             "Penurunan denda minimum akan mempersulit pengembalian kerugian negara.",
@@ -72,11 +77,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Ketentuan yang lebih ringan akan mengurangi efek jera dan mempersulit pengembalian kerugian negara.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
         },
         {
           isCorrect: false,

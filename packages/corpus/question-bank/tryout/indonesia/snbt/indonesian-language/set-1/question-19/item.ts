@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Mudah menerima citra yang ditentukan orang lain",
         },
         {
-          isCorrect: false,
-          label: "Berani meninggalkan dunia perfilman",
-        },
-        {
           isCorrect: true,
           label: "Tekun mengembangkan kemampuan aktingnya",
+        },
+        {
+          isCorrect: false,
+          label: "Berani meninggalkan dunia perfilman",
         },
         {
           isCorrect: false,

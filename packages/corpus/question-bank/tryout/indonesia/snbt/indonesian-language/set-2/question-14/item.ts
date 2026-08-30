@@ -5,10 +5,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "GPS Collar" },
         { isCorrect: false, label: "Kamera jebak" },
         { isCorrect: false, label: "Kompas" },
         { isCorrect: false, label: "Radio genggam" },
+        { isCorrect: true, label: "GPS Collar" },
         {
           isCorrect: false,
           label: "Penerima satelit",

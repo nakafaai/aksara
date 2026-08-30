@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
+        },
+        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv wahr.",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist definitiv falsch.",
         },
         {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht bewerten.",
@@ -31,6 +31,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "The conclusion is irrelevant to the information provided.",
+        },
         {
           isCorrect: false,
           label: "The conclusion is definitely true.",
@@ -44,10 +48,6 @@ const item: QuestionItem = {
           label: "The conclusion is definitely false.",
         },
         {
-          isCorrect: true,
-          label: "The conclusion is irrelevant to the information provided.",
-        },
-        {
           isCorrect: false,
           label:
             "The conclusion is relevant but cannot be evaluated because the information is insufficient.",
@@ -57,6 +57,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+        },
         {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
@@ -68,10 +72,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tersebut pasti salah.",
-        },
-        {
-          isCorrect: true,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
         },
         {
           isCorrect: false,

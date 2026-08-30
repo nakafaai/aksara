@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist definitiv wahr.",
         },
         {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist möglicherweise wahr.",
-        },
-        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv falsch.",
         },
@@ -27,6 +23,10 @@ const item: QuestionItem = {
           label:
             "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden.",
         },
+        {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist möglicherweise wahr.",
+        },
       ],
     },
     en: {
@@ -35,10 +35,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The conclusion is definitely true.",
-        },
-        {
-          isCorrect: true,
-          label: "The conclusion is possibly true.",
         },
         {
           isCorrect: false,
@@ -53,6 +49,10 @@ const item: QuestionItem = {
           label:
             "The conclusion cannot be evaluated because there is insufficient information.",
         },
+        {
+          isCorrect: true,
+          label: "The conclusion is possibly true.",
+        },
       ],
     },
     id: {
@@ -61,10 +61,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
-        },
-        {
-          isCorrect: true,
-          label: "Simpulan tersebut mungkin benar.",
         },
         {
           isCorrect: false,
@@ -77,6 +73,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+        },
+        {
+          isCorrect: true,
+          label: "Simpulan tersebut mungkin benar.",
         },
       ],
     },

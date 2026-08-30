@@ -5,7 +5,9 @@ import { indexQuestionBanks } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
 import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
-import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
+import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
+import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
 import {
   validateAssessmentReadinessEntries,
   validateAssessmentReadinessRegistry,
@@ -21,7 +23,12 @@ const loadReadinessRegistry = Effect.fn(
   const questions = yield* discoverQuestionSources(corpusRoot, banks).pipe(
     Effect.provide(questionLayer)
   );
-  const readiness = yield* Effect.all([snbtReadiness, tkaReadiness]);
+  const readiness = yield* Effect.all([
+    snbtReadiness,
+    tkaMathematicsReadiness,
+    tkaIndonesianReadiness,
+    tkaEnglishReadiness,
+  ]);
   return { questions, readiness, sources };
 });
 
@@ -42,13 +49,13 @@ describe("assessment readiness registry", () => {
   it.effect("rejects duplicate, missing, and orphaned readiness owners", () =>
     Effect.gen(function* () {
       const { questions, readiness, sources } = yield* loadReadinessRegistry();
-      const [snbt, tka] = readiness;
+      const [snbt, ...tka] = readiness;
       const snbtSource = yield* Effect.fromNullishOr(
         sources.find(({ examKey }) => examKey === "snbt")
       );
       const failures = yield* Effect.all([
         validateAssessmentReadinessEntries(
-          [snbt, snbt, tka],
+          [snbt, snbt, ...tka],
           sources,
           questions
         ).pipe(Effect.flip),
@@ -56,7 +63,7 @@ describe("assessment readiness registry", () => {
           Effect.flip
         ),
         validateAssessmentReadinessEntries(
-          [snbt, tka],
+          [snbt, ...tka],
           [snbtSource],
           questions
         ).pipe(Effect.flip),
@@ -66,19 +73,56 @@ describe("assessment readiness registry", () => {
         expect.objectContaining({
           _tag: "AssessmentReadinessRegistryError",
           count: 2,
-          identity: "indonesia\0snbt",
+          identity: "indonesia\u0000snbt\u00002027",
         }),
         expect.objectContaining({
           _tag: "AssessmentReadinessRegistryError",
           count: 0,
-          identity: "indonesia\0tka",
+          identity: "indonesia\u0000tka\u0000mathematics",
         }),
         expect.objectContaining({
           _tag: "AssessmentReadinessRegistryError",
           count: 0,
-          identity: "indonesia\0tka",
+          identity: "indonesia\u0000tka\u0000mathematics",
         }),
       ]);
+    })
+  );
+
+  it.effect("balances active single-choice answer positions in every set", () =>
+    Effect.gen(function* () {
+      const { questions, sources } = yield* loadReadinessRegistry();
+
+      for (const source of sources) {
+        for (const track of source.tracks) {
+          for (const set of track.sets) {
+            for (const section of set.sections) {
+              const activeQuestions = questions.filter(
+                ({ questionNumber, setKey }) =>
+                  setKey === section.questionSourcePath &&
+                  questionNumber <= section.questionCount
+              );
+              for (const responseLocale of ["de", "en", "id"] as const) {
+                const positions = [0, 0, 0, 0, 0];
+                for (const { item } of activeQuestions) {
+                  const response = item.responses[responseLocale];
+                  if (response?.kind !== "single-choice") {
+                    continue;
+                  }
+                  const correctIndex = response.options.findIndex(
+                    ({ isCorrect }) => isCorrect
+                  );
+                  positions[correctIndex] = (positions[correctIndex] ?? 0) + 1;
+                }
+
+                expect(
+                  Math.max(...positions) - Math.min(...positions)
+                ).toBeLessThanOrEqual(1);
+              }
+            }
+          }
+        }
+      }
     })
   );
 });

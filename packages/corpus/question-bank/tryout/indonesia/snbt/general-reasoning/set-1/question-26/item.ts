@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Schwächt Aussage A",
         },
         {
+          isCorrect: true,
+          label: "Für die Aussagen A und B irrelevant",
+        },
+        {
           isCorrect: false,
           label: "Bekräftigt Aussage B",
         },
         {
           isCorrect: false,
           label: "Schwächt Aussage B",
-        },
-        {
-          isCorrect: true,
-          label: "Für die Aussagen A und B irrelevant",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "Weakens statement A",
         },
         {
+          isCorrect: true,
+          label: "Irrelevant to statements A and B",
+        },
+        {
           isCorrect: false,
           label: "Strengthens statement B",
         },
         {
           isCorrect: false,
           label: "Weakens statement B",
-        },
-        {
-          isCorrect: true,
-          label: "Irrelevant to statements A and B",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "Memperlemah pernyataan A",
         },
         {
+          isCorrect: true,
+          label: "Tidak relevan dengan pernyataan A dan B",
+        },
+        {
           isCorrect: false,
           label: "Memperkuat pernyataan B",
         },
         {
           isCorrect: false,
           label: "Memperlemah pernyataan B",
-        },
-        {
-          isCorrect: true,
-          label: "Tidak relevan dengan pernyataan A dan B",
         },
       ],
     },

@@ -5,8 +5,8 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Malin Kundang" },
         { isCorrect: true, label: "Laba-Laba Sakti" },
+        { isCorrect: false, label: "Malin Kundang" },
         { isCorrect: false, label: "Sangkuriang" },
         { isCorrect: false, label: "Timun Mas" },
         { isCorrect: false, label: "Roro Jonggrang" },

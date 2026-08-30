@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$1{,}90\\text{ Meter}$$",
         },
         {
-          isCorrect: true,
-          label: "$$2{,}00\\text{ Meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}10\\text{ Meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2{,}00\\text{ Meter}$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$1.90\\text{ meters}$$",
         },
         {
-          isCorrect: true,
-          label: "$$2.00\\text{ meters}$$",
-        },
-        {
           isCorrect: false,
           label: "$$2.10\\text{ meters}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2.00\\text{ meters}$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$1{,}90\\text{ meter}$$",
         },
         {
-          isCorrect: true,
-          label: "$$2{,}00\\text{ meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}10\\text{ meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2{,}00\\text{ meter}$$",
         },
       ],
     },

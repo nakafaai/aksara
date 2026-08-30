@@ -2,33 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    cognitiveLevel: "application",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(7,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(8,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(8,3)$$",
+          label: "$$\\frac{17}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(9,3)$$",
+          label: "$$\\frac{16}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(8,4)$$",
+          label: "$$\\frac{33}{14}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{5}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{18}{7}$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(7,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(8,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(8,3)$$",
+          label: "$$\\frac{17}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(9,3)$$",
+          label: "$$\\frac{16}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(8,4)$$",
+          label: "$$\\frac{33}{14}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{5}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{18}{7}$$",
         },
       ],
     },
@@ -61,28 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(7,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(8,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(8,3)$$",
+          label: "$$\\frac{17}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(9,3)$$",
+          label: "$$\\frac{16}{7}$$",
         },
         {
           isCorrect: false,
-          label: "$$(8,4)$$",
+          label: "$$\\frac{33}{14}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{5}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{18}{7}$$",
         },
       ],
     },
   },
+  stimulusKey: "study-time-survey",
 };
 
 export default item;

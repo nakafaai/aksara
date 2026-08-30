@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
+        },
+        {
           isCorrect: false,
           label: "$$150\\sqrt{3} \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$300\\sqrt{3} \\, \\text{m/s}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
+        },
+        {
           isCorrect: false,
           label: "$$150\\sqrt{3} \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$300\\sqrt{3} \\, \\text{m/s}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
+        },
+        {
           isCorrect: false,
           label: "$$150\\sqrt{3} \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$300\\sqrt{3} \\, \\text{m/s}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
         },
         {
           isCorrect: false,

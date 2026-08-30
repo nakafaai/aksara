@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$y = -x^2 + 150x + 60{.}000$$",
         },
         {
-          isCorrect: true,
-          label: "$$y = x^2 + 150x + 60{.}000$$",
-        },
-        {
           isCorrect: false,
           label: "$$y = -x^2 - 150x + 60{.}000$$",
         },
         {
           isCorrect: false,
           label: "$$y = x^2 - 150x + 60{.}000$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$y = x^2 + 150x + 60{.}000$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$y = -x^2 + 150x + 60{,}000$$",
         },
         {
-          isCorrect: true,
-          label: "$$y = x^2 + 150x + 60{,}000$$",
-        },
-        {
           isCorrect: false,
           label: "$$y = -x^2 - 150x + 60{,}000$$",
         },
         {
           isCorrect: false,
           label: "$$y = x^2 - 150x + 60{,}000$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$y = x^2 + 150x + 60{,}000$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$y = -x^2 + 150x + 60{.}000$$",
         },
         {
-          isCorrect: true,
-          label: "$$y = x^2 + 150x + 60{.}000$$",
-        },
-        {
           isCorrect: false,
           label: "$$y = -x^2 - 150x + 60{.}000$$",
         },
         {
           isCorrect: false,
           label: "$$y = x^2 - 150x + 60{.}000$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$y = x^2 + 150x + 60{.}000$$",
         },
         {
           isCorrect: false,

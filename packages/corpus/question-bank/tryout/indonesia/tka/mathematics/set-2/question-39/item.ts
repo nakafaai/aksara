@@ -2,7 +2,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
     topic: "probability",
   },
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{4}$$",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{72}$$",
+          label: "20",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{5}{18}$$",
+          label: "21",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{24}$$",
+          label: "22",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{36}$$",
+          label: "23",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{4}$$",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{72}$$",
+          label: "20",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{5}{18}$$",
+          label: "21",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{24}$$",
+          label: "22",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{36}$$",
+          label: "23",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{1}{4}$$",
+          label: "19",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{19}{72}$$",
+          label: "20",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{5}{18}$$",
+          label: "21",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{7}{24}$$",
+          label: "22",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{11}{36}$$",
+          label: "23",
         },
       ],
     },

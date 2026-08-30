@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "measurement",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "numbers",
+    topic: "real-numbers",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },
@@ -62,28 +62,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac{7}{12}$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac{3}{4}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{11}{12}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
+          label: "$$\\frac{13}{12}$$",
         },
         {
           isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac{5}{4}$$",
         },
       ],
     },
   },
-  stimulusKey: "park-and-pond",
 };
 
 export default item;

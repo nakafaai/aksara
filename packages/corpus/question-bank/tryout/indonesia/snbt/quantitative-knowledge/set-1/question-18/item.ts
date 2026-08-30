@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "NUR $$(1)$$, $$(2)$$ und $$(3)$$ sind wahr",
-        },
-        {
           isCorrect: false,
           label: "NUR $$(1)$$ und $$(3)$$ sind wahr",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "ALLE Aussagen sind wahr",
         },
         {
+          isCorrect: true,
+          label: "NUR $$(1)$$, $$(2)$$ und $$(3)$$ sind wahr",
+        },
+        {
           isCorrect: false,
           label: "ALLE Aussagen sind falsch",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$(1)$$, $$(2)$$, and $$(3)$$ ONLY are true",
-        },
         {
           isCorrect: false,
           label: "$$(1)$$ and $$(3)$$ ONLY are true",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "ALL statements are true",
         },
         {
+          isCorrect: true,
+          label: "$$(1)$$, $$(2)$$, and $$(3)$$ ONLY are true",
+        },
+        {
           isCorrect: false,
           label: "ALL statements are false",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ SAJA yang benar",
-        },
         {
           isCorrect: false,
           label: "$$(1)$$ dan $$(3)$$ SAJA yang benar",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "SEMUA pernyataan benar",
+        },
+        {
+          isCorrect: true,
+          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ SAJA yang benar",
         },
         {
           isCorrect: false,

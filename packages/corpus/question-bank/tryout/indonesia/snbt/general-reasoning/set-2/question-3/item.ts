@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Die Bewohner sind ängstlich und unruhig",
         },
         {
+          isCorrect: true,
+          label: "Der Sicherheitsdienst patrouilliert regelmäßig",
+        },
+        {
           isCorrect: false,
           label: "In Gang Mawar kommt es fast jede Woche zu Diebstählen",
         },
         {
           isCorrect: false,
           label: "Sicherheitskräfte patrouillieren nicht regelmäßig",
-        },
-        {
-          isCorrect: true,
-          label: "Der Sicherheitsdienst patrouilliert regelmäßig",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "Residents are anxious and restless",
         },
         {
+          isCorrect: true,
+          label: "Security guards patrol regularly",
+        },
+        {
           isCorrect: false,
           label: "Theft occurs almost every week in Gang Mawar",
         },
         {
           isCorrect: false,
           label: "Security guards do not patrol regularly",
-        },
-        {
-          isCorrect: true,
-          label: "Security guards patrol regularly",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "Warga resah dan gelisah",
         },
         {
+          isCorrect: true,
+          label: "Petugas keamanan berpatroli secara rutin",
+        },
+        {
           isCorrect: false,
           label: "Hampir setiap minggu terjadi pencurian di Gang Mawar",
         },
         {
           isCorrect: false,
           label: "Petugas keamanan tidak berpatroli secara rutin",
-        },
-        {
-          isCorrect: true,
-          label: "Petugas keamanan berpatroli secara rutin",
         },
       ],
     },

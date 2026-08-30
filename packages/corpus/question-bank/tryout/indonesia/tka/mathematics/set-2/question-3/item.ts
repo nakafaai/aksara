@@ -2,83 +2,71 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$\\sqrt{4^2}=4$, da $4>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$4^{-1}=-4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$\\sqrt{4^2}=4$ because $4>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$4^{-1}=-4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$\\sqrt{4^2}=4$ untuk $4>0$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$(-4)^2=4^2$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$4^{-1}=-4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
         },
       ],
     },

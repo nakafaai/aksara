@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "jedoch.",
         },
         {
+          isCorrect: true,
+          label: "sondern.",
+        },
+        {
           isCorrect: false,
           label: "obwohl.",
         },
         {
           isCorrect: false,
           label: "während.",
-        },
-        {
-          isCorrect: true,
-          label: "sondern.",
         },
         {
           isCorrect: false,
@@ -31,9 +31,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "however." },
+        { isCorrect: true, label: "but." },
         { isCorrect: false, label: "although." },
         { isCorrect: false, label: "while." },
-        { isCorrect: true, label: "but." },
         { isCorrect: false, label: "rather." },
       ],
     },
@@ -41,9 +41,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "namun." },
+        { isCorrect: true, label: "tetapi." },
         { isCorrect: false, label: "meskipun." },
         { isCorrect: false, label: "sedangkan." },
-        { isCorrect: true, label: "tetapi." },
         { isCorrect: false, label: "melainkan." },
       ],
     },

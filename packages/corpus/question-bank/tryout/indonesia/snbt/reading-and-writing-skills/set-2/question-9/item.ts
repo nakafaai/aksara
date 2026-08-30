@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Den Doppelpunkt nach dem Wort „nämlich“ entfernen.",
-        },
-        {
           isCorrect: false,
           label:
             "Den Doppelpunkt nach dem Wort „nämlich“ durch ein Semikolon ersetzen.",
@@ -27,15 +23,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Jedes Komma in der Aufzählung durch einen Punkt ersetzen.",
         },
+        {
+          isCorrect: true,
+          label: "Den Doppelpunkt nach dem Wort „nämlich“ entfernen.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: 'Remove the colon after the word "namely".',
-        },
         {
           isCorrect: false,
           label: 'Replace the colon after the word "namely" with a semicolon.',
@@ -52,15 +48,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Replace every comma in the enumeration with a full stop.",
         },
+        {
+          isCorrect: true,
+          label: 'Remove the colon after the word "namely".',
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: 'Hapus tanda titik dua setelah kata "yaitu".',
-        },
         {
           isCorrect: false,
           label:
@@ -77,6 +73,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Ganti setiap tanda koma dalam perincian dengan tanda titik.",
+        },
+        {
+          isCorrect: true,
+          label: 'Hapus tanda titik dua setelah kata "yaitu".',
         },
       ],
     },

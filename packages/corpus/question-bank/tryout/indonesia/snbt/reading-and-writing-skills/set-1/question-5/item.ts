@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Der Sarkophag von Tomok in der megalithischen Tradition der Toba-Batak.",
+        },
+        {
           isCorrect: false,
           label: "Die Bootsform des Sarkophags von Tomok.",
         },
@@ -18,11 +23,6 @@ const item: QuestionItem = {
           label: "Schutzfiguren auf Gräbern der Toba-Batak.",
         },
         {
-          isCorrect: true,
-          label:
-            "Der Sarkophag von Tomok in der megalithischen Tradition der Toba-Batak.",
-        },
-        {
           isCorrect: false,
           label: "Bestattungsbräuche auf der Insel Samosir.",
         },
@@ -31,6 +31,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "The Tomok Sarcophagus in the Toba Batak Megalithic Tradition.",
+        },
         {
           isCorrect: false,
           label: "The Boat Form of the Tomok Sarcophagus.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           label: "Protective Figures on Toba Batak Graves.",
         },
         {
-          isCorrect: true,
-          label:
-            "The Tomok Sarcophagus in the Toba Batak Megalithic Tradition.",
-        },
-        {
           isCorrect: false,
           label: "Burial Customs on Samosir Island.",
         },
@@ -57,6 +57,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
+        },
         {
           isCorrect: false,
           label: "Bentuk Kapal pada Sarkofagus Tomok.",
@@ -68,10 +72,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Figur Pelindung pada Kubur Batak Toba.",
-        },
-        {
-          isCorrect: true,
-          label: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
         },
         {
           isCorrect: false,

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die Seitenlage beendet garantiert jedes Schnarchen und macht eine ärztliche Abklärung überflüssig",
+        },
+        {
           isCorrect: false,
           label:
             "Die Seitenlage kann bei manchen Menschen das Schnarchen verringern",
@@ -20,11 +25,6 @@ const item: QuestionItem = {
           label: "Schnarchen kann andere Ursachen als die Schlafposition haben",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Seitenlage beendet garantiert jedes Schnarchen und macht eine ärztliche Abklärung überflüssig",
-        },
-        {
           isCorrect: false,
           label:
             "Schnarchen mit Atempausen, Luftschnappen oder Erstickungsgefühlen sollte ärztlich abgeklärt werden",
@@ -34,6 +34,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Side sleeping guarantees that all snoring will stop and makes medical assessment unnecessary",
+        },
         {
           isCorrect: false,
           label: "Side sleeping may help reduce snoring for some people",
@@ -47,11 +52,6 @@ const item: QuestionItem = {
           label: "Snoring can have causes other than sleep position",
         },
         {
-          isCorrect: true,
-          label:
-            "Side sleeping guarantees that all snoring will stop and makes medical assessment unnecessary",
-        },
-        {
           isCorrect: false,
           label:
             "Snoring with breathing pauses, gasping, or choking should be medically assessed",
@@ -61,6 +61,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Tidur menyamping menjamin semua dengkuran berhenti dan membuat pemeriksaan medis tidak diperlukan",
+        },
         {
           isCorrect: false,
           label:
@@ -74,11 +79,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Dengkuran dapat disebabkan oleh faktor selain posisi tidur",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Tidur menyamping menjamin semua dengkuran berhenti dan membuat pemeriksaan medis tidak diperlukan",
         },
         {
           isCorrect: false,

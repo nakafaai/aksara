@@ -6,8 +6,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Guru" },
-        { isCorrect: true, label: "Reporter" },
         { isCorrect: false, label: "Kepala Desa" },
+        { isCorrect: true, label: "Reporter" },
         {
           isCorrect: false,
           label: "Ketua acara adat Festival Munara Beba Byak Karon",

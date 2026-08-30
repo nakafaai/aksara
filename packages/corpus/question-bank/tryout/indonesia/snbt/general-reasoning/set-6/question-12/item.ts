@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Beide Wirtschaftsindikatoren sind gestiegen.",
         },
         {
+          isCorrect: true,
+          label:
+            "Die Armut in den Dörfern und die Ungleichheit zwischen Land und Stadt werden beide zunehmen.",
+        },
+        {
           isCorrect: false,
           label:
             "Nur der Reallohn der landwirtschaftlichen Arbeitskräfte ist nicht gestiegen.",
@@ -24,11 +29,6 @@ const item: QuestionItem = {
           label:
             "Das Modell erlaubt keine Schlussfolgerung über Armut oder Ungleichheit.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Die Armut in den Dörfern und die Ungleichheit zwischen Land und Stadt werden beide zunehmen.",
-        },
       ],
     },
     en: {
@@ -37,6 +37,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Both economic indicators increased.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Village poverty and rural-urban inequality will both increase.",
         },
         {
           isCorrect: false,
@@ -52,11 +57,6 @@ const item: QuestionItem = {
           label:
             "The model provides no conclusion about poverty or inequality.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Village poverty and rural-urban inequality will both increase.",
-        },
       ],
     },
     id: {
@@ -65,6 +65,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kedua indikator ekonomi tersebut meningkat.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama meningkat.",
         },
         {
           isCorrect: false,
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Model tersebut tidak memberikan simpulan tentang kemiskinan atau ketimpangan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama meningkat.",
         },
       ],
     },

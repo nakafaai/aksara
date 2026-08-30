@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "algebra",
+    topic: "sequences-series",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12\\sqrt2$$",
+          label: "46",
+        },
+        {
+          isCorrect: false,
+          label: "51",
         },
         {
           isCorrect: true,
-          label: "$$12\\sqrt3$$",
+          label: "56",
         },
         {
           isCorrect: false,
-          label: "$$14\\sqrt3$$",
+          label: "61",
         },
         {
           isCorrect: false,
-          label: "$$24$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24\\sqrt3$$",
+          label: "66",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12\\sqrt2$$",
+          label: "46",
+        },
+        {
+          isCorrect: false,
+          label: "51",
         },
         {
           isCorrect: true,
-          label: "$$12\\sqrt3$$",
+          label: "56",
         },
         {
           isCorrect: false,
-          label: "$$14\\sqrt3$$",
+          label: "61",
         },
         {
           isCorrect: false,
-          label: "$$24$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24\\sqrt3$$",
+          label: "66",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12\\sqrt2$$",
+          label: "46",
+        },
+        {
+          isCorrect: false,
+          label: "51",
         },
         {
           isCorrect: true,
-          label: "$$12\\sqrt3$$",
+          label: "56",
         },
         {
           isCorrect: false,
-          label: "$$14\\sqrt3$$",
+          label: "61",
         },
         {
           isCorrect: false,
-          label: "$$24$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24\\sqrt3$$",
+          label: "66",
         },
       ],
     },

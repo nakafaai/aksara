@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "4",
+        },
+        {
+          isCorrect: false,
+          label: "5",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "6",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "8",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "4",
+        },
+        {
+          isCorrect: false,
+          label: "5",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "6",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "8",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "4",
+        },
+        {
+          isCorrect: false,
+          label: "5",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "6",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "7",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "8",
         },
       ],
     },

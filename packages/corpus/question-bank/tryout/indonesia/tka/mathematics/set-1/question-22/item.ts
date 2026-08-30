@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    cognitiveLevel: "application",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$\\frac{9}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$\\frac{7}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
+          label: "$$\\frac{29}{12}$$",
         },
         {
           isCorrect: false,
-          label: "$$(7,2)$$",
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$\\frac{31}{12}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$\\frac{9}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$\\frac{7}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
+          label: "$$\\frac{29}{12}$$",
         },
         {
           isCorrect: false,
-          label: "$$(7,2)$$",
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$\\frac{31}{12}$$",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$\\frac{9}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$\\frac{7}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
+          label: "$$\\frac{29}{12}$$",
         },
         {
           isCorrect: false,
-          label: "$$(7,2)$$",
+          label: "$$\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$\\frac{31}{12}$$",
         },
       ],
     },
   },
+  stimulusKey: "study-time-survey",
 };
 
 export default item;

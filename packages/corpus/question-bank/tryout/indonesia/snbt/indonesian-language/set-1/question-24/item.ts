@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Kalimat (8)",
         },
         {
-          isCorrect: false,
-          label: "Kalimat (9)",
-        },
-        {
           isCorrect: true,
           label: "Kalimat (10)",
+        },
+        {
+          isCorrect: false,
+          label: "Kalimat (9)",
         },
       ],
     },

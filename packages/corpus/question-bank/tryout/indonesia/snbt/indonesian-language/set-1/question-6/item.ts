@@ -15,17 +15,17 @@ const item: QuestionItem = {
             "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
         },
         {
+          isCorrect: true,
+          label:
+            "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
+        },
+        {
           isCorrect: false,
           label: "Pernyataan seorang peneliti tanpa data pemodelan",
         },
         {
           isCorrect: false,
           label: "Penilaian umum terhadap kebijakan sampah Indonesia",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
         },
       ],
     },

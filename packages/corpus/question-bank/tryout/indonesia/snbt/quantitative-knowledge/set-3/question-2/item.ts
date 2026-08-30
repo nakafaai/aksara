@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$2$$ oder $$-5$$",
         },
         {
-          isCorrect: true,
-          label: "$$2$$ oder $$5$$",
-        },
-        {
           isCorrect: false,
           label: "$$4$$ oder $$-2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ oder $$5$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$2$$ or $$-5$$",
         },
         {
-          isCorrect: true,
-          label: "$$2$$ or $$5$$",
-        },
-        {
           isCorrect: false,
           label: "$$4$$ or $$-2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ or $$5$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$2$$ atau $$-5$$",
         },
         {
-          isCorrect: true,
-          label: "$$2$$ atau $$5$$",
-        },
-        {
           isCorrect: false,
           label: "$$4$$ atau $$-2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ atau $$5$$",
         },
         {
           isCorrect: false,

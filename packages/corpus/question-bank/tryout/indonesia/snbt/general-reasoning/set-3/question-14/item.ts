@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Der Knoblauchabsatz im Januar $$2021$$ wird $$100$$ Tonnen übersteigen.",
+        },
+        {
           isCorrect: false,
           label:
             "Jedes Gewürz erreicht seinen höchsten Verkaufswert im November $$2020$$.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die Schalottenverkäufe im Januar $$2021$$ werden voraussichtlich $$76$$ Tonnen betragen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Der Knoblauchabsatz im Januar $$2021$$ wird $$100$$ Tonnen übersteigen.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Garlic sales in January $$2021$$ will exceed $$100$$ tons.",
+        },
+        {
           isCorrect: false,
           label: "Each spice recorded its highest sales in November $$2020$$.",
         },
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Shallot sales in January $$2021$$ are predicted to be $$76$$ tons.",
-        },
-        {
-          isCorrect: true,
-          label: "Garlic sales in January $$2021$$ will exceed $$100$$ tons.",
         },
         {
           isCorrect: false,
@@ -62,6 +62,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Penjualan bawang putih pada bulan Januari $$2021$$ akan melebihi $$100$$ ton.",
+        },
+        {
           isCorrect: false,
           label:
             "Setiap jenis rempah mencapai penjualan tertinggi pada November $$2020$$.",
@@ -70,11 +75,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Penjualan bawang merah pada bulan Januari $$2021$$ diprediksi sebesar $$76$$ ton.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Penjualan bawang putih pada bulan Januari $$2021$$ akan melebihi $$100$$ ton.",
         },
         {
           isCorrect: false,

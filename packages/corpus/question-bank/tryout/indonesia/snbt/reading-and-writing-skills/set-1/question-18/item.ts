@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "achtundvierzig-Komma-drei-fünf-Prozent.",
         },
         {
-          isCorrect: true,
-          label: "$$48{,}35\\,\\%$$.",
-        },
-        {
           isCorrect: false,
           label: "$$48{,}35\\text{-}\\%$$.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$4835\\,\\%$$.",
         },
+        {
+          isCorrect: true,
+          label: "$$48{,}35\\,\\%$$.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "forty-eight-point-three-five-percent.",
-        },
-        {
-          isCorrect: true,
-          label: "$$48.35\\%$$.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$4835\\%$$.",
         },
+        {
+          isCorrect: true,
+          label: "$$48.35\\%$$.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "empat-puluh-delapan-koma-tiga-lima-persen.",
-        },
-        {
-          isCorrect: true,
-          label: "$$48{,}35\\%$$.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$4835\\%$$.",
+        },
+        {
+          isCorrect: true,
+          label: "$$48{,}35\\%$$.",
         },
       ],
     },

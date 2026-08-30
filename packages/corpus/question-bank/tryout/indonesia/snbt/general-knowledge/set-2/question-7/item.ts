@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Tiere, die andere Tiere jagen.",
+        },
+        {
           isCorrect: false,
           label: "Tiere, die gejagt werden.",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Insekten und andere Kleintiere.",
         },
-        {
-          isCorrect: true,
-          label: "Tiere, die andere Tiere jagen.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "animals that prey on other animals.",
+        },
         {
           isCorrect: false,
           label: "animals that are preyed upon.",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "insects and other small animals.",
         },
-        {
-          isCorrect: true,
-          label: "animals that prey on other animals.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "hewan pemangsa hewan lainnya.",
+        },
         {
           isCorrect: false,
           label: "hewan yang dimangsa.",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "serangga dan hewan kecil lainnya.",
-        },
-        {
-          isCorrect: true,
-          label: "hewan pemangsa hewan lainnya.",
         },
       ],
     },

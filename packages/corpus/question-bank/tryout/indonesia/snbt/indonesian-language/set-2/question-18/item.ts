@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
-        },
-        {
           isCorrect: false,
           label: "Menjaga pintu masuk rumah dari pencuri",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Menghias bagian hunian dengan lukisan dinding",
+        },
+        {
+          isCorrect: true,
+          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
         },
         {
           isCorrect: false,

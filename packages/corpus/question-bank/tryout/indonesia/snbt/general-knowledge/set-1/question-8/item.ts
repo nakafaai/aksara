@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "rasante Entwicklung.",
         },
         {
-          isCorrect: true,
-          label: "Veränderung von Viruslinien über Generationen hinweg.",
-        },
-        {
           isCorrect: false,
           label: "Veränderung, die schnell erfolgt.",
         },
         {
           isCorrect: false,
           label: "Wachstum.",
+        },
+        {
+          isCorrect: true,
+          label: "Veränderung von Viruslinien über Generationen hinweg.",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "rapid development.",
         },
         {
-          isCorrect: true,
-          label: "change in viral lineages across generations.",
-        },
-        {
           isCorrect: false,
           label: "change that occurs rapidly.",
         },
         {
           isCorrect: false,
           label: "growth.",
+        },
+        {
+          isCorrect: true,
+          label: "change in viral lineages across generations.",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "perkembangan yang pesat.",
         },
         {
-          isCorrect: true,
-          label: "perubahan garis keturunan virus dari generasi ke generasi.",
-        },
-        {
           isCorrect: false,
           label: "perubahan yang terjadi secara cepat.",
         },
         {
           isCorrect: false,
           label: "pertumbuhan.",
+        },
+        {
+          isCorrect: true,
+          label: "perubahan garis keturunan virus dari generasi ke generasi.",
         },
       ],
     },

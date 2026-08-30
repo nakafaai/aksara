@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Wegen des Regens fallen beide Tätigkeiten aus",
-        },
-        {
           isCorrect: true,
           label: "Am Sonntag werden Wertstoffe gesammelt",
+        },
+        {
+          isCorrect: false,
+          label: "Wegen des Regens fallen beide Tätigkeiten aus",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Both activities are canceled because of the rain",
-        },
-        {
           isCorrect: true,
           label: "Recyclable materials are collected on Sunday",
+        },
+        {
+          isCorrect: false,
+          label: "Both activities are canceled because of the rain",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kedua kegiatan dibatalkan karena hujan",
-        },
-        {
           isCorrect: true,
           label: "Barang daur ulang dikumpulkan pada hari Minggu",
+        },
+        {
+          isCorrect: false,
+          label: "Kedua kegiatan dibatalkan karena hujan",
         },
         {
           isCorrect: false,

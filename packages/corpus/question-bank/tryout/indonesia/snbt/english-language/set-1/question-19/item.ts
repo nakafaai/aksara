@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "marine businesses earn profits in every country",
         },
         {
-          isCorrect: false,
-          label: "oceans benefit people only by producing rainfall",
-        },
-        {
           isCorrect: true,
           label:
             "coastal ecosystems provide communities with several forms of value",
+        },
+        {
+          isCorrect: false,
+          label: "oceans benefit people only by producing rainfall",
         },
         {
           isCorrect: false,

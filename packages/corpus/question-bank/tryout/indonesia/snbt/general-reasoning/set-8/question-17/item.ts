@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Jahr $$1$$",
-        },
-        {
           isCorrect: false,
           label: "Jahr $$2$$",
         },
         {
           isCorrect: false,
           label: "Jahr $$3$$",
+        },
+        {
+          isCorrect: true,
+          label: "Jahr $$1$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Year $$1$$",
-        },
-        {
           isCorrect: false,
           label: "Year $$2$$",
         },
         {
           isCorrect: false,
           label: "Year $$3$$",
+        },
+        {
+          isCorrect: true,
+          label: "Year $$1$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Tahun ke-$$1$$",
-        },
-        {
           isCorrect: false,
           label: "Tahun ke-$$2$$",
         },
         {
           isCorrect: false,
           label: "Tahun ke-$$3$$",
+        },
+        {
+          isCorrect: true,
+          label: "Tahun ke-$$1$$",
         },
         {
           isCorrect: false,

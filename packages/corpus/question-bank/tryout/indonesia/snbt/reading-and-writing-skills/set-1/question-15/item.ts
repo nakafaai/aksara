@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Verunreinigung von Wasserquellen in vielen indonesischen Gemeinden hängt eng mit Sanitärversorgung und Abwasser zusammen.",
@@ -18,6 +13,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Unsichere Sanitärversorgung verunreinigt Wasserquellen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
         },
         {
           isCorrect: false,
@@ -34,11 +34,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Water-source contamination is linked to sanitation and wastewater.",
-        },
-        {
           isCorrect: false,
           label:
             "Water-source contamination in many Indonesian communities is closely linked to sanitation and wastewater.",
@@ -46,6 +41,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Unsafe sanitation contaminates water sources.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Water-source contamination is linked to sanitation and wastewater.",
         },
         {
           isCorrect: false,
@@ -61,11 +61,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
-        },
-        {
           isCorrect: false,
           label:
             "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
@@ -73,6 +68,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Sanitasi yang tidak aman mencemari sumber air.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
         },
         {
           isCorrect: false,

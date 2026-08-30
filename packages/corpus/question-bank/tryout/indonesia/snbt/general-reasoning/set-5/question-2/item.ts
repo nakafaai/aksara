@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In $$2017$$ gab es einen Rückgang der Erntefläche, der Produktion und des Imports von Knoblauch",
+        },
+        {
           isCorrect: false,
           label:
             "Die Erntefläche in $$2018$$ war mehr als doppelt so groß wie die Erntefläche in $$2016$$",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Im Zeitraum $$2015\\text{-}2017$$ verringerte sich die Knoblaucherntefläche kontinuierlich",
         },
         {
-          isCorrect: true,
-          label:
-            "In $$2017$$ gab es einen Rückgang der Erntefläche, der Produktion und des Imports von Knoblauch",
-        },
-        {
           isCorrect: false,
           label:
             "In den letzten beiden Jahren kam es zu einem kontinuierlichen Anstieg der Menge an Knoblauchimporten",
@@ -35,6 +35,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "In $$2017$$, there was a decrease in harvest area, production, and import of garlic",
+        },
         {
           isCorrect: false,
           label:
@@ -51,11 +56,6 @@ const item: QuestionItem = {
             "In the $$2015\\text{-}2017$$ period, the garlic harvest area decreased continuously",
         },
         {
-          isCorrect: true,
-          label:
-            "In $$2017$$, there was a decrease in harvest area, production, and import of garlic",
-        },
-        {
           isCorrect: false,
           label:
             "There was a continuous increase in the amount of garlic imports in the last two years",
@@ -65,6 +65,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Pada tahun $$2017$$ terjadi penurunan dalam luas panen, produksi dan impor bawang putih",
+        },
         {
           isCorrect: false,
           label:
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Periode $$2015\\text{-}2017$$, luas panen bawang putih mengalami penurunan terus menerus",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pada tahun $$2017$$ terjadi penurunan dalam luas panen, produksi dan impor bawang putih",
         },
         {
           isCorrect: false,

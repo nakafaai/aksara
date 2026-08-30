@@ -7,7 +7,7 @@ import {
   type QuestionSource,
 } from "#corpus/question-bank/source";
 import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
-import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
+import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
@@ -16,7 +16,7 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 const loadTkaReadiness = Effect.fn("AksaraCorpus.test.loadTkaReadiness")(
   function* () {
     const source = yield* tkaTryoutSource;
-    const readiness = yield* tkaReadiness;
+    const readiness = yield* tkaMathematicsReadiness;
     const registry = yield* decodeTryoutRegistry();
     const banks = yield* indexQuestionBanks(registry);
     const discovered = yield* discoverQuestionSources(corpusRoot, banks).pipe(
@@ -51,7 +51,7 @@ function mapBlueprints(
 const rejectField = Effect.fn("AksaraCorpus.test.rejectReadinessField")(
   (
     source: Effect.Success<typeof tkaTryoutSource>,
-    readiness: Effect.Success<typeof tkaReadiness>,
+    readiness: Effect.Success<typeof tkaMathematicsReadiness>,
     questions: readonly QuestionSource[]
   ) =>
     validateAssessmentQuestionReadiness(source, readiness, questions).pipe(
@@ -194,12 +194,14 @@ describe("assessment question readiness", () => {
       const { questions, readiness, source } = yield* loadTkaReadiness();
       const numberQuestion = yield* Effect.fromNullishOr(
         questions.find(
-          ({ item }) => item.blueprint?.contentDomain === "numbers"
+          ({ item, questionNumber }) =>
+            questionNumber <= 25 && item.blueprint?.contentDomain === "numbers"
         )
       );
       const algebraQuestion = yield* Effect.fromNullishOr(
         questions.find(
-          ({ item }) => item.blueprint?.contentDomain === "algebra"
+          ({ item, questionNumber }) =>
+            questionNumber <= 25 && item.blueprint?.contentDomain === "algebra"
         )
       );
       const swappedOwners = questions.map((question) => {

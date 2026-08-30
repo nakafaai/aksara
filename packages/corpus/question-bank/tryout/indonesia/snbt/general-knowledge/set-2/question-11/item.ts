@@ -15,13 +15,13 @@ const item: QuestionItem = {
             "ein Milcherzeugnis, das nur für ältere Menschen bestimmt ist.",
         },
         {
-          isCorrect: false,
-          label: "ein Arzneimittel zur Behandlung von Verdauungskrankheiten.",
-        },
-        {
           isCorrect: true,
           label:
             "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
+        },
+        {
+          isCorrect: false,
+          label: "ein Arzneimittel zur Behandlung von Verdauungskrankheiten.",
         },
         {
           isCorrect: false,
@@ -42,12 +42,12 @@ const item: QuestionItem = {
           label: "dairy intended only for older adults.",
         },
         {
-          isCorrect: false,
-          label: "a medicine for treating digestive disease.",
-        },
-        {
           isCorrect: true,
           label: "dairy transformed by microorganisms through fermentation.",
+        },
+        {
+          isCorrect: false,
+          label: "a medicine for treating digestive disease.",
         },
         {
           isCorrect: false,
@@ -67,13 +67,13 @@ const item: QuestionItem = {
           label: "produk susu yang hanya ditujukan bagi lansia.",
         },
         {
-          isCorrect: false,
-          label: "obat untuk menangani penyakit pencernaan.",
-        },
-        {
           isCorrect: true,
           label:
             "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
+        },
+        {
+          isCorrect: false,
+          label: "obat untuk menangani penyakit pencernaan.",
         },
         {
           isCorrect: false,

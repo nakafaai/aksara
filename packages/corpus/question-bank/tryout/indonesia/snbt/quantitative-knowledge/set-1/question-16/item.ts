@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + y}{12}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{4x + y}{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{3x + y}{12}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + y}{12}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{4x + y}{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{3x + y}{12}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + y}{12}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{3x + y}{12}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{4x + y}{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{3x + y}{12}$$",
         },
         {
           isCorrect: false,

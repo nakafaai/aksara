@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Die PSBB-Regelung wurde am 10. April 2020 von der Regierung von Jakarta angekündigt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die PSBB-Regelung trat am 10. April 2020 in DKI Jakarta in Kraft.",
-        },
-        {
           isCorrect: false,
           label:
             "Am 10. April 2020 wurden die PSBB-Regeln in DKI Jakarta angekündigt.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die PSBB-Regelung trat am 10. April 2020 in DKI Jakarta in Kraft.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "PSBB was announced by the Jakarta government on 10 April 2020.",
         },
         {
-          isCorrect: true,
-          label:
-            "PSBB began to be implemented in DKI Jakarta on 10 April 2020.",
-        },
-        {
           isCorrect: false,
           label:
             "On 10 April 2020, the PSBB rules were announced in DKI Jakarta.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "PSBB began to be implemented in DKI Jakarta on 10 April 2020.",
         },
         {
           isCorrect: false,
@@ -76,12 +76,12 @@ const item: QuestionItem = {
             "PSBB diumumkan oleh Pemerintah DKI Jakarta pada 10 April 2020.",
         },
         {
-          isCorrect: true,
-          label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
-        },
-        {
           isCorrect: false,
           label: "Pada 10 April 2020, aturan PSBB diumumkan di DKI Jakarta.",
+        },
+        {
+          isCorrect: true,
+          label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
         },
         {
           isCorrect: false,

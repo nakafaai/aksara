@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Kugelschreiber",
         },
         {
-          isCorrect: true,
-          label: "Bleistifte",
-        },
-        {
           isCorrect: false,
           label: "Notizbücher und Bleistifte",
+        },
+        {
+          isCorrect: true,
+          label: "Bleistifte",
         },
         {
           isCorrect: false,
@@ -32,11 +32,11 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Notebooks" },
         { isCorrect: false, label: "Ballpoints" },
-        { isCorrect: true, label: "Pencils" },
         {
           isCorrect: false,
           label: "Notebooks and Pencils",
         },
+        { isCorrect: true, label: "Pencils" },
         {
           isCorrect: false,
           label: "All give equal profit",
@@ -48,11 +48,11 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Buku tulis" },
         { isCorrect: false, label: "Bolpoin" },
-        { isCorrect: true, label: "Pensil" },
         {
           isCorrect: false,
           label: "Buku tulis dan Pensil",
         },
+        { isCorrect: true, label: "Pensil" },
         {
           isCorrect: false,
           label: "Semua memberikan keuntungan sama",

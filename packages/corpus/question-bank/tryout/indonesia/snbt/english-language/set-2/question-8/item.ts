@@ -9,11 +9,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The songbird species",
         },
-        { isCorrect: true, label: "The researchers" },
         {
           isCorrect: false,
           label: "The pathogen communities",
         },
+        { isCorrect: true, label: "The researchers" },
         {
           isCorrect: false,
           label: "The Palaearctic regions",

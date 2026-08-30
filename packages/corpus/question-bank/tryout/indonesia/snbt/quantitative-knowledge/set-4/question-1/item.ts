@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{5}{2}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{3}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{5}{2}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{3}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$-\\frac{5}{2}$$",
-        },
-        {
           isCorrect: false,
           label: "$$-\\frac{3}{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-\\frac{5}{2}$$",
         },
         {
           isCorrect: false,

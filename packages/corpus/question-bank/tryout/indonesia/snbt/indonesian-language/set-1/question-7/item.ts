@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Daftar seluruh produk plastik yang dibuat di Indonesia",
         },
         {
+          isCorrect: true,
+          label:
+            "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
+        },
+        {
           isCorrect: false,
           label: "Sejarah terbentuknya kepulauan Seychelles",
         },
@@ -17,11 +22,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
         },
         {
           isCorrect: false,

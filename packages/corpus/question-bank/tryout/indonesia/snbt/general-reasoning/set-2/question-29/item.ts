@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Wenn die Fahrpreise für öffentliche Verkehrsmittel steigen, steigen auch die Treibstoffpreise (BBM).",
-        },
-        {
           isCorrect: true,
           label:
             "Wenn es keine Erhöhung der Fahrpreise für öffentliche Verkehrsmittel gibt, dann gibt es auch keine Erhöhung der Treibstoffpreise (BBM).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wenn die Fahrpreise für öffentliche Verkehrsmittel steigen, steigen auch die Treibstoffpreise (BBM).",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "If there is an increase in public transportation fares, then there is an increase in fuel (BBM) prices",
-        },
-        {
           isCorrect: true,
           label:
             "If there is no increase in public transportation fares, then there is no increase in fuel (BBM) prices",
+        },
+        {
+          isCorrect: false,
+          label:
+            "If there is an increase in public transportation fares, then there is an increase in fuel (BBM) prices",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Jika terjadi kenaikan tarif angkutan umum maka terjadi kenaikan harga bahan bakar minyak (BBM)",
-        },
-        {
           isCorrect: true,
           label:
             "Jika tidak ada kenaikan tarif angkutan umum maka tidak terjadi kenaikan harga bahan bakar minyak (BBM)",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jika terjadi kenaikan tarif angkutan umum maka terjadi kenaikan harga bahan bakar minyak (BBM)",
         },
         {
           isCorrect: false,

@@ -19,13 +19,13 @@ const item: QuestionItem = {
             "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
         },
         {
+          isCorrect: false,
+          label: "Pengolahan beras mengundang pertanyaan di setiap dapur",
+        },
+        {
           isCorrect: true,
           label:
             "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Pengolahan beras mengundang pertanyaan di setiap dapur",
         },
       ],
     },

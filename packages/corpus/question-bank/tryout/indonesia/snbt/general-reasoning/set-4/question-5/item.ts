@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$70\\text{ kcal}$$",
         },
         {
-          isCorrect: true,
-          label: "$$75\\text{ kcal}$$",
-        },
-        {
           isCorrect: false,
           label: "$$72\\text{ kcal}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$75\\text{ kcal}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$70\\text{ kcal}$$",
         },
         {
-          isCorrect: true,
-          label: "$$75\\text{ kcal}$$",
-        },
-        {
           isCorrect: false,
           label: "$$72\\text{ kcal}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$75\\text{ kcal}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$70\\text{ kkal}$$",
         },
         {
-          isCorrect: true,
-          label: "$$75\\text{ kkal}$$",
-        },
-        {
           isCorrect: false,
           label: "$$72\\text{ kkal}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$75\\text{ kkal}$$",
         },
         {
           isCorrect: false,

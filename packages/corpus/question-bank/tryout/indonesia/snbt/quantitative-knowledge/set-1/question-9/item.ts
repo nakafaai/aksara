@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\text{I, II und III}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{I und II}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{I, II und III}$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\text{I, II, and III}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{I and II}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{I, II, and III}$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\text{I, II, dan III}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{I dan II}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{I, II, dan III}$$",
         },
         {
           isCorrect: false,

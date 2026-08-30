@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Die Beendigung des illegalen Zinnabbaus würde das Wassereinzugsgebiet zwangsläufig schädigen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Bergbausedimente und unterbrochene Flussläufe können die Aufnahmekapazität verringern und die Hochwassergefahr in der Regenzeit erhöhen.",
-        },
-        {
           isCorrect: false,
           label:
             "Weil illegale Bergleute offen arbeiten, kann es in der Regenzeit nicht zu Hochwasser kommen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Bergbausedimente und unterbrochene Flussläufe können die Aufnahmekapazität verringern und die Hochwassergefahr in der Regenzeit erhöhen.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "Stopping illegal tin mining would necessarily damage the watershed.",
         },
         {
-          isCorrect: true,
-          label:
-            "Mining-related sedimentation and disrupted channels can reduce river capacity and increase rainy-season flood risk.",
-        },
-        {
           isCorrect: false,
           label:
             "Because illegal miners operate openly, flooding cannot occur during the rainy season.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Mining-related sedimentation and disrupted channels can reduce river capacity and increase rainy-season flood risk.",
         },
         {
           isCorrect: false,
@@ -70,14 +70,14 @@ const item: QuestionItem = {
           label: "Penghentian tambang timah ilegal pasti akan merusak DAS.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sedimentasi tambang dan alur yang terganggu dapat mengurangi kapasitas sungai serta meningkatkan risiko banjir pada musim hujan.",
-        },
-        {
           isCorrect: false,
           label:
             "Karena penambang ilegal beroperasi secara terbuka, banjir tidak mungkin terjadi pada musim hujan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sedimentasi tambang dan alur yang terganggu dapat mengurangi kapasitas sungai serta meningkatkan risiko banjir pada musim hujan.",
         },
         {
           isCorrect: false,

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Baik letaknya untuk mendukung suatu tujuan",
-        },
-        {
           isCorrect: false,
           label: "Disusun berdasarkan strategi militer",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Terpisah dari jalur perdagangan pesisir",
+        },
+        {
+          isCorrect: true,
+          label: "Baik letaknya untuk mendukung suatu tujuan",
         },
       ],
     },

@@ -14,17 +14,17 @@ const item: QuestionItem = {
           label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
         },
         {
-          isCorrect: true,
-          label:
-            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
-        },
-        {
           isCorrect: false,
           label: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
         },
         {
           isCorrect: false,
           label: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
         },
       ],
     },

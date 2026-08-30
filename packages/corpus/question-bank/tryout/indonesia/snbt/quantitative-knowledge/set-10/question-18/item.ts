@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\{x | -3 \\leq x, x \\in \\text{ganze Zahlen}\\}$$",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\{x | -3 < x < 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}$$",
+        },
         {
           isCorrect: false,
           label: "$$\\{x | -3 \\leq x, x \\in \\text{integers}\\}$$",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$\\{x | x \\leq 7, x \\in \\text{integers}\\}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\{x | -3 < x < 7, x \\in \\text{integers}\\}$$",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
+        },
         {
           isCorrect: false,
           label: "$$\\{x | -3 \\leq x, x \\in \\text{bilangan bulat}\\}$$",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: false,

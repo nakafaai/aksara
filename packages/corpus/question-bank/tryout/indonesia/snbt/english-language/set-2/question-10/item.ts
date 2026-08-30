@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
+        },
+        {
           isCorrect: false,
           label: "Migration immediately strengthens every bird's immunity.",
         },
@@ -16,11 +21,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Greater MHC-I diversity can have benefits but never costs.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
         },
         {
           isCorrect: false,
