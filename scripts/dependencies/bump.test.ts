@@ -15,8 +15,6 @@ import {
 import { makeRunner, output } from "#scripts/dependencies/fixture";
 import {
   DEPENDENCY_HOLDS,
-  DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-  DEPENDENCY_RELEASE_AGE_MINUTES,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
 
@@ -43,9 +41,6 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
   function* (input?: {
     readonly invalidManifest?: string;
     readonly invalidWorkspace?: string;
-    readonly minimumReleaseAge?: number;
-    readonly minimumReleaseAgeExclude?: readonly string[];
-    readonly minimumReleaseAgeStrict?: boolean;
     readonly omitUltracite?: boolean;
     readonly omitIgnore?: string;
   }) {
@@ -86,12 +81,6 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
             effect: "4.0.0-rc.110",
             typescript: "npm:@typescript/typescript6@6.0.2",
           },
-          minimumReleaseAge:
-            input?.minimumReleaseAge ?? DEPENDENCY_RELEASE_AGE_MINUTES,
-          minimumReleaseAgeExclude:
-            input?.minimumReleaseAgeExclude ??
-            DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-          minimumReleaseAgeStrict: input?.minimumReleaseAgeStrict ?? true,
           update: { ignoreDeps },
         })
     );
@@ -188,21 +177,12 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         Effect.gen(function* () {
           const runner = vi.fn(makeRunner());
           const config = yield* createConfig({
-            minimumReleaseAge: 0,
-            minimumReleaseAgeExclude: [
-              ...DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-              "effect",
-            ],
-            minimumReleaseAgeStrict: false,
             omitIgnore: "effect",
           });
           const error = yield* fail(config, runner);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(error.detail.includes("update.ignoreDeps"));
-          assert.ok(error.detail.includes("exactly 1440 minutes"));
-          assert.ok(error.detail.includes("must remain strict"));
-          assert.ok(error.detail.includes("minimumReleaseAgeExclude"));
           assert.strictEqual(runner.mock.calls.length, 0);
         })
     );

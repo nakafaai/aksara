@@ -1,19 +1,5 @@
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
-export const DEPENDENCY_RELEASE_AGE_MINUTES = 1440;
-export const DEPENDENCY_RELEASE_AGE_EXCLUSIONS = [
-  "@biomejs/biome@2.5.10",
-  "@biomejs/cli-darwin-arm64@2.5.10",
-  "@biomejs/cli-darwin-x64@2.5.10",
-  "@biomejs/cli-linux-arm64-musl@2.5.10",
-  "@biomejs/cli-linux-arm64@2.5.10",
-  "@biomejs/cli-linux-x64-musl@2.5.10",
-  "@biomejs/cli-linux-x64@2.5.10",
-  "@biomejs/cli-win32-arm64@2.5.10",
-  "@biomejs/cli-win32-x64@2.5.10",
-  "nanoid@3.3.18",
-] as const;
-
 export type DeclarationSource =
   | "catalog"
   | "node-runtime"

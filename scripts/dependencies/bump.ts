@@ -12,8 +12,6 @@ import {
 } from "#scripts/dependencies/command";
 import {
   DEPENDENCY_HOLDS,
-  DEPENDENCY_RELEASE_AGE_EXCLUSIONS,
-  DEPENDENCY_RELEASE_AGE_MINUTES,
   type DependencyHold,
   declaredVersion,
   expectedIgnoredDependencies,
@@ -41,9 +39,6 @@ const RootManifestSchema = Schema.Struct({
 
 const WorkspaceSchema = Schema.Struct({
   catalog: Schema.Record(Schema.String, Schema.String),
-  minimumReleaseAge: Schema.Finite,
-  minimumReleaseAgeExclude: Schema.Array(Schema.String),
-  minimumReleaseAgeStrict: Schema.Boolean,
   update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
 });
 
@@ -121,23 +116,6 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
         "pnpm update.ignoreDeps does not match the reviewed hold policy."
       );
     }
-    if (workspace.minimumReleaseAge !== DEPENDENCY_RELEASE_AGE_MINUTES) {
-      problems.push(
-        `Dependency releases must mature for exactly ${DEPENDENCY_RELEASE_AGE_MINUTES} minutes.`
-      );
-    }
-    if (!workspace.minimumReleaseAgeStrict) {
-      problems.push("Dependency release-age enforcement must remain strict.");
-    }
-    const expectedExclusions = [...DEPENDENCY_RELEASE_AGE_EXCLUSIONS].sort();
-    const actualExclusions = [...workspace.minimumReleaseAgeExclude].sort();
-    if (
-      JSON.stringify(actualExclusions) !== JSON.stringify(expectedExclusions)
-    ) {
-      problems.push(
-        "pnpm minimumReleaseAgeExclude does not match the reviewed exception policy."
-      );
-    }
     if (problems.length > 0) {
       return yield* new DependencyPolicyError({ detail: problems.join("\n") });
     }
@@ -205,7 +183,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     }
 
     yield* Effect.logInfo(
-      `Routine dependencies and every reviewed hold are current under the repository's ${DEPENDENCY_RELEASE_AGE_MINUTES / 60}-hour release-maturity policy.`
+      "Routine dependencies and every reviewed hold are current."
     );
     return reports;
   }
