@@ -8,6 +8,7 @@ const baseArguments = [
   "--recovery-id",
   "recovery-2026-07-22",
 ] as const;
+const assetHash = `sha256:${"a".repeat(64)}`;
 
 /** Decodes one production argument collection. */
 function parse(args: readonly string[]) {
@@ -73,6 +74,38 @@ describe("release production arguments", () => {
         command: "release",
         option: "--scope",
         reason: "value",
+      });
+    })
+  );
+
+  it.effect.each([
+    {
+      args: ["--unknown", "value"],
+      option: "command",
+      reason: "unknown",
+    },
+    {
+      args: ["--asset-hash", assetHash],
+      option: "command",
+      reason: "unknown",
+    },
+    {
+      args: ["--release-id", "release-next"],
+      option: "--recovery-id",
+      reason: "missing",
+    },
+    {
+      args: ["--release-id", "release-next", "--recovery-id", "release-next"],
+      option: "--recovery-id",
+      reason: "identity",
+    },
+  ] as const)("rejects invalid production input %#", (input) =>
+    Effect.gen(function* () {
+      expect(yield* reject(input.args)).toMatchObject({
+        _tag: "ProductionArgumentsError",
+        command: "release",
+        option: input.option,
+        reason: input.reason,
       });
     })
   );

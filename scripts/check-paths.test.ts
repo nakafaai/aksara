@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { pathViolations } from "#scripts/check-paths";
 
 describe("path policy", () => {
@@ -22,6 +22,7 @@ describe("path policy", () => {
     expect(
       pathViolations([
         "",
+        "packages/compiler/policy.config.ts",
         "packages/compiler/policy.config.test.ts",
         "packages/compiler/release-2026-state.ts",
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
@@ -34,6 +35,19 @@ describe("path policy", () => {
         "packages/corpus/question-bank/tryout/malaysia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
       ])
     ).toEqual([]);
+  });
+
+  it("rejects orphan and TSX test modules", () => {
+    expect(
+      pathViolations([
+        "packages/compiler/orphan.test.ts",
+        "packages/compiler/view.ts",
+        "packages/compiler/view.test.tsx",
+      ])
+    ).toEqual([
+      "packages/compiler/orphan.test.ts: final test has no colocated packages/compiler/orphan.ts owner",
+      "packages/compiler/view.test.tsx: final tests must use .test.ts",
+    ]);
   });
 
   it("still validates source names and folders outside educational roots", () => {
