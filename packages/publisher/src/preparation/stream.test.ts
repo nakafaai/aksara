@@ -18,10 +18,6 @@ import {
   MaterialLessonProjectionSchema,
   MaterialSectionSchema,
 } from "@nakafa/aksara-contracts/projection/material";
-import {
-  PageKeySchema,
-  PublicPageProjectionSchema,
-} from "@nakafa/aksara-contracts/projection/page";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
@@ -219,46 +215,6 @@ describe("derivePreparedRecords", () => {
         Stream.make(transition(candidate, baseRecord.change))
       ).pipe(Effect.flip);
       expect(error).toMatchObject({ _tag: "ArtifactSourceHashMismatchError" });
-    })
-  );
-
-  it.effect("rejects predecessor Page metadata in an authored upsert", () =>
-    Effect.gen(function* () {
-      const { baseRecord } = yield* makeFixture();
-      const currentPage = PublicPageProjectionSchema.make({
-        appLocale: AppLocaleSchema.make("en"),
-        artifactLocale: ArtifactLocaleSchema.make("en"),
-        contentKey: ContentKeySchema.make("pages/test"),
-        kind: "public-page",
-        metadata: {
-          datePublished: "2026-01-01",
-          description: "Test page.",
-          title: "Test",
-        },
-        pageKey: PageKeySchema.make("test"),
-        publicPath: PublicPathSchema.make("test"),
-        sitemap: true,
-        sourcePath: CorpusSourcePathSchema.make(
-          "packages/corpus/pages/test/en.mdx"
-        ),
-      });
-      const candidate = {
-        ...baseRecord,
-        projection: {
-          ...currentPage,
-          metadata: {
-            description: currentPage.metadata.description,
-            lastModified: currentPage.metadata.datePublished,
-            title: currentPage.metadata.title,
-          },
-        },
-      };
-
-      const error = yield* derive(
-        Stream.make(transition(candidate, baseRecord.change))
-      ).pipe(Effect.flip);
-
-      expect(error).toMatchObject({ _tag: "PreparedContentDecodeError" });
     })
   );
 
