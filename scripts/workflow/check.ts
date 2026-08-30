@@ -5,7 +5,10 @@ import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
-  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
+  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|package-proof/iu;
+const REGISTRY_URL_PATTERN = /https:\/\/registry\.npmjs\.org[^\s"']+/gu;
+const NPM_ATTESTATION_URL =
+  "https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
 const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
@@ -29,6 +32,8 @@ const ARCHIVE_IDENTITY_PATTERN =
   /release-command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
+const NPM_PROVENANCE_PATTERN =
+  /expected_sha512=.*sha512sum[\s\S]*expected_attestation_url="https:\/\/registry\.npmjs\.org\/-\/npm\/v1\/attestations\/\$encoded_package_name@\$package_version"[\s\S]*read_provenance\(\)[\s\S]*@base64d \| fromjson[\s\S]*is_exact_provenance\(\)[\s\S]*workflow\.repository[\s\S]*\.github\/workflows\/contracts\.yml[\s\S]*refs\/heads\/main[\s\S]*resolvedDependencies[\s\S]*\.digest\.gitCommit == \$sha[\s\S]*github-hosted[\s\S]*is_exact_publication\(\)/u;
 const RELEASE_JOB_PATTERN =
   /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified archive[\s\S]*actions\/upload-artifact@[0-9a-f]{40}[\s\S]*publish:[\s\S]*needs: build[\s\S]*if: needs\.build\.outputs\.mode == 'create'[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download verified archive[\s\S]*actions\/download-artifact@[0-9a-f]{40}/u;
 const IMMUTABLE_SETTING_PATTERN =
@@ -75,6 +80,15 @@ export function verifyWorkflows({
     releaseCombined,
     FORBIDDEN_REGISTRY_PATTERN,
     "Workflows must not retain registry or Changesets publication machinery"
+  );
+  assert.deepEqual(
+    [
+      ...new Set(
+        [...combined.matchAll(REGISTRY_URL_PATTERN)].map(([url]) => url)
+      ),
+    ],
+    [NPM_ATTESTATION_URL],
+    "Registry reads must use only the exact npm attestation endpoint"
   );
   assert.doesNotMatch(
     combined,
@@ -168,6 +182,11 @@ export function verifyWorkflows({
     contracts,
     ATTESTATION_PATTERN,
     "Contract attestation must bind workflow, source revision, and main"
+  );
+  assert.match(
+    contracts,
+    NPM_PROVENANCE_PATTERN,
+    "npm provenance must bind archive, repository, workflow, main, and source revision"
   );
   assert.match(
     contracts,

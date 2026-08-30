@@ -101,18 +101,26 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires attestation to bind the source workflow and revision", () => {
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        contracts: sources.contracts.replaceAll(
+  it("binds GitHub and npm provenance to one exact source", () => {
+    const cases = [
+      [
+        sources.contracts.replaceAll(
           '--source-digest "$GITHUB_SHA"',
           '--source-digest "unknown"'
         ),
-      })
-    ).toThrow(
-      "Contract attestation must bind workflow, source revision, and main"
-    );
+        "Contract attestation must bind workflow, source revision, and main",
+      ],
+      [
+        sources.contracts.replace(
+          ".digest.gitCommit == $sha",
+          '.digest.gitCommit == "unknown"'
+        ),
+        "npm provenance must bind archive, repository, workflow, main, and source revision",
+      ],
+    ] as const;
+    for (const [contracts, message] of cases) {
+      expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(message);
+    }
   });
 
   it("removes only the failed same-SHA mutable release", () => {

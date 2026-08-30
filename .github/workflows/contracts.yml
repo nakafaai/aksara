@@ -284,7 +284,12 @@ jobs:
           package_version=$(jq -er '.version' <<< "$package_json")
           package_specifier="$package_name@$package_version"
           expected_shasum=$(sha1sum "$TARBALL" | cut -d ' ' -f 1)
+          expected_sha512=$(sha512sum "$TARBALL" | cut -d ' ' -f 1)
           expected_integrity="sha512-$(openssl dgst -sha512 -binary "$TARBALL" | openssl base64 -A)"
+          encoded_package_name="${package_name/\//%2f}"
+          expected_attestation_url="https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version"
+          expected_repository="https://github.com/$GITHUB_REPOSITORY"
+          expected_dependency="git+https://github.com/$GITHUB_REPOSITORY@refs/heads/main"
 
           read_metadata() {
             local raw
@@ -306,13 +311,66 @@ jobs:
               --arg integrity "$expected_integrity" \
               --arg name "$package_name" \
               --arg shasum "$expected_shasum" \
+              --arg attestation_url "$expected_attestation_url" \
               --arg version "$package_version" \
               '.name == $name
                 and .version == $version
                 and ."dist.shasum" == $shasum
                 and ."dist.integrity" == $integrity
+                and ."dist.attestations".url == $attestation_url
                 and ."dist.attestations".provenance.predicateType
                   == "https://slsa.dev/provenance/v1"'
+          }
+
+          read_provenance() {
+            local raw
+            if ! raw=$(curl --fail --silent --show-error \
+              "$expected_attestation_url"); then
+              return 1
+            fi
+            jq -ce '
+              .attestations
+              | map(select(
+                  .predicateType == "https://slsa.dev/provenance/v1"
+                ))
+              | if length == 1 then
+                  .[0].bundle.dsseEnvelope.payload | @base64d | fromjson
+                else empty
+                end
+            ' <<< "$raw"
+          }
+
+          is_exact_provenance() {
+            jq -e \
+              --arg dependency "$expected_dependency" \
+              --arg repository "$expected_repository" \
+              --arg sha "$GITHUB_SHA" \
+              --arg sha512 "$expected_sha512" \
+              '(.subject | length == 1)
+                and .subject[0].digest.sha512 == $sha512
+                and .predicate.buildDefinition.buildType
+                  == "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1"
+                and .predicate.buildDefinition.externalParameters.workflow.repository
+                  == $repository
+                and .predicate.buildDefinition.externalParameters.workflow.path
+                  == ".github/workflows/contracts.yml"
+                and .predicate.buildDefinition.externalParameters.workflow.ref
+                  == "refs/heads/main"
+                and (.predicate.buildDefinition.resolvedDependencies | any(
+                  .uri == $dependency and .digest.gitCommit == $sha
+                ))
+                and .predicate.runDetails.builder.id
+                  == "https://github.com/actions/runner/github-hosted"'
+          }
+
+          is_exact_publication() {
+            local metadata provenance
+            if ! metadata=$(read_metadata) \
+              || ! is_exact_package <<< "$metadata" >/dev/null \
+              || ! provenance=$(read_provenance); then
+              return 1
+            fi
+            is_exact_provenance <<< "$provenance" >/dev/null
           }
 
           metadata=""
@@ -320,11 +378,25 @@ jobs:
             metadata=""
           fi
           if [[ -n "$metadata" ]]; then
-            if is_exact_package <<< "$metadata" >/dev/null; then
-              echo "The exact public package and provenance already exist."
+            if ! is_exact_package <<< "$metadata" >/dev/null; then
+              echo "The public package version already exists with different evidence." >&2
+              exit 1
+            fi
+            published=false
+            for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+              if is_exact_publication; then
+                published=true
+                break
+              fi
+              if [[ "$attempt" -lt 12 ]]; then
+                sleep 5
+              fi
+            done
+            if [[ "$published" == "true" ]]; then
+              echo "The exact public package and source-bound provenance already exist."
               exit 0
             fi
-            echo "The public package version already exists with different evidence." >&2
+            echo "The public package provenance belongs to a different source revision." >&2
             exit 1
           fi
 
@@ -332,12 +404,7 @@ jobs:
 
           published=false
           for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
-            metadata=""
-            if ! metadata=$(read_metadata); then
-              metadata=""
-            fi
-            if [[ -n "$metadata" ]] \
-              && is_exact_package <<< "$metadata" >/dev/null; then
+            if is_exact_publication; then
               published=true
               break
             fi
