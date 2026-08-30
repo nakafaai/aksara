@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { withPublicationDates } from "#contracts/date";
+import { DateOnlySchema, withPublicationDates } from "#contracts/date";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -25,7 +25,7 @@ export type PageMetadata = typeof PageMetadataSchema.Type;
 /** Immutable metadata retained only for authenticated historical Page reads. */
 const HistoricalPageMetadataSchema = Schema.Struct({
   description: Schema.Trimmed.check(Schema.isNonEmpty()),
-  lastModified: Schema.String,
+  lastModified: DateOnlySchema,
   title: Schema.Trimmed.check(Schema.isNonEmpty()),
 });
 

@@ -128,6 +128,12 @@ describe("public page projection", () => {
     expect(accepts(HistoricalPublicPageProjectionSchema, historical)).toBe(
       true
     );
+    expect(
+      accepts(HistoricalPublicPageProjectionSchema, {
+        ...historical,
+        metadata: { ...historical.metadata, lastModified: "not-a-date" },
+      })
+    ).toBe(false);
     expect(accepts(ReadablePublicPageProjectionSchema, historical)).toBe(true);
     expect(canonicalizePublicPageProjection(historical)).toContain(
       '"metadata":{"description":"How Nakafa processes personal data.","lastModified":"2026-08-21","title":"Privacy Policy"}'
