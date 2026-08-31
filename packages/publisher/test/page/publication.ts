@@ -12,6 +12,7 @@ import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 
 interface PagePublicationInput {
   readonly heads: readonly PageHead[];
+  readonly rebuild?: boolean | undefined;
   readonly renderer?: unknown;
   readonly scope?: PublicationScope | undefined;
   readonly sources?: ReadonlyMap<string, string>;
@@ -27,6 +28,7 @@ const collectPagePublicationFrom = Effect.fn("PageTest.collectFrom")(
         const publication = yield* preparePagePublication({
           checkoutRoot: fixture.checkoutRoot,
           published: Stream.fromIterable(input.heads),
+          rebuild: input.rebuild,
           rendererManifest: input.renderer ?? fixture.rendererManifest,
           scope: input.scope,
         });
@@ -82,6 +84,7 @@ const collectPageRoutesFrom = Effect.fn("PageTest.collectRoutesFrom")(
         const publication = yield* preparePagePublication({
           checkoutRoot: fixture.checkoutRoot,
           published: Stream.fromIterable(input.heads),
+          rebuild: input.rebuild,
           rendererManifest: input.renderer ?? fixture.rendererManifest,
           scope: input.scope,
         });

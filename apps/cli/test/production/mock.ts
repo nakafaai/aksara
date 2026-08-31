@@ -53,6 +53,7 @@ const QUESTION_HEAD = QuestionHeadSchema.make({
 /** Observable fields shared by focused production mock implementations. */
 export interface TargetCalls {
   catalogCalls: number;
+  catalogRebuild: boolean | undefined;
   checkoutRoot: string | undefined;
   cleanReads: number;
   current: unknown;
@@ -190,8 +191,12 @@ export function headsMock(calls: TargetCalls) {
 /** Exposes one replayable empty catalog after recording preparation. */
 export function catalogMock(calls: TargetCalls) {
   return {
-    prepareContentCatalog: (input: { readonly checkoutRoot: string }) => {
+    prepareContentCatalog: (input: {
+      readonly checkoutRoot: string;
+      readonly rebuild?: boolean | undefined;
+    }) => {
       calls.catalogCalls += 1;
+      calls.catalogRebuild = input.rebuild;
       calls.checkoutRoot = input.checkoutRoot;
       return Effect.succeed({
         records: Stream.empty,

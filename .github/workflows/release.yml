@@ -21,6 +21,11 @@ on:
         description: Exact retained inverse ID for release, accept, or recover
         required: false
         type: string
+      rebuild:
+        description: Recompile every authored item in the selected families
+        required: false
+        default: false
+        type: boolean
       scope:
         description: Canonical family or snapshot selectors as a JSON string array
         required: false
@@ -94,6 +99,7 @@ jobs:
       - name: Validate operation
         env:
           OPERATION: ${{ inputs.operation }}
+          REBUILD: ${{ inputs.rebuild }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
@@ -118,6 +124,10 @@ jobs:
             fi
           elif [[ -n "$PUBLICATION_SCOPE" ]]; then
             echo "Only release may select a publication scope." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
+            echo "Only release may rebuild selected families." >&2
             exit 1
           fi
 
@@ -202,14 +212,19 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
+          REBUILD: ${{ inputs.rebuild }}
         run: |
           mapfile -t SCOPE_SELECTORS < <(jq -er '.[]' <<<"$PUBLICATION_SCOPE")
           scope_args=()
           for selector in "${SCOPE_SELECTORS[@]}"; do
             scope_args+=(--scope "$selector")
           done
+          rebuild_args=()
+          if [[ "$REBUILD" == "true" ]]; then
+            rebuild_args+=(--rebuild)
+          fi
           pnpm release -- --release-id "$RELEASE_ID" \
-            --recovery-id "$RECOVERY_ID" "${scope_args[@]}"
+            --recovery-id "$RECOVERY_ID" "${scope_args[@]}" "${rebuild_args[@]}"
 
       - name: Accept active release
         if: inputs.operation == 'accept'

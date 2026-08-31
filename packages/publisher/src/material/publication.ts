@@ -85,6 +85,7 @@ export interface MaterialPublication {
 export interface MaterialPublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<MaterialHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: unknown;
   readonly scope?: PublicationScope | undefined;
 }
@@ -191,6 +192,7 @@ export const prepareMaterialPublication: <E, R>(
     checkoutRoot: input.checkoutRoot,
     entries,
     published: validatePublishedHeads(input.published),
+    rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,
   });

@@ -13,6 +13,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "status",
     ]),
     option: Schema.Literals([
+      "--rebuild",
       "--recovery-id",
       "--release-id",
       "--scope",

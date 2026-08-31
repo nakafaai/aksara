@@ -37,6 +37,42 @@ describe("release production arguments", () => {
     })
   );
 
+  it.effect("decodes one explicit full-family rebuild", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* parse([...baseArguments, "--scope", "family:page", "--rebuild"])
+      ).toEqual({
+        command: "release",
+        rebuild: true,
+        recoveryId: "recovery-2026-07-22",
+        releaseId: "release-2026-07-22",
+        scope: {
+          families: ["page"],
+          snapshots: [],
+        },
+      });
+    })
+  );
+
+  it.effect("rejects a duplicate rebuild flag", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* reject([
+          ...baseArguments,
+          "--scope",
+          "family:page",
+          "--rebuild",
+          "--rebuild",
+        ])
+      ).toMatchObject({
+        _tag: "ProductionArgumentsError",
+        command: "release",
+        option: "--rebuild",
+        reason: "duplicate",
+      });
+    })
+  );
+
   it.effect("rejects a release without an explicit publication scope", () =>
     Effect.gen(function* () {
       expect(yield* reject(baseArguments)).toMatchObject({

@@ -108,6 +108,7 @@ export function planQuestionPublication<E, R>(input: {
   readonly checkoutRoot: string;
   readonly entries: readonly QuestionEntry[];
   readonly published: Stream.Stream<QuestionHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly scope?: PublicationScope | undefined;
   readonly sources: readonly QuestionSource[];

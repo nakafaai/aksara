@@ -21,6 +21,7 @@ const calls = vi.hoisted(() => {
     baseResultDigest: undefined,
     bundleVerifyCalls: 0,
     catalogCalls: 0,
+    catalogRebuild: undefined,
     checkoutRoot: undefined,
     cleanReads: 0,
     current: {

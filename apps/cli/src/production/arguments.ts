@@ -8,6 +8,7 @@ import { decodePublicationScopeSelectors } from "#cli/scope";
 /** Exact immutable identity requested by one production release command. */
 export interface ReleaseArguments {
   readonly command: "release";
+  readonly rebuild?: true | undefined;
   readonly recoveryId: ReleaseId;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
@@ -126,6 +127,7 @@ export const parseProductionArguments = Effect.fn(
   );
   return {
     command,
+    ...(options.rebuild ? { rebuild: true as const } : {}),
     recoveryId,
     releaseId,
     scope,

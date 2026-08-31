@@ -119,6 +119,7 @@ const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
     >;
     readonly checkoutRoot: string;
     readonly diff: ScopedFamilyDiff<Entry, Head>;
+    readonly rebuild?: boolean | undefined;
     readonly rendererManifest: RendererManifestEnvelope;
   }) {
     const { adapter, diff } = input;
@@ -148,6 +149,7 @@ const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
     );
     if (
       diff.kind === "matched" &&
+      input.rebuild !== true &&
       isUnchanged(adapter, diff.entry, document, diff.head)
     ) {
       return { result: diff.head } satisfies FamilyPublicationPlan<Head>;
@@ -192,6 +194,7 @@ export function planFamilyPublication<
   readonly entries: readonly Entry[];
   readonly family: ContentFamily;
   readonly published: Stream.Stream<Head, PublishedError, PublishedContext>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
@@ -211,6 +214,7 @@ export function planFamilyPublication<
         adapter: input.adapter,
         checkoutRoot: input.checkoutRoot,
         diff,
+        rebuild: input.rebuild,
         rendererManifest: input.rendererManifest,
       })
     )

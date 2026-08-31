@@ -78,6 +78,7 @@ export function planMaterialPublication<E, R>(input: {
   readonly checkoutRoot: string;
   readonly entries: readonly MaterialEntry[];
   readonly published: Stream.Stream<MaterialHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
