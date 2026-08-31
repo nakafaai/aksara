@@ -77,7 +77,7 @@ jobs:
           CURRENT_ARCHIVE: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
           GH_TOKEN: ${{ github.token }}
         run: >-
-          node packages/contracts/scripts/release-command.ts prove
+          node packages/contracts/scripts/release/command.ts prove
           --archive "$CURRENT_ARCHIVE"
           --repository "$GITHUB_REPOSITORY"
           --source-sha "$GITHUB_SHA"

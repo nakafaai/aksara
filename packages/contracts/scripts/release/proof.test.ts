@@ -13,7 +13,7 @@ import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
 import {
   type ContractProofInput,
   proveContractRelease,
-} from "#scripts/release-proof";
+} from "#scripts/release/proof";
 
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);
@@ -102,7 +102,7 @@ const releaseMetadata = Effect.fn("ReleaseProofTest.releaseMetadata")(
       draft: false,
       immutable: true,
       prerelease: false,
-      tag_name: `contracts-v${VERSION}`,
+      tag_name: `@nakafa/aksara-contracts@${VERSION}`,
       target_commitish: RELEASE_SHA,
     };
   }
@@ -213,7 +213,7 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
         expect(proof).toMatchObject({
           assetName: `nakafa-aksara-contracts-${VERSION}.tgz`,
           releaseSha: RELEASE_SHA,
-          releaseTag: `contracts-v${VERSION}`,
+          releaseTag: `@nakafa/aksara-contracts@${VERSION}`,
           size: fixture.size,
         });
       })

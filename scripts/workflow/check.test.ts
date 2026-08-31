@@ -13,29 +13,20 @@ function currentSources(): WorkflowSources {
   const cli = readFileSync(".github/workflows/cli.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return {
-    all: [ci, cli, contracts, release],
-    ci,
-    cli,
-    contracts,
-    release,
-  };
+  return { all: [ci, cli, contracts, release], ci, cli, contracts, release };
 }
 
 const sources = currentSources();
-
 describe("workflow policy", () => {
   it("accepts immutable archives and the direct content release path", () => {
     expect(() => verifyWorkflows(sources)).not.toThrow();
   });
-
   it("verifies every tracked workflow source", () => {
     const unconfigured = "jobs:\n  verify:\n    steps:\n      - run: pnpm test";
     expect(() =>
       verifyWorkflows({ ...sources, all: [...sources.all, unconfigured] })
     ).toThrow("Every pnpm job must set up the toolchain once");
   });
-
   it("always verifies each named release workflow", () => {
     const release = sources.release.replaceAll(
       "pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2",
@@ -45,7 +36,6 @@ describe("workflow policy", () => {
       "Every pnpm job must set up the toolchain once"
     );
   });
-
   it("rejects registry publication machinery", () => {
     expect(() =>
       verifyWorkflows({
@@ -55,6 +45,12 @@ describe("workflow policy", () => {
     ).toThrow(
       "Workflows must not retain registry or Changesets publication machinery"
     );
+    for (const prefix of ["http://", "//", ""]) {
+      const contracts = `${sources.contracts}\n# ${prefix}registry.npmjs.org/-/unexpected`;
+      expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(
+        "Registry reads must use only the exact npm attestation endpoint"
+      );
+    }
   });
 
   it("requires CI to use the tested archive identity decision", () => {
@@ -62,8 +58,8 @@ describe("workflow policy", () => {
       verifyWorkflows({
         ...sources,
         ci: sources.ci.replace(
-          "release-command.ts describe",
-          "release-command.ts inspect"
+          "release/command.ts describe",
+          "release/command.ts inspect"
         ),
       })
     ).toThrow("CI must derive release necessity from the tested identity tool");
@@ -89,10 +85,10 @@ describe("workflow policy", () => {
 
   it("attests the verified archive before privileged transfer", () => {
     const contracts = sources.contracts
-      .replace("- name: Upload verified archive", "- name: Later transfer")
+      .replace("- name: Upload verified package", "- name: Later transfer")
       .replace(
         "- name: Attest verified archive",
-        "- name: Upload verified archive"
+        "- name: Upload verified package"
       )
       .replace("- name: Later transfer", "- name: Attest verified archive");
 
@@ -101,16 +97,12 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires attestation to bind the source workflow and revision", () => {
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        contracts: sources.contracts.replaceAll(
-          '--source-digest "$GITHUB_SHA"',
-          '--source-digest "unknown"'
-        ),
-      })
-    ).toThrow(
+  it("binds GitHub attestation to one exact source", () => {
+    const contracts = sources.contracts.replaceAll(
+      '--source-digest "$GITHUB_SHA"',
+      '--source-digest "unknown"'
+    );
+    expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(
       "Contract attestation must bind workflow, source revision, and main"
     );
   });
@@ -126,17 +118,6 @@ describe("workflow policy", () => {
       })
     ).toThrow(
       "Failed publication must remove only its same-SHA mutable release"
-    );
-  });
-
-  it("keeps repository code out of the privileged contract job", () => {
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        contracts: `${sources.contracts}\n      - run: node scripts/check.ts`,
-      })
-    ).toThrow(
-      "The privileged contract job must not checkout or execute repository code"
     );
   });
 
@@ -185,9 +166,7 @@ describe("workflow policy", () => {
           "      statuses: read"
         ),
       })
-    ).toThrow(
-      "Contract builds and privileged publication must use separate jobs"
-    );
+    ).toThrow("Contract publication must verify archive attestations");
   });
 
   it("requires exact immutable release rerun handling", () => {

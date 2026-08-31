@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
 import { ChildProcess } from "effect/unstable/process";
-import { makeReleaseCommand } from "#scripts/release-program";
+import { makeReleaseCommand } from "#scripts/release/program";
 
 /** Creates one archive carrying the exact package identity. */
 const createArchive = Effect.fn("ContractReleaseProgramTest.createArchive")(
@@ -30,20 +30,20 @@ const createArchive = Effect.fn("ContractReleaseProgramTest.createArchive")(
   }
 );
 
-/** Creates exact package, tags, and output paths for one command. */
+/** Creates exact package, release, and output paths for one command. */
 const commandPaths = Effect.fn("ContractReleaseProgramTest.commandPaths")(
-  function* (root: string, tags = "") {
+  function* (root: string, releases = "") {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
     const packagePath = path.join(root, "package.json");
-    const tagsPath = path.join(root, "tags.txt");
+    const releasesPath = path.join(root, "releases.txt");
     const outputPath = path.join(root, "output.txt");
     yield* fileSystem.writeFileString(
       packagePath,
       '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}'
     );
-    yield* fileSystem.writeFileString(tagsPath, tags);
-    return { outputPath, packagePath, tagsPath };
+    yield* fileSystem.writeFileString(releasesPath, releases);
+    return { outputPath, packagePath, releasesPath };
   }
 );
 
@@ -59,8 +59,8 @@ layer(NodeServices.layer)("contract release program", (it) => {
         "describe",
         "--package",
         first.packagePath,
-        "--tags",
-        first.tagsPath,
+        "--releases",
+        first.releasesPath,
         "--output",
         first.outputPath,
       ]);
@@ -68,14 +68,17 @@ layer(NodeServices.layer)("contract release program", (it) => {
         yield* fileSystem.readFileString(first.outputPath, "utf8")
       ).toContain("has_latest=false");
 
-      const existing = yield* commandPaths(root, "contracts-v0.1.0\n");
+      const existing = yield* commandPaths(
+        root,
+        "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\n"
+      );
       yield* fileSystem.writeFileString(existing.outputPath, "");
       yield* makeReleaseCommand([
         "describe",
         "--package",
         existing.packagePath,
-        "--tags",
-        existing.tagsPath,
+        "--releases",
+        existing.releasesPath,
         "--output",
         existing.outputPath,
       ]);
@@ -97,8 +100,8 @@ layer(NodeServices.layer)("contract release program", (it) => {
         "decide",
         "--package",
         first.packagePath,
-        "--tags",
-        first.tagsPath,
+        "--releases",
+        first.releasesPath,
         "--archive",
         archive,
         "--output",
@@ -108,14 +111,17 @@ layer(NodeServices.layer)("contract release program", (it) => {
         yield* fileSystem.readFileString(first.outputPath, "utf8")
       ).toContain("mode=create");
 
-      yield* fileSystem.writeFileString(first.tagsPath, "contracts-v0.1.0\n");
+      yield* fileSystem.writeFileString(
+        first.releasesPath,
+        "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\n"
+      );
       yield* fileSystem.writeFileString(first.outputPath, "");
       yield* makeReleaseCommand([
         "decide",
         "--package",
         first.packagePath,
-        "--tags",
-        first.tagsPath,
+        "--releases",
+        first.releasesPath,
         "--archive",
         archive,
         "--previous",
@@ -140,14 +146,14 @@ layer(NodeServices.layer)("contract release program", (it) => {
         ["--unknown"],
         ["unknown"],
         ["describe", "extra"],
-        ["describe", "--tags", paths.tagsPath],
+        ["describe", "--releases", paths.releasesPath],
         ["describe", "--output", paths.outputPath],
         [
           "decide",
           "--package",
           paths.packagePath,
-          "--tags",
-          paths.tagsPath,
+          "--releases",
+          paths.releasesPath,
           "--output",
           paths.outputPath,
         ],
@@ -179,8 +185,8 @@ layer(NodeServices.layer)("contract release program", (it) => {
           "describe",
           "--package",
           path.join(root, "missing.json"),
-          "--tags",
-          paths.tagsPath,
+          "--releases",
+          paths.releasesPath,
           "--output",
           paths.outputPath,
         ]).pipe(Effect.flip);
@@ -189,7 +195,7 @@ layer(NodeServices.layer)("contract release program", (it) => {
           "describe",
           "--package",
           paths.packagePath,
-          "--tags",
+          "--releases",
           path.join(root, "missing.txt"),
           "--output",
           paths.outputPath,

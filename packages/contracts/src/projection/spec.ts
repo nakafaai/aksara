@@ -10,7 +10,6 @@ import {
 import {
   canonicalizePublicPageProjection,
   PublicPageProjectionSchema,
-  ReadablePublicPageProjectionSchema,
 } from "#contracts/projection/page";
 import {
   canonicalizeQuestionProjection,
@@ -21,26 +20,16 @@ import {
 export const ContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
   MaterialLessonProjectionSchema,
-  ReadablePublicPageProjectionSchema,
-  QuestionBodyProjectionSchema,
-]);
-export type ContentProjection = typeof ContentProjectionSchema.Type;
-
-/** Current projection vocabulary accepted for newly staged content. */
-export const CurrentContentProjectionSchema = Schema.Union([
-  ArticleProjectionSchema,
-  MaterialLessonProjectionSchema,
   PublicPageProjectionSchema,
   QuestionBodyProjectionSchema,
 ]);
-export type CurrentContentProjection =
-  typeof CurrentContentProjectionSchema.Type;
+export type ContentProjection = typeof ContentProjectionSchema.Type;
 
 /** Public-route projections accepted by Nakafa's path-based runtime seam. */
 export const RoutedContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
   MaterialLessonProjectionSchema,
-  ReadablePublicPageProjectionSchema,
+  PublicPageProjectionSchema,
 ]);
 export type RoutedContentProjection = typeof RoutedContentProjectionSchema.Type;
 

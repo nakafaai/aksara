@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "@effect/vitest";
-import { CurrentContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
@@ -71,7 +71,7 @@ describe("HTTP publication target", () => {
         return yield* Effect.die(new Error("Expected one projection fixture."));
       }
       const oversizedProjection = yield* Schema.decodeUnknownEffect(
-        CurrentContentProjectionSchema
+        ContentProjectionSchema
       )({
         ...projection,
         metadata: {

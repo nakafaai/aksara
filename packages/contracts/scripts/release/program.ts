@@ -1,12 +1,12 @@
 import { parseArgs } from "node:util";
 import { Effect, FileSystem } from "effect";
-import { verifyArchive, writeOutputs } from "#scripts/release-archive";
+import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import {
   decideArchive,
   releaseError,
   resolveIdentity,
-} from "#scripts/release-identity";
-import { proveContractRelease } from "#scripts/release-proof";
+} from "#scripts/release/identity";
+import { proveContractRelease } from "#scripts/release/proof";
 
 /** Release identity subcommands available only to protected workflows. */
 type ReleaseCommand = "decide" | "describe" | "prove";
@@ -17,9 +17,9 @@ interface ReleaseArguments {
   readonly output: string | undefined;
   readonly packagePath: string;
   readonly previous: string | undefined;
+  readonly releases: string | undefined;
   readonly repository: string | undefined;
   readonly sourceSha: string | undefined;
-  readonly tags: string | undefined;
 }
 
 /** Parses one exact contract workflow command without exposing thrown CLI errors. */
@@ -41,9 +41,9 @@ const parseReleaseArguments = Effect.fn(
             type: "string",
           },
           previous: { type: "string" },
+          releases: { type: "string" },
           repository: { type: "string" },
           "source-sha": { type: "string" },
-          tags: { type: "string" },
         },
         strict: true,
       }),
@@ -64,9 +64,9 @@ const parseReleaseArguments = Effect.fn(
     output: parsed.values.output,
     packagePath: parsed.values.package,
     previous: parsed.values.previous,
+    releases: parsed.values.releases,
     repository: parsed.values.repository,
     sourceSha: parsed.values["source-sha"],
-    tags: parsed.values.tags,
   } satisfies ReleaseArguments;
 });
 
@@ -100,7 +100,7 @@ export const makeReleaseCommand = Effect.fn(
     }).pipe(Effect.scoped);
   }
   const output = yield* requireArgument(args.output, "output path");
-  const tags = yield* requireArgument(args.tags, "tags path");
+  const releases = yield* requireArgument(args.releases, "releases path");
   const fileSystem = yield* FileSystem.FileSystem;
   const packageSource = yield* fileSystem
     .readFileString(args.packagePath, "utf8")
@@ -109,14 +109,14 @@ export const makeReleaseCommand = Effect.fn(
         releaseError("platform", "Contract package manifest read failed")
       )
     );
-  const tagsSource = yield* fileSystem
-    .readFileString(tags, "utf8")
+  const releasesSource = yield* fileSystem
+    .readFileString(releases, "utf8")
     .pipe(
       Effect.mapError(() =>
-        releaseError("platform", "Contract tag list read failed")
+        releaseError("platform", "Contract release list read failed")
       )
     );
-  const plan = yield* resolveIdentity(packageSource, tagsSource);
+  const plan = yield* resolveIdentity(packageSource, releasesSource);
   const latestAssetName = plan.latest?.assetName ?? "";
   const latestTag = plan.latest?.releaseTag ?? "";
   const shared = {

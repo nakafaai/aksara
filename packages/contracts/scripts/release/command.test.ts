@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schedule } from "effect";
 import { TestClock } from "effect/testing";
-import { packageIdentity } from "#scripts/release-identity";
+import { packageIdentity } from "#scripts/release/identity";
 
 /** Imports the CLI with exact arguments and always restores the process state. */
 const runReleaseCommand = Effect.fn(
@@ -11,10 +11,10 @@ const runReleaseCommand = Effect.fn(
   Effect.acquireUseRelease(
     Effect.sync(() => {
       const original = process.argv;
-      process.argv = [process.execPath, "release-command.ts", ...args];
+      process.argv = [process.execPath, "command.ts", ...args];
       return original;
     }),
-    () => Effect.promise(() => import("#scripts/release-command")),
+    () => Effect.promise(() => import("#scripts/release/command")),
     (original) =>
       Effect.sync(() => {
         process.argv = original;
@@ -30,15 +30,18 @@ layer(NodeServices.layer)("contract release command", (it) => {
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-release-command-",
       });
-      const tags = path.join(root, "tags.txt");
+      const releases = path.join(root, "releases.txt");
       const output = path.join(root, "output.txt");
-      yield* fileSystem.writeFileString(tags, "contracts-v0.1.0\n");
+      yield* fileSystem.writeFileString(
+        releases,
+        "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\n"
+      );
       yield* runReleaseCommand([
         "describe",
         "--package",
         "package.json",
-        "--tags",
-        tags,
+        "--releases",
+        releases,
         "--output",
         output,
       ]);

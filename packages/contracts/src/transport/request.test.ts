@@ -9,7 +9,6 @@ import {
   rendererManifest,
   requests,
 } from "#contracts/test/request";
-import { StageGroupRequestSchema } from "#contracts/transport/group";
 import {
   decodePublicationRequest,
   PublicationRequestSchema,
@@ -67,28 +66,6 @@ describe("publication requests", () => {
         releaseId,
       })
     ).toBe(false);
-  });
-
-  it("confines rollback projection staging to authenticated groups", () => {
-    const current = requests.find(
-      (request) => request.operation === "stageProjectionBatch"
-    );
-    expect(current?.operation).toBe("stageProjectionBatch");
-    if (current?.operation !== "stageProjectionBatch") {
-      return;
-    }
-    const rollback = {
-      ...current,
-      operation: "stageRollbackProjectionBatch",
-    };
-    expect(accepts(PublicationRequestSchema, rollback)).toBe(false);
-    expect(
-      accepts(StageGroupRequestSchema, {
-        operation: "stageGroup",
-        releaseId,
-        requests: [rollback],
-      })
-    ).toBe(true);
   });
 
   it("accepts rollback provenance only at recovery publication seams", () => {

@@ -26,6 +26,8 @@ jobs:
       release_tag: ${{ steps.decision.outputs.release_tag }}
       sha256: ${{ steps.decision.outputs.sha256 }}
       size: ${{ steps.decision.outputs.size }}
+      verifier_sha256: ${{ steps.verifier.outputs.sha256 }}
+      verifier_size: ${{ steps.verifier.outputs.size }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -47,22 +49,23 @@ jobs:
 
       - name: Capture immutable contract releases
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
           GH_TOKEN: ${{ github.token }}
         run: >-
           gh api --paginate
           "repos/$GITHUB_REPOSITORY/releases?per_page=100"
           --jq '.[] | select(.draft == false and .immutable == true and
-          .prerelease == false) | .tag_name |
-          select(startswith("contracts-v"))' > "$CONTRACT_TAGS"
+          .prerelease == false) | .tag_name as $tag | .assets[] |
+          select(.name | test("^nakafa-aksara-contracts-(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.tgz$")) |
+          [$tag, .name] | @tsv' > "$CONTRACT_RELEASES"
 
       - name: Resolve release identity
         id: identity
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
         run: >-
-          node packages/contracts/scripts/release-command.ts describe
-          --tags "$CONTRACT_TAGS" --output "$GITHUB_OUTPUT"
+          node packages/contracts/scripts/release/command.ts describe
+          --releases "$CONTRACT_RELEASES" --output "$GITHUB_OUTPUT"
 
       - name: Build verified archive
         env:
@@ -96,17 +99,17 @@ jobs:
       - name: Decide exact archive release
         id: decision
         env:
-          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
           CURRENT_ARCHIVE: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
           HAS_LATEST: ${{ steps.identity.outputs.has_latest }}
           LATEST_ARCHIVE: ${{ runner.temp }}/latest-contract/${{ steps.identity.outputs.latest_asset_name }}
         run: |
-          arguments=(decide --tags "$CONTRACT_TAGS" \
+          arguments=(decide --releases "$CONTRACT_RELEASES" \
             --archive "$CURRENT_ARCHIVE" --output "$GITHUB_OUTPUT")
           if [[ "$HAS_LATEST" == "true" ]]; then
             arguments+=(--previous "$LATEST_ARCHIVE")
           fi
-          node packages/contracts/scripts/release-command.ts "${arguments[@]}"
+          node packages/contracts/scripts/release/command.ts "${arguments[@]}"
 
       - name: Verify repository
         if: steps.decision.outputs.mode == 'create'
@@ -122,6 +125,24 @@ jobs:
           pnpm typecheck
           pnpm test
           pnpm build
+
+      - name: Build provenance verifier
+        if: steps.decision.outputs.mode == 'create'
+        id: verifier
+        env:
+          VERIFIER: ${{ runner.temp }}/provenance.mjs
+        run: |
+          pnpm exec esbuild scripts/provenance/main.ts \
+            --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" \
+            --bundle \
+            --format=esm \
+            --outfile="$VERIFIER" \
+            --platform=node \
+            --target=node24
+          {
+            echo "sha256=$(sha256sum "$VERIFIER" | cut -d ' ' -f 1)"
+            echo "size=$(stat --format='%s' "$VERIFIER")"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Attest verified archive
         if: steps.decision.outputs.mode == 'create'
@@ -141,42 +162,63 @@ jobs:
           --source-digest "$GITHUB_SHA"
           --source-ref "refs/heads/main"
 
-      - name: Upload verified archive
+      - name: Upload verified package
         if: steps.decision.outputs.mode == 'create'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           compression-level: 0
           if-no-files-found: error
-          name: contract-archive
+          name: contract-package
+          overwrite: true
           path: ${{ runner.temp }}/${{ steps.decision.outputs.asset_name }}
+          retention-days: 1
+
+      - name: Upload publication verifier
+        if: steps.decision.outputs.mode == 'create'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          compression-level: 0
+          if-no-files-found: error
+          name: contract-verifier
+          overwrite: true
+          path: ${{ runner.temp }}/provenance.mjs
           retention-days: 1
 
   publish:
     needs: build
     if: needs.build.outputs.mode == 'create'
+    environment: npm-production
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       attestations: read
       contents: write
+      id-token: write
     steps:
-      - name: Download verified archive
+      - name: Download verified package
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: contract-archive
-          path: ${{ runner.temp }}/contract-archive
+          name: contract-package
+          path: ${{ runner.temp }}/contract-release
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
 
       - name: Verify transported archive
         env:
           EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
           EXPECTED_SIZE: ${{ needs.build.outputs.size }}
           GH_TOKEN: ${{ github.token }}
-          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+          TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
         run: |
           actual_sha256=$(sha256sum "$TARBALL" | cut -d ' ' -f 1)
           actual_size=$(stat --format='%s' "$TARBALL")
-          if [[ "$actual_sha256" != "$EXPECTED_SHA256" || "$actual_size" != "$EXPECTED_SIZE" ]]; then
-            echo "The transported archive differs from the verified build output." >&2
+          if [[ "$actual_sha256" != "$EXPECTED_SHA256" \
+            || "$actual_size" != "$EXPECTED_SIZE" ]]; then
+            echo "The transported package differs from the verified build output." >&2
             exit 1
           fi
           gh attestation verify "$TARBALL" \
@@ -257,11 +299,335 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
-          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+          TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
         run: gh release upload "$RELEASE_TAG" "$TARBALL" --repo "$GITHUB_REPOSITORY"
 
-      - name: Publish immutable release
+      - name: Publish public package
         if: steps.state.outputs.mode == 'create'
+        env:
+          NPM_CLI: npm@12.0.2
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+          TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
+        run: |
+          npm_version=$(npx --yes "$NPM_CLI" --version)
+          if [[ "$npm_version" != "${NPM_CLI#npm@}" ]]; then
+            echo "The trusted publisher requires the pinned npm CLI." >&2
+            exit 1
+          fi
+          if [[ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" \
+            || -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]]; then
+            echo "The trusted publisher requires GitHub OIDC identity." >&2
+            exit 1
+          fi
+
+          package_json=$(tar -xOf "$TARBALL" package/package.json)
+          package_name=$(jq -er '.name' <<< "$package_json")
+          package_version=$(jq -er '.version' <<< "$package_json")
+          if [[ "$package_name" != "@nakafa/aksara-contracts" ]]; then
+            echo "The contract archive has an unexpected package identity." >&2
+            exit 1
+          fi
+          package_specifier="$package_name@$package_version"
+          expected_shasum=$(sha1sum "$TARBALL" | cut -d ' ' -f 1)
+          expected_integrity="sha512-$(openssl dgst -sha512 -binary "$TARBALL" | openssl base64 -A)"
+
+          read_metadata() {
+            local error_file raw
+            error_file=$(mktemp "$RUNNER_TEMP/npm-view.XXXXXX")
+            if ! raw=$(npx --yes "$NPM_CLI" view "$package_specifier" \
+              name version dist.shasum dist.integrity \
+              --json 2>"$error_file"); then
+              if grep -Fq "npm error code E404" "$error_file"; then
+                rm -f -- "$error_file"
+                return 2
+              fi
+              cat "$error_file" >&2
+              rm -f -- "$error_file"
+              return 1
+            fi
+            rm -f -- "$error_file"
+            jq -ce '
+              if type == "array" and length == 1 then .[0]
+              elif type == "object" then .
+              else empty
+              end
+            ' <<< "$raw"
+          }
+
+          is_exact_package() {
+            jq -e \
+              --arg integrity "$expected_integrity" \
+              --arg name "$package_name" \
+              --arg shasum "$expected_shasum" \
+              --arg version "$package_version" \
+              '.name == $name
+                and .version == $version
+                and ."dist.shasum" == $shasum
+                and ."dist.integrity" == $integrity'
+          }
+
+          missing_count=0
+          lookup_error=0
+          for attempt in {1..5}; do
+            lookup_code=0
+            if metadata=$(read_metadata); then
+              if is_exact_package <<< "$metadata" >/dev/null; then
+                echo "$package_specifier already contains this exact archive."
+                exit 0
+              fi
+              echo "$package_specifier already exists with different bytes." >&2
+              exit 1
+            else
+              lookup_code=$?
+            fi
+            if [[ "$lookup_code" -eq 2 ]]; then
+              missing_count=$((missing_count + 1))
+            else
+              lookup_error=1
+            fi
+            if [[ "$attempt" -lt 5 ]]; then
+              sleep 2
+            fi
+          done
+          if [[ "$missing_count" -ne 5 || "$lookup_error" -ne 0 ]]; then
+            echo "npm metadata remained unavailable, so publication was not attempted." >&2
+            exit 1
+          fi
+
+          npx --yes "$NPM_CLI" publish "$TARBALL" \
+            --access public \
+            --ignore-scripts \
+            --provenance
+
+          for attempt in {1..10}; do
+            if metadata=$(read_metadata) \
+              && is_exact_package <<< "$metadata" >/dev/null; then
+              echo "Published $package_specifier with exact archive bytes."
+              exit 0
+            fi
+            if [[ "$attempt" -lt 10 ]]; then
+              sleep 3
+            fi
+          done
+
+          echo "The published package did not reach its exact registry bytes." >&2
+          exit 1
+
+      - name: Remove failed mutable release
+        if: failure() && steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+        run: |
+          release=""
+          if ! release=$(gh release view "$RELEASE_TAG" \
+            --json isImmutable,targetCommitish \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null); then
+            release=""
+          fi
+          if [[ -z "$release" ]] || ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.isImmutable == false and .targetCommitish == $sha' \
+            <<< "$release" >/dev/null; then
+            exit 0
+          fi
+
+          tag=""
+          if ! tag=$(gh api \
+            "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null); then
+            tag=""
+          fi
+          if [[ -n "$tag" ]] && ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            exit 0
+          fi
+          gh release delete "$RELEASE_TAG" --cleanup-tag \
+            --repo "$GITHUB_REPOSITORY" --yes
+
+  verify:
+    needs: [build, publish]
+    if: needs.build.outputs.mode == 'create'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {}
+    steps:
+      - name: Download verified package
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: contract-package
+          path: ${{ runner.temp }}/contract-release
+
+      - name: Download publication verifier
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: contract-verifier
+          path: ${{ runner.temp }}/contract-release
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Verify exact publication
+        env:
+          EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
+          EXPECTED_SIZE: ${{ needs.build.outputs.size }}
+          EXPECTED_VERIFIER_SHA256: ${{ needs.build.outputs.verifier_sha256 }}
+          EXPECTED_VERIFIER_SIZE: ${{ needs.build.outputs.verifier_size }}
+          NPM_CLI: npm@12.0.2
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+          TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
+          VERIFIER: ${{ runner.temp }}/contract-release/provenance.mjs
+        run: |
+          npm_version=$(npx --yes "$NPM_CLI" --version)
+          if [[ "$npm_version" != "${NPM_CLI#npm@}" ]]; then
+            echo "Publication verification requires the pinned npm CLI." >&2
+            exit 1
+          fi
+          if [[ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" \
+            || -n "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]]; then
+            echo "Publication verification must not receive OIDC identity." >&2
+            exit 1
+          fi
+
+          actual_sha256=$(sha256sum "$TARBALL" | cut -d ' ' -f 1)
+          actual_size=$(stat --format='%s' "$TARBALL")
+          actual_verifier_sha256=$(sha256sum "$VERIFIER" | cut -d ' ' -f 1)
+          actual_verifier_size=$(stat --format='%s' "$VERIFIER")
+          if [[ "$actual_sha256" != "$EXPECTED_SHA256" \
+            || "$actual_size" != "$EXPECTED_SIZE" \
+            || "$actual_verifier_sha256" != "$EXPECTED_VERIFIER_SHA256" \
+            || "$actual_verifier_size" != "$EXPECTED_VERIFIER_SIZE" ]]; then
+            echo "Publication verification received unexpected artifact bytes." >&2
+            exit 1
+          fi
+
+          package_json=$(tar -xOf "$TARBALL" package/package.json)
+          package_name=$(jq -er '.name' <<< "$package_json")
+          package_version=$(jq -er '.version' <<< "$package_json")
+          if [[ "$package_name" != "@nakafa/aksara-contracts" ]]; then
+            echo "Publication verification received an unexpected package." >&2
+            exit 1
+          fi
+          package_specifier="$package_name@$package_version"
+          expected_shasum=$(sha1sum "$TARBALL" | cut -d ' ' -f 1)
+          expected_sha512=$(sha512sum "$TARBALL" | cut -d ' ' -f 1)
+          expected_integrity="sha512-$(openssl dgst -sha512 -binary "$TARBALL" | openssl base64 -A)"
+          encoded_package_name="${package_name/\//%2f}"
+          expected_attestation_url="https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version"
+          expected_repository="https://github.com/$GITHUB_REPOSITORY"
+
+          read_metadata() {
+            local raw
+            if ! raw=$(npx --yes "$NPM_CLI" view "$package_specifier" \
+              name version dist.shasum dist.integrity dist.attestations \
+              --json 2>/dev/null); then
+              return 1
+            fi
+            jq -ce '
+              if type == "array" and length == 1 then .[0]
+              elif type == "object" then .
+              else empty
+              end
+            ' <<< "$raw"
+          }
+
+          is_exact_package() {
+            jq -e \
+              --arg integrity "$expected_integrity" \
+              --arg name "$package_name" \
+              --arg shasum "$expected_shasum" \
+              --arg attestation_url "$expected_attestation_url" \
+              --arg version "$package_version" \
+              '.name == $name
+                and .version == $version
+                and ."dist.shasum" == $shasum
+                and ."dist.integrity" == $integrity
+                and ."dist.attestations".url == $attestation_url
+                and ."dist.attestations".provenance.predicateType
+                  == "https://slsa.dev/provenance/v1"'
+          }
+
+          read_verified_provenance() {
+            local audit_file audit_root
+            audit_root=$(mktemp -d "$RUNNER_TEMP/npm-audit.XXXXXX")
+            audit_file="$audit_root/audit.json"
+            if (
+              set -euo pipefail
+              cd "$audit_root"
+              npx --yes "$NPM_CLI" init --yes >/dev/null
+              npx --yes "$NPM_CLI" install --save-exact --ignore-scripts \
+                --no-audit --no-fund "$package_specifier" >/dev/null
+              npx --yes "$NPM_CLI" audit signatures --json \
+                --include-attestations > "$audit_file"
+              node "$VERIFIER" \
+                "$audit_file" \
+                "$package_name" \
+                "$package_version" \
+                "$expected_sha512" \
+                "$expected_repository" \
+                ".github/workflows/contracts.yml" \
+                "refs/heads/main" \
+                "$GITHUB_SHA" \
+                "npm-production"
+            ); then
+              rm -r -- "$audit_root"
+              return 0
+            fi
+            rm -r -- "$audit_root"
+            return 1
+          }
+
+          is_exact_publication() {
+            local metadata
+            if ! metadata=$(read_metadata) \
+              || ! is_exact_package <<< "$metadata" >/dev/null \
+              || ! read_verified_provenance; then
+              return 1
+            fi
+          }
+
+          for attempt in {1..10}; do
+            if is_exact_publication; then
+              echo "Verified $package_specifier with exact npm provenance."
+              exit 0
+            fi
+            if [[ "$attempt" -lt 10 ]]; then
+              sleep 3
+            fi
+          done
+
+          echo "The contract publication did not reach its exact verified state." >&2
+          exit 1
+
+  finalize:
+    needs: [build, publish, verify]
+    if: always() && needs.build.result == 'success' && needs.build.outputs.mode == 'create'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      attestations: read
+      contents: write
+    steps:
+      - name: Download verified package
+        if: needs.publish.result == 'success' && needs.verify.result == 'success'
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: contract-package
+          path: ${{ runner.temp }}/contract-release
+
+      - name: Reject unverified release
+        if: needs.publish.result != 'success' || needs.verify.result != 'success'
+        run: |
+          echo "Contract publication or verification failed." >&2
+          exit 1
+
+      - name: Publish immutable release
+        if: needs.publish.result == 'success' && needs.verify.result == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
@@ -270,13 +636,14 @@ jobs:
           --repo "$GITHUB_REPOSITORY"
 
       - name: Verify published release
+        if: needs.publish.result == 'success' && needs.verify.result == 'success'
         env:
           ASSET_NAME: ${{ needs.build.outputs.asset_name }}
           EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
           EXPECTED_SIZE: ${{ needs.build.outputs.size }}
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
-          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+          TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
         run: |
           release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")
           if ! jq -e \
@@ -310,7 +677,7 @@ jobs:
           fi
 
           release_verified=false
-          for attempt in 1 2 3 4 5 6; do
+          for attempt in {1..6}; do
             if gh release verify "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
               && gh release verify-asset "$RELEASE_TAG" "$TARBALL" \
                 --repo "$GITHUB_REPOSITORY"; then
@@ -332,7 +699,7 @@ jobs:
             --source-ref "refs/heads/main"
 
       - name: Remove failed mutable release
-        if: failure() && steps.state.outputs.mode == 'create'
+        if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}

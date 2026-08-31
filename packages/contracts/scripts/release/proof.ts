@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
 import { Effect, FileSystem, Path, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/unstable/process";
-import { verifyArchive } from "#scripts/release-archive";
-import { packageIdentity, releaseError } from "#scripts/release-identity";
+import { verifyArchive } from "#scripts/release/archive";
+import { packageIdentity, releaseError } from "#scripts/release/identity";
 
 const SHA_PATTERN = /^[0-9a-f]{40}$/u;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u;

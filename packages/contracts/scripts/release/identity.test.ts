@@ -7,7 +7,12 @@ import {
   packageIdentity,
   parseVersion,
   resolveIdentity,
-} from "#scripts/release-identity";
+} from "#scripts/release/identity";
+
+/** Encodes one immutable release row from its real tag and package version. */
+function release(tag: string, version: string) {
+  return `${tag}\tnakafa-aksara-contracts-${version}.tgz\n`;
+}
 
 describe("contract release identity", () => {
   it.effect(
@@ -24,8 +29,14 @@ describe("contract release identity", () => {
         expect(compareVersions(identity, yield* parseVersion("1.2.2"))).toBe(1);
         expect(compareVersions(identity, yield* parseVersion("1.2.3"))).toBe(0);
         expect(
-          yield* latestIdentity("contracts-v1.0.0\ncontracts-v0.9.9\n")
-        ).toEqual(yield* parseVersion("1.0.0"));
+          yield* latestIdentity(
+            `${release("contracts-v1.0.0", "1.0.0")}${release(
+              "contracts-v0.9.9",
+              "0.9.9"
+            )}`
+          )
+        ).toEqual(yield* parseVersion("1.0.0", "contracts-v1.0.0"));
+        expect(identity.releaseTag).toBe("@nakafa/aksara-contracts@1.2.3");
       })
   );
 
@@ -55,7 +66,33 @@ describe("contract release identity", () => {
       expect(
         yield* Effect.flip(latestIdentity("contracts-vnext\n"))
       ).toMatchObject({
-        detail: expect.stringContaining("not a stable release tag"),
+        detail: expect.stringContaining("pair one tag"),
+      });
+      expect(
+        yield* Effect.flip(
+          latestIdentity(
+            "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\textra\n"
+          )
+        )
+      ).toMatchObject({
+        detail: expect.stringContaining("pair one tag"),
+      });
+      expect(
+        yield* Effect.flip(latestIdentity("contracts-v0.1.0\twrong.tgz\n"))
+      ).toMatchObject({
+        detail: expect.stringContaining("stable package archive"),
+      });
+      expect(
+        yield* Effect.flip(
+          latestIdentity(
+            `${release("contracts-v0.1.0", "0.1.0")}${release(
+              "@nakafa/aksara-contracts@0.1.0",
+              "0.1.0"
+            )}`
+          )
+        )
+      ).toMatchObject({
+        detail: expect.stringContaining("multiple immutable releases"),
       });
       expect(
         yield* resolveIdentity(
@@ -77,7 +114,7 @@ describe("contract release identity", () => {
         yield* Effect.flip(
           resolveIdentity(
             '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
-            "contracts-v0.2.0\n"
+            release("contracts-v0.2.0", "0.2.0")
           )
         )
       ).toMatchObject({
@@ -108,7 +145,7 @@ describe("contract release identity", () => {
 
         const unchanged = yield* resolveIdentity(
           '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
-          "contracts-v0.1.0\n"
+          release("contracts-v0.1.0", "0.1.0")
         );
         expect(yield* decideArchive(unchanged, current, current)).toMatchObject(
           {
@@ -136,7 +173,7 @@ describe("contract release identity", () => {
 
         const changed = yield* resolveIdentity(
           '{"name":"@nakafa/aksara-contracts","version":"0.2.0"}',
-          "contracts-v0.1.0\n"
+          release("contracts-v0.1.0", "0.1.0")
         );
         expect(
           yield* decideArchive(
