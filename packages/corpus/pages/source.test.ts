@@ -136,6 +136,7 @@ layer(Path.layer)("public page source", (it) => {
           expect(rawMdx).toContain(NAKAFA_AGENT_IMPLEMENTATION_SHA);
           expect(rawMdx).toContain("https://api.nakafa.com/openapi.json");
           expect(rawMdx).toContain("https://mcp.nakafa.com/mcp");
+          expect(rawMdx.match(/Host: mcp\.nakafa\.com/gu)).toHaveLength(2);
           expect(rawMdx).toContain(
             "Accept: application/json, text/event-stream"
           );
@@ -144,6 +145,7 @@ layer(Path.layer)("public page source", (it) => {
           expect(rawMdx).toContain("npm install --global @nakafa/cli");
           expect(rawMdx).toContain('filename: "nakafa.sh"');
           expect(rawMdx).not.toContain("https://nakafa.com/mcp");
+          expect(rawMdx).not.toContain("Host: nakafa.com");
           expect(rawMdx).not.toContain("nakafa-cli");
         }
         const expectedTitles = new Map([
