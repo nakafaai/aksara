@@ -15,6 +15,8 @@ const NPM_REGISTRY = "https://registry.npmjs.org";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
 const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
+const QUEUE_REVIEW_PATTERN =
+  /Verify final queue review state[\s\S]*if: github\.event_name == 'merge_group'[\s\S]*GITHUB_TOKEN: \$\{\{ github\.token \}\}[\s\S]*pnpm ci:review/u;
 const ARCHIVE_BUILD_PATTERN =
   /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
 const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
@@ -117,6 +119,11 @@ export function verifyWorkflows({
     ci,
     VERIFY_CONSUMER_PATTERN,
     "CI must prove the release archive in an isolated consumer"
+  );
+  assert.match(
+    ci,
+    QUEUE_REVIEW_PATTERN,
+    "CI must recheck unresolved review threads on the merge group"
   );
 
   assert.match(

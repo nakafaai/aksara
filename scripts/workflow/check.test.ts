@@ -65,6 +65,15 @@ describe("workflow policy", () => {
     ).toThrow("CI must derive release necessity from the tested identity tool");
   });
 
+  it("requires the final merge group review gate", () => {
+    expect(() =>
+      verifyWorkflows({
+        ...sources,
+        ci: sources.ci.replace("pnpm ci:review", "true"),
+      })
+    ).toThrow("CI must recheck unresolved review threads on the merge group");
+  });
+
   it("derives previous bytes only from final immutable releases", () => {
     expect(() =>
       verifyWorkflows({
